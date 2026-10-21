@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<title>Farbklecks</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+<meta name="description" content="Farbklecks – die Mal-App für Kinder. Funktioniert auch ohne Internet.">
+<meta name="theme-color" content="#6c7cf5">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Farbklecks">
+<meta name="format-detection" content="telephone=no">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="fk-rainbow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff3b3b"/>
+      <stop offset=".2" stop-color="#ff9a1f"/>
+      <stop offset=".4" stop-color="#ffe14a"/>
+      <stop offset=".6" stop-color="#3fd16b"/>
+      <stop offset=".8" stop-color="#3f8bff"/>
+      <stop offset="1" stop-color="#a24bff"/>
+    </linearGradient>
+
+    <symbol id="i-brush" viewBox="0 0 48 48">
+      <g transform="rotate(40 24 24)" stroke="#23203d" stroke-width="3" stroke-linejoin="round">
+        <rect x="20" y="25" width="8" height="21" rx="4" fill="#ec9f55"/>
+        <rect x="18.5" y="17.5" width="11" height="9" rx="2" fill="#d5dbeb"/>
+        <path d="M18.5 17.5 C18 10 21 5 24 1.5 C27 5 30 10 29.5 17.5 Z" style="fill:var(--cur)"/>
+      </g>
+    </symbol>
+
+    <symbol id="i-bucket" viewBox="0 0 48 48">
+      <path d="M11 17 C11 5 31 5 31 17" fill="none" stroke="#23203d" stroke-width="3" stroke-linecap="round"/>
+      <path d="M6 18 L36 18 L32 42 Q21 46 10 42 Z" fill="#a9b8ff" stroke="#23203d" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M10 24 L32 24" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" opacity=".7"/>
+      <path d="M33 16 C40 16 44 21 43 29 C42.5 35 38 36 37.5 31 C37 27 37 23 33 21 Z" style="fill:var(--cur)" stroke="#23203d" stroke-width="3" stroke-linejoin="round"/>
+      <ellipse cx="21" cy="18" rx="15" ry="4.5" style="fill:var(--cur)" stroke="#23203d" stroke-width="3"/>
+    </symbol>
+
+    <symbol id="i-eraser" viewBox="0 0 48 48">
+      <g transform="rotate(-32 24 24)" stroke="#23203d" stroke-width="3" stroke-linejoin="round">
+        <rect x="5" y="14" width="38" height="20" rx="5" fill="#ff9cbc"/>
+        <path d="M25 14 H38 A5 5 0 0 1 43 19 V29 A5 5 0 0 1 38 34 H25 Z" fill="#7fb6ff"/>
+      </g>
+      <path d="M8 44 H40" stroke="#23203d" stroke-width="3" stroke-linecap="round" stroke-dasharray="1 6"/>
+    </symbol>
+
+    <symbol id="i-mirror-off" viewBox="0 0 48 48">
+      <path d="M24 4 V44" stroke="#23203d" stroke-width="3" stroke-linecap="round" stroke-dasharray="3 5"/>
+      <path d="M21 13 C14 6 3 10 5 20 C7 28 15 32 21 37 Z" fill="#ff7ab0" stroke="#23203d" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M27 13 C34 6 45 10 43 20 C41 28 33 32 27 37 Z" fill="none" stroke="#a7a3c4" stroke-width="3" stroke-linejoin="round" stroke-dasharray="4 4"/>
+    </symbol>
+
+    <symbol id="i-mirror" viewBox="0 0 48 48">
+      <path d="M24 4 V44" stroke="#23203d" stroke-width="3" stroke-linecap="round" stroke-dasharray="3 5"/>
+      <path d="M21 13 C14 6 3 10 5 20 C7 28 15 32 21 37 Z" fill="#ff7ab0" stroke="#23203d" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M27 13 C34 6 45 10 43 20 C41 28 33 32 27 37 Z" fill="#ff7ab0" stroke="#23203d" stroke-width="3" stroke-linejoin="round"/>
+    </symbol>
+
+    <symbol id="i-kaleido" viewBox="0 0 48 48">
+      <g stroke="#23203d" stroke-width="2.5" stroke-linejoin="round">
+        <ellipse cx="24" cy="11.5" rx="5" ry="9" fill="#8fd3ff"/>
+        <ellipse cx="24" cy="11.5" rx="5" ry="9" fill="#ff8fc0" transform="rotate(45 24 24)"/>
+        <ellipse cx="24" cy="11.5" rx="5" ry="9" fill="#8fd3ff" transform="rotate(90 24 24)"/>
+        <ellipse cx="24" cy="11.5" rx="5" ry="9" fill="#ff8fc0" transform="rotate(135 24 24)"/>
+        <ellipse cx="24" cy="11.5" rx="5" ry="9" fill="#8fd3ff" transform="rotate(180 24 24)"/>
+        <ellipse cx="24" cy="11.5" rx="5" ry="9" fill="#ff8fc0" transform="rotate(225 24 24)"/>
+        <ellipse cx="24" cy="11.5" rx="5" ry="9" fill="#8fd3ff" transform="rotate(270 24 24)"/>
+        <ellipse cx="24" cy="11.5" rx="5" ry="9" fill="#ff8fc0" transform="rotate(315 24 24)"/>
+        <circle cx="24" cy="24" r="6" fill="#ffc93c"/>
+      </g>
+    </symbol>
+
+    <symbol id="i-undo" viewBox="0 0 48 48">
+      <path d="M17 15 H27 C35 15 41 21 41 28.5 C41 36 35 41 27 41 H17" fill="none" stroke="#23203d" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M17 15 H27 C35 15 41 21 41 28.5 C41 36 35 41 27 41 H17" fill="none" stroke="#ff9a1f" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M20 4 L5 15 L20 26 Z" fill="#ff9a1f" stroke="#23203d" stroke-width="3" stroke-linejoin="round"/>
+    </symbol>
+
+    <symbol id="i-pages" viewBox="0 0 48 48">
+      <rect x="7" y="4" width="34" height="40" rx="4" fill="#ffffff" stroke="#23203d" stroke-width="3"/>
+      <path d="M24 35 C14 28 10 23 10.5 17.5 C11 12.5 17 10.5 20.5 13.5 C22 14.8 23 16 24 17.5 C25 16 26 14.8 27.5 13.5 C31 10.5 37 12.5 37.5 17.5 C38 23 34 28 24 35 Z" fill="none" stroke="#23203d" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M14 17 L19 15 L15 21 L22 17 L17 25 L24 21" fill="none" stroke="#ff4fa3" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+
+    <symbol id="i-new" viewBox="0 0 48 48">
+      <path d="M9 4 H30 L39 13 V44 H9 Z" fill="#ffffff" stroke="#23203d" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M30 4 V13 H39" fill="#e3e7ff" stroke="#23203d" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M24 18 L26.6 25.4 L34 28 L26.6 30.6 L24 38 L21.4 30.6 L14 28 L21.4 25.4 Z" fill="#ffc93c" stroke="#23203d" stroke-width="2.5" stroke-linejoin="round"/>
+    </symbol>
+
+    <symbol id="i-camera" viewBox="0 0 48 48">
+      <path d="M15 15 L18.5 8 H29.5 L33 15" fill="#ff6f61" stroke="#23203d" stroke-width="3" stroke-linejoin="round"/>
+      <rect x="4" y="14" width="40" height="28" rx="7" fill="#ff6f61" stroke="#23203d" stroke-width="3"/>
+      <circle cx="24" cy="28" r="9.5" fill="#ffffff" stroke="#23203d" stroke-width="3"/>
+      <circle cx="24" cy="28" r="4.5" fill="#7fb6ff" stroke="#23203d" stroke-width="2"/>
+      <circle cx="37" cy="20.5" r="2.5" fill="#ffc93c"/>
+    </symbol>
+
+    <symbol id="i-gallery" viewBox="0 0 48 48">
+      <rect x="12" y="5" width="31" height="25" rx="3" fill="#ffffff" stroke="#23203d" stroke-width="3" transform="rotate(9 27 17)"/>
+      <rect x="4" y="14" width="32" height="28" rx="3" fill="#ffffff" stroke="#23203d" stroke-width="3"/>
+      <rect x="8.5" y="18.5" width="23" height="19" fill="#bfe3ff"/>
+      <path d="M8.5 37.5 L16 27 L21 32 L25 28 L31.5 37.5 Z" fill="#62c370" stroke="#23203d" stroke-width="2.5" stroke-linejoin="round"/>
+      <circle cx="26.5" cy="23.5" r="3" fill="#ffc93c"/>
+    </symbol>
+
+    <symbol id="i-gear" viewBox="0 0 48 48">
+      <path d="M21 4 H27 L28.5 10 L33 12 L38.5 9 L42.5 13 L39.5 18.5 L41 23 L47 24.5 V30.5 L41 32 L39.5 36.5 L42.5 42 L38.5 46 L33 43 L28.5 45 L27 47 H21 L19.5 45 L15 43 L9.5 46 L5.5 42 L8.5 36.5 L7 32 L1 30.5 V24.5 L7 23 L8.5 18.5 L5.5 13 L9.5 9 L15 12 L19.5 10 Z" fill="#cfd6ea" stroke="#23203d" stroke-width="3" stroke-linejoin="round" transform="translate(0 -2.5) scale(1)"/>
+      <circle cx="24" cy="25" r="7" fill="#ffffff" stroke="#23203d" stroke-width="3"/>
+    </symbol>
+
+    <symbol id="i-close" viewBox="0 0 48 48">
+      <path d="M13 13 L35 35 M35 13 L13 35" stroke="#23203d" stroke-width="11" stroke-linecap="round"/>
+      <path d="M13 13 L35 35 M35 13 L13 35" stroke="#ff6f61" stroke-width="5" stroke-linecap="round"/>
+    </symbol>
+
+    <symbol id="i-check" viewBox="0 0 48 48">
+      <path d="M10 25 L20 35 L39 13" fill="none" stroke="#23203d" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M10 25 L20 35 L39 13" fill="none" stroke="#3fd16b" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+
+    <symbol id="i-share" viewBox="0 0 48 48">
+      <path d="M15 19 H10 V43 H38 V19 H33" fill="#ffffff" stroke="#23203d" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M24 30 V6" stroke="#23203d" stroke-width="9" stroke-linecap="round"/>
+      <path d="M24 30 V6" stroke="#3f8bff" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M14 14 L24 3 L34 14" fill="none" stroke="#23203d" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M14 14 L24 3 L34 14" fill="none" stroke="#3f8bff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+
+    <symbol id="i-trash" viewBox="0 0 48 48">
+      <path d="M18 9 V5 H30 V9" fill="none" stroke="#23203d" stroke-width="3" stroke-linejoin="round"/>
+      <rect x="6" y="9" width="36" height="7" rx="3" fill="#cfd6ea" stroke="#23203d" stroke-width="3"/>
+      <path d="M10 16 H38 L35 44 H13 Z" fill="#e9edf8" stroke="#23203d" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M19 22 V38 M29 22 V38" stroke="#23203d" stroke-width="3" stroke-linecap="round"/>
+    </symbol>
+
+    <symbol id="i-pencil" viewBox="0 0 48 48">
+      <g transform="rotate(45 24 24)" stroke="#23203d" stroke-width="3" stroke-linejoin="round">
+        <rect x="18" y="12" width="12" height="30" rx="2" fill="#ffc93c"/>
+        <path d="M18 12 L24 1 L30 12 Z" fill="#f3c891"/>
+        <path d="M21.6 5.6 L24 1 L26.4 5.6 Z" fill="#23203d"/>
+        <rect x="18" y="38" width="12" height="7" rx="2" fill="#ff9cbc"/>
+      </g>
+    </symbol>
+
+    <symbol id="i-sound" viewBox="0 0 48 48">
+      <path d="M6 18 H14 L25 8 V40 L14 30 H6 Z" fill="#ffc93c" stroke="#23203d" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M31 17 C34 20 34 28 31 31 M36 12 C42 18 42 30 36 36" fill="none" stroke="#23203d" stroke-width="3" stroke-linecap="round"/>
+    </symbol>
+
+    <symbol id="i-voice" viewBox="0 0 48 48">
+      <path d="M8 8 H40 A4 4 0 0 1 44 12 V31 A4 4 0 0 1 40 35 H22 L12 43 V35 H8 A4 4 0 0 1 4 31 V12 A4 4 0 0 1 8 8 Z" fill="#8fd3ff" stroke="#23203d" stroke-width="3" stroke-linejoin="round"/>
+      <circle cx="15" cy="21.5" r="3" fill="#23203d"/><circle cx="24" cy="21.5" r="3" fill="#23203d"/><circle cx="33" cy="21.5" r="3" fill="#23203d"/>
+    </symbol>
+
+    <symbol id="i-blob" viewBox="0 0 100 100">
+      <path d="M50 8 C60 8 64 16 72 17 C82 18 92 24 91 36 C90 44 84 46 86 54 C89 64 92 74 83 82 C75 89 66 84 58 89 C50 94 40 95 32 89 C24 83 14 86 10 76 C6 66 14 60 12 52 C10 42 4 34 10 25 C16 16 28 20 34 15 C40 10 42 8 50 8 Z" fill="#ffc93c" stroke="#23203d" stroke-width="5" stroke-linejoin="round"/>
+      <ellipse cx="37" cy="45" rx="6" ry="8" fill="#23203d"/><ellipse cx="63" cy="45" rx="6" ry="8" fill="#23203d"/>
+      <circle cx="39" cy="42" r="2.4" fill="#ffffff"/><circle cx="65" cy="42" r="2.4" fill="#ffffff"/>
+      <ellipse cx="27" cy="58" rx="6" ry="4" fill="#ff8fb3"/><ellipse cx="73" cy="58" rx="6" ry="4" fill="#ff8fb3"/>
+      <path d="M38 61 C42 70 58 70 62 61" fill="none" stroke="#23203d" stroke-width="5" stroke-linecap="round"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="app" id="app">
+
+  <nav class="rail rail-tools" id="tools" aria-label="Werkzeuge">
+    <button class="btn" id="btn-brush" data-tool="brush" aria-label="Pinsel">
+      <svg class="ic" aria-hidden="true"><use href="#i-brush"/></svg>
+      <span class="lbl">Pinsel</span>
+    </button>
+    <button class="btn" id="btn-stamp" data-tool="stamp" aria-label="Stempel">
+      <span class="ic emoji" id="stamp-face" aria-hidden="true">🐱</span>
+      <span class="lbl">Stempel</span>
+    </button>
+    <button class="btn" id="btn-fill" data-tool="fill" aria-label="Farbeimer">
+      <svg class="ic" aria-hidden="true"><use href="#i-bucket"/></svg>
+      <span class="lbl">Eimer</span>
+    </button>
+    <button class="btn" id="btn-eraser" data-tool="eraser" aria-label="Radiergummi">
+      <svg class="ic" aria-hidden="true"><use href="#i-eraser"/></svg>
+      <span class="lbl">Radierer</span>
+    </button>
+    <button class="btn" id="btn-size" aria-label="Grösse">
+      <svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><circle id="size-dot" cx="24" cy="24" r="8" fill="#23203d"/></svg>
+      <span class="lbl">Grösse</span>
+    </button>
+    <button class="btn" id="btn-mirror" aria-label="Spiegel">
+      <svg class="ic" aria-hidden="true"><use id="mirror-use" href="#i-mirror-off"/></svg>
+      <span class="lbl">Spiegel</span>
+    </button>
+  </nav>
+
+  <main class="stage" id="stage">
+    <div class="paper" id="paper">
+      <div class="paper-clip" id="paper-clip">
+        <canvas id="cv-paint"></canvas>
+        <canvas id="cv-glow" class="live glow"></canvas>
+        <canvas id="cv-base" class="live"></canvas>
+        <canvas id="cv-top" class="live"></canvas>
+        <canvas id="cv-outline"></canvas>
+        <svg class="guides" id="guides" preserveAspectRatio="none" aria-hidden="true"></svg>
+        <div class="flash" id="flash"></div>
+      </div>
+      <span class="tape tape-l" aria-hidden="true"></span>
+      <span class="tape tape-r" aria-hidden="true"></span>
+    </div>
+    <div class="hint" id="hint" hidden>
+      <svg class="hint-blob" aria-hidden="true"><use href="#i-blob"/></svg>
+      <span>Wähl eine Farbe und mal los!</span>
+    </div>
+  </main>
+
+  <nav class="rail rail-actions" id="actions" aria-label="Aktionen">
+    <button class="btn" id="btn-undo" aria-label="Zurück">
+      <svg class="ic" aria-hidden="true"><use href="#i-undo"/></svg>
+      <span class="lbl">Zurück</span>
+    </button>
+    <button class="btn" id="btn-pages" aria-label="Ausmalbilder">
+      <svg class="ic" aria-hidden="true"><use href="#i-pages"/></svg>
+      <span class="lbl">Ausmalen</span>
+    </button>
+    <button class="btn" id="btn-new" aria-label="Neues Blatt">
+      <svg class="ic" aria-hidden="true"><use href="#i-new"/></svg>
+      <span class="lbl">Neu</span>
+    </button>
+    <button class="btn" id="btn-save" aria-label="Speichern">
+      <svg class="ic" aria-hidden="true"><use href="#i-camera"/></svg>
+      <span class="lbl">Speichern</span>
+    </button>
+    <button class="btn" id="btn-gallery" aria-label="Meine Bilder">
+      <svg class="ic" aria-hidden="true"><use href="#i-gallery"/></svg>
+      <span class="lbl">Bilder</span>
+    </button>
+  </nav>
+
+  <div class="box" id="crayons" role="radiogroup" aria-label="Farben"></div>
+</div>
+
+<canvas class="fx" id="cv-fx" aria-hidden="true"></canvas>
+
+<div class="pop" id="pop" hidden>
+  <div class="pop-card" id="pop-card" role="dialog"></div>
+</div>
+
+<section class="sheet" id="sheet-pages" hidden aria-labelledby="pages-title">
+  <header class="sheet-head">
+    <h2 id="pages-title">Ausmalbilder</h2>
+    <button class="btn btn-round" data-close aria-label="Schliessen"><svg class="ic" aria-hidden="true"><use href="#i-close"/></svg></button>
+  </header>
+  <div class="sheet-body scroll">
+    <div class="cards" id="pages-grid"></div>
+  </div>
+</section>
+
+<section class="sheet" id="sheet-gallery" hidden aria-labelledby="gallery-title">
+  <header class="sheet-head">
+    <h2 id="gallery-title">Meine Bilder</h2>
+    <button class="btn btn-round btn-quiet" id="btn-settings" aria-label="Einstellungen für Eltern"><svg class="ic" aria-hidden="true"><use href="#i-gear"/></svg></button>
+    <button class="btn btn-round" data-close aria-label="Schliessen"><svg class="ic" aria-hidden="true"><use href="#i-close"/></svg></button>
+  </header>
+  <div class="sheet-body scroll">
+    <div class="cards frames" id="gallery-grid"></div>
+    <div class="empty" id="gallery-empty" hidden>
+      <svg class="empty-ic" aria-hidden="true"><use href="#i-camera"/></svg>
+      <p>Noch keine Bilder.<br>Mal etwas und tipp auf <b>Speichern</b>!</p>
+    </div>
+  </div>
+</section>
+
+<section class="sheet sheet-viewer" id="sheet-viewer" hidden aria-label="Bild ansehen">
+  <div class="viewer-frame"><img id="viewer-img" alt="Dein Bild"></div>
+  <div class="viewer-actions" id="viewer-actions">
+    <button class="btn btn-big" id="v-continue"><svg class="ic" aria-hidden="true"><use href="#i-pencil"/></svg><span class="lbl">Weitermalen</span></button>
+    <button class="btn btn-big" id="v-share"><svg class="ic" aria-hidden="true"><use href="#i-share"/></svg><span class="lbl">Sichern</span></button>
+    <button class="btn btn-big" id="v-delete"><svg class="ic" aria-hidden="true"><use href="#i-trash"/></svg><span class="lbl">Löschen</span></button>
+    <button class="btn btn-big" data-close><svg class="ic" aria-hidden="true"><use href="#i-close"/></svg><span class="lbl">Zurück</span></button>
+  </div>
+  <div class="viewer-actions confirm" id="viewer-confirm" hidden>
+    <p class="confirm-q">Wirklich löschen?</p>
+    <button class="btn btn-big" id="v-yes"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span class="lbl">Ja</span></button>
+    <button class="btn btn-big" id="v-no"><svg class="ic" aria-hidden="true"><use href="#i-close"/></svg><span class="lbl">Nein</span></button>
+  </div>
+</section>
+
+<section class="sheet sheet-settings" id="sheet-settings" hidden aria-labelledby="settings-title">
+  <header class="sheet-head">
+    <h2 id="settings-title">Für Eltern</h2>
+    <button class="btn btn-round" data-close aria-label="Schliessen"><svg class="ic" aria-hidden="true"><use href="#i-close"/></svg></button>
+  </header>
+  <div class="sheet-body scroll">
+    <div class="settings">
+      <label class="toggle" for="set-sound">
+        <svg class="ic" aria-hidden="true"><use href="#i-sound"/></svg>
+        <span class="toggle-txt"><b>Geräusche</b><small>Töne beim Malen und bei den Farben</small></span>
+        <input type="checkbox" id="set-sound" checked>
+        <span class="switch" aria-hidden="true"></span>
+      </label>
+      <label class="toggle" for="set-voice">
+        <svg class="ic" aria-hidden="true"><use href="#i-voice"/></svg>
+        <span class="toggle-txt"><b>Vorlesen</b><small>Farben, Werkzeuge und Stempel werden laut gesagt</small></span>
+        <input type="checkbox" id="set-voice" checked>
+        <span class="switch" aria-hidden="true"></span>
+      </label>
+      <div class="info">
+        <h3>Als App installieren</h3>
+        <p>In Safari auf <b>Teilen</b> tippen und <b>«Zum Home-Bildschirm»</b> wählen. Danach startet Farbklecks wie eine richtige App – auch ohne Internet.</p>
+        <h3>Wo sind die Bilder?</h3>
+        <p>Alle Bilder bleiben nur auf diesem Gerät. Mit <b>Sichern</b> in «Meine Bilder» kannst du ein Bild in die Fotos legen oder verschicken.</p>
+        <p class="ver" id="app-version">Farbklecks</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="praise" id="praise" hidden aria-live="polite"></div>
+
+<script src="js/store.js" defer></script>
+<script src="js/sound.js" defer></script>
+<script src="js/brushes.js" defer></script>
+<script src="js/pages.js" defer></script>
+<script src="js/app.js" defer></script>
+</body>
+</html>
