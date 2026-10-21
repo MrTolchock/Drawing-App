@@ -4,7 +4,7 @@ A colouring and early-learning app for children around six years old, in Swiss S
 
 ## What children can do
 
-**Ausmalen (colouring), the main activity.** A picture book with about 50 hand-drawn colouring pages in five categories: Tiere, Schweiz, Fahrzeuge, Fantasie and Natur. Each picture can be coloured five ways:
+**Ausmalen (colouring), the main activity.** A picture book with 41 hand-drawn colouring pages in five categories: Tiere, Schweiz, Fahrzeuge, Fantasie and Natur. Each picture can be coloured five ways:
 
 | Mode | What the child does | What it practises |
 | --- | --- | --- |
@@ -27,7 +27,7 @@ Some details that make colouring easier and more fun:
 
 **Lesen (reading).** Reading games with Silbenbögen (the syllable arcs used in Swiss schools), at three levels. There is no audio: every game checks itself with pictures.
 
-**Punkt zu Punkt.** The child connects numbered dots up to 10, 20 or 30. The finished outline becomes a colouring page.
+**Punkt zu Punkt.** 14 pictures where the child connects numbered dots up to 10, 20 or 30. The finished outline becomes a colouring page too.
 
 **Freies Malen.** Free drawing with 8 brushes, stamps, a mirror mode and coloured paper.
 
