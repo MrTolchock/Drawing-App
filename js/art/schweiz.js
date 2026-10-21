@@ -23,6 +23,28 @@
     return p;
   }
 
+  // Several sub-paths merged into one outlined region (head with a hair tuft).
+  function union(g, p) {
+    g.ctx.strokeStyle = '#000';
+    g.ctx.lineWidth = g.lw * 2;
+    g.ctx.stroke(p);
+    g.ctx.fillStyle = '#fff';
+    g.ctx.fill(p);
+    return p;
+  }
+
+  // Adds a rounded rectangle to path p (all corners drawn clockwise, so unions fill solid).
+  function rr(p, x, y, w, h, r) {
+    r = Math.min(r, w / 2, h / 2);
+    p.moveTo(x + r, y);
+    p.arcTo(x + w, y, x + w, y + h, r);
+    p.arcTo(x + w, y + h, x, y + h, r);
+    p.arcTo(x, y + h, x, y, r);
+    p.arcTo(x, y, x + w, y, r);
+    p.closePath();
+    return p;
+  }
+
   // Mountain range: outline path `d`, snow caps given as polygons that are cut to the mountain.
   function alps(g, d, caps) {
     const m = g.shape(d);
@@ -36,7 +58,7 @@
     const f = g.shape('M' + x + ' ' + y + ' Q' + (x + s * 0.5) + ' ' + (y - s * 0.08) + ' ' + (x + s) + ' ' + y +
       ' L' + (x + s) + ' ' + (y + s) + ' Q' + (x + s * 0.5) + ' ' + (y + s * 0.92) + ' ' + x + ' ' + (y + s) + ' Z');
     const cx = x + s / 2, cy = y + s / 2;
-    const a = s * 0.12, b = s * 0.33;   // half arm width, half arm length
+    const a = s * 0.1, b = s * 0.31;   // half arm width, half cross length
     g.poly([
       [cx - a, cy - b], [cx + a, cy - b], [cx + a, cy - a], [cx + b, cy - a], [cx + b, cy + a], [cx + a, cy + a],
       [cx + a, cy + b], [cx - a, cy + b], [cx - a, cy + a], [cx - b, cy + a], [cx - b, cy - a], [cx - a, cy - a],
@@ -44,12 +66,12 @@
     return f;
   }
 
-  // Tulip-like flower: stem, leaf and a cup with three points; the cup can carry a label.
+  // Tulip: stem, an open leaf (it shares the meadow's colour) and a cup that can carry a label.
   function tulip(g, x, y, s, lean) {
     g.at(x, y, lean || 0, s, () => {
       g.line('M0 0 L0 -95');
-      g.shape('M0 -20 C30 -40 55 -75 60 -110 C25 -95 5 -70 0 -40 Z');
-      g.shape('M-48 -175 L-24 -150 L0 -182 L24 -150 L48 -175 C58 -120 40 -90 0 -88 C-40 -90 -58 -120 -48 -175 Z');
+      g.line('M12 0 C34 -40 62 -84 88 -118 C48 -112 40 -50 54 0');
+      g.shape('M-60 -200 L-30 -166 L0 -206 L30 -166 L60 -200 C72 -130 52 -88 0 -86 C-52 -88 -72 -130 -60 -200 Z');
     });
   }
 
@@ -59,79 +81,184 @@
       ' Q' + (x + s * 0.5) + ' ' + (y - s * 0.6) + ' ' + (x + s) + ' ' + y, g.lw * 0.8);
   }
 
+  // Fir tree in three tiers (one region) on a trunk; top at (x, y), height h, half width w.
+  function fir(g, x, y, h, w) {
+    g.rect(x - w * 0.16, y + h * 0.9, w * 0.32, h * 0.22, 6);
+    const t = (k) => y + h * k;
+    g.poly([
+      [x, y], [x + w * 0.45, t(0.32)], [x + w * 0.24, t(0.32)], [x + w * 0.72, t(0.64)], [x + w * 0.46, t(0.64)],
+      [x + w, t(0.96)], [x - w, t(0.96)], [x - w * 0.46, t(0.64)], [x - w * 0.72, t(0.64)], [x - w * 0.24, t(0.32)],
+      [x - w * 0.45, t(0.32)],
+    ]);
+  }
+
+  // Cluster of round geranium blossoms (one region).
+  function geranium(g, x, y, s) {
+    return g.blob([[x - s * 0.5, y + s * 0.12, s * 0.36], [x, y - s * 0.02, s * 0.42], [x + s * 0.5, y + s * 0.12, s * 0.36],
+      [x - s * 0.25, y - s * 0.3, s * 0.32], [x + s * 0.25, y - s * 0.3, s * 0.32]]);
+  }
+
   /* ---------- Kuh ---------- */
   FK.art.add({
     id: 'kuh',
     name: 'Kuh',
     cat: 'schweiz',
     colors: ['braun', 'gelb', 'rot', 'gruen', 'hellblau', 'grau'],
-    spots: [],
+    spots: [
+      { x: 320, y: 170, c: 5 },   // sky
+      { x: 110, y: 110, c: 2 },   // sun
+      { x: 740, y: 160, c: 3 },   // flag
+      { x: 560, y: 395, c: 6 },   // mountain
+      { x: 55, y: 545, c: 6 },    // mountain left
+      { x: 540, y: 930, c: 4 },   // meadow
+      { x: 430, y: 590, c: 1 },   // body
+      { x: 240, y: 330, c: 1 },   // head
+      { x: 66, y: 375, c: 1 },    // ear left
+      { x: 414, y: 375, c: 1 },   // ear right
+      { x: 240, y: 610, c: 3 },   // strap
+      { x: 240, y: 738, c: 2 },   // bell
+      { x: 70, y: 869, c: 3 },    // tulip left
+      { x: 896, y: 869, c: 2 },   // tulip right
+    ],
     draw(g) {
-      // sky things
+      // sky
       g.sun(110, 110, 52, 10);
-      g.cloud(565, 100, 84);
-      bird(g, 330, 120, 34);
-      bird(g, 400, 160, 26);
+      g.cloud(560, 95, 84);
+      bird(g, 300, 95, 30);
+      bird(g, 372, 130, 22);
       // mountains with snow caps, Swiss flag on the summit
       alps(g, 'M-1200 640 L-300 600 L110 330 L250 440 L470 170 L610 370 L690 300 L790 640 Z', [
         'M40 420 L80 410 L110 440 L140 405 L170 420 L170 250 L40 250 Z',
         'M380 280 L415 300 L450 265 L485 300 L520 270 L560 290 L560 100 L380 100 Z',
         'M640 345 L668 330 L695 352 L725 332 L760 360 L760 250 L640 250 Z',
       ]);
-      g.rect(681, 168, 18, 150, 9);
-      g.circle(690, 162, 15);
-      swissFlag(g, 699, 176, 124);
-      g.cloud(890, 250, 70);
+      g.rect(681, 112, 18, 206, 9);
+      g.circle(690, 106, 15);
+      swissFlag(g, 699, 118, 206);
       // meadow
       ground(g, 630, 22);
+      g.grass(340, 975, 13);
+      g.grass(720, 975, 13);
       // tail
-      g.line('M785 515 C850 520 860 480 870 450');
-      g.shape('M870 400 C900 420 905 470 875 482 C845 476 845 430 870 400 Z');
-      // legs + hooves
-      [290, 385, 615, 710].forEach((x) => {
-        g.rect(x, 640, 66, 240, 28);
-        g.rect(x - 3, 836, 72, 48, 18);
-      });
-      // body with white patches
-      const body = g.rect(250, 455, 545, 265, 125);
+      g.line('M785 515 C850 520 862 480 872 450');
+      g.shape('M872 398 C904 420 908 472 876 484 C844 478 842 430 872 398 Z');
+      // body and legs in one outline, white patches, hooves
+      const legs = [296, 410, 602, 716];
+      const body = rr(new Path2D(), 250, 455, 545, 265, 125);
+      legs.forEach((x) => rr(body, x, 600, 70, 230, 30));
+      union(g, body);
       g.clip(body, () => {
         g.shape('M495 420 C505 535 640 545 680 420 Z');
-        g.ellipse(560, 648, 62, 42, -0.15);
+        g.ellipse(555, 645, 60, 40, -0.15);
         g.ellipse(742, 590, 40, 52, 0.2);
       });
-      g.draw(body, false);
-      // strap + Treichel (cow bell)
-      g.shape('M132 530 Q240 604 348 530 L356 572 Q240 650 124 572 Z');
-      g.dot(160, 568, 9);
-      g.dot(198, 590, 9);
-      g.dot(282, 590, 9);
-      g.dot(320, 568, 9);
-      g.rect(216, 612, 48, 50, 10);
-      g.shape('M188 652 Q240 638 292 652 Q322 700 334 772 Q240 806 146 772 Q158 700 188 652 Z');
-      g.line('M156 742 Q240 772 324 742', g.lw * 0.8);
-      g.circle(240, 812, 22);
+      legs.forEach((x) => g.rect(x - 4, 806, 78, 48, 18));
+      // leather strap + Treichel (cow bell)
+      g.shape('M128 518 Q240 598 352 518 L366 598 Q240 728 114 598 Z');
+      g.heart(150, 574, 15);
+      g.heart(330, 574, 15);
+      g.rect(214, 654, 52, 42, 10);
+      g.shape('M188 686 Q240 670 292 686 Q318 732 328 800 Q240 832 152 800 Q162 732 188 686 Z');
+      g.line('M160 770 Q240 798 320 770', g.lw * 0.8);
+      g.circle(240, 840, 22);
       // horns
       g.mirror(240, () => {
         g.shape('M168 318 C140 290 128 250 146 214 C170 232 190 266 214 300 Z');
       });
       // ears
-      g.ellipse(112, 382, 74, 40, 0.35);
-      g.ellipse(368, 382, 74, 40, -0.35);
-      // head + forelock
-      g.shape('M240 282 C326 282 362 336 358 404 C356 458 324 482 240 482 C156 482 124 458 122 404 C118 336 154 282 240 282 Z');
-      g.blob([[212, 292, 24], [240, 282, 28], [268, 292, 24]]);
+      g.ellipse(100, 378, 84, 44, 0.3);
+      g.ellipse(380, 378, 84, 44, -0.3);
+      // head with a hair tuft
+      const head = new Path2D('M240 282 C326 282 362 336 358 404 C356 458 324 482 240 482 C156 482 124 458 122 404 C118 336 154 282 240 282 Z');
+      [[210, 292, 25], [240, 280, 29], [270, 292, 25]].forEach((c) => {
+        head.moveTo(c[0] + c[2], c[1]);
+        head.arc(c[0], c[1], c[2], 0, TAU);
+      });
+      union(g, head);
       // muzzle
-      g.ellipse(240, 500, 112, 68);
-      ink(g, 'M196 478 m-14 0 a14 18 0 1 0 28 0 a14 18 0 1 0 -28 0');
-      ink(g, 'M284 478 m-14 0 a14 18 0 1 0 28 0 a14 18 0 1 0 -28 0');
+      g.ellipse(240, 494, 112, 64);
+      ink(g, 'M182 478 a14 18 0 1 0 28 0 a14 18 0 1 0 -28 0 Z');
+      ink(g, 'M270 478 a14 18 0 1 0 28 0 a14 18 0 1 0 -28 0 Z');
       g.line('M200 528 Q240 556 280 528', g.lw * 0.8);
       // eyes
       g.dot(192, 392, 22, true);
       g.dot(288, 392, 22, true);
       // flowers
-      tulip(g, 90, 980, 1, -0.12);
-      tulip(g, 545, 985, 0.9, 0.1);
-      tulip(g, 900, 975, 1, 0.12);
+      tulip(g, 85, 1000, 1, -0.12);
+      tulip(g, 880, 1000, 1, 0.12);
+    },
+  });
+  /* ---------- Chalet ---------- */
+  FK.art.add({
+    id: 'chalet',
+    name: 'Chalet',
+    cat: 'schweiz',
+    colors: ['braun', 'orange', 'rot', 'gruen', 'hellblau', 'grau'],
+    spots: [
+      { x: 498, y: 459, c: 1 },   // wall
+      { x: 584, y: 691, c: 1 },   // lower wall
+      { x: 498, y: 959, c: 1 },   // path
+      { x: 214, y: 632, c: 2 },   // balcony
+      { x: 486, y: 819, c: 2 },   // door
+      { x: 660, y: 94, c: 3 },   // flag
+      { x: 498, y: 225, c: 3 },   // roof
+      { x: 360, y: 536, c: 3 },   // geraniums
+      { x: 638, y: 536, c: 3 },   // geraniums
+      { x: 900, y: 720, c: 4 },   // fir tree
+      { x: 863, y: 922, c: 4 },   // meadow
+      { x: 105, y: 898, c: 4 },   // meadow
+      { x: 853, y: 150, c: 5 },   // sky
+      { x: 330, y: 749, c: 5 },   // window
+      { x: 669, y: 749, c: 5 },   // window
+      { x: 96, y: 549, c: 6 },   // mountain
+      { x: 818, y: 503, c: 6 },   // mountain
+      { x: 965, y: 482, c: 6 },   // mountain
+      { x: 412, y: 880, c: 6 },   // base
+    ],
+    draw(g) {
+      // sky + mountains
+      g.cloud(150, 120, 90);
+      alps(g, 'M-1200 760 L-200 700 L130 330 L300 520 L420 360 L560 560 L700 300 L860 470 L960 380 L1300 700 L2200 760 Z', [
+        'M60 420 L95 405 L130 430 L165 400 L200 425 L200 250 L60 250 Z',
+        'M630 390 L665 372 L700 400 L735 372 L770 395 L770 250 L630 250 Z',
+        'M910 430 L935 418 L960 440 L990 420 L990 330 L910 330 Z',
+      ]);
+      // meadow, path, fir tree
+      ground(g, 760, 16);
+      g.shape('M440 900 L560 900 L640 1400 L360 1400 Z');
+      fir(g, 900, 420, 380, 95);
+      // walls (gable + upper floor, lower floor) and stone base
+      g.poly([[235, 600], [235, 400], [500, 262], [765, 400], [765, 600]]);
+      g.rect(235, 640, 530, 230, 0);
+      g.rect(215, 850, 570, 60, 12);
+      // chimney + smoke, flag on the ridge
+      g.rect(300, 200, 60, 140, 6);
+      g.rect(288, 186, 84, 30, 8);
+      g.line('M330 160 Q300 130 330 105 Q360 80 330 50', g.lw * 0.8);
+      g.rect(491, 52, 18, 150, 9);
+      g.circle(500, 46, 15);
+      swissFlag(g, 509, 62, 190);
+      // roof
+      g.poly([[500, 168], [96, 408], [128, 458], [500, 274], [872, 458], [904, 408]]);
+      // gable window
+      g.circle(500, 350, 42);
+      g.line('M500 308 L500 392 M458 350 L542 350', g.lw * 0.8);
+      // upper windows
+      g.rect(295, 420, 110, 120, 10);
+      g.rect(595, 420, 110, 120, 10);
+      // balcony with heart cut-outs and geraniums
+      g.rect(190, 565, 620, 92, 10);
+      [250, 500, 750].forEach((x) => g.heart(x, 606, 24));
+      geranium(g, 350, 548, 150);
+      geranium(g, 650, 548, 150);
+      // lower windows and door
+      g.rect(275, 700, 110, 105, 10);
+      g.rect(615, 700, 110, 105, 10);
+      g.rect(262, 800, 136, 30, 8);
+      g.rect(602, 800, 136, 30, 8);
+      g.shape('M440 870 L440 740 Q440 690 500 690 Q560 690 560 740 L560 870 Z');
+      g.heart(500, 742, 20);
+      g.circle(538, 800, 9);
     },
   });
 })();

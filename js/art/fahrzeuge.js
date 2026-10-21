@@ -7,6 +7,7 @@
   /* ---------- small local helpers ---------- */
 
   // A thick tube along a path with one merged outline (bike frames, ladders, pipes).
+  // All segments of one call share a single outline, so joints melt together.
   function tube(g, d, T) {
     const ctx = g.ctx;
     const p = typeof d === 'string' ? new Path2D(d) : d;
@@ -49,6 +50,7 @@
     g.circle(x, y, r * 0.42);
   }
 
+  // A wide wavy meadow so landscape screens show one continuous ground.
   function hills(g, y, amp) {
     const a = amp || 25;
     return g.shape('M-1200 ' + y + ' Q-700 ' + (y - a) + ' -200 ' + y + ' Q250 ' + (y + a) + ' 600 ' + (y - a * 0.6) +
@@ -70,6 +72,20 @@
     return p;
   }
 
+  // Short tread marks on the outside of a tyre (open lines, they do not split the tyre).
+  function treads(g, x, y, r, n, len) {
+    for (let i = 0; i < n; i++) {
+      const a = (i / n) * TAU;
+      g.line('M' + (x + Math.cos(a) * r) + ' ' + (y + Math.sin(a) * r) + ' L' + (x + Math.cos(a) * (r - len)) + ' ' + (y + Math.sin(a) * (r - len)), g.lw * 0.8);
+    }
+  }
+
+  // A round tree: trunk and a fluffy crown.
+  function tree(g, x, y, s) {
+    g.rect(x - s * 0.2, y - s * 0.2, s * 0.4, s * 1.2, s * 0.08);
+    g.blob([[x - s * 0.45, y - s * 0.35, s * 0.5], [x + s * 0.45, y - s * 0.35, s * 0.5], [x, y - s * 0.8, s * 0.6], [x, y - s * 0.25, s * 0.5]]);
+  }
+
   /* ---------- Zug ---------- */
 
   FK.art.add({
@@ -77,63 +93,92 @@
     name: 'Zug',
     cat: 'fahrzeuge',
     colors: ['rot', 'gelb', 'gruen', 'hellblau', 'grau', 'blau'],
-    spots: [],
+    spots: [
+      { x: 491, y: 574, c: 1 },   // cab
+      { x: 704, y: 558, c: 1 },   // boiler
+      { x: 915, y: 802, c: 1 },   // cowcatcher
+      { x: 880, y: 87, c: 2 },   // sun
+      { x: 195, y: 617, c: 2 },   // wagon
+      { x: 857, y: 570, c: 2 },   // front
+      { x: 964, y: 670, c: 3 },   // meadow
+      { x: 35, y: 754, c: 3 },   // meadow
+      { x: 195, y: 693, c: 3 },   // wagon frame
+      { x: 359, y: 757, c: 3 },   // meadow
+      { x: 354, y: 939, c: 3 },   // grass
+      { x: 122, y: 122, c: 4 },   // sky
+      { x: 492, y: 451, c: 4 },   // cab window
+      { x: 140, y: 538, c: 4 },   // window
+      { x: 249, y: 538, c: 4 },   // window
+      { x: 128, y: 353, c: 5 },   // mountain
+      { x: 795, y: 395, c: 5 },   // chimney
+      { x: 935, y: 416, c: 5 },   // mountain
+      { x: 951, y: 527, c: 5 },   // mountain
+      { x: 470, y: 751, c: 5 },   // wheel
+      { x: 653, y: 751, c: 5 },   // wheel
+      { x: 158, y: 790, c: 5 },   // wheel
+      { x: 287, y: 792, c: 5 },   // wheel
+      { x: 492, y: 322, c: 6 },   // cab roof
+      { x: 195, y: 429, c: 6 },   // wagon roof
+      { x: 664, y: 670, c: 6 },   // frame
+    ],
     draw(g) {
-      sunFace(g, 880, 120, 58);
-      // mountains with snow
-      const mB = g.shape('M330 660 L520 335 Q560 285 600 335 L880 660 Z');
-      g.clip(mB, () => g.line('M400 420 L470 400 L510 432 L555 398 L600 430 L640 402 L720 420'));
-      const mA = g.shape('M-420 660 L170 245 Q235 180 300 245 L720 660 Z');
-      g.clip(mA, () => g.line('M0 340 L70 305 L120 345 L170 305 L225 348 L280 308 L330 342 L380 312 L450 335'));
+      sunFace(g, 880, 115, 56);
+      // mountains with snow caps
+      const mB = g.shape('M640 660 L895 385 Q930 350 965 385 L1250 660 Z');
+      g.clip(mB, () => g.line('M780 470 L825 450 L860 478 L895 446 L930 478 L965 448 L1000 476 L1040 452 L1090 470'));
+      const mA = g.shape('M-420 660 L150 255 Q210 195 270 255 L690 660 Z');
+      g.clip(mA, () => g.line('M-20 322 L30 296 L80 332 L130 294 L180 335 L230 295 L280 334 L330 300 L380 328 L430 308'));
       hills(g, 640, 22);
       // smoke
-      puff(g, 790, 290, 46);
-      puff(g, 640, 200, 60);
-      puff(g, 455, 112, 72);
+      puff(g, 772, 288, 44);
+      puff(g, 640, 205, 56);
+      puff(g, 470, 120, 66);
       // track
-      for (let x = -1180; x < 2200; x += 120) g.rect(x, 830, 62, 54, 10);
-      g.line('M-1200 838 L2200 838', g.lw * 1.4);
-      flower(g, 130, 945, 52);
-      flower(g, 530, 950, 52);
-      flower(g, 880, 945, 52);
+      for (let x = -1180; x < 2200; x += 120) g.rect(x, 832, 62, 50, 10);
+      g.line('M-1200 840 L2200 840', g.lw * 1.4);
+      flower(g, 120, 940, 48);
+      flower(g, 500, 945, 48);
+      flower(g, 880, 940, 48);
 
       // coach
-      g.rect(75, 430, 265, 265, 20);
-      g.rect(50, 398, 312, 52, 24);
-      g.rect(108, 488, 84, 92, 18);
-      g.rect(223, 488, 84, 92, 18);
-      g.rect(60, 675, 300, 50, 20);
-      g.circle(140, 783, 55);
-      g.circle(280, 783, 55);
-      g.circle(140, 783, 20);
-      g.circle(280, 783, 20);
-      g.line('M358 700 L386 700', g.lw * 1.3);
-      // bird on the roof
-      g.shape('M240 382 L205 360 L212 392 Z');
-      g.ellipse(268, 374, 40, 30);
-      g.circle(300, 346, 24);
-      g.poly([[320, 340], [345, 348], [320, 356]]);
-      g.dot(304, 342, 6, true);
-      g.line('M250 368 Q270 390 292 372', g.lw * 0.7);
+      g.rect(70, 450, 250, 230, 20);
+      g.rect(45, 398, 300, 62, 26);
+      g.rect(100, 494, 80, 90, 18);
+      g.rect(210, 494, 80, 90, 18);
+      [130, 260].forEach((x) => {
+        g.circle(x, 783, 57);
+        g.dot(x, 783, 10);
+      });
+      g.rect(55, 662, 280, 64, 22);
+      g.line('M335 690 L385 690', g.lw * 1.3);
+      // a bird rides on the roof
+      g.shape('M232 378 L196 354 L204 388 Z');
+      g.ellipse(258, 370, 42, 30);
+      g.circle(294, 340, 25);
+      g.poly([[314, 334], [340, 342], [314, 350]]);
+      g.dot(298, 335, 6, true);
+      g.line('M244 366 Q262 386 284 370', g.lw * 0.7);
 
-      // locomotive
-      g.shape('M772 480 L778 412 L754 364 Q801 350 848 364 L824 412 L830 480 Z');
-      g.ellipse(690, 476, 46, 44);
-      const boiler = g.rect(570, 470, 300, 220, 34);
-      g.clip(boiler, () => g.line('M805 420 L805 720'));
-      g.circle(878, 548, 32);
-      g.rect(400, 332, 192, 368, 18);
-      g.rect(388, 300, 222, 50, 24);
-      g.rect(432, 384, 126, 120, 22);
-      g.shape('M888 712 L968 838 L868 838 Z');
-      g.rect(380, 680, 530, 52, 20);
-      g.circle(480, 758, 80);
-      g.circle(665, 758, 80);
-      g.circle(838, 783, 55);
-      g.line('M480 758 L665 758', g.lw * 1.3);
-      g.circle(480, 758, 26);
-      g.circle(665, 758, 26);
-      g.circle(838, 783, 20);
+      // locomotive: lamp, dome and chimney behind the boiler
+      g.rect(850, 432, 52, 60, 14);
+      g.ellipse(690, 485, 50, 44);
+      g.shape('M762 492 L768 420 L744 368 Q795 352 846 368 L822 420 L828 492 Z');
+      g.rect(570, 478, 290, 205, 30);
+      g.ellipse(858, 580, 44, 102);
+      // cab
+      g.rect(395, 345, 195, 345, 18);
+      g.rect(380, 292, 225, 62, 26);
+      g.rect(428, 392, 130, 120, 22);
+      // frame, cow catcher, wheels with a coupling rod
+      g.rect(380, 640, 540, 62, 22);
+      g.shape('M890 702 L930 702 L958 838 L878 838 Z');
+      g.circle(475, 770, 70);
+      g.circle(650, 770, 70);
+      g.circle(805, 790, 50);
+      g.line('M475 806 L650 806', g.lw * 1.3);
+      g.dot(475, 806, 12);
+      g.dot(650, 806, 12);
+      g.dot(805, 790, 10);
     },
   });
 
@@ -143,48 +188,61 @@
     id: 'auto',
     name: 'Auto',
     cat: 'fahrzeuge',
-    colors: ['blau', 'gelb', 'hellblau', 'gruen', 'grau', 'rot'],
-    spots: [],
+    colors: ['rot', 'gelb', 'hellblau', 'gruen', 'grau', 'schwarz'],
+    spots: [
+      { x: 415, y: 684, c: 1 },   // car
+      { x: 594, y: 695, c: 1 },   // door
+      { x: 125, y: 94, c: 2 },   // sun
+      { x: 445, y: 357, c: 2 },   // suitcase
+      { x: 254, y: 331, c: 3 },   // sky
+      { x: 418, y: 532, c: 3 },   // window
+      { x: 650, y: 550, c: 3 },   // window
+      { x: 74, y: 471, c: 4 },   // tree
+      { x: 924, y: 471, c: 4 },   // tree
+      { x: 968, y: 619, c: 4 },   // meadow
+      { x: 32, y: 740, c: 4 },   // meadow
+      { x: 84, y: 889, c: 5 },   // road
+      { x: 280, y: 863, c: 6 },   // tyre
+      { x: 719, y: 863, c: 6 },   // tyre
+    ],
     draw(g) {
-      sunFace(g, 135, 135, 62);
-      puff(g, 760, 150, 80);
-      g.line('M520 140 Q545 115 570 140 Q595 115 620 140', g.lw * 0.8);
+      sunFace(g, 125, 125, 60);
+      puff(g, 730, 140, 72);
+      g.line('M470 150 Q495 125 520 150 Q545 125 570 150', g.lw * 0.8);
+      tree(g, 75, 520, 100);
+      tree(g, 925, 520, 100);
       hills(g, 600, 25);
       // road with dashes
-      g.shape('M-1200 790 L2200 790 L2200 1400 L-1200 1400 Z');
-      for (let x = -1150; x < 2200; x += 260) g.rect(x, 950, 130, 30, 14);
-      // bushes on the meadow
-      g.blob([[-10, 640, 60], [60, 610, 70], [130, 650, 55]]);
-      g.blob([[880, 640, 55], [950, 610, 70], [1020, 640, 60]]);
+      g.shape('M-1200 780 L2200 780 L2200 1400 L-1200 1400 Z');
+      for (let x = -1150; x < 2200; x += 260) g.rect(x, 935, 130, 30, 14);
 
-      // suitcase on the back
-      g.rect(195, 505, 130, 115, 16);
-      g.line('M235 505 L235 475 Q260 455 285 475 L285 505', g.lw);
-      g.line('M260 520 L260 605', g.lw * 0.8);
-      // driver
-      g.shape('M440 625 L452 560 Q515 525 578 560 L590 625 Z');
-      g.shape('M450 450 Q440 380 505 372 Q575 368 578 440 Z');
-      g.shape('M455 420 Q395 400 365 430 Q405 438 440 460 Z');
-      g.circle(512, 470, 62);
-      g.shape('M450 455 Q448 392 512 390 Q575 392 575 450 Q545 425 512 432 Q478 428 450 455 Z');
-      face(g, 512, 478, 22, 9, 26, 18);
+      // suitcase on the roof
+      g.line('M450 322 L450 298 Q480 278 510 298 L510 322', g.lw);
+      g.rect(395, 318, 170, 95, 16);
       // car body
-      const body = g.shape('M150 840 C100 840 90 800 92 760 C95 690 118 622 205 614 L635 614 L840 634 C892 642 912 692 912 750 C912 810 896 840 860 840 Z');
-      g.clip(body, () => {
-        g.line('M405 614 L405 790 Q405 820 435 820 L615 820');
-        g.line('M615 820 L615 614');
-      });
-      g.rect(540, 650, 50, 20, 10);
-      g.shape('M612 618 L656 470 L712 476 L678 618 Z');
-      g.ellipse(882, 700, 24, 34);
-      g.rect(72, 680, 40, 60, 12);
-      g.rect(860, 790, 78, 40, 18);
-      g.rect(62, 790, 78, 40, 18);
+      g.shape('M130 795 C85 795 72 765 72 725 C72 660 100 615 180 605 L290 595 C320 470 375 400 465 395 L610 395 ' +
+        'C690 395 735 440 785 570 L860 590 C915 605 935 650 935 715 C935 770 920 795 880 795 Z');
+      // windows
+      g.shape('M345 595 L368 492 Q382 448 425 448 L478 448 L478 595 Z');
+      g.shape('M515 448 L600 448 Q648 448 676 500 L718 595 L515 595 Z');
+      // driver
+      g.shape('M528 597 Q532 575 566 572 Q600 575 606 597 Z');
+      g.circle(566, 540, 42);
+      g.shape('M524 540 Q520 496 566 494 Q612 496 608 540 Q590 522 566 524 Q542 522 524 540 Z');
+      face(g, 566, 546, 16, 7, 20, 13);
+      // door, handle, lights, bumpers
+      g.rect(505, 620, 220, 150, 22);
+      g.rect(670, 640, 38, 16, 8);
+      g.ellipse(926, 672, 20, 32);
+      g.rect(60, 668, 30, 50, 10);
+      g.rect(868, 770, 88, 36, 18);
+      g.rect(44, 770, 88, 36, 18);
       // wheels
-      ring(g, 285, 830, 92, 44);
-      ring(g, 720, 830, 92, 44);
-      g.circle(285, 830, 44);
-      g.circle(720, 830, 44);
+      [260, 740].forEach((x) => {
+        ring(g, x, 795, 98, 46);
+        g.circle(x, 795, 46);
+        g.dot(x, 795, 10);
+      });
     },
   });
 
@@ -194,23 +252,35 @@
     id: 'rakete',
     name: 'Rakete',
     cat: 'fahrzeuge',
-    colors: ['blau', 'rot', 'gelb', 'orange', 'hellblau'],
-    spots: [],
+    colors: ['blau', 'rot', 'gelb', 'orange', 'hellblau', 'violett'],
+    spots: [
+      { x: 771, y: 549, c: 1 },   // space
+      { x: 558, y: 304, c: 2 },   // nose
+      { x: 237, y: 619, c: 2 },   // fin
+      { x: 571, y: 751, c: 2 },   // fin
+      { x: 52, y: 280, c: 3 },   // ring
+      { x: 486, y: 716, c: 3 },   // band
+      { x: 357, y: 798, c: 3 },   // flame
+      { x: 179, y: 199, c: 4 },   // planet
+      { x: 309, y: 919, c: 4 },   // flame
+      { x: 518, y: 632, c: 5 },   // body
+      { x: 473, y: 457, c: 6 },   // window
+      { x: 825, y: 742, c: 6 },   // moon
+    ],
     draw(g) {
       const ctx = g.ctx;
-      [[880, 130, 52], [570, 90, 34], [95, 560, 40], [940, 470, 34], [640, 905, 40], [90, 900, 30], [360, 120, 26]].forEach((s) =>
+      [[880, 130, 52], [575, 92, 36], [95, 560, 42], [935, 470, 36], [640, 905, 42], [90, 900, 34], [370, 120, 30]].forEach((s) =>
         g.star(s[0], s[1], s[2], s[2] * 0.5));
       g.circle(760, 330, 20);
-      g.circle(260, 420, 16);
-      g.circle(420, 860, 18);
-      // planet with ring
+      g.circle(260, 430, 16);
+      g.circle(250, 945, 18);
+      // planet with a ring (back half of the ring, planet, front half)
       ctx.save();
       ctx.translate(190, 230);
       ctx.rotate(-0.35);
-      ring(g, 0, 0, 0, 0);
       const rp = new Path2D();
-      rp.ellipse(0, 0, 175, 50, 0, 0, TAU);
-      rp.ellipse(0, 0, 120, 28, 0, 0, TAU);
+      rp.ellipse(0, 0, 180, 62, 0, 0, TAU);
+      rp.ellipse(0, 0, 118, 26, 0, 0, TAU);
       ctx.fillStyle = '#fff';
       ctx.fill(rp, 'evenodd');
       ctx.strokeStyle = '#000';
@@ -227,10 +297,10 @@
       ctx.restore();
       ctx.restore();
       // moon with a face
-      g.circle(830, 790, 92);
-      g.circle(790, 840, 16);
-      g.circle(880, 745, 12);
-      face(g, 830, 785, 30, 11, 30, 24);
+      g.circle(830, 790, 95);
+      g.circle(785, 845, 18);
+      g.circle(885, 742, 14);
+      face(g, 832, 785, 30, 11, 30, 24);
 
       // rocket
       g.at(470, 520, 0.38, 1, () => {
@@ -244,12 +314,11 @@
           g.line('M-170 -175 Q0 -128 170 -175');
           g.line('M-170 125 Q0 160 170 125');
         });
-        g.shape('M-22 215 L-22 140 Q0 128 22 140 L22 215');
-        g.circle(0, -30, 88);
-        g.circle(0, -30, 66);
-        g.clip(new Path2D('M0 -96 A66 66 0 1 1 -0.1 -96 Z'), () => {
-          g.circle(0, 0, 58);
-          face(g, 0, -10, 22, 9, 24, 17);
+        g.circle(0, -30, 96);
+        g.circle(0, -30, 62);
+        g.clip(new Path2D('M62 -30 A62 62 0 1 1 61.9 -30.1 Z'), () => {
+          g.circle(0, 8, 52);
+          face(g, 0, 0, 20, 8, 22, 15);
         });
       });
     },
@@ -261,54 +330,64 @@
     id: 'velo',
     name: 'Velo',
     cat: 'fahrzeuge',
-    colors: ['violett', 'grau', 'gelb', 'braun', 'orange', 'hellgruen'],
-    spots: [],
+    colors: ['rot', 'grau', 'gelb', 'braun', 'gruen', 'hellblau'],
+    spots: [
+      { x: 422, y: 488, c: 1 },   // frame
+      { x: 102, y: 733, c: 2 },   // tyre
+      { x: 819, y: 816, c: 2 },   // tyre
+      { x: 125, y: 94, c: 3 },   // sun
+      { x: 830, y: 432, c: 3 },   // basket
+      { x: 830, y: 216, c: 4 },   // dog
+      { x: 419, y: 809, c: 5 },   // meadow
+      { x: 646, y: 927, c: 5 },   // grass
+      { x: 149, y: 378, c: 6 },   // sky
+    ],
     draw(g) {
-      sunFace(g, 130, 130, 60);
-      puff(g, 520, 120, 70);
+      sunFace(g, 125, 125, 60);
+      puff(g, 480, 130, 70);
       hills(g, 860, 18);
-      flower(g, 70, 930, 50);
-      flower(g, 940, 935, 50);
-      // wheels
-      [[235, 690], [770, 690]].forEach((w) => {
-        ring(g, w[0], w[1], 168, 88);
-        g.circle(w[0], w[1], 88);
-        for (let i = 0; i < 6; i++) {
-          const a = (i / 6) * TAU + 0.3;
-          g.line('M' + (w[0] + Math.cos(a) * 26) + ' ' + (w[1] + Math.sin(a) * 26) + ' L' + (w[0] + Math.cos(a) * 88) + ' ' + (w[1] + Math.sin(a) * 88), g.lw * 0.7);
+      flower(g, 75, 940, 46);
+      flower(g, 500, 950, 46);
+      flower(g, 925, 940, 46);
+      // wheels: fat tyres, spokes, hubs
+      [[230, 690], [775, 690]].forEach((w) => {
+        ring(g, w[0], w[1], 172, 98);
+        for (let i = 0; i < 8; i++) {
+          const a = (i / 8) * TAU + 0.2;
+          g.line('M' + (w[0] + Math.cos(a) * 26) + ' ' + (w[1] + Math.sin(a) * 26) + ' L' + (w[0] + Math.cos(a) * 98) + ' ' + (w[1] + Math.sin(a) * 98), g.lw * 0.7);
         }
       });
-      // chain guard
-      g.shape('M455 650 L250 668 Q220 690 250 712 L470 745 Q510 700 455 650 Z');
+      // handlebar and stem
+      tube(g, 'M700 450 L684 372 L612 362', 36);
+      g.rect(552, 342, 74, 38, 18);
+      g.circle(648, 335, 22);
       // frame
-      tube(g, 'M235 690 L412 470 L470 705 L235 690 M412 470 L690 440 M470 705 L705 480', 50);
-      tube(g, 'M470 705 L700 470', 74);
-      tube(g, 'M690 420 L715 520 L770 690', 50);
-      tube(g, 'M412 470 L398 405', 34);
-      tube(g, 'M690 430 L680 350 Q675 318 630 318 L600 318', 34);
-      g.rect(548, 298, 70, 42, 20);
+      tube(g, 'M230 690 L470 720 L428 468 Z M428 468 L700 450 M712 530 L470 720 M700 450 L712 530 L775 690 M428 468 L414 405', 54);
       // saddle
-      g.shape('M320 405 Q330 375 400 380 L470 385 Q480 410 440 418 L345 422 Q318 420 320 405 Z');
-      // pedals
-      tube(g, 'M470 705 L520 790', 30);
-      g.rect(485, 785, 80, 30, 12);
-      g.circle(470, 705, 52);
-      g.circle(235, 690, 26);
-      g.circle(770, 690, 26);
-      // bell
-      g.circle(655, 300, 26);
-      // kitten in the basket
-      g.poly([[770, 250], [775, 160], [830, 215]]);
-      g.poly([[905, 250], [900, 160], [845, 215]]);
-      g.circle(838, 280, 88);
-      face(g, 838, 285, 32, 12, 30, 18);
-      g.shape('M828 298 L848 298 L838 310 Z');
-      g.line('M770 300 L720 290 M770 315 L722 322 M906 300 L956 290 M906 315 L954 322', g.lw * 0.7);
+      g.shape('M330 398 Q334 366 400 368 L472 372 Q490 398 448 408 L356 414 Q328 412 330 398 Z');
+      // crank and pedal
+      tube(g, 'M470 720 L520 808', 30);
+      g.rect(482, 800, 84, 30, 12);
+      g.circle(470, 720, 50);
+      g.circle(470, 720, 14);
+      g.circle(230, 690, 26);
+      g.circle(775, 690, 26);
+
+      // a puppy rides in the basket
+      g.ellipse(752, 268, 32, 64, 0.35);
+      g.ellipse(908, 268, 32, 64, -0.35);
+      g.circle(830, 262, 82);
+      g.ellipse(830, 300, 40, 30);
+      g.dot(830, 286, 12);
+      g.line('M830 298 L830 312 M812 318 Q830 330 848 318', g.lw * 0.8);
+      g.dot(800, 248, 11, true);
+      g.dot(860, 248, 11, true);
       // basket
-      g.shape('M725 345 L950 345 L915 505 L760 505 Z');
-      g.rect(712, 330, 250, 44, 18);
-      g.ellipse(790, 345, 30, 22);
-      g.ellipse(886, 345, 30, 22);
+      g.shape('M722 352 L938 352 L906 492 L754 492 Z');
+      g.rect(704, 330, 252, 44, 18);
+      g.ellipse(792, 336, 30, 20);
+      g.ellipse(868, 336, 30, 20);
+      g.line('M782 342 L782 354 M802 342 L802 354 M858 342 L858 354 M878 342 L878 354', g.lw * 0.7);
     },
   });
 
@@ -318,58 +397,60 @@
     id: 'traktor',
     name: 'Traktor',
     cat: 'fahrzeuge',
-    colors: ['rot', 'gelb', 'braun', 'hellgruen', 'hellblau', 'grau'],
-    spots: [],
+    colors: ['rot', 'gelb', 'grau', 'hellblau', 'gruen'],
+    spots: [
+      { x: 470, y: 413, c: 1 },   // cab
+      { x: 691, y: 596, c: 1 },   // bonnet
+      { x: 125, y: 90, c: 2 },   // sun
+      { x: 254, y: 540, c: 2 },   // mudguard
+      { x: 333, y: 812, c: 2 },   // rim
+      { x: 789, y: 802, c: 2 },   // rim
+      { x: 330, y: 278, c: 3 },   // roof
+      { x: 357, y: 892, c: 3 },   // tyre
+      { x: 888, y: 851, c: 3 },   // tyre
+      { x: 350, y: 125, c: 4 },   // sky
+      { x: 366, y: 422, c: 4 },   // window
+      { x: 585, y: 851, c: 5 },   // meadow
+    ],
     draw(g) {
-      sunFace(g, 130, 125, 58);
-      puff(g, 790, 210, 52);
-      puff(g, 700, 110, 40);
-      hills(g, 610, 25);
-      // hay wagon
-      g.blob([[120, 520, 75], [210, 470, 90], [320, 490, 85], [395, 545, 60], [250, 560, 80]]);
-      g.line('M150 520 Q170 500 195 505 M260 470 Q290 455 315 470 M330 540 Q350 525 370 535 M210 570 Q235 555 260 565', g.lw * 0.7);
-      // hen on the hay
-      g.shape('M175 420 Q140 380 160 350 Q190 380 205 405 Z');
-      g.ellipse(225, 415, 52, 40);
-      g.circle(265, 375, 28);
-      g.shape('M255 350 Q262 325 275 345 Q285 330 290 352 Z');
-      g.poly([[290, 372], [318, 380], [290, 390]]);
-      g.dot(270, 370, 6, true);
-      g.rect(50, 590, 410, 110, 18);
-      g.line('M55 645 L455 645', g.lw * 0.8);
-      g.line('M450 650 L520 670', g.lw * 1.4);
-      g.circle(140, 770, 72);
-      g.circle(370, 770, 72);
-      g.circle(140, 770, 30);
-      g.circle(370, 770, 30);
-
-      // tractor
-      g.line('M795 560 L795 300', g.lw * 3.4);
-      g.line('M795 560 L795 300', g.lw * 1.4);
-      g.rect(470, 270, 230, 40, 18);
-      g.line('M500 305 L500 600 M670 305 L670 560');
-      // dog driver
-      g.ellipse(560, 520, 60, 70);
-      g.circle(580, 420, 62);
-      g.ellipse(525, 430, 22, 45, 0.3);
-      g.ellipse(635, 430, 22, 45, -0.3);
-      g.ellipse(600, 450, 30, 22);
-      g.dot(612, 440, 9);
-      face(g, 580, 410, 20, 8, 55, 0);
-      g.line('M630 520 L690 470', g.lw * 1.2);
-      g.ellipse(690, 470, 14, 34, 0.5);
-      // body
-      g.shape('M640 560 L900 560 Q940 560 940 600 L940 700 Q940 730 910 730 L640 730 Z');
-      g.clip(new Path2D('M640 560 L900 560 Q940 560 940 600 L940 700 Q940 730 910 730 L640 730 Z'), () => {
-        g.line('M880 560 L880 730');
+      sunFace(g, 125, 120, 58);
+      g.cloud(560, 110, 86);
+      hills(g, 640, 25);
+      g.grass(60, 930, 16);
+      g.grass(560, 975, 16);
+      g.grass(960, 960, 16);
+      // smoke from the exhaust
+      puff(g, 760, 245, 44);
+      puff(g, 870, 165, 34);
+      // exhaust pipe
+      g.rect(712, 318, 40, 170, 12);
+      g.rect(702, 300, 60, 30, 10);
+      // cab with a farmer
+      g.rect(140, 290, 380, 300, 18);
+      g.rect(118, 248, 424, 62, 26);
+      g.rect(185, 330, 235, 146, 20);
+      g.shape('M216 478 Q220 448 270 444 Q320 448 324 478 Z');
+      g.circle(270, 410, 40);
+      g.ellipse(270, 378, 64, 15);
+      g.shape('M232 378 Q234 342 270 340 Q306 342 308 378 Z');
+      face(g, 270, 416, 14, 7, 17, 11);
+      // lamp, hood with grille
+      g.rect(872, 438, 48, 56, 14);
+      const hood = g.shape('M440 470 L870 470 Q925 470 930 530 L935 695 Q935 725 905 725 L440 725 Z');
+      g.clip(hood, () => {
+        g.line('M880 470 L880 730');
+        g.line('M880 560 L940 560 M880 640 L940 640', g.lw * 0.8);
       });
-      g.shape('M440 600 L700 600 L700 740 L440 740 Z');
-      // wheels
-      ring(g, 560, 735, 165, 82);
-      g.circle(560, 735, 82);
-      [0, 1, 2, 3, 4].forEach((i) => { const a = (i / 5) * TAU; g.dot(560 + Math.cos(a) * 52, 735 + Math.sin(a) * 52, 9); });
-      ring(g, 850, 795, 100, 30);
-      g.circle(850, 795, 30);
+      // rear wheel with mudguard, front wheel
+      ring(g, 320, 760, 195, 100);
+      treads(g, 320, 760, 195, 22, 26);
+      g.circle(320, 760, 100);
+      g.dot(320, 760, 16);
+      g.shape('M56 760 A264 264 0 0 1 584 760 L515 760 A195 195 0 0 0 125 760 Z');
+      ring(g, 800, 835, 125, 64);
+      treads(g, 800, 835, 125, 16, 18);
+      g.circle(800, 835, 64);
+      g.dot(800, 835, 11);
     },
   });
 
@@ -379,34 +460,65 @@
     id: 'feuerwehr',
     name: 'Feuerwehrauto',
     cat: 'fahrzeuge',
-    colors: ['rot', 'gelb', 'blau', 'hellblau', 'grau', 'gruen'],
-    spots: [],
+    colors: ['rot', 'gelb', 'hellblau', 'grau', 'gruen', 'schwarz'],
+    spots: [
+      { x: 754, y: 660, c: 1 },   // cab
+      { x: 506, y: 492, c: 1 },   // body
+      { x: 191, y: 584, c: 2 },   // locker
+      { x: 386, y: 584, c: 2 },   // locker
+      { x: 424, y: 150, c: 3 },   // sky
+      { x: 860, y: 559, c: 3 },   // window
+      { x: 570, y: 541, c: 4 },   // hose reel
+      { x: 210, y: 799, c: 4 },   // hub
+      { x: 439, y: 799, c: 4 },   // hub
+      { x: 809, y: 799, c: 4 },   // hub
+      { x: 603, y: 901, c: 4 },   // road
+      { x: 30, y: 717, c: 5 },   // bush
+      { x: 269, y: 819, c: 6 },   // tyre
+      { x: 460, y: 859, c: 6 },   // tyre
+      { x: 749, y: 819, c: 6 },   // tyre
+    ],
     draw(g) {
-      g.cloud(200, 130, 110);
-      g.cloud(780, 110, 90);
+      g.cloud(190, 130, 88);
+      g.cloud(800, 115, 76);
       hills(g, 640, 20);
       g.shape('M-1200 820 L2200 820 L2200 1400 L-1200 1400 Z');
-      // body
-      g.rect(80, 450, 640, 330, 26);
-      g.rect(115, 500, 160, 200, 14);
-      g.rect(300, 500, 160, 200, 14);
-      g.rect(485, 500, 160, 200, 14);
-      // cab
+      for (let x = -1150; x < 2200; x += 260) g.rect(x, 945, 130, 30, 14);
+      // blue lights behind the roof edges
+      g.shape('M825 404 L825 374 Q852 336 880 374 L880 404 Z');
+      g.shape('M95 454 L95 422 Q125 382 155 422 L155 454 Z');
+      // body with two shutters and a hose reel
+      g.rect(70, 450, 640, 320, 26);
+      g.rect(110, 500, 165, 190, 14);
+      g.rect(305, 500, 165, 190, 14);
+      g.line('M135 665 L250 665 M330 665 L445 665', g.lw * 0.8);
+      g.circle(590, 595, 88);
+      g.circle(590, 595, 26);
+      // cab with a firefighter
       g.shape('M690 400 L860 400 Q900 400 915 440 L950 600 Q955 620 955 640 L955 760 Q955 780 935 780 L690 780 Z');
-      g.shape('M730 440 L850 440 Q870 440 875 460 L905 590 L730 590 Z');
-      g.rect(80, 700, 875, 70, 20);
-      // blue lights
-      g.shape('M740 400 L740 370 Q770 330 800 370 L800 400 Z');
-      g.shape('M120 450 L120 420 Q150 380 180 420 L180 450 Z');
-      // ladder
-      const lad = new Path2D('M110 405 L840 375 M110 345 L840 315');
+      g.shape('M730 440 L850 440 Q870 440 875 460 L905 595 L730 595 Z');
+      g.shape('M742 597 Q746 568 785 565 Q824 568 830 597 Z');
+      g.circle(785, 530, 40);
+      g.shape('M738 520 Q738 466 785 464 Q832 466 832 520 Z');
+      g.rect(728, 512, 114, 22, 11);
+      face(g, 785, 552, 14, 6, 15, 11);
+      g.rect(880, 640, 40, 16, 8);
+      g.ellipse(950, 690, 16, 28);
+      // bumper
+      g.rect(55, 735, 910, 52, 22);
+      // ladder on a turntable
+      g.rect(120, 405, 120, 50, 12);
+      let lad = 'M100 400 L780 367 M100 338 L780 305';
+      for (let i = 0; i < 7; i++) {
+        const x = 170 + i * 100;
+        const y = 400 - (x - 100) * 0.0485;
+        lad += ' M' + x + ' ' + y.toFixed(1) + ' L' + x + ' ' + (y - 62).toFixed(1);
+      }
       tube(g, lad, 30);
-      for (let x = 160; x < 840; x += 90) tube(g, 'M' + x + ' ' + (403 - (x - 110) * 0.041) + ' L' + x + ' ' + (347 - (x - 110) * 0.041), 24);
-      g.rect(330, 405, 120, 45, 10);
       // wheels
-      [[230, 790], [450, 790], [790, 790]].forEach((w) => {
-        ring(g, w[0], w[1], 88, 36);
-        g.circle(w[0], w[1], 36);
+      [210, 440, 810].forEach((x) => {
+        ring(g, x, 800, 88, 38);
+        g.circle(x, 800, 38);
       });
     },
   });

@@ -223,7 +223,7 @@ button { font: inherit; color: inherit; }
 .word {
   display: inline-flex;
   align-items: flex-end;
-  gap: .06em;
+  gap: .03em;
   font-family: var(--read);
   font-weight: 700;
   line-height: 1;

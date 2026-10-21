@@ -117,7 +117,22 @@
     cat: 'fantasie',
     colors: ['rosa', 'violett', 'pink', 'gelb', 'hellblau', 'hellgruen'],
     spots: [
-      { x: 560, y: 160, c: 5 },
+      { x: 205, y: 381, c: 1 },   // head
+      { x: 664, y: 558, c: 1 },   // body
+      { x: 419, y: 728, c: 1 },   // leg
+      { x: 734, y: 728, c: 1 },   // leg
+      { x: 391, y: 252, c: 2 },   // mane
+      { x: 865, y: 426, c: 2 },   // rainbow
+      { x: 529, y: 526, c: 2 },   // mane
+      { x: 901, y: 646, c: 2 },   // tail
+      { x: 451, y: 331, c: 3 },   // mane
+      { x: 884, y: 348, c: 3 },   // rainbow
+      { x: 877, y: 535, c: 3 },   // tail
+      { x: 90, y: 129, c: 4 },   // star
+      { x: 489, y: 436, c: 4 },   // mane
+      { x: 906, y: 769, c: 4 },   // tail
+      { x: 653, y: 147, c: 5 },   // sky
+      { x: 257, y: 878, c: 6 },   // meadow
     ],
     draw(g) {
       // Rainbow behind the unicorn; the meadow hides its feet.
@@ -186,7 +201,29 @@
     cat: 'fantasie',
     colors: ['gruen', 'gelb', 'orange', 'rot', 'hellblau', 'hellgruen'],
     spots: [
-      { x: 500, y: 60, c: 5 },
+      { x: 500, y: 274, c: 1 },   // head
+      { x: 424, y: 536, c: 1 },   // body
+      { x: 368, y: 638, c: 1 },   // arm
+      { x: 631, y: 638, c: 1 },   // arm
+      { x: 359, y: 743, c: 1 },   // leg
+      { x: 640, y: 743, c: 1 },   // leg
+      { x: 701, y: 790, c: 1 },   // tail
+      { x: 436, y: 850, c: 1 },   // foot
+      { x: 562, y: 850, c: 1 },   // foot
+      { x: 84, y: 90, c: 2 },   // sun
+      { x: 498, y: 606, c: 2 },   // belly
+      { x: 498, y: 780, c: 2 },   // belly
+      { x: 134, y: 404, c: 3 },   // wing
+      { x: 865, y: 404, c: 3 },   // wing
+      { x: 327, y: 491, c: 3 },   // wing
+      { x: 672, y: 491, c: 3 },   // wing
+      { x: 477, y: 696, c: 3 },   // belly
+      { x: 225, y: 502, c: 4 },   // wing
+      { x: 774, y: 502, c: 4 },   // wing
+      { x: 866, y: 673, c: 4 },   // tail tip
+      { x: 117, y: 658, c: 5 },   // sky
+      { x: 435, y: 419, c: 6 },   // snout
+      { x: 746, y: 918, c: 6 },   // meadow
     ],
     draw(g) {
       g.sun(85, 90, 44, 10);
@@ -245,7 +282,31 @@
     cat: 'fantasie',
     colors: ['rosa', 'blau', 'gelb', 'hellblau', 'hellgruen', 'braun'],
     spots: [
-      { x: 300, y: 120, c: 4 },
+      { x: 562, y: 70, c: 1 },   // flag
+      { x: 500, y: 570, c: 1 },   // tower
+      { x: 205, y: 682, c: 1 },   // tower
+      { x: 793, y: 682, c: 1 },   // tower
+      { x: 324, y: 593, c: 1 },   // wall
+      { x: 684, y: 593, c: 1 },   // wall
+      { x: 498, y: 239, c: 2 },   // roof
+      { x: 179, y: 343, c: 2 },   // roof
+      { x: 819, y: 343, c: 2 },   // roof
+      { x: 94, y: 94, c: 3 },   // sun
+      { x: 498, y: 460, c: 3 },   // heart
+      { x: 179, y: 561, c: 3 },   // window
+      { x: 819, y: 561, c: 3 },   // window
+      { x: 319, y: 702, c: 3 },   // window
+      { x: 679, y: 702, c: 3 },   // window
+      { x: 377, y: 97, c: 4 },   // sky
+      { x: 809, y: 894, c: 4 },   // moat
+      { x: 196, y: 894, c: 4 },   // moat
+      { x: 953, y: 795, c: 5 },   // meadow
+      { x: 52, y: 802, c: 5 },   // meadow
+      { x: 208, y: 971, c: 5 },   // grass
+      { x: 498, y: 745, c: 6 },   // door
+      { x: 445, y: 907, c: 6 },   // bridge
+      { x: 498, y: 915, c: 6 },   // bridge
+      { x: 552, y: 901, c: 6 },   // bridge
     ],
     draw(g) {
       g.sun(95, 95, 46, 10);
