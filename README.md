@@ -1,58 +1,68 @@
 # Farbklecks
 
-A drawing app for kids around six years old, in Swiss Standard German. It is plain HTML, CSS and JavaScript: no build step, no server code, no tracking, no ads. Once it's on the iPad or iPhone home screen it runs offline like a native app.
+A colouring and early-learning app for children around six years old, in Swiss Standard German. It runs on iPad and iPhone as an installable web app (PWA): plain HTML, CSS and JavaScript with no build step, no server code, no tracking and no ads. Once it's on the home screen it works offline.
 
-## What kids can do
+## What children can do
 
-- **Pinsel** – 8 brushes: Filzstift, Wachskreide, Neon, Spraydose, Glitzer, Sternli, Herzli, Perlen. Apple Pencil pressure works. Several fingers can draw at once.
-- **16 Farbstifte** in a pencil box, including a **Regenbogen** pencil. Each pencil plays its own note.
-- **Stempel** – about 100 emoji stickers in 5 groups (Tiere, Natur, Essen, Spass, Schweiz: Kuh, Glocke, Fondue, Schoggi, Gondel …). Drag to make a trail of stickers.
-- **Eimer** (fill bucket) – fills an area. With the Regenbogen pencil it fills with rainbow rings.
-- **Radierer**, **Grösse** (4 sizes), **Zurück** (undo, up to 40 steps).
-- **Spiegel** – mirror drawing (left/right) or **Kaleidoskop** (8-way symmetry).
-- **Ausmalbilder** – 14 colouring pages: Katze, Teddybär, Haus, Fisch, Schmetterling, Blume, Rakete, Kuh (with Swiss flag and cow bell), Schnecke, Glace, Zug, Dino, Auto, Mandala.
-- **Neu** – fresh paper in 7 colours (the black «Nachthimmel» paper is great with Neon).
-- **Speichern** – saves to «Meine Bilder» with confetti and praise («Mega schön!»).
-- **Vorlesen** – button, colour and sticker names are spoken aloud, so children who can't read yet can still find their way.
+**Ausmalen (colouring), the main activity.** A picture book with about 50 hand-drawn colouring pages in five categories: Tiere, Schweiz, Fahrzeuge, Fantasie and Natur. Each picture can be coloured five ways:
 
-The current drawing is saved automatically, so nothing is lost when the app is closed.
+| Mode | What the child does | What it practises |
+| --- | --- | --- |
+| Frei | Colours freely, with patterns, glitter and stamps | Fine motor skills, creativity |
+| Würfel | Matches dice dots on the picture to the dice on the pencils | Counting 1–6 |
+| Zahlen | Matches the numbers 1–6 | Reading digits |
+| Silben | Matches syllables (e.g. MA, MI, MO) | Reading first syllables |
+| Farbwörter | Reads «rot», «blau», «gelb»… and picks the colour | Reading colour words |
+
+Some details that make colouring easier and more fun:
+
+- Crayons and markers stay inside the lines.
+- The bucket fills a whole area, including with patterns (dots, stripes, checks, stars, hearts, waves, glitter) or rainbow rings.
+- Two fingers zoom in for small areas.
+- Labels pop away when the right colour goes in.
+- A finished picture gets a fanfare and stars, and goes into «Meine Bilder».
+- Progress is saved per picture and mode.
+
+**Schreiben (writing).** The child traces capital letters, small letters and the digits 0–9 with a finger. Each stroke is shown in the right order and direction, on Swiss school writing lines. Each letter ends with an «Anlaut» picture: A wie Affe 🐒.
+
+**Lesen (reading).** Reading games with Silbenbögen (the syllable arcs used in Swiss schools), at three levels. There is no audio: every game checks itself with pictures.
+
+**Punkt zu Punkt.** The child connects numbered dots up to 10, 20 or 30. The finished outline becomes a colouring page.
+
+**Freies Malen.** Free drawing with 8 brushes, stamps, a mirror mode and coloured paper.
+
+**Sterne & Sammelalbum.** Finished activities earn stars, and every 3 stars unlock a new sticker in the sticker album.
+
+**Für Eltern.** Hold the gear button on the home screen for one second to open the parent settings. There you can:
+
+- turn sounds on or off;
+- choose how syllables and words are shown: CAPITALS only, or normal upper and lower case;
+- reset the stars and progress.
 
 ## Getting it onto the iPad / iPhone
 
-iOS can't run an HTML file straight from the Files app, so the files have to be served over HTTPS **once**. After that, everything stays on the device and no server or internet is needed.
+The app is served by GitHub Pages from the `main` branch: <https://mrtolchock.github.io/Drawing-App/>
 
-The easiest free option is **GitHub Pages**:
+1. Open the address in **Safari**.
+2. Tap **Teilen**, then **Zum Home-Bildschirm**.
+3. Start Farbklecks from the home screen icon. It works in airplane mode too.
 
-1. In this repository on GitHub, open **Settings → Pages**.
-2. Under *Build and deployment*, choose **Deploy from a branch**, branch **main**, folder **/ (root)**, then **Save**. (On a free GitHub plan the repository must be public.)
-3. After a minute the app is live at `https://<your-user>.github.io/<repo-name>/`.
-4. Open that address in **Safari** on the iPad or iPhone, tap **Teilen** (Share), then **Zum Home-Bildschirm** (Add to Home Screen).
-5. Start Farbklecks from the home screen icon. It now works in airplane mode too.
-
-Any other static host (Netlify, Cloudflare Pages, your own web space) works the same way: upload the folder as is.
-
-On a computer you can also just double-click `index.html` and play in the browser. Offline install and saving behave best when the app is served over HTTPS as above.
-
-## For parents
-
-- The **gear button** in «Meine Bilder» opens the parent settings: sounds on/off and voice on/off.
-- To get a picture out of the app, open it in «Meine Bilder» and tap **Sichern**. The iOS share sheet opens, where you can choose «Bild sichern» to save it to Photos, or send it.
-- All pictures stay on the device (IndexedDB). Apps added to the home screen are not affected by Safari's 7-day cleanup of website data. Deleting the app from the home screen deletes its pictures.
-- The voice uses the German voice installed on the device. You can add or change voices in iOS under *Settings → Accessibility → Spoken Content → Voices → German*.
+Pictures, stars and progress stay on the device (browser storage). Apps added to the home screen are not affected by Safari's 7-day cleanup. To get a picture out of the app, open it in «Meine Bilder» and tap **Sichern**.
 
 ## Project layout
 
 ```
-index.html              page structure, icons (SVG sprite)
-css/app.css             layout and look (iPad landscape/portrait, iPhone portrait/landscape)
-js/store.js             settings (localStorage) and pictures (IndexedDB)
-js/sound.js             synthesized sounds (Web Audio) and speech output
-js/brushes.js           colours, brushes, stamps
-js/pages.js             colouring pages, drawn with code
-js/app.js               drawing engine, undo, fill, mirror, gallery, UI
-sw.js                   service worker (offline cache)
-manifest.webmanifest    PWA manifest
-icons/                  app icons
+index.html            page shell, icon sprite, script order
+css/                  base.css (design tokens, components), paint.css, screens.css, trace/dots/read.css
+fonts/                Andika (for reading) and Baloo 2 (headings), both SIL Open Font License
+js/core/              util, store (settings, progress, IndexedDB), sound (Web Audio)
+js/data/              colours, stickers
+js/art/               dsl.js (drawing helper + registry), colouring pages per category, preview
+js/learn/             glyphs.js (letter strokes), words.js (words, syllables, sentences), dots.js
+js/paint/             brushes.js, engine.js (painting engine)
+js/ui/                ui.js (components, router), fx.js (effects), pencils.js
+js/screens/           hub, book, color, free, gallery, album (+ parent settings), trace, dots, read
+sw.js                 service worker (offline cache)
 ```
 
-When you change any file, bump `CACHE` in `sw.js` (e.g. `farbklecks-v2`) so installed apps pick up the new version on their next launch.
+When you change any file, bump `CACHE` in `sw.js` (e.g. `farbklecks-v3`) so installed apps pick up the new version on their next launch.

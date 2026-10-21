@@ -1,18 +1,19 @@
-/* Farbklecks – Klänge (Web Audio, alles synthetisch) und Vorlesen (Sprachausgabe). */
+/* Farbklecks – Klänge. Everything is synthesized with Web Audio; there are no sound files and no speech. */
 (function () {
   'use strict';
   const FK = (window.FK = window.FK || {});
 
-  // Pentatonic scale (C major), one note per pencil, from low to high.
+  // Pentatonic scale (C major), low to high. note(i) never sounds wrong next to another note.
   const NOTES = [261.63, 293.66, 329.63, 392.0, 440.0, 523.25, 587.33, 659.25, 783.99, 880.0,
-    1046.5, 1174.66, 1318.51, 1567.98, 1760.0, 2093.0];
+    1046.5, 1174.66, 1318.51, 1567.98, 1760.0, 2093.0, 2349.32, 2637.02];
 
   let ac = null;
   let master = null;
   let noise = null;
-  let enabled = true;
   let scribble = null;
   let lastTwinkle = 0;
+
+  const enabled = () => !FK.settings || FK.settings.get('sound') !== false;
 
   function ensure() {
     if (ac) return ac;
@@ -30,7 +31,6 @@
     master.gain.value = 0.75;
     master.connect(comp);
     comp.connect(ac.destination);
-
     const len = Math.floor(ac.sampleRate * 1.5);
     noise = ac.createBuffer(1, len, ac.sampleRate);
     const d = noise.getChannelData(0);
@@ -38,7 +38,7 @@
     return ac;
   }
 
-  // iOS only lets audio start inside a user gesture: call this from the first touch.
+  // iOS starts audio only from touchend/click. Called from those events (see app.js).
   function unlock() {
     const c = ensure();
     if (!c || c.state === 'running') return;
@@ -53,45 +53,49 @@
   }
 
   function ready() {
-    if (!enabled) return null;
+    if (!enabled()) return null;
     const c = ensure();
     if (!c) return null;
     if (c.state !== 'running') c.resume().catch(() => {});
     return c;
   }
 
-  function tone(freq, { type = 'sine', dur = 0.25, vol = 0.25, when = 0, to = 0, attack = 0.006 } = {}) {
+  function tone(freq, o) {
+    o = o || {};
     const c = ready();
     if (!c) return;
-    const t = c.currentTime + when;
-    const o = c.createOscillator();
+    const dur = o.dur || 0.25;
+    const t = c.currentTime + (o.when || 0);
+    const osc = c.createOscillator();
     const g = c.createGain();
-    o.type = type;
-    o.frequency.setValueAtTime(freq, t);
-    if (to) o.frequency.exponentialRampToValueAtTime(to, t + dur * 0.9);
+    osc.type = o.type || 'sine';
+    osc.frequency.setValueAtTime(freq, t);
+    if (o.to) osc.frequency.exponentialRampToValueAtTime(o.to, t + dur * 0.9);
     g.gain.setValueAtTime(0.0001, t);
-    g.gain.exponentialRampToValueAtTime(vol, t + attack);
+    g.gain.exponentialRampToValueAtTime(o.vol || 0.25, t + (o.attack || 0.006));
     g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
-    o.connect(g);
+    osc.connect(g);
     g.connect(master);
-    o.start(t);
-    o.stop(t + dur + 0.05);
+    osc.start(t);
+    osc.stop(t + dur + 0.05);
   }
 
-  function noiseBurst({ dur = 0.3, vol = 0.2, f0 = 2000, f1 = 400, q = 1, type = 'bandpass', when = 0 } = {}) {
+  function noiseBurst(o) {
+    o = o || {};
     const c = ready();
     if (!c) return;
-    const t = c.currentTime + when;
+    const dur = o.dur || 0.3;
+    const t = c.currentTime + (o.when || 0);
     const s = c.createBufferSource();
     s.buffer = noise;
     const f = c.createBiquadFilter();
-    f.type = type;
-    f.Q.value = q;
-    f.frequency.setValueAtTime(f0, t);
-    f.frequency.exponentialRampToValueAtTime(f1, t + dur);
+    f.type = o.type || 'bandpass';
+    f.Q.value = o.q || 1;
+    f.frequency.setValueAtTime(o.f0 || 2000, t);
+    f.frequency.exponentialRampToValueAtTime(o.f1 || 400, t + dur);
     const g = c.createGain();
     g.gain.setValueAtTime(0.0001, t);
-    g.gain.exponentialRampToValueAtTime(vol, t + 0.02);
+    g.gain.exponentialRampToValueAtTime(o.vol || 0.2, t + 0.02);
     g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
     s.connect(f);
     f.connect(g);
@@ -101,53 +105,70 @@
   }
 
   // Marimba-like note: sine plus a short, quiet overtone.
-  function note(i) {
-    const f = NOTES[Math.max(0, Math.min(NOTES.length - 1, i))];
-    tone(f, { dur: 0.45, vol: 0.28 });
-    tone(f * 4, { dur: 0.08, vol: 0.05 });
+  function note(i, when) {
+    const f = NOTES[Math.max(0, Math.min(NOTES.length - 1, i | 0))];
+    tone(f, { dur: 0.45, vol: 0.26, when });
+    tone(f * 4, { dur: 0.08, vol: 0.045, when });
   }
 
-  const S = {
+  FK.sound = {
     unlock,
-    get enabled() { return enabled; },
-    set enabled(v) {
-      enabled = !!v;
-      if (!enabled) S.scribbleStop();
-    },
-
     note,
-    rainbow() {
-      [0, 2, 4, 5, 7, 9].forEach((n, k) => setTimeout(() => note(n + 2), k * 55));
-    },
+    rainbow() { [0, 2, 4, 5, 7, 9].forEach((n, k) => note(n + 2, k * 0.055)); },
     tick() { tone(1400, { dur: 0.06, vol: 0.12, type: 'triangle' }); },
-    open() { tone(520, { dur: 0.16, vol: 0.16, to: 880, type: 'triangle' }); },
-    close() { tone(700, { dur: 0.14, vol: 0.12, to: 420, type: 'triangle' }); },
+    open() { tone(520, { dur: 0.16, vol: 0.15, to: 880, type: 'triangle' }); },
+    close() { tone(700, { dur: 0.14, vol: 0.11, to: 420, type: 'triangle' }); },
     pop() {
-      tone(320, { dur: 0.12, vol: 0.32, to: 980 });
+      tone(320, { dur: 0.12, vol: 0.3, to: 980 });
       noiseBurst({ dur: 0.06, vol: 0.08, f0: 3000, f1: 1500, q: 2 });
     },
+    balloon() {
+      noiseBurst({ dur: 0.12, vol: 0.4, f0: 5000, f1: 900, q: 0.7, type: 'highpass' });
+      tone(900, { dur: 0.1, vol: 0.18, to: 300 });
+    },
     blub() {
-      tone(180, { dur: 0.28, vol: 0.3, to: 620 });
-      tone(420, { dur: 0.16, vol: 0.16, to: 900, when: 0.12 });
-      tone(600, { dur: 0.14, vol: 0.12, to: 1300, when: 0.22 });
+      tone(180, { dur: 0.28, vol: 0.28, to: 620 });
+      tone(420, { dur: 0.16, vol: 0.15, to: 900, when: 0.12 });
+      tone(600, { dur: 0.14, vol: 0.11, to: 1300, when: 0.22 });
     },
-    swoosh() { noiseBurst({ dur: 0.45, vol: 0.32, f0: 3200, f1: 260, q: 0.9 }); },
-    undo() {
-      tone(900, { dur: 0.18, vol: 0.18, to: 380, type: 'triangle' });
+    swoosh() { noiseBurst({ dur: 0.45, vol: 0.3, f0: 3200, f1: 260, q: 0.9 }); },
+    page() { noiseBurst({ dur: 0.25, vol: 0.18, f0: 1800, f1: 5000, q: 0.6 }); },
+    undo() { tone(900, { dur: 0.18, vol: 0.17, to: 380, type: 'triangle' }); },
+    nope() { tone(300, { dur: 0.12, vol: 0.13, type: 'square', to: 240 }); },
+    // gentle "not quite": two soft low notes
+    wrong() {
+      tone(330, { dur: 0.16, vol: 0.16, type: 'triangle' });
+      tone(262, { dur: 0.22, vol: 0.16, type: 'triangle', when: 0.13 });
     },
-    nope() {
-      tone(300, { dur: 0.12, vol: 0.14, type: 'square', to: 240 });
+    // bright "yes!": three quick rising notes
+    right() {
+      note(7);
+      note(9, 0.08);
+      note(12, 0.16);
+    },
+    // rising "plip" for the n-th dot / syllable (n = 0, 1, 2 …)
+    plip(n) { note(Math.min(17, 4 + (n | 0)), 0); },
+    star() {
+      [12, 14, 16].forEach((n, k) => note(n, k * 0.07));
+      for (let k = 0; k < 4; k++) tone(2600 + Math.random() * 1600, { dur: 0.09, vol: 0.04, when: 0.2 + k * 0.05 });
     },
     click() {
-      noiseBurst({ dur: 0.07, vol: 0.18, f0: 6000, f1: 2500, q: 3, type: 'bandpass' });
+      noiseBurst({ dur: 0.07, vol: 0.18, f0: 6000, f1: 2500, q: 3 });
       tone(1800, { dur: 0.05, vol: 0.08 });
     },
     tada() {
-      [523.25, 659.25, 783.99, 1046.5].forEach((f, k) => {
-        tone(f, { dur: 0.35, vol: 0.22, type: 'triangle', when: k * 0.09 });
-      });
+      [523.25, 659.25, 783.99, 1046.5].forEach((f, k) => tone(f, { dur: 0.35, vol: 0.21, type: 'triangle', when: k * 0.09 }));
       tone(1567.98, { dur: 0.6, vol: 0.12, when: 0.38 });
       for (let k = 0; k < 6; k++) tone(2000 + Math.random() * 2000, { dur: 0.1, vol: 0.05, when: 0.45 + k * 0.06 });
+    },
+    // A longer fanfare for big wins (whole picture done by numbers, all letters …).
+    fanfare() {
+      const seq = [[523.25, 0], [659.25, 0.12], [783.99, 0.24], [1046.5, 0.36], [783.99, 0.52], [1046.5, 0.64]];
+      seq.forEach(([f, w]) => {
+        tone(f, { dur: 0.3, vol: 0.2, type: 'triangle', when: w });
+        tone(f / 2, { dur: 0.3, vol: 0.1, type: 'sine', when: w });
+      });
+      for (let k = 0; k < 10; k++) tone(2200 + Math.random() * 2400, { dur: 0.1, vol: 0.045, when: 0.7 + k * 0.05 });
     },
     twinkle() {
       const now = performance.now();
@@ -168,6 +189,7 @@
         glitzer: { type: 'bandpass', f: 2600, q: 1.5, vol: 0.06 },
         shape: { type: 'bandpass', f: 1200, q: 2, vol: 0.05 },
         eraser: { type: 'bandpass', f: 900, q: 1.1, vol: 0.13 },
+        trace: { type: 'bandpass', f: 2200, q: 1.2, vol: 0.07 },
       };
       const p = presets[kind] || presets.filz;
       const s = c.createBufferSource();
@@ -187,71 +209,19 @@
       if (kind === 'spray') g.gain.setTargetAtTime(p.vol, c.currentTime, 0.03);
     },
     scribbleSpeed(v) {
-      if (!scribble || !ac) return;
-      if (scribble.kind === 'spray') return;
+      if (!scribble || !ac || scribble.kind === 'spray') return;
       const target = Math.min(1, v / 1.4) * scribble.vol + 0.0001;
       scribble.g.gain.setTargetAtTime(target, ac.currentTime, 0.04);
     },
     scribbleStop() {
       if (!scribble || !ac) return;
-      const { s, g } = scribble;
+      const s = scribble.s;
+      const g = scribble.g;
       scribble = null;
       g.gain.setTargetAtTime(0.0001, ac.currentTime, 0.04);
       try { s.stop(ac.currentTime + 0.25); } catch (e) { /* already stopped */ }
     },
   };
 
-  FK.sound = S;
-
-  /* ---------- Vorlesen ---------- */
-  let voiceOn = true;
-  let voice = null;
-  let speakTimer = 0;
-  const synth = window.speechSynthesis;
-
-  function pickVoice() {
-    if (!synth) return;
-    const vs = synth.getVoices() || [];
-    const de = vs.filter((v) => /^de/i.test(v.lang));
-    voice =
-      de.find((v) => /de[-_]CH/i.test(v.lang)) ||
-      de.find((v) => /Anna|Helena|Petra|Marlene|Sandy|Shelley/i.test(v.name)) ||
-      de.find((v) => /de[-_]DE/i.test(v.lang)) ||
-      de[0] || null;
-  }
-  if (synth) {
-    pickVoice();
-    if (synth.addEventListener) synth.addEventListener('voiceschanged', pickVoice);
-    else synth.onvoiceschanged = pickVoice;
-  }
-
-  FK.voice = {
-    get enabled() { return voiceOn; },
-    set enabled(v) {
-      voiceOn = !!v;
-      if (!voiceOn && synth) synth.cancel();
-    },
-    say(text) {
-      if (!voiceOn || !synth || !text) return;
-      const speak = () => {
-        try {
-          const u = new SpeechSynthesisUtterance(text);
-          u.lang = voice ? voice.lang : 'de-CH';
-          if (voice) u.voice = voice;
-          u.rate = 1;
-          u.pitch = 1.15;
-          u.volume = 1;
-          synth.speak(u);
-        } catch (e) { /* ignore */ }
-      };
-      clearTimeout(speakTimer);
-      if (synth.speaking || synth.pending) {
-        synth.cancel();
-        // Safari drops an utterance queued in the same tick as cancel().
-        speakTimer = setTimeout(speak, 60);
-      } else {
-        speak();
-      }
-    },
-  };
+  if (FK.on) FK.on('settings', (e) => { if (e.key === 'sound' && !e.value) FK.sound.scribbleStop(); });
 })();

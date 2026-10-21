@@ -8,58 +8,7 @@
   const rnd = (a, b) => a + Math.random() * (b - a);
   const clamp = (v, a, b) => (v < a ? a : v > b ? b : v);
 
-  FK.COLORS = [
-    { id: 'rot', name: 'Rot', hex: '#e5322d' },
-    { id: 'orange', name: 'Orange', hex: '#ff8a1f' },
-    { id: 'gelb', name: 'Gelb', hex: '#ffd60a' },
-    { id: 'hellgruen', name: 'Hellgrün', hex: '#8bd448' },
-    { id: 'gruen', name: 'Grün', hex: '#1f9d55' },
-    { id: 'tuerkis', name: 'Türkis', hex: '#1cc6c6' },
-    { id: 'hellblau', name: 'Hellblau', hex: '#5bc0ff' },
-    { id: 'blau', name: 'Blau', hex: '#2f5bea' },
-    { id: 'violett', name: 'Violett', hex: '#8a4fe0' },
-    { id: 'pink', name: 'Pink', hex: '#ff4fa3' },
-    { id: 'rosa', name: 'Rosa', hex: '#ffb3d1' },
-    { id: 'pfirsich', name: 'Pfirsich', hex: '#ffc9a0' },
-    { id: 'braun', name: 'Braun', hex: '#8b5a2b' },
-    { id: 'schwarz', name: 'Schwarz', hex: '#222222' },
-    { id: 'weiss', name: 'Weiss', hex: '#ffffff' },
-    { id: 'regenbogen', name: 'Regenbogen', hex: '#ff3b3b', rainbow: true },
-  ];
-
-  /* ---------- colour helpers ---------- */
-  function hexRgb(hex) {
-    const n = parseInt(hex.slice(1), 16);
-    return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
-  }
-  function rgbCss(r, g, b) {
-    return 'rgb(' + Math.round(r) + ',' + Math.round(g) + ',' + Math.round(b) + ')';
-  }
-  function mix(hex, toHex, t) {
-    const a = hexRgb(hex);
-    const b = hexRgb(toHex);
-    return rgbCss(a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, a[2] + (b[2] - a[2]) * t);
-  }
-  function hsl(h, s, l) {
-    return 'hsl(' + ((h % 360) + 360) % 360 + ',' + s + '%,' + l + '%)';
-  }
-  function hslRgb(h, s, l) {
-    h = (((h % 360) + 360) % 360) / 360;
-    s /= 100;
-    l /= 100;
-    const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
-    const p = 2 * l - q;
-    const f = (t) => {
-      if (t < 0) t += 1;
-      if (t > 1) t -= 1;
-      if (t < 1 / 6) return p + (q - p) * 6 * t;
-      if (t < 1 / 2) return q;
-      if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
-      return p;
-    };
-    return [f(h + 1 / 3) * 255, f(h) * 255, f(h - 1 / 3) * 255];
-  }
-  FK.color = { hexRgb, mix, hsl, hslRgb };
+  const { mix, hsl } = FK.color;
 
   function colorOf(st) { return st.rainbow ? hsl(st.hue, 92, 55) : st.color; }
   function lightOf(st, t) { return st.rainbow ? hsl(st.hue, 100, 55 + 40 * t) : mix(st.color, '#ffffff', t); }
@@ -177,6 +126,7 @@
   /* ---------- emoji stamp cache ---------- */
   const EMOJI_FONT = '"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif';
   const emojiCache = new Map();
+  FK.EMOJI_FONT = EMOJI_FONT;
   function emojiImage(e, size) {
     const s = Math.max(8, Math.round(size));
     const key = e + '|' + s;
