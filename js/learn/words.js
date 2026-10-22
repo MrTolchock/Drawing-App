@@ -25,10 +25,11 @@
     { w: 'Ki-wi', e: '🥝', lvl: 1 },
     { w: 'Ju-do', e: '🥋', lvl: 1 },
     { w: 'U-fo', e: '🛸', lvl: 1 },
-    { w: 'Ba-by', e: '👶', lvl: 1 },
+    { w: 'Mo-fa', e: '🛵', lvl: 1 },
     { w: 'Li-mo', e: '🥤', lvl: 1 },
-    { w: 'Pi-lot', e: '🧑‍✈️', lvl: 2 },
+    { w: 'Ka-nu', e: '🛶', lvl: 1 },
     // Stufe 2
+    { w: 'Pi-lot', e: '🧑‍✈️', lvl: 2 },
     { w: 'Ba-na-ne', e: '🍌', lvl: 2 },
     { w: 'To-ma-te', e: '🍅', lvl: 2 },
     { w: 'Ra-ke-te', e: '🚀', lvl: 2 },
@@ -39,8 +40,8 @@
     { w: 'Ti-ger', e: '🐯', lvl: 2 },
     { w: 'Ka-me-ra', e: '📷', lvl: 2 },
     { w: 'Bi-ber', e: '🦫', lvl: 2 },
-    { w: 'Ko-me-te', e: '☄️', lvl: 2 },
-    { w: 'Ka-nu', e: '🛶', lvl: 2 },
+    { w: 'Ko-met', e: '☄️', lvl: 2 },
+    { w: 'I-gel', e: '🦔', lvl: 2 },
     { w: 'Ho-nig', e: '🍯', lvl: 2 },
     { w: 'Fe-der', e: '🪶', lvl: 2 },
     { w: 'Na-del', e: '🪡', lvl: 2 },
@@ -51,7 +52,6 @@
     { w: 'Haus', e: '🏠', lvl: 3 },
     { w: 'Son-ne', e: '☀️', lvl: 3 },
     { w: 'Mond', e: '🌙', lvl: 3 },
-    { w: 'I-gel', e: '🦔', lvl: 3 },
     { w: 'Kat-ze', e: '🐱', lvl: 3 },
     { w: 'Hund', e: '🐶', lvl: 3 },
     { w: 'Fisch', e: '🐟', lvl: 3 },
@@ -121,5 +121,12 @@
     { t: 'Die Traube ist violett.', e: '🍇', check: { emoji: '🍇', color: 'violett' } },
   ];
 
-  FK.words = { list, syllables, phrases };
+  // Pictures that also fit the other word (a Tanne is a Baum): «Wort und Bild» never shows them side by side.
+  const near = [
+    ['🌳', '🌲'],
+    ['🚂', '🚋'],
+    ['🌸', '🌹'],
+  ];
+
+  FK.words = { list, syllables, phrases, near };
 })();

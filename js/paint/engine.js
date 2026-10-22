@@ -367,13 +367,14 @@
       m = { canvas: c, x: x0, y: y0, w, h: hh };
       S.masks.set(r, m);
       S.maskPx += w * hh;
-      // keep at most MASK_MAX masks and about two papers' worth of pixels (never the one just made)
+      // keep at most MASK_MAX masks and about two papers' worth of pixels (never the one just made;
+      // the mask of a stroke in progress leaves the cache but keeps its pixels until the stroke ends)
       while (S.masks.size > 1 && (S.masks.size > MASK_MAX || S.maskPx > 2 * S.W * S.H)) {
         const old = S.masks.keys().next().value;
         const o = S.masks.get(old);
         S.masks.delete(old);
         S.maskPx -= o.w * o.h;
-        freeCanvas(o.canvas);
+        if (!session || session.mask !== o) freeCanvas(o.canvas);
       }
       return m;
     }
@@ -1103,12 +1104,15 @@
       };
     }
     function restorePage(e) {
-      if (e.W !== S.W || e.H !== S.H) setSize(e.W, e.H);
+      const resized = e.W !== S.W || e.H !== S.H;
+      if (resized) setSize(e.W, e.H);
       else clearAll();
       setPaper(e.paper);
       applyOutline(e.pageId);
       if (e.paint) ctx.paint.putImageData(e.paint, 0, 0);
       S.dirty = e.dirty;
+      // the paper got its old size back (e.g. «Nochmal» on a page restored at its saved size): labels follow
+      if (resized && opts.onRemap) opts.onRemap();
     }
 
     function changed() {

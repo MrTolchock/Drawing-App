@@ -201,8 +201,15 @@
   }
 
   // Other words for «Wort und Bild»: one that looks alike (same start or end), one at random.
+  // Pictures that would also be right (a Tanne is a Baum) never stand next to each other.
+  function nearPics(e) {
+    const groups = (FK.words && FK.words.near) || [];
+    return [].concat.apply([e], groups.filter((g) => g.indexOf(e) >= 0));
+  }
+
   function distractorWords(w, k) {
-    const L = data().list.filter((x) => x.w !== w.w && x.e !== w.e);
+    const near = nearPics(w.e);
+    const L = data().list.filter((x) => x.w !== w.w && near.indexOf(x.e) < 0);
     const tw = lc(plain(w.w));
     const tp = lc(w.w).split('-');
     const scored = L.map((x) => {
@@ -218,11 +225,12 @@
     }).sort((a, b) => b.s - a.s);
     const out = [];
     if (scored.length) out.push(scored[0].x);
-    const rest = FK.shuffle(L.filter((x) => out.indexOf(x) < 0 && out.every((o) => o.e !== x.e)));
+    const clash = (x) => out.some((o) => nearPics(o.e).indexOf(x.e) >= 0);
+    const rest = FK.shuffle(L.filter((x) => out.indexOf(x) < 0 && !clash(x)));
     const same = rest.filter((x) => x.lvl === w.lvl);
     while (out.length < k && (same.length || rest.length)) {
       const x = same.length ? same.shift() : rest.shift();
-      if (out.indexOf(x) < 0 && out.every((o) => o.e !== x.e)) out.push(x);
+      if (out.indexOf(x) < 0 && !clash(x)) out.push(x);
     }
     return out;
   }
@@ -266,11 +274,11 @@
     actions.forEach((a) => row.append(FK.ui.btn({ icon: a.icon, emoji: a.emoji, label: a.label, cls: 'btn-big ' + (a.cls || ''), onClick: a.onClick })));
     const card = h('div', { class: 'rd-done-card' },
       FK.ui.mascot({ mood: 'cheer', cls: 'rd-done-mascot' }),
-      h('div', { class: 'rd-done-stars', html: starsHtml(3) }),
+      h('div', { class: 'rd-done-stars', html: starsHtml(1) }),
       row);
     const wrap = h('div', { class: 'rd-done' }, card);
     stage.append(wrap);
-    const go = row.querySelector('.btn-go') || row.firstChild;
+    const go = row.querySelector('.btn-go') || row.querySelector('.btn-sun') || row.firstChild;
     if (go) later(900, () => FK.ui.bounce(go));
     return wrap;
   }
@@ -980,7 +988,7 @@
     function finish() {
       B.st.cur(-1);
       finishRound('genau', B.st.el, [
-        { icon: 'refresh', label: 'Nochmal', cls: 'btn-go', onClick: () => startGenau() },
+        { icon: 'refresh', label: 'Nochmal', onClick: () => startGenau() },
         { icon: 'check', label: 'Fertig', cls: 'btn-sun', onClick: () => showHome() },
       ]);
     }
@@ -1096,7 +1104,7 @@
       B.colorI = (B.colorI + 1 + ((Math.random() * 2) | 0)) % BALLOON_COLORS.length;
       const color = BALLOON_COLORS[B.colorI];
       const hit = h('div', { class: 'rd-b-hit' });
-      const el = h('div', { class: 'rd-balloon' },
+      const el = h('div', { class: 'rd-balloon' + (same(syl, B.target) ? ' is-t' : '') },
         h('div', { class: 'rd-b-in', html: balloonSvg(color) }, h('span', { class: 'rd-b-syl', text: FK.text.syllable(syl) })),
         hit);
       const b = {
@@ -1135,7 +1143,7 @@
         if (B.spawnIn <= 0) B.spawnIn = spawn() ? (B.dur / (B.lanes * 0.95)) * FK.rnd(0.8, 1.15) : 0.25;
         if (B.sinceHit > 7 && !B.glow) {
           B.glow = true;
-          field.classList.add('rd-glow');
+          game.classList.add('rd-glow');
         }
       }
       for (let i = B.list.length - 1; i >= 0; i--) {
@@ -1176,7 +1184,7 @@
         B.popped++;
         B.sinceHit = 0;
         B.glow = false;
-        field.classList.remove('rd-glow');
+        game.classList.remove('rd-glow');
         if (B.popped >= N_POPS) win();
         else if (B.popped % 2 === 0) later(350, changeTarget);
       } else {
@@ -1201,6 +1209,7 @@
       B.tIdx++;
       B.target = targets[B.tIdx % targets.length];
       clearSky();
+      B.list.forEach((b) => b.el.classList.toggle('is-t', same(b.syl, B.target)));
       FK.sound.swoosh();
       sign.classList.remove('rd-flip');
       void sign.offsetWidth;
