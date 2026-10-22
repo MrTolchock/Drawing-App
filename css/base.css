@@ -189,6 +189,7 @@ button { font: inherit; color: inherit; }
 .btn-big { --btn: 88px; --btn-w: 104px; --ic: 42px; --lbl: 15px; gap: 2px; }
 .btn-go { background: var(--leaf); }
 .btn-sun { background: var(--sun); }
+.btn-danger { background: #ff7a7a; }
 
 .wiggle { animation: wiggle .45s ease; }
 .shake { animation: shake .45s ease; }

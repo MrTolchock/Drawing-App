@@ -38,6 +38,9 @@
     const prev = current;
     if (prev && screens[prev.name].def.leave) screens[prev.name].def.leave();
     if (prev && !opts.replace && !opts.isBack) stack.push(prev);
+    // the hub is the root; never keep the target itself on top of the history (e.g. Malbuch → Bild → Malbuch)
+    if (name === 'hub') stack.length = 0;
+    while (stack.length && stack[stack.length - 1].name === name) stack.pop();
     const root = rootFor(name);
     if (prev && prev.name !== name) {
       const pr = screens[prev.name].root;
@@ -119,7 +122,7 @@
     praiseTimer = setTimeout(() => { p.hidden = true; }, 2000);
   }
 
-  const PRAISE = ['Mega schön!', 'Bravo!', 'Super gmacht!', 'Wunderschön!', 'Grossartig!', 'Toll!', 'Juhui!', 'Wow!'];
+  const PRAISE = ['Mega schön!', 'Bravo!', 'Super gemacht!', 'Wunderschön!', 'Grossartig!', 'Toll!', 'Juhui!', 'Wow!'];
 
   // Sound + confetti + praise bubble + stars flying into the counter. Resolves when done.
   async function celebrate(o) {
@@ -212,7 +215,14 @@
       const row = h('div', { class: 'modal-actions' });
       o.actions.forEach((a) => row.append(btn({
         icon: a.icon, label: a.label, cls: 'btn-big ' + (a.cls || ''),
-        onClick: () => { if (a.keepOpen !== true) closeModal(); if (a.onClick) a.onClick(); },
+        onClick: () => {
+          if (a.keepOpen !== true) {
+            // onClose is only for a modal dismissed without choosing an action (X, backdrop, Escape)
+            if (modalEl === wrap) wrap._onClose = null;
+            closeModal();
+          }
+          if (a.onClick) a.onClick();
+        },
       })));
       card.append(row);
     }
@@ -231,16 +241,16 @@
     return { close: closeModal, el: card };
   }
 
-  function confirm(text, yesLabel, noLabel) {
+  // danger: the safe answer is the big green one, the destructive one is red with a bin.
+  function confirm(text, yesLabel, noLabel, o) {
+    o = o || {};
     return new Promise((resolve) => {
-      let answered = false;
+      const yes = { label: yesLabel || 'Ja', icon: o.danger ? 'trash' : 'check', cls: o.danger ? 'btn-danger' : '', onClick: () => resolve(true) };
+      const no = { label: noLabel || 'Nein', icon: o.danger ? 'check' : 'close', cls: o.danger ? 'btn-go' : '', onClick: () => resolve(false) };
       modal({
         title: text,
-        actions: [
-          { label: yesLabel || 'Ja', icon: 'check', onClick: () => { answered = true; resolve(true); } },
-          { label: noLabel || 'Nein', icon: 'close', onClick: () => { answered = true; resolve(false); } },
-        ],
-        onClose: () => { if (!answered) resolve(false); },
+        actions: o.danger ? [no, yes] : [yes, no],
+        onClose: () => resolve(false),
       });
     });
   }
