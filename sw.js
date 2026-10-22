@@ -18,13 +18,16 @@ const ASSETS = [
   './js/art/tiere.js',
   './js/art/tiere2.js',
   './js/art/schweiz.js',
+  './js/art/schweiz2.js',
   './js/art/fahrzeuge.js',
+  './js/art/fahrzeuge2.js',
   './js/art/fantasie.js',
   './js/art/fantasie2.js',
   './js/art/natur.js',
   './js/art/preview.js',
   './js/learn/glyphs.js',
   './js/learn/words.js',
+  './js/learn/dots.js',
   './js/paint/brushes.js',
   './js/paint/engine.js',
   './js/ui/fx.js',
@@ -52,7 +55,7 @@ const ASSETS = [
 ];
 
 self.addEventListener('install', (event) => {
-  event.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS)).then(() => self.skipWaiting()));
+  event.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS.map((u) => new Request(u, { cache: 'reload' })))).then(() => self.skipWaiting()));
 });
 
 self.addEventListener('activate', (event) => {

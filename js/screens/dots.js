@@ -394,11 +394,14 @@
 
   function onDown(e) {
     if (view !== 'play' || phase !== 'play' || !G) return;
-    if (ptr && ptr.id !== e.pointerId) return;
+    if (ptr && ptr.id !== e.pointerId) {
+      if (e.pointerType !== 'pen' || ptr.pen) return;   // extra fingers are ignored, but a pencil beats a resting palm
+      ptr = null;
+    }
     e.preventDefault();
     try { paperEl.setPointerCapture(e.pointerId); } catch (err) { /* ignore */ }
     const p = toCanvas(e);
-    ptr = { id: e.pointerId, x: p.x, y: p.y };
+    ptr = { id: e.pointerId, x: p.x, y: p.y, pen: e.pointerType === 'pen' };
     const before = done;
     sweep(p, p);
     if (done === before && done < 0) {

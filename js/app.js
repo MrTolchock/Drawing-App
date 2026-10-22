@@ -14,8 +14,19 @@
   document.addEventListener('gesturestart', (e) => e.preventDefault());
   document.addEventListener('dblclick', (e) => e.preventDefault(), { passive: false });
   document.addEventListener('contextmenu', (e) => e.preventDefault());
+  // Touch scrolling is only allowed inside an element that really can scroll (lists, tab bars, tool rails).
+  function canScroll(el) {
+    for (; el && el !== document.body; el = el.parentElement) {
+      if (el.scrollHeight > el.clientHeight + 1 || el.scrollWidth > el.clientWidth + 1) {
+        const st = getComputedStyle(el);
+        if (/(auto|scroll)/.test(st.overflowY + st.overflowX)) return true;
+      }
+    }
+    return false;
+  }
   document.addEventListener('touchmove', (e) => {
-    if (!e.target.closest || !e.target.closest('.scroll, .modal-card, .pop-card')) e.preventDefault();
+    if (e.touches && e.touches.length > 1) e.preventDefault();
+    else if (!canScroll(e.target)) e.preventDefault();
   }, { passive: false });
 
   document.addEventListener('keydown', (e) => {

@@ -198,6 +198,8 @@
 .cat-tabs {
   flex: none;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 10px;
   padding: 2px 4px 12px;
   overflow-x: auto;
@@ -399,7 +401,9 @@
 .info .ver { margin-top: 14px; color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
 
 @media (max-width: 640px) and (orientation: portrait) {
-  .cat-tab { height: 50px; font-size: 17px; padding: 0 14px 0 10px; }
+  .cat-tabs { gap: 5px; padding: 2px 0 8px; }
+  .cat-tab { height: 44px; gap: 4px; font-size: 14.5px; padding: 0 9px 0 6px; border-width: 3px; }
+  .cat-tab .emoji { font-size: 19px; }
   .mode-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .mode-btn { min-height: 96px; }
   .album-stats { grid-template-columns: 1fr; }
@@ -411,4 +415,9 @@
   .mode-btn { min-height: 90px; }
   .end-pic { max-height: 40vh; }
   .viewer-img { max-height: 44vh; }
+}
+
+/* very low screens (phones in landscape): one row of category tabs that scrolls sideways */
+@media (max-height: 520px) and (orientation: landscape) {
+  .cat-tabs { flex-wrap: nowrap; justify-content: flex-start; }
 }

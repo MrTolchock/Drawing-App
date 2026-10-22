@@ -636,7 +636,10 @@
 
   function onDown(e) {
     if (view !== 'play' || !cur || !fit || phase === 'done') return;
-    if (ptr) return;                                  // ignore extra fingers
+    if (ptr) {
+      if (e.pointerType !== 'pen' || ptr.pen) return;  // ignore extra fingers, but a pencil beats a resting palm
+      onUp({ pointerId: ptr.id });
+    }
     if (e.pointerType === 'mouse' && e.button !== 0) return;
     e.preventDefault();
     try { paperEl.setPointerCapture(e.pointerId); } catch (err) { /* ignore */ }
@@ -644,7 +647,7 @@
     stopDemo();
     clearTimeout(idleTimer);
     const P = toUnits(e.clientX, e.clientY);
-    ptr = { id: e.pointerId, x: P.x, y: P.y, cx: e.clientX, cy: e.clientY, t: performance.now(), ref: P, motion: null, spark: 0, speed: 0, fresh: true };
+    ptr = { id: e.pointerId, pen: e.pointerType === 'pen', x: P.x, y: P.y, cx: e.clientX, cy: e.clientY, t: performance.now(), ref: P, motion: null, spark: 0, speed: 0, fresh: true };
     phase = 'seek';
     seek(P, e.clientX, e.clientY);
     if (ptr) ptr.fresh = false;

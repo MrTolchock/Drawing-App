@@ -192,6 +192,16 @@
     m.remove();
   }
 
+  // A backdrop closes on pointerdown; the click of the same tap must not reach the button underneath.
+  function eatClick() {
+    const eat = (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+    };
+    document.addEventListener('click', eat, true);
+    setTimeout(() => document.removeEventListener('click', eat, true), 450);
+  }
+
   // FK.ui.modal({ title, body: element, actions: [{ label, icon, cls, onClick }], wide, onClose })
   function modal(o) {
     closeModal();
@@ -209,7 +219,11 @@
     const close = btn({ icon: 'close', cls: 'btn-round modal-x', title: 'Schliessen', onClick: closeModal });
     card.append(close);
     const wrap = h('div', { class: 'modal' }, card);
-    wrap.addEventListener('pointerdown', (e) => { if (e.target === wrap) closeModal(); });
+    wrap.addEventListener('pointerdown', (e) => {
+      if (e.target !== wrap) return;
+      closeModal();
+      eatClick();
+    });
     wrap._onClose = o.onClose;
     document.body.append(wrap);
     modalEl = wrap;
@@ -279,5 +293,5 @@
     toastTimer = setTimeout(() => { t.hidden = true; }, ms || 2200);
   }
 
-  FK.ui = { btn, topbar, starCounter, praise, celebrate, word, mascot, modal, closeModal, confirm, longPress, shake, bounce, toast, PRAISE };
+  FK.ui = { btn, topbar, starCounter, praise, celebrate, word, mascot, modal, closeModal, confirm, longPress, shake, bounce, toast, eatClick, PRAISE };
 })();

@@ -88,7 +88,16 @@
         if (!d.objectStoreNames.contains('state')) d.createObjectStore('state');
         if (!d.objectStoreNames.contains('bilder')) d.createObjectStore('bilder', { keyPath: 'id' });
       };
-      req.onsuccess = () => resolve(req.result);
+      req.onsuccess = () => {
+        const d = req.result;
+        // iOS drops the connection now and then (e.g. after the app was in the background): open a new one next time.
+        d.onclose = () => { dbPromise = null; };
+        d.onversionchange = () => {
+          d.close();
+          dbPromise = null;
+        };
+        resolve(d);
+      };
       req.onerror = () => reject(req.error);
       req.onblocked = () => reject(new Error('blocked'));
     });
@@ -96,7 +105,7 @@
     return dbPromise;
   }
 
-  function tx(storeName, mode, fn) {
+  function txOnce(storeName, mode, fn) {
     return db().then((d) => new Promise((resolve, reject) => {
       const t = d.transaction(storeName, mode);
       const s = t.objectStore(storeName);
@@ -107,6 +116,16 @@
       t.onerror = () => reject(t.error);
       t.onabort = () => reject(t.error);
     }));
+  }
+
+  // A lost connection shows up as InvalidStateError / UnknownError: reconnect and try once more.
+  function tx(storeName, mode, fn) {
+    return txOnce(storeName, mode, fn).catch((e) => {
+      const name = e && e.name;
+      if (name !== 'InvalidStateError' && name !== 'UnknownError' && name !== 'AbortError') throw e;
+      dbPromise = null;
+      return txOnce(storeName, mode, fn);
+    });
   }
 
   FK.store = {
