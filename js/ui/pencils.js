@@ -100,26 +100,53 @@
         const r = t.getBoundingClientRect();
         return { t, c: r.left + r.width / 2, w: t.offsetWidth * 1.08, l: 0 }; // room for the chosen tag's 1.08 scale
       }).sort((a, b) => a.c - b.c);
-      const total = items.reduce((n, it) => n + it.w + GAP, -GAP);
-      if (total > box.width - 4) {
-        // too many long words for the box: one tight row, centred, a little wider than the box but on screen
+      let total = items.reduce((n, it) => n + it.w + GAP, -GAP);
+      // still too wide for the screen: all words get a bit smaller together (never below 12px)
+      const room = Math.min(box.width + 24, window.innerWidth - 8);
+      for (let k = 0; k < 12 && total > room; k++) {
+        let shrunk = false;
+        items.forEach((it) => {
+          const fs = parseFloat(getComputedStyle(it.t).fontSize) || 12;
+          if (fs > 12) {
+            it.t.style.fontSize = Math.max(12, fs - 1) + 'px';
+            shrunk = true;
+          }
+          it.w = it.t.offsetWidth * 1.08;
+        });
+        total = items.reduce((n, it) => n + it.w + GAP, -GAP);
+        if (!shrunk) break;
+      }
+      // each tag as close to its pencil as it can be, without touching its neighbours, inside lo…hi
+      const place = (row, lo, hi) => {
+        let edge = lo;
+        row.forEach((it) => {
+          it.l = Math.max(it.c - it.w / 2, edge);
+          edge = it.l + it.w + GAP;
+        });
+        edge = hi;
+        for (let i = row.length - 1; i >= 0; i--) {
+          const it = row[i];
+          if (it.l + it.w > edge) it.l = edge - it.w;
+          edge = it.l - GAP;
+        }
+      };
+      items.forEach((it) => { it.t.style.marginBottom = ''; });
+      if (total <= box.width - 4) place(items, box.left + 2, box.right - 2);
+      else if (total <= room) {
+        // too many long words for the box: one tight row, centred, a little wider than the box
         let x = Math.max(4, Math.min(box.left + box.width / 2 - total / 2, window.innerWidth - 4 - total));
         items.forEach((it) => {
           it.l = x;
           x += it.w + GAP;
         });
       } else {
-        let edge = box.left + 2;
-        items.forEach((it) => {
-          it.l = Math.max(it.c - it.w / 2, edge);
-          edge = it.l + it.w + GAP;
-        });
-        edge = box.right - 2;
-        for (let i = items.length - 1; i >= 0; i--) {
-          const it = items[i];
-          if (it.l + it.w > edge) it.l = edge - it.w;
-          edge = it.l - GAP;
-        }
+        // not even that: every second word moves up a row (over the pencils)
+        const lo = Math.max(4, box.left - 12);
+        const hi = Math.min(window.innerWidth - 4, box.right + 12);
+        place(items.filter((it, i) => i % 2 === 0), lo, hi);
+        const up = items.filter((it, i) => i % 2 === 1);
+        place(up, lo, hi);
+        up.forEach((it) => { it.t.style.marginBottom = it.t.offsetHeight + 4 + 'px'; });
       }
       items.forEach((it) => {
         const d = it.l + it.w / 2 - it.c;
