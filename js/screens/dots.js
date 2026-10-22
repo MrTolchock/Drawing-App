@@ -30,6 +30,7 @@
   let done = -1;          // index of the last connected dot
   let phase = 'play';     // play → closing → reveal → end
   let closeT = 0;
+  let wonStars = 0;
   let ptr = null;         // active finger: { id, x, y } in device pixels of the canvas
   let G = null;           // geometry of the current layout
   let raf = 0;
@@ -436,6 +437,8 @@
   }
 
   function finish() {
+    // the picture is complete: the star is earned now, even if the child leaves during the animation
+    wonStars = FK.progress.finish('dots', cur.id, 1);
     ptr = null;
     clearTimeout(idle);
     if (cur.closed === false) {
@@ -466,8 +469,7 @@
       if (my !== token) return;
       phase = 'end';
       showEnd();
-      const stars = FK.progress.finish('dots', cur.id, 1);
-      FK.ui.celebrate({ stars, from: endEl.querySelector('.pp-name') || paperEl });
+      FK.ui.celebrate({ stars: wonStars, from: endEl.querySelector('.pp-name') || paperEl });
     });
   }
 
