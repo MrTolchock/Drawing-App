@@ -25,7 +25,7 @@
 
   function open(name, params) {
     if (FK.screenExists(name)) FK.go(name, params);
-    else FK.ui.toast('Kommt bald!');
+    else FK.ui.toast('Kommt bald!', 0, { read: true });
   }
 
   function tile(o) {

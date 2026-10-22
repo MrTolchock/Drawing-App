@@ -308,8 +308,10 @@
     const close = btn({ icon: 'close', cls: 'btn-round modal-x', title: 'Schliessen', onClick: closeModal });
     card.append(close);
     const wrap = h('div', { class: 'modal' }, card);
+    const opened = performance.now();
     wrap.addEventListener('pointerdown', (e) => {
-      if (e.target !== wrap) return;
+      // a tap that was meant for the button underneath (e.g. a repeated «Fertig») must not close a fresh card
+      if (e.target !== wrap || performance.now() - opened < 600) return;
       closeModal();
       eatClick();
     });
@@ -412,9 +414,12 @@
   }
 
   let toastTimer = 0;
-  function toast(text, ms) {
+  // o.read: a short message for the child (reading font, GROSS/normal setting)
+  function toast(text, ms, o) {
     const t = document.getElementById('toast');
-    t.textContent = text;
+    const read = !!(o && o.read);
+    t.textContent = read ? FK.text.word(text) : text;
+    t.classList.toggle('read', read);
     t.hidden = false;
     t.style.animation = 'none';
     void t.offsetWidth;

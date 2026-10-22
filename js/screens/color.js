@@ -667,7 +667,8 @@
       body.append(row);
     }
     FK.ui.modal({
-      title: FK.pick(['Fertig!', 'Wunderschön!', 'Bravo!', 'Super gemacht!']),
+      title: FK.text.word(FK.pick(['Fertig!', 'Wunderschön!', 'Bravo!', 'Super gemacht!'])),
+      read: true,
       body,
       wide: true,
       actions: [
@@ -709,7 +710,7 @@
       finishHint = Date.now();
       FK.sound.wrong();
       open.forEach((s, i) => setTimeout(() => FK.ui.bounce(s.el), i * 60));
-      FK.ui.toast('Noch nicht fertig!');
+      FK.ui.toast('Noch nicht fertig!', 0, { read: true });
       return;
     }
     finishEarly();
@@ -719,14 +720,14 @@
   function nothingYet() {
     FK.sound.nope();
     FK.ui.shake(eng.paperEl);
-    FK.ui.toast('Mal zuerst etwas!');
+    FK.ui.toast('Mal zuerst etwas!', 0, { read: true });
   }
 
   async function restart(confirmFirst) {
     if (finishing || restoring || !eng.W || !active) return;
     const tok = loadToken;
     if (confirmFirst) {
-      const ok = await FK.ui.confirm('Nochmal von vorne?', 'Ja', 'Nein');
+      const ok = await FK.ui.confirm(FK.text.word('Nochmal von vorne?'), 'Ja', 'Nein', { read: true });
       if (!ok || tok !== loadToken) return;
     }
     // undo («Zurück») brings the old picture back together with its gallery id and «finished»
@@ -875,7 +876,7 @@
       mode = MODES[params.mode] && (params.mode === 'frei' || FK.art.hasLabels(page)) ? params.mode : 'frei';
       el.title.textContent = FK.text.word(page.name);
       fitTitle();
-      el.chip.textContent = MODES[mode].short;
+      el.chip.textContent = FK.text.word(MODES[mode].short);
       el.chip.className = 'cl-mode mode-' + mode;
       el.chip.hidden = mode === 'frei';
       completed = false;

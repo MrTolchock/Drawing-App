@@ -336,6 +336,7 @@ button.star-count:focus-visible { outline: 4px solid var(--sun); outline-offset:
   80% { transform: translate(-50%, -50%) scale(1) rotate(-2deg); opacity: 1; }
   100% { transform: translate(-50%, -60%) scale(.9) rotate(-2deg); opacity: 0; }
 }
+.toast.read { font-family: var(--read); font-weight: 700; }
 .toast {
   position: fixed;
   left: 50%;

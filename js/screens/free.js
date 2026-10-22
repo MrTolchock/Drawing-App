@@ -113,7 +113,7 @@
     if (eng.coverage() < MIN_PAINT) {
       FK.sound.nope();
       FK.ui.shake(eng.paperEl);
-      FK.ui.toast('Mal zuerst etwas!');
+      FK.ui.toast('Mal zuerst etwas!', 0, { read: true });
       return;
     }
     snapping = true;
@@ -136,7 +136,7 @@
       if (active) FK.ui.celebrate({ stars, from: el.save });
     } catch (e) {
       FK.sound.nope();
-      FK.ui.toast('Hoppla, das ging nicht.');
+      FK.ui.toast('Hoppla, das ging nicht.', 0, { read: true });
     } finally {
       snapping = false;
     }
