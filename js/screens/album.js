@@ -130,7 +130,15 @@
       const info = h('div', { class: 'info' });
       info.innerHTML =
         '<h3>Was Ihr Kind hier lernt</h3>' +
-        '<p><b>Ausmalen</b> mit «Malen nach Würfeln, Zahlen, Silben oder Farbwörtern» übt Zählen, Zahlen lesen, erste Silben (ma, mi, mo …) und Farbwörter. <b>Schreiben</b> zeigt bei jedem Buchstaben und jeder Ziffer, wo man anfängt und in welche Richtung man schreibt. <b>Lesen</b> übt Silben und Wörter mit Silbenbögen – das Bild zeigt, ob es stimmt. <b>Punkt zu Punkt</b> übt Zahlen bis 25.</p>' +
+        '<p>Farbtupf ist auf die <b>1. Klasse</b> im Kanton Zürich abgestimmt (Lehrplan 21, Zyklus 1). Es ersetzt den Unterricht nicht, sondern übt spielerisch, was in der Schule eingeführt wird.</p>' +
+        '<ul class="lp">' +
+        '<li><b>Rechnen</b> – Mathematik, Zahlenraum bis 20 (MA.1 Zahl und Variable): Mengen auf einen Blick erkennen (Zehner- und Zwanzigerfeld), Zahlen zerlegen (Zahlenhaus), Plus und Minus bis 10 und bis 20, Nachbarzahlen, vorwärts und rückwärts zählen. Geld bis 20 Franken (MA.3) und Formen und Muster (MA.2).</li>' +
+        '<li><b>Schreiben</b> – Deutsch D.4: Buchstaben und Ziffern in der Deutschschweizer Basisschrift (unverbunden), mit Startpunkt, Reihenfolge und Richtung jedes Strichs, dazu ein Anlautbild.</li>' +
+        '<li><b>Lesen</b> – Deutsch D.2 und D.5: Anlaute, Reime, Silben mit Silbenbögen (silbenorientiert wie im Zürcher Lehrmittel «Deutsch»), Wörter und kurze Sätze. Ohne Ton – das Bild zeigt, ob es stimmt.</li>' +
+        '<li><b>Ausmalen</b> – Bildnerisches Gestalten und Zahlen: frei ausmalen, nach Zahlen oder nach Rechnungen bis 10 und bis 20 – auch Bilder aus Zürich (Tram, Grossmünster, Böögg, Räbeliechtli, Zürichsee, Samichlaus).</li>' +
+        '<li><b>Punkt zu Punkt</b> – Zahlenfolge bis 20 vorwärts und rückwärts.</li>' +
+        '</ul>' +
+        '<p>Die Schrift (GROSS oder Gross und klein) stellen Sie oben ein – passend zu dem, was Ihr Kind in der Schule schon kennt.</p>' +
         '<h3>Als App installieren</h3>' +
         '<p>In Safari auf <b>Teilen</b> tippen und <b>«Zum Home-Bildschirm»</b> wählen. Danach startet Farbtupf wie eine App – auch ohne Internet.</p>' +
         '<h3>Daten</h3>' +

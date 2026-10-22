@@ -452,6 +452,8 @@
 .info { padding: 6px 18px 16px; border: 3px solid var(--ink); border-radius: 20px; background: var(--sticker); box-shadow: 0 4px 0 var(--ink); -webkit-user-select: text; user-select: text; }
 .info h3 { margin: 14px 0 4px; font-size: 19px; font-weight: 800; }
 .info p { margin: 0 0 6px; max-width: 65ch; font-family: system-ui, -apple-system, sans-serif; font-size: 16px; line-height: 1.5; }
+.info .lp { margin: 4px 0 10px; padding-left: 20px; max-width: 65ch; font-family: system-ui, -apple-system, sans-serif; font-size: 16px; line-height: 1.5; }
+.info .lp li { margin-bottom: 6px; }
 .info .ver { margin-top: 14px; color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
 
 @media (max-width: 640px) and (orientation: portrait) {
