@@ -1,4 +1,5 @@
-/* Farbklecks – Effekte: Konfetti, Glitzer, fliegende Sterne. One fixed canvas above everything. */
+/* Farbklecks – Effekte: Konfetti, Glitzer, fliegende Sterne. One fixed canvas above everything,
+   which only has pixels while something flies (iOS counts every canvas against one small budget). */
 (function () {
   'use strict';
   const FK = window.FK;
@@ -20,9 +21,15 @@
 
   function resize() {
     if (!FX.c) return;
+    if (!FX.raf) {
+      FX.c.width = FX.c.height = 0;
+      return;
+    }
     FX.dpr = Math.min(window.devicePixelRatio || 1, 1.5);
-    FX.c.width = Math.round(window.innerWidth * FX.dpr);
-    FX.c.height = Math.round(window.innerHeight * FX.dpr);
+    const w = Math.round(window.innerWidth * FX.dpr);
+    const h = Math.round(window.innerHeight * FX.dpr);
+    if (FX.c.width !== w) FX.c.width = w;
+    if (FX.c.height !== h) FX.c.height = h;
   }
 
   function add(p) {
@@ -32,6 +39,7 @@
     if (!FX.raf) {
       FX.last = performance.now();
       FX.raf = requestAnimationFrame(loop);
+      resize();
     }
   }
 
@@ -52,10 +60,7 @@
       return true;
     });
     FX.raf = FX.parts.length ? requestAnimationFrame(loop) : 0;
-    if (!FX.raf) {
-      g.setTransform(1, 0, 0, 1, 0, 0);
-      g.clearRect(0, 0, FX.c.width, FX.c.height);
-    }
+    if (!FX.raf) resize();
   }
 
   function sparkleShape(g, x, y, r, c) {

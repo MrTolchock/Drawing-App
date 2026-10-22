@@ -131,8 +131,9 @@
     const rad = Math.max(6, 24 * spots[0].scale);
     let open = 0;
     const fresh = [];
-    spots.forEach((sp) => {
-      const s = eng.sample(sp.x, sp.y, rad);
+    const res = eng.sampleMany(spots, rad);
+    spots.forEach((sp, i) => {
+      const s = res[i];
       const target = cols[sp.c - 1];
       const white = target && target[0] > 245 && target[1] > 245 && target[2] > 245;
       const ok = white ? s.coverage < 0.25 || (s.rgb && dist(s.rgb, target) < 60) : s.coverage >= 0.42 && s.rgb && dist(s.rgb, target) < 80;
@@ -352,6 +353,12 @@
   FK.ui.stickerPicker = stickerPicker;
 
   /* ---------- saving ---------- */
+  // JPEG of a temporary canvas, which is freed right after (iOS canvas memory).
+  function blobOnce(c, q) {
+    const free = () => { c.width = c.height = 0; };
+    return FK.canvasBlob(c, 'image/jpeg', q).then((b) => { free(); return b; }, (e) => { free(); throw e; });
+  }
+
   function scheduleSave() {
     clearTimeout(saveTimer);
     saveTimer = setTimeout(save, 1500);
@@ -369,7 +376,7 @@
     const m = mode;
     const meta = { W: eng.W, H: eng.H, paper: eng.paper, pageId, mode: m, gid, done: completed };
     const paintP = eng.paintBlob();
-    const thumbP = FK.canvasBlob(eng.compose(360), 'image/jpeg', 0.84);
+    const thumbP = blobOnce(eng.compose(360), 0.84);
     try {
       const paint = await paintP;
       const thumb = await thumbP;
@@ -383,7 +390,7 @@
   async function saveToGallery() {
     try {
       const paint = await eng.paintBlob();
-      const thumb = await FK.canvasBlob(eng.compose(420), 'image/jpeg', 0.86);
+      const thumb = await blobOnce(eng.compose(420), 0.86);
       const now = Date.now();
       const old = await FK.store.getBild(gid).catch(() => null);
       await FK.store.putBild({
@@ -413,6 +420,7 @@
     img.width = c.width;
     img.height = c.height;
     img.getContext('2d').drawImage(c, 0, 0);
+    c.width = c.height = 0;
     const body = h('div', { class: 'end-body' }, h('div', { class: 'end-frame' }, img));
     if (stars) {
       const row = h('div', { class: 'end-stars' });
@@ -539,6 +547,13 @@
           scheduleCheck();
         },
         onZoom: (z) => { el.zoom.hidden = z <= 1; },
+        // the paper was re-cut for a new screen shape (rotation): labels move with the art
+        onRemap: () => {
+          if (!page || restoring || eng.pageId !== page.id) return;
+          buildLabels();
+          checkLabels(true);
+          scheduleSave();
+        },
       });
 
       document.addEventListener('visibilitychange', () => {
@@ -590,6 +605,7 @@
         if (token !== loadToken) return;
         if (img) {
           eng.load(rec, img);
+          if (img.close) img.close();
           gid = rec.gid || newGid();
           completed = !!rec.done;
         } else {

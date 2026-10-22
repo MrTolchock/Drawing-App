@@ -84,7 +84,8 @@
     FK.sound.click();
     try {
       const paint = await eng.paintBlob();
-      const thumb = await FK.canvasBlob(eng.compose(420), 'image/jpeg', 0.86);
+      const tc = eng.compose(420);
+      const thumb = await FK.canvasBlob(tc, 'image/jpeg', 0.86).finally(() => { tc.width = tc.height = 0; });
       const now = Date.now();
       const old = await FK.store.getBild(gid).catch(() => null);
       await FK.store.putBild({ id: gid, kind: 'free', name: 'Freies Malen', created: old ? old.created : now, updated: now, W: eng.W, H: eng.H, k: eng.paperScale(), paper: eng.paper, paint, thumb });
@@ -243,6 +244,7 @@
         if (token !== loadToken) return;
         if (img) {
           eng.load({ W: rec.W, H: rec.H, paper: rec.paper }, img);
+          if (img.close) img.close();
           gid = (params && params.bild && params.bild.id) || rec.gid || rec.galleryId || 'f' + Date.now().toString(36);
         } else {
           await eng.newPage({ paper: '#ffffff' });

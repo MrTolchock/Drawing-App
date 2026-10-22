@@ -15,29 +15,37 @@
     setTimeout(() => old.forEach((u) => URL.revokeObjectURL(u)), 800);
   }
 
+  // The full picture on ONE canvas: outline first (it needs a clear canvas), paint and paper slid beneath.
   async function composeRecord(rec) {
     const img = await FK.blobToImage(rec.paint);
     const c = document.createElement('canvas');
     c.width = rec.W;
     c.height = rec.H;
     const g = c.getContext('2d');
+    const page = rec.pageId ? FK.art.find(rec.pageId) : null;
+    if (page) FK.art.renderOutline(c, page, 4.2 * (rec.k || 2), [35, 32, 61]);
+    g.globalCompositeOperation = 'destination-over';
+    g.drawImage(img, 0, 0);
+    if (img.close) img.close();
     g.fillStyle = rec.paper || '#ffffff';
     g.fillRect(0, 0, c.width, c.height);
-    g.drawImage(img, 0, 0);
-    const page = rec.pageId ? FK.art.find(rec.pageId) : null;
-    if (page) {
-      const oc = document.createElement('canvas');
-      oc.width = rec.W;
-      oc.height = rec.H;
-      FK.art.renderOutline(oc, page, 4.2 * (rec.k || 2), [35, 32, 61]);
-      g.drawImage(oc, 0, 0);
-    }
+    g.globalCompositeOperation = 'source-over';
     return c;
+  }
+
+  // PNG of the full picture; the big canvas is given back right away (iOS canvas memory).
+  async function recordBlob(rec) {
+    const c = await composeRecord(rec);
+    try {
+      return await FK.canvasBlob(c);
+    } finally {
+      c.width = c.height = 0;
+    }
   }
 
   async function share(rec, blob) {
     try {
-      if (!blob) blob = await FK.canvasBlob(await composeRecord(rec));
+      if (!blob) blob = await recordBlob(rec);
     } catch (e) {
       FK.sound.nope();
       return;
@@ -66,7 +74,7 @@
     urls.push(thumbUrl);
     img.src = thumbUrl;
     let full = null;
-    composeRecord(rec).then((c) => FK.canvasBlob(c)).then((b) => {
+    recordBlob(rec).then((b) => {
       full = b;
       const u = URL.createObjectURL(b);
       urls.push(u);

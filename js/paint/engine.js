@@ -17,6 +17,12 @@
   const UNDO_MAX_BYTES = 90e6;
   const UNDO_MAX_STEPS = 40;
   const MAX_PIXELS = 3.4e6;
+  const MASK_MAX = 24;
+  // pixel rows as 32-bit words (alpha in the top byte) – true on every iPad/iPhone
+  const LE = new Uint8Array(new Uint32Array([1]).buffer)[0] === 1;
+
+  // Outline alpha + regions of the last colouring page, so «Nochmal» and coming back skip the heavy work.
+  let regionCache = null;
 
   // Palm rejection: while an Apple Pencil touches the glass (and shortly after), fingers don't paint.
   const pens = { ids: new Set(), until: 0 };
@@ -136,8 +142,11 @@
     let undoBaseCtx = null;
     let eraseLayer = null;
     let eraseCtx = null;
+    let scratch = null;
+    let scratchCtx = null;
+    let atlas = null;
 
-    const S = { W: 0, H: 0, paper: '#ffffff', page: null, alpha: null, reg: null, masks: new Map(), dirty: false, busy: false, hue: 0, pw: 0, ph: 0 };
+    const S = { W: 0, H: 0, paper: '#ffffff', page: null, reg: null, masks: new Map(), maskPx: 0, dirty: false, busy: false, hue: 0, pw: 0, ph: 0 };
     const T = { kind: 'brush', brush: 'filz', color: '#e5322d', rainbow: false, pattern: 'voll', size: 1, emoji: '🐱', mirror: 'off' };
 
     /* ---------- size & fit ---------- */
@@ -168,11 +177,37 @@
         eraseLayer.width = W;
         eraseLayer.height = H;
       }
-      S.alpha = null;
       S.reg = null;
-      S.masks.clear();
+      dropMasks();
       fit();
       updateGuides();
+    }
+    // iOS counts every canvas against one small memory budget: give the pixels back right away.
+    function freeCanvas(c) {
+      if (c) c.width = c.height = 0;
+    }
+    function dropMasks() {
+      S.masks.forEach((m) => freeCanvas(m.canvas));
+      S.masks.clear();
+      S.maskPx = 0;
+    }
+    // One reusable work canvas per engine (only ever grows); returns its context, cleared at 0,0,w,h.
+    function scratchFor(w, hh) {
+      if (!scratch) {
+        scratch = document.createElement('canvas');
+        scratch.width = scratch.height = 0;
+        scratchCtx = scratch.getContext('2d');
+      }
+      if (scratch.width < w || scratch.height < hh) {
+        scratch.width = Math.max(scratch.width, w);
+        scratch.height = Math.max(scratch.height, hh);
+      } else {
+        scratchCtx.setTransform(1, 0, 0, 1, 0, 0);
+        scratchCtx.globalCompositeOperation = 'source-over';
+        scratchCtx.globalAlpha = 1;
+        scratchCtx.clearRect(0, 0, w, hh);
+      }
+      return scratchCtx;
     }
     function clearAll() {
       Object.values(ctx).forEach((g) => g.clearRect(0, 0, S.W, S.H));
@@ -206,36 +241,44 @@
     /* ---------- outline & regions ---------- */
     function applyOutline(pageId) {
       S.page = pageId ? FK.art.find(pageId) : null;
-      S.masks.clear();
+      dropMasks();
       if (!S.page) {
         ctx.outline.clearRect(0, 0, S.W, S.H);
-        S.alpha = null;
         S.reg = null;
         return;
       }
       const k = S.W / Math.max(1, S.pw || clipEl.getBoundingClientRect().width || S.W / 2);
-      S.alpha = FK.art.renderOutline(cv.outline, S.page, 4.2 * k, INK);
-      const R = FK.art.regions(S.alpha, S.W, S.H, WALL);
-      const box = new Int32Array(R.n * 4);
-      for (let r = 0; r < R.n; r++) {
-        box[r * 4] = S.W;
-        box[r * 4 + 1] = S.H;
-        box[r * 4 + 2] = -1;
-        box[r * 4 + 3] = -1;
+      const lw = 4.2 * k;
+      const key = S.page.id + '|' + S.W + 'x' + S.H + '|' + lw.toFixed(2);
+      let R = regionCache && regionCache.key === key ? regionCache : null;
+      if (R) {
+        drawOutline(R.alpha);
+      } else {
+        regionCache = null;
+        const alpha = FK.art.renderOutline(cv.outline, S.page, lw, INK);
+        const G = FK.art.regions(alpha, S.W, S.H, WALL);
+        R = regionCache = { key, alpha, lab: G.lab, n: G.n, box: G.box };
       }
-      const lab = R.lab;
-      for (let y = 0, i = 0; y < S.H; y++) {
-        for (let x = 0; x < S.W; x++, i++) {
-          const r = lab[i];
-          if (r < 0) continue;
-          const o = r * 4;
-          if (x < box[o]) box[o] = x;
-          if (y < box[o + 1]) box[o + 1] = y;
-          if (x > box[o + 2]) box[o + 2] = x;
-          if (y > box[o + 3]) box[o + 3] = y;
+      S.reg = { lab: R.lab, n: R.n, box: R.box };
+    }
+    // Outline layer from a cached alpha channel (same pixels renderOutline produced, without drawing).
+    function drawOutline(alpha) {
+      const img = ctx.outline.createImageData(S.W, S.H);
+      if (LE) {
+        const u = new Uint32Array(img.data.buffer);
+        const ink = (INK[2] << 16) | (INK[1] << 8) | INK[0];
+        for (let i = 0; i < alpha.length; i++) if (alpha[i]) u[i] = ((alpha[i] << 24) | ink) >>> 0;
+      } else {
+        const d = img.data;
+        for (let i = 0, o = 0; i < alpha.length; i++, o += 4) {
+          if (!alpha[i]) continue;
+          d[o] = INK[0];
+          d[o + 1] = INK[1];
+          d[o + 2] = INK[2];
+          d[o + 3] = alpha[i];
         }
       }
-      S.reg = { lab, n: R.n, box };
+      ctx.outline.putImageData(img, 0, 0);
     }
 
     function regionAt(x, y, R) {
@@ -277,31 +320,61 @@
       const w = x1 - x0 + 1;
       const hh = y1 - y0 + 1;
       const lab = S.reg.lab;
-      const inside = new Uint8Array(w * hh);
+      // 1 = inside; the line pixels of the box are listed once, then pass p marks those next to the
+      // area so far with p + 2 (typed arrays only, the passes touch line pixels only)
+      const v = new Uint8Array(w * hh);
+      let line = new Int32Array(Math.max(1024, (w * hh) >> 3));
+      let nl = 0;
       for (let y = 0; y < hh; y++) {
         const row = (y0 + y) * W + x0;
-        for (let x = 0; x < w; x++) if (lab[row + x] === r) inside[y * w + x] = 1;
-      }
-      for (let pass = 0; pass < 2; pass++) {
-        const add = [];
-        for (let y = 0; y < hh; y++) {
-          for (let x = 0; x < w; x++) {
-            const i = y * w + x;
-            if (inside[i] || lab[(y0 + y) * W + x0 + x] !== -1) continue;
-            if ((x > 0 && inside[i - 1]) || (x < w - 1 && inside[i + 1]) || (y > 0 && inside[i - w]) || (y < hh - 1 && inside[i + w])) add.push(i);
+        for (let x = 0, i = y * w; x < w; x++, i++) {
+          const q = lab[row + x];
+          if (q === r) v[i] = 1;
+          else if (q === -1) {
+            if (nl === line.length) {
+              const nb = new Int32Array(line.length * 2);
+              nb.set(line);
+              line = nb;
+            }
+            line[nl++] = i;
           }
         }
-        for (let i = 0; i < add.length; i++) inside[add[i]] = 1;
+      }
+      for (let pass = 0; pass < 2; pass++) {
+        const lim = pass + 1;
+        const mark = pass + 2;
+        for (let k = 0; k < nl; k++) {
+          const i = line[k];
+          if (v[i]) continue;
+          const y = (i / w) | 0;
+          const x = i - y * w;
+          let q;
+          if ((x > 0 && (q = v[i - 1]) && q <= lim) || (x < w - 1 && (q = v[i + 1]) && q <= lim) ||
+            (y > 0 && (q = v[i - w]) && q <= lim) || (y < hh - 1 && (q = v[i + w]) && q <= lim)) v[i] = mark;
+        }
       }
       const img = new ImageData(w, hh);
-      for (let i = 0; i < inside.length; i++) if (inside[i]) img.data[i * 4 + 3] = 255;
+      if (LE) {
+        const u = new Uint32Array(img.data.buffer);
+        for (let i = 0; i < v.length; i++) if (v[i]) u[i] = 0xff000000;
+      } else {
+        for (let i = 0; i < v.length; i++) if (v[i]) img.data[i * 4 + 3] = 255;
+      }
       const c = document.createElement('canvas');
       c.width = w;
       c.height = hh;
       c.getContext('2d').putImageData(img, 0, 0);
       m = { canvas: c, x: x0, y: y0, w, h: hh };
       S.masks.set(r, m);
-      if (S.masks.size > 24) S.masks.delete(S.masks.keys().next().value);
+      S.maskPx += w * hh;
+      // keep at most MASK_MAX masks and about two papers' worth of pixels (never the one just made)
+      while (S.masks.size > 1 && (S.masks.size > MASK_MAX || S.maskPx > 2 * S.W * S.H)) {
+        const old = S.masks.keys().next().value;
+        const o = S.masks.get(old);
+        S.masks.delete(old);
+        S.maskPx -= o.w * o.h;
+        freeCanvas(o.canvas);
+      }
       return m;
     }
 
@@ -660,9 +733,19 @@
       if (b === FK.BRUSHES.stamp) FK.sound.pop();
     }
 
+    // A resting palm may have touched before the Apple Pencil: the pencil wins, the palm's work is dropped.
+    function penTakesOver() {
+      pendingFill = null;
+      if (session && Array.from(session.strokes.values()).some((st) => !st.pen)) cancelSession();
+      touches.clear();
+      if (pinch) pinchEnd();
+      afterPinch = false;
+    }
+
     function onDown(e) {
       if (e.button > 0 || S.busy) return;
       if (e.pointerType === 'touch' && (pens.ids.size > 0 || performance.now() < pens.until)) return;
+      if (e.pointerType === 'pen') penTakesOver();
       e.preventDefault();
       if (e.pointerType === 'touch') touches.set(e.pointerId, { x: e.clientX, y: e.clientY });
       try { stage.setPointerCapture(e.pointerId); } catch (err) { /* ignore */ }
@@ -691,6 +774,7 @@
     }
 
     function onMove(e) {
+      if (e.pointerType === 'touch' && pens.ids.size) return;
       if (e.pointerType === 'touch' && touches.has(e.pointerId)) touches.set(e.pointerId, { x: e.clientX, y: e.clientY });
       if (pinch) {
         e.preventDefault();
@@ -727,6 +811,7 @@
 
     function onUp(e) {
       touches.delete(e.pointerId);
+      if (e.pointerType === 'touch' && pens.ids.size) return;
       if (pinch) {
         if (touches.size < 2) pinchEnd();
         return;
@@ -750,10 +835,27 @@
       if (!session.strokes.size) endSession();
     }
 
+    // The system took the pointer away (iOS does this e.g. for a palm it recognised): drop, don't commit.
+    function onCancel(e) {
+      touches.delete(e.pointerId);
+      if (pinch) {
+        if (touches.size < 2) pinchEnd();
+        return;
+      }
+      if (afterPinch) {
+        if (!touches.size) afterPinch = false;
+        return;
+      }
+      if (pendingFill && pendingFill.id === e.pointerId) pendingFill = null;
+      if (!session || !session.strokes.has(e.pointerId)) return;
+      if (session.strokes.size === 1) cancelSession();
+      else session.strokes.delete(e.pointerId);
+    }
+
     stage.addEventListener('pointerdown', onDown);
     stage.addEventListener('pointermove', onMove);
     stage.addEventListener('pointerup', onUp);
-    stage.addEventListener('pointercancel', onUp);
+    stage.addEventListener('pointercancel', onCancel);
 
     /* ---------- bucket ---------- */
     let fillAnim = null;
@@ -761,22 +863,23 @@
       if (fillAnim) fillAnim.finish();
     }
 
-    // Classic flood fill on the paint layer (free drawing). Returns a mask object or null.
+    // Classic flood fill on the paint layer (free drawing). Returns { img (alpha mask), x, y, w, h } or null.
     function floodMask(sx, sy) {
       const W = S.W;
       const H = S.H;
-      const img = ctx.paint.getImageData(0, 0, W, H);
-      const d = img.data;
+      const d = ctx.paint.getImageData(0, 0, W, H).data;
+      // most pixels of a big area are exactly the seed's pixel: compare whole words first
+      const u = LE ? new Uint32Array(d.buffer, d.byteOffset, W * H) : null;
       const pc = FK.color.hexRgb(S.paper);
       const si = (sy * W + sx) * 4;
+      const s0 = u ? u[sy * W + sx] : -1;
       const sa = d[si + 3] / 255;
       const r0 = d[si] * sa + pc[0] * (1 - sa);
       const g0 = d[si + 1] * sa + pc[1] * (1 - sa);
       const b0 = d[si + 2] * sa + pc[2] * (1 - sa);
       const TOL = 44;
       const mask = new Uint8Array(W * H);
-      const match = (j) => {
-        if (mask[j]) return false;
+      const near = (j) => {
         const i = j * 4;
         const a = d[i + 3];
         let r;
@@ -798,6 +901,7 @@
         }
         return Math.abs(r - r0) <= TOL && Math.abs(g - g0) <= TOL && Math.abs(b - b0) <= TOL;
       };
+      const match = u ? (j) => !mask[j] && (u[j] === s0 || near(j)) : (j) => !mask[j] && near(j);
       let minX = sx;
       let maxX = sx;
       let minY = sy;
@@ -843,19 +947,20 @@
       maxY = Math.min(H - 1, maxY + 1);
       const w = maxX - minX + 1;
       const hh = maxY - minY + 1;
+      // grown by one pixel so antialiased edges get covered
       const out = new ImageData(w, hh);
+      const ou = LE ? new Uint32Array(out.data.buffer) : null;
       for (let y = 0; y < hh; y++) {
-        for (let x = 0; x < w; x++) {
-          const j = (minY + y) * W + minX + x;
-          const grow = mask[j] || (minX + x > 0 && mask[j - 1]) || (minX + x < W - 1 && mask[j + 1]) || (minY + y > 0 && mask[j - W]) || (minY + y < H - 1 && mask[j + W]);
-          if (grow) out.data[(y * w + x) * 4 + 3] = 255;
+        const yy = minY + y;
+        let j = yy * W + minX;
+        for (let x = 0, o = y * w; x < w; x++, j++, o++) {
+          const xx = minX + x;
+          if (!(mask[j] || (xx > 0 && mask[j - 1]) || (xx < W - 1 && mask[j + 1]) || (yy > 0 && mask[j - W]) || (yy < H - 1 && mask[j + W]))) continue;
+          if (ou) ou[o] = 0xff000000;
+          else out.data[o * 4 + 3] = 255;
         }
       }
-      const c = document.createElement('canvas');
-      c.width = w;
-      c.height = hh;
-      c.getContext('2d').putImageData(out, 0, 0);
-      return { canvas: c, x: minX, y: minY, w, h: hh };
+      return { img: out, x: minX, y: minY, w, h: hh };
     }
 
     function paintStyle(g, m, sx, sy, k) {
@@ -918,15 +1023,16 @@
         FK.sound.nope();
         return;
       }
-      const tmp = document.createElement('canvas');
-      tmp.width = m.w;
-      tmp.height = m.h;
-      const g = tmp.getContext('2d');
+      // mask first, then the colour «atop» it: the scratch canvas holds the finished fill at 0,0,w,h
+      const g = scratchFor(m.w, m.h);
+      g.save();
+      if (m.img) g.putImageData(m.img, 0, 0);
+      else g.drawImage(m.canvas, 0, 0);
+      g.globalCompositeOperation = 'source-atop';
       g.translate(-m.x, -m.y);
       paintStyle(g, m, sx, sy, k);
-      g.setTransform(1, 0, 0, 1, 0, 0);
-      g.globalCompositeOperation = 'destination-in';
-      g.drawImage(m.canvas, 0, 0);
+      g.restore();
+      const tmp = scratch;
       const before = ctx.paint.getImageData(m.x, m.y, m.w, m.h);
       pushUndo({ type: 'patch', x: m.x, y: m.y, data: before });
       S.dirty = true;
@@ -939,7 +1045,7 @@
       let raf = 0;
       const done = () => {
         cancelAnimationFrame(raf);
-        ctx.paint.drawImage(tmp, m.x, m.y);
+        ctx.paint.drawImage(tmp, 0, 0, m.w, m.h, m.x, m.y, m.w, m.h);
         fillAnim = null;
         changed();
       };
@@ -951,7 +1057,7 @@
         ctx.paint.beginPath();
         ctx.paint.arc(sx, sy, r, 0, TAU);
         ctx.paint.clip();
-        ctx.paint.drawImage(tmp, m.x, m.y);
+        ctx.paint.drawImage(tmp, 0, 0, m.w, m.h, m.x, m.y, m.w, m.h);
         ctx.paint.restore();
         raf = requestAnimationFrame(frame);
       };
@@ -1052,20 +1158,112 @@
       }, o.animate);
     }
 
+    /* ---------- new paper shape (rotation) ---------- */
+    // Size the paper should have now, or null while the old W×H still suits the stage well enough
+    // (small changes like a toolbar keep the paper; rotating or a much bigger window re-cut it).
+    function betterSize(oW, oH) {
+      const r = stage.getBoundingClientRect();
+      if (!r.width || !r.height) return null;
+      const sz = sizeForArea();
+      if (sz.W === oW && sz.H === oH) return null;
+      const a = areaSize();
+      const s = Math.min(a.w / oW, a.h / oH);
+      const used = (oW * s * oH * s) / (a.w * a.h);
+      return used < 0.85 || sz.W * sz.H > oW * oH * 1.5 ? sz : null;
+    }
+
+    // Draws paint made on an oW×oH paper onto the current one. The art lives in a centred box
+    // (FK.art.fitOf), so mapping box onto box keeps every stroke on its outline. Where the new paper
+    // reaches past the old one, the old margin outside the art is repeated (a filled background stays full).
+    function drawMapped(src, oW, oH) {
+      const of = FK.art.fitOf(oW, oH);
+      const nf = FK.art.fitOf(S.W, S.H);
+      const sc = nf.s / of.s;
+      const dx = nf.ox - of.ox * sc;
+      const dy = nf.oy - of.oy * sc;
+      const dw = oW * sc;
+      const dh = oH * sc;
+      const g = ctx.paint;
+      g.save();
+      g.setTransform(1, 0, 0, 1, 0, 0);
+      g.imageSmoothingQuality = 'high';
+      g.drawImage(src, 0, 0, oW, oH, dx, dy, dw, dh);
+      const my = Math.floor(of.oy);
+      if (dy > 0.5 && my >= 1) {
+        const t = my * sc;
+        for (let y = dy - t; y + t > 0; y -= t) g.drawImage(src, 0, 0, oW, my, dx, y, dw, t + 1);
+        for (let y = dy + dh; y < S.H; y += t) g.drawImage(src, 0, oH - my, oW, my, dx, y - 1, dw, t + 1);
+      }
+      const mx = Math.floor(of.ox);
+      if (dx > 0.5 && mx >= 1) {
+        const t = mx * sc;
+        for (let x = dx - t; x + t > 0; x -= t) g.drawImage(src, 0, 0, mx, oH, x, dy, t + 1, dh);
+        for (let x = dx + dw; x < S.W; x += t) g.drawImage(src, oW - mx, 0, mx, oH, x - 1, dy, t + 1, dh);
+      }
+      g.restore();
+    }
+
+    // Re-cuts the colouring page to W×H, keeping the paint. Undo steps can't follow, so they go.
+    function remapTo(W, H) {
+      const oW = S.W;
+      const oH = S.H;
+      const pageId = S.page ? S.page.id : null;
+      ensureUndoBase();
+      undoBaseCtx.clearRect(0, 0, oW, oH);
+      undoBaseCtx.drawImage(cv.paint, 0, 0);
+      const hold = undoBase;
+      undoBase = null; // setSize must not wipe the copy
+      clearUndo();
+      zoomReset();
+      setSize(W, H);
+      drawMapped(hold, oW, oH);
+      undoBase = hold;
+      undoBase.width = W;
+      undoBase.height = H;
+      applyOutline(pageId);
+      if (opts.onRemap) opts.onRemap();
+    }
+
+    let remapTimer = 0;
+    function onResize() {
+      fit();
+      if (kind !== 'color') return;
+      clearTimeout(remapTimer);
+      remapTimer = setTimeout(maybeRemap, 250);
+    }
+    function maybeRemap() {
+      remapTimer = 0;
+      if (!S.W || !S.page) return;
+      const sz = betterSize(S.W, S.H);
+      if (!sz) return;
+      // never in the middle of a stroke, fill, pinch or page swap: try again a little later
+      if (S.busy || session || fillAnim || pendingFill || pinch || touches.size) {
+        remapTimer = setTimeout(maybeRemap, 400);
+        return;
+      }
+      remapTo(sz.W, sz.H);
+    }
+
     // Restores a saved drawing: rec = { W, H, paper, pageId }, img = decoded paint layer.
+    // A colouring page saved in another orientation is re-cut to the current screen.
     function load(rec, img) {
       finishFill();
       endSession();
       clearUndo();
       zoomReset();
-      if (rec.W !== S.W || rec.H !== S.H) setSize(rec.W, rec.H);
+      const sz = kind === 'color' && rec.pageId && FK.art.find(rec.pageId) ? betterSize(rec.W, rec.H) : null;
+      const W = sz ? sz.W : rec.W;
+      const H = sz ? sz.H : rec.H;
+      if (W !== S.W || H !== S.H) setSize(W, H);
       else clearAll();
       setPaper(rec.paper || '#ffffff');
       applyOutline(rec.pageId || null);
-      if (img) ctx.paint.drawImage(img, 0, 0);
+      if (img && sz) drawMapped(img, rec.W, rec.H);
+      else if (img) ctx.paint.drawImage(img, 0, 0);
       S.dirty = !!img;
     }
 
+    // The paper with its outline as a new canvas (callers free it with width = height = 0 when done).
     function compose(maxDim) {
       const s = maxDim ? Math.min(1, maxDim / Math.max(S.W, S.H)) : 1;
       const c = document.createElement('canvas');
@@ -1074,41 +1272,70 @@
       const g = c.getContext('2d');
       g.fillStyle = S.paper;
       g.fillRect(0, 0, c.width, c.height);
+      if (!S.W) return c;
       g.drawImage(cv.paint, 0, 0, c.width, c.height);
       g.drawImage(cv.outline, 0, 0, c.width, c.height);
       return c;
     }
 
-    // Paint under a label: share of the label's region that is painted and its average colour.
-    function sample(x, y, rad) {
-      const x0 = clamp(Math.round(x - rad), 0, S.W - 1);
-      const y0 = clamp(Math.round(y - rad), 0, S.H - 1);
-      const x1 = clamp(Math.round(x + rad), 0, S.W - 1);
-      const y1 = clamp(Math.round(y + rad), 0, S.H - 1);
-      const w = x1 - x0 + 1;
-      const hh = y1 - y0 + 1;
-      const d = ctx.paint.getImageData(x0, y0, w, hh).data;
-      const r0 = regionAt(x, y, 4);
+    // Paint under labels: per point { x, y } the share of the label's region that is painted and its
+    // average colour. All patches are copied side by side into one small atlas and read back at once
+    // (one getImageData per check instead of one per label).
+    function sampleMany(pts, rad) {
+      if (!S.W || !pts.length) return pts.map(() => ({ coverage: 0, rgb: null }));
+      const boxes = pts.map((p) => {
+        const x0 = clamp(Math.round(p.x - rad), 0, S.W - 1);
+        const y0 = clamp(Math.round(p.y - rad), 0, S.H - 1);
+        const x1 = clamp(Math.round(p.x + rad), 0, S.W - 1);
+        const y1 = clamp(Math.round(p.y + rad), 0, S.H - 1);
+        return { x0, y0, w: x1 - x0 + 1, h: y1 - y0 + 1 };
+      });
+      const cw = Math.max.apply(null, boxes.map((b) => b.w));
+      const ch = Math.max.apply(null, boxes.map((b) => b.h));
+      const cols = Math.ceil(Math.sqrt(pts.length));
+      const rows = Math.ceil(pts.length / cols);
+      const AW = cols * cw;
+      const AH = rows * ch;
+      if (!atlas) atlas = document.createElement('canvas');
+      if (atlas.width < AW || atlas.height < AH) {
+        atlas.width = Math.max(atlas.width, AW);
+        atlas.height = Math.max(atlas.height, AH);
+      }
+      const ag = atlas.getContext('2d');
+      ag.clearRect(0, 0, AW, AH);
+      boxes.forEach((b, i) => {
+        b.ax = (i % cols) * cw;
+        b.ay = Math.floor(i / cols) * ch;
+        ag.drawImage(cv.paint, b.x0, b.y0, b.w, b.h, b.ax, b.ay, b.w, b.h);
+      });
+      const d = ag.getImageData(0, 0, AW, AH).data;
       const lab = S.reg ? S.reg.lab : null;
-      let n = 0;
-      let painted = 0;
-      let sr = 0;
-      let sg = 0;
-      let sb = 0;
-      for (let yy = 0; yy < hh; yy += 2) {
-        for (let xx = 0; xx < w; xx += 2) {
-          if (lab && r0 >= 0 && lab[(y0 + yy) * S.W + x0 + xx] !== r0) continue;
-          n++;
-          const i = (yy * w + xx) * 4;
-          if (d[i + 3] > 150) {
-            painted++;
-            sr += d[i];
-            sg += d[i + 1];
-            sb += d[i + 2];
+      return pts.map((p, k) => {
+        const b = boxes[k];
+        const r0 = regionAt(p.x, p.y, 4);
+        let n = 0;
+        let painted = 0;
+        let sr = 0;
+        let sg = 0;
+        let sb = 0;
+        for (let yy = 0; yy < b.h; yy += 2) {
+          for (let xx = 0; xx < b.w; xx += 2) {
+            if (lab && r0 >= 0 && lab[(b.y0 + yy) * S.W + b.x0 + xx] !== r0) continue;
+            n++;
+            const i = ((b.ay + yy) * AW + b.ax + xx) * 4;
+            if (d[i + 3] > 150) {
+              painted++;
+              sr += d[i];
+              sg += d[i + 1];
+              sb += d[i + 2];
+            }
           }
         }
-      }
-      return { coverage: n ? painted / n : 0, rgb: painted ? [sr / painted, sg / painted, sb / painted] : null };
+        return { coverage: n ? painted / n : 0, rgb: painted ? [sr / painted, sg / painted, sb / painted] : null };
+      });
+    }
+    function sample(x, y, rad) {
+      return sampleMany([{ x, y }], rad)[0];
     }
 
     function doFlash() {
@@ -1121,21 +1348,21 @@
     function release() {
       finishFill();
       cancelSession();
-      Object.values(cv).forEach((c) => {
-        c.width = 1;
-        c.height = 1;
-      });
-      if (undoBase) undoBase.width = undoBase.height = 1;
-      if (eraseLayer) eraseLayer.width = eraseLayer.height = 1;
+      clearTimeout(remapTimer);
+      remapTimer = 0;
+      Object.values(cv).forEach(freeCanvas);
+      freeCanvas(undoBase);
+      freeCanvas(eraseLayer);
+      freeCanvas(scratch);
+      freeCanvas(atlas);
       S.W = S.H = 0;
-      S.alpha = null;
       S.reg = null;
-      S.masks.clear();
+      dropMasks();
       clearUndo();
     }
 
-    if (window.ResizeObserver) new ResizeObserver(() => fit()).observe(stage);
-    window.addEventListener('resize', fit);
+    if (window.ResizeObserver) new ResizeObserver(onResize).observe(stage);
+    window.addEventListener('resize', onResize);
 
     return {
       stage, paperEl, labels,
@@ -1159,7 +1386,7 @@
       },
       compose,
       paintBlob: () => FK.canvasBlob(cv.paint),
-      sample, regionAt,
+      sample, sampleMany, regionAt,
       paperScale, fit, zoomReset,
       flash: doFlash,
       release,

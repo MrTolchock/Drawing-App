@@ -67,9 +67,9 @@
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const W = Math.max(200, Math.round((r.width || 360) * dpr));
     const H = Math.max(150, Math.round((r.height || 270) * dpr));
-    artCanvas.width = W;
-    artCanvas.height = H;
-    FK.art.preview(artCanvas, page, 0.6);
+    if (artCanvas.width !== W) artCanvas.width = W;
+    if (artCanvas.height !== H) artCanvas.height = H;
+    FK.art.preview(artCanvas, page, 0.6, null, true);
   }
 
   FK.screen('hub', {
