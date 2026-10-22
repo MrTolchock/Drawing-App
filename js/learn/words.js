@@ -126,6 +126,7 @@
     ['🌳', '🌲'],
     ['🚂', '🚋'],
     ['🌸', '🌹'],
+    ['⭐', '☄️'],
   ];
 
   FK.words = { list, syllables, phrases, near };

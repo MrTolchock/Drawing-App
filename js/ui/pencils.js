@@ -84,8 +84,51 @@
         fs -= 1;
         tag.style.fontSize = fs + 'px';
       }
+      packTags();
       return b;
     }
+
+    // Word tags wider than their pencil must not cover each other (narrow phones): they slide
+    // sideways into the room that shorter or missing tags leave, staying inside the box.
+    function packTags() {
+      const tags = Array.from(el.querySelectorAll('.crayon-tag.word'));
+      const box = el.getBoundingClientRect();
+      if (!tags.length || !box.width) return;
+      const GAP = 3;
+      const items = tags.map((t) => {
+        t.style.marginLeft = '';
+        const r = t.getBoundingClientRect();
+        return { t, c: r.left + r.width / 2, w: t.offsetWidth * 1.08, l: 0 }; // room for the chosen tag's 1.08 scale
+      }).sort((a, b) => a.c - b.c);
+      const total = items.reduce((n, it) => n + it.w + GAP, -GAP);
+      if (total > box.width - 4) {
+        // too many long words for the box: one tight row, centred, a little wider than the box but on screen
+        let x = Math.max(4, Math.min(box.left + box.width / 2 - total / 2, window.innerWidth - 4 - total));
+        items.forEach((it) => {
+          it.l = x;
+          x += it.w + GAP;
+        });
+      } else {
+        let edge = box.left + 2;
+        items.forEach((it) => {
+          it.l = Math.max(it.c - it.w / 2, edge);
+          edge = it.l + it.w + GAP;
+        });
+        edge = box.right - 2;
+        for (let i = items.length - 1; i >= 0; i--) {
+          const it = items[i];
+          if (it.l + it.w > edge) it.l = edge - it.w;
+          edge = it.l - GAP;
+        }
+      }
+      items.forEach((it) => {
+        const d = it.l + it.w / 2 - it.c;
+        if (Math.abs(d) > 0.5) it.t.style.marginLeft = d.toFixed(1) + 'px';
+      });
+    }
+    window.addEventListener('resize', () => {
+      if (el.querySelector('.crayon-tag.word')) requestAnimationFrame(packTags);
+    });
 
     function select(id) {
       selected = id;

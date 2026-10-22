@@ -269,12 +269,13 @@
   }
 
   // Overlay at the end of a round: Klecksi cheers, then «Nochmal», «Weiter» or «Fertig».
-  function donePanel(actions) {
+  // n: stars this round earned (1 the first time, 0 on a replay); the panel never shows more than the counter got
+  function donePanel(actions, n) {
     const row = h('div', { class: 'rd-done-actions' });
     actions.forEach((a) => row.append(FK.ui.btn({ icon: a.icon, emoji: a.emoji, label: a.label, cls: 'btn-big ' + (a.cls || ''), onClick: a.onClick })));
     const card = h('div', { class: 'rd-done-card' },
       FK.ui.mascot({ mood: 'cheer', cls: 'rd-done-mascot' }),
-      h('div', { class: 'rd-done-stars', html: starsHtml(1) }),
+      n > 0 ? h('div', { class: 'rd-done-stars', html: starsHtml(n) }) : null,
       row);
     const wrap = h('div', { class: 'rd-done' }, card);
     stage.append(wrap);
@@ -290,7 +291,7 @@
     await FK.ui.celebrate({ stars: n, from: fromEl, big: true });
     if (t !== token) return;
     stage.classList.remove('rd-locked');
-    donePanel(actions);
+    donePanel(actions, n);
   }
 
   // Shrinks an element's font so it fits into maxW (and maxH if given).

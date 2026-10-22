@@ -153,11 +153,12 @@
     if (!pw || !ph) return;
     const k = eng.W / pw;
     const GAP = 3;
+    eng.labels.querySelectorAll('.lead-line, .lead-dot').forEach((x) => x.remove());
     const box = spots.map((sp) => {
       sp.twin = -1;
       sp.lead = false;
+      sp.leads = null;
       sp.el.classList.remove('twin', 'lead');
-      sp.el.querySelectorAll('.lead-line, .lead-dot').forEach((x) => x.remove());
       return { w: sp.el.offsetWidth + GAP, h: sp.el.offsetHeight + GAP };
     });
     const placed = [];
@@ -240,12 +241,15 @@
       const ux = dx / len;
       const uy = dy / len;
       const e = Math.min((b.w - GAP) / 2 / Math.max(1e-3, Math.abs(ux)), (b.h - GAP) / 2 / Math.max(1e-3, Math.abs(uy)));
+      // lines and dots lie under every label (first in the layer), so no line crosses a word
+      const pct = (v, all) => ((v / all) * 100).toFixed(3) + '%';
       const line = h('i', { class: 'lead-line', style: {
-        left: 'calc(50% + ' + (ux * e).toFixed(1) + 'px)', top: 'calc(50% + ' + (uy * e).toFixed(1) + 'px)',
+        left: pct(best.x + ux * e, pw), top: pct(best.y + uy * e, ph),
         width: Math.max(0, len - e - 4).toFixed(1) + 'px', transform: 'rotate(' + Math.atan2(dy, dx).toFixed(3) + 'rad)',
       } });
-      const dot = h('i', { class: 'lead-dot', style: { left: 'calc(50% + ' + dx.toFixed(1) + 'px)', top: 'calc(50% + ' + dy.toFixed(1) + 'px)' } });
-      sp.el.append(line, dot);
+      const dot = h('i', { class: 'lead-dot', style: { left: pct(x0, pw), top: pct(y0, ph) } });
+      eng.labels.prepend(line, dot);
+      sp.leads = [line, dot];
     });
     spots.forEach((sp, i) => {
       sp.w = (box[i].w - GAP) * k;
@@ -266,6 +270,7 @@
   function showTwins() {
     spots.forEach((sp) => {
       if (sp.twin >= 0) sp.el.classList.toggle('twin', !sp.done && !spots[sp.twin].done);
+      if (sp.leads) sp.leads.forEach((x) => x.classList.toggle('off', sp.done));
     });
   }
 
@@ -279,6 +284,7 @@
     spots.forEach((sp) => {
       const on = sp.c === slot;
       sp.el.classList.toggle('hot', on);
+      if (sp.leads) sp.leads[1].classList.toggle('hot', on);
       if (on && hop && !sp.done) setTimeout(() => FK.ui.bounce(sp.el), 40 * n++);
     });
   }

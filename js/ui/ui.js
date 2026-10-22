@@ -321,6 +321,7 @@
   }
 
   // danger: the safe answer is the big green one, the destructive one is red with a bin.
+  // read: the question is for the child (Andika; the caller passes it through FK.text.word).
   function confirm(text, yesLabel, noLabel, o) {
     o = o || {};
     return new Promise((resolve) => {
@@ -328,14 +329,22 @@
       const no = { label: noLabel || 'Nein', icon: o.danger ? 'check' : 'close', cls: o.danger ? 'btn-go' : '', onClick: () => resolve(false) };
       modal({
         title: text,
+        read: o.read,
         actions: o.danger ? [no, yes] : [yes, no],
         onClose: () => resolve(false),
       });
     });
   }
 
-  // Parent gate: an easy multiplication with four big answers. Right → fn(); wrong → just closes.
+  // Parent gate: an easy multiplication with four big answers. Right → fn(); wrong → just closes,
+  // and the gate stays shut for a while, so guessing until it opens takes too long for a child.
+  let gateShutUntil = 0;
   function parentGate(fn) {
+    if (Date.now() < gateShutUntil) {
+      FK.sound.nope();
+      toast('Bitte kurz warten');
+      return;
+    }
     const x = 3 + Math.floor(Math.random() * 7);
     const y = 3 + Math.floor(Math.random() * 7);
     const right = x * y;
@@ -358,7 +367,10 @@
       onClick: () => {
         m.close();
         if (v === right) fn();
-        else FK.sound.nope();
+        else {
+          gateShutUntil = Date.now() + 20000;
+          FK.sound.nope();
+        }
       },
     })));
   }

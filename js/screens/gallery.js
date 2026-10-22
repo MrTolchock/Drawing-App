@@ -94,7 +94,7 @@
         } },
         { label: 'In Fotos', icon: 'share', keepOpen: true, onClick: () => share(rec, full) },
         { label: 'Löschen', icon: 'trash', onClick: async () => {
-          const ok = await FK.ui.confirm('Bild löschen?', 'Löschen', 'Behalten', { danger: true });
+          const ok = await FK.ui.confirm(FK.text.word('Bild löschen?'), 'Löschen', 'Behalten', { danger: true, read: true });
           if (!ok) return;
           try {
             await FK.store.deleteBild(rec.id);

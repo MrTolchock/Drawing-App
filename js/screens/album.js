@@ -11,6 +11,16 @@
     return h('div', { class: 'stat' }, h('span', { class: 'stat-ic', html: FK.icon(icon, 'ic') }), h('b', { text: String(n) }), h('span', { text: label }));
   }
 
+  // letters written at least once (guided or free); digits and the «alle geschafft» bonus are not letters
+  function lettersDone() {
+    let n = 0;
+    ((FK.glyphs && FK.glyphs.sets) || []).forEach((set) => {
+      if (set.id === 'zahlen') return;
+      set.items.forEach((g) => { if (FK.progress.isDone('trace', g) || FK.progress.isDone('trace', g + ':frei')) n++; });
+    });
+    return n;
+  }
+
   function renderAlbum() {
     const stars = FK.progress.stars();
     const per = FK.STARS_PER_STICKER;
@@ -31,7 +41,7 @@
 
     const stats = h('div', { class: 'album-stats' },
       stat('crayon', FK.progress.doneCount('color'), 'Bilder'),
-      stat('pencil', FK.progress.doneCount('trace'), 'Buchstaben'),
+      stat('pencil', lettersDone(), 'Buchstaben'),
       stat('star', stars, 'Sterne'));
     albumBody.append(stats);
 

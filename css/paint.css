@@ -122,8 +122,10 @@
 .lbl-spot.lead { z-index: 2; }
 /* a label that found no room in its region: a line to a dot on the spot it belongs to */
 .lead-line { position: absolute; height: max(2px, calc(var(--d) * .08)); margin-top: calc(max(2px, calc(var(--d) * .08)) / -2); background: var(--ink); border-radius: 2px; transform-origin: 0 50%; pointer-events: none; }
-.lead-dot { position: absolute; width: max(9px, calc(var(--d) * .3)); height: max(9px, calc(var(--d) * .3)); border: max(2px, calc(var(--d) * .07)) solid var(--ink); border-radius: 50%; background: var(--hot-dot, #fff); transform: translate(-50%, -50%); pointer-events: none; }
-.lbl-spot.hot .lead-dot { background: var(--hot, #fff); }
+.lead-dot { position: absolute; width: max(9px, calc(var(--d) * .3)); height: max(9px, calc(var(--d) * .3)); border: max(2px, calc(var(--d) * .07)) solid var(--ink); border-radius: 50%; background: #fff; transform: translate(-50%, -50%); pointer-events: none; }
+.lead-dot.hot { background: var(--hot, #fff); }
+.lead-line, .lead-dot { transition: opacity .3s; }
+.lead-line.off, .lead-dot.off { opacity: 0; }
 .lbl-spot.wrong { border-color: #e5322d; background: #ffe5e5; }
 .lbl-spot.done {
   transform: translate(-50%, -50%) scale(0) rotate(40deg);

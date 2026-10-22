@@ -9,6 +9,7 @@
   let artCanvas = null;
   let lastPreview = null;
   let albumBadge = null;
+  let starDot = null;
 
   const readSub = () => ['ma', 'mi', 'mo'].map((s) => FK.text.syllable(s)).join(' · ');
 
@@ -19,6 +20,7 @@
     albumBadge.textContent = String(n);
     albumBadge.hidden = n === 0;
     albumBadge.closest('.tile').classList.toggle('has-new', n > 0);
+    if (starDot) starDot.hidden = n === 0;
   }
 
   function open(name, params) {
@@ -136,8 +138,12 @@
       albumIc.replaceWith(icWrap);
       icWrap.append(albumIc, albumBadge);
 
+      const stars = FK.ui.starCounter({ onClick: () => open('album') });
+      starDot = h('span', { class: 'star-dot', 'aria-hidden': 'true', hidden: true });
+      stars.append(starDot);
+
       root.append(
-        h('header', { class: 'hub-top' }, gear, h('div', { class: 'hub-hero' }, mascot, logo), FK.ui.starCounter({ onClick: () => open('album') })),
+        h('header', { class: 'hub-top' }, gear, h('div', { class: 'hub-hero' }, mascot, logo), stars),
         h('div', { class: 'hub-body scroll' }, grid));
 
       // Words follow the parents' GROSS/normal setting.

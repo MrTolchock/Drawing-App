@@ -179,6 +179,19 @@
   animation: badge-pulse 1.3s ease-in-out infinite;
 }
 .tile.has-new .tile-ic { animation: wiggle 1.3s ease infinite; }
+/* on phones the album tile is below the fold: a red dot on the star counter (it opens the album) */
+.hub-top .star-count { position: relative; }
+.star-dot {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 20px;
+  height: 20px;
+  border: 3px solid var(--ink);
+  border-radius: 50%;
+  background: #e5322d;
+  animation: badge-pulse 1.3s ease-in-out infinite;
+}
 .tile.has-new .tile-ic-wrap { margin-right: 10px; }
 @keyframes badge-pulse { 0%, 100% { scale: 1; } 50% { scale: 1.16; } }
 
@@ -219,8 +232,8 @@
   .hub-grid { min-height: 0; height: auto; grid-template-rows: 170px 170px auto; gap: 12px; }
   .tile-small { min-height: 56px; }
   .tile:not(.tile-big) { padding: 8px 10px 10px; }
-  .card-mini { height: 46px; font-size: 24px; min-width: 46px; padding: 4px 10px 0; box-shadow: 0 3px 0 var(--ink); }
-  .card-mini.emoji { font-size: 26px; padding: 0 6px; margin-left: -10px; }
+  .card-mini { height: 46px; font-size: 24px; min-width: 46px; padding: 4px 8px 0; box-shadow: 0 3px 0 var(--ink); }
+  .card-mini.emoji { font-size: 26px; padding: 0 6px; margin-left: -14px; }
   .art-read { gap: 0; flex-wrap: nowrap; }
   .tile-badge { width: 40px; height: 40px; }
 }
@@ -320,7 +333,7 @@
 .mode-name { font-family: var(--read); font-size: 17px; font-weight: 700; }
 .ms-ic .ic { width: 48px; height: 48px; }
 .ms-dice .dice { width: 46px; height: 46px; padding: 4px; border: 3px solid var(--ink); border-radius: 10px; background: #fff; fill: var(--ink); }
-.ms-read { font-family: var(--read); font-weight: 700; font-size: clamp(16px, 2vw, 21px); line-height: 1.1; text-align: center; white-space: nowrap; }
+.ms-read { font-family: var(--read); font-weight: 700; font-size: clamp(16px, 2.6vw, 21px); line-height: 1.1; text-align: center; white-space: nowrap; }
 .mode-btn:only-child { grid-column: 1 / -1; justify-self: center; width: min(220px, 100%); }
 .ms-words { font-size: 20px; display: flex; flex-direction: column; align-items: center; }
 .mode-star { position: absolute; top: -14px; right: -10px; width: 38px; height: 38px; }

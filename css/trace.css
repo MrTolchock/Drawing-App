@@ -127,7 +127,8 @@
   pointer-events: none;
 }
 .screen-trace .tr-tile-stars .ic { width: 34px; height: 34px; transform: rotate(12deg); filter: drop-shadow(0 2px 0 rgba(35, 32, 61, .35)); }
-.screen-trace .tr-tile-stars .tr-star-frei { width: 28px; height: 28px; margin-left: -12px; margin-top: 16px; transform: rotate(-10deg); }
+.screen-trace .tr-tile-stars .tr-star-frei { width: 28px; height: 28px; margin-top: 16px; transform: rotate(-10deg); }
+.screen-trace .tr-tile-stars .ic + .tr-star-frei { margin-left: -12px; }
 .screen-trace .tr-tile.is-next::after {
   content: "";
   position: absolute;
