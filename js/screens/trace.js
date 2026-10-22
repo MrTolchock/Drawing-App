@@ -380,10 +380,12 @@
         onclick: () => { FK.sound.tick(); openGlyph(g, 'guided'); },
         html: tileSvg(g),
       });
-      const stars = h('span', { class: 'tr-tile-stars' });
-      stars.innerHTML = FK.icon(isDone(g) ? 'star' : 'star-empty', 'ic' + (isDone(g) ? '' : ' tr-star-empty')) +
-        (isFrei(g) ? FK.icon('star', 'ic tr-star-frei') : '');
-      t.append(stars);
+      // stars only once earned (as in the Malbuch): a faded empty star looked like a smudge
+      if (isDone(g) || isFrei(g)) {
+        const stars = h('span', { class: 'tr-tile-stars' });
+        stars.innerHTML = (isDone(g) ? FK.icon('star', 'ic') : '') + (isFrei(g) ? FK.icon('star', 'ic tr-star-frei') : '');
+        t.append(stars);
+      }
       gridEl.append(t);
     });
     if (resetScroll) gridScroll.scrollTop = 0;
@@ -866,6 +868,16 @@
 
   /* ---------- the end card ---------- */
 
+  // «B b»: the capital and the small letter side by side, the one just written in red. The word below may show only
+  // the other one (GROSS setting, or «Banane» for b), so the pair tells the child they are the same letter.
+  function letterPair(g) {
+    const up = g.toLocaleUpperCase('de-CH');
+    const lo = g.toLocaleLowerCase('de-CH');
+    const pair = h('span', { class: 'tr-pair', 'aria-hidden': 'true' });
+    [up, lo].forEach((c) => pair.append(h('span', { class: c === g ? 'is-cur' : '', text: c })));
+    return pair;
+  }
+
   function anlautCard() {
     const data = cur.data;
     const card = h('div', { class: 'tr-card' + (cur.digit ? ' is-digit' : '') });
@@ -878,7 +890,7 @@
       card.append(frame);
       if (data.word) card.append(FK.ui.word(data.word, { cls: 'tr-word' }));
     } else {
-      card.append(h('span', { class: 'tr-card-emoji emoji', 'aria-hidden': 'true', text: data.emoji || '⭐' }));
+      card.append(h('div', { class: 'tr-pic' }, letterPair(cur.g), h('span', { class: 'tr-card-emoji emoji', 'aria-hidden': 'true', text: data.emoji || '⭐' })));
       if (data.word) card.append(FK.ui.word(data.word, { highlight: cur.g, cls: 'tr-word' }));
     }
     return card;
@@ -888,12 +900,13 @@
     const set = setOf(cur.g);
     endEl.innerHTML = '';
     const acts = h('div', { class: 'tr-acts' });
-    const over = FK.ui.btn({ label: set ? set.name : 'ABC', cls: 'btn-big tr-over', title: 'Alle', onClick: showOver });
+    // same colours in every learning end panel: Weiter green, back to the overview yellow, Nochmal white, bonus rose
+    const over = FK.ui.btn({ label: set ? set.name : 'ABC', cls: 'btn-big btn-sun tr-over', title: 'Alle', onClick: showOver });
     over.insertAdjacentHTML('afterbegin', GRID_IC);
     acts.append(over);
     acts.append(FK.ui.btn({ icon: 'refresh', label: 'Nochmal', cls: 'btn-big', onClick: () => load(cur.g, mode) }));
     if (mode === 'guided') {
-      const fr = FK.ui.btn({ label: 'Ohne Hilfe', cls: 'btn-big btn-sun tr-frei', onClick: () => load(cur.g, 'frei') });
+      const fr = FK.ui.btn({ label: 'Ohne Hilfe', cls: 'btn-big tr-frei', onClick: () => load(cur.g, 'frei') });
       fr.insertAdjacentHTML('afterbegin', FREI_IC);
       if (isFrei(cur.g)) fr.classList.add('is-has');
       acts.append(fr);

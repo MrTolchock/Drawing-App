@@ -6,7 +6,7 @@
 
   const MODES = {
     frei: { name: 'Frei ausmalen', short: 'Frei' },
-    wuerfel: { name: 'Malen nach Würfel', short: 'Würfel' },
+    wuerfel: { name: 'Malen nach Würfeln', short: 'Würfel' },
     zahlen: { name: 'Malen nach Zahlen', short: 'Zahlen' },
     silben: { name: 'Malen nach Silben', short: 'Silben' },
     woerter: { name: 'Farbwörter lesen', short: 'Wörter' },
@@ -15,6 +15,8 @@
   const TOOL_BRUSHES = ['wachs', 'filz', 'glitzer', 'spray', 'neon'];
   const BRUSH_ICON = { wachs: 'crayon', filz: 'marker', glitzer: 'glitter', spray: 'brush', neon: 'brush' };
   const SIZE_INFO = [{ name: 'Klein', dot: 10, r: 5 }, { name: 'Mittel', dot: 18, r: 8 }, { name: 'Gross', dot: 28, r: 12 }, { name: 'Riesig', dot: 42, r: 16 }];
+  // a picture is only kept (gallery, stars) when at least this share of the paper is painted
+  const MIN_PAINT = 0.003;
   const FALLBACK_ROWS = { M: ['Ma', 'Me', 'Mi', 'Mo', 'Mu'], L: ['La', 'Le', 'Li', 'Lo', 'Lu'], S: ['Sa', 'Se', 'Si', 'So', 'Su'], N: ['Na', 'Ne', 'Ni', 'No', 'Nu'], R: ['Ra', 'Re', 'Ri', 'Ro', 'Ru'], T: ['Ta', 'Te', 'Ti', 'To', 'Tu'], F: ['Fa', 'Fe', 'Fi', 'Fo', 'Fu'] };
 
   const saved = FK.settings.get('color.tool') || {};
@@ -42,6 +44,10 @@
   let checkTimer = 0;
   let finishHint = 0;
   let loadToken = 0;
+  let finishing = false; // a celebration / end card is on its way: «Fertig» waits
+  let active = false; // the screen is shown (FK.current() still names it while leave() runs)
+  let layoutTimer = 0;
+  const hinted = new Set(); // «Wörter»: pencils whose colour word was revealed after a wrong fill
   const el = {};
 
   const stateKey = () => 'c:' + page.id + ':' + mode;
@@ -94,30 +100,186 @@
       const cols = slotColors();
       const texts = slotTexts();
       const labels = {};
-      if (mode !== 'woerter') cols.forEach((c, i) => { labels[c.id] = texts[i]; });
-      pencils.set(cols, mode !== 'woerter' ? labels : null);
+      // Würfel: dice on the picture, numerals on the pencils – the child counts the dots.
+      // Wörter: big pencils without a tag (the word is the riddle); hint() adds one after a wrong fill.
+      if (mode === 'wuerfel') cols.forEach((c, i) => { labels[c.id] = String(i + 1); });
+      else if (mode !== 'woerter') cols.forEach((c, i) => { labels[c.id] = texts[i]; });
+      pencils.set(cols, labels);
       if (!cols.some((c) => c.id === T.colorId)) T.colorId = cols[0].id;
+      if (mode === 'woerter') hinted.forEach((id) => revealWord(id));
     }
     pencils.select(T.colorId);
     applyTool();
+  }
+
+  function revealWord(id) {
+    const c = FK.color.byId(id);
+    return c ? pencils.hint(id, FK.text.word(c.word)) : null;
   }
 
   function buildLabels() {
     eng.labels.innerHTML = '';
     spots = [];
     eng.labels.classList.toggle('words', mode === 'woerter');
+    eng.labels.classList.toggle('dice', mode === 'wuerfel');
     if (mode === 'frei' || !FK.art.hasLabels(page) || !eng.W) return;
     const pos = FK.art.spotsOnPaper(page, eng.W, eng.H);
     const texts = slotTexts();
     if (pos.length) eng.labels.style.setProperty('--lblk', ((70 * pos[0].scale) / eng.W).toFixed(5));
     pos.forEach((p) => {
-      const lab = h('div', { class: 'lbl-spot', style: { left: (p.x / eng.W) * 100 + '%', top: (p.y / eng.H) * 100 + '%' } });
+      const lab = h('div', { class: 'lbl-spot' });
       const t = texts[p.c - 1] || '';
-      if (mode === 'wuerfel') lab.innerHTML = FK.ui.dice(p.c);
+      if (mode === 'wuerfel') lab.innerHTML = FK.ui.dice(p.c, 13);
       else lab.append(h('span', { text: t }));
-      if (t.length > 2) lab.classList.add('long');
+      if (t.length > 2 && mode !== 'wuerfel') lab.classList.add('long');
       eng.labels.append(lab);
-      spots.push({ x: p.x, y: p.y, c: p.c, el: lab, done: false, wrong: false, scale: p.scale });
+      spots.push({ x: p.x, y: p.y, ox: p.x, oy: p.y, c: p.c, el: lab, done: false, wrong: false, scale: p.scale, r: eng.regionAt(p.x, p.y, 4), twin: -1 });
+    });
+    layoutLabels();
+    markHot(false);
+  }
+
+  /* Labels must never cover each other (small papers on phones, long colour words).
+     Pass 1, in order: a label that overlaps one placed before it moves to the nearest free place whose
+     centre is still in its own region (preferably not reaching into a neighbour). If there is none and
+     the label it hits is of the same slot, it waits hidden behind that «twin» until the twin is done.
+     Pass 2: the rest go to the nearest free place anywhere, with a short line to a dot in their region
+     (a tap on such a label fills that region, see labelTap). Colour checks always use the original point. */
+  function layoutLabels() {
+    clearTimeout(layoutTimer);
+    if (!spots.length || !eng.W) return;
+    const pw = eng.labels.clientWidth;
+    const ph = eng.labels.clientHeight;
+    if (!pw || !ph) return;
+    const k = eng.W / pw;
+    const GAP = 3;
+    const box = spots.map((sp) => {
+      sp.twin = -1;
+      sp.lead = false;
+      sp.el.classList.remove('twin', 'lead');
+      sp.el.querySelectorAll('.lead-line, .lead-dot').forEach((x) => x.remove());
+      return { w: sp.el.offsetWidth + GAP, h: sp.el.offsetHeight + GAP };
+    });
+    const placed = [];
+    const hit = (x, y, b) => {
+      for (let j = 0; j < placed.length; j++) {
+        const q = placed[j];
+        if (Math.abs(q.x - x) * 2 < q.w + b.w && Math.abs(q.y - y) * 2 < q.h + b.h) return q;
+      }
+      return null;
+    };
+    const fits = (x, y, b) => x - b.w / 2 >= 0 && x + b.w / 2 <= pw && y - b.h / 2 >= 0 && y + b.h / 2 <= ph;
+    // nearest free place around (x0, y0); ok(x, y) filters, cost(x, y) adds to the distance
+    const search = (x0, y0, b, maxR, ok, cost) => {
+      const step = Math.max(2, Math.min(b.w, b.h) * 0.18);
+      let best = null;
+      for (let rad = step; rad <= maxR; rad += step) {
+        const n = Math.max(12, Math.round((6.283 * rad) / step));
+        for (let a = 0; a < n; a++) {
+          const x = x0 + Math.cos((a / n) * 6.283) * rad;
+          const y = y0 + Math.sin((a / n) * 6.283) * rad;
+          if (!fits(x, y, b) || hit(x, y, b) || (ok && !ok(x, y))) continue;
+          const score = rad + (cost ? cost(x, y) * step * 1.5 : 0);
+          if (!best || score < best.score) best = { x, y, score };
+        }
+        if (best && best.score <= rad + step) break;
+      }
+      return best;
+    };
+    const put = (sp, i, x, y) => {
+      sp.x = x * k;
+      sp.y = y * k;
+      sp.el.style.left = (sp.x / eng.W) * 100 + '%';
+      sp.el.style.top = (sp.y / eng.H) * 100 + '%';
+      placed.push({ x, y, w: box[i].w, h: box[i].h, i });
+    };
+    const later = [];
+    spots.forEach((sp, i) => {
+      const b = box[i];
+      const x0 = sp.ox / k;
+      const y0 = sp.oy / k;
+      const first = hit(x0, y0, b);
+      if (!first && fits(x0, y0, b)) return put(sp, i, x0, y0);
+      const strays = (x, y) => {
+        let n = 0;
+        for (let a = 0; a < 8; a++) {
+          const r = eng.regionAt((x + Math.cos(a * 0.785) * b.w * 0.42) * k, (y + Math.sin(a * 0.785) * b.h * 0.42) * k);
+          if (r >= 0 && r !== sp.r) n++;
+        }
+        return n;
+      };
+      const best = search(x0, y0, b, Math.max(b.w, b.h) * 3, sp.r >= 0 ? (x, y) => eng.regionAt(x * k, y * k) === sp.r : null, strays);
+      if (best) return put(sp, i, best.x, best.y);
+      if (first && spots[first.i].c === sp.c && !spots[first.i].lead) {
+        sp.twin = first.i;
+        sp.x = sp.ox;
+        sp.y = sp.oy;
+        sp.el.style.left = (sp.x / eng.W) * 100 + '%';
+        sp.el.style.top = (sp.y / eng.H) * 100 + '%';
+        return;
+      }
+      later.push(i);
+    });
+    // the anchor dots of pass 2 must stay visible too
+    const DOT = 12;
+    later.forEach((i) => placed.push({ x: spots[i].ox / k, y: spots[i].oy / k, w: DOT, h: DOT, i: -1 }));
+    later.forEach((i) => {
+      const sp = spots[i];
+      const b = box[i];
+      const x0 = sp.ox / k;
+      const y0 = sp.oy / k;
+      const best = search(x0, y0, b, Math.max(pw, ph));
+      if (!best) return put(sp, i, x0, y0);
+      put(sp, i, best.x, best.y);
+      sp.lead = true;
+      sp.el.classList.add('lead');
+      // line from the label's edge to the dot on the original point
+      const dx = x0 - best.x;
+      const dy = y0 - best.y;
+      const len = Math.hypot(dx, dy) || 1;
+      const ux = dx / len;
+      const uy = dy / len;
+      const e = Math.min((b.w - GAP) / 2 / Math.max(1e-3, Math.abs(ux)), (b.h - GAP) / 2 / Math.max(1e-3, Math.abs(uy)));
+      const line = h('i', { class: 'lead-line', style: {
+        left: 'calc(50% + ' + (ux * e).toFixed(1) + 'px)', top: 'calc(50% + ' + (uy * e).toFixed(1) + 'px)',
+        width: Math.max(0, len - e - 4).toFixed(1) + 'px', transform: 'rotate(' + Math.atan2(dy, dx).toFixed(3) + 'rad)',
+      } });
+      const dot = h('i', { class: 'lead-dot', style: { left: 'calc(50% + ' + dx.toFixed(1) + 'px)', top: 'calc(50% + ' + dy.toFixed(1) + 'px)' } });
+      sp.el.append(line, dot);
+    });
+    spots.forEach((sp, i) => {
+      sp.w = (box[i].w - GAP) * k;
+      sp.h = (box[i].h - GAP) * k;
+    });
+    showTwins();
+  }
+
+  // A tap on a label that sits away from its region (with a line) fills that region.
+  function labelTap(x, y) {
+    for (let i = 0; i < spots.length; i++) {
+      const sp = spots[i];
+      if (sp.lead && !sp.done && Math.abs(x - sp.x) * 2 <= sp.w && Math.abs(y - sp.y) * 2 <= sp.h) return { x: sp.ox, y: sp.oy };
+    }
+    return null;
+  }
+
+  function showTwins() {
+    spots.forEach((sp) => {
+      if (sp.twin >= 0) sp.el.classList.toggle('twin', !sp.done && !spots[sp.twin].done);
+    });
+  }
+
+  // The labels that belong to the chosen pencil get a ring in its colour (and hop once when picked).
+  function markHot(hop) {
+    if (mode === 'frei' || !spots.length) return;
+    const c = FK.color.byId(T.colorId);
+    const slot = page.colors.indexOf(T.colorId) + 1;
+    eng.labels.style.setProperty('--hot', c ? c.hex : '#ffffff');
+    let n = 0;
+    spots.forEach((sp) => {
+      const on = sp.c === slot;
+      sp.el.classList.toggle('hot', on);
+      if (on && hop && !sp.done) setTimeout(() => FK.ui.bounce(sp.el), 40 * n++);
     });
   }
 
@@ -131,7 +293,7 @@
     const rad = Math.max(6, 24 * spots[0].scale);
     let open = 0;
     const fresh = [];
-    const res = eng.sampleMany(spots, rad);
+    const res = eng.sampleMany(spots.map((sp) => ({ x: sp.ox, y: sp.oy })), rad);
     spots.forEach((sp, i) => {
       const s = res[i];
       const target = cols[sp.c - 1];
@@ -152,6 +314,14 @@
           FK.ui.shake(sp.el);
           sp.el.classList.add('wrong');
           FK.sound.wrong();
+          // point at the right pencil; in «Wörter» it now shows its colour word
+          const id = page.colors[sp.c - 1];
+          let pb = null;
+          if (mode === 'woerter') {
+            hinted.add(id);
+            pb = revealWord(id);
+          } else pb = pencils.button(id);
+          if (pb) setTimeout(() => FK.ui.bounce(pb), 180);
         }
         if (!wrong) sp.el.classList.remove('wrong');
         sp.wrong = wrong;
@@ -167,8 +337,14 @@
         if (i < 3) FK.sound.plip(spots.length - open);
       });
     }
+    showTwins();
     updateCounter(spots.length - open, spots.length);
-    if (!open && !completed && !restoring) complete();
+    if (!open && !completed && !restoring && !finishing) {
+      // a picture that was finished before (gallery «Weitermalen», undo of «Nochmal») just counts as
+      // finished again; one that never earned its stars (e.g. the child left too quickly) earns them now
+      if (silent && FK.progress.isDone('color', page.id + ':' + mode)) completed = true;
+      else complete();
+    }
   }
 
   function scheduleCheck() {
@@ -177,11 +353,10 @@
   }
 
   function updateCounter(done, total) {
-    if (!total) {
-      el.counter.hidden = true;
-      return;
-    }
-    el.counter.hidden = false;
+    const was = el.counter.hidden;
+    el.counter.hidden = !total;
+    if (was !== el.counter.hidden) fitTitle();
+    if (!total) return;
     el.counter.querySelector('b').textContent = done + ' / ' + total;
     el.counter.classList.toggle('full', done === total);
   }
@@ -366,7 +541,8 @@
 
   async function save() {
     clearTimeout(saveTimer);
-    if (!page || !eng || !eng.W) return;
+    // never while another picture is still loading (the paper would hold the previous one)
+    if (!page || !eng || !eng.W || restoring || eng.pageId !== page.id) return;
     if (eng.busy) {
       saveTimer = setTimeout(save, 800);
       return;
@@ -387,34 +563,91 @@
     } catch (e) { /* storage unavailable */ }
   }
 
+  // Snapshots are taken synchronously, so leaving the screen meanwhile can't spoil the stored picture.
   async function saveToGallery() {
+    if (!eng.W || !page) return;
+    const rec = { id: gid, kind: 'color', pageId: page.id, mode, name: page.name, W: eng.W, H: eng.H, k: eng.paperScale(), paper: eng.paper };
+    const paintP = eng.paintBlob();
+    const thumbP = blobOnce(eng.compose(420), 0.86);
     try {
-      const paint = await eng.paintBlob();
-      const thumb = await blobOnce(eng.compose(420), 0.86);
+      const paint = await paintP;
+      const thumb = await thumbP;
       const now = Date.now();
-      const old = await FK.store.getBild(gid).catch(() => null);
-      await FK.store.putBild({
-        id: gid, kind: 'color', pageId: page.id, mode, name: page.name,
-        created: old ? old.created : now, updated: now,
-        W: eng.W, H: eng.H, k: eng.paperScale(), paper: eng.paper, paint, thumb,
-      });
+      const old = await FK.store.getBild(rec.id).catch(() => null);
+      await FK.store.putBild(Object.assign(rec, { created: old ? old.created : now, updated: now, paint, thumb }));
     } catch (e) { /* storage unavailable */ }
+  }
+
+  // Gallery «Weitermalen» replaces this page's slot: a different picture in it goes to the gallery first.
+  async function archiveSlot(cur) {
+    const old = await FK.store.getBild(cur.gid).catch(() => null);
+    if (old && (old.updated || 0) >= (cur.t || 0)) return;
+    const img = await FK.blobToImage(cur.paint);
+    const share = FK.engine.coverageOf(img, cur.W, cur.H);
+    if (img.close) img.close();
+    if (share < MIN_PAINT) return;
+    const pg = FK.art.find(cur.pageId);
+    const t = cur.t || Date.now();
+    await FK.store.putBild({
+      id: cur.gid, kind: 'color', pageId: cur.pageId, mode: cur.mode, name: pg ? pg.name : '',
+      created: old ? old.created : t, updated: t,
+      W: cur.W, H: cur.H, k: old && old.k ? old.k : Math.min(2, window.devicePixelRatio || 1), paper: cur.paper || '#ffffff',
+      paint: cur.paint, thumb: cur.thumb,
+    });
+  }
+
+  function hasPaint() {
+    return eng.coverage() >= MIN_PAINT;
   }
 
   /* ---------- finishing ---------- */
   async function complete() {
+    if (completed || finishing || !eng.W) return;
     completed = true;
-    eng.settle();
-    const labelMode = mode !== 'frei';
-    const stars = FK.progress.finish('color', page.id + ':' + mode, labelMode ? 2 : 1);
-    eng.flash();
-    await saveToGallery();
-    save();
-    await FK.ui.celebrate({ stars, big: labelMode, from: el.done });
-    endCard(stars);
+    finishing = true;
+    const tok = loadToken;
+    try {
+      eng.settle();
+      const labelMode = mode !== 'frei';
+      const stars = FK.progress.finish('color', page.id + ':' + mode, labelMode ? 2 : 1);
+      eng.flash();
+      const g = saveToGallery();
+      save();
+      await g;
+      // the child may have left meanwhile: no celebration or end card on another screen
+      if (tok !== loadToken) return;
+      await FK.ui.celebrate({ stars, big: labelMode, from: el.done });
+      if (tok !== loadToken) return;
+      endCard(stars);
+    } finally {
+      if (tok === loadToken) finishing = false;
+    }
+  }
+
+  // «Fertig» (tapped twice on purpose) before all labels are right: keep the picture, no stars yet –
+  // finishing it later still celebrates and earns them.
+  async function finishEarly() {
+    finishing = true;
+    const tok = loadToken;
+    try {
+      eng.flash();
+      const g = saveToGallery();
+      save();
+      await g;
+      if (tok !== loadToken) return;
+      await FK.ui.celebrate({ stars: 0 });
+      if (tok !== loadToken) return;
+      endCard(0);
+    } finally {
+      if (tok === loadToken) {
+        finishing = false;
+        scheduleCheck();
+      }
+    }
   }
 
   function endCard(stars) {
+    if (!eng.W || !active) return;
     const img = h('canvas', { class: 'end-pic' });
     const c = eng.compose(640);
     img.width = c.width;
@@ -428,7 +661,7 @@
       body.append(row);
     }
     FK.ui.modal({
-      title: FK.pick(['Fertig!', 'Wunderschön!', 'Bravo!', 'Super gmacht!']),
+      title: FK.pick(['Fertig!', 'Wunderschön!', 'Bravo!', 'Super gemacht!']),
       body,
       wide: true,
       actions: [
@@ -440,49 +673,84 @@
   }
 
   function onFinishButton() {
-    const labelMode = mode !== 'frei';
-    if (labelMode && !completed) {
-      const open = spots.filter((s) => !s.done);
-      const now = Date.now();
-      if (open.length && now - finishHint > 4000) {
-        finishHint = now;
-        FK.sound.wrong();
-        open.forEach((s, i) => setTimeout(() => FK.ui.bounce(s.el), i * 60));
-        FK.ui.toast('Noch nicht ganz fertig! Schau die Zeichen an.');
-        return;
-      }
-    }
+    if (finishing || restoring || !eng.W) return;
+    eng.settle();
     if (completed) {
+      // already finished: show it again (the gallery copy follows the latest strokes)
       eng.flash();
       saveToGallery();
       FK.sound.tada();
       endCard(0);
       return;
     }
-    if (labelMode) {
-      // finished without all labels: keep the picture, no stars
-      completed = true;
-      eng.flash();
-      saveToGallery().then(() => { save(); FK.ui.celebrate({ stars: 0 }).then(() => endCard(0)); });
+    if (mode === 'frei') {
+      if (!hasPaint()) return nothingYet();
+      complete();
       return;
     }
-    complete();
+    // the last fill may not be checked yet
+    clearTimeout(checkTimer);
+    checkLabels(false);
+    if (completed || finishing) return;
+    const open = spots.filter((s) => !s.done);
+    if (!open.length) {
+      complete();
+      return;
+    }
+    const since = Date.now() - finishHint;
+    if (since < 1200) return; // a double tap: the hint is still playing
+    if (since > 6000 || !hasPaint()) {
+      finishHint = Date.now();
+      FK.sound.wrong();
+      open.forEach((s, i) => setTimeout(() => FK.ui.bounce(s.el), i * 60));
+      FK.ui.toast('Noch nicht fertig!');
+      return;
+    }
+    finishEarly();
+  }
+
+  // An empty paper is not a picture yet: no stars, nothing for the gallery.
+  function nothingYet() {
+    FK.sound.nope();
+    FK.ui.shake(eng.paperEl);
+    FK.ui.toast('Mal zuerst etwas!');
   }
 
   async function restart(confirmFirst) {
+    if (finishing || restoring || !eng.W || !active) return;
+    const tok = loadToken;
     if (confirmFirst) {
       const ok = await FK.ui.confirm('Nochmal von vorne?', 'Ja', 'Nein');
-      if (!ok) return;
+      if (!ok || tok !== loadToken) return;
     }
+    // undo («Zurück») brings the old picture back together with its gallery id and «finished»
+    const meta = { gid, completed };
     completed = false;
     gid = newGid();
-    await eng.newPage({ pageId: page.id, keepUndo: true, animate: true });
+    await eng.newPage({ pageId: page.id, keepUndo: true, animate: true, meta });
+    if (tok !== loadToken) return;
     buildLabels();
     checkLabels(true);
     scheduleSave();
   }
 
   /* ---------- screen ---------- */
+  // Long picture names shrink to fit the top bar on phones instead of ending in «…».
+  function fitTitle() {
+    const t = el.title;
+    t.style.fontSize = '';
+    t.style.webkitTextStrokeWidth = '';
+    if (!t.clientWidth) return;
+    let fs = parseFloat(getComputedStyle(t).fontSize) || 26;
+    const fs0 = fs;
+    const stroke = parseFloat(getComputedStyle(t).webkitTextStrokeWidth) || 6;
+    while (t.scrollWidth > t.clientWidth + 1 && fs > 12) {
+      fs -= 1;
+      t.style.fontSize = fs + 'px';
+      t.style.webkitTextStrokeWidth = Math.max(3, (stroke * fs) / fs0).toFixed(1) + 'px';
+    }
+  }
+
   function railBtn(icon, label, onClick, extra) {
     const b = FK.ui.btn({ icon, label, onClick });
     if (extra) b.append(extra);
@@ -508,7 +776,7 @@
         if (T.kind !== 'stamp') setKind('stamp');
         stampPop(e.currentTarget);
       } });
-      el.eraser = railBtn('eraser', 'Radierer', () => setKind('eraser'));
+      el.eraser = railBtn('eraser', 'Gummi', () => setKind('eraser'));
       el.size = FK.ui.btn({ label: 'Grösse', onClick: (e) => sizePop(e.currentTarget) });
       el.size.insertAdjacentHTML('afterbegin', '<svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="12" fill="#23203d"/></svg>');
 
@@ -520,7 +788,8 @@
           FK.ui.shake(el.undo);
         }
       });
-      el.zoom = railBtn('zoom', 'Ganz', () => eng.zoomReset());
+      el.zoom = railBtn('zoom', 'Ganzes Bild', () => eng.zoomReset());
+      el.zoom.classList.add('two-lines');
       el.zoom.hidden = true;
       el.restart = railBtn('refresh', 'Neu', () => restart(true));
       el.done = FK.ui.btn({ icon: 'check', label: 'Fertig', cls: 'btn-go', onClick: onFinishButton });
@@ -534,6 +803,7 @@
           if (T.kind === 'eraser' || T.kind === 'stamp') T.kind = mode === 'frei' ? 'brush' : 'fill';
           persistTool();
           applyTool();
+          markHot(true);
         },
       });
       const body = h('div', { class: 'paint-grid' }, tools, stageHost, actions, h('div', { class: 'box-wrap' }, pencils.el));
@@ -547,6 +817,7 @@
           scheduleCheck();
         },
         onZoom: (z) => { el.zoom.hidden = z <= 1; },
+        fillAt: (x, y) => (mode !== 'frei' ? labelTap(x, y) : null),
         // the paper was re-cut for a new screen shape (rotation): labels move with the art
         onRemap: () => {
           if (!page || restoring || eng.pageId !== page.id) return;
@@ -554,7 +825,25 @@
           checkLabels(true);
           scheduleSave();
         },
+        // undo of «Nochmal»: the old picture is back with its gallery id and «finished» state
+        onPageUndo: (m) => {
+          if (!m) return;
+          gid = m.gid || gid;
+          completed = !!m.completed;
+        },
       });
+      // the labels' size follows the paper only in steps: re-check for overlaps when it changes
+      if (window.ResizeObserver) {
+        let lw = 0;
+        new ResizeObserver(() => {
+          const w = eng.labels.clientWidth;
+          if (!w || w === lw) return;
+          lw = w;
+          clearTimeout(layoutTimer);
+          layoutTimer = setTimeout(() => { if (active && !restoring) layoutLabels(); }, 200);
+        }).observe(eng.labels);
+      }
+      window.addEventListener('resize', () => { if (active) fitTitle(); });
 
       document.addEventListener('visibilitychange', () => {
         if (document.hidden && FK.current() === 'color') save();
@@ -569,6 +858,9 @@
     },
 
     enter(params) {
+      active = true;
+      finishing = false;
+      hinted.clear();
       page = FK.art.find(params.pageId);
       if (!page) {
         setTimeout(() => FK.back());
@@ -576,6 +868,7 @@
       }
       mode = MODES[params.mode] && (params.mode === 'frei' || FK.art.hasLabels(page)) ? params.mode : 'frei';
       el.title.textContent = FK.text.word(page.name);
+      fitTitle();
       el.chip.textContent = MODES[mode].short;
       el.chip.className = 'cl-mode mode-' + mode;
       el.chip.hidden = mode === 'frei';
@@ -589,8 +882,13 @@
       requestAnimationFrame(async () => {
         eng.fit();
         let rec = null;
-        if (params.bild && params.bild.pageId === page.id) rec = Object.assign({}, params.bild, { gid: params.bild.id, done: false });
-        else {
+        if (params.bild && params.bild.pageId === page.id) {
+          rec = Object.assign({}, params.bild, { gid: params.bild.id, done: false });
+          try {
+            const cur = await FK.store.get('c:' + page.id + ':' + mode);
+            if (cur && cur.paint && cur.gid && cur.gid !== params.bild.id) await archiveSlot(cur);
+          } catch (e) { /* no storage */ }
+        } else {
           try {
             rec = await FK.store.get('c:' + page.id + ':' + mode);
           } catch (e) { /* no storage */ }
@@ -612,22 +910,37 @@
           await eng.newPage({ pageId: page.id });
           gid = newGid();
         }
+        if (token !== loadToken) return;
+        restoring = false;
         buildLabels();
         checkLabels(true);
-        restoring = false;
+        // Andika may still be loading: word labels get their real width, then the layout is re-checked
+        fitTitle();
+        if (document.fonts && document.fonts.status !== 'loaded') {
+          document.fonts.ready.then(() => {
+            if (token !== loadToken) return;
+            layoutLabels();
+            fitTitle();
+          });
+        }
       });
     },
 
     leave() {
       loadToken++;
+      active = false;
+      finishing = false;
       FK.ui.closePop(true);
-      clearTimeout(checkTimer);
       if (page && eng.W) {
+        // lands a fill, stroke or new-paper swap now, so the save below can't be put off
         eng.settle();
         const p = save();
         // free the big canvases once the drawing is safely stored
-        Promise.resolve(p).then(() => { if (FK.current() !== 'color') eng.release(); });
+        Promise.resolve(p).then(() => { if (!active) eng.release(); });
       }
+      // after settle(): its last change must not start a label check on the hidden screen
+      clearTimeout(checkTimer);
+      clearTimeout(layoutTimer);
     },
   });
 

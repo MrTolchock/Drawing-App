@@ -8,6 +8,18 @@
 
   let artCanvas = null;
   let lastPreview = null;
+  let albumBadge = null;
+
+  const readSub = () => ['ma', 'mi', 'mo'].map((s) => FK.text.syllable(s)).join(' · ');
+
+  // Pulsing number on the Sammelalbum tile: stickers earned but not yet looked at.
+  function updateBadge() {
+    if (!albumBadge) return;
+    const n = Math.max(0, FK.rewardsUnlocked() - (FK.settings.get('album.seen') | 0));
+    albumBadge.textContent = String(n);
+    albumBadge.hidden = n === 0;
+    albumBadge.closest('.tile').classList.toggle('has-new', n > 0);
+  }
 
   function open(name, params) {
     if (FK.screenExists(name)) FK.go(name, params);
@@ -75,8 +87,17 @@
   FK.screen('hub', {
     build(root) {
       const gear = FK.ui.btn({ icon: 'gear', cls: 'btn-round btn-parents', title: 'Für Eltern: gedrückt halten' });
-      FK.ui.longPress(gear, 1200, () => { FK.sound.open(); FK.go('parents'); });
-      gear.addEventListener('click', () => FK.ui.toast('Für Eltern: Knopf 1 Sekunde gedrückt halten'));
+      // parent gate: hold the gear, then solve a small multiplication
+      let held = false; // the click that ends a long press must not show the hint toast
+      gear.addEventListener('pointerdown', () => { held = false; });
+      FK.ui.longPress(gear, 1200, () => {
+        held = true;
+        FK.ui.parentGate(() => { FK.sound.open(); FK.go('parents'); });
+      });
+      gear.addEventListener('click', () => {
+        if (!held) FK.ui.toast('Für Eltern: Knopf 1 Sekunde gedrückt halten');
+        held = false;
+      });
 
       const logo = h('h1', { class: 'logo', 'aria-label': 'Farbklecks' });
       'Farbklecks'.split('').forEach((ch, i) => {
@@ -102,25 +123,36 @@
       const grid = h('div', { class: 'hub-grid' },
         big,
         tile({ cls: 'tile-mint', title: 'Schreiben', sub: 'ABC · 123', go: 'trace', art: traceArt() }),
-        tile({ cls: 'tile-rose', title: 'Lesen', sub: 'ma · mi · mo', go: 'read', art: readArt() }),
+        tile({ cls: 'tile-rose', title: 'Lesen', sub: readSub(), go: 'read', art: readArt() }),
         tile({ cls: 'tile-sky tile-wide', title: 'Punkt zu Punkt', sub: '1 · 2 · 3', go: 'dots', art: dotsArt() }),
         h('div', { class: 'hub-small' },
           smallTile('brush', 'Freies Malen', 'free', 'tile-lilac'),
           smallTile('gallery', 'Meine Bilder', 'gallery'),
           smallTile('album', 'Sammelalbum', 'album', 'tile-apricot')));
+      // the badge sits on the album icon like an app badge
+      albumBadge = h('span', { class: 'tile-count', 'aria-hidden': 'true', hidden: true });
+      const albumIc = grid.querySelector('.tile-small:last-child .tile-ic');
+      const icWrap = h('span', { class: 'tile-ic-wrap' });
+      albumIc.replaceWith(icWrap);
+      icWrap.append(albumIc, albumBadge);
 
       root.append(
-        h('header', { class: 'hub-top' }, gear, h('div', { class: 'hub-hero' }, mascot, logo), FK.ui.starCounter()),
+        h('header', { class: 'hub-top' }, gear, h('div', { class: 'hub-hero' }, mascot, logo), FK.ui.starCounter({ onClick: () => open('album') })),
         h('div', { class: 'hub-body scroll' }, grid));
 
       // Words follow the parents' GROSS/normal setting.
       FK.on('settings', (e) => {
+        if (e.key === 'album.seen') updateBadge();
         if (e.key !== 'schrift') return;
         const old = root.querySelector('.art-read');
         if (old) old.replaceWith(readArt());
+        const sub = root.querySelector('.tile-rose .tile-sub');
+        if (sub) sub.textContent = readSub();
       });
+      FK.on('stars', updateBadge);
     },
     enter() {
+      updateBadge();
       requestAnimationFrame(drawPreview);
     },
   });

@@ -244,7 +244,7 @@
   /* ---------- UFO ---------- */
   FK.art.add({
     id: 'ufo',
-    name: 'UFO',
+    name: 'Ufo',
     cat: 'fantasie',
     colors: ['hellgruen', 'grau', 'hellblau', 'gelb', 'orange', 'blau'],
     spots: [

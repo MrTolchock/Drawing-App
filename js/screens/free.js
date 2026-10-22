@@ -1,4 +1,4 @@
-/* Farbklecks – Freies Malen: Pinsel, Stempel, Spiegel, farbiges Papier. */
+/* Farbklecks – Freies Malen: Stifte, Stempel, Spiegel, farbiges Papier. */
 (function () {
   'use strict';
   const FK = window.FK;
@@ -18,6 +18,8 @@
     { id: 'spiegel', name: 'Spiegel', icon: 'mirror' },
     { id: 'kaleido', name: 'Kaleidoskop', icon: 'kaleido' },
   ];
+  // a drawing is only kept (gallery, star) when at least this share of the paper is painted
+  const MIN_PAINT = 0.003;
   const SIZE_INFO = [{ name: 'Klein', dot: 10, r: 5 }, { name: 'Mittel', dot: 18, r: 8 }, { name: 'Gross', dot: 28, r: 12 }, { name: 'Riesig', dot: 42, r: 16 }];
 
   const saved = FK.settings.get('free.tool') || {};
@@ -38,6 +40,8 @@
   let saveTimer = 0;
   let loaded = false;
   let loadToken = 0;
+  let active = false; // the screen is shown (FK.current() still names it while leave() runs)
+  let snapping = false;
   const el = {};
 
   function applyTool() {
@@ -78,29 +82,87 @@
     } catch (e) { /* storage unavailable */ }
   }
 
+  // Thumbnail JPEG of a drawing: paper colour + paint, at most 420px.
+  function thumbBlob(img, W, H, paper) {
+    const s = Math.min(1, 420 / Math.max(W, H));
+    const c = document.createElement('canvas');
+    c.width = Math.max(1, Math.round(W * s));
+    c.height = Math.max(1, Math.round(H * s));
+    const g = c.getContext('2d');
+    g.fillStyle = paper || '#ffffff';
+    g.fillRect(0, 0, c.width, c.height);
+    g.drawImage(img, 0, 0, c.width, c.height);
+    return FK.canvasBlob(c, 'image/jpeg', 0.86).finally(() => { c.width = c.height = 0; });
+  }
+
+  // At most STARS_PER_DAY free-drawing stars a day (one per new drawing), so stars keep their meaning.
+  const STARS_PER_DAY = 3;
+  function freeStarToday() {
+    const day = new Date().toDateString();
+    const st = FK.settings.get('free.stars') || {};
+    const n = st.day === day ? st.n | 0 : 0;
+    if (n >= STARS_PER_DAY) return false;
+    FK.settings.set('free.stars', { day, n: n + 1 });
+    return true;
+  }
+
+  // «Speichern»: into «Meine Bilder», one star per drawing – but only for a real drawing.
   async function snap() {
+    if (!loaded || !eng.W || snapping) return;
     eng.settle();
+    if (eng.coverage() < MIN_PAINT) {
+      FK.sound.nope();
+      FK.ui.shake(eng.paperEl);
+      FK.ui.toast('Mal zuerst etwas!');
+      return;
+    }
+    snapping = true;
     eng.flash();
     FK.sound.click();
+    // everything is taken now: a «Neu» or leaving meanwhile can't mix up the stored picture
+    const rec = { id: gid, kind: 'free', name: 'Freies Malen', W: eng.W, H: eng.H, k: eng.paperScale(), paper: eng.paper };
+    const paintP = eng.paintBlob();
+    const tc = eng.compose(420);
+    const thumbP = FK.canvasBlob(tc, 'image/jpeg', 0.86).finally(() => { tc.width = tc.height = 0; });
+    save();
     try {
-      const paint = await eng.paintBlob();
-      const tc = eng.compose(420);
-      const thumb = await FK.canvasBlob(tc, 'image/jpeg', 0.86).finally(() => { tc.width = tc.height = 0; });
+      const paint = await paintP;
+      const thumb = await thumbP;
       const now = Date.now();
-      const old = await FK.store.getBild(gid).catch(() => null);
-      await FK.store.putBild({ id: gid, kind: 'free', name: 'Freies Malen', created: old ? old.created : now, updated: now, W: eng.W, H: eng.H, k: eng.paperScale(), paper: eng.paper, paint, thumb });
-      const stars = FK.progress.finish('free', gid, 1);
-      save();
-      FK.ui.celebrate({ stars, from: el.save });
+      const old = await FK.store.getBild(rec.id).catch(() => null);
+      await FK.store.putBild(Object.assign(rec, { created: old ? old.created : now, updated: now, paint, thumb }));
+      const first = !FK.progress.isDone('free', rec.id);
+      const stars = FK.progress.finish('free', rec.id, first && freeStarToday() ? 1 : 0);
+      if (active) FK.ui.celebrate({ stars, from: el.save });
     } catch (e) {
       FK.sound.nope();
       FK.ui.toast('Hoppla, das ging nicht.');
+    } finally {
+      snapping = false;
+    }
+  }
+
+  // Gallery «Weitermalen» replaces the drawing in progress: a different, unsaved one goes to the gallery first.
+  async function archiveSlot(cur) {
+    const old = await FK.store.getBild(cur.gid).catch(() => null);
+    if (old && (old.updated || 0) >= (cur.t || 0)) return;
+    const img = await FK.blobToImage(cur.paint);
+    try {
+      if (FK.engine.coverageOf(img, cur.W, cur.H) < MIN_PAINT) return;
+      const thumb = await thumbBlob(img, cur.W, cur.H, cur.paper);
+      const t = cur.t || Date.now();
+      await FK.store.putBild({
+        id: cur.gid, kind: 'free', name: 'Freies Malen', created: old ? old.created : t, updated: t,
+        W: cur.W, H: cur.H, k: old && old.k ? old.k : Math.min(2, window.devicePixelRatio || 1), paper: cur.paper || '#ffffff', paint: cur.paint, thumb,
+      });
+    } finally {
+      if (img.close) img.close();
     }
   }
 
   function brushPop(anchor) {
     FK.ui.pop(anchor, (card) => {
-      FK.ui.popTitle(card, 'Pinsel');
+      FK.ui.popTitle(card, 'Stifte');
       const grid = h('div', { class: 'grid-opts', style: { '--cols': 4 } });
       const c = FK.color.byId(T.colorId) || FK.COLORS[0];
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -162,8 +224,10 @@
       PAPERS.forEach((p) => {
         const b = FK.ui.opt(p.name, false, () => {
           FK.ui.closePop(true);
+          // «Zurück» brings the old sheet back with its own gallery id (no duplicate, no second star)
+          const meta = { gid };
           gid = 'f' + Date.now().toString(36);
-          eng.newPage({ paper: p.hex, keepUndo: true, animate: true });
+          eng.newPage({ paper: p.hex, keepUndo: true, animate: true, meta });
         });
         b.append(h('span', { class: 'paper-chip', style: { background: p.hex } }), h('span', { text: p.name }));
         grid.append(b);
@@ -174,7 +238,7 @@
 
   FK.screen('free', {
     build(r) {
-      el.brush = FK.ui.btn({ icon: 'brush', label: 'Pinsel', onClick: (e) => {
+      el.brush = FK.ui.btn({ icon: 'brush', label: 'Stift', onClick: (e) => {
         if (T.kind !== 'brush') setKind('brush');
         brushPop(e.currentTarget);
       } });
@@ -187,7 +251,7 @@
         }, persist));
       } });
       el.fill = FK.ui.btn({ icon: 'bucket', label: 'Eimer', onClick: () => setKind('fill') });
-      el.eraser = FK.ui.btn({ icon: 'eraser', label: 'Radierer', onClick: () => setKind('eraser') });
+      el.eraser = FK.ui.btn({ icon: 'eraser', label: 'Gummi', onClick: () => setKind('eraser') });
       el.size = FK.ui.btn({ label: 'Grösse', onClick: (e) => sizePop(e.currentTarget) });
       el.size.insertAdjacentHTML('afterbegin', '<svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="8" fill="#23203d"/></svg>');
       el.mirror = FK.ui.btn({ icon: 'mirror-off', label: 'Spiegel', onClick: (e) => mirrorPop(e.currentTarget) });
@@ -215,13 +279,19 @@
         },
       });
       r.append(FK.ui.topbar({ title: 'Freies Malen' }), h('div', { class: 'paint-grid' }, tools, stageHost, actions, h('div', { class: 'box-wrap' }, pencils.el)));
-      eng = FK.engine.create({ host: stageHost, kind: 'free', onChange: scheduleSave });
+      eng = FK.engine.create({
+        host: stageHost,
+        kind: 'free',
+        onChange: scheduleSave,
+        onPageUndo: (m) => { if (m && m.gid) gid = m.gid; },
+      });
       pencils.set(FK.COLORS.slice());
       document.addEventListener('visibilitychange', () => {
         if (document.hidden && FK.current() === 'free') save();
       });
     },
     enter(params) {
+      active = true;
       pencils.select(T.colorId);
       applyTool();
       loaded = false;
@@ -230,8 +300,13 @@
         eng.fit();
         let rec = null;
         let img = null;
-        if (params && params.bild) rec = params.bild;
-        else {
+        if (params && params.bild) {
+          rec = params.bild;
+          try {
+            const cur = await FK.store.get('free');
+            if (cur && cur.paint && cur.gid && cur.gid !== rec.id) await archiveSlot(cur);
+          } catch (e) { /* no storage */ }
+        } else {
           try {
             rec = (await FK.store.get('free')) || (await FK.store.get('current'));
           } catch (e) { /* no storage */ }
@@ -256,13 +331,17 @@
     },
     leave() {
       loadToken++;
+      active = false;
       FK.ui.closePop(true);
       if (eng.W && loaded) {
+        // lands a «Neu» swap still in the air, so the save below stores the real paper
         eng.settle();
-        Promise.resolve(save()).then(() => { if (FK.current() !== 'free') eng.release(); });
-      } else if (FK.current() !== 'free') {
+        Promise.resolve(save()).then(() => { if (!active) eng.release(); });
+      } else {
+        // nothing loaded yet (the load is aborted by the token): just give the canvases back
         eng.release();
       }
+      loaded = false;
     },
   });
 })();

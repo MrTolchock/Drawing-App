@@ -58,10 +58,9 @@
 
   /* ---------- overview ---------- */
 
-  function starsHtml(n, max) {
-    let s = '';
-    for (let i = 0; i < max; i++) s += FK.icon(i < n ? 'star' : 'star-empty', 'ic');
-    return s;
+  // the highest number in a level, from the pictures themselves (Stufe 2 goes to 18, Stufe 3 to 25)
+  function maxDots(list) {
+    return list.reduce((m, d) => Math.max(m, d.points.length), 0);
   }
 
   function renderTabs() {
@@ -83,8 +82,7 @@
           renderGrid(true);
         },
       },
-      h('span', { class: 'pp-tab-lvl', html: starsHtml(lvl, lvl) }),
-      h('span', { class: 'pp-tab-dots', text: lvl === 1 ? '1 2 3' : lvl === 2 ? '1 … 20' : '1 … 30' }),
+      h('span', { class: 'pp-tab-dots', text: lvl === 1 ? '1 2 3' : '1 … ' + maxDots(list) }),
       h('span', { class: 'pp-tab-prog', html: FK.icon('star', 'ic') + '<b>' + n + '</b>' }));
       tabsEl.append(b);
     });
@@ -135,8 +133,8 @@
           openPic(d);
         },
       }, c);
-      const badge = h('span', { class: 'pp-tile-star', html: FK.icon(ok ? 'star' : 'star-empty', 'ic') });
-      t.append(badge);
+      // the star only once earned (as in the Malbuch): a faded empty star looked like a smudge
+      if (ok) t.append(h('span', { class: 'pp-tile-star', html: FK.icon('star', 'ic') }));
       if (ok) t.append(h('span', { class: 'pp-tile-name', text: FK.text.word(d.name) }));
       else t.append(h('span', { class: 'pp-tile-count', text: String(d.points.length) }));
       gridEl.append(t);
@@ -484,12 +482,13 @@
     endEl.textContent = '';
     const name = h('div', { class: 'pp-name' }, FK.ui.word(cur.w || cur.name, { cls: 'pp-word' }));
     const acts = h('div', { class: 'pp-acts' },
-      FK.ui.btn({ icon: 'crayon', label: 'Ausmalen', cls: 'btn-go pp-paint', onClick: () => {
+      // same colours in every learning end panel: Weiter green, Nochmal white; «Ausmalen» is the bonus, in rose
+      FK.ui.btn({ icon: 'crayon', label: 'Ausmalen', cls: 'btn-big pp-paint', onClick: () => {
         FK.sound.click();
         FK.go('color', { pageId: cur.id, mode: 'frei' });
       } }),
-      FK.ui.btn({ icon: 'refresh', label: 'Nochmal', onClick: () => openPic(cur) }),
-      FK.ui.btn({ icon: 'next', label: 'Weiter', cls: 'btn-sun', onClick: () => openPic(nextPic()) }));
+      FK.ui.btn({ icon: 'refresh', label: 'Nochmal', cls: 'btn-big', onClick: () => openPic(cur) }),
+      FK.ui.btn({ icon: 'next', label: 'Weiter', cls: 'btn-big btn-go', onClick: () => openPic(nextPic()) }));
     endEl.append(name, acts);
     playEl.classList.add('is-end');
   }

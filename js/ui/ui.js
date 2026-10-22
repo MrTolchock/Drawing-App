@@ -80,8 +80,14 @@
     return b;
   }
 
-  function starCounter() {
-    const el = h('div', { class: 'star-count', 'aria-label': 'Sterne' });
+  // o.onClick makes the counter a button (on the hub it opens the Sammelalbum).
+  function starCounter(o) {
+    o = o || {};
+    const el = h(o.onClick ? 'button' : 'div', { class: 'star-count', 'aria-label': 'Sterne' });
+    if (o.onClick) {
+      el.type = 'button';
+      el.addEventListener('click', () => { FK.sound.tick(); o.onClick(); });
+    }
     el.innerHTML = FK.icon('star', 'ic star-ic') + '<b></b>';
     const val = el.querySelector('b');
     const set = () => { val.textContent = String(FK.progress.stars()); };
@@ -124,7 +130,73 @@
 
   const PRAISE = ['Mega schön!', 'Bravo!', 'Super gemacht!', 'Wunderschön!', 'Grossartig!', 'Toll!', 'Juhui!', 'Wow!'];
 
-  // Sound + confetti + praise bubble + stars flying into the counter. Resolves when done.
+  /* ---------- «Neuer Sticker!» ---------- */
+  // A sticker for the Sammelalbum is earned every STARS_PER_STICKER stars. The 'stars' event comes
+  // right before a celebration; the new stickers are announced when that celebration is over.
+  let newStickers = [];
+  FK.on('stars', (e) => {
+    if (!e || !(e.added > 0) || !FK.REWARDS) return;
+    const per = FK.STARS_PER_STICKER;
+    const max = FK.REWARDS.length;
+    const before = Math.min(max, Math.floor((e.total - e.added) / per));
+    const after = Math.min(max, Math.floor(e.total / per));
+    for (let i = before; i < after; i++) newStickers.push(i);
+  });
+  // stickers the child already saw in the Sammelalbum (or a reset) are not announced again
+  FK.on('settings', (e) => {
+    if (!e || e.key !== 'album.seen') return;
+    const seen = e.value | 0;
+    newStickers = seen ? newStickers.filter((i) => i >= seen) : [];
+  });
+
+  function stickerMoment() {
+    const list = newStickers.slice(-3);
+    newStickers = [];
+    if (!list.length) return Promise.resolve();
+    const title = FK.text.word(list.length > 1 ? 'Neue Sticker!' : 'Neuer Sticker!');
+    const row = h('div', { class: 'ns-row n' + list.length });
+    list.forEach((i, k) => {
+      const st = h('span', { class: 'ns-sticker' }, h('span', { class: 'emoji', text: FK.REWARDS[i][0] }));
+      st.style.setProperty('--k', k);
+      st.style.setProperty('--tilt', (k % 2 ? 7 : -6) + 'deg');
+      row.append(st);
+    });
+    const name = list.length === 1 ? h('span', { class: 'ns-name', text: FK.text.word(FK.REWARDS[list[0]][1]) }) : null;
+    const album = h('span', { class: 'ns-album', html: FK.icon('album', 'ic') });
+    const card = h('div', { class: 'ns-card' }, h('b', { class: 'ns-title', text: title }), row, name, album);
+    const wrap = h('div', { class: 'new-sticker', role: 'status', 'aria-label': title }, card);
+    document.body.append(wrap);
+    FK.sound.rainbow();
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        const r = row.getBoundingClientRect();
+        FK.fx.burst(r.left + r.width / 2, r.top + r.height / 2);
+      }, 350);
+      // after a moment the stickers fly into the album book; whatever comes next (end card) may
+      // already appear underneath while they fly
+      setTimeout(() => {
+        const a = album.getBoundingClientRect();
+        row.querySelectorAll('.ns-sticker').forEach((st) => {
+          const b = st.getBoundingClientRect();
+          st.style.setProperty('--dx', a.left + a.width / 2 - (b.left + b.width / 2) + 'px');
+          st.style.setProperty('--dy', a.top + a.height / 2 - (b.top + b.height / 2) + 'px');
+          st.classList.add('fly');
+        });
+        if (name) name.classList.add('fade');
+        resolve();
+      }, 1300);
+      setTimeout(() => {
+        FK.sound.twinkle();
+        bounce(album);
+      }, 1850);
+      setTimeout(() => {
+        wrap.classList.add('out');
+        setTimeout(() => wrap.remove(), 260);
+      }, 2350);
+    });
+  }
+
+  // Sound + confetti + praise bubble + stars flying into the counter (+ new sticker). Resolves when done.
   async function celebrate(o) {
     o = o || {};
     const big = !!o.big;
@@ -139,6 +211,10 @@
       await FK.fx.starFly(o.from || null, o.stars);
     } else {
       await FK.wait(700);
+    }
+    if (newStickers.length) {
+      await FK.wait(120);
+      await stickerMoment();
     }
   }
 
@@ -205,11 +281,14 @@
     setTimeout(() => document.removeEventListener('click', eat, true), 450);
   }
 
-  // FK.ui.modal({ title, body: element, actions: [{ label, icon, cls, onClick }], wide, onClose })
+  // FK.ui.modal({ title, read, body: element, actions: [{ label, icon, cls, onClick }], wide, cls, onClose })
+  // read: the title is a word the child reads (Andika). A card with a body and actions is laid out
+  // side by side on low phone screens (.split), so the buttons never scroll away.
   function modal(o) {
     closeModal();
-    const card = h('div', { class: 'modal-card' + (o.wide ? ' wide' : ''), role: 'dialog', 'aria-modal': 'true', 'aria-label': o.title || '' });
-    if (o.title) card.append(h('h2', { class: 'modal-title', text: o.title }));
+    const split = o.body && o.actions && o.actions.length;
+    const card = h('div', { class: 'modal-card' + (o.wide ? ' wide' : '') + (split ? ' split' : '') + (o.cls ? ' ' + o.cls : ''), role: 'dialog', 'aria-modal': 'true', 'aria-label': o.title || '' });
+    if (o.title) card.append(h('h2', { class: 'modal-title' + (o.read ? ' read' : ''), text: o.title }));
     if (o.body) card.append(o.body);
     if (o.actions && o.actions.length) {
       const row = h('div', { class: 'modal-actions' });
@@ -255,7 +334,36 @@
     });
   }
 
-  // Calls fn after the element was held for `ms` (parent gate). Shows a filling ring.
+  // Parent gate: an easy multiplication with four big answers. Right → fn(); wrong → just closes.
+  function parentGate(fn) {
+    const x = 3 + Math.floor(Math.random() * 7);
+    const y = 3 + Math.floor(Math.random() * 7);
+    const right = x * y;
+    const set = [right];
+    const near = [right + x, right - x, right + y, right - y, right + 1, right - 1, right + 10, right - 10];
+    while (set.length < 4 && near.length) {
+      const v = near.splice(Math.floor(Math.random() * near.length), 1)[0];
+      if (v > 0 && set.indexOf(v) < 0) set.push(v);
+    }
+    set.sort(() => Math.random() - 0.5);
+    const grid = h('div', { class: 'gate-grid' });
+    const m = modal({
+      title: 'Für Eltern',
+      cls: 'gate',
+      body: h('div', { class: 'gate-body' }, h('p', { class: 'gate-task', text: x + ' × ' + y + ' = ?' }), grid),
+    });
+    set.forEach((v) => grid.append(btn({
+      label: String(v),
+      cls: 'gate-ans',
+      onClick: () => {
+        m.close();
+        if (v === right) fn();
+        else FK.sound.nope();
+      },
+    })));
+  }
+
+  // Calls fn after the element was held for `ms`. Shows a filling ring.
   function longPress(el, ms, fn) {
     let timer = 0;
     const start = (e) => {
@@ -303,5 +411,5 @@
     toastTimer = setTimeout(() => { t.hidden = true; }, ms || 2200);
   }
 
-  FK.ui = { btn, topbar, starCounter, praise, celebrate, word, mascot, modal, closeModal, confirm, longPress, shake, bounce, toast, eatClick, PRAISE };
+  FK.ui = { btn, topbar, starCounter, praise, celebrate, word, mascot, modal, closeModal, confirm, parentGate, longPress, shake, bounce, toast, eatClick, PRAISE };
 })();

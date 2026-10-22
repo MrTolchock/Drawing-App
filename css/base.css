@@ -128,6 +128,8 @@ button { font: inherit; color: inherit; }
   paint-order: stroke fill;
   text-shadow: 0 4px 0 var(--ink);
 }
+/* the colouring screen's title is the picture's name: a word the child reads */
+.screen-color .topbar .title { font-family: var(--read); font-weight: 700; letter-spacing: 0; }
 
 .star-count {
   display: flex;
@@ -145,6 +147,9 @@ button { font: inherit; color: inherit; }
   flex: none;
 }
 .star-count .star-ic { width: 38px; height: 38px; }
+button.star-count { color: inherit; cursor: pointer; touch-action: manipulation; transition: transform .12s ease, box-shadow .12s ease; }
+button.star-count:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--ink); }
+button.star-count:focus-visible { outline: 4px solid var(--sun); outline-offset: 3px; }
 .star-count.bump { animation: bump .45s cubic-bezier(.3, 1.8, .5, 1); }
 @keyframes bump { 0% { transform: scale(1); } 40% { transform: scale(1.25) rotate(-6deg); } 100% { transform: scale(1); } }
 
@@ -299,6 +304,7 @@ button { font: inherit; color: inherit; }
   line-height: 1.1;
   text-wrap: balance;
 }
+.modal-title.read { font-family: var(--read); font-weight: 700; }
 .modal-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 18px; }
 .modal-x { position: absolute; top: 12px; right: 12px; --btn: 48px; --btn-w: 48px; --ic: 26px; }
 
@@ -356,6 +362,73 @@ button { font: inherit; color: inherit; }
   z-index: 55;
 }
 
+/* parent gate: a small multiplication with four big answers */
+.gate-body { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.gate-task { margin: 0; font-family: var(--read); font-size: clamp(40px, 8vw, 56px); font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; }
+.gate-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; width: 100%; }
+.gate-ans { --btn: 76px; --btn-w: 100%; --lbl: 30px; }
+.gate-ans .lbl { font-family: var(--read); font-weight: 700; margin: 0; }
+
+/* «Neuer Sticker!» after a celebration: the sticker pops up and flies into the album book */
+.new-sticker {
+  position: fixed;
+  inset: 0;
+  z-index: 58;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(35, 32, 61, .28);
+  pointer-events: none;
+  animation: fade-in .2s ease;
+}
+.ns-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  max-width: 100%;
+  padding: 16px 30px 22px;
+  border: 4px solid var(--ink);
+  border-radius: 30px;
+  background: var(--sun);
+  box-shadow: 0 8px 0 var(--ink);
+  animation: ns-in .5s cubic-bezier(.3, 1.6, .5, 1) both;
+}
+.ns-title { font-family: var(--read); font-size: clamp(28px, 5vw, 44px); font-weight: 700; line-height: 1.1; white-space: nowrap; }
+.ns-row { display: flex; gap: 12px; margin: 4px 0 10px; }
+.ns-sticker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(92px, 15vw, 136px);
+  height: clamp(92px, 15vw, 136px);
+  border: 4px solid var(--ink);
+  border-radius: 28px;
+  background: #fff;
+  box-shadow: 0 6px 0 var(--ink);
+  flex: none;
+  transform: rotate(var(--tilt, -6deg));
+  animation: ns-pop .6s cubic-bezier(.3, 1.8, .5, 1) both;
+  animation-delay: calc(.2s + var(--k, 0) * .12s);
+  transition: transform .55s cubic-bezier(.55, -0.35, .7, 1), opacity .55s ease-in;
+}
+.ns-sticker .emoji { font-size: clamp(58px, 9.5vw, 88px); line-height: 1; }
+/* three stickers at once still fit side by side on a narrow phone */
+.ns-row.n3 { gap: 8px; }
+.ns-row.n3 .ns-sticker { width: min(clamp(92px, 15vw, 136px), calc((100vw - 140px) / 3)); height: min(clamp(92px, 15vw, 136px), calc((100vw - 140px) / 3)); }
+.ns-row.n3 .ns-sticker .emoji { font-size: min(clamp(58px, 9.5vw, 88px), calc((100vw - 140px) / 3 * .64)); }
+.ns-sticker.fly { transform: translate(var(--dx, 0), var(--dy, 0)) scale(.18) rotate(40deg); opacity: .4; }
+.ns-name { font-family: var(--read); font-size: clamp(22px, 3.4vw, 30px); font-weight: 700; line-height: 1; transition: opacity .3s; }
+.ns-name.fade { opacity: 0; }
+.ns-album { position: absolute; right: -24px; bottom: -26px; width: 76px; height: 76px; transform: rotate(10deg); }
+.ns-album .ic { width: 100%; height: 100%; filter: drop-shadow(0 4px 0 var(--ink)); }
+.new-sticker.out { animation: fade-out .26s ease forwards; }
+@keyframes ns-in { from { transform: scale(.3) rotate(-10deg); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes ns-pop { from { scale: 0; } to { scale: 1; } }
+@keyframes fade-out { to { opacity: 0; } }
+
 /* long-press ring (parent gate) */
 .holding::after {
   content: "";
@@ -374,6 +447,7 @@ button { font: inherit; color: inherit; }
   :root { --btn: 54px; --btn-w: 56px; --ic: 28px; --lbl: 10.5px; --radius: 15px; }
   .topbar { gap: 8px; padding-bottom: 8px; }
   .topbar .title { -webkit-text-stroke-width: 6px; }
+  .screen-color .topbar .title { letter-spacing: -.02em; }
   .star-count { height: 44px; font-size: 21px; padding-right: 12px; }
   .star-count .star-ic { width: 30px; height: 30px; }
   .btn-round { --btn: 48px; --btn-w: 48px; --ic: 28px; }

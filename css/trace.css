@@ -106,7 +106,9 @@
   font-size: 64px;
   fill: #efedf7;
   stroke: var(--ink);
-  stroke-width: 2.4;
+  /* the fill covers the inner half of the stroke, so the font's overlapping contours (K M N W X Y Q) stay hidden */
+  paint-order: stroke fill;
+  stroke-width: 4.8;
   stroke-dasharray: 4.5 4;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -125,7 +127,6 @@
   pointer-events: none;
 }
 .screen-trace .tr-tile-stars .ic { width: 34px; height: 34px; transform: rotate(12deg); filter: drop-shadow(0 2px 0 rgba(35, 32, 61, .35)); }
-.screen-trace .tr-tile-stars .tr-star-empty { opacity: .28; filter: none; width: 28px; height: 28px; margin: 3px 3px 0 0; }
 .screen-trace .tr-tile-stars .tr-star-frei { width: 28px; height: 28px; margin-left: -12px; margin-top: 16px; transform: rotate(-10deg); }
 .screen-trace .tr-tile.is-next::after {
   content: "";
@@ -375,7 +376,24 @@
 }
 .screen-trace .is-done .tr-card { animation: tr-card-in .6s .25s cubic-bezier(.3, 1.5, .5, 1) both; }
 @keyframes tr-card-in { from { transform: scale(.6) rotate(-6deg); opacity: 0; } to { transform: none; opacity: 1; } }
+.screen-trace .tr-pic { display: flex; flex-direction: column; align-items: center; gap: 8px; flex: none; }
 .screen-trace .tr-card-emoji { font-size: 104px; line-height: 1.05; }
+/* «B b»: capital and small letter, the one just written in red */
+.screen-trace .tr-pair {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 3px 14px 0;
+  border: 3px solid var(--ink);
+  border-radius: 14px;
+  background: #fff7d6;
+  font-family: var(--read);
+  font-weight: 700;
+  font-size: 34px;
+  line-height: 1.15;
+  color: rgba(35, 32, 61, .5);
+}
+.screen-trace .tr-pair .is-cur { color: #e5322d; }
 .screen-trace .is-done .tr-card-emoji { animation: tr-emoji-in .8s .45s cubic-bezier(.3, 1.8, .5, 1) both; }
 @keyframes tr-emoji-in { from { transform: scale(.2) rotate(-25deg); } to { transform: none; } }
 .screen-trace .tr-word { font-size: 50px; }
@@ -405,6 +423,7 @@
 
 .screen-trace .tr-acts { flex: none; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding-bottom: 6px; }
 .screen-trace .tr-acts .btn { width: 100%; }
+.screen-trace .tr-acts .tr-frei { background: var(--rose); }
 .screen-trace .tr-acts .tr-over .lbl { font-family: var(--read); font-size: calc(var(--lbl) * 1.15); letter-spacing: .03em; }
 .screen-trace .tr-acts .tr-frei.is-has::after {
   content: "";
@@ -460,7 +479,6 @@
   .screen-trace .tr-grid { gap: 12px; }
   .screen-trace .tr-tile { border-radius: 18px; border-width: 3px; box-shadow: 0 4px 0 var(--ink); }
   .screen-trace .tr-tile-stars .ic { width: 26px; height: 26px; }
-  .screen-trace .tr-tile-stars .tr-star-empty { width: 22px; height: 22px; }
   .screen-trace .tr-tile-stars .tr-star-frei { width: 22px; height: 22px; margin-top: 12px; }
   .screen-trace .tr-play { gap: 12px; }
   .screen-trace .tr-paper { border-radius: 24px; }
@@ -473,7 +491,8 @@
   .screen-trace .tr-pip.is-dot { width: 18px; height: 18px; }
   .screen-trace .tr-chip { font-size: 14px; padding: 3px 10px 3px 4px; }
   .screen-trace .tr-card { gap: 14px; padding: 10px; border-radius: 22px; }
-  .screen-trace .tr-card-emoji { font-size: 76px; }
+  .screen-trace .tr-card-emoji { font-size: 70px; }
+  .screen-trace .tr-pair { font-size: 24px; gap: 6px; padding: 2px 10px 0; border-radius: 11px; border-width: 2.5px; }
   .screen-trace .tr-word { font-size: 38px; }
   .screen-trace .tr-card.is-digit { flex-direction: column; gap: 6px; }
   .screen-trace .tr-card.is-digit .tr-word { font-size: 30px; }
@@ -496,7 +515,6 @@
   .screen-trace .tr-scroll { padding-top: 6px; }
   .screen-trace .tr-tile { border-radius: 18px; border-width: 3px; box-shadow: 0 4px 0 var(--ink); }
   .screen-trace .tr-tile-stars .ic { width: 26px; height: 26px; }
-  .screen-trace .tr-tile-stars .tr-star-empty { width: 22px; height: 22px; }
   .screen-trace .tr-tile-stars .tr-star-frei { width: 22px; height: 22px; margin-top: 12px; }
   .screen-trace .tr-play { gap: 12px; padding-bottom: 4px; }
   .screen-trace .tr-paper { border-radius: 22px; border-width: 3px; box-shadow: 0 5px 0 var(--ink); }
@@ -512,7 +530,8 @@
   .screen-trace .tr-chip .ic { width: 22px; height: 22px; }
   .screen-trace .tr-end { gap: 8px; }
   .screen-trace .tr-card { flex-direction: row; gap: 12px; padding: 8px 10px; border-radius: 22px; border-width: 3px; box-shadow: 0 5px 0 var(--ink); }
-  .screen-trace .tr-card-emoji { font-size: 64px; }
+  .screen-trace .tr-card-emoji { font-size: 56px; }
+  .screen-trace .tr-pair { font-size: 22px; gap: 5px; padding: 1px 9px 0; border-radius: 10px; border-width: 2.5px; }
   .screen-trace .tr-word { font-size: 32px; }
   .screen-trace .tr-card.is-digit { flex-direction: column; gap: 4px; }
   .screen-trace .tr-card.is-digit .tr-word { font-size: 26px; }

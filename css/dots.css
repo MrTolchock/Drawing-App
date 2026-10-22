@@ -46,25 +46,22 @@
 }
 .screen-dots .pp-tab:active { transform: translateY(4px); box-shadow: 0 2px 0 var(--ink); }
 .screen-dots .pp-tab.on { background: var(--sun); transform: translateY(-3px) rotate(-2deg); box-shadow: 0 9px 0 var(--ink); }
-.screen-dots .pp-tab-lvl { display: flex; gap: 2px; }
-.screen-dots .pp-tab-lvl .ic { width: 22px; height: 22px; }
-.screen-dots .pp-tab-dots { font-family: var(--read); font-weight: 700; font-size: 24px; line-height: 1.1; letter-spacing: .04em; }
+.screen-dots .pp-tab-dots { font-family: var(--read); font-weight: 700; font-size: 28px; line-height: 1.1; letter-spacing: .04em; padding-top: 2px; }
+/* star count inside the tab, as in Schreiben */
 .screen-dots .pp-tab-prog {
-  position: absolute;
-  right: -12px;
-  top: -14px;
   display: flex;
   align-items: center;
   gap: 1px;
   padding: 2px 9px 2px 3px;
   border-radius: 99px;
-  background: #fff;
-  border: 3px solid var(--ink);
-  font-size: 17px;
+  background: rgba(255, 255, 255, .75);
+  border: 2px solid rgba(35, 32, 61, .2);
+  font-size: 18px;
   font-weight: 800;
   line-height: 1;
 }
-.screen-dots .pp-tab-prog .ic { width: 22px; height: 22px; }
+.screen-dots .pp-tab.on .pp-tab-prog { background: #fff; }
+.screen-dots .pp-tab-prog .ic { width: 24px; height: 24px; }
 
 .screen-dots .pp-scroll { padding: 14px 10px 24px; }
 .screen-dots .pp-grid {
@@ -100,7 +97,6 @@
 }
 .screen-dots .pp-tile-star { position: absolute; right: -12px; top: -14px; pointer-events: none; }
 .screen-dots .pp-tile-star .ic { width: 38px; height: 38px; transform: rotate(12deg); filter: drop-shadow(0 2px 0 rgba(35, 32, 61, .35)); }
-.screen-dots .pp-tile:not(.is-done) .pp-tile-star .ic { opacity: .3; filter: none; width: 30px; height: 30px; }
 .screen-dots .pp-tile-name,
 .screen-dots .pp-tile-count {
   position: absolute;
@@ -237,8 +233,9 @@
 @keyframes pp-name-in { from { transform: scale(.3) rotate(-8deg); opacity: 0; } to { transform: none; opacity: 1; } }
 .screen-dots .pp-word { font-size: 40px; }
 .screen-dots .pp-acts { display: flex; flex-direction: column; align-items: stretch; gap: 12px; width: 100%; }
-.screen-dots .pp-acts .btn { width: 100%; min-height: 64px; }
-.screen-dots .pp-paint { animation: pp-invite 1.6s 1.2s ease-in-out infinite; }
+.screen-dots .pp-acts .btn { width: 100%; }
+/* «Ausmalen» is the bonus invitation: rose, so green still means «Weiter» as in every learning end panel */
+.screen-dots .pp-acts .pp-paint { background: var(--rose); animation: pp-invite 1.6s 1.2s ease-in-out infinite; }
 @keyframes pp-invite { 0%, 100% { transform: none; } 50% { transform: scale(1.06) rotate(-2deg); } }
 
 @media (orientation: portrait) {
@@ -249,29 +246,33 @@
   .screen-dots .is-end .pp-live { display: none; }
   .screen-dots .is-end .pp-end { display: flex; }
   .screen-dots .pp-acts { flex-direction: row; width: auto; }
-  .screen-dots .pp-acts .btn { width: auto; }
+  .screen-dots .pp-acts .btn { width: auto; min-width: 120px; }
 }
 
 @media (max-width: 640px) and (orientation: portrait) {
   .screen-dots { --pp-tile: 128px; }
   .screen-dots .pp-tabs { gap: 10px; }
   .screen-dots .pp-tab { height: 70px; padding: 2px 6px; }
-  .screen-dots .pp-tab-dots { font-size: 18px; }
-  .screen-dots .pp-tab-lvl .ic { width: 18px; height: 18px; }
+  .screen-dots .pp-tab-dots { font-size: 22px; }
   .screen-dots .pp-grid { gap: 18px; }
   .screen-dots .pp-side { min-height: 120px; }
   .screen-dots .pp-next { width: 86px; height: 86px; font-size: 44px; }
   .screen-dots .pp-bar { width: 130px; }
   .screen-dots .pp-word { font-size: 30px; }
+  .screen-dots .pp-tab-prog { font-size: 14px; padding: 1px 7px 1px 2px; }
+  .screen-dots .pp-tab-prog .ic { width: 18px; height: 18px; }
+  /* the name on its own line, the three buttons share the full width below */
   .screen-dots .pp-end { gap: 10px; }
-  .screen-dots .pp-acts { gap: 8px; }
+  .screen-dots .pp-acts { gap: 8px; width: 100%; }
+  .screen-dots .pp-acts .btn { flex: 1 1 0; min-width: 0; }
 }
 
 @media (max-height: 520px) and (orientation: landscape) {
   .screen-dots { --pp-tile: 120px; --pp-side: 150px; }
-  .screen-dots .pp-tab { height: 62px; }
-  .screen-dots .pp-tab-dots { font-size: 18px; }
-  .screen-dots .pp-tab-lvl .ic { width: 16px; height: 16px; }
+  .screen-dots .pp-tab { height: 62px; padding: 2px 8px; gap: 1px; }
+  .screen-dots .pp-tab-dots { font-size: 22px; padding-top: 0; line-height: 1.05; }
+  .screen-dots .pp-tab-prog { font-size: 14px; padding: 1px 7px 1px 2px; }
+  .screen-dots .pp-tab-prog .ic { width: 18px; height: 18px; }
   .screen-dots .pp-next { width: 84px; height: 84px; font-size: 42px; }
   .screen-dots .pp-bar { width: 120px; }
   .screen-dots .pp-word { font-size: 26px; }

@@ -8,7 +8,9 @@
    A stroke may run back over itself where the pencil does not lift (n m h r b p u: down the stem and back up
    into the arch; a d g q: round the bowl, up the stem and down again; B: through the middle bar).
    A stroke shorter than 6 units (e.g. 'M15 28 L15 29') is a dot to tap (i j ä ö ü).
-   word: Anlautwort with syllables separated by '-'; digits: number word, count = n.
+   word: Anlautwort with syllables separated by '-'; digits: number word, count = n. The picture must make a child say the
+   word without help. Where no such word starts with the letter (Ä Ö Ü X Y), the word has it inside (Bär, Löffel, Rüebli, Taxi,
+   Teddy); the end card highlights it there.
 */
 (function () {
   'use strict';
@@ -48,9 +50,9 @@
       'X': { w: 76, strokes: ['M10 0 L66 100', 'M66 0 L10 100'], word: 'Ta-xi', emoji: '🚕' },
       'Y': { w: 76, strokes: ['M8 0 L38 50', 'M68 0 L38 50 L38 100'], word: 'Ted-dy', emoji: '🧸' },
       'Z': { w: 72, strokes: ['M8 0 L64 0 L8 100 L64 100'], word: 'Ze-bra', emoji: '🦓' },
-      'Ä': { w: 88, strokes: ['M44 20 L7 100', 'M44 20 L81 100', 'M21.1 69.6 L66.9 69.6', 'M31 6 L31 7', 'M57 6 L57 7'], word: 'Äp-fel', emoji: '🍎' },
-      'Ö': { w: 88, strokes: ['M56.3 22.4 C37.6 14.9 17 25.6 10.2 46.3 C3.4 67 13 90 31.7 97.6 C50.4 105.1 71 94.4 77.8 73.7 C84.6 53 75 30 56.3 22.4', 'M31 6 L31 7', 'M57 6 L57 7'], word: 'Öl', emoji: '🛢️' },
-      'Ü': { w: 74, strokes: ['M10 20 L10 71.2 C10 87.1 22.1 100 37 100 C51.9 100 64 87.1 64 71.2 L64 20', 'M24 6 L24 7', 'M50 6 L50 7'], word: 'Ü-ber-ra-schung', emoji: '🎁' },
+      'Ä': { w: 88, strokes: ['M44 20 L7 100', 'M44 20 L81 100', 'M21.1 69.6 L66.9 69.6', 'M31 6 L31 7', 'M57 6 L57 7'], word: 'Bär', emoji: '🐻' },
+      'Ö': { w: 88, strokes: ['M56.3 22.4 C37.6 14.9 17 25.6 10.2 46.3 C3.4 67 13 90 31.7 97.6 C50.4 105.1 71 94.4 77.8 73.7 C84.6 53 75 30 56.3 22.4', 'M31 6 L31 7', 'M57 6 L57 7'], word: 'Löf-fel', emoji: '🥄' },
+      'Ü': { w: 74, strokes: ['M10 20 L10 71.2 C10 87.1 22.1 100 37 100 C51.9 100 64 87.1 64 71.2 L64 20', 'M24 6 L24 7', 'M50 6 L50 7'], word: 'Rüeb-li', emoji: '🥕' },
       // Kleinbuchstaben
       'a': { w: 62, strokes: ['M46.9 58.9 C40 49.6 28.2 47.3 19 53.3 C9.8 59.4 5.7 72.1 9.3 83.6 C13 95 23.3 101.7 33.8 99.6 C44.3 97.5 52 87.1 52 75 L52 50 L52 100'], word: 'Af-fe', emoji: '🐒' },
       'b': { w: 62, strokes: ['M10 0 L10 100 L10 75 C10 61.2 19.8 50 32 50 C44.2 50 54 61.2 54 75 C54 88.8 44.2 100 32 100 C19.8 100 10 88.8 10 75'], word: 'Ba-na-ne', emoji: '🍌' },
@@ -78,9 +80,9 @@
       'x': { w: 56, strokes: ['M8 50 L48 100', 'M48 50 L8 100'], word: 'Ta-xi', emoji: '🚕' },
       'y': { w: 60, strokes: ['M8 50 L30 100', 'M52 50 L10 145'], word: 'Ted-dy', emoji: '🧸' },
       'z': { w: 54, strokes: ['M8 50 L46 50 L8 100 L46 100'], word: 'Ze-bra', emoji: '🦓' },
-      'ä': { w: 62, strokes: ['M46.9 58.9 C40 49.6 28.2 47.3 19 53.3 C9.8 59.4 5.7 72.1 9.3 83.6 C13 95 23.3 101.7 33.8 99.6 C44.3 97.5 52 87.1 52 75 L52 50 L52 100', 'M19 30 L19 31', 'M41 30 L41 31'], word: 'Äp-fel', emoji: '🍎' },
-      'ö': { w: 60, strokes: ['M37.5 51.5 C26.1 46.8 13.5 53.5 9.3 66.4 C5.2 79.4 11.1 93.8 22.5 98.5 C33.9 103.2 46.5 96.5 50.7 83.6 C54.8 70.6 48.9 56.2 37.5 51.5', 'M19 30 L19 31', 'M41 30 L41 31'], word: 'Öl', emoji: '🛢️' },
-      'ü': { w: 62, strokes: ['M10 50 L10 78 C10 90.2 19.4 100 31 100 C42.6 100 52 90.2 52 78 L52 50 L52 100', 'M20 30 L20 31', 'M42 30 L42 31'], word: 'Ü-ber-ra-schung', emoji: '🎁' },
+      'ä': { w: 62, strokes: ['M46.9 58.9 C40 49.6 28.2 47.3 19 53.3 C9.8 59.4 5.7 72.1 9.3 83.6 C13 95 23.3 101.7 33.8 99.6 C44.3 97.5 52 87.1 52 75 L52 50 L52 100', 'M19 30 L19 31', 'M41 30 L41 31'], word: 'Bär', emoji: '🐻' },
+      'ö': { w: 60, strokes: ['M37.5 51.5 C26.1 46.8 13.5 53.5 9.3 66.4 C5.2 79.4 11.1 93.8 22.5 98.5 C33.9 103.2 46.5 96.5 50.7 83.6 C54.8 70.6 48.9 56.2 37.5 51.5', 'M19 30 L19 31', 'M41 30 L41 31'], word: 'Löf-fel', emoji: '🥄' },
+      'ü': { w: 62, strokes: ['M10 50 L10 78 C10 90.2 19.4 100 31 100 C42.6 100 52 90.2 52 78 L52 50 L52 100', 'M20 30 L20 31', 'M42 30 L42 31'], word: 'Rüeb-li', emoji: '🥕' },
       // Ziffern
       '0': { w: 60, strokes: ['M37.5 3 C26.1 -6.4 13.5 7 9.3 32.9 C5.2 58.8 11.1 87.5 22.5 97 C33.9 106.4 46.5 93 50.7 67.1 C54.8 41.2 48.9 12.5 37.5 3'], word: 'null', count: 0, emoji: '🍪' },
       '1': { w: 50, strokes: ['M8 40 L36 0 L36 100'], word: 'eins', count: 1, emoji: '🎈' },

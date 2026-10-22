@@ -54,13 +54,13 @@
           FK.ui.closeModal();
           FK.go('color', { pageId: page.id, mode: m });
         },
-      }, modeSample(m), h('span', { class: 'mode-name', text: FK.COLOR_MODES[m].short }));
+      }, modeSample(m), h('span', { class: 'mode-name', text: FK.text.word(FK.COLOR_MODES[m].short) }));
       if (done) b.insertAdjacentHTML('beforeend', FK.icon('star', 'ic mode-star'));
       else if (started) b.append(h('span', { class: 'mode-dot', 'aria-hidden': 'true' }));
       grid.append(b);
     });
     body.append(grid);
-    FK.ui.modal({ title: FK.text.word(page.name), body, wide: true });
+    FK.ui.modal({ title: FK.text.word(page.name), read: true, body, wide: true });
   }
 
   function renderTabs() {
@@ -77,7 +77,7 @@
           renderTabs();
           renderGrid();
         },
-      }, h('span', { class: 'emoji', text: c.icon }), h('span', { class: 'cat-name', text: c.name })));
+      }, h('span', { class: 'emoji', text: c.icon }), h('span', { class: 'cat-name', text: FK.text.word(c.name) })));
     });
   }
 
@@ -130,6 +130,21 @@
       if (jobs.length) requestAnimationFrame(run);
     };
     requestAnimationFrame(run);
+    fitNames();
+  }
+
+  // Long names (SCHMETTERLING, FEUERWEHRAUTO) shrink to fit their card instead of being cut off.
+  function fitNames() {
+    if (!gridEl) return;
+    gridEl.querySelectorAll('.book-card .name').forEach((n) => {
+      n.style.fontSize = '';
+      const cw = n.clientWidth;
+      const sw = n.scrollWidth;
+      if (cw > 0 && sw > cw + 1) {
+        const fs = parseFloat(getComputedStyle(n).fontSize) || 19;
+        n.style.fontSize = Math.max(12, Math.floor((fs * cw) / sw * 10) / 10) + 'px';
+      }
+    });
   }
 
   FK.screen('book', {
@@ -138,6 +153,9 @@
       tabsEl = h('nav', { class: 'cat-tabs scroll-x', 'aria-label': 'Kategorien' });
       gridEl = h('div', { class: 'book-grid' });
       r.append(FK.ui.topbar({ title: 'Malbuch' }), tabsEl, h('div', { class: 'scroll book-scroll' }, gridEl));
+      const refit = () => { if (FK.current() === 'book') fitNames(); };
+      window.addEventListener('resize', refit);
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(refit);
     },
     enter(params) {
       const list = cats();

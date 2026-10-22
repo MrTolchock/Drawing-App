@@ -1,4 +1,4 @@
-/* Farbklecks – Meine Bilder: alle gespeicherten Bilder, ansehen, weitermalen, sichern, löschen. */
+/* Farbklecks – Meine Bilder: alle gespeicherten Bilder, ansehen, weitermalen, in die Fotos legen, löschen. */
 (function () {
   'use strict';
   const FK = window.FK;
@@ -81,8 +81,10 @@
       img.src = u;
     }).catch(() => {});
     const body = h('div', { class: 'viewer-body' }, h('div', { class: 'viewer-frame' }, img));
-    if (rec.name) body.append(h('p', { class: 'viewer-name', text: FK.text.word(rec.name) }));
+    // the name sits in the title row, so the close X never covers the picture
     FK.ui.modal({
+      title: FK.text.word(rec.name || 'Mein Bild'),
+      read: true,
       wide: true,
       body,
       actions: [
@@ -90,9 +92,9 @@
           if (rec.kind === 'color' && rec.pageId && FK.art.find(rec.pageId)) FK.go('color', { pageId: rec.pageId, mode: rec.mode || 'frei', bild: rec });
           else FK.go('free', { bild: rec });
         } },
-        { label: 'Sichern', icon: 'share', keepOpen: true, onClick: () => share(rec, full) },
+        { label: 'In Fotos', icon: 'share', keepOpen: true, onClick: () => share(rec, full) },
         { label: 'Löschen', icon: 'trash', onClick: async () => {
-          const ok = await FK.ui.confirm('Bild wirklich löschen?', 'Ja, löschen', 'Nein');
+          const ok = await FK.ui.confirm('Bild löschen?', 'Löschen', 'Behalten', { danger: true });
           if (!ok) return;
           try {
             await FK.store.deleteBild(rec.id);

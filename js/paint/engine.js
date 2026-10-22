@@ -232,7 +232,8 @@
       applyZoom();
       if (session) session.rect = clipEl.getBoundingClientRect();
     }
-    function paperScale() { return S.W / Math.max(1, clipEl.getBoundingClientRect().width); }
+    // paper pixels per CSS pixel of the unzoomed paper (a pinch zoom must not change it)
+    function paperScale() { return S.W / Math.max(1, S.pw || clipEl.getBoundingClientRect().width); }
     function setPaper(hex) {
       S.paper = hex;
       paperEl.style.backgroundColor = hex;
@@ -1007,8 +1008,14 @@
       finishFill();
       const rect = clipEl.getBoundingClientRect();
       const k = S.W / rect.width;
-      const px = ((clientX - rect.left) * S.W) / rect.width;
-      const py = ((clientY - rect.top) * S.H) / rect.height;
+      let px = ((clientX - rect.left) * S.W) / rect.width;
+      let py = ((clientY - rect.top) * S.H) / rect.height;
+      // the screen may send a tap elsewhere (a label drawn away from its region points there)
+      const to = opts.fillAt ? opts.fillAt(px, py) : null;
+      if (to) {
+        px = to.x;
+        py = to.y;
+      }
       const sx = Math.floor(px);
       const sy = Math.floor(py);
       if (sx < 0 || sy < 0 || sx >= S.W || sy >= S.H) return;
@@ -1087,7 +1094,11 @@
       if (!e) return false;
       undoBytes -= e.bytes;
       if (e.type === 'patch') ctx.paint.putImageData(e.data, e.x, e.y);
-      else restorePage(e);
+      else {
+        restorePage(e);
+        // the screen gets back what it stored with the old page (e.g. its gallery id, «finished»)
+        if (opts.onPageUndo) opts.onPageUndo(e.meta || null);
+      }
       if (opts.onUndoChange) opts.onUndoChange(undoStack.length);
       changed();
       return true;
@@ -1097,9 +1108,9 @@
       undoBytes = 0;
       if (opts.onUndoChange) opts.onUndoChange(0);
     }
-    function pageSnapshot() {
+    function pageSnapshot(meta) {
       return {
-        type: 'page', W: S.W, H: S.H, paper: S.paper, pageId: S.page ? S.page.id : null, dirty: S.dirty,
+        type: 'page', W: S.W, H: S.H, paper: S.paper, pageId: S.page ? S.page.id : null, dirty: S.dirty, meta: meta || null,
         paint: S.dirty ? ctx.paint.getImageData(0, 0, S.W, S.H) : null,
       };
     }
@@ -1111,8 +1122,13 @@
       applyOutline(e.pageId);
       if (e.paint) ctx.paint.putImageData(e.paint, 0, 0);
       S.dirty = e.dirty;
-      // the paper got its old size back (e.g. «Nochmal» on a page restored at its saved size): labels follow
+      // the paper got its old size back (e.g. «Nochmal», then the iPad was turned): labels follow, and
+      // the paper is re-cut for the screen it is on now
       if (resized && opts.onRemap) opts.onRemap();
+      if (resized && kind === 'color') {
+        clearTimeout(remapTimer);
+        remapTimer = setTimeout(maybeRemap, 250);
+      }
     }
 
     function changed() {
@@ -1120,7 +1136,11 @@
     }
 
     /* ---------- pages ---------- */
+    // The old paper flies out, then fn() puts the new one in place. The swap can be landed at once
+    // (landSwap: leaving the screen, saving) or dropped (release), so nothing runs on a hidden stage later.
+    let swapJob = null;
     function swap(fn, animate) {
+      landSwap();
       if (!animate || FK.reduced) {
         fn();
         return Promise.resolve();
@@ -1129,26 +1149,35 @@
       FK.sound.swoosh();
       paperEl.classList.add('fly-out');
       return new Promise((resolve) => {
-        setTimeout(() => {
-          paperEl.style.transition = 'none';
-          paperEl.classList.remove('fly-out');
-          void paperEl.offsetWidth;
-          paperEl.style.transition = '';
-          fn();
-          paperEl.classList.add('fly-in');
-          S.busy = false;
-          setTimeout(() => paperEl.classList.remove('fly-in'), 500);
-          resolve();
-        }, 340);
+        swapJob = { fn, resolve, timer: setTimeout(() => landSwap(), 340) };
       });
     }
+    function landSwap(drop) {
+      const job = swapJob;
+      if (!job) return;
+      swapJob = null;
+      clearTimeout(job.timer);
+      paperEl.style.transition = 'none';
+      paperEl.classList.remove('fly-out');
+      void paperEl.offsetWidth;
+      paperEl.style.transition = '';
+      S.busy = false;
+      if (!drop) {
+        job.fn();
+        paperEl.classList.add('fly-in');
+        setTimeout(() => paperEl.classList.remove('fly-in'), 500);
+      }
+      job.resolve();
+    }
 
-    // New empty paper sized for the current screen. { paper, pageId, keepUndo, animate }
+    // New empty paper sized for the current screen. { paper, pageId, keepUndo, animate, meta }
+    // meta = what the screen wants back when this step is undone (see onPageUndo).
     function newPage(o) {
       o = o || {};
+      landSwap();
       finishFill();
       endSession();
-      if (o.keepUndo && S.W) pushUndo(pageSnapshot());
+      if (o.keepUndo && S.W) pushUndo(pageSnapshot(o.meta));
       else clearUndo();
       return swap(() => {
         zoomReset();
@@ -1251,6 +1280,7 @@
     // Restores a saved drawing: rec = { W, H, paper, pageId }, img = decoded paint layer.
     // A colouring page saved in another orientation is re-cut to the current screen.
     function load(rec, img) {
+      landSwap();
       finishFill();
       endSession();
       clearUndo();
@@ -1341,6 +1371,13 @@
     function sample(x, y, rad) {
       return sampleMany([{ x, y }], rad)[0];
     }
+    // Share of the paper (0…1) that carries paint – «is there a real picture to keep?»
+    function coverage() {
+      landSwap();
+      finishFill();
+      endSession();
+      return S.W ? coverageOf(cv.paint, S.W, S.H) : 0;
+    }
 
     function doFlash() {
       flash.classList.remove('go');
@@ -1350,6 +1387,7 @@
 
     // Frees the big canvases while the screen is hidden (iOS has a tight canvas memory budget).
     function release() {
+      landSwap(true);
       finishFill();
       cancelSession();
       clearTimeout(remapTimer);
@@ -1384,10 +1422,13 @@
       },
       newPage, load, undo, clearUndo,
       canUndo: () => undoStack.length > 0,
+      // finishes whatever is in progress (fill animation, stroke, page swap) right now
       settle() {
+        landSwap();
         finishFill();
         endSession();
       },
+      coverage,
       compose,
       paintBlob: () => FK.canvasBlob(cv.paint),
       sample, sampleMany, regionAt,
@@ -1398,5 +1439,25 @@
     };
   }
 
-  FK.engine = { create, PATTERNS, patternTile };
+  // Mean paint alpha (0…1) of an image or canvas sw×sh, measured on a small copy.
+  function coverageOf(src, sw, sh) {
+    if (!sw || !sh) return 0;
+    const s = Math.min(1, 200 / Math.max(sw, sh));
+    const c = document.createElement('canvas');
+    c.width = Math.max(1, Math.round(sw * s));
+    c.height = Math.max(1, Math.round(sh * s));
+    const g = c.getContext('2d');
+    g.imageSmoothingQuality = 'high';
+    g.drawImage(src, 0, 0, sw, sh, 0, 0, c.width, c.height);
+    let sum = 0;
+    try {
+      const d = g.getImageData(0, 0, c.width, c.height).data;
+      for (let i = 3; i < d.length; i += 4) sum += d[i];
+      sum /= 255 * c.width * c.height;
+    } catch (e) { sum = 1; /* unreadable: don't block the child */ }
+    c.width = c.height = 0;
+    return sum;
+  }
+
+  FK.engine = { create, PATTERNS, patternTile, coverageOf };
 })();

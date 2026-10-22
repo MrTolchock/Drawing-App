@@ -7,7 +7,8 @@
   function crayonSvg(c) {
     const fill = c.rainbow ? 'url(#fk-rainbow)' : c.hex;
     const band = c.rainbow ? '#ffffff' : FK.color.mix(c.hex, '#000000', 0.25);
-    return '<svg viewBox="0 0 40 120" aria-hidden="true">' +
+    // «slice»: a shorter box cuts the crayon's end (hidden behind the box front) instead of shrinking it
+    return '<svg viewBox="0 0 40 120" preserveAspectRatio="xMidYMin slice" aria-hidden="true">' +
       '<path d="M6 37 L20 5 L34 37 Z" fill="#f3c891" stroke="#23203d" stroke-width="3" stroke-linejoin="round"/>' +
       '<path d="M13.6 19.5 L20 5 L26.4 19.5 Q20 22 13.6 19.5 Z" fill="' + fill + '" stroke="#23203d" stroke-width="2.5" stroke-linejoin="round"/>' +
       '<rect x="6" y="35" width="28" height="92" rx="3" fill="' + fill + '" stroke="#23203d" stroke-width="3"/>' +
@@ -16,8 +17,10 @@
       '</svg>';
   }
 
-  // FK.ui.pencilBox({ onPick(color) }) → { el, set(colors, labels), select(id) }
+  // FK.ui.pencilBox({ onPick(color) }) → { el, set(colors, labels), select(id), button(id), hint(id, text) }
   // labels: optional { colorId: 'text' } shown on a tag at the pencil (numbers, syllables, dice dots).
+  // Any labels object (also {}) gives the few big centred pencils of the «Malen nach …» modes.
+  // hint(id, text) puts a tag on one pencil later (e.g. the colour word after a wrong fill).
   function pencilBox(o) {
     const el = h('div', { class: 'box', role: 'radiogroup', 'aria-label': 'Farben' });
     let selected = null;
@@ -53,19 +56,47 @@
         });
         el.append(b);
       });
+      // the free palette wraps into rows of 9 on narrow screens: empty slots complete the last row
+      if (!labels) {
+        for (let i = list.length % 9 ? 9 - (list.length % 9) : 0; i > 0; i--) el.append(h('span', { class: 'crayon crayon-fill', 'aria-hidden': 'true' }));
+      }
       if (selected) select(selected);
+    }
+
+    function button(id) {
+      return Array.from(el.querySelectorAll('.crayon[data-color]')).find((b) => b.dataset.color === id) || null;
+    }
+
+    function hint(id, text) {
+      const b = button(id);
+      if (!b) return null;
+      let tag = b.querySelector('.crayon-tag');
+      if (!tag) {
+        tag = h('span', { class: 'crayon-tag word' });
+        b.append(tag);
+      }
+      tag.textContent = text;
+      b.setAttribute('aria-label', text);
+      // long words shrink until they (nearly) fit the pencil's column, never below 12px
+      tag.style.fontSize = '';
+      let fs = parseFloat(getComputedStyle(tag).fontSize) || 16;
+      while (tag.offsetWidth > b.offsetWidth + 8 && fs > 12) {
+        fs -= 1;
+        tag.style.fontSize = fs + 'px';
+      }
+      return b;
     }
 
     function select(id) {
       selected = id;
-      el.querySelectorAll('.crayon').forEach((b) => {
+      el.querySelectorAll('.crayon[data-color]').forEach((b) => {
         const on = b.dataset.color === id;
         b.classList.toggle('on', on);
         b.setAttribute('aria-checked', on ? 'true' : 'false');
       });
     }
 
-    return { el, set, select, get colors() { return colors; } };
+    return { el, set, select, button, hint, get colors() { return colors; } };
   }
 
   // Dice face with n dots (1…6) as inline SVG.
@@ -77,9 +108,10 @@
     5: [[26, 26], [74, 26], [50, 50], [26, 74], [74, 74]],
     6: [[28, 22], [72, 22], [28, 50], [72, 50], [28, 78], [72, 78]],
   };
-  function dice(n) {
+  // r = pip radius (of 100); small dice on the paper use bigger pips
+  function dice(n, r) {
     const pts = DICE[n] || DICE[1];
-    return '<svg class="dice" viewBox="0 0 100 100" aria-hidden="true">' + pts.map((p) => '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="11"/>').join('') + '</svg>';
+    return '<svg class="dice" viewBox="0 0 100 100" aria-hidden="true">' + pts.map((p) => '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="' + (r || 11) + '"/>').join('') + '</svg>';
   }
 
   /* ---------- popover anchored to a rail button ---------- */

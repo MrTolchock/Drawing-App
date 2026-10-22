@@ -104,17 +104,26 @@
   transition: transform .3s cubic-bezier(.3, 1.6, .5, 1), opacity .3s, background-color .2s, border-color .2s;
 }
 .lbl-spot span { transform: translateY(.04em); }
-.lbl-spot.long { font-size: calc(var(--d) * .4); }
-.lbl-spot .dice { width: 74%; height: 74%; fill: var(--ink); }
+.lbl-spot.long { font-size: max(12px, calc(var(--d) * .4)); }
+.lbl-spot .dice { width: 80%; height: 80%; fill: var(--ink); }
 .pt-labels.words .lbl-spot {
   width: auto;
   min-width: calc(var(--d) * 1.1);
   height: calc(var(--d) * .78);
   padding: 0 .4em;
   border-radius: 999px;
-  font-size: calc(var(--d) * .4);
+  font-size: max(12px, calc(var(--d) * .42));
   white-space: nowrap;
 }
+/* the labels of the chosen pencil wear a ring in its colour */
+.lbl-spot.hot { box-shadow: 0 0 0 max(3px, calc(var(--d) * .1)) var(--hot, #fff), 0 0 0 max(5px, calc(var(--d) * .16)) var(--ink); z-index: 1; }
+/* a label that sat on top of its twin (same slot) waits until the twin is done */
+.lbl-spot.twin { visibility: hidden; }
+.lbl-spot.lead { z-index: 2; }
+/* a label that found no room in its region: a line to a dot on the spot it belongs to */
+.lead-line { position: absolute; height: max(2px, calc(var(--d) * .08)); margin-top: calc(max(2px, calc(var(--d) * .08)) / -2); background: var(--ink); border-radius: 2px; transform-origin: 0 50%; pointer-events: none; }
+.lead-dot { position: absolute; width: max(9px, calc(var(--d) * .3)); height: max(9px, calc(var(--d) * .3)); border: max(2px, calc(var(--d) * .07)) solid var(--ink); border-radius: 50%; background: var(--hot-dot, #fff); transform: translate(-50%, -50%); pointer-events: none; }
+.lbl-spot.hot .lead-dot { background: var(--hot, #fff); }
 .lbl-spot.wrong { border-color: #e5322d; background: #ffe5e5; }
 .lbl-spot.done {
   transform: translate(-50%, -50%) scale(0) rotate(40deg);
@@ -207,6 +216,8 @@
   justify-content: center;
   overflow: visible;
 }
+.box.labelled .crayon { overflow: visible; }
+.box.labelled .crayon svg { height: calc(var(--box-h) - var(--crayon-top) - 6px); }
 .box.labelled .crayon:first-child::after { border-radius: 14px 0 0 14px; }
 .box.labelled .crayon:last-child::after { border-radius: 0 14px 14px 0; }
 .crayon-tag {
@@ -234,8 +245,15 @@
   transition: transform .28s cubic-bezier(.3, 1.7, .5, 1);
 }
 .crayon-tag.long { font-size: 21px; }
+/* «Wörter»: the colour word, shown as a hint after a wrong fill */
+.crayon-tag.word { min-width: 0; padding: 0 6px; font-size: 17px; white-space: nowrap; animation: bounce-in .5s cubic-bezier(.3, 1.8, .5, 1); }
+/* empty slots that complete the last row of the free palette (only when it wraps) */
+.crayon-fill { display: none; cursor: default; }
 .crayon-tag .dice { width: 30px; height: 30px; fill: var(--ink); }
 .crayon.on .crayon-tag { background: var(--sun); transform: translateX(-50%) scale(1.08); }
+/* two-word rail labels («Ganzes Bild») wrap under a smaller icon */
+.btn.two-lines { --ic: 24px; }
+.btn.two-lines .lbl { white-space: normal; text-align: center; line-height: .95; }
 
 /* ---------- popovers ---------- */
 
@@ -322,6 +340,7 @@
 
 @media (max-width: 960px) {
   .box { grid-template-columns: repeat(9, minmax(0, 1fr)); }
+  .crayon-fill { display: block; }
   :root { --box-h: 82px; --crayon-w: 38px; --crayon-top: 6px; --lift: 6px; --front: 26px; }
 }
 
@@ -335,14 +354,20 @@
   }
   .rail { flex-direction: row; justify-content: space-between; gap: 6px; padding: 2px 0 6px; }
   .rail-actions { justify-content: flex-end; gap: 10px; }
+  /* six tools share the width (56px each would be 8px too wide for a 390px iPhone) */
+  .rail-tools { gap: 4px; padding: 4px 3px 6px; }
+  .rail-tools .btn { flex: 1 1 0; min-width: 0; max-width: var(--btn-w); }
+  .pt-labels { --d: clamp(30px, calc(var(--pw, 600px) * var(--lblk, .06)), 62px); }
   .tape { width: 64px; height: 20px; top: -6px; }
   .tape-l { left: -18px; }
   .tape-r { right: -18px; }
   .box.labelled { --box-h: 116px; --crayon-w: 40px; --front: 44px; }
   .crayon-tag { min-width: 38px; height: 34px; font-size: 21px; bottom: calc((var(--front) - 34px) / 2 - 1px); }
   .crayon-tag.long { font-size: 17px; }
+  .crayon-tag.word { font-size: 14px; padding: 0 4px; }
   .cl-mode { display: none; }
-  .cl-counter { height: 40px; font-size: 16px; padding: 0 10px; }
+  .cl-counter { height: 40px; font-size: 16px; padding: 0 10px; gap: 3px; }
+  .cl-counter .ic { width: 20px; height: 20px; }
   .pop-card { padding: 12px; }
   .grid-opts { gap: 8px; }
   .opt { min-width: 68px; min-height: 66px; font-size: 11.5px; }
@@ -355,11 +380,19 @@
 @media (max-height: 520px) and (orientation: landscape) {
   :root { --box-h: 50px; --crayon-w: 24px; --crayon-top: 8px; --lift: 7px; --front: 14px; }
   .paint-grid { row-gap: 4px; column-gap: 10px; }
-  .rail { gap: 6px; }
+  /* the rails must fit 320px: smaller gaps and buttons, and «safe» centring that falls back to the top */
+  .rail { gap: 4px; justify-content: flex-start; padding: 4px 2px; }
+  .rail > :first-child { margin-top: auto; }
+  .rail > :last-child { margin-bottom: auto; }
+  .paint-grid .btn { --btn: 46px; }
   .paint-grid .btn .lbl { display: none; }
+  .btn.two-lines { --ic: 28px; }
   .box { grid-template-columns: repeat(17, minmax(0, 1fr)); }
+  .crayon-fill { display: none; }
+  .pt-labels { --d: clamp(30px, calc(var(--pw, 600px) * var(--lblk, .06)), 62px); }
   .box.labelled { --box-h: 82px; --crayon-w: 30px; --front: 34px; }
   .crayon-tag { min-width: 32px; height: 28px; font-size: 17px; bottom: calc((var(--front) - 28px) / 2 - 1px); }
+  .crayon-tag.word { font-size: 13px; padding: 0 4px; }
   .crayon::after { border-top-width: 2.5px; }
   .tape { width: 56px; height: 18px; top: -5px; }
   .tape-l { left: -16px; }
