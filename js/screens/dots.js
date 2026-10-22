@@ -82,7 +82,7 @@
           renderGrid(true);
         },
       },
-      h('span', { class: 'pp-tab-dots', text: lvl === 1 ? '1 2 3' : '1 … ' + maxDots(list) }),
+      h('span', { class: 'pp-tab-dots', text: '1 … ' + maxDots(list) }),
       h('span', { class: 'pp-tab-prog', html: FK.icon('star', 'ic') + '<b>' + n + '</b>' }));
       tabsEl.append(b);
     });
