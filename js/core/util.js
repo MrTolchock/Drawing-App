@@ -1,4 +1,4 @@
-/* Farbklecks – kleine Helfer, die alle Module brauchen. */
+/* Farbtupf – kleine Helfer, die alle Module brauchen. */
 (function () {
   'use strict';
   const FK = (window.FK = window.FK || {});

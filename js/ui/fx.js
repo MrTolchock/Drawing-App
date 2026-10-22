@@ -1,4 +1,4 @@
-/* Farbklecks – Effekte: Konfetti, Glitzer, fliegende Sterne. One fixed canvas above everything,
+/* Farbtupf – Effekte: Konfetti, Glitzer, fliegende Sterne. One fixed canvas above everything,
    which only has pixels while something flies (iOS counts every canvas against one small budget). */
 (function () {
   'use strict';

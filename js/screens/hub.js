@@ -1,4 +1,4 @@
-/* Farbklecks – Startseite: Klecksi, das Malbuch und die Lernspiele. */
+/* Farbtupf – Startseite: Tupfi, das Malbuch und die Lernspiele. */
 (function () {
   'use strict';
   const FK = window.FK;
@@ -48,6 +48,19 @@
   function readArt() {
     const d = h('div', { class: 'art-read' });
     d.append(h('span', { class: 'card-mini' }, FK.ui.word('Ma-mi')), h('span', { class: 'card-mini emoji', text: '🐭' }));
+    return d;
+  }
+
+  function mathArt() {
+    // a Zehnerfeld with 3 + 4: the way first graders see numbers up to 10 and 20
+    const d = h('div', { class: 'art-math' });
+    let svg = '<svg viewBox="0 0 210 130"><rect x="20" y="14" width="170" height="70" rx="12" class="field"/><path d="M105 14 V84 M20 49 H190" class="grid"/>';
+    for (let i = 0; i < 10; i++) {
+      const x = 37 + (i % 5) * 34;
+      const y = i < 5 ? 31 : 66;
+      if (i < 7) svg += '<circle cx="' + x + '" cy="' + y + '" r="12" class="' + (i < 3 ? 'a' : 'b') + '"/>';
+    }
+    d.innerHTML = svg + '<text x="105" y="122" text-anchor="middle">3 + 4</text></svg>';
     return d;
   }
 
@@ -101,13 +114,13 @@
         held = false;
       });
 
-      const logo = h('h1', { class: 'logo', 'aria-label': 'Farbklecks' });
-      'Farbklecks'.split('').forEach((ch, i) => {
+      const logo = h('h1', { class: 'logo', 'aria-label': 'Farbtupf' });
+      'Farbtupf'.split('').forEach((ch, i) => {
         logo.append(h('span', { style: { color: LOGO_COLORS[i % LOGO_COLORS.length], '--r': (i % 2 ? 4 : -4) + 'deg' }, text: ch }));
       });
       const mascot = FK.ui.mascot({ cls: 'hub-mascot' });
       mascot.setAttribute('role', 'button');
-      mascot.setAttribute('aria-label', 'Klecksi');
+      mascot.setAttribute('aria-label', 'Tupfi');
       mascot.addEventListener('click', () => {
         const m = FK.ui.mascot({ mood: 'cheer', cls: 'hub-mascot' });
         mascot.innerHTML = m.innerHTML;
@@ -126,11 +139,12 @@
         big,
         tile({ cls: 'tile-mint', title: 'Schreiben', sub: 'ABC · 123', go: 'trace', art: traceArt() }),
         tile({ cls: 'tile-rose', title: 'Lesen', sub: readSub(), go: 'read', art: readArt() }),
-        tile({ cls: 'tile-sky tile-wide', title: 'Punkt zu Punkt', sub: '1 · 2 · 3', go: 'dots', art: dotsArt() }),
+        tile({ cls: 'tile-apricot', title: 'Rechnen', sub: 'bis 20', go: 'math', art: mathArt() }),
+        tile({ cls: 'tile-sky', title: 'Punkt zu Punkt', sub: '1 · 2 · 3', go: 'dots', art: dotsArt() }),
         h('div', { class: 'hub-small' },
           smallTile('brush', 'Freies Malen', 'free', 'tile-lilac'),
           smallTile('gallery', 'Meine Bilder', 'gallery'),
-          smallTile('album', 'Sammelalbum', 'album', 'tile-apricot')));
+          smallTile('album', 'Sammelalbum', 'album', 'tile-mint')));
       // the badge sits on the album icon like an app badge
       albumBadge = h('span', { class: 'tile-count', 'aria-hidden': 'true', hidden: true });
       const albumIc = grid.querySelector('.tile-small:last-child .tile-ic');

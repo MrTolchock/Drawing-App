@@ -1,4 +1,4 @@
-/* Farbklecks – Speicher.
+/* Farbtupf – Speicher.
    FK.settings  – parent settings (localStorage)
    FK.progress  – stars and what the child has finished (localStorage)
    FK.store     – drawings and pictures as blobs (IndexedDB)
@@ -22,6 +22,7 @@
   }
 
   /* ---------- settings ---------- */
+  // The app was called «Farbklecks» before; the storage names stay so saved pictures and stars are kept.
   const SETTINGS_KEY = 'farbklecks.settings.v2';
   const DEFAULTS = { sound: true, schrift: 'gross' };
   let settings = Object.assign({}, DEFAULTS, readJSON(SETTINGS_KEY));

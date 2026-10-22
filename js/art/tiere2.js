@@ -1,4 +1,4 @@
-/* Farbklecks – Ausmalbilder: Tiere (Teil 2). Drawn with the helper documented in js/art/dsl.js. */
+/* Farbtupf – Ausmalbilder: Tiere (Teil 2). Drawn with the helper documented in js/art/dsl.js. */
 (function () {
   'use strict';
   const FK = window.FK;

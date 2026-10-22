@@ -1,0 +1,1 @@
+/* Farbtupf – Ausmalbilder: Zürich (placeholder) */

@@ -1,4 +1,4 @@
-/* Farbklecks – Sammelalbum (Belohnungs-Sticker für Sterne) und Einstellungen für Eltern. */
+/* Farbtupf – Sammelalbum (Belohnungs-Sticker für Sterne) und Einstellungen für Eltern. */
 (function () {
   'use strict';
   const FK = window.FK;
@@ -132,10 +132,10 @@
         '<h3>Was Ihr Kind hier lernt</h3>' +
         '<p><b>Ausmalen</b> mit «Malen nach Würfeln, Zahlen, Silben oder Farbwörtern» übt Zählen, Zahlen lesen, erste Silben (ma, mi, mo …) und Farbwörter. <b>Schreiben</b> zeigt bei jedem Buchstaben und jeder Ziffer, wo man anfängt und in welche Richtung man schreibt. <b>Lesen</b> übt Silben und Wörter mit Silbenbögen – das Bild zeigt, ob es stimmt. <b>Punkt zu Punkt</b> übt Zahlen bis 25.</p>' +
         '<h3>Als App installieren</h3>' +
-        '<p>In Safari auf <b>Teilen</b> tippen und <b>«Zum Home-Bildschirm»</b> wählen. Danach startet Farbklecks wie eine App – auch ohne Internet.</p>' +
+        '<p>In Safari auf <b>Teilen</b> tippen und <b>«Zum Home-Bildschirm»</b> wählen. Danach startet Farbtupf wie eine App – auch ohne Internet.</p>' +
         '<h3>Daten</h3>' +
         '<p>Alle Bilder und Sterne bleiben auf diesem Gerät. Unter «Meine Bilder» → <b>In Fotos</b> lässt sich ein Bild in die Fotos legen oder teilen. Es gibt keine Werbung, kein Konto und keine Datenübertragung.</p>' +
-        '<p class="ver">Farbklecks ' + FK.VERSION + '</p>';
+        '<p class="ver">Farbtupf ' + FK.VERSION + '</p>';
 
       body.append(reset, info);
       r.append(FK.ui.topbar({ title: 'Für Eltern' }), h('div', { class: 'scroll' }, body));

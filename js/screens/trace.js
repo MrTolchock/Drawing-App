@@ -1,4 +1,4 @@
-/* Farbklecks – Schreiben: Buchstaben und Ziffern mit dem Finger nachspuren, in der richtigen
+/* Farbtupf – Schreiben: Buchstaben und Ziffern mit dem Finger nachspuren, in der richtigen
    Reihenfolge und Richtung, auf Schreiblinien wie im Schweizer Schreibheft der 1. Klasse.
 
    Overview: three sets (ABC / abc / 123) and a grid of glyph tiles with stars.

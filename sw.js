@@ -1,5 +1,5 @@
-/* Farbklecks – Service Worker: keeps the whole app on the device so it runs without internet. */
-const CACHE = 'farbklecks-v2';
+/* Farbtupf – Service Worker: keeps the whole app on the device so it runs without internet. */
+const CACHE = 'farbtupf-v3';
 const ASSETS = [
   './',
   './index.html',

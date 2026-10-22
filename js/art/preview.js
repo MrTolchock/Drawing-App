@@ -1,4 +1,4 @@
-/* Farbklecks – kleine, schon (teilweise) ausgemalte Vorschaubilder für Startseite und Malbuch. */
+/* Farbtupf – kleine, schon (teilweise) ausgemalte Vorschaubilder für Startseite und Malbuch. */
 (function () {
   'use strict';
   const FK = window.FK;

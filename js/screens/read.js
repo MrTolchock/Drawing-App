@@ -1,4 +1,4 @@
-/* Farbklecks – Lesen: Silben-Puzzle, Wort und Bild, Silben-Ballone und Lies genau.
+/* Farbtupf – Lesen: Silben-Puzzle, Wort und Bild, Silben-Ballone und Lies genau.
    There is no speech: every game checks itself through pictures, colours and stars,
    so the child sees at once whether the syllable or word was read right. */
 (function () {
@@ -268,7 +268,7 @@
       '</svg>';
   }
 
-  // Overlay at the end of a round: Klecksi cheers, then «Nochmal», «Weiter» or «Fertig».
+  // Overlay at the end of a round: Tupfi cheers, then «Nochmal», «Weiter» or «Fertig».
   // n: stars this round earned (1 the first time, 0 on a replay); the panel never shows more than the counter got
   function donePanel(actions, n) {
     const row = h('div', { class: 'rd-done-actions' });

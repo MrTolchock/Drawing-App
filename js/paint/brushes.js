@@ -1,4 +1,4 @@
-/* Farbklecks – Farben, Pinsel und Stempel.
+/* Farbtupf – Farben, Pinsel und Stempel.
    Each brush splits work in two steps: plan() decides geometry and randomness once,
    paint() draws it. The engine calls paint() once per mirror copy, so copies match exactly. */
 (function () {

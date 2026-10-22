@@ -1,4 +1,4 @@
-/* Farbklecks – Grundlagen: Farben, Schriften, Knöpfe, Karten, Dialoge.
+/* Farbtupf – Grundlagen: Farben, Schriften, Knöpfe, Karten, Dialoge.
    Look: a toy-like sticker world on a polka-dot craft table. Thick ink outlines, hard "sticker" shadows,
    bright crayon colours. Baloo 2 for playful headings and buttons, Andika (made for children learning to
    read) for every letter, syllable and word the child reads. One deliberate bright look, no dark variant. */
@@ -250,7 +250,7 @@ button.star-count:focus-visible { outline: 4px solid var(--sun); outline-offset:
 .syl-1 .arc path { stroke: #e5322d; }
 .word .hl { color: #e5322d; }
 
-/* ---------- mascot «Klecksi» ---------- */
+/* ---------- mascot «Tupfi» ---------- */
 
 .mascot { width: 120px; height: 120px; flex: none; }
 .mascot svg { width: 100%; height: 100%; overflow: visible; }

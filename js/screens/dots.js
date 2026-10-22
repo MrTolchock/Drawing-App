@@ -1,4 +1,4 @@
-/* Farbklecks – Punkt zu Punkt: Zahlen der Reihe nach verbinden, dann wird ein Bild daraus. */
+/* Farbtupf – Punkt zu Punkt: Zahlen der Reihe nach verbinden, dann wird ein Bild daraus. */
 (function () {
   'use strict';
   const FK = window.FK;

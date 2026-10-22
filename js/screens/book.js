@@ -1,4 +1,4 @@
-/* Farbklecks – Malbuch: Kategorien, Ausmalbilder und die Wahl, wie gemalt wird. */
+/* Farbtupf – Malbuch: Kategorien, Ausmalbilder und die Wahl, wie gemalt wird. */
 (function () {
   'use strict';
   const FK = window.FK;

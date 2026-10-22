@@ -1,4 +1,4 @@
-/* Farbklecks – Bausteine für alle Bildschirme und der Bildschirm-Wechsel (Router).
+/* Farbtupf – Bausteine für alle Bildschirme und der Bildschirm-Wechsel (Router).
 
    Screens:
      FK.screen('name', {
@@ -241,7 +241,7 @@
     return el;
   }
 
-  /* ---------- mascot «Klecksi» ---------- */
+  /* ---------- mascot «Tupfi» ---------- */
   function mascot(o) {
     o = o || {};
     const cheer = o.mood === 'cheer';

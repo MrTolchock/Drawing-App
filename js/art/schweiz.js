@@ -1,4 +1,4 @@
-/* Farbklecks – Ausmalbilder: Schweiz. Drawn with the helper documented in js/art/dsl.js. */
+/* Farbtupf – Ausmalbilder: Schweiz. Drawn with the helper documented in js/art/dsl.js. */
 (function () {
   'use strict';
   const FK = window.FK;

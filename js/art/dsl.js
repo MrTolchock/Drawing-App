@@ -1,4 +1,4 @@
-/* Farbklecks – Ausmalbilder: Zeichensprache und Verzeichnis.
+/* Farbtupf – Ausmalbilder: Zeichensprache und Verzeichnis.
    Every picture is drawn back to front in a 1000×1000 box: shapes get a white fill and a black
    outline, so nearer shapes hide the lines behind them. The result is turned into transparent
    "ink" so the child's paint shows through and the fill bucket stops at the lines.
@@ -21,6 +21,7 @@
   const FIT = 0.94;
 
   const CATS = [
+    { id: 'zuerich', name: 'Zürich', icon: '🚋' },
     { id: 'tiere', name: 'Tiere', icon: '🐾' },
     { id: 'schweiz', name: 'Schweiz', icon: '🇨🇭' },
     { id: 'fahrzeuge', name: 'Fahrzeuge', icon: '🚂' },

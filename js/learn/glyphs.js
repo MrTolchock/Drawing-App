@@ -1,4 +1,4 @@
-/* Farbklecks – Buchstaben und Ziffern zum Nachspuren (Schweizer Basisschrift, unverbunden).
+/* Farbtupf – Buchstaben und Ziffern zum Nachspuren (Schweizer Basisschrift, unverbunden).
    Generated geometry, hand-checked on 4-line writing paper.
 
    Coordinates per glyph: x 0 … w, y 0 = Oberlinie, 50 = Mittellinie, 100 = Grundlinie, 150 = Unterlinie.

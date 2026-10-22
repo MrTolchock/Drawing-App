@@ -1,4 +1,4 @@
-/* Farbklecks – Farbstift-Schachtel und Sprechblasen-Menüs (Popover) für die Mal-Bildschirme. */
+/* Farbtupf – Farbstift-Schachtel und Sprechblasen-Menüs (Popover) für die Mal-Bildschirme. */
 (function () {
   'use strict';
   const FK = window.FK;
