@@ -58,7 +58,7 @@
     }
     if (kind === 'pattern') {
       const units = stage === 1 ? ['🔵', '⭐'] : stage === 2 ? ['🔵', '🔵', '⭐'] : round % 2 ? ['🔵', '⭐', '⭐'] : ['🔵', '⭐', '❤️'];
-      const length = stage === 1 ? 5 : 7;
+      const length = (stage === 1 ? 4 : 6) + round % 3;
       return { prompt: 'Was kommt als Nächstes in den Musterzug?', sequence: Array.from({ length }, (_, i) => units[i % units.length]), answer: units[length % units.length], choices: ['🔵', '⭐', '❤️'], hint: 'Suche die kleine Gruppe, die sich wiederholt.' };
     }
     if (kind !== 'nature') throw new Error('Unknown learning game: ' + kind);

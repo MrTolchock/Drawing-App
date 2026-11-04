@@ -20,7 +20,7 @@ for (const game of FK.learning.games) for (let stage = 1; stage <= 3; stage++) {
           assert.ok(q.choices.every(x => x >= 0 && x <= max));
         }
         if (game.id === 'add') assert.equal(q.answer, q.subtract ? q.a - q.b : q.a + q.b);
-        if (game.id === 'pattern') assert.ok(q.sequence.length >= 5);
+        if (game.id === 'pattern') assert.ok(q.sequence.length >= 4);
       }
     }
   });

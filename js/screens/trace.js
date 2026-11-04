@@ -196,7 +196,7 @@
 
   let learningStage = 3;
   function sets() {
-    const allowed = learningStage === 1 ? 'ILOTAMilota m012345'.replace(/ /g, '') : learningStage === 2 ? 'ILOTAMENSRUDFBilota mensrudfb06789'.replace(/ /g, '') : null;
+    const allowed = learningStage === 1 ? 'ILOTAMilota m012345'.replace(/ /g, '') : learningStage === 2 ? 'ILOTAMENSRUDFBilota mensrudfb0123456789'.replace(/ /g, '') : null;
     return ((FK.glyphs && FK.glyphs.sets) || []).map(s => Object.assign({}, s, { items: allowed ? s.items.filter(g => allowed.includes(g)) : s.items }));
   }
   function setById(id) { return sets().find((s) => s.id === id) || null; }

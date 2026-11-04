@@ -8,7 +8,7 @@ Ziel: spielerische Ergänzung für die 1. Klasse in Zürich, mit dem Finger, ohn
 | Znüni-Rechnen | Zusammenlegen bis 5 | Plus und Minus bis 10 | Plus und Minus bis 20, auch Zehnerübergang |
 | Musterzug | AB-Muster | AAB-Muster | ABC- und ABB-Muster |
 | Naturdetektive | Tiere erkennen | Lebensräume zuordnen | Körpermerkmale und Bedürfnisse vergleichen |
-| Lesen | einfache offene Silben und kurze Wörter | mehrsilbige Wörter | komplexere Wörter |
+| Lesen | einfache offene Silben, kurze Wörter, Farbwörter | mehrsilbige Wörter, Nomen mit Farbwort | komplexere Wörter und ganze Sätze |
 | Schreibspuren | kleine Auswahl einfacher Buchstaben/Ziffern, breite Spur | erweiterte Auswahl, geführte Spur | alle Zeichen und freiwillige Wiederholung ohne Hilfe |
 | Punkt zu Punkt | bestehende Stufe 1 | bestehende Stufe 2 | bestehende Stufe 3 |
 

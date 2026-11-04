@@ -563,14 +563,14 @@
   }
 
   function tileBadge(id) {
-    if (id === 'puzzle' || id === 'wort') {
+    if (id === 'puzzle' || id === 'wort' || id === 'genau') {
       let s = '';
       for (let n = 1; n <= 3; n++) s += FK.icon(FK.progress.isDone('read', id + '-' + n) ? 'star' : 'star-empty', 'ic');
       return s;
     }
     if (id === 'ballone') {
       const rows = Object.keys(data().syllables);
-      const n = rows.filter((k) => FK.progress.isDone('read', 'ballone-' + k)).length;
+      const n = rows.filter((k) => FK.progress.isDone('read', 'ballone-' + k + '-' + getLvl())).length;
       return FK.icon(n ? 'star' : 'star-empty', 'ic') + (n ? '<b>' + n + '</b>' : '');
     }
     return FK.icon(FK.progress.isDone('read', id) ? 'star' : 'star-empty', 'ic');
@@ -611,7 +611,7 @@
       return b;
     });
     const levels = h('div', { class: 'rd-levels', role: 'radiogroup', 'aria-label': 'Stufe' },
-      h('span', { class: 'rd-lv-label', text: 'Stufe' }), lvBtns);
+      h('span', { class: 'rd-lv-label', text: 'Trimester' }), lvBtns);
 
     const tiles = GAMES.map((g, i) => h('button', {
       type: 'button',
@@ -948,6 +948,7 @@
   }
 
   function startGenau() {
+    const level = getLvl();
     setView('genau', 'Lies genau');
     let pool = data().phrases.filter((p) => p.check && objKey(p.check.emoji) && FK.color.byId(p.check.color));
     if (pool.length < 3) pool = data().phrases.filter((p) => p.check && FK.color.byId(p.check.color));
@@ -955,7 +956,7 @@
     const list = FK.shuffle(pool.filter((p) => rec.indexOf(p.t) < 0)).concat(FK.shuffle(pool.filter((p) => rec.indexOf(p.t) >= 0))).slice(0, N_GENAU);
     recent.genau = list.map((p) => p.t).concat(rec).slice(0, Math.max(0, pool.length - N_GENAU));
     // every second sentence also shows another thing in the right colour: read the noun AND the colour
-    const mixFlags = FK.shuffle(list.map((_, i) => i % 2 === 1));
+    const mixFlags = FK.shuffle(list.map((_, i) => level === 3 && i % 2 === 1));
     const B = choiceBoard({ n: list.length, cls: 'rd-genau', sentence: true });
     let idx = -1;
     let locked = false;
@@ -966,7 +967,7 @@
       const p = list[idx];
       locked = false;
       B.st.cur(idx);
-      B.setText(sentenceEl(p.t));
+      B.setText(sentenceEl(level === 1 ? p.t.split(' ').slice(-1)[0].replace(/[.!?]$/, '') : level === 2 ? p.t.replace(/^(Der|Die|Das) /, '').replace(' ist ', ' ').replace(/[.!?]$/, '') : p.t));
       const key = objKey(p.check.emoji);
       const right = p.check.color;
       const palette = GENAU_COLORS.indexOf(right) >= 0 ? GENAU_COLORS : GENAU_COLORS.concat([right]);
@@ -988,7 +989,7 @@
 
     function finish() {
       B.st.cur(-1);
-      finishRound('genau', B.st.el, [
+      finishRound('genau-' + level, B.st.el, [
         { icon: 'refresh', label: 'Nochmal', onClick: () => startGenau() },
         { icon: 'check', label: 'Fertig', cls: 'btn-sun', onClick: () => showHome() },
       ]);
@@ -1004,7 +1005,7 @@
   function showBallPick() {
     setView('ballpick', 'Silben-Ballone');
     const rows = data().syllables;
-    const keys = Object.keys(rows);
+    const keys = Object.keys(rows).slice(0, [3, 8, Object.keys(rows).length][getLvl() - 1]);
     const grid = h('div', { class: 'rd-letters' });
     keys.forEach((k, i) => {
       const b = h('button', {
@@ -1017,7 +1018,7 @@
       },
       h('span', { class: 'rd-letter-big', text: FK.text.syllable(k) }),
       h('span', { class: 'rd-letter-sub', text: rows[k].slice(0, 3).map((s) => FK.text.syllable(s)).join(' ') }));
-      if (FK.progress.isDone('read', 'ballone-' + k)) b.insertAdjacentHTML('beforeend', FK.icon('star', 'ic rd-letter-star'));
+      if (FK.progress.isDone('read', 'ballone-' + k + '-' + getLvl())) b.insertAdjacentHTML('beforeend', FK.icon('star', 'ic rd-letter-star'));
       grid.append(b);
     });
     grid.append(h('button', {
@@ -1027,7 +1028,7 @@
       style: { animationDelay: keys.length * 22 + 'ms' },
       onclick: () => {
         FK.sound.open();
-        const open = keys.filter((k) => !FK.progress.isDone('read', 'ballone-' + k));
+        const open = keys.filter((k) => !FK.progress.isDone('read', 'ballone-' + k + '-' + getLvl()));
         startBall(FK.pick(open.length ? open : keys));
       },
     }, h('span', { class: 'emoji rd-letter-dice', text: '🎲' }), h('span', { class: 'rd-letter-sub', text: 'Zufall' })));
@@ -1226,7 +1227,7 @@
     function win() {
       B.ending = true;
       clearSky();
-      finishRound('ballone-' + row, count, [
+      finishRound('ballone-' + row + '-' + getLvl(), count, [
         { icon: 'refresh', label: 'Nochmal', onClick: () => startBall(row) },
         { emoji: '🎈', label: 'Andere', cls: 'btn-go', onClick: () => showBallPick() },
         { icon: 'check', label: 'Fertig', cls: 'btn-sun', onClick: () => showHome() },

@@ -1,68 +1,47 @@
 # Farbtupf
 
-A colouring and early-learning app for children around six years old, in Swiss Standard German. It runs on iPad and iPhone as an installable web app (PWA): plain HTML, CSS and JavaScript with no build step, no server code, no tracking and no ads. Once it's on the home screen it works offline.
+Finger-friendly learning adventures for first-grade children in Zürich, in Swiss Standard German. Static HTML/CSS/JavaScript PWA: no build, dependencies, account, ads or tracking. Works offline after initial loading.
 
-## What children can do
+The learning island comes first. Drawing is a creative companion:
 
-**Ausmalen (colouring), the main activity.** A picture book with 41 hand-drawn colouring pages in five categories: Tiere, Schweiz, Fahrzeuge, Fantasie and Natur. Each picture can be coloured five ways:
+| Activity | Three selectable stages |
+| --- | --- |
+| Zählgarten | Count and tap quantities 0–5 / 0–10 / 0–20 |
+| Znüni-Rechnen | Addition to 5 / addition and subtraction to 10 / to 20 |
+| Musterzug | AB / AAB / ABC and ABB patterns |
+| Naturdetektive | Recognise animals / habitats / traits and needs |
+| Leseschatz | Syllables and words at three existing reading levels; colour words / noun + colour / sentences in «Lies genau»; expanding syllable families in «Silben-Ballone» |
+| Schreibspuren | Small initial selection / expanded selection / all existing glyphs |
+| Zahlenwege | Three existing dot-to-dot levels |
 
-| Mode | What the child does | What it practises |
-| --- | --- | --- |
-| Frei | Colours freely, with patterns, glitter and stamps | Fine motor skills, creativity |
-| Würfel | Matches dice dots on the picture to the dice on the pencils | Counting 1–6 |
-| Zahlen | Matches the numbers 1–6 | Reading digits |
-| Silben | Matches syllables (e.g. MA, MI, MO) | Reading first syllables |
-| Farbwörter | Reads «rot», «blau», «gelb»… and picks the colour | Reading colour words |
+Each stage is labelled with a trimester. This is a **provisional app progression**, not an official Zürich trimester schedule. The curriculum covers a whole cycle. Nature questions may be read together with an adult. All stages are freely accessible, with no timers or penalties in the new games. Complete five questions to earn a star once per game and stage. Replay freely. Stars unlock stickers.
 
-Some details that make colouring easier and more fun:
+**Official-material research and handwriting verification remain pending:** network policy blocked the education websites during this session. The existing letter/digit stroke geometry is unchanged. Do not treat it as verified Zürich Basisschrift. See [learning concept, source references and outstanding review](docs/LEARNING.md).
 
-- Crayons and markers stay inside the lines.
-- The bucket fills a whole area, including with patterns (dots, stripes, checks, stars, hearts, waves, glitter) or rainbow rings.
-- Two fingers zoom in for small areas.
-- Labels pop away when the right colour goes in.
-- A finished picture gets a fanfare and stars, and goes into «Meine Bilder».
-- Progress is saved per picture and mode.
+«Kreativpause & Schätze» contains the existing 41-page colouring book, free drawing, saved pictures and sticker album. Keep the parent gear pressed to open settings. Existing device progress and pictures retain their original storage identifiers across the rename.
 
-**Schreiben (writing).** The child traces capital letters, small letters and the digits 0–9 with a finger. Each stroke is shown in the right order and direction, on Swiss school writing lines. Each letter ends with an «Anlaut» picture: A wie Affe 🐒.
+## Develop and check
 
-**Lesen (reading).** Reading games with Silbenbögen (the syllable arcs used in Swiss schools), at three levels. There is no audio: every game checks itself with pictures.
+Use the existing checkout; no worktree is needed. No dependency installation or build is required.
 
-**Punkt zu Punkt.** 14 pictures where the child connects numbered dots up to 10, 20 or 30. The finished outline becomes a colouring page too.
-
-**Freies Malen.** Free drawing with 8 brushes, stamps, a mirror mode and coloured paper.
-
-**Sterne & Sammelalbum.** Finished activities earn stars, and every 3 stars unlock a new sticker in the sticker album.
-
-**Für Eltern.** Hold the gear button on the home screen for one second to open the parent settings. There you can:
-
-- turn sounds on or off;
-- choose how syllables and words are shown: CAPITALS only, or normal upper and lower case;
-- reset the stars and progress.
-
-## Getting it onto the iPad / iPhone
-
-The app is served by GitHub Pages from the `main` branch: <https://mrtolchock.github.io/Drawing-App/>
-
-1. Open the address in **Safari**.
-2. Tap **Teilen**, then **Zum Home-Bildschirm**.
-3. Start Farbtupf from the home screen icon. It works in airplane mode too.
-
-Pictures, stars and progress stay on the device (browser storage). Apps added to the home screen are not affected by Safari's 7-day cleanup. To get a picture out of the app, open it in «Meine Bilder» and tap **Sichern**.
-
-## Project layout
-
-```
-index.html            page shell, icon sprite, script order
-css/                  base.css (design tokens, components), paint.css, screens.css, trace/dots/read.css
-fonts/                Andika (for reading) and Baloo 2 (headings), both SIL Open Font License
-js/core/              util, store (settings, progress, IndexedDB), sound (Web Audio)
-js/data/              colours, stickers
-js/art/               dsl.js (drawing helper + registry), colouring pages per category, preview
-js/learn/             glyphs.js (letter strokes), words.js (words, syllables, sentences), dots.js
-js/paint/             brushes.js, engine.js (painting engine)
-js/ui/                ui.js (components, router), fx.js (effects), pencils.js
-js/screens/           hub, book, color, free, gallery, album (+ parent settings), trace, dots, read
-sw.js                 service worker (offline cache)
+```sh
+cd /workspace/Drawing-App
+python3 -m http.server 8000 --bind 0.0.0.0
 ```
 
-When you change any file, bump `CACHE` in `sw.js` (e.g. `farbklecks-v3`) so installed apps pick up the new version on their next launch.
+In another terminal:
+
+```sh
+node tests/learning.test.cjs
+node --check js/screens/learn.js
+```
+
+The content tests cover answer validity, range boundaries, arithmetic, offline assets and storage compatibility. Browser smoke checks are in `tests/browser-smoke.cjs` and require Playwright plus Chromium. In this cloud image: `node tests/browser-smoke.cjs` with the server running. They exercise 60 tasks through touch taps, wrong answers, replay rewards, three-stage routing, mobile layout, offline reload and saved stars. This does not establish Safari compatibility or correct official handwriting models; test on a physical iPad before release.
+
+Bump `CACHE` in `sw.js` after app changes. Include new runtime assets in its cache list. Never rename localStorage/IndexedDB keys merely to change the app name.
+
+## Install
+
+The existing GitHub Pages location is <https://mrtolchock.github.io/Drawing-App/>. Development checkpoints on `farbtupf-learning` do not update that deployment until merged into the configured Pages branch.
+
+Open the deployed page in Safari, choose **Teilen → Zum Home-Bildschirm**. All pictures, settings and stars stay on the device. Offline use requires one successful initial load.

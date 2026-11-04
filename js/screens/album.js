@@ -130,7 +130,10 @@
       const info = h('div', { class: 'info' });
       info.innerHTML =
         '<h3>Was Ihr Kind hier lernt</h3>' +
-        '<p><b>Ausmalen</b> mit «Malen nach Würfeln, Zahlen, Silben oder Farbwörtern» übt Zählen, Zahlen lesen, erste Silben (ma, mi, mo …) und Farbwörter. <b>Schreiben</b> zeigt bei jedem Buchstaben und jeder Ziffer, wo man anfängt und in welche Richtung man schreibt. <b>Lesen</b> übt Silben und Wörter mit Silbenbögen – das Bild zeigt, ob es stimmt. <b>Punkt zu Punkt</b> übt Zahlen bis 25.</p>' +
+        '<p><b>Zählgarten</b> übt Mengen bis 5, 10 und 20. <b>Znüni-Rechnen</b> macht Plus und Minus sichtbar. Im <b>Musterzug</b> entdeckt Ihr Kind Wiederholungen. <b>Naturdetektive</b> erkunden Tiere und Lebensräume. Dazu kommen Lesen, Schreibspuren und Zahlenwege. Alle Spiele lassen sich mit dem Finger bedienen.</p>' +
+        '<p>Die drei Trimester sind eine Orientierung für die 1. Klasse, keine verbindliche Vorgabe. Wählen Sie die Stufe passend zum Unterricht und zum Kind. Naturfragen können Sie gemeinsam vorlesen. Malatelier und freies Malen bleiben als Kreativpause.</p>' +
+        '<h3>Lehrplan und Handschrift</h3>' +
+        '<p>Die Inhalte orientieren sich vorläufig an Lernbereichen des ersten Zyklus. Der Abgleich mit den offiziellen Zürcher Materialien ist noch offen. Auch die vorhandenen Schreibmodelle sind noch nicht offiziell geprüft. Bitte richten Sie Buchstabenformen und Schreibrichtung nach der Vorlage der Klassenlehrperson aus.</p>' +
         '<h3>Als App installieren</h3>' +
         '<p>In Safari auf <b>Teilen</b> tippen und <b>«Zum Home-Bildschirm»</b> wählen. Danach startet Farbtupf wie eine App – auch ohne Internet.</p>' +
         '<h3>Daten</h3>' +

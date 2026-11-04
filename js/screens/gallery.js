@@ -50,7 +50,7 @@
       FK.sound.nope();
       return;
     }
-    const name = 'farbklecks-' + new Date(rec.updated || Date.now()).toISOString().slice(0, 10) + '.png';
+    const name = 'farbtupf-' + new Date(rec.updated || Date.now()).toISOString().slice(0, 10) + '.png';
     const file = window.File ? new File([blob], name, { type: 'image/png' }) : null;
     if (file && navigator.canShare && navigator.canShare({ files: [file] })) {
       try {
