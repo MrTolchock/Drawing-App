@@ -1,5 +1,7 @@
 # Quellenprüfung: Zürich, 1. Klasse
 
+**Nachtrag vom 4. November 2026:** Die unten historisch dokumentierte LMVZ-Netzwerkblockade wurde inzwischen mit dem Browser-Plugin überwunden. Öffentliche Produktseiten, Stichproben und das aktuelle Zürcher Verzeichnis wurden eingesehen. [Aktueller Recherchebericht und neue Originalübungen](LMVZ-RESEARCH.md). Die folgenden Basisschrift-Prüfungen bleiben gültig.
+
 Stand: 4. November 2026. Die unten als eingesehen bezeichneten Primärquellen wurden tatsächlich abgerufen und gelesen. Die Haus-Etiketten wurden auf beiden Seiten visuell geprüft. Die früheren Netzwerkblockaden sind für Lehrplan und Basisschrift behoben. Dies ist eine fachliche Quellenprüfung für Farbtupf, keine behördliche Anerkennung oder vollständige Lehrmittelprüfung.
 
 ## Verbindlicher Rahmen und Lehrmittel

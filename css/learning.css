@@ -49,3 +49,50 @@
 @media(max-width:650px) { .island-grid,.island-extras { grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; } .island-card { min-height:150px; } .island-sub { font-size:12px; } .island-level { font-size:15px; } .learn-answer { font-size:22px; padding:12px; } }
 @media(max-height:500px) { .island-header { max-height:50px; } .island-logo { font-size:32px; } }
 @media(prefers-reduced-motion:reduce) { .island-card:active,.learn-button:active { transform:none; } }
+
+/* Hands-on adventures: fixed-size objects keep quantity comparisons honest. */
+.adventure-work { max-width:760px; margin:0 auto; }
+.adventure-work > .learn-button { margin:8px; }
+.adventure-scene { font:64px var(--emoji); margin:12px; }
+.adventure-meter,.adventure-commands { font-size:19px; min-height:28px; }
+.adventure-fixed { display:flex; align-items:center; justify-content:center; height:100%; min-height:44px; font:30px var(--emoji); }
+.adventure-seats { max-width:350px; }
+.adventure-plates { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; max-width:620px; margin:14px auto; }
+.adventure-plate { display:flex; flex-direction:column; gap:12px; align-items:center; min-height:160px; padding:12px; background:#e8f4df; }
+.adventure-berries { display:block; overflow-wrap:anywhere; font:27px var(--emoji); line-height:1.7; min-height:65px; }
+.adventure-twins { display:flex; justify-content:center; align-items:center; gap:14px; margin:26px auto; font-size:38px; }
+.adventure-quantity { display:grid; grid-template-columns:repeat(5,28px); gap:4px; font:25px var(--emoji); }
+.adventure-shape { padding:8px; width:130px; height:130px; }
+.adventure-shape svg { width:100%; height:100%; }
+.adventure-word { font-size:clamp(26px,5vw,42px); overflow-wrap:anywhere; }
+.adventure-drum { background:var(--apricot); min-height:96px; font-size:30px; }
+.adventure-map { display:grid; grid-template-columns:repeat(var(--size),minmax(0,1fr)); gap:4px; max-width:340px; margin:14px auto; }
+.adventure-map-cell { display:flex; align-items:center; justify-content:center; aspect-ratio:1; min-width:0; background:#e8f4df; border:2px solid #a0b68f; border-radius:8px; font:clamp(24px,5vw,36px) var(--emoji); }
+.adventure-arrows { display:flex; justify-content:center; gap:8px; }
+.adventure-arrows .learn-button { min-width:60px; padding:8px; font-size:30px; }
+.adventure-order { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; min-height:70px; padding:14px 14px 14px 35px; background:#e8f4df; border-radius:16px; }
+.adventure-order li { margin-right:20px; font-size:18px; }
+.adventure-order-card { font-size:19px; }
+.adventure-order-card:disabled { opacity:.5; }
+.adventure-transfer { padding:14px; background:#e8f4df; border-radius:16px; max-width:650px; margin:18px auto; }
+.mission-body { text-align:left; padding:18px clamp(14px,4vw,40px) 30px; }
+.mission-body > p,.mission-body > h2,.mission-body > h3,.mission-steps { max-width:760px; margin-left:auto; margin-right:auto; }
+.mission-filters { display:flex; flex-wrap:wrap; gap:8px; margin:18px 0; }
+.mission-filters .learn-button { font-size:17px; padding:10px; }
+.mission-filters [aria-pressed=true] { background:var(--sun); }
+.mission-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
+.mission-tile { min-height:120px; background:#eeeaff; }
+.mission-steps { font:19px var(--read); line-height:1.6; padding-left:30px; }
+.mission-steps li { padding:6px; }
+.mission-tip { padding:14px; background:#e8f4df; border-radius:16px; }
+.mission-done { margin:16px 10px 16px 0; }
+.mission-done[aria-pressed=true] { background:var(--mint); }
+.mission-reminder { flex:none; font-size:16px; min-height:48px; padding:8px; margin:0 0 6px; background:#fff1b8; }
+@media(max-width:450px) {
+  .adventure-quantity { grid-template-columns:repeat(3,24px); font-size:22px; gap:2px; }
+  .adventure-twins { gap:8px; }
+  .adventure-shape { width:110px; height:110px; }
+  .adventure-plate { padding:8px; font-size:17px; }
+  .mission-grid { grid-template-columns:minmax(0,1fr); }
+  .mission-reminder { font-size:13px; }
+}

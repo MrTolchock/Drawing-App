@@ -16,7 +16,9 @@ The learning island comes first. Drawing is a creative companion:
 
 Each stage is labelled with a trimester. This is a **provisional app progression**, not an official Zürich trimester schedule. The curriculum covers a whole cycle. Nature questions may be read together with an adult. All stages are freely accessible, with no timers or penalties in the new games. Complete five questions to earn a star once per game and stage. Replay freely. Stars unlock stickers.
 
-**Official sources reviewed:** Zürich's curriculum and the official first-class Basisschrift model sheet have now been inspected. Seventeen letter/digit models have structural corrections, and writing previews use the same SVG shapes as tracing. These are simplified original drawings, not a licensed official font or a certified complete curriculum. LMVZ product pages remain inaccessible. See the [source report and limitations](docs/RESEARCH.md) and [learning concept](docs/LEARNING.md).
+**New learning adventures:** Sternenrakete (number bonds), Waldpicknick (sharing), Zauberzwillinge (doubling), Formenwerkstatt (geometry), Reimzirkus, Silbentrommel, Roboterpost (routes) and Was kommt dann? (sequencing). Each has three stages, five tasks per round, hints, unlimited retries and a replay-safe star. Eighteen open creative missions connect observation, language, mathematics and discussion to the existing painting tools.
+
+**Official sources reviewed:** The public LMVZ product pages are now accessible and have been researched alongside Zürich's 2026/27 directory and Klett und Balmer's Young World didactics. All new exercises are original; no publisher worksheets or illustrations are included. See the [new research and activity mapping](docs/LMVZ-RESEARCH.md), [earlier curriculum/handwriting report](docs/RESEARCH.md) and [learning concept](docs/LEARNING.md). The seventeen earlier handwriting corrections are retained. These remain simplified original drawings, not a licensed official font or a certified complete curriculum.
 
 «Kreativpause & Schätze» contains the existing 41-page colouring book, free drawing, saved pictures and sticker album. Keep the parent gear pressed to open settings. Existing device progress and pictures retain their original storage identifiers across the rename.
 
@@ -33,6 +35,7 @@ In another terminal:
 
 ```sh
 node tests/learning.test.cjs
+node tests/adventures.test.cjs
 node --check js/screens/learn.js
 # With the server running and the cloud image browser tools:
 node tests/handwriting-browser.cjs

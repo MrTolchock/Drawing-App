@@ -19,13 +19,18 @@
     grid.append(card('📖', 'Leseschatz', ['Kurze Wörter', 'Silben verbinden', 'Wörter entdecken'][stage - 1], 'lilac', () => launch('read', { lvl: stage })),
       card('👆', 'Schreibspuren', ['Erste Spuren', 'Mehr Buchstaben', 'Alle Zeichen'][stage - 1], 'apricot', () => launch('trace', { stage })),
       card('🔢', 'Zahlenwege', 'Punkt zu Punkt · Stufe ' + stage, 'sky', () => launch('dots', { level: stage })));
+    const adventures = h('div', { class: 'island-grid' });
+    FK.adventures.games.forEach(g => adventures.append(card(g.emoji, g.title, g.sub[stage - 1], g.color, () => launch('adventure', { game: g.id }), FK.progress.isDone('adventure', g.id + ':' + stage))));
+    adventures.append(card('🎨', 'Kreativmissionen', '18 Ideen zum Malen & Entdecken', 'lilac', () => launch('missions')));
     const extras = h('div', { class: 'island-extras' },
       card('🎨', 'Malatelier', 'Ausmalen', 'sun', () => launch('book')),
       card('🖐️', 'Freies Malen', 'Mit dem Finger', 'mint', () => launch('free')),
       card('🖼️', 'Meine Bilder', 'Deine Sammlung', 'rose', () => launch('gallery')),
       card('🌟', 'Sammelalbum', 'Deine Sticker', 'lilac', () => { FK.settings.set('album.seen', FK.rewardsUnlocked()); launch('album'); }));
     content.append(h('h2', { class: 'island-heading', text: 'Deine Lerninsel' }), h('p', { class: 'island-intro', text: 'Spielen, staunen, ausprobieren. Mit deinem Finger!' }), levels, grid,
-      h('p', { class: 'island-note', text: 'Wähle, was zu dir passt. Alle Stufen sind offen.' }), h('h2', { class: 'island-heading', text: 'Kreativpause & Schätze' }), extras);
+      h('p', { class: 'island-note', text: 'Wähle, was zu dir passt. Alle Stufen sind offen.' }),
+      h('h2', { class: 'island-heading', text: 'Neue Entdecker-Abenteuer' }), h('p', { class: 'island-intro', text: 'Teilen, trommeln, tüfteln – und eigene Bilder erfinden.' }), adventures,
+      h('h2', { class: 'island-heading', text: 'Kreativpause & Schätze' }), extras);
   }
   FK.screen('hub', {
     build(root) {
