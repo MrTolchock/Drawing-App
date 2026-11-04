@@ -555,6 +555,7 @@
     enter(params) {
       params = params || {};
       active = true;
+      if (params.level >= 1 && params.level <= 3) { level = params.level; FK.settings.set('dots.level', level); }
       window.addEventListener('resize', onResize);
       window.addEventListener('keydown', onKey, true);
       if (ro) ro.observe(paperEl);

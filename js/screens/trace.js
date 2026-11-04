@@ -194,7 +194,11 @@
 
   /* ---------- sets ---------- */
 
-  function sets() { return (FK.glyphs && FK.glyphs.sets) || []; }
+  let learningStage = 3;
+  function sets() {
+    const allowed = learningStage === 1 ? 'ILOTAMilota m012345'.replace(/ /g, '') : learningStage === 2 ? 'ILOTAMENSRUDFBilota mensrudfb06789'.replace(/ /g, '') : null;
+    return ((FK.glyphs && FK.glyphs.sets) || []).map(s => Object.assign({}, s, { items: allowed ? s.items.filter(g => allowed.includes(g)) : s.items }));
+  }
   function setById(id) { return sets().find((s) => s.id === id) || null; }
   function setOf(g) { return sets().find((s) => s.items.indexOf(g) >= 0) || null; }
   function isDone(g) { return FK.progress.isDone('trace', g); }
@@ -1040,6 +1044,7 @@
     enter(params) {
       params = params || {};
       active = true;
+      learningStage = params.stage >= 1 && params.stage <= 3 ? params.stage : FK.learning.stage();
       window.addEventListener('resize', onResize);
       window.addEventListener('orientationchange', onOrient);
       window.addEventListener('keydown', onKey, true);

@@ -1,5 +1,5 @@
 /* Farbtupf – Service Worker: keeps the whole app on the device so it runs without internet. */
-const CACHE = 'farbklecks-v2';
+const CACHE = 'farbtupf-v3';
 const ASSETS = [
   './',
   './index.html',
@@ -9,6 +9,9 @@ const ASSETS = [
   './css/trace.css',
   './css/dots.css',
   './css/read.css',
+  './css/learning.css',
+  './js/learn/learning.js',
+  './js/screens/learn.js',
   './js/core/util.js',
   './js/core/store.js',
   './js/core/sound.js',
