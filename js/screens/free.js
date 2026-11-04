@@ -1,4 +1,4 @@
-/* Farbklecks – Freies Malen: Stifte, Stempel, Spiegel, farbiges Papier. */
+/* Farbtupf – Freies Malen: Stifte, Stempel, Spiegel, farbiges Papier. */
 (function () {
   'use strict';
   const FK = window.FK;

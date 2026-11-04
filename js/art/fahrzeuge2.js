@@ -1,4 +1,4 @@
-/* Farbklecks – Ausmalbilder: Fahrzeuge 2 (Gondelbahn, Postauto, Dampfschiff). Drawn with the helper documented in js/art/dsl.js. */
+/* Farbtupf – Ausmalbilder: Fahrzeuge 2 (Gondelbahn, Postauto, Dampfschiff). Drawn with the helper documented in js/art/dsl.js. */
 (function () {
   'use strict';
   const FK = window.FK;

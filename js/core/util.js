@@ -1,9 +1,9 @@
-/* Farbklecks – kleine Helfer, die alle Module brauchen. */
+/* Farbtupf – kleine Helfer, die alle Module brauchen. */
 (function () {
   'use strict';
   const FK = (window.FK = window.FK || {});
 
-  FK.VERSION = '2.0.0';
+  FK.VERSION = '3.0.0';
   FK.TAU = Math.PI * 2;
   FK.$ = (sel, root) => (root || document).querySelector(sel);
   FK.$$ = (sel, root) => Array.prototype.slice.call((root || document).querySelectorAll(sel));

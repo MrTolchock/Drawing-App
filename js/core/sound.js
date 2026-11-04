@@ -1,4 +1,4 @@
-/* Farbklecks – Klänge. Everything is synthesized with Web Audio; there are no sound files and no speech. */
+/* Farbtupf – Klänge. Everything is synthesized with Web Audio; there are no sound files and no speech. */
 (function () {
   'use strict';
   const FK = (window.FK = window.FK || {});

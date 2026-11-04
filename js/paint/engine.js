@@ -1,4 +1,4 @@
-/* Farbklecks – Mal-Motor für «Ausmalen» und «Freies Malen».
+/* Farbtupf – Mal-Motor für «Ausmalen» und «Freies Malen».
 
    const eng = FK.engine.create({ host, kind: 'color' | 'free', onChange, onZoom });
    Layers (bottom → top): paper colour (CSS), paint, live glow/base/top (stroke in progress), outline, labels.

@@ -1,4 +1,4 @@
-/* Farbklecks – Speicher.
+/* Farbtupf – Speicher.
    FK.settings  – parent settings (localStorage)
    FK.progress  – stars and what the child has finished (localStorage)
    FK.store     – drawings and pictures as blobs (IndexedDB)

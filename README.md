@@ -1,4 +1,4 @@
-# Farbklecks
+# Farbtupf
 
 A colouring and early-learning app for children around six years old, in Swiss Standard German. It runs on iPad and iPhone as an installable web app (PWA): plain HTML, CSS and JavaScript with no build step, no server code, no tracking and no ads. Once it's on the home screen it works offline.
 
@@ -45,7 +45,7 @@ The app is served by GitHub Pages from the `main` branch: <https://mrtolchock.gi
 
 1. Open the address in **Safari**.
 2. Tap **Teilen**, then **Zum Home-Bildschirm**.
-3. Start Farbklecks from the home screen icon. It works in airplane mode too.
+3. Start Farbtupf from the home screen icon. It works in airplane mode too.
 
 Pictures, stars and progress stay on the device (browser storage). Apps added to the home screen are not affected by Safari's 7-day cleanup. To get a picture out of the app, open it in «Meine Bilder» and tap **Sichern**.
 

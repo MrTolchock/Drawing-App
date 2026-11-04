@@ -1,4 +1,4 @@
-/* Farbklecks – Wörter, Silben und kleine Sätze zum Lesenlernen (ohne Ton: das Bild zeigt, ob es stimmt).
+/* Farbtupf – Wörter, Silben und kleine Sätze zum Lesenlernen (ohne Ton: das Bild zeigt, ob es stimmt).
    w:   Wort mit Silbentrennung «-» (für die Silbenbögen)
    e:   Emoji, das genau dieses Wort zeigt (Emoji ≤ 13.0, iOS 14+)
    lvl: 1 = zwei offene Silben (Konsonant + Vokal), 2 = drei offene Silben oder eine geschlossene,

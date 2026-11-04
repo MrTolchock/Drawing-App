@@ -1,4 +1,4 @@
-/* Farbklecks – die Farbstifte. `word` is the colour word children read in «Farbwörter» mode. */
+/* Farbtupf – die Farbstifte. `word` is the colour word children read in «Farbwörter» mode. */
 (function () {
   'use strict';
   const FK = (window.FK = window.FK || {});

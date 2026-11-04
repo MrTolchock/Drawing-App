@@ -1,4 +1,4 @@
-/* Farbklecks – Meine Bilder: alle gespeicherten Bilder, ansehen, weitermalen, in die Fotos legen, löschen. */
+/* Farbtupf – Meine Bilder: alle gespeicherten Bilder, ansehen, weitermalen, in die Fotos legen, löschen. */
 (function () {
   'use strict';
   const FK = window.FK;
@@ -54,7 +54,7 @@
     const file = window.File ? new File([blob], name, { type: 'image/png' }) : null;
     if (file && navigator.canShare && navigator.canShare({ files: [file] })) {
       try {
-        await navigator.share({ files: [file], title: 'Mein Farbklecks-Bild' });
+        await navigator.share({ files: [file], title: 'Mein Farbtupf-Bild' });
         return;
       } catch (err) {
         if (err && err.name === 'AbortError') return;

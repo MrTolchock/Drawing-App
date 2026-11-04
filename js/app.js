@@ -1,4 +1,4 @@
-/* Farbklecks – Start der App. */
+/* Farbtupf – Start der App. */
 (function () {
   'use strict';
   const FK = window.FK;

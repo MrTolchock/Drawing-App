@@ -1,4 +1,4 @@
-/* Farbklecks – Stempel (Emoji-Sticker) und Belohnungs-Sticker fürs Sammelalbum. Emoji ≤ 13.0 (iOS 14+). */
+/* Farbtupf – Stempel (Emoji-Sticker) und Belohnungs-Sticker fürs Sammelalbum. Emoji ≤ 13.0 (iOS 14+). */
 (function () {
   'use strict';
   const FK = window.FK;

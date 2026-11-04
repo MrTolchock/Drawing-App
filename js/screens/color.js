@@ -1,4 +1,4 @@
-/* Farbklecks – Ausmalen: frei oder «Malen nach Zahlen / Würfeln / Silben / Farbwörtern». */
+/* Farbtupf – Ausmalen: frei oder «Malen nach Zahlen / Würfeln / Silben / Farbwörtern». */
 (function () {
   'use strict';
   const FK = window.FK;

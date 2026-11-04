@@ -1,4 +1,4 @@
-/* Farbklecks – Startseite: Klecksi, das Malbuch und die Lernspiele. */
+/* Farbtupf – Startseite: Tupfi, das Malbuch und die Lernspiele. */
 (function () {
   'use strict';
   const FK = window.FK;
@@ -101,13 +101,13 @@
         held = false;
       });
 
-      const logo = h('h1', { class: 'logo', 'aria-label': 'Farbklecks' });
-      'Farbklecks'.split('').forEach((ch, i) => {
+      const logo = h('h1', { class: 'logo', 'aria-label': 'Farbtupf' });
+      'Farbtupf'.split('').forEach((ch, i) => {
         logo.append(h('span', { style: { color: LOGO_COLORS[i % LOGO_COLORS.length], '--r': (i % 2 ? 4 : -4) + 'deg' }, text: ch }));
       });
       const mascot = FK.ui.mascot({ cls: 'hub-mascot' });
       mascot.setAttribute('role', 'button');
-      mascot.setAttribute('aria-label', 'Klecksi');
+      mascot.setAttribute('aria-label', 'Tupfi');
       mascot.addEventListener('click', () => {
         const m = FK.ui.mascot({ mood: 'cheer', cls: 'hub-mascot' });
         mascot.innerHTML = m.innerHTML;

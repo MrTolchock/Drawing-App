@@ -1,4 +1,4 @@
-/* Farbklecks – Punkt zu Punkt: Bilder zum Verbinden.
+/* Farbtupf – Punkt zu Punkt: Bilder zum Verbinden.
    w: the name with syllables for reading. points: the dots in order 1…n in the 1000-box. When all are connected the outline is closed,
    detail() draws the inside features and the picture becomes a colouring page (cat 'punkte'). */
 (function () {
