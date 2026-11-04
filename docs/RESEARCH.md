@@ -55,3 +55,12 @@ Die vorhandene durchgestrichene **7**, einstöckige **a/g**, einfache senkrechte
 - Naturfragen mit kurzen Beobachtungsaufträgen draussen verbinden, zum Beispiel Blätter vergleichen oder ein Tier mit Abstand beobachten und zeichnen.
 - Vorlesen/Hören und Laut-Buchstaben-Zuordnung ergänzen; vorhandene Lesespiele sind Übung nach der Einführung.
 - Keine starre Buchstaben-Einführungsreihenfolge als «Zürcher Vorgabe» ausgeben. Die Schule entscheidet über ihre konkrete Unterrichtsfolge.
+
+## Technische Validierung dieses Stands
+
+- `node tests/learning.test.cjs`: 14 Tests bestanden.
+- `node tests/browser-smoke.cjs`: 60 Aufgaben mit Touch-Eingaben, Wiederholungsbelohnung, drei Stufen, Lesen, Offline-Neuladen und gespeicherter Fortschritt bestanden; keine Browser-Ausnahmen.
+- `node tests/handwriting-browser.cjs`: alle 68 Modelle innerhalb des sichtbaren Schreibbereichs nach Stufenwechsel; alle 17 korrigierten Modelle mit simulierten Fingerbewegungen vollständig nachgespurt, inklusive mehrerer Züge und Umlautpunkte. Übersicht verwendet dieselbe Geometrie. Keine Browser-Ausnahmen.
+- Syntaxprüfungen für geänderte JavaScript-Dateien und `git diff --check` bestanden.
+
+Browser: Chromium mit Touch-Emulation. Das prüft Bedienbarkeit und technische Funktion; es ersetzt weder einen Test auf einem echten iPad noch eine pädagogische Beurteilung.
