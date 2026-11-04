@@ -55,6 +55,9 @@ html, body {
   overscroll-behavior: none;
 }
 
+/* Give iOS an opaque page canvas behind its status bar. */
+html { background-color: var(--table); }
+
 body {
   background-color: var(--table);
   background-image:
@@ -90,8 +93,8 @@ button { font: inherit; color: inherit; }
 }
 .screen.in { animation: screen-in .32s cubic-bezier(.2, 1.1, .4, 1); }
 .screen.in-back { animation: screen-back .3s cubic-bezier(.2, 1.1, .4, 1); }
-@keyframes screen-in { from { transform: translateX(28px) scale(.985); opacity: 0; } to { transform: none; opacity: 1; } }
-@keyframes screen-back { from { transform: translateX(-28px) scale(.985); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes screen-in { from { transform: translateX(28px); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes screen-back { from { transform: translateX(-28px); opacity: 0; } to { transform: none; opacity: 1; } }
 
 .scroll {
   flex: 1;
