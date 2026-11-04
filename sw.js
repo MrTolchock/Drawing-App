@@ -1,5 +1,5 @@
 /* Farbtupf – Service Worker: keeps the whole app on the device so it runs without internet. */
-const CACHE = 'farbtupf-v3.1';
+const CACHE = 'farbtupf-v3.2';
 const ASSETS = [
   './',
   './index.html',

@@ -183,13 +183,14 @@
   // Vertical frame shared by all glyphs of a set (so line spacing stays the same inside a set).
   const frameCache = {};
   function frameOf(sid) {
-    if (frameCache[sid]) return frameCache[sid];
+    const key = sid + ':' + learningStage;
+    if (frameCache[key]) return frameCache[key];
     const set = setById(sid);
     let y0 = 0;
     let y1 = 100;
     if (set) set.items.forEach((g) => { if (FK.glyphs.data[g]) { const G = geo(g); y0 = Math.min(y0, G.minY); y1 = Math.max(y1, G.maxY); } });
-    frameCache[sid] = { y0, y1: y1 > 104 ? Math.max(y1, 150) : y1 };
-    return frameCache[sid];
+    frameCache[key] = { y0, y1: y1 > 104 ? Math.max(y1, 150) : y1 };
+    return frameCache[key];
   }
 
   /* ---------- sets ---------- */
@@ -357,13 +358,15 @@
 
   function tileSvg(g) {
     const d = isDone(g);
-    const lower = setOf(g) && setOf(g).id === 'klein';
-    const col = CRAYONS[(sets().length ? Math.max(0, setOf(g).items.indexOf(g)) : 0) % CRAYONS.length];
-    const esc = g.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+    const G = geo(g);
+    const col = CRAYONS[Math.max(0, setOf(g).items.indexOf(g)) % CRAYONS.length];
+    const y0 = Math.min(0, G.minY), y1 = Math.max(100, G.maxY);
+    const scale = Math.min(76 / G.w, 72 / (y1 - y0));
+    const x = (100 - G.w * scale) / 2, y = 12 - y0 * scale;
     return '<svg viewBox="0 0 100 100" aria-hidden="true" focusable="false">' +
-      '<path class="tr-tile-ln" d="M10 ' + (lower ? 66 : 76) + ' H90"/>' +
-      '<text x="50" y="' + (lower ? 66 : 76) + '" text-anchor="middle" class="tr-tile-g' + (d ? ' is-done' : '') + '"' +
-      (d ? ' style="fill:' + col + '"' : '') + '>' + esc + '</text></svg>';
+      '<path class="tr-tile-ln" d="M10 ' + f2(y + 100 * scale) + ' H90"/>' +
+      '<g transform="translate(' + f2(x) + ' ' + f2(y) + ') scale(' + f2(scale) + ')" fill="none" stroke="' + (d ? col : '#23203d') + '" stroke-width="' + f2(4 / scale) + '" stroke-linecap="round" stroke-linejoin="round">' +
+      G.data.strokes.map(path => '<path d="' + path + '"/>').join('') + '</g></svg>';
   }
 
   function renderGrid(resetScroll) {

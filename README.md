@@ -16,7 +16,7 @@ The learning island comes first. Drawing is a creative companion:
 
 Each stage is labelled with a trimester. This is a **provisional app progression**, not an official Zürich trimester schedule. The curriculum covers a whole cycle. Nature questions may be read together with an adult. All stages are freely accessible, with no timers or penalties in the new games. Complete five questions to earn a star once per game and stage. Replay freely. Stars unlock stickers.
 
-**Official-material research and handwriting verification remain pending:** network policy blocked the education websites during this session. The existing letter/digit stroke geometry is unchanged. Do not treat it as verified Zürich Basisschrift. See [learning concept, source references and outstanding review](docs/LEARNING.md).
+**Official sources reviewed:** Zürich's curriculum and the official first-class Basisschrift model sheet have now been inspected. Seventeen letter/digit models have structural corrections, and writing previews use the same SVG shapes as tracing. These are simplified original drawings, not a licensed official font or a certified complete curriculum. LMVZ product pages remain inaccessible. See the [source report and limitations](docs/RESEARCH.md) and [learning concept](docs/LEARNING.md).
 
 «Kreativpause & Schätze» contains the existing 41-page colouring book, free drawing, saved pictures and sticker album. Keep the parent gear pressed to open settings. Existing device progress and pictures retain their original storage identifiers across the rename.
 

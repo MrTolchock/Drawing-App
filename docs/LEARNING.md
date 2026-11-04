@@ -12,20 +12,11 @@ Ziel: spielerische Ergänzung für die 1. Klasse in Zürich, mit dem Finger, ohn
 | Schreibspuren | kleine Auswahl einfacher Buchstaben/Ziffern, breite Spur | erweiterte Auswahl, geführte Spur | alle Zeichen und freiwillige Wiederholung ohne Hilfe |
 | Punkt zu Punkt | bestehende Stufe 1 | bestehende Stufe 2 | bestehende Stufe 3 |
 
-Mögliche Kompetenzbereiche zur fachlichen Prüfung: Mathematik Zahl und Variable (Mengen, Operationen), Form und Raum (Muster); Deutsch Lesen und Schreiben; NMG Tiere und Lebensräume. Keine formale Lehrplan-Zertifizierung.
+## Quellenprüfung abgeschlossen, Grenzen dokumentiert
 
-## Offizielle Quellen für die ausstehende Prüfung
+Die Zürcher Lehrplanseiten und die offiziellen Basisschrift-Materialien sind seit dem 4. November 2026 erreichbar und wurden eingesehen. [Recherchebericht mit Kompetenzcodes, Originalquellen, Schriftkorrekturen und verbleibenden Grenzen](RESEARCH.md).
 
-- Zürcher Lehrplan 21: https://zh.lehrplan.ch/ — Deutsch, Mathematik und NMG, Zyklus 1.
-- Kanton Zürich, Lehrplan und Lehrmittel: https://www.zh.ch/de/bildung/schulen/volksschule/unterricht/lehrplan-lehrmittel.html
-- Lehrmittelverlag Zürich: https://www.lmvz.ch/ — insbesondere *Zürcher Lehrmittel Mathematik 1 Primarstufe* und *Buchstabenreise* als zu prüfende Referenzen; Titel/aktuelle Ausgabe noch nicht verifiziert.
-- Deutschschweizer Basisschrift: https://www.basisschrift.ch/ und https://www.schulschrift.ch/ — Modelle und Bewegungsabläufe prüfen.
-
-**Recherche am 4. November 2026 blockiert:** HTTPS-Aufrufe wurden vom Netzwerkproxy mit 403 abgelehnt. Die Domains wurden im Umgebungsentwurf ergänzt. Diese Quellen wurden deshalb noch nicht inhaltlich eingesehen; keine Arbeitsblätter, Schriftdateien oder Lehrmittelgrafiken übernommen. Alle neuen Aufgaben sind eigene Inhalte. Die obige Progression ist vorläufig und muss nach Quellenzugriff überprüft werden.
-
-## Handschrift: noch nicht als Zürich-konform freigeben
-
-Die vorhandenen SVG-Schreibmodelle bleiben erhalten, einschliesslich einstöckigem a/g und durchgestrichener 7. Ihre genaue Form, Ansatzpunkte und Strichfolgen konnten noch nicht mit einer offiziellen Vorlage verglichen werden. Andika ist eine Leseschrift, keine amtliche Schreibvorlage. Vor einer entsprechenden Konformitätsaussage sind sämtliche Gross-/Kleinbuchstaben, Umlaute und Ziffern mit den offiziellen Modellen und dem verwendeten Klassenlehrmittel zu vergleichen. Keine verbundenen Schreibschrift-Lektionen in Klasse 1 voraussetzen. Fingerübungen unterstützen Bewegungen; sie beurteilen keine Stifthaltung.
+Zürich verwendet ab Klasse 1 die Deutschschweizer Basisschrift. Erste und zweite Klasse schreiben unverbunden; Verbindungen beginnen ab Klasse 3. Die selbst gezeichneten SVG-Modelle wurden anhand des offiziellen Erstklass-Modellblatts strukturell korrigiert. Andika bleibt ausschliesslich Leseschrift. Exakte Fonttreue oder eine behördliche Freigabe werden nicht behauptet. LMVZ-Produktseiten bleiben separat mit HTTP 403 unerreichbar; die Angaben zu ABC 1/2/3 sind über die offizielle Zürcher Basisschrift-Seite belegt.
 
 ## Gestaltung
 
