@@ -1,5 +1,5 @@
 /* Farbtupf – Service Worker: keeps the whole app on the device so it runs without internet. */
-const CACHE = 'farbtupf-v3.3';
+const CACHE = 'farbtupf-v4.2-waldatelier';
 const ASSETS = [
   './',
   './index.html',
@@ -10,6 +10,19 @@ const ASSETS = [
   './css/dots.css',
   './css/read.css',
   './css/learning.css',
+  './css/waldatelier.css',
+  './js/ui/waldatelier.js',
+  './js/ui/waldatelier-icons.js',
+  './assets/waldatelier/hero.png',
+  './assets/waldatelier/navigation.png',
+  './assets/waldatelier/animals.png',
+  './assets/waldatelier/creatures.png',
+  './assets/waldatelier/words-one.png',
+  './assets/waldatelier/words-two.png',
+  './assets/waldatelier/words-three.png',
+  './assets/waldatelier/discovery.png',
+  './assets/waldatelier/people.png',
+  './assets/waldatelier/alphabet.png',
   './js/learn/learning.js',
   './js/learn/adventures.js',
   './js/learn/missions.js',
@@ -22,6 +35,7 @@ const ASSETS = [
   './js/data/colors.js',
   './js/data/stickers.js',
   './js/art/dsl.js',
+  './js/art/waldatelier.js',
   './js/art/tiere.js',
   './js/art/tiere2.js',
   './js/art/schweiz.js',

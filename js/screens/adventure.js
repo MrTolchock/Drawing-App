@@ -125,7 +125,7 @@
   }
   function draw() {
     q = FK.adventures.question(game.id, stage, round); locked = false;
-    const host = h('div', { class: 'adventure-work' });
+    const host = h('div', { class: 'adventure-work adventure-' + q.kind });
     feedback = h('p', { class: 'learn-feedback', role: 'status', 'aria-live': 'polite', text: 'Probiere aus. Du hast Zeit.' });
     next = button(round === 4 ? '⭐ Geschafft!' : 'Weiter →', () => { if (!locked) return; round++; if (round === 5) finish(); else draw(); }, 'learn-next adventure-next'); next.hidden = true;
     body.replaceChildren(h('p', { class: 'learn-meta', text: stage + '. Stufe · ' + FK.learning.stages[stage - 1] + ' · Aufgabe ' + (round + 1) + ' von 5' }),

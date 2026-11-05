@@ -26,7 +26,7 @@
     colorId: saved.colorId || 'rot',
     pattern: saved.pattern || 'voll',
     size: [0, 1, 2, 3].indexOf(saved.size) >= 0 ? saved.size : 2,
-    emoji: saved.emoji || '🐱',
+    emoji: FK.visual.has(saved.emoji) ? saved.emoji : '🦊',
     stickerTab: saved.stickerTab | 0,
   };
   function persistTool() { FK.settings.set('color.tool', T); }

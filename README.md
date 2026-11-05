@@ -20,7 +20,9 @@ Each stage is labelled with a trimester. This is a **provisional app progression
 
 **Official sources reviewed:** The public LMVZ product pages are now accessible and have been researched alongside Zürich's 2026/27 directory and Klett und Balmer's Young World didactics. All new exercises are original; no publisher worksheets or illustrations are included. See the [new research and activity mapping](docs/LMVZ-RESEARCH.md), [earlier curriculum/handwriting report](docs/RESEARCH.md) and [learning concept](docs/LEARNING.md). The seventeen earlier handwriting corrections are retained. These remain simplified original drawings, not a licensed official font or a certified complete curriculum.
 
-«Kreativpause & Schätze» contains the existing 41-page colouring book, free drawing, saved pictures and sticker album. Keep the parent gear pressed to open settings. Existing device progress and pictures retain their original storage identifiers across the rename.
+The selected **Waldatelier** design brings a watercolour Zürich lakeside, a fox companion, coordinated subject illustrations, sepia tool icons and cream/forest-green stationery to every activity. The same illustrations appear in reading, learning, canvas stamps and the 42-sticker collection. Two original colouring pages, **Fuchs am See** and **Tram am Zürichsee**, join the existing 41 pages. Both support free painting, dice, numbers, syllables and colour words. Paint colours and handwriting geometry keep their learning meaning.
+
+«Kreativpause & Schätze» contains the colouring book, free drawing, saved pictures and sticker album. Keep the parent gear pressed to open settings. Existing device progress and pictures retain their original storage identifiers. See the [design notes](design/waldatelier/README.md) and [five original design directions](design/mockups/index.html).
 
 ## Develop and check
 
@@ -36,6 +38,7 @@ In another terminal:
 ```sh
 node tests/learning.test.cjs
 node tests/adventures.test.cjs
+node tests/waldatelier.test.cjs
 node --check js/screens/learn.js
 # With the server running and the cloud image browser tools:
 node tests/handwriting-browser.cjs
@@ -45,8 +48,10 @@ The content tests cover answer validity, range boundaries, arithmetic, offline a
 
 Bump `CACHE` in `sw.js` after app changes. Include new runtime assets in its cache list. Never rename localStorage/IndexedDB keys merely to change the app name.
 
+For manual responsive checks, open `tests/waldatelier-responsive.html` through the server. It loads the actual app in 390px phone and 820px tablet frames. `tests/waldatelier-paint.html` checks the new pages' guided colour regions at four paper sizes. Neither page is part of the child-facing navigation or offline install.
+
 ## Install
 
-The existing GitHub Pages location is <https://mrtolchock.github.io/Drawing-App/>. Development checkpoints on `farbtupf-learning` do not update that deployment until merged into the configured Pages branch.
+The existing GitHub Pages location is <https://mrtolchock.github.io/Drawing-App/>. Changes on `codex/playful-zurich-exercises` do not update that deployment until merged into the configured Pages branch.
 
 Open the deployed page in Safari, choose **Teilen → Zum Home-Bildschirm**. All pictures, settings and stars stay on the device. Offline use requires one successful initial load.

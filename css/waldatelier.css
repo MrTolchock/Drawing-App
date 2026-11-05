@@ -1,0 +1,176 @@
+/* The selected Waldatelier design. Reading models and paint colours stay exact;
+   chrome, illustrations and navigation share the same quiet picture-book world. */
+:root {
+  --table:#f7f2e7; --table-dot:#eae8d6; --table-deep:#e8e7d6;
+  --ink:#29432e; --sticker:#fffaf0; --sun:#edcf83; --sun-deep:#b38c3d;
+  --box:#d9c8a8; --box-hi:#e8d9bc; --mint:#dce6ca; --sky:#dce9eb;
+  --rose:#f0ddd3; --lilac:#e4dfe9; --apricot:#efdbbf; --leaf:#76945c;
+  --muted:#67715c; --wood:#d5bc94; --font:'Andika',system-ui,sans-serif;
+  --wa-line:#b7a887; --wa-soft:#e6dbc6; --wa-sepia:#75593c;
+  --wa-shadow:0 5px 18px #5b60330d; --radius:15px;
+}
+body { background:#f7f2e7; background-image:radial-gradient(ellipse at 5% 0%,#e7ead85e,transparent 46%),radial-gradient(ellipse at 95% 90%,#e4d4b542,transparent 50%); }
+.screen { padding-inline:max(22px,env(safe-area-inset-left)); padding-bottom:max(16px,env(safe-area-inset-bottom)); }
+.topbar { padding:9px 0 18px; gap:14px; }
+.topbar .title { color:var(--ink); font-family:var(--read); font-size:clamp(23px,3vw,34px); font-weight:700; letter-spacing:-.035em; -webkit-text-stroke:0; text-shadow:none; line-height:1.3; }
+.star-count { height:48px; font-size:23px; padding:0 14px 0 9px; background:#fff8e9; border:1px solid var(--wa-line); box-shadow:var(--wa-shadow); }
+.star-count .star-ic { width:31px; height:31px; }
+.btn { border:1px solid var(--wa-line); background:#fff9ec; box-shadow:0 3px 8px #76582f0c; border-radius:14px; }
+.btn .lbl { font:700 var(--lbl) var(--read); line-height:1.2; }
+.btn.on,.btn.on:active { transform:none; background:#dfe6cc; border-color:#829664; box-shadow:inset 0 0 0 1px #829664; }
+.btn:active,.btn.press,.card:active { transform:translateY(1px); box-shadow:none; }
+.btn-go,.btn-sun { background:#e7cf8f; }
+.btn-danger { background:#f0d6c8; }
+.btn-round { border-radius:50%; }
+.card,.empty,.mode-btn,.album-head,.album-sticker,.stat,.toggle,.setting-card,.info,.seg-opt,.cl-mode,.cl-counter,.pop-card,.modal-card,.praise,.toast,.ns-card,.ns-sticker {
+  border-width:1px; border-color:var(--wa-line); box-shadow:var(--wa-shadow);
+}
+.card,.empty,.album-head,.album-sticker,.toggle,.setting-card,.info,.pop-card,.modal-card { background:#fffbf3; }
+.card,.book-card,.frame-card,.mode-pic,.end-frame,.viewer-frame,.album-sticker { transform:none; }
+.modal { background:#24382155; backdrop-filter:blur(3px); }
+.modal-card { border-radius:23px; }
+.modal-title,.pop-title { color:var(--ink); font-family:var(--read); font-weight:700; }
+.praise { color:var(--ink); background:#f5e6bb; }
+.ns-album .ic,.book-stars .ic { filter:none; }
+.stat { background:#e4e9d4; }.stat:nth-child(2){background:#f0e2d4}.stat:nth-child(3){background:#f1e1b1}
+.album-sticker.locked { background:#f0ecdfe0; }
+.switch,.switch::after,.seg-opt,.crayon-tag { border-width:1px; border-color:var(--wa-line); box-shadow:none; }
+.seg-opt { background:#f1ede1; }.seg input:checked + .seg-opt { box-shadow:inset 0 0 0 1px #93a573; }
+.info p { color:#40503d; }.album-next p { font-size:19px; }
+.wa-illustration { position:relative; display:inline-block; flex:none; width:1.4em; height:1.4em; vertical-align:middle; background-size:400% 400%; background-repeat:no-repeat; pointer-events:none; }
+.wa-symbol { display:inline-flex; vertical-align:middle; width:1.15em; height:1.15em; align-items:center; justify-content:center; pointer-events:none; }
+.wa-symbol svg { width:100%; height:100%; }
+.wa-original { position:absolute !important; width:1px !important; height:1px !important; padding:0 !important; margin:-1px !important; overflow:hidden !important; clip:rect(0,0,0,0) !important; white-space:nowrap !important; border:0 !important; }
+.wa-mascot { width:140px; height:150px; }
+.wa-mascot .wa-illustration { display:block; width:100%; height:100%; }
+.wa-mascot.mood-cheer { animation:wa-nod 1.5s ease-in-out 2; }
+@keyframes wa-nod { 50% { transform:translateY(-5px) rotate(-2deg); } }
+/* The home scene gives the artwork room; the actual cards remain real controls. */
+.screen-hub { padding:16px max(16px,env(safe-area-inset-left)); gap:0; }
+.island-header { position:absolute; z-index:2; top:35px; left:36px; right:36px; pointer-events:none; }
+.island-header > * { pointer-events:auto; }
+.island-body { padding:0 0 32px; scroll-padding-top:24px; }
+.wa-welcome { position:relative; padding:48px 36px 32px; min-height:620px; border:1px solid #bec4aa; border-radius:24px; overflow:hidden; background:#e1ebe1 url('../assets/waldatelier/hero.png') left center / cover no-repeat; }
+.wa-hero-head { position:relative; margin:0 0 20px 34%; text-align:center; }
+.wa-hero-head > p:last-child { margin:7px 0 0; font-size:18px; }
+.wa-kicker { margin:0 0 6px; font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#5e7352; }
+.wa-wordmark { color:#234025; display:inline-block; position:relative; font-family:'Baloo 2',var(--read); font-size:clamp(56px,7vw,86px); font-weight:800; letter-spacing:-.045em; line-height:1; margin:0; }
+.wa-wordmark::after { content:''; display:block; width:65%; height:7px; margin:2px auto 0; border-radius:80% 30% 70% 30%; transform:rotate(-2deg); background:#d5ad4c; opacity:.8; }
+.wa-hero-cards { position:relative; margin-left:35%; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+.wa-home-card { display:flex; flex-direction:column; align-items:center; justify-content:center; min-width:0; min-height:162px; padding:9px 5px 14px; border:1px solid #b5a782a6; border-radius:21px; background:#fff8e9f0; color:#28432c; box-shadow:0 3px 12px #4c5c2620; cursor:pointer; touch-action:manipulation; }
+.wa-home-card .wa-illustration { width:112px; height:104px; }
+.wa-home-card > span:last-child { font-size:clamp(17px,2.1vw,24px); font-weight:700; letter-spacing:-.035em; }
+.wa-home-card:active { transform:translateY(1px); background:#f4ead1; }
+.wa-section-heading { display:flex; align-items:flex-end; justify-content:space-between; gap:20px; margin:30px 6px 18px; scroll-margin-top:16px; }
+.island-heading { color:var(--ink); margin:20px 4px 10px; font-size:clamp(24px,3vw,30px); letter-spacing:-.035em; }
+.wa-section-heading .island-heading { margin:0; }.wa-section-heading .island-intro { margin:0; }
+.island-intro,.island-note { color:#657158; font-size:15px; margin-left:6px; }
+.island-note { margin-block:16px 26px; }
+.island-levels { max-width:760px; margin:0 auto 24px; gap:10px; }
+.island-level { border:1px solid #c6bea6; min-height:62px; border-radius:14px; background:#fdf9ee; font-size:17px; box-shadow:none; }
+.island-level.selected { background:#e2e9cf; border-color:#8b9d70; box-shadow:inset 0 0 0 1px #8b9d70; }
+.island-grid { grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; }
+.island-card { border:1px solid #c9bea2; border-radius:20px; min-height:177px; gap:4px; box-shadow:0 3px 10px #5e61300b; background:#fffbf1; }
+.island-card-title { font:700 clamp(17px,1.8vw,23px) var(--read); letter-spacing:-.04em; }
+.island-sub { color:#6c745e; font-size:13px; }
+.island-emoji { font-size:58px; line-height:1; }
+.island-earned { font-size:18px; top:10px; right:12px; }
+.island-extras { gap:14px; }.island-extras .island-card { background:#f0eddf; }
+/* Learning games and creative prompts. */
+.learn-body { background:#fffaf0; border:1px solid #c5b99c; border-radius:24px; padding:20px 20px 32px; }
+.learn-prompt { color:#29432e; font-size:clamp(23px,2.5vw,31px); line-height:1.45; }
+.learn-progress { letter-spacing:4px; font-size:26px; }
+.learn-meta { color:#738065; }.learn-feedback { color:#546747; }
+.learn-button { border:1px solid #b2a27f; border-radius:15px; background:#fff9e9; font-weight:700; box-shadow:0 2px 7px #6c603409; }
+.learn-button:active { transform:translateY(1px); }.learn-answer.correct { background:#dce9c7; box-shadow:inset 0 0 0 1px #839b62; }
+.learn-answer { min-width:105px; min-height:68px; }.learn-answer.try-again { border-style:dashed; }
+.learn-next { background:#dfe6c7; }.learn-hint { background:#f5ecd7; }
+.learn-cell { border:1px solid #c3c5a7; border-radius:12px; background:#edf1df; }
+.learn-bug { background:transparent; padding:0; box-shadow:none; }
+.learn-bug .wa-illustration { width:100%; height:100%; min-height:44px; }
+.learn-bug.counted { box-shadow:inset 0 0 0 2px #6e8d52; background:#d5e4bf; }
+.learn-object { font-size:36px; }.learn-wagon { border-width:1px; border-color:#b9b598; background:#eceddb; }
+.learn-nature { font-size:82px; }.learn-finish .wa-mascot { width:170px; height:180px; }
+.adventure-rocket { display:grid; grid-template-columns:minmax(150px,220px) minmax(220px,420px); align-items:center; gap:0 14px; padding:20px 0; }
+.adventure-rocket > .adventure-scene { grid-column:1; grid-row:1 / span 3; font-size:170px; margin:0; }
+.adventure-rocket .adventure-scene .wa-illustration { width:220px; height:240px; }
+.adventure-rocket > .learn-frame,.adventure-rocket > .adventure-meter,.adventure-rocket > .learn-button { grid-column:2; }
+.adventure-seats { width:100%; }.adventure-fixed { font-size:34px; }
+.adventure-plate { background:#f4f1e2; border-radius:40%; border-color:#c2b593; }
+.adventure-berries { line-height:1.3; }.adventure-plate > b { display:flex; align-items:center; justify-content:center; }
+.adventure-plate > b .wa-illustration { font-size:44px; }
+.adventure-map-cell { border:1px solid #c5c7a5; background:#edf0dc; border-radius:8px; }
+.adventure-map-cell .wa-illustration { width:100%; height:100%; }.adventure-shape svg g { stroke:#795c3b; stroke-width:2; }
+.adventure-order { background:#edf0de; }.adventure-transfer { background:#edf0de; color:#526b45; }
+.adventure-drum { background:#efdfb7; }.adventure-drum .wa-illustration { font-size:44px; }
+.mission-body { text-align:left; }.mission-tile { background:#fff9eb; border-color:#c4b793; }
+.mission-tile .wa-illustration { font-size:39px; }.mission-filters .learn-button { font-size:16px; }
+.mission-filters [aria-pressed=true],.mission-done[aria-pressed=true] { background:#e2e9cd; }
+.mission-tip { background:#edf0de; }.mission-reminder { border-color:#b4bb8c; background:#eaf0d8; }
+/* Reading, writing and dot-to-dot use the same stationery and controls. */
+.rd-lv-label,.screen-trace .tr-label,.screen-dots .pp-label { color:var(--ink); -webkit-text-stroke:0; text-shadow:none; }
+.rd-lvl,.rd-tile,.rd-art-chip,.rd-art-paper,.rd-art-card,.rd-art-obj,.rd-paper,.rd-pic,.rd-card,.rd-chip,.rd-slot,.screen-trace .tr-tab,.screen-trace .tr-tile,.screen-trace .tr-paper,.screen-trace .tr-side,.screen-trace .tr-card,.screen-trace .tr-btn,.screen-dots .pp-tab,.screen-dots .pp-tile,.screen-dots .pp-paper,.screen-dots .pp-side {
+  border-width:1px; border-color:#b9ac8c; box-shadow:0 3px 10px #5a62300c;
+}
+.rd-tile { border-radius:22px; }.rd-lvl.on,.screen-trace .tr-tab.on,.screen-dots .pp-tab.on { transform:none; background:#e5eacf; box-shadow:inset 0 0 0 1px #8a9a67; }
+.rd-t-sun { background:#f2e2b6; }.rd-t-mint { background:#e2e9d1; }.rd-t-sky { background:#e2edef; }.rd-t-lilac { background:#e8e1e9; }
+.rd-card,.rd-chip,.rd-slot,.screen-trace .tr-paper,.screen-dots .pp-paper { background:#fffdf6; }
+.rd-pic { background:#f6efdc; }.rd-card { transform:none; }
+.rd-done { background:#24382140; backdrop-filter:blur(2px); }
+.rd-done-card { border:1px solid #b9ac8c; background:#fffbf1; box-shadow:0 8px 32px #26382025; }
+.rd-card-emoji .wa-illustration { width:1.7em; height:1.7em; }
+.screen-trace { --tr-track:#e0e1cf; --tr-line:#a6bdc7; --tr-line-strong:#5d8493; --tr-band:#eff4ed; }
+.screen-trace .tr-tile { background:#fffbf1; }.screen-trace .tr-track path { opacity:.8; }
+.screen-trace .tr-track path.is-cur { stroke:#dbe2c9; }.screen-trace .is-frei .tr-track path { stroke:#e7eadc; }
+.screen-trace .tr-track-o path { stroke:#8b927c4d; }.screen-trace .tr-center { stroke:#67715c99; }
+.screen-trace .tr-myst,.screen-trace .tr-pip,.screen-trace .tr-pair,.screen-trace .tr-chip,.screen-trace .tr-tab-prog { border-width:1px; border-color:#b9ac8c; box-shadow:none; }
+.screen-trace .tr-myst { background:#fffaf0; transform:none; }.screen-trace .tr-head-dot { stroke:#546642; stroke-width:1.2px; }
+.screen-trace .tr-head-num { fill:#fffaf0; stroke:none; }.screen-trace .tr-paint-o path { stroke:#75593c; stroke-width:12px; }
+.screen-trace .tr-pip.is-done { -webkit-text-stroke:0; color:#fffaf0; }.screen-trace .tr-pip.is-cur { box-shadow:0 0 0 3px #aabb8a55; }
+.screen-dots .pp-tile canvas,.screen-dots .pp-tile-count,.screen-dots .pp-tile-name,.screen-dots .pp-tab-prog,.screen-dots .pp-name,.screen-dots .pp-bar { border-width:1px; border-color:#b9ac8c; box-shadow:none; }
+.screen-dots .pp-next { border:1px solid #8a9a67; -webkit-text-stroke:0; box-shadow:none; color:#fffaf0; }
+.cat-tab,.mode-btn { border-width:1px; border-color:#b8aa8b; box-shadow:none; background:#fff9ec; }
+.cat-tab.on { background:#e2e8ce; box-shadow:inset 0 0 0 1px #8b9a70; transform:none; }
+.mode-btn.mode-frei { background:#ead5a0; }.mode-btn.mode-wuerfel { background:#dde7ca; }.mode-btn.mode-zahlen { background:#dbe9e9; }.mode-btn.mode-silben { background:#efddd2; }.mode-btn.mode-woerter { background:#eddfc7; }
+.book-grid,.gallery-grid { gap:20px; }.book-card { padding:12px; }.book-card canvas { border-radius:10px; }
+.book-grid.waldatelier-pages { grid-template-columns:repeat(2,minmax(0,1fr)); width:100%; max-width:1060px; margin:auto; }
+.frame-card img { background:#f3eddd; }.mode-pic,.end-frame,.viewer-frame { border:1px solid #c3b598; box-shadow:var(--wa-shadow); }
+.paper { border-radius:12px; box-shadow:0 5px 28px #695c3622,0 0 0 1px #c6b99d; }.tape { display:none; }
+.guides line { stroke:#97b3ae; }.cl-mode { background:#e6ecd6; }.cl-counter.full { background:#dce8c4; }
+/* Paint dabs replace the old bright red plastic pencil box. Colours stay exact. */
+.box { --box-h:64px; --front:0px; --crayon-w:44px; --crayon-top:8px; --lift:3px; background:#fbf6e9; border:1px solid #d4c8ae; padding:0 4px; }
+.crayon { min-height:60px; }.crayon svg { width:44px; height:44px; top:8px; }
+.crayon::after { display:none; }.crayon.on svg,.crayon.on:active svg { transform:translate(-50%,-3px); filter:drop-shadow(0 2px 2px #594d2d40); }
+.box.labelled { --box-h:101px; --front:42px; --crayon-w:48px; background:transparent; border:0; }
+.box.labelled .crayon { height:101px; }.box.labelled .crayon svg { height:48px; width:48px; }
+.crayon-tag { bottom:2px; background:#fffaf0; border-radius:11px; }.crayon.on .crayon-tag { background:#e4e9cb; }
+.crayon-tag svg,.crayon.on .crayon-tag svg { position:static; width:30px; height:30px; transform:none; filter:none; }
+.crayon.on::before { content:''; position:absolute; width:46px; height:46px; border:2px solid #6b824b; border-radius:50%; top:4px; left:50%; transform:translateX(-50%); }
+.crayon:focus-visible { outline:2px solid #53763d; outline-offset:-3px; border-radius:12px; }
+.lbl-spot { border-width:1px; box-shadow:0 2px 5px #75593c15; }
+.pop-card { background:#fffaf0; }.opt { border-color:#c7b99b; box-shadow:none; }.opt.on { background:#e0e8cc; }
+.screen svg [stroke="#23203d"] { stroke:#75593c; }
+.screen svg [fill="#23203d"] { fill:#75593c; }
+:is(.btn,.card,.wa-home-card,.island-card,.island-level,.learn-button,.cat-tab,.rd-lvl,.rd-tile):focus-visible { outline:3px solid #53763d; outline-offset:4px; }
+@media(min-width:1450px) { .island-body { max-width:1420px; width:100%; margin:auto; }.island-header { max-width:1370px; margin:auto; }.wa-welcome { min-height:660px; }.wa-home-card { min-height:178px; } }
+@media(max-width:1000px) { .wa-welcome { padding:62px 24px 26px; min-height:590px; }.wa-hero-head { margin-left:27%; }.wa-hero-cards { margin-left:27%; gap:10px; }.wa-home-card { min-height:150px; }.wa-home-card .wa-illustration { width:100px; height:96px; }.island-grid { grid-template-columns:repeat(3,minmax(0,1fr)); } }
+@media(max-width:650px) {
+  .screen { padding-inline:14px; }.topbar { gap:8px; padding:5px 0 14px; }.topbar .title { font-size:23px; -webkit-text-stroke:0; }
+  .screen-hub { padding:12px; }.island-header { top:24px; left:25px; right:25px; }.island-header .btn { --btn:42px; --btn-w:42px; --ic:25px; }.star-count { height:42px; font-size:20px; }
+  .wa-welcome { padding:65px 12px 16px; min-height:0; background-position:22% top; background-size:auto 520px; border-radius:20px; }
+  .wa-hero-head { margin:0 0 18px; padding-top:6px; text-shadow:0 1px 8px #fff9e7; }.wa-kicker { font-size:10px; }.wa-wordmark { font-size:61px; }.wa-hero-head > p:last-child { font-size:15px; }
+  .wa-hero-cards { margin:0; grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; }.wa-home-card { min-height:123px; background:#fff9edeb; border-radius:18px; }.wa-home-card .wa-illustration { width:86px; height:78px; }.wa-home-card > span:last-child { font-size:20px; }
+  .wa-section-heading { display:block; margin:25px 2px 14px; }.wa-section-heading .island-intro { margin-top:7px; }.island-grid,.island-extras { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+  .island-card { min-height:155px; padding:12px 7px; }.island-card-title { font-size:18px; }.island-sub { font-size:12px; }.island-levels { gap:6px; }.island-level { font-size:13px; }.island-level span { font-size:11px; }
+  .learn-body { padding:15px 12px 25px; }.learn-button { padding:10px 14px; font-size:19px; }.learn-prompt { font-size:23px; }.learn-answer { min-width:85px; }
+  .adventure-rocket { grid-template-columns:1fr; padding-top:0; }.adventure-rocket > .adventure-scene { grid-column:1; grid-row:auto; }.adventure-rocket .adventure-scene .wa-illustration { width:145px; height:150px; }
+  .adventure-rocket > .learn-frame,.adventure-rocket > .adventure-meter,.adventure-rocket > .learn-button { grid-column:1; }.adventure-rocket .learn-frame { max-width:300px; }
+  .adventure-plate > b .wa-illustration { font-size:30px; }.adventure-plates { gap:8px; }.adventure-berries { font-size:23px; }.adventure-plate { min-height:144px; }
+  .box { --box-h:54px; --crayon-w:36px; }.crayon { min-height:51px; }.crayon svg { width:36px; height:36px; }.mission-reminder { font-size:13px; }
+  .crayon.on::before { width:38px; height:38px; top:4px; }.box.labelled .crayon.on::before { width:50px; height:50px; }
+  .crayon-tag svg,.crayon.on .crayon-tag svg { width:30px; height:30px; }
+  .rd-lvl { min-width:90px; }.album-head { padding:12px; gap:6px; }.album-mascot { width:90px; height:100px; }
+  .book-grid.waldatelier-pages { grid-template-columns:1fr; }
+}
+@media(max-height:540px) and (orientation:landscape) { .topbar { padding-bottom:8px; }.topbar .title { -webkit-text-stroke:0; }.adventure-rocket .adventure-scene .wa-illustration { height:130px; width:130px; }.adventure-rocket { padding:0; }.wa-welcome { min-height:540px; } }
+@media(prefers-reduced-motion:reduce) { .wa-mascot { animation:none !important; } }

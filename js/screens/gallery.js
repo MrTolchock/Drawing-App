@@ -23,7 +23,7 @@
     c.height = rec.H;
     const g = c.getContext('2d');
     const page = rec.pageId ? FK.art.find(rec.pageId) : null;
-    if (page) FK.art.renderOutline(c, page, 4.2 * (rec.k || 2), [35, 32, 61]);
+    if (page) FK.art.renderOutline(c, page, 3.2 * (rec.k || 2), [117, 89, 60]);
     g.globalCompositeOperation = 'destination-over';
     g.drawImage(img, 0, 0);
     if (img.close) img.close();

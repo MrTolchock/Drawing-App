@@ -26,7 +26,7 @@
     ],
     [
       ['Welches Tier ist ein Insekt?', 'Die Biene 🐝', ['Die Biene 🐝', 'Die Spinne 🕷️', 'Der Igel 🦔'], 'Insekten haben sechs Beine. Spinnen haben acht.'],
-      ['Wer säugt seine Jungen?', 'Die Katze 🐈', ['Die Katze 🐈', 'Die Amsel 🐦', 'Der Schmetterling 🦋'], 'Säugetiere geben ihren Jungen Milch.'],
+      ['Wer säugt seine Jungen?', 'Die Katze 🐈', ['Die Katze 🐈', 'Der Vogel 🐦', 'Der Schmetterling 🦋'], 'Säugetiere geben ihren Jungen Milch.'],
       ['Was wird aus einer Raupe?', 'Ein Schmetterling 🦋', ['Ein Schmetterling 🦋', 'Ein Fisch 🐟', 'Ein Igel 🦔'], 'Aus der Raupe wird eine Puppe, dann ein Schmetterling.'],
       ['Warum lassen wir ein Vogelnest in Ruhe?', 'Damit die Jungen sicher sind 🪺', ['Damit die Jungen sicher sind 🪺', 'Damit Steine wachsen 🪨', 'Damit es schneit ❄️'], 'Beobachte Tiere mit Abstand.'],
       ['Was hilft Bienen im Garten?', 'Viele Blüten 🌼', ['Viele Blüten 🌼', 'Nur Beton 🧱', 'Plastikblumen 🧸'], 'Verschiedene Blüten bieten Nahrung.'],

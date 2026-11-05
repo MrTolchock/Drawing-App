@@ -28,7 +28,7 @@
     brush: FK.BRUSH_ORDER.indexOf(saved.brush) >= 0 ? saved.brush : 'filz',
     colorId: saved.colorId || 'rot',
     size: [0, 1, 2, 3].indexOf(saved.size) >= 0 ? saved.size : 1,
-    emoji: saved.emoji || '🐱',
+    emoji: FK.visual.has(saved.emoji) ? saved.emoji : '🦊',
     stickerTab: saved.stickerTab | 0,
     mirror: ['off', 'spiegel', 'kaleido'].indexOf(saved.mirror) >= 0 ? saved.mirror : 'off',
   };

@@ -17,7 +17,7 @@
   const h = FK.h;
   const NS = 'http://www.w3.org/2000/svg';
 
-  const CRAYONS = ['#ff4b4b', '#ff9f1c', '#2fbf71', '#3a86ff', '#9b5de5', '#ff5fa2', '#13bdbd', '#ffb000'];
+  const CRAYONS = ['#b76e54', '#ca9145', '#79945b', '#6d96ab', '#a1829c', '#c58e84', '#6f9d91', '#c0a34d'];
   const STEP = 1;        // sample spacing along a stroke (glyph units)
   const BACK = 22;       // the finger may wander this far behind the reached point and still be "on track"
   const AHEAD = 12;      // progress never jumps further ahead than this in one small step

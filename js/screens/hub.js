@@ -12,6 +12,18 @@
   }
   function render() {
     const stage = FK.learning.stage(); content.replaceChildren();
+    const heroCards = h('div', { class: 'wa-hero-cards' });
+    const homes = [
+      ['numbers','Zahlen',() => content.querySelector('#wa-learning').scrollIntoView({ behavior: FK.reduced ? 'auto' : 'smooth', block:'start' })],
+      ['words','Wörter',() => launch('read',{lvl:stage})],
+      ['nature','Natur',() => launch('learn',{game:'nature'})],
+      ['shapes','Formen',() => launch('adventure',{game:'shapes'})],
+      ['painting','Malen',() => launch('book')],
+      ['pictures','Meine Bilder',() => launch('gallery')],
+    ];
+    homes.forEach(([art,label,fn]) => heroCards.append(h('button', { type:'button',class:'wa-home-card',onclick:fn }, FK.visual.art(art),h('span',{text:label}))));
+    const welcome = h('section', { class:'wa-welcome', 'aria-label':'Willkommen im Waldatelier' },
+      h('div',{class:'wa-hero-head'},h('p',{class:'wa-kicker',text:'Dein kleines Waldatelier'}),h('h1',{class:'wa-wordmark',text:'Farbtupf'}),h('p',{text:'Was möchtest du entdecken?'})),heroCards);
     const levels = h('div', { class: 'island-levels', role: 'group', 'aria-label': 'Trimester wählen' });
     FK.learning.stages.forEach((s, i) => levels.append(h('button', { type: 'button', class: 'island-level' + (stage === i + 1 ? ' selected' : ''), 'aria-pressed': String(stage === i + 1), onclick: () => { FK.settings.set('learning.stage', i + 1); render(); } }, h('b', { text: s }), h('span', { text: (i + 1) + '. Trimester' }))));
     const grid = h('div', { class: 'island-grid' });
@@ -27,7 +39,7 @@
       card('🖐️', 'Freies Malen', 'Mit dem Finger', 'mint', () => launch('free')),
       card('🖼️', 'Meine Bilder', 'Deine Sammlung', 'rose', () => launch('gallery')),
       card('🌟', 'Sammelalbum', 'Deine Sticker', 'lilac', () => { FK.settings.set('album.seen', FK.rewardsUnlocked()); launch('album'); }));
-    content.append(h('h2', { class: 'island-heading', text: 'Deine Lerninsel' }), h('p', { class: 'island-intro', text: 'Spielen, staunen, ausprobieren. Mit deinem Finger!' }), levels, grid,
+    content.append(welcome,h('div',{class:'wa-section-heading',id:'wa-learning'},h('div',{},h('p',{class:'wa-kicker',text:'In deinem Tempo'}),h('h2', { class: 'island-heading', text: 'Deine Lerninsel' })),h('p', { class: 'island-intro', text: 'Spielen, staunen, ausprobieren.' })), levels, grid,
       h('p', { class: 'island-note', text: 'Wähle, was zu dir passt. Alle Stufen sind offen.' }),
       h('h2', { class: 'island-heading', text: 'Neue Entdecker-Abenteuer' }), h('p', { class: 'island-intro', text: 'Teilen, trommeln, tüfteln – und eigene Bilder erfinden.' }), adventures,
       h('h2', { class: 'island-heading', text: 'Kreativpause & Schätze' }), extras);
@@ -36,7 +48,7 @@
     build(root) {
       const gear = FK.ui.btn({ icon: 'gear', cls: 'btn-round btn-parents', title: 'Für Eltern: gedrückt halten' });
       FK.ui.longPress(gear, 1200, () => FK.ui.parentGate(() => FK.go('parents')));
-      root.append(h('header', { class: 'island-header' }, gear, h('h1', { class: 'island-logo', text: 'Farbtupf' }), FK.ui.starCounter({ onClick: () => launch('album') })));
+      root.append(h('header', { class: 'island-header' }, gear, FK.ui.starCounter({ onClick: () => launch('album') })));
       content = h('div', { class: 'island-body scroll' }); root.append(content);
     },
     enter: render,

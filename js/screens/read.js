@@ -10,9 +10,9 @@
   const N_WORT = 6;
   const N_POPS = 8;
   const N_GENAU = 6;
-  const INK = '#23203d';
-  const PASTELS = ['#ffc93c', '#7be0b0', '#8fd3ff', '#ff9cc6', '#c7a6ff', '#ffb366'];
-  const BALLOON_COLORS = ['#ff9cc6', '#8fd3ff', '#ffc93c', '#7be0b0', '#c7a6ff', '#ffb366', '#ff8a7a'];
+  const INK = '#75593c';
+  const PASTELS = ['#edcf83', '#c6d6ad', '#b6d2dd', '#e2baaa', '#c5b2c8', '#e5bc88'];
+  const BALLOON_COLORS = ['#dfb3a4', '#adcddd', '#e4c26e', '#bed09e', '#beabc5', '#dfb583', '#d59b83'];
   const ARC = '<svg class="arc" viewBox="0 0 100 20" preserveAspectRatio="none" aria-hidden="true"><path d="M4 4 Q50 26 96 4"/></svg>';
 
   // Used only if js/learn/words.js could not be loaded.
@@ -262,9 +262,9 @@
   function balloonSvg(color, cls) {
     return '<svg class="' + (cls || 'rd-b-svg') + '" viewBox="0 0 100 150" aria-hidden="true">' +
       '<path class="rd-b-str" d="M50 110 C41 119 59 127 49 136 C43 142 53 146 50 150" fill="none" stroke="' + INK + '" stroke-width="3" stroke-linecap="round"/>' +
-      '<path d="M50 4 C76 4 94 25 94 52 C94 79 73 99 55 104 L45 104 C27 99 6 79 6 52 C6 25 24 4 50 4 Z" fill="' + color + '" stroke="' + INK + '" stroke-width="4.5"/>' +
-      '<path d="M42 113 L50 101 L58 113 Z" fill="' + color + '" stroke="' + INK + '" stroke-width="3.5" stroke-linejoin="round"/>' +
-      '<ellipse cx="29" cy="33" rx="7" ry="14" transform="rotate(28 29 33)" fill="#fff" opacity=".7"/>' +
+      '<path d="M50 4 C76 4 94 25 94 52 C94 79 73 99 55 104 L45 104 C27 99 6 79 6 52 C6 25 24 4 50 4 Z" fill="' + color + '" stroke="' + INK + '" stroke-width="2"/>' +
+      '<path d="M42 113 L50 101 L58 113 Z" fill="' + color + '" stroke="' + INK + '" stroke-width="2" stroke-linejoin="round"/>' +
+      '<path d="M22 42Q23 24 39 18" fill="none" stroke="#fff" opacity=".3" stroke-width="6" stroke-linecap="round"/>' +
       '</svg>';
   }
 
@@ -313,8 +313,8 @@
 
   /* ---------- simple SVG objects for «Lies genau» (one main colour each) ---------- */
 
-  const ST = ' stroke="' + INK + '" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"';
-  const ST3 = ' stroke="' + INK + '" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"';
+  const ST = ' stroke="' + INK + '" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"';
+  const ST3 = ' stroke="' + INK + '" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"';
   const dark = (c) => FK.color.mix(c, INK, 0.3);
   const leafOf = (id) => (id === 'gruen' || id === 'hellgruen' ? '#8bd448' : '#1f9d55');
   const eye = (x, y, r) => '<circle cx="' + x + '" cy="' + y + '" r="' + r + '" fill="' + INK + '"/><circle cx="' + (x + r * 0.35) + '" cy="' + (y - r * 0.38) + '" r="' + r * 0.38 + '" fill="#fff"/>';

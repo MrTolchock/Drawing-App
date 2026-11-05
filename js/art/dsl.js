@@ -21,6 +21,7 @@
   const FIT = 0.94;
 
   const CATS = [
+    { id: 'waldatelier', name: 'Waldatelier', icon: '🦊' },
     { id: 'tiere', name: 'Tiere', icon: '🐾' },
     { id: 'schweiz', name: 'Schweiz', icon: '🇨🇭' },
     { id: 'fahrzeuge', name: 'Fahrzeuge', icon: '🚂' },
@@ -214,7 +215,7 @@
     ctx.setTransform(f.s, 0, 0, f.s, f.ox, f.oy);
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
-    const g = helper(ctx, Math.max(9, (minLinePx || 0) / f.s));
+    const g = helper(ctx, Math.max(7, (minLinePx || 0) / f.s));
     page.draw(g);
     ctx.restore();
   }
@@ -249,9 +250,14 @@
 
   function thumb(canvas, page) {
     const ctx = canvas.getContext('2d');
-    ctx.fillStyle = '#fff';
+    ctx.fillStyle = '#fffdf6';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    if (page) drawArt(ctx, page, canvas.width, canvas.height, canvas.width / 170);
+    if (page) {
+      const outline = document.createElement('canvas');
+      outline.width = canvas.width; outline.height = canvas.height;
+      renderOutline(outline, page, Math.max(1.2, canvas.width / 200), [117, 89, 60]);
+      ctx.drawImage(outline, 0, 0);
+    }
   }
 
   // Spot positions in paper pixels for a paper of W×H.

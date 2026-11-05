@@ -1,0 +1,102 @@
+[
+  {
+    "id": "hero",
+    "file": "assets/waldatelier/hero.png",
+    "size": [
+      1536,
+      1024
+    ],
+    "mode": "RGB",
+    "bytes": 2932300
+  },
+  {
+    "id": "navigation",
+    "file": "assets/waldatelier/navigation.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "bytes": 1674234
+  },
+  {
+    "id": "animals",
+    "file": "assets/waldatelier/animals.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "bytes": 1717382
+  },
+  {
+    "id": "creatures",
+    "file": "assets/waldatelier/creatures.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "bytes": 1826363
+  },
+  {
+    "id": "alphabet",
+    "file": "assets/waldatelier/alphabet.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "bytes": 1685335
+  },
+  {
+    "id": "words-one",
+    "file": "assets/waldatelier/words-one.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "bytes": 1693705
+  },
+  {
+    "id": "words-two",
+    "file": "assets/waldatelier/words-two.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "bytes": 1534969
+  },
+  {
+    "id": "words-three",
+    "file": "assets/waldatelier/words-three.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "bytes": 3127554
+  },
+  {
+    "id": "discovery",
+    "file": "assets/waldatelier/discovery.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "bytes": 1584413
+  },
+  {
+    "id": "people",
+    "file": "assets/waldatelier/people.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "bytes": 1956712
+  }
+]

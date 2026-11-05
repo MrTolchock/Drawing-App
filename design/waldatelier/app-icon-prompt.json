@@ -1,0 +1,8 @@
+{
+  "purpose": "Waldatelier PWA and iOS app icon",
+  "reference": "design/mockups/01-waldatelier.png",
+  "brief": "One square icon with the same kind, curious orange fox, cream muzzle, brown eyes and green neckerchief. Rich hand-painted watercolour and fine sepia touches on opaque warm ivory paper, with a few sage leaves. No text, frame, interface, logo, shadow or extra characters. Keep the portrait readable at small sizes and allow room for system masking.",
+  "original": "design/waldatelier/app-icon.png",
+  "exports": ["icons/icon-192.png", "icons/icon-512.png", "icons/apple-touch-icon.png", "icons/icon-maskable-512.png", "icons/icon.svg"],
+  "maskable": "Original portrait reduced to 75% and centred on warm ivory before the 512px export."
+}

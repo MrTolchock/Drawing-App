@@ -94,7 +94,7 @@
     const oc = document.createElement('canvas');
     oc.width = W;
     oc.height = H;
-    const alpha = FK.art.renderOutline(oc, page, Math.max(2, W / 170), [35, 32, 61]);
+    const alpha = FK.art.renderOutline(oc, page, Math.max(2, W / 170), [117, 89, 60]);
     if (amount > 0 && FK.art.hasLabels(page)) {
       const R = regions(alpha, W, H, 110);
       const spots = FK.art.spotsOnPaper(page, W, H);

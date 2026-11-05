@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Farbtupf — Five visual directions</title>
+  <style>
+    @font-face { font-family: Andika; src: url('../../fonts/andika-400.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+    @font-face { font-family: Andika; src: url('../../fonts/andika-700.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+    :root { color-scheme: light; font-family: Andika, system-ui, sans-serif; color: #202b36; background: #f6f3ed; }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    button,a { -webkit-tap-highlight-color: transparent; }
+    button { font: inherit; cursor: pointer; color: inherit; }
+    button:focus-visible,a:focus-visible { outline: 3px solid #2260a6; outline-offset: 4px; }
+    [hidden] { display: none !important; }
+    main { max-width: 1550px; margin: auto; padding: 38px 36px 30px; }
+    .eyebrow { display: flex; align-items: center; gap: 12px; font-size: 12px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: #5a655f; }
+    .brand-mark { display: flex; gap: 3px; transform: rotate(-12deg); }
+    .brand-mark i { display: block; width: 7px; height: 16px; border-radius: 10px; background: #e39c43; }
+    .brand-mark i:nth-child(2) { background: #e5684d; height: 21px; }
+    .brand-mark i:nth-child(3) { background: #67918b; }
+    .intro { display: flex; align-items: flex-end; justify-content: space-between; gap: 26px; margin: 10px 0 26px; }
+    h1 { font-size: clamp(26px, 3vw, 42px); letter-spacing: -.045em; line-height: 1.25; margin: 10px 0; }
+    .intro p { font-size: 15px; color: #60686e; line-height: 1.6; margin: 0; }
+    .compare-toggle { border: 1px solid #c9ccc6; border-radius: 8px; padding: 12px 18px; background: transparent; white-space: nowrap; min-height: 48px; }
+    .compare-toggle[aria-pressed=true] { background: #202b36; color: #fff; border-color: #202b36; }
+    .directions { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: 10px; }
+    .direction { text-align: left; border: 1px solid #d9d8d0; background: #fffcf8; border-radius: 10px; padding: 13px 14px; min-height: 104px; }
+    .direction[aria-pressed=true] { border-color: #202b36; box-shadow: inset 0 -3px #202b36; }
+    .direction .number { font-size: 11px; color: #68716f; letter-spacing: .1em; }
+    .direction b { display: block; margin: 4px 0 11px; font-size: 15px; }
+    .swatches { display: flex; gap: 5px; }
+    .swatches i { display: block; width: 13px; height: 13px; border-radius: 50%; box-shadow: inset 0 0 0 1px #00000009; }
+    .board-head { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 23px 0 13px; }
+    .board-head p { margin: 0; font-size: 14px; color: #5e686e; }
+    .board-head strong { color: #202b36; font-size: 17px; }
+    a { color: #214e68; text-underline-offset: 3px; }
+    .full { font-size: 13px; white-space: nowrap; }
+    .board { margin: 0; background: #fffaf2; border: 1px solid #dedbd3; border-radius: 14px; overflow: hidden; }
+    .board img { display: block; width: 100%; height: auto; }
+    .below { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 18px 0; }
+    .below p { margin: 0; font-size: 14px; color: #5e686e; }
+    .arrows { display: flex; gap: 8px; }
+    .arrow { background: #fffcf8; border: 1px solid #d0d1ca; border-radius: 8px; min-width: 48px; min-height: 45px; font-size: 20px; }
+    .arrow:disabled { opacity: .35; cursor: default; }
+    .all { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 24px; margin-top: 24px; }
+    .comparison { min-width: 0; }
+    .comparison h2 { font-size: 19px; margin: 0 0 4px; }
+    .comparison p { font-size: 13px; color: #5e686e; margin: 0 0 12px; }
+    .comparison a { display: block; }
+    .comparison img { display: block; width: 100%; height: auto; border-radius: 10px; border: 1px solid #dedbd3; }
+    .comparison:last-child { grid-column: 1 / -1; max-width: 950px; justify-self: center; }
+    footer { font-size: 12px; color: #6d746f; border-top: 1px solid #dcddd4; padding-top: 17px; line-height: 1.8; }
+    footer a { color: inherit; }
+    @media(max-width:850px) { main { padding: 24px 16px; } .directions { grid-template-columns:repeat(3,minmax(0,1fr)); } .all { grid-template-columns:1fr; } .intro { align-items:flex-start; flex-direction:column; gap:14px; } .board-head { align-items:flex-start; } .board-head p span { display:block; margin-top:4px; } }
+    @media(max-width:450px) { .directions { grid-template-columns:repeat(2,minmax(0,1fr)); } .direction { min-height:91px; padding:10px; } .direction b { font-size:14px; } .below { align-items:flex-start; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="eyebrow"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>Farbtupf / Visual directions</div>
+    <div class="intro">
+      <div><h1>Choose Farbtupf’s new look</h1><p>Five complete visual directions. Each shows home, learning, drawing and a coordinated artwork family.</p></div>
+      <button type="button" class="compare-toggle" id="compare" aria-pressed="false">Compare all five</button>
+    </div>
+    <nav class="directions" id="directions" aria-label="View a visual direction"></nav>
+    <section id="single" aria-label="Current visual direction">
+      <div class="board-head"><p id="caption" aria-live="polite"></p><a id="full" class="full" target="_blank" rel="noopener">Open full size ↗</a></div>
+      <figure class="board"><img id="board" width="1536" height="1024" alt=""></figure>
+      <div class="below"><p>Tell me your preferred number in the chat to use that direction across the whole app.</p><div class="arrows"><button class="arrow" type="button" id="previous" aria-label="Previous direction">←</button><button class="arrow" type="button" id="next" aria-label="Next direction">→</button></div></div>
+    </section>
+    <section class="all" id="all" aria-label="Compare five visual directions" hidden></section>
+    <footer>Visual proposals made with built-in image generation. The working app is unchanged.<br>After you choose, the artwork, icons, colours, typography and controls will be carried through every activity. <a href="prompts.json">Generation briefs</a></footer>
+  </main>
+  <script>
+    const directions = [{"number":1,"id":"01-waldatelier","name":"Waldatelier","summary":"Watercolour storybook · moss, cream and terracotta","filename":"01-waldatelier.png"},{"number":2,"id":"02-formenfreude","name":"Formenfreude","summary":"Swiss graphic design · precise shapes, vivid colour","filename":"02-formenfreude.png"},{"number":3,"id":"03-papierwelt","name":"Papierwelt","summary":"Layered cut paper · tactile, handmade and warm","filename":"03-papierwelt.png"},{"number":4,"id":"04-kleine-welten","name":"Kleine Welten","summary":"Matte clay miniatures · soft, sculptural and playful","filename":"04-kleine-welten.png"},{"number":5,"id":"05-tintenabenteuer","name":"Tintenabenteuer","summary":"Illustrated ink · expressive linework and storybook charm","filename":"05-tintenabenteuer.png"}];
+    const palettes = [['#fff4df','#71834b','#c36c3a','#8db6c7','#dfaf52'],['#fff7e9','#154fcd','#ff534b','#ffd125','#21a38e'],['#f4e9d4','#8a9b64','#e38239','#86abc9','#1c3043'],['#f6eadc','#8b98d0','#efa273','#99b498','#e87c73'],['#faf1df','#142b47','#d35c3e','#5a9e9e','#dfab42']];
+    const nav = document.getElementById('directions'), buttons = [];
+    let current = 0, comparing = false;
+    directions.forEach((d,i) => {
+      const b = document.createElement('button'); b.type = 'button'; b.className = 'direction'; b.setAttribute('aria-controls','single');
+      const n = document.createElement('span'); n.className='number'; n.textContent='0'+d.number;
+      const title = document.createElement('b'); title.textContent=d.name;
+      const colors=document.createElement('span'); colors.className='swatches'; colors.setAttribute('aria-hidden','true');
+      palettes[i].forEach(color=>{const swatch=document.createElement('i');swatch.style.background=color;colors.append(swatch);});
+      b.append(n,title,colors); b.addEventListener('click',()=>{current=i;comparing=false;render();}); nav.append(b);buttons.push(b);
+      const item=document.createElement('article');item.className='comparison';
+      const label=document.createElement('h2');label.textContent='0'+d.number+' · '+d.name;
+      const sub=document.createElement('p');sub.textContent=d.summary;
+      const link=document.createElement('a');link.href=d.filename;link.target='_blank';link.rel='noopener';
+      const img=document.createElement('img');img.src=d.filename;img.width=1536;img.height=1024;img.loading='lazy';img.alt=d.name+': home screen, rocket exercise, painting screen and coordinated artwork';link.append(img);item.append(label,sub,link);document.getElementById('all').append(item);
+    });
+    function render(){
+      const d=directions[current]; buttons.forEach((b,i)=>b.setAttribute('aria-pressed',String(i===current&&!comparing)));
+      const caption=document.getElementById('caption');caption.replaceChildren();const name=document.createElement('strong');name.textContent='0'+d.number+' · '+d.name;const desc=document.createElement('span');desc.textContent=' — '+d.summary;caption.append(name,desc);
+      document.getElementById('board').src=d.filename;document.getElementById('board').alt=d.name+': home screen, rocket exercise, painting screen and coordinated artwork';document.getElementById('full').href=d.filename;
+      document.getElementById('single').hidden=comparing;document.getElementById('all').hidden=!comparing;document.getElementById('compare').setAttribute('aria-pressed',String(comparing));document.getElementById('compare').textContent=comparing?'Inspect one direction':'Compare all five';
+      document.getElementById('previous').disabled=current===0;document.getElementById('next').disabled=current===directions.length-1;
+    }
+    document.getElementById('compare').addEventListener('click',()=>{comparing=!comparing;render();});
+    document.getElementById('previous').addEventListener('click',()=>{if(current>0){current--;render();}});
+    document.getElementById('next').addEventListener('click',()=>{if(current<directions.length-1){current++;render();}});
+    render();
+  </script>
+</body>
+</html>
