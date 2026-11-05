@@ -749,12 +749,9 @@
     t.style.webkitTextStrokeWidth = '';
     if (!t.clientWidth) return;
     let fs = parseFloat(getComputedStyle(t).fontSize) || 26;
-    const fs0 = fs;
-    const stroke = parseFloat(getComputedStyle(t).webkitTextStrokeWidth) || 6;
     while (t.scrollWidth > t.clientWidth + 1 && fs > 12) {
       fs -= 1;
       t.style.fontSize = fs + 'px';
-      t.style.webkitTextStrokeWidth = Math.max(3, (stroke * fs) / fs0).toFixed(1) + 'px';
     }
   }
 

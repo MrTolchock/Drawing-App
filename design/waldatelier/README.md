@@ -2,6 +2,8 @@
 
 Selected visual direction: 01, watercolour storybook, chosen by the user.
 
+[Open the implementation review](index.html) for screenshots of the actual app. [Browser verification record](VERIFICATION.md).
+
 The app uses one warm ivory/forest-green interface, original watercolour artwork, a shared sepia tool-icon family, and readable Andika text. Existing painting, learning, tracing, progress and storage behaviour is retained.
 
 Generated artwork uses the approved mockup as a style reference. The generation briefs are recorded in `prompts.json`; production images live in `assets/waldatelier/`. The character, subject illustrations and artwork sheets are shared by home, exercises, reading, stamps and rewards.

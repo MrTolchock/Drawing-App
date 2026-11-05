@@ -104,6 +104,7 @@ body { background:#f7f2e7; background-image:radial-gradient(ellipse at 5% 0%,#e7
 .adventure-order { background:#edf0de; }.adventure-transfer { background:#edf0de; color:#526b45; }
 .adventure-drum { background:#efdfb7; }.adventure-drum .wa-illustration { font-size:44px; }
 .mission-body { text-align:left; }.mission-tile { background:#fff9eb; border-color:#c4b793; }
+.mission-body > .learn-button { margin-left:max(0px,calc((100% - 760px) / 2)); }
 .mission-tile .wa-illustration { font-size:39px; }.mission-filters .learn-button { font-size:16px; }
 .mission-filters [aria-pressed=true],.mission-done[aria-pressed=true] { background:#e2e9cd; }
 .mission-tip { background:#edf0de; }.mission-reminder { border-color:#b4bb8c; background:#eaf0d8; }
@@ -149,6 +150,9 @@ body { background:#f7f2e7; background-image:radial-gradient(ellipse at 5% 0%,#e7
 .crayon:focus-visible { outline:2px solid #53763d; outline-offset:-3px; border-radius:12px; }
 .lbl-spot { border-width:1px; box-shadow:0 2px 5px #75593c15; }
 .pop-card { background:#fffaf0; }.opt { border-color:#c7b99b; box-shadow:none; }.opt.on { background:#e0e8cc; }
+.tabs { max-width:100%; overflow-x:auto; scrollbar-width:none; }.tabs::-webkit-scrollbar { display:none; }
+.tab { flex:1 0 48px; background:#f0eddf; }.opt,.tab { border-width:1px; border-color:#b9ac8c; }
+.tab.on,.sticker.on { background:#e3e9cf; }.sticker.on { box-shadow:inset 0 0 0 1px #8a9a67; }.sticker.locked { background:#f0eddf; }
 .screen svg [stroke="#23203d"] { stroke:#75593c; }
 .screen svg [fill="#23203d"] { fill:#75593c; }
 :is(.btn,.card,.wa-home-card,.island-card,.island-level,.learn-button,.cat-tab,.rd-lvl,.rd-tile):focus-visible { outline:3px solid #53763d; outline-offset:4px; }
