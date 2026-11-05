@@ -51,7 +51,9 @@
     build(root) {
       const gear = FK.ui.btn({ icon: 'gear', cls: 'btn-round btn-parents', title: 'Für Eltern: gedrückt halten' });
       FK.ui.longPress(gear, 1200, () => FK.ui.parentGate(() => FK.go('parents')));
-      root.append(h('header', { class: 'island-header' }, gear, FK.ui.starCounter({ onClick: () => launch('album') })));
+      const forest = h('button', { type: 'button', class: 'hub-forest-return', 'aria-label': 'Zurück zum Wald', onclick: () => launch('forest') },
+        FK.visual.art('fox'), h('span', { text: 'Zum Wald' }));
+      root.append(h('header', { class: 'island-header' }, gear, forest, FK.ui.starCounter({ onClick: () => launch('album') })));
       content = h('div', { class: 'island-body scroll' }); root.append(content);
     },
     enter: render,

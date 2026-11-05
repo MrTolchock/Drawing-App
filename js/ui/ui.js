@@ -45,8 +45,8 @@
     const prev = current;
     if (prev && screens[prev.name].def.leave) screens[prev.name].def.leave();
     if (prev && !opts.replace && !opts.isBack) stack.push(prev);
-    // the hub is the root; never keep the target itself on top of the history (e.g. Malbuch → Bild → Malbuch)
-    if (name === 'hub') stack.length = 0;
+    // Forest and games book are root entries; discard stale return screens there.
+    if (name === 'hub' || name === 'forest') stack.length = 0;
     while (stack.length && stack[stack.length - 1].name === name) stack.pop();
     const root = rootFor(name);
     if (prev && prev.name !== name) {

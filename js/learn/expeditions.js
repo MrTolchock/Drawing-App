@@ -16,6 +16,9 @@
     ['🍃', 'Blatt'], ['🪶', 'Feder'], ['🍎', 'Apfel'], ['🍄', 'Pilz'], ['🌹', 'Rose'],
     ['👑', 'Krone'], ['🧸', 'Teddy'], ['🔔', 'Glocke'], ['⚽', 'Ball'], ['🥄', 'Löffel'], ['🐌', 'Schnecke'], ['📖', 'Buch'],
   ].map(([emoji, name]) => ({ emoji, name }));
+  // A reusable content pack; the library's existing questions keep their pool.
+  const woodlandTreasures = [['🍃', 'Blatt'], ['🪶', 'Feder'], ['🍄', 'Pilz'], ['🪨', 'Stein'], ['🍓', 'Walderdbeere']]
+    .map(([emoji, name]) => ({ emoji, name }));
   // Deliberately no missing letter inside a vowel pair such as au, ei or ie.
   const words = [
     [['Lama', '🦙'], ['Nase', '👃'], ['Rose', '🌹'], ['Sofa', '🛋️'], ['Lupe', '🔍'], ['Hase', '🐰'], ['Hose', '👖'], ['Velo', '🚲']],
@@ -33,12 +36,12 @@
     const rest = Array.from({ length: max + 1 }, (_, i) => i).filter(n => n !== answer);
     return shuffled([answer].concat(shuffled(rest, rng).slice(0, 2)), rng);
   }
-  function question(kind, stage, round, rng, wordOffset) {
+  function question(kind, stage, round, rng, wordOffset, content) {
     rng = rng || Math.random;
     stage = Math.max(1, Math.min(3, Number(stage) || 1)); round = Math.abs(Number(round) || 0) % 5;
     const max = [5, 10, 20][stage - 1], q = { kind, max };
     if (kind === 'treasure') {
-      q.objects = shuffled(treasures, rng).slice(0, stage + 2);
+      q.objects = shuffled(content === 'swiss-woodland' ? woodlandTreasures : treasures, rng).slice(0, stage + 2);
       q.missing = int(rng, 0, q.objects.length - 1);
       q.answer = q.objects[q.missing].name;
       q.choices = shuffled([q.objects[q.missing]].concat(shuffled(q.objects.filter((_, i) => i !== q.missing), rng).slice(0, 2)), rng);
@@ -119,5 +122,5 @@
     } else throw new Error('Unknown expedition: ' + kind);
     return q;
   }
-  FK.expeditions = { games, question, words, treasures };
+  FK.expeditions = { games, question, words, treasures, woodlandTreasures };
 })();

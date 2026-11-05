@@ -31,19 +31,7 @@
     return field;
   }
   function treasure(host) {
-    const instruction = h('p', { class: 'exp-instructions', role: 'status', text: 'Schau so lange, wie du möchtest. Dann versteckt der Fuchs ein Ding.' });
-    const field = h('div', { class: 'exp-treasures', role: 'group', 'aria-label': 'Dein Waldschatz' });
-    const answers = h('div', { class: 'exp-treasure-answers' });
-    let hidden = false;
-    function show() {
-      field.replaceChildren(); q.objects.forEach((o, i) => { if (!hidden || i !== q.missing) field.append(picture(o.emoji, o.name)); });
-      toggle.textContent = hidden ? 'Nochmals schauen' : 'Ich bin bereit – verstecken!';
-      answers.hidden = !hidden;
-      instruction.textContent = hidden ? 'Ein Ding fehlt. Welches war vorher auch dabei?' : 'Schau so lange, wie du möchtest. Dann versteckt der Fuchs ein Ding.';
-    }
-    const toggle = control('Ich bin bereit – verstecken!', () => { hidden = !hidden; show(); }, 'exp-hide');
-    choices(answers, q.choices, o => o.emoji + ' ' + FK.text.word(o.name), o => o.name === q.answer, 'exp-picture-answers');
-    host.append(instruction, field, toggle, answers); show();
+    host.append(FK.ui.memoryBoard({ question: q, onChoice: (_, correct) => check(correct) }));
   }
   function neighbours(host) {
     const selected = [null, null], houses = []; let active = 0;

@@ -7,7 +7,7 @@ const assert = require('node:assert/strict');
  const context = await browser.newContext({ viewport:{width:1024,height:768}, hasTouch:true, reducedMotion:'reduce' });
  const page = await context.newPage(); const errors=[];
  page.on('pageerror',e=>errors.push(e.message));
- await page.goto('http://127.0.0.1:8000');
+ await page.goto('http://127.0.0.1:8000/?screen=hub');
  await page.evaluate(async()=>{ await document.fonts.ready; FK.settings.set('sound',false); FK.ui.celebrate=()=>Promise.resolve(); });
  const cdp=await context.newCDPSession(page);
  const revised=['A','Ä','E','G','J','M','N','W','Y','f','t','w','y','Ö','Ü','4','9'];

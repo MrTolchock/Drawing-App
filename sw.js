@@ -1,5 +1,5 @@
 /* Farbtupf – Service Worker: keeps the whole app on the device so it runs without internet. */
-const CACHE = 'farbtupf-v4.7.4-waldentdeckungen';
+const CACHE = 'farbtupf-v5.1.0-heart-tree';
 const ASSETS = [
   './',
   './index.html',
@@ -13,6 +13,19 @@ const ASSETS = [
   './css/learning.css',
   './css/waldatelier.css',
   './css/expeditions.css',
+  './css/forest.css',
+  './vendor/three/three.module.js',
+  './vendor/three/three.core.js',
+  './js/forest/model.js',
+  './js/forest/speech.js',
+  './js/forest/art.js',
+  './js/ui/memory-board.js',
+  './js/forest/memory.js',
+  './js/forest/materials.js',
+  './js/forest/characters.js',
+  './js/forest/landscape.js',
+  './js/forest/scene.js',
+  './js/screens/forest.js',
   './js/ui/waldatelier.js',
   './js/ui/waldatelier-icons.js',
   './assets/waldatelier/hero.png',

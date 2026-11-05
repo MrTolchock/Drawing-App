@@ -4,7 +4,7 @@ const assert = require('node:assert/strict');
  const browser = await chromium.launch({executablePath:'/usr/bin/chromium',headless:true,args:['--no-sandbox']});
  const context = await browser.newContext({viewport:{width:820,height:1180},hasTouch:true});
  const page = await context.newPage(); const errors=[]; page.on('pageerror',e=>errors.push(e.message));
- await page.goto('http://127.0.0.1:8000');
+ await page.goto('http://127.0.0.1:8000/?screen=hub');
  await page.evaluate(async()=>{await navigator.serviceWorker.ready;});
  await page.reload();
  await page.evaluate(()=>{const make=FK.learning.question; FK.learning.question=(...args)=>{const q=make(...args); window.testQuestion=q; return q;};});
