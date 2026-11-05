@@ -11,7 +11,7 @@
   const FK = window.FK;
   const TAU = Math.PI * 2;
   const clamp = FK.clamp;
-  const INK = [35, 32, 61];
+  const INK = [117, 89, 60];
   const GLOW_ALPHA = 0.38;
   const WALL = 110;
   const UNDO_MAX_BYTES = 90e6;
@@ -249,7 +249,7 @@
         return;
       }
       const k = S.W / Math.max(1, S.pw || clipEl.getBoundingClientRect().width || S.W / 2);
-      const lw = 4.2 * k;
+      const lw = 3.2 * k;
       const key = S.page.id + '|' + S.W + 'x' + S.H + '|' + lw.toFixed(2);
       let R = regionCache && regionCache.key === key ? regionCache : null;
       if (R) {

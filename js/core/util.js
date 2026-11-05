@@ -3,7 +3,7 @@
   'use strict';
   const FK = (window.FK = window.FK || {});
 
-  FK.VERSION = '3.0.0';
+  FK.VERSION = '4.0.0';
   FK.TAU = Math.PI * 2;
   FK.$ = (sel, root) => (root || document).querySelector(sel);
   FK.$$ = (sel, root) => Array.prototype.slice.call((root || document).querySelectorAll(sel));
@@ -48,6 +48,7 @@
       if (Array.isArray(c)) c.forEach((x) => x && el.append(x));
       else el.append(c);
     }
+    if (FK.visual && attrs && attrs.text) FK.visual.decorate(el);
     return el;
   };
 

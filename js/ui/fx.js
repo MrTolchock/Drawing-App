@@ -4,7 +4,7 @@
   'use strict';
   const FK = window.FK;
   const TAU = Math.PI * 2;
-  const COLS = ['#e5322d', '#ff8a1f', '#ffd60a', '#8bd448', '#1cc6c6', '#2f5bea', '#8a4fe0', '#ff4fa3'];
+  const COLS = ['#c57e5b', '#d99d59', '#e7c875', '#92a76d', '#80a89c', '#86aabc', '#ad91ad', '#ddb1a4'];
 
   const FX = { c: null, g: null, parts: [], raf: 0, dpr: 1, last: 0 };
 
@@ -87,7 +87,7 @@
     }
     g.closePath();
     g.fillStyle = c;
-    g.strokeStyle = '#23203d';
+    g.strokeStyle = '#75593c';
     g.lineWidth = Math.max(2, R * 0.16);
     g.lineJoin = 'round';
     g.fill();
@@ -123,7 +123,7 @@
       });
     },
     burst(x, y, cols, n) {
-      cols = cols || ['#ffc93c', '#ff4fa3', '#5bc0ff', '#8bd448', '#ffffff'];
+      cols = cols || ['#e7c875', '#ddb1a4', '#86aabc', '#92a76d', '#fff7e9'];
       n = n || 8;
       for (let i = 0; i < n; i++) {
         const a = (i / n) * TAU + Math.random() * 0.4;
@@ -150,7 +150,7 @@
           g.beginPath();
           g.arc(x, y, 10 + k * 60, 0, TAU);
           g.stroke();
-          g.strokeStyle = '#23203d';
+          g.strokeStyle = '#75593c';
           g.lineWidth = 2;
           g.beginPath();
           g.arc(x, y, 14 + k * 64, 0, TAU);

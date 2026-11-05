@@ -28,7 +28,7 @@
     brush: FK.BRUSH_ORDER.indexOf(saved.brush) >= 0 ? saved.brush : 'filz',
     colorId: saved.colorId || 'rot',
     size: [0, 1, 2, 3].indexOf(saved.size) >= 0 ? saved.size : 1,
-    emoji: saved.emoji || '🐱',
+    emoji: FK.visual.has(saved.emoji) ? saved.emoji : '🦊',
     stickerTab: saved.stickerTab | 0,
     mirror: ['off', 'spiegel', 'kaleido'].indexOf(saved.mirror) >= 0 ? saved.mirror : 'off',
   };
@@ -42,6 +42,7 @@
   let loadToken = 0;
   let active = false; // the screen is shown (FK.current() still names it while leave() runs)
   let snapping = false;
+  let mission = null;
   const el = {};
 
   function applyTool() {
@@ -278,7 +279,14 @@
           applyTool();
         },
       });
-      r.append(FK.ui.topbar({ title: 'Freies Malen' }), h('div', { class: 'paint-grid' }, tools, stageHost, actions, h('div', { class: 'box-wrap' }, pencils.el)));
+      el.mission = h('button', { type: 'button', class: 'learn-button mission-reminder', hidden: true, onclick: () => {
+        if (!mission) return;
+        const steps = h('ol', { class: 'mission-steps' }); mission.steps.forEach(s => steps.append(h('li', { text: s })));
+        FK.ui.modal({ title: mission.emoji + ' ' + mission.title, read: true,
+          body: h('div', {}, steps, h('p', { text: '💬 ' + mission.talk })),
+          actions: [{ label: 'Weitermalen', onClick: () => FK.ui.closeModal() }] });
+      } });
+      r.append(FK.ui.topbar({ title: 'Freies Malen' }), el.mission, h('div', { class: 'paint-grid' }, tools, stageHost, actions, h('div', { class: 'box-wrap' }, pencils.el)));
       eng = FK.engine.create({
         host: stageHost,
         kind: 'free',
@@ -292,6 +300,9 @@
     },
     enter(params) {
       active = true;
+      mission = FK.missions.find(m => m.id === (params || {}).mission) || null;
+      el.mission.hidden = !mission;
+      el.mission.textContent = mission ? mission.emoji + ' ' + mission.title + ' · Auftrag ansehen' : '';
       pencils.select(T.colorId);
       applyTool();
       loaded = false;

@@ -85,6 +85,7 @@
     revoke();
     const token = ++renderToken;
     gridEl.innerHTML = '';
+    gridEl.classList.toggle('waldatelier-pages', cat === 'waldatelier');
     gridEl.scrollTop = 0;
     if (gridEl.parentNode) gridEl.parentNode.scrollTop = 0;
     const idx = FK.settings.get('color.index') || {};

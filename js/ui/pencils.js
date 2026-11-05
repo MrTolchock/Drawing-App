@@ -6,14 +6,12 @@
 
   function crayonSvg(c) {
     const fill = c.rainbow ? 'url(#fk-rainbow)' : c.hex;
-    const band = c.rainbow ? '#ffffff' : FK.color.mix(c.hex, '#000000', 0.25);
-    // «slice»: a shorter box cuts the crayon's end (hidden behind the box front) instead of shrinking it
-    return '<svg viewBox="0 0 40 120" preserveAspectRatio="xMidYMin slice" aria-hidden="true">' +
-      '<path d="M6 37 L20 5 L34 37 Z" fill="#f3c891" stroke="#23203d" stroke-width="3" stroke-linejoin="round"/>' +
-      '<path d="M13.6 19.5 L20 5 L26.4 19.5 Q20 22 13.6 19.5 Z" fill="' + fill + '" stroke="#23203d" stroke-width="2.5" stroke-linejoin="round"/>' +
-      '<rect x="6" y="35" width="28" height="92" rx="3" fill="' + fill + '" stroke="#23203d" stroke-width="3"/>' +
-      '<rect x="10.5" y="40" width="5" height="80" rx="2.5" fill="#ffffff" opacity=".4"/>' +
-      '<rect x="7.5" y="58" width="25" height="7" fill="' + band + '" opacity=".6"/>' +
+    // The centre is the exact paint colour, with a lightly feathered, hand-painted edge.
+    return '<svg viewBox="0 0 52 52" aria-hidden="true">' +
+      '<path d="M26 3C34 2 40 6 44 12L48 23 46 36 36 46 23 49 11 44 4 34 3 22 9 10 17 5Z" fill="' + fill + '" opacity=".23"/>' +
+      '<path d="M25 6C33 4 40 11 43 16L45 27C46 35 39 43 31 45L20 45C12 44 7 37 7 29L8 19C10 12 16 7 25 6Z" fill="' + fill + '" stroke="#75593c" stroke-opacity=".35" stroke-width=".8"/>' +
+      '<path d="M12 19Q14 11 23 10M10 30l2 6M35 39l5-5" fill="none" stroke="#fff" opacity=".25" stroke-width="2" stroke-linecap="round"/>' +
+      '<path d="m16 9 1 1m19 6 1 1m-24 22 1 1m16 3 1 1" stroke="#fff" opacity=".36" stroke-width="1.5" stroke-linecap="round"/>' +
       '</svg>';
   }
 

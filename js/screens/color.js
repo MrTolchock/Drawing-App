@@ -26,7 +26,7 @@
     colorId: saved.colorId || 'rot',
     pattern: saved.pattern || 'voll',
     size: [0, 1, 2, 3].indexOf(saved.size) >= 0 ? saved.size : 2,
-    emoji: saved.emoji || '🐱',
+    emoji: FK.visual.has(saved.emoji) ? saved.emoji : '🦊',
     stickerTab: saved.stickerTab | 0,
   };
   function persistTool() { FK.settings.set('color.tool', T); }
@@ -749,12 +749,9 @@
     t.style.webkitTextStrokeWidth = '';
     if (!t.clientWidth) return;
     let fs = parseFloat(getComputedStyle(t).fontSize) || 26;
-    const fs0 = fs;
-    const stroke = parseFloat(getComputedStyle(t).webkitTextStrokeWidth) || 6;
     while (t.scrollWidth > t.clientWidth + 1 && fs > 12) {
       fs -= 1;
       t.style.fontSize = fs + 'px';
-      t.style.webkitTextStrokeWidth = Math.max(3, (stroke * fs) / fs0).toFixed(1) + 'px';
     }
   }
 

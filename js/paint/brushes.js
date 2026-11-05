@@ -136,6 +136,11 @@
     const pad = Math.ceil(s * 0.3);
     c.width = c.height = s + pad * 2;
     const g = c.getContext('2d');
+    if (FK.visual && FK.visual.has(e)) {
+      if (!FK.visual.draw(e, g, pad, pad, s)) return null;
+      if (emojiCache.size > 24) emojiCache.delete(emojiCache.keys().next().value);
+      emojiCache.set(key, c); return c;
+    }
     g.font = s + 'px ' + EMOJI_FONT;
     g.textAlign = 'center';
     let y = c.height / 2;
@@ -387,6 +392,7 @@
     paint(L, d) {
       const g = L.base;
       const img = emojiImage(d.emoji, Math.min(d.size, 320));
+      if (!img) return;
       const f = d.size / Math.min(d.size, 320);
       for (const it of d.items) {
         g.save();

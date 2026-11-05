@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><title>Waldatelier paint validation</title>
+<style>body{font:16px system-ui;background:#f7f2e7;color:#29432e;padding:24px}table{border-collapse:collapse}td,th{border:1px solid #c6b99d;padding:12px;text-align:left}.fail{color:#a33}canvas{width:300px;height:225px;margin:20px;background:#fffdf6}</style>
+<h1>Waldatelier paint validation</h1><p>Check that guided colour anchors stay in separate, closed regions at different paper sizes.</p>
+<table><thead><tr><th>Page</th><th>Paper</th><th>Result</th><th>Details</th></tr></thead><tbody id="results"></tbody></table>
+<script src="../js/core/util.js"></script><script src="../js/data/colors.js"></script><script src="../js/art/dsl.js"></script><script src="../js/art/waldatelier.js"></script><script src="../js/art/preview.js"></script>
+<script>
+for (const page of FK.art.list('waldatelier')) {
+  for (const [W,H] of [[1600,1000],[1000,1600],[720,960],[720,480]]) {
+    const canvas=document.createElement('canvas');canvas.width=W;canvas.height=H;
+    const alpha=FK.art.renderOutline(canvas,page,6.4,[117,89,60]);
+    const regions=FK.art.regions(alpha,W,H,110), colors=new Map(), issues=[];
+    FK.art.spotsOnPaper(page,W,H).forEach((spot,i)=>{
+      const x=Math.round(spot.x),y=Math.round(spot.y),region=regions.lab[y*W+x];
+      if(region<0) issues.push('Anchor '+(i+1)+' touches an outline');
+      if(colors.has(region)&&colors.get(region)!==spot.c)issues.push('Anchor '+(i+1)+' shares a region with another colour');
+      colors.set(region,spot.c);
+    });
+    const row=document.createElement('tr');if(issues.length)row.className='fail';
+    for(const text of [page.name,W+' × '+H,issues.length?'FAIL':'PASS',issues.join('; ')||page.spots.length+' valid anchors']){const td=document.createElement('td');td.textContent=text;row.append(td);}
+    document.querySelector('#results').append(row);
+  }
+  const preview=document.createElement('canvas');preview.width=600;preview.height=450;FK.art.preview(preview,page,1,'#fffdf6');document.body.append(preview);
+}
+</script></html>

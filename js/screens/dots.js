@@ -3,9 +3,9 @@
   'use strict';
   const FK = window.FK;
   const h = FK.h;
-  const INK = '#23203d';
-  const LEAF = '#3fd16b';
-  const TILE_COLS = ['#ffc93c', '#7fd6ff', '#ff9ec7', '#9be37a', '#c7a6ff', '#ffb37a'];
+  const INK = '#75593c';
+  const LEAF = '#76945c';
+  const TILE_COLS = ['#edcf83', '#b7d4df', '#e1b7a9', '#c6d6a9', '#c9b6ca', '#e6c39a'];
 
   let root = null;
   let backUse = null;
@@ -235,7 +235,7 @@
     G = {
       W, H, dpr, f, pts, r: r0, fs,
       hit: FK.clamp(minGap * 0.45, 16 * dpr, 30 * dpr),
-      lw: Math.max(9 * f.s, 4.2 * dpr),
+      lw: Math.max(9 * f.s, 3.2 * dpr),
     };
     drawBack();
     if (phase === 'reveal' || phase === 'end') drawArt();
@@ -251,12 +251,12 @@
     ctx.setTransform(G.f.s, 0, 0, G.f.s, G.f.ox, G.f.oy);
     ctx.lineJoin = 'round';
     ctx.lineCap = 'round';
-    cur.back(FK.art.helper(ctx, Math.max(9, (4.2 * G.dpr) / G.f.s)));
+    cur.back(FK.art.helper(ctx, Math.max(9, (3.2 * G.dpr) / G.f.s)));
     ctx.restore();
   }
 
   function drawArt() {
-    FK.art.renderOutline(artCv, page, 4.2 * G.dpr, [35, 32, 61]);
+    FK.art.renderOutline(artCv, page, 3.2 * G.dpr, [117, 89, 60]);
   }
 
   function updateSide() {
