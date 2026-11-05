@@ -2,6 +2,8 @@
 
 [Open the private story preview](https://farbtupf-herzbaum-preview-k7m4.andreas-itten.chatgpt.site) — sign in with the ChatGPT account that owns the preview. [GitHub Pages](https://mrtolchock.github.io/Drawing-App/) · [Preview and deployment notes](docs/PREVIEW.md).
 
+[**Design archive: all visualisations, story and gameplay plans, and review documents**](design/README.md) · [Design review PDF](design/heart-tree/DESIGN-REVIEW.pdf) · [Story and gameplay blueprint](design/heart-tree/BLUEPRINT.md).
+
 Finger-friendly learning adventures for first-grade children in Zürich, in Swiss Standard German. Static HTML/CSS/JavaScript PWA with locally bundled Three.js: no build step, account, ads, tracking or runtime CDN. Works offline after initial loading; prototype narration uses device voices and is not guaranteed offline.
 
 The app opens in **Der Herzbaum**, a complete playable woodland story in the selected **original A, Painted woodland** direction. A Three.js fox visits five Swiss-native neighbours around a connected forest loop. Nine short helping projects lead through **Meet → Reconnect → Gather**, then a saved picture-led ending brings everyone to the Heart Tree. Repairs remain visible, new shortcuts work, and the restored world stays open for further play.

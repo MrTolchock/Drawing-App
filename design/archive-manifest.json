@@ -1,0 +1,780 @@
+{
+  "application_baseline_commit": "8306b8a406565383da6f004aee608036ab9b2d4d",
+  "notes": "All local Heart Tree design-pack files and generated visualisations are represented. Markdown links are portable GitHub links; source hashes retain provenance. Identical images share a versioned path. Supplementary captures are automated app checks, not child observations.",
+  "design_pack": [
+    {
+      "source": "design-plans/heart-tree/ACTIVITY-READINESS.csv",
+      "path": "design/heart-tree/ACTIVITY-READINESS.csv",
+      "source_sha256": "92fbd208e62df43dbebce3ffba194431b577ad051caf5d23171b5eb398080ed5",
+      "sha256": "92fbd208e62df43dbebce3ffba194431b577ad051caf5d23171b5eb398080ed5"
+    },
+    {
+      "source": "design-plans/heart-tree/ACTIVITY-READINESS.md",
+      "path": "design/heart-tree/ACTIVITY-READINESS.md",
+      "source_sha256": "77b7b4a11f0fe59342c1325780bab93cac5d8c931247ea71d98d4ca42082bd7e",
+      "sha256": "4c004e26507253fe89cbd97d9caff5e673fbb18376fc2936f0ef0b2c65564ed9"
+    },
+    {
+      "source": "design-plans/heart-tree/ART-DIRECTION.md",
+      "path": "design/heart-tree/ART-DIRECTION.md",
+      "source_sha256": "bad80320758268704b575ca668d57e5a357e69128cb3f57128cdc08ebc795f01",
+      "sha256": "bac66f2c2f6a4bd9f6a64764e06da82cc5badf38bc40ae81f15f5fe3679ab199"
+    },
+    {
+      "source": "design-plans/heart-tree/BEFORE-READING.md",
+      "path": "design/heart-tree/BEFORE-READING.md",
+      "source_sha256": "971215ec26455ea0136407aae859ecbf4ddaca06077d026bfe7ad1b428634999",
+      "sha256": "f7cdcd25c0374b3e2f458413aa139ab9564a9dee3d2aab3ec139f46a63cb9712"
+    },
+    {
+      "source": "design-plans/heart-tree/BLUEPRINT.md",
+      "path": "design/heart-tree/BLUEPRINT.md",
+      "source_sha256": "12b7356305c8ee25b69eb45f005be59f48b85432b9621eb5e7aea9493027e623",
+      "sha256": "a84fa35fff587bc1eaca17a5ecd4712153655de447a21a476c097b496a47af54"
+    },
+    {
+      "source": "design-plans/heart-tree/CHILD-INTERFACE.md",
+      "path": "design/heart-tree/CHILD-INTERFACE.md",
+      "source_sha256": "8f719ef702f344fa27514d5550b30e75aa060befe4e8e5e0008279ff529c03b6",
+      "sha256": "df76641d71dcc4ea650d96eaf40fb2e50dff960f42a2a03e4183c591c49000b6"
+    },
+    {
+      "source": "design-plans/heart-tree/DESIGN-REVIEW.pdf",
+      "path": "design/heart-tree/DESIGN-REVIEW.pdf",
+      "source_sha256": "581a2a54670b48f648c8e231ede5d27b30e300c204fa11f16fe3e6128b95d315",
+      "sha256": "581a2a54670b48f648c8e231ede5d27b30e300c204fa11f16fe3e6128b95d315"
+    },
+    {
+      "source": "design-plans/heart-tree/FIRST-SESSION.md",
+      "path": "design/heart-tree/FIRST-SESSION.md",
+      "source_sha256": "217474748eb84d402c63979bf743bf64aa154e38b15b68754f5d1c5417600c77",
+      "sha256": "e5ae617374bb9d0c684a959447fa0d94eb11b6f4de648986b8bbc62be478d331"
+    },
+    {
+      "source": "design-plans/heart-tree/IMPLEMENTATION-PLAN.md",
+      "path": "design/heart-tree/IMPLEMENTATION-PLAN.md",
+      "source_sha256": "916345b1d2a994067bb7ab43b58c9769ad6c35e77e858f02c48ba1a985d3dc7e",
+      "sha256": "3b5f0db09059e9b5dea051d7da5631d34cac429a55cfdf93d4835f62a9766120"
+    },
+    {
+      "source": "design-plans/heart-tree/MAIN-RELEASE.md",
+      "path": "design/heart-tree/MAIN-RELEASE.md",
+      "source_sha256": "6f5068bf3a9af66697c72b4b6b7541549d7df85e2bc81e032743a83fb9d41afb",
+      "sha256": "2e41e98c6b12d470cb3156e74e6da8f1a450ef9e5340d4553cbbbf4f5e1f8051"
+    },
+    {
+      "source": "design-plans/heart-tree/NEXT-STEPS.md",
+      "path": "design/heart-tree/NEXT-STEPS.md",
+      "source_sha256": "d5ab18d6b6f777b7ad8799c55cecffb28453a4bee46ebe1fca2d3ddfe175d34c",
+      "sha256": "4472e2e90d9c850c025c9304733878dd57e8e2dd587f14786953bddf2e20ccec"
+    },
+    {
+      "source": "design-plans/heart-tree/OPENING-INTERACTIONS.md",
+      "path": "design/heart-tree/OPENING-INTERACTIONS.md",
+      "source_sha256": "1cc64e244a3cd7a187f32d492509559a6233deafcb81bb5fe2986c8c93628921",
+      "sha256": "049de81b29fe31000ae7abba0b9a91bb45314ad543247b6182eacf8a11d8d254"
+    },
+    {
+      "source": "design-plans/heart-tree/OPENING-LAYOUT.md",
+      "path": "design/heart-tree/OPENING-LAYOUT.md",
+      "source_sha256": "43bb8167d9fa9344f5c94be02746f332c3a4b32fe1ba0ee5370d288e1f31a3f1",
+      "sha256": "bdc11c9a9304642b9b2f85d029135d59fad0fbbac45c5bc9148a59e20a093fe4"
+    },
+    {
+      "source": "design-plans/heart-tree/OPENING-REVIEW.pdf",
+      "path": "design/heart-tree/OPENING-REVIEW.pdf",
+      "source_sha256": "f81be29a7ebc76c256b3dab761bc090306a4edd2811d0807eb9578a8c469df83",
+      "sha256": "f81be29a7ebc76c256b3dab761bc090306a4edd2811d0807eb9578a8c469df83"
+    },
+    {
+      "source": "design-plans/heart-tree/PAINTED-WOODLAND-VARIANTS.md",
+      "path": "design/heart-tree/PAINTED-WOODLAND-VARIANTS.md",
+      "source_sha256": "c99e0f11d136c9970aba6f0a7e00b936e79f1eb5a0779eca96094a7493f986d0",
+      "sha256": "77d44506124a690790bfe302a5c4dd0f0460394182c4f6722e4946d5fa89cced"
+    },
+    {
+      "source": "design-plans/heart-tree/PLAYABLE-SLICE.md",
+      "path": "design/heart-tree/PLAYABLE-SLICE.md",
+      "source_sha256": "b5561bd3b489ebe1a29a8c053c7ea2a49d1d4737b8ffd5f2f4e83cefaee6b4b8",
+      "sha256": "cd78d4b411ed7079ad51fb2ff503b1a0a72fdde50fc35b9f2a371793e3de4ba9"
+    },
+    {
+      "source": "design-plans/heart-tree/PREVIEW-HOSTING.md",
+      "path": "design/heart-tree/PREVIEW-HOSTING.md",
+      "source_sha256": "aaee63496376b83d77389566006e0f061acf0fd42cbb8084ba3008b29be04c94",
+      "sha256": "af324e0469bd922dad9c353b794ca8dea926bf42fe2a4b372ea488843cbd8c36"
+    },
+    {
+      "source": "design-plans/heart-tree/PUZZLE-LIBRARY.md",
+      "path": "design/heart-tree/PUZZLE-LIBRARY.md",
+      "source_sha256": "2e4221ed6359a4c67e929ff22967f9d69eff96b4b0b1fb6fd4af95f81e728304",
+      "sha256": "c7b17b92986b1f18731edbd8043292d2dff2016eca314ec07929f472d600eff9"
+    },
+    {
+      "source": "design-plans/heart-tree/README.md",
+      "path": "design/heart-tree/README.md",
+      "source_sha256": "cfa57f5db98f27cccc5680717e98d5be9caa637200f862283f6cee1b214985c6",
+      "sha256": "090adfb1ca592993a18ece9ce2f4f8a588ae4ba735a7025836cfdb75b8510d25"
+    },
+    {
+      "source": "design-plans/heart-tree/VISUAL-MIDDLE-GROUND.md",
+      "path": "design/heart-tree/VISUAL-MIDDLE-GROUND.md",
+      "source_sha256": "c5127fdf826db58554ca93d52b2e18c7324c2169b0ea3da2ee587ab767acf48b",
+      "sha256": "a578bd1443951a7729c0f2fb63d772546c1c904c58eaa6d7bfca41e630959e42"
+    },
+    {
+      "source": "design-plans/heart-tree/VISUAL-REFINEMENT.md",
+      "path": "design/heart-tree/VISUAL-REFINEMENT.md",
+      "source_sha256": "62f272ee4608ac03e6670b265420befae15b2059f6793ce9d0fd93ebcf45aca9",
+      "sha256": "65bd6e823ac46f69ad02a606ad579b86a94da96ed108fb7aa307919b62431b10"
+    },
+    {
+      "source": "design-plans/heart-tree/adventure-blueprint-v2.png",
+      "path": "design/heart-tree/adventure-blueprint-v2.png",
+      "source_sha256": "a2fbec8b558ddbcbde9c9e5d3deedb929049f7089426f10842c6631412464b5c",
+      "sha256": "a2fbec8b558ddbcbde9c9e5d3deedb929049f7089426f10842c6631412464b5c"
+    },
+    {
+      "source": "design-plans/heart-tree/adventure-blueprint.png",
+      "path": "design/heart-tree/adventure-blueprint.png",
+      "source_sha256": "dffe119aa7ea5900892d1e8a78f36d2f398b7d29fbfaab74eba653cdef0d1faf",
+      "sha256": "dffe119aa7ea5900892d1e8a78f36d2f398b7d29fbfaab74eba653cdef0d1faf"
+    },
+    {
+      "source": "design-plans/heart-tree/before-reading-storyboard.png",
+      "path": "design/heart-tree/before-reading-storyboard.png",
+      "source_sha256": "910d5cf38b650a53249919a62f24407b471b6056b531f0a761c799636068bf24",
+      "sha256": "910d5cf38b650a53249919a62f24407b471b6056b531f0a761c799636068bf24"
+    },
+    {
+      "source": "design-plans/heart-tree/child-interface.png",
+      "path": "design/heart-tree/child-interface.png",
+      "source_sha256": "fc02bafaf6a5cdb47f171c4cccecb6409b96dafa8a704630e637b30e2876985e",
+      "sha256": "fc02bafaf6a5cdb47f171c4cccecb6409b96dafa8a704630e637b30e2876985e"
+    },
+    {
+      "source": "design-plans/heart-tree/design-review-cover.png",
+      "path": "design/heart-tree/design-review-cover.png",
+      "source_sha256": "2a833e3e89c36404c593d13b6dc7e3ff75ce9e6ba38211d47319744b21ccdce9",
+      "sha256": "2a833e3e89c36404c593d13b6dc7e3ff75ce9e6ba38211d47319744b21ccdce9"
+    },
+    {
+      "source": "design-plans/heart-tree/design-review-scope.png",
+      "path": "design/heart-tree/design-review-scope.png",
+      "source_sha256": "a6d691b2023844469d3b94736afb7fca4aad3cdd90e5777ce70b842f4f2d93e5",
+      "sha256": "a6d691b2023844469d3b94736afb7fca4aad3cdd90e5777ce70b842f4f2d93e5"
+    },
+    {
+      "source": "design-plans/heart-tree/opening-layout.png",
+      "path": "design/heart-tree/opening-layout.png",
+      "source_sha256": "05497c88884a9e7ef965ca320e644ed8a5bfe2e866f1fd5ee663176b71493bf2",
+      "sha256": "05497c88884a9e7ef965ca320e644ed8a5bfe2e866f1fd5ee663176b71493bf2"
+    },
+    {
+      "source": "design-plans/heart-tree/opening-review-cover.png",
+      "path": "design/heart-tree/opening-review-cover.png",
+      "source_sha256": "1d9f2c03bb6b17d7bcaa1f753f65e18f9c58cddb1d4f884155c5eb28af70a146",
+      "sha256": "1d9f2c03bb6b17d7bcaa1f753f65e18f9c58cddb1d4f884155c5eb28af70a146"
+    },
+    {
+      "source": "design-plans/heart-tree/opening-review-summary.png",
+      "path": "design/heart-tree/opening-review-summary.png",
+      "source_sha256": "56b06c72bb7306d4dfdc3084aafa1a8d333ebec120d3cce00eedd57af978dfeb",
+      "sha256": "56b06c72bb7306d4dfdc3084aafa1a8d333ebec120d3cce00eedd57af978dfeb"
+    },
+    {
+      "source": "design-plans/heart-tree/opening-storyboard.png",
+      "path": "design/heart-tree/opening-storyboard.png",
+      "source_sha256": "2eede6f60a8e7f70bcfe5ad3637e2a82cf0af0bc02856d676f47cfe3a173f5ef",
+      "sha256": "2eede6f60a8e7f70bcfe5ad3637e2a82cf0af0bc02856d676f47cfe3a173f5ef"
+    },
+    {
+      "source": "design-plans/heart-tree/opening-support.png",
+      "path": "design/heart-tree/opening-support.png",
+      "source_sha256": "91f416fa661737ae538c6ac3499d72194b127f02ccc7958755ab1512b4d3054c",
+      "sha256": "91f416fa661737ae538c6ac3499d72194b127f02ccc7958755ab1512b4d3054c"
+    },
+    {
+      "source": "design-plans/heart-tree/painted-implementation/01-world.png",
+      "path": "design/heart-tree/painted-implementation/01-world.png",
+      "source_sha256": "1bf2865fa57f4c69f1ff56683aae495d2f36297fd613be903eb3c5b1b5c51481",
+      "sha256": "1bf2865fa57f4c69f1ff56683aae495d2f36297fd613be903eb3c5b1b5c51481"
+    },
+    {
+      "source": "design-plans/heart-tree/painted-implementation/02-pattern.png",
+      "path": "design/heart-tree/painted-implementation/02-pattern.png",
+      "source_sha256": "6cb0c9d8dc20266545655742161b4886d98cc17f05329c9f964e46ddc7c3e5e7",
+      "sha256": "6cb0c9d8dc20266545655742161b4886d98cc17f05329c9f964e46ddc7c3e5e7"
+    },
+    {
+      "source": "design-plans/heart-tree/painted-implementation/03-memory-phone.png",
+      "path": "design/heart-tree/painted-implementation/03-memory-phone.png",
+      "source_sha256": "418ffae7a56f694aa49b0a2d379c3293d7244dc4b8513584fbcca13af764ac34",
+      "sha256": "418ffae7a56f694aa49b0a2d379c3293d7244dc4b8513584fbcca13af764ac34"
+    },
+    {
+      "source": "design-plans/heart-tree/painted-implementation/04-route-phone.png",
+      "path": "design/heart-tree/painted-implementation/04-route-phone.png",
+      "source_sha256": "4b35d52a2657a3933cf9eb30cdd87f837b23ebbc5ec50b40717da16c53f0c792",
+      "sha256": "4b35d52a2657a3933cf9eb30cdd87f837b23ebbc5ec50b40717da16c53f0c792"
+    },
+    {
+      "source": "design-plans/heart-tree/painted-implementation/05-long-pattern-phone.png",
+      "path": "design/heart-tree/painted-implementation/05-long-pattern-phone.png",
+      "source_sha256": "2beedfcf3744b94b75c69d081777efbc13a745d32a6a3b83ae1cf3814c4e6569",
+      "sha256": "2beedfcf3744b94b75c69d081777efbc13a745d32a6a3b83ae1cf3814c4e6569"
+    },
+    {
+      "source": "design-plans/heart-tree/painted-woodland-opening.png",
+      "path": "design/heart-tree/painted-woodland-opening.png",
+      "source_sha256": "caeddd971fd00f908d1d566e5d3f040a6582a2142d973bd55f63f37587147fa9",
+      "sha256": "caeddd971fd00f908d1d566e5d3f040a6582a2142d973bd55f63f37587147fa9"
+    },
+    {
+      "source": "design-plans/heart-tree/painted-woodland-variants.png",
+      "path": "design/heart-tree/painted-woodland-variants.png",
+      "source_sha256": "0c98911268e76b737aa273b8e17aa850a7f40c606a694ca97d7c46339f666ac6",
+      "sha256": "0c98911268e76b737aa273b8e17aa850a7f40c606a694ca97d7c46339f666ac6"
+    },
+    {
+      "source": "design-plans/heart-tree/playable-screenshots/01-opening.png",
+      "path": "design/heart-tree/playable-screenshots/01-opening.png",
+      "source_sha256": "57c344e785552f7851036a248439544b6e3e3d8c32c58c5cb2d7bc7f7452127f",
+      "sha256": "57c344e785552f7851036a248439544b6e3e3d8c32c58c5cb2d7bc7f7452127f"
+    },
+    {
+      "source": "design-plans/heart-tree/playable-screenshots/02-bridge-request.png",
+      "path": "design/heart-tree/playable-screenshots/02-bridge-request.png",
+      "source_sha256": "55f8cb9493ccb65a110dce1be7b0344e113e72258ba31459c08445496fc4dcb1",
+      "sha256": "55f8cb9493ccb65a110dce1be7b0344e113e72258ba31459c08445496fc4dcb1"
+    },
+    {
+      "source": "design-plans/heart-tree/playable-screenshots/03-demonstration.png",
+      "path": "design/heart-tree/playable-screenshots/03-demonstration.png",
+      "source_sha256": "e65773e70a82bfa4e74b796d4ad9b33a88dcc55d3baefcf95ed9c8c4a654784b",
+      "sha256": "e65773e70a82bfa4e74b796d4ad9b33a88dcc55d3baefcf95ed9c8c4a654784b"
+    },
+    {
+      "source": "design-plans/heart-tree/playable-screenshots/04-flat-puzzle.png",
+      "path": "design/heart-tree/playable-screenshots/04-flat-puzzle.png",
+      "source_sha256": "73d7355a73af91c2b1aaf15221effbd02e9f60f9c9f3cd95719b425522b2ffe7",
+      "sha256": "73d7355a73af91c2b1aaf15221effbd02e9f60f9c9f3cd95719b425522b2ffe7"
+    },
+    {
+      "source": "design-plans/heart-tree/playable-screenshots/05-pictured-return.png",
+      "path": "design/heart-tree/playable-screenshots/05-pictured-return.png",
+      "source_sha256": "817d387c9a0d3900df72cf87103d78e9dce728a6762916a6e45032f2b4048642",
+      "sha256": "817d387c9a0d3900df72cf87103d78e9dce728a6762916a6e45032f2b4048642"
+    },
+    {
+      "source": "design-plans/heart-tree/playable-screenshots/06-crossing.png",
+      "path": "design/heart-tree/playable-screenshots/06-crossing.png",
+      "source_sha256": "8f7b6b8457b93fefb7f5bc21a4ff1c91578f34faf3eea86d2b80f9bc2dacaf25",
+      "sha256": "8f7b6b8457b93fefb7f5bc21a4ff1c91578f34faf3eea86d2b80f9bc2dacaf25"
+    },
+    {
+      "source": "design-plans/heart-tree/playable-screenshots/07-phone.png",
+      "path": "design/heart-tree/playable-screenshots/07-phone.png",
+      "source_sha256": "61eb29f54108045fd8567f626b91dae7d8208bc2cb7bfc315c16b606fb7ebf20",
+      "sha256": "61eb29f54108045fd8567f626b91dae7d8208bc2cb7bfc315c16b606fb7ebf20"
+    },
+    {
+      "source": "design-plans/heart-tree/playable-screenshots/08-hedgehog-resting-place-phone.png",
+      "path": "design/heart-tree/playable-screenshots/08-hedgehog-resting-place-phone.png",
+      "source_sha256": "163a685011631e0f91cbdba6f0e665da6f393d5768f0df9104af67635aef2a83",
+      "sha256": "163a685011631e0f91cbdba6f0e665da6f393d5768f0df9104af67635aef2a83"
+    },
+    {
+      "source": "design-plans/heart-tree/playable-screenshots/09-owl-sign-phone.png",
+      "path": "design/heart-tree/playable-screenshots/09-owl-sign-phone.png",
+      "source_sha256": "1c7f3d74a3682779639b913aded7525692bd2ca17da3e3b2287ddf4a01182ae9",
+      "sha256": "1c7f3d74a3682779639b913aded7525692bd2ca17da3e3b2287ddf4a01182ae9"
+    },
+    {
+      "source": "design-plans/heart-tree/playable-screenshots/10-owl-story-hollow.png",
+      "path": "design/heart-tree/playable-screenshots/10-owl-story-hollow.png",
+      "source_sha256": "1472762d386560f61d55faa9551eac55a1c58dc09e18a215c18f698d656a478d",
+      "sha256": "1472762d386560f61d55faa9551eac55a1c58dc09e18a215c18f698d656a478d"
+    },
+    {
+      "source": "design-plans/heart-tree/playable-screenshots/11-flat-route-phone.png",
+      "path": "design/heart-tree/playable-screenshots/11-flat-route-phone.png",
+      "source_sha256": "0ebd5e8ff388cb43dae0ff8552ad8754d80c654a1976c1585116e452e625521a",
+      "sha256": "0ebd5e8ff388cb43dae0ff8552ad8754d80c654a1976c1585116e452e625521a"
+    },
+    {
+      "source": "design-plans/heart-tree/playable-screenshots/12-kingfisher-request.png",
+      "path": "design/heart-tree/playable-screenshots/12-kingfisher-request.png",
+      "source_sha256": "fe2638f8203046fba4c82627f72b360876c0789f083d185f8de00f7f4f6c1c2a",
+      "sha256": "fe2638f8203046fba4c82627f72b360876c0789f083d185f8de00f7f4f6c1c2a"
+    },
+    {
+      "source": "design-plans/heart-tree/playable-screenshots/13-water-view.png",
+      "path": "design/heart-tree/playable-screenshots/13-water-view.png",
+      "source_sha256": "c78a79b02c742b1a696aaad659b865b7bece3369c840460492f6c689c225e08b",
+      "sha256": "c78a79b02c742b1a696aaad659b865b7bece3369c840460492f6c689c225e08b"
+    },
+    {
+      "source": "design-plans/heart-tree/playable-screenshots/14-gathering-phone.png",
+      "path": "design/heart-tree/playable-screenshots/14-gathering-phone.png",
+      "source_sha256": "e5ee8534462c28cca20513e3439c9257579ec4ec66027ed59b3e5b0d9fa3dad8",
+      "sha256": "e5ee8534462c28cca20513e3439c9257579ec4ec66027ed59b3e5b0d9fa3dad8"
+    },
+    {
+      "source": "design-plans/heart-tree/playable-screenshots/15-guided-practice-book.png",
+      "path": "design/heart-tree/playable-screenshots/15-guided-practice-book.png",
+      "source_sha256": "ec9cca7fcd1db10f998a6787ef70f46d50141d2197ac436f12a31e7d7cc850f6",
+      "sha256": "ec9cca7fcd1db10f998a6787ef70f46d50141d2197ac436f12a31e7d7cc850f6"
+    },
+    {
+      "source": "design-plans/heart-tree/puzzle-library.png",
+      "path": "design/heart-tree/puzzle-library.png",
+      "source_sha256": "ac37edae9b26aca85bdd739c48e3adf05f9681c55e3027b55cee804f3298154d",
+      "sha256": "ac37edae9b26aca85bdd739c48e3adf05f9681c55e3027b55cee804f3298154d"
+    },
+    {
+      "source": "design-plans/heart-tree/visual-middle-ground-options.png",
+      "path": "design/heart-tree/visual-middle-ground-options.png",
+      "source_sha256": "5c58fe959c4e2d8f578bf677cd1f1cfdf8d1ad53d4d81d29de7de22d5c8a677c",
+      "sha256": "5c58fe959c4e2d8f578bf677cd1f1cfdf8d1ad53d4d81d29de7de22d5c8a677c"
+    },
+    {
+      "source": "design-plans/heart-tree/visual-refinement-options.png",
+      "path": "design/heart-tree/visual-refinement-options.png",
+      "source_sha256": "aea31be379a32844370a3c925861bc47f2964a20087ce5da663ac2a41fdab572",
+      "sha256": "aea31be379a32844370a3c925861bc47f2964a20087ce5da663ac2a41fdab572"
+    },
+    {
+      "source": "design-plans/heart-tree/walkthrough-cards.pdf",
+      "path": "design/heart-tree/walkthrough-cards.pdf",
+      "source_sha256": "40ee441443b535d0ad120c8b43d5c05a9db45f4aebe935cc580c418fea0ef096",
+      "sha256": "40ee441443b535d0ad120c8b43d5c05a9db45f4aebe935cc580c418fea0ef096"
+    },
+    {
+      "source": "design-plans/heart-tree/walkthrough-manifest.json",
+      "path": "design/heart-tree/walkthrough-manifest.json",
+      "source_sha256": "de20918b8ae19226b8b8f8a52ba03e57a3febd8f102d4579d8d5f74a16922ded",
+      "sha256": "de20918b8ae19226b8b8f8a52ba03e57a3febd8f102d4579d8d5f74a16922ded"
+    },
+    {
+      "source": "design-plans/heart-tree/walkthrough-memory-check.png",
+      "path": "design/heart-tree/walkthrough-memory-check.png",
+      "source_sha256": "62413f86de895bd133ae2959f7c19274fd9d395422b6247ad6c4f0cf0880bd89",
+      "sha256": "62413f86de895bd133ae2959f7c19274fd9d395422b6247ad6c4f0cf0880bd89"
+    },
+    {
+      "source": "design-plans/heart-tree/walkthrough-preview.pdf",
+      "path": "design/heart-tree/walkthrough-preview.pdf",
+      "source_sha256": "a5d9b467e3c44250cdeda3d1409fbc0a6c1e0345f8d54688ecb359f4f30ecc17",
+      "sha256": "a5d9b467e3c44250cdeda3d1409fbc0a6c1e0345f8d54688ecb359f4f30ecc17"
+    },
+    {
+      "source": "design-plans/heart-tree/walkthrough-preview.png",
+      "path": "design/heart-tree/walkthrough-preview.png",
+      "source_sha256": "cbaadf9e063aa046dd9fa1c383ddff4d16cdada60dd6d2dd83a37df0f4716952",
+      "sha256": "cbaadf9e063aa046dd9fa1c383ddff4d16cdada60dd6d2dd83a37df0f4716952"
+    },
+    {
+      "source": "design-plans/heart-tree/walkthrough-quantity-check.png",
+      "path": "design/heart-tree/walkthrough-quantity-check.png",
+      "source_sha256": "b426710e019f3998229178637f19707c49c29d4bf84e8e86aa90883b6a12f046",
+      "sha256": "b426710e019f3998229178637f19707c49c29d4bf84e8e86aa90883b6a12f046"
+    }
+  ],
+  "generated_images": [
+    {
+      "source": "generated_images/exec-0bf8ac9c-3802-4656-8dd9-06c4ec50d673.png",
+      "path": "design/heart-tree/adventure-blueprint-v2.png",
+      "sha256": "a2fbec8b558ddbcbde9c9e5d3deedb929049f7089426f10842c6631412464b5c"
+    },
+    {
+      "source": "generated_images/exec-0ce6dddc-fe85-4b64-888a-6106f537d9af.png",
+      "path": "design/heart-tree/painted-woodland-opening.png",
+      "sha256": "caeddd971fd00f908d1d566e5d3f040a6582a2142d973bd55f63f37587147fa9"
+    },
+    {
+      "source": "generated_images/exec-15f0ca66-466a-4a48-8608-20518c080bcf.png",
+      "path": "design/heart-tree/visual-refinement-options.png",
+      "sha256": "aea31be379a32844370a3c925861bc47f2964a20087ce5da663ac2a41fdab572"
+    },
+    {
+      "source": "generated_images/exec-1b7653fd-abdf-45ea-81b8-eeda9a707e88.png",
+      "path": "design/heart-tree/early-options/five-forest-layouts.png",
+      "sha256": "9a4d05ec033ddc241eb1e239a8b3e62d4d4cbd08a1b7c92cf447068d2adad2c2"
+    },
+    {
+      "source": "generated_images/exec-2102a006-ea9a-47a4-b593-c57a5cb7c01e.png",
+      "path": "assets/woodland/forest-props.png",
+      "sha256": "af4c79d303e96b5a484a9945809bd3df4b6454d12ecbd4a779348d1ecc6d1296"
+    },
+    {
+      "source": "generated_images/exec-2bb8e7d2-446f-4475-9375-2faab33c8d6a.png",
+      "path": "design/heart-tree/early-options/places-and-neighbours.png",
+      "sha256": "1a9010ec25e3a562b23334ae6b583c1b534edb06e2d838ca8f97bf39341b591b"
+    },
+    {
+      "source": "generated_images/exec-31616c90-f098-455a-9f96-6b4af29c46e6.png",
+      "path": "assets/woodland/ground.png",
+      "sha256": "32085d88710c691ead8326eb2b7b9334d54e04fb6b7d0f39070a22c589de1c33"
+    },
+    {
+      "source": "generated_images/exec-3e992217-05b0-433f-9dd1-329bf2786739.png",
+      "path": "design/heart-tree/child-interface.png",
+      "sha256": "fc02bafaf6a5cdb47f171c4cccecb6409b96dafa8a704630e637b30e2876985e"
+    },
+    {
+      "source": "generated_images/exec-451a19ce-8115-424d-92ff-e9c18931dd0e.png",
+      "path": "design/heart-tree/opening-layout.png",
+      "sha256": "05497c88884a9e7ef965ca320e644ed8a5bfe2e866f1fd5ee663176b71493bf2"
+    },
+    {
+      "source": "generated_images/exec-4fa58244-ad4e-403e-bf9f-853462fcb5eb.png",
+      "path": "design/heart-tree/early-options/story-progression.png",
+      "sha256": "7b8ba457c9ff4ee18ea26c3735b0e3e09b4da6600c8ff6a3a13484de58b4a874"
+    },
+    {
+      "source": "generated_images/exec-559daee5-8d0b-498e-95db-239435515f35.png",
+      "path": "design/heart-tree/early-options/gameplay-directions.png",
+      "sha256": "d4503e442cfeca959840d6d87c8d36cbeae66bfbf127ebd91bb3f75685643d95"
+    },
+    {
+      "source": "generated_images/exec-69047cea-f004-4d7d-a17c-28b41d3f6db6.png",
+      "path": "design/heart-tree/early-options/story-openings.png",
+      "sha256": "c722d16f178377bdb5ce355d5e8e990be7daa4730571eb2cd0fa52e65bd054ab"
+    },
+    {
+      "source": "generated_images/exec-704c2f66-63b6-4972-9401-df13db9bd9ca.png",
+      "path": "design/heart-tree/early-options/opening-support-study.png",
+      "sha256": "f88c6e2f5063c76f11df7881a65e87b9fe1b5bc04d9bb2a06ba40690636ddbc7"
+    },
+    {
+      "source": "generated_images/exec-70793e8c-c211-42ed-acba-68fca8ec3044.png",
+      "path": "design/heart-tree/puzzle-library.png",
+      "sha256": "ac37edae9b26aca85bdd739c48e3adf05f9681c55e3027b55cee804f3298154d"
+    },
+    {
+      "source": "generated_images/exec-737c7605-3394-49cf-a472-d8b5dbdbe2a8.png",
+      "path": "assets/woodland/characters-nature.png",
+      "sha256": "c3a9655d90faffd39b4b7657e52a9fb777767532ff26452a3ad9b4f5e01603dd"
+    },
+    {
+      "source": "generated_images/exec-7e7be681-f584-4bb1-ad5d-12637fbbdb20.png",
+      "path": "design/heart-tree/early-options/story-gameplay-options-02.png",
+      "sha256": "3e21c8cda61cfae32b0a1b0a5f0bdfed5d5ade61f7d56a9477f4b8a5f04c04c1"
+    },
+    {
+      "source": "generated_images/exec-8530dbf6-6ab5-4d43-a036-96041f1e11b4.png",
+      "path": "design/heart-tree/early-options/opening-woodland-study.png",
+      "sha256": "ec8368ccd6a63aede643486480bdb7a5adcf1bd62859391239a0cab61fb6fc7a"
+    },
+    {
+      "source": "generated_images/exec-8ac9a3d9-cb98-4d44-ab6b-a69b79fb5774.png",
+      "path": "design/heart-tree/early-options/forest-in-chapters.png",
+      "sha256": "3359cd41269510b2cb8da06e1a5e5b4d550650ec8cd70a96e14d897c87706249"
+    },
+    {
+      "source": "generated_images/exec-a33c51d7-40a9-472e-a17e-78a4663a4f62.png",
+      "path": "design/heart-tree/before-reading-storyboard.png",
+      "sha256": "910d5cf38b650a53249919a62f24407b471b6056b531f0a761c799636068bf24"
+    },
+    {
+      "source": "generated_images/exec-ab135f9d-1794-45f9-9df9-d7e39cd9c01d.png",
+      "path": "design/heart-tree/painted-woodland-variants.png",
+      "sha256": "0c98911268e76b737aa273b8e17aa850a7f40c606a694ca97d7c46339f666ac6"
+    },
+    {
+      "source": "generated_images/exec-b19f052d-21f1-4f94-9deb-681b6c581c1f.png",
+      "path": "assets/woodland/places.png",
+      "sha256": "45df13ad3f37d0d971dab07d701b0343cdf58882cf017c90384c1678e2da2685"
+    },
+    {
+      "source": "generated_images/exec-b95d0e2f-0bf4-4076-a1bf-241bafb90efb.png",
+      "path": "design/heart-tree/early-options/three-first-quests.png",
+      "sha256": "285cc91689166f449c7e32546c1881ba047557c10b2698fe6d7a59bf327a13ca"
+    },
+    {
+      "source": "generated_images/exec-cef988f1-3e2f-4f72-899a-2552954dd467.png",
+      "path": "design/heart-tree/opening-support.png",
+      "sha256": "91f416fa661737ae538c6ac3499d72194b127f02ccc7958755ab1512b4d3054c"
+    },
+    {
+      "source": "generated_images/exec-df7ba031-da8b-430a-98e7-ae9d7c56dd1f.png",
+      "path": "design/heart-tree/early-options/story-gameplay-options-01.png",
+      "sha256": "5e30ab8cc6026eb59dab9f2551c0d737dbc85b39bdcb44eb3f1a2f935fedf7cd"
+    },
+    {
+      "source": "generated_images/exec-e0152893-7317-43fb-b3fe-f9c4915fbda7.png",
+      "path": "design/heart-tree/adventure-blueprint.png",
+      "sha256": "dffe119aa7ea5900892d1e8a78f36d2f398b7d29fbfaab74eba653cdef0d1faf"
+    },
+    {
+      "source": "generated_images/exec-e2286a0f-ba14-45e4-aacb-f8c36bad6b72.png",
+      "path": "design/heart-tree/opening-storyboard.png",
+      "sha256": "2eede6f60a8e7f70bcfe5ad3637e2a82cf0af0bc02856d676f47cfe3a173f5ef"
+    },
+    {
+      "source": "generated_images/exec-f25bb808-fb05-49fc-bdbd-0c7ff53302da.png",
+      "path": "design/heart-tree/visual-middle-ground-options.png",
+      "sha256": "5c58fe959c4e2d8f578bf677cd1f1cfdf8d1ad53d4d81d29de7de22d5c8a677c"
+    },
+    {
+      "source": "generated_images/exec-fc0eb7c2-93a7-43da-bc55-9cc62805b97b.png",
+      "path": "design/heart-tree/early-options/two-ways-to-play.png",
+      "sha256": "947d764e0610a179d312ccfa4e532839ffea1c35120834dd3de03eff74df40d0"
+    }
+  ],
+  "supplementary_captures": [
+    {
+      "source": "tmp/farbtupf-complete-story/01-kingfisher-request.png",
+      "path": "design/heart-tree/playable-screenshots/12-kingfisher-request.png",
+      "sha256": "fe2638f8203046fba4c82627f72b360876c0789f083d185f8de00f7f4f6c1c2a"
+    },
+    {
+      "source": "tmp/farbtupf-complete-story/02-water-view-restored.png",
+      "path": "design/heart-tree/playable-screenshots/13-water-view.png",
+      "sha256": "c78a79b02c742b1a696aaad659b865b7bece3369c840460492f6c689c225e08b"
+    },
+    {
+      "source": "tmp/farbtupf-complete-story/03-finale-phone.png",
+      "path": "design/heart-tree/playable-screenshots/14-gathering-phone.png",
+      "sha256": "e5ee8534462c28cca20513e3439c9257579ec4ec66027ed59b3e5b0d9fa3dad8"
+    },
+    {
+      "source": "tmp/farbtupf-complete-story/04-guided-practice-book.png",
+      "path": "design/heart-tree/playable-screenshots/15-guided-practice-book.png",
+      "sha256": "ec9cca7fcd1db10f998a6787ef70f46d50141d2197ac436f12a31e7d7cc850f6"
+    },
+    {
+      "source": "tmp/farbtupf-complete-story/chapter-gather.png",
+      "path": "design/verification/farbtupf-complete-story/chapter-gather.png",
+      "sha256": "5476931a60b8778db97b7f73b67f1b62abe8db04fc2da252915ae08d728bb30f"
+    },
+    {
+      "source": "tmp/farbtupf-complete-story/chapter-reconnect.png",
+      "path": "design/verification/farbtupf-complete-story/chapter-reconnect.png",
+      "sha256": "f0afa8a0f7974dd9f9292cd61ade5f58ac2057bd01a826c72b6196e2946a0b5e"
+    },
+    {
+      "source": "tmp/farbtupf-forest-test/01-opening.png",
+      "path": "design/heart-tree/painted-implementation/01-world.png",
+      "sha256": "1bf2865fa57f4c69f1ff56683aae495d2f36297fd613be903eb3c5b1b5c51481"
+    },
+    {
+      "source": "tmp/farbtupf-forest-test/02-bridge-request.png",
+      "path": "design/verification/farbtupf-forest-test/02-bridge-request.png",
+      "sha256": "5843de719ef093d56eb63b81e0d1fb68d097ad037326d94aa1e163a2299175d4"
+    },
+    {
+      "source": "tmp/farbtupf-forest-test/03-demonstration.png",
+      "path": "design/heart-tree/playable-screenshots/03-demonstration.png",
+      "sha256": "e65773e70a82bfa4e74b796d4ad9b33a88dcc55d3baefcf95ed9c8c4a654784b"
+    },
+    {
+      "source": "tmp/farbtupf-forest-test/04-flat-puzzle.png",
+      "path": "design/verification/farbtupf-forest-test/04-flat-puzzle.png",
+      "sha256": "44029faf450179eb3a7c9b1755e26fb61bddb12eba8167a363652f0337e9f343"
+    },
+    {
+      "source": "tmp/farbtupf-forest-test/05-pictured-return.png",
+      "path": "design/verification/farbtupf-forest-test/05-pictured-return.png",
+      "sha256": "dd324378e095ed48a607ee57e845a6345d30e079c6279d31ac4bd0a4640289f9"
+    },
+    {
+      "source": "tmp/farbtupf-forest-test/06-crossing.png",
+      "path": "design/verification/farbtupf-forest-test/06-crossing.png",
+      "sha256": "13affaf619e3817a533641920f2bf73a81a9300afe38c81101ae523c2ede82fa"
+    },
+    {
+      "source": "tmp/farbtupf-forest-test/07-phone.png",
+      "path": "design/verification/farbtupf-forest-test/07-phone.png",
+      "sha256": "acbfce37b3f162e64d64bbb34f9373118dcd53e6976acaad8f519880f6aec39b"
+    },
+    {
+      "source": "tmp/farbtupf-forest-test/08-grove-request.png",
+      "path": "design/verification/farbtupf-forest-test/08-grove-request.png",
+      "sha256": "9fbb524fdae3e73bb62625cbb0eb0a05ea02ecf3576e8c40e39e0836ea40990d"
+    },
+    {
+      "source": "tmp/farbtupf-forest-test/09-memory-example.png",
+      "path": "design/verification/farbtupf-forest-test/09-memory-example.png",
+      "sha256": "10ed40dcb66ce8b4a04a7e56f8143107263d4b6877bad570c40e3a93114eaf71"
+    },
+    {
+      "source": "tmp/farbtupf-forest-test/10-memory-phone.png",
+      "path": "design/verification/farbtupf-forest-test/10-memory-phone.png",
+      "sha256": "440edcc5188fc6cedd975d9a642ce355b3f37728e139ae043852899bb4b7dbb6"
+    },
+    {
+      "source": "tmp/farbtupf-forest-test/11-resting-place-phone.png",
+      "path": "design/verification/farbtupf-forest-test/11-resting-place-phone.png",
+      "sha256": "b7695c9d3702799e3430807f6faa8104ecae1cbc771cede2ae062150a7cc0b3a"
+    },
+    {
+      "source": "tmp/farbtupf-forest-test/12-resting-place.png",
+      "path": "design/verification/farbtupf-forest-test/12-resting-place.png",
+      "sha256": "0ab212e2658cdcc101ab90196185a7caefdf7441ffdff911d0888242c47d835d"
+    },
+    {
+      "source": "tmp/farbtupf-forest-test/13-grove-clear-phone.png",
+      "path": "design/verification/farbtupf-forest-test/13-grove-clear-phone.png",
+      "sha256": "a1c2d1e186c57aed27b4f39d36fdae0f30b0b25b2708f1ffa71770dd18a00953"
+    },
+    {
+      "source": "tmp/farbtupf-forest-test/14-grove-final-phone.png",
+      "path": "design/heart-tree/playable-screenshots/08-hedgehog-resting-place-phone.png",
+      "sha256": "163a685011631e0f91cbdba6f0e665da6f393d5768f0df9104af67635aef2a83"
+    },
+    {
+      "source": "tmp/farbtupf-painted-review/01-world-desktop.png",
+      "path": "design/verification/farbtupf-painted-review/01-world-desktop.png",
+      "sha256": "f58be096e526e628396b10ace0222b697af0bb5f990baaf1f99d62a29e45ccc8"
+    },
+    {
+      "source": "tmp/farbtupf-painted-review/02-pattern-desktop.png",
+      "path": "design/verification/farbtupf-painted-review/02-pattern-desktop.png",
+      "sha256": "48302f6406f33c2e6bb36d19d5a7c116ea358e34c053699fdc1f11631fc468c9"
+    },
+    {
+      "source": "tmp/farbtupf-painted-review/03-pattern-phone.png",
+      "path": "design/verification/farbtupf-painted-review/03-pattern-phone.png",
+      "sha256": "85bd08ef19d5e4aacf17f5925402e8cab6aaf2c5bf6cc23f7e36185bc0ec3d25"
+    },
+    {
+      "source": "tmp/farbtupf-painted-review/04-book-phone.png",
+      "path": "design/verification/farbtupf-painted-review/04-book-phone.png",
+      "sha256": "d4ce88da43cf18d9138cb7a677ebb0a95609d95fe1474c0709f2129215c2e92c"
+    },
+    {
+      "source": "tmp/farbtupf-painted-review/05-world-phone.png",
+      "path": "design/verification/farbtupf-painted-review/05-world-phone.png",
+      "sha256": "7d8a0d01818bdc88602b553689d108b09f3dbe4851f5c3aa82fff62ed6cbbb91"
+    },
+    {
+      "source": "tmp/farbtupf-painted-test/01-painted-world-desktop.png",
+      "path": "design/heart-tree/painted-implementation/01-world.png",
+      "sha256": "1bf2865fa57f4c69f1ff56683aae495d2f36297fd613be903eb3c5b1b5c51481"
+    },
+    {
+      "source": "tmp/farbtupf-painted-test/02-painted-pattern-desktop.png",
+      "path": "design/heart-tree/painted-implementation/02-pattern.png",
+      "sha256": "6cb0c9d8dc20266545655742161b4886d98cc17f05329c9f964e46ddc7c3e5e7"
+    },
+    {
+      "source": "tmp/farbtupf-painted-test/03-painted-pattern-phone.png",
+      "path": "design/verification/farbtupf-painted-test/03-painted-pattern-phone.png",
+      "sha256": "1e93278a166ef9f348152672073986873a247c909fbc5f4d7e049d1913a208b9"
+    },
+    {
+      "source": "tmp/farbtupf-painted-test/04-painted-book-phone.png",
+      "path": "design/verification/farbtupf-painted-test/04-painted-book-phone.png",
+      "sha256": "5690df0d25d23e9233cd46eb86179ddf0b92bccc427f5198e8bfdeb5ec3908cf"
+    },
+    {
+      "source": "tmp/farbtupf-painted-test/05-painted-memory-phone.png",
+      "path": "design/heart-tree/painted-implementation/03-memory-phone.png",
+      "sha256": "418ffae7a56f694aa49b0a2d379c3293d7244dc4b8513584fbcca13af764ac34"
+    },
+    {
+      "source": "tmp/farbtupf-painted-test/06-painted-route-phone.png",
+      "path": "design/heart-tree/painted-implementation/04-route-phone.png",
+      "sha256": "4b35d52a2657a3933cf9eb30cdd87f837b23ebbc5ec50b40717da16c53f0c792"
+    },
+    {
+      "source": "tmp/farbtupf-painted-test/07-painted-world-phone.png",
+      "path": "design/verification/farbtupf-painted-test/07-painted-world-phone.png",
+      "sha256": "d7bacd5fe249bc3a5c50ea0cda608cebd7b3e66ec10c7b1bb1bf0b50ec4afdaa"
+    },
+    {
+      "source": "tmp/farbtupf-painted-test/08-long-pattern-phone.png",
+      "path": "design/heart-tree/painted-implementation/05-long-pattern-phone.png",
+      "sha256": "2beedfcf3744b94b75c69d081777efbc13a745d32a6a3b83ae1cf3814c4e6569"
+    },
+    {
+      "source": "tmp/farbtupf-timer-test/01-clock-book-phone.png",
+      "path": "design/verification/farbtupf-timer-test/01-clock-book-phone.png",
+      "sha256": "5b550e3648e0b4155fafec7bf83d9567e2f3054d7ecce9e9ee587b81c861f087"
+    },
+    {
+      "source": "tmp/farbtupf-timer-test/02-clock-settings-phone.png",
+      "path": "design/verification/farbtupf-timer-test/02-clock-settings-phone.png",
+      "sha256": "962a553284a9cc02b9c38de45b059023c7ab5880754df8fdec90b7c82053a171"
+    },
+    {
+      "source": "tmp/farbtupf-trail-test/01-owl-request-phone.png",
+      "path": "design/verification/farbtupf-trail-test/01-owl-request-phone.png",
+      "sha256": "24685a82217751c6daecffb1433f72b9a19bea7ce63de675d7898c2717749de2"
+    },
+    {
+      "source": "tmp/farbtupf-trail-test/02-separate-route-example.png",
+      "path": "design/verification/farbtupf-trail-test/02-separate-route-example.png",
+      "sha256": "340a018aea92561a13911d22995e9a9b35b5488555fddcc0d2378e31a4f46685"
+    },
+    {
+      "source": "tmp/farbtupf-trail-test/03-flat-route-phone.png",
+      "path": "design/heart-tree/playable-screenshots/11-flat-route-phone.png",
+      "sha256": "0ebd5e8ff388cb43dae0ff8552ad8754d80c654a1976c1585116e452e625521a"
+    },
+    {
+      "source": "tmp/farbtupf-trail-test/04-renewed-sign-phone.png",
+      "path": "design/verification/farbtupf-trail-test/04-renewed-sign-phone.png",
+      "sha256": "2d50c917d89ba08053c7f0f9b4e4551e4f6132b5ea8b57f6ad06ecc6d652869a"
+    },
+    {
+      "source": "tmp/farbtupf-trail-test/05-story-hollow.png",
+      "path": "design/verification/farbtupf-trail-test/05-story-hollow.png",
+      "sha256": "e64ba0f55ca749b8f4efb20fee14d8e7f83f49a086dddcf862cfd4f48747e580"
+    },
+    {
+      "source": "tmp/farbtupf-trail-test/06-final-sign-phone.png",
+      "path": "design/heart-tree/playable-screenshots/09-owl-sign-phone.png",
+      "sha256": "1c7f3d74a3682779639b913aded7525692bd2ca17da3e3b2287ddf4a01182ae9"
+    },
+    {
+      "source": "tmp/farbtupf-trail-test/07-final-hollow.png",
+      "path": "design/heart-tree/playable-screenshots/10-owl-story-hollow.png",
+      "sha256": "1472762d386560f61d55faa9551eac55a1c58dc09e18a215c18f698d656a478d"
+    },
+    {
+      "source": "tmp/farbtupf-phone.png",
+      "path": "design/verification/library-smoke/farbtupf-phone.png",
+      "sha256": "99e531f6dd4e7df2a0d79f39f81c4276786649f2ef700e8462eecb457e007de7"
+    },
+    {
+      "source": "tmp/farbtupf-tablet.png",
+      "path": "design/verification/library-smoke/farbtupf-tablet.png",
+      "sha256": "1cfc5c721ad39031a57bbb21be3ca5d0d9059d6694a10b5a9b5d8983d0566594"
+    },
+    {
+      "source": "scratch/heart-tree-first-frame.png",
+      "path": "design/verification/early-live-preview/heart-tree-first-frame.png",
+      "sha256": "fc457f46ec5aaed872d457d2806c1f9648d7774d576130cc94ef05e1432e552e"
+    },
+    {
+      "source": "scratch/heart-tree-walking.png",
+      "path": "design/verification/early-live-preview/heart-tree-walking.png",
+      "sha256": "c952445c64cd24bda16d9c007acd21c0236e5fe95269e91e0f792dcff4537fca"
+    },
+    {
+      "source": "scratch/heart-tree-welcome.png",
+      "path": "design/verification/early-live-preview/heart-tree-welcome.png",
+      "sha256": "85402e41c3fe38aeed7b6c4751e52b7773fd92f676a76440b57c34a6906bac3e"
+    }
+  ],
+  "authoring_sources": [
+    {
+      "source": "scratch/create_heart_tree_opening_review.py",
+      "path": "design/heart-tree/authoring/create_heart_tree_opening_review.py",
+      "sha256": "d3d169a9929158f70fc938af8f3ae670edf039abdfe139e5af4a89f3b27965f2"
+    },
+    {
+      "source": "scratch/create_heart_tree_review.py",
+      "path": "design/heart-tree/authoring/create_heart_tree_review.py",
+      "sha256": "6b0a697e6be9fa5805e438167e0e3a6f1d3c028b50f36667e80b1ddb851769a1"
+    },
+    {
+      "source": "scratch/create_heart_tree_walkthrough.py",
+      "path": "design/heart-tree/authoring/create_heart_tree_walkthrough.py",
+      "sha256": "d33206de552fa5b06bde7aec308d57eae200213a93fd25695ac6adbbdea8330b"
+    }
+  ]
+}

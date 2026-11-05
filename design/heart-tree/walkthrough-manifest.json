@@ -1,0 +1,193 @@
+{
+  "purpose": "Static comprehension walkthrough; proposed reference content, not implemented exercises.",
+  "font": "Helvetica",
+  "page_count": 13,
+  "cards": [
+    {
+      "id": "PATTERN-DEMO",
+      "kind": "pattern",
+      "demo": true,
+      "sequence": [
+        "leaf",
+        "nut",
+        "leaf",
+        "nut",
+        null
+      ],
+      "choices": [
+        "leaf",
+        "nut"
+      ],
+      "correct": 0,
+      "pdf_page": 2
+    },
+    {
+      "id": "PATTERN-TRY-A",
+      "kind": "pattern",
+      "sequence": [
+        "nut",
+        "leaf",
+        "nut",
+        "leaf",
+        null
+      ],
+      "choices": [
+        "leaf",
+        "nut"
+      ],
+      "correct": 1,
+      "pdf_page": 3
+    },
+    {
+      "id": "PATTERN-TRY-B",
+      "kind": "pattern",
+      "sequence": [
+        "berry",
+        "nut",
+        "berry",
+        "nut",
+        null
+      ],
+      "choices": [
+        "berry",
+        "nut"
+      ],
+      "correct": 0,
+      "pdf_page": 4
+    },
+    {
+      "id": "QUANTITY-DEMO",
+      "kind": "quantity",
+      "demo": true,
+      "target": 2,
+      "choices": [
+        1,
+        2
+      ],
+      "correct": 1,
+      "pdf_page": 5
+    },
+    {
+      "id": "QUANTITY-TRY-A",
+      "kind": "quantity",
+      "target": 3,
+      "choices": [
+        3,
+        2
+      ],
+      "correct": 0,
+      "pdf_page": 6
+    },
+    {
+      "id": "QUANTITY-TRY-B",
+      "kind": "quantity",
+      "target": 2,
+      "choices": [
+        3,
+        2
+      ],
+      "correct": 1,
+      "pdf_page": 7
+    },
+    {
+      "id": "MEMORY-DEMO-LOOK",
+      "kind": "memory",
+      "demo": true,
+      "mode": "look",
+      "objects": [
+        "leaf",
+        "nut",
+        "berry"
+      ],
+      "missing": 0,
+      "pdf_page": 8
+    },
+    {
+      "id": "MEMORY-DEMO-HIDDEN",
+      "kind": "memory",
+      "demo": true,
+      "mode": "hidden",
+      "objects": [
+        "leaf",
+        "nut",
+        "berry"
+      ],
+      "missing": 0,
+      "choices": [
+        "leaf",
+        "acorn",
+        "stone"
+      ],
+      "correct": 0,
+      "pdf_page": 9
+    },
+    {
+      "id": "MEMORY-TRY-A-LOOK",
+      "kind": "memory",
+      "mode": "look",
+      "objects": [
+        "leaf",
+        "nut",
+        "berry"
+      ],
+      "missing": 1,
+      "pdf_page": 10
+    },
+    {
+      "id": "MEMORY-TRY-A-HIDDEN",
+      "kind": "memory",
+      "mode": "hidden",
+      "objects": [
+        "leaf",
+        "nut",
+        "berry"
+      ],
+      "missing": 1,
+      "choices": [
+        "acorn",
+        "nut",
+        "stone"
+      ],
+      "correct": 1,
+      "pdf_page": 11
+    },
+    {
+      "id": "MEMORY-TRY-B-LOOK",
+      "kind": "memory",
+      "mode": "look",
+      "objects": [
+        "berry",
+        "leaf",
+        "nut"
+      ],
+      "missing": 0,
+      "pdf_page": 12
+    },
+    {
+      "id": "MEMORY-TRY-B-HIDDEN",
+      "kind": "memory",
+      "mode": "hidden",
+      "objects": [
+        "berry",
+        "leaf",
+        "nut"
+      ],
+      "missing": 0,
+      "choices": [
+        "stone",
+        "acorn",
+        "berry"
+      ],
+      "correct": 2,
+      "pdf_page": 13
+    }
+  ],
+  "reading_requirement": "No instructional reading on the child-facing card area.",
+  "species_palette": [
+    "Quercus robur leaf and acorn",
+    "Corylus avellana hazelnut",
+    "Fragaria vesca fruit",
+    "stone"
+  ],
+  "answers_location": "FIRST-SESSION.md (adult only)"
+}
