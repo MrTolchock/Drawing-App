@@ -5,28 +5,31 @@
   const KEY = 'farbtupf.forest.v1';
   const QUEST = 'bridge-neighbours-v1';
   const REST = 'moss-rest-v1';
-  const quests = { [QUEST]: { game: 'pattern', stage: 1 }, [REST]: { game: 'treasure', stage: 1 } };
+  const TRAIL = 'owl-trail-sign-v1';
+  const quests = { [QUEST]: { game: 'pattern', stage: 1 }, [REST]: { game: 'treasure', stage: 1 }, [TRAIL]: { game: 'robot', stage: 1 } };
   const nodes = {
     home: { x: -8, z: 8 }, west: { x: -13, z: 6 }, bend: { x: -14, z: -1 },
     brook: { x: -10, z: -7 }, beaver: { x: -5, z: -4.8 }, bridgeWest: { x: -2.8, z: -7 },
     bridgeEast: { x: 4, z: -7 }, hare: { x: 8.3, z: -2.8 }, garden: { x: 12, z: 2 },
     east: { x: 9, z: 10 }, fordEast: { x: 4.8, z: 12 }, fordWest: { x: -2.8, z: 12 },
     south: { x: -6, z: 11 }, mossTurn: { x: 15, z: 6 }, mossPath: { x: 19, z: 10 }, hedgehog: { x: 19, z: 14 },
+    hollowBend: { x: 15, z: 21 }, hollowApproach: { x: 9, z: 23 }, owl: { x: 6, z: 25 },
   };
-  const residents = { beaver: { x: -5.8, z: -8.9 }, hare: { x: 9.2, z: -6.7 }, hedgehog: { x: 21, z: 17 } };
+  const residents = { beaver: { x: -5.8, z: -8.9 }, hare: { x: 9.2, z: -6.7 }, hedgehog: { x: 21, z: 17 }, owl: { x: 8.7, z: 28 } };
   const edges = [
     ['home', 'west'], ['west', 'bend'], ['bend', 'brook'], ['brook', 'beaver'], ['beaver', 'bridgeWest'],
     ['home', 'south'], ['south', 'fordWest'], ['fordWest', 'fordEast'], ['fordEast', 'east'],
     ['east', 'garden'], ['garden', 'hare'], ['hare', 'bridgeEast'],
     ['bridgeWest', 'bridgeEast', 'bridge'],
     ['garden', 'mossTurn', 'grove'], ['mossTurn', 'mossPath', 'grove'], ['mossPath', 'hedgehog', 'grove'],
+    ['hedgehog', 'hollowBend', 'hollow'], ['hollowBend', 'hollowApproach', 'hollow'], ['hollowApproach', 'owl', 'hollow'],
   ];
   const distance = (a, b) => Math.hypot(a.x - b.x, a.z - b.z);
   const copy = value => JSON.parse(JSON.stringify(value));
   const riverX = z => 0.8 + Math.sin((z + 5) * 0.16) * 1.0;
   const tokens = ['🔵', '⭐', '❤️'];
   const fresh = () => ({
-    version: 1, welcomed: false, met: { beaver: false, hare: false, hedgehog: false },
+    version: 1, welcomed: false, met: { beaver: false, hare: false, hedgehog: false, owl: false },
     position: { ...nodes.home }, accepted: false, demoSeen: false,
     bridgeRepaired: false, payoffSeen: false, greetingSeen: false,
     contributions: {}, activity: null, activities: {}, guidanceSeen: {}, payoffsSeen: {},
@@ -70,7 +73,7 @@
       const memory = saved.activities?.[REST];
       if (memory?.id === REST && memory.game === 'treasure' && memory.stage === 1 && Number.isInteger(memory.round) && memory.round >= 0 && memory.round <= 5 &&
           (memory.round < 5 || base.contributions[REST])) {
-        const valid = validMemory(memory.question);
+        const valid = !!validMemory(memory.question);
         base.activities[REST] = { id: REST, game: 'treasure', stage: 1, round: memory.round,
           question: valid ? memory.question : null, concealed: valid && memory.concealed === true,
           answered: valid && memory.concealed === true && memory.answered === true,
@@ -78,6 +81,16 @@
       }
       base.guidanceSeen[REST] = saved.guidanceSeen?.[REST] === true;
       base.payoffsSeen[REST] = saved.payoffsSeen?.[REST] === true;
+      const trail = saved.activities?.[TRAIL];
+      if (trail?.id === TRAIL && trail.game === 'robot' && trail.stage === 1 && Number.isInteger(trail.round) && trail.round >= 0 && trail.round <= 5 &&
+          (trail.round < 5 || base.contributions[TRAIL])) {
+        const snapshot = trail.question?.size === 3 ? FK.routes.restore(trail.question, trail) : null;
+        base.activities[TRAIL] = { id: TRAIL, game: 'robot', stage: 1, round: trail.round,
+          question: snapshot ? trail.question : null, ...(snapshot || { position: null, history: [], answered: false }),
+          finished: trail.round === 5 && base.contributions[TRAIL] === true, rewardRecorded: trail.rewardRecorded === true };
+      }
+      base.guidanceSeen[TRAIL] = saved.guidanceSeen?.[TRAIL] === true;
+      base.payoffsSeen[TRAIL] = saved.payoffsSeen?.[TRAIL] === true;
       return base;
     } catch (_) { return base; }
   }
@@ -86,7 +99,14 @@
     try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (_) { /* usable in memory when storage is blocked */ }
     return copy(state);
   }
-  function activeEdges(repaired) { return edges.filter(e => !e[2] || (e[2] === 'bridge' ? repaired : state.bridgeRepaired && state.greetingSeen)); }
+  function residentAvailable(id) {
+    if (id === 'hedgehog') return state.bridgeRepaired && state.greetingSeen;
+    if (id === 'owl') return state.contributions[REST] === true && state.payoffsSeen[REST] === true;
+    return id === 'beaver' || id === 'hare';
+  }
+  function activeEdges(repaired) {
+    return edges.filter(e => !e[2] || (e[2] === 'bridge' ? repaired : residentAvailable(e[2] === 'hollow' ? 'owl' : 'hedgehog')));
+  }
   const activity = id => id === QUEST ? state.activity : state.activities[id];
   function projection(p, a, b) {
     const dx = b.x - a.x, dz = b.z - a.z;
@@ -133,7 +153,7 @@
     return keys.map(k => ({ x: positions[k].x, z: positions[k].z })).filter((p, i, list) => !i || distance(p, list[i - 1]) > 0.025);
   }
   const api = {
-    KEY, QUEST, REST, quests, nodes, residents, edges, distance, riverX, route,
+    KEY, QUEST, REST, TRAIL, quests, nodes, residents, edges, distance, riverX, route, residentAvailable,
     get: () => copy(state),
     getActivity: (id = QUEST) => activity(id) ? copy(activity(id)) : null,
     isComplete: id => state.contributions[id] === true,
@@ -145,6 +165,11 @@
     demoSeen(id = QUEST) { if (id === QUEST) state.demoSeen = true; else if (quests[id]) state.guidanceSeen[id] = true; save(); },
     startActivity(id = QUEST) {
       if (!quests[id] || state.contributions[id]) return null;
+      if (id === TRAIL) {
+        if (!residentAvailable('owl')) return null;
+        state.activities[id] ||= { id, ...quests[id], round: 0, question: null, position: null, history: [], answered: false, finished: false, rewardRecorded: false };
+        save(); return copy(state.activities[id]);
+      }
       if (id === REST) {
         if (!state.bridgeRepaired || !state.greetingSeen) return null;
         state.activities[id] ||= { id, ...quests[id], round: 0, question: null, concealed: false, answered: false, finished: false, rewardRecorded: false };
@@ -155,6 +180,11 @@
       save(); return copy(state.activity);
     },
     question(q, choices, id = QUEST) {
+      if (id === TRAIL) {
+        const a = activity(id);
+        if (!a || a.finished || !FK.routes.validQuestion(q) || q.size !== 3) return;
+        a.question = copy(q); Object.assign(a, FK.routes.initial(q)); save(); return;
+      }
       if (id === REST) {
         const a = activity(id);
         if (!a || a.finished || !validMemory(q)) return;
@@ -169,15 +199,30 @@
       a.concealed = value === true; save();
     },
     answer(value, id = QUEST) {
+      if (id === TRAIL) return false; // Reaching the pictured destination completes a route.
       const a = activity(id);
       if (!a || a.finished || !a.question || (id === REST && !a.concealed) || value !== a.question.answer) return false;
       a.answered = true; save(); return true;
+    },
+    moveRoute(dx, dy) {
+      const a = activity(TRAIL);
+      if (!a?.question || a.finished) return null;
+      const next = FK.routes.move(a.question, a, dx, dy); if (!next) return null;
+      Object.assign(a, next); save(); return copy(next);
+    },
+    undoRoute() {
+      const a = activity(TRAIL);
+      if (!a?.question || a.finished) return null;
+      const next = FK.routes.undo(a.question, a); if (!next) return null;
+      Object.assign(a, next); save(); return copy(next);
     },
     advance(id = QUEST) {
       const a = activity(id);
       if (!a || !a.answered || a.finished) return false;
       a.round++; a.question = null; a.answered = false;
-      if (id === QUEST) a.choices = null; else a.concealed = false;
+      if (id === QUEST) a.choices = null;
+      else if (id === REST) a.concealed = false;
+      else { a.position = null; a.history = []; }
       if (a.round === 5) {
         a.finished = true; state.contributions[id] = true;
         if (id === QUEST) { state.bridgeRepaired = true; state.payoffSeen = false; }

@@ -108,6 +108,30 @@
 .forest-memory-demo h2 { margin-bottom:10px; }
 .forest-memory-demo .memory-board { margin:auto; }
 .forest-memory-demo .forest-primary { margin-top:8px; }
+.forest-owl-fallback { display:inline-flex; }
+.forest-owl-fallback svg { width:100%; height:100%; }
+.route-board { width:100%; }
+.route-board .route-controls { text-align:center; }
+.route-board:not(.route-pictured) .route-undo { margin-top:12px; }
+.route-pictured { width:min(480px,100%); margin:auto; text-align:center; }
+.route-pictured .adventure-map { width:276px; max-width:100%; gap:6px; margin:10px auto; padding:10px; border:1px solid #b9c29c; border-radius:23px; background:#edf0db; }
+.route-pictured .adventure-map-cell { position:relative; overflow:hidden; border:1px solid #d2c6a7; border-radius:15px; background:#fff9ed; }
+.route-pictured .adventure-map-cell > .forest-portrait { width:66px; height:66px; }
+.route-pictured .route-goal { background:#e2e8c7; border:2px solid #9cae78; }
+.route-pictured .route-arrived > .forest-portrait { width:36px; height:48px; margin:0 -4px; }
+.route-footprint .forest-icon { width:24px; height:24px; color:#b5bf92; }
+.route-pictured .adventure-commands { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+.route-pictured .route-controls { display:flex; align-items:flex-end; justify-content:center; gap:20px; }
+.route-pictured .adventure-arrows { display:grid; grid-template-areas:'. up .' 'left down right'; grid-template-columns:repeat(3,64px); gap:8px; }
+.route-pictured .route-direction { position:relative; width:64px; height:64px; min-width:64px; padding:12px; border:1px solid #aeba8d; border-radius:19px; background:#e5ebcd; color:#4d653b; }
+.route-pictured .route-direction:focus-visible { outline:3px solid #688445; outline-offset:3px; }
+.route-pictured .route-up { grid-area:up; }.route-pictured .route-left { grid-area:left; }.route-pictured .route-down { grid-area:down; }.route-pictured .route-right { grid-area:right; }
+.route-arrow-up { transform:rotate(-90deg); }.route-arrow-left { transform:rotate(180deg); }.route-arrow-down { transform:rotate(90deg); }
+.route-pictured .route-undo { width:64px; min-width:64px; height:64px; min-height:64px; border-radius:50%; padding:12px; }
+.route-demo-hand { position:absolute; right:-12px; bottom:-13px; color:#657b4b; animation:forest-tap 2s ease-in-out infinite; }
+.route-pictured button:disabled { opacity:.48; }
+.forest-trail-demo h2 { margin-bottom:10px; }
+.forest-trail-demo .forest-primary { margin-top:15px; }
 .hub-forest-return { display:flex; gap:7px; align-items:center; margin-right:auto; border:1px solid #b9b28f; border-radius:18px; padding:4px 14px 4px 4px; background:#fff9eaf0; color:#425c38; min-height:62px; font:700 15px var(--read); }
 .hub-forest-return .wa-illustration { width:52px; height:52px; }
 @media(max-width:650px) {
@@ -123,6 +147,7 @@
   .forest-learning-controls { gap:6px; }.forest-learning-controls .forest-button { min-width:53px; width:53px; height:56px; min-height:56px; padding:12px; }.forest-activity .learn-body { padding:18px 8px; }.forest-activity .learn-train { gap:4px; }.forest-activity .learn-wagon { width:39px; height:51px; font-size:31px; }.forest-activity .learn-train > span:first-child { font-size:28px; }
   .forest-activity .learn-answer { min-width:80px; min-height:83px; font-size:38px; }.forest-activity .learn-answers { gap:10px; }.forest-demo-pattern { gap:5px; }.forest-demo-pattern > span { width:48px; height:62px; font-size:43px; }.forest-demo { padding:0; }.forest-demo-gap > .forest-icon { right:-9px; width:37px; height:37px; }
   .memory-pictured .exp-treasures { gap:7px; padding:12px 8px; min-height:119px; }.memory-pictured .exp-picture { width:87px; min-height:91px; padding:4px; }.memory-pictured .exp-art .wa-illustration { width:76px; height:76px; }.memory-pictured .learn-answer { padding:7px; min-width:83px; }.memory-pictured .exp-picture-answers .wa-illustration { width:67px; height:67px; margin:0; }.memory-pictured .exp-hide { min-height:65px; }.forest-memory-demo h2 { font-size:25px; }.forest-memory-demo .forest-primary { min-height:66px; }
+  .route-pictured .adventure-map { width:248px; padding:8px; }.route-pictured .adventure-map-cell > .forest-portrait { width:60px; height:60px; }.route-pictured .route-arrived > .forest-portrait { width:32px; height:44px; }.route-pictured .adventure-arrows { grid-template-columns:repeat(3,59px); gap:7px; }.route-pictured .route-direction { width:59px; min-width:59px; height:59px; padding:11px; }.route-pictured .route-undo { width:59px; min-width:59px; height:59px; min-height:59px; }.route-pictured .route-controls { gap:18px; }.forest-route-activity .topbar .title { font-size:17px; }.forest-trail-demo h2 { font-size:25px; }.forest-trail-demo .forest-primary { min-height:66px; margin-top:11px; }
   .forest-scene-return { min-width:250px; padding:18px 15px; }.forest-scene-return .forest-place-picture .forest-portrait { width:100px; height:110px; }.forest-scene-return .forest-place-picture .forest-bridge-picture { width:96px; }
   .hub-forest-return { min-height:54px; font-size:12px; padding-right:9px; }.hub-forest-return .wa-illustration { width:40px; height:40px; }
 }
@@ -131,6 +156,6 @@
   .forest-dialog { padding:15px 24px; }.forest-welcome-copy > .forest-portrait,.forest-request-copy > .forest-portrait { width:80px; height:80px; }.forest-dialog-actions { margin-top:8px; }.forest-overlay { padding-bottom:12px; }
 }
 @media(prefers-reduced-motion:reduce) {
-  .forest-walk-hint > .forest-icon:last-child,.forest-demo-gap > span:first-child,.forest-demo-gap > .forest-icon,.memory-demo-hand,.memory-toggle-hand { animation:none; transform:none; opacity:1; }
+  .forest-walk-hint > .forest-icon:last-child,.forest-demo-gap > span:first-child,.forest-demo-gap > .forest-icon,.memory-demo-hand,.memory-toggle-hand,.route-demo-hand { animation:none; transform:none; opacity:1; }
   .forest-button { transition:none; }
 }

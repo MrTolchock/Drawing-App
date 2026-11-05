@@ -2,7 +2,7 @@
 
 The selected **original A, Painted woodland** direction now has a small, real
 Three.js neighbourhood: the Heart Tree, Beaver's brook, Brown Hare's garden and
-European Hedgehog's moss grove.
+European Hedgehog's moss grove and Tawny Owl's story hollow.
 The existing activities remain flat DOM screens with their current artwork and
 rules. The full five-clearing story is still in development.
 
@@ -37,6 +37,17 @@ Run `python3 -m http.server 8000 --bind 0.0.0.0` in the repository and open
   choices, hidden/visible phase and answered state survive leaving and reloading.
 - Five successful items create a lasting leaf-and-moss bed. Return to Hedgehog
   to see the result; visit again freely or walk back to the Heart Tree.
+- Hedgehog introduces the tawny owl under an old oak. The onward path appears
+  after the resting-place payoff has been seen; earlier save files unlock it too.
+- Help Owl renew the picture sign. The existing Roboterpost route family remains
+  a flat grid: tap direction arrows to guide the fox to the pictured owl. Several
+  paths are valid. The curved arrow undoes one step; edges do not incur penalties.
+- A separate worked example uses a different destination from every live item.
+  Only the example has a guiding hand. Live controls allow free route choices.
+- The Owl/sign picture leaves the puzzle. Position, recent undo history, current
+  grid, completed-item count and answered state survive leaving and reloading.
+- Five routes restore the Heart Tree picture sign. Return to Owl to see it, then
+  follow the invitation back to the Heart Tree. The sign stays restored offline.
 - The book opens the full existing library. Its fox control returns to the forest.
 
 ## Rendering and navigation
@@ -45,7 +56,7 @@ Run `python3 -m http.server 8000 --bind 0.0.0.0` in the repository and open
 orthographic camera angled down at roughly 56 degrees, with gentle following and
 an interaction view. Character portraits are rendered from the same solid 3D
 models as the world. Orange fox/scarf, broad-tailed Eurasian beaver and long-eared
-brown hare and European hedgehog have local idle/gesture/walk animation. The hare is brown rather than
+brown hare, European hedgehog and tawny owl have local idle/gesture/walk animation. The owl has a rounded head and facial discs, without ear tufts. The hare is brown rather than
 the earlier illustration library's white rabbit.
 
 Canopy instances, broad painted surfaces, native oak silhouettes, beech/alder/hazel
@@ -76,6 +87,14 @@ original pool and three selectable stages remain available. The story adapter
 in `js/forest/memory.js` fixes this introductory round at stage one and retains
 the existing `expedition:treasure:1` reward identity.
 
+The third session uses the existing `robot` generator, movement rules shared in
+`js/learn/routes.js` and the flat board in `js/ui/route-board.js`. Ordinary library
+practice keeps its robot, mailbox, three stages and hedge layouts. The story
+adapter in `js/forest/trail.js` uses a pictured fox/owl and stage-one three-by-three
+grids, without changing the global learning stage. Its reward identity remains
+`adventure:robot:1`. Current position and up to 64 recent positions support exact
+resume and stepwise undo while keeping storage bounded during exploratory loops.
+
 The new localStorage namespace is **farbtupf.forest.v1**. It stores position,
 introductions, the stable bridge contribution, guidance familiarity, live pattern
 and shuffled choices, answered state, round count and payoff acknowledgement.
@@ -90,11 +109,15 @@ return screen, independently of stars. Loading an earlier first-slice save adds
 the new fields without losing the bridge, position or introductions. Unknown
 valid completed contribution IDs are retained for future story/content packs.
 
+The third stable contribution is `owl-trail-sign-v1`. A route only counts after
+actual cardinal movement reaches its destination. The sign result is committed
+before the pictured return, even if the library reward was already earned.
+
 Existing identifiers stay intact: **farbklecks.settings.v2**,
 **farbklecks.progress.v1**, IndexedDB **farbklecks**, and its **state**/**bilder**
 stores. No drawing or existing learning progress is migrated or cleared.
 
-The supported pattern and memory sessions have serialisable snapshots. Other activity
+The supported pattern, memory and route sessions have serialisable snapshots. Other activity
 families do not acquire exact interrupted-question recovery simply by sharing
 the forest. They require their own adapters before story integration.
 
@@ -119,6 +142,8 @@ With the server running:
 ```sh
 node tests/forest.test.cjs
 node tests/forest-browser.cjs
+node tests/routes.test.cjs
+node tests/trail-browser.cjs
 ```
 
 The browser test uses touch inputs, a software WebGL Chromium instance and the

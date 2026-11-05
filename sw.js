@@ -1,5 +1,5 @@
 /* Farbtupf – Service Worker: keeps the whole app on the device so it runs without internet. */
-const CACHE = 'farbtupf-v5.1.0-heart-tree';
+const CACHE = 'farbtupf-v5.2.0-heart-tree';
 const ASSETS = [
   './',
   './index.html',
@@ -20,7 +20,10 @@ const ASSETS = [
   './js/forest/speech.js',
   './js/forest/art.js',
   './js/ui/memory-board.js',
+  './js/ui/route-board.js',
   './js/forest/memory.js',
+  './js/forest/trail.js',
+  './js/learn/routes.js',
   './js/forest/materials.js',
   './js/forest/characters.js',
   './js/forest/landscape.js',

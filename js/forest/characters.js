@@ -147,3 +147,34 @@ export function hedgehog() {
     head.rotation.x = resting ? 0.14 : 0;
   } };
 }
+
+// Tawny owl (Waldkauz): a round head and facial discs, with no ear tufts.
+export function owl() {
+  const group = new THREE.Group(), brown = paint('#927a56', 'fur'), dark = paint('#6b5a43', 'fur'), cream = paint('#d9c7a4', 'fur');
+  ellipsoid(group, brown, [0, 1.04, -0.1], [0.72, 1.0, 0.62]);
+  ellipsoid(group, cream, [0, 1.02, 0.41], [0.51, 0.72, 0.22]);
+  const head = new THREE.Group(); head.position.set(0, 2.02, 0.12); group.add(head);
+  ellipsoid(head, brown, [0, 0, 0], [0.82, 0.73, 0.63]);
+  const pupils = [];
+  for (const side of [-1, 1]) {
+    ellipsoid(head, dark, [side * 0.34, 0, 0.48], [0.4, 0.46, 0.19]);
+    ellipsoid(head, cream, [side * 0.34, 0.015, 0.58], [0.34, 0.39, 0.13]);
+    pupils.push(ellipsoid(head, solid('#39362c'), [side * 0.33, 0.045, 0.707], [0.145, 0.19, 0.07]));
+    ellipsoid(head, solid('#fff5dc'), [side * 0.33 - 0.04, 0.12, 0.77], [0.035, 0.047, 0.015]);
+    ellipsoid(group, dark, [side * 0.62, 1.05, -0.06], [0.24, 0.78, 0.49], [0, side * 0.12, side * 0.12]);
+    ellipsoid(group, paint('#b09a74'), [side * 0.3, 0.13, 0.28], [0.22, 0.12, 0.3]);
+  }
+  const beak = new THREE.Mesh(new THREE.ConeGeometry(0.12, 0.32, 12), paint('#b3a07c'));
+  beak.rotation.z = Math.PI; beak.position.set(0, -0.19, 0.73); head.add(beak);
+  const featherMaterial = paint('#a68c63');
+  for (let row = 0; row < 4; row++) for (const side of [-1, 1]) {
+    ellipsoid(group, featherMaterial, [side * (0.15 + (row % 2) * 0.1), 0.62 + row * 0.23, 0.62 - Math.abs(row - 2) * 0.035], [0.035, 0.085, 0.022], [0, 0, -side * 0.16]);
+  }
+  ellipsoid(group, dark, [0, 0.31, -0.61], [0.35, 0.16, 0.48]); group.name = 'owl';
+  return { group, animate(time, active) {
+    head.rotation.z = Math.sin(time * 0.7) * (active ? 0.07 : 0.018);
+    const greetingTurn = active ? 2.1 : 0.2;
+    head.rotation.y = time ? THREE.MathUtils.lerp(head.rotation.y, greetingTurn, 0.08) : greetingTurn;
+    const blink = time % 7 > 6.8 ? 0.15 : 1; pupils.forEach(eye => { eye.scale.y = 0.19 * blink; });
+  } };
+}

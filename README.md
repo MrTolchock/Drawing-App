@@ -4,7 +4,7 @@
 
 Finger-friendly learning adventures for first-grade children in Zürich, in Swiss Standard German. Static HTML/CSS/JavaScript PWA with locally bundled Three.js: no build step, account, ads, tracking or runtime CDN. Works offline after initial loading; prototype narration uses device voices and is not guaranteed offline.
 
-The app opens in **Der Herzbaum**, a playable woodland neighbourhood in the selected **Painted woodland** direction. Guide a 3D fox to Beaver or Brown Hare, help with a guided flat Musterzug round, return to the brook and cross the repaired bridge. Hare then introduces European Hedgehog's moss grove: a flat Waldschatz memory round creates a leaf-and-moss resting place. Both changes and interrupted puzzle sessions survive reloading. Pictures, separate examples and repeatable device narration support children who cannot yet read. The book opens all the existing activities; its fox button returns to the woodland. The remaining five-clearing story is still to come. [Controls, implementation and remaining checks](docs/HEART-TREE.md).
+The app opens in **Der Herzbaum**, a playable woodland neighbourhood in the selected **Painted woodland** direction. Guide a 3D fox through three complete helping quests: a flat Musterzug round repairs Beaver's bridge to Brown Hare's garden; Waldschatz memory creates European Hedgehog's leaf-and-moss resting place; a flat arrow-and-grid route puzzle renews Tawny Owl's picture sign in the story hollow. All three world changes and supported interrupted puzzle sessions survive reloading. Pictures, separate examples and repeatable device narration support children who cannot yet read. One onward invitation appears at a time. The book opens all the existing activities; its fox button returns to the woodland. The reed pond and remaining five-clearing story are still to come. [Controls, implementation and remaining checks](docs/HEART-TREE.md).
 
 The learning island is retained as the games book. Drawing is a creative companion:
 
@@ -47,16 +47,18 @@ node tests/adventures.test.cjs
 node tests/expeditions.test.cjs
 node tests/waldatelier.test.cjs
 node tests/forest.test.cjs
+node tests/routes.test.cjs
 node --check js/screens/learn.js
 # With the server running and the cloud image browser tools:
 node tests/handwriting-browser.cjs
 node tests/forest-browser.cjs
 node tests/memory-browser.cjs
+node tests/trail-browser.cjs
 ```
 
 The content tests cover answer validity, range boundaries, arithmetic, offline assets and storage compatibility. Browser smoke checks are in `tests/browser-smoke.cjs` and require Playwright plus Chromium. In this cloud image: `node tests/browser-smoke.cjs` with the server running. They exercise 60 tasks through touch taps, wrong answers, replay rewards, three-stage routing, mobile layout, offline reload and saved stars. The dedicated handwriting browser check verifies model bounds across stage changes and completes all seventeen revised models with simulated touch strokes. These tests do not establish Safari compatibility or certify pedagogical accuracy; test on a physical iPad before release.
 
-The forest tests cover safe routes before/after repair, the independent activity level, two saved quest sessions, first-slice save compatibility, replay-safe story completion and local Three.js imports. Its browser journey covers touch walking, Hare-first discovery, help, leaving/reload/continuation, previously earned stars, walking over the new bridge, Hedgehog's resting place, old-library access and an offline 3D reload. The memory browser check also exercises ordinary Waldschatz practice at all three stages. Use `?screen=hub` for the direct library entry. Three.js 0.187.0 and its MIT license are in `vendor/three`; no package install is needed.
+The forest tests cover safe routes before/after repair, independent activity levels, three saved quest sessions, earlier-save compatibility, replay-safe story completion and local Three.js imports. Browser journeys cover touch walking, Hare-first discovery, help, leaving/reload/continuation, previously earned stars, the repaired bridge, Hedgehog's resting place, Owl's picture sign, old-library access and offline 3D reloads. The memory and route browser checks also exercise ordinary practice at all three existing stages. Route rules reject blocked moves and preserve bounded undo history. Use `?screen=hub` for the direct library entry. Three.js 0.187.0 and its MIT license are in `vendor/three`; no package install is needed.
 
 Bump `CACHE` in `sw.js` after app changes. Include new runtime assets in its cache list. Never rename localStorage/IndexedDB keys merely to change the app name.
 

@@ -83,25 +83,55 @@
         h('p', { class: 'forest-eyebrow', text: complete ? 'Ein gemütlicher Platz' : 'Im Mooshain' }),
         h('h2', { text: complete ? 'Hier kann ich mich ausruhen.' : 'Hilfst du mir beim Einrichten?' }),
         h('p', { text: complete ? 'Danke, kleiner Fuchs. Komm mich bald wieder besuchen.' : 'Merken wir uns meine kleinen Waldschätze.' })), art.rest(complete)),
-      complete ? [button('Zum Herzbaum gehen', [art.character('fox'), art.icon('paw')], () => { closeOverlay(); runtime.walkTo(model.nodes.home); }, 'forest-primary'),
+      complete ? [button('Zum Waldkauz gehen', [art.character('owl'), art.icon('paw')], () => { closeOverlay(); runtime.walkToResident('owl'); }, 'forest-primary'),
         button('Im Wald bleiben', art.icon('paw'), closeOverlay, 'forest-secondary')] :
         [button(started ? 'Igel weiterhelfen' : 'Igel beim Ruheplatz helfen', [art.rest(true), art.icon('play'), h('span', { text: started ? 'Weiterhelfen' : 'Ich helfe dir' })], () => {
           model.startActivity(model.REST); FK.go('forest-memory');
         }, 'forest-primary'), button('Zurück in den Wald', art.icon('paw'), postpone, 'forest-secondary')],
-      complete ? 'Danke! Jetzt habe ich einen gemütlichen Platz zum Ausruhen. Komm mich bald wieder besuchen.' :
+      complete ? 'Danke! Hier kann ich mich ausruhen. Unter der alten Eiche wartet der Waldkauz auf dich.' :
         started ? 'Hilfst du mir weiter? Meine Waldschätze warten auf dich.' : 'Hilfst du mir? Merke dir meine Waldschätze. Dann richten wir meinen Ruheplatz ein.');
+  }
+  function showOwl() {
+    if (!model.residentAvailable('owl')) return;
+    model.visit('owl');
+    const complete = model.isComplete(model.TRAIL), started = !!model.getActivity(model.TRAIL);
+    if (complete) model.seePayoff(model.TRAIL);
+    panel('owl', complete ? 'Der alte Wegweiser' : 'Ein Bild zeigt den Weg',
+      h('div', { class: 'forest-request-copy' }, art.character('owl'), h('div', {},
+        h('p', { class: 'forest-eyebrow', text: 'In der Geschichtenmulde' }),
+        h('h2', { text: complete ? 'Das Herz zeigt nach Hause.' : 'Finden wir den Weg zusammen?' }),
+        h('p', { text: complete ? 'Nun finden unsere Freunde wieder zum Herzbaum.' : 'Am alten Wegweiser fehlt das Bild.' })), art.sign(complete)),
+      complete ? [button('Zum Herzbaum gehen', [art.sign(true), art.icon('paw')], () => { closeOverlay(); runtime.walkTo(model.nodes.home); }, 'forest-primary'),
+        button('Im Wald bleiben', art.icon('paw'), closeOverlay, 'forest-secondary')] :
+        [button(started ? 'Waldkauz weiterhelfen' : 'Waldkauz beim Wegweiser helfen', [art.sign(true), art.icon('play'), h('span', { text: started ? 'Weiterhelfen' : 'Ich helfe dir' })], () => {
+          model.startActivity(model.TRAIL); FK.go('forest-trail');
+        }, 'forest-primary'), button('Zurück in den Wald', art.icon('paw'), postpone, 'forest-secondary')],
+      complete ? 'Danke! Das Herz auf dem Wegweiser zeigt wieder zum Herzbaum. Dort treffen sich unsere Freunde.' :
+        started ? 'Gehen wir zusammen weiter? Der Wegweiser wartet auf uns.' : 'Hallo, kleiner Fuchs. Am Wegweiser fehlt das Bild. Hilfst du mir? Finde auf der Karte den Weg zu mir.');
+  }
+  function nextResident() {
+    const state = model.get();
+    if (!state.bridgeRepaired) return 'beaver';
+    if (!state.greetingSeen) return 'hare';
+    if (!model.isComplete(model.REST) || !state.payoffsSeen[model.REST]) return 'hedgehog';
+    if (!model.isComplete(model.TRAIL) || !state.payoffsSeen[model.TRAIL]) return 'owl';
+    return null;
   }
   function updateHUD() {
     if (!runtime || !active) return;
     const state = model.get(); root.dataset.bridge = state.bridgeRepaired ? 'repaired' : 'unfinished';
     root.dataset.rest = model.isComplete(model.REST) ? 'ready' : 'unfinished';
+    root.dataset.sign = model.isComplete(model.TRAIL) ? 'ready' : 'unfinished';
     const hidden = !!overlayKind; goal.hidden = hidden; hint.hidden = hidden || !firstWalk;
     ui.querySelector('.forest-footer').hidden = hidden;
     const finished = state.bridgeRepaired;
     goal.replaceChildren();
-    if (finished && state.greetingSeen && model.isComplete(model.REST) && state.payoffsSeen[model.REST]) {
+    if (!nextResident()) {
       goal.append(art.icon('book'), h('span', {}, h('small', { text: 'Dein nächstes Abenteuer' }), h('b', { text: 'Das Spielebuch' })), art.icon('arrow'));
       goal.setAttribute('aria-label', 'Spielebuch öffnen');
+    } else if (nextResident() === 'owl') {
+      goal.append(art.character('owl'), h('span', {}, h('small', { text: 'Unter der alten Eiche' }), h('b', { text: 'Der alte Wegweiser' })), art.sign(model.isComplete(model.TRAIL)));
+      goal.setAttribute('aria-label', 'Zum Waldkauz gehen');
     } else if (finished && state.greetingSeen) {
       goal.append(art.character('hedgehog'), h('span', {}, h('small', { text: 'Hinter dem Garten' }), h('b', { text: 'Ein Platz zum Ausruhen' })), art.rest(model.isComplete(model.REST)));
       goal.setAttribute('aria-label', 'Zum Igel gehen');
@@ -132,7 +162,7 @@
     if (!loading) loading = import('../forest/scene.js').then(module => {
       runtime = module.createForest(canvas, {
         onWalk() { if (firstWalk) { firstWalk = false; hint.hidden = true; } },
-        onArrive(id) { if (!active) return; if (id === 'beaver') showBeaver(); else if (id === 'hare') showHare(); else if (id === 'hedgehog') showHedgehog(); },
+        onArrive(id) { if (!active) return; ({ beaver: showBeaver, hare: showHare, hedgehog: showHedgehog, owl: showOwl })[id]?.(); },
         onProject: updateProjection,
       });
       FK.forestScene = runtime; root.classList.add('forest-ready'); return runtime;
@@ -156,7 +186,7 @@
       ui.append(h('header', { class: 'forest-header' }, h('div', { class: 'forest-heading' },
         h('p', { class: 'forest-eyebrow', text: 'Farbtupf' }), h('h1', { text: 'Der Herzbaum' })), h('nav', { 'aria-label': 'Wald und Spiele' }, book, sound)));
       hitTargets = {};
-      for (const [id, name] of Object.entries({ beaver: 'Biber', hare: 'Hase', hedgehog: 'Igel' })) {
+      for (const [id, name] of Object.entries({ beaver: 'Biber', hare: 'Hase', hedgehog: 'Igel', owl: 'Waldkauz' })) {
         const b = button(name + ' besuchen', [], () => runtime?.walkToResident(id), 'forest-npc-target');
         b.hidden = true; hitTargets[id] = b; ui.append(b);
       }
@@ -164,10 +194,8 @@
       hint = button('Hier auf den Weg tippen', [art.icon('paw'), art.icon('hand')], () => runtime?.walkTo({ x: -12.0, z: 5.0 }), 'forest-walk-hint'); hint.hidden = true; ui.append(hint);
       goal = button('Zum Biber gehen', [], () => {
         if (!runtime || overlayKind) return;
-        const state = model.get();
-        if (state.bridgeRepaired && state.greetingSeen && model.isComplete(model.REST) && state.payoffsSeen[model.REST]) FK.go('hub');
-        else if (state.bridgeRepaired && state.greetingSeen) runtime.walkToResident('hedgehog');
-        else runtime.walkToResident(state.bridgeRepaired ? 'hare' : 'beaver');
+        const id = nextResident();
+        if (id) runtime.walkToResident(id); else FK.go('hub');
       }, 'forest-goal'); goal.hidden = true;
       const repeat = button('Nochmals hören', art.icon('speaker'), () => voice.repeat(), 'forest-round forest-repeat');
       ui.append(h('footer', { class: 'forest-footer' }, goal, repeat));
@@ -184,15 +212,12 @@
     },
     async enter(params) {
       active = true; const token = ++entry; overlayKind = ''; overlay.replaceChildren(); root.classList.remove('has-dialog');
-      const activity = model.get().activity;
-      if (activity?.finished && !activity.rewardRecorded) {
-        if (!FK.progress.isDone('learn', 'pattern:1')) FK.progress.finish('learn', 'pattern:1', 1);
-        model.rewardRecorded();
-      }
-      const memory = model.getActivity(model.REST);
-      if (memory?.finished && !memory.rewardRecorded) {
-        if (!FK.progress.isDone('expedition', 'treasure:1')) FK.progress.finish('expedition', 'treasure:1', 1);
-        model.rewardRecorded(model.REST);
+      for (const [id, def] of Object.entries(model.quests)) {
+        const a = model.getActivity(id), group = { pattern: 'learn', treasure: 'expedition', robot: 'adventure' }[def.game], key = def.game + ':' + def.stage;
+        if (a?.finished && !a.rewardRecorded) {
+          if (!FK.progress.isDone(group, key)) FK.progress.finish(group, key, 1);
+          model.rewardRecorded(id);
+        }
       }
       try { await ensureScene(); } catch (_) { return; }
       if (!active || token !== entry) return;
@@ -206,6 +231,9 @@
         } else if (model.isComplete(model.REST) && !model.get().payoffsSeen[model.REST]) {
           runtime.focus('hedgehog');
           payoffTimer = setTimeout(() => { if (active && token === entry) showHedgehog(); }, 700);
+        } else if (model.isComplete(model.TRAIL) && !model.get().payoffsSeen[model.TRAIL]) {
+          runtime.focus('owl');
+          payoffTimer = setTimeout(() => { if (active && token === entry) showOwl(); }, 700);
         } else if (params.returned) voice.say('Ich bin hier, wenn du magst.');
       }
     },

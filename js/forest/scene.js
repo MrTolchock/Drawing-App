@@ -1,5 +1,5 @@
 import { THREE } from './materials.js';
-import { fox, beaver, hare, hedgehog } from './characters.js';
+import { fox, beaver, hare, hedgehog, owl } from './characters.js';
 import { buildLandscape } from './landscape.js';
 
 export function createForest(canvas, callbacks = {}) {
@@ -18,13 +18,14 @@ export function createForest(canvas, callbacks = {}) {
   Object.assign(sun.shadow.camera, { left: -28, right: 28, top: 25, bottom: -25, near: 1, far: 80 });
   sun.shadow.camera.updateProjectionMatrix(); scene.add(sun);
   const landscape = buildLandscape(scene, model);
-  const player = fox(), residents = { beaver: beaver(), hare: hare(), hedgehog: hedgehog() };
+  const player = fox(), residents = { beaver: beaver(), hare: hare(), hedgehog: hedgehog(), owl: owl() };
   scene.add(player.group);
   const saved = model.get();
   player.group.position.set(saved.position.x, 0.06, saved.position.z); player.group.rotation.y = 0.3;
   residents.beaver.group.position.set(model.residents.beaver.x, 0.06, model.residents.beaver.z); residents.beaver.group.rotation.y = 0.6;
   residents.hare.group.position.set(model.residents.hare.x, 0.06, model.residents.hare.z); residents.hare.group.rotation.y = -0.5;
   residents.hedgehog.group.position.set(model.residents.hedgehog.x, 0.06, model.residents.hedgehog.z); residents.hedgehog.group.rotation.y = -2.45;
+  residents.owl.group.position.set(model.residents.owl.x, 0.06, model.residents.owl.z); residents.owl.group.rotation.y = -2.4;
   Object.entries(residents).forEach(([id, rig]) => { scene.add(rig.group); rig.group.traverse(o => { o.userData.resident = id; }); });
   const shadowCanvas = document.createElement('canvas'); shadowCanvas.width = shadowCanvas.height = 64;
   const shadowContext = shadowCanvas.getContext('2d'), gradient = shadowContext.createRadialGradient(32, 32, 3, 32, 32, 31);
@@ -40,6 +41,7 @@ export function createForest(canvas, callbacks = {}) {
   let waypoints = [], arrival = null, focusResident = null, repairStart = null, lastSave = 0, inputEnabled = true;
   let currentHalfHeight = 14, displayedRepaired = saved.bridgeRepaired, previousPortrait = null;
   let displayedRest = model.isComplete(model.REST), displayedGrove = saved.bridgeRepaired && saved.greetingSeen;
+  let displayedHollow = model.residentAvailable('owl'), displayedSign = model.isComplete(model.TRAIL);
   const keys = new Set(), raycaster = new THREE.Raycaster(), plane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
   const destination = new THREE.Group();
   const markerMat = new THREE.MeshBasicMaterial({ color: '#f9edc1', transparent: true, opacity: 0.85, depthWrite: false });
@@ -69,14 +71,15 @@ export function createForest(canvas, callbacks = {}) {
   portraits();
 
   function viewGoal(portrait) {
+    if (focusResident === 'owl') return new THREE.Vector3(7.5, 0, 26);
     if (focusResident === 'hedgehog') return new THREE.Vector3(20.5, 0, 15.5);
     if (focusResident) return new THREE.Vector3(0.2, 0, -6.2);
-    const p = player.group.position, grove = Math.max(0, Math.min(1, (p.x - 11) / 6));
+    const p = player.group.position, grove = Math.max(0, Math.min(1, Math.max((p.x - 11) / 6, (p.z - 13) / 7)));
     const xFollow = portrait ? 0.92 : THREE.MathUtils.lerp(0.36, 0.92, grove);
     const zFollow = portrait ? 0.92 : THREE.MathUtils.lerp(0.48, 0.92, grove);
     return new THREE.Vector3(p.x * xFollow, 0, p.z * zFollow + 1);
   }
-  function viewHeight(portrait) { return focusResident === 'hedgehog' ? (portrait ? 12.5 : 11.5) : focusResident ? (portrait ? 17.4 : 12.7) : portrait ? 12.5 : 14.4; }
+  function viewHeight(portrait) { return focusResident === 'hedgehog' || focusResident === 'owl' ? (portrait ? 12.5 : 11.5) : focusResident ? (portrait ? 17.4 : 12.7) : portrait ? 12.5 : 14.4; }
 
   function resize() {
     const rect = canvas.parentElement.getBoundingClientRect(); width = Math.max(1, rect.width); height = Math.max(1, rect.height);
@@ -107,7 +110,7 @@ export function createForest(canvas, callbacks = {}) {
       destination.visible = true; callbacks.onWalk?.();
     } else if (resident) callbacks.onArrive?.(resident);
   }
-  function walkToResident(id) { if (residents[id] && (id !== 'hedgehog' || model.get().greetingSeen)) targetAt(model.nodes[id], id); }
+  function walkToResident(id) { if (residents[id] && model.residentAvailable(id)) targetAt(model.nodes[id], id); }
   let down = null;
   function pointerDown(event) { if (event.isPrimary) down = { x: event.clientX, y: event.clientY }; }
   function pointerUp(event) {
@@ -170,9 +173,13 @@ export function createForest(canvas, callbacks = {}) {
     const dt = Math.min((now - (last || now)) / 1000, 0.2); last = now; time += dt;
     const moving = walk(dt), state = model.get(), repaired = state.bridgeRepaired;
     const grove = repaired && state.greetingSeen, rested = model.isComplete(model.REST);
+    const hollow = model.residentAvailable('owl'), signed = model.isComplete(model.TRAIL);
     residents.hedgehog.group.visible = grove;
+    residents.owl.group.visible = hollow;
     if (grove !== displayedGrove || rested !== displayedRest) renderer.shadowMap.needsUpdate = true;
     landscape.setGrove(grove, rested); displayedGrove = grove; displayedRest = rested;
+    if (hollow !== displayedHollow || signed !== displayedSign) renderer.shadowMap.needsUpdate = true;
+    landscape.setHollow(hollow, signed); displayedHollow = hollow; displayedSign = signed;
     player.group.position.y = THREE.MathUtils.lerp(player.group.position.y, landscape.height(player.group.position.x, player.group.position.z, repaired), 1 - Math.exp(-dt * 18));
     const decorativeTime = window.FK.reduced ? 0 : time;
     player.animate(moving ? time : decorativeTime, moving);
@@ -197,15 +204,18 @@ export function createForest(canvas, callbacks = {}) {
       tree.leaves.children.forEach(mesh => { mesh.material.opacity = THREE.MathUtils.lerp(mesh.material.opacity, hiding ? 0.28 : 1, 1 - Math.exp(-dt * 10)); });
     }
     renderer.render(scene, camera);
-    callbacks.onProject?.({ beaver: project(residents.beaver.group.position.clone().add(new THREE.Vector3(0, 1.5, 0))),
-      hare: project(residents.hare.group.position.clone().add(new THREE.Vector3(0, 2.0, 0))), fox: project(foxHead),
-      hedgehog: { ...project(residents.hedgehog.group.position.clone().add(new THREE.Vector3(0, 0.9, 0))), visible: grove && project(residents.hedgehog.group.position).visible },
-      spot: project(new THREE.Vector3(-12.0, 0.2, 5.0)) });
+    const projected = {};
+    for (const [id, rig] of Object.entries(residents)) {
+      const p = project(rig.group.position.clone().add(new THREE.Vector3(0, { beaver: 1.5, hare: 2, hedgehog: 0.9, owl: 1.8 }[id], 0)));
+      projected[id] = { ...p, visible: rig.group.visible && p.visible };
+    }
+    callbacks.onProject?.({ ...projected, fox: project(foxHead), spot: project(new THREE.Vector3(-12.0, 0.2, 5.0)) });
     if (moving && time - lastSave > 1.2) { persist(); lastSave = time; }
     raf = requestAnimationFrame(frame);
   }
   camera.position.copy(focus).add(offset); camera.lookAt(focus); landscape.setBridge(saved.bridgeRepaired);
   landscape.setGrove(displayedGrove, displayedRest); residents.hedgehog.group.visible = displayedGrove;
+  landscape.setHollow(displayedHollow, displayedSign); residents.owl.group.visible = displayedHollow;
   renderer.shadowMap.needsUpdate = true; renderer.render(scene, camera);
   return {
     start() { if (!running) { running = true; last = 0; resize(); raf = requestAnimationFrame(frame); } },

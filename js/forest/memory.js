@@ -52,6 +52,7 @@
     demonstrating = false;
     const a = model.getActivity(QUEST); if (!a?.finished) return;
     if (!a.rewardRecorded) { FK.progress.finish('expedition', 'treasure:1', 1); model.rewardRecorded(QUEST); }
+    root.querySelector('.btn-back').replaceChildren(art.scenePicture(true, 'hedgehog'));
     body.replaceChildren(h('section', { class: 'forest-round-finish' }, art.icon('check'),
       button('Zurück zum Igel', h('span', {}, art.scenePicture(true, 'hedgehog'), art.icon('arrow')), returnToForest, 'forest-scene-return'),
       h('p', { class: 'forest-finish-note', text: 'Ein gemütlicher Platz für deinen Freund.' })));

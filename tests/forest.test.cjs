@@ -7,7 +7,7 @@ const path = require('node:path');
 function boot(storage = new Map()) {
   const FK = { settings: { get: () => 3 } };
   const context = { window: { FK }, localStorage: { getItem: key => storage.get(key) || null, setItem: (key, value) => storage.set(key, value) } };
-  for (const name of ['js/learn/learning.js', 'js/learn/expeditions.js', 'js/forest/model.js']) vm.runInNewContext(fs.readFileSync(name, 'utf8'), context, { filename: name });
+  for (const name of ['js/learn/learning.js', 'js/learn/expeditions.js', 'js/learn/adventures.js', 'js/learn/routes.js', 'js/forest/model.js']) vm.runInNewContext(fs.readFileSync(name, 'utf8'), context, { filename: name });
   return { FK, state: FK.forestState, storage };
 }
 function round(FK, state) {
@@ -109,10 +109,11 @@ test('all local Three.js imports and first-slice assets are present in the offli
       assert.ok(fs.existsSync(resolved), resolved); assert.ok(sw.includes("'./" + resolved + "'"), resolved);
     }
   }
-  for (const name of ['css/forest.css', 'js/forest/model.js', 'js/forest/speech.js', 'js/forest/art.js', 'js/forest/memory.js', 'js/ui/memory-board.js', 'js/screens/forest.js']) assert.ok(sw.includes("'./" + name + "'"), name);
+  for (const name of ['css/forest.css', 'js/forest/model.js', 'js/forest/speech.js', 'js/forest/art.js', 'js/forest/memory.js', 'js/ui/memory-board.js', 'js/learn/routes.js', 'js/ui/route-board.js', 'js/forest/trail.js', 'js/screens/forest.js']) assert.ok(sw.includes("'./" + name + "'"), name);
 });
 function unlockGrove(FK, state) {
-  state.startActivity(); for (let i = 0; i < 5; i++) round(FK, state); state.greet();
+  if (!state.get().bridgeRepaired) { state.startActivity(); for (let i = 0; i < 5; i++) round(FK, state); }
+  state.greet();
 }
 function memoryQuestion(FK, state) {
   const q = FK.expeditions.question('treasure', 1, state.getActivity(state.REST).round, Math.random, 0, 'swiss-woodland');
@@ -183,6 +184,67 @@ test('a first-slice save upgrades without losing its bridge, settings or positio
   const upgraded = boot(storage).state;
   assert.equal(upgraded.get().bridgeRepaired, true); assert.equal(upgraded.get().greetingSeen, true);
   assert.deepEqual(plain(upgraded.get().position), plain(old.position)); assert.ok(upgraded.startActivity(upgraded.REST));
+});
+function unlockHollow(FK, state, acknowledge = true) {
+  unlockGrove(FK, state); state.startActivity(state.REST);
+  for (let i = 0; i < 5; i++) { const q = memoryQuestion(FK, state); state.conceal(true); state.answer(q.answer, state.REST); state.advance(state.REST); }
+  if (acknowledge) state.seePayoff(state.REST);
+}
+function trailQuestion(FK, state) {
+  const q = FK.adventures.question('robot', 1, state.getActivity(state.TRAIL).round);
+  state.question(q, null, state.TRAIL); return q;
+}
+function finishRoute(state, q) {
+  let p = state.getActivity(state.TRAIL).position;
+  while (p % q.size !== q.goal % q.size) p = state.moveRoute(Math.sign(q.goal % q.size - p % q.size), 0).position;
+  while (p !== q.goal) p = state.moveRoute(0, Math.sign(q.goal - p)).position;
+}
+test('the hollow opens after the resting-place payoff, with one safe onward path', () => {
+  const { FK, state } = boot(); unlockGrove(FK, state);
+  assert.equal(state.residentAvailable('owl'), false); assert.equal(state.startActivity(state.TRAIL), null);
+  unlockHollow(FK, state, false);
+  assert.equal(state.isComplete(state.REST), true); assert.equal(state.residentAvailable('owl'), false);
+  assert.equal(state.startActivity(state.TRAIL), null); state.seePayoff(state.REST);
+  assert.equal(state.residentAvailable('owl'), true);
+  const path = state.route(state.nodes.hedgehog, state.nodes.owl);
+  assert.ok(path.some(p => state.distance(p, state.nodes.hollowBend) < 0.01));
+  assert.ok(path.every(p => p.x > state.riverX(p.z) + 2));
+  assert.ok(state.distance(path.at(-1), state.nodes.owl) < 0.01);
+  assert.equal(state.startActivity(state.TRAIL).stage, 1);
+});
+test('partial route, undo history and guidance survive reloading without altering earlier quests', () => {
+  const { FK, state, storage } = boot(); unlockHollow(FK, state); state.startActivity(state.TRAIL); trailQuestion(FK, state);
+  state.moveRoute(1, 0); state.moveRoute(0, 1); state.demoSeen(state.TRAIL);
+  const before = plain(state.getActivity(state.TRAIL)), earlier = plain(state.getActivity(state.REST));
+  const reloaded = boot(storage).state;
+  assert.deepEqual(plain(reloaded.getActivity(state.TRAIL)), before);
+  assert.equal(reloaded.undoRoute().position, 1); assert.equal(reloaded.hasDemo(state.TRAIL), true);
+  assert.deepEqual(plain(reloaded.getActivity(state.REST)), earlier);
+  assert.equal(reloaded.get().bridgeRepaired, true);
+});
+test('the route quest requires actual movement and five destinations before repairing the sign', () => {
+  const { FK, state, storage } = boot(); unlockHollow(FK, state); state.startActivity(state.TRAIL);
+  for (let i = 0; i < 5; i++) {
+    const q = trailQuestion(FK, state);
+    assert.equal(state.answer(q.goal, state.TRAIL), false); assert.equal(state.advance(state.TRAIL), false);
+    assert.equal(state.moveRoute(-1, -1), null);
+    finishRoute(state, q);
+    assert.equal(boot(storage).state.getActivity(state.TRAIL).answered, true);
+    assert.equal(state.advance(state.TRAIL), i === 4);
+  }
+  const reloaded = boot(storage).state;
+  assert.equal(reloaded.isComplete(state.TRAIL), true); assert.equal(reloaded.getActivity(state.TRAIL).finished, true);
+  assert.equal(Object.keys(reloaded.get().contributions).length, 3);
+  assert.equal(reloaded.advance(state.TRAIL), false); assert.equal(reloaded.startActivity(state.TRAIL), null);
+  reloaded.rewardRecorded(state.TRAIL); reloaded.seePayoff(state.TRAIL);
+  assert.equal(boot(storage).state.get().payoffsSeen[state.TRAIL], true);
+});
+test('malformed route recovery keeps completed story places and safely replaces only the live route', () => {
+  const { FK, state, storage } = boot(); unlockHollow(FK, state); state.startActivity(state.TRAIL); trailQuestion(FK, state);
+  const saved = state.get(); saved.activities[state.TRAIL].history = [0, 4]; saved.activities[state.TRAIL].position = 4;
+  storage.set(state.KEY, JSON.stringify(saved)); const reloaded = boot(storage).state;
+  assert.equal(reloaded.getActivity(state.TRAIL).question, null); assert.equal(reloaded.getActivity(state.TRAIL).answered, false);
+  assert.equal(reloaded.isComplete(state.REST), true); assert.equal(reloaded.get().bridgeRepaired, true);
 });
 test('narration prefers Swiss German-language voices, cancels older speech and respects mute', () => {
   const spoken = []; let cancelled = 0, muted = false;

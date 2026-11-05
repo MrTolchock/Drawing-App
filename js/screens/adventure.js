@@ -76,29 +76,8 @@
         button('↶ Zurück', () => { count = Math.max(0, count - 1); meter.textContent = count + (count === 1 ? ' Schlag' : ' Schläge'); }),
         button('Prüfen', () => check(count === q.answer), 'learn-next'));
     } else if (q.mode === 'route') {
-      let pos = q.start;
-      const history = [pos], cells = [];
-      const field = h('div', { class: 'adventure-map', style: { '--size': q.size }, role: 'group', 'aria-label': 'Postkarte mit ' + q.size + ' mal ' + q.size + ' Feldern' });
-      const commands = h('p', { class: 'adventure-commands', role: 'status' });
-      function update() {
-        cells.forEach((c, i) => { c.textContent = i === pos ? '🤖' : i === q.goal ? '📬' : q.obstacles.includes(i) ? '🌳' : history.includes(i) ? '·' : ''; });
-        commands.textContent = 'Roboter: Reihe ' + (Math.floor(pos / q.size) + 1) + ', Spalte ' + (pos % q.size + 1) + '. ' + (history.length - 1) + ' Schritte.';
-      }
-      function move(dx, dy) {
-        if (locked) return;
-        const x = pos % q.size + dx, y = Math.floor(pos / q.size) + dy, dest = y * q.size + x;
-        if (x < 0 || y < 0 || x >= q.size || y >= q.size || q.obstacles.includes(dest)) { say('Dort ist der Rand oder eine Hecke. Probiere einen anderen Pfeil.'); return; }
-        pos = dest; history.push(pos); update(); FK.sound.tick();
-        if (pos === q.goal) success();
-      }
-      for (let i = 0; i < q.size * q.size; i++) { const c = h('span', { class: 'adventure-map-cell', 'aria-hidden': 'true' }); cells.push(c); field.append(c); }
-      const arrows = h('div', { class: 'adventure-arrows', role: 'group', 'aria-label': 'Roboter steuern' });
-      [['↑', 'Nach oben', 0, -1], ['←', 'Nach links', -1, 0], ['↓', 'Nach unten', 0, 1], ['→', 'Nach rechts', 1, 0]].forEach(a => {
-        const b = button(a[0], () => move(a[2], a[3])); b.setAttribute('aria-label', a[1]); arrows.append(b);
-      });
-      host.append(h('p', { text: 'Ziel: Reihe ' + (Math.floor(q.goal / q.size) + 1) + ', Spalte ' + (q.goal % q.size + 1) }), field, commands, arrows,
-        button('↶ Einen Schritt zurück', () => { if (history.length > 1) { history.pop(); pos = history[history.length - 1]; update(); } }));
-      update();
+      host.append(FK.ui.routeBoard({ question: q, onSuccess: success,
+        onBlocked: () => say('Dort ist der Rand oder eine Hecke. Probiere einen anderen Pfeil.') }));
     } else if (q.mode === 'order') {
       const selected = [];
       const line = h('ol', { class: 'adventure-order', 'aria-label': 'Deine Reihenfolge', 'aria-live': 'polite' });

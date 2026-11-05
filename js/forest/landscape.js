@@ -85,11 +85,11 @@ export function buildLandscape(scene, model) {
     const mesh = ellipsoid(scene, wash[i % wash.length], [p[0], -0.075, p[1]], [p[2], 0.09, p[3]]); mesh.castShadow = false;
   }
   // Broad continuous paths follow the same segments used by navigation.
-  const grovePath = new THREE.Group(); scene.add(grovePath);
+  const grovePath = new THREE.Group(), hollow = new THREE.Group(); hollow.name = 'story-hollow'; scene.add(grovePath, hollow);
   for (const names of [['home', 'west', 'bend', 'brook', 'beaver', 'bridgeWest'],
     ['home', 'south', 'fordWest', 'fordEast', 'east', 'garden', 'hare', 'bridgeEast'],
-    ['garden', 'mossTurn', 'mossPath', 'hedgehog']]) {
-    const parent = names.at(-1) === 'hedgehog' ? grovePath : scene;
+    ['garden', 'mossTurn', 'mossPath', 'hedgehog'], ['hedgehog', 'hollowBend', 'hollowApproach', 'owl']]) {
+    const parent = names.at(-1) === 'owl' ? hollow : names.at(-1) === 'hedgehog' ? grovePath : scene;
     const curve = new THREE.CatmullRomCurve3(names.map(name => new THREE.Vector3(model.nodes[name].x, 0, model.nodes[name].z)), false, 'catmullrom', 0.18);
     const points = curve.getPoints(140), l = [], r = [];
     points.forEach((p, i) => {
@@ -164,6 +164,28 @@ export function buildLandscape(scene, model) {
   }
   for (const side of [-1, 1]) limb(restPlace, paint('#ac8e62', 'bark'), [side * 1.6, 0.12, -1.2], [side * 0.6, 0.14, -1.7], 0.13, 0.09);
 
+  const hollowTree = tree(12, 25, 0.82, 63); trees.push(hollowTree); hollow.add(hollowTree.root);
+  ellipsoid(hollowTree.root, paint('#735d42', 'bark'), [0.1, 2.1, 0.55], [0.53, 0.79, 0.13]);
+  ellipsoid(hollowTree.root, paint('#514b36'), [0.1, 2.1, 0.66], [0.37, 0.6, 0.045]);
+  ellipsoid(hollow, moss, [8.7, 0.025, 28], [3.3, 0.09, 2.7]);
+  limb(hollow, paint('#b99564', 'bark'), [10.8, 0.35, 28.6], [13.6, 0.35, 28.6], 0.29, 0.27);
+  const book = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.1, 0.63), paint('#85996a')); book.position.set(12, 0.69, 28.6); book.rotation.y = -0.2; hollow.add(book);
+  const bookLeaf = ellipsoid(hollow, paint('#e2d6aa'), [12, 0.75, 28.6], [0.13, 0.015, 0.22]); bookLeaf.rotation.y = -0.4;
+
+  // Point along the return trail through the garden and the repaired bridge.
+  const sign = new THREE.Group(); sign.position.set(5.4, 0, 21.3); sign.rotation.y = 0.55; sign.name = 'owl-trail-sign'; hollow.add(sign);
+  limb(sign, paint('#b18d5b', 'bark'), [0, 0, 0], [0, 2.1, 0], 0.14, 0.11);
+  const arrow = new THREE.Shape(); arrow.moveTo(-1.25, -0.37); arrow.lineTo(0.68, -0.37); arrow.lineTo(1.34, 0); arrow.lineTo(0.68, 0.37); arrow.lineTo(-1.25, 0.37); arrow.closePath();
+  const signGeometry = new THREE.ExtrudeGeometry(arrow, { depth: 0.18, bevelEnabled: true, bevelSize: 0.035, bevelThickness: 0.025, bevelSegments: 1 });
+  const signMaterial = paint('#d9bd86', 'bark');
+  const brokenSign = new THREE.Mesh(signGeometry, signMaterial); brokenSign.position.set(0.5, 0.26, 0.45); brokenSign.rotation.z = -0.25; sign.add(brokenSign);
+  const restoredSign = new THREE.Group(); restoredSign.name = 'owl-picture-sign'; restoredSign.position.y = 1.85; sign.add(restoredSign);
+  const signBoard = new THREE.Mesh(signGeometry, signMaterial); signBoard.castShadow = true; restoredSign.add(signBoard);
+  for (const side of [-1, 1]) {
+    const heartLabel = new THREE.Mesh(new THREE.ShapeGeometry(heart), paint('#71894c')); heartLabel.scale.setScalar(0.47);
+    heartLabel.position.set(-0.35, 0, side > 0 ? 0.215 : -0.035); if (side < 0) heartLabel.rotation.y = Math.PI; restoredSign.add(heartLabel);
+  }
+
   const bridge = new THREE.Group(); bridge.position.set(0.6, 0, -7); scene.add(bridge);
   const wood = paint('#c9a06a', 'bark'), deckMaterial = paint('#dec08a', 'bark'), middle = [];
   for (let i = 0; i < 12; i++) {
@@ -191,6 +213,7 @@ export function buildLandscape(scene, model) {
   return {
     trees,
     setGrove(unlocked, complete) { grovePath.visible = unlocked; restPlace.visible = unlocked; bedding.visible = complete; },
+    setHollow(unlocked, complete) { hollow.visible = unlocked; brokenSign.visible = !complete; restoredSign.visible = complete; },
     setBridge(repaired, progress = 1) {
       middle.forEach((mesh, i) => {
         mesh.visible = repaired;

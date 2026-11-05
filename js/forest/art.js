@@ -3,6 +3,7 @@
   'use strict';
   const FK = window.FK, h = FK.h;
   const paths = {
+    undo: '<path d="M17 12 6 22l11 10V12z" fill="currentColor"/><path d="M9 22h18q16 0 13 12-2 8-13 7" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>',
     eye: '<path d="M4 24q20-25 40 0Q24 49 4 24z" fill="#e9edcf" stroke="currentColor" stroke-width="3"/><circle cx="24" cy="24" r="7" fill="currentColor"/><circle cx="26" cy="22" r="2" fill="#fff9e8"/>',
     basket: '<path d="M10 22h28l-4 19H14z" fill="#ddbf87" stroke="currentColor" stroke-width="2.5"/><path d="M15 22q0-24 18 0M18 25v12m6-12v12m6-12v12M13 30h22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>',
     speaker: '<path d="M5 19h10l12-10v30L15 29H5z" fill="currentColor"/><path d="M33 17q7 7 0 14m6-20q13 13 0 26" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>',
@@ -19,6 +20,7 @@
   function character(id, cls) {
     const src = FK.forestPortraits?.[id];
     if (src) return h('img', { src, alt: '', class: 'forest-portrait ' + (cls || ''), draggable: 'false' });
+    if (id === 'owl') return h('span', { class: 'forest-portrait forest-owl-fallback ' + (cls || ''), 'aria-hidden': 'true', html: '<svg viewBox="0 0 84 84"><ellipse cx="42" cy="49" rx="24" ry="27" fill="#a38b65"/><circle cx="42" cy="30" r="25" fill="#9b815b"/><circle cx="30" cy="30" r="13" fill="#dfcdab"/><circle cx="54" cy="30" r="13" fill="#dfcdab"/><circle cx="31" cy="30" r="6" fill="#40392c"/><circle cx="53" cy="30" r="6" fill="#40392c"/><path d="m38 37 4 9 5-9" fill="#b6a17d"/></svg>' });
     return FK.visual.art(id === 'hare' ? 'leaf' : id === 'beaver' ? 'beaver' : id === 'hedgehog' ? 'hedgehog' : 'fox', 'forest-portrait ' + (cls || ''));
   }
   function bridge(complete, cls) {
@@ -35,6 +37,11 @@
       '<svg viewBox="0 0 84 74"><ellipse cx="42" cy="49" rx="35" ry="18" fill="#c8d0a0"/><path d="M12 48q29 17 60 0l-4 13q-27 13-52-1z" fill="#a5b17b"/>' +
       (complete ? '<path d="M16 44Q22 18 38 39Q37 11 52 34Q68 20 69 47Q43 66 16 44z" fill="#c7a16b"/><path d="m25 38 10 12m9-22v25m17-17-9 16" stroke="#9c7c50" stroke-width="2"/>' : '<path d="m24 47 13-8m7 12 16-7" stroke="#bca37c" stroke-width="4" stroke-linecap="round"/>') + '</svg>' });
   }
-  function scenePicture(complete, resident = 'beaver') { return h('span', { class: 'forest-place-picture' }, character(resident), resident === 'hedgehog' ? rest(complete) : bridge(complete)); }
-  FK.forestArt = { icon, character, bridge, rest, scenePicture };
+  function sign(complete, cls) {
+    return h('span', { class: 'forest-bridge-picture forest-sign-picture ' + (cls || ''), 'aria-hidden': 'true', html:
+      '<svg viewBox="0 0 84 74"><ellipse cx="42" cy="65" rx="30" ry="6" fill="#d4dbad"/><path d="M42 21v45" stroke="#ad8a59" stroke-width="7" stroke-linecap="round"/>' +
+      (complete ? '<path d="M16 16h43l14 13-14 13H16z" fill="#dfc08b" stroke="#ab8858" stroke-width="2"/><path d="M34 25q-7-9-11 0-2 6 11 13 13-7 11-13-4-9-11 0" fill="#7e965a"/>' : '<path d="m16 51 40-8 15 10-12 15-40 8z" fill="#ceb17f" transform="translate(0 -5)"/><path d="m35 25 12 6" stroke="#b19465" stroke-width="5"/>') + '</svg>' });
+  }
+  function scenePicture(complete, resident = 'beaver') { return h('span', { class: 'forest-place-picture' }, character(resident), resident === 'owl' ? sign(complete) : resident === 'hedgehog' ? rest(complete) : bridge(complete)); }
+  FK.forestArt = { icon, character, bridge, rest, sign, scenePicture };
 })();
