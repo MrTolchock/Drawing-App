@@ -1,5 +1,5 @@
 /* Farbtupf – Service Worker: keeps the whole app on the device so it runs without internet. */
-const CACHE = 'farbtupf-v4.2-waldatelier';
+const CACHE = 'farbtupf-v4.3-waldatelier';
 const ASSETS = [
   './',
   './index.html',

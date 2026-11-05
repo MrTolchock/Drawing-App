@@ -27,6 +27,13 @@
       s.root = h('section', { class: 'screen screen-' + name, 'data-screen': name, hidden: true });
       document.getElementById('screens').append(s.root);
       if (s.def.build) s.def.build(s.root);
+      // Release the screen's temporary compositing layer after navigation. Keeping
+      // it around can leave the fixed header rasterised softly on iOS Safari.
+      s.root.addEventListener('animationend', (e) => {
+        if (e.target === s.root && (e.animationName === 'screen-in' || e.animationName === 'screen-back')) {
+          s.root.classList.remove('in', 'in-back');
+        }
+      });
     }
     return s.root;
   }
