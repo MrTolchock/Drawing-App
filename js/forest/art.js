@@ -1,4 +1,4 @@
-/* Pictured world controls. NPC portraits are rendered from the actual 3D models. */
+/* Picture-led controls and the shared hand-painted woodland cast. */
 (function () {
   'use strict';
   const FK = window.FK, h = FK.h;
@@ -17,14 +17,7 @@
     hand: '<rect x="5" y="7" width="26" height="24" rx="5" fill="#e5eaca" stroke="currentColor" stroke-width="2"/><path d="M25 41 15 29q-3-5 1-6l7 6V15q0-5 4-4 3 0 3 4v11l3-2 4 3 3 1q5 7-2 15z" fill="#fff7e6" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>',
   };
   function icon(name, cls) { return h('span', { class: 'forest-icon ' + (cls || ''), 'aria-hidden': 'true', html: '<svg viewBox="0 0 48 48">' + (paths[name] || paths.paw) + '</svg>' }); }
-  function character(id, cls) {
-    const src = FK.forestPortraits?.[id];
-    if (src) return h('img', { src, alt: '', class: 'forest-portrait ' + (cls || ''), draggable: 'false' });
-    if (id === 'owl') return h('span', { class: 'forest-portrait forest-owl-fallback ' + (cls || ''), 'aria-hidden': 'true', html: '<svg viewBox="0 0 84 84"><ellipse cx="42" cy="49" rx="24" ry="27" fill="#a38b65"/><circle cx="42" cy="30" r="25" fill="#9b815b"/><circle cx="30" cy="30" r="13" fill="#dfcdab"/><circle cx="54" cy="30" r="13" fill="#dfcdab"/><circle cx="31" cy="30" r="6" fill="#40392c"/><circle cx="53" cy="30" r="6" fill="#40392c"/><path d="m38 37 4 9 5-9" fill="#b6a17d"/></svg>' });
-    if (id === 'home') return project('tree', true, 'forest-portrait ' + (cls || ''));
-    if (id === 'kingfisher') return h('span', { class: 'forest-portrait forest-owl-fallback ' + (cls || ''), 'aria-hidden': 'true', html: '<svg viewBox="0 0 84 84"><ellipse cx="38" cy="46" rx="18" ry="24" fill="#438fa0"/><ellipse cx="42" cy="50" rx="12" ry="17" fill="#ca975f"/><circle cx="39" cy="25" r="17" fill="#438fa0"/><path d="m52 23 27 8-26 3" fill="#42594f"/><circle cx="45" cy="23" r="3" fill="#313d36"/><path d="m25 57-9 16 17-5" fill="#3a7286"/></svg>' });
-    return FK.visual.art(id === 'hare' ? 'leaf' : id === 'beaver' ? 'beaver' : id === 'hedgehog' ? 'hedgehog' : 'fox', 'forest-portrait ' + (cls || ''));
-  }
+  function character(id, cls) { return FK.woodland.art(id, 'forest-portrait ' + (cls || '')); }
   function bridge(complete, cls) {
     const planks = complete ? [10, 19, 28, 37, 46, 55, 64] : [10, 19, 55, 64];
     const timber = planks.map(x => '<path d="M' + x + ' 25v29h8V25z" fill="#dcb77c" stroke="#a17c4d" stroke-width=".8"/>').join('');
@@ -61,8 +54,8 @@
     return h('span', { class: 'forest-bridge-picture forest-project-picture ' + (cls || ''), 'aria-hidden': 'true', html: '<svg viewBox="0 0 84 74">' + (images[name] || tree) + '</svg>' });
   }
   function scenePicture(complete, resident = 'beaver', picture) { return h('span', { class: 'forest-place-picture' }, character(resident), project(picture || { owl: 'sign', hedgehog: 'rest', kingfisher: 'water' }[resident] || 'bridge', complete)); }
-  function practice(game) {
-    return h('span', { class: 'forest-practice-picture' }, ...(game === 'pattern' ? ['⭐', '🔵', '⭐'].map(text => h('span', { text })) : game === 'treasure' ? ['🍃', '🪶', '🍓'].map(text => h('span', { text })) : [icon('paw'), icon('arrow')]));
+  function practice(game, resident = 'owl') {
+    return h('span', { class: 'forest-practice-picture' }, ...(game === 'pattern' ? ['leaf', 'nut', 'leaf'].map(id => FK.woodland.art(id)) : game === 'treasure' ? ['leaf', 'feather', 'strawberry'].map(id => FK.woodland.art(id)) : [character('fox'), icon('arrow'), character(resident)]));
   }
   FK.forestArt = { icon, character, bridge, rest, sign, project, practice, scenePicture };
 })();

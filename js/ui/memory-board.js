@@ -15,7 +15,7 @@
       q.objects.forEach((o, i) => {
         if (concealed && i === q.missing) {
           if (pictured) field.append(h('div', { class: 'exp-picture memory-gap', 'aria-label': 'Hier fehlt ein Ding' }));
-        } else field.append(h('div', { class: 'exp-picture' }, h('span', { class: 'exp-art', text: o.emoji, 'aria-hidden': 'true' }), h('span', { class: 'memory-name', text: FK.text.word(o.name) })));
+        } else field.append(h('div', { class: 'exp-picture' }, pictured ? FK.woodland.treasure(o) : h('span', { class: 'exp-art', text: o.emoji, 'aria-hidden': 'true' }), h('span', { class: 'memory-name', text: FK.text.word(o.name) })));
       });
       const label = concealed ? 'Nochmals schauen' : 'Ich bin bereit – verstecken!';
       toggle.setAttribute('aria-label', label);
@@ -38,7 +38,7 @@
         if (correct) {
           answered = true; row.querySelectorAll('button').forEach(item => { item.disabled = true; }); toggle.disabled = true;
         }
-      } }, h('span', { class: 'exp-art', text: o.emoji, 'aria-hidden': 'true' }), h('span', { class: 'memory-name', text: FK.text.word(o.name) }));
+      } }, pictured ? FK.woodland.treasure(o) : h('span', { class: 'exp-art', text: o.emoji, 'aria-hidden': 'true' }), h('span', { class: 'memory-name', text: FK.text.word(o.name) }));
       b.disabled = answered; if (answered && o.name === q.answer) b.classList.add('correct');
       if (options.demonstration && o.name === q.answer) b.append(FK.forestArt.icon('hand', 'memory-demo-hand'));
       row.append(b);

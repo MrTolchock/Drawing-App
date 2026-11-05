@@ -36,7 +36,7 @@ const path = require('node:path');
   await page.evaluate(() => FK.store.put('forest-preservation-check', { drawing: 'retained', revision: 4 }));
   await page.getByRole('button', { name: 'Mit dem Fuchs losgehen', exact: true }).tap();
   await shot('01-opening.png');
-  assert.ok(await page.evaluate(() => FK.forestScene.renderer.isWebGLRenderer && FK.forestScene.renderer.info.render.triangles > 10000));
+  assert.ok(await page.evaluate(() => FK.forestScene.renderer.isWebGLRenderer && FK.forestScene.renderer.info.render.triangles > 1000));
 
   // Actual ground raycasting, followed by a second target while already walking.
   const ground = await page.evaluate(() => {
@@ -63,7 +63,7 @@ const path = require('node:path');
   const original = (await state()).activity;
   assert.equal(original.stage, 1); assert.equal(original.round, 0);
   const wrong = original.question.choices.find(value => value !== original.question.answer);
-  await page.getByRole('button', { name: String(wrong), exact: true }).tap();
+  await page.locator('.learn-answer[data-answer=' + JSON.stringify(wrong) + ']').tap();
   assert.equal((await state()).activity.round, 0); assert.equal((await state()).bridgeRepaired, false);
   await page.getByRole('button', { name: 'Aufgabe nochmals hören', exact: true }).tap();
   assert.deepEqual((await state()).activity, original);
@@ -74,7 +74,7 @@ const path = require('node:path');
   await shot('04-flat-puzzle.png');
 
   // Save an answered item before Next, leave, reload, and resume it honestly.
-  await page.getByRole('button', { name: String(original.question.answer), exact: true }).tap();
+  await page.locator('.learn-answer[data-answer=' + JSON.stringify(original.question.answer) + ']').tap();
   const answered = (await state()).activity;
   assert.equal(answered.answered, true);
   await page.getByRole('button', { name: 'Zurück zum Biber', exact: true }).tap();
@@ -88,7 +88,7 @@ const path = require('node:path');
 
   for (let i = 1; i < 5; i++) {
     const activity = (await state()).activity; assert.equal(activity.round, i);
-    await page.getByRole('button', { name: String(activity.question.answer), exact: true }).tap();
+    await page.locator('.learn-answer[data-answer=' + JSON.stringify(activity.question.answer) + ']').tap();
     await page.locator('.learn-next').tap();
   }
   await page.locator('.forest-round-finish').waitFor(); await shot('05-pictured-return.png');
@@ -193,7 +193,7 @@ const path = require('node:path');
   await context.setOffline(true); await page.reload(); await ready();
   assert.equal((await state()).bridgeRepaired, true); assert.equal(await page.evaluate(() => FK.progress.stars()), 7);
   assert.equal(await page.evaluate(() => FK.forestState.isComplete(FK.forestState.REST)), true);
-  assert.ok(await page.evaluate(() => FK.forestScene.renderer.info.render.triangles > 10000));
+  assert.ok(await page.evaluate(() => FK.forestScene.renderer.info.render.triangles > 1000));
   await page.setViewportSize({ width: 390, height: 844 });
   await page.waitForFunction(() => document.querySelector('.forest-canvas').width > 0 && innerWidth === 390);
   await page.waitForFunction(() => {

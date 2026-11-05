@@ -14,12 +14,12 @@
     const games = h('div', { class: 'forest-book-games' });
     for (const pack of story.collections[resident]) {
       const a = model.getActivity(pack.id), resume = a && !a.finished;
-      games.append(button(pack.title + (resume ? ' fortsetzen' : ' spielen'), h('span', {}, art.practice(pack.game),
+      games.append(button(pack.title + (resume ? ' fortsetzen' : ' spielen'), h('span', {}, art.practice(pack.game, resident),
         h('b', { text: pack.title }), h('span', { class: 'forest-book-card-action' }, art.icon(resume ? 'paw' : 'play'))), () => {
         if (model.startPractice(pack.game, resident)) FK.forestActivity.launch(pack.id);
       }, 'forest-book-game'));
     }
-    body.replaceChildren(h('h2', { text: 'Gemeinsam entdecken' }), tabs, games,
+    body.replaceChildren(h('div', { class: 'woodland-book-cover' }, FK.woodland.vignette(resident), h('h2', { text: 'Gemeinsam entdecken' })), tabs, games,
       button('Alle Spiele öffnen', h('span', {}, art.icon('book'), h('span', { text: 'Alle Spiele' })), () => FK.go('hub'), 'forest-book-all'));
   }
   FK.screen('forest-book', {

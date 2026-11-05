@@ -1,19 +1,10 @@
-import { THREE, paint, ellipsoid, limb, curveTube } from './materials.js';
+import { THREE, paint, ellipsoid, limb, curveTube, paintedPath } from './materials.js';
 
 // Lasting story effects, kept separate from navigation and puzzle state.
 export function buildProjects(scene, model, helpers) {
   const { flatShape, tree, reeds } = helpers, sand = paint('#e8ce99', 'sand');
   const world = new THREE.Group(); world.name = 'reed-pond'; scene.add(world);
-  function ribbon(parent, points, width = 1.45) {
-    const curve = new THREE.CatmullRomCurve3(points.map(p => new THREE.Vector3(p.x, 0, p.z)), false, 'catmullrom', 0.1);
-    const samples = curve.getPoints(130), left = [], right = [];
-    samples.forEach((p, i) => {
-      const a = samples[Math.max(0, i - 1)], b = samples[Math.min(samples.length - 1, i + 1)], length = Math.hypot(b.x - a.x, b.z - a.z) || 1;
-      const x = -(b.z - a.z) / length * width, z = (b.x - a.x) / length * width;
-      left.push([p.x + x, p.z + z]); right.push([p.x - x, p.z - z]);
-    });
-    parent.add(flatShape([...left, ...right.reverse()], sand, 0.04));
-  }
+  function ribbon(parent, points, width = 1.45) { parent.add(paintedPath(points, width)); }
   ribbon(world, ['owl', 'pondEast', 'pondWest', 'kingfisher', 'reeds', 'reedReturn', 'reedBend', 'bend'].map(id => model.nodes[id]));
   const ford = new THREE.Group(); ford.position.z = 29; world.add(ford);
   const causeway = new THREE.Mesh(new THREE.BoxGeometry(11.5, 0.22, 2.9), paint('#b7b59a', 'stone')); causeway.position.set(0.5, -0.02, 0); causeway.receiveShadow = true; ford.add(causeway);

@@ -6,6 +6,8 @@ Finger-friendly learning adventures for first-grade children in Zürich, in Swis
 
 The app opens in **Der Herzbaum**, a complete playable woodland story in the selected **original A, Painted woodland** direction. A Three.js fox visits five Swiss-native neighbours around a connected forest loop. Nine short helping projects lead through **Meet → Reconnect → Gather**, then a saved picture-led ending brings everyone to the Heart Tree. Repairs remain visible, new shortcuts work, and the restored world stays open for further play.
 
+The world now uses layered original painted trees, plants and four fox views in the Three.js scene, with soft sandy paths, painted ground and rounded 3D timberwork. The flat story puzzles share the same animal and object paintings: leaf/hazelnut patterns, woodland memory and a fox-led route board. Illustrated book covers and return scenes carry the same art through the journey. [Artwork and atlas notes](assets/woodland/ART-NOTES.md).
+
 The main journey uses three existing flat puzzle families with separate visual examples, pictured returns, repeatable German device narration and exact interrupted-session recovery: patterns, missing-object memory and arrow-controlled routes. The guided **Waldspiele** book adds fifteen independent practice collections across the five places. Practice never applies a story repair, changes a completed ending or raises the global learning stage. **Alle Spiele** retains the full original library, drawing tools and parent settings. Individual puzzle-content review remains separate, as planned. [Story, controls, save behaviour and device checks](docs/HEART-TREE.md).
 
 An optional **Spielzeit** clock offers a stopwatch or a 5/10/15/20/30-minute countdown, with pictured start/pause and reset controls. Open it with the clock in **Waldspiele** or in the parent settings. It is off initially; a countdown gives a gentle break reminder without ending a puzzle. Time pauses in the background and in parent settings, and reload restores the clock paused. [Timer behaviour](docs/TIMER.md).
@@ -62,6 +64,7 @@ node tests/memory-browser.cjs
 node tests/trail-browser.cjs
 node tests/story-browser.cjs
 node tests/timer-browser.cjs
+node tests/painted-browser.cjs
 ```
 
 The content tests cover answer validity, range boundaries, arithmetic, offline assets and storage compatibility. Browser smoke checks are in `tests/browser-smoke.cjs` and require Playwright plus Chromium. In this cloud image: `node tests/browser-smoke.cjs` with the server running. They exercise 60 tasks through touch taps, wrong answers, replay rewards, three-stage routing, mobile layout, offline reload and saved stars. The dedicated handwriting browser check verifies model bounds across stage changes and completes all seventeen revised models with simulated touch strokes. These tests do not establish Safari compatibility or certify pedagogical accuracy; test on a physical iPad before release.

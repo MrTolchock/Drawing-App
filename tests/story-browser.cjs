@@ -61,7 +61,7 @@ function solve(q, start) {
       while (!(await session(id)).finished) {
         const a = await session(id), root = await currentRoot();
         if (a.game === 'pattern') {
-          if (!a.answered) await root.getByRole('button', { name: a.question.answer, exact: true }).tap();
+          if (!a.answered) await root.locator('.learn-answer[data-answer=' + JSON.stringify(a.question.answer) + ']').tap();
           if (interruptions && id === 'shared-seating-v1' && a.round === 0) { await resume(id); assert.equal(await (await currentRoot()).locator('.learn-answer:disabled').count(), 3); }
         } else if (a.game === 'treasure') {
           if (!a.concealed && !a.answered) await root.locator('.exp-hide').tap();

@@ -1,0 +1,110 @@
+/* Original A: warm painted woodland, shared between exploration and flat puzzles. */
+.woodland-art { display:inline-block; flex:none; width:1em; height:1em; background-repeat:no-repeat; vertical-align:middle; filter:url(#woodland-ink); }
+.forest-portrait.woodland-art { border-radius:0; background-color:transparent; object-fit:contain; }
+.woodland-vignette { display:block; flex:none; background-image:url('../assets/woodland/places.png'); background-size:300% 200%; background-repeat:no-repeat; aspect-ratio:1; }
+.forest-viewport::before { content:''; position:absolute; inset:0; z-index:1; pointer-events:none; box-shadow:inset 0 0 105px 20px #7462321c; background:linear-gradient(145deg,#fff2c21c,transparent 50%,#536c1910); }
+.forest-heading { padding:11px 20px 12px; border-radius:5px 29px 21px 24px; background:#fff8e7c7; box-shadow:0 4px 25px #5363360d; }
+.forest-eyebrow { color:#7b8153; letter-spacing:.2em; font-size:9px; }
+.forest-heading h1 { font-family:Georgia,'Times New Roman',serif; font-size:clamp(27px,3.1vw,41px); color:#354a26; letter-spacing:-.035em; }
+.forest-header .forest-round,.forest-repeat { background:#fff9e9ed; border-color:#beb98b; box-shadow:0 4px 16px #4b57291a; }
+.forest-goal { background:#fff9e8f2; border:1px solid #d1bf96; box-shadow:0 8px 30px #4a5b2717; }
+.forest-dialog { border:1px solid #d3bc93; background:linear-gradient(135deg,#fffaf0fa,#f9f1dcfa); box-shadow:0 15px 55px #39451e24,inset 0 0 0 5px #fff8e277; }
+.forest-dialog h2 { font-family:Georgia,'Times New Roman',serif; line-height:1.18; }
+.forest-primary { background:#e9eccd; border-color:#98a16b; box-shadow:0 3px 0 #acb17d33; }
+.forest-dialog-welcome .forest-portrait { width:132px; height:132px; }
+.forest-activity { background:radial-gradient(ellipse at 20% 20%,#fffaf0 0,transparent 70%),#f2ecd9; }
+.forest-activity .topbar { width:min(1100px,100%); margin-inline:auto; flex:none; padding-bottom:8px; }
+.forest-activity .topbar .title { color:#40542d; }
+.forest-activity .btn-back { background:#fff9e9; border-color:#c8b287; }
+.forest-activity .learn-body { position:relative; width:min(1060px,100%); max-height:840px; margin:8px auto 15px; padding:40px 32px; border:1px solid #d9c7a6; border-radius:30px; background:radial-gradient(ellipse at 50% 15%,#fffdf4 0,#fff9eb 75%); box-shadow:0 10px 45px #8775460a,inset 0 0 0 6px #fffdf744; gap:12px; }
+.woodland-context { position:absolute; right:22px; bottom:26px; pointer-events:none; width:170px; height:165px; opacity:.45; z-index:0; }
+.woodland-context .woodland-vignette { width:100%; height:100%; border-radius:50%; mask-image:radial-gradient(ellipse,#000 30%,transparent 72%); }
+.forest-activity .learn-body > * { position:relative; z-index:1; }
+.forest-activity .learn-prompt { font:700 clamp(22px,2.6vw,30px)/1.3 var(--read); margin:4px 0 18px; color:#40542e; }
+.forest-activity .learn-visual { margin:18px auto 22px; width:100%; max-width:700px; }
+.forest-activity .learn-train { width:100%; gap:9px; align-items:center; flex-wrap:nowrap; }
+.forest-activity .learn-wagon { display:flex; align-items:center; justify-content:center; width:94px; max-width:94px; min-width:0; height:auto; aspect-ratio:1; flex:1 1 0; padding:0; border:0; border-radius:0; background:none; }
+.forest-activity .learn-wagon .woodland-art { width:100%; height:auto; aspect-ratio:1; }
+.forest-activity .forest-live-gap { border:2px dashed #82945b; background:#e5eac11f; border-radius:22px; margin-left:4px; }
+.forest-activity .learn-answers { gap:22px; }
+.forest-activity .learn-answer { display:inline-flex; align-items:center; justify-content:center; min-width:142px; min-height:136px; padding:12px 18px; border:2px solid #879663; border-radius:24px; background:#fffbef; box-shadow:0 4px 0 #a3a87716; }
+.forest-activity .learn-answer .woodland-art { width:106px; height:106px; }
+.forest-activity .learn-answer.correct { background:#edf0d3; border-color:#647d42; box-shadow:0 0 0 4px #a9bb7f33; }
+.forest-activity .learn-answer.try-again { border-style:dashed; }
+.forest-activity .learn-feedback { min-height:25px; margin:7px auto 0; color:#71815a; font-size:16px; }
+.forest-activity .learn-next { border:1px solid #9aa673; background:#e5ecc8; min-width:115px; min-height:66px; padding:12px 28px; }
+.woodland-progress { display:flex; align-items:center; justify-content:center; gap:8px; margin:0 0 12px; padding:0; letter-spacing:0; }
+.woodland-progress-leaf { display:inline-flex; width:20px; height:24px; opacity:.22; filter:grayscale(.5); }
+.woodland-progress-leaf .woodland-art { width:20px; height:24px; }
+.woodland-progress-leaf.done { opacity:1; filter:none; }
+.forest-demo h2 { color:#40542e; margin-bottom:20px; }
+.forest-demo-pattern { gap:12px; margin:30px auto 38px; }
+.forest-demo-pattern > span { width:102px; height:116px; }
+.forest-demo-pattern .woodland-art { width:100px; height:100px; }
+.forest-demo-gap { border-color:#85965b; border-radius:22px; }
+.forest-demo-gap > .forest-icon { z-index:2; }
+.memory-pictured { width:min(700px,100%); }
+.memory-pictured .exp-treasures { gap:18px; padding:26px 20px; margin:10px auto 20px; border:0; border-radius:28px; background:#f0edda; box-shadow:inset 0 1px 10px #b8ad7a12; }
+.memory-pictured .exp-picture { display:flex; align-items:center; justify-content:center; width:155px; min-height:145px; padding:6px; background:transparent; border:0; }
+.memory-pictured .exp-picture > .woodland-art { width:135px; height:135px; }
+.memory-pictured .memory-gap { border:2px dashed #8c9b66; border-radius:23px; background:#fff9e74d; }
+.memory-pictured .learn-answer { min-width:138px; min-height:124px; }
+.memory-pictured .learn-answer > .woodland-art { width:105px; height:105px; }
+.memory-pictured .exp-hide { min-width:104px; min-height:69px; background:#e8edcf; border:1px solid #8e9e68; }
+.route-pictured .adventure-map { width:330px; padding:14px; gap:7px; background:#e4e7c7; border-color:#afba8e; border-radius:27px; box-shadow:0 5px 18px #6d7b3410; }
+.route-pictured .adventure-map-cell { background:#fff9e9; border-color:#d4c6a4; border-radius:16px; }
+.route-pictured .adventure-map-cell > .forest-portrait { width:82px; height:82px; }
+.route-pictured .route-goal { background:#dbe5b5; border-color:#91a365; }
+.route-pictured .route-arrived > .forest-portrait { width:45px; height:60px; }
+.route-pictured .route-controls { margin-top:18px; }
+.forest-round-finish { gap:12px; }
+.forest-round-finish > .forest-icon { margin-bottom:6px; }
+.forest-scene-return { width:410px; padding:0; gap:0; overflow:hidden; background:#fff9e9; border:2px solid #8f9e66; border-radius:30px; box-shadow:0 7px 24px #7d845020; }
+.woodland-return-scene { position:relative; display:block; width:100%; aspect-ratio:1.6; overflow:hidden; }
+.woodland-return-scene > .woodland-vignette { position:absolute; width:100%; top:50%; transform:translateY(-50%); }
+.woodland-return-invitation { display:flex; align-items:center; justify-content:center; gap:32px; width:100%; padding:3px 15px; }
+.woodland-return-invitation .forest-portrait { width:74px; height:74px; }
+.woodland-return-invitation .forest-icon { width:47px; height:47px; }
+.forest-finish-note { max-width:500px; }
+.forest-book-body { width:min(1000px,100%); align-self:center; padding-top:8px; }
+.woodland-book-cover { position:relative; width:100%; height:180px; overflow:hidden; margin:0 auto 20px; border-radius:27px; background:#e5ddb6; }
+.woodland-book-cover > .woodland-vignette { position:absolute; width:100%; top:50%; transform:translateY(-50%); }
+.woodland-book-cover h2 { position:absolute; left:0; right:0; bottom:0; margin:0; padding:28px 15px 13px; font:700 28px Georgia,serif; color:#344b29; background:linear-gradient(transparent,#fff6deee); }
+.forest-book-neighbours { margin-bottom:24px; }
+.forest-book-games { max-width:950px; gap:18px; }
+.forest-book-game { width:260px; min-height:220px; background:#fff9eb; border-color:#c7b488; box-shadow:0 6px 24px #6e784410; }
+.forest-practice-picture { height:92px; gap:5px; }
+.forest-practice-picture > .woodland-art { width:70px; height:70px; }
+.forest-book-game b { color:#40542e; }
+.screen-learn:not(.forest-activity) .learn-body,.screen-adventure .learn-body,.screen-expedition .learn-body { background:radial-gradient(ellipse at 50% 15%,#fffdf4,#fcf5e4); border-color:#d2bd96; box-shadow:inset 0 0 0 5px #fffdf63d; }
+@media(max-width:650px) {
+  .forest-heading { padding:9px 11px 11px; }.forest-heading h1 { font-size:27px; }
+  .forest-dialog-welcome .forest-portrait { width:88px; height:100px; }
+  .forest-activity .learn-body { padding:25px 8px; margin-top:5px; border-radius:24px; gap:9px; }
+  .forest-activity .learn-prompt { font-size:23px; margin:5px 0 12px; }
+  .woodland-context { display:none; }
+  .forest-activity .learn-train { gap:3px; }
+  .forest-activity .learn-wagon { width:calc((100vw - 76px) / var(--pattern-count)); height:auto; aspect-ratio:1; flex:none; }
+  .forest-activity .learn-wagon .woodland-art { width:100%; height:auto; aspect-ratio:1; }
+  .forest-activity .forest-live-gap { width:calc((100vw - 76px) / var(--pattern-count)); height:auto; border-radius:13px; margin-left:3px; }
+  .forest-activity .learn-visual { margin:18px auto 20px; }
+  .forest-activity .learn-answers { gap:10px; }
+  .forest-activity .learn-answer { min-width:90px; min-height:101px; padding:7px; border-radius:20px; }
+  .forest-activity .learn-answer > .woodland-art { width:75px; height:75px; }
+  .forest-demo-pattern { gap:4px; margin:27px auto 32px; }.forest-demo-pattern > span { width:54px; height:74px; }.forest-demo-pattern .woodland-art { width:53px; height:53px; }
+  .forest-demo h2 { font-size:25px; }
+  .memory-pictured .exp-treasures { gap:6px; padding:14px 7px; margin-bottom:14px; }
+  .memory-pictured .exp-picture { width:89px; min-height:105px; padding:1px; }.memory-pictured .exp-picture > .woodland-art { width:85px; height:85px; }
+  .memory-pictured .learn-answer { min-width:88px; min-height:100px; }.memory-pictured .learn-answer > .woodland-art { width:73px; height:73px; }
+  .route-pictured .adventure-map { width:270px; padding:10px; }.route-pictured .adventure-map-cell > .forest-portrait { width:68px; height:68px; }.route-pictured .route-arrived > .forest-portrait { width:36px; height:50px; }
+  .forest-scene-return { width:min(310px,100%); min-width:0; border-radius:25px; }
+  .woodland-return-invitation .forest-portrait { width:66px; height:66px; }
+  .woodland-book-cover { height:140px; margin-bottom:16px; border-radius:23px; }.woodland-book-cover h2 { font-size:23px; }
+  .forest-book-body { padding:6px 10px 20px; }.forest-book-game { width:min(330px,100%); min-height:145px; }.forest-book-game > span { gap:10px; }
+  .forest-practice-picture { height:75px; }.forest-practice-picture > .woodland-art { width:48px; height:48px; }
+}
+@media(max-height:720px) {
+  .forest-activity .learn-body { justify-content:flex-start; padding-top:20px; }
+  .forest-activity .learn-prompt { margin-bottom:6px; }.forest-activity .learn-visual { margin-top:9px; margin-bottom:10px; }
+  .forest-demo h2 { margin-bottom:10px; }.forest-demo-pattern { margin-top:15px; margin-bottom:20px; }
+}

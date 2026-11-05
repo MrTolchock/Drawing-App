@@ -7,14 +7,14 @@
   function returnToForest() { FK.forestActivity.leave(quest); }
   function forestPrompt() {
     if (!demonstrating && FK.forestState.getActivity(quest)?.finished) { FK.forestVoice.say(FK.forestActivity.backLabel(quest) + '.'); return; }
-    FK.forestVoice.say(demonstrating ? 'Schau: Stern, Kreis. Stern, Kreis. Dann kommt wieder ein Stern.' : locked ? 'Das passt! Tippe auf den Pfeil.' : 'Wie geht es weiter? Tippe auf die passende Form.');
+    FK.forestVoice.say(demonstrating ? 'Schau: Blatt, Haselnuss. Blatt, Haselnuss. Dann kommt wieder ein Blatt.' : locked ? 'Das passt! Tippe auf den Pfeil.' : 'Wie geht es weiter? Tippe auf das passende Bild.');
   }
   function demonstrate() {
     if (!forest) return;
     demonstrating = true; body.replaceChildren();
-    const sequence = h('div', { class: 'forest-demo-pattern', 'aria-label': 'Beispiel: Stern, Kreis, Stern, Kreis. Danach wieder ein Stern.' });
-    ['⭐', '🔵', '⭐', '🔵'].forEach(token => sequence.append(h('span', { text: token })));
-    sequence.append(h('span', { class: 'forest-demo-gap' }, h('span', { text: '⭐' }), FK.forestArt.icon('hand')));
+    const sequence = h('div', { class: 'forest-demo-pattern', 'aria-label': 'Beispiel: Blatt, Haselnuss, Blatt, Haselnuss. Danach wieder ein Blatt.' });
+    ['🔵', '⭐', '🔵', '⭐'].forEach(token => sequence.append(h('span', {}, FK.woodland.pattern(token))));
+    sequence.append(h('span', { class: 'forest-demo-gap' }, FK.woodland.pattern('🔵'), FK.forestArt.icon('hand')));
     body.append(h('section', { class: 'forest-demo' }, h('h2', { text: 'Schau, so geht’s.' }), sequence,
       h('button', { type: 'button', class: 'forest-button forest-primary', 'aria-label': 'Jetzt selber probieren', onclick: () => {
         FK.forestState.demoSeen(quest); demonstrating = false; draw();
@@ -42,8 +42,8 @@
     } else { current = FK.learning.question(game.id, stage, round); locked = false; options = FK.shuffle(current.choices); }
     body.replaceChildren();
     body.append(h('p', { class: 'learn-meta', text: stage + '. Trimester · ' + FK.learning.stages[stage - 1] + ' · Aufgabe ' + (round + 1) + ' von 5' }),
-      h('div', { class: 'learn-progress', 'aria-label': round + ' von 5 geschafft', text: '⭐'.repeat(round) + '☆'.repeat(5 - round) }),
-      h('h2', { class: 'learn-prompt', text: current.prompt }));
+      forest ? FK.woodland.progress(round) : h('div', { class: 'learn-progress', 'aria-label': round + ' von 5 geschafft', text: '⭐'.repeat(round) + '☆'.repeat(5 - round) }),
+      h('h2', { class: 'learn-prompt', text: forest ? 'Wie geht es weiter?' : current.prompt }));
     const visual = h('div', { class: 'learn-visual' });
     if (game.id === 'count') {
       const field = h('div', { class: 'learn-frame' });
@@ -62,8 +62,9 @@
       if (current.subtract) visual.append(dots(current.a, current.b));
       else visual.append(dots(current.a), h('b', { text: '+' }), dots(current.b));
     } else if (game.id === 'pattern') {
-      visual.append(h('div', { class: 'learn-train', 'aria-label': 'Muster' },
-        h('span', { text: '🚂' }), current.sequence.map(s => h('span', { class: 'learn-wagon', text: s })), h('span', { class: 'learn-wagon' + (forest ? ' forest-live-gap' : ''), text: forest ? '' : '?', 'aria-label': 'Hier fehlt eine Form' })));
+      visual.append(h('div', { class: 'learn-train', 'aria-label': 'Muster', style: { '--pattern-count': current.sequence.length + 1 } },
+        forest ? null : h('span', { text: '🚂' }), current.sequence.map(s => forest ? h('span', { class: 'learn-wagon', 'aria-label': FK.woodland.patternName(s) }, FK.woodland.pattern(s)) : h('span', { class: 'learn-wagon', text: s })),
+        h('span', { class: 'learn-wagon' + (forest ? ' forest-live-gap' : ''), text: forest ? '' : '?', 'aria-label': forest ? 'Hier fehlt ein Bild' : 'Hier fehlt eine Form' })));
     } else visual.append(h('div', { class: 'learn-nature', text: '🔎🌿' }));
     body.append(visual);
     live = h('p', { class: 'learn-feedback', role: 'status', 'aria-live': 'polite', text: 'Tippe deine Antwort an.' });
@@ -84,7 +85,9 @@
         live.textContent = game.id === 'nature' ? 'Bravo! ' + current.hint : 'Juhui! Das stimmt.';
         next.hidden = false;
       }, 'learn-answer');
-      b.setAttribute('aria-label', String(value));
+      b.setAttribute('aria-label', forest ? FK.woodland.patternName(value) : String(value));
+      b.dataset.answer = String(value);
+      if (forest) b.replaceChildren(FK.woodland.pattern(value));
       if (locked) { b.disabled = true; if (value === current.answer) b.classList.add('correct'); }
       answers.append(b);
     });

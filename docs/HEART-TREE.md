@@ -2,7 +2,9 @@
 
 The selected **original A — Painted woodland** identity now covers the full
 five-clearing loop and the three story chapters. A real Three.js fox explores
-an angled overhead woodland. All puzzles stay flat DOM activities.
+an angled overhead woodland. Its presentation now uses layered original painted
+characters and vegetation, with solid 3D crossings and props. All puzzles stay
+flat DOM activities and share the same illustrated cast and natural objects.
 
 ## Story and lasting results
 
@@ -43,7 +45,8 @@ Run `python3 -m http.server 8000 --bind 0.0.0.0` in the repository and open
 - Accept a neighbour's pictured helping request, or return to exploring.
 - The speaker repeats guidance. The hand replays a separate worked example.
   The example never adds a hand cue to a live answer or changes the saved item.
-- Pattern rounds use the original stage-one shapes. Memory lets the child look
+- Pattern rounds use painted leaves, hazelnuts and a feather, keeping the original
+  stage-one sequences and saved answer identities. Memory lets the child look
   freely, hide one object with the basket, answer by picture and look again with
   the eye. Routes use a three-by-three board with a fox and pictured neighbour;
   the arrows move one cell and the curved arrow undoes a step.
@@ -73,8 +76,13 @@ reeds, moss and wild strawberries establish the Zürich-area lowland woodland.
 
 `js/forest/scene.js` uses locally bundled Three.js 0.187.0. The orthographic camera
 looks down at roughly 56 degrees, follows distant clearings and frames a resident
-or the tree during conversation. Portraits come from the same 3D character meshes.
-Canopies fade when they obscure interaction; the gathered finale keeps the crown
+or the tree during conversation. The original A reference is implemented as an
+illustrated 2.5D presentation: camera-facing paintings are placed in the actual
+Three.js world, while navigation, depth, bridges, height changes and timber props
+remain three-dimensional. The fox has four viewing directions. Portraits and
+puzzle pieces use those same paintings, with no separate primitive-model portraits.
+Transparent corners of painted trees do not intercept ground taps. Trees fade
+when they obscure interaction; the gathered finale keeps the crown
 visible. Decorative movement and scene transitions respect reduced-motion settings.
 Static world shadows and soft character contact shadows limit recurring rendering.
 The gathering is staged as a short scene transition, rather than autonomous NPC
@@ -146,6 +154,7 @@ node tests/forest.test.cjs
 node tests/routes.test.cjs
 node tests/story.test.cjs
 # With the local server running and Playwright/Chromium available:
+node tests/painted-browser.cjs
 node tests/forest-browser.cjs
 node tests/trail-browser.cjs
 node tests/story-browser.cjs
@@ -154,3 +163,10 @@ node tests/story-browser.cjs
 The repository also retains the ordinary learning, adventures, expeditions,
 artwork, memory, responsive and handwriting checks. `FARBTUPF_SHOTS` selects the
 browser screenshot directory; the full story defaults to `/tmp/farbtupf-complete-story`.
+
+The painted-art browser check validates loaded Three.js paintings, transparent
+tree corners, natural spoken/picture labels, all three guided families, exact
+answered-item recovery, the longest pattern row at 320/390/700/820 pixels, and
+offline artwork. The ordinary game smoke and timer journeys also run against
+this presentation. They retain the physical-device and child-observation limits
+described above.

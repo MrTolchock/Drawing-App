@@ -1,18 +1,20 @@
 import { THREE } from './materials.js';
 import { fox, beaver, hare, hedgehog, owl, kingfisher } from './characters.js';
 import { buildLandscape } from './landscape.js';
+import { loadPaintedArt } from './painted.js';
+export const loadForestArt = loadPaintedArt;
 
 export function createForest(canvas, callbacks = {}) {
   const model = window.FK.forestState;
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false, powerPreference: 'low-power' });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
-  renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.08;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 0.95;
   renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.VSMShadowMap;
   renderer.shadowMap.autoUpdate = false;
   const scene = new THREE.Scene(); scene.background = new THREE.Color('#eee9d2'); scene.fog = new THREE.Fog('#eee9d2', 62, 125);
-  scene.add(new THREE.HemisphereLight('#fff6df', '#adb58b', 1.4));
-  const sun = new THREE.DirectionalLight('#fff0d4', 2.0); sun.position.set(-14, 35, 20);
+  scene.add(new THREE.HemisphereLight('#fff6df', '#a4af7c', 1.1));
+  const sun = new THREE.DirectionalLight('#fff0d4', 1.2); sun.position.set(-14, 35, 20);
   sun.castShadow = true; sun.shadow.mapSize.set(1024, 1024); sun.shadow.normalBias = 0.055; sun.shadow.bias = -0.0003;
   sun.shadow.radius = 3; sun.shadow.blurSamples = 6;
   Object.assign(sun.shadow.camera, { left: -28, right: 28, top: 25, bottom: -25, near: 1, far: 80 });
@@ -34,7 +36,7 @@ export function createForest(canvas, callbacks = {}) {
   const contactMaterial = new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(shadowCanvas), transparent: true, depthWrite: false });
   for (const rig of [player, ...Object.values(residents)]) {
     rig.group.traverse(mesh => { mesh.castShadow = false; });
-    const shadow = new THREE.Mesh(new THREE.PlaneGeometry(3.0, 3.8), contactMaterial); shadow.rotation.x = -Math.PI / 2; shadow.position.y = 0.018; rig.group.add(shadow);
+    const shadow = new THREE.Mesh(new THREE.PlaneGeometry(3.0, 3.8), contactMaterial); shadow.rotation.x = -Math.PI / 2; shadow.position.y = 0.018; shadow.raycast = () => {}; rig.group.add(shadow);
   }
   const camera = new THREE.OrthographicCamera(-20, 20, 14, -14, 0.1, 160);
   const offset = new THREE.Vector3(12, 50, 32), focus = new THREE.Vector3(-2, 0, 4);
@@ -55,25 +57,6 @@ export function createForest(canvas, callbacks = {}) {
     const toe = new THREE.Mesh(new THREE.CircleGeometry(0.1, 12), markerMat); toe.rotation.x = -Math.PI / 2; toe.position.set(x, 0, z); destination.add(toe);
   }
   destination.visible = false; scene.add(destination);
-
-  // Portraits use these same solid models, not a different rabbit/fox illustration.
-  function portraits() {
-    const result = {}, portraitCamera = new THREE.OrthographicCamera(-2.6, 2.6, 2.6, -2.6, 0.1, 30);
-    portraitCamera.position.set(4.5, 3.2, 8); portraitCamera.lookAt(0, 1.7, 0);
-    renderer.setSize(256, 256, false); renderer.shadowMap.enabled = false;
-    for (const [id, rig] of Object.entries({ fox: player, ...residents })) {
-      const half = id === 'hedgehog' ? 1.9 : 2.6;
-      portraitCamera.left = -half; portraitCamera.right = half; portraitCamera.top = half; portraitCamera.bottom = -half;
-      portraitCamera.lookAt(0, id === 'hedgehog' ? 0.8 : 1.7, 0); portraitCamera.updateProjectionMatrix();
-      const portrait = new THREE.Scene(); portrait.background = new THREE.Color('#f8f0dc');
-      portrait.add(new THREE.HemisphereLight('#fff7e6', '#b4ad90', 2.0));
-      const light = new THREE.DirectionalLight('#fff1d6', 3); light.position.set(-3, 7, 5); portrait.add(light);
-      const clone = rig.group.clone(true); clone.position.set(0, 0, 0); clone.rotation.set(0, -0.1, 0); portrait.add(clone);
-      renderer.render(portrait, portraitCamera); result[id] = canvas.toDataURL('image/png');
-    }
-    renderer.shadowMap.enabled = true; window.FK.forestPortraits = result;
-  }
-  portraits();
 
   function viewGoal(portrait) {
     if (focusResident === 'home') return new THREE.Vector3(-8, 0, 6.2);

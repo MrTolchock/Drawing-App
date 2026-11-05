@@ -188,7 +188,8 @@
   }
   async function ensureScene() {
     if (runtime) return runtime;
-    if (!loading) loading = import('../forest/scene.js').then(module => {
+    if (!loading) loading = import('../forest/scene.js').then(async module => {
+      await module.loadForestArt();
       runtime = module.createForest(canvas, {
         onWalk() { if (firstWalk) { firstWalk = false; hint.hidden = true; } },
         onArrive(id) { if (!active) return; if (id === 'home') showTree(); else showResident(id); },

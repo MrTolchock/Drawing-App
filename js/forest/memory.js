@@ -46,7 +46,7 @@
         if (!correct) { FK.sound.undo(); feedback.textContent = 'Schau nochmals hin.'; voice.say('Schau nochmals hin. Mit dem Auge kannst du die Dinge wieder ansehen.'); return; }
         model.answer(value, QUEST); FK.sound.right(); feedback.textContent = 'Gefunden!'; next.hidden = false; prompt();
       } });
-    body.replaceChildren(h('div', { class: 'learn-progress', 'aria-label': a.round + ' von 5 geschafft', text: '⭐'.repeat(a.round) + '☆'.repeat(5 - a.round) }),
+    body.replaceChildren(FK.woodland.progress(a.round),
       h('h2', { class: 'learn-prompt', text: 'Was fehlt?' }), board, feedback, next); body.scrollTop = 0; prompt();
   }
   function finish() { demonstrating = false; FK.forestActivity.finish(body, QUEST); }

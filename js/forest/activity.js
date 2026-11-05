@@ -19,6 +19,10 @@
     const def = model.definition(id), bar = root.querySelector('.topbar'), back = bar.querySelector('.btn-back');
     back.replaceChildren(picture(id, model.isComplete(id))); back.setAttribute('aria-label', backLabel(id));
     bar.querySelector('.title').textContent = def.practice ? 'Waldspiele' : 'Für den ' + dative[def.resident];
+    root.dataset.woodlandPlace = def.resident;
+    let context = root.querySelector('.woodland-context');
+    if (!context) { context = h('div', { class: 'woodland-context', 'aria-hidden': 'true' }); root.append(context); }
+    context.replaceChildren(FK.woodland.vignette(def.resident));
   }
   function finish(body, id) {
     const a = model.getActivity(id), def = model.definition(id); if (!a?.finished) return;
@@ -27,7 +31,7 @@
     const back = root.querySelector('.btn-back'); back.replaceChildren(picture(id, true));
     body.replaceChildren(h('section', { class: 'forest-round-finish' }, art.icon('check'),
       h('button', { type: 'button', class: 'forest-button forest-scene-return', 'aria-label': backLabel(id), onclick: () => leave(id) },
-        h('span', {}, picture(id, true), art.icon('arrow'))),
+        h('span', { class: 'woodland-return-scene' }, FK.woodland.vignette(def.resident)), h('span', { class: 'woodland-return-invitation' }, art.character(def.resident), art.icon('arrow'))),
       h('p', { class: 'forest-finish-note', text: def.practice ? 'Schön, dass du weiter entdeckst.' : def.result })));
     FK.forestVoice.say(def.practice ? 'Gut gemacht! Im Buch warten noch mehr Waldspiele.' : 'Gut gemacht! ' + backLabel(id) + '.');
   }

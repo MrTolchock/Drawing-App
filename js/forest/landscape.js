@@ -1,68 +1,27 @@
-import { THREE, paint, solid, ellipsoid, limb, curveTube, seeded } from './materials.js';
+import { THREE, paint, solid, ellipsoid, limb, curveTube, seeded, paintedPath, roundedBlock } from './materials.js';
 import { buildProjects } from './projects.js';
+import { paintedSprite, paintedProp, paintedGround, softShadow } from './painted.js';
 
 function flatShape(points, material, y = 0) {
   const shape = new THREE.Shape();
   points.forEach((p, i) => i ? shape.lineTo(p[0], -p[1]) : shape.moveTo(p[0], -p[1])); shape.closePath();
-  const mesh = new THREE.Mesh(new THREE.ShapeGeometry(shape), material);
+  const geometry = new THREE.ShapeGeometry(shape), uv = geometry.attributes.uv;
+  const tile = material.userData.paintKind === 'water' ? 10 : 18;
+  for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) / tile, uv.getY(i) / tile);
+  const mesh = new THREE.Mesh(geometry, material);
   mesh.rotation.x = -Math.PI / 2; mesh.position.y = y; mesh.receiveShadow = true; return mesh;
 }
 
 function tree(x, z, scale, seed, type = 'oak') {
-  const rng = seeded(seed), root = new THREE.Group(); root.position.set(x, 0, z); root.scale.setScalar(scale);
-  const bark = paint(type === 'beech' ? '#a49b7f' : '#b38a57', 'bark');
-  const leaves = new THREE.Group(); root.add(leaves);
-  curveTube(root, bark, [[0, -0.1, 0], [-0.16, 2, 0.08], [0.12, 4.3, -0.1], [0.15, 6.8, -0.2]], 0.52);
-  limb(root, bark, [0, 0.1, 0], [-0.1, 4.5, 0.05], 0.8, 0.39);
-  for (const [a, b] of [
-    [[0, 2.9, 0], [-2.2, 6, 0.4]], [[0, 3.7, 0], [2.3, 6.5, 0.15]],
-    [[0, 4.3, -0.1], [-1.3, 7.1, -1.7]], [[0, 4.5, 0], [1.0, 7, 1.7]],
-  ]) limb(root, bark, a, b, 0.32, 0.11);
-  for (let i = 0; i < 5; i++) {
-    const a = i * Math.PI * 2 / 5;
-    curveTube(root, bark, [[Math.sin(a) * 1.7, 0.03, Math.cos(a) * 1.7], [Math.sin(a) * 0.9, 0.25, Math.cos(a) * 0.9], [0, 1.35, 0]], 0.15);
-  }
-  const centres = [[0, 7.5, 0], [-2.1, 6.3, 0.3], [2.1, 6.7, 0.1], [-1.3, 7.2, -1.6], [1.2, 7.8, -1.3], [0.4, 6.7, 1.8]];
-  const palette = type === 'alder' ? ['#819763', '#718959', '#9da974'] : ['#93a34c', '#7b9345', '#a9b35e'];
-  const geometry = new THREE.SphereGeometry(1, 16, 12), matrix = new THREE.Matrix4(), quat = new THREE.Quaternion();
-  for (let color = 0; color < 3; color++) {
-    const material = paint(palette[color], 'leaf').clone(); material.transparent = true;
-    const mesh = new THREE.InstancedMesh(geometry, material, centres.length);
-    centres.forEach(([cx, cy, cz], index) => {
-      const radius = 1.3 + rng() * 0.56;
-      matrix.compose(new THREE.Vector3(cx + (rng() - 0.5) * 1.75, cy + (rng() - 0.5) * 1.0, cz + (rng() - 0.5) * 1.55),
-        quat, new THREE.Vector3(radius * (1.05 + rng() * 0.3), radius * 0.72, radius));
-      mesh.setMatrixAt(index, matrix);
-    });
-    mesh.castShadow = mesh.receiveShadow = true; leaves.add(mesh);
-  }
-  if (type === 'oak') {
-    const leaf = new THREE.Shape(); leaf.moveTo(0, -0.6);
-    leaf.bezierCurveTo(-0.12, -0.38, -0.45, -0.48, -0.26, -0.25);
-    leaf.bezierCurveTo(-0.62, -0.23, -0.54, 0.02, -0.27, -0.02);
-    leaf.bezierCurveTo(-0.6, 0.16, -0.44, 0.38, -0.2, 0.2);
-    leaf.bezierCurveTo(-0.33, 0.56, -0.04, 0.58, 0, 0.37);
-    leaf.bezierCurveTo(0.08, 0.76, 0.35, 0.59, 0.2, 0.25);
-    leaf.bezierCurveTo(0.54, 0.4, 0.63, 0.12, 0.29, 0.02);
-    leaf.bezierCurveTo(0.6, -0.05, 0.54, -0.32, 0.25, -0.25);
-    leaf.bezierCurveTo(0.41, -0.5, 0.1, -0.4, 0, -0.6);
-    const leafMaterial = paint('#b0b969', 'leaf').clone(); leafMaterial.side = THREE.DoubleSide; leafMaterial.transparent = true;
-    const accents = new THREE.InstancedMesh(new THREE.ShapeGeometry(leaf, 5), leafMaterial, centres.length * 3);
-    centres.forEach(([cx, cy, cz], i) => {
-      for (let j = 0; j < 3; j++) {
-        const size = 0.6 + rng() * 0.3;
-        quat.setFromEuler(new THREE.Euler(-0.7, (rng() - 0.5) * 0.6, (rng() - 0.5) * 1.5));
-        matrix.compose(new THREE.Vector3(cx + (j - 1) * 0.6, cy + 0.65 + rng() * 0.45, cz + 1.15), quat, new THREE.Vector3(size, size, size));
-        accents.setMatrixAt(i * 3 + j, matrix);
-      }
-    });
-    accents.castShadow = false; leaves.add(accents);
-  }
-  return { root, leaves, radius: 4.1 * scale, centre: new THREE.Vector3(x, 6.5 * scale, z) };
+  const root = new THREE.Group(), leaves = new THREE.Group();
+  root.position.set(x, 0, z); root.scale.setScalar(scale); root.add(leaves);
+  leaves.add(paintedSprite(type, 11.4));
+  softShadow(root, 9, 6.5, 0.26);
+  return { root, leaves, radius: 4.6 * scale, centre: new THREE.Vector3(x, 4.1 * scale, z) };
 }
 
 export function buildLandscape(scene, model) {
-  const ground = paint('#dce0af', 'ground'), sand = paint('#e8ce99', 'sand'), water = paint('#8fb8bd', 'water');
+  const ground = paintedGround(), sand = paint('#ecd3a3', 'sand'), water = paint('#83aeb5', 'water');
   const left = [[-100, -100]], right = [[100, -100]], waterLeft = [], waterRight = [];
   for (let z = -100; z <= 100; z += 2) {
     const width = model.riverHalfWidth(z), centre = model.riverX(z);
@@ -72,18 +31,14 @@ export function buildLandscape(scene, model) {
   left.push([-100, 100]); right.push([100, 100]);
   scene.add(flatShape(left, ground), flatShape(right, ground));
   const river = flatShape([...waterLeft, ...waterRight.reverse()], water, -0.13); scene.add(river);
-  const bankMaterial = paint('#bac6a2');
+  const bankMaterial = paint('#b2bd7f', 'ground');
   for (const side of [-1, 1]) {
     const outer = [], inner = [];
     for (let z = -40; z <= 40; z += 1) {
       const w = model.riverHalfWidth(z);
-      outer.push([model.riverX(z) + side * (w + 0.19), z]); inner.push([model.riverX(z) + side * w, z]);
+      outer.push([model.riverX(z) + side * (w + 0.33 + Math.sin(z * 1.8) * 0.07), z]); inner.push([model.riverX(z) + side * w, z]);
     }
     scene.add(flatShape([...outer, ...inner.reverse()], bankMaterial, 0.008));
-  }
-  const wash = [paint('#d6dca6'), paint('#e4e5bb'), paint('#cfd8a3')];
-  for (const [i, p] of [[-9, 0, 5, 4], [-16, -8, 5, 4], [12, -6, 4, 4], [15, 7, 5, 4], [-18, 10, 4, 5], [8, -14, 4, 4], [-7, -15, 4, 3], [10, 15, 6, 3]].entries()) {
-    const mesh = ellipsoid(scene, wash[i % wash.length], [p[0], -0.075, p[1]], [p[2], 0.09, p[3]]); mesh.castShadow = false;
   }
   // Broad continuous paths follow the same segments used by navigation.
   const grovePath = new THREE.Group(), hollow = new THREE.Group(); hollow.name = 'story-hollow'; scene.add(grovePath, hollow);
@@ -91,65 +46,48 @@ export function buildLandscape(scene, model) {
     ['home', 'south', 'fordWest', 'fordEast', 'east', 'garden', 'hare', 'bridgeEast'],
     ['garden', 'mossTurn', 'mossPath', 'hedgehog'], ['hedgehog', 'hollowBend', 'hollowApproach', 'owl']]) {
     const parent = names.at(-1) === 'owl' ? hollow : names.at(-1) === 'hedgehog' ? grovePath : scene;
-    const curve = new THREE.CatmullRomCurve3(names.map(name => new THREE.Vector3(model.nodes[name].x, 0, model.nodes[name].z)), false, 'catmullrom', 0.18);
-    const points = curve.getPoints(140), l = [], r = [];
-    points.forEach((p, i) => {
-      const before = points[Math.max(0, i - 1)], after = points[Math.min(points.length - 1, i + 1)], dx = after.x - before.x, dz = after.z - before.z;
-      const length = Math.hypot(dx, dz), nx = -dz / length * 1.45, nz = dx / length * 1.45;
-      l.push([p.x + nx, p.z + nz]); r.push([p.x - nx, p.z - nz]);
-    });
-    parent.add(flatShape([...l, ...r.reverse()], sand, 0.035));
-    for (const name of [names[0], names.at(-1)]) {
-      const p = model.nodes[name], cap = ellipsoid(parent, sand, [p.x, 0.03, p.z], [1.45, 0.035, 1.45]); cap.castShadow = false;
-    }
+    parent.add(paintedPath(names.map(name => model.nodes[name])));
   }
   // The old crossing is deliberately plain and already usable.
-  const causeway = new THREE.Mesh(new THREE.BoxGeometry(7.7, 0.32, 3.0), paint('#b6af8f', 'stone'));
+  const causeway = new THREE.Mesh(roundedBlock(7.7, 0.2, 2.6, 0.12), paint('#b6af8f', 'stone'));
   causeway.position.set(1, -0.02, 12); causeway.receiveShadow = true; scene.add(causeway);
-  const crossingTop = new THREE.Mesh(new THREE.BoxGeometry(7.7, 0.055, 2.88), sand); crossingTop.position.set(1, 0.165, 12); crossingTop.receiveShadow = true; scene.add(crossingTop);
+  const paving = roundedBlock(0.93, 0.2, 2.85, 0.15);
+  for (let i = 0; i < 8; i++) {
+    const slab = new THREE.Mesh(paving, paint(i % 2 ? '#c6bf9f' : '#b8b69a', 'stone'));
+    slab.position.set(-2.35 + i * 0.96, 0.1, 12 + Math.sin(i * 3) * 0.05); slab.rotation.y = Math.sin(i * 5) * 0.018;
+    slab.receiveShadow = true; scene.add(slab);
+  }
   const stone = paint('#adae98', 'stone'), moss = paint('#a6af70');
   const rng = seeded(317);
   function rock(x, z, size = 0.65) {
-    const base = ellipsoid(scene, stone, [x, size * 0.33, z], [size, size * 0.47, size * 0.76], [0, rng() * 3, -0.12]);
-    if (rng() > 0.5) ellipsoid(scene, moss, [x + size * 0.13, size * 0.7, z - 0.05], [size * 0.51, size * 0.12, size * 0.45]);
-    return base;
+    return paintedProp(scene, 'stones', x, z, size * 3.2);
   }
   [[-2.4, -13], [3.3, -11], [-1.7, -2], [3.8, 3], [-2.0, 8], [3.3, 16], [-2.7, 13.7], [4.4, 13.6], [-3.1, 10.4], [4.4, 10.3]].forEach(([x, z]) => rock(x, z, 0.5 + rng() * 0.3));
   [[-16, 2], [-10, 1.6], [11, -8.2], [13, 11], [-19, -5]].forEach(([x, z]) => rock(x, z, 0.6 + rng() * 0.25));
 
   const trees = [tree(-8, 2.2, 1.06, 41), tree(-20, -11, 0.8, 11), tree(-18, 12, 0.72, 17, 'beech'),
     tree(14, -13, 0.73, 7), tree(19, -1, 0.7, 37, 'beech'), tree(28, 10, 0.78, 22, 'beech'),
-    tree(-5, -18, 0.57, 29, 'alder'), tree(5, -17, 0.52, 47, 'alder')];
+    tree(-5, -18, 0.67, 29, 'alder'), tree(5, -17, 0.62, 47, 'alder'),
+    tree(-22, -1, 0.9, 71), tree(-17, -18, 0.85, 83), tree(23, -9, 0.9, 91), tree(-24, 19, 0.9, 79),
+    tree(-17, 18, 0.78, 103), tree(14, 17, 0.9, 109)];
   trees.forEach(t => scene.add(t.root));
   const heart = new THREE.Shape(); heart.moveTo(0, 0.16); heart.bezierCurveTo(-0.4, 0.62, -0.76, 0.02, 0, -0.5); heart.bezierCurveTo(0.76, 0.02, 0.4, 0.62, 0, 0.16);
   const heartMaterial = new THREE.MeshStandardMaterial({ color: '#ad804a', roughness: 1, emissive: '#ad804a', emissiveIntensity: 0 });
   const heartMesh = new THREE.Mesh(new THREE.ExtrudeGeometry(heart, { depth: 0.035, bevelEnabled: true, bevelSize: 0.04, bevelThickness: 0.025, bevelSegments: 2 }), heartMaterial);
   heartMesh.position.set(-7.96, 2.5, 2.85); heartMesh.rotation.y = 0.2; scene.add(heartMesh);
 
-  function reeds(x, z) {
-    const stem = paint('#82945b'), tip = solid('#897344');
-    for (let i = 0; i < 5; i++) {
-      const px = x + (rng() - 0.5) * 0.9, pz = z + (rng() - 0.5) * 0.7, height = 0.6 + rng() * 1.0;
-      limb(scene, stem, [px, 0.02, pz], [px + 0.11, height, pz], 0.035, 0.022);
-      if (i % 2) ellipsoid(scene, tip, [px + 0.11, height + 0.13, pz], [0.06, 0.23, 0.06]);
-      else ellipsoid(scene, stem, [px + 0.13, height * 0.45, pz], [0.08, height * 0.6, 0.035], [0, 0, -0.24]);
-    }
-  }
+  function reeds(x, z) { return paintedProp(scene, 'reeds', x, z, 2.5); }
   [[-1.9, -10], [3, -2], [-1.4, 5], [3, 17]].forEach(p => reeds(...p));
 
-  function shrub(x, z, size = 1) {
-    for (let i = 0; i < 3; i++) ellipsoid(scene, paint(['#a2b477', '#b4be84', '#91a76f'][i]), [x + (i - 1) * size * 0.45, 0.3 * size, z + (i % 2) * 0.3], [size * 0.58, size * 0.48, size * 0.58]);
-  }
+  function shrub(x, z, size = 1) { return paintedProp(scene, 'hazel', x, z, size * 3.7); }
   [[-17, -5, 0.75], [-16, 15, 0.85], [15, -5, 0.8], [-11, -15, 0.75]].forEach(p => shrub(...p));
-  for (const [x, z] of [[10, -7.3], [11.3, -4.5]]) {
-    shrub(x, z, 0.42);
-    for (let i = 0; i < 3; i++) {
-      ellipsoid(scene, solid('#bb6543'), [x + (i - 1) * 0.24, 0.19, z + 0.25], [0.12, 0.16, 0.12]);
-      const centre = new THREE.Vector3(x + (i - 1) * 0.3, 0.51, z - 0.15);
-      for (let j = 0; j < 5; j++) ellipsoid(scene, solid('#fff6d9'), [centre.x + Math.sin(j * 1.257) * 0.1, centre.y, centre.z + Math.cos(j * 1.257) * 0.1], [0.075, 0.025, 0.075]);
-      ellipsoid(scene, solid('#d2ae55'), centre.toArray(), [0.045, 0.035, 0.045]);
-    }
-  }
+  for (const [x, z] of [[10, -7.3], [11.3, -4.5]]) paintedProp(scene, 'strawberry', x, z, 2.3);
+  // Small, locally grouped details leave the sandy walking routes easy to see.
+  for (const [x, z, size] of [[-12, 1, 1.7], [-15, 9, 1.4], [-5, -1, 1.2], [-13, -5, 1.3],
+    [7, -10, 1.4], [14, -2, 1.6], [-20, 5, 1.8], [-7, 14, 1.4], [21, 12, 1.6], [14, 23, 1.5]])
+    paintedProp(scene, 'grass', x, z, size);
+  paintedProp(scene, 'mushrooms', -10.5, 2.1, 1.65);
+  paintedProp(scene, 'log', -18, 8, 3.3);
   // A low hazel edge and Beaver's timber keep the residents' places distinct.
   for (const [x, z] of [[10.8, -9], [12.5, -7.8], [13.8, -6.3]]) shrub(x, z, 0.62);
   for (let i = 0; i < 3; i++) limb(scene, paint('#b99564', 'bark'), [-8.6, 0.25 + i * 0.2, -10.3], [-6.3, 0.3 + i * 0.2, -10.0], 0.13, 0.14);
@@ -188,9 +126,9 @@ export function buildLandscape(scene, model) {
   }
 
   const bridge = new THREE.Group(); bridge.position.set(0.6, 0, -7); scene.add(bridge);
-  const wood = paint('#c9a06a', 'bark'), deckMaterial = paint('#dec08a', 'bark'), middle = [];
+  const wood = paint('#b38a52', 'bark'), deckMaterial = paint('#d5b27a', 'bark'), middle = [], plankShape = roundedBlock(0.53, 0.16, 3.05, 0.065);
   for (let i = 0; i < 12; i++) {
-    const plank = new THREE.Mesh(new THREE.BoxGeometry(0.55, 0.16, 3.05), deckMaterial);
+    const plank = new THREE.Mesh(plankShape, deckMaterial);
     plank.position.set(-3.15 + i * 0.57, 0.31 + Math.sin(i * 3) * 0.012, 0); plank.castShadow = plank.receiveShadow = true; bridge.add(plank);
     if (i >= 4 && i <= 7) middle.push(plank);
   }
@@ -215,7 +153,7 @@ export function buildLandscape(scene, model) {
   return {
     trees,
     hero: trees[0].root,
-    setProjects: projects.set,
+    setProjects(state) { projects.set(state); trees[0].leaves.children[0].material.color.set(state.endingSeen ? '#fff1be' : '#ffffff'); },
     setGrove(unlocked, complete) { grovePath.visible = unlocked; restPlace.visible = unlocked; bedding.visible = complete; },
     setHollow(unlocked, complete) { hollow.visible = unlocked; brokenSign.visible = !complete; restoredSign.visible = complete; },
     setBridge(repaired, progress = 1) {

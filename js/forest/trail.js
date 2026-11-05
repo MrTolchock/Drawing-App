@@ -42,7 +42,7 @@
       onBlocked: () => { FK.sound.undo(); feedback.textContent = 'Probiere einen anderen Pfeil.'; voice.say('Dort ist der Rand. Probiere einen anderen Pfeil.'); },
       onChange: () => { feedback.textContent = ''; },
       onSuccess: () => { FK.sound.right(); feedback.textContent = 'Angekommen!'; next.hidden = false; prompt(); } });
-    body.replaceChildren(h('div', { class: 'learn-progress', 'aria-label': a.round + ' von 5 geschafft', text: '⭐'.repeat(a.round) + '☆'.repeat(5 - a.round) }),
+    body.replaceChildren(FK.woodland.progress(a.round),
       h('h2', { class: 'learn-prompt', text: 'Zum ' + FK.forestActivity.dative[model.definition(QUEST).resident] }), board, feedback, next); body.scrollTop = 0; prompt();
   }
   function finish() { demonstrating = false; FK.forestActivity.finish(body, QUEST); }
