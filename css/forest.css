@@ -1,6 +1,8 @@
 /* Painted woodland: quiet space, pictured actions and actual 3D depth. */
 .screen-forest { position:absolute; padding:0; overflow:hidden; background:#eee9d2; isolation:isolate; }
 .forest-viewport,.forest-canvas { position:absolute; inset:0; width:100%; height:100%; }
+.forest-scene-transition::after { content:''; position:absolute; inset:0; background:#f5eed8; pointer-events:none; animation:forest-reveal .7s ease-out both; }
+@keyframes forest-reveal { from { opacity:1; } to { opacity:0; } }
 .forest-canvas { display:block; touch-action:none; outline:none; }
 .forest-canvas:focus-visible { outline:3px solid #637b48; outline-offset:-5px; }
 .forest-ui { position:absolute; inset:0; z-index:2; pointer-events:none; }
@@ -132,6 +134,30 @@
 .route-pictured button:disabled { opacity:.48; }
 .forest-trail-demo h2 { margin-bottom:10px; }
 .forest-trail-demo .forest-primary { margin-top:15px; }
+.forest-book-body { flex:1; min-height:0; width:100%; padding:24px; text-align:center; }
+.forest-book-body h2 { margin:4px 0 20px; color:#405936; font:700 29px var(--read); }
+.forest-book-neighbours { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; margin:0 auto 25px; }
+.forest-book-neighbour { width:87px; height:87px; padding:2px; min-width:87px; border-radius:50%; }
+.forest-book-neighbour .forest-portrait { width:76px; height:76px; }
+.forest-book-neighbour[aria-pressed=true] { background:#e1e9c8; border:3px solid #879c60; }
+.forest-book-games { display:flex; flex-wrap:wrap; justify-content:center; gap:18px; max-width:900px; margin:0 auto 24px; }
+.forest-book-game { width:245px; min-height:205px; padding:18px 14px; }
+.forest-book-game > span { display:flex; flex-direction:column; align-items:center; gap:14px; }
+.forest-practice-picture { display:flex; align-items:center; justify-content:center; gap:8px; height:75px; }
+.forest-practice-picture > span { display:inline-flex; align-items:center; justify-content:center; width:54px; height:60px; font-size:42px; }
+.forest-practice-picture .wa-illustration { width:54px; height:60px; }
+.forest-book-card-action { border-radius:50%; background:#e6ebd0; padding:5px; }
+.forest-book-card-action .forest-icon { width:29px; height:29px; }
+.forest-book-game b { font-size:18px; }
+.forest-book-all { min-height:68px; }
+.forest-book-all > span { display:flex; align-items:center; gap:12px; }
+.forest-friends-row { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:5px; }
+.forest-friends-row .forest-portrait { width:68px; height:68px; }
+.forest-chapter-copy { display:flex; flex-direction:column; gap:10px; align-items:center; text-align:center; }
+.forest-chapter-copy > .forest-bridge-picture { width:96px; height:92px; }
+.forest-ending-memories { display:flex; justify-content:center; align-items:center; gap:13px; }
+.forest-ending-memories .forest-bridge-picture { width:102px; height:94px; }
+.forest-dialog-home { width:min(770px,100%); }
 .hub-forest-return { display:flex; gap:7px; align-items:center; margin-right:auto; border:1px solid #b9b28f; border-radius:18px; padding:4px 14px 4px 4px; background:#fff9eaf0; color:#425c38; min-height:62px; font:700 15px var(--read); }
 .hub-forest-return .wa-illustration { width:52px; height:52px; }
 @media(max-width:650px) {
@@ -148,6 +174,7 @@
   .forest-activity .learn-answer { min-width:80px; min-height:83px; font-size:38px; }.forest-activity .learn-answers { gap:10px; }.forest-demo-pattern { gap:5px; }.forest-demo-pattern > span { width:48px; height:62px; font-size:43px; }.forest-demo { padding:0; }.forest-demo-gap > .forest-icon { right:-9px; width:37px; height:37px; }
   .memory-pictured .exp-treasures { gap:7px; padding:12px 8px; min-height:119px; }.memory-pictured .exp-picture { width:87px; min-height:91px; padding:4px; }.memory-pictured .exp-art .wa-illustration { width:76px; height:76px; }.memory-pictured .learn-answer { padding:7px; min-width:83px; }.memory-pictured .exp-picture-answers .wa-illustration { width:67px; height:67px; margin:0; }.memory-pictured .exp-hide { min-height:65px; }.forest-memory-demo h2 { font-size:25px; }.forest-memory-demo .forest-primary { min-height:66px; }
   .route-pictured .adventure-map { width:248px; padding:8px; }.route-pictured .adventure-map-cell > .forest-portrait { width:60px; height:60px; }.route-pictured .route-arrived > .forest-portrait { width:32px; height:44px; }.route-pictured .adventure-arrows { grid-template-columns:repeat(3,59px); gap:7px; }.route-pictured .route-direction { width:59px; min-width:59px; height:59px; padding:11px; }.route-pictured .route-undo { width:59px; min-width:59px; height:59px; min-height:59px; }.route-pictured .route-controls { gap:18px; }.forest-route-activity .topbar .title { font-size:17px; }.forest-trail-demo h2 { font-size:25px; }.forest-trail-demo .forest-primary { min-height:66px; margin-top:11px; }
+  .forest-book-body { padding:18px 12px; }.forest-book-body h2 { font-size:25px; margin-bottom:15px; }.forest-book-neighbours { gap:7px; margin-bottom:17px; }.forest-book-neighbour { width:61px; min-width:61px; height:66px; min-height:66px; }.forest-book-neighbour .forest-portrait { width:53px; height:56px; }.forest-book-games { gap:12px; }.forest-book-game { width:min(330px,100%); min-height:125px; padding:13px; }.forest-book-game > span { width:100%; flex-direction:row; flex-wrap:wrap; justify-content:center; gap:8px; }.forest-book-game b { font-size:16px; }.forest-practice-picture { height:60px; gap:4px; }.forest-practice-picture > span { width:43px; height:52px; font-size:34px; }.forest-practice-picture .wa-illustration { width:43px; height:52px; }.forest-friends-row { gap:1px; }.forest-friends-row .forest-portrait { width:56px; height:56px; }.forest-ending-memories { gap:6px; }.forest-ending-memories .forest-bridge-picture { width:77px; height:70px; }.forest-chapter-copy { gap:8px; }.forest-chapter-copy > .forest-bridge-picture { width:76px; height:72px; }
   .forest-scene-return { min-width:250px; padding:18px 15px; }.forest-scene-return .forest-place-picture .forest-portrait { width:100px; height:110px; }.forest-scene-return .forest-place-picture .forest-bridge-picture { width:96px; }
   .hub-forest-return { min-height:54px; font-size:12px; padding-right:9px; }.hub-forest-return .wa-illustration { width:40px; height:40px; }
 }
@@ -158,4 +185,5 @@
 @media(prefers-reduced-motion:reduce) {
   .forest-walk-hint > .forest-icon:last-child,.forest-demo-gap > span:first-child,.forest-demo-gap > .forest-icon,.memory-demo-hand,.memory-toggle-hand,.route-demo-hand { animation:none; transform:none; opacity:1; }
   .forest-button { transition:none; }
+  .forest-scene-transition::after { display:none; }
 }

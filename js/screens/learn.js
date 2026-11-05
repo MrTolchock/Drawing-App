@@ -3,9 +3,10 @@
   'use strict';
   const FK = window.FK, h = FK.h;
   let body, title, game, stage, round, current, locked, live, next, answers, root, bar, controls;
-  let forest = false, demonstrating = false;
-  function returnToForest() { FK.go('forest', { returned: true }, { replace: true }); }
+  let forest = false, demonstrating = false, quest;
+  function returnToForest() { FK.forestActivity.leave(quest); }
   function forestPrompt() {
+    if (!demonstrating && FK.forestState.getActivity(quest)?.finished) { FK.forestVoice.say(FK.forestActivity.backLabel(quest) + '.'); return; }
     FK.forestVoice.say(demonstrating ? 'Schau: Stern, Kreis. Stern, Kreis. Dann kommt wieder ein Stern.' : locked ? 'Das passt! Tippe auf den Pfeil.' : 'Wie geht es weiter? Tippe auf die passende Form.');
   }
   function demonstrate() {
@@ -16,7 +17,7 @@
     sequence.append(h('span', { class: 'forest-demo-gap' }, h('span', { text: '⭐' }), FK.forestArt.icon('hand')));
     body.append(h('section', { class: 'forest-demo' }, h('h2', { text: 'Schau, so geht’s.' }), sequence,
       h('button', { type: 'button', class: 'forest-button forest-primary', 'aria-label': 'Jetzt selber probieren', onclick: () => {
-        FK.forestState.demoSeen(); demonstrating = false; draw();
+        FK.forestState.demoSeen(quest); demonstrating = false; draw();
       } }, FK.forestArt.icon('play'), h('span', { text: 'Jetzt du' }))));
     forestPrompt();
   }
@@ -31,11 +32,12 @@
     demonstrating = false;
     let options;
     if (forest) {
-      const session = FK.forestState.get().activity;
+      const session = FK.forestState.getActivity(quest);
+      if (session.finished) { finish(); return; }
       round = session.round;
       current = session.question || FK.learning.question(game.id, stage, round);
       options = session.choices || FK.shuffle(current.choices);
-      if (!session.question || !session.choices) FK.forestState.question(current, options);
+      if (!session.question || !session.choices) FK.forestState.question(current, options, quest);
       locked = session.answered;
     } else { current = FK.learning.question(game.id, stage, round); locked = false; options = FK.shuffle(current.choices); }
     body.replaceChildren();
@@ -77,7 +79,7 @@
         locked = true;
         answers.querySelectorAll('button').forEach(x => { x.disabled = true; });
         b.classList.add('correct');
-        if (forest) { FK.forestState.answer(value); FK.sound.right(); FK.forestVoice.say('Das passt! Tippe auf den Pfeil.'); }
+        if (forest) { FK.forestState.answer(value, quest); FK.sound.right(); FK.forestVoice.say('Das passt! Tippe auf den Pfeil.'); }
         else FK.sound.tada();
         live.textContent = game.id === 'nature' ? 'Bravo! ' + current.hint : 'Juhui! Das stimmt.';
         next.hidden = false;
@@ -88,7 +90,7 @@
     });
     next = button(round === 4 ? '⭐ Geschafft!' : 'Weiter →', () => {
       if (!locked) return;
-      if (forest) { if (FK.forestState.advance()) finish(); else draw(); }
+      if (forest) { if (FK.forestState.advance(quest)) finish(); else draw(); }
       else { round++; if (round === 5) finish(); else draw(); }
     }, 'learn-next');
     if (forest) { next.replaceChildren(FK.forestArt.icon('arrow')); next.setAttribute('aria-label', round === 4 ? 'Zum Ergebnis' : 'Nächstes Muster'); }
@@ -98,15 +100,7 @@
   }
   function finish() {
     if (forest) {
-      const session = FK.forestState.get().activity;
-      if (!session?.finished) return;
-      const earned = session.rewardRecorded ? 0 : FK.progress.finish('learn', 'pattern:1', 1);
-      FK.forestState.rewardRecorded();
-      body.replaceChildren(h('section', { class: 'forest-round-finish' }, FK.forestArt.icon('check'),
-        h('button', { type: 'button', class: 'forest-button forest-scene-return', 'aria-label': 'Zurück zum Biber', onclick: returnToForest },
-          h('span', {}, FK.forestArt.scenePicture(true), FK.forestArt.icon('arrow')), h('span', { text: 'Zurück zum Biber' })),
-        h('p', { class: 'forest-finish-note', text: earned ? 'Ein Stern für dich. Und ein neuer Weg für deine Freunde.' : 'Ein neuer Weg für deine Freunde.' })));
-      FK.forestVoice.say('Das hast du gut gemacht! Zurück zum Biber.'); return;
+      FK.forestActivity.finish(body, quest); return;
     }
     const earned = FK.progress.finish('learn', game.id + ':' + stage, 1);
     body.replaceChildren(h('div', { class: 'learn-finish' }, FK.ui.mascot({ mood: 'cheer' }), h('h2', { text: 'Fünf Aufgaben geschafft!' }),
@@ -123,18 +117,18 @@
       bar.append(controls); body = h('div', { class: 'learn-body scroll' }); root.append(bar, body);
     },
     enter(p) {
-      forest = p.forest === true; demonstrating = false; root.classList.toggle('forest-activity', forest); controls.hidden = !forest;
+      forest = p.forest === true; quest = p.quest || FK.forestState.QUEST; demonstrating = false; root.classList.toggle('forest-activity', forest); controls.hidden = !forest;
+      if (forest && FK.forestState.definition(quest)?.game !== 'pattern') { FK.go('forest'); return; }
       const back = bar.querySelector('.btn-back');
       back.replaceChildren(); back.insertAdjacentHTML('beforeend', forest ? '' : FK.icon('home'));
       back.setAttribute('aria-label', forest ? 'Zurück zum Biber' : 'Zurück');
-      if (forest) back.append(FK.forestArt.scenePicture(FK.forestState.get().bridgeRepaired));
       game = FK.learning.games.find(g => g.id === (forest ? 'pattern' : p.game)) || FK.learning.games[0];
-      stage = forest ? 1 : FK.learning.stage(); round = 0; title.textContent = forest ? 'Für die Brücke' : game.title;
+      stage = forest ? 1 : FK.learning.stage(); round = 0; title.textContent = forest ? 'Waldspiele' : game.title; if (forest) FK.forestActivity.prepare(root, quest);
       if (forest) {
-        const session = FK.forestState.get().activity || FK.forestState.startActivity();
+        const session = FK.forestState.getActivity(quest) || FK.forestState.startActivity(quest);
         if (session?.finished) { finish(); return; }
         if (!session) { returnToForest(); return; }
-        if (!FK.forestState.get().demoSeen) { demonstrate(); return; }
+        if (!FK.forestState.hasDemo(quest)) { demonstrate(); return; }
       }
       draw();
     },

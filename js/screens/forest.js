@@ -9,6 +9,7 @@
 
   function closeOverlay() {
     if (!overlayKind || overlayKind === 'welcome') return false;
+    runtime?.gather(false); model.stopReplay();
     overlay.replaceChildren(); overlayKind = ''; runtime?.focus(null); runtime?.input(true);
     voice.cancel(); root.classList.remove('has-dialog'); updateHUD(); canvas.focus({ preventScroll: true }); return true;
   }
@@ -73,81 +74,109 @@
         'Schön, dass du da bist! Jetzt können wir uns wieder besuchen. Hinter meinem Garten wartet der Igel auf dich.');
     }
   }
-  function showHedgehog() {
-    if (!model.get().greetingSeen) return;
-    model.visit('hedgehog');
-    const complete = model.isComplete(model.REST), started = !!model.getActivity(model.REST);
-    if (complete) model.seePayoff(model.REST);
-    panel('hedgehog', complete ? 'Ein Ruheplatz für den Igel' : 'Igel braucht deine Hilfe',
-      h('div', { class: 'forest-request-copy' }, art.character('hedgehog'), h('div', {},
-        h('p', { class: 'forest-eyebrow', text: complete ? 'Ein gemütlicher Platz' : 'Im Mooshain' }),
-        h('h2', { text: complete ? 'Hier kann ich mich ausruhen.' : 'Hilfst du mir beim Einrichten?' }),
-        h('p', { text: complete ? 'Danke, kleiner Fuchs. Komm mich bald wieder besuchen.' : 'Merken wir uns meine kleinen Waldschätze.' })), art.rest(complete)),
-      complete ? [button('Zum Waldkauz gehen', [art.character('owl'), art.icon('paw')], () => { closeOverlay(); runtime.walkToResident('owl'); }, 'forest-primary'),
-        button('Im Wald bleiben', art.icon('paw'), closeOverlay, 'forest-secondary')] :
-        [button(started ? 'Igel weiterhelfen' : 'Igel beim Ruheplatz helfen', [art.rest(true), art.icon('play'), h('span', { text: started ? 'Weiterhelfen' : 'Ich helfe dir' })], () => {
-          model.startActivity(model.REST); FK.go('forest-memory');
-        }, 'forest-primary'), button('Zurück in den Wald', art.icon('paw'), postpone, 'forest-secondary')],
-      complete ? 'Danke! Hier kann ich mich ausruhen. Unter der alten Eiche wartet der Waldkauz auf dich.' :
-        started ? 'Hilfst du mir weiter? Meine Waldschätze warten auf dich.' : 'Hilfst du mir? Merke dir meine Waldschätze. Dann richten wir meinen Ruheplatz ein.');
+  function travel(target) {
+    closeOverlay();
+    if (target.kind === 'free') { FK.go('forest-book'); return; }
+    if (target.resident === 'home') runtime.walkTo(model.nodes.home, 'home'); else runtime.walkToResident(target.resident);
   }
-  function showOwl() {
-    if (!model.residentAvailable('owl')) return;
-    model.visit('owl');
-    const complete = model.isComplete(model.TRAIL), started = !!model.getActivity(model.TRAIL);
-    if (complete) model.seePayoff(model.TRAIL);
-    panel('owl', complete ? 'Der alte Wegweiser' : 'Ein Bild zeigt den Weg',
-      h('div', { class: 'forest-request-copy' }, art.character('owl'), h('div', {},
-        h('p', { class: 'forest-eyebrow', text: 'In der Geschichtenmulde' }),
-        h('h2', { text: complete ? 'Das Herz zeigt nach Hause.' : 'Finden wir den Weg zusammen?' }),
-        h('p', { text: complete ? 'Nun finden unsere Freunde wieder zum Herzbaum.' : 'Am alten Wegweiser fehlt das Bild.' })), art.sign(complete)),
-      complete ? [button('Zum Herzbaum gehen', [art.sign(true), art.icon('paw')], () => { closeOverlay(); runtime.walkTo(model.nodes.home); }, 'forest-primary'),
-        button('Im Wald bleiben', art.icon('paw'), closeOverlay, 'forest-secondary')] :
-        [button(started ? 'Waldkauz weiterhelfen' : 'Waldkauz beim Wegweiser helfen', [art.sign(true), art.icon('play'), h('span', { text: started ? 'Weiterhelfen' : 'Ich helfe dir' })], () => {
-          model.startActivity(model.TRAIL); FK.go('forest-trail');
-        }, 'forest-primary'), button('Zurück in den Wald', art.icon('paw'), postpone, 'forest-secondary')],
-      complete ? 'Danke! Das Herz auf dem Wegweiser zeigt wieder zum Herzbaum. Dort treffen sich unsere Freunde.' :
-        started ? 'Gehen wir zusammen weiter? Der Wegweiser wartet auf uns.' : 'Hallo, kleiner Fuchs. Am Wegweiser fehlt das Bild. Hilfst du mir? Finde auf der Karte den Weg zu mir.');
+  function onward(target = model.objective()) {
+    const home = target.resident === 'home', name = home ? 'Herzbaum' : FK.forestActivity.dative[target.resident];
+    return button(target.kind === 'free' ? 'Waldspiele öffnen' : 'Zum ' + name + ' gehen',
+      [target.kind === 'free' ? art.icon('book') : art.character(target.resident), art.icon(target.kind === 'free' ? 'play' : 'paw')], () => travel(target), 'forest-primary');
   }
-  function nextResident() {
-    const state = model.get();
-    if (!state.bridgeRepaired) return 'beaver';
-    if (!state.greetingSeen) return 'hare';
-    if (!model.isComplete(model.REST) || !state.payoffsSeen[model.REST]) return 'hedgehog';
-    if (!model.isComplete(model.TRAIL) || !state.payoffsSeen[model.TRAIL]) return 'owl';
-    return null;
+  function showQuest(q, visiting = q.resident) {
+    model.visit(visiting);
+    if (visiting !== q.resident) {
+      panel(visiting, q.title, h('div', { class: 'forest-request-copy' }, art.character(visiting), h('div', {},
+        h('h2', { text: 'Helfen wir zusammen.' }), h('p', { text: q.title })), art.character(q.resident)),
+        [onward({ kind: 'visit', resident: q.resident, quest: q.id }), button('Im Wald bleiben', art.icon('paw'), closeOverlay, 'forest-secondary')],
+        'Bei unserem Freund wartet ein kleines Abenteuer. Komm mit.'); return;
+    }
+    const complete = model.isComplete(q.id), started = !!model.getActivity(q.id);
+    if (complete) model.seePayoff(q.id);
+    const copy = h('div', { class: 'forest-request-copy' }, art.character(q.resident), h('div', {},
+      h('p', { class: 'forest-eyebrow', text: FK.forestStory.placeNames[q.resident] }),
+      h('h2', { text: complete ? 'Das haben wir zusammen geschafft.' : q.title }),
+      h('p', { text: complete ? q.result : started ? 'Hilfst du mir weiter?' : 'Ein kleines Abenteuer für uns.' })), art.project(q.picture, complete));
+    panel(q.resident, q.title, copy,
+      complete ? [onward(), button('Im Wald bleiben', art.icon('paw'), closeOverlay, 'forest-secondary')] :
+        [button(started ? FK.forestStory.names[q.resident] + ' weiterhelfen' : FK.forestStory.names[q.resident] + ' helfen',
+          [art.project(q.picture, true), art.icon('play'), h('span', { text: started ? 'Weiterhelfen' : 'Ich helfe dir' })], () => FK.forestActivity.launch(q.id), 'forest-primary'),
+          button('Zurück in den Wald', art.icon('paw'), postpone, 'forest-secondary')], complete ? q.result : started ? 'Hilfst du mir weiter?' : q.request);
+  }
+  function showResident(id) {
+    if (!model.residentAvailable(id)) return;
+    if (id === 'beaver' && !model.get().bridgeRepaired) { showBeaver(); return; }
+    if (id === 'hare' && (!model.get().bridgeRepaired || !model.get().greetingSeen)) { showHare(); return; }
+    const q = model.questForResident(id); if (q) { showQuest(q, id); return; }
+    model.visit(id);
+    const free = model.objective().kind === 'free';
+    panel(id, 'Schön, dass du da bist', h('div', { class: 'forest-request-copy' }, art.character(id),
+      h('div', {}, h('h2', { text: 'Schön, dass du da bist!' }), h('p', { text: 'Hier ist immer ein Platz für dich.' })), art.icon('paw')),
+      [free ? button('Waldspiele mit ' + FK.forestStory.names[id], [art.character(id), art.icon('book')], () => FK.go('forest-book', { resident: id }), 'forest-primary') : onward(),
+        button('Im Wald bleiben', art.icon('paw'), closeOverlay, 'forest-secondary')],
+      free ? 'Schön, dass du da bist. Möchtest du mit mir ein Waldspiel spielen?' : 'Schön, dass du da bist. Unsere Freunde freuen sich auf dich.');
+  }
+  function showEnding() {
+    if (!model.beginEnding()) return;
+    runtime.gather(true);
+    const page = model.get().endingPage;
+    const pages = [
+      { title: 'Ein Weg zu unseren Freunden.', pictures: ['bridge', 'rest', 'sign'], voice: 'Erinnerst du dich? Du hast die Brücke repariert, einen Ruheplatz eingerichtet und das Bild am Wegweiser erneuert.' },
+      { title: 'Nun finden wir zueinander.', pictures: ['water', 'path', 'stories'], voice: 'Am Wasser ist Platz zum Schauen und Erzählen. Die neuen Wege verbinden unsere Freunde.' },
+      { title: 'Ein Platz für alle.', pictures: ['clearing', 'bench', 'invitation'], voice: 'Die Lichtung ist wieder ein Treffpunkt. Alle haben einen gemütlichen Platz. Und alle sind eingeladen.' },
+      { title: 'Wir sind wieder zusammen.', pictures: ['tree'], voice: 'Schau! Alle Freunde sind am Herzbaum. Seine Blätter leuchten wieder. Danke, kleiner Fuchs. Du gehörst dazu. Der Wald bleibt für deine nächsten Abenteuer offen.' },
+    ];
+    const part = pages[page];
+    panel('home', part.title, h('div', { class: 'forest-chapter-copy' },
+      h('div', { class: 'forest-ending-memories' }, part.pictures.map(id => art.project(id, true))),
+      h('h2', { text: part.title }), h('div', { class: 'forest-friends-row' }, Object.keys(model.residents).map(id => art.character(id)))),
+      [button(page === 3 ? 'Im Wald weiterspielen' : 'Geschichte weiter', [art.icon(page === 3 ? 'paw' : 'arrow'), h('span', { text: page === 3 ? 'Weiter im Wald' : 'Weiter' })], () => {
+        if (model.endingNext()) { closeOverlay(); voice.say('Besuche deine Freunde. Im Buch warten noch mehr Waldspiele.'); } else showEnding();
+      }, 'forest-primary')], part.voice);
+    root.dataset.endingPage = String(page);
+  }
+  function showTree() {
+    const target = model.objective(), state = model.get();
+    if (target.kind === 'ending' || (state.endingUnlocked && !state.endingSeen)) { showEnding(); return; }
+    if (target.kind === 'chapter') {
+      const reconnect = target.chapter === 'reconnect';
+      panel('home', reconnect ? 'Unsere Wege verbinden sich' : 'Ein Treffen für alle', h('div', { class: 'forest-chapter-copy' },
+        art.project('tree', true), h('h2', { text: reconnect ? 'Unsere Wege verbinden sich.' : 'Ein Treffen für alle.' }),
+        h('div', { class: 'forest-ending-memories' }, (reconnect ? ['path', 'stories', 'clearing'] : ['bench', 'invitation']).map(id => art.project(id, true)))),
+        [button('Gemeinsam weitergehen', [art.icon('play'), h('span', { text: 'Komm mit' })], () => {
+          model.acknowledgeChapter(target.chapter); closeOverlay(); voice.say('Unsere Freunde warten auf dich.');
+        }, 'forest-primary')], reconnect ? 'Du kennst jetzt alle Nachbarn. Machen wir die Wege zueinander frei und unseren Treffpunkt wieder einladend.' :
+          'Unsere Wege verbinden uns wieder. Jetzt machen wir am Herzbaum einen Platz für alle und laden unsere Freunde ein.'); return;
+    }
+    panel('home', 'Der Herzbaum', h('div', { class: 'forest-chapter-copy' }, art.project('tree', state.endingSeen),
+      h('h2', { text: state.endingSeen ? 'Hier gehören wir zusammen.' : 'Unser Treffpunkt im Wald.' }),
+      h('div', { class: 'forest-friends-row' }, Object.keys(model.residents).filter(model.residentAvailable).map(id => art.character(id)))),
+      state.endingSeen ? [button('Das Treffen nochmals anschauen', [art.project('tree', true), art.icon('play')], () => { model.beginEnding(true); showEnding(); }, 'forest-primary'),
+        button('Waldspiele öffnen', art.icon('book'), () => FK.go('forest-book'), 'forest-secondary'), button('Im Wald bleiben', art.icon('paw'), closeOverlay, 'forest-secondary')] :
+        [onward(target), button('Im Wald bleiben', art.icon('paw'), closeOverlay, 'forest-secondary')],
+      state.endingSeen ? 'Der Wald ist wieder ein Treffpunkt. Möchtest du unser Treffen nochmals anschauen oder weiter im Wald spielen?' : 'Hier können unsere Freunde zusammenkommen. Komm, wir besuchen einen Nachbarn.');
   }
   function updateHUD() {
     if (!runtime || !active) return;
-    const state = model.get(); root.dataset.bridge = state.bridgeRepaired ? 'repaired' : 'unfinished';
-    root.dataset.rest = model.isComplete(model.REST) ? 'ready' : 'unfinished';
-    root.dataset.sign = model.isComplete(model.TRAIL) ? 'ready' : 'unfinished';
-    const hidden = !!overlayKind; goal.hidden = hidden; hint.hidden = hidden || !firstWalk;
-    ui.querySelector('.forest-footer').hidden = hidden;
-    const finished = state.bridgeRepaired;
+    const state = model.get(), target = model.objective(), q = model.quests[target.quest];
+    root.dataset.bridge = state.bridgeRepaired ? 'repaired' : 'unfinished'; root.dataset.rest = model.isComplete(model.REST) ? 'ready' : 'unfinished'; root.dataset.sign = model.isComplete(model.TRAIL) ? 'ready' : 'unfinished';
+    root.dataset.ending = state.endingSeen ? 'seen' : state.endingUnlocked ? 'ready' : 'waiting';
+    const hidden = !!overlayKind; goal.hidden = hidden; hint.hidden = hidden || !firstWalk; ui.querySelector('.forest-footer').hidden = hidden;
     goal.replaceChildren();
-    if (!nextResident()) {
-      goal.append(art.icon('book'), h('span', {}, h('small', { text: 'Dein nächstes Abenteuer' }), h('b', { text: 'Das Spielebuch' })), art.icon('arrow'));
-      goal.setAttribute('aria-label', 'Spielebuch öffnen');
-    } else if (nextResident() === 'owl') {
-      goal.append(art.character('owl'), h('span', {}, h('small', { text: 'Unter der alten Eiche' }), h('b', { text: 'Der alte Wegweiser' })), art.sign(model.isComplete(model.TRAIL)));
-      goal.setAttribute('aria-label', 'Zum Waldkauz gehen');
-    } else if (finished && state.greetingSeen) {
-      goal.append(art.character('hedgehog'), h('span', {}, h('small', { text: 'Hinter dem Garten' }), h('b', { text: 'Ein Platz zum Ausruhen' })), art.rest(model.isComplete(model.REST)));
-      goal.setAttribute('aria-label', 'Zum Igel gehen');
-    } else {
-      goal.append(art.character(finished ? 'hare' : 'beaver'),
-        h('span', {}, h('small', { text: finished ? 'Der Weg ist frei' : state.accepted ? 'Wir helfen weiter' : 'Ein Nachbar wartet' }),
-          h('b', { text: finished ? 'Zum Hasengarten' : 'Die kleine Brücke' })), art.bridge(finished));
-      goal.setAttribute('aria-label', finished ? 'Zu Hase gehen' : 'Zum Biber gehen');
+    if (target.kind === 'free') { goal.append(art.icon('book'), h('span', {}, h('small', { text: 'Gemeinsam weiterentdecken' }), h('b', { text: 'Waldspiele' })), art.icon('arrow')); goal.setAttribute('aria-label', 'Waldspiele öffnen'); }
+    else {
+      const home = target.resident === 'home';
+      goal.append(art.character(target.resident), h('span', {}, h('small', { text: home ? 'Unsere Freunde kommen zusammen' : 'Ein Nachbar freut sich auf dich' }),
+        h('b', { text: home ? 'Zum Herzbaum' : target.resident === 'hare' && !state.greetingSeen ? 'Zum Hasengarten' : q.title })), art.project(home ? 'tree' : q.picture, home || model.isComplete(q.id)));
+      goal.setAttribute('aria-label', home ? 'Zum Herzbaum gehen' : target.resident === 'beaver' ? 'Zum Biber gehen' : target.resident === 'hare' ? 'Zu Hase gehen' : 'Zum ' + FK.forestActivity.dative[target.resident] + ' gehen');
     }
     sound.replaceChildren(art.icon(FK.settings.get('sound') === false ? 'muted' : 'speaker'));
-    sound.setAttribute('aria-label', FK.settings.get('sound') === false ? 'Ton einschalten' : 'Ton ausschalten');
-    sound.setAttribute('aria-pressed', String(FK.settings.get('sound') !== false));
+    sound.setAttribute('aria-label', FK.settings.get('sound') === false ? 'Ton einschalten' : 'Ton ausschalten'); sound.setAttribute('aria-pressed', String(FK.settings.get('sound') !== false));
   }
   function updateProjection(points) {
     if (!active) return;
-    for (const id of Object.keys(model.residents)) {
+    for (const id of Object.keys(hitTargets)) {
       const p = points[id], target = hitTargets[id];
       target.hidden = !p.visible || !!overlayKind;
       target.style.transform = `translate(${p.x - 42}px, ${p.y - 43}px)`;
@@ -162,7 +191,7 @@
     if (!loading) loading = import('../forest/scene.js').then(module => {
       runtime = module.createForest(canvas, {
         onWalk() { if (firstWalk) { firstWalk = false; hint.hidden = true; } },
-        onArrive(id) { if (!active) return; ({ beaver: showBeaver, hare: showHare, hedgehog: showHedgehog, owl: showOwl })[id]?.(); },
+        onArrive(id) { if (!active) return; if (id === 'home') showTree(); else showResident(id); },
         onProject: updateProjection,
       });
       FK.forestScene = runtime; root.classList.add('forest-ready'); return runtime;
@@ -182,20 +211,19 @@
       canvas = h('canvas', { class: 'forest-canvas', tabindex: '0', role: 'application', 'aria-label': 'Wald: Tippe auf den Weg oder einen Nachbarn. Pfeiltasten bewegen den Fuchs.' }); viewport.append(canvas); root.append(viewport);
       ui = h('div', { class: 'forest-ui' });
       sound = button('Ton ausschalten', art.icon('speaker'), () => { FK.settings.set('sound', FK.settings.get('sound') === false); updateHUD(); if (FK.settings.get('sound')) voice.say('Komm mit in den Wald.'); }, 'forest-round');
-      const book = button('Spielebuch öffnen', art.icon('book'), () => FK.go('hub'), 'forest-round forest-book');
+      const book = button('Spielebuch öffnen', art.icon('book'), () => FK.go('forest-book'), 'forest-round forest-book');
       ui.append(h('header', { class: 'forest-header' }, h('div', { class: 'forest-heading' },
         h('p', { class: 'forest-eyebrow', text: 'Farbtupf' }), h('h1', { text: 'Der Herzbaum' })), h('nav', { 'aria-label': 'Wald und Spiele' }, book, sound)));
       hitTargets = {};
-      for (const [id, name] of Object.entries({ beaver: 'Biber', hare: 'Hase', hedgehog: 'Igel', owl: 'Waldkauz' })) {
-        const b = button(name + ' besuchen', [], () => runtime?.walkToResident(id), 'forest-npc-target');
+      for (const [id, name] of Object.entries({ ...FK.forestStory.names, home: 'Herzbaum' })) {
+        const b = button(name + ' besuchen', [], () => id === 'home' ? runtime?.walkTo(model.nodes.home, 'home') : runtime?.walkToResident(id), 'forest-npc-target');
         b.hidden = true; hitTargets[id] = b; ui.append(b);
       }
       bubble = button('Biber bei der Brücke helfen', art.bridge(false), () => runtime?.walkToResident('beaver'), 'forest-bubble'); bubble.hidden = true; ui.append(bubble);
       hint = button('Hier auf den Weg tippen', [art.icon('paw'), art.icon('hand')], () => runtime?.walkTo({ x: -12.0, z: 5.0 }), 'forest-walk-hint'); hint.hidden = true; ui.append(hint);
       goal = button('Zum Biber gehen', [], () => {
         if (!runtime || overlayKind) return;
-        const id = nextResident();
-        if (id) runtime.walkToResident(id); else FK.go('hub');
+        travel(model.objective());
       }, 'forest-goal'); goal.hidden = true;
       const repeat = button('Nochmals hören', art.icon('speaker'), () => voice.repeat(), 'forest-round forest-repeat');
       ui.append(h('footer', { class: 'forest-footer' }, goal, repeat));
@@ -212,13 +240,7 @@
     },
     async enter(params) {
       active = true; const token = ++entry; overlayKind = ''; overlay.replaceChildren(); root.classList.remove('has-dialog');
-      for (const [id, def] of Object.entries(model.quests)) {
-        const a = model.getActivity(id), group = { pattern: 'learn', treasure: 'expedition', robot: 'adventure' }[def.game], key = def.game + ':' + def.stage;
-        if (a?.finished && !a.rewardRecorded) {
-          if (!FK.progress.isDone(group, key)) FK.progress.finish(group, key, 1);
-          model.rewardRecorded(id);
-        }
-      }
+      FK.forestActivity.recoverRewards();
       try { await ensureScene(); } catch (_) { return; }
       if (!active || token !== entry) return;
       runtime.input(true); runtime.focus(null); runtime.start(); root.classList.remove('forest-loading');
@@ -228,17 +250,17 @@
         if (model.get().bridgeRepaired && !model.get().payoffSeen) {
           runtime.repair(); runtime.focus('beaver'); voice.say('Jetzt ist der Weg frei. Komm herüber!');
           payoffTimer = setTimeout(() => { if (active && token === entry) { model.seePayoff(); runtime.focus(null); updateHUD(); } }, 1700);
-        } else if (model.isComplete(model.REST) && !model.get().payoffsSeen[model.REST]) {
-          runtime.focus('hedgehog');
-          payoffTimer = setTimeout(() => { if (active && token === entry) showHedgehog(); }, 700);
-        } else if (model.isComplete(model.TRAIL) && !model.get().payoffsSeen[model.TRAIL]) {
-          runtime.focus('owl');
-          payoffTimer = setTimeout(() => { if (active && token === entry) showOwl(); }, 700);
-        } else if (params.returned) voice.say('Ich bin hier, wenn du magst.');
+        } else if (model.get().endingUnlocked && !model.get().endingSeen) {
+          showEnding();
+        } else {
+          const pending = Object.values(model.quests).find(q => q.id !== model.QUEST && model.isComplete(q.id) && !model.get().payoffsSeen[q.id]);
+          if (pending) { runtime.focus(pending.resident); payoffTimer = setTimeout(() => { if (active && token === entry) showQuest(pending); }, 700); }
+          else if (params.returned) voice.say('Ich bin hier, wenn du magst.');
+        }
       }
     },
     leave() {
-      active = false; ++entry; clearTimeout(payoffTimer); runtime?.stop(); voice.cancel();
+      active = false; ++entry; clearTimeout(payoffTimer); runtime?.gather(false); runtime?.stop(); model.stopReplay(); voice.cancel();
       overlayKind = ''; overlay.replaceChildren(); root.classList.remove('has-dialog');
     },
   });

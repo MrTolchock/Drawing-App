@@ -31,7 +31,7 @@
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-      if (FK.current() === 'forest' && FK.forestScreen?.closeOverlay()) return;
+      if (FK.current() === 'forest') { FK.forestScreen?.closeOverlay(); return; }
       if (document.querySelector('.modal')) FK.ui.closeModal();
       else if (FK.current() !== 'hub') FK.back();
     }

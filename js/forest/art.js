@@ -21,6 +21,8 @@
     const src = FK.forestPortraits?.[id];
     if (src) return h('img', { src, alt: '', class: 'forest-portrait ' + (cls || ''), draggable: 'false' });
     if (id === 'owl') return h('span', { class: 'forest-portrait forest-owl-fallback ' + (cls || ''), 'aria-hidden': 'true', html: '<svg viewBox="0 0 84 84"><ellipse cx="42" cy="49" rx="24" ry="27" fill="#a38b65"/><circle cx="42" cy="30" r="25" fill="#9b815b"/><circle cx="30" cy="30" r="13" fill="#dfcdab"/><circle cx="54" cy="30" r="13" fill="#dfcdab"/><circle cx="31" cy="30" r="6" fill="#40392c"/><circle cx="53" cy="30" r="6" fill="#40392c"/><path d="m38 37 4 9 5-9" fill="#b6a17d"/></svg>' });
+    if (id === 'home') return project('tree', true, 'forest-portrait ' + (cls || ''));
+    if (id === 'kingfisher') return h('span', { class: 'forest-portrait forest-owl-fallback ' + (cls || ''), 'aria-hidden': 'true', html: '<svg viewBox="0 0 84 84"><ellipse cx="38" cy="46" rx="18" ry="24" fill="#438fa0"/><ellipse cx="42" cy="50" rx="12" ry="17" fill="#ca975f"/><circle cx="39" cy="25" r="17" fill="#438fa0"/><path d="m52 23 27 8-26 3" fill="#42594f"/><circle cx="45" cy="23" r="3" fill="#313d36"/><path d="m25 57-9 16 17-5" fill="#3a7286"/></svg>' });
     return FK.visual.art(id === 'hare' ? 'leaf' : id === 'beaver' ? 'beaver' : id === 'hedgehog' ? 'hedgehog' : 'fox', 'forest-portrait ' + (cls || ''));
   }
   function bridge(complete, cls) {
@@ -42,6 +44,25 @@
       '<svg viewBox="0 0 84 74"><ellipse cx="42" cy="65" rx="30" ry="6" fill="#d4dbad"/><path d="M42 21v45" stroke="#ad8a59" stroke-width="7" stroke-linecap="round"/>' +
       (complete ? '<path d="M16 16h43l14 13-14 13H16z" fill="#dfc08b" stroke="#ab8858" stroke-width="2"/><path d="M34 25q-7-9-11 0-2 6 11 13 13-7 11-13-4-9-11 0" fill="#7e965a"/>' : '<path d="m16 51 40-8 15 10-12 15-40 8z" fill="#ceb17f" transform="translate(0 -5)"/><path d="m35 25 12 6" stroke="#b19465" stroke-width="5"/>') + '</svg>' });
   }
-  function scenePicture(complete, resident = 'beaver') { return h('span', { class: 'forest-place-picture' }, character(resident), resident === 'owl' ? sign(complete) : resident === 'hedgehog' ? rest(complete) : bridge(complete)); }
-  FK.forestArt = { icon, character, bridge, rest, sign, scenePicture };
+  function project(name, complete, cls) {
+    if (name === 'bridge') return bridge(complete, cls);
+    if (name === 'rest') return rest(complete, cls);
+    if (name === 'sign') return sign(complete, cls);
+    if (name === 'book') return icon('book', cls);
+    const tree = '<path d="M40 64V32" stroke="#aa895c" stroke-width="8" stroke-linecap="round"/><path d="M23 34q-13-18 3-22 3-15 19-6 21-7 22 12 17 13-1 23-21 15-43-7z" fill="' + (complete ? '#aaba6c' : '#a7ad87') + '"/><path d="M40 24q-7-9-11 0-2 6 11 13 13-7 11-13-4-9-11 0" fill="#e7d49c"/>';
+    const images = {
+      tree, clearing: '<ellipse cx="42" cy="49" rx="36" ry="21" fill="#e5dab5"/>' + tree,
+      water: '<path d="M5 44q18-12 36 0t38 0v20H5z" fill="#accdd0"/><path d="M17 45V17m-5 18 5-5 6 5m44 16V23" stroke="#8ba16b" stroke-width="4"/><path d="M22 52h37" stroke="#c5a16c" stroke-width="' + (complete ? '9' : '3') + '"/>',
+      path: '<path d="M9 64Q60 54 34 36T70 8" fill="none" stroke="#d1b781" stroke-width="' + (complete ? '15' : '5') + '" stroke-linecap="round"/><path d="m10 26 7-7m48 38 7-7" stroke="#92a671" stroke-width="9" stroke-linecap="round"/>',
+      stories: '<path d="M2 52q20-12 40 0t40 0v20H2z" fill="#b3d0cf"/><path d="M8 32h66M14 32v25m53-25v25" stroke="#b29562" stroke-width="7"/><path d="M30 19q8-5 12 0 7-5 14 0v23q-7-4-14 0-6-4-12 0z" fill="#eee0b4" stroke="#8f9c6c" stroke-width="2"/>',
+      bench: '<path d="M10 39h64M16 44v20m52-20v20M16 17v20m52-20v20M14 20h57M14 29h57" stroke="#b59660" stroke-width="' + (complete ? '8' : '4') + '" stroke-linecap="round"/><ellipse cx="42" cy="61" rx="12" ry="6" fill="#a6b781"/>',
+      invitation: '<path d="M8 17h68v43H8z" fill="#e8d9aa" stroke="#b9a271" stroke-width="2"/><path d="m10 19 32 26 32-26" fill="none" stroke="#b9a271" stroke-width="2"/><path d="M42 27q-8-10-13 0-2 7 13 15 15-8 13-15-5-10-13 0" fill="#8fa56a"/>',
+    };
+    return h('span', { class: 'forest-bridge-picture forest-project-picture ' + (cls || ''), 'aria-hidden': 'true', html: '<svg viewBox="0 0 84 74">' + (images[name] || tree) + '</svg>' });
+  }
+  function scenePicture(complete, resident = 'beaver', picture) { return h('span', { class: 'forest-place-picture' }, character(resident), project(picture || { owl: 'sign', hedgehog: 'rest', kingfisher: 'water' }[resident] || 'bridge', complete)); }
+  function practice(game) {
+    return h('span', { class: 'forest-practice-picture' }, ...(game === 'pattern' ? ['⭐', '🔵', '⭐'].map(text => h('span', { text })) : game === 'treasure' ? ['🍃', '🪶', '🍓'].map(text => h('span', { text })) : [icon('paw'), icon('arrow')]));
+  }
+  FK.forestArt = { icon, character, bridge, rest, sign, project, practice, scenePicture };
 })();

@@ -7,7 +7,7 @@ const path = require('node:path');
 function boot(storage = new Map()) {
   const FK = { settings: { get: () => 3 } };
   const context = { window: { FK }, localStorage: { getItem: key => storage.get(key) || null, setItem: (key, value) => storage.set(key, value) } };
-  for (const name of ['js/learn/learning.js', 'js/learn/expeditions.js', 'js/learn/adventures.js', 'js/learn/routes.js', 'js/forest/model.js']) vm.runInNewContext(fs.readFileSync(name, 'utf8'), context, { filename: name });
+  for (const name of ['js/learn/learning.js', 'js/learn/expeditions.js', 'js/learn/adventures.js', 'js/learn/routes.js', 'js/forest/story.js', 'js/forest/model.js']) vm.runInNewContext(fs.readFileSync(name, 'utf8'), context, { filename: name });
   return { FK, state: FK.forestState, storage };
 }
 function round(FK, state) {
@@ -96,7 +96,9 @@ test('malformed data recovers to a safe start; blocked storage remains playable 
   const state = boot(storage).state; assert.equal(state.get().bridgeRepaired, false);
   assert.ok(Number.isFinite(state.get().position.x));
   const FK = {};
-  vm.runInNewContext(fs.readFileSync('js/forest/model.js', 'utf8'), { window: { FK }, localStorage: { getItem() { throw Error(); }, setItem() { throw Error(); } } });
+  const blocked = { window: { FK }, localStorage: { getItem() { throw Error(); }, setItem() { throw Error(); } } };
+  vm.runInNewContext(fs.readFileSync('js/forest/story.js', 'utf8'), blocked);
+  vm.runInNewContext(fs.readFileSync('js/forest/model.js', 'utf8'), blocked);
   assert.doesNotThrow(() => { FK.forestState.welcome(); FK.forestState.startActivity(); });
   assert.equal(FK.forestState.get().welcomed, true);
 });
@@ -199,12 +201,13 @@ function finishRoute(state, q) {
   while (p % q.size !== q.goal % q.size) p = state.moveRoute(Math.sign(q.goal % q.size - p % q.size), 0).position;
   while (p !== q.goal) p = state.moveRoute(0, Math.sign(q.goal - p)).position;
 }
-test('the hollow opens after the resting-place payoff, with one safe onward path', () => {
-  const { FK, state } = boot(); unlockGrove(FK, state);
+test('the wider woodland opens after the introduction and permits the remaining neighbours in any order', () => {
+  const { FK, state } = boot();
   assert.equal(state.residentAvailable('owl'), false); assert.equal(state.startActivity(state.TRAIL), null);
+  unlockGrove(FK, state);
+  assert.equal(state.residentAvailable('owl'), true); assert.equal(state.residentAvailable('kingfisher'), true);
   unlockHollow(FK, state, false);
-  assert.equal(state.isComplete(state.REST), true); assert.equal(state.residentAvailable('owl'), false);
-  assert.equal(state.startActivity(state.TRAIL), null); state.seePayoff(state.REST);
+  assert.equal(state.isComplete(state.REST), true); state.seePayoff(state.REST);
   assert.equal(state.residentAvailable('owl'), true);
   const path = state.route(state.nodes.hedgehog, state.nodes.owl);
   assert.ok(path.some(p => state.distance(p, state.nodes.hollowBend) < 0.01));

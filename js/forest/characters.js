@@ -178,3 +178,26 @@ export function owl() {
     const blink = time % 7 > 6.8 ? 0.15 : 1; pupils.forEach(eye => { eye.scale.y = 0.19 * blink; });
   } };
 }
+
+// Common kingfisher: blue back, orange breast, short tail and a long dark bill.
+export function kingfisher() {
+  const group = new THREE.Group(), blue = paint('#438fa0', 'fur'), darkBlue = paint('#3a7286', 'fur'), orange = paint('#cc975c', 'fur'), white = paint('#efe0bb', 'fur');
+  ellipsoid(group, blue, [0, 1.23, -0.05], [0.47, 0.65, 0.57]);
+  ellipsoid(group, orange, [0, 1.14, 0.38], [0.38, 0.53, 0.22]);
+  const head = new THREE.Group(); head.position.set(0, 1.92, 0.18); group.add(head);
+  ellipsoid(head, blue, [0, 0, 0], [0.52, 0.44, 0.58]);
+  for (const side of [-1, 1]) {
+    ellipsoid(head, orange, [side * 0.42, -0.08, 0.16], [0.13, 0.2, 0.28]);
+    ellipsoid(head, white, [side * 0.38, -0.25, 0.06], [0.15, 0.12, 0.19]);
+    ellipsoid(head, solid('#343c36'), [side * 0.35, 0.09, 0.44], [0.09, 0.11, 0.065]);
+    ellipsoid(head, solid('#fff6de'), [side * 0.35 - 0.02, 0.13, 0.491], [0.022, 0.03, 0.012]);
+    ellipsoid(group, darkBlue, [side * 0.42, 1.23, -0.14], [0.16, 0.54, 0.43], [0, side * 0.1, side * 0.07]);
+    limb(group, paint('#a56f48'), [side * 0.19, 0.83, 0.17], [side * 0.21, 0.58, 0.25], 0.047, 0.04);
+    ellipsoid(group, paint('#a56f48'), [side * 0.22, 0.57, 0.31], [0.14, 0.055, 0.21]);
+  }
+  const bill = new THREE.Mesh(new THREE.ConeGeometry(0.16, 1.13, 12), paint('#45514a')); bill.rotation.x = Math.PI / 2; bill.position.set(0, -0.035, 0.98); head.add(bill);
+  ellipsoid(group, darkBlue, [0, 0.87, -0.65], [0.22, 0.13, 0.45], [-0.3, 0, 0]);
+  for (let i = 0; i < 5; i++) ellipsoid(head, paint('#8ab4ad'), [(i % 3 - 1) * 0.15, 0.35, -0.2 + i * 0.09], [0.035, 0.02, 0.045]);
+  group.name = 'kingfisher';
+  return { group, animate(time, active) { head.rotation.z = Math.sin(time * 1.1) * (active ? 0.045 : 0.015); head.rotation.y = active ? -0.15 : Math.sin(time * 0.6) * 0.035; } };
+}

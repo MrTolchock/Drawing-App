@@ -1,156 +1,153 @@
-# Der Herzbaum — playable woodland
+# Der Herzbaum — complete playable story
 
-The selected **original A, Painted woodland** direction now has a small, real
-Three.js neighbourhood: the Heart Tree, Beaver's brook, Brown Hare's garden and
-European Hedgehog's moss grove and Tawny Owl's story hollow.
-The existing activities remain flat DOM screens with their current artwork and
-rules. The full five-clearing story is still in development.
+The selected **original A — Painted woodland** identity now covers the full
+five-clearing loop and the three story chapters. A real Three.js fox explores
+an angled overhead woodland. All puzzles stay flat DOM activities.
 
-## Play locally
+## Story and lasting results
+
+| Chapter | Project | Neighbours | Flat family | Lasting result |
+| --- | --- | --- | --- | --- |
+| Meet | The little bridge | Beaver, Brown Hare | Pattern | A usable timber crossing |
+| Meet | A place to rest | European Hedgehog | Memory | A leaf-and-moss resting place |
+| Meet | The old trail sign | Tawny Owl | Routes | A restored Heart Tree picture sign |
+| Meet | A view of the water | Common Kingfisher | Memory | A clear viewing deck by the reed pond |
+| Reconnect | The garden path | Hare, Hedgehog | Pattern | A genuinely shorter garden-to-grove route |
+| Reconnect | Stories by the water | Owl, Kingfisher | Routes | A walkable waterside link and story bench |
+| Reconnect | Our old meeting place | Beaver | Memory | A renewed clearing around the Heart Tree |
+| Gather | A place for everyone | Hedgehog, Beaver | Pattern | Shared seating, moss pads and a small bird perch |
+| Gather | The invitation | Kingfisher, Hare | Routes | Pictured invitations at the tree |
+| Ending | The story continues | Everyone | Story reward | Five neighbours gather; the canopy awakens |
+
+Each helping project is one short, untimed five-item round. The ending is a
+picture-led recollection of the earlier changes. The child advances its four
+pictures with an arrow, then returns to a permanently restored, explorable world.
+The ending can be replayed at the tree without resetting progress or stars.
+
+After the bridge and Hare's introduction, the other three Meet projects can be
+completed in any order. Reconnect's three projects and Gather's two projects are
+also independent within their chapters. One pictured onward invitation appears
+in the HUD. Children can still visit other available neighbours. Chapters change
+at the Heart Tree after the required projects and their world payoffs are seen.
+Optional practice never becomes a chapter requirement.
+
+## Play and controls
 
 Run `python3 -m http.server 8000 --bind 0.0.0.0` in the repository and open
-`http://localhost:8000`. No package installation or build step is required. Open
-`http://localhost:8000/?screen=hub` for direct access to the existing library.
+`http://localhost:8000` on that machine. No package installation or build is needed.
+`?screen=hub` opens the original library directly.
 
-- Touch the large fox/play invitation to begin. A pictured gesture teaches walking.
-- Tap/click a path destination or a neighbour. Arrow keys and WASD also move the fox.
-- The existing route through the tree clearing reaches both neighbours. The broad
-  lower crossing is already safe. The unfinished upper timber bridge is the quest.
-- Hare can introduce the same request if visited first. The Beaver picture guides
-  back to him; there is one opening quest.
-- Accept the pictured bridge request. A separate example demonstrates the pattern
-  action, then a fresh existing stage-one Musterzug round begins.
-- The speaker repeats the action; the hand/sample control replays the example.
-  The live item and answer order remain intact. The example has its own sequence.
-- The Beaver/brook picture leaves the activity. Return to him to continue; the
-  current item, answered state and completed-item count survive reloading.
-- After five successful items, the large Beaver/brook picture returns to the same
-  place. The bridge is usable and remains repaired. Cross it to greet Hare.
-- Hare introduces Hedgehog beyond the garden. Follow the pictured invitation to
-  the moss grove. This path becomes available after the bridge introduction.
-- Help Hedgehog make a resting place. The existing Waldschatz board shows three
-  woodland objects. Look for as long as you want, tap the pictured basket to hide
-  one, then tap the missing object. The eye lets you look again without penalty.
-- A separate, replayable example teaches the basket and answer controls using
-  a different answer from the live puzzle. No live answer receives a hand cue.
-- The pictured Hedgehog/resting-place control leaves the puzzle. The objects,
-  choices, hidden/visible phase and answered state survive leaving and reloading.
-- Five successful items create a lasting leaf-and-moss bed. Return to Hedgehog
-  to see the result; visit again freely or walk back to the Heart Tree.
-- Hedgehog introduces the tawny owl under an old oak. The onward path appears
-  after the resting-place payoff has been seen; earlier save files unlock it too.
-- Help Owl renew the picture sign. The existing Roboterpost route family remains
-  a flat grid: tap direction arrows to guide the fox to the pictured owl. Several
-  paths are valid. The curved arrow undoes one step; edges do not incur penalties.
-- A separate worked example uses a different destination from every live item.
-  Only the example has a guiding hand. Live controls allow free route choices.
-- The Owl/sign picture leaves the puzzle. Position, recent undo history, current
-  grid, completed-item count and answered state survive leaving and reloading.
-- Five routes restore the Heart Tree picture sign. Return to Owl to see it, then
-  follow the invitation back to the Heart Tree. The sign stays restored offline.
-- The book opens the full existing library. Its fox control returns to the forest.
+- Tap the fox/play invitation to begin; a pictured gesture teaches walking.
+- Tap a path, neighbour, the tree or the pictured destination. Arrow keys/WASD
+  also move the fox along safe routes. New destinations replace old approaches.
+- Accept a neighbour's pictured helping request, or return to exploring.
+- The speaker repeats guidance. The hand replays a separate worked example.
+  The example never adds a hand cue to a live answer or changes the saved item.
+- Pattern rounds use the original stage-one shapes. Memory lets the child look
+  freely, hide one object with the basket, answer by picture and look again with
+  the eye. Routes use a three-by-three board with a fox and pictured neighbour;
+  the arrows move one cell and the curved arrow undoes a step.
+- The pictured back control leaves a puzzle. Returning to its owner resumes the
+  exact item, answer order, hidden/visible phase, route position or answered state.
+- A pictured return after completion reveals the lasting change in the same world.
+- At chapter transitions, the tree shows the next shared projects with pictures
+  and short speech. It never requires reading an instruction or earning more stars.
+- The book opens **Waldspiele**: choose a familiar neighbour, then a pictured
+  pattern, memory or route collection. **Alle Spiele** opens the entire original
+  library, creative tools and parent settings. Its fox button returns to the forest.
 
-## Rendering and navigation
+## World and Swiss-native cast
 
-`js/forest/scene.js` loads the local WebGL Three.js distribution. It uses an
-orthographic camera angled down at roughly 56 degrees, with gentle following and
-an interaction view. Character portraits are rendered from the same solid 3D
-models as the world. Orange fox/scarf, broad-tailed Eurasian beaver and long-eared
-brown hare, European hedgehog and tawny owl have local idle/gesture/walk animation. The owl has a rounded head and facial discs, without ear tufts. The hare is brown rather than
-the earlier illustration library's white rabbit.
+The main loop connects brook → meadow garden → moss grove → story hollow → reed
+pond → brook, with two existing approaches to the central tree. The lower pond
+crossing is already safe. Restoration opens additional shortcuts. Water taps
+choose a reachable bank; the fox never walks freely through the river.
 
-Canopy instances, broad painted surfaces, native oak silhouettes, beech/alder/hazel
-forms, reeds and small wild-strawberry patches carry the quiet style. Trees fade
-when they obscure the fox. Decorative motion respects reduced-motion preference.
-Static soft world shadows and local character contact shadows keep recurring
-rendering work down. Exact appearance and performance still need physical-device
-review; generated concept art is a visual reference, not a production 3D asset.
+The cast is Eurasian beaver, European brown hare, European hedgehog, tawny owl
+(round head and facial discs, no ear tufts) and common kingfisher (blue back,
+orange breast, short tail and long bill). Pedunculate oak, beech, alder, hazel,
+reeds, moss and wild strawberries establish the Zürich-area lowland woodland.
 
-The path graph in `js/forest/model.js` is shared by destination selection and route
-planning. Before repair, the direct upstream link is absent. The existing path
-through the tree and lower crossing remains available. Repair adds the direct
-link. Water taps choose the reachable current bank. New destinations replace old
-approaches, and interface taps do not also move the fox.
+`js/forest/scene.js` uses locally bundled Three.js 0.187.0. The orthographic camera
+looks down at roughly 56 degrees, follows distant clearings and frames a resident
+or the tree during conversation. Portraits come from the same 3D character meshes.
+Canopies fade when they obscure interaction; the gathered finale keeps the crown
+visible. Decorative movement and scene transitions respect reduced-motion settings.
+Static world shadows and soft character contact shadows limit recurring rendering.
+The gathering is staged as a short scene transition, rather than autonomous NPC
+navigation. The fox's normal route movement stays available outside that scene.
 
-## Activity and progress
+## Fixed story, extensible collections
 
-The first story session uses the existing `pattern` question generator, five-item
-round and `learn:pattern:1` reward identity. It passes stage one explicitly and
-does not change `learning.stage` for the other activities. Ordinary library
-practice keeps the previous learning UI and reward behaviour, without applying
-story effects.
+`js/forest/story.js` holds nine explicit quest IDs, fixed chapter requirements,
+resident/partner roles, pictured goals and fifteen initial optional collections.
+Adding practice packs or optional episodes does not extend completed chapters.
+There is no growing field of quest pins. Existing places hold new content.
 
-The second session reuses the existing `treasure` question generator and a shared
-flat memory board (`js/ui/memory-board.js`). Its `swiss-woodland` content pack
-uses leaf, feather, mushroom, stone and wild strawberry pictures. The library's
-original pool and three selectable stages remain available. The story adapter
-in `js/forest/memory.js` fixes this introductory round at stage one and retains
-the existing `expedition:treasure:1` reward identity.
+The three guided adapters share the original generators and flat rules:
 
-The third session uses the existing `robot` generator, movement rules shared in
-`js/learn/routes.js` and the flat board in `js/ui/route-board.js`. Ordinary library
-practice keeps its robot, mailbox, three stages and hedge layouts. The story
-adapter in `js/forest/trail.js` uses a pictured fox/owl and stage-one three-by-three
-grids, without changing the global learning stage. Its reward identity remains
-`adventure:robot:1`. Current position and up to 64 recent positions support exact
-resume and stepwise undo while keeping storage bounded during exploratory loops.
+- `learn.js`: stage-one Musterzug and the `learn:pattern:1` reward identity.
+- `memory.js`: Waldschatz, its shared board and the `swiss-woodland` picture pack;
+  the existing `expedition:treasure:1` reward identity is retained.
+- `trail.js`: Roboterpost and the shared movement rules/board; ordinary library
+  practice retains robot/mailbox artwork, three stages and hedge layouts. The
+  existing `adventure:robot:1` reward identity is retained.
 
-The new localStorage namespace is **farbtupf.forest.v1**. It stores position,
-introductions, the stable bridge contribution, guidance familiarity, live pattern
-and shuffled choices, answered state, round count and payoff acknowledgement.
-Successful round completion commits the bridge before the result/return screen.
-It succeeds even when `FK.progress.finish` awards zero new stars. A separate
-reward flag and legacy replay-safe reward ID prevent repeated star awards. After
-an interrupted completion, the repaired world is retained and acknowledged.
+`activity.js` handles the common pictured return, result and reward recovery.
+Practice has its own per-collection sessions and never writes a story contribution.
+Every story round fixes its own introductory stage; `learning.stage` stays intact.
+The original activities outside these three adapters retain their existing UI and
+content. Their individual reading/difficulty review has not been performed here.
 
-The same namespace also stores a separate memory snapshot and the stable
-`moss-rest-v1` contribution. Each quest commits its world result before the
-return screen, independently of stars. Loading an earlier first-slice save adds
-the new fields without losing the bridge, position or introductions. Unknown
-valid completed contribution IDs are retained for future story/content packs.
+## Save, interruptions and continued play
 
-The third stable contribution is `owl-trail-sign-v1`. A route only counts after
-actual cardinal movement reaches its destination. The sign result is committed
-before the pictured return, even if the library reward was already earned.
+The localStorage namespace remains **farbtupf.forest.v1**. It stores position,
+introductions, per-quest and per-practice snapshots, guidance familiarity, fixed
+story contributions, payoff acknowledgements, chapter acknowledgements and the
+ending's current picture/completion state. Route undo keeps 64 recent positions
+so long exploratory loops do not grow storage indefinitely.
 
-Existing identifiers stay intact: **farbklecks.settings.v2**,
-**farbklecks.progress.v1**, IndexedDB **farbklecks**, and its **state**/**bilder**
-stores. No drawing or existing learning progress is migrated or cleared.
+A completed round commits its world result before the return screen. It works
+even when an existing library reward awards zero new stars. Reward identities
+and separate recorded flags prevent farming; interrupted reward recording is
+recovered on forest/book entry. The ending and previous contributions survive
+reloads, replay, optional practice and future unknown valid contribution IDs.
 
-The supported pattern, memory and route sessions have serialisable snapshots. Other activity
-families do not acquire exact interrupted-question recovery simply by sharing
-the forest. They require their own adapters before story integration.
+Earlier bridge, resting-place and Owl saves upgrade without losing their live
+items or repaired places. Existing **farbklecks.settings.v2**,
+**farbklecks.progress.v1**, IndexedDB **farbklecks** and its **state**/**bilder**
+stores retain their identifiers. Saved drawings are never migrated or cleared.
 
-## Guidance and current limits
+For a fresh development playthrough, use a fresh browser profile or remove only
+`farbtupf.forest.v1`. Keep the legacy settings, rewards and picture stores. A story
+reset is not exposed in the child-facing journey.
 
-Narration uses the Web Speech API, preferring an available `de-CH` voice and then
-another German voice. It cancels prior speech and obeys the existing sound
-setting. Device voices can be missing or require an OS download. No reviewed
-offline recordings are included, and an empty voice list is not treated as proof
-that speech was heard. Visual demonstrations are local and remain available.
+## Verification and remaining human checks
 
-The first slice is a functional prototype. It has not been observed with children
-or checked on a physical iPad/Safari. Those checks, reviewed recordings, final 3D
-assets, the remaining neighbours/chapters and the individual puzzle-content review
-remain separate work. The complete library can be reached through the book while
-future world activities are added progressively.
+The full story is implemented and exercised in a Chromium touch/WebGL journey,
+including interrupted new quests, both chapter changes, a saved ending, optional
+practice and an offline fully restored world. Unit tests cover all 72 permissible
+chapter-order combinations. Automated checks do not establish child comprehension
+or physical iPad/Safari performance.
 
-## Checks
-
-With the server running:
+Guidance uses the Web Speech API, preferring an available `de-CH` voice and then
+German. It obeys mute and cancels old speech. Device voices can be absent or need
+an OS download; reviewed offline recordings are not bundled. Local visual
+examples remain available with mute or missing voices. Actual audible guidance,
+comfortable touch/camera behaviour and a nonreading child's understanding need
+observation on the intended device. Individual puzzle-content review remains the
+separate review the user planned.
 
 ```sh
 node tests/forest.test.cjs
-node tests/forest-browser.cjs
 node tests/routes.test.cjs
+node tests/story.test.cjs
+# With the local server running and Playwright/Chromium available:
+node tests/forest-browser.cjs
 node tests/trail-browser.cjs
+node tests/story-browser.cjs
 ```
 
-The browser test uses touch inputs, a software WebGL Chromium instance and the
-real local service worker. Screenshots default to `/tmp/farbtupf-forest-test`;
-set `FARBTUPF_SHOTS` to save them elsewhere. Existing learning and handwriting
-checks use `?screen=hub` so they continue to test their original entry directly.
-
-For a fresh development playthrough, remove only `farbtupf.forest.v1` from local
-storage. Keep the legacy settings, reward and picture stores. No reset control is
-added to the child-facing journey.
+The repository also retains the ordinary learning, adventures, expeditions,
+artwork, memory, responsive and handwriting checks. `FARBTUPF_SHOTS` selects the
+browser screenshot directory; the full story defaults to `/tmp/farbtupf-complete-story`.

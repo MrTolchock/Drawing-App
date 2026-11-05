@@ -6,7 +6,7 @@
     const q = options.question, pictured = options.pictured === true;
     let state = options.snapshot || FK.routes.initial(q);
     const root = h('div', { class: 'route-board' + (pictured ? ' route-pictured' : '') });
-    const field = h('div', { class: 'adventure-map', style: { '--size': q.size }, role: 'group', 'aria-label': pictured ? 'Fuchs und Waldkauz auf der Wegekarte' : 'Postkarte mit ' + q.size + ' mal ' + q.size + ' Feldern' });
+    const field = h('div', { class: 'adventure-map', style: { '--size': q.size }, role: 'group', 'aria-label': pictured ? 'Fuchs und ' + (FK.forestStory?.names[options.targetResident || 'owl'] || 'Waldkauz') + ' auf der Wegekarte' : 'Postkarte mit ' + q.size + ' mal ' + q.size + ' Feldern' });
     const commands = h('p', { class: 'adventure-commands', role: 'status', 'aria-live': 'polite' });
     const arrows = h('div', { class: 'adventure-arrows', role: 'group', 'aria-label': pictured ? 'Fuchs bewegen' : 'Roboter steuern' });
     const cells = [], controls = [];
@@ -16,7 +16,7 @@
         cell.replaceChildren(); cell.classList.toggle('route-goal', i === q.goal); cell.classList.toggle('route-arrived', i === q.goal && state.answered);
         if (!pictured) { cell.textContent = i === state.position ? '🤖' : i === q.goal ? '📬' : q.obstacles.includes(i) ? '🌳' : state.history.includes(i) ? '·' : ''; FK.visual?.decorate(cell); }
         else {
-          if (i === q.goal) cell.append(FK.forestArt.character('owl'));
+          if (i === q.goal) cell.append(FK.forestArt.character(options.targetResident || 'owl'));
           if (i === state.position) cell.append(FK.forestArt.character('fox'));
           else if (q.obstacles.includes(i)) cell.append(FK.visual.art('tree'));
           else if (i !== q.goal && state.history.includes(i)) cell.append(h('span', { class: 'route-footprint' }, FK.forestArt.icon('paw')));

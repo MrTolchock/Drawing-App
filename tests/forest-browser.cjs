@@ -179,6 +179,7 @@ const path = require('node:path');
   console.log('PASS: grove discovery, native Hedgehog, shared flat memory rules, separate example, look again, no answer cue, two exact resume states, saved resting place and no duplicate rewards.');
 
   await page.locator('.forest-book').tap();
+  await page.getByRole('button', { name: 'Alle Spiele öffnen', exact: true }).tap();
   assert.equal(await page.evaluate(() => FK.current()), 'hub');
   await page.getByRole('button', { name: /Musterzug/ }).tap();
   assert.equal(await page.locator('.screen-learn .forest-learning-controls').isVisible(), false);

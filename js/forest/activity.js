@@ -1,0 +1,43 @@
+/* The same three accessible puzzle adapters serve story and optional collections. */
+(function () {
+  'use strict';
+  const FK = window.FK, model = FK.forestState, art = FK.forestArt, h = FK.h;
+  const dative = { beaver: 'Biber', hare: 'Hasen', hedgehog: 'Igel', owl: 'Waldkauz', kingfisher: 'Eisvogel' };
+  function backLabel(id) { const def = model.definition(id); return def.practice ? 'Zurück zu den Waldspielen' : 'Zurück zum ' + dative[def.resident]; }
+  function picture(id, complete) { const def = model.definition(id); return art.scenePicture(complete, def.resident, def.practice ? 'book' : def.picture); }
+  function leave(id) {
+    const def = model.definition(id);
+    if (def.practice) FK.go('forest-book', { resident: def.resident }, { replace: true });
+    else FK.go('forest', { returned: true, quest: id }, { replace: true });
+  }
+  function launch(id) {
+    const def = model.definition(id); if (!def) return false;
+    const session = model.getActivity(id) || model.startActivity(id); if (!session) return false;
+    FK.go({ pattern: 'learn', treasure: 'forest-memory', robot: 'forest-trail' }[def.game], { forest: true, game: def.game, quest: id }); return true;
+  }
+  function prepare(root, id) {
+    const def = model.definition(id), bar = root.querySelector('.topbar'), back = bar.querySelector('.btn-back');
+    back.replaceChildren(picture(id, model.isComplete(id))); back.setAttribute('aria-label', backLabel(id));
+    bar.querySelector('.title').textContent = def.practice ? 'Waldspiele' : 'Für den ' + dative[def.resident];
+  }
+  function finish(body, id) {
+    const a = model.getActivity(id), def = model.definition(id); if (!a?.finished) return;
+    if (!a.rewardRecorded) { FK.progress.finish(def.rewardGroup, def.game + ':1', 1); model.rewardRecorded(id); }
+    const root = body.closest('.screen'); prepare(root, id);
+    const back = root.querySelector('.btn-back'); back.replaceChildren(picture(id, true));
+    body.replaceChildren(h('section', { class: 'forest-round-finish' }, art.icon('check'),
+      h('button', { type: 'button', class: 'forest-button forest-scene-return', 'aria-label': backLabel(id), onclick: () => leave(id) },
+        h('span', {}, picture(id, true), art.icon('arrow'))),
+      h('p', { class: 'forest-finish-note', text: def.practice ? 'Schön, dass du weiter entdeckst.' : def.result })));
+    FK.forestVoice.say(def.practice ? 'Gut gemacht! Im Buch warten noch mehr Waldspiele.' : 'Gut gemacht! ' + backLabel(id) + '.');
+  }
+  function recoverRewards() {
+    const ids = Object.keys(model.quests).concat(Object.values(FK.forestStory.collections).flat().map(pack => pack.id));
+    for (const id of ids) {
+      const a = model.getActivity(id), def = model.definition(id); if (!a?.finished || a.rewardRecorded) continue;
+      if (!FK.progress.isDone(def.rewardGroup, def.game + ':1')) FK.progress.finish(def.rewardGroup, def.game + ':1', 1);
+      model.rewardRecorded(id);
+    }
+  }
+  FK.forestActivity = { backLabel, picture, leave, launch, prepare, finish, recoverRewards, dative };
+})();

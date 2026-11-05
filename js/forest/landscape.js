@@ -1,4 +1,5 @@
 import { THREE, paint, solid, ellipsoid, limb, curveTube, seeded } from './materials.js';
+import { buildProjects } from './projects.js';
 
 function flatShape(points, material, y = 0) {
   const shape = new THREE.Shape();
@@ -64,7 +65,7 @@ export function buildLandscape(scene, model) {
   const ground = paint('#dce0af', 'ground'), sand = paint('#e8ce99', 'sand'), water = paint('#8fb8bd', 'water');
   const left = [[-100, -100]], right = [[100, -100]], waterLeft = [], waterRight = [];
   for (let z = -100; z <= 100; z += 2) {
-    const width = 1.75 + Math.sin(z * 0.21) * 0.15, centre = model.riverX(z);
+    const width = model.riverHalfWidth(z), centre = model.riverX(z);
     left.push([centre - width, z]); right.push([centre + width, z]);
     waterLeft.push([centre - width, z]); waterRight.push([centre + width, z]);
   }
@@ -75,7 +76,7 @@ export function buildLandscape(scene, model) {
   for (const side of [-1, 1]) {
     const outer = [], inner = [];
     for (let z = -40; z <= 40; z += 1) {
-      const w = 1.75 + Math.sin(z * 0.21) * 0.15;
+      const w = model.riverHalfWidth(z);
       outer.push([model.riverX(z) + side * (w + 0.19), z]); inner.push([model.riverX(z) + side * w, z]);
     }
     scene.add(flatShape([...outer, ...inner.reverse()], bankMaterial, 0.008));
@@ -117,7 +118,7 @@ export function buildLandscape(scene, model) {
   [[-16, 2], [-10, 1.6], [11, -8.2], [13, 11], [-19, -5]].forEach(([x, z]) => rock(x, z, 0.6 + rng() * 0.25));
 
   const trees = [tree(-8, 2.2, 1.06, 41), tree(-20, -11, 0.8, 11), tree(-18, 12, 0.72, 17, 'beech'),
-    tree(14, -13, 0.73, 7), tree(19, -1, 0.7, 37, 'beech'), tree(25, 11, 0.78, 22, 'beech'),
+    tree(14, -13, 0.73, 7), tree(19, -1, 0.7, 37, 'beech'), tree(28, 10, 0.78, 22, 'beech'),
     tree(-5, -18, 0.57, 29, 'alder'), tree(5, -17, 0.52, 47, 'alder')];
   trees.forEach(t => scene.add(t.root));
   const heart = new THREE.Shape(); heart.moveTo(0, 0.16); heart.bezierCurveTo(-0.4, 0.62, -0.76, 0.02, 0, -0.5); heart.bezierCurveTo(0.76, 0.02, 0.4, 0.62, 0, 0.16);
@@ -139,7 +140,7 @@ export function buildLandscape(scene, model) {
   function shrub(x, z, size = 1) {
     for (let i = 0; i < 3; i++) ellipsoid(scene, paint(['#a2b477', '#b4be84', '#91a76f'][i]), [x + (i - 1) * size * 0.45, 0.3 * size, z + (i % 2) * 0.3], [size * 0.58, size * 0.48, size * 0.58]);
   }
-  [[-17, -5, 0.75], [-16, 15, 0.85], [15, -5, 0.8], [14, 6, 0.8], [-11, -15, 0.75]].forEach(p => shrub(...p));
+  [[-17, -5, 0.75], [-16, 15, 0.85], [15, -5, 0.8], [-11, -15, 0.75]].forEach(p => shrub(...p));
   for (const [x, z] of [[10, -7.3], [11.3, -4.5]]) {
     shrub(x, z, 0.42);
     for (let i = 0; i < 3; i++) {
@@ -153,7 +154,7 @@ export function buildLandscape(scene, model) {
   for (const [x, z] of [[10.8, -9], [12.5, -7.8], [13.8, -6.3]]) shrub(x, z, 0.62);
   for (let i = 0; i < 3; i++) limb(scene, paint('#b99564', 'bark'), [-8.6, 0.25 + i * 0.2, -10.3], [-6.3, 0.3 + i * 0.2, -10.0], 0.13, 0.14);
 
-  const restPlace = new THREE.Group(), bedding = new THREE.Group(); restPlace.position.set(21, 0, 17); scene.add(restPlace);
+  const restPlace = new THREE.Group(), bedding = new THREE.Group(); restPlace.name = 'hedgehog-resting-place'; bedding.name = 'hedgehog-bedding'; restPlace.position.set(21, 0, 17); scene.add(restPlace);
   ellipsoid(restPlace, moss, [0, 0.025, 0], [2.05, 0.13, 1.85]);
   restPlace.add(bedding);
   ellipsoid(bedding, paint('#b9b77d', 'leaf'), [0, 0.15, 0], [1.6, 0.25, 1.48]);
@@ -210,8 +211,11 @@ export function buildLandscape(scene, model) {
     const ripple = new THREE.Mesh(new THREE.RingGeometry(0.42, 0.44, 32), rippleMaterial);
     ripple.rotation.x = -Math.PI / 2; ripple.position.set(model.riverX(z), -0.115, z); ripple.scale.set(1, 1.7, 1); scene.add(ripple); ripples.push(ripple);
   }
+  const projects = buildProjects(scene, model, { flatShape, tree, reeds }); trees.push(...projects.trees);
   return {
     trees,
+    hero: trees[0].root,
+    setProjects: projects.set,
     setGrove(unlocked, complete) { grovePath.visible = unlocked; restPlace.visible = unlocked; bedding.visible = complete; },
     setHollow(unlocked, complete) { hollow.visible = unlocked; brokenSign.visible = !complete; restoredSign.visible = complete; },
     setBridge(repaired, progress = 1) {
@@ -223,6 +227,7 @@ export function buildLandscape(scene, model) {
       heartMaterial.emissive.set(repaired ? '#d2a95b' : '#ad804a'); heartMaterial.emissiveIntensity = repaired ? 0.23 : 0;
     },
     height(x, z, repaired) {
+      const projectHeight = projects.height(x, z); if (projectHeight !== null) return projectHeight;
       if (repaired && x > -2.85 && x < 4.05 && Math.abs(z + 7) < 1.55) return 0.42;
       if (x > -2.85 && x < 4.85 && Math.abs(z - 12) < 1.55) return 0.21;
       return 0.06;

@@ -2,12 +2,13 @@
 (function () {
   'use strict';
   const FK = window.FK, h = FK.h, model = FK.forestState, art = FK.forestArt, voice = FK.forestVoice;
-  const QUEST = model.REST;
+  let QUEST = model.REST;
   let root, body, demonstrating = false, active = false;
   const button = (label, children, fn, cls = '') => h('button', { type: 'button', class: 'forest-button ' + cls, 'aria-label': label, onclick: fn }, children);
-  function returnToForest() { FK.go('forest', { returned: true, quest: QUEST }, { replace: true }); }
+  function returnToForest() { FK.forestActivity.leave(QUEST); }
   function prompt() {
     const a = model.getActivity(QUEST);
+    if (!demonstrating && a?.finished) { voice.say(FK.forestActivity.backLabel(QUEST) + '.'); return; }
     voice.say(demonstrating ? 'Schau dir die Dinge an. Tippe auf den Korb. Ein Ding fehlt. Die Hand zeigt es dir. Danach bist du dran.' :
       a?.answered ? 'Gefunden! Tippe auf den Pfeil.' : a?.concealed ? 'Ein Ding fehlt. Welches war vorher auch dabei? Du kannst mit dem Auge nochmals schauen.' :
         'Schau dir die drei Dinge an. Wenn du bereit bist, tippe auf den Korb.');
@@ -48,16 +49,7 @@
     body.replaceChildren(h('div', { class: 'learn-progress', 'aria-label': a.round + ' von 5 geschafft', text: '⭐'.repeat(a.round) + '☆'.repeat(5 - a.round) }),
       h('h2', { class: 'learn-prompt', text: 'Was fehlt?' }), board, feedback, next); body.scrollTop = 0; prompt();
   }
-  function finish() {
-    demonstrating = false;
-    const a = model.getActivity(QUEST); if (!a?.finished) return;
-    if (!a.rewardRecorded) { FK.progress.finish('expedition', 'treasure:1', 1); model.rewardRecorded(QUEST); }
-    root.querySelector('.btn-back').replaceChildren(art.scenePicture(true, 'hedgehog'));
-    body.replaceChildren(h('section', { class: 'forest-round-finish' }, art.icon('check'),
-      button('Zurück zum Igel', h('span', {}, art.scenePicture(true, 'hedgehog'), art.icon('arrow')), returnToForest, 'forest-scene-return'),
-      h('p', { class: 'forest-finish-note', text: 'Ein gemütlicher Platz für deinen Freund.' })));
-    voice.say('Gut gemacht! Komm zurück zum Igel.');
-  }
+  function finish() { demonstrating = false; FK.forestActivity.finish(body, QUEST); }
   FK.screen('forest-memory', {
     build(element) {
       root = element; root.classList.add('forest-activity');
@@ -66,7 +58,10 @@
       bar.append(h('div', { class: 'forest-learning-controls' }, button('Aufgabe nochmals hören', art.icon('speaker'), prompt), button('Beispiel nochmals zeigen', art.icon('hand'), demonstrate)));
       body = h('div', { class: 'learn-body scroll' }); root.append(bar, body);
     },
-    enter() {
+    enter(params) {
+      QUEST = params.quest || model.REST;
+      if (model.definition(QUEST)?.game !== 'treasure') { FK.go('forest'); return; }
+      FK.forestActivity.prepare(root, QUEST);
       active = true; const a = model.getActivity(QUEST) || model.startActivity(QUEST);
       if (!a) { returnToForest(); return; }
       if (a.finished) finish(); else if (!model.hasDemo(QUEST)) demonstrate(); else draw();
