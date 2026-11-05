@@ -1,6 +1,6 @@
 # Farbtupf: Lernkonzept und Quellenstatus
 
-**Erweiterung:** Acht neue Entdecker-Abenteuer und 18 Kreativmissionen ergänzen die unten beschriebenen Angebote. [Recherche, Quellenstatus, Altersabgrenzung und Übungszuordnung](LMVZ-RESEARCH.md). Die frühere LMVZ-Zugriffsgrenze ist für die dort aufgeführten öffentlichen Seiten behoben.
+**Erweiterungen:** Acht Entdecker-Abenteuer, sieben weitere Spiele unter «Forschen & Knobeln» und insgesamt 24 Kreativmissionen ergänzen die unten beschriebenen Angebote. [LMVZ-Recherche und Übungszuordnung](LMVZ-RESEARCH.md), [Recherche der sechs Materialportale und neue Lernhandlungen](RESOURCE-RESEARCH.md). Die frühere LMVZ-Zugriffsgrenze ist für die dort aufgeführten öffentlichen Seiten behoben.
 
 Ziel: spielerische Ergänzung für die 1. Klasse in Zürich, mit dem Finger, ohne Zeitdruck. Kein vollständiger Ersatz für Unterricht oder Lehrmittel. Schweizer Standarddeutsch, kein ß. Der Lehrplan 21 beschreibt Kompetenzen über Zyklus 1; die drei Trimester unten sind unsere didaktische Empfehlung, keine amtliche Trimester-Vorgabe. Alle Stufen bleiben frei wählbar.
 

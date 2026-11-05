@@ -8,7 +8,7 @@ const context = {
   Image: class { set src(value) { this.url = value; this.complete = true; this.naturalWidth = this.naturalHeight = 1254; this.onload(); } },
   MutationObserver: class { observe() {} },
 };
-for (const path of ['js/data/stickers.js', 'js/ui/waldatelier.js', 'js/learn/words.js', 'js/learn/glyphs.js', 'js/learn/learning.js', 'js/learn/adventures.js', 'js/learn/missions.js', 'js/art/dsl.js', 'js/art/waldatelier.js']) {
+for (const path of ['js/data/stickers.js', 'js/ui/waldatelier.js', 'js/learn/words.js', 'js/learn/glyphs.js', 'js/learn/learning.js', 'js/learn/adventures.js', 'js/learn/expeditions.js', 'js/learn/missions.js', 'js/art/dsl.js', 'js/art/waldatelier.js']) {
   vm.runInNewContext(fs.readFileSync(path, 'utf8'), context, { filename: path });
 }
 test('every reading word and handwriting picture has matching custom artwork', () => {
@@ -19,10 +19,11 @@ test('every reading word and handwriting picture has matching custom artwork', (
   assert.notEqual(FK.visual.tokens['🍌'], FK.visual.tokens['🥕']);
 });
 test('all original learning and creative content has styled picture tokens', () => {
-  const content = [FK.learning.stages, FK.learning.games, FK.adventures.games, FK.missions];
+  const content = [FK.learning.stages, FK.learning.games, FK.adventures.games, FK.expeditions.games, FK.expeditions.words, FK.expeditions.treasures, FK.missions];
   for (const stage of [1, 2, 3]) for (let round = 0; round < 5; round++) {
     FK.learning.games.forEach(game => content.push(FK.learning.question(game.id, stage, round)));
     FK.adventures.games.forEach(game => content.push(FK.adventures.question(game.id, stage, round)));
+    FK.expeditions.games.forEach(game => content.push(FK.expeditions.question(game.id, stage, round)));
   }
   const pictograms = JSON.stringify(content).match(/\p{Extended_Pictographic}[\p{Emoji_Modifier}\uFE0F]*(?:\u200D\p{Extended_Pictographic}[\p{Emoji_Modifier}\uFE0F]*)*/gu) || [];
   for (const token of new Set(pictograms)) assert.ok(FK.visual.supports(token), 'No custom art for ' + token);

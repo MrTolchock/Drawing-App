@@ -1,0 +1,47 @@
+/* The new games share the Waldatelier paper, sepia lines and exact quantities. */
+.exp-work { max-width:800px; margin:0 auto; }
+.exp-work > .learn-button { margin:10px 6px; }
+.exp-instructions { max-width:650px; margin:12px auto 20px; font-size:17px; color:var(--muted); }
+.exp-picture { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; min-width:0; font:700 18px var(--read); }
+.exp-art { font:64px var(--emoji); }
+.exp-art .wa-illustration { width:100px; height:100px; }
+.exp-treasures { display:flex; flex-wrap:wrap; justify-content:center; align-items:stretch; gap:12px; padding:24px 12px; min-height:195px; margin:12px auto; background:#edf0de; border:1px solid #c5c7a5; border-radius:22px; }
+.exp-treasures .exp-picture { background:#fffaf0; border:1px solid #d7ccb2; border-radius:18px; padding:10px; width:125px; }
+.exp-treasure-answers { margin-top:20px; }.exp-picture-answers .learn-answer { font-size:19px; }
+.exp-picture-answers .wa-illustration { display:block; width:76px; height:76px; margin:0 auto 8px; }
+.exp-street { display:flex; align-items:flex-end; justify-content:center; gap:16px; padding:30px 0 16px; margin:12px auto; }
+.exp-house { position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; width:150px; min-width:0; min-height:135px; padding:14px 8px; margin-top:28px; border:1px solid #b2a27f; border-radius:3px 3px 15px 15px; background:#f3e3c9; }
+.exp-house::before { content:''; position:absolute; top:-24px; left:-1px; right:-1px; height:25px; clip-path:polygon(0 100%,50% 0,100% 100%); background:#bfa17c; }
+.exp-house span { font-size:15px; }.exp-house b { font-size:40px; line-height:1.2; }.exp-house-fixed { background:#e6ead4; }
+.exp-house-fixed::before { background:#8c9e76; }.exp-house[aria-pressed=true] { box-shadow:inset 0 0 0 3px #718b53; background:#edf0dc; }
+.exp-compare { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; margin:20px auto; max-width:620px; }
+.exp-bowl { background:#f3f0e1; border:1px solid #c5b99c; border-radius:22px; padding:10px 12px 18px; }.exp-bowl h3 { margin:5px 0 14px; font-size:19px; }
+.exp-quantity { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:4px; width:100%; max-width:240px; margin:auto; }
+.exp-counter { display:flex; align-items:center; justify-content:center; aspect-ratio:1; min-width:0; border:1px solid #d2cbb8; border-radius:50%; background:#fffaf0; font:28px var(--emoji); }
+.exp-counter .wa-symbol { width:100%; height:100%; }.exp-counter.filled { border-color:#8d9aaf; background:#e3e8eb; }
+.exp-mirror-labels { display:grid; grid-template-columns:1fr 1fr; gap:20px; max-width:590px; margin:18px auto 10px; font-size:17px; }
+.exp-mirror { display:grid; grid-template-columns:minmax(0,1fr) 8px minmax(0,1fr); gap:12px; max-width:590px; margin:auto; padding:16px; border:1px solid #c5c7a5; border-radius:20px; background:#f0f1e2; }
+.exp-mosaic { display:grid; grid-template-columns:repeat(var(--columns),minmax(0,1fr)); gap:5px; align-content:start; }
+.exp-mosaic-cell { display:flex; align-items:center; justify-content:center; min-width:0; width:100%; aspect-ratio:1; min-height:44px; padding:0; border:1px solid #b7b89d; border-radius:8px; background:#fffaf0; font-size:25px; color:#355636; box-shadow:none; }
+.exp-mosaic-cell.filled,.exp-mosaic-cell[aria-pressed=true] { background:#bccc9c; border-color:#718b53; }
+.exp-axis { border-left:3px dashed #7895a0; margin-left:3px; }
+.exp-known { padding:18px; margin:18px auto; max-width:490px; border:1px solid #c4c8a5; border-radius:20px; background:#edf0de; }
+.exp-equation { font-size:clamp(29px,5vw,42px); margin:10px 0 20px; }.exp-known .exp-equation { margin:12px 0 0; }
+.exp-trick-support { display:flex; align-items:center; justify-content:center; gap:14px; max-width:500px; margin:18px auto; }.exp-trick-support > span { font-size:30px; }.exp-trick-support .exp-quantity { max-width:220px; }
+.exp-word-picture .wa-illustration { width:155px; height:155px; }
+.exp-word { display:flex; justify-content:center; gap:5px; margin:18px auto; max-width:100%; }
+.exp-letter { display:flex; align-items:center; justify-content:center; min-width:0; width:48px; min-height:58px; font:700 clamp(24px,4.5vw,36px) var(--read); background:#f1ecdc; border-radius:10px; border-bottom:2px solid #c6b995; }
+.exp-blank { border:2px dashed #81955f; background:#e5ecd4; }.exp-blank.correct { border-style:solid; }
+.exp-chart { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; max-width:480px; margin:24px auto; padding:18px 12px 12px; border:1px solid #c5b99c; border-radius:20px; background:#f5f0e1; }
+.exp-votes { display:flex; flex-direction:column; align-items:center; border-bottom:2px solid #a0a586; padding:0 0 5px; margin-bottom:12px; }
+.exp-vote { display:flex; align-items:center; justify-content:center; height:26px; width:26px; font:24px var(--read); line-height:1; color:#b8b49c; }.exp-vote.filled { color:#627c45; }
+.exp-chart .exp-picture { font-size:15px; }.exp-chart .exp-art .wa-illustration { width:78px; height:78px; }
+/* Display utilities must also apply to flex/grid teaching supports. */
+.exp-work [hidden] { display:none !important; }
+@media(max-width:650px) {
+  .exp-instructions { font-size:15px; }.exp-treasures { gap:8px; padding:14px 8px; }.exp-treasures .exp-picture { width:110px; padding:8px; font-size:16px; }.exp-art .wa-illustration { width:84px; height:84px; }
+  .exp-street { gap:9px; }.exp-house { min-height:115px; width:110px; }.exp-house b { font-size:32px; }.exp-house span { font-size:13px; }
+  .exp-compare { gap:9px; }.exp-bowl { padding:8px 5px 12px; }.exp-quantity { gap:2px; }.exp-counter { font-size:22px; }
+  .exp-mirror { gap:5px; padding:8px; }.exp-mosaic { gap:3px; }.exp-mosaic-cell { min-height:32px; border-radius:5px; font-size:20px; }.exp-mirror-labels { font-size:14px; }
+  .exp-letter { width:40px; min-height:49px; }.exp-word { gap:3px; }.exp-chart { gap:8px; padding:14px 7px; }.exp-chart .exp-art .wa-illustration { width:66px; height:66px; }.exp-chart .exp-picture { font-size:13px; }
+}

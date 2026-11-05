@@ -33,7 +33,9 @@
       card('🔢', 'Zahlenwege', 'Punkt zu Punkt · Stufe ' + stage, 'sky', () => launch('dots', { level: stage })));
     const adventures = h('div', { class: 'island-grid' });
     FK.adventures.games.forEach(g => adventures.append(card(g.emoji, g.title, g.sub[stage - 1], g.color, () => launch('adventure', { game: g.id }), FK.progress.isDone('adventure', g.id + ':' + stage))));
-    adventures.append(card('🎨', 'Kreativmissionen', '18 Ideen zum Malen & Entdecken', 'lilac', () => launch('missions')));
+    adventures.append(card('🎨', 'Kreativmissionen', FK.missions.length + ' Ideen zum Malen & Entdecken', 'lilac', () => launch('missions')));
+    const expeditions = h('div', { class: 'island-grid' });
+    FK.expeditions.games.forEach(g => expeditions.append(card(g.emoji, g.title, g.sub[stage - 1], g.color, () => launch('expedition', { game: g.id }), FK.progress.isDone('expedition', g.id + ':' + stage))));
     const extras = h('div', { class: 'island-extras' },
       card('🎨', 'Malatelier', 'Ausmalen', 'sun', () => launch('book')),
       card('🖐️', 'Freies Malen', 'Mit dem Finger', 'mint', () => launch('free')),
@@ -41,6 +43,7 @@
       card('🌟', 'Sammelalbum', 'Deine Sticker', 'lilac', () => { FK.settings.set('album.seen', FK.rewardsUnlocked()); launch('album'); }));
     content.append(welcome,h('div',{class:'wa-section-heading',id:'wa-learning'},h('div',{},h('p',{class:'wa-kicker',text:'In deinem Tempo'}),h('h2', { class: 'island-heading', text: 'Deine Lerninsel' })),h('p', { class: 'island-intro', text: 'Spielen, staunen, ausprobieren.' })), levels, grid,
       h('p', { class: 'island-note', text: 'Wähle, was zu dir passt. Alle Stufen sind offen.' }),
+      h('h2', { class: 'island-heading', text: 'Forschen & Knobeln' }), h('p', { class: 'island-intro', text: 'Sieben neue Spiele: Schätze merken, Spiegelbilder bauen und Rechenfreunde finden.' }), expeditions,
       h('h2', { class: 'island-heading', text: 'Neue Entdecker-Abenteuer' }), h('p', { class: 'island-intro', text: 'Teilen, trommeln, tüfteln – und eigene Bilder erfinden.' }), adventures,
       h('h2', { class: 'island-heading', text: 'Kreativpause & Schätze' }), extras);
   }

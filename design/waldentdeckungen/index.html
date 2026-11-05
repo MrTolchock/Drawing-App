@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Farbtupf · neue Waldentdeckungen</title>
+<style>
+body{margin:0;padding:22px;font:16px system-ui,sans-serif;background:#eae5d8;color:#29432e}h1{margin:0 0 8px;font-size:28px}p{margin:0 0 20px}main{display:flex;gap:18px;align-items:start}section{flex:none}h2{font-size:17px;margin:0 0 10px}iframe{display:block;border:1px solid #b7a887;border-radius:20px;background:#f7f2e7}button{font:inherit;padding:10px 16px;margin:0 8px 20px 0;color:#29432e;background:#fffaf0;border:1px solid #b7a887;border-radius:12px;cursor:pointer}
+</style>
+</head>
+<body>
+<h1>Neue Waldentdeckungen</h1>
+<p>Die echte App auf dem Telefon und Tablet: Spiegelmuster, Schätze und Bilddiagramme.</p>
+<button type="button" id="mirror">Spiegelmosaik · Stufe 3</button>
+<button type="button" id="treasure">Waldschatz · Stufe 2</button>
+<button type="button" id="survey">Waldumfrage · Stufe 2</button>
+<main><section><h2>Telefon · 390 × 844</h2><iframe title="Telefon-Vorschau" name="phone" src="../../index.html" width="390" height="844"></iframe></section>
+<section><h2>Tablet · 820 × 1180</h2><iframe title="Tablet-Vorschau" name="tablet" src="../../index.html" width="820" height="1180"></iframe></section></main>
+<script>
+function show(game,stage){document.querySelectorAll('iframe').forEach(frame=>{const app=frame.contentWindow.FK;if(app&&app.expeditions){app.settings.set('learning.stage',stage);app.go('expedition',{game});}});}
+document.querySelector('#mirror').onclick=()=>show('mirror',3);
+document.querySelector('#treasure').onclick=()=>show('treasure',2);
+document.querySelector('#survey').onclick=()=>show('survey',2);
+</script>
+</body></html>

@@ -16,7 +16,9 @@ The learning island comes first. Drawing is a creative companion:
 
 Each stage is labelled with a trimester. This is a **provisional app progression**, not an official Zürich trimester schedule. The curriculum covers a whole cycle. Nature questions may be read together with an adult. All stages are freely accessible, with no timers or penalties in the new games. Complete five questions to earn a star once per game and stage. Replay freely. Stars unlock stickers.
 
-**New learning adventures:** Sternenrakete (number bonds), Waldpicknick (sharing), Zauberzwillinge (doubling), Formenwerkstatt (geometry), Reimzirkus, Silbentrommel, Roboterpost (routes) and Was kommt dann? (sequencing). Each has three stages, five tasks per round, hints, unlimited retries and a replay-safe star. Eighteen open creative missions connect observation, language, mathematics and discussion to the existing painting tools.
+**Learning adventures:** Sternenrakete (number bonds), Waldpicknick (sharing), Zauberzwillinge (doubling), Formenwerkstatt (geometry), Reimzirkus, Silbentrommel, Roboterpost (routes) and Was kommt dann? (sequencing). Each has three stages, five tasks per round, hints, unlimited retries and a replay-safe star.
+
+**Forschen & Knobeln:** Seven additional games: Waldschatz (self-paced missing-object memory), Nachbarhäuser (predecessor/successor), Beerenvergleich (structured quantity comparisons), Spiegelmosaik (editable reflected grids), Rechenfreunde (commutative/adjacent addition), Vokalversteck (missing written vowels) and Waldumfrage (picture charts). Each has three stages, five tasks and a replay-safe star. Twenty-four open creative missions now connect observation, language, mathematics, movement and water investigations to the painting tools. [Research from all six requested resource sites and original activity mapping](docs/RESOURCE-RESEARCH.md).
 
 **Official sources reviewed:** The public LMVZ product pages are now accessible and have been researched alongside Zürich's 2026/27 directory and Klett und Balmer's Young World didactics. All new exercises are original; no publisher worksheets or illustrations are included. See the [new research and activity mapping](docs/LMVZ-RESEARCH.md), [earlier curriculum/handwriting report](docs/RESEARCH.md) and [learning concept](docs/LEARNING.md). The seventeen earlier handwriting corrections are retained. These remain simplified original drawings, not a licensed official font or a certified complete curriculum.
 
@@ -38,6 +40,7 @@ In another terminal:
 ```sh
 node tests/learning.test.cjs
 node tests/adventures.test.cjs
+node tests/expeditions.test.cjs
 node tests/waldatelier.test.cjs
 node --check js/screens/learn.js
 # With the server running and the cloud image browser tools:
@@ -52,6 +55,6 @@ For manual responsive checks, open `tests/waldatelier-responsive.html` through t
 
 ## Install
 
-The existing GitHub Pages location is <https://mrtolchock.github.io/Drawing-App/>. Changes on `codex/playful-zurich-exercises` do not update that deployment until merged into the configured Pages branch.
+The existing GitHub Pages location is <https://mrtolchock.github.io/Drawing-App/>. The repository uses `main` as its sole branch; check the Pages deployment status after pushing updates.
 
 Open the deployed page in Safari, choose **Teilen → Zum Home-Bildschirm**. All pictures, settings and stars stay on the device. Offline use requires one successful initial load.

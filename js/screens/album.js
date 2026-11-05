@@ -132,6 +132,9 @@
         '<h3>Was Ihr Kind hier lernt</h3>' +
         '<p><b>Zählgarten</b> übt Mengen bis 5, 10 und 20. <b>Znüni-Rechnen</b> macht Plus und Minus sichtbar. Im <b>Musterzug</b> entdeckt Ihr Kind Wiederholungen. <b>Naturdetektive</b> erkunden Tiere und Lebensräume. Dazu kommen Lesen, Schreibspuren und Zahlenwege. Alle Spiele lassen sich mit dem Finger bedienen.</p>' +
         '<p>Die drei Trimester sind eine Orientierung für die 1. Klasse, keine verbindliche Vorgabe. Wählen Sie die Stufe passend zum Unterricht und zum Kind. Naturfragen können Sie gemeinsam vorlesen. Malatelier und freies Malen bleiben als Kreativpause.</p>' +
+        '<h3>Forschen &amp; Knobeln</h3>' +
+        '<p>Sieben weitere Spiele üben Merkstrategien, direkte Zahlennachbarn, Mengenvergleiche, Spiegelbilder, Rechenbeziehungen, Vokalbuchstaben und einfache Bilddiagramme. Der Waldschatz lässt sich selbst verstecken und nochmals ansehen. Vokalversteck arbeitet mit Bild und Schrift; Sie dürfen das Wort nennen. Es gibt keine eingesprochenen Wörter. In den 24 Kreativmissionen werden auch Bewegungen und Wasser erkundet. Begleiten Sie die Wasserexperimente und sprechen Sie über Vermutung und Beobachtung.</p>' +
+        '<p>Die neuen eigenen Aufgaben greifen Methoden aus öffentlichen Beschreibungen von PH Zürich, zebis, Klassengezwitscher, Herzensideen, Betzold und Stadt Zürich auf. <a href="docs/lernideen.html" target="_blank" rel="noopener">Quellen und Lernziele nachlesen</a>.</p>' +
         '<h3>Lehrplan und Handschrift</h3>' +
         '<p>Die Spiele üben ausgewählte Kompetenzen des Zürcher Lehrplans im ersten Zyklus. Die Schreibspuren wurden mit dem offiziellen Modellblatt der Deutschschweizer Basisschrift für Klasse 1 verglichen und korrigiert. Es sind vereinfachte eigene Vorlagen, kein amtlicher Font. Klasse 1 schreibt unverbunden. Bei Abweichungen gilt die Vorlage der Klassenlehrperson.</p>' +
         '<h3>Als App installieren</h3>' +

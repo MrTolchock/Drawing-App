@@ -52,9 +52,9 @@ for (const game of FK.adventures.games) for (let stage = 1; stage <= 3; stage++)
     }
   });
 }
-test('all three stages have six complete original creative missions', () => {
-  assert.equal(new Set(FK.missions.map(m => m.id)).size, 18);
-  for (const stage of [1, 2, 3]) assert.equal(FK.missions.filter(m => m.stage === stage).length, 6);
+test('all three stages have eight complete original creative missions', () => {
+  assert.equal(new Set(FK.missions.map(m => m.id)).size, 24);
+  for (const stage of [1, 2, 3]) assert.equal(FK.missions.filter(m => m.stage === stage).length, 8);
   for (const m of FK.missions) {
     assert.equal(m.steps.length, 3);
     assert.ok(m.goal && m.hint && m.talk && m.stretch && m.sources.length);
