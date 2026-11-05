@@ -4,6 +4,7 @@
   const FK = window.FK;
 
   FK.fx.init();
+  FK.timerUI.init();
 
   // iOS only starts audio from touchend/click, and only shows :active styles when a touchstart listener exists.
   document.addEventListener('touchstart', () => {}, { passive: true });
@@ -31,9 +32,9 @@
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
+      if (document.querySelector('.modal')) { FK.ui.closeModal(); return; }
       if (FK.current() === 'forest') { FK.forestScreen?.closeOverlay(); return; }
-      if (document.querySelector('.modal')) FK.ui.closeModal();
-      else if (FK.current() !== 'hub') FK.back();
+      if (FK.current() !== 'hub') FK.back();
     }
   });
 

@@ -55,6 +55,9 @@ Run `python3 -m http.server 8000 --bind 0.0.0.0` in the repository and open
 - The book opens **Waldspiele**: choose a familiar neighbour, then a pictured
   pattern, memory or route collection. **Alle Spiele** opens the entire original
   library, creative tools and parent settings. Its fox button returns to the forest.
+- The optional clock in **Waldspiele** offers a stopwatch or a gentle play-time
+  countdown. It starts off, never limits a quest or changes a reward, and pauses
+  in the background. [Clock controls and saving](TIMER.md).
 
 ## World and Swiss-native cast
 

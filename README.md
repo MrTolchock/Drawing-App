@@ -8,6 +8,8 @@ The app opens in **Der Herzbaum**, a complete playable woodland story in the sel
 
 The main journey uses three existing flat puzzle families with separate visual examples, pictured returns, repeatable German device narration and exact interrupted-session recovery: patterns, missing-object memory and arrow-controlled routes. The guided **Waldspiele** book adds fifteen independent practice collections across the five places. Practice never applies a story repair, changes a completed ending or raises the global learning stage. **Alle Spiele** retains the full original library, drawing tools and parent settings. Individual puzzle-content review remains separate, as planned. [Story, controls, save behaviour and device checks](docs/HEART-TREE.md).
 
+An optional **Spielzeit** clock offers a stopwatch or a 5/10/15/20/30-minute countdown, with pictured start/pause and reset controls. Open it with the clock in **Waldspiele** or in the parent settings. It is off initially; a countdown gives a gentle break reminder without ending a puzzle. Time pauses in the background and in parent settings, and reload restores the clock paused. [Timer behaviour](docs/TIMER.md).
+
 The original learning island is retained under **Alle Spiele**. Drawing is a creative companion:
 
 | Activity | Three selectable stages |
@@ -20,7 +22,7 @@ The original learning island is retained under **Alle Spiele**. Drawing is a cre
 | Schreibspuren | Small initial selection / expanded selection / all existing glyphs |
 | Zahlenwege | Three existing dot-to-dot levels |
 
-Each stage is labelled with a trimester. This is a **provisional app progression**, not an official Zürich trimester schedule. The curriculum covers a whole cycle. Nature questions may be read together with an adult. All stages are freely accessible, with no timers or penalties in the new games. Complete five questions to earn a star once per game and stage. Replay freely. Stars unlock stickers.
+Each stage is labelled with a trimester. This is a **provisional app progression**, not an official Zürich trimester schedule. The curriculum covers a whole cycle. Nature questions may be read together with an adult. All stages are freely accessible, with no time limits or penalties in the games. Complete five questions to earn a star once per game and stage. Replay freely. Stars unlock stickers.
 
 **Learning adventures:** Sternenrakete (number bonds), Waldpicknick (sharing), Zauberzwillinge (doubling), Formenwerkstatt (geometry), Reimzirkus, Silbentrommel, Roboterpost (routes) and Was kommt dann? (sequencing). Each has three stages, five tasks per round, hints, unlimited retries and a replay-safe star.
 
@@ -51,6 +53,7 @@ node tests/waldatelier.test.cjs
 node tests/forest.test.cjs
 node tests/routes.test.cjs
 node tests/story.test.cjs
+node tests/timer.test.cjs
 node --check js/screens/learn.js
 # With the server running and the cloud image browser tools:
 node tests/handwriting-browser.cjs
@@ -58,6 +61,7 @@ node tests/forest-browser.cjs
 node tests/memory-browser.cjs
 node tests/trail-browser.cjs
 node tests/story-browser.cjs
+node tests/timer-browser.cjs
 ```
 
 The content tests cover answer validity, range boundaries, arithmetic, offline assets and storage compatibility. Browser smoke checks are in `tests/browser-smoke.cjs` and require Playwright plus Chromium. In this cloud image: `node tests/browser-smoke.cjs` with the server running. They exercise 60 tasks through touch taps, wrong answers, replay rewards, three-stage routing, mobile layout, offline reload and saved stars. The dedicated handwriting browser check verifies model bounds across stage changes and completes all seventeen revised models with simulated touch strokes. These tests do not establish Safari compatibility or certify pedagogical accuracy; test on a physical iPad before release.

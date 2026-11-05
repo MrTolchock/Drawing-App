@@ -1,5 +1,5 @@
 /* Farbtupf – Service Worker: keeps the whole app on the device so it runs without internet. */
-const CACHE = 'farbtupf-v6.0.0-heart-tree-story';
+const CACHE = 'farbtupf-v6.1.0-play-timer';
 const ASSETS = [
   './',
   './index.html',
@@ -14,6 +14,7 @@ const ASSETS = [
   './css/waldatelier.css',
   './css/expeditions.css',
   './css/forest.css',
+  './css/timer.css',
   './vendor/three/three.module.js',
   './vendor/three/three.core.js',
   './js/forest/model.js',
@@ -55,6 +56,8 @@ const ASSETS = [
   './js/screens/missions.js',
   './js/core/util.js',
   './js/core/store.js',
+  './js/core/timer.js',
+  './js/ui/timer.js',
   './js/core/sound.js',
   './js/data/colors.js',
   './js/data/stickers.js',

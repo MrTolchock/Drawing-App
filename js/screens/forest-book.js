@@ -28,6 +28,7 @@
       const bar = FK.ui.topbar({ title: 'Waldspiele', onBack: () => FK.go('forest') });
       const back = bar.querySelector('.btn-back'); back.replaceChildren(art.character('fox')); back.setAttribute('aria-label', 'Zurück zum Wald');
       bar.append(button('Nochmals hören', art.icon('speaker'), say, 'forest-round'));
+      bar.append(FK.timerUI.launcher());
       body = h('div', { class: 'forest-book-body scroll' }); root.append(bar, body);
     },
     enter(params) { FK.forestActivity.recoverRewards(); if (model.residentAvailable(params.resident)) resident = params.resident; if (!model.residentAvailable(resident)) resident = 'beaver'; draw(); say(); },

@@ -1,0 +1,41 @@
+/* The enabled clock owns a row, so it never covers drawing or puzzle controls. */
+:root { --play-timer-height:calc(58px + env(safe-area-inset-top,0px)); }
+body.play-timer-enabled #screens { top:var(--play-timer-height); }
+.play-timer-bar { position:fixed; inset:0 0 auto; z-index:40; height:var(--play-timer-height); padding:env(safe-area-inset-top,0px) max(15px,env(safe-area-inset-right,0px)) 0 max(15px,env(safe-area-inset-left,0px)); display:flex; align-items:center; justify-content:space-between; gap:12px; background:#f5f0df; border-bottom:1px solid #c8c6a5; color:#4c633d; }
+.play-timer-bar[hidden],.play-timer-panel[hidden],.play-timer-presets[hidden] { display:none; }
+.play-timer-button { display:inline-flex; align-items:center; justify-content:center; min-width:48px; min-height:48px; padding:8px 14px; border:1px solid #b9bf98; border-radius:16px; background:#fff9ed; color:#4c633d; font:700 17px var(--read); cursor:pointer; touch-action:manipulation; }
+.play-timer-button:focus-visible { outline:3px solid #7e9458; outline-offset:3px; }
+.play-timer-button:disabled { opacity:.45; cursor:default; }
+.play-timer-button[aria-pressed=true] { background:#e1e8c7; border:2px solid #8fa368; }
+.play-timer-icon { display:inline-flex; align-items:center; justify-content:center; width:29px; height:29px; flex:none; }
+.play-timer-icon svg { width:100%; height:100%; }
+.play-timer-actions { display:flex; justify-content:center; align-items:center; gap:10px; }
+.play-timer-summary { min-width:0; padding:0; min-height:48px; border:0; background:transparent; box-shadow:none; }
+.play-timer-readout { display:flex; align-items:center; gap:12px; text-align:left; }
+.play-timer-readout > span:last-child { display:flex; flex-direction:column; align-items:flex-start; }
+.play-timer-digits { color:#405634; font:700 22px/1.1 var(--read); font-variant-numeric:tabular-nums; }
+.play-timer-status { color:#71815d; font:400 11px/1.2 var(--read); }
+.play-timer-clock { position:relative; display:inline-flex; flex:none; width:42px; height:42px; }
+.play-timer-clock > svg { position:absolute; inset:0; width:100%; height:100%; fill:none; stroke-width:3px; }
+.play-timer-track { stroke:#dedfc6; }.play-timer-progress { stroke:#92a66b; stroke-dasharray:var(--timer-progress,0) 100; }
+.play-timer-clock > .play-timer-icon { position:absolute; inset:9px; width:24px; height:24px; }
+.play-timer-readout[data-completed=true] .play-timer-clock { background:#e5e9c9; border-radius:50%; }
+.play-timer-panel { display:flex; flex-direction:column; align-items:center; gap:14px; }
+.play-timer-panel p { margin:0; text-align:center; font:400 14px/1.5 var(--read); color:#71815d; }
+.play-timer-readout.large { justify-content:center; margin:4px 0; }
+.play-timer-readout.large .play-timer-digits { font-size:39px; }
+.play-timer-readout.large .play-timer-status { font-size:14px; }
+.play-timer-readout.large .play-timer-clock { width:76px; height:76px; }
+.play-timer-readout.large .play-timer-clock > .play-timer-icon { inset:21px; width:34px; height:34px; }
+.play-timer-panel .play-timer-actions .play-timer-button { min-width:68px; min-height:64px; }
+.play-timer-modes,.play-timer-presets { display:flex; flex-wrap:wrap; justify-content:center; gap:8px; }
+.play-timer-settings { gap:16px; }
+.play-timer-settings .setting-head { text-align:center; }
+.play-timer-modal { width:min(620px,100%); max-height:calc(100dvh - 32px); overflow:auto; background:#fffaf0; border-color:#bfc09e; }
+.play-timer-modal .modal-title { color:#405634; }
+.play-timer-modal .setting-card { margin:0; padding:0; border:0; background:transparent; box-shadow:none; }
+.play-timer-launcher { border-radius:50%; padding:10px; width:56px; height:56px; min-width:56px; }
+@media(max-width:650px) {
+  .play-timer-bar { gap:7px; }.play-timer-bar .play-timer-actions { gap:7px; }.play-timer-bar .play-timer-button { padding:6px 10px; }.play-timer-readout { gap:8px; }.play-timer-digits { font-size:20px; }.play-timer-status { font-size:10px; }.play-timer-modes .play-timer-button { padding:8px 10px; font-size:15px; }.play-timer-presets .play-timer-button { font-size:15px; }.play-timer-modal { padding:23px 18px; }.play-timer-launcher { width:51px; min-width:51px; height:56px; }
+}
+@media(max-height:650px) { body.play-timer-enabled .forest-activity .learn-body { justify-content:flex-start; padding-top:12px; } }
