@@ -14,8 +14,8 @@ body{margin:0;padding:22px;font:16px system-ui,sans-serif;background:#eae5d8;col
 <button type="button" id="mirror">Spiegelmosaik · Stufe 3</button>
 <button type="button" id="treasure">Waldschatz · Stufe 2</button>
 <button type="button" id="survey">Waldumfrage · Stufe 2</button>
-<main><section><h2>Telefon · 390 × 844</h2><iframe title="Telefon-Vorschau" name="phone" src="../../index.html" width="390" height="844"></iframe></section>
-<section><h2>Tablet · 820 × 1180</h2><iframe title="Tablet-Vorschau" name="tablet" src="../../index.html" width="820" height="1180"></iframe></section></main>
+<main><section><h2>Telefon · 390 × 844</h2><iframe title="Telefon-Vorschau" name="phone" src="../../../../index.html" width="390" height="844"></iframe></section>
+<section><h2>Tablet · 820 × 1180</h2><iframe title="Tablet-Vorschau" name="tablet" src="../../../../index.html" width="820" height="1180"></iframe></section></main>
 <script>
 function show(game,stage){document.querySelectorAll('iframe').forEach(frame=>{const app=frame.contentWindow.FK;if(app&&app.expeditions){app.settings.set('learning.stage',stage);app.go('expedition',{game});}});}
 document.querySelector('#mirror').onclick=()=>show('mirror',3);

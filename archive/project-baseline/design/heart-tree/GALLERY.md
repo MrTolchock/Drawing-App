@@ -4,7 +4,7 @@
 
 The selected direction is **original A, Painted woodland**. This gallery presents
 its related studies and current implementation. Comparison rounds and superseded
-looks are in the [archive](../archive/README.md).
+looks are in the [archive](../../../../design/archive/README.md).
 
 ## Selected-style studies
 
@@ -39,5 +39,5 @@ verification context.
 - [Quantity comprehension reference](walkthrough-quantity-check.png)
 - [Picture-only cards PDF](walkthrough-cards.pdf)
 
-[Archived visualisations](../archive/GALLERY.md) retain all dismissed comparison
+[Archived visualisations](../../../../design/archive/GALLERY.md) retain all dismissed comparison
 rounds, earlier storyboards and old prototype captures.

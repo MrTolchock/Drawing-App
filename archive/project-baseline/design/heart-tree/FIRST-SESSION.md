@@ -2,18 +2,18 @@
 
 > Design reference recorded during planning. Implementation and approval statements describe the stage when it was written. See the [current app notes](../../docs/HEART-TREE.md) and [design index](../README.md) for the present build.
 
-Design material for a 6–7-year-old who cannot yet read. These cards are static references; no child observations have been collected. A separate [first local playable slice](../archive/implementation-notes/PLAYABLE-SLICE.md) now uses the existing Musterzug content with the planned guidance and return flow.
+Design material for a 6–7-year-old who cannot yet read. These cards are static references; no child observations have been collected. A separate [first local playable slice](../../../../design/archive/implementation-notes/PLAYABLE-SLICE.md) now uses the existing Musterzug content with the planned guidance and return flow.
 
 ## 1. Use this pack
 
 - [Opening layout and camera](OPENING-LAYOUT.md)
 - [Help, leaving and return state contract](OPENING-INTERACTIONS.md)
-- [Current opening review packet](../archive/reviews/OPENING-REVIEW.pdf)
+- [Current opening review packet](../../../../design/archive/reviews/OPENING-REVIEW.pdf)
 - [Opening walkthrough in the selected original A, Painted woodland](painted-woodland-opening.png)
 - [Chosen art direction](ART-DIRECTION.md)
 - [Picture-only walkthrough cards — 13-page PDF](walkthrough-cards.pdf)
 - [Adult overview](walkthrough-preview.png)
-- [World and guidance storyboard](../archive/storyboards/before-reading-storyboard.png)
+- [World and guidance storyboard](../../../../design/archive/storyboards/before-reading-storyboard.png)
 - [Underlying non-reader design](BEFORE-READING.md)
 
 Use one activity family per short walkthrough. Breaks and stopping are welcome. The child does not need to complete all of the material in one sitting.
@@ -113,7 +113,7 @@ Use the same prompt:
 
 The child chooses one lower group. No digit knowledge is needed for this reference interaction.
 
-The quantity reference checks understanding of matching amounts. The current Zählgarten instead uses counted objects and numeric answer choices. Its [first question starts with zero](../../js/learn/learning.js#L49). Visible small groups introduce the operation in this walkthrough; an empty group and the symbol for zero need their own deliberate teaching step during the later review.
+The quantity reference checks understanding of matching amounts. The current Zählgarten instead uses counted objects and numeric answer choices. Its [first question starts with zero](../../../../js/learn/learning.js#L49). Visible small groups introduce the operation in this walkthrough; an empty group and the symbol for zero need their own deliberate teaching step during the later review.
 
 This is a proposed reference interaction, not a drop-in replacement or a claim that the existing counting activity has been redesigned.
 
@@ -144,7 +144,7 @@ Repeat with the new arrangement.
 
 Teach the eye control during the demonstration. If the child uses it, show the matching LOOK page again. The basket then returns to the same HIDDEN state. This is available help, not a penalty.
 
-The current activity uses [written hide and look-again labels](../../js/screens/expedition.js#L40). Its existing self-paced structure can be retained while introducing picture controls and speech.
+The current activity uses [written hide and look-again labels](../../../../js/screens/expedition.js#L40). Its existing self-paced structure can be retained while introducing picture controls and speech.
 
 ## 7. Adult-only card key
 

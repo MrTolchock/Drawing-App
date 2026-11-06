@@ -5,7 +5,7 @@ remains the visual reference for the forest and its flat puzzle pages.
 
 ## Authoritative reference
 
-Use the **left column, A Painted woodland**, in the intact [original A/B board](../archive/woodland-studies/visual-middle-ground-options.png).
+Use the **left column, A Painted woodland**, in the intact [original A/B board](../../../../design/archive/woodland-studies/visual-middle-ground-options.png).
 Its upper image defines the calmer map treatment; its lower image defines the
 painted woodland appearance. The user reaffirmed original A after reviewing
 A1 and A2. B, A1 and A2 are not selected.
@@ -56,4 +56,4 @@ The selected direction is recorded separately from implementation validation.
 Physical iPad/Safari comfort, audible guidance and a non-reading child's
 understanding still need the observation described in the current app notes.
 
-[Selected design](README.md) · [Current visuals](GALLERY.md) · [Archived comparisons](../archive/woodland-studies/README.md)
+[Selected design](README.md) · [Current visuals](GALLERY.md) · [Archived comparisons](../../../../design/archive/woodland-studies/README.md)

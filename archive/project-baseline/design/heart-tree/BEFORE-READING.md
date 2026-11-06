@@ -20,9 +20,9 @@ Choose and remember challenge levels per activity family, with the existing glob
 
 A read-only inspection found:
 
-- The [sound system](../../js/core/sound.js#L1) synthesises sound effects and currently has no speech.
-- [Learning prompts](../../js/screens/learn.js#L19) and [hints](../../js/screens/learn.js#L60) use written text.
-- [Adventure](../../js/screens/adventure.js#L133) and [expedition](../../js/screens/expedition.js#L147) screens also present written prompts and hints.
+- The [sound system](../../../../js/core/sound.js#L1) synthesises sound effects and currently has no speech.
+- [Learning prompts](../../../../js/screens/learn.js#L19) and [hints](../../../../js/screens/learn.js#L60) use written text.
+- [Adventure](../../../../js/screens/adventure.js#L133) and [expedition](../../../../js/screens/expedition.js#L147) screens also present written prompts and hints.
 - Reading activities intentionally test reading and have their own visual support.
 - Tracing and dot-to-dot already contain visual guidance that can be retained and developed.
 
@@ -193,7 +193,7 @@ Revise the instructions, example or interaction when the child needs unplanned a
 
 This changes the design’s priority: establish understanding of the first session before authoring a large catalogue or producing the full 3D forest.
 
-- [Non-reader storyboard](../archive/storyboards/before-reading-storyboard.png)
+- [Non-reader storyboard](../../../../design/archive/storyboards/before-reading-storyboard.png)
 - [First-session script and observation sheet](FIRST-SESSION.md)
 - [Picture-only walkthrough cards](walkthrough-cards.pdf)
 - [Adult overview of the reference cards](walkthrough-preview.png)

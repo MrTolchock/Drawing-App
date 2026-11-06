@@ -1,6 +1,6 @@
 # Private playable preview
 
-> Archived design/review note. Implementation and approval statements describe the stage when it was written. See the [current app notes](../../../docs/HEART-TREE.md) and [design index](../../README.md) for the present build.
+> Archived design/review note. Implementation and approval statements describe the stage when it was written. See the [current app notes](../../../archive/project-baseline/docs/HEART-TREE.md) and [design index](../../../archive/project-baseline/design/README.md) for the present build.
 
 [https://farbtupf-herzbaum-preview-k7m4.andreas-itten.chatgpt.site](https://farbtupf-herzbaum-preview-k7m4.andreas-itten.chatgpt.site)
 

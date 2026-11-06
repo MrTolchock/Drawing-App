@@ -1,32 +1,15 @@
-# Design archive
+# Earlier design archive
 
-Dismissed visual alternatives and earlier project material are preserved here.
-The [current design index](../README.md) and [current gallery](../heart-tree/GALLERY.md)
-present the selected Painted woodland direction and current app first.
+Historical design alternatives, storyboards, reviews and prototype material are preserved in this directory. They describe the project at the time they were created.
 
-| Archived collection | Why it is here |
-| --- | --- |
-| [Unused visual identities](visual-identities/README.md) | Formenfreude, Papierwelt, Kleine Welten and Tintenabenteuer were not selected; the chosen Waldatelier board is kept in the active design folder |
-| [Woodland comparisons and refinements](woodland-studies/README.md) | Earlier three-option studies and A1/A2 refinements were superseded by the user's choice of original A; the original A/B board is kept intact |
-| [Early story, world and gameplay options](early-options/README.md) | Mixed comparison boards containing both chosen and unchosen ideas; the current blueprint records the resulting decisions |
-| [Earlier detailed storyboards](storyboards/README.md) | Earlier world, opening, library and non-reader illustrations, before the selected calmer woodland treatment |
-| [Previous prototype screenshots](prototype-screenshots/README.md) | The earlier geometric 3D presentation and original flat adapters, before the painted update |
-| [Earlier and intermediate app captures](verification/README.md) | Historical browser/preview records; canonical current screenshots are in the active gallery |
-| [Historical review documents and authoring sources](reviews/README.md) | Original illustrated review PDFs, their covers and source scripts |
-| [Implementation and release history](implementation-notes/README.md) | Earlier plans, prototype status, hosting and release records |
+- [Visual alternatives](visual-identities/README.md)
+- [Woodland studies](woodland-studies/README.md)
+- [Early story options](early-options/README.md)
+- [Storyboards](storyboards/README.md)
+- [Prototype screenshots](prototype-screenshots/README.md)
+- [Verification captures](verification/README.md)
+- [Review documents and sources](reviews/README.md)
+- [Implementation history](implementation-notes/README.md)
+- [Image gallery](GALLERY.md)
 
-**Archived does not mean every idea in a board was rejected.** Mixed comparison
-boards remain unedited so the original work is preserved. The user selected
-**original A, Painted woodland**, rather than B, A1 or A2. Its left-hand panel in
-the [original A/B board](woodland-studies/visual-middle-ground-options.png) remains
-the authoritative visual reference. The selected story still uses the woodland
-loop, short quest arcs and Meet → Reconnect → Gather.
-
-[Browse all archived images](GALLERY.md) · [Original design review PDF](reviews/DESIGN-REVIEW.pdf)
-
-The [provenance manifest](../archive-manifest.json) retains the original source
-hashes and the new locations of all collected material. Image and PDF bytes are
-unchanged. Earlier screenshots and documents describe their original stage,
-not the current build or completed child/device validation.
-
-[Back to current design](../README.md)
+[Complete project archive](../../archive/README.md) · [Current blueprint](../heart-tree/BLUEPRINT.md)

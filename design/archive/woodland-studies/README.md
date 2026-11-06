@@ -10,7 +10,7 @@ The three-option study, unselected B and later A1/A2 refinements are archived.
 | [A1 richer detail / A2 closer woodland](painted-woodland-variants.png) | Both refinements were set aside when the user reaffirmed original A. [Refinement notes](PAINTED-WOODLAND-VARIANTS.md) |
 
 The mixed A/B board is preserved intact to retain the exact approved A reference.
-The [current art direction](../../heart-tree/ART-DIRECTION.md) describes the chosen
+The [current art direction](../../../archive/project-baseline/design/heart-tree/ART-DIRECTION.md) describes the chosen
 balance of texture, detail and open space.
 
-[Current visual gallery](../../heart-tree/GALLERY.md) · [Archive](../README.md)
+[Current visual gallery](../../../archive/project-baseline/design/heart-tree/GALLERY.md) · [Archive](../README.md)

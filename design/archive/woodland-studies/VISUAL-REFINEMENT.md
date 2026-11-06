@@ -1,8 +1,8 @@
 # Three calmer woodland directions
 
-> Archived design/review note. Implementation and approval statements describe the stage when it was written. See the [current app notes](../../../docs/HEART-TREE.md) and [design index](../../README.md) for the present build.
+> Archived design/review note. Implementation and approval statements describe the stage when it was written. See the [current app notes](../../../archive/project-baseline/docs/HEART-TREE.md) and [design index](../../../archive/project-baseline/design/README.md) for the present build.
 
-Status: archived comparison round. Subsequent exploration led to selection of **the original A, Painted woodland** in the [A/B comparison](VISUAL-MIDDLE-GROUND.md). See the [chosen art direction](../../heart-tree/ART-DIRECTION.md). Application implementation remains deferred.
+Status: archived comparison round. Subsequent exploration led to selection of **the original A, Painted woodland** in the [A/B comparison](VISUAL-MIDDLE-GROUND.md). See the [chosen art direction](../../../archive/project-baseline/design/heart-tree/ART-DIRECTION.md). Application implementation remains deferred.
 
 The user likes the existing flat puzzle artwork but finds the woodland map too busy. This refinement explores a calmer, more abstract map and a matching future Three.js environment. The existing puzzle illustrations stay as they are.
 

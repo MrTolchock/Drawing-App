@@ -1,7 +1,7 @@
 # Unused visual identities
 
 The user selected **Waldatelier** for the learning/drawing app. Its [selected
-board](../../waldatelier/01-waldatelier.png) and [implementation notes](../../waldatelier/README.md)
+board](../../waldatelier/01-waldatelier.png) and [implementation notes](../../../archive/project-baseline/design/waldatelier/README.md)
 remain in the active design folder. The four unused directions are archived here.
 
 | Dismissed direction | Board |
@@ -16,5 +16,5 @@ The [original comparison page](index.html), [manifest](manifest.json) and
 including a link to the selected Waldatelier board. Open the HTML page through
 the local app server to use its original comparison controls.
 
-The later forest direction is [original A, Painted woodland](../../heart-tree/ART-DIRECTION.md).
-[Design archive](../README.md) · [Current design](../../README.md)
+The later forest direction is [original A, Painted woodland](../../../archive/project-baseline/design/heart-tree/ART-DIRECTION.md).
+[Design archive](../README.md) · [Current design](../../../archive/project-baseline/design/README.md)

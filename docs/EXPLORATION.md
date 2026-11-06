@@ -1,4 +1,4 @@
-# An explorable woodland — 6.6
+# Exploring the woodland
 
 The forest is a place to walk through freely. Sandy paths remain useful landmarks, but they no longer constrain movement. The fox and five neighbours use the same articulated 3D animals as the story films. Trees have trunks, branches and solid crowns. Gently sloping hills, riverbanks, mossy rocks, flowers, hollow timber and a distant tree line give the world depth. The Heart Tree's trunk, branches and crowns move with the breeze, along with neighbouring trees, reeds and instanced grass. Water flows, butterflies flutter and fish move between lily pads.
 
@@ -17,7 +17,7 @@ The Weitblickhügel and Wolkenhügel provide elevated woodland destinations. The
 
 These are optional discoveries. They do not award learning stars, complete repairs or grow the Heart Tree. Their journal lives in `farbtupf.exploration.v1`. The story retains exactly nine authored tree contributions, all original puzzle sessions, the reunion and ending. Later residents and crossings retain their existing story gates. The broken bridge still requires the old ford detour until repaired; the later story bridge provides another genuine water crossing.
 
-The existing forest save key and version remain compatible. Free coordinates are stored exactly rather than snapped back onto a path during save or reload. On entering the rendered world, an unsafe old coordinate is relocated only as far as needed to reach nearby safe terrain. Discoveries and the added scenery are included in the 6.6 service-worker cache.
+The existing forest save key and version remain compatible. Free coordinates are stored exactly rather than snapped back onto a path during save or reload. On entering the rendered world, an unsafe old coordinate is relocated only as far as needed to reach nearby safe terrain. Discoveries and the added scenery are included in the active service-worker cache.
 
 ## Rendering and motion
 

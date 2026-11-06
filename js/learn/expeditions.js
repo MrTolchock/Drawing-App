@@ -1,5 +1,5 @@
 /* Original, generated activities inspired by the public teaching descriptions
-   reviewed in docs/RESOURCE-RESEARCH.md. No source worksheets or media are used. */
+   reviewed in docs/RESEARCH.md. No source worksheets or media are used. */
 (function () {
   'use strict';
   const FK = window.FK;

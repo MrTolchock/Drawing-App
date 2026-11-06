@@ -1,12 +1,12 @@
 # Implementation plan — future Three.js application
 
-> Archived design/review note. Implementation and approval statements describe the stage when it was written. See the [current app notes](../../../docs/HEART-TREE.md) and [design index](../../README.md) for the present build.
+> Archived design/review note. Implementation and approval statements describe the stage when it was written. See the [current app notes](../../../archive/project-baseline/docs/HEART-TREE.md) and [design index](../../../archive/project-baseline/design/README.md) for the present build.
 
 Implementation reference. The user explicitly authorised the first local playable slice, which is now implemented. [Current scope, screenshots and verification](PLAYABLE-SLICE.md) distinguish that slice from the later phases below. No publication or deployment was authorised.
 
 ## 1. Recommended first build
 
-Follow the [opening layout and camera specification](../../heart-tree/OPENING-LAYOUT.md) and [interaction-state contract](../../heart-tree/OPENING-INTERACTIONS.md). The [current opening review packet](../reviews/OPENING-REVIEW.pdf) visualises these in the selected original A style.
+Follow the [opening layout and camera specification](../../../archive/project-baseline/design/heart-tree/OPENING-LAYOUT.md) and [interaction-state contract](../../../archive/project-baseline/design/heart-tree/OPENING-INTERACTIONS.md). The [current opening review packet](../reviews/OPENING-REVIEW.pdf) visualises these in the selected original A style.
 
 Build a local first playable slice containing:
 
@@ -93,7 +93,7 @@ Detailed question-state restoration requires a serialisable snapshot per adapter
 
 ## 6. Art and map production
 
-Use the [selected original A, Painted woodland](../../heart-tree/ART-DIRECTION.md), retaining its original detail and open-space balance. The left column of the A/B comparison is the authoritative style reference.
+Use the [selected original A, Painted woodland](../../../archive/project-baseline/design/heart-tree/ART-DIRECTION.md), retaining its original detail and open-space balance. The left column of the A/B comparison is the authoritative style reference.
 
 Use a fixed orthographic angled overhead camera and actual 3D terrain/character silhouettes. Painted textures, soft lighting and restrained geometry should carry the watercolour identity.
 

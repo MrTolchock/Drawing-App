@@ -1,25 +1,21 @@
-# Farbtupf: Lernkonzept und Quellenstatus
+# Learning scope
 
-**Erweiterungen:** Acht Entdecker-Abenteuer, sieben weitere Spiele unter «Forschen & Knobeln» und insgesamt 24 Kreativmissionen ergänzen die unten beschriebenen Angebote. [LMVZ-Recherche und Übungszuordnung](LMVZ-RESEARCH.md), [Recherche der sechs Materialportale und neue Lernhandlungen](RESOURCE-RESEARCH.md). Die frühere LMVZ-Zugriffsgrenze ist für die dort aufgeführten öffentlichen Seiten behoben.
+Farbtupf supports practice for first-grade children in Zürich. It complements teaching; it is not a complete curriculum or a certified assessment. Interface language is Swiss Standard German.
 
-Ziel: spielerische Ergänzung für die 1. Klasse in Zürich, mit dem Finger, ohne Zeitdruck. Kein vollständiger Ersatz für Unterricht oder Lehrmittel. Schweizer Standarddeutsch, kein ß. Der Lehrplan 21 beschreibt Kompetenzen über Zyklus 1; die drei Trimester unten sind unsere didaktische Empfehlung, keine amtliche Trimester-Vorgabe. Alle Stufen bleiben frei wählbar.
+The open stages **Entdecken**, **Üben** and **Knobeln** describe app difficulty. They are not official school trimesters. Story rounds use the introductory stage and five tasks. Practice can use any available stage. Retries and requested help have no penalty.
 
-| Lernspiel | 1. Trimester: Entdecken | 2. Trimester: Üben | 3. Trimester: Knobeln |
-| --- | --- | --- | --- |
-| Zählgarten | Mengen 0–5, einzeln antippen | Mengen 0–10 im Zehnerfeld | Mengen 0–20 in zwei Zehnerfeldern |
-| Znüni-Rechnen | Zusammenlegen bis 5 | Plus und Minus bis 10 | Plus und Minus bis 20, auch Zehnerübergang |
-| Musterzug | AB-Muster | AAB-Muster | ABC- und ABB-Muster |
-| Naturdetektive | Tiere erkennen | Lebensräume zuordnen | Körpermerkmale und Bedürfnisse vergleichen |
-| Lesen | einfache offene Silben, kurze Wörter, Farbwörter | mehrsilbige Wörter, Nomen mit Farbwort | komplexere Wörter und ganze Sätze |
-| Schreibspuren | kleine Auswahl einfacher Buchstaben/Ziffern, breite Spur | erweiterte Auswahl, geführte Spur | alle Zeichen und freiwillige Wiederholung ohne Hilfe |
-| Punkt zu Punkt | bestehende Stufe 1 | bestehende Stufe 2 | bestehende Stufe 3 |
+| Area | Current activities |
+| --- | --- |
+| Quantities and arithmetic | Zählgarten, Znüni-Rechenfreunde, Nachbarhäuser, Beerenvergleich, Sternenrakete, Waldpicknick, Zauberspiegel |
+| Patterns, memory and space | Musterzug, Waldschatz, Formenwerkstatt, Spiegelmosaik, Roboterpost, Zahlenwege |
+| Nature, language and sequence | Naturdetektive, Reimzirkus, Silbentrommel, Vokalversteck, Waldumfrage, Was kommt dann? |
+| Reading and writing | Leseschatz reading activities and guided handwriting |
+| Creative tools | Drawing, colouring, saved pictures and sticker album |
 
-## Quellenprüfung abgeschlossen, Grenzen dokumentiert
+Creative missions are not in the active game. Rechenfreunde's related sums belong to the combined Znüni-Rechenfreunde activity; its older route remains compatible.
 
-Die Zürcher Lehrplanseiten und die offiziellen Basisschrift-Materialien sind seit dem 4. November 2026 erreichbar und wurden eingesehen. [Recherchebericht mit Kompetenzcodes, Originalquellen, Schriftkorrekturen und verbleibenden Grenzen](RESEARCH.md).
+Ordinary game rules should be understood through pictures, reversible manipulation, spoken guidance and separate examples. Reading tasks intentionally require reading. Vokalversteck practises written letters in pictured words; the picture alone does not remove that reading requirement. Speech depends on installed German device voices, including offline availability. No recorded narration is bundled.
 
-Zürich verwendet ab Klasse 1 die Deutschschweizer Basisschrift. Erste und zweite Klasse schreiben unverbunden; Verbindungen beginnen ab Klasse 3. Die selbst gezeichneten SVG-Modelle wurden anhand des offiziellen Erstklass-Modellblatts strukturell korrigiert. Andika bleibt ausschliesslich Leseschrift. Exakte Fonttreue oder eine behördliche Freigabe werden nicht behauptet. LMVZ-Produktseiten bleiben separat mit HTTP 403 unerreichbar; die Angaben zu ABC 1/2/3 sind über die offizielle Zürcher Basisschrift-Seite belegt.
+[Gameplay](GAMEPLAY.md) describes current interactions. The [parent guide](lernideen.html) explains learning and source limits in German. [Research records](RESEARCH.md) preserve the original source work; their old feature inventories do not define the current app.
 
-## Gestaltung
-
-Grosse Tippflächen, Zählobjekte einzeln antippbar, sichtbare Strichrichtung, Pausen jederzeit, keine Uhr, keine Abzüge bei Fehlern, keine Stift-/Druckabhängigkeit. Fünf gelöste Aufgaben ergeben einen Stern pro Spiel und Stufe; Wiederholungen bleiben möglich. Ausmalen und freies Zeichnen sind ergänzende Kreativangebote und haben keine behauptete Trimesterzuordnung.
+Physical device checks and observation with children remain necessary to evaluate comprehension, accessibility and learning suitability. Automated content and browser checks cover correctness and interaction behaviour, not pedagogical efficacy.

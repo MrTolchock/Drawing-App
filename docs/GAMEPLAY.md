@@ -1,6 +1,6 @@
 # Gameplay: small adventures with things to do
 
-Version 6.4 replaces several answer-only activities with editable, pictured situations. The same first-grade Swiss Standard German content, three open stages and unlimited retries remain. A wrong attempt has no penalty, deadline or lost reward.
+Activities use editable, pictured situations. The same first-grade Swiss Standard German content, three open stages and unlimited retries remain. A wrong attempt has no penalty, deadline or lost reward.
 
 ## A clear next step
 

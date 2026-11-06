@@ -1,6 +1,6 @@
 # Archived visualisations
 
-[Archive index](README.md) · [Current gallery](../heart-tree/GALLERY.md) · [Current design](../README.md)
+[Archive index](README.md) · [Current gallery](../../archive/project-baseline/design/heart-tree/GALLERY.md) · [Current design](../../archive/project-baseline/design/README.md)
 
 These files preserve dismissed alternatives and earlier work. A mixed comparison board can include a chosen option; original A in the left column of the A/B board remains the selected reference. The current gallery keeps the selected direction and current app first.
 

@@ -1,6 +1,6 @@
 # Heart Tree source update
 
-> Archived design/review note. Implementation and approval statements describe the stage when it was written. See the [current app notes](../../../docs/HEART-TREE.md) and [design index](../../README.md) for the present build.
+> Archived design/review note. Implementation and approval statements describe the stage when it was written. See the [current app notes](../../../archive/project-baseline/docs/HEART-TREE.md) and [design index](../../../archive/project-baseline/design/README.md) for the present build.
 
 The user requested continuation and a commit to GitHub on main.
 

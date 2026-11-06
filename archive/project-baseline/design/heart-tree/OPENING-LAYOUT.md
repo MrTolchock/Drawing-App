@@ -2,7 +2,7 @@
 
 > Design reference recorded during planning. Implementation and approval statements describe the stage when it was written. See the [current app notes](../../docs/HEART-TREE.md) and [design index](../README.md) for the present build.
 
-Design specification for the [implemented first local prototype](../archive/implementation-notes/PLAYABLE-SLICE.md). The selected visual reference is [original A, Painted woodland](ART-DIRECTION.md). Static boards remain references; device and child validation are pending.
+Design specification for the [implemented first local prototype](../../../../design/archive/implementation-notes/PLAYABLE-SLICE.md). The selected visual reference is [original A, Painted woodland](ART-DIRECTION.md). Static boards remain references; device and child validation are pending.
 
 [Opening map and three camera studies](opening-layout.png).
 

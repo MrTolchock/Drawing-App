@@ -1,14 +1,14 @@
 # The first local playable slice
 
-> Archived design/review note. Implementation and approval statements describe the stage when it was written. See the [current app notes](../../../docs/HEART-TREE.md) and [design index](../../README.md) for the present build.
+> Archived design/review note. Implementation and approval statements describe the stage when it was written. See the [current app notes](../../../archive/project-baseline/docs/HEART-TREE.md) and [design index](../../../archive/project-baseline/design/README.md) for the present build.
 
-The user authorised this build by selecting **Start the local playable slice**. It is implemented in [/workspace/Drawing-App](../../../README.md). An owner-private hosted preview was subsequently created to fix the inaccessible localhost link. The existing public app is not replaced.
+The user authorised this build by selecting **Start the local playable slice**. It is implemented in [/workspace/Drawing-App](../../../archive/project-baseline/README.md). An owner-private hosted preview was subsequently created to fix the inaccessible localhost link. The existing public app is not replaced.
 
 ## Try it
 
 [Open the private playable preview](https://farbtupf-herzbaum-preview-k7m4.andreas-itten.chatgpt.site). Sign in with the same ChatGPT account you use here. Native Sites deployment status confirmed success.
 
-The earlier localhost address was only usable inside the workspace. For local development, start `python3 -m http.server 8000 --bind 0.0.0.0` from the application directory. `?screen=hub` opens the retained activity library directly. [Hosting and future-update notes](../../../docs/PREVIEW.md).
+The earlier localhost address was only usable inside the workspace. For local development, start `python3 -m http.server 8000 --bind 0.0.0.0` from the application directory. `?screen=hub` opens the retained activity library directly. [Hosting and future-update notes](../../../archive/project-baseline/docs/PREVIEW.md).
 
 Actual browser captures are available here:
 
@@ -51,4 +51,4 @@ Prototype narration uses available German device voices, preferring `de-CH`. The
 
 Next is observation on the intended iPad/Safari with real audio and children aged 6–7. Use those findings to refine controls, camera, asset quality, guidance and pacing. The remaining forest, story chapters, activity adapters and individual puzzle review follow. The full five-clearing world and 120 illustrative episode capacity are not delivered content in this slice.
 
-[Application implementation notes](../../../docs/HEART-TREE.md) · [Roadmap](NEXT-STEPS.md)
+[Application implementation notes](../../../archive/project-baseline/docs/HEART-TREE.md) · [Roadmap](NEXT-STEPS.md)

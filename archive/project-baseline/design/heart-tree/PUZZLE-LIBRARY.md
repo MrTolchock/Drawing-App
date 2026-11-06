@@ -123,10 +123,10 @@ Final puzzle-to-quest mapping remains for the user’s later deep dive. The cata
 
 Current inventory sources:
 
-- [Learning groups](../../js/learn/learning.js#L6)
-- [Reading, tracing and dot-to-dot entry points](../../js/screens/hub.js#L31)
-- [Adventure groups](../../js/learn/adventures.js#L7)
-- [Expedition groups](../../js/learn/expeditions.js#L6)
+- [Learning groups](../../../../js/learn/learning.js#L6)
+- [Reading, tracing and dot-to-dot entry points](../../../../js/screens/hub.js#L31)
+- [Adventure groups](../../../../js/learn/adventures.js#L7)
+- [Expedition groups](../../../../js/learn/expeditions.js#L6)
 - [Creative mission records](../../js/learn/missions.js#L31)
 - [Current app overview](../../README.md)
 
@@ -213,8 +213,8 @@ Validation needs to include:
 
 ## 12. Visuals and scope
 
-- [Capacity board](../archive/storyboards/puzzle-library.png)
-- [Updated adventure overview](../archive/storyboards/adventure-blueprint-v2.png)
+- [Capacity board](../../../../design/archive/storyboards/puzzle-library.png)
+- [Updated adventure overview](../../../../design/archive/storyboards/adventure-blueprint-v2.png)
 - [Main design blueprint](BLUEPRINT.md)
 
 The numerical capacity example is a design illustration. The new episodes, activity mechanics and content packs have not been authored or implemented. Individual puzzle review remains separate from this structural design work.

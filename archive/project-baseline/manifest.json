@@ -1,0 +1,414 @@
+{
+  "purpose": "Previous documentation preserved before the current design baseline. Text links repaired after moving; prose and binary assets preserved. Original hashes identify the source snapshot.",
+  "source_commit": "b3b957dac83803b0cfb5fd2cd200c9995800ea96",
+  "files": [
+    {
+      "original": "README.md",
+      "archived": "archive/project-baseline/README.md",
+      "source_sha256": "0066566dc7e639bd9987425c7082740a0a81715e2e48586521e972ad6971eb49",
+      "archived_sha256": "a65daf4b3dbb72b63a30dfa06b5e829b7cc21f32e56ae0762c4aec11b3ca45ab"
+    },
+    {
+      "original": "assets/woodland/ART-NOTES.md",
+      "archived": "archive/project-baseline/assets/woodland/ART-NOTES.md",
+      "source_sha256": "2b3a3f56760d9f20cceda05defe320973e4fc57241ca77b61359f5f72a16269b",
+      "archived_sha256": "2b3a3f56760d9f20cceda05defe320973e4fc57241ca77b61359f5f72a16269b"
+    },
+    {
+      "original": "design/README.md",
+      "archived": "archive/project-baseline/design/README.md",
+      "source_sha256": "e44bec964270f1b82b02d5de1e4b4ed96c6edb63d0f27017e4ee00994a4b1994",
+      "archived_sha256": "d68a59aee0698378945b5e5c21d3cd288b96dcb1cf8233a18dfbe1f855afe156"
+    },
+    {
+      "original": "design/archive-manifest.json",
+      "archived": "archive/project-baseline/design/archive-manifest.json",
+      "source_sha256": "7cf59f172f3002d8f0407016b545f8a4389fd3f3d3f6b2010476f20ce719f743",
+      "archived_sha256": "7cf59f172f3002d8f0407016b545f8a4389fd3f3d3f6b2010476f20ce719f743"
+    },
+    {
+      "original": "design/heart-tree/ACTIVITY-READINESS.csv",
+      "archived": "archive/project-baseline/design/heart-tree/ACTIVITY-READINESS.csv",
+      "source_sha256": "56ad663d9f7d6f55a4ffffd76815491f289817a1ec7a3251e47da228eff34dfe",
+      "archived_sha256": "56ad663d9f7d6f55a4ffffd76815491f289817a1ec7a3251e47da228eff34dfe"
+    },
+    {
+      "original": "design/heart-tree/ACTIVITY-READINESS.md",
+      "archived": "archive/project-baseline/design/heart-tree/ACTIVITY-READINESS.md",
+      "source_sha256": "d94359f8ea05cf6224ca2c0ee242e42a435da5f6ac87bb2aaff6c2d2ff55d1cb",
+      "archived_sha256": "d94359f8ea05cf6224ca2c0ee242e42a435da5f6ac87bb2aaff6c2d2ff55d1cb"
+    },
+    {
+      "original": "design/heart-tree/ART-DIRECTION.md",
+      "archived": "archive/project-baseline/design/heart-tree/ART-DIRECTION.md",
+      "source_sha256": "3db0fdab5c2a67da8002ace9d6e2f569ad2f7b9aafcc645db3ca9269da91aedd",
+      "archived_sha256": "99964bc0cae283b94df49aa3ca7a7d3f2b77233baa7a4b9d8f4224f74210e83b"
+    },
+    {
+      "original": "design/heart-tree/BEFORE-READING.md",
+      "archived": "archive/project-baseline/design/heart-tree/BEFORE-READING.md",
+      "source_sha256": "b8af6e5a7af21b01cfa57823a41f96529016eb133cea4927f35ee7d5b0f3faac",
+      "archived_sha256": "ab59124d40c158e5873df34ee6d07053b065727047e491cb69515361eea1f1f1"
+    },
+    {
+      "original": "design/heart-tree/BLUEPRINT.md",
+      "archived": "archive/project-baseline/design/heart-tree/BLUEPRINT.md",
+      "source_sha256": "f812c1c7333ea24b23d420bfcb86eb644a3e85354483c329f14be54c7e34d4ee",
+      "archived_sha256": "34232cfae2de7d0522cec4f97fd1ea822694eb3e23626d452823efde477d6622"
+    },
+    {
+      "original": "design/heart-tree/CHILD-INTERFACE.md",
+      "archived": "archive/project-baseline/design/heart-tree/CHILD-INTERFACE.md",
+      "source_sha256": "b0d6c03a7d3d3c80166b7817d30f6fd6018f75c7c6b0100bbc068e861680885f",
+      "archived_sha256": "228d582c3b8b334be6f93399904b470b6bb9429d4e66dd67217c518189e83c95"
+    },
+    {
+      "original": "design/heart-tree/FIRST-SESSION.md",
+      "archived": "archive/project-baseline/design/heart-tree/FIRST-SESSION.md",
+      "source_sha256": "1787d79b1a098c16bdb88be33acf08af68dbb06bf2e2b8c83b343050eddcec1f",
+      "archived_sha256": "6ccf8d40a82ac03062b214fde5f4ee72d9666e4ddafa5907ec5c029f7686aeb1"
+    },
+    {
+      "original": "design/heart-tree/GALLERY.md",
+      "archived": "archive/project-baseline/design/heart-tree/GALLERY.md",
+      "source_sha256": "8eb60b179648facff61e683d829fbac38ebbb8b9691674c2b459c5b5f99595df",
+      "archived_sha256": "0c3347deda83aed6c792d3d3718f0f1884976160d7c46dddb95a6badeeb1d9e0"
+    },
+    {
+      "original": "design/heart-tree/OPENING-INTERACTIONS.md",
+      "archived": "archive/project-baseline/design/heart-tree/OPENING-INTERACTIONS.md",
+      "source_sha256": "46b1da88e14ecd689402c2099d76deef53d9c676c66be2241517e1afe186e2e6",
+      "archived_sha256": "139eb09dc403a0f9bd515fdf0031a4b7ad502ecf06b41d992a8a029fa18983d0"
+    },
+    {
+      "original": "design/heart-tree/OPENING-LAYOUT.md",
+      "archived": "archive/project-baseline/design/heart-tree/OPENING-LAYOUT.md",
+      "source_sha256": "b453e999638c31217b5437c596c9821f460b24e41c9e75a857a6c7ef06172543",
+      "archived_sha256": "36f0df50bcd13d53491f79ae17f6eb5e5057f51d411adb568e8989313c863dce"
+    },
+    {
+      "original": "design/heart-tree/PUZZLE-LIBRARY.md",
+      "archived": "archive/project-baseline/design/heart-tree/PUZZLE-LIBRARY.md",
+      "source_sha256": "c7a81c503df65bc94c25a708c537574d2f15120021eea2333296eb7765f0fa43",
+      "archived_sha256": "ef05e241ef6f600b254a28106368f5cbd01de70a2bb8be2ca724877873e62eb1"
+    },
+    {
+      "original": "design/heart-tree/README.md",
+      "archived": "archive/project-baseline/design/heart-tree/README.md",
+      "source_sha256": "32e9849a297985f2057b123506b000e6ac3caecc21beb74127ccb97850b944eb",
+      "archived_sha256": "c9fbadf02cca0c31310fa576ad3454b527f679d702562808dfab5623d3129335"
+    },
+    {
+      "original": "design/heart-tree/opening-layout.png",
+      "archived": "archive/project-baseline/design/heart-tree/opening-layout.png",
+      "source_sha256": "05497c88884a9e7ef965ca320e644ed8a5bfe2e866f1fd5ee663176b71493bf2",
+      "archived_sha256": "05497c88884a9e7ef965ca320e644ed8a5bfe2e866f1fd5ee663176b71493bf2"
+    },
+    {
+      "original": "design/heart-tree/opening-support.png",
+      "archived": "archive/project-baseline/design/heart-tree/opening-support.png",
+      "source_sha256": "91f416fa661737ae538c6ac3499d72194b127f02ccc7958755ab1512b4d3054c",
+      "archived_sha256": "91f416fa661737ae538c6ac3499d72194b127f02ccc7958755ab1512b4d3054c"
+    },
+    {
+      "original": "design/heart-tree/painted-implementation/01-world.png",
+      "archived": "archive/project-baseline/design/heart-tree/painted-implementation/01-world.png",
+      "source_sha256": "1bf2865fa57f4c69f1ff56683aae495d2f36297fd613be903eb3c5b1b5c51481",
+      "archived_sha256": "1bf2865fa57f4c69f1ff56683aae495d2f36297fd613be903eb3c5b1b5c51481"
+    },
+    {
+      "original": "design/heart-tree/painted-implementation/02-pattern.png",
+      "archived": "archive/project-baseline/design/heart-tree/painted-implementation/02-pattern.png",
+      "source_sha256": "6cb0c9d8dc20266545655742161b4886d98cc17f05329c9f964e46ddc7c3e5e7",
+      "archived_sha256": "6cb0c9d8dc20266545655742161b4886d98cc17f05329c9f964e46ddc7c3e5e7"
+    },
+    {
+      "original": "design/heart-tree/painted-implementation/03-memory-phone.png",
+      "archived": "archive/project-baseline/design/heart-tree/painted-implementation/03-memory-phone.png",
+      "source_sha256": "418ffae7a56f694aa49b0a2d379c3293d7244dc4b8513584fbcca13af764ac34",
+      "archived_sha256": "418ffae7a56f694aa49b0a2d379c3293d7244dc4b8513584fbcca13af764ac34"
+    },
+    {
+      "original": "design/heart-tree/painted-implementation/04-route-phone.png",
+      "archived": "archive/project-baseline/design/heart-tree/painted-implementation/04-route-phone.png",
+      "source_sha256": "4b35d52a2657a3933cf9eb30cdd87f837b23ebbc5ec50b40717da16c53f0c792",
+      "archived_sha256": "4b35d52a2657a3933cf9eb30cdd87f837b23ebbc5ec50b40717da16c53f0c792"
+    },
+    {
+      "original": "design/heart-tree/painted-implementation/05-long-pattern-phone.png",
+      "archived": "archive/project-baseline/design/heart-tree/painted-implementation/05-long-pattern-phone.png",
+      "source_sha256": "2beedfcf3744b94b75c69d081777efbc13a745d32a6a3b83ae1cf3814c4e6569",
+      "archived_sha256": "2beedfcf3744b94b75c69d081777efbc13a745d32a6a3b83ae1cf3814c4e6569"
+    },
+    {
+      "original": "design/heart-tree/painted-implementation/06-book-phone.png",
+      "archived": "archive/project-baseline/design/heart-tree/painted-implementation/06-book-phone.png",
+      "source_sha256": "5690df0d25d23e9233cd46eb86179ddf0b92bccc427f5198e8bfdeb5ec3908cf",
+      "archived_sha256": "5690df0d25d23e9233cd46eb86179ddf0b92bccc427f5198e8bfdeb5ec3908cf"
+    },
+    {
+      "original": "design/heart-tree/painted-implementation/07-world-phone.png",
+      "archived": "archive/project-baseline/design/heart-tree/painted-implementation/07-world-phone.png",
+      "source_sha256": "d7bacd5fe249bc3a5c50ea0cda608cebd7b3e66ec10c7b1bb1bf0b50ec4afdaa",
+      "archived_sha256": "d7bacd5fe249bc3a5c50ea0cda608cebd7b3e66ec10c7b1bb1bf0b50ec4afdaa"
+    },
+    {
+      "original": "design/heart-tree/painted-implementation/08-pattern-phone.png",
+      "archived": "archive/project-baseline/design/heart-tree/painted-implementation/08-pattern-phone.png",
+      "source_sha256": "1e93278a166ef9f348152672073986873a247c909fbc5f4d7e049d1913a208b9",
+      "archived_sha256": "1e93278a166ef9f348152672073986873a247c909fbc5f4d7e049d1913a208b9"
+    },
+    {
+      "original": "design/heart-tree/painted-implementation/README.md",
+      "archived": "archive/project-baseline/design/heart-tree/painted-implementation/README.md",
+      "source_sha256": "541cabb1340e6bfa788a6edf9a34c11984447a15b2294db03551ad4f32793d49",
+      "archived_sha256": "63297f8c98d442cc91019a2f656f3afac19094b775c96d0505d80b7ac478d364"
+    },
+    {
+      "original": "design/heart-tree/painted-woodland-opening.png",
+      "archived": "archive/project-baseline/design/heart-tree/painted-woodland-opening.png",
+      "source_sha256": "caeddd971fd00f908d1d566e5d3f040a6582a2142d973bd55f63f37587147fa9",
+      "archived_sha256": "caeddd971fd00f908d1d566e5d3f040a6582a2142d973bd55f63f37587147fa9"
+    },
+    {
+      "original": "design/heart-tree/walkthrough-cards.pdf",
+      "archived": "archive/project-baseline/design/heart-tree/walkthrough-cards.pdf",
+      "source_sha256": "40ee441443b535d0ad120c8b43d5c05a9db45f4aebe935cc580c418fea0ef096",
+      "archived_sha256": "40ee441443b535d0ad120c8b43d5c05a9db45f4aebe935cc580c418fea0ef096"
+    },
+    {
+      "original": "design/heart-tree/walkthrough-manifest.json",
+      "archived": "archive/project-baseline/design/heart-tree/walkthrough-manifest.json",
+      "source_sha256": "de20918b8ae19226b8b8f8a52ba03e57a3febd8f102d4579d8d5f74a16922ded",
+      "archived_sha256": "de20918b8ae19226b8b8f8a52ba03e57a3febd8f102d4579d8d5f74a16922ded"
+    },
+    {
+      "original": "design/heart-tree/walkthrough-memory-check.png",
+      "archived": "archive/project-baseline/design/heart-tree/walkthrough-memory-check.png",
+      "source_sha256": "62413f86de895bd133ae2959f7c19274fd9d395422b6247ad6c4f0cf0880bd89",
+      "archived_sha256": "62413f86de895bd133ae2959f7c19274fd9d395422b6247ad6c4f0cf0880bd89"
+    },
+    {
+      "original": "design/heart-tree/walkthrough-preview.pdf",
+      "archived": "archive/project-baseline/design/heart-tree/walkthrough-preview.pdf",
+      "source_sha256": "a5d9b467e3c44250cdeda3d1409fbc0a6c1e0345f8d54688ecb359f4f30ecc17",
+      "archived_sha256": "a5d9b467e3c44250cdeda3d1409fbc0a6c1e0345f8d54688ecb359f4f30ecc17"
+    },
+    {
+      "original": "design/heart-tree/walkthrough-preview.png",
+      "archived": "archive/project-baseline/design/heart-tree/walkthrough-preview.png",
+      "source_sha256": "cbaadf9e063aa046dd9fa1c383ddff4d16cdada60dd6d2dd83a37df0f4716952",
+      "archived_sha256": "cbaadf9e063aa046dd9fa1c383ddff4d16cdada60dd6d2dd83a37df0f4716952"
+    },
+    {
+      "original": "design/heart-tree/walkthrough-quantity-check.png",
+      "archived": "archive/project-baseline/design/heart-tree/walkthrough-quantity-check.png",
+      "source_sha256": "b426710e019f3998229178637f19707c49c29d4bf84e8e86aa90883b6a12f046",
+      "archived_sha256": "b426710e019f3998229178637f19707c49c29d4bf84e8e86aa90883b6a12f046"
+    },
+    {
+      "original": "design/waldatelier/01-waldatelier.png",
+      "archived": "archive/project-baseline/design/waldatelier/01-waldatelier.png",
+      "source_sha256": "84335aaa35c3d4320691412294923601d2c808b32a90e72b7777524ad36a79b3",
+      "archived_sha256": "84335aaa35c3d4320691412294923601d2c808b32a90e72b7777524ad36a79b3"
+    },
+    {
+      "original": "design/waldatelier/README.md",
+      "archived": "archive/project-baseline/design/waldatelier/README.md",
+      "source_sha256": "a34e29e147921b418db70530099e221132b4647352a00728b50d9af2037300dd",
+      "archived_sha256": "a34e29e147921b418db70530099e221132b4647352a00728b50d9af2037300dd"
+    },
+    {
+      "original": "design/waldatelier/VERIFICATION.md",
+      "archived": "archive/project-baseline/design/waldatelier/VERIFICATION.md",
+      "source_sha256": "e9352a5df96f0438297d53e99dad461acc575c1412c63344073044166b77dcf9",
+      "archived_sha256": "e9352a5df96f0438297d53e99dad461acc575c1412c63344073044166b77dcf9"
+    },
+    {
+      "original": "design/waldatelier/alphabet-prompt.json",
+      "archived": "archive/project-baseline/design/waldatelier/alphabet-prompt.json",
+      "source_sha256": "8fa68106062625de1e542e308bf5dfd1ae7e1e4ed1ec3d1420b7f236d12d512b",
+      "archived_sha256": "8fa68106062625de1e542e308bf5dfd1ae7e1e4ed1ec3d1420b7f236d12d512b"
+    },
+    {
+      "original": "design/waldatelier/app-icon-prompt.json",
+      "archived": "archive/project-baseline/design/waldatelier/app-icon-prompt.json",
+      "source_sha256": "656981086a0f7a6fe2c775cca36b708d279c130f3d5bb274ca453c38b0a37b20",
+      "archived_sha256": "656981086a0f7a6fe2c775cca36b708d279c130f3d5bb274ca453c38b0a37b20"
+    },
+    {
+      "original": "design/waldatelier/app-icon.png",
+      "archived": "archive/project-baseline/design/waldatelier/app-icon.png",
+      "source_sha256": "24fca581b3b5acf9d035c66f4d4fc1d74c362cf607adef161fa406d14da5ae35",
+      "archived_sha256": "24fca581b3b5acf9d035c66f4d4fc1d74c362cf607adef161fa406d14da5ae35"
+    },
+    {
+      "original": "design/waldatelier/assets.json",
+      "archived": "archive/project-baseline/design/waldatelier/assets.json",
+      "source_sha256": "b04bb45b6d94e8080b99af9dba62bc96ca2e95e37af3518f13d591adc78d6447",
+      "archived_sha256": "b04bb45b6d94e8080b99af9dba62bc96ca2e95e37af3518f13d591adc78d6447"
+    },
+    {
+      "original": "design/waldatelier/index.html",
+      "archived": "archive/project-baseline/design/waldatelier/index.html",
+      "source_sha256": "b3eec52a0d624b5efa78c00a4d515de2abb939038aef2772bd7c4806350535de",
+      "archived_sha256": "f32b2b7e64289d2721233f4c939bfdcd1de86fed133a145bcd51b7faea1a4e15"
+    },
+    {
+      "original": "design/waldatelier/prompts.json",
+      "archived": "archive/project-baseline/design/waldatelier/prompts.json",
+      "source_sha256": "ffbd0fee6f5650970f656409aac31f98efce98086c4c0a9a62a6b4eb7eda525c",
+      "archived_sha256": "ffbd0fee6f5650970f656409aac31f98efce98086c4c0a9a62a6b4eb7eda525c"
+    },
+    {
+      "original": "design/waldatelier/screenshots/home-desktop.png",
+      "archived": "archive/project-baseline/design/waldatelier/screenshots/home-desktop.png",
+      "source_sha256": "ff50b68a7f83f027826976b10b13284d3c29b187438d012631f16c1d9330cf47",
+      "archived_sha256": "ff50b68a7f83f027826976b10b13284d3c29b187438d012631f16c1d9330cf47"
+    },
+    {
+      "original": "design/waldatelier/screenshots/paint-validation.png",
+      "archived": "archive/project-baseline/design/waldatelier/screenshots/paint-validation.png",
+      "source_sha256": "e3af1ae03c34e0724ede445011079dce6b7e19a1f5a991d518e2daa13c4f00ab",
+      "archived_sha256": "e3af1ae03c34e0724ede445011079dce6b7e19a1f5a991d518e2daa13c4f00ab"
+    },
+    {
+      "original": "design/waldatelier/screenshots/painting.png",
+      "archived": "archive/project-baseline/design/waldatelier/screenshots/painting.png",
+      "source_sha256": "5229221e590e60f126e44b3328b85efdf8b887b9ff7fc125d8ec0824ee76973f",
+      "archived_sha256": "5229221e590e60f126e44b3328b85efdf8b887b9ff7fc125d8ec0824ee76973f"
+    },
+    {
+      "original": "design/waldatelier/screenshots/phone-painting.png",
+      "archived": "archive/project-baseline/design/waldatelier/screenshots/phone-painting.png",
+      "source_sha256": "1badfdaa23074381a465dd5299b9ea908f278f044fafdd71ee71901529a3bc54",
+      "archived_sha256": "1badfdaa23074381a465dd5299b9ea908f278f044fafdd71ee71901529a3bc54"
+    },
+    {
+      "original": "design/waldatelier/screenshots/reading.png",
+      "archived": "archive/project-baseline/design/waldatelier/screenshots/reading.png",
+      "source_sha256": "1076ca28fd9c07dafcc37e2eac046ab4e3f996cff825ff516f2348742168171f",
+      "archived_sha256": "1076ca28fd9c07dafcc37e2eac046ab4e3f996cff825ff516f2348742168171f"
+    },
+    {
+      "original": "design/waldatelier/screenshots/responsive.png",
+      "archived": "archive/project-baseline/design/waldatelier/screenshots/responsive.png",
+      "source_sha256": "610984771367e479800eb1b5989ab32efbb480469b69ecbd2689e87e8c6f575a",
+      "archived_sha256": "610984771367e479800eb1b5989ab32efbb480469b69ecbd2689e87e8c6f575a"
+    },
+    {
+      "original": "design/waldentdeckungen/README.md",
+      "archived": "archive/project-baseline/design/waldentdeckungen/README.md",
+      "source_sha256": "45b1fad1b0fba0a6e56f9c8137e12b9ead6869067e9d1e678fe0d9697a312b65",
+      "archived_sha256": "45b1fad1b0fba0a6e56f9c8137e12b9ead6869067e9d1e678fe0d9697a312b65"
+    },
+    {
+      "original": "design/waldentdeckungen/VERIFICATION.md",
+      "archived": "archive/project-baseline/design/waldentdeckungen/VERIFICATION.md",
+      "source_sha256": "7984a4bc8f9a6798d30944d9b5cc319bf8eea93d2f8c01cb15ae2e463ddd4e2b",
+      "archived_sha256": "7984a4bc8f9a6798d30944d9b5cc319bf8eea93d2f8c01cb15ae2e463ddd4e2b"
+    },
+    {
+      "original": "design/waldentdeckungen/index.html",
+      "archived": "archive/project-baseline/design/waldentdeckungen/index.html",
+      "source_sha256": "85db1f12d0f95aac971ebc511a06a34e86a542642e33be4b9e0f5c6491859d0e",
+      "archived_sha256": "9bd380bc8199e4f5928f9b0aa496b53d080496be69ad0f00a2463925cdfb8c7d"
+    },
+    {
+      "original": "design/waldentdeckungen/screenshots/spiegelmosaik-responsive.png",
+      "archived": "archive/project-baseline/design/waldentdeckungen/screenshots/spiegelmosaik-responsive.png",
+      "source_sha256": "affb81d9b2efdddad5fef2652edf4b1eb059e526c69742f0fc6c8655641b5032",
+      "archived_sha256": "affb81d9b2efdddad5fef2652edf4b1eb059e526c69742f0fc6c8655641b5032"
+    },
+    {
+      "original": "design/waldentdeckungen/screenshots/waldschatz-responsive.png",
+      "archived": "archive/project-baseline/design/waldentdeckungen/screenshots/waldschatz-responsive.png",
+      "source_sha256": "da9f14ee09c731b35c13b51fb5b5f5da56bfd3cf2477d79ff1a44f9dce661c4e",
+      "archived_sha256": "da9f14ee09c731b35c13b51fb5b5f5da56bfd3cf2477d79ff1a44f9dce661c4e"
+    },
+    {
+      "original": "design/waldentdeckungen/screenshots/waldumfrage-responsive.png",
+      "archived": "archive/project-baseline/design/waldentdeckungen/screenshots/waldumfrage-responsive.png",
+      "source_sha256": "1342422d3cb1db6c7a20fe90b42c60802669e903df3246e2b6518ddc98129402",
+      "archived_sha256": "1342422d3cb1db6c7a20fe90b42c60802669e903df3246e2b6518ddc98129402"
+    },
+    {
+      "original": "docs/EXPLORATION.md",
+      "archived": "archive/project-baseline/docs/EXPLORATION.md",
+      "source_sha256": "689700903b91dd848dd6e858d090c727df5e82890b31245d48b6b1953faef8cf",
+      "archived_sha256": "689700903b91dd848dd6e858d090c727df5e82890b31245d48b6b1953faef8cf"
+    },
+    {
+      "original": "docs/GAMEPLAY.md",
+      "archived": "archive/project-baseline/docs/GAMEPLAY.md",
+      "source_sha256": "de2166a28ef4fdcb5bfa5de526092a2fd60cadb14e6a8f06f9b5f304fce9cb75",
+      "archived_sha256": "de2166a28ef4fdcb5bfa5de526092a2fd60cadb14e6a8f06f9b5f304fce9cb75"
+    },
+    {
+      "original": "docs/HEART-TREE.md",
+      "archived": "archive/project-baseline/docs/HEART-TREE.md",
+      "source_sha256": "e0540ed30b50efb6c7a2fb12f4e709bfe1499af539775d2c772ae2dc50b5f5ff",
+      "archived_sha256": "e0540ed30b50efb6c7a2fb12f4e709bfe1499af539775d2c772ae2dc50b5f5ff"
+    },
+    {
+      "original": "docs/IMPROVEMENTS.md",
+      "archived": "archive/project-baseline/docs/IMPROVEMENTS.md",
+      "source_sha256": "fd91e947ebf48dbfc58074208cbf0cb193db81ba12b881c07efead2290891ba9",
+      "archived_sha256": "fd91e947ebf48dbfc58074208cbf0cb193db81ba12b881c07efead2290891ba9"
+    },
+    {
+      "original": "docs/LEARNING.md",
+      "archived": "archive/project-baseline/docs/LEARNING.md",
+      "source_sha256": "abc50c3245eb9fec7ed3a7f103eff6ebc8a4b8ad21493c29aa011f1c0f6f290c",
+      "archived_sha256": "abc50c3245eb9fec7ed3a7f103eff6ebc8a4b8ad21493c29aa011f1c0f6f290c"
+    },
+    {
+      "original": "docs/LMVZ-RESEARCH.md",
+      "archived": "archive/project-baseline/docs/LMVZ-RESEARCH.md",
+      "source_sha256": "b98c207b2d50f12cf8ee0bc8374f95ac2a782e60ba23e87a3afd41daa3b0c7c6",
+      "archived_sha256": "b98c207b2d50f12cf8ee0bc8374f95ac2a782e60ba23e87a3afd41daa3b0c7c6"
+    },
+    {
+      "original": "docs/PREVIEW.md",
+      "archived": "archive/project-baseline/docs/PREVIEW.md",
+      "source_sha256": "c3d050cb43770c0ec44bc0d6a2c4e7bc63b9ac8f2fdfc844a272727adef94b91",
+      "archived_sha256": "c3d050cb43770c0ec44bc0d6a2c4e7bc63b9ac8f2fdfc844a272727adef94b91"
+    },
+    {
+      "original": "docs/RESEARCH.md",
+      "archived": "archive/project-baseline/docs/RESEARCH.md",
+      "source_sha256": "10b171032f5026098ca142a5f4c311f3cd21cd71f5cbafe3fe9425975e96ab76",
+      "archived_sha256": "10b171032f5026098ca142a5f4c311f3cd21cd71f5cbafe3fe9425975e96ab76"
+    },
+    {
+      "original": "docs/RESOURCE-RESEARCH.md",
+      "archived": "archive/project-baseline/docs/RESOURCE-RESEARCH.md",
+      "source_sha256": "e34aefb9c93f0aabe9fb415e18c7074ca77e304679d08b5b9fe249f6bcd54528",
+      "archived_sha256": "e34aefb9c93f0aabe9fb415e18c7074ca77e304679d08b5b9fe249f6bcd54528"
+    },
+    {
+      "original": "docs/STORY-SCENES.md",
+      "archived": "archive/project-baseline/docs/STORY-SCENES.md",
+      "source_sha256": "622e0be66e7c02b93fe08242c36e47cb2dc7a365e9a3bb9d659c2aa579c7140c",
+      "archived_sha256": "622e0be66e7c02b93fe08242c36e47cb2dc7a365e9a3bb9d659c2aa579c7140c"
+    },
+    {
+      "original": "docs/TIMER.md",
+      "archived": "archive/project-baseline/docs/TIMER.md",
+      "source_sha256": "6a9800e1edacbd411cbd1a7285e228f341619566f78da1ded77c2ae3619d27a6",
+      "archived_sha256": "6a9800e1edacbd411cbd1a7285e228f341619566f78da1ded77c2ae3619d27a6"
+    },
+    {
+      "original": "docs/lernideen.html",
+      "archived": "archive/project-baseline/docs/lernideen.html",
+      "source_sha256": "9e6bf8398612fe1bb06b7261881c0fdeb492340911a56b83b68a4b0fdcfffc02",
+      "archived_sha256": "93ed45e8dae3f466ee7b8ff5086f766d91bc9d646e5944338cd4f7e960e0c445"
+    },
+    {
+      "original": "design/archive/README.md",
+      "archived": "archive/project-baseline/design/archive/README.md",
+      "source_sha256": "f13adcc9985a532e0141e42f03c6829e72ac3f7c5837da350d65940eb5417c16",
+      "archived_sha256": "9e732a354bd468c9c462d064249b439ef3dc3af4f601f7959af0bb144c8dc244"
+    }
+  ]
+}

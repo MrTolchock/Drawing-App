@@ -7,7 +7,7 @@ card manifest and document-preview images are retained here without modification
 | --- | --- |
 | [Review builder](create_heart_tree_review.py) | [Design review](../DESIGN-REVIEW.pdf) and its preview images |
 | [Opening review builder](create_heart_tree_opening_review.py) | [Opening review](../OPENING-REVIEW.pdf) and its preview images |
-| [Walkthrough builder](create_heart_tree_walkthrough.py) | [Walkthrough cards](../../../heart-tree/walkthrough-cards.pdf), [overview](../../../heart-tree/walkthrough-preview.pdf), reference images and [card manifest](../../../heart-tree/walkthrough-manifest.json) |
+| [Walkthrough builder](create_heart_tree_walkthrough.py) | [Walkthrough cards](../../../../archive/project-baseline/design/heart-tree/walkthrough-cards.pdf), [overview](../../../../archive/project-baseline/design/heart-tree/walkthrough-preview.pdf), reference images and [card manifest](../../../../archive/project-baseline/design/heart-tree/walkthrough-manifest.json) |
 
 These source snapshots keep their original workspace input/output paths and
 font paths. To rebuild elsewhere, adjust those constants to the local design
@@ -19,4 +19,4 @@ which includes its overview image.
 The committed PDFs and images can be viewed directly without running the scripts.
 Their text describes the design stage at which each document was created.
 
-[Design pack](../../../heart-tree/README.md) · [Design archive](../../../README.md)
+[Design pack](../../../../archive/project-baseline/design/heart-tree/README.md) · [Design archive](../../../../archive/project-baseline/design/README.md)

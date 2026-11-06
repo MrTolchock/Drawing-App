@@ -1,6 +1,6 @@
 /* Original Farbtupf activities, informed by public teaching concepts.
    No publisher exercises, illustrations or characters are reproduced.
-   Sources and age-range decisions: docs/LMVZ-RESEARCH.md. */
+   Sources and age-range decisions: docs/RESEARCH.md. */
 (function () {
   'use strict';
   const FK = window.FK;

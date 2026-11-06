@@ -1,5 +1,5 @@
 /* Farbtupf – Service Worker: keeps the whole app on the device so it runs without internet. */
-const CACHE = 'farbtupf-v6.6.0-explorable-woodland';
+const CACHE = 'farbtupf-v6.6.1-current-baseline';
 const ASSETS = [
   './',
   './index.html',

@@ -1,8 +1,8 @@
 # Two woodland directions between Soft woodland and the original
 
-> Archived design/review note. Implementation and approval statements describe the stage when it was written. See the [current app notes](../../../docs/HEART-TREE.md) and [design index](../../README.md) for the present build.
+> Archived design/review note. Implementation and approval statements describe the stage when it was written. See the [current app notes](../../../archive/project-baseline/docs/HEART-TREE.md) and [design index](../../../archive/project-baseline/design/README.md) for the present build.
 
-Selection complete: the user chose **the original A, Painted woodland**, in the left column of this board. See the [chosen art direction](../../heart-tree/ART-DIRECTION.md). Other options remain archived; application implementation remains deferred.
+Selection complete: the user chose **the original A, Painted woodland**, in the left column of this board. See the [chosen art direction](../../../archive/project-baseline/design/heart-tree/ART-DIRECTION.md). Other options remain archived; application implementation remains deferred.
 
 This round compared **two intermediate options** between the earlier **2. Soft woodland** and the original detailed forest, restoring some natural richness while keeping clear paths and quieter spaces. **A is selected.**
 

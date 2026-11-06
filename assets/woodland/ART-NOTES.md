@@ -1,28 +1,9 @@
-# Painted woodland artwork
+# Woodland artwork
 
-Original generated production artwork, developed from the selected **original A,
-Painted woodland** reference. Warm ivory light, olive and yellow-sage foliage,
-honey timber, blue water and an orange fox with a green neckerchief connect the
-world, picture-led guidance, puzzle pieces, book and return scenes.
+Locally bundled original illustrations provide pictured navigation, puzzle pieces and activity scenes. The palette uses warm ivory, woodland greens, honey timber, blue water and an orange fox with a green neckerchief.
 
-- `characters-nature.png`: 4 × 4 atlas. Four fox directions; Beaver, Brown Hare,
-  Hedgehog and Tawny Owl; Kingfisher, oak, a spare tree and hazel; leaf, hazelnut,
-  feather and a spare strawberry plant.
-- `forest-props.png`: 4 × 2 atlas. Reeds, mossy stones, grass/fern and brown
-  mushrooms; wild strawberry, beech, alder and a fallen log.
-- `places.png`: 3 × 2 painted scenes. Heart Tree, brook bridge, garden, moss
-  resting place, owl hollow and reed pond. Wide views crop a square painting
-  without stretching it.
-- `ground.png`: original painted grass/earth surface, repeated on the ground.
+`js/ui/woodland.js` defines the atlas cells. `characters-nature.png`, `forest-props.png`, `places.png` and `ground.png` remain production assets. Keep their paths and atlas coordinates compatible with the games.
 
-`js/ui/woodland.js` is the shared atlas manifest for pictured navigation and
-puzzle pieces. Image files remain unmodified generation outputs. The 6.6 forest
-uses solid, articulated 3D animals and volumetric scenery in the same palette;
-the story and exploration share those rigs. The original atlas fox remains
-quadrupedal, while the 3D actors are upright story figures. No remote artwork
-requests are made at runtime. [Exploration notes](../../docs/EXPLORATION.md).
+The forest and story films use solid, articulated 3D animals and volumetric scenery in this palette. Painted portraits remain in the interface and puzzles. The painted fox is quadrupedal; the 3D actors are upright story figures. The cast follows the Swiss woodland species described in the [blueprint](../../design/heart-tree/BLUEPRINT.md).
 
-The fox is quadrupedal with a cream muzzle/chest and white tail tip. The hare
-has long dark-tipped ears; the tawny owl has a round head and no ear tufts; the
-kingfisher has a blue back, orange breast and long bill. The plants and residents
-depict the established Swiss woodland cast. These are stylised illustrations.
+No remote artwork is requested at runtime. [Previous artwork notes](../../archive/project-baseline/assets/woodland/ART-NOTES.md) are retained for provenance.

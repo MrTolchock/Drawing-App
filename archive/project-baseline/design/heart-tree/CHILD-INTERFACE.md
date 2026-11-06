@@ -2,7 +2,7 @@
 
 > Design reference recorded during planning. Implementation and approval statements describe the stage when it was written. See the [current app notes](../../docs/HEART-TREE.md) and [design index](../README.md) for the present build.
 
-Design specification for ages 6–7, initially unable to read. The [first local slice](../archive/implementation-notes/PLAYABLE-SLICE.md) implements the opening request, pattern guidance, help/leave/continue and pictured return. Full map/catalogue interfaces remain planned; the existing activity library is retained through the book. The selected identity, Swiss-native world and flat puzzle format remain the foundation.
+Design specification for ages 6–7, initially unable to read. The [first local slice](../../../../design/archive/implementation-notes/PLAYABLE-SLICE.md) implements the opening request, pattern guidance, help/leave/continue and pictured return. Full map/catalogue interfaces remain planned; the existing activity library is retained through the book. The selected identity, Swiss-native world and flat puzzle format remain the foundation.
 
 Environment reference: [the selected original A, Painted woodland](ART-DIRECTION.md). Its open-space and detail balance carries into the [opening walkthrough](painted-woodland-opening.png); flat activities retain their existing visual language.
 
@@ -103,4 +103,4 @@ Observe whether a child can find the goal, act on an invitation, recognise the a
 
 Paper cards can examine goals and action concepts. Walking, touch targets, timing, speech playback and actual return transitions require the later interactive slice and target-device observation.
 
-[Interface flow board](../archive/storyboards/child-interface.png) · [First-session packet](FIRST-SESSION.md)
+[Interface flow board](../../../../design/archive/storyboards/child-interface.png) · [First-session packet](FIRST-SESSION.md)

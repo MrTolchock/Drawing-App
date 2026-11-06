@@ -14,7 +14,7 @@ commit [8306b8a](https://github.com/MrTolchock/Drawing-App/commit/8306b8a4065653
 | [Forest on a phone](07-world-phone.png) | Current portrait exploration view |
 | [Pattern on a phone](08-pattern-phone.png) | Current portrait flat pattern activity |
 
-Earlier and intermediate [verification captures](../../archive/verification/README.md)
+Earlier and intermediate [verification captures](../../../../../design/archive/verification/README.md)
 are retained in the archive. The captures above come from automated Chromium checks.
 
 [Current Heart Tree visualisations](../GALLERY.md) · [Current design](../../README.md)
