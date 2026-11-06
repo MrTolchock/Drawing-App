@@ -1,8 +1,8 @@
 # Two woodland directions between Soft woodland and the original
 
-> Archived design/review note. Implementation and approval statements describe the stage when it was written. See the [current app notes](../../docs/HEART-TREE.md) and [design index](../README.md) for the present build.
+> Archived design/review note. Implementation and approval statements describe the stage when it was written. See the [current app notes](../../../docs/HEART-TREE.md) and [design index](../../README.md) for the present build.
 
-Selection complete: the user chose **the original A, Painted woodland**, in the left column of this board. See the [chosen art direction](ART-DIRECTION.md). Other options remain archived; application implementation remains deferred.
+Selection complete: the user chose **the original A, Painted woodland**, in the left column of this board. See the [chosen art direction](../../heart-tree/ART-DIRECTION.md). Other options remain archived; application implementation remains deferred.
 
 This round compared **two intermediate options** between the earlier **2. Soft woodland** and the original detailed forest, restoring some natural richness while keeping clear paths and quieter spaces. **A is selected.**
 
@@ -26,4 +26,4 @@ The difference is the amount and placement of natural detail within the same vis
 
 The Heart Tree story, five-clearing loop, bridge opening, non-reader guidance and flat puzzle artwork continue as planned. The comparison contains generated visual concepts; it does not implement a map, movement or a Three.js scene. Application code remains unchanged.
 
-The [previous three-option comparison](VISUAL-REFINEMENT.md) provides the simpler endpoint. The [original detailed map](adventure-blueprint-v2.png) provides the richer endpoint. Both remain reference material.
+The [previous three-option comparison](VISUAL-REFINEMENT.md) provides the simpler endpoint. The [original detailed map](../storyboards/adventure-blueprint-v2.png) provides the richer endpoint. Both remain reference material.

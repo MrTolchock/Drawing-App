@@ -1,19 +1,19 @@
 # The first session: a picture-and-voice walkthrough
 
-> Archived design/review note. Implementation and approval statements describe the stage when it was written. See the [current app notes](../../docs/HEART-TREE.md) and [design index](../README.md) for the present build.
+> Design reference recorded during planning. Implementation and approval statements describe the stage when it was written. See the [current app notes](../../docs/HEART-TREE.md) and [design index](../README.md) for the present build.
 
-Design material for a 6–7-year-old who cannot yet read. These cards are static references; no child observations have been collected. A separate [first local playable slice](PLAYABLE-SLICE.md) now uses the existing Musterzug content with the planned guidance and return flow.
+Design material for a 6–7-year-old who cannot yet read. These cards are static references; no child observations have been collected. A separate [first local playable slice](../archive/implementation-notes/PLAYABLE-SLICE.md) now uses the existing Musterzug content with the planned guidance and return flow.
 
 ## 1. Use this pack
 
 - [Opening layout and camera](OPENING-LAYOUT.md)
 - [Help, leaving and return state contract](OPENING-INTERACTIONS.md)
-- [Current opening review packet](OPENING-REVIEW.pdf)
+- [Current opening review packet](../archive/reviews/OPENING-REVIEW.pdf)
 - [Opening walkthrough in the selected original A, Painted woodland](painted-woodland-opening.png)
 - [Chosen art direction](ART-DIRECTION.md)
 - [Picture-only walkthrough cards — 13-page PDF](walkthrough-cards.pdf)
 - [Adult overview](walkthrough-preview.png)
-- [World and guidance storyboard](before-reading-storyboard.png)
+- [World and guidance storyboard](../archive/storyboards/before-reading-storyboard.png)
 - [Underlying non-reader design](BEFORE-READING.md)
 
 Use one activity family per short walkthrough. Breaks and stopping are welcome. The child does not need to complete all of the material in one sitting.
@@ -213,4 +213,3 @@ The card examples are not a full pedagogical review, a new released activity lib
 Observe a walkthrough when children are available, then revise the instruction, demonstration or input as the observations warrant. Continue reviewing the beginner interaction contracts for other activity families while preserving the separate later deep dive on question content.
 
 The first Three.js slice now contains the short world opening, existing pattern activity with separate visual guidance and available device narration, pictured return and usable bridge payoff. Observe it on the intended device before calling its guidance ready for independent use.
-

@@ -1,6 +1,6 @@
 # A forest with room for many puzzles
 
-> Archived design/review note. Implementation and approval statements describe the stage when it was written. See the [current app notes](../../docs/HEART-TREE.md) and [design index](../README.md) for the present build.
+> Design reference recorded during planning. Implementation and approval statements describe the stage when it was written. See the [current app notes](../../docs/HEART-TREE.md) and [design index](../README.md) for the present build.
 
 Design extension for Farbtupf — Der Herzbaum: Die vergessenen Pfade. Planning only; the application is unchanged.
 
@@ -213,9 +213,8 @@ Validation needs to include:
 
 ## 12. Visuals and scope
 
-- [Capacity board](puzzle-library.png)
-- [Updated adventure overview](adventure-blueprint-v2.png)
+- [Capacity board](../archive/storyboards/puzzle-library.png)
+- [Updated adventure overview](../archive/storyboards/adventure-blueprint-v2.png)
 - [Main design blueprint](BLUEPRINT.md)
 
 The numerical capacity example is a design illustration. The new episodes, activity mechanics and content packs have not been authored or implemented. Individual puzzle review remains separate from this structural design work.
-

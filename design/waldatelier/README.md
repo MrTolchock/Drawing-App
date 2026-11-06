@@ -1,6 +1,6 @@
 # Waldatelier
 
-Selected visual direction: 01, watercolour storybook, chosen by the user.
+Selected visual direction: [01, Waldatelier](01-waldatelier.png), watercolour storybook, chosen by the user.
 
 [Open the implementation review](index.html) for screenshots of the actual app. [Browser verification record](VERIFICATION.md).
 

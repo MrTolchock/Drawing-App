@@ -1,0 +1,3 @@
+# Preserve review packets and artwork as binary files in Git and GitHub diffs.
+*.pdf binary
+*.png binary

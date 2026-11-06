@@ -1,69 +1,44 @@
-# Farbtupf design archive
+# Farbtupf design
 
-The collected visualisations, design decisions, story/gameplay plans, research
-and review documents are saved in this repository. Earlier alternatives are
-preserved alongside the selected direction and actual implementation captures.
+**Selected direction: original A, Painted woodland.** A Swiss-native woodland,
+a fox companion, short complete quests and picture-led play for a 6–7-year-old
+who initially cannot read. The current app combines painted artwork in Three.js
+with flat illustrated puzzles.
 
-**Current direction:** original **A, Painted woodland**, with a Swiss-native
-forest, a fox companion, short complete quests and picture-led play for a
-6–7-year-old who initially cannot read. The current build uses layered painted
-artwork in Three.js and matching flat puzzle artwork.
-
-| Start here | Contents |
+| Current design | Open |
 | --- | --- |
-| [Heart Tree design pack](heart-tree/README.md) | Story, world, gameplay, non-reader guidance, opening interactions and implementation plans |
-| [All Heart Tree visualisations](heart-tree/GALLERY.md) | Early options, world maps, style comparisons, storyboards, walkthroughs and app screenshots |
-| [Design review PDF](heart-tree/DESIGN-REVIEW.pdf) | Illustrated story and interaction review |
-| [Opening review PDF](heart-tree/OPENING-REVIEW.pdf) | Opening layout, camera, support routes and summary |
-| [Picture-only walkthrough cards PDF](heart-tree/walkthrough-cards.pdf) | Pattern, quantity and memory reference cards |
-| [Walkthrough overview PDF](heart-tree/walkthrough-preview.pdf) | Overview of the comprehension walkthrough |
-| [Original document authoring source](heart-tree/authoring/README.md) | Sources for the review PDFs, picture cards, manifests and preview images |
-| [Current app and verification notes](../docs/HEART-TREE.md) | Implemented story, controls, saving and remaining human checks |
+| Selected art direction and its original reference | [Art direction](heart-tree/ART-DIRECTION.md) |
+| Selected-style studies and current app screenshots | [Current visual gallery](heart-tree/GALLERY.md) |
+| Story, world and gameplay | [Heart Tree design pack](heart-tree/README.md) · [Blueprint](heart-tree/BLUEPRINT.md) |
+| Picture-led controls, speech and demonstrations | [Child interface](heart-tree/CHILD-INTERFACE.md) · [Before reading](heart-tree/BEFORE-READING.md) |
+| Implemented story, controls and saving | [Current app notes](../docs/HEART-TREE.md) |
+| Shared production artwork | [Artwork and atlas notes](../assets/woodland/ART-NOTES.md) |
 
-## Selected woodland and current app
+[![Current painted woodland in the app](heart-tree/painted-implementation/01-world.png)](heart-tree/painted-implementation/01-world.png)
 
-- [Chosen art direction](heart-tree/ART-DIRECTION.md)
-- [Original A reference — left column of the comparison](heart-tree/visual-middle-ground-options.png)
-- [Opening walkthrough in Painted woodland](heart-tree/painted-woodland-opening.png)
-- [Painted world and puzzle screenshots](heart-tree/painted-implementation/README.md)
-- [Production artwork and atlas notes](../assets/woodland/ART-NOTES.md)
-- [Painted characters and natural objects](../assets/woodland/characters-nature.png),
-  [forest plants and props](../assets/woodland/forest-props.png),
-  [place illustrations](../assets/woodland/places.png) and
-  [painted ground](../assets/woodland/ground.png)
+## Design documents
 
-[![Painted woodland in the running app](heart-tree/painted-implementation/01-world.png)](heart-tree/painted-implementation/01-world.png)
+- [Picture-only walkthrough cards](heart-tree/walkthrough-cards.pdf)
+- [Walkthrough overview](heart-tree/walkthrough-preview.pdf)
+- [First-session guidance and observation sheet](heart-tree/FIRST-SESSION.md)
+- [Activity guidance matrix](heart-tree/ACTIVITY-READINESS.md)
+- [Original illustrated design review PDF — historical](archive/reviews/DESIGN-REVIEW.pdf)
 
-## Earlier visual and interaction work
+## The learning and drawing app
 
-| Collection | Contents |
-| --- | --- |
-| [Five initial visual identities](mockups/README.md) | Waldatelier, Formenfreude, Papierwelt, Kleine Welten and Tintenabenteuer; original generation briefs and review page |
-| [Waldatelier implementation](waldatelier/README.md) | Original artwork briefs, icon source, app screenshots and visual verification |
-| [Waldentdeckungen puzzle work](waldentdeckungen/README.md) | Memory, mirror-grid and picture-chart designs and screenshots |
-| [Early forest story/gameplay options](heart-tree/early-options/README.md) | All recovered story, world-layout, progression, opening and quest-option boards |
-| [Additional app captures](verification/README.md) | Retained implementation, responsive, timer and browser-check screenshots |
-
-## Learning, research and supporting documents
-
-- [Learning concept](../docs/LEARNING.md)
-- [Learning ideas document](../docs/lernideen.html)
+- [Selected Waldatelier identity](waldatelier/01-waldatelier.png) and
+  [implementation notes](waldatelier/README.md)
+- [Waldentdeckungen flat puzzle designs](waldentdeckungen/README.md)
+- [Learning concept](../docs/LEARNING.md) · [Learning ideas document](../docs/lernideen.html)
 - [Curriculum and handwriting research](../docs/RESEARCH.md)
-- [LMVZ and publisher research](../docs/LMVZ-RESEARCH.md)
-- [Resource research and activity mapping](../docs/RESOURCE-RESEARCH.md)
-- [Timer behaviour](../docs/TIMER.md)
-- [Preview and deployment notes](../docs/PREVIEW.md)
+- [LMVZ research](../docs/LMVZ-RESEARCH.md) · [Activity resource mapping](../docs/RESOURCE-RESEARCH.md)
+- [Timer behaviour](../docs/TIMER.md) · [Preview notes](../docs/PREVIEW.md)
 
-## Archive provenance
+## Archive
 
-[The archive manifest](archive-manifest.json) maps every file from the local
-Heart Tree design pack and every generated image original to its repository
-location, with SHA-256 hashes. Identical images share a stored file. Original
-PNG/PDF files are preserved; Markdown links were converted for GitHub browsing.
-
-Historical plans and screenshots describe earlier stages. Current implementation
-status lives in the [app notes](../docs/HEART-TREE.md). Automated captures are not
-child observations; physical iPad/Safari and non-reader observation remain the
-human checks already recorded there.
+[Dismissed alternatives and earlier work](archive/README.md) are kept separately:
+unused visual identities, woodland refinements, mixed option boards, earlier
+storyboards, prototype screenshots, historical review packets and build notes.
+The archive retains the original images, PDFs and document-authoring sources.
 
 [Back to the app README](../README.md)

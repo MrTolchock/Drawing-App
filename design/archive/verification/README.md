@@ -2,7 +2,7 @@
 
 Retained screenshots from automated app checks and earlier preview inspections. These include intermediate versions as well as the painted presentation. They are implementation records, not child observations.
 
-[Current painted presentation](../heart-tree/painted-implementation/README.md) · [All visualisations](../heart-tree/GALLERY.md) · [Design archive](../README.md)
+[Current painted presentation](../../heart-tree/painted-implementation/README.md) · [All visualisations](../../heart-tree/GALLERY.md) · [Design archive](../../README.md)
 
 ## Early live preview
 
@@ -39,9 +39,9 @@ Retained screenshots from automated app checks and earlier preview inspections. 
 
 ## Painted test
 
-- [03 painted pattern phone](farbtupf-painted-test/03-painted-pattern-phone.png)
-- [04 painted book phone](farbtupf-painted-test/04-painted-book-phone.png)
-- [07 painted world phone](farbtupf-painted-test/07-painted-world-phone.png)
+- [03 painted pattern phone](../../heart-tree/painted-implementation/08-pattern-phone.png)
+- [04 painted book phone](../../heart-tree/painted-implementation/06-book-phone.png)
+- [07 painted world phone](../../heart-tree/painted-implementation/07-world-phone.png)
 
 ## Timer test
 
@@ -59,4 +59,3 @@ Retained screenshots from automated app checks and earlier preview inspections. 
 
 - [farbtupf phone](library-smoke/farbtupf-phone.png)
 - [farbtupf tablet](library-smoke/farbtupf-tablet.png)
-

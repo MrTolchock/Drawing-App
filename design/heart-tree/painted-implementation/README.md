@@ -10,8 +10,11 @@ commit [8306b8a](https://github.com/MrTolchock/Drawing-App/commit/8306b8a4065653
 | [Memory activity](03-memory-phone.png) | Flat picture-led memory on a phone |
 | [Route activity](04-route-phone.png) | The painted fox and neighbour on the flat route board |
 | [Longest pattern row](05-long-pattern-phone.png) | Responsive layout with six objects and the missing slot |
+| [Guided practice book](06-book-phone.png) | Painted book and activity choices on a phone |
+| [Forest on a phone](07-world-phone.png) | Current portrait exploration view |
+| [Pattern on a phone](08-pattern-phone.png) | Current portrait flat pattern activity |
 
-Additional [book, timer and responsive captures](../../verification/README.md)
-are retained separately. These captures come from automated Chromium checks.
+Earlier and intermediate [verification captures](../../archive/verification/README.md)
+are retained in the archive. The captures above come from automated Chromium checks.
 
-[All Heart Tree visualisations](../GALLERY.md) · [Design archive](../../README.md)
+[Current Heart Tree visualisations](../GALLERY.md) · [Current design](../../README.md)

@@ -1,15 +1,15 @@
 # Farbtupf — Der Herzbaum
 
-> Archived design/review note. Implementation and approval statements describe the stage when it was written. See the [current app notes](../../docs/HEART-TREE.md) and [design index](../README.md) for the present build.
+> Design reference recorded during planning. Implementation and approval statements describe the stage when it was written. See the [current app notes](../../docs/HEART-TREE.md) and [design index](../README.md) for the present build.
 ## Die vergessenen Pfade
 
-Design blueprint. Its broader story and world remain the roadmap. The [authorised first local playable slice](PLAYABLE-SLICE.md) is now implemented separately in the application repository. No deployment or wholesale puzzle redesign has occurred. These illustrations remain concept references.
+Design blueprint. Its broader story and world remain the roadmap. The [authorised first local playable slice](../archive/implementation-notes/PLAYABLE-SLICE.md) is now implemented separately in the application repository. No deployment or wholesale puzzle redesign has occurred. These illustrations remain concept references.
 
 The [design pack index](README.md) links the consolidated story, child interface, activity guidance matrix, walkthrough materials and future implementation plan.
 
-An [eight-page visual review](DESIGN-REVIEW.pdf) provides a compact route through the chosen direction and proposed first playable slice.
+An [eight-page visual review](../archive/reviews/DESIGN-REVIEW.pdf) provides a compact route through the chosen direction and proposed first playable slice.
 
-Chosen visual direction: the user has selected **the original A, Painted woodland**, in the left column of the [A/B comparison](visual-middle-ground-options.png). Preserve its original balance of detail and open space. The [art direction](ART-DIRECTION.md) records the reference; [next steps](NEXT-STEPS.md) carry it into gameplay and later implementation. Existing flat puzzle artwork is retained. Earlier alternatives are archived explorations.
+Chosen visual direction: the user has selected **the original A, Painted woodland**, in the left column of the [A/B comparison](../archive/woodland-studies/visual-middle-ground-options.png). Preserve its original balance of detail and open space. The [art direction](ART-DIRECTION.md) records the reference; [next steps](../archive/implementation-notes/NEXT-STEPS.md) carry it into gameplay and later implementation. Existing flat puzzle artwork is retained. Earlier alternatives are archived explorations.
 
 Capacity revision: the ten story milestones organise a growing library of puzzle activities and short quests. The detailed content-growth plan is in [A forest with room for many puzzles](PUZZLE-LIBRARY.md).
 
@@ -310,22 +310,22 @@ These do not require another round of choices before continuing the design. Brin
 
 - [Opening layout and camera board](opening-layout.png)
 - [Help and return storyboard](opening-support.png)
-- [Current opening review packet](OPENING-REVIEW.pdf)
+- [Current opening review packet](../archive/reviews/OPENING-REVIEW.pdf)
 - [Chosen art direction — original A, Painted woodland](ART-DIRECTION.md)
 - [Opening walkthrough in the chosen style](painted-woodland-opening.png)
-- [Next steps from design to app](NEXT-STEPS.md)
-- [Opening storyboard](opening-storyboard.png)
-- [Updated adventure blueprint](adventure-blueprint-v2.png)
-- [Puzzle-library capacity board](puzzle-library.png)
+- [Next steps from design to app](../archive/implementation-notes/NEXT-STEPS.md)
+- [Opening storyboard](../archive/storyboards/opening-storyboard.png)
+- [Updated adventure blueprint](../archive/storyboards/adventure-blueprint-v2.png)
+- [Puzzle-library capacity board](../archive/storyboards/puzzle-library.png)
 - [Puzzle-library design](PUZZLE-LIBRARY.md)
 - [Understand before reading](BEFORE-READING.md)
-- [Non-reader interaction storyboard](before-reading-storyboard.png)
+- [Non-reader interaction storyboard](../archive/storyboards/before-reading-storyboard.png)
 - [First-session script and observation sheet](FIRST-SESSION.md)
 - [Picture-only walkthrough cards](walkthrough-cards.pdf)
-- [Child interface flow](child-interface.png)
+- [Child interface flow](../archive/storyboards/child-interface.png)
 - [Child interface specification](CHILD-INTERFACE.md)
 - [Activity guidance readiness](ACTIVITY-READINESS.md)
-- [Future implementation plan](IMPLEMENTATION-PLAN.md)
+- [Future implementation plan](../archive/implementation-notes/IMPLEMENTATION-PLAN.md)
 
 These are illustrations of the intended experience, not screenshots of a built app.
 
@@ -343,4 +343,3 @@ Species and habitat choices draw on the sources already checked during planning:
 - [Fragaria vesca — InfoFlora](https://www.infoflora.ch/de/flora/fragaria-vesca.html)
 - [Alnus glutinosa — InfoFlora](https://www.infoflora.ch/de/flora/alnus-glutinosa.html)
 - [Phragmites australis — InfoFlora](https://www.infoflora.ch/de/flora/2985-phragmites-australis.html)
-

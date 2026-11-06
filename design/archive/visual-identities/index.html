@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Farbtupf — Five visual directions</title>
   <style>
-    @font-face { font-family: Andika; src: url('../../fonts/andika-400.woff2') format('woff2'); font-weight: 400; font-display: swap; }
-    @font-face { font-family: Andika; src: url('../../fonts/andika-700.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+    @font-face { font-family: Andika; src: url('../../../fonts/andika-400.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+    @font-face { font-family: Andika; src: url('../../../fonts/andika-700.woff2') format('woff2'); font-weight: 700; font-display: swap; }
     :root { color-scheme: light; font-family: Andika, system-ui, sans-serif; color: #202b36; background: #f6f3ed; }
     * { box-sizing: border-box; }
     body { margin: 0; }
@@ -59,9 +59,9 @@
 </head>
 <body>
   <main>
-    <div class="eyebrow"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>Farbtupf / Visual directions</div>
+    <div class="eyebrow"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>Farbtupf / Archived visual directions</div>
     <div class="intro">
-      <div><h1>Choose Farbtupf’s new look</h1><p>Five complete visual directions. Each shows home, learning, drawing and a coordinated artwork family.</p></div>
+      <div><h1>Five early visual directions</h1><p>Five complete visual directions. Each shows home, learning, drawing and a coordinated artwork family.</p></div>
       <button type="button" class="compare-toggle" id="compare" aria-pressed="false">Compare all five</button>
     </div>
     <nav class="directions" id="directions" aria-label="View a visual direction"></nav>
@@ -74,7 +74,7 @@
     <footer>Visual proposals made with built-in image generation. The working app is unchanged.<br>After you choose, the artwork, icons, colours, typography and controls will be carried through every activity. <a href="prompts.json">Generation briefs</a></footer>
   </main>
   <script>
-    const directions = [{"number":1,"id":"01-waldatelier","name":"Waldatelier","summary":"Watercolour storybook · moss, cream and terracotta","filename":"01-waldatelier.png"},{"number":2,"id":"02-formenfreude","name":"Formenfreude","summary":"Swiss graphic design · precise shapes, vivid colour","filename":"02-formenfreude.png"},{"number":3,"id":"03-papierwelt","name":"Papierwelt","summary":"Layered cut paper · tactile, handmade and warm","filename":"03-papierwelt.png"},{"number":4,"id":"04-kleine-welten","name":"Kleine Welten","summary":"Matte clay miniatures · soft, sculptural and playful","filename":"04-kleine-welten.png"},{"number":5,"id":"05-tintenabenteuer","name":"Tintenabenteuer","summary":"Illustrated ink · expressive linework and storybook charm","filename":"05-tintenabenteuer.png"}];
+    const directions = [{"number":1,"id":"01-waldatelier","name":"Waldatelier","summary":"Watercolour storybook · moss, cream and terracotta","filename":"../../waldatelier/01-waldatelier.png"},{"number":2,"id":"02-formenfreude","name":"Formenfreude","summary":"Swiss graphic design · precise shapes, vivid colour","filename":"02-formenfreude.png"},{"number":3,"id":"03-papierwelt","name":"Papierwelt","summary":"Layered cut paper · tactile, handmade and warm","filename":"03-papierwelt.png"},{"number":4,"id":"04-kleine-welten","name":"Kleine Welten","summary":"Matte clay miniatures · soft, sculptural and playful","filename":"04-kleine-welten.png"},{"number":5,"id":"05-tintenabenteuer","name":"Tintenabenteuer","summary":"Illustrated ink · expressive linework and storybook charm","filename":"05-tintenabenteuer.png"}];
     const palettes = [['#fff4df','#71834b','#c36c3a','#8db6c7','#dfaf52'],['#fff7e9','#154fcd','#ff534b','#ffd125','#21a38e'],['#f4e9d4','#8a9b64','#e38239','#86abc9','#1c3043'],['#f6eadc','#8b98d0','#efa273','#99b498','#e87c73'],['#faf1df','#142b47','#d35c3e','#5a9e9e','#dfab42']];
     const nav = document.getElementById('directions'), buttons = [];
     let current = 0, comparing = false;

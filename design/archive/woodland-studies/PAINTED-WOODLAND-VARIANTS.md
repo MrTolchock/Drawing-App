@@ -1,8 +1,8 @@
 # Painted woodland: two refinements of A
 
-> Archived design/review note. Implementation and approval statements describe the stage when it was written. See the [current app notes](../../docs/HEART-TREE.md) and [design index](../README.md) for the present build.
+> Archived design/review note. Implementation and approval statements describe the stage when it was written. See the [current app notes](../../../docs/HEART-TREE.md) and [design index](../../README.md) for the present build.
 
-Archived exploration. After reviewing these variants, the user selected **the original A, Painted woodland**. Preserve its original balance of detail and open space; see the [chosen art direction](ART-DIRECTION.md). Work remains visual design only.
+Archived exploration. After reviewing these variants, the user selected **the original A, Painted woodland**. Preserve its original balance of detail and open space; see the [chosen art direction](../../heart-tree/ART-DIRECTION.md). Work remains visual design only.
 
 [View A1 and A2 — map above, future 3D scene below](painted-woodland-variants.png).
 

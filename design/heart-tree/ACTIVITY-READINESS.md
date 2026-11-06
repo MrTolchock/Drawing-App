@@ -1,6 +1,6 @@
 # Activity guidance readiness
 
-> Archived design/review note. Implementation and approval statements describe the stage when it was written. See the [current app notes](../../docs/HEART-TREE.md) and [design index](../README.md) for the present build.
+> Design reference recorded during planning. Implementation and approval statements describe the stage when it was written. See the [current app notes](../../docs/HEART-TREE.md) and [design index](../README.md) for the present build.
 
 All 22 named groups in the current hub are accounted for below. This is a source-informed instruction and interaction review, not a certification of exercise correctness, native-species content or child usability.
 
@@ -71,4 +71,3 @@ For each activity or materially different rule version, supply a visible goal, s
 An activity enters the recommended beginner route after this material is reviewed and its interaction is observed. Other learning activities remain available with appropriate support and level choice; the story does not force a child into a reading target before readiness.
 
 [First-session walkthrough](FIRST-SESSION.md) · [Non-reader design](BEFORE-READING.md)
-

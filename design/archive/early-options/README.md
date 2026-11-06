@@ -1,6 +1,6 @@
 # Early story, world and gameplay options
 
-Archived concept boards. Later decisions are recorded in the [Heart Tree design index](../README.md). Some early boards predate the Swiss-native cast and the selected calmer original A art direction.
+Archived concept boards. Later decisions are recorded in the [Heart Tree design index](../../heart-tree/README.md). Some early boards predate the Swiss-native cast and the selected calmer original A art direction.
 
 | Board | Visualisation |
 | --- | --- |

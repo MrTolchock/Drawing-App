@@ -1,8 +1,8 @@
 # Opening quest — help, leaving and return states
 
-> Archived design/review note. Implementation and approval statements describe the stage when it was written. See the [current app notes](../../docs/HEART-TREE.md) and [design index](../README.md) for the present build.
+> Design reference recorded during planning. Implementation and approval statements describe the stage when it was written. See the [current app notes](../../docs/HEART-TREE.md) and [design index](../README.md) for the present build.
 
-Picture-led interaction design for a child aged 6–7 who initially cannot read. The [first local slice](PLAYABLE-SLICE.md) implements these opening routes for the existing pattern activity. Broader activity adaptation and child observation remain future work.
+Picture-led interaction design for a child aged 6–7 who initially cannot read. The [first local slice](../archive/implementation-notes/PLAYABLE-SLICE.md) implements these opening routes for the existing pattern activity. Broader activity adaptation and child observation remain future work.
 
 [Optional-route storyboard](opening-support.png) · [Main walkthrough](painted-woodland-opening.png) · [Opening layout](OPENING-LAYOUT.md)
 
@@ -90,4 +90,4 @@ At successful completion, save the contribution and durable bridge state before 
 
 Look for goal recognition, intentional movement, understanding the taught help controls, returning to the pictured place, willingness to continue after leaving, and noticing the new route. Record learning accuracy separately. Paper can examine meanings; input priority, paths, actual speech, camera behaviour and persistence require a real device slice.
 
-[First-session script and observation sheet](FIRST-SESSION.md) · [Implementation plan](IMPLEMENTATION-PLAN.md)
+[First-session script and observation sheet](FIRST-SESSION.md) · [Implementation plan](../archive/implementation-notes/IMPLEMENTATION-PLAN.md)

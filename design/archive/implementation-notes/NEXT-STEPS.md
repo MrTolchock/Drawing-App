@@ -1,6 +1,6 @@
 ## Complete story implementation — 5 November 2026
 
-> Archived design/review note. Implementation and approval statements describe the stage when it was written. See the [current app notes](../../docs/HEART-TREE.md) and [design index](../README.md) for the present build.
+> Archived design/review note. Implementation and approval statements describe the stage when it was written. See the [current app notes](../../../docs/HEART-TREE.md) and [design index](../../README.md) for the present build.
 
 All nine helping projects, all five Swiss-native neighbours/clearings, the closed
 main woodland loop, two useful restored shortcuts, Meet → Reconnect → Gather,
@@ -65,11 +65,11 @@ The user has selected the **original A, Painted woodland** and explicitly author
 
 ## Current design work
 
-The [chosen art direction](ART-DIRECTION.md) is recorded, and the [opening walkthrough](painted-woodland-opening.png) carries it through movement, meeting Beaver, a separate demonstration, a fresh attempt, pictured return and the usable bridge result.
+The [chosen art direction](../../heart-tree/ART-DIRECTION.md) is recorded, and the [opening walkthrough](../../heart-tree/painted-woodland-opening.png) carries it through movement, meeting Beaver, a separate demonstration, a fresh attempt, pictured return and the usable bridge result.
 
-Steps 1–2 are recorded in the [opening layout and camera](OPENING-LAYOUT.md) and [interaction-state contract](OPENING-INTERACTIONS.md). The [opening review packet](OPENING-REVIEW.pdf) brings their visual boards and route/state summary together. The local slice now exercises these behaviours; real-device comfort, spoken playback and child understanding still need observation.
+Steps 1–2 are recorded in the [opening layout and camera](../../heart-tree/OPENING-LAYOUT.md) and [interaction-state contract](../../heart-tree/OPENING-INTERACTIONS.md). The [opening review packet](../reviews/OPENING-REVIEW.pdf) brings their visual boards and route/state summary together. The local slice now exercises these behaviours; real-device comfort, spoken playback and child understanding still need observation.
 
-This updates the presentation of the existing [first-session design](FIRST-SESSION.md). The pattern example remains illustrative; it does not settle the individual puzzle review or replace current question banks. Adult headings on the board are outside the child-facing views.
+This updates the presentation of the existing [first-session design](../../heart-tree/FIRST-SESSION.md). The pattern example remains illustrative; it does not settle the individual puzzle review or replace current question banks. Adult headings on the board are outside the child-facing views.
 
 ## Sequence
 
@@ -118,4 +118,4 @@ The next world expansion after this review is **Hedgehog's moss grove and one co
 
 Design steps 1–2 and the first local slice in step 3 are complete. The next phase is step 4: real-device audio/performance checks and child observation. Exact comfort, timing and comprehension remain evidence-dependent.
 
-[Detailed implementation plan](IMPLEMENTATION-PLAN.md) · [Child interface](CHILD-INTERFACE.md) · [First-session observation packet](FIRST-SESSION.md)
+[Detailed implementation plan](IMPLEMENTATION-PLAN.md) · [Child interface](../../heart-tree/CHILD-INTERFACE.md) · [First-session observation packet](../../heart-tree/FIRST-SESSION.md)

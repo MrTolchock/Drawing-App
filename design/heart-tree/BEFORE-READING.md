@@ -1,6 +1,6 @@
 # Understand before reading
 
-> Archived design/review note. Implementation and approval statements describe the stage when it was written. See the [current app notes](../../docs/HEART-TREE.md) and [design index](../README.md) for the present build.
+> Design reference recorded during planning. Implementation and approval statements describe the stage when it was written. See the [current app notes](../../docs/HEART-TREE.md) and [design index](../README.md) for the present build.
 
 Audience requirement for Farbtupf — Der Herzbaum: children aged 6–7, initially unable to read.
 
@@ -83,7 +83,7 @@ Check whether the child understands what to count, what can be touched and what 
 
 Show one missing position and a small set of picture choices.
 
-Demonstration: leaf, nut, leaf, empty place → nut.  
+Demonstration: leaf, nut, leaf, empty place → nut.\
 Fresh try: nut, leaf, nut, empty place → child chooses.
 
 Possible instruction: “Wie geht es weiter?”
@@ -193,7 +193,7 @@ Revise the instructions, example or interaction when the child needs unplanned a
 
 This changes the design’s priority: establish understanding of the first session before authoring a large catalogue or producing the full 3D forest.
 
-- [Non-reader storyboard](before-reading-storyboard.png)
+- [Non-reader storyboard](../archive/storyboards/before-reading-storyboard.png)
 - [First-session script and observation sheet](FIRST-SESSION.md)
 - [Picture-only walkthrough cards](walkthrough-cards.pdf)
 - [Adult overview of the reference cards](walkthrough-preview.png)
@@ -201,4 +201,3 @@ This changes the design’s priority: establish understanding of the first sessi
 - [Puzzle-library design](PUZZLE-LIBRARY.md)
 
 The app remains unchanged. The next work is the comprehension walkthrough and subsequent activity review, with implementation still a later authorised step.
-

@@ -2,7 +2,9 @@
 
 [Open the private story preview](https://farbtupf-herzbaum-preview-k7m4.andreas-itten.chatgpt.site) — sign in with the ChatGPT account that owns the preview. [GitHub Pages](https://mrtolchock.github.io/Drawing-App/) · [Preview and deployment notes](docs/PREVIEW.md).
 
-[**Design archive: all visualisations, story and gameplay plans, and review documents**](design/README.md) · [Design review PDF](design/heart-tree/DESIGN-REVIEW.pdf) · [Story and gameplay blueprint](design/heart-tree/BLUEPRINT.md).
+[**Current design and visualisations**](design/README.md) · [Story and gameplay blueprint](design/heart-tree/BLUEPRINT.md) · [Dismissed alternatives and earlier work](design/archive/README.md).
+
+[Original design review PDF — archived](design/archive/reviews/DESIGN-REVIEW.pdf).
 
 Finger-friendly learning adventures for first-grade children in Zürich, in Swiss Standard German. Static HTML/CSS/JavaScript PWA with locally bundled Three.js: no build step, account, ads, tracking or runtime CDN. Works offline after initial loading; prototype narration uses device voices and is not guaranteed offline.
 
@@ -36,7 +38,7 @@ Each stage is labelled with a trimester. This is a **provisional app progression
 
 The selected **Waldatelier** design brings a watercolour Zürich lakeside, a fox companion, coordinated subject illustrations, sepia tool icons and cream/forest-green stationery to every activity. The same illustrations appear in reading, learning, canvas stamps and the 42-sticker collection. Two original colouring pages, **Fuchs am See** and **Tram am Zürichsee**, join the existing 41 pages. Both support free painting, dice, numbers, syllables and colour words. Paint colours and handwriting geometry keep their learning meaning.
 
-«Kreativpause & Schätze» contains the colouring book, free drawing, saved pictures and sticker album. Keep the parent gear pressed to open settings. Existing device progress and pictures retain their original storage identifiers. See the [design notes](design/waldatelier/README.md) and [five original design directions](design/mockups/index.html).
+«Kreativpause & Schätze» contains the colouring book, free drawing, saved pictures and sticker album. Keep the parent gear pressed to open settings. Existing device progress and pictures retain their original storage identifiers. See the [design notes](design/waldatelier/README.md) and [archived visual alternatives](design/archive/visual-identities/README.md).
 
 ## Develop and check
 

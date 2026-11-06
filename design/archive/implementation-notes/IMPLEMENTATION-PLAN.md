@@ -1,12 +1,12 @@
 # Implementation plan — future Three.js application
 
-> Archived design/review note. Implementation and approval statements describe the stage when it was written. See the [current app notes](../../docs/HEART-TREE.md) and [design index](../README.md) for the present build.
+> Archived design/review note. Implementation and approval statements describe the stage when it was written. See the [current app notes](../../../docs/HEART-TREE.md) and [design index](../../README.md) for the present build.
 
 Implementation reference. The user explicitly authorised the first local playable slice, which is now implemented. [Current scope, screenshots and verification](PLAYABLE-SLICE.md) distinguish that slice from the later phases below. No publication or deployment was authorised.
 
 ## 1. Recommended first build
 
-Follow the [opening layout and camera specification](OPENING-LAYOUT.md) and [interaction-state contract](OPENING-INTERACTIONS.md). The [current opening review packet](OPENING-REVIEW.pdf) visualises these in the selected original A style.
+Follow the [opening layout and camera specification](../../heart-tree/OPENING-LAYOUT.md) and [interaction-state contract](../../heart-tree/OPENING-INTERACTIONS.md). The [current opening review packet](../reviews/OPENING-REVIEW.pdf) visualises these in the selected original A style.
 
 Build a local first playable slice containing:
 
@@ -27,16 +27,16 @@ The application is a static HTML/CSS/JavaScript PWA with existing flat screens.
 
 | Existing part | Relevant behaviour | Planned integration |
 | --- | --- | --- |
-| [Startup](../../js/app.js) | Initialises effects, audio unlocking and service worker, then opens hub | Add the forest entry after the world module is ready; retain direct learning access |
-| [Screen router](../../js/ui/ui.js#L22) | build/enter/leave lifecycle and history | Register the forest as a screen and explicitly handle return context |
-| [Learning screen](../../js/screens/learn.js) | Selects game and global stage, runs a round, records completion | Accept an explicit session/stage and emit round completion independently of stars |
-| [Adventure screen](../../js/screens/adventure.js) | Several distinct mechanics and a round finish | Add the same session contract per supported activity |
-| [Expedition screen](../../js/screens/expedition.js) | Several mechanics including memory and mirror grid | Add the same contract, with appropriate state and guidance |
-| [Reading screen](../../js/screens/read.js) | Four reading modes | Keep per-mode target-audio policies and original reward identities |
-| [Progress/settings](../../js/core/store.js#L25) | Stable settings and replay-safe learning rewards | Preserve the existing identifiers; add separate world/session storage |
-| [Saved artwork](../../js/core/store.js#L72) | IndexedDB stores state and pictures | Preserve the database and stores; reference selected drawings without renaming old data |
-| [Sound](../../js/core/sound.js#L1) | Synthesised effects, currently no speech | Add a separate guidance/audio layer with repeat and mute handling |
-| [Service worker](../../sw.js) | Caches local runtime assets | Include the chosen local Three.js dependency and new required assets deliberately |
+| [Startup](../../../js/app.js) | Initialises effects, audio unlocking and service worker, then opens hub | Add the forest entry after the world module is ready; retain direct learning access |
+| [Screen router](../../../js/ui/ui.js#L22) | build/enter/leave lifecycle and history | Register the forest as a screen and explicitly handle return context |
+| [Learning screen](../../../js/screens/learn.js) | Selects game and global stage, runs a round, records completion | Accept an explicit session/stage and emit round completion independently of stars |
+| [Adventure screen](../../../js/screens/adventure.js) | Several distinct mechanics and a round finish | Add the same session contract per supported activity |
+| [Expedition screen](../../../js/screens/expedition.js) | Several mechanics including memory and mirror grid | Add the same contract, with appropriate state and guidance |
+| [Reading screen](../../../js/screens/read.js) | Four reading modes | Keep per-mode target-audio policies and original reward identities |
+| [Progress/settings](../../../js/core/store.js#L25) | Stable settings and replay-safe learning rewards | Preserve the existing identifiers; add separate world/session storage |
+| [Saved artwork](../../../js/core/store.js#L72) | IndexedDB stores state and pictures | Preserve the database and stores; reference selected drawings without renaming old data |
+| [Sound](../../../js/core/sound.js#L1) | Synthesised effects, currently no speech | Add a separate guidance/audio layer with repeat and mute handling |
+| [Service worker](../../../sw.js) | Caches local runtime assets | Include the chosen local Three.js dependency and new required assets deliberately |
 
 The router currently treats the hub specially and several finish screens navigate there directly. A forest return must use explicit session context rather than relying on the existing Back button alone.
 
@@ -93,7 +93,7 @@ Detailed question-state restoration requires a serialisable snapshot per adapter
 
 ## 6. Art and map production
 
-Use the [selected original A, Painted woodland](ART-DIRECTION.md), retaining its original detail and open-space balance. The left column of the A/B comparison is the authoritative style reference.
+Use the [selected original A, Painted woodland](../../heart-tree/ART-DIRECTION.md), retaining its original detail and open-space balance. The left column of the A/B comparison is the authoritative style reference.
 
 Use a fixed orthographic angled overhead camera and actual 3D terrain/character silhouettes. Painted textures, soft lighting and restrained geometry should carry the watercolour identity.
 
@@ -166,4 +166,3 @@ Retain existing learning, handwriting, reward and offline checks. Add meaningful
 Actual child observations, final question-bank review, production recordings, final 3D asset quality and physical device performance are not established by this design pack.
 
 The first local slice is implemented in the original A direction, retaining existing flat puzzle artwork and reward identities. The [next phase](NEXT-STEPS.md) is device/audio checks and child observation. The remaining forest phases and production recordings are future work. No deployment or publication has occurred.
-
