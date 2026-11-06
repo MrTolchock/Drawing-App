@@ -1,12 +1,16 @@
 # Farbtupf
 
-[Open the private story preview](https://farbtupf-herzbaum-preview-k7m4.andreas-itten.chatgpt.site) — sign in with the ChatGPT account that owns the preview. [GitHub Pages](https://mrtolchock.github.io/Drawing-App/) · [Preview and deployment notes](docs/PREVIEW.md).
+[**Open Farbtupf**](https://mrtolchock.github.io/Drawing-App/) · [Earlier private preview](https://farbtupf-herzbaum-preview-k7m4.andreas-itten.chatgpt.site) (owner account required) · [Preview and deployment notes](docs/PREVIEW.md).
 
 [**Current design and visualisations**](design/README.md) · [Story and gameplay blueprint](design/heart-tree/BLUEPRINT.md) · [Dismissed alternatives and earlier work](design/archive/README.md).
 
 [Original design review PDF — archived](design/archive/reviews/DESIGN-REVIEW.pdf).
 
 Finger-friendly learning adventures for first-grade children in Zürich, in Swiss Standard German. Static HTML/CSS/JavaScript PWA with locally bundled Three.js: no build step, account, ads, tracking or runtime CDN. Works offline after initial loading; prototype narration uses device voices and is not guaranteed offline.
+
+**Story update 6.5:** The opening reveals the real, bare **Heart Tree** and its empty meeting circle. Short scenes use articulated 3D animals, expressive faces, camera moves and spoken dialogue. Beaver misses Hare across a broken bridge; pictured planks connect the request to its pattern puzzle. After helping, a glowing heart carries the friendship through the forest to wake another bough. Then the fox accompanies Beaver to a reunion in Hare's garden.
+
+All nine projects have their own acted request and thanks. The central oak has a heart in its trunk, nine growing crowns, stone lights and fireflies; a direction marker keeps it findable during exploration. Chapter scenes and a five-beat 3D gathering bring the neighbours home. Every beat waits for the child. Listen again, skip to the choice or revisit the beginning at the tree: existing progress, pictures and puzzle saves are preserved. [Story scenes and verification](docs/STORY-SCENES.md).
 
 **Gameplay update 6.4:** Start a saved three-stop **Entdeckertour**, or freely choose a game. Each completed round offers a clear next activity; four independently solved tasks can offer a higher stage, which changes only when selected. Tours rotate quantities, language and spatial/nature games. Their progress is separate from the nine story repairs.
 
@@ -66,6 +70,7 @@ node tests/waldatelier.test.cjs
 node tests/forest.test.cjs
 node tests/routes.test.cjs
 node tests/story.test.cjs
+node tests/cinema.test.cjs
 node tests/timer.test.cjs
 node tests/play-content.test.cjs
 node tests/journey.test.cjs
@@ -76,6 +81,7 @@ node tests/forest-browser.cjs
 node tests/memory-browser.cjs
 node tests/trail-browser.cjs
 node tests/story-browser.cjs
+node tests/cinema-browser.cjs
 node tests/timer-browser.cjs
 node tests/painted-browser.cjs
 node tests/play-browser.cjs

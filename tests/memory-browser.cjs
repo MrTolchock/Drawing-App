@@ -1,3 +1,4 @@
+const {seedSeenStoryScenes}=require('./cinema-support.cjs');
 const BASE_URL = process.env.FARBTUPF_BASE_URL || 'http://127.0.0.1:8000';
 /* The shared memory board keeps ordinary practice working at all three stages. */
 const { chromium } = require('/opt/codex/cua_node/lib/node_modules/playwright');
@@ -9,6 +10,7 @@ const fs = require('node:fs');
     args: ['--no-sandbox', '--disable-dev-shm-usage', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
   try {
     const context = await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true, reducedMotion: 'reduce' });
+    await context.addInitScript(seedSeenStoryScenes);
     const page = await context.newPage(), errors = []; page.on('pageerror', e => errors.push(e.message));
     await page.goto(BASE_URL + '/?screen=hub');
     await page.evaluate(() => {

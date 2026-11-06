@@ -1,3 +1,4 @@
+const {seedSeenStoryScenes}=require('./cinema-support.cjs');
 const BASE_URL = process.env.FARBTUPF_BASE_URL || 'http://127.0.0.1:8000';
 /* The running woodland and all three flat families share actual loaded paintings. */
 const { chromium } = require('/opt/codex/cua_node/lib/node_modules/playwright');
@@ -8,6 +9,7 @@ const fs = require('node:fs');
     args: ['--no-sandbox', '--disable-dev-shm-usage', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
   try {
     const context = await browser.newContext({ viewport: { width: 1280, height: 900 }, hasTouch: true, reducedMotion: 'reduce' });
+    await context.addInitScript(seedSeenStoryScenes);
     await context.addInitScript(() => {
       if (localStorage.getItem('painted-test')) return;
       localStorage.setItem('farbklecks.settings.v2', JSON.stringify({ sound: false, 'learning.stage': 3 }));

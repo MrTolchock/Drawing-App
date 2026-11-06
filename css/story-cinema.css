@@ -1,0 +1,77 @@
+/* The animated world carries the story. Captions and choices sit below it. */
+.has-film .forest-header,.has-film .forest-footer { display:none; }
+.has-film .forest-overlay { padding:0; background:linear-gradient(transparent 42%,#344b2a0a 68%,#344b2a20); }
+.forest-cinema { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:space-between; pointer-events:none; }
+.forest-cinema-top { display:flex; align-items:flex-start; justify-content:space-between; gap:14px; padding:max(18px,env(safe-area-inset-top)) max(20px,env(safe-area-inset-right)) 0 max(20px,env(safe-area-inset-left)); }
+.forest-cinema-top > span { max-width:55%; color:#405338; text-shadow:0 1px 8px #fff9e4; font:700 clamp(16px,2.3vw,24px)/1.25 var(--font); }
+.forest-cinema-skip { min-height:44px; min-width:44px; padding:9px 12px; border-radius:22px; background:#fff9e7c9; box-shadow:none; font-size:12px; gap:7px; }
+.forest-cinema-skip .forest-icon { width:23px; height:23px; }
+.forest-cinema-tray,.forest-dialog.forest-dialog-cinematic { width:min(740px,calc(100% - 28px)); margin:0 auto max(15px,env(safe-area-inset-bottom)); padding:17px 23px 15px; border:1px solid #d1c59e; border-radius:26px; background:#fff8e8f2; box-shadow:0 8px 35px #35492720; backdrop-filter:none; pointer-events:auto; }
+.forest-cinema-tray { align-self:center; }
+.forest-dialog.forest-dialog-cinematic { align-self:flex-end; }
+.forest-film-speaker { display:flex; align-items:center; gap:9px; min-height:37px; color:#6f8052; font:700 15px var(--read); }
+.forest-film-speaker .forest-portrait,.forest-film-speaker .heart-tree-picture { width:38px; height:38px; }
+.forest-cinema .forest-film-caption,.forest-dialog.forest-dialog-cinematic .forest-film-caption { margin:8px 0 0; color:#354d32; font:700 clamp(18px,2.7vw,25px)/1.38 var(--read); text-wrap:pretty; }
+.forest-cinema-bottom { display:flex; align-items:center; justify-content:flex-end; gap:10px; margin-top:15px; }
+.forest-cinema-dots { display:flex; flex:1; align-items:center; gap:6px; }
+.forest-cinema-dots > span { display:block; width:7px; height:7px; border-radius:50%; background:#cfceb4; }
+.forest-cinema-dots > .current { width:19px; border-radius:8px; background:#8fa260; }
+.forest-cinema-dots > .done { background:#9eae77; }
+.forest-cinema-listen { width:49px; height:49px; min-width:49px; min-height:49px; padding:11px; border-radius:50%; box-shadow:none; }
+.forest-cinema-listen .forest-icon { width:28px; height:28px; }
+.forest-cinema-next { min-width:132px; min-height:57px; padding:10px 16px; border-radius:20px; background:#637e47; border-color:#5f7845; color:#fff8e4; box-shadow:none; gap:12px; font-size:18px; }
+.forest-cinema-next .forest-icon { width:30px; height:30px; }
+.forest-cinema-cover { padding:21px 23px; }
+.forest-cinema-cover h1 { margin:0; color:#3d5835; font:700 35px/1.15 var(--font); }
+.forest-cinema-cover .forest-film-caption { font-size:17px; font-weight:400; }
+.forest-cinema-cover .forest-cinema-dots,.forest-cinema-cover .forest-cinema-listen { display:none; }
+.forest-cinema-cover .forest-cinema-next { width:100%; }
+.forest-dialog-cinematic > .forest-welcome-copy,.forest-dialog-cinematic > .forest-request-copy,.forest-dialog-cinematic > .forest-chapter-copy { display:none; }
+.forest-dialog-cinematic .forest-dialog-actions { justify-content:flex-start; flex-wrap:wrap; gap:9px; margin-top:16px; }
+.forest-dialog-cinematic .forest-primary { flex:1; min-width:120px; min-height:62px; padding:5px 13px; font-size:16px; gap:8px; }
+.forest-dialog-cinematic .forest-primary > .forest-portrait,.forest-dialog-cinematic .forest-primary > .forest-bridge-picture { width:46px; height:48px; }
+.forest-dialog-cinematic .forest-secondary,.forest-dialog-cinematic .forest-dialog-replay,.forest-dialog-cinematic .forest-scene-replay { width:48px; min-width:48px; height:52px; min-height:52px; padding:9px; border-radius:17px; box-shadow:none; }
+.forest-dialog-cinematic .forest-secondary > .forest-icon,.forest-dialog-cinematic .forest-dialog-replay > .forest-icon,.forest-dialog-cinematic .forest-scene-replay > .forest-icon { width:28px; height:28px; }
+.forest-dialog-cinematic .forest-secondary > .forest-portrait { width:32px; height:32px; }
+.forest-dialog-cinematic .forest-secondary > .forest-icon + .forest-portrait { display:none; }
+.forest-dialog-cinematic .forest-secondary > .forest-bridge-picture { width:32px; height:32px; }
+.forest-story-book { position:relative; flex-direction:column; gap:1px; min-width:70px; min-height:65px; width:70px; padding:5px; border-radius:18px; background:#f1ead4; box-shadow:none; }
+.forest-story-book > .heart-tree-picture { width:35px; height:35px; }
+.forest-story-book > .forest-icon { position:absolute; top:7px; right:6px; width:16px; height:16px; color:#78934f; }
+.forest-story-book > small { font:700 10px var(--read); }
+.forest-tree-beacon { position:absolute; inset:0 auto auto 0; display:flex; flex-direction:column; gap:0; width:84px; min-width:84px; min-height:80px; padding:5px 8px; border-radius:25px; background:#fff8deed; box-shadow:0 4px 18px #66714630; }
+.forest-tree-beacon .heart-tree-picture { width:43px; height:43px; }
+.forest-tree-beacon small { color:#64784e; font:700 11px var(--read); }
+.forest-beacon-arrow { position:absolute; right:-8px; top:23px; display:grid; place-items:center; width:25px; height:25px; border-radius:50%; color:#fdf6e2; background:#82975b; }
+.forest-beacon-arrow .forest-icon { width:17px; height:17px; }
+.forest-tree-beacon:active { background:#e8edce; }
+@media(max-width:420px){
+ .forest-cinema-top { padding:14px 13px 0; gap:8px; }
+ .forest-cinema-top > span { font-size:16px; }
+ .forest-cinema-skip { font-size:11px; padding:8px 10px; gap:3px; }
+ .forest-cinema-tray,.forest-dialog.forest-dialog-cinematic { padding:13px 16px 13px; width:calc(100% - 22px); border-radius:23px; }
+ .forest-cinema .forest-film-caption,.forest-dialog.forest-dialog-cinematic .forest-film-caption { font-size:18px; }
+ .forest-film-speaker { min-height:30px; font-size:13px; }
+ .forest-film-speaker .forest-portrait,.forest-film-speaker .heart-tree-picture { width:32px; height:32px; }
+ .forest-dialog-cinematic .forest-dialog-actions { gap:6px; }
+ .forest-dialog-cinematic .forest-secondary,.forest-dialog-cinematic .forest-dialog-replay,.forest-dialog-cinematic .forest-scene-replay { width:44px; min-width:44px; }
+ .forest-dialog-cinematic .forest-primary { font-size:14px; min-width:105px; }
+ .forest-dialog-cinematic .forest-primary > span:not(.forest-icon):not(.forest-portrait):not(.forest-bridge-picture) { display:inline!important; }
+ .forest-dialog-cinematic .forest-primary .forest-icon { width:25px; height:25px; }
+}
+@media(max-height:560px) and (min-width:601px){
+ .forest-cinema-top { padding-top:10px; }
+ .forest-cinema-tray,.forest-dialog.forest-dialog-cinematic { position:absolute; right:max(12px,env(safe-area-inset-right)); bottom:0; width:min(340px,39%); margin-bottom:max(10px,env(safe-area-inset-bottom)); padding:10px 17px; border-radius:20px; max-height:calc(100% - 85px); overflow-y:auto; }
+ .forest-cinema-dots { display:none; }
+ .forest-film-speaker { min-height:23px; font-size:12px; }
+ .forest-film-speaker .forest-portrait,.forest-film-speaker .heart-tree-picture { width:25px; height:25px; }
+ .forest-cinema .forest-film-caption,.forest-dialog.forest-dialog-cinematic .forest-film-caption { font-size:16px; margin-top:3px; line-height:1.3; }
+ .forest-cinema-bottom,.forest-dialog-cinematic .forest-dialog-actions { margin-top:8px; }
+ .forest-cinema-next { min-height:44px; font-size:15px; padding:7px 13px; }
+ .forest-cinema-listen { width:44px; min-width:44px; height:44px; min-height:44px; padding:9px; }
+ .forest-dialog-cinematic .forest-primary { min-height:46px; font-size:14px; }
+ .forest-dialog-cinematic .forest-primary > .forest-portrait,.forest-dialog-cinematic .forest-primary > .forest-bridge-picture { width:33px; height:36px; }
+ .forest-dialog-cinematic .forest-secondary,.forest-dialog-cinematic .forest-dialog-replay,.forest-dialog-cinematic .forest-scene-replay { height:44px; min-height:44px; width:44px; min-width:44px; }
+ .forest-cinema-cover h1 { font-size:28px; }
+ .forest-cinema-cover .forest-film-caption { font-size:14px; }
+}

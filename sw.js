@@ -1,5 +1,5 @@
 /* Farbtupf – Service Worker: keeps the whole app on the device so it runs without internet. */
-const CACHE = 'farbtupf-v6.4.0-playful-adventures';
+const CACHE = 'farbtupf-v6.5.0-heart-of-the-forest';
 const ASSETS = [
   './',
   './index.html',
@@ -29,6 +29,11 @@ const ASSETS = [
   './css/learning-gameplay.css',
   './css/adventure-gameplay.css',
   './css/forest-gameplay.css',
+  './css/story-cinema.css',
+  './js/forest/cinema.js',
+  './js/forest/heart-oak.js',
+  './js/forest/story-actors.js',
+  './js/forest/story-director.js',
   './js/ui/heart-tree.js',
   './vendor/three/three.module.js',
   './vendor/three/three.core.js',

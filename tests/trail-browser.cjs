@@ -1,3 +1,4 @@
+const {seedSeenStoryScenes}=require('./cinema-support.cjs');
 const BASE_URL = process.env.FARBTUPF_BASE_URL || 'http://127.0.0.1:8000';
 /* Shared-library routes and a touch-only Owl quest with exact interrupted saves. */
 const { chromium } = require('/opt/codex/cua_node/lib/node_modules/playwright');
@@ -21,6 +22,7 @@ function solve(q, start = q.start) {
     args: ['--no-sandbox', '--disable-dev-shm-usage', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
   try {
     const context = await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true, reducedMotion: 'reduce' });
+    await context.addInitScript(seedSeenStoryScenes);
     const page = await context.newPage(), errors = [], external = [];
     page.on('pageerror', e => errors.push(e.message));
     page.on('request', r => { if (!r.url().startsWith(BASE_URL) && !r.url().startsWith('data:')) external.push(r.url()); });

@@ -1,3 +1,4 @@
+const {seedSeenStoryScenes}=require('./cinema-support.cjs');
 const BASE_URL = process.env.FARBTUPF_BASE_URL || 'http://127.0.0.1:8000';
 /* A fresh, touch-only playthrough of every authored quest, chapter and ending. */
 const { chromium } = require('/opt/codex/cua_node/lib/node_modules/playwright');
@@ -23,6 +24,7 @@ function solve(q, start) {
   const errors = [];
   try {
     const context = await browser.newContext({ viewport: { width: 820, height: 1180 }, hasTouch: true, reducedMotion: 'reduce' });
+    await context.addInitScript(seedSeenStoryScenes);
     await context.addInitScript(() => {
       if (localStorage.getItem('complete-story-test')) return;
       localStorage.setItem('farbklecks.settings.v2', JSON.stringify({ sound: false, 'learning.stage': 3 }));
@@ -41,6 +43,7 @@ function solve(q, start) {
       if(process.env.FARBTUPF_SOFTWARE_RENDERING)await page.evaluate(()=>{
         FK.forestScene.renderer.setPixelRatio(0.5);
         FK.forestScene.renderer.shadowMap.enabled=false;
+        FK.forestScene.renderer.render(FK.forestScene.scene,FK.forestScene.camera);
       });
     };
     const world = () => page.evaluate(() => FK.forestState.get());
@@ -122,13 +125,15 @@ function solve(q, start) {
       console.log('PASS: completed and returned from ' + target.quest + '.');
     }
     assert.equal(completed.length, 9); assert.equal((await world()).endingSeen, false);
-    await page.locator('.forest-goal').tap(); await page.locator('.forest-dialog-home').waitFor({ timeout: 150000 });
+    await page.locator('.forest-goal').tap(); await page.locator('.forest-cinema').waitFor({ timeout: 150000 });
     assert.equal((await world()).endingUnlocked, true);
     await page.getByRole('button', { name: 'Geschichte weiter', exact: true }).tap(); await page.getByRole('button', { name: 'Geschichte weiter', exact: true }).tap();
     assert.equal((await world()).endingPage, 2);
-    await page.locator('.forest-book').tap(); await page.reload(); await ready();
-    await page.locator('.forest-dialog-home').waitFor(); assert.equal((await world()).endingPage, 2);
+    await page.reload(); await ready();
+    await page.locator('.forest-cinema').waitFor(); assert.equal((await world()).endingPage, 2);
     await page.getByRole('button', { name: 'Geschichte weiter', exact: true }).tap();
+    await page.getByRole('button', { name: 'Geschichte weiter', exact: true }).tap();
+    await page.locator('.forest-dialog-home').waitFor();
     await page.setViewportSize({ width: 390, height: 844 });
     await page.waitForFunction(() => FK.forestScene.scene.getObjectByName('kingfisher').position.x < 0 && FK.forestScene.scene.getObjectByName('kingfisher').position.z < 12);
     await shot('03-finale-phone.png');

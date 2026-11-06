@@ -1,4 +1,4 @@
-> Current navigation (6.3): Waldspiele is now the only library, including all former hub games. The old hub URL redirects there. Settings opens by tap in the forest and book, followed by the parent gate. The Heart Tree begins bare and gains one leafy branch per story repair (nine total); optional practice never grows it. See [current improvements](IMPROVEMENTS.md) for the revised exercise interfaces. Earlier implementation details below remain useful for the saved story model.
+> Current story (6.5): the central oak, opening, requests, thanks, chapter returns and gathering now have animated 3D story scenes. A travelling heartlight connects each completed repair to a newly living bough. Children advance or skip each scene; the beginning can be replayed at the tree without resetting progress. [Story scenes](STORY-SCENES.md) · [Gameplay](GAMEPLAY.md). Waldspiele remains the single library. The saved nine-repair model below is preserved.
 
 # Der Herzbaum — complete playable story
 
@@ -24,9 +24,10 @@ flat DOM activities and share the same illustrated cast and natural objects.
 | Ending | The story continues | Everyone | Story reward | Five neighbours gather; the canopy awakens |
 
 Each helping project is one short, untimed five-item round. The ending is a
-picture-led recollection of the earlier changes. The child advances its four
-pictures with an arrow, then returns to a permanently restored, explorable world.
-The ending can be replayed at the tree without resetting progress or stars.
+five-beat animated gathering around the awakened oak. The child advances the
+scenes with an arrow, then returns to the restored, explorable world. Its original
+saved ending cursor is retained, including interrupted earlier endings.
+The gathering and the opening can be replayed at the tree without resetting progress or stars.
 
 After the bridge and Hare's introduction, the other three Meet projects can be
 completed in any order. Reconnect's three projects and Gather's two projects are
@@ -37,11 +38,12 @@ Optional practice never becomes a chapter requirement.
 
 ## Play and controls
 
-Run `python3 -m http.server 8000 --bind 0.0.0.0` in the repository and open
+Run `python3 -m http.server 8000 --bind 127.0.0.1` in the repository and open
 `http://localhost:8000` on that machine. No package installation or build is needed.
 `?screen=hub` opens the original library directly.
 
-- Tap the fox/play invitation to begin; a pictured gesture teaches walking.
+- Start the narrated opening with its play button; each scene waits for the child.
+  A pictured invitation then begins walking. Scenes have listen and skip controls.
 - Tap a path, neighbour, the tree or the pictured destination. Arrow keys/WASD
   also move the fox along safe routes. New destinations replace old approaches.
 - Accept a neighbour's pictured helping request, or return to exploring.
@@ -59,7 +61,7 @@ Run `python3 -m http.server 8000 --bind 0.0.0.0` in the repository and open
   and short speech. It never requires reading an instruction or earning more stars.
 - The book opens **Waldspiele**: choose a familiar neighbour, then a pictured
   pattern, memory or route collection. **Alle Spiele** opens the entire original
-  library, creative tools and parent settings. Its fox button returns to the forest.
+  library, drawing tools and parent settings. Its fox button returns to the forest.
 - The optional clock in **Waldspiele** offers a stopwatch or a gentle play-time
   countdown. It starts off, never limits a quest or changes a reward, and pauses
   in the background. [Clock controls and saving](TIMER.md).
@@ -82,13 +84,15 @@ or the tree during conversation. The original A reference is implemented as an
 illustrated 2.5D presentation: camera-facing paintings are placed in the actual
 Three.js world, while navigation, depth, bridges, height changes and timber props
 remain three-dimensional. The fox has four viewing directions. Portraits and
-puzzle pieces use those same paintings, with no separate primitive-model portraits.
+puzzle pieces use those same paintings. Story scenes add articulated 3D actors
+with head, face, ear, paw and wing animation, plus a detailed volumetric oak.
 Transparent corners of painted trees do not intercept ground taps. Trees fade
 when they obscure interaction; the gathered finale keeps the crown
 visible. Decorative movement and scene transitions respect reduced-motion settings.
 Static world shadows and soft character contact shadows limit recurring rendering.
-The gathering is staged as a short scene transition, rather than autonomous NPC
-navigation. The fox's normal route movement stays available outside that scene.
+The gathering uses a close, staged camera and all six 3D actors. Other scenes show
+the real bridge, restored places and a heartlight flying through the same world.
+Normal exploration and companion walking remain available between scenes.
 
 ## Fixed story, extensible collections
 

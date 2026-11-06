@@ -2,6 +2,7 @@ import { THREE } from './materials.js';
 import { fox, beaver, hare, hedgehog, owl, kingfisher } from './characters.js';
 import { buildLandscape } from './landscape.js';
 import { loadPaintedArt } from './painted.js';
+import { createStoryDirector } from './story-director.js';
 export const loadForestArt = loadPaintedArt;
 
 export function createForest(canvas, callbacks = {}) {
@@ -13,7 +14,7 @@ export function createForest(canvas, callbacks = {}) {
   renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.VSMShadowMap;
   renderer.shadowMap.autoUpdate = false;
   const scene = new THREE.Scene(); scene.background = new THREE.Color('#eee9d2'); scene.fog = new THREE.Fog('#eee9d2', 62, 125);
-  scene.add(new THREE.HemisphereLight('#fff6df', '#a4af7c', 1.1));
+  const sky=new THREE.HemisphereLight('#fff6df', '#a4af7c', 1.1);scene.add(sky);
   const sun = new THREE.DirectionalLight('#fff0d4', 1.2); sun.position.set(-14, 35, 20);
   sun.castShadow = true; sun.shadow.mapSize.set(1024, 1024); sun.shadow.normalBias = 0.055; sun.shadow.bias = -0.0003;
   sun.shadow.radius = 3; sun.shadow.blurSamples = 6;
@@ -40,7 +41,9 @@ export function createForest(canvas, callbacks = {}) {
   }
   const camera = new THREE.OrthographicCamera(-20, 20, 14, -14, 0.1, 160);
   const offset = new THREE.Vector3(12, 50, 32), focus = new THREE.Vector3(-2, 0, 4);
+  const currentOffset=offset.clone(),coldSky=new THREE.Color('#d9dfd7'),warmSky=new THREE.Color('#eee9d2'),coldSun=new THREE.Color('#e4e9df'),warmSun=new THREE.Color('#fff0d4');
   let width = 1, height = 1, running = false, raf = 0, last = 0, time = 0;
+  let storyDirty=true,lastDraw=0,lastReduced=window.FK.reduced;
   let waypoints = [], arrival = null, focusResident = null, repairStart = null, lastSave = 0, inputEnabled = true;
   let currentHalfHeight = 14, displayedRepaired = saved.bridgeRepaired, previousPortrait = null;
   let displayedRest = model.isComplete(model.REST), displayedGrove = saved.bridgeRepaired && saved.greetingSeen;
@@ -60,6 +63,7 @@ export function createForest(canvas, callbacks = {}) {
     bench: { centre: [-8, 6.5], cast: { hedgehog: [-6.2, 7.2], beaver: [-10.8, 7.4] } },
     invitation: { centre: [-8, 5.5], cast: { kingfisher: [-10, 6.5], hare: [-6.2, 7.2] } },
   };
+  const director=createStoryDirector({scene,model,landscape,player,residents,places:restorationPlaces});
   landscape.hero.traverse(o => { o.userData.landmark = 'home'; });
   const keys = new Set(), raycaster = new THREE.Raycaster(), plane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
   const destination = new THREE.Group();
@@ -156,6 +160,7 @@ export function createForest(canvas, callbacks = {}) {
   function viewHeight(portrait) { return restoration ? (portrait ? 10.4 : 11.5) : focusResident === 'home' ? (portrait ? 16.8 : 14.6) : ['hedgehog', 'owl', 'kingfisher'].includes(focusResident) ? (portrait ? 12.5 : 11.5) : focusResident ? (portrait ? 9.2 : 12.7) : portrait ? 7.8 : 14.4; }
 
   function resize() {
+    storyDirty=true;
     const rect = canvas.parentElement.getBoundingClientRect(); width = Math.max(1, rect.width); height = Math.max(1, rect.height);
     renderer.setSize(width, height, false);
     const aspect = width / height;
@@ -245,8 +250,13 @@ export function createForest(canvas, callbacks = {}) {
   }
   function frame(now) {
     if (!running) return;
+    if(lastReduced!==window.FK.reduced){lastReduced=window.FK.reduced;storyDirty=true;}
+    if(director.active&&((window.FK.reduced&&!storyDirty)||(!window.FK.reduced&&now-lastDraw<1000/30))){last=window.FK.reduced?now:last;raf=requestAnimationFrame(frame);return;}
+    storyDirty=false;lastDraw=now;
     const dt = Math.min((now - (last || now)) / 1000, 0.2); last = now; time += dt;
     const moving = walk(dt), state = model.get(), repaired = state.bridgeRepaired;
+    const warmth=window.FK.heartTree.count(director.previewState(state)||state)/9;
+    scene.background.lerpColors(coldSky,warmSky,warmth);scene.fog.color.copy(scene.background);sun.color.lerpColors(coldSun,warmSun,warmth);sky.intensity=1.03+warmth*.14;
     const companionMoving = walkCompanion(dt, moving);
     if (moving) {
       routePaws.forEach(paw => { if (paw.visible && model.distance(paw.position, player.group.position) < 0.85) paw.visible = false; });
@@ -263,7 +273,7 @@ export function createForest(canvas, callbacks = {}) {
     residents.kingfisher.group.visible = model.residentAvailable('kingfisher');
     const signature = Object.keys(state.contributions).filter(id => state.contributions[id]).sort().join('|') + state.endingUnlocked;
     if (signature !== projectSignature || gathering !== displayedGathering) renderer.shadowMap.needsUpdate = true;
-    landscape.setProjects(state); projectSignature = signature;
+    landscape.setProjects(state,director.growth,director.previewState(state)); projectSignature = signature;
     if (gathering !== displayedGathering) {
       placeFriends();
       displayedGathering = gathering;
@@ -277,21 +287,28 @@ export function createForest(canvas, callbacks = {}) {
     let progress = 1;
     if (repairStart !== null) { progress = Math.min(1, (now / 1000 - repairStart) / 1.4); if (progress === 1) { repairStart = null; renderer.shadowMap.needsUpdate = true; } }
     if (repaired !== displayedRepaired || (repaired && repairStart !== null && progress > 0.95)) renderer.shadowMap.needsUpdate = true;
-    landscape.setBridge(repaired, progress); displayedRepaired = repaired; landscape.animate(decorativeTime);
+    landscape.setBridge(director.bridgePreview??repaired, progress); displayedRepaired = repaired; landscape.animate(decorativeTime);
+    director.update(now);
     const aspect = width / height, portrait = aspect < 0.9;
-    const goal = viewGoal(portrait);
-    focus.lerp(goal, 1 - Math.exp(-dt * 2.6));
-    const half = viewHeight(portrait);
+    const shot=director.camera(now,portrait,aspect,height),goal=shot?.target||viewGoal(portrait);
+    if(window.FK.reduced&&shot)focus.copy(goal);else focus.lerp(goal, 1 - Math.exp(-dt * 2.6));
+    const half = shot?.half||viewHeight(portrait);
     currentHalfHeight = THREE.MathUtils.lerp(currentHalfHeight, half, 1 - Math.exp(-dt * 2.2));
+    if(window.FK.reduced&&shot)currentHalfHeight=half;
+    if(window.FK.reduced&&shot)currentOffset.copy(shot.offset);else currentOffset.lerp(shot?.offset||offset,1-Math.exp(-dt*3));
     camera.left = -currentHalfHeight * aspect; camera.right = currentHalfHeight * aspect; camera.top = currentHalfHeight; camera.bottom = -currentHalfHeight; camera.updateProjectionMatrix();
-    camera.position.copy(focus).add(offset); camera.lookAt(focus); camera.updateMatrixWorld();
+    camera.position.copy(focus).add(currentOffset); camera.lookAt(focus); camera.updateMatrixWorld();
     const foxHead = player.group.position.clone().add(new THREE.Vector3(0, 1.6, 0));
-    const visibleHead = focusResident === 'home' ? gathering ? foxHead : new THREE.Vector3(-8, 2.6, 2.9) : focusResident ? residents[focusResident].group.position.clone().add(new THREE.Vector3(0, 1.2, 0)) : foxHead;
+    const visibleHead = shot?shot.target:focusResident === 'home' ? gathering ? foxHead : new THREE.Vector3(-8, 2.6, 2.9) : focusResident ? residents[focusResident].group.position.clone().add(new THREE.Vector3(0, 1.2, 0)) : foxHead;
     const ray = new THREE.Ray(camera.position, visibleHead.clone().sub(camera.position).normalize());
     for (const tree of landscape.trees) {
       const closest = new THREE.Vector3(); ray.closestPointToPoint(tree.centre, closest);
       const hiding = closest.distanceTo(tree.centre) < tree.radius * 0.86 && closest.distanceTo(camera.position) < visibleHead.distanceTo(camera.position);
-      tree.leaves.children.forEach(mesh => { mesh.material.opacity = THREE.MathUtils.lerp(mesh.material.opacity, hiding ? 0.28 : 1, 1 - Math.exp(-dt * 10)); });
+      if(tree.root===landscape.hero){
+        const storyShot=director.frame?.shot||'';
+        tree.root.visible=!(director.active&&!storyShot.startsWith('tree')&&!['empty-clearing','spark-flight'].includes(storyShot)&&model.distance(visibleHead,tree.root.position)>8);
+      }
+      tree.leaves.children.forEach(mesh => { mesh.material.opacity = THREE.MathUtils.lerp(mesh.material.opacity, director.active&&tree.root===landscape.hero?1:hiding ? 0.28 : 1, 1 - Math.exp(-dt * 10)); });
     }
     renderer.render(scene, camera);
     const projected = {};
@@ -309,12 +326,15 @@ export function createForest(canvas, callbacks = {}) {
   landscape.setProjects(saved); residents.kingfisher.group.visible = model.residentAvailable('kingfisher');
   renderer.shadowMap.needsUpdate = true; renderer.render(scene, camera);
   return {
-    start() { if (!running) { running = true; last = 0; resize(); raf = requestAnimationFrame(frame); } },
-    stop() { running = false; cancelAnimationFrame(raf); keys.clear(); persist(); },
+    start() { if (!running) { running = true; last = 0;storyDirty=true; resize(); raf = requestAnimationFrame(frame); } },
+    stop() { running = false; cancelAnimationFrame(raf); keys.clear(); director.end();persist(); },
     walkTo: targetAt, walkToResident,
     gather(enabled) { gathering = enabled === true; },
     moment(quest) { restoration = quest ? restorationPlaces[quest.picture] || null : null; placeFriends(); },
     accompany,
+    storyFrame(frame) { clearPaws();director.setFrame(frame);storyDirty=true;renderer.shadowMap.needsUpdate=true; },
+    storyEnd() { director.end();storyDirty=true;renderer.shadowMap.needsUpdate=true;currentOffset.copy(offset);focus.copy(viewGoal(width/height<.9));currentHalfHeight=viewHeight(width/height<.9); },
+    get cinematic() { return {active:director.active,frame:director.frame}; },
     focus(id) { focusResident = id || null; },
     input(enabled) { inputEnabled = enabled; if (!enabled) { keys.clear(); waypoints = []; arrival = null; destination.visible = false; clearPaws(); persist(); } },
     repair() { if (!displayedRepaired) repairStart = performance.now() / 1000; },

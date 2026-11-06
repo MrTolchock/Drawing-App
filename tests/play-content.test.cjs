@@ -2,7 +2,7 @@ const {test}=require('node:test');
 const assert=require('node:assert/strict');
 const fs=require('node:fs'), vm=require('node:vm');
 const FK={h:(tag,attrs,...children)=>({tag,attrs,children}),settings:{get:()=>undefined},forestState:{get:()=>({contributions:{}})}};
-const context={window:{FK}};
+const context={window:{FK},document:{addEventListener(){}}};
 for(const file of ['js/learn/learning.js','js/learn/adventures.js','js/forest/story.js','js/ui/heart-tree.js','js/ui/play.js'])vm.runInNewContext(fs.readFileSync(file,'utf8'),context,{filename:file});
 test('the tree grows only for the nine authored story repairs, including old completed saves',()=>{
   const state={contributions:{'unknown-optional-project':true},practices:{foo:{finished:true}}};

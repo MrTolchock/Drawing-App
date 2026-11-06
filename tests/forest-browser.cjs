@@ -1,3 +1,4 @@
+const {seedSeenStoryScenes}=require('./cinema-support.cjs');
 const BASE_URL = process.env.FARBTUPF_BASE_URL || 'http://127.0.0.1:8000';
 /* Real touch journeys through the Three.js world and two existing flat games. */
 const { chromium } = require('/opt/codex/cua_node/lib/node_modules/playwright');
@@ -10,6 +11,7 @@ const path = require('node:path');
   const browser = await chromium.launch({ executablePath: '/usr/bin/chromium', headless: true,
     args: ['--no-sandbox', '--disable-dev-shm-usage', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
   const context = await browser.newContext({ viewport: { width: 1280, height: 900 }, hasTouch: true, reducedMotion: 'reduce' });
+    await context.addInitScript(seedSeenStoryScenes);
   await context.addInitScript(() => {
     if (localStorage.getItem('forest-test-seeded')) return;
     localStorage.setItem('farbklecks.settings.v2', JSON.stringify({ sound: false, 'learning.stage': 3, schrift: 'gross' }));
