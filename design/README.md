@@ -2,19 +2,20 @@
 
 **Selected direction: original A, Painted woodland.** A Swiss-native woodland,
 a fox companion, short complete quests and picture-led play for a 6–7-year-old
-who initially cannot read. The current app combines painted artwork in Three.js
-with flat illustrated puzzles.
+who initially cannot read. The current app has an explorable, solid 3D world
+and animated story scenes, with original painted portraits and flat illustrated
+puzzles. [Exploration update 6.6](../docs/EXPLORATION.md).
 
 | Current design | Open |
 | --- | --- |
 | Selected art direction and its original reference | [Art direction](heart-tree/ART-DIRECTION.md) |
-| Selected-style studies and current app screenshots | [Current visual gallery](heart-tree/GALLERY.md) |
+| Selected-style studies and earlier implementation screenshots | [Current visual gallery](heart-tree/GALLERY.md) |
 | Story, world and gameplay | [Heart Tree design pack](heart-tree/README.md) · [Blueprint](heart-tree/BLUEPRINT.md) |
 | Picture-led controls, speech and demonstrations | [Child interface](heart-tree/CHILD-INTERFACE.md) · [Before reading](heart-tree/BEFORE-READING.md) |
 | Implemented story, controls and saving | [Current app notes](../docs/HEART-TREE.md) |
 | Shared production artwork | [Artwork and atlas notes](../assets/woodland/ART-NOTES.md) |
 
-[![Current painted woodland in the app](heart-tree/painted-implementation/01-world.png)](heart-tree/painted-implementation/01-world.png)
+[![Earlier painted woodland implementation](heart-tree/painted-implementation/01-world.png)](heart-tree/painted-implementation/01-world.png)
 
 ## Design documents
 

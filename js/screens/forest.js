@@ -4,11 +4,12 @@
   const FK = window.FK, h = FK.h, model = FK.forestState, art = FK.forestArt, voice = FK.forestVoice;
   let root, canvas, ui, overlay, goal, sound, treeStatus, bubble, hint, hitTargets, runtime, loading, active = false;
   let firstWalk = true, overlayKind = '', payoffTimer = 0, entry = 0;
-  let film=null,filmHeld=false,filmCaption=null,filmReplay=null,treeBeacon;
+  let film=null,filmHeld=false,filmCaption=null,filmReplay=null,treeBeacon,exploration;
   const button = (label, children, click, cls = '') => h('button', { type: 'button', class: 'forest-button ' + cls, 'aria-label': label,
     onclick: () => { FK.sound.tick(); click(); } }, ...(Array.isArray(children) ? children : [children]));
 
   function closeOverlay() {
+    if(exploration?.close())return true;
     if(film){finishFilm();return true;}
     if (!overlayKind || overlayKind === 'welcome') return false;
     endStory();
@@ -220,6 +221,7 @@
       targetButton.setAttribute('aria-description', current ? 'Hier wartet dein nächstes Waldabenteuer.' : 'Gehe zu diesem Freund.');
     }
     const hidden = !!overlayKind; goal.hidden = hidden; hint.hidden = hidden || !firstWalk; ui.querySelector('.forest-footer').hidden = hidden;
+    exploration?.hud(target,hidden);
     goal.replaceChildren();
     if (target.kind === 'free') { goal.append(art.icon('book'), h('span', {}, h('small', { text: 'Gemeinsam weiterentdecken' }), h('b', { text: 'Waldspiele' })), art.icon('arrow')); goal.setAttribute('aria-label', 'Waldspiele öffnen'); }
     else {
@@ -233,6 +235,7 @@
   }
   function updateProjection(points) {
     if (!active) return;
+    exploration?.update(points);
     for (const id of Object.keys(hitTargets)) {
       const p = points[id], target = hitTargets[id];
       target.hidden = !p.visible || !!overlayKind;
@@ -251,7 +254,7 @@
     if(treeBeacon){
       const p=points.home;treeBeacon.hidden=!!overlayKind||p.visible||!model.get().welcomed;
       if(!treeBeacon.hidden){
-        const x=Math.max(55,Math.min(root.clientWidth-55,p.x)),y=Math.max(155,Math.min(root.clientHeight-155,p.y));
+        const x=58,y=174;
         treeBeacon.style.transform=`translate(${x-42}px,${y-40}px)`;
         const arrow=treeBeacon.querySelector('.forest-beacon-arrow');if(arrow)arrow.style.transform='rotate('+Math.atan2(p.y-y,p.x-x)+'rad)';
       }
@@ -264,6 +267,7 @@
       runtime = module.createForest(canvas, {
         onWalk() { if (firstWalk) { firstWalk = false; hint.hidden = true; } },
         onArrive(id) { if (!active) return; if (id === 'home') showTree(); else showResident(id); },
+        onPlace(id){if(active)exploration.showPlace(id);},
         onProject: updateProjection,
       });
       FK.forestScene = runtime; root.classList.add('forest-ready'); return runtime;
@@ -280,13 +284,14 @@
     build(element) {
       root = element; root.classList.add('forest-loading');
       const viewport = h('div', { class: 'forest-viewport' });
-      canvas = h('canvas', { class: 'forest-canvas', tabindex: '0', role: 'application', 'aria-label': 'Wald: Tippe auf den Weg oder einen Nachbarn. Pfeiltasten bewegen den Fuchs.' }); viewport.append(canvas); root.append(viewport);
+      canvas = h('canvas', { class: 'forest-canvas', tabindex: '0', role: 'application', 'aria-label': 'Wald: Laufe frei mit den Pfeiltasten, WASD oder dem Steuerkreis. Tippe auf den Boden oder einen Freund. E begrüsst einen Freund in deiner Nähe.' }); viewport.append(canvas); root.append(viewport);
       ui = h('div', { class: 'forest-ui' });
       sound = button('Ton ausschalten', art.icon('speaker'), () => { FK.settings.set('sound', FK.settings.get('sound') === false); updateHUD(); if (FK.settings.get('sound')) voice.say('Komm mit in den Wald.'); }, 'forest-round');
       treeStatus=button('Herzbaum besuchen',[],()=>{closeOverlay();runtime?.walkTo(model.nodes.home,'home');},'play-tree-progress');
       const book = button('Spielebuch öffnen', art.icon('book'), () => FK.go('forest-book'), 'forest-round forest-book');
+      exploration=FK.forestExploration.create({root,ui,getRuntime:()=>runtime,blocked:()=>!!overlayKind||!active||!runtime});
       ui.append(h('header', { class: 'forest-header' }, h('div', { class: 'forest-heading' },
-        h('p', { class: 'forest-eyebrow', text: 'Farbtupf' }), h('h1', { text: 'Der Herzbaum' }),treeStatus), h('nav', { 'aria-label': 'Wald und Spiele' }, book, sound, FK.ui.settingsButton())));
+        h('p', { class: 'forest-eyebrow', text: 'Farbtupf' }), h('h1', { text: 'Der Herzbaum' }),treeStatus), h('nav', { 'aria-label': 'Wald und Spiele' }, exploration.mapButton,book, sound, FK.ui.settingsButton())));
       treeBeacon=button('Zum Herzbaum gehen',[],()=>{if(runtime&&!overlayKind)runtime.walkTo(model.nodes.home,'home');},'forest-tree-beacon');treeBeacon.hidden=true;ui.append(treeBeacon);
       hitTargets = {};
       for (const [id, name] of Object.entries({ ...FK.forestStory.names, home: 'Herzbaum' })) {
@@ -335,6 +340,7 @@
       }
     },
     leave() {
+      exploration?.leave();
       active = false; ++entry; clearTimeout(payoffTimer);endStory(); runtime?.gather(false); runtime?.moment(null); runtime?.accompany(null); runtime?.stop(); model.stopReplay(); voice.cancel();
       overlayKind = ''; overlay.replaceChildren(); root.classList.remove('has-dialog');
     },

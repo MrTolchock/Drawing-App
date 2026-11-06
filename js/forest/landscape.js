@@ -1,7 +1,8 @@
 import { THREE, paint, solid, ellipsoid, limb, curveTube, seeded, paintedPath, roundedBlock } from './materials.js';
 import { buildProjects } from './projects.js';
 import { buildHeartOak } from './heart-oak.js';
-import { paintedSprite, paintedProp, paintedGround, softShadow } from './painted.js';
+import { woodlandTree as tree, buildTerrain, buildWilderness } from './woodland.js';
+import { terrainHeight } from './navigation.js';
 
 function flatShape(points, material, y = 0) {
   const shape = new THREE.Shape();
@@ -13,24 +14,14 @@ function flatShape(points, material, y = 0) {
   mesh.rotation.x = -Math.PI / 2; mesh.position.y = y; mesh.receiveShadow = true; return mesh;
 }
 
-function tree(x, z, scale, seed, type = 'oak') {
-  const root = new THREE.Group(), leaves = new THREE.Group();
-  root.position.set(x, 0, z); root.scale.setScalar(scale); root.add(leaves);
-  leaves.add(paintedSprite(type, 11.4));
-  softShadow(root, 9, 6.5, 0.26);
-  return { root, leaves, radius: 4.6 * scale, centre: new THREE.Vector3(x, 4.1 * scale, z) };
-}
-
 export function buildLandscape(scene, model) {
-  const ground = paintedGround(), sand = paint('#ecd3a3', 'sand'), water = paint('#83aeb5', 'water');
-  const left = [[-100, -100]], right = [[100, -100]], waterLeft = [], waterRight = [];
+  const terrain = buildTerrain(scene, model), obstacles = [], windPlants = [];
+  const water = new THREE.MeshStandardMaterial({ map: paint('#83aeb5', 'water').map, color: '#a6cbd0', transparent: true, opacity: .85, roughness: .32, metalness: .12 });
+  const waterLeft = [], waterRight = [];
   for (let z = -100; z <= 100; z += 2) {
     const width = model.riverHalfWidth(z), centre = model.riverX(z);
-    left.push([centre - width, z]); right.push([centre + width, z]);
     waterLeft.push([centre - width, z]); waterRight.push([centre + width, z]);
   }
-  left.push([-100, 100]); right.push([100, 100]);
-  scene.add(flatShape(left, ground), flatShape(right, ground));
   const river = flatShape([...waterLeft, ...waterRight.reverse()], water, -0.13); scene.add(river);
   const bankMaterial = paint('#b2bd7f', 'ground');
   for (const side of [-1, 1]) {
@@ -61,7 +52,10 @@ export function buildLandscape(scene, model) {
   const stone = paint('#adae98', 'stone'), moss = paint('#a6af70');
   const rng = seeded(317);
   function rock(x, z, size = 0.65) {
-    return paintedProp(scene, 'stones', x, z, size * 3.2);
+    const rock = new THREE.Mesh(new THREE.DodecahedronGeometry(size, 1), stone);
+    rock.position.set(x, terrainHeight(x,z)+size*.35, z);rock.scale.set(1.2,.7,.9);rock.rotation.set(.13,x*.2,.1);rock.castShadow=rock.receiveShadow=true;scene.add(rock);
+    ellipsoid(scene,moss,[x-.1,terrainHeight(x,z)+size*.85,z],[size*.6,.07,size*.5]);
+    obstacles.push({x,z,radius:size*.85});return rock;
   }
   [[-2.4, -13], [3.3, -11], [-1.7, -2], [3.8, 3], [-2.0, 8], [3.3, 16], [-2.7, 13.7], [4.4, 13.6], [-3.1, 10.4], [4.4, 10.3]].forEach(([x, z]) => rock(x, z, 0.5 + rng() * 0.3));
   [[-16, 2], [-10, 1.6], [11, -8.2], [13, 11], [-19, -5]].forEach(([x, z]) => rock(x, z, 0.6 + rng() * 0.25));
@@ -73,21 +67,29 @@ export function buildLandscape(scene, model) {
     tree(-17, 18, 0.78, 103), tree(14, 17, 0.9, 109)];
   trees.forEach(t => scene.add(t.root));
   // The oak anchors the meeting circle and every friendship's return scene.
-  const hero=trees[0],heartOak=buildHeartOak(hero.root,hero.leaves);
+  const hero=trees[0];hero.root.clear();hero.root.add(hero.leaves);hero.animate=()=>{};
+  const heartOak=buildHeartOak(hero.root,hero.leaves);
   const heart=new THREE.Shape();heart.moveTo(0,.16);heart.bezierCurveTo(-.4,.62,-.76,.02,0,-.5);heart.bezierCurveTo(.76,.02,.4,.62,0,.16);
 
-  function reeds(x, z) { return paintedProp(scene, 'reeds', x, z, 2.5); }
+  function reeds(x, z) {
+    const patch=new THREE.Group();patch.position.set(x,terrainHeight(x,z),z);scene.add(patch);
+    for(let i=0;i<7;i++){const blade=limb(patch,paint('#819460'),[Math.sin(i*2.4)*.35,0,Math.cos(i*2.4)*.3],[Math.sin(i*2.4)*.45,1.2+i%3*.24,Math.cos(i*2.4)*.35],.025,.015);if(i%2===0)ellipsoid(patch,paint('#8a7950'),[blade.position.x*2,1.4+i%3*.24,blade.position.z*2],[.065,.2,.065]);}
+    windPlants.push(patch);return patch;
+  }
   [[-1.9, -10], [3, -2], [-1.4, 5], [3, 17]].forEach(p => reeds(...p));
 
-  function shrub(x, z, size = 1) { return paintedProp(scene, 'hazel', x, z, size * 3.7); }
+  function shrub(x, z, size = 1) {
+    const patch=new THREE.Group();patch.position.set(x,terrainHeight(x,z),z);patch.scale.setScalar(size);scene.add(patch);
+    for(let i=0;i<4;i++){const a=i*2.4;limb(patch,paint('#9b8256'),[0,0,0],[Math.sin(a)*.7,1.3,Math.cos(a)*.6],.055,.025);ellipsoid(patch,paint('#8ba362','leaf'),[Math.sin(a)*.7,1.3,Math.cos(a)*.6],[.7,.75,.65]);}windPlants.push(patch);return patch;
+  }
   [[-17, -5, 0.75], [-16, 15, 0.85], [15, -5, 0.8], [-11, -15, 0.75]].forEach(p => shrub(...p));
-  for (const [x, z] of [[10, -7.3], [11.3, -4.5]]) paintedProp(scene, 'strawberry', x, z, 2.3);
+  for (const [x, z] of [[10, -7.3], [11.3, -4.5]]) {const patch=shrub(x,z,.3);for(let i=0;i<4;i++)ellipsoid(patch,paint('#c8674e'),[Math.sin(i*2.4)*.9,1,Math.cos(i*2.4)*.9],[.16,.19,.16]);}
   // Small, locally grouped details leave the sandy walking routes easy to see.
   for (const [x, z, size] of [[-12, 1, 1.7], [-15, 9, 1.4], [-5, -1, 1.2], [-13, -5, 1.3],
     [7, -10, 1.4], [14, -2, 1.6], [-20, 5, 1.8], [-7, 14, 1.4], [21, 12, 1.6], [14, 23, 1.5]])
-    paintedProp(scene, 'grass', x, z, size);
-  paintedProp(scene, 'mushrooms', -10.5, 2.1, 1.65);
-  paintedProp(scene, 'log', -18, 8, 3.3);
+    {const patch=shrub(x,z,size*.18);patch.name='woodland-fern';}
+  for(let i=0;i<4;i++){const x=-10.5+Math.sin(i*2.4)*.5,z=2.1+Math.cos(i*2.4)*.5;limb(scene,paint('#e4d9b6'),[x,0,z],[x,.35,z],.06);ellipsoid(scene,paint('#b07b4e'),[x,.4,z],[.28,.13,.28]);}
+  limb(scene,paint('#997850','bark'),[-19.3,.4,8],[-16.7,.4,8.3],.4,.33);
   // A low hazel edge and Beaver's timber keep the residents' places distinct.
   for (const [x, z] of [[10.8, -9], [12.5, -7.8], [13.8, -6.3]]) shrub(x, z, 0.62);
   for (let i = 0; i < 3; i++) limb(scene, paint('#b99564', 'bark'), [-8.6, 0.25 + i * 0.2, -10.3], [-6.3, 0.3 + i * 0.2, -10.0], 0.13, 0.14);
@@ -103,7 +105,7 @@ export function buildLandscape(scene, model) {
   }
   for (const side of [-1, 1]) limb(restPlace, paint('#ac8e62', 'bark'), [side * 1.6, 0.12, -1.2], [side * 0.6, 0.14, -1.7], 0.13, 0.09);
 
-  const hollowTree = tree(12, 25, 0.82, 63); trees.push(hollowTree); hollow.add(hollowTree.root);
+  const hollowTree = tree(12, 25, 0.82, 63); trees.push(hollowTree); scene.add(hollowTree.root);
   ellipsoid(hollowTree.root, paint('#735d42', 'bark'), [0.1, 2.1, 0.55], [0.53, 0.79, 0.13]);
   ellipsoid(hollowTree.root, paint('#514b36'), [0.1, 2.1, 0.66], [0.37, 0.6, 0.045]);
   ellipsoid(hollow, moss, [8.7, 0.025, 28], [3.3, 0.09, 2.7]);
@@ -150,8 +152,10 @@ export function buildLandscape(scene, model) {
     ripple.rotation.x = -Math.PI / 2; ripple.position.set(model.riverX(z), -0.115, z); ripple.scale.set(1, 1.7, 1); scene.add(ripple); ripples.push(ripple);
   }
   const projects = buildProjects(scene, model, { flatShape, tree, reeds }); trees.push(...projects.trees);
+  trees.forEach(t=>obstacles.push({x:t.root.position.x,z:t.root.position.z,radius:t===hero?1.05:.52*t.root.scale.x}));
+  const wilderness=buildWilderness(scene,model,trees,obstacles);
   return {
-    trees,
+    trees,terrain,obstacles,places:wilderness.places,react:wilderness.react,
     hero: trees[0].root,
     setProjects(state,displayGrowth,previewState=null) {
       projects.set(previewState||state);
@@ -169,8 +173,13 @@ export function buildLandscape(scene, model) {
       const projectHeight = projects.height(x, z); if (projectHeight !== null) return projectHeight;
       if (repaired && x > -2.85 && x < 4.05 && Math.abs(z + 7) < 1.55) return 0.42;
       if (x > -2.85 && x < 4.85 && Math.abs(z - 12) < 1.55) return 0.21;
-      return 0.06;
+      return terrainHeight(x,z)+0.06;
     },
-    animate(time) { heartOak.update(time); ripples.forEach((r, i) => { r.material.opacity = 0.18 + Math.sin(time * 0.7 + i) * 0.04; }); },
+    animate(time,player) {
+      heartOak.update(time);trees.forEach(t=>t.animate(time));wilderness.animate(time,player);
+      windPlants.forEach((plant,i)=>{plant.rotation.z=window.FK.reduced?0:Math.sin(time*1.1+i)*.025;});
+      water.map.offset.y=window.FK.reduced?0:-time*.012;
+      ripples.forEach((r, i) => { r.material.opacity = 0.18 + Math.sin(time * 0.7 + i) * 0.04; });
+    },
   };
 }

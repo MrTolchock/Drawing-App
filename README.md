@@ -8,6 +8,10 @@
 
 Finger-friendly learning adventures for first-grade children in Zürich, in Swiss Standard German. Static HTML/CSS/JavaScript PWA with locally bundled Three.js: no build step, account, ads, tracking or runtime CDN. Works offline after initial loading; prototype narration uses device voices and is not guaranteed offline.
 
+**Exploration update 6.6:** Walk freely through a larger, solid 3D forest with hills, swaying trees and grass, flowing water, flowers, fish and butterflies. The fox and all five friends are articulated 3D animals. A lower perspective camera follows the fox closely on a phone and can turn around the world. Hold the touch stick, use arrows/WASD, or tap the ground. Trunks, rocks and water have real boundaries; choosing a friend produces a safe route and pictured direction arrow.
+
+The picture map leads to friends and six optional places: two hilltops, a butterfly meadow, a glowing hollow log, a spring and a quiet pond. Discoveries have short spoken observations and their own saved journal; the nine helping projects still restore the Heart Tree. Existing puzzles, drawings and progress are preserved. [Exploration controls and verification](docs/EXPLORATION.md).
+
 **Story update 6.5:** The opening reveals the real, bare **Heart Tree** and its empty meeting circle. Short scenes use articulated 3D animals, expressive faces, camera moves and spoken dialogue. Beaver misses Hare across a broken bridge; pictured planks connect the request to its pattern puzzle. After helping, a glowing heart carries the friendship through the forest to wake another bough. Then the fox accompanies Beaver to a reunion in Hare's garden.
 
 All nine projects have their own acted request and thanks. The central oak has a heart in its trunk, nine growing crowns, stone lights and fireflies; a direction marker keeps it findable during exploration. Chapter scenes and a five-beat 3D gathering bring the neighbours home. Every beat waits for the child. Listen again, skip to the choice or revisit the beginning at the tree: existing progress, pictures and puzzle saves are preserved. [Story scenes and verification](docs/STORY-SCENES.md).
@@ -47,7 +51,7 @@ Narration uses a German device voice, preferring Swiss German language settings.
 
 The optional **Spielzeit** clock offers a stopwatch or a 5/10/15/20/30-minute countdown. It is initially off and pauses in the background and parent settings. Reload restores it paused. [Timer behaviour](docs/TIMER.md).
 
-The original painted woodland and Waldatelier illustrations are bundled locally and used throughout the world, games, painting tools and 42-sticker album. [Artwork notes](assets/woodland/ART-NOTES.md) · [Story and save behaviour](docs/HEART-TREE.md) · [Navigation and story update](docs/IMPROVEMENTS.md).
+The original painted woodland and Waldatelier illustrations are bundled locally and used throughout the pictured navigation, games, painting tools and 42-sticker album. [Artwork notes](assets/woodland/ART-NOTES.md) · [Story and save behaviour](docs/HEART-TREE.md) · [Navigation and story update](docs/IMPROVEMENTS.md).
 
 All exercises are original. Source research, curriculum scope and the seventeen retained handwriting corrections are documented in [LMVZ research](docs/LMVZ-RESEARCH.md), [resource research](docs/RESOURCE-RESEARCH.md) and the [learning concept](docs/LEARNING.md). Those research documents describe earlier activity sets as historical context; the list above describes the current app.
 
@@ -82,6 +86,7 @@ node tests/memory-browser.cjs
 node tests/trail-browser.cjs
 node tests/story-browser.cjs
 node tests/cinema-browser.cjs
+node tests/world-browser.cjs
 node tests/timer-browser.cjs
 node tests/painted-browser.cjs
 node tests/play-browser.cjs

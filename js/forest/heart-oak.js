@@ -5,8 +5,8 @@ export function buildHeartOak(root,canopy){
   root.name='heart-tree';canopy.clear();
   const bark=paint('#a28a68','bark'),roots=paint('#a29675','bark'),random=seeded(7481);
   ellipsoid(root,bark,[0,1.1,0],[.93,1.65,.76]);
-  limb(root,bark,[0,.65,0],[.18,7.9,-.08],.72,.36);
-  curveTube(root,bark,[[.2,3.3,0],[-.25,5.6,.08],[.35,8.6,0],[.1,10.5,-.3]],.34,24);
+  const trunk=limb(root,bark,[0,.65,0],[.18,7.9,-.08],.72,.36),trunkAngle=trunk.rotation.z;
+  const upperTrunk=curveTube(root,bark,[[.2,3.3,0],[-.25,5.6,.08],[.35,8.6,0],[.1,10.5,-.3]],.34,24),windBoughs=[];
   for(let i=0;i<7;i++){
     const a=i*Math.PI*2/7;
     curveTube(root,roots,[[0,.45,0],[Math.sin(a)*1.1,.16,Math.cos(a)*1.1],[Math.sin(a)*2.8,.07,Math.cos(a)*2.6]],.16,12);
@@ -16,8 +16,9 @@ export function buildHeartOak(root,canopy){
   const crowns=[],buds=[];
   tips.forEach((tip,index)=>{
     const start=[.1,3.3+index%3*.9,0];
-    curveTube(root,bark,[start,[tip[0]*.4,tip[1]*.65,tip[2]*.3],[tip[0]*.84,tip[1]-.7,tip[2]],tip],.16+(index%2)*.025,18);
-    for(const side of [-1,1])limb(root,bark,[tip[0],tip[1]-.45,tip[2]],[tip[0]+side*.47,tip[1]+.55,tip[2]+side*.2],.08,.018);
+    const branch=curveTube(root,bark,[start,[tip[0]*.4,tip[1]*.65,tip[2]*.3],[tip[0]*.84,tip[1]-.7,tip[2]],tip],.16+(index%2)*.025,18);
+    windBoughs.push({mesh:branch,base:branch.rotation.z,index});
+    for(const side of [-1,1]){const twig=limb(root,bark,[tip[0],tip[1]-.45,tip[2]],[tip[0]+side*.47,tip[1]+.55,tip[2]+side*.2],.08,.018);windBoughs.push({mesh:twig,base:twig.rotation.z,index});}
     const material=paint('#91ad61','leaf').clone();material.transparent=true;
     const crown=new THREE.InstancedMesh(foliage,material,18);crown.position.set(...tip);crown.name='heart-tree-bough-'+(index+1);
     crown.userData.growth=index+1;crown.userData.size=1;
@@ -67,7 +68,10 @@ export function buildHeartOak(root,canopy){
   }
   function update(time){
     const motion=window.FK.reduced?0:time;
-    crowns.forEach(c=>{if(c.visible){c.scale.setScalar(THREE.MathUtils.lerp(c.scale.x,1,.08));c.rotation.z=Math.sin(motion*.45+c.userData.growth)*.008;}});
+    const breeze=motion?Math.sin(motion*.65)*.012+Math.sin(motion*.27)*.007:0;
+    trunk.rotation.z=trunkAngle+breeze*.18;upperTrunk.rotation.z=breeze*.65;
+    windBoughs.forEach(({mesh,base,index})=>mesh.rotation.z=base+breeze*(.7+index%3*.1));
+    crowns.forEach((c,i)=>{if(c.visible){c.scale.setScalar(THREE.MathUtils.lerp(c.scale.x,1,.08));c.rotation.z=breeze+ (motion?Math.sin(motion*1.15+i)*.012:0);c.position.x=tips[i][0]-breeze*tips[i][1];c.position.z=tips[i][2]+(motion?Math.sin(motion*.6+i)*.07:0);}});
     const beat=window.FK.reduced?0:Math.pow(Math.max(0,Math.sin(time*2.5)),5);
     heartMaterial.emissiveIntensity=displayed? .25+displayed/9*.45+beat*.25+pulse*.4:0;
     heart.scale.setScalar(.72+(displayed?beat*.025:0));glow.intensity=displayed?.55+beat*.2:0;

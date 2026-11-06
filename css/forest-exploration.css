@@ -1,0 +1,120 @@
+/* Exploration controls are pictures, with large held targets for little hands. */
+.forest-header,.forest-footer { z-index:4; }
+.screen-forest .forest-round,.screen-forest .forest-goal { backdrop-filter:none; }
+.forest-stick,.forest-wayfinder,.forest-look,.forest-nearby,.forest-tree-beacon { z-index:3; }
+.forest-nature-card { z-index:5; }
+.forest-map { z-index:10; }
+.forest-stick { position:absolute; left:max(24px,env(safe-area-inset-left)); bottom:max(130px,calc(env(safe-area-inset-bottom) + 115px)); width:126px; height:126px; border:2px solid #fff3c7b8; border-radius:50%; background:#344b2b3b; box-shadow:inset 0 0 0 17px #e9ebbd22,0 3px 18px #20391d17; pointer-events:auto; touch-action:none; user-select:none; }
+.forest-stick-direction { position:absolute; min-width:42px; min-height:42px; width:42px; height:42px; border:0; padding:0; border-radius:50%; color:#fff3cf; background:transparent; box-shadow:none; font-size:15px; touch-action:none; }
+.forest-stick-direction:active { background:#e8ebc54d; transform:none; }
+.forest-stick-up { left:40px; top:0; }
+.forest-stick-down { left:40px; bottom:0; }
+.forest-stick-down span { transform:rotate(180deg); }
+.forest-stick-left { top:40px; left:0; }
+.forest-stick-left span { transform:rotate(-90deg); }
+.forest-stick-right { top:40px; right:0; }
+.forest-stick-right span { transform:rotate(90deg); }
+.forest-stick-knob { position:absolute; top:39px; left:39px; width:44px; height:44px; border-radius:50%; background:#fff2cd; box-shadow:0 3px 10px #20351c40; color:#657c48; pointer-events:none; display:grid; place-items:center; }
+.forest-stick-knob .forest-icon { width:25px; height:25px; }
+.forest-stick.is-held { background:#324b2c66; }
+.forest-wayfinder { position:absolute; right:max(28px,env(safe-area-inset-right)); top:136px; border-radius:50%; width:74px; height:74px; min-width:0; min-height:0; padding:5px; background:#fffae8ed; box-shadow:0 3px 15px #354b302b; }
+.forest-wayfinder .forest-portrait,.forest-wayfinder .heart-tree-picture { width:56px; height:56px; }
+.forest-wayfinder .forest-nature-picture { width:46px; height:46px; }
+.forest-wayfinder-arrow { position:absolute; width:34px; height:34px; right:-9px; bottom:-9px; border:2px solid #f6eac5; border-radius:50%; background:#657d48; color:#fff5d5; display:grid; place-items:center; }
+.forest-wayfinder-arrow .forest-icon { width:25px; height:25px; }
+.forest-wayfinder.is-near .forest-wayfinder-arrow { background:#b49a5b; }
+.forest-nature-picture { display:inline-flex; flex:none; width:46px; height:46px; }
+.forest-nature-picture svg { width:100%; height:100%; }
+.forest-look { position:absolute; right:max(26px,env(safe-area-inset-right)); bottom:128px; display:flex; gap:8px; }
+.forest-look .forest-button { width:45px; height:45px; min-width:45px; min-height:45px; border-radius:50%; padding:10px; color:#5a7142; background:#fff7dedd; }
+.forest-look .forest-nature-picture { width:27px; height:27px; }
+.forest-look-left .forest-nature-picture { transform:scaleX(-1); }
+.forest-nearby { position:absolute; bottom:141px; left:50%; transform:translateX(-50%); min-width:100px; min-height:66px; padding:8px 12px; gap:6px; border:2px solid #c5bb83; border-radius:24px; background:#fffae9; }
+.forest-nearby:active { transform:translate(-50%,2px); }
+.forest-nearby .forest-icon { width:28px; height:28px; }
+.forest-nature-card { position:absolute; top:142px; left:50%; transform:translateX(-50%); width:min(540px,calc(100% - 230px)); display:flex; align-items:flex-start; gap:12px; padding:15px 48px 15px 15px; border:1px solid #b9ba95; border-radius:24px; background:#fff9e9f5; color:#405333; box-shadow:0 5px 24px #34492524; pointer-events:auto; }
+.forest-nature-card b { font:700 18px var(--read); }
+.forest-nature-card p { margin:5px 0 0; font:400 15px/1.45 var(--read); }
+.forest-nature-card .forest-button { width:36px; height:36px; min-width:36px; min-height:36px; padding:6px; border-radius:50%; }
+.forest-nature-close { position:absolute; right:7px; top:7px; font-size:25px; }
+.forest-nature-listen { position:absolute; right:7px; top:49px; }
+.forest-map { position:absolute; inset:max(20px,env(safe-area-inset-top)) max(24px,env(safe-area-inset-right)) max(20px,env(safe-area-inset-bottom)) max(24px,env(safe-area-inset-left)); margin:auto; max-width:820px; max-height:850px; display:flex; flex-direction:column; padding:15px 22px 10px; border:2px solid #c4bd94; border-radius:30px; background:#f7f0d8; color:#445b35; box-shadow:0 12px 0 150vmax #21351be0; pointer-events:auto; }
+.forest-map header { display:flex; align-items:center; gap:12px; flex:none; margin-bottom:9px; }
+.forest-map h2 { font:700 25px var(--read); margin:0; }
+.forest-map-close { margin-left:auto; width:46px; height:46px; min-height:46px; min-width:46px; border-radius:50%; padding:0; font-size:30px; }
+.forest-map-field { position:relative; min-height:0; flex:1; border-radius:22px; background:#dae0b1; border:1px solid #c1c99d; }
+.forest-map-paper { position:absolute; inset:0; border-radius:inherit; overflow:hidden; }
+.forest-map-paper svg { width:100%; height:100%; }
+.forest-map-pin { position:absolute; transform:translate(-50%,-50%); min-width:44px; min-height:44px; width:52px; height:52px; padding:3px; border-radius:50%; background:#fff5dce8; border:1px solid #a8b281; box-shadow:0 2px 8px #53653524; }
+.forest-map-pin:active { transform:translate(-50%,calc(-50% + 2px)); }
+.forest-map-friend .forest-portrait,.forest-map-heart .heart-tree-picture { width:44px; height:44px; }
+.forest-map-heart { width:64px; height:64px; }
+.forest-map-heart .heart-tree-picture { width:54px; height:54px; }
+.forest-map-place { width:46px; height:46px; border-style:dashed; }
+.forest-map-place .forest-nature-picture { width:35px; height:35px; }
+.forest-map-place.is-found { border-style:solid; background:#eaf0d1; }
+.forest-map-place > .forest-icon { position:absolute; bottom:-4px; right:-3px; width:18px; height:18px; padding:3px; background:#657d48; border-radius:50%; color:#fff8df; }
+.forest-map-you { position:absolute; transform:translate(-50%,-50%); width:32px; height:32px; border:2px solid #cda564; background:#fff2ce; border-radius:50%; pointer-events:none; box-shadow:0 0 0 5px #fff4cb66; }
+.forest-map-you .forest-portrait { width:28px; height:28px; }
+.forest-map-caption { flex:none; text-align:center; margin:10px 0 0; font:400 13px/1.4 var(--read); }
+.has-map .forest-header,.has-map .forest-footer,.has-map .forest-tree-beacon,.has-map .forest-npc-target,.has-map .forest-bubble,.has-map .forest-walk-hint,.has-map .forest-stick,.has-map .forest-wayfinder,.has-map .forest-look,.has-map .forest-nearby,.has-dialog .forest-stick,.has-dialog .forest-wayfinder,.has-dialog .forest-look,.has-dialog .forest-nearby { display:none!important; }
+@media(max-width:600px){
+ .forest-header { left:14px; right:14px; gap:5px; }
+ .forest-header nav { gap:6px; }
+ .forest-header .forest-round,.forest-header .btn-parents { width:44px; height:44px; min-width:44px; min-height:44px; padding:9px; }
+ .forest-header .forest-heading { padding:8px 9px; min-width:0; }
+ .forest-header .forest-heading h1 { font-size:22px; white-space:nowrap; }
+ .forest-header nav { flex:none; }
+ .forest-stick { width:114px; height:114px; left:15px; bottom:max(120px,calc(env(safe-area-inset-bottom) + 106px)); }
+ .forest-stick-up,.forest-stick-down { left:34px; }
+ .forest-stick-left,.forest-stick-right { top:34px; }
+ .forest-stick-knob { top:33px; left:33px; }
+ .forest-wayfinder { top:134px; right:18px; width:60px; height:60px; }
+ .forest-wayfinder .forest-portrait,.forest-wayfinder .heart-tree-picture { width:46px; height:46px; }
+ .forest-look { right:16px; bottom:126px; gap:6px; }
+ .forest-nearby,.forest-nearby:active { left:auto; right:18px; top:220px; bottom:auto; transform:none; min-height:60px; }
+ .forest-nature-card { width:calc(100% - 30px); top:211px; padding:12px 45px 12px 12px; gap:8px; }
+ .forest-nature-card .forest-nature-picture { width:35px; height:35px; }
+ .forest-nature-card b { font-size:16px; }
+ .forest-nature-card p { font-size:14px; }
+ .forest-map { inset:12px; padding:12px 12px 10px; border-radius:23px; }
+ .forest-map h2 { font-size:22px; }
+ .forest-map header > .forest-nature-picture { width:34px; height:34px; }
+ .forest-map-pin { width:44px; height:44px; }
+ .forest-map-friend .forest-portrait { width:38px; height:38px; }
+ .forest-map-heart { width:52px; height:52px; }
+ .forest-map-heart .heart-tree-picture { width:44px; height:44px; }
+ .forest-map-place .forest-nature-picture { width:32px; height:32px; }
+}
+@media(max-width:360px){
+ .forest-header nav { gap:3px; }
+ .forest-header .forest-heading h1 { font-size:16px; }
+ .forest-header .forest-heading { padding:7px 5px; }
+ .forest-header { left:10px; right:10px; }
+}
+@media(min-width:601px) and (max-width:760px){
+ .forest-header .forest-round { width:55px; height:55px; min-width:55px; min-height:55px; padding:11px; }
+ .forest-header .forest-heading { padding:10px 12px; column-gap:12px; }
+}
+@media(max-height:560px) and (min-width:601px){
+ .forest-header { top:12px; }
+ .forest-stick { bottom:16px; left:max(15px,env(safe-area-inset-left)); width:114px; height:114px; }
+ .forest-stick-up,.forest-stick-down { left:34px; }
+ .forest-stick-left,.forest-stick-right { top:34px; }
+ .forest-stick-knob { top:33px; left:33px; }
+ .forest-footer { left:150px; bottom:15px; }
+ .forest-goal { max-width:340px; min-height:65px; }
+ .forest-look { bottom:98px; right:18px; }
+ .forest-wayfinder { top:99px; right:22px; width:60px; height:60px; }
+ .forest-wayfinder .forest-portrait,.forest-wayfinder .heart-tree-picture { width:46px; height:46px; }
+ .forest-nearby { bottom:100px; }
+ .forest-nature-card { top:90px; width:min(480px,calc(100% - 260px)); }
+ .forest-nature-card p { font-size:13px; }
+ .forest-map { flex-direction:row; flex-wrap:wrap; padding:10px 14px; inset:10px; }
+ .forest-map header { width:150px; align-self:flex-start; flex-wrap:wrap; margin:0; }
+ .forest-map header h2 { font-size:20px; }
+ .forest-map-close { margin-left:0; }
+ .forest-map-field { height:100%; }
+ .forest-map-caption { display:none; }
+}
+@media(prefers-reduced-motion:reduce){ .forest-stick-knob { transition:none; } }

@@ -1,6 +1,6 @@
 const {seedSeenStoryScenes}=require('./cinema-support.cjs');
 const BASE_URL = process.env.FARBTUPF_BASE_URL || 'http://127.0.0.1:8000';
-/* The running woodland and all three flat families share actual loaded paintings. */
+/* A solid 3D woodland retains the shared paintings in all three puzzle families. */
 const { chromium } = require('/opt/codex/cua_node/lib/node_modules/playwright');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -24,25 +24,18 @@ const fs = require('node:fs');
     const session = () => page.evaluate(() => FK.forestState.getActivity(FK.forestState.QUEST));
     await page.goto(BASE_URL + '/', { waitUntil: 'networkidle' });
     await page.waitForFunction(() => !!FK.forestScene, null, { timeout: 60000 });
+    await page.evaluate(()=>{const r=FK.forestScene;r.renderer.setPixelRatio(.5);r.renderer.shadowMap.enabled=false;r.renderer.render(r.scene,r.camera);});
     await page.evaluate(async()=>{await document.fonts.ready;await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));});
     await page.getByRole('button', { name: 'Mit dem Fuchs losgehen', exact: true }).tap();
     await page.waitForTimeout(600); await shot('01-painted-world-desktop');
     const world = await page.evaluate(async () => {
       const THREE = await import('/vendor/three/three.module.js'), runtime = FK.forestScene;
-      const paintings = []; runtime.scene.traverse(o => { if (o.isSprite && o.userData.painting) paintings.push(o); });
-      const oak = paintings.find(o => o.name === 'painted-oak'), scale = oak.getWorldScale(new THREE.Vector3()), centre = oak.getWorldPosition(new THREE.Vector3());
-      const camera = runtime.camera, right = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 0), up = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 1);
-      function hits(x, y) {
-        const point = centre.clone().addScaledVector(right, (x - oak.center.x) * scale.x).addScaledVector(up, (y - oak.center.y) * scale.y);
-        const ray = new THREE.Raycaster(camera.position, point.sub(camera.position).normalize()); ray.camera = camera;
-        return ray.intersectObject(oak).length;
-      }
-      return { realWorld: runtime.renderer.isWebGLRenderer && camera.isOrthographicCamera, paintings: paintings.length,
-        loaded: paintings.every(o => o.material.map.image.width > 1000), transparentCorner: hits(0.015, 0.985), trunk: hits(0.5, 0.4),
-        foxViews: runtime.scene.getObjectByName('fox').children.filter(o => o.isSprite && o.visible).length };
+      let foxMeshes=0,foxSprites=0;runtime.scene.getObjectByName('fox').traverse(o=>{if(o.isMesh)foxMeshes++;if(o.isSprite)foxSprites++;});
+      const oak=runtime.scene.getObjectByName('heart-tree'),point=new THREE.Vector3(-8,2,2.2),ray=new THREE.Raycaster(runtime.camera.position,point.sub(runtime.camera.position).normalize());
+      return { realWorld: runtime.renderer.isWebGLRenderer && runtime.camera.isPerspectiveCamera,
+        trees: runtime.scene.getObjectsByProperty('name','volumetric-canopy').length, trunk:ray.intersectObject(oak,true).length,foxMeshes,foxSprites };
     });
-    assert.equal(world.realWorld, true); assert.ok(world.paintings > 25); assert.equal(world.loaded, true);
-    assert.equal(world.transparentCorner, 0); assert.equal(world.trunk, 1); assert.equal(world.foxViews, 1);
+    assert.equal(world.realWorld, true);assert.ok(world.trees>=25);assert.ok(world.trunk>0);assert.ok(world.foxMeshes>20);assert.equal(world.foxSprites,0);
     await page.evaluate(async () => {
       await FK.store.put('painted-drawing', { strokes: 'retained' });
       const m = FK.forestState; m.startActivity(); m.demoSeen(m.QUEST); FK.forestActivity.launch(m.QUEST);
@@ -105,6 +98,6 @@ const fs = require('node:fs');
       assert.ok(bounds.scroll <= bounds.client + 1, 'long pattern at ' + width + 'px: ' + JSON.stringify(bounds));
     }
     await page.setViewportSize({ width: 390, height: 844 }); await shot('08-long-pattern-phone');
-    console.log('PASS: loaded painted Three.js world, alpha-aware tree taps, four fox views, shared painted puzzle art, natural picture labels, guidance without changing the live item, wrong-answer retry, four viewport layouts, all three families, exact answered recovery, artwork/stars/stage and offline art.');
+    console.log('PASS: solid Three.js world and tree picking, shared painted puzzle art, natural picture labels, guidance without changing the live item, wrong-answer retry, four viewport layouts, all three families, exact answered recovery, artwork/stars/stage and offline art.');
   } finally { await browser.close(); }
 })().catch(e => { console.error(e); process.exit(1); });

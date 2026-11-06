@@ -15,11 +15,12 @@ world, picture-led guidance, puzzle pieces, book and return scenes.
   without stretching it.
 - `ground.png`: original painted grass/earth surface, repeated on the ground.
 
-`js/ui/woodland.js` is the shared atlas manifest. The Three.js renderer samples
-those same cells, rather than maintaining another character or object set.
-Image files remain unmodified generation outputs. Rendering rejects faint alpha
-matte pixels; alpha-aware raycasting ignores transparent tree corners and all
-decorative shadows. No remote artwork requests are made at runtime.
+`js/ui/woodland.js` is the shared atlas manifest for pictured navigation and
+puzzle pieces. Image files remain unmodified generation outputs. The 6.6 forest
+uses solid, articulated 3D animals and volumetric scenery in the same palette;
+the story and exploration share those rigs. The original atlas fox remains
+quadrupedal, while the 3D actors are upright story figures. No remote artwork
+requests are made at runtime. [Exploration notes](../../docs/EXPLORATION.md).
 
 The fox is quadrupedal with a cream muzzle/chest and white tail tip. The hare
 has long dark-tipped ears; the tawny owl has a round head and no ear tufts; the

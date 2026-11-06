@@ -1,5 +1,7 @@
 # The heart of the forest — 6.5
 
+The 6.6 world update adds [free 3D exploration, wind and discoveries](EXPLORATION.md) around these same story scenes.
+
 The game now explains itself through the world. The first screen shows a large bare oak and an empty meeting circle. Its play button starts narration from a user gesture. Five short scenes establish the quiet Heart Tree, missing friendships, Beaver's longing for Hare and the promise that helping brings life back.
 
 ## A complete first episode
@@ -16,9 +18,9 @@ Each other project has a distinct request, emotional pose and thank-you: Hedgeho
 
 ## An unmistakable landmark
 
-The oak uses solid 3D geometry: a thick trunk, spreading roots, nine boughs, a heart-shaped hollow and nine growing canopy groups. Its meeting circle has nine small stone lights. The heart pulses gently and fireflies return as authored contributions accumulate. The woodland light warms with the same progress. The existing landmark coordinates and walking graph are preserved so older positions remain valid.
+The oak uses solid 3D geometry: a thick trunk, spreading roots, nine boughs, a heart-shaped hollow and nine growing canopy groups. Its meeting circle has nine small stone lights. The heart pulses gently and fireflies return as authored contributions accumulate. The woodland light warms with the same progress. Existing landmark coordinates and story gates remain valid. The 6.6 exploration update adds free navigation around those same places without snapping saved positions back to the old graph.
 
-A tree direction marker appears at the edge of the exploration view when the clearing is out of sight. The header's tree control also leads home. Scene cameras establish the tree's full shape and show the repaired places from lower angles. Close conversation shots clear the foreground oak from the camera's path. Phone landscape places captions beside the action; portrait uses a bottom tray.
+A pictured tree direction control appears below the header when the clearing is out of sight. The header's tree control also leads home. Scene cameras establish the tree's full shape and show the repaired places from lower angles. Close conversation shots clear the foreground oak from the camera's path. Phone landscape places captions beside the action; portrait uses a bottom tray.
 
 The finale brings all five neighbours and Fox together as articulated 3D actors. Hedgehog has a separate foreground place so the smaller character remains visible. The final invitation is simple: “Hier ist dein Platz, kleiner Fuchs. Du gehörst zu uns.”
 

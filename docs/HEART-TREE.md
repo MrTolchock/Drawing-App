@@ -1,12 +1,14 @@
+> Exploration update (6.6): the same story now lives in a solid 3D forest with free walking, wind, hills, a picture map and six optional discoveries. [Controls and verification](EXPLORATION.md).
+
 > Current story (6.5): the central oak, opening, requests, thanks, chapter returns and gathering now have animated 3D story scenes. A travelling heartlight connects each completed repair to a newly living bough. Children advance or skip each scene; the beginning can be replayed at the tree without resetting progress. [Story scenes](STORY-SCENES.md) · [Gameplay](GAMEPLAY.md). Waldspiele remains the single library. The saved nine-repair model below is preserved.
 
 # Der Herzbaum — complete playable story
 
 The selected **original A — Painted woodland** identity now covers the full
 five-clearing loop and the three story chapters. A real Three.js fox explores
-an angled overhead woodland. Its presentation now uses layered original painted
-characters and vegetation, with solid 3D crossings and props. All puzzles stay
-flat DOM activities and share the same illustrated cast and natural objects.
+a perspective woodland with solid animals, trees, river crossings and sloping terrain.
+Painted portraits and natural objects connect its pictured navigation to the flat
+DOM puzzles. Story films use the same articulated cast.
 
 ## Story and lasting results
 
@@ -45,7 +47,7 @@ Run `python3 -m http.server 8000 --bind 127.0.0.1` in the repository and open
 - Start the narrated opening with its play button; each scene waits for the child.
   A pictured invitation then begins walking. Scenes have listen and skip controls.
 - Tap a path, neighbour, the tree or the pictured destination. Arrow keys/WASD
-  also move the fox along safe routes. New destinations replace old approaches.
+  and the held touch stick move the fox freely. New destinations replace old approaches.
 - Accept a neighbour's pictured helping request, or return to exploring.
 - The speaker repeats guidance. The hand replays a separate worked example.
   The example never adds a hand cue to a live answer or changes the saved item.
@@ -78,21 +80,20 @@ The cast is Eurasian beaver, European brown hare, European hedgehog, tawny owl
 orange breast, short tail and long bill). Pedunculate oak, beech, alder, hazel,
 reeds, moss and wild strawberries establish the Zürich-area lowland woodland.
 
-`js/forest/scene.js` uses locally bundled Three.js 0.187.0. The orthographic camera
-looks down at roughly 56 degrees, follows distant clearings and frames a resident
-or the tree during conversation. The original A reference is implemented as an
-illustrated 2.5D presentation: camera-facing paintings are placed in the actual
-Three.js world, while navigation, depth, bridges, height changes and timber props
-remain three-dimensional. The fox has four viewing directions. Portraits and
-puzzle pieces use those same paintings. Story scenes add articulated 3D actors
-with head, face, ear, paw and wing animation, plus a detailed volumetric oak.
-Transparent corners of painted trees do not intercept ground taps. Trees fade
-when they obscure interaction; the gathered finale keeps the crown
-visible. Decorative movement and scene transitions respect reduced-motion settings.
-Static world shadows and soft character contact shadows limit recurring rendering.
-The gathering uses a close, staged camera and all six 3D actors. Other scenes show
-the real bridge, restored places and a heartlight flying through the same world.
-Normal exploration and companion walking remain available between scenes.
+`js/forest/scene.js` uses locally bundled Three.js 0.187.0. A lower perspective
+camera follows the fox during free exploration and can orbit around the world.
+Solid trees have branches and moving crowns; hills and a distant tree line add
+real depth. The fox and all five neighbours use articulated 3D animals. Original
+painted portraits and puzzle pieces retain the established palette and cast.
+Foreground crowns fade when they obscure the fox. Instancing, shared geometry,
+static world shadows, contact shadows and a 30 fps cap limit rendering cost.
+
+The story films retain authored orthographic shots. The gathering uses a close,
+staged camera and all six actors; other scenes show the real bridge, restored
+places and a heartlight flying through this same world. Reduced motion stops
+decorative wind and travel while keeping deliberate controls available.
+Free walking, safe water crossings, companions, a picture map and optional nature
+places are described in [Exploration](EXPLORATION.md).
 
 ## Fixed story, extensible collections
 
@@ -170,8 +171,8 @@ The repository also retains the ordinary learning, adventures, expeditions,
 artwork, memory, responsive and handwriting checks. `FARBTUPF_SHOTS` selects the
 browser screenshot directory; the full story defaults to `/tmp/farbtupf-complete-story`.
 
-The painted-art browser check validates loaded Three.js paintings, transparent
-tree corners, natural spoken/picture labels, all three guided families, exact
+The painted-art browser check validates solid Three.js animals, real oak picking,
+natural spoken/picture labels, all three guided families, exact
 answered-item recovery, the longest pattern row at 320/390/700/820 pixels, and
 offline artwork. The ordinary game smoke and timer journeys also run against
 this presentation. They retain the physical-device and child-observation limits

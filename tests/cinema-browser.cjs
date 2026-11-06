@@ -70,7 +70,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs');
     await next();assert.equal((await film()).frame.action,'spark');
     await page.evaluate(()=>{FK.reduced=false;});await next();
     const first=await page.evaluate(()=>FK.forestScene.scene.getObjectByName('friendship-heartlight').position.toArray());
-    await page.waitForTimeout(700);
+    await page.waitForFunction(from=>{const p=FK.forestScene.scene.getObjectByName('friendship-heartlight').position;return Math.hypot(p.x-from[0],p.y-from[1],p.z-from[2])>.1;},first,{timeout:20000});
     const second=await page.evaluate(()=>FK.forestScene.scene.getObjectByName('friendship-heartlight').position.toArray());
     assert.ok(Math.hypot(...first.map((n,i)=>n-second[i]))>.1,'the heartlight actually travels through 3D space');
     await page.evaluate(()=>{FK.reduced=true;});await settled();await shot('04-heartlight-home');

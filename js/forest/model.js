@@ -68,7 +68,7 @@
       base.bridgeRepaired = saved.bridgeRepaired === true || base.contributions[QUEST] === true;
       if (base.bridgeRepaired) base.contributions[QUEST] = true;
       for (const id of Object.keys(residents)) base.met[id] = saved.met?.[id] === true;
-      if (saved.position && Number.isFinite(saved.position.x) && Number.isFinite(saved.position.z) && Math.abs(saved.position.x) < 40 && Math.abs(saved.position.z) < 40) base.position = saved.position;
+      if (saved.position && Number.isFinite(saved.position.x) && Number.isFinite(saved.position.z) && Math.abs(saved.position.x) < 80 && Math.abs(saved.position.z) < 80) base.position = saved.position;
       for (const [id, def] of Object.entries(quests)) {
         const a = restoreActivity(id === QUEST ? saved.activity : saved.activities?.[id], def, base.contributions[id] === true);
         if (id === QUEST) base.activity = a; else if (a) base.activities[id] = a;
@@ -168,7 +168,7 @@
     isComplete: id => state.contributions[id] === true,
     hasDemo: (id = QUEST) => id === QUEST ? state.demoSeen : state.guidanceSeen[id] === true || state.familyGuidanceSeen[definition(id)?.game] === true,
     snap(point, repaired = state.bridgeRepaired) { const p = nearest(point, repaired).point; return { x: p.x, z: p.z }; },
-    position(point) { if (point && Number.isFinite(point.x) && Number.isFinite(point.z)) { const p = nearest(point, state.bridgeRepaired).point; state.position = { x: p.x, z: p.z }; save(); } },
+    position(point) { if (point && Number.isFinite(point.x) && Number.isFinite(point.z) && Math.abs(point.x)<80 && Math.abs(point.z)<80) { state.position = { x: point.x, z: point.z }; save(); } },
     welcome() { state.welcomed = true; return save(); },
     visit(id) { if (residents[id]) { state.met[id] = true; save(); } },
     demoSeen(id = QUEST) { const def = definition(id); if (!def) return; if (id === QUEST) state.demoSeen = true; state.guidanceSeen[id] = true; state.familyGuidanceSeen[def.game] = true; save(); },
@@ -237,6 +237,5 @@
     },
     stopReplay() { if (state.endingReplay) { state.endingReplay = false; save(); } },
   };
-  state.position = api.snap(state.position);
   FK.forestState = api;
 })();

@@ -3,6 +3,7 @@ import { fox, beaver, hare, hedgehog, owl, kingfisher } from './characters.js';
 import { buildLandscape } from './landscape.js';
 import { loadPaintedArt } from './painted.js';
 import { createStoryDirector } from './story-director.js';
+import { createNavigation, PLACES } from './navigation.js';
 export const loadForestArt = loadPaintedArt;
 
 export function createForest(canvas, callbacks = {}) {
@@ -13,43 +14,39 @@ export function createForest(canvas, callbacks = {}) {
   renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 0.95;
   renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.VSMShadowMap;
   renderer.shadowMap.autoUpdate = false;
-  const scene = new THREE.Scene(); scene.background = new THREE.Color('#eee9d2'); scene.fog = new THREE.Fog('#eee9d2', 62, 125);
+  const scene = new THREE.Scene(); scene.background = new THREE.Color('#dce7d5'); scene.fog = new THREE.Fog('#dce7d5', 48, 105);
   const sky=new THREE.HemisphereLight('#fff6df', '#a4af7c', 1.1);scene.add(sky);
   const sun = new THREE.DirectionalLight('#fff0d4', 1.2); sun.position.set(-14, 35, 20);
   sun.castShadow = true; sun.shadow.mapSize.set(1024, 1024); sun.shadow.normalBias = 0.055; sun.shadow.bias = -0.0003;
   sun.shadow.radius = 3; sun.shadow.blurSamples = 6;
-  Object.assign(sun.shadow.camera, { left: -28, right: 28, top: 25, bottom: -25, near: 1, far: 80 });
+  Object.assign(sun.shadow.camera, { left: -44, right: 44, top: 44, bottom: -44, near: 1, far: 110 });
   sun.shadow.camera.updateProjectionMatrix(); scene.add(sun);
   const landscape = buildLandscape(scene, model);
+  const navigation = createNavigation(model,landscape.obstacles);
   const player = fox(), residents = { beaver: beaver(), hare: hare(), hedgehog: hedgehog(), owl: owl(), kingfisher: kingfisher() };
   scene.add(player.group);
   const saved = model.get();
-  player.group.position.set(saved.position.x, 0.06, saved.position.z); player.group.rotation.y = 0.3;
+  const safePosition=navigation.nearest(saved.position)||model.nodes.home;
+  player.group.position.set(safePosition.x, landscape.height(safePosition.x,safePosition.z,saved.bridgeRepaired), safePosition.z); player.group.rotation.y = 0.3;
   residents.beaver.group.position.set(model.residents.beaver.x, 0.06, model.residents.beaver.z); residents.beaver.group.rotation.y = 0.6;
   residents.hare.group.position.set(model.residents.hare.x, 0.06, model.residents.hare.z); residents.hare.group.rotation.y = -0.5;
   residents.hedgehog.group.position.set(model.residents.hedgehog.x, 0.06, model.residents.hedgehog.z); residents.hedgehog.group.rotation.y = -2.45;
   residents.owl.group.position.set(model.residents.owl.x, 0.06, model.residents.owl.z); residents.owl.group.rotation.y = -2.4;
   residents.kingfisher.group.position.set(model.residents.kingfisher.x, 0.06, model.residents.kingfisher.z); residents.kingfisher.group.rotation.y = -0.8;
   Object.entries(residents).forEach(([id, rig]) => { scene.add(rig.group); rig.group.traverse(o => { o.userData.resident = id; }); });
-  const shadowCanvas = document.createElement('canvas'); shadowCanvas.width = shadowCanvas.height = 64;
-  const shadowContext = shadowCanvas.getContext('2d'), gradient = shadowContext.createRadialGradient(32, 32, 3, 32, 32, 31);
-  gradient.addColorStop(0, '#45513135'); gradient.addColorStop(1, '#45513100'); shadowContext.fillStyle = gradient; shadowContext.fillRect(0, 0, 64, 64);
-  const contactMaterial = new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(shadowCanvas), transparent: true, depthWrite: false });
-  for (const rig of [player, ...Object.values(residents)]) {
-    rig.group.traverse(mesh => { mesh.castShadow = false; });
-    const shadow = new THREE.Mesh(new THREE.PlaneGeometry(3.0, 3.8), contactMaterial); shadow.rotation.x = -Math.PI / 2; shadow.position.y = 0.018; shadow.raycast = () => {}; rig.group.add(shadow);
-  }
-  const camera = new THREE.OrthographicCamera(-20, 20, 14, -14, 0.1, 160);
-  const offset = new THREE.Vector3(12, 50, 32), focus = new THREE.Vector3(-2, 0, 4);
+  const worldCamera = new THREE.PerspectiveCamera(42,1,.15,180), cinemaCamera=new THREE.OrthographicCamera(-20,20,14,-14,.1,160);
+  let camera=worldCamera,orbit=0;
+  const offset = new THREE.Vector3(10,18,23), focus = new THREE.Vector3(-8, 1, 7);
   const currentOffset=offset.clone(),coldSky=new THREE.Color('#d9dfd7'),warmSky=new THREE.Color('#eee9d2'),coldSun=new THREE.Color('#e4e9df'),warmSun=new THREE.Color('#fff0d4');
   let width = 1, height = 1, running = false, raf = 0, last = 0, time = 0;
-  let storyDirty=true,lastDraw=0,lastReduced=window.FK.reduced;
+  let storyDirty=true,lastDraw=0,lastReduced=window.FK.reduced,mapPaused=false;
   let waypoints = [], arrival = null, focusResident = null, repairStart = null, lastSave = 0, inputEnabled = true;
   let currentHalfHeight = 14, displayedRepaired = saved.bridgeRepaired, previousPortrait = null;
   let displayedRest = model.isComplete(model.REST), displayedGrove = saved.bridgeRepaired && saved.greetingSeen;
   let displayedHollow = model.residentAvailable('owl'), displayedSign = model.isComplete(model.TRAIL);
   let gathering = false, displayedGathering = false, projectSignature = '', fadeTimer = 0;
   let restoration = null, companion = null, companionTrail = [], lastTrailPoint = null;
+  let steering={x:0,z:0},tracked=model.objective().resident||'home',guideRoute=[],guideUpdated=-10,guideFrom=null,nearPlace=null,reactionUntil=0;
   const homeYaw = { beaver: 0.6, hare: -0.5, hedgehog: -2.45, owl: -2.4, kingfisher: -0.8 };
   const gatheringPlaces = { beaver: [-12, 8], hare: [-10.8, 10.5], hedgehog: [-5.7, 8.5], owl: [-3.9, 7.1], kingfisher: [-6.3, 5.1] };
   const restorationPlaces = {
@@ -65,7 +62,7 @@ export function createForest(canvas, callbacks = {}) {
   };
   const director=createStoryDirector({scene,model,landscape,player,residents,places:restorationPlaces});
   landscape.hero.traverse(o => { o.userData.landmark = 'home'; });
-  const keys = new Set(), raycaster = new THREE.Raycaster(), plane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
+  const keys = new Set(), raycaster = new THREE.Raycaster();
   const destination = new THREE.Group();
   const markerMat = new THREE.MeshBasicMaterial({ color: '#f9edc1', transparent: true, opacity: 0.85, depthWrite: false });
   const pad = new THREE.Mesh(new THREE.CircleGeometry(0.24, 16), markerMat); pad.rotation.x = -Math.PI / 2; pad.scale.y = 0.8; destination.add(pad);
@@ -73,6 +70,9 @@ export function createForest(canvas, callbacks = {}) {
     const toe = new THREE.Mesh(new THREE.CircleGeometry(0.1, 12), markerMat); toe.rotation.x = -Math.PI / 2; toe.position.set(x, 0, z); destination.add(toe);
   }
   destination.visible = false; scene.add(destination);
+  const arrowShape=new THREE.Shape();arrowShape.moveTo(0,.9);arrowShape.lineTo(-.48,.15);arrowShape.lineTo(-.18,.15);arrowShape.lineTo(-.18,-.48);arrowShape.lineTo(.18,-.48);arrowShape.lineTo(.18,.15);arrowShape.lineTo(.48,.15);arrowShape.closePath();
+  const guideArrow=new THREE.Mesh(new THREE.ExtrudeGeometry(arrowShape,{depth:.09,bevelEnabled:true,bevelThickness:.025,bevelSize:.03,bevelSegments:1}),new THREE.MeshStandardMaterial({color:'#ffe6a0',emissive:'#c9a74d',emissiveIntensity:.3,roughness:.7}));
+  guideArrow.geometry.rotateX(-Math.PI/2);guideArrow.name='friend-trail-arrow';guideArrow.visible=false;scene.add(guideArrow);
   // The route itself is the instruction: a child can follow the fox's pawprints.
   const pawCanvas = document.createElement('canvas'); pawCanvas.width = pawCanvas.height = 64;
   const pawContext = pawCanvas.getContext('2d'); pawContext.fillStyle = '#fff5cd';
@@ -119,7 +119,7 @@ export function createForest(canvas, callbacks = {}) {
     placeFriends();
     if (companion) {
       const p = player.group.position, residentPosition = residents[companion].group.position;
-      companionTrail = model.route({ x: residentPosition.x, z: residentPosition.z }, { x: p.x, z: p.z });
+      companionTrail = navigation.route({ x: residentPosition.x, z: residentPosition.z }, { x: p.x, z: p.z });
       lastTrailPoint = { x: p.x, z: p.z };
     }
   }
@@ -129,7 +129,7 @@ export function createForest(canvas, callbacks = {}) {
     if (moving && (!lastTrailPoint || model.distance(lastTrailPoint, p) > 0.55)) {
       lastTrailPoint = { x: p.x, z: p.z }; companionTrail.push(lastTrailPoint);
     }
-    let remaining = dt * 5.6, walked = false;
+    let remaining = dt * 6.9, walked = false;
     while (companionTrail.length && remaining > 0) {
       const target = companionTrail[0], distance = model.distance(rig.group.position, target);
       if (companionTrail.length === 1 && model.distance(rig.group.position, p) < 1.5) break;
@@ -152,10 +152,8 @@ export function createForest(canvas, callbacks = {}) {
     if (focusResident === 'hedgehog') return new THREE.Vector3(20.5, 0, 15.5);
     if (focusResident === 'beaver') return new THREE.Vector3(-4.5,0,-6.2);
     if (focusResident === 'hare') return new THREE.Vector3(7,0,-5);
-    const p = player.group.position, grove = Math.max(0, Math.min(1, Math.max((p.x - 11) / 6, (-p.x - 14) / 5, (p.z - 13) / 7)));
-    const xFollow = portrait ? 0.92 : THREE.MathUtils.lerp(0.36, 0.92, grove);
-    const zFollow = portrait ? 0.92 : THREE.MathUtils.lerp(0.48, 0.92, grove);
-    return new THREE.Vector3(p.x * xFollow, 0, p.z * zFollow + (portrait ? -1 : 1));
+    const p = player.group.position;
+    return new THREE.Vector3(p.x, p.y+1.1, p.z-.6);
   }
   function viewHeight(portrait) { return restoration ? (portrait ? 10.4 : 11.5) : focusResident === 'home' ? (portrait ? 16.8 : 14.6) : ['hedgehog', 'owl', 'kingfisher'].includes(focusResident) ? (portrait ? 12.5 : 11.5) : focusResident ? (portrait ? 9.2 : 12.7) : portrait ? 7.8 : 14.4; }
 
@@ -164,6 +162,7 @@ export function createForest(canvas, callbacks = {}) {
     const rect = canvas.parentElement.getBoundingClientRect(); width = Math.max(1, rect.width); height = Math.max(1, rect.height);
     renderer.setSize(width, height, false);
     const aspect = width / height;
+    worldCamera.aspect=aspect;worldCamera.updateProjectionMatrix();
     const portrait = aspect < 0.9, target = portrait ? 7.8 : 14.4;
     if (!running || portrait !== previousPortrait) {
       currentHalfHeight = focusResident ? viewHeight(portrait) : target;
@@ -171,25 +170,31 @@ export function createForest(canvas, callbacks = {}) {
       camera.position.copy(focus).add(offset); camera.lookAt(focus); camera.updateMatrixWorld();
     }
     previousPortrait = portrait;
-    camera.left = -currentHalfHeight * aspect; camera.right = currentHalfHeight * aspect;
-    camera.top = currentHalfHeight; camera.bottom = -currentHalfHeight; camera.updateProjectionMatrix();
+    cinemaCamera.left = -currentHalfHeight * aspect; cinemaCamera.right = currentHalfHeight * aspect;
+    cinemaCamera.top = currentHalfHeight; cinemaCamera.bottom = -currentHalfHeight; cinemaCamera.updateProjectionMatrix();
   }
   const observer = new ResizeObserver(resize); observer.observe(canvas.parentElement); resize();
 
   function persist() { model.position({ x: player.group.position.x, z: player.group.position.z }); }
+  function arrived(id){if(PLACES.some(p=>p.id===id))callbacks.onPlace?.(id);else callbacks.onArrive?.(id);}
+  function track(id){tracked=id;guideFrom=null;guideUpdated=-10;guideRoute=[];}
   function targetAt(point, resident) {
     if (!inputEnabled) return;
     const position = player.group.position;
-    waypoints = model.route({ x: position.x, z: position.z }, point);
+    waypoints = navigation.route({ x: position.x, z: position.z }, point);
     if (waypoints.length && model.distance(waypoints[0], position) < 0.08) waypoints.shift();
     arrival = resident || null;
+    if(resident)track(resident);
     const end = waypoints.at(-1);
     if (end) {
       destination.position.set(end.x, landscape.height(end.x, end.z, model.get().bridgeRepaired) + 0.04, end.z);
       destination.visible = true; showRoute(); callbacks.onWalk?.();
-    } else if (resident) callbacks.onArrive?.(resident);
+    } else if (resident && model.distance(position,point)<1) arrived(resident);
   }
   function walkToResident(id) { if (residents[id] && model.residentAvailable(id)) { const p=residents[id].group.position;targetAt(id===companion?{x:p.x,z:p.z}:model.nodes[id],id); } }
+  function walkToPlace(id){const place=PLACES.find(p=>p.id===id);if(place)targetAt(place,id);}
+  function steer(x,z){if(!inputEnabled)return;steering={x:Math.max(-1,Math.min(1,x)),z:Math.max(-1,Math.min(1,z))};if(Math.hypot(x,z)>.08){arrival=null;waypoints=[];destination.visible=false;clearPaws();}}
+  function trackPosition(){return PLACES.find(p=>p.id===tracked)||model.nodes[tracked]||model.nodes.home;}
   let down = null;
   function pointerDown(event) { if (event.isPrimary) down = { x: event.clientX, y: event.clientY }; }
   function pointerUp(event) {
@@ -201,19 +206,20 @@ export function createForest(canvas, callbacks = {}) {
     const hits = raycaster.intersectObjects(Object.values(residents).filter(r => r.group.visible).map(r => r.group), true);
     if (hits.length) { walkToResident(hits[0].object.userData.resident); return; }
     if (raycaster.intersectObject(landscape.hero, true).length) { targetAt(model.nodes.home, 'home'); return; }
-    const hit = new THREE.Vector3();
-    if (raycaster.ray.intersectPlane(plane, hit)) targetAt({ x: hit.x, z: hit.z });
+    const ground=raycaster.intersectObject(landscape.terrain)[0];
+    if (ground) targetAt({ x: ground.point.x, z: ground.point.z });
   }
   canvas.addEventListener('pointerdown', pointerDown); canvas.addEventListener('pointerup', pointerUp);
   canvas.addEventListener('pointercancel', () => { down = null; });
   function keyDown(event) {
     if (!running || !inputEnabled || event.altKey || event.metaKey || event.ctrlKey || /INPUT|TEXTAREA|SELECT/.test(event.target.tagName)) return;
-    if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'w', 'a', 's', 'd'].includes(event.key)) { event.preventDefault(); keys.add(event.key); arrival = null; waypoints = []; clearPaws(); }
+    if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'w', 'a', 's', 'd'].includes(event.key)) { event.preventDefault(); keys.add(event.key); arrival = null; waypoints = [];destination.visible=false; clearPaws(); }
+    if(!event.repeat&&(event.key==='e'||event.key==='Enter')&&event.target===canvas){event.preventDefault();if(nearPlace)callbacks.onPlace?.(nearPlace.id);else{const id=Object.keys(residents).find(id=>model.residentAvailable(id)&&model.distance(player.group.position,residents[id].group.position)<4.5);if(id)callbacks.onArrive?.(id);}}
   }
   window.addEventListener('keydown', keyDown); window.addEventListener('keyup', event => keys.delete(event.key));
-  window.addEventListener('blur', () => { keys.clear(); persist(); });
+  window.addEventListener('blur', () => { keys.clear();steering={x:0,z:0}; persist(); });
   window.addEventListener('pagehide', persist);
-  document.addEventListener('visibilitychange', () => { if (document.hidden) { keys.clear(); persist(); } });
+  document.addEventListener('visibilitychange', () => { if (document.hidden) { keys.clear();steering={x:0,z:0}; persist(); } });
 
   function turn(target, amount) {
     let delta = (target - player.group.rotation.y + Math.PI) % (Math.PI * 2);
@@ -222,16 +228,19 @@ export function createForest(canvas, callbacks = {}) {
   }
   function walk(dt) {
     const position = player.group.position;
-    if (keys.size && inputEnabled) {
-      const x = Number(keys.has('ArrowRight') || keys.has('d')) - Number(keys.has('ArrowLeft') || keys.has('a'));
-      const z = Number(keys.has('ArrowDown') || keys.has('s')) - Number(keys.has('ArrowUp') || keys.has('w'));
-      const direction = new THREE.Vector2(x * 0.936 + z * 0.351, -x * 0.351 + z * 0.936).normalize();
-      const step = 4.8 * dt, next = model.snap({ x: position.x + direction.x * step, z: position.z + direction.y * step });
+    if ((keys.size||Math.hypot(steering.x,steering.z)>.08) && inputEnabled) {
+      const x = steering.x+Number(keys.has('ArrowRight') || keys.has('d')) - Number(keys.has('ArrowLeft') || keys.has('a'));
+      const z = steering.z+Number(keys.has('ArrowDown') || keys.has('s')) - Number(keys.has('ArrowUp') || keys.has('w'));
+      const yaw=Math.atan2(offset.x,offset.z)+orbit,c=Math.cos(yaw),s=Math.sin(yaw);
+      const direction = new THREE.Vector2(x*c+z*s,-x*s+z*c);
+      if(direction.length()>1)direction.normalize();
+      const step = 5.8 * dt, next = navigation.move(position,direction.x*step,direction.y*step);
       const d = model.distance(position, next);
       if (d > 0.001 && d < step * 1.7) { turn(Math.atan2(next.x - position.x, next.z - position.z), dt * 12); position.x = next.x; position.z = next.z; callbacks.onWalk?.(); return true; }
+      return false;
     }
     if (!waypoints.length || !inputEnabled) return false;
-    let remaining = dt * 5;
+    let remaining = dt * 6.3;
     while (waypoints.length && remaining > 0) {
       const target = waypoints[0], d = model.distance(position, target);
       if (d > 0.001) turn(Math.atan2(target.x - position.x, target.z - position.z), dt * 12);
@@ -240,7 +249,7 @@ export function createForest(canvas, callbacks = {}) {
     }
     if (!waypoints.length) {
       destination.visible = false; clearPaws(); persist(); const id = arrival; arrival = null;
-      if (id) { if (residents[id]) turn(Math.atan2(residents[id].group.position.x - position.x, residents[id].group.position.z - position.z), 1); callbacks.onArrive?.(id); }
+      if (id) { if (residents[id]) turn(Math.atan2(residents[id].group.position.x - position.x, residents[id].group.position.z - position.z), 1);arrived(id); }
     }
     return true;
   }
@@ -250,8 +259,9 @@ export function createForest(canvas, callbacks = {}) {
   }
   function frame(now) {
     if (!running) return;
+    if(mapPaused&&!storyDirty){last=now;raf=requestAnimationFrame(frame);return;}
     if(lastReduced!==window.FK.reduced){lastReduced=window.FK.reduced;storyDirty=true;}
-    if(director.active&&((window.FK.reduced&&!storyDirty)||(!window.FK.reduced&&now-lastDraw<1000/30))){last=window.FK.reduced?now:last;raf=requestAnimationFrame(frame);return;}
+    if((director.active&&window.FK.reduced&&!storyDirty)||(!storyDirty&&now-lastDraw<1000/30)){if(director.active&&window.FK.reduced)last=now;raf=requestAnimationFrame(frame);return;}
     storyDirty=false;lastDraw=now;
     const dt = Math.min((now - (last || now)) / 1000, 0.2); last = now; time += dt;
     const moving = walk(dt), state = model.get(), repaired = state.bridgeRepaired;
@@ -282,41 +292,55 @@ export function createForest(canvas, callbacks = {}) {
     }
     player.group.position.y = THREE.MathUtils.lerp(player.group.position.y, landscape.height(player.group.position.x, player.group.position.z, repaired), 1 - Math.exp(-dt * 18));
     const decorativeTime = window.FK.reduced ? 0 : time;
-    player.animate(moving ? time : decorativeTime, moving);
+    player.animate(moving ? time : decorativeTime, moving,time<reactionUntil);
     Object.entries(residents).forEach(([id, rig]) => rig.animate(decorativeTime, focusResident === id || !!restoration?.cast[id] || (repaired && !state.greetingSeen), id === 'hedgehog' && rested && !restoration && id !== companion, id === companion && companionMoving && !window.FK.reduced));
     let progress = 1;
     if (repairStart !== null) { progress = Math.min(1, (now / 1000 - repairStart) / 1.4); if (progress === 1) { repairStart = null; renderer.shadowMap.needsUpdate = true; } }
     if (repaired !== displayedRepaired || (repaired && repairStart !== null && progress > 0.95)) renderer.shadowMap.needsUpdate = true;
-    landscape.setBridge(director.bridgePreview??repaired, progress); displayedRepaired = repaired; landscape.animate(decorativeTime);
+    landscape.setBridge(director.bridgePreview??repaired, progress); displayedRepaired = repaired; landscape.animate(decorativeTime,player.group.position);
     director.update(now);
     const aspect = width / height, portrait = aspect < 0.9;
     const shot=director.camera(now,portrait,aspect,height),goal=shot?.target||viewGoal(portrait);
+    camera=shot?cinemaCamera:worldCamera;
     if(window.FK.reduced&&shot)focus.copy(goal);else focus.lerp(goal, 1 - Math.exp(-dt * 2.6));
     const half = shot?.half||viewHeight(portrait);
     currentHalfHeight = THREE.MathUtils.lerp(currentHalfHeight, half, 1 - Math.exp(-dt * 2.2));
     if(window.FK.reduced&&shot)currentHalfHeight=half;
-    if(window.FK.reduced&&shot)currentOffset.copy(shot.offset);else currentOffset.lerp(shot?.offset||offset,1-Math.exp(-dt*3));
-    camera.left = -currentHalfHeight * aspect; camera.right = currentHalfHeight * aspect; camera.top = currentHalfHeight; camera.bottom = -currentHalfHeight; camera.updateProjectionMatrix();
+    const worldOffset=offset.clone().applyAxisAngle(new THREE.Vector3(0,1,0),orbit).normalize().multiplyScalar(portrait?23.5:height<560?28:32);
+    if(window.FK.reduced&&shot)currentOffset.copy(shot.offset);else currentOffset.lerp(shot?.offset||worldOffset,1-Math.exp(-dt*3));
+    cinemaCamera.left = -currentHalfHeight * aspect; cinemaCamera.right = currentHalfHeight * aspect; cinemaCamera.top = currentHalfHeight; cinemaCamera.bottom = -currentHalfHeight; cinemaCamera.updateProjectionMatrix();
     camera.position.copy(focus).add(currentOffset); camera.lookAt(focus); camera.updateMatrixWorld();
-    const foxHead = player.group.position.clone().add(new THREE.Vector3(0, 1.6, 0));
-    const visibleHead = shot?shot.target:focusResident === 'home' ? gathering ? foxHead : new THREE.Vector3(-8, 2.6, 2.9) : focusResident ? residents[focusResident].group.position.clone().add(new THREE.Vector3(0, 1.2, 0)) : foxHead;
+    const foxHead = player.group.position.clone().add(new THREE.Vector3(0, 2.5, 0));
+    const visibleHead = shot?shot.target:focusResident === 'home' ? gathering ? foxHead : new THREE.Vector3(-8, 2.6, 2.9) : focusResident ? residents[focusResident].group.position.clone().add(new THREE.Vector3(0, 1.2, 0)) : player.group.position.clone().add(new THREE.Vector3(0,1.3,0));
     const ray = new THREE.Ray(camera.position, visibleHead.clone().sub(camera.position).normalize());
     for (const tree of landscape.trees) {
       const closest = new THREE.Vector3(); ray.closestPointToPoint(tree.centre, closest);
-      const hiding = closest.distanceTo(tree.centre) < tree.radius * 0.86 && closest.distanceTo(camera.position) < visibleHead.distanceTo(camera.position);
+      const hiding = closest.distanceTo(tree.centre) < tree.radius * 1.15 && closest.distanceTo(camera.position) < visibleHead.distanceTo(camera.position);
       if(tree.root===landscape.hero){
         const storyShot=director.frame?.shot||'';
         tree.root.visible=!(director.active&&!storyShot.startsWith('tree')&&!['empty-clearing','spark-flight'].includes(storyShot)&&model.distance(visibleHead,tree.root.position)>8);
       }
-      tree.leaves.children.forEach(mesh => { mesh.material.opacity = THREE.MathUtils.lerp(mesh.material.opacity, director.active&&tree.root===landscape.hero?1:hiding ? 0.28 : 1, 1 - Math.exp(-dt * 10)); });
+      tree.leaves.children.forEach(mesh => { mesh.material.opacity = THREE.MathUtils.lerp(mesh.material.opacity, director.active&&tree.root===landscape.hero?1:hiding ? 0.2 : 1, 1 - Math.exp(-dt * 10));mesh.material.depthWrite=mesh.material.opacity>.98; });
     }
+    nearPlace=PLACES.find(p=>model.distance(player.group.position,p)<3.3)||null;
+    const guideTarget=trackPosition();
+    if(inputEnabled&&!director.active){
+      if(arrival===tracked&&waypoints.length){guideRoute=waypoints.slice();guideUpdated=time;guideFrom={x:player.group.position.x,z:player.group.position.z};}
+      else if(time-guideUpdated>1.1&&(!guideFrom||!guideRoute.length||model.distance(guideFrom,player.group.position)>10||(model.distance(guideFrom,player.group.position)>3&&!navigation.clearLine(player.group.position,guideRoute[0])))){
+        guideRoute=navigation.route(player.group.position,guideTarget);guideUpdated=time;guideFrom={x:player.group.position.x,z:player.group.position.z};
+      }
+    }
+    while(guideRoute.length>1&&model.distance(player.group.position,guideRoute[0])<1.3)guideRoute.shift();
+    const guidePoint=guideRoute[0]||guideTarget,walkingPoint=waypoints[0]||guidePoint,guideDistance=model.distance(player.group.position,guideTarget);
+    guideArrow.visible=inputEnabled&&!director.active&&guideDistance>3.5&&!!guidePoint;
+    if(guideArrow.visible){const direction=new THREE.Vector2(walkingPoint.x-player.group.position.x,walkingPoint.z-player.group.position.z).normalize(),x=player.group.position.x+direction.x*2.1,z=player.group.position.z+direction.y*2.1;guideArrow.position.set(x,landscape.height(x,z,repaired)+.17+(window.FK.reduced?0:Math.sin(time*2)*.045),z);guideArrow.rotation.y=Math.atan2(-direction.x,-direction.y);}
     renderer.render(scene, camera);
     const projected = {};
     for (const [id, rig] of Object.entries(residents)) {
-      const p = project(rig.group.position.clone().add(new THREE.Vector3(0, { beaver: 1.5, hare: 2, hedgehog: 0.9, owl: 1.8, kingfisher: 1.6 }[id], 0)));
+      const p = project(rig.group.position.clone().add(new THREE.Vector3(0, { beaver: 2, hare: 2.6, hedgehog: 1.3, owl: 2, kingfisher: 1.8 }[id], 0)));
       projected[id] = { ...p, visible: rig.group.visible && p.visible };
     }
-    callbacks.onProject?.({ ...projected, home: project(new THREE.Vector3(-8, 2.5, 2.9)), fox: project(foxHead), spot: project(new THREE.Vector3(-12.0, 0.2, 5.0)) });
+    callbacks.onProject?.({ ...projected, home: project(new THREE.Vector3(-8, 2.5, 2.9)), fox: project(foxHead), spot: project(new THREE.Vector3(-12.0, 0.2, 5.0)), guide:{...project(new THREE.Vector3(guidePoint.x,landscape.height(guidePoint.x,guidePoint.z,repaired)+1,guidePoint.z)),id:tracked,distance:guideDistance},nearby:nearPlace?.id||null });
     if (moving && time - lastSave > 1.2) { persist(); lastSave = time; }
     raf = requestAnimationFrame(frame);
   }
@@ -327,16 +351,22 @@ export function createForest(canvas, callbacks = {}) {
   renderer.shadowMap.needsUpdate = true; renderer.render(scene, camera);
   return {
     start() { if (!running) { running = true; last = 0;storyDirty=true; resize(); raf = requestAnimationFrame(frame); } },
-    stop() { running = false; cancelAnimationFrame(raf); keys.clear(); director.end();persist(); },
-    walkTo: targetAt, walkToResident,
+    stop() { running = false; cancelAnimationFrame(raf); keys.clear();steering={x:0,z:0};director.end();persist(); },
+    walkTo: targetAt, walkToResident,walkToPlace,steer,
+    pauseView(paused){mapPaused=paused;storyDirty=true;last=0;},
+    track,
+    orbit(amount){if(inputEnabled)orbit+=amount;},
+    react(id){landscape.react(id);reactionUntil=time+3.5;const place=PLACES.find(p=>p.id===id);if(place){const target=['lookout','cloud'].includes(id)?{x:-8,z:2.2}:id==='spring'?{x:1,z:-24}:id==='pond'?{x:model.riverX(31),z:31}:{x:place.x,z:place.z-2};turn(Math.atan2(target.x-player.group.position.x,target.z-player.group.position.z),1);if(['lookout','cloud','spring','pond'].includes(id))orbit=Math.atan2(player.group.position.x-target.x,player.group.position.z-target.z)-Math.atan2(offset.x,offset.z);}},
+    get places(){return PLACES;},
+    get navigation(){return navigation;},
     gather(enabled) { gathering = enabled === true; },
     moment(quest) { restoration = quest ? restorationPlaces[quest.picture] || null : null; placeFriends(); },
     accompany,
     storyFrame(frame) { clearPaws();director.setFrame(frame);storyDirty=true;renderer.shadowMap.needsUpdate=true; },
-    storyEnd() { director.end();storyDirty=true;renderer.shadowMap.needsUpdate=true;currentOffset.copy(offset);focus.copy(viewGoal(width/height<.9));currentHalfHeight=viewHeight(width/height<.9); },
+    storyEnd() { director.end();camera=worldCamera;storyDirty=true;renderer.shadowMap.needsUpdate=true;currentOffset.copy(offset).normalize().multiplyScalar(width/height<.9?23.5:32);focus.copy(viewGoal(width/height<.9));currentHalfHeight=viewHeight(width/height<.9); },
     get cinematic() { return {active:director.active,frame:director.frame}; },
     focus(id) { focusResident = id || null; },
-    input(enabled) { inputEnabled = enabled; if (!enabled) { keys.clear(); waypoints = []; arrival = null; destination.visible = false; clearPaws(); persist(); } },
+    input(enabled) { inputEnabled = enabled; if (!enabled) { keys.clear();steering={x:0,z:0}; waypoints = []; arrival = null; destination.visible = false;guideArrow.visible=false;clearPaws(); persist(); } },
     repair() { if (!displayedRepaired) repairStart = performance.now() / 1000; },
     get position() { return { x: player.group.position.x, z: player.group.position.z }; },
     get renderer() { return renderer; },

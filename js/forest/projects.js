@@ -9,7 +9,7 @@ export function buildProjects(scene, model, helpers) {
   const ford = new THREE.Group(); ford.position.z = 29; world.add(ford);
   const causeway = new THREE.Mesh(new THREE.BoxGeometry(11.5, 0.22, 2.9), paint('#b7b59a', 'stone')); causeway.position.set(0.5, -0.02, 0); causeway.receiveShadow = true; ford.add(causeway);
   for (let i = 0; i < 9; i++) ellipsoid(ford, paint(i % 2 ? '#c6c5aa' : '#b5b59c', 'stone'), [-4.3 + i * 1.2, 0.14, 0], [0.72, 0.09, 1.2]);
-  const pondTree = tree(-16, 27.5, 0.67, 97, 'alder'); world.add(pondTree.root);
+  const pondTree = tree(-16, 27.5, 0.67, 97, 'alder'); scene.add(pondTree.root);
   for (const [z, side] of [[19, -1], [21, 1], [27.5, -1], [31, 1]]) reeds(model.riverX(z) + side * (model.riverHalfWidth(z) + 0.25), z);
   const perch = new THREE.Group(); perch.position.set(-6.4, 0, 25.4); world.add(perch);
   limb(perch, paint('#ad926b', 'bark'), [-0.1, 0, 0], [0, 0.56, 0], 0.16, 0.13);

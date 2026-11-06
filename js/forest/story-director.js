@@ -5,7 +5,7 @@ import {storyActor} from './story-actors.js';
 export function createStoryDirector({scene,model,landscape,player,residents,places}){
   const stage=new THREE.Group();stage.name='forest-story-stage';stage.visible=false;scene.add(stage);
   const keyLight=new THREE.DirectionalLight('#fff1d6',1.1),lightTarget=new THREE.Object3D();stage.add(keyLight,lightTarget);keyLight.target=lightTarget;
-  let actors=null,frame=null,start=0,origin=new THREE.Vector3(),flight=null;
+  let actors=null,frame=null,storyTime=0,lastTick=null,wasReduced=window.FK.reduced,origin=new THREE.Vector3(),flight=null;
   const tree=new THREE.Vector3(-8,4.4,3.6),heart=new THREE.Vector3(-7.95,2.8,3.1);
   const spark=new THREE.Group();spark.name='friendship-heartlight';stage.add(spark);
   const heartlightShape=new THREE.Shape();heartlightShape.moveTo(0,.08);heartlightShape.bezierCurveTo(-.25,.36,-.51,.02,0,-.32);heartlightShape.bezierCurveTo(.51,.02,.25,.36,0,.08);
@@ -30,7 +30,7 @@ export function createStoryDirector({scene,model,landscape,player,residents,plac
   const isTree=shot=>shot.startsWith('tree')||shot==='empty-clearing';
   function setFrame(next){
     if(!next){end();return;}
-    ensureActors();frame={...next};start=performance.now()/1000;stage.visible=true;
+    ensureActors();frame={...next};storyTime=0;lastTick=null;wasReduced=window.FK.reduced;stage.visible=true;
     stage.userData.active=true;stage.userData.shot=frame.shot;stage.userData.speaker=frame.speaker;stage.userData.action=frame.action||'';
     const place=places[frame.project],home=model.residents[frame.resident]||model.residents.beaver;
     const p=place?.centre||[home.x,home.z];origin.set(p[0],0,p[1]);
@@ -72,7 +72,11 @@ export function createStoryDirector({scene,model,landscape,player,residents,plac
   function previewState(state){return frame?.preview==='beginning'?{...state,contributions:{},bridgeRepaired:false,greetingSeen:false,endingUnlocked:false,endingSeen:false}:null;}
   function update(now){
     if(!frame)return;
-    const reduced=window.FK.reduced,elapsed=now/1000-start,t=reduced?0:elapsed;
+    const reduced=window.FK.reduced;
+    // Slow devices must still show a journey, rather than skip it between draws.
+    if(!reduced&&!wasReduced&&lastTick!==null)storyTime+=Math.min(.2,Math.max(0,(now-lastTick)/1000));
+    lastTick=now;wasReduced=reduced;
+    const elapsed=storyTime,t=reduced?0:elapsed;
     const speech=window.speechSynthesis?.speaking&&!window.speechSynthesis?.paused;
     player.group.visible=false;Object.values(residents).forEach(rig=>rig.group.visible=false);
     const reunion=frame.action==='reunion'||frame.shot==='reunion';
@@ -105,7 +109,7 @@ export function createStoryDirector({scene,model,landscape,player,residents,plac
   }
   function camera(now,portrait,aspect=1,height=900){
     if(!frame)return null;
-    const elapsed=now/1000-start,t=window.FK.reduced?1:Math.min(1,elapsed/3.4);
+    const elapsed=storyTime,t=window.FK.reduced?1:Math.min(1,elapsed/3.4);
     let target,half,offset;
     if(frame.shot==='spark-flight'){
       const p=flight.getPoint(THREE.MathUtils.smoothstep(t,0,1));target=p.clone().add(new THREE.Vector3(0,1,0));
