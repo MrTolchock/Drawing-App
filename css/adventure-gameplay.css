@@ -1,0 +1,116 @@
+/* Hands-on woodland toys: clear targets, movable pieces and reversible play. */
+.adventure-work :is(.rocket-load,.rocket-star,.picnic-berry,.shape-piece) { touch-action:none; }
+.adventure-work :is(.selected,.drop-ready) { outline:4px solid #286d88; outline-offset:3px; }
+.adventure-work .piece-dragging { opacity:.4; }
+.adventure-drag-ghost { position:fixed!important; z-index:9999; pointer-events:none; transform:translate(-50%,-65%) rotate(-6deg)!important; width:74px!important; height:74px!important; min-height:0!important; padding:5px!important; margin:0!important; opacity:.95; box-shadow:0 10px 24px #30211255; }
+.adventure-drag-ghost svg { width:100%; height:100%; }
+.adventure-drag-ghost .play-picture { display:flex; justify-content:center; }
+.adventure-work :is(.rocket-star,.mirror-star) .wa-illustration { width:30px; height:35px; }
+.adventure-work h3 { font-size:clamp(15px,3.5vw,19px); margin:4px 0 10px; }
+
+/* A rocket has a destination and two quantities, never an answer-sized set of
+   vacant seats. Children decide the load and may overfill, remove and retry. */
+.rocket-challenge { position:relative; overflow:hidden; max-width:610px; margin:auto; padding:14px 12px 20px; background:radial-gradient(circle at 15% 16%,#fff9dc 0 2px,transparent 3px),radial-gradient(circle at 83% 32%,#fff9dc 0 3px,transparent 4px),linear-gradient(#cbdce9,#eff0df); }
+.rocket-destination { display:flex; align-items:center; justify-content:center; gap:8px; color:#3e536e; }
+.rocket-destination > strong { display:grid; place-items:center; font-size:36px; width:62px; height:62px; border:3px solid #73644b; border-radius:50%; background:#fff1b8; }
+.rocket-destination .wa-illustration { width:30px; height:30px; }
+.rocket-destination > span:last-child { font-size:16px; max-width:85px; }
+.rocket-challenge .adventure-scene { margin:4px 0; }
+.rocket-cargo { display:grid; grid-template-columns:minmax(0,1fr) 24px minmax(0,1fr); gap:6px; align-items:stretch; }
+.rocket-original,.rocket-new { min-width:0; padding:12px 8px; border:2px solid #a99575; border-radius:18px; background:#fff8e1; }
+.rocket-new { background:#f0f7eb; border-style:dashed; }
+.rocket-cargo .rocket-plus { font-size:34px; align-self:center; }
+.rocket-original .adventure-quantity { display:flex; flex-wrap:wrap; justify-content:center; gap:1px; }
+.rocket-original .adventure-quantity .wa-illustration { width:23px; height:28px; }
+.rocket-hold { display:flex; flex-wrap:wrap; justify-content:center; align-content:center; gap:3px; min-height:88px; border-radius:12px; }
+.rocket-hold .rocket-star { min-height:44px; width:44px; padding:2px; border:2px solid #b99b59; border-radius:12px; background:#ffe8a0; }
+.rocket-empty { display:grid; place-items:center; color:#6d7e76; font-size:28px; min-height:80px; }
+.rocket-empty[hidden] { display:none; }
+.rocket-new .adventure-meter { font-size:14px; min-height:0; margin:8px 0 0; }
+.rocket-controls { display:flex; justify-content:center; gap:10px; margin:16px 0 6px; }
+.rocket-controls .rocket-load { display:flex; align-items:center; justify-content:center; gap:6px; min-width:75px; max-width:30%; min-height:66px; padding:8px; background:#ffedaf; }
+.rocket-load .adventure-quantity { display:flex; flex-wrap:wrap; max-width:65px; gap:0; }
+.rocket-load .wa-illustration { width:18px; height:23px; }
+.rocket-load b { font-size:21px; }
+.rocket-load:disabled { opacity:.45; }
+.rocket-unload { font-size:16px; }
+.rocket-challenge.has-cargo .adventure-scene { filter:drop-shadow(0 7px 5px #f1c05a); }
+
+/* Each physical berry keeps its identity when moved between basket and plates. */
+.picnic-basket { display:block; padding:10px; border:2px solid #b99569; }
+.picnic-basket-heading { display:flex; align-items:center; justify-content:center; gap:14px; font-size:23px; }
+.picnic-basket-tokens { display:flex; flex-wrap:wrap; justify-content:center; gap:3px; min-height:48px; padding:5px 0; }
+.picnic-plates { gap:10px; max-width:680px; }
+.picnic-plates .adventure-plate { min-width:0; padding:8px 5px; gap:5px; border:2px solid #99af8d; border-radius:24px; background:linear-gradient(#edf4d9,#dfeacb); }
+.picnic-give { display:flex; flex-direction:column; justify-content:center; align-items:center; width:100%; gap:2px; padding:4px; border:0; border-radius:15px; background:transparent; box-shadow:none; }
+.picnic-give .forest-portrait { width:76px; height:76px; }
+.picnic-friend-name { font-size:17px; }
+.picnic-give-sign { font-size:15px; display:flex; gap:3px; align-items:center; border-radius:12px; padding:3px 10px; background:#fff8dc; }
+.picnic-give-sign .wa-illustration { width:23px; height:23px; }
+.picnic-plate-heading { display:flex; align-items:center; justify-content:center; gap:4px; width:100%; font-size:20px; }
+.picnic-plate-heading .wa-illustration { width:23px; height:23px; }
+.picnic-plates .adventure-berries { display:flex; justify-content:center; align-content:flex-start; min-height:56px; gap:2px; width:100%; border:2px solid #baac8c; border-radius:22px; padding:7px 2px; background:#fff8e9; }
+.picnic-berry { display:grid; place-items:center; flex:0 0 44px; width:44px; height:44px; min-height:44px; padding:3px; border:1px solid #7b86a2; border-radius:50%; background:#e8e7f4; box-shadow:0 2px #c4bdca; }
+.picnic-berry .play-picture { display:flex; align-items:center; justify-content:center; }
+.picnic-berry .play-picture .wa-illustration,.picnic-berry .play-picture .wa-symbol { width:30px; height:30px; }
+.picnic-return,.picnic-undo { font-size:16px; }
+.picnic-party .picnic-give .forest-portrait { animation:picnic-cheer .55s ease-in-out 2 alternate; }
+@keyframes picnic-cheer { to { transform:translateY(-9px) rotate(5deg); } }
+
+/* Children construct the second group before counting the double. */
+.mirror-building { display:grid; grid-template-columns:minmax(0,1fr) 20px minmax(0,1fr); align-items:stretch; gap:5px; max-width:620px; margin:12px auto 18px; }
+.mirror-side { min-width:0; padding:14px 8px; border:2px solid #bb9f78; border-radius:24px; background:#f7e4b2; }
+.mirror-side h3 { min-height:43px; display:flex; justify-content:center; align-items:center; }
+.mirror-side .adventure-quantity { display:flex; flex-wrap:wrap; justify-content:center; gap:4px; }
+.mirror-side .adventure-quantity .wa-illustration { width:34px; height:39px; }
+.mirror-copy { background:linear-gradient(120deg,#d6e7e1,#f3f8f1); border-color:#8ba9ad; }
+.mirror-magic-axis { display:flex; align-items:center; justify-content:center; background:linear-gradient(90deg,#98b5c0,#f6faf7,#98b5c0); border-radius:15px; }
+.mirror-magic-axis .play-picture { display:block; }
+.mirror-magic-axis .wa-illustration { width:44px; height:70px; }
+.mirror-copy-group { display:flex; align-content:flex-start; justify-content:center; flex-wrap:wrap; gap:4px; min-height:103px; }
+.mirror-copy-group .mirror-star { width:44px; min-height:44px; padding:1px; border:1px solid #93a3ae; background:#f7f2cc; border-radius:12px; }
+.mirror-copy-count { display:block; min-height:22px; margin-top:8px; font-size:15px; }
+.mirror-empty { align-self:center; font-size:28px; color:#7a8c8d; }
+.mirror-empty[hidden],.mirror-number-task[hidden],.shape-rotate[hidden] { display:none; }
+.mirror-tools { display:flex; justify-content:center; flex-wrap:wrap; gap:9px; }
+.mirror-tools .learn-button { font-size:17px; padding:10px 14px; }
+.mirror-tools .mirror-add { background:#e6d9ee; }
+.mirror-matched .mirror-copy { box-shadow:inset 0 0 24px #e6ca79; }
+.mirror-number-task { padding:0 10px 16px; margin-top:18px; border-radius:22px; background:#fff2ce; border:2px solid #d4bd81; }
+
+/* The same four pieces become a finished shelter. The silhouette communicates
+   each target even before children can read. Rotation only matters geometrically. */
+.shape-build-scene { position:relative; aspect-ratio:400/340; width:min(100%,430px); margin:4px auto 10px; border-radius:28px; background:radial-gradient(circle at 80% 17%,#fff8d3 0 7%,transparent 7.3%),linear-gradient(#e2ebec 0 68%,#dce9c7 68%); isolation:isolate; }
+.shape-house-backdrop { position:absolute; inset:0; pointer-events:none; }
+.shape-house-backdrop svg { width:100%; height:100%; }
+.shape-build-scene .shape-build-hole { position:absolute; min-height:44px; min-width:44px; padding:2px; margin:0; transform:translate(-50%,-50%); border:2px dashed #7b6046; border-radius:12px; background:#fff7ddc9; touch-action:manipulation; }
+.shape-build-hole > svg { display:block; width:100%; height:100%; }
+.shape-build-scene .shape-build-hole:active { transform:translate(-50%,-50%); }
+.shape-build-hole.shape-placed { background:transparent; border-color:transparent; }
+.shape-build-hole.shape-placed svg g { fill:#eebc72; stroke:#866345; }
+.shape-build-hole[data-target="roof"].shape-placed svg g { fill:#c48f72; }
+.shape-build-hole[data-target="window"].shape-placed svg g,.shape-build-hole[data-target="attic"].shape-placed svg g { fill:#b8dce0; }
+.shape-build-palette { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; max-width:480px; margin:8px auto; }
+.shape-piece { min-width:0; min-height:64px; padding:3px; aspect-ratio:1; border:2px solid #8b7a64; border-radius:17px; background:#fff5d6; }
+.shape-piece svg { width:100%; height:100%; display:block; }
+.shape-piece.selected { background:#d7eacb; }
+.shape-rotate { background:#e2e8f1; }
+.shape-house-complete { box-shadow:0 0 0 4px #bcce87; }
+.shape-house-complete::after { content:'♥'; position:absolute; top:40%; left:45%; color:#a7645b; font-size:42px; pointer-events:none; animation:house-heart .7s ease-out both; }
+@keyframes house-heart { from { transform:translateY(20px) scale(.3); opacity:0; } to { transform:translateY(-30px) scale(1); opacity:1; } }
+
+@media(min-width:700px) { .picnic-plates { grid-template-columns:repeat(var(--friends),minmax(0,1fr)); } }
+@media(max-width:360px) {
+  .rocket-challenge { padding:10px 5px; }
+  .rocket-cargo { grid-template-columns:minmax(0,1fr) 16px minmax(0,1fr); gap:3px; }
+  .rocket-original,.rocket-new { padding:9px 4px; }
+  .rocket-original .adventure-quantity .wa-illustration { width:19px; height:24px; }
+  .mirror-building { gap:3px; grid-template-columns:minmax(0,1fr) 14px minmax(0,1fr); }
+  .mirror-side { padding:10px 4px; }
+  .mirror-side h3 { font-size:14px; }
+  .mirror-side .adventure-quantity .wa-illustration { width:28px; height:34px; }
+  .shape-build-palette { gap:5px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .picnic-party .picnic-give .forest-portrait,.shape-house-complete::after { animation:none; }
+}

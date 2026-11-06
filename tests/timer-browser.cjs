@@ -1,3 +1,4 @@
+const BASE_URL = process.env.FARBTUPF_BASE_URL || 'http://127.0.0.1:8000';
 /* Clock controls preserve the mounted puzzle and use foreground elapsed time. */
 const { chromium } = require('/opt/codex/cua_node/lib/node_modules/playwright');
 const assert = require('node:assert/strict');
@@ -19,7 +20,7 @@ const fs = require('node:fs');
     page.on('pageerror', e => errors.push(e.message));
     await page.clock.install({ time: new Date('2026-11-05T12:00:00Z') });
     await page.clock.pauseAt(new Date('2026-11-05T12:00:01Z'));
-    await page.goto('http://127.0.0.1:8000/?screen=hub');
+    await page.goto(BASE_URL + '/?screen=hub');
     const clock = () => page.evaluate(() => FK.playTimer.get());
     assert.equal((await clock()).mode, 'off'); assert.equal(await page.locator('.play-timer-bar').isVisible(), false);
     const originalProgress = await page.evaluate(() => localStorage.getItem('farbklecks.progress.v1'));
@@ -86,7 +87,7 @@ const fs = require('node:fs');
     // check with real frames and the same saved device state in a fresh context.
     const forestContext = await browser.newContext({ viewport:{width:390,height:844}, hasTouch:true, reducedMotion:'reduce', storageState:await context.storageState() });
     const forest = await forestContext.newPage(); forest.on('pageerror',e=>errors.push(e.message));
-    await forest.goto('http://127.0.0.1:8000/');
+    await forest.goto(BASE_URL + '/');
     await forest.waitForFunction(() => !!FK.forestScene, null, { timeout: 60000 });
     await forest.getByRole('button', { name: 'Mit dem Fuchs losgehen', exact: true }).tap();
     await forest.getByRole('button', { name: 'Zum Biber gehen', exact: true }).tap();

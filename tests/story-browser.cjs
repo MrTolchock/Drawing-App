@@ -1,3 +1,4 @@
+const BASE_URL = process.env.FARBTUPF_BASE_URL || 'http://127.0.0.1:8000';
 /* A fresh, touch-only playthrough of every authored quest, chapter and ending. */
 const { chromium } = require('/opt/codex/cua_node/lib/node_modules/playwright');
 const assert = require('node:assert/strict');
@@ -18,6 +19,8 @@ function solve(q, start) {
 (async () => {
   const browser = await chromium.launch({ executablePath: '/usr/bin/chromium', headless: true,
     args: ['--no-sandbox', '--disable-dev-shm-usage', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
+  let page;
+  const errors = [];
   try {
     const context = await browser.newContext({ viewport: { width: 820, height: 1180 }, hasTouch: true, reducedMotion: 'reduce' });
     await context.addInitScript(() => {
@@ -26,16 +29,24 @@ function solve(q, start) {
       localStorage.setItem('farbklecks.progress.v1', JSON.stringify({ stars: 7, done: { 'learn:pattern:1': 1, 'expedition:treasure:1': 1, 'adventure:robot:1': 1 } }));
       localStorage.setItem('complete-story-test', 'yes');
     });
-    const page = await context.newPage(), errors = [], external = [];
+    page = await context.newPage(); const external = [];
     page.on('pageerror', e => errors.push(e.message));
-    page.on('request', r => { if (!r.url().startsWith('http://127.0.0.1:8000') && !r.url().startsWith('data:')) external.push(r.url()); });
+    page.on('request', r => { if (!r.url().startsWith(BASE_URL) && !r.url().startsWith('data:')) external.push(r.url()); });
     const shots = process.env.FARBTUPF_SHOTS || '/tmp/farbtupf-complete-story'; fs.mkdirSync(shots, { recursive: true });
     const shot = name => page.screenshot({ path: path.join(shots, name) });
-    const ready = () => page.waitForFunction(() => !!window.FK?.forestScene && FK.current() === 'forest', null, { timeout: 90000 });
+    const ready = async () => {
+      await page.waitForFunction(() => !!window.FK?.forestScene && FK.current() === 'forest', null, { timeout: 90000 });
+      // Keep the same world and touch paths on machines without a GPU. Only
+      // raster resolution and shadows change; layout and story state do not.
+      if(process.env.FARBTUPF_SOFTWARE_RENDERING)await page.evaluate(()=>{
+        FK.forestScene.renderer.setPixelRatio(0.5);
+        FK.forestScene.renderer.shadowMap.enabled=false;
+      });
+    };
     const world = () => page.evaluate(() => FK.forestState.get());
     const session = id => page.evaluate(id => FK.forestState.getActivity(id), id);
     const currentRoot = async () => page.locator('.screen-' + await page.evaluate(() => FK.current()));
-    await page.goto('http://127.0.0.1:8000/'); await ready();
+    await page.goto(BASE_URL + '/'); await ready();
     assert.equal(await page.evaluate(()=>FK.heartTree.count()),0);
     await page.waitForFunction(()=>FK.forestScene.scene.getObjectByName('heart-tree').userData.growth===0);
     await page.evaluate(() => FK.store.put('full-story-legacy-check', { picture: 'kept', revision: 8 }));
@@ -144,5 +155,11 @@ function solve(q, start) {
     assert.deepEqual(await page.evaluate(() => FK.store.get('full-story-legacy-check')), { picture: 'kept', revision: 8 });
     assert.deepEqual(errors, []); assert.deepEqual(external, []);
     console.log('PASS: all nine quests, three chapters, saved ending, five gathered neighbours, optional practice without story effects, full library, offline restored world and preserved legacy data.');
+  } catch(error) {
+    if(page&&!page.isClosed()) {
+      console.error('Story failure:',await page.evaluate(()=>({screen:FK.current(),objective:FK.forestState.objective(),buttons:[...document.querySelectorAll('.screen:not([hidden]) button')].map(b=>({label:b.getAttribute('aria-label'),disabled:b.disabled}))})).catch(()=>null),errors);
+      await page.screenshot({path:'/tmp/farbtupf-story-failure.png',timeout:10000}).catch(()=>{});
+    }
+    throw error;
   } finally { await browser.close(); }
 })().catch(e => { console.error(e); process.exit(1); });

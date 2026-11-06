@@ -1,5 +1,7 @@
 # A single living forest — 6.3
 
+The next gameplay update is documented in [Gameplay — 6.4](GAMEPLAY.md): editable construction and sharing games, saved discovery tours, programmed routes and companions walking through the forest. This page records the preceding navigation and story update.
+
 The forest, games book and activities now share the same five neighbours and visual progress. There is one library, with all games and drawing tools accessible through its pictured neighbour filters. Old `hub` navigation resolves to `forest-book`. Both the forest and book expose a working tap-based settings button; the adult gate remains.
 
 ## Activity changes

@@ -1,3 +1,4 @@
+const BASE_URL = process.env.FARBTUPF_BASE_URL || 'http://127.0.0.1:8000';
 /* The running woodland and all three flat families share actual loaded paintings. */
 const { chromium } = require('/opt/codex/cua_node/lib/node_modules/playwright');
 const assert = require('node:assert/strict');
@@ -15,11 +16,11 @@ const fs = require('node:fs');
     });
     const page = await context.newPage(), errors = [], failed = [], external = [];
     page.on('pageerror', e => errors.push(e.message)); page.on('requestfailed', r => failed.push(r.url()));
-    page.on('request', r => { if (!r.url().startsWith('http://127.0.0.1:8000') && !r.url().startsWith('data:')) external.push(r.url()); });
+    page.on('request', r => { if (!r.url().startsWith(BASE_URL) && !r.url().startsWith('data:')) external.push(r.url()); });
     const shots = process.env.FARBTUPF_SHOTS || '/tmp/farbtupf-painted-test'; fs.mkdirSync(shots, { recursive: true });
     const shot = name => page.screenshot({ path: shots + '/' + name + '.png', animations: 'disabled' });
     const session = () => page.evaluate(() => FK.forestState.getActivity(FK.forestState.QUEST));
-    await page.goto('http://127.0.0.1:8000/', { waitUntil: 'networkidle' });
+    await page.goto(BASE_URL + '/', { waitUntil: 'networkidle' });
     await page.waitForFunction(() => !!FK.forestScene, null, { timeout: 60000 });
     await page.evaluate(async()=>{await document.fonts.ready;await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));});
     await page.getByRole('button', { name: 'Mit dem Fuchs losgehen', exact: true }).tap();

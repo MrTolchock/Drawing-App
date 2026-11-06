@@ -5,9 +5,9 @@ import { paintedSprite } from './painted.js';
 function resident(id, size) {
   const group = new THREE.Group(), painting = paintedSprite(id, size);
   group.name = id; group.add(painting);
-  return { group, painting, animate(time, active, resting = false) {
-    painting.position.y = resting ? -0.07 : active && time ? Math.abs(Math.sin(time * 3.2)) * 0.12 : time ? Math.sin(time * 1.2) * 0.018 : 0;
-    painting.material.rotation = active && time ? Math.sin(time * 2.2) * 0.04 : 0;
+  return { group, painting, animate(time, active, resting = false, moving = false) {
+    painting.position.y = moving ? Math.abs(Math.sin(time * 9)) * 0.16 : resting ? -0.07 : active && time ? Math.abs(Math.sin(time * 3.2)) * 0.12 : time ? Math.sin(time * 1.2) * 0.018 : 0;
+    painting.material.rotation = moving ? Math.sin(time * 9) * 0.055 : active && time ? Math.sin(time * 2.2) * 0.04 : 0;
   } };
 }
 export function fox() {

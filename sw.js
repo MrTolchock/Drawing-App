@@ -1,5 +1,5 @@
 /* Farbtupf – Service Worker: keeps the whole app on the device so it runs without internet. */
-const CACHE = 'farbtupf-v6.3.0-living-forest';
+const CACHE = 'farbtupf-v6.4.0-playful-adventures';
 const ASSETS = [
   './',
   './index.html',
@@ -24,6 +24,11 @@ const ASSETS = [
   './css/timer.css',
   './css/play.css',
   './js/ui/play.js',
+  './js/core/journey.js',
+  './css/gameplay.css',
+  './css/learning-gameplay.css',
+  './css/adventure-gameplay.css',
+  './css/forest-gameplay.css',
   './js/ui/heart-tree.js',
   './vendor/three/three.module.js',
   './vendor/three/three.core.js',

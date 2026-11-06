@@ -8,10 +8,11 @@
   function say(text) { feedback.textContent = text; FK.play.speak(text); }
   function check(ok) {
     if (locked) return;
+    FK.play.attempt(ok);
     if (!ok) { say('Probiere weiter. ' + q.hint); FK.sound.undo(); return; }
     locked = true;
     body.querySelectorAll('.exp-work button').forEach(b => { b.disabled = true; });
-    say('Juhui! ' + q.explain); FK.play.feedback(body,q.explain,true);
+    feedback.textContent='Juhui! ' + q.explain; FK.play.feedback(body,feedback.textContent,true);
     next.hidden = false;
   }
   function picture(emoji, name, cls) {
@@ -60,10 +61,26 @@
     update();
   }
   function compare(host) {
-    const row = h('div', { class: 'exp-compare' });
-    [q.a, q.b].forEach((n, i) => row.append(h('section', { class: 'exp-bowl' }, h('h3', { text: i ? 'Rechts' : 'Links' }), quantity(n, q.max))));
-    host.append(row);
-    choices(host, q.choices, n => n === 0 ? '= Gleich viele' : n < 0 ? '← Links mehr' : 'Rechts mehr →', n => n === q.answer);
+    const selected=[null,null],paired=new Set(),history=[],tokens=[[],[]];
+    const row=h('div',{class:'exp-compare compare-pairing'}),pairs=h('div',{class:'compare-pairs','aria-label':'Deine Beerenpaare'}),meter=h('p',{class:'play-instruction',role:'status',text:'Tippe links und rechts eine Beere an. Wer hat welche übrig?'});
+    function update(){
+      tokens.forEach((list,side)=>list.forEach((b,i)=>{b.disabled=paired.has(side+':'+i)||locked;b.classList.toggle('paired',paired.has(side+':'+i));b.setAttribute('aria-pressed',String(selected[side]===i));}));
+      pairs.replaceChildren(...history.map(()=>h('span',{class:'compare-pair'},FK.play.picture('🫐'),h('b',{text:'↔'}),FK.play.picture('🫐'))));
+      meter.textContent=history.length===Math.min(q.a,q.b)?history.length?'Alle möglichen Paare sind verbunden. Auf welcher Seite bleiben Beeren übrig?':'Auf einer Seite sind keine Beeren. Schau, wo noch welche liegen.':'Tippe links und rechts eine Beere an. Wer hat welche übrig?';
+    }
+    [q.a,q.b].forEach((n,side)=>{
+      const bowl=h('section',{class:'exp-bowl'},FK.forestArt.character(side?'hare':'fox'));
+      const field=h('div',{class:'compare-berry-field'});
+      for(let i=0;i<n;i++){
+        const b=control('',()=>{selected[side]=selected[side]===i?null:i;
+          if(selected.every(v=>v!==null)){history.push(selected.slice());selected.forEach((index,s)=>paired.add(s+':'+index));selected.fill(null);FK.sound.right();}else FK.sound.tick();update();},'compare-berry');
+        b.append(FK.play.picture('🫐'));b.setAttribute('aria-label',(side?'Rechts':'Links')+' Beere '+(i+1)+' verbinden');tokens[side].push(b);field.append(b);
+      }
+      if(!n)field.append(h('span',{class:'compare-empty',text:'0'}));bowl.append(field);row.append(bowl);
+    });
+    host.append(FK.play.steps([['🫐','Eine links'],['🫐','Eine rechts'],['✓','Paare bilden']]),row,pairs,meter,
+      control('↶ Letztes Paar lösen',()=>{const pair=history.pop();if(pair)pair.forEach((index,side)=>paired.delete(side+':'+index));selected.fill(null);update();}));
+    choices(host,q.choices,n=>n===0?'= Gleich viele':n<0?'← Links mehr':'Rechts mehr →',n=>n===q.answer);update();
   }
   function mirror(host) {
     host.append(FK.play.steps([['🪞','An der Linie beginnen'],['🖐️','Gegenüber antippen'],['✓','Prüfen']]), h('div',{class:'play-mirror-example',role:'img','aria-label':'Beispiel: zwei Reihen. Das obere linke Feld erscheint im Spiegel oben rechts.',html:'<svg viewBox="0 0 210 94"><g fill="#fff8e8" stroke="#b0bc95" stroke-width="2"><rect x="8" y="8" width="35" height="35" fill="#9ab477"/><rect x="46" y="8" width="35" height="35"/><rect x="8" y="46" width="35" height="35"/><rect x="46" y="46" width="35" height="35"/><rect x="128" y="8" width="35" height="35"/><rect x="166" y="8" width="35" height="35" fill="#9ab477"/><rect x="128" y="46" width="35" height="35"/><rect x="166" y="46" width="35" height="35"/></g><path d="M105 1v90" stroke="#96afb1" stroke-width="4" stroke-dasharray="5 4"/></svg>'}));
@@ -131,31 +148,51 @@
       const target=q.task==='count'?i===q.target:q.task==='difference'?i===q.target||i===q.other:false;
       chart.append(h('section',{class:'exp-chart-column'+(target?' is-target':'')},FK.play.picture(f.emoji,f.name),votes));
     });
-    host.append(chart);
-    const row=h('div',{class:'learn-answers'});
+    const bank=h('div',{class:'survey-ballots'}),ballots=[];
+    q.counts.forEach((n,index)=>{for(let i=0;i<n;i++)ballots.push(index);});
+    const ordered=FK.shuffle(ballots),recorded=[0,0,0];let cursor=0;
+    const ballotArt=h('div',{class:'survey-ballot-art'}),meter=h('p',{class:'play-instruction',role:'status'}),cast=h('div',{class:'survey-cast'}),answers=h('div',{class:'learn-answers',hidden:stage<3});
+    const votes=[...chart.querySelectorAll('.exp-votes')];
+    function drawVotes(){votes.forEach((line,i)=>{[...line.children].forEach((el,j)=>{if(j<q.counts[i])el.classList.toggle('uncast',j>=recorded[i]);});});}
+    function reveal(){recorded.splice(0,3,...q.counts);cursor=ordered.length;bank.hidden=true;answers.hidden=false;drawVotes();FK.play.speak(q.prompt);}
+    function nextBallot(){
+      drawVotes();if(cursor===ordered.length){reveal();return;}
+      const resident=['fox','hare','hedgehog','owl','kingfisher'][cursor%5];
+      ballotArt.replaceChildren(FK.forestArt.character(resident),FK.forestArt.icon('arrow'),FK.play.picture(q.fruit[ordered[cursor]].emoji));
+      meter.textContent=cursor+' / '+ordered.length+' Stimmen eingetragen';
+    }
+    q.fruit.forEach((f,i)=>cast.append(control('',()=>{
+      if(i!==ordered[cursor]){FK.sound.undo();FK.play.speak('Schau auf das Obst im Stimmzettel.');return;}
+      recorded[i]++;cursor++;FK.sound.tick();nextBallot();
+    },'survey-cast-button')));
+    [...cast.children].forEach((b,i)=>{b.append(FK.play.picture(q.fruit[i].emoji));b.setAttribute('aria-label',q.fruit[i].name+' eine Stimme geben');});
+    bank.append(h('p',{class:'play-instruction',text:'Trage die Stimmen der Freunde ein.'}),ballotArt,cast,meter,control('Umfrage direkt anschauen',reveal,'survey-reveal'));
+    host.append(bank,chart);
     q.choices.forEach(value=>{
       const f=q.fruit.find(item=>item.id===value),b=control(f?f.name:String(value),()=>{const ok=value===q.answer;b.classList.add(ok?'correct':'try-again');check(ok);},'learn-answer');
-      b.dataset.answer=String(value);if(f)b.replaceChildren(FK.play.picture(f.emoji,f.name));row.append(b);
-    });host.append(row);
+      b.dataset.answer=String(value);if(f)b.replaceChildren(FK.play.picture(f.emoji,f.name));answers.append(b);
+    });host.append(answers);
+    if(stage<3)nextBallot();else{bank.hidden=true;recorded.splice(0,3,...q.counts);drawVotes();}
   }
+
   const renderers = { treasure, neighbours, compare, mirror, tricks, vowels, survey };
   function draw() {
     q = FK.expeditions.question(game.id, stage, round, Math.random, wordOffset); locked = false;
     const host = h('div', { class: 'exp-work exp-game-' + game.id });
     feedback = h('p', { class: 'learn-feedback', role: 'status', 'aria-live': 'polite', text: 'Probiere aus. Du hast Zeit.' });
     next = button(round === 4 ? '⭐ Geschafft!' : 'Weiter →', () => { if (!locked) return; round++; if (round === 5) finish(); else draw(); }, 'learn-next exp-next'); next.hidden = true;
-    body.replaceChildren(FK.play.context(game.id,q.prompt,round),
+    body.replaceChildren(FK.play.context(game.id,q.prompt,round,stage),
       FK.woodland.progress(round),
       h('h2', { class: 'learn-prompt', text: q.prompt }), host, feedback, next,
-      button('💡 Tipp', () => say(q.hint), 'learn-hint'));
+      button('💡 Tipp', () => {FK.play.hint();say(q.hint);}, 'learn-hint'));
     renderers[game.id](host); body.scrollTop = 0; FK.play.speak(q.prompt);
   }
   function finish() {
     FK.play.finish(body,'expedition',game.id,stage,()=>{round=0;wordOffset=(wordOffset+1)%8;draw();});
   }
   FK.screen('expedition', {
-    build(root) { const bar = FK.ui.topbar({ title: 'Forschen & Knobeln' }); title = bar.querySelector('.title'); body = h('div', { class: 'learn-body scroll' }); root.append(bar, body); },
-    enter(params) { if(params.game==='tricks'){FK.go('learn',{game:'add'},{replace:true});return;} game = FK.expeditions.games.find(g => g.id === (params || {}).game) || FK.expeditions.games[0]; stage = FK.learning.stage(); round = 0; wordOffset = Math.floor(Math.random() * 8); title.textContent = game.title; draw(); },
+    build(root) { FK.play.bindTouch(root); const bar = FK.ui.topbar({ title: 'Forschen & Knobeln' }); title = bar.querySelector('.title'); body = h('div', { class: 'learn-body scroll' }); root.append(bar, body); },
+    enter(params) { if(params.game==='tricks'){FK.go('learn',{game:'add'},{replace:true});return;} game = FK.expeditions.games.find(g => g.id === (params || {}).game) || FK.expeditions.games[0]; stage = FK.learning.stage(); round = 0; wordOffset = Math.floor(Math.random() * 8); title.textContent = game.title;FK.play.begin(game.id,stage); draw(); },
     leave() { locked = true; FK.forestVoice.cancel(); },
   });
 })();

@@ -1,0 +1,57 @@
+/* A small adventure has a clear next stop and always leaves room for free play. */
+.journey-card { max-width:900px; margin:5px auto 25px; padding:18px; border:2px solid #9baa77; border-radius:26px; background:linear-gradient(135deg,#e7edcf,#fff6df); text-align:left; }
+.journey-card-copy { display:flex; align-items:center; gap:14px; }
+.journey-card-copy > .forest-portrait { width:78px; height:78px; }
+.journey-card-copy > div { min-width:0; }
+.journey-card h2 { font:700 clamp(21px,3vw,29px) var(--font); margin:0 0 5px; }
+.journey-card p { font:15px var(--read); margin:0; color:#657548; }
+.journey-start { margin:12px 0 0; width:100%; background:#667e45; color:#fff8e8; border:0; min-height:62px; }
+.journey-start > span { display:flex; align-items:center; justify-content:center; gap:14px; }
+.journey-stops { display:flex; justify-content:center; gap:12px; width:min(600px,100%); margin:16px auto; }
+.journey-stop { position:relative; display:flex; flex:1; min-width:0; flex-direction:column; align-items:center; gap:4px; padding:8px; background:#f9f5e7; border:1px dashed #b9c3a2; border-radius:18px; text-align:center; opacity:.65; }
+.journey-stop .forest-portrait { width:64px; height:64px; }
+.journey-stop > span:not(.forest-portrait) { position:absolute; top:5px; left:6px; font:700 13px var(--read); }
+.journey-stop small { max-width:100%; font:12px var(--read); overflow-wrap:anywhere; }
+.journey-stop.current { opacity:1; border:2px solid #7b9359; background:#fff9e4; }
+.journey-stop.done { opacity:1; border-style:solid; background:#dfe9c8; }
+.journey-free-label { color:#6c7e52; font:700 18px var(--read); }
+.play-continue { display:flex; align-items:center; justify-content:center; gap:12px; width:min(560px,100%); margin:20px auto; padding:12px; }
+.play-continue > span:not(.forest-portrait):not(.forest-icon) { display:flex; flex-direction:column; gap:4px; text-align:left; min-width:0; }
+.play-continue small { font:14px var(--read); overflow-wrap:anywhere; }
+.play-continue .forest-portrait { width:66px; height:66px; }
+.play-finish > .forest-portrait { width:110px; height:110px; }
+@media(max-width:450px){
+ .journey-card { padding:12px; }.journey-card-copy {gap:8px;}.journey-card-copy>.forest-portrait{width:58px;height:58px;}.journey-card h2{font-size:22px}.journey-card p{font-size:13px}
+ .journey-stops{gap:5px}.journey-stop{padding:7px 4px}.journey-stop .forest-portrait{width:46px;height:46px}.journey-stop small{font-size:11px}
+ .play-continue{gap:8px}.play-continue .forest-portrait{width:48px;height:48px}.play-continue small{font-size:12px}
+}
+.route-program-strip { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:6px; min-height:76px; padding:12px; margin:12px auto; border:2px dashed #acba90; border-radius:18px; background:#edf0db; max-width:660px; }
+.route-command { position:relative; display:flex; align-items:center; justify-content:center; min-width:46px; min-height:54px; padding:8px; border:1px solid #aaa77d; border-radius:12px; background:#fff9e8; color:#486438; }
+.route-command small { position:absolute; top:2px; left:4px; font:10px var(--read); }.route-command b{font-size:30px;line-height:1}
+.route-command.executing { background:#e8c56c; box-shadow:0 0 0 3px #e8c56c55; }
+.route-program-placeholder { color:#7e9066; font-size:26px; }
+.route-program-actions { display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:8px; margin:16px auto; }
+.route-program-actions .learn-button { margin:0; min-height:56px; padding:10px; font-size:17px; }
+.route-run { display:flex; align-items:center; gap:8px; }
+.route-program-stage .adventure-map-cell { transition:background .2s; }
+.compare-berry-field { display:flex; flex-wrap:wrap; justify-content:center; align-content:center; min-height:95px; gap:5px; }
+.compare-berry { display:flex; align-items:center; justify-content:center; width:44px; height:44px; min-height:44px; padding:0; border:1px solid #c5c9a3; border-radius:50%; background:#fff9e7; }
+.compare-berry .play-picture .wa-symbol { width:27px; height:27px; }
+.compare-berry[aria-pressed=true] { outline:3px solid #a8bd74; background:#e9eecf; }
+.compare-berry.paired { opacity:.15; }
+.compare-pairs { display:flex; flex-wrap:wrap; justify-content:center; gap:5px; max-width:650px; margin:10px auto; }
+.compare-pair { display:flex; align-items:center; gap:2px; padding:5px; border:1px solid #bdc9a5; border-radius:14px; background:#e6edd4; }
+.compare-pair .play-picture .wa-symbol { width:22px; height:22px; }
+.compare-pair b { font-size:15px; color:#83965a; }
+.compare-pairing .exp-bowl > .forest-portrait { width:65px; height:65px; }
+.compare-empty { font:700 40px var(--read); color:#abb396; padding:10px; }
+.survey-ballots { padding:14px; border:1px solid #c3bb96; border-radius:22px; background:#eee8d3; margin:15px auto; max-width:550px; }
+.survey-ballot-art { display:flex; align-items:center; justify-content:center; gap:16px; margin:12px; }
+.survey-ballot-art .forest-portrait { width:80px; height:80px; }.survey-ballot-art .play-picture .wa-illustration{width:75px;height:75px}
+.survey-cast { display:flex; justify-content:center; gap:10px; }
+.survey-cast-button { padding:6px; min-width:65px; background:#fffaea; }.survey-cast-button .play-picture .wa-illustration{width:60px;height:60px}
+.survey-reveal { font-size:15px; padding:8px; min-height:44px; }
+.play-survey-chart .exp-vote.uncast { opacity:.09; pointer-events:none; }
+.play-finish .play-continue { margin:20px auto; max-width:100%; }
+
+.journey-card h2 { overflow-wrap:anywhere; }

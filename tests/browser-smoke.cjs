@@ -1,10 +1,11 @@
+const BASE_URL = process.env.FARBTUPF_BASE_URL || 'http://127.0.0.1:8000';
 const { chromium } = require('/opt/codex/cua_node/lib/node_modules/playwright');
 const assert = require('node:assert/strict');
 (async () => {
  const browser = await chromium.launch({executablePath:'/usr/bin/chromium',headless:true,args:['--no-sandbox']});
  const context = await browser.newContext({viewport:{width:820,height:1180},hasTouch:true});
  const page = await context.newPage(); const errors=[]; page.on('pageerror',e=>errors.push(e.message));
- await page.goto('http://127.0.0.1:8000/?screen=hub');
+ await page.goto(BASE_URL + '/?screen=hub');
  await page.evaluate(async()=>{await navigator.serviceWorker.ready;});
  await page.reload();
  await page.evaluate(()=>{const make=FK.learning.question; FK.learning.question=(...args)=>{const q=make(...args); window.testQuestion=q; return q;};});
@@ -12,6 +13,8 @@ const assert = require('node:assert/strict');
   await page.evaluate(({stage,game})=>{FK.settings.set('learning.stage',stage);FK.go('learn',{game});},{stage,game});
   for(let round=0;round<5;round++) {
    const q=await page.evaluate(()=>window.testQuestion);
+   if(game==='count')for(const bug of await page.locator('.learn-bug').all())await bug.tap();
+   if(game==='add')for(let i=0;i<q.b;i++)await page.locator('button.play-snack-apple[aria-pressed=false]').first().tap();
    const stars=await page.evaluate(()=>FK.progress.stars());
    if(round===0) {
     const wrong=q.choices.find(v=>v!==q.answer);
@@ -28,7 +31,7 @@ const assert = require('node:assert/strict');
  assert.equal(await page.evaluate(()=>FK.progress.stars()),12);
  // Replaying never farms stars.
  await page.evaluate(()=>FK.go('learn',{game:'count'}));
- for(let i=0;i<5;i++){const a=await page.evaluate(()=>String(window.testQuestion.answer));await page.getByRole('button',{name:a,exact:true}).tap();await page.locator('.learn-next').tap();}
+ for(let i=0;i<5;i++){for(const bug of await page.locator('.learn-bug').all())await bug.tap();const a=await page.evaluate(()=>String(window.testQuestion.answer));await page.getByRole('button',{name:a,exact:true}).tap();await page.locator('.learn-next').tap();}
  assert.equal(await page.evaluate(()=>FK.progress.stars()),12);
  for(const stage of [1,2,3]) {
   await page.evaluate(stage=>{FK.settings.set('learning.stage',stage);FK.go('hub');},stage);

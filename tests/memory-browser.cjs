@@ -1,3 +1,4 @@
+const BASE_URL = process.env.FARBTUPF_BASE_URL || 'http://127.0.0.1:8000';
 /* The shared memory board keeps ordinary practice working at all three stages. */
 const { chromium } = require('/opt/codex/cua_node/lib/node_modules/playwright');
 const assert = require('node:assert/strict');
@@ -9,7 +10,7 @@ const fs = require('node:fs');
   try {
     const context = await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true, reducedMotion: 'reduce' });
     const page = await context.newPage(), errors = []; page.on('pageerror', e => errors.push(e.message));
-    await page.goto('http://127.0.0.1:8000/?screen=hub');
+    await page.goto(BASE_URL + '/?screen=hub');
     await page.evaluate(() => {
       FK.settings.set('sound', false); FK.ui.celebrate = () => {};
       const make = FK.expeditions.question;
@@ -47,7 +48,7 @@ const fs = require('node:fs');
       localStorage.setItem(m.KEY, JSON.stringify({ version: 1, welcomed: true, bridgeRepaired: true, greetingSeen: true, payoffSeen: true,
         position: m.nodes.hedgehog, contributions: { [m.QUEST]: true, [m.REST]: true } }));
     });
-    await page.goto('http://127.0.0.1:8000/');
+    await page.goto(BASE_URL + '/');
     await page.locator('.forest-dialog-hedgehog').waitFor({ timeout: 60000 });
     await page.waitForFunction(() => {
       const p = FK.forestScene.scene.getObjectByName('hedgehog').position.clone().project(FK.forestScene.camera);

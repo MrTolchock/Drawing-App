@@ -11,6 +11,14 @@
       h('small', {text:game.sub?.[FK.learning.stage()-1] || ''}), earned ? h('span', {class:'play-earned',text:'⭐'}) : null), () => launch(screen, id), 'forest-book-game');
     b.dataset.game = id; return b;
   }
+  function tourCard(){
+    const state=FK.journey.get(),next=FK.journey.step();
+    const begin=()=>{FK.journey.start({stage:FK.learning.stage(),resident});FK.journey.launch();};
+    const preview=next?state.tour:null;
+    return h('section',{class:'journey-card'},h('div',{class:'journey-card-copy'},art.character('fox'),h('div',{},h('h2',{text:next?'Dein Abenteuer wartet':'Eine kleine Entdeckertour'}),h('p',{text:next?'Dein nächster Halt: '+next.title+' · Stufe '+next.stage:'Drei Spiele, drei Entdeckungen. In deinem Tempo.'}))),
+      preview?FK.play.tourPictures(preview):null,
+      button(next?'Entdeckertour fortsetzen':'Entdeckertour starten',h('span',{},art.icon(next?'paw':'play'),h('b',{text:next?'Weiterreisen':'Los geht’s'})),begin,'journey-start'));
+  }
   function draw() {
     const tabs = h('nav', {class:'forest-book-neighbours', 'aria-label':'Spiele mit deinen Waldfreunden'});
     for (const [id, label] of Object.entries({all:'Alle',...story.names, atelier:'Malatelier'})) {
@@ -38,7 +46,7 @@
     }
     body.replaceChildren(h('section',{class:'play-library-intro'},art.character(resident === 'all' || resident === 'atelier'?'fox':resident),
       h('div',{},h('h2',{text:resident==='all'?'Ein Wald voller Spiele':resident==='atelier'?'Dein Malatelier':'Spielen mit '+story.names[resident]}),h('p',{text:'Spielen. Helfen. Freunde finden.'}))),
-      tabs, levels, games, guided.childElementCount ? h('h3',{text:'Noch mehr mit '+story.names[resident]}) : null, guided);
+      resident==='atelier'?null:tourCard(),tabs, resident==='atelier'?null:levels,h('h3',{class:'journey-free-label',text:resident==='atelier'?'Wähle, was du machen möchtest':'Oder wähle dein eigenes Spiel'}), games, guided.childElementCount ? h('h3',{text:'Noch mehr mit '+story.names[resident]}) : null, guided);
   }
   FK.screen('forest-book', {
     build(root) {

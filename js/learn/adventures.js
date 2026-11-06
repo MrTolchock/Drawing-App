@@ -6,9 +6,9 @@
   const FK = window.FK;
   const games = [
     { id: 'rocket', title: 'Sternenrakete', emoji: '🚀', color: 'lilac', sub: ['Ergänzen bis 5', 'Ergänzen bis 10', 'Ergänzen bis 20'] },
-    { id: 'picnic', title: 'Waldpicknick', emoji: '🧺', color: 'mint', sub: ['Für zwei verteilen', 'Gerecht teilen', 'Grössere Picknicks'] },
+    { id: 'picnic', title: 'Waldpicknick', emoji: '🧺', color: 'mint', sub: ['Für zwei verteilen', 'Für drei teilen', 'Vier Freunde einladen'] },
     { id: 'double', title: 'Zauberspiegel', emoji: '🪄', color: 'rose', sub: ['Doppelt bis 6', 'Doppelt bis 10', 'Doppelt bis 20'] },
-    { id: 'shapes', title: 'Formenwerkstatt', emoji: '🔷', color: 'sky', sub: ['Formen finden', 'Ecken entdecken', 'Formen drehen'] },
+    { id: 'shapes', title: 'Formenwerkstatt', emoji: '🔷', color: 'sky', sub: ['Häuschen bauen', 'Drei Teile einsetzen', 'Formen drehen'] },
     { id: 'rhyme', title: 'Reimzirkus', emoji: '🎪', color: 'apricot', sub: ['Reime hören', 'Reime entdecken', 'Reimdetektive'] },
     { id: 'syllable', title: 'Silbentrommel', emoji: '🥁', color: 'sun', sub: ['Ein- und Zweisilber', 'Bis drei Silben', 'Lange Wörter'] },
     { id: 'robot', title: 'Roboterpost', emoji: '🤖', color: 'mint', sub: ['Kurze Wege', 'Um die Hecke', 'Wege planen'] },
@@ -57,6 +57,11 @@
     { id: 'rectangle', name: 'Langes Rechteck', corners: 4 },
   ];
   const integer = (min, max, rng) => min + Math.floor(rng() * (max - min + 1));
+  function mix(values, rng) {
+    const result = values.slice();
+    for (let i = result.length - 1; i > 0; i--) { const j = integer(0, i, rng); [result[i], result[j]] = [result[j], result[i]]; }
+    return result;
+  }
   const options = (n, max) => Array.from(new Set([n, Math.max(0, n - 1), Math.min(max, n + 1), Math.max(0, n - 2), Math.min(max, n + 2)])).slice(0, 3);
   function question(kind, stage, round, rng) {
     rng = rng || Math.random;
@@ -65,26 +70,36 @@
     const max = [5, 10, 20][stage - 1];
     if (kind === 'rocket') {
       const total = integer(stage === 1 ? 3 : max - 4, max, rng);
-      const filled = integer(0, total - 1, rng);
-      return { kind, mode: 'fill', prompt: 'Die Rakete braucht ' + total + ' Sterne. Ergänze die leeren Plätze!', total, filled, answer: total - filled,
-        hint: 'Jeder leere Platz bekommt einen Stern. Tippe nochmals, um einen Stern wegzunehmen.', explain: filled + ' und ' + (total - filled) + ' ergeben ' + total + '.', transfer: 'Zeige mit deinen Fingern eine andere Zerlegung.' };
+      const filled = integer(1, total - 1, rng);
+      return { kind, mode: 'fill', prompt: 'Für den Start braucht die Rakete genau ' + total + ' Sterne. ' + filled + ' sind schon an Bord. Wie viele fehlen?', total, filled, answer: total - filled, loads: stage === 1 ? [1] : stage === 2 ? [1, 2] : [1, 2, 5],
+        hint: 'Zähle von ' + filled + ' bis ' + total + ' weiter. Lade die fehlenden Sterne ein. Einen geladenen Stern kannst du wieder antippen und herausnehmen.', explain: filled + ' und ' + (total - filled) + ' ergeben ' + total + '. Der Biber fliegt zu seinem Freund!', transfer: 'Zeige mit deinen Fingern eine andere Zerlegung.' };
     }
     if (kind === 'picnic') {
-      const each = integer(1, [3, 5, 10][stage - 1], rng);
-      return { kind, mode: 'share', prompt: 'Teile ' + (each * 2) + ' Beeren gerecht zwischen Fuchs und Dachs.', total: each * 2, answer: each,
-        hint: 'Tippe abwechselnd auf die beiden Teller. Mit «Zurück» nimmst du die letzte Beere weg.', explain: 'Jedes Tier bekommt ' + each + ' Beeren. ' + each + ' + ' + each + ' = ' + (each * 2) + '.', transfer: 'Wäre es auch gerecht, wenn jemand keinen Hunger hat? Erzählt eure Ideen.' };
+      const each = integer(stage === 1 ? 1 : 2, [3, 4, 5][stage - 1], rng);
+      const recipients = ['fox', 'hedgehog', 'hare', 'beaver'].slice(0, stage + 1);
+      const total = each * recipients.length;
+      return { kind, mode: 'share', prompt: recipients.length + ' Freunde haben Hunger! Teile alle ' + total + ' Beeren so, dass jeder gleich viele bekommt.', total, answer: each, recipients,
+        hint: 'Gib reihum jedem Tier eine Beere. Du kannst eine Beere auch auf einen anderen Teller oder zurück in den Korb ziehen.', explain: 'Alle ' + recipients.length + ' Freunde strahlen! Jeder hat ' + each + ' Beeren. Niemand bleibt hungrig.', transfer: 'Teile eine Handvoll Steine gerecht auf mehrere Teller auf.' };
     }
     if (kind === 'double') {
       const n = integer(1, [3, 5, 10][stage - 1], rng);
-      return { kind, mode: 'choice', prompt: 'Der Zauberspiegel verdoppelt die Sterne. Wie viele sind es zusammen?', n, answer: n * 2, choices: options(n * 2, 20),
-        hint: 'Links und rechts sind gleich viele. Zähle beide Gruppen oder rechne ' + n + ' + ' + n + '.', explain: 'Das Doppelte von ' + n + ' ist ' + (n * 2) + '.', transfer: 'Finde das Doppelte mit zwei gleichen Fingerbildern.' };
+      return { kind, mode: 'double', prompt: 'Zaubere auf die andere Seite genau gleich viele Sterne. Wie viele leuchten dann zusammen?', n, answer: n * 2, choices: options(n * 2, 20),
+        hint: 'Für jeden Stern links braucht es einen Stern rechts. Danach zählst du beide Gruppen: ' + n + ' und nochmals ' + n + '.', explain: 'Das Doppelte von ' + n + ' ist ' + (n * 2) + '. Zwei gleiche Sternengruppen leuchten!', transfer: 'Finde das Doppelte mit zwei gleichen Fingerbildern.' };
     }
     if (kind === 'shapes') {
       const target = shapes[(round + stage - 1) % shapes.length];
       const ids = shapes.map(s => s.id);
-      return { kind, mode: 'choice', prompt: stage === 2 && target.corners !== 4 ? 'Welche Form hat ' + target.corners + ' Ecken?' : 'Finde: ' + target.name + '.', answer: target.id, choices: ids, rotated: stage === 3,
-        hint: target.id === 'circle' ? 'Ein Kreis ist rund und hat keine Ecken.' : target.id === 'square' ? 'Suche vier gleich lange Seiten und vier rechte Ecken.' : target.id === 'rectangle' ? 'Gesucht ist das Rechteck mit zwei langen und zwei kurzen Seiten.' : 'Suche eine Form mit drei Ecken.',
-        explain: target.name + ': ' + target.corners + ' Ecken.' + (stage === 3 ? ' Drehen verändert die Form nicht.' : ''), transfer: 'Finde diese Form im Zimmer. Ist ein Quadrat auch ein Rechteck? Sprecht darüber.' };
+      const parts = [
+        {key:'roof',shape:'triangle',x:50,y:21,w:37,h:37,rotation:0},
+        {key:'window',shape:'circle',x:32,y:57,w:24,h:24,rotation:0},
+        {key:'attic',shape:'square',x:68,y:57,w:24,h:24,rotation:0},
+        {key:'door',shape:'rectangle',x:50,y:82,w:34,h:24,rotation:90},
+      ];
+      const targets = mix(parts, rng).slice(0, stage + 1);
+      const rotations = Object.fromEntries(ids.map(id => [id, stage === 3 ? integer(1, 3, rng) * 90 : id === 'rectangle' ? 90 : 0]));
+      return { kind, mode: 'build', prompt: stage === 3 ? 'Baue das Waldhäuschen! Wähle eine Form, drehe sie und setze sie in die passende Lücke.' : 'Unser Waldhäuschen braucht deine Hilfe! Setze die Formen in die passenden Lücken.', answer: target.id, choices: ids, parts, targets, rotations, rotated: stage === 3,
+        hint: stage === 3 ? 'Wähle unten eine Form. Mit dem runden Pfeil drehst du sie. Lege sie auf die gleiche Umrissform.' : 'Wähle unten eine Form und tippe auf die gleiche Umrissform im Häuschen. Oder ziehe sie direkt dorthin.',
+        explain: 'Ein Dach, Fenster und eine Tür! Das Waldhäuschen ist wieder gemütlich.' + (stage === 3 ? ' Drehen verändert die Form nicht.' : ''), transfer: 'Finde diese Formen im Zimmer. Baut zusammen ein Häuschen aus Papierformen.' };
     }
     if (kind === 'rhyme') {
       const row = rhymes[stage - 1][round];

@@ -1,0 +1,38 @@
+/* Picture-led invitations and repairs belong to the world, including on a phone. */
+.forest-npc-target .forest-discovery-mark { position:absolute; right:2px; bottom:0; display:grid; place-items:center; width:29px; height:29px; border:1px solid #baac7c; border-radius:50%; background:#fff9e8ed; box-shadow:0 2px 7px #46552b25; opacity:.85; }
+.forest-npc-target .forest-discovery-mark .forest-icon { width:17px; height:17px; }
+.forest-npc-target.is-current .forest-discovery-mark { background:#eaf2c9; border-color:#7b9250; box-shadow:0 0 0 4px #fff9df8a; }
+.forest-npc-target:focus-visible { outline:3px solid #6b8741; outline-offset:1px; background:#fff9d83b; }
+.forest-bubble { border:2px solid #fff8dc; outline:1px solid #b3ad79; padding:4px; }
+.forest-bubble > .forest-bridge-picture { width:50px; height:52px; }
+.forest-request-copy > .forest-project-change { flex:none; width:230px; display:grid; grid-template-columns:1fr 22px 1fr; align-items:center; justify-items:center; gap:3px; }
+.forest-project-change > span:not(.forest-icon) { display:flex; align-items:center; justify-content:center; min-width:0; }
+.forest-project-change .forest-bridge-picture { width:96px; height:84px; }
+.forest-project-change > .forest-icon { width:22px; height:22px; color:#79914c; }
+.forest-project-before { opacity:.65; }
+.forest-project-after { border-radius:20px; background:#e9efcd; box-shadow:inset 0 0 0 1px #cad5a7; }
+.forest-project-change .forest-project-friends { grid-column:1 / -1; gap:0; margin-top:-12px; }
+.forest-project-friends .forest-portrait { width:60px; height:58px; margin:0 -3px; }
+.forest-primary > .forest-portrait + .forest-portrait { margin-left:-18px; }
+@media (max-width:600px) {
+  .forest-request-copy { flex-wrap:wrap; }
+  .forest-request-copy > div:not(.forest-project-change) { flex:1; min-width:160px; }
+  .forest-request-copy > .forest-project-change { width:100%; grid-template-columns:1fr 20px 1fr; max-width:270px; margin:0 auto; gap:2px; }
+  .forest-project-change .forest-bridge-picture { width:92px; height:66px; }
+  .forest-project-change .forest-project-friends { gap:0; margin-top:-17px; }
+  .forest-project-friends .forest-portrait { width:46px; height:49px; }
+  .forest-project-change .forest-project-after { padding:0 9px; }
+  .forest-dialog .forest-request-copy p:not(.forest-eyebrow) { line-height:1.4; }
+  .screen-forest .forest-dialog:not(.forest-dialog-welcome) .forest-primary[aria-label] > .forest-portrait { display:inline-flex; width:44px; height:50px; }
+  .forest-primary > .forest-portrait + .forest-portrait { margin-left:-12px; }
+  .forest-dialog .forest-primary { gap:5px; padding-left:9px; padding-right:9px; }
+  .forest-dialog .forest-primary > .forest-icon { width:27px; height:27px; }
+}
+@media (max-height:560px) and (min-width:601px) {
+  .forest-project-change .forest-bridge-picture { width:80px; height:60px; }
+  .forest-project-change { width:195px; }
+  .forest-project-friends .forest-portrait { width:43px; height:40px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .forest-npc-target,.forest-project-change { animation:none; transition:none; }
+}

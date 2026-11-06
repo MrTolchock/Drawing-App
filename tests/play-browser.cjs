@@ -1,3 +1,4 @@
+const BASE_URL = process.env.FARBTUPF_BASE_URL || 'http://127.0.0.1:8000';
 /* Real touch rounds, pictured tasks, spoken word identity and editable sequences. */
 const { chromium } = require('/opt/codex/cua_node/lib/node_modules/playwright');
 const assert = require('node:assert/strict');
@@ -21,7 +22,7 @@ function route(q) {
     await context.addInitScript(()=>localStorage.setItem('farbklecks.settings.v2',JSON.stringify({sound:false})));
     const page=await context.newPage(), errors=[];
     page.on('pageerror',e=>errors.push(e.message));
-    await page.goto('http://127.0.0.1:8000/?screen=hub');
+    await page.goto(BASE_URL + '/?screen=hub');
     await page.evaluate(()=>{
       window.spoken=[];FK.forestVoice.say=text=>window.spoken.push(text);
       for(const api of [FK.learning,FK.adventures,FK.expeditions]) {
@@ -68,20 +69,33 @@ function route(q) {
           await apple.tap();assert.equal(await apple.getAttribute('aria-pressed'),'true');
           await apple.tap();assert.equal(await apple.getAttribute('aria-pressed'),'false');
         }
+        if(game==='count')for(const bug of await root.locator('.learn-bug').all())await bug.tap();
+        if(game==='add')for(let i=0;i<q.b;i++)await root.locator('button.play-snack-apple[aria-pressed=false]').first().tap();
         if(game==='nature') { assert.ok(q.cue);assert.equal(await root.locator('.play-nature-cue').count(),1);assert.equal(await root.locator('.learn-answer .play-picture').count(),3); }
         if(q.mode==='fill') {
           await root.locator('.adventure-work > .learn-next').tap();assert.equal(await root.locator('.adventure-next').isVisible(),false);
-          const seats=root.locator('.learn-bug');for(let i=0;i<await seats.count();i++)await seats.nth(i).tap();
+          for(let i=0;i<q.answer;i++)await root.locator('.rocket-load[data-amount="1"]').tap();
           await root.locator('.adventure-work > .learn-next').tap();assert.ok(await root.locator('.launching').count());
         } else if(q.mode==='share') {
-          for(let i=0;i<q.total;i++)await root.locator('.adventure-plate').nth(i%2).tap();
-          assert.equal(await root.locator('.adventure-berries .play-picture').count(),q.total);
+          for(let i=0;i<q.total;i++)await root.locator('.picnic-give').nth(i%q.recipients.length).tap();
+          assert.equal(await root.locator('.adventure-berries .picnic-berry').count(),q.total);
           await root.locator('.adventure-work > .learn-next').tap();
+        } else if(q.mode==='double') {
+          for(let i=0;i<q.n;i++)await root.locator('.mirror-add').tap();
+          await root.locator('.mirror-check').tap();await root.locator('.learn-answer[data-answer='+JSON.stringify(String(q.answer))+']').tap();
+        } else if(q.mode==='build') {
+          const rotations={...q.rotations},periods={circle:1,triangle:360,square:90,rectangle:180};
+          for(const target of q.targets){
+            await root.locator('.shape-piece[data-shape="'+target.shape+'"]').tap();
+            while((rotations[target.shape]-target.rotation)%periods[target.shape]!==0){await root.locator('.shape-rotate').tap();rotations[target.shape]=(rotations[target.shape]+90)%360;}
+            await root.locator('.shape-build-hole[data-target="'+target.key+'"]').tap();
+          }
         } else if(q.mode==='clap') {
           for(let i=0;i<q.answer;i++)await root.locator('.adventure-drum').tap();
           await root.locator('.adventure-work > .learn-next').tap();
         } else if(q.mode==='route') {
           for(const label of route(q))await root.getByRole('button',{name:label,exact:true}).tap();
+          await root.locator('.route-run').tap();
         } else if(q.mode==='order') {
           const cards=root.locator('.play-order-card');
           if(round===0) {
@@ -106,6 +120,7 @@ function route(q) {
           for(const i of q.answer)await root.locator('button.exp-mosaic-cell').nth(i).tap();
           await root.getByRole('button',{name:'Spiegelbild prüfen',exact:true}).tap();
         } else {
+          if(game==='survey'&&await root.locator('.survey-reveal').isVisible())await root.locator('.survey-reveal').tap();
           if(game==='rhyme') {
             const before=await page.evaluate(()=>spoken.length);
             await root.getByRole('button',{name:'Wort '+q.answer+' hören',exact:true}).tap();
@@ -134,7 +149,7 @@ function route(q) {
     // Replay earns no extra star, and practice cannot grow the story tree.
     const stars=await page.evaluate(()=>FK.progress.stars()),growth=await page.evaluate(()=>FK.heartTree.count());
     await page.evaluate(()=>FK.go('learn',{game:'count'}));
-    for(let i=0;i<5;i++){const answer=await page.evaluate(()=>String(testQuestion.answer));await page.locator('.screen-learn .learn-answer[data-answer='+JSON.stringify(answer)+']').tap();await page.locator('.screen-learn .learn-next').tap();}
+    for(let i=0;i<5;i++){for(const bug of await page.locator('.screen-learn .learn-bug').all())await bug.tap();const answer=await page.evaluate(()=>String(testQuestion.answer));await page.locator('.screen-learn .learn-answer[data-answer='+JSON.stringify(answer)+']').tap();await page.locator('.screen-learn .learn-next').tap();}
     assert.equal(await page.evaluate(()=>FK.progress.stars()),stars);assert.equal(await page.evaluate(()=>FK.heartTree.count()),growth);
     // Dots: a child must find the next number; a requested hint is temporary.
     await page.evaluate(()=>FK.go('dots',{level:1}));await page.locator('.pp-tile').first().tap();

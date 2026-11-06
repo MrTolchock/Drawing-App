@@ -4,22 +4,73 @@
   const FK = window.FK, h = FK.h;
   const friends = { count:'beaver', add:'beaver', rocket:'beaver', neighbours:'beaver', compare:'beaver', tricks:'beaver',
     rhyme:'hare', syllable:'hare', vowels:'hare', read:'hare', nature:'hedgehog', treasure:'hedgehog', picnic:'hedgehog',
-    pattern:'owl', sequence:'owl', robot:'owl', double:'kingfisher', mirror:'kingfisher', shapes:'kingfisher', dots:'kingfisher', trace:'owl' };
+    pattern:'owl', sequence:'owl', robot:'owl', double:'kingfisher', mirror:'kingfisher', shapes:'kingfisher', dots:'kingfisher', trace:'owl', survey:'owl' };
   const names = { '🐦':'Vogel','🐟':'Fisch','🐈':'Katze','🐌':'Schnecke','🐕':'Hund','🐝':'Biene','🦔':'Igel' };
   function speak(text) { return FK.forestVoice.say(text); }
   function listen(text, label = 'Aufgabe nochmals hören') {
     return h('button', { type:'button', class:'play-listen', 'aria-label':label, onclick:() => speak(typeof text === 'function' ? text() : text) }, FK.forestArt.icon('speaker'));
+  }
+  // Use one action per finger release. Native compatibility clicks can land on
+  // a different object after a drop reorders the DOM; keyboard/mouse clicks stay native.
+  let lastManagedTouch=-Infinity;
+  // A screen can change during pointerup, before the browser emits its native
+  // click. Catch that click across screens, and always allow a new gesture.
+  document.addEventListener('pointerdown',()=>{lastManagedTouch=-Infinity;},true);
+  document.addEventListener('click',event=>{
+    if(performance.now()-lastManagedTouch>700)return;
+    const touch=event.pointerType==='touch'||event.sourceCapabilities?.firesTouchEvents||(!event.pointerType&&event.detail>0);
+    if(touch){event.preventDefault();event.stopImmediatePropagation();}
+  },true);
+  function bindTouch(root){
+    const down=new Map();let lastTouch=0;
+    root.addEventListener('pointerdown',event=>{
+      if(event.pointerType!=='touch'||!event.isPrimary)return;
+      down.set(event.pointerId,event.target.closest('button'));
+    },true);
+    root.addEventListener('pointercancel',event=>down.delete(event.pointerId),true);
+    root.addEventListener('pointerup',event=>{
+      if(event.pointerType!=='touch'||!event.isPrimary)return;
+      lastManagedTouch=lastTouch=performance.now();
+      const button=down.get(event.pointerId);down.delete(event.pointerId);
+      if(event.fkPlayHandled||!button||button.disabled||!button.isConnected||!root.contains(button)||event.target.closest('button')!==button)return;
+      const r=button.getBoundingClientRect();
+      if(event.clientX>=r.left&&event.clientX<=r.right&&event.clientY>=r.top&&event.clientY<=r.bottom)button.click();
+    });
+    root.addEventListener('click',event=>{
+      const touch=event.pointerType==='touch'||event.sourceCapabilities?.firesTouchEvents||(!event.pointerType&&event.detail>0&&performance.now()-lastTouch<700);
+      if(touch){event.preventDefault();event.stopImmediatePropagation();}
+    },true);
   }
   function picture(value, label = '') {
     const symbols = String(value).match(/\p{Extended_Pictographic}[\uFE0F]*(?:\u200D\p{Extended_Pictographic}[\uFE0F]*)*/gu) || [];
     return h('span', { class:'play-picture', role: label ? 'img' : null, 'aria-label':label || null },
       symbols.map(token => h('span', { class:'play-token', text:token })));
   }
-  function context(game, prompt, round) {
+  let session=null;
+  function begin(game,stage){session={game,stage,round:0,missed:new Set(),helped:new Set(),answered:new Set()};}
+  function context(game, prompt, round, stage=FK.learning.stage()) {
     const friend = friends[game] || 'owl';
+    if(!session||session.game!==game||session.stage!==stage||round===0&&session.round!==0)session={game,stage,round,missed:new Set(),helped:new Set(),answered:new Set()};
+    if(round===0&&session?.answered.size===5)session={game,stage,round,missed:new Set(),helped:new Set(),answered:new Set()};
+    session.round=round;
+    const tour=FK.journey.get().tour,current=FK.journey.step();
+    const onTour=current?.game===game&&current.stage===stage;
     return h('div', { class:'play-context' }, FK.forestArt.character(friend),
-      h('span', { text:FK.forestStory.names[friend] + ' spielt mit dir' }), listen(prompt),
+      h('span', { text:onTour?'Entdeckertour · Halt '+(tour.index+1)+' von 3':FK.forestStory.names[friend] + ' spielt mit dir' }), listen(prompt),
       h('span', { class:'play-round', text:(round + 1) + ' / 5' }));
+  }
+  function attempt(ok){if(!session||session.answered.has(session.round))return;if(ok)session.answered.add(session.round);else session.missed.add(session.round);}
+  function hint(){if(session&&!session.answered.has(session.round))session.helped.add(session.round);}
+  function summary(game,stage){
+    if(!session||session.game!==game||session.stage!==stage)return {independent:0};
+    return {independent:[...session.answered].filter(i=>!session.missed.has(i)&&!session.helped.has(i)).length};
+  }
+  function tourPictures(tour=FK.journey.get().tour){
+    if(!tour)return null;
+    return h('div',{class:'journey-stops','aria-label':tour.index+' von 3 Halten geschafft'},tour.steps.map((step,i)=>{
+      const item=FK.journey.catalogue().find(c=>c.screen===step.screen&&c.game===step.game);
+      return h('div',{class:'journey-stop'+(i<tour.index?' done':i===tour.index?' current':''),'aria-label':item.title+(i<tour.index?' geschafft':'')},FK.forestArt.character(item.friend),h('span',{text:i<tour.index?'✓':i+1}),h('small',{text:item.title}));
+    }));
   }
   function taskFeedback(body, text, ok) {
     speak(text);
@@ -30,15 +81,20 @@
   }
   function finish(body, group, game, stage, replay) {
     const earned = FK.progress.finish(group, game + ':' + stage, 1), friend = friends[game] || 'owl';
+    const result=FK.journey.complete(group,game,stage,summary(game,stage));
+    const recommendation=result.next||FK.journey.recommendation(group,game,stage,summary(game,stage));
+    const onward=h('button',{type:'button',class:'learn-button learn-next play-continue','aria-label':result.next?'Entdeckertour fortsetzen':recommendation.kind==='level'?'Nächste Stufe probieren':'Nächstes Waldspiel',onclick:()=>FK.journey.launch(recommendation)},
+      FK.forestArt.character(recommendation.friend),h('span',{},h('b',{text:result.next?'Nächster Halt':recommendation.kind==='level'?'Neue Herausforderung':'Weiter entdecken'}),h('small',{text:recommendation.title+' · Stufe '+recommendation.stage})),FK.forestArt.icon('arrow'));
     body.replaceChildren(h('section', { class:'learn-finish play-finish' }, FK.forestArt.character(friend),
-      FK.woodland.progress(5), h('h2', { text:'Fünf Aufgaben geschafft!' }),
-      h('p', { text:earned ? 'Ein Stern für dein Waldalbum!' : 'Wie schön, dass wir wieder zusammen spielen!' }),
+      FK.woodland.progress(5), h('h2', { text:result.finished?'Entdeckertour geschafft!':'Fünf Aufgaben geschafft!' }),
+      h('p', { text:result.finished?'Drei Abenteuer geschafft. So viel hast du entdeckt!':earned ? 'Ein Stern für dein Waldalbum!' : 'Wie schön, dass wir wieder zusammen spielen!' }),
+      result.advanced?tourPictures():null,onward,
       h('div', { class:'play-finish-actions' },
         h('button', { type:'button', class:'learn-button', onclick:replay }, FK.forestArt.icon('undo'), h('span', {text:'Nochmals'})),
-        h('button', { type:'button', class:'learn-button learn-next', onclick:() => FK.go('forest-book') }, FK.forestArt.icon('book'), h('span', {text:'Waldspiele'})),
+        h('button', { type:'button', class:'learn-button', onclick:() => FK.go('forest-book') }, FK.forestArt.icon('book'), h('span', {text:'Waldspiele'})),
         h('button', { type:'button', class:'learn-button', onclick:() => FK.go('forest') }, FK.forestArt.character('fox'), h('span', {text:'Zum Wald'})))));
-    speak('Juhui! Danke fürs Mitspielen! ' + (earned ? 'Du bekommst einen Stern für dein Waldalbum.' : 'Komm bald wieder!'));
-    FK.ui.celebrate({ stars:earned, from:body, text:'Gemeinsam geschafft!' });
+    speak(result.finished?'Juhui! Deine Entdeckertour ist geschafft! Deine Waldfreunde freuen sich über deine Hilfe.':'Juhui! Danke fürs Mitspielen! '+(result.next?'Am nächsten Halt wartet ein neues Abenteuer.':earned?'Du bekommst einen Stern für dein Waldalbum.':'Komm bald wieder!'));
+    FK.ui.celebrate({ stars:earned, from:body, text:result.finished?'Eine ganze Tour geschafft!':'Gemeinsam geschafft!' });
   }
   function steps(items) {
     return h('div', { class:'play-steps', 'aria-label':'So geht das Spiel' }, items.map(([visual, label], i) =>
@@ -97,5 +153,5 @@
     }
     return picture(scenes[value] || value, value.replace(/^\S+\s*/,''));
   }
-  FK.play = { friends, names, natureCue, wordDrawing, sequencePicture, speak, listen, picture, context, feedback:taskFeedback, finish, steps };
+  FK.play = { friends, names, natureCue, wordDrawing, sequencePicture, speak, listen, picture, bindTouch, context, begin, attempt, hint, tourPictures, feedback:taskFeedback, finish, steps };
 })();

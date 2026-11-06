@@ -1,0 +1,81 @@
+/* Hands-on practice scenes; authored forest activities keep their saved presentation. */
+.screen-learn:not(.forest-activity) .learn-visual { max-width:700px; }
+.learn-census-garden { max-width:490px; padding:18px; border-radius:35% 30% 25% 22% / 16% 20% 19% 15%; background:radial-gradient(ellipse at 20% 10%,#eff3d5,transparent 45%),#d7e5bc; border:2px solid #b1c58f; }
+.learn-garden-field { gap:7px; }
+.learn-garden-field .learn-cell { border:0; background:transparent; position:relative; }
+.learn-garden-field .learn-cell:nth-child(3n) { transform:rotate(-7deg); }
+.learn-garden-field .learn-cell:nth-child(4n) { transform:rotate(7deg); }
+.learn-garden-field .learn-bug { position:relative; border-radius:50%; min-height:44px; transition:transform .18s,background .18s; }
+.learn-garden-field .learn-bug:hover { transform:scale(1.07); }
+.learn-garden-field .learn-bug .play-picture,.learn-garden-field .learn-bug .play-token { width:100%; height:100%; }
+.learn-garden-field .learn-bug .wa-illustration { transform:scale(1.25); }
+.learn-garden-field .learn-bug.counted { background:#fff5bd; box-shadow:0 0 0 3px #819e56; }
+.learn-count-mark { display:none; position:absolute; top:-4px; right:-3px; width:25px; height:25px; border-radius:50%; color:#fff9e9; background:#5b7541; font:700 15px/25px var(--read); box-shadow:0 1px 3px #49603855; }
+.counted .learn-count-mark { display:block; }
+.learn-garden-plant { position:absolute; inset:0; width:100%; height:100%; opacity:.8; }
+.learn-garden-plant .wa-illustration,.learn-garden-plant .wa-symbol { width:100%; height:100%; max-height:65px; }
+.learn-census { display:flex; align-items:center; justify-content:center; gap:8px; color:#526d3e; font:17px var(--read); min-height:38px; }
+.learn-census .forest-icon { width:30px; height:30px; }
+.learn-movable { touch-action:none; cursor:grab; }
+.learn-movable:active { cursor:grabbing; }
+.learn-snack-goal { display:flex; justify-content:center; align-items:center; gap:8px; margin:8px auto; padding:8px 14px; border:2px solid #d4c39b; background:#f7edce; border-radius:24px; width:fit-content; }
+.learn-snack-goal > span { font:700 30px var(--read); }
+.learn-snack-goal .wa-illustration { width:42px; height:46px; }
+.learn-snack-goal .forest-icon { width:30px; height:30px; }
+.learn-snack-goal .forest-portrait { width:57px; height:57px; }
+.learn-snack-goal.ready { border-color:#7b9556; background:#e6edcd; }
+.learn-picnic-table { align-items:stretch; padding:14px 10px; }
+.learn-picnic-table > b { align-self:center; }
+.learn-picnic-table > section { display:flex; min-width:0; flex-direction:column; align-items:center; }
+.learn-picnic-table section > small { margin:0 0 6px; font:14px var(--read); color:#66784b; }
+.learn-picnic-table .play-snack-bowl { width:100%; flex:1; transition:border-color .18s,background .18s; }
+.learn-picnic-table .play-snack-apple { transition:background .18s; }
+.learn-picnic-table .play-snack-apple.fixed { opacity:.9; }
+.play-snack-bowl.receiving,.play-snack-bowl.snack-ready { border-color:#7e9958; background:#edf3d9; }
+.learn-snack-status { max-width:500px; margin:12px auto; min-height:42px; }
+.screen-learn:not(.forest-activity) .learn-pattern-train { position:relative; display:flex; flex-wrap:wrap; align-items:center; gap:8px; padding:22px 8px 18px; margin:20px auto; border-bottom:4px solid #b9a27e; border-radius:18px; background:linear-gradient(#edf0da,#f6efdb); }
+.learn-pattern-train .learn-engine { width:70px; }
+.learn-pattern-train .learn-engine .wa-symbol,.learn-pattern-train .learn-engine .wa-illustration { width:70px; height:70px; }
+.learn-pattern-train .learn-wagon { display:inline-flex; align-items:center; justify-content:center; flex:none; min-width:52px; min-height:65px; padding:5px; border:2px solid #b9ac88; border-radius:12px; background:#fff7e2; }
+.learn-pattern-train .learn-wagon .wa-symbol,.learn-pattern-train .learn-wagon .wa-illustration { width:45px; height:45px; }
+.learn-pattern-train .learn-pattern-gap { border:3px dashed #8ba364; min-width:65px; min-height:73px; background:#e0e9c8; color:#6a8450; }
+.learn-pattern-train .pattern-group { background:#f5e3ab; box-shadow:0 0 0 2px #bba251; }
+.learn-pattern-gap.receiving,.learn-nature-target.receiving { background:#d0e2ac; outline:4px solid #8ba364; }
+.learn-pattern-gap.filled,.learn-nature-target.filled { border-style:solid; }
+.train-departs { animation:learn-train-ready .65s ease-out; }
+@keyframes learn-train-ready { 20% { transform:translateX(-8px); } 55% { transform:translateX(14px); } 80% { transform:translateX(5px); } }
+.learn-nature-scene { max-width:510px; margin:16px auto; padding:10px; background:radial-gradient(ellipse at 30% 35%,#f6f1dc,#e6ecd5); border:2px solid #c4d0a6; border-radius:28px; }
+.learn-nature-scene .play-nature-cue { gap:20px; }
+.learn-nature-target { display:flex; align-items:center; justify-content:center; width:150px; min-height:145px; flex:none; padding:8px; transition:background .2s; }
+.learn-nature-target .wa-illustration,.learn-nature-target .wa-symbol { width:100px; height:100px; }
+.learn-nature-target .play-picture { flex-wrap:wrap; }
+.learn-nature-target .play-picture:has(.play-token:nth-child(2)) .wa-illustration,.learn-nature-target .play-picture:has(.play-token:nth-child(2)) .wa-symbol { width:60px; height:60px; }
+.learn-drag-ghost { position:fixed!important; z-index:150; pointer-events:none!important; margin:0!important; transform:translate(-50%,-50%) rotate(5deg); opacity:.95; box-shadow:0 10px 25px #4c573444!important; }
+.is-dragging { opacity:.35; }
+.needs-look { animation:learn-look 1.3s ease-out 2; }
+@keyframes learn-look { 50% { filter:drop-shadow(0 0 7px #c49e36); transform:scale(1.08); } }
+.scene-solved .learn-census-garden { border-color:#77944f; background-color:#e2edc9; }
+@media(max-width:500px) {
+ .learn-census-garden { padding:14px 9px; }
+ .learn-garden-field { gap:5px; }
+ .learn-count-mark { width:22px; height:22px; line-height:22px; font-size:13px; }
+ .learn-picnic-table { gap:4px; grid-template-columns:minmax(0,1fr) 18px minmax(0,1fr); padding:10px 6px; }
+ .learn-picnic-table .play-snack-bowl { padding:8px 1px; }
+ .learn-picnic-table .play-snack-apple { width:40px; min-height:44px; }
+ .learn-picnic-table .play-snack-apple .wa-illustration { width:37px; height:42px; }
+ .learn-nature-scene { padding:8px 2px; }
+ .learn-nature-scene .play-nature-cue { gap:8px; padding:4px; }
+ .learn-nature-scene .play-cue-drawing { width:95px; height:95px; }
+ .learn-nature-scene .play-cue-arrow { font-size:30px; }
+ .learn-nature-scene > .play-nature-cue > .play-picture .wa-illustration,.learn-nature-scene > .play-nature-cue > .play-picture .wa-symbol { width:90px; height:90px; }
+ .learn-nature-target { width:112px; min-height:115px; }
+ .learn-nature-target .wa-illustration,.learn-nature-target .wa-symbol { width:85px; height:85px; }
+ .learn-pattern-train .learn-engine { width:50px; }
+ .learn-pattern-train .learn-engine .wa-symbol,.learn-pattern-train .learn-engine .wa-illustration { width:50px; height:50px; }
+ .learn-pattern-train .learn-wagon { min-width:45px; min-height:56px; }
+ .learn-pattern-train .learn-wagon .wa-symbol,.learn-pattern-train .learn-wagon .wa-illustration { width:35px; height:35px; }
+ .learn-pattern-train .learn-pattern-gap { min-width:56px; min-height:62px; }
+}
+@media(prefers-reduced-motion:reduce) { .train-departs,.needs-look { animation:none; } }
+
+.learn-answers-waiting .learn-answer { opacity:.35; background:#eee8d8; border-style:dashed; cursor:default; }

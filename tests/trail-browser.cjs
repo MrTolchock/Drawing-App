@@ -1,3 +1,4 @@
+const BASE_URL = process.env.FARBTUPF_BASE_URL || 'http://127.0.0.1:8000';
 /* Shared-library routes and a touch-only Owl quest with exact interrupted saves. */
 const { chromium } = require('/opt/codex/cua_node/lib/node_modules/playwright');
 const assert = require('node:assert/strict');
@@ -22,10 +23,10 @@ function solve(q, start = q.start) {
     const context = await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true, reducedMotion: 'reduce' });
     const page = await context.newPage(), errors = [], external = [];
     page.on('pageerror', e => errors.push(e.message));
-    page.on('request', r => { if (!r.url().startsWith('http://127.0.0.1:8000') && !r.url().startsWith('data:')) external.push(r.url()); });
+    page.on('request', r => { if (!r.url().startsWith(BASE_URL) && !r.url().startsWith('data:')) external.push(r.url()); });
     const shots = process.env.FARBTUPF_SHOTS || '/tmp/farbtupf-trail-test'; fs.mkdirSync(shots, { recursive: true });
     const shot = name => page.screenshot({ path: path.join(shots, name) });
-    await page.goto('http://127.0.0.1:8000/?screen=hub');
+    await page.goto(BASE_URL + '/?screen=hub');
     await page.evaluate(() => {
       FK.settings.set('sound', false); FK.ui.celebrate = () => {};
       const make = FK.adventures.question; FK.adventures.question = (...args) => { const q = make(...args); window.routeTestQuestion = q; return q; };
@@ -38,17 +39,24 @@ function solve(q, start = q.start) {
         if (!round) {
           const blocked = q.start === 0 ? 'Nach oben' : 'Nach unten';
           await field.getByRole('button', { name: blocked, exact: true }).tap();
+          await field.locator('.route-run').tap();
+          await field.locator('.route-run').waitFor({ state:'visible' });
+          await page.waitForFunction(()=>!document.querySelector('.screen-adventure .route-run').disabled);
           assert.equal(await field.locator('.adventure-next').isVisible(), false);
+          await field.locator('.route-reset').tap();
           const first = solve(q)[0]; await field.getByRole('button', { name: first, exact: true }).tap();
-          await field.getByRole('button', { name: 'Einen Schritt zurück', exact: true }).tap();
+          await field.getByRole('button', { name: 'Letzten Befehl entfernen', exact: true }).tap();
+          assert.equal(await field.locator('.route-command').count(),0);
         }
         for (const step of solve(q)) await field.getByRole('button', { name: step, exact: true }).tap();
+        await field.locator('.route-run').tap();
+        await field.locator('.adventure-next').waitFor({ state:'visible' });
         await field.locator('.adventure-next').tap();
       }
       await page.locator('.screen-adventure .learn-finish').waitFor();
     }
     assert.equal(await page.evaluate(() => FK.progress.stars()), 3);
-    console.log('PASS: existing flat route library, all three stages, 15 touch rounds, edge rejection, undo and legacy rewards.');
+    console.log('PASS: planned routes in the library, all three stages, 15 touch rounds, blocked-program retry, command undo and legacy rewards.');
 
     // Represents a child returning after the first two complete story arcs.
     await page.evaluate(() => {
@@ -60,7 +68,7 @@ function solve(q, start = q.start) {
     const ready = () => page.waitForFunction(() => !!window.FK?.forestScene && FK.current() === 'forest', null, { timeout: 60000 });
     const state = () => page.evaluate(() => FK.forestState.getActivity(FK.forestState.TRAIL));
     const root = page.locator('.screen-forest-trail');
-    await page.goto('http://127.0.0.1:8000/'); await ready();
+    await page.goto(BASE_URL + '/'); await ready();
     await page.locator('.forest-goal').tap();
     await page.locator('.forest-dialog-owl').waitFor({ timeout: 60000 });
     assert.equal(await page.evaluate(() => FK.forestState.get().met.owl), true);

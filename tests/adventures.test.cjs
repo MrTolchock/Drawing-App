@@ -20,11 +20,30 @@ for (const game of FK.adventures.games) for (let stage = 1; stage <= 3; stage++)
           assert.ok(q.total <= [5, 10, 20][stage - 1]);
           assert.equal(q.filled + q.answer, q.total);
           assert.ok(q.answer > 0 && q.filled >= 0);
+          assert.ok(q.loads.includes(1), 'every complement can be loaded');
+          assert.ok(q.loads.every(n => n > 0 && n <= [1, 2, 5][stage - 1]));
         }
-        if (q.kind === 'picnic') assert.equal(q.answer * 2, q.total);
+        if (q.kind === 'picnic') {
+          assert.equal(q.recipients.length, stage + 1);
+          assert.equal(new Set(q.recipients).size, q.recipients.length);
+          assert.equal(q.answer * q.recipients.length, q.total);
+          assert.ok(q.total <= 20);
+        }
         if (q.kind === 'double') {
           assert.equal(q.answer, 2 * q.n);
           assert.ok(q.answer <= [6, 10, 20][stage - 1]);
+        }
+        if (q.kind === 'shapes') {
+          assert.equal(q.targets.length, stage + 1);
+          assert.equal(new Set(q.targets.map(t => t.key)).size, q.targets.length);
+          assert.equal(q.parts.length, 4);
+          for (const target of q.targets) {
+            assert.ok(q.choices.includes(target.shape));
+            assert.ok(q.parts.some(part => part.key === target.key && part.shape === target.shape));
+            // Every piece can reach its opening with quarter turns. A circle
+            // and a square retain their shape through their symmetries.
+            assert.equal((q.rotations[target.shape] - target.rotation) % 90, 0);
+          }
         }
         if (q.kind === 'syllable') {
           assert.equal(q.answer, q.parts.length);

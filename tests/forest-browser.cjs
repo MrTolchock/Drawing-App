@@ -1,3 +1,4 @@
+const BASE_URL = process.env.FARBTUPF_BASE_URL || 'http://127.0.0.1:8000';
 /* Real touch journeys through the Three.js world and two existing flat games. */
 const { chromium } = require('/opt/codex/cua_node/lib/node_modules/playwright');
 const assert = require('node:assert/strict');
@@ -17,7 +18,7 @@ const path = require('node:path');
   });
   const page = await context.newPage(), errors = [], external = [];
   page.on('pageerror', e => errors.push(e.message));
-  page.on('request', r => { if (!r.url().startsWith('http://127.0.0.1:8000') && !r.url().startsWith('data:')) external.push(r.url()); });
+  page.on('request', r => { if (!r.url().startsWith(BASE_URL) && !r.url().startsWith('data:')) external.push(r.url()); });
   const ready = () => page.waitForFunction(() => !!window.FK?.forestScene && FK.current() === 'forest', null, { timeout: 60000 });
   const state = () => page.evaluate(() => FK.forestState.get());
   const shot = filename => page.screenshot({ path: path.join(shots, filename) });
@@ -32,7 +33,7 @@ const path = require('node:path');
     await page.locator('.forest-dialog-beaver .forest-primary').tap();
     await page.locator('.screen-learn.forest-activity').waitFor();
   }
-  await page.goto('http://127.0.0.1:8000', { waitUntil: 'networkidle' }); await ready();
+  await page.goto(BASE_URL, { waitUntil: 'networkidle' }); await ready();
   await page.evaluate(() => FK.store.put('forest-preservation-check', { drawing: 'retained', revision: 4 }));
   await page.getByRole('button', { name: 'Mit dem Fuchs losgehen', exact: true }).tap();
   await shot('01-opening.png');

@@ -28,7 +28,7 @@
       ['Welches Tier ist ein Insekt?', 'Die Biene 🐝', ['Die Biene 🐝', 'Die Spinne 🕷️', 'Der Igel 🦔'], 'Insekten haben sechs Beine. Spinnen haben acht.'],
       ['Wer säugt seine Jungen?', 'Die Katze 🐈', ['Die Katze 🐈', 'Der Vogel 🐦', 'Der Schmetterling 🦋'], 'Säugetiere geben ihren Jungen Milch.'],
       ['Was wird aus einer Raupe?', 'Ein Schmetterling 🦋', ['Ein Schmetterling 🦋', 'Ein Fisch 🐟', 'Ein Igel 🦔'], 'Aus der Raupe wird eine Puppe, dann ein Schmetterling.'],
-      ['Warum lassen wir ein Vogelnest in Ruhe?', 'Damit die Jungen sicher sind 🪺', ['Damit die Jungen sicher sind 🪺', 'Damit Steine wachsen 🪨', 'Damit es schneit ❄️'], 'Beobachte Tiere mit Abstand.'],
+      ['Was schlüpft aus dem Vogelei?', 'Ein Vogel 🐣', ['Ein Vogel 🐣', 'Ein Fisch 🐟', 'Eine Blume 🌼'], 'Aus dem Vogelei schlüpft ein kleiner Vogel. Wir beobachten das Nest mit Abstand.'],
       ['Was hilft Bienen im Garten?', 'Viele Blüten 🌼', ['Viele Blüten 🌼', 'Nur Beton 🧱', 'Plastikblumen 🧸'], 'Verschiedene Blüten bieten Nahrung.'],
     ],
   ];
@@ -47,7 +47,7 @@
     const max = [5, 10, 20][stage - 1];
     if (kind === 'count') {
       const answer = round === 4 ? 0 : 1 + integer(max - 1, rng);
-      return { prompt: 'Wie viele Marienkäfer sind im Garten?', answer, choices: choices(answer, max, rng), count: answer, hint: 'Tippe jeden Käfer einmal an. Ein leeres Feld bedeutet null.' };
+      return { prompt: 'Wie viele Marienkäfer sind im Garten?', answer, choices: choices(answer, max, rng), count: answer, hint: 'Zähle nur die Marienkäfer. Du kannst jeden einmal antippen und markieren. Kein Käfer bedeutet null.' };
     }
     if (kind === 'add') {
       const subtract = stage > 1 && round % 2 === 1;
@@ -62,7 +62,7 @@
         known = { a, b:b-1, answer:a+b-1, rule:'neighbour' };
       }
       const answer = subtract ? a - b : a + b;
-      return { prompt: subtract ? 'Ein paar Znüni gehen weg. Wie viele bleiben?' : 'Znüni kommen dazu. Wie viele sind es zusammen?', answer, choices: choices(answer, max, rng), a, b, subtract, known, hint: subtract ? 'Zähle die Äpfel, die bleiben. Durchgestrichene gehen weg.' : 'Zähle beide Gruppen zusammen.' };
+      return { prompt: subtract ? 'Ein paar Znüni gehen weg. Wie viele bleiben?' : 'Znüni kommen dazu. Wie viele sind es zusammen?', answer, choices: choices(answer, max, rng), a, b, subtract, known, hint: subtract ? 'Gib dem Hasen seine Äpfel. Zähle dann nur die Äpfel beim Fuchs.' : 'Lege die Äpfel aus dem Korb zum Fuchs. Zähle dann alle zusammen.' };
     }
     if (kind === 'pattern') {
       const units = stage === 1 ? ['🔵', '⭐'] : stage === 2 ? ['🔵', '🔵', '⭐'] : round % 2 ? ['🔵', '⭐', '⭐'] : ['🔵', '⭐', '❤️'];
