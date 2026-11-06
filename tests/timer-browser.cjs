@@ -82,21 +82,24 @@ const fs = require('node:fs');
     await page.screenshot({ path: shots + '/02-clock-settings-phone.png', animations: 'disabled' }); await page.keyboard.press('Escape');
     await page.evaluate(async () => { await navigator.serviceWorker.ready; }); await page.reload();
     await context.setOffline(true); await page.reload(); assert.equal((await clock()).mode, 'countdown'); assert.equal((await clock()).running, false);
-    // The clock must also preserve a walking fox's destination and dialogue arrival.
-    await context.setOffline(false); await page.evaluate(() => FK.go('forest'));
-    await page.waitForFunction(() => !!FK.forestScene, null, { timeout: 60000 });
-    await page.getByRole('button', { name: 'Mit dem Fuchs losgehen', exact: true }).tap();
-    await page.getByRole('button', { name: 'Zum Biber gehen', exact: true }).tap();
-    await page.waitForFunction(() => Math.hypot(FK.forestScene.position.x + 8, FK.forestScene.position.z - 8) > 0.5);
-    await page.locator('.play-timer-summary').tap(); assert.equal(await page.evaluate(() => FK.forestScene.running), false);
-    const stopped = await page.evaluate(() => FK.forestScene.position); await page.waitForTimeout(400);
-    assert.deepEqual(await page.evaluate(() => FK.forestScene.position), stopped);
-    await page.keyboard.press('Escape'); assert.equal(await page.evaluate(() => FK.forestScene.running), true);
-    await page.locator('.forest-dialog-beaver').waitFor({ timeout: 60000 });
-    const dialogueRunning = await page.evaluate(() => FK.forestScene.running);
-    await page.locator('.play-timer-summary').tap(); assert.equal(await modal.count(), 0);
-    assert.equal(await page.evaluate(() => FK.forestScene.running), dialogueRunning);
-    assert.equal(await page.locator('.forest-dialog-beaver').isVisible(), true);
+    // Mocked clock frames are unsuitable for software WebGL. Continue the walking
+    // check with real frames and the same saved device state in a fresh context.
+    const forestContext = await browser.newContext({ viewport:{width:390,height:844}, hasTouch:true, reducedMotion:'reduce', storageState:await context.storageState() });
+    const forest = await forestContext.newPage(); forest.on('pageerror',e=>errors.push(e.message));
+    await forest.goto('http://127.0.0.1:8000/');
+    await forest.waitForFunction(() => !!FK.forestScene, null, { timeout: 60000 });
+    await forest.getByRole('button', { name: 'Mit dem Fuchs losgehen', exact: true }).tap();
+    await forest.getByRole('button', { name: 'Zum Biber gehen', exact: true }).tap();
+    await forest.waitForFunction(() => Math.hypot(FK.forestScene.position.x + 8, FK.forestScene.position.z - 8) > 0.5);
+    await forest.locator('.play-timer-summary').tap(); assert.equal(await forest.evaluate(() => FK.forestScene.running), false);
+    const stopped = await forest.evaluate(() => FK.forestScene.position); await forest.waitForTimeout(400);
+    assert.deepEqual(await forest.evaluate(() => FK.forestScene.position), stopped);
+    await forest.keyboard.press('Escape'); assert.equal(await forest.evaluate(() => FK.forestScene.running), true);
+    await forest.locator('.forest-dialog-beaver').waitFor({ timeout: 60000 });
+    const dialogueRunning = await forest.evaluate(() => FK.forestScene.running);
+    await forest.locator('.play-timer-summary').tap(); assert.equal(await forest.locator('.play-timer-modal').count(), 0);
+    assert.equal(await forest.evaluate(() => FK.forestScene.running), dialogueRunning);
+    assert.equal(await forest.locator('.forest-dialog-beaver').isVisible(), true);
     assert.deepEqual(errors, []);
     console.log('PASS: off-by-default timer, parent pause, stopwatch/countdown controls, one gentle reminder, preserved live question, background pause, paused reload, drawing/stars, phone layout, offline clock and a fox destination preserved across the clock panel.');
   } finally { await browser.close(); }

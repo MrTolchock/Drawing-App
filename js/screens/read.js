@@ -611,7 +611,7 @@
       return b;
     });
     const levels = h('div', { class: 'rd-levels', role: 'radiogroup', 'aria-label': 'Stufe' },
-      h('span', { class: 'rd-lv-label', text: 'Trimester' }), lvBtns);
+      h('span', { class: 'rd-lv-label', text: 'Stufe' }), lvBtns);
 
     const tiles = GAMES.map((g, i) => h('button', {
       type: 'button',

@@ -1,3 +1,5 @@
+> Current navigation (6.3): Waldspiele is now the only library, including all former hub games. The old hub URL redirects there. Settings opens by tap in the forest and book, followed by the parent gate. The Heart Tree begins bare and gains one leafy branch per story repair (nine total); optional practice never grows it. See [current improvements](IMPROVEMENTS.md) for the revised exercise interfaces. Earlier implementation details below remain useful for the saved story model.
+
 # Der Herzbaum — complete playable story
 
 The selected **original A — Painted woodland** identity now covers the full

@@ -38,6 +38,7 @@
       (complete ? '<path d="M16 16h43l14 13-14 13H16z" fill="#dfc08b" stroke="#ab8858" stroke-width="2"/><path d="M34 25q-7-9-11 0-2 6 11 13 13-7 11-13-4-9-11 0" fill="#7e965a"/>' : '<path d="m16 51 40-8 15 10-12 15-40 8z" fill="#ceb17f" transform="translate(0 -5)"/><path d="m35 25 12 6" stroke="#b19465" stroke-width="5"/>') + '</svg>' });
   }
   function project(name, complete, cls) {
+    if (name === 'tree') return FK.heartTree.picture();
     if (name === 'bridge') return bridge(complete, cls);
     if (name === 'rest') return rest(complete, cls);
     if (name === 'sign') return sign(complete, cls);

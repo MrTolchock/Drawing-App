@@ -131,21 +131,27 @@
       const info = h('div', { class: 'info' });
       info.innerHTML =
         '<h3>Was Ihr Kind hier lernt</h3>' +
-        '<p><b>Zählgarten</b> übt Mengen bis 5, 10 und 20. <b>Znüni-Rechnen</b> macht Plus und Minus sichtbar. Im <b>Musterzug</b> entdeckt Ihr Kind Wiederholungen. <b>Naturdetektive</b> erkunden Tiere und Lebensräume. Dazu kommen Lesen, Schreibspuren und Zahlenwege. Alle Spiele lassen sich mit dem Finger bedienen.</p>' +
-        '<p>Die drei Trimester sind eine Orientierung für die 1. Klasse, keine verbindliche Vorgabe. Wählen Sie die Stufe passend zum Unterricht und zum Kind. Naturfragen können Sie gemeinsam vorlesen. Malatelier und freies Malen bleiben als Kreativpause.</p>' +
+        '<p><b>Zählgarten</b> übt Mengen bis 5, 10 und 20. <b>Znüni-Rechenfreunde</b> macht Plus und Minus sichtbar und verbindet sie mit Tausch- und Nachbaraufgaben. Im <b>Musterzug</b> entdeckt Ihr Kind Wiederholungen. <b>Naturdetektive</b> erkunden Tiere und Lebensräume. Dazu kommen Lesen, Schreibspuren und Zahlenwege. Alle Spiele lassen sich mit dem Finger bedienen.</p>' +
+        '<p>Die drei Spielstufen sind eine Orientierung für die 1. Klasse, keine verbindliche Vorgabe. Wählen Sie die Stufe passend zum Unterricht und zum Kind. Bildhinweise helfen ohne Lesen. Der Lautsprecher liest Aufgaben mit der deutschen Stimme des Geräts vor; die Verfügbarkeit hängt vom Gerät ab. Malatelier und freies Malen bleiben als Kreativpause.</p>' +
         '<h3>Forschen &amp; Knobeln</h3>' +
-        '<p>Sieben weitere Spiele üben Merkstrategien, direkte Zahlennachbarn, Mengenvergleiche, Spiegelbilder, Rechenbeziehungen, Vokalbuchstaben und einfache Bilddiagramme. Der Waldschatz lässt sich selbst verstecken und nochmals ansehen. Vokalversteck arbeitet mit Bild und Schrift; Sie dürfen das Wort nennen. Es gibt keine eingesprochenen Wörter. In den 24 Kreativmissionen werden auch Bewegungen und Wasser erkundet. Begleiten Sie die Wasserexperimente und sprechen Sie über Vermutung und Beobachtung.</p>' +
+        '<p>Die weiteren Spiele üben Merkstrategien, direkte Zahlennachbarn, Mengenvergleiche, Spiegelbilder, Rechenbeziehungen, Vokalbuchstaben und einfache Bilddiagramme. Der Waldschatz lässt sich selbst verstecken und nochmals ansehen. Vokalversteck arbeitet mit Bild und Schrift; Sie dürfen das Wort nennen. Der Lautsprecher spricht Bildwörter mit der Stimme des Geräts.</p>' +
         '<p>Die neuen eigenen Aufgaben greifen Methoden aus öffentlichen Beschreibungen von PH Zürich, zebis, Klassengezwitscher, Herzensideen, Betzold und Stadt Zürich auf. <a href="docs/lernideen.html" target="_blank" rel="noopener">Quellen und Lernziele nachlesen</a>.</p>' +
         '<h3>Lehrplan und Handschrift</h3>' +
         '<p>Die Spiele üben ausgewählte Kompetenzen des Zürcher Lehrplans im ersten Zyklus. Die Schreibspuren wurden mit dem offiziellen Modellblatt der Deutschschweizer Basisschrift für Klasse 1 verglichen und korrigiert. Es sind vereinfachte eigene Vorlagen, kein amtlicher Font. Klasse 1 schreibt unverbunden. Bei Abweichungen gilt die Vorlage der Klassenlehrperson.</p>' +
         '<h3>Als App installieren</h3>' +
         '<p>In Safari auf <b>Teilen</b> tippen und <b>«Zum Home-Bildschirm»</b> wählen. Danach startet Farbtupf wie eine App – auch ohne Internet.</p>' +
         '<h3>Daten</h3>' +
-        '<p>Alle Bilder und Sterne bleiben auf diesem Gerät. Unter «Meine Bilder» → <b>In Fotos</b> lässt sich ein Bild in die Fotos legen oder teilen. Es gibt keine Werbung, kein Konto und keine Datenübertragung.</p>' +
+        '<p>Alle Bilder, Sterne und Waldabenteuer bleiben auf diesem Gerät. Unter «Meine Bilder» → <b>In Fotos</b> lässt sich ein Bild in die Fotos legen oder teilen. Es gibt keine Werbung, kein Konto und keine Datenübertragung.</p>' +
         '<p class="ver">Farbtupf ' + FK.VERSION + '</p>';
 
       body.append(reset, info);
       r.append(FK.ui.topbar({ title: 'Für Eltern' }), h('div', { class: 'scroll' }, body));
+    },
+    enter() {
+      // The forest's sound toggle can change after this screen was first built.
+      document.getElementById('set-sound').checked = FK.settings.get('sound') !== false;
+      const selected = FK.settings.get('schrift') || 'gross';
+      document.querySelectorAll('input[name=schrift]').forEach(input => { input.checked = input.value === selected; });
     },
   });
 })();

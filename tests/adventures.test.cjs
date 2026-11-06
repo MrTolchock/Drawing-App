@@ -3,7 +3,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const vm = require('node:vm');
 const FK = {};
-for (const file of ['adventures', 'missions']) vm.runInNewContext(fs.readFileSync('js/learn/' + file + '.js', 'utf8'), { window: { FK } });
+for (const file of ['adventures']) vm.runInNewContext(fs.readFileSync('js/learn/' + file + '.js', 'utf8'), { window: { FK } });
 for (const game of FK.adventures.games) for (let stage = 1; stage <= 3; stage++) {
   test(`${game.id}, stage ${stage}: reachable, valid learning tasks`, () => {
     for (let seed = 1; seed <= 40; seed++) {
@@ -52,11 +52,3 @@ for (const game of FK.adventures.games) for (let stage = 1; stage <= 3; stage++)
     }
   });
 }
-test('all three stages have eight complete original creative missions', () => {
-  assert.equal(new Set(FK.missions.map(m => m.id)).size, 24);
-  for (const stage of [1, 2, 3]) assert.equal(FK.missions.filter(m => m.stage === stage).length, 8);
-  for (const m of FK.missions) {
-    assert.equal(m.steps.length, 3);
-    assert.ok(m.goal && m.hint && m.talk && m.stretch && m.sources.length);
-  }
-});

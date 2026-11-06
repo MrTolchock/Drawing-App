@@ -7,18 +7,20 @@
   const games = [
     { id: 'rocket', title: 'Sternenrakete', emoji: '🚀', color: 'lilac', sub: ['Ergänzen bis 5', 'Ergänzen bis 10', 'Ergänzen bis 20'] },
     { id: 'picnic', title: 'Waldpicknick', emoji: '🧺', color: 'mint', sub: ['Für zwei verteilen', 'Gerecht teilen', 'Grössere Picknicks'] },
-    { id: 'double', title: 'Zauberzwillinge', emoji: '🪄', color: 'rose', sub: ['Doppelt bis 6', 'Doppelt bis 10', 'Doppelt bis 20'] },
+    { id: 'double', title: 'Zauberspiegel', emoji: '🪄', color: 'rose', sub: ['Doppelt bis 6', 'Doppelt bis 10', 'Doppelt bis 20'] },
     { id: 'shapes', title: 'Formenwerkstatt', emoji: '🔷', color: 'sky', sub: ['Formen finden', 'Ecken entdecken', 'Formen drehen'] },
     { id: 'rhyme', title: 'Reimzirkus', emoji: '🎪', color: 'apricot', sub: ['Reime hören', 'Reime entdecken', 'Reimdetektive'] },
     { id: 'syllable', title: 'Silbentrommel', emoji: '🥁', color: 'sun', sub: ['Ein- und Zweisilber', 'Bis drei Silben', 'Lange Wörter'] },
     { id: 'robot', title: 'Roboterpost', emoji: '🤖', color: 'mint', sub: ['Kurze Wege', 'Um die Hecke', 'Wege planen'] },
     { id: 'sequence', title: 'Was kommt dann?', emoji: '🌱', color: 'sky', sub: ['Zwei Bilder ordnen', 'Drei Schritte', 'Vier Schritte'] },
   ];
+  // Concrete picture words only; every spoken word has its own matching picture.
   const rhymes = [
-    [['Haus', 'Maus', 'Baum'], ['Hose', 'Rose', 'Tasse'], ['Dose', 'Rose', 'Nase'], ['Hand', 'Sand', 'Hut'], ['Tisch', 'Fisch', 'Tor']],
-    [['Bein', 'Stein', 'Brot'], ['Brot', 'Boot', 'Berg'], ['Tor', 'Ohr', 'Tee'], ['Zahn', 'Bahn', 'Zelt'], ['Nacht', 'acht', 'neun']],
-    [['Schnecke', 'Decke', 'Schnee'], ['Kanne', 'Tanne', 'Katze'], ['Sonne', 'Tonne', 'Socke'], ['Kissen', 'wissen', 'Kiste'], ['Hase', 'Nase', 'Hose']],
+    [['Haus','Maus','Baum'],['Hose','Rose','Nase'],['Dose','Rose','Nase'],['Hase','Nase','Hut'],['Tisch','Fisch','Tor']],
+    [['Bein','Stein','Brot'],['Brot','Boot','Berg'],['Tor','Ohr','Tee'],['Zahn','Bahn','Zelt'],['Maus','Haus','Hut']],
+    [['Schnecke','Decke','Schnee'],['Kanne','Tanne','Katze'],['Sonne','Tonne','Socke'],['Hase','Nase','Hose'],['Fisch','Tisch','Hut']],
   ];
+  const rhymePictures = { Haus:'🏠',Maus:'🐭',Baum:'🌳',Hose:'👖',Rose:'🌹',Nase:'👃',Dose:'🥫',Hase:'🐇',Hut:'🎩',Fisch:'🐟',Ohr:'👂',Bahn:'🚂',Schnecke:'🐌',Schnee:'❄️',Tanne:'🌲',Katze:'🐈',Sonne:'☀️',Bus:'🚌',Blume:'🌸',Velo:'🚲',Kuh:'🐄' };
   const syllables = [
     [['Ro-se', '🌹'], ['Ha-se', '🐇'], ['Hut', '🎩'], ['Na-se', '👃'], ['Fisch', '🐟']],
     [['Ba-na-ne', '🍌'], ['To-ma-te', '🍅'], ['Ra-ke-te', '🚀'], ['Me-lo-ne', '🍉'], ['Lu-pe', '🔎']],
@@ -43,7 +45,7 @@
     [
       ['Das Leben eines Schmetterlings.', ['🥚 Ei auf einem Blatt', '🐛 Raupe', '🟤 Puppe', '🦋 Schmetterling']],
       ['Von der Blüte zum Apfel.', ['🌸 Apfelblüte', '🟢 Kleiner unreifer Apfel', '🍎 Reifer Apfel', '🧺 Apfel ernten']],
-      ['Unsere kleine Forschungsreise.', ['❓ Frage stellen', '💭 Vermutung überlegen', '🔎 Beobachten', '💬 Ergebnis erzählen']],
+      ['Ein Schneemann entsteht.', ['❄️ Schnee fällt', '⚽ Schneekugeln rollen', '⛄ Kugeln aufeinanderstellen', '🎩 Hut aufsetzen']],
       ['Vom Regen zur Pfütze.', ['☁️ Regenwolke', '🌧️ Regen fällt', '💧 Pfütze entsteht', '☀️ Pfütze trocknet langsam']],
       ['Unser Bild wird eine Einladung.', ['💡 Bildidee sammeln', '✏️ Bild zeichnen', '✉️ Einladung verschicken', '🎉 Gemeinsam feiern']],
     ],
@@ -105,10 +107,10 @@
     }
     if (kind === 'sequence') {
       const row = sequences[stage - 1][round];
-      return { kind, mode: 'order', prompt: row[0] + ' Tippe die Bilder in der richtigen Reihenfolge an.', ordered: row[1].slice(),
-        hint: 'Was passiert zuerst? Erzähle die Geschichte Schritt für Schritt. «Neu ordnen» lässt dich nochmals beginnen.', explain: 'Du hast die Schritte geordnet!', transfer: 'Erzähle dazu eine eigene kleine Geschichte oder zeichne sie.' };
+      return { kind, mode: 'order', prompt: row[0] + ' Ziehe die Bilder in die richtige Reihenfolge.', ordered: row[1].slice(),
+        hint: 'Ziehe ein Bild an seinen Platz. Oder tippe zwei Bilder an, um sie zu tauschen. Links beginnt die Geschichte.', explain: 'Du hast die Schritte geordnet!', transfer: 'Erzähle dazu eine eigene kleine Geschichte oder zeichne sie.' };
     }
     throw new Error('Unknown adventure: ' + kind);
   }
-  FK.adventures = { games, question, shapes };
+  FK.adventures = { games, question, shapes, rhymePictures };
 })();

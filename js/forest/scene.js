@@ -63,19 +63,20 @@ export function createForest(canvas, callbacks = {}) {
     if (focusResident === 'kingfisher') return new THREE.Vector3(-8, 0, 24);
     if (focusResident === 'owl') return new THREE.Vector3(7.5, 0, 26);
     if (focusResident === 'hedgehog') return new THREE.Vector3(20.5, 0, 15.5);
-    if (focusResident) return new THREE.Vector3(0.2, 0, -6.2);
+    if (focusResident === 'beaver') return new THREE.Vector3(-4.5,0,-6.2);
+    if (focusResident === 'hare') return new THREE.Vector3(7,0,-5);
     const p = player.group.position, grove = Math.max(0, Math.min(1, Math.max((p.x - 11) / 6, (-p.x - 14) / 5, (p.z - 13) / 7)));
     const xFollow = portrait ? 0.92 : THREE.MathUtils.lerp(0.36, 0.92, grove);
     const zFollow = portrait ? 0.92 : THREE.MathUtils.lerp(0.48, 0.92, grove);
-    return new THREE.Vector3(p.x * xFollow, 0, p.z * zFollow + 1);
+    return new THREE.Vector3(p.x * xFollow, 0, p.z * zFollow + (portrait ? -1 : 1));
   }
-  function viewHeight(portrait) { return focusResident === 'home' ? (portrait ? 16.8 : 14.6) : ['hedgehog', 'owl', 'kingfisher'].includes(focusResident) ? (portrait ? 12.5 : 11.5) : focusResident ? (portrait ? 17.4 : 12.7) : portrait ? 12.5 : 14.4; }
+  function viewHeight(portrait) { return focusResident === 'home' ? (portrait ? 16.8 : 14.6) : ['hedgehog', 'owl', 'kingfisher'].includes(focusResident) ? (portrait ? 12.5 : 11.5) : focusResident ? (portrait ? 9.2 : 12.7) : portrait ? 7.8 : 14.4; }
 
   function resize() {
     const rect = canvas.parentElement.getBoundingClientRect(); width = Math.max(1, rect.width); height = Math.max(1, rect.height);
     renderer.setSize(width, height, false);
     const aspect = width / height;
-    const portrait = aspect < 0.9, target = portrait ? 12.5 : 14.4;
+    const portrait = aspect < 0.9, target = portrait ? 7.8 : 14.4;
     if (!running || portrait !== previousPortrait) {
       currentHalfHeight = focusResident ? viewHeight(portrait) : target;
       focus.copy(viewGoal(portrait));

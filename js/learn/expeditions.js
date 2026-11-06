@@ -117,7 +117,7 @@
         q.prompt = q.task === 'total' ? 'Wie viele Stimmen wurden insgesamt abgegeben?' : 'Wie gross ist der Unterschied zwischen ' + fruit[q.target].name + ' und ' + fruit[q.other].name + '?';
         q.explain = q.task === 'total' ? q.counts.join(' + ') + ' = ' + q.answer + ' Stimmen insgesamt.' : 'Die beiden Mengen unterscheiden sich um ' + q.answer + ' Stimmen.';
       }
-      q.hint = 'Ein ausgefüllter Kreis ist eine Stimme. ' + (q.task === 'difference' ? 'Vergleiche die beiden Säulen. Zähle die Kreise, die überstehen.' : q.task === 'total' ? 'Zähle die Stimmen aller drei Obstsorten zusammen.' : 'Beginne unten. Auch null Stimmen sind möglich.');
+      q.hint = 'Eine Pfote ist eine Stimme. ' + (q.task === 'difference' ? 'Vergleiche die beiden Säulen. Zähle die Pfoten, die überstehen.' : q.task === 'total' ? 'Zähle die Stimmen aller drei Obstsorten zusammen.' : 'Beginne links. Auch null Stimmen sind möglich.');
       q.transfer = 'Frage andere nach ihrem Lieblingsobst. Zeichne für jede Antwort genau einen Kreis.';
     } else throw new Error('Unknown expedition: ' + kind);
     return q;

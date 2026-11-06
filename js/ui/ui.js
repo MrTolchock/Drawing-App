@@ -7,7 +7,7 @@
        leave() { … },              // when another screen is shown (stop timers, free canvases)
      });
      FK.go('name', params)  – show a screen (keeps a history)
-     FK.back()              – previous screen (or the hub)
+     FK.back()              – previous screen (or the games book)
 */
 (function () {
   'use strict';
@@ -40,13 +40,14 @@
 
   FK.go = (name, params, opts) => {
     opts = opts || {};
+    if (name === 'hub') name = 'forest-book';
     if (!screens[name]) throw new Error('unknown screen ' + name);
     FK.ui.closeModal();
     const prev = current;
     if (prev && screens[prev.name].def.leave) screens[prev.name].def.leave();
     if (prev && !opts.replace && !opts.isBack) stack.push(prev);
     // Forest and games book are root entries; discard stale return screens there.
-    if (name === 'hub' || name === 'forest') stack.length = 0;
+    if (name === 'forest-book' || name === 'forest') stack.length = 0;
     while (stack.length && stack[stack.length - 1].name === name) stack.pop();
     const root = rootFor(name);
     if (prev && prev.name !== name) {
@@ -67,7 +68,7 @@
   FK.back = () => {
     const prev = stack.pop();
     if (prev) FK.go(prev.name, prev.params, { isBack: true });
-    else FK.go('hub', {}, { isBack: true });
+    else FK.go(current?.name === 'forest-book' ? 'forest' : 'forest-book', {}, { isBack: true });
   };
   FK.current = () => (current ? current.name : null);
   FK.screenExists = (name) => !!screens[name];
@@ -104,11 +105,15 @@
   }
 
   // Header with a home/back button, a title and the star counter.
+  function settingsButton() {
+    return btn({ icon:'gear', cls:'btn-round btn-parents', title:'Einstellungen für Eltern', onClick:() => parentGate(() => FK.go('parents')) });
+  }
+
   function topbar(o) {
     const bar = h('header', { class: 'topbar' });
     if (o.back !== false) {
       bar.append(btn({
-        icon: o.backIcon || 'home',
+        icon: o.backIcon || 'back',
         cls: 'btn-round btn-back',
         title: o.backTitle || 'Zurück',
         onClick: o.onBack || (() => FK.back()),
@@ -439,5 +444,5 @@
     toastTimer = setTimeout(() => { t.hidden = true; }, ms || 2200);
   }
 
-  FK.ui = { btn, topbar, starCounter, praise, celebrate, word, mascot, modal, closeModal, confirm, parentGate, longPress, shake, bounce, toast, eatClick, PRAISE };
+  FK.ui = { btn, topbar, settingsButton, starCounter, praise, celebrate, word, mascot, modal, closeModal, confirm, parentGate, longPress, shake, bounce, toast, eatClick, PRAISE };
 })();

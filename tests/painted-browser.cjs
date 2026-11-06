@@ -21,6 +21,7 @@ const fs = require('node:fs');
     const session = () => page.evaluate(() => FK.forestState.getActivity(FK.forestState.QUEST));
     await page.goto('http://127.0.0.1:8000/', { waitUntil: 'networkidle' });
     await page.waitForFunction(() => !!FK.forestScene, null, { timeout: 60000 });
+    await page.evaluate(async()=>{await document.fonts.ready;await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));});
     await page.getByRole('button', { name: 'Mit dem Fuchs losgehen', exact: true }).tap();
     await page.waitForTimeout(600); await shot('01-painted-world-desktop');
     const world = await page.evaluate(async () => {
@@ -66,7 +67,9 @@ const fs = require('node:fs');
     await page.locator('.learn-answer[data-answer=' + JSON.stringify(first.question.answer) + ']').tap();
     const answered = await session(); assert.equal(answered.answered, true);
     await page.evaluate(() => FK.go('forest-book')); await shot('04-painted-book-phone');
-    assert.equal(await page.locator('.forest-book-games .woodland-art').count(), 8);
+    assert.equal(await page.locator('.forest-book-game[data-game="count"]').count(), 1);
+    await page.getByRole('button',{name:'Mit Biber spielen',exact:true}).tap();
+    assert.equal(await page.locator('.forest-guided-games .woodland-art').count(), 8);
     await page.evaluate(() => { FK.forestState.startPractice('treasure', 'beaver'); FK.forestActivity.launch(FK.forestStory.collections.beaver.find(p => p.game === 'treasure').id); });
     await page.getByRole('button', { name: 'Jetzt selber probieren', exact: true }).tap();
     assert.equal(await page.locator('.memory-pictured .exp-treasures .woodland-art').count(), 3);

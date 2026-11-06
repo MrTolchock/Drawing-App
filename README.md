@@ -8,37 +8,38 @@
 
 Finger-friendly learning adventures for first-grade children in Zürich, in Swiss Standard German. Static HTML/CSS/JavaScript PWA with locally bundled Three.js: no build step, account, ads, tracking or runtime CDN. Works offline after initial loading; prototype narration uses device voices and is not guaranteed offline.
 
-The app opens in **Der Herzbaum**, a complete playable woodland story in the selected **original A, Painted woodland** direction. A Three.js fox visits five Swiss-native neighbours around a connected forest loop. Nine short helping projects lead through **Meet → Reconnect → Gather**, then a saved picture-led ending brings everyone to the Heart Tree. Repairs remain visible, new shortcuts work, and the restored world stays open for further play.
+The app opens in **Der Herzbaum**, a woodland story about bringing five neighbours back together. Its central tree starts bare. Each of nine helping projects restores another leafy branch; the final gathering brings everyone home. The saved world, repairs, interrupted puzzles and ending survive reloads. The portrait camera stays close to the fox, with the wider forest view retained in landscape.
 
-The world now uses layered original painted trees, plants and four fox views in the Three.js scene, with soft sandy paths, painted ground and rounded 3D timberwork. The flat story puzzles share the same animal and object paintings: leaf/hazelnut patterns, woodland memory and a fox-led route board. Illustrated book covers and return scenes carry the same art through the journey. [Artwork and atlas notes](assets/woodland/ART-NOTES.md).
+**Waldspiele is the single games library.** Open the book in the forest, choose a neighbour or browse all games. The old `?screen=hub` bookmark opens this same book. The fox returns to the forest; back arrows return to the previous activity or the book. Settings opens with one tap from the forest or book, followed by the existing adult arithmetic gate. Existing local progress, stars and drawings keep their storage identifiers.
 
-The main journey uses three existing flat puzzle families with separate visual examples, pictured returns, repeatable German device narration and exact interrupted-session recovery: patterns, missing-object memory and arrow-controlled routes. The guided **Waldspiele** book adds fifteen independent practice collections across the five places. Practice never applies a story repair, changes a completed ending or raises the global learning stage. **Alle Spiele** retains the full original library, drawing tools and parent settings. Individual puzzle-content review remains separate, as planned. [Story, controls, save behaviour and device checks](docs/HEART-TREE.md).
+All short game families use the same neighbours, five-leaf round progress, gentle retry feedback, end celebration, replay-safe star and pictured return choices. Story projects also show the tree's growth. Practice earns album stars without changing story repairs or advancing the ending. Reading, writing, drawing, colouring and the sticker album remain available in the book. Creative missions have been removed.
 
-An optional **Spielzeit** clock offers a stopwatch or a 5/10/15/20/30-minute countdown, with pictured start/pause and reset controls. Open it with the clock in **Waldspiele** or in the parent settings. It is off initially; a countdown gives a gentle break reminder without ending a puzzle. Time pauses in the background and in parent settings, and reload restores the clock paused. [Timer behaviour](docs/TIMER.md).
+The revised activities include:
 
-The original learning island is retained under **Alle Spiele**. Drawing is a creative companion:
-
-| Activity | Three selectable stages |
+| Activity | How children play |
 | --- | --- |
-| Zählgarten | Count and tap quantities 0–5 / 0–10 / 0–20 |
-| Znüni-Rechnen | Addition to 5 / addition and subtraction to 10 / to 20 |
-| Musterzug | AB / AAB / ABC and ABB patterns |
-| Naturdetektive | Recognise animals / habitats / traits and needs |
-| Leseschatz | Syllables and words at three existing reading levels; colour words / noun + colour / sentences in «Lies genau»; expanding syllable families in «Silben-Ballone» |
-| Schreibspuren | Small initial selection / expanded selection / all existing glyphs |
-| Zahlenwege | Three existing dot-to-dot levels |
+| Zählgarten | Count visible ladybirds by tapping them; a deliberately empty garden introduces zero at the end of the round |
+| Znüni-Rechenfreunde | Move apples together or give them to Hase; combines Plus/Minus with the former Rechenfreunde's swap and adjacent problems |
+| Naturdetektive | Match an illustrated feature or animal to pictured answers, with a repeatable spoken question |
+| Sternenrakete | Fill empty star seats, then launch the rocket |
+| Waldpicknick | See the berries leave the basket and appear on Fuchs and Igel's plates; undo and compare before checking |
+| Zauberspiegel | Count a group and its reflection across a visible mirror line |
+| Formenwerkstatt | Match a pictured silhouette, marked corners or a rotated form |
+| Reimzirkus | Hear each word separately and choose among literal matching pictures; abstract rhyme words were removed |
+| Was kommt dann? | Drag picture cards into order, tap two cards to swap, or use left/right keys; every arrangement remains editable |
+| Waldumfrage | Count one paw per vote in aligned picture rows; relevant fruit rows are highlighted |
+| Spiegelmosaik | Follow a small worked reflection example, then edit the mirrored grid |
+| Zahlenwege | Find the next number independently; the number and its location are revealed only when asking for a hint, apart from the initial 1 |
 
-Each stage is labelled with a trimester. This is a **provisional app progression**, not an official Zürich trimester schedule. The curriculum covers a whole cycle. Nature questions may be read together with an adult. All stages are freely accessible, with no time limits or penalties in the games. Complete five questions to earn a star once per game and stage. Replay freely. Stars unlock stickers.
+The three freely selectable stages are **Entdecken**, **Üben** and **Knobeln**. They are an app progression, not an official Zürich trimester schedule. Short rounds have five tasks, unlimited retries and no time pressure. The established Leseschatz reading puzzles and handwriting models remain in place.
 
-**Learning adventures:** Sternenrakete (number bonds), Waldpicknick (sharing), Zauberzwillinge (doubling), Formenwerkstatt (geometry), Reimzirkus, Silbentrommel, Roboterpost (routes) and Was kommt dann? (sequencing). Each has three stages, five tasks per round, hints, unlimited retries and a replay-safe star.
+Narration uses a German device voice, preferring Swiss German language settings. Picture cues carry the core interactions; the speaker repeats the current task, hint or exact rhyme word. Voice availability and offline speech depend on the device; no recorded audio or online speech service is included. Test on a physical iPhone/iPad with its installed German voice before release.
 
-**Forschen & Knobeln:** Seven additional games: Waldschatz (self-paced missing-object memory), Nachbarhäuser (predecessor/successor), Beerenvergleich (structured quantity comparisons), Spiegelmosaik (editable reflected grids), Rechenfreunde (commutative/adjacent addition), Vokalversteck (missing written vowels) and Waldumfrage (picture charts). Each has three stages, five tasks and a replay-safe star. Twenty-four open creative missions now connect observation, language, mathematics, movement and water investigations to the painting tools. [Research from all six requested resource sites and original activity mapping](docs/RESOURCE-RESEARCH.md).
+The optional **Spielzeit** clock offers a stopwatch or a 5/10/15/20/30-minute countdown. It is initially off and pauses in the background and parent settings. Reload restores it paused. [Timer behaviour](docs/TIMER.md).
 
-**Official sources reviewed:** The public LMVZ product pages are now accessible and have been researched alongside Zürich's 2026/27 directory and Klett und Balmer's Young World didactics. All new exercises are original; no publisher worksheets or illustrations are included. See the [new research and activity mapping](docs/LMVZ-RESEARCH.md), [earlier curriculum/handwriting report](docs/RESEARCH.md) and [learning concept](docs/LEARNING.md). The seventeen earlier handwriting corrections are retained. These remain simplified original drawings, not a licensed official font or a certified complete curriculum.
+The original painted woodland and Waldatelier illustrations are bundled locally and used throughout the world, games, painting tools and 42-sticker album. [Artwork notes](assets/woodland/ART-NOTES.md) · [Story and save behaviour](docs/HEART-TREE.md) · [This revision and verification](docs/IMPROVEMENTS.md).
 
-The selected **Waldatelier** design brings a watercolour Zürich lakeside, a fox companion, coordinated subject illustrations, sepia tool icons and cream/forest-green stationery to every activity. The same illustrations appear in reading, learning, canvas stamps and the 42-sticker collection. Two original colouring pages, **Fuchs am See** and **Tram am Zürichsee**, join the existing 41 pages. Both support free painting, dice, numbers, syllables and colour words. Paint colours and handwriting geometry keep their learning meaning.
-
-«Kreativpause & Schätze» contains the colouring book, free drawing, saved pictures and sticker album. Keep the parent gear pressed to open settings. Existing device progress and pictures retain their original storage identifiers. See the [design notes](design/waldatelier/README.md) and [archived visual alternatives](design/archive/visual-identities/README.md).
+All exercises are original. Source research, curriculum scope and the seventeen retained handwriting corrections are documented in [LMVZ research](docs/LMVZ-RESEARCH.md), [resource research](docs/RESOURCE-RESEARCH.md) and the [learning concept](docs/LEARNING.md). Those research documents describe earlier activity sets as historical context; the list above describes the current app.
 
 ## Develop and check
 
@@ -60,6 +61,7 @@ node tests/forest.test.cjs
 node tests/routes.test.cjs
 node tests/story.test.cjs
 node tests/timer.test.cjs
+node tests/play-content.test.cjs
 node --check js/screens/learn.js
 # With the server running and the cloud image browser tools:
 node tests/handwriting-browser.cjs
@@ -69,11 +71,13 @@ node tests/trail-browser.cjs
 node tests/story-browser.cjs
 node tests/timer-browser.cjs
 node tests/painted-browser.cjs
+node tests/play-browser.cjs
+node tests/play-layout-browser.cjs
 ```
 
 The content tests cover answer validity, range boundaries, arithmetic, offline assets and storage compatibility. Browser smoke checks are in `tests/browser-smoke.cjs` and require Playwright plus Chromium. In this cloud image: `node tests/browser-smoke.cjs` with the server running. They exercise 60 tasks through touch taps, wrong answers, replay rewards, three-stage routing, mobile layout, offline reload and saved stars. The dedicated handwriting browser check verifies model bounds across stage changes and completes all seventeen revised models with simulated touch strokes. These tests do not establish Safari compatibility or certify pedagogical accuracy; test on a physical iPad before release.
 
-The forest tests cover safe routes, independent story/practice sessions, earlier-save compatibility, replay-safe completion and local Three.js imports. Story tests exercise all 72 supported chapter-order combinations and prove that new optional content cannot reset the ending. The full story browser test walks through all nine quests and both chapter transitions with touch inputs, interrupts three new sessions, resumes the ending, plays all three guided practice types and reloads the restored world offline. Existing family and legacy-learning checks remain available. Use `?screen=hub` for direct original-library access. Three.js 0.187.0 and its MIT license are in `vendor/three`; no package install is needed.
+The forest tests cover safe routes, independent story/practice sessions, earlier-save compatibility, replay-safe completion and local Three.js imports. Story tests exercise all 72 supported chapter-order combinations and prove that new optional content cannot reset the ending. The full story browser test walks through all nine quests and both chapter transitions with touch inputs, interrupts three new sessions, resumes the ending, plays all three guided practice types and reloads the restored world offline. Existing family and legacy-learning checks remain available. Use `?screen=hub` for direct access to the single Waldspiele book. Three.js 0.187.0 and its MIT license are in `vendor/three`; no package install is needed.
 
 Bump `CACHE` in `sw.js` after app changes. Include new runtime assets in its cache list. Never rename localStorage/IndexedDB keys merely to change the app name.
 

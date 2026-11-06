@@ -71,6 +71,26 @@ export function buildLandscape(scene, model) {
     tree(-22, -1, 0.9, 71), tree(-17, -18, 0.85, 83), tree(23, -9, 0.9, 91), tree(-24, 19, 0.9, 79),
     tree(-17, 18, 0.78, 103), tree(14, 17, 0.9, 109)];
   trees.forEach(t => scene.add(t.root));
+  // The landmark starts bare. Each authored repair restores one visible branch.
+  const hero = trees[0], branchMaterial = paint('#9b8b73','bark');
+  hero.root.name = 'heart-tree'; hero.leaves.clear();
+  const branches = [
+    [[0,0,0],[0.2,2.5,0],[0,5.3,0],[0.2,8.5,0]],
+    [[0,2.5,0],[-1.8,4.2,0],[-3.1,5.6,0.1],[-3.3,6.8,0.1]],
+    [[0,4,0],[-1.3,6,0],[-1.7,7.8,0],[-1.5,9,0]],
+    [[0,5.5,0],[1.2,7.3,0],[2,8.8,0],[1.6,9.7,0]],
+    [[0,3.1,0],[1.8,4.8,0],[3.2,6.1,0],[3.7,7.5,0]],
+    [[0,5.5,0],[0.2,7.2,0],[-0.3,8.6,0],[-0.1,10.2,0]],
+  ];
+  branches.forEach((points,i)=>curveTube(hero.root,branchMaterial,points,i===0?0.37:0.18));
+  const tips=[[-2.3,5.5],[-3.5,7],[-1.9,8.5],[-0.3,10],[1.6,9.5],[3.5,7.9],[2.8,6.2],[0.6,7.3],[0.2,5.7]];
+  tips.forEach(([x,y],branch)=>{
+    for(let i=0;i<7;i++) {
+      const leaf=paintedSprite('leaf',2.5+(i%3)*0.25,0.5);
+      leaf.position.set(x+Math.sin(i*2.4)*0.8,y+Math.cos(i*2.4)*0.7,0.4+i*0.01);
+      leaf.material.rotation=Math.sin(i*2.4)*0.9;leaf.userData.growth=branch+1;leaf.userData.size=leaf.scale.x;hero.leaves.add(leaf);
+    }
+  });
   const heart = new THREE.Shape(); heart.moveTo(0, 0.16); heart.bezierCurveTo(-0.4, 0.62, -0.76, 0.02, 0, -0.5); heart.bezierCurveTo(0.76, 0.02, 0.4, 0.62, 0, 0.16);
   const heartMaterial = new THREE.MeshStandardMaterial({ color: '#ad804a', roughness: 1, emissive: '#ad804a', emissiveIntensity: 0 });
   const heartMesh = new THREE.Mesh(new THREE.ExtrudeGeometry(heart, { depth: 0.035, bevelEnabled: true, bevelSize: 0.04, bevelThickness: 0.025, bevelSegments: 2 }), heartMaterial);
@@ -153,7 +173,19 @@ export function buildLandscape(scene, model) {
   return {
     trees,
     hero: trees[0].root,
-    setProjects(state) { projects.set(state); trees[0].leaves.children[0].material.color.set(state.endingSeen ? '#fff1be' : '#ffffff'); },
+    setProjects(state) {
+      projects.set(state);
+      const growth=window.FK.heartTree.count(state);
+      hero.root.userData.growth=growth;
+      hero.leaves.children.forEach(leaf=>{
+        const visible=leaf.userData.growth<=growth;
+        if(visible&&!leaf.visible&&!window.FK.reduced)leaf.scale.setScalar(0.05);
+        leaf.visible=visible;
+      });
+      branchMaterial.color.set(growth?'#92754e':'#9b9486');
+      heartMaterial.color.set(growth?'#e3ba67':'#b4ad9c');
+      heartMaterial.emissiveIntensity=growth/9*0.5;
+    },
     setGrove(unlocked, complete) { grovePath.visible = unlocked; restPlace.visible = unlocked; bedding.visible = complete; },
     setHollow(unlocked, complete) { hollow.visible = unlocked; brokenSign.visible = !complete; restoredSign.visible = complete; },
     setBridge(repaired, progress = 1) {
@@ -161,8 +193,7 @@ export function buildLandscape(scene, model) {
         mesh.visible = repaired;
         if (i < 4) mesh.position.y = 0.31 + (1 - Math.min(1, Math.max(0, progress * 1.6 - i * 0.14))) * 1.25;
       });
-      heartMaterial.color.set(repaired ? '#d2ad60' : '#ad804a');
-      heartMaterial.emissive.set(repaired ? '#d2a95b' : '#ad804a'); heartMaterial.emissiveIntensity = repaired ? 0.23 : 0;
+      heartMaterial.emissive.set('#d2a95b');
     },
     height(x, z, repaired) {
       const projectHeight = projects.height(x, z); if (projectHeight !== null) return projectHeight;
@@ -170,6 +201,6 @@ export function buildLandscape(scene, model) {
       if (x > -2.85 && x < 4.85 && Math.abs(z - 12) < 1.55) return 0.21;
       return 0.06;
     },
-    animate(time) { ripples.forEach((r, i) => { r.material.opacity = 0.18 + Math.sin(time * 0.7 + i) * 0.04; }); },
+    animate(time) { hero.leaves.children.forEach(leaf=>{if(leaf.visible)leaf.scale.setScalar(THREE.MathUtils.lerp(leaf.scale.x,leaf.userData.size,0.08));}); ripples.forEach((r, i) => { r.material.opacity = 0.18 + Math.sin(time * 0.7 + i) * 0.04; }); },
   };
 }

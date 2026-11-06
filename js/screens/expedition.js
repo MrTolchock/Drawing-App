@@ -1,18 +1,18 @@
-/* Seven calm, hands-on games. All input works with taps and native buttons. */
+/* Pictured woodland explorations. All input works with taps and native buttons. */
 (function () {
   'use strict';
   const FK = window.FK, h = FK.h;
   let body, title, game, stage, round, q, locked, feedback, next, wordOffset;
   const button = (text, fn, cls) => h('button', { type: 'button', class: 'learn-button ' + (cls || ''), text, onclick: fn });
   const control = (text, fn, cls) => button(text, () => { if (!locked) fn(); }, cls);
-  function say(text) { feedback.textContent = text; }
+  function say(text) { feedback.textContent = text; FK.play.speak(text); }
   function check(ok) {
     if (locked) return;
     if (!ok) { say('Probiere weiter. ' + q.hint); FK.sound.undo(); return; }
     locked = true;
     body.querySelectorAll('.exp-work button').forEach(b => { b.disabled = true; });
-    say('Juhui! ' + q.explain); FK.sound.tada();
-    next.hidden = false; body.querySelector('.adventure-transfer').hidden = false;
+    say('Juhui! ' + q.explain); FK.play.feedback(body,q.explain,true);
+    next.hidden = false;
   }
   function picture(emoji, name, cls) {
     return h('div', { class: 'exp-picture ' + (cls || '') }, h('span', { class: 'exp-art', text: emoji, 'aria-hidden': 'true' }), h('span', { text: FK.text.word(name) }));
@@ -66,6 +66,7 @@
     choices(host, q.choices, n => n === 0 ? '= Gleich viele' : n < 0 ? '← Links mehr' : 'Rechts mehr →', n => n === q.answer);
   }
   function mirror(host) {
+    host.append(FK.play.steps([['🪞','An der Linie beginnen'],['🖐️','Gegenüber antippen'],['✓','Prüfen']]), h('div',{class:'play-mirror-example',role:'img','aria-label':'Beispiel: zwei Reihen. Das obere linke Feld erscheint im Spiegel oben rechts.',html:'<svg viewBox="0 0 210 94"><g fill="#fff8e8" stroke="#b0bc95" stroke-width="2"><rect x="8" y="8" width="35" height="35" fill="#9ab477"/><rect x="46" y="8" width="35" height="35"/><rect x="8" y="46" width="35" height="35"/><rect x="46" y="46" width="35" height="35"/><rect x="128" y="8" width="35" height="35"/><rect x="166" y="8" width="35" height="35" fill="#9ab477"/><rect x="128" y="46" width="35" height="35"/><rect x="166" y="46" width="35" height="35"/></g><path d="M105 1v90" stroke="#96afb1" stroke-width="4" stroke-dasharray="5 4"/></svg>'}));
     const selected = new Set(), history = [], cells = [];
     const layout = h('div', { class: 'exp-mirror', style: { '--columns': q.width } });
     const left = h('div', { class: 'exp-mosaic', role: 'group', 'aria-label': 'Vorlage links' });
@@ -112,17 +113,30 @@
     });
   }
   function survey(host) {
-    host.append(h('p', { class: 'exp-instructions', text: 'Die Waldtiere wählen ihr Lieblingsobst. Ein ausgefüllter Kreis = eine Stimme.' }));
-    const chart = h('div', { class: 'exp-chart', role: 'group', 'aria-label': 'Ergebnis der Waldumfrage' });
-    q.fruit.forEach((f, i) => {
-      const bar = h('div', { class: 'exp-votes', role: 'img', 'aria-label': f.name + ': ' + q.counts[i] + ' Stimmen' });
-      for (let row = q.scale; row > 0; row--) bar.append(h('span', { class: 'exp-vote' + (row <= q.counts[i] ? ' filled' : ''), 'aria-hidden': 'true', text: row <= q.counts[i] ? '●' : '○' }));
-      chart.append(h('section', { class: 'exp-chart-column' }, bar, picture(f.emoji, f.name)));
+    host.append(h('div',{class:'play-survey-key'},FK.forestArt.character('fox'),h('span',{text:'→'}),FK.forestArt.icon('paw'),h('span',{text:'Eine Pfote = eine Stimme'})));
+    const task=h('div',{class:'play-survey-question','aria-label':q.prompt});
+    if(q.task==='count') task.append(FK.play.picture(q.fruit[q.target].emoji),h('b',{text:'→ ?'}));
+    else if(q.task==='difference') task.append(FK.play.picture(q.fruit[q.target].emoji),h('b',{text:'↔'}),FK.play.picture(q.fruit[q.other].emoji),h('b',{text:'?'}));
+    else task.append(h('b',{text:q.task==='most'?'↑ ?':q.task==='least'?'↓ ?':'🍎 + 🍐 + 🍓 = ?'}));
+    host.append(task);
+    const chart=h('div',{class:'exp-chart play-survey-chart',role:'group','aria-label':'Waldumfrage: jede Pfote ist eine Stimme'});
+    q.fruit.forEach((f,i)=>{
+      const votes=h('div',{class:'exp-votes','aria-label':f.name+': '+q.counts[i]+' Stimmen'});
+      for(let row=0;row<q.scale;row++) {
+        if(row<q.counts[i]) {
+          const vote=control('',()=>{vote.classList.toggle('counted');vote.setAttribute('aria-pressed',String(vote.classList.contains('counted')));FK.sound.tick();},'exp-vote filled');
+          vote.replaceChildren(FK.forestArt.icon('paw'));vote.setAttribute('aria-label',f.name+', Stimme '+(row+1));vote.setAttribute('aria-pressed','false');votes.append(vote);
+        } else votes.append(h('span',{class:'exp-vote empty','aria-hidden':'true'}));
+      }
+      const target=q.task==='count'?i===q.target:q.task==='difference'?i===q.target||i===q.other:false;
+      chart.append(h('section',{class:'exp-chart-column'+(target?' is-target':'')},FK.play.picture(f.emoji,f.name),votes));
     });
     host.append(chart);
-    choices(host, q.choices, value => {
-      const f = q.fruit.find(item => item.id === value); return f ? f.emoji + ' ' + FK.text.word(f.name) : String(value);
-    }, value => value === q.answer);
+    const row=h('div',{class:'learn-answers'});
+    q.choices.forEach(value=>{
+      const f=q.fruit.find(item=>item.id===value),b=control(f?f.name:String(value),()=>{const ok=value===q.answer;b.classList.add(ok?'correct':'try-again');check(ok);},'learn-answer');
+      b.dataset.answer=String(value);if(f)b.replaceChildren(FK.play.picture(f.emoji,f.name));row.append(b);
+    });host.append(row);
   }
   const renderers = { treasure, neighbours, compare, mirror, tricks, vowels, survey };
   function draw() {
@@ -130,23 +144,18 @@
     const host = h('div', { class: 'exp-work exp-game-' + game.id });
     feedback = h('p', { class: 'learn-feedback', role: 'status', 'aria-live': 'polite', text: 'Probiere aus. Du hast Zeit.' });
     next = button(round === 4 ? '⭐ Geschafft!' : 'Weiter →', () => { if (!locked) return; round++; if (round === 5) finish(); else draw(); }, 'learn-next exp-next'); next.hidden = true;
-    body.replaceChildren(h('p', { class: 'learn-meta', text: stage + '. Stufe · ' + FK.learning.stages[stage - 1] + ' · Aufgabe ' + (round + 1) + ' von 5' }),
-      h('div', { class: 'learn-progress', 'aria-label': round + ' von 5 geschafft', text: '⭐'.repeat(round) + '☆'.repeat(5 - round) }),
+    body.replaceChildren(FK.play.context(game.id,q.prompt,round),
+      FK.woodland.progress(round),
       h('h2', { class: 'learn-prompt', text: q.prompt }), host, feedback, next,
-      button('💡 Tipp', () => say(q.hint), 'learn-hint'), h('p', { class: 'adventure-transfer', hidden: true, text: '💬 ' + q.transfer }));
-    renderers[game.id](host); body.scrollTop = 0;
+      button('💡 Tipp', () => say(q.hint), 'learn-hint'));
+    renderers[game.id](host); body.scrollTop = 0; FK.play.speak(q.prompt);
   }
   function finish() {
-    const earned = FK.progress.finish('expedition', game.id + ':' + stage, 1);
-    body.replaceChildren(h('div', { class: 'learn-finish' }, FK.ui.mascot({ mood: 'cheer' }),
-      h('h2', { text: 'Fünf Entdeckungen geschafft!' }), h('p', { text: earned ? 'Ein Stern für deine Ideen! ⭐' : 'Schön, dass du weiter übst!' }),
-      button('Nochmals spielen', () => { round = 0; wordOffset = (wordOffset + 1) % 8; draw(); }),
-      button('🎨 Kreativmission', () => FK.go('missions')), button('Zur Lerninsel', () => FK.go('hub'))));
-    FK.ui.celebrate({ stars: earned, from: body });
+    FK.play.finish(body,'expedition',game.id,stage,()=>{round=0;wordOffset=(wordOffset+1)%8;draw();});
   }
   FK.screen('expedition', {
     build(root) { const bar = FK.ui.topbar({ title: 'Forschen & Knobeln' }); title = bar.querySelector('.title'); body = h('div', { class: 'learn-body scroll' }); root.append(bar, body); },
-    enter(params) { game = FK.expeditions.games.find(g => g.id === (params || {}).game) || FK.expeditions.games[0]; stage = FK.learning.stage(); round = 0; wordOffset = Math.floor(Math.random() * 8); title.textContent = game.title; draw(); },
-    leave() { locked = true; },
+    enter(params) { if(params.game==='tricks'){FK.go('learn',{game:'add'},{replace:true});return;} game = FK.expeditions.games.find(g => g.id === (params || {}).game) || FK.expeditions.games[0]; stage = FK.learning.stage(); round = 0; wordOffset = Math.floor(Math.random() * 8); title.textContent = game.title; draw(); },
+    leave() { locked = true; FK.forestVoice.cancel(); },
   });
 })();

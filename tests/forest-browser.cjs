@@ -98,6 +98,7 @@ const path = require('node:path');
   assert.deepEqual(await page.evaluate(() => FK.store.get('forest-preservation-check')), { drawing: 'retained', revision: 4 });
   await page.locator('.forest-scene-return').tap(); await ready();
   await page.waitForFunction(() => FK.forestState.get().payoffSeen, null, { timeout: 15000 });
+  await page.locator('.forest-dialog-beaver .forest-secondary').tap();
   await page.getByRole('button', { name: 'Zu Hase gehen', exact: true }).tap();
   await page.waitForFunction(() => {
     const p = FK.forestScene.position;
@@ -179,8 +180,8 @@ const path = require('node:path');
   console.log('PASS: grove discovery, native Hedgehog, shared flat memory rules, separate example, look again, no answer cue, two exact resume states, saved resting place and no duplicate rewards.');
 
   await page.locator('.forest-book').tap();
-  await page.getByRole('button', { name: 'Alle Spiele öffnen', exact: true }).tap();
-  assert.equal(await page.evaluate(() => FK.current()), 'hub');
+  await page.getByRole('button', { name: 'Alle Waldspiele', exact: true }).tap();
+  assert.equal(await page.evaluate(() => FK.current()), 'forest-book');
   await page.getByRole('button', { name: /Musterzug/ }).tap();
   assert.equal(await page.locator('.screen-learn .forest-learning-controls').isVisible(), false);
   assert.equal(await page.locator('.learn-answer').count(), 3);

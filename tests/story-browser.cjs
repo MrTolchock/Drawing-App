@@ -36,6 +36,8 @@ function solve(q, start) {
     const session = id => page.evaluate(id => FK.forestState.getActivity(id), id);
     const currentRoot = async () => page.locator('.screen-' + await page.evaluate(() => FK.current()));
     await page.goto('http://127.0.0.1:8000/'); await ready();
+    assert.equal(await page.evaluate(()=>FK.heartTree.count()),0);
+    await page.waitForFunction(()=>FK.forestScene.scene.getObjectByName('heart-tree').userData.growth===0);
     await page.evaluate(() => FK.store.put('full-story-legacy-check', { picture: 'kept', revision: 8 }));
     await page.getByRole('button', { name: 'Mit dem Fuchs losgehen', exact: true }).tap();
     async function demonstration(id) {
@@ -97,8 +99,10 @@ function solve(q, start) {
       if (target.quest === 'kingfisher-view-v1') await shot('01-kingfisher-request.png');
       await dialog.locator('.forest-primary').tap(); await completePuzzle(target.quest);
       completed.push(target.quest); assert.equal(Object.keys((await world()).contributions).length, completed.length);
+      assert.equal(await page.evaluate(()=>FK.heartTree.count()),completed.length);
       await (await currentRoot()).locator('.forest-scene-return').tap(); await ready();
-      if (target.quest === 'bridge-neighbours-v1') await page.waitForFunction(() => FK.forestState.get().payoffSeen, null, { timeout: 20000 });
+      await page.waitForFunction(n=>FK.forestScene.scene.getObjectByName('heart-tree').userData.growth===n,completed.length);
+      if (target.quest === 'bridge-neighbours-v1') { await page.waitForFunction(() => FK.forestState.get().payoffSeen, null, { timeout: 20000 }); await page.locator('.forest-dialog-beaver .forest-secondary').tap(); }
       else {
         await page.locator('.forest-dialog-' + target.resident).waitFor({ timeout: 20000 });
         if (target.quest === 'kingfisher-view-v1') await shot('02-water-view-restored.png');
@@ -130,7 +134,7 @@ function solve(q, start) {
       assert.equal(await page.evaluate(() => FK.current()), 'forest-book');
       assert.deepEqual((await world()).contributions, finalContributions); assert.equal((await world()).endingSeen, true);
     }
-    await page.getByRole('button', { name: 'Alle Spiele öffnen', exact: true }).tap(); assert.equal(await page.evaluate(() => FK.current()), 'hub');
+    await page.getByRole('button', { name: 'Alle Waldspiele', exact: true }).tap(); assert.equal(await page.evaluate(() => FK.current()), 'forest-book');
     await page.getByRole('button', { name: 'Zurück zum Wald', exact: true }).tap(); await ready();
     await page.evaluate(async () => { await navigator.serviceWorker.ready; }); await page.reload(); await ready();
     await context.setOffline(true); await page.reload(); await ready();

@@ -36,6 +36,7 @@
   let raf = 0;
   let idle = 0;
   let hintAt = 0;
+  let hintTimer = 0;
   let token = 0;
   let active = false;
   let ro = null;
@@ -54,7 +55,7 @@
   function clearTimers() {
     timers.forEach(clearTimeout);
     timers = [];
-    clearTimeout(idle);
+    clearTimeout(idle); clearTimeout(hintTimer);
   }
 
   /* ---------- overview ---------- */
@@ -262,7 +263,9 @@
   function updateSide() {
     const n = cur.points.length;
     const next = Math.min(done + 2, n);
-    nextEl.textContent = String(next);
+    nextEl.textContent = done < 0 ? '1' : done >= n - 1 ? '✓' : '?';
+    nextEl.setAttribute('aria-label',done < 0 ? 'Beginne bei 1' : 'Welche Zahl kommt jetzt?');
+    hintAt = 0;
     nextEl.classList.remove('pp-bump');
     void nextEl.offsetWidth;
     nextEl.classList.add('pp-bump');
@@ -325,17 +328,18 @@
     // dots
     const nx = phase === 'play' ? done + 1 : -1;
     const pulse = 0.5 + 0.5 * Math.sin(t / 220);
-    const hint = hintAt && t - hintAt < 1600 ? 1 - (t - hintAt) / 1600 : 0;
+    const hint = hintAt && t - hintAt < 4000 ? 1 - (t - hintAt) / 4000 : 0;
+    const showTarget = done < 0 || hint > 0;
     pts.forEach((p, i) => {
-      if (i === nx) {
+      if (i === nx && showTarget) {
         ctx.beginPath();
         ctx.arc(p.x, p.y, r * (2.1 + pulse * 0.7 + hint * 1.6), 0, Math.PI * 2);
         ctx.fillStyle = 'rgba(63, 209, 107, ' + (0.18 + hint * 0.25) + ')';
         ctx.fill();
       }
       ctx.beginPath();
-      ctx.arc(p.x, p.y, i === nx ? r * 1.45 : i <= done ? r * 0.8 : r, 0, Math.PI * 2);
-      ctx.fillStyle = i === nx ? LEAF : i <= done ? INK : '#fff';
+      ctx.arc(p.x, p.y, i === nx && showTarget ? r * 1.45 : i <= done ? r * 0.8 : r, 0, Math.PI * 2);
+      ctx.fillStyle = i === nx && showTarget ? LEAF : i <= done ? INK : '#fff';
       ctx.fill();
       if (i > done) {
         ctx.lineWidth = 2.6 * dpr;
@@ -349,7 +353,7 @@
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       pts.forEach((p, i) => {
-        const big = i === nx;
+        const big = i === nx && showTarget;
         const size = big ? fs * 1.3 : fs;
         ctx.font = '700 ' + Math.round(size) + 'px Andika, "Baloo 2", sans-serif';
         ctx.globalAlpha = i <= done ? 0.35 : 1;
@@ -495,15 +499,7 @@
     playEl.classList.add('is-end');
   }
 
-  function armIdle() {
-    clearTimeout(idle);
-    if (phase !== 'play') return;
-    idle = setTimeout(() => {
-      if (!active || view !== 'play' || phase !== 'play') return;
-      hintAt = performance.now();
-      armIdle();
-    }, 5000);
-  }
+  function armIdle() { clearTimeout(idle); }
 
   function onResize() {
     if (active && view === 'play') layout();
@@ -540,7 +536,8 @@
 
       nextEl = h('div', { class: 'pp-next' });
       barEl = h('div', { class: 'pp-bar' }, h('i'));
-      const live = h('div', { class: 'pp-live' }, h('div', { class: 'pp-next-wrap' }, h('span', { class: 'pp-finger', text: '👆' }), nextEl), barEl);
+      const help = FK.ui.btn({icon:'star',label:'Tipp',title:'Nächsten Punkt zeigen',onClick:()=>{if(phase!=='play')return;hintAt=performance.now();nextEl.textContent=String(Math.min(done+2,cur.points.length));clearTimeout(hintTimer);const my=token;hintTimer=setTimeout(()=>{if(my===token&&phase==='play')nextEl.textContent=done<0?'1':'?';},4000);FK.play.speak('Suche die Zahl '+Math.min(done+2,cur.points.length)+'.');}});
+      const live = h('div', { class: 'pp-live' }, h('p',{class:'play-instruction',text:'Welche Zahl kommt jetzt?'}), h('div', { class: 'pp-next-wrap' }, h('span', { class: 'pp-finger', text: '👆' }), nextEl), barEl, help);
       endEl = h('div', { class: 'pp-end' });
       sideEl = h('div', { class: 'pp-side' }, live, endEl);
       playEl = h('div', { class: 'pp-play', hidden: true }, paperEl, sideEl);

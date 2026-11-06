@@ -1,37 +1,55 @@
-/* Pictured, guided practice collections. The full original library stays linked. */
+/* The single games library: the same neighbours, stars and return path as the forest. */
 (function () {
   'use strict';
   const FK = window.FK, h = FK.h, art = FK.forestArt, model = FK.forestState, story = FK.forestStory;
-  let root, body, resident = 'beaver';
-  function say() { FK.forestVoice.say('Wähle einen Freund. Dann ein Waldspiel. Mit dem Fuchs gehst du zurück in den Wald.'); }
-  const button = (label, children, fn, cls = '') => h('button', { type: 'button', class: 'forest-button ' + cls, 'aria-label': label, onclick: fn }, children);
+  let body, resident = 'all';
+  const button = (label, children, fn, cls = '') => h('button', { type:'button', class:'forest-button ' + cls, 'aria-label':label, onclick:fn }, children);
+  function launch(screen, game) { FK.sound.tick(); FK.go(screen, { game, lvl:FK.learning.stage(), stage:FK.learning.stage(), level:FK.learning.stage() }); }
+  function card(screen, game, id = game.id) {
+    const earned = FK.progress.isDone(screen, id + ':' + FK.learning.stage()) || (id==='add' && FK.progress.isDone('expedition','tricks:'+FK.learning.stage()));
+    const b = button(game.title, h('span', {}, FK.play.picture(game.emoji), h('b', {text:game.title}),
+      h('small', {text:game.sub?.[FK.learning.stage()-1] || ''}), earned ? h('span', {class:'play-earned',text:'⭐'}) : null), () => launch(screen, id), 'forest-book-game');
+    b.dataset.game = id; return b;
+  }
   function draw() {
-    const tabs = h('nav', { class: 'forest-book-neighbours', 'aria-label': 'Mit wem möchtest du spielen?' });
-    for (const id of Object.keys(story.names).filter(model.residentAvailable)) {
-      const b = button('Mit ' + story.names[id] + ' spielen', art.character(id), () => { resident = id; draw(); FK.sound.tick(); }, 'forest-book-neighbour');
+    const tabs = h('nav', {class:'forest-book-neighbours', 'aria-label':'Spiele mit deinen Waldfreunden'});
+    for (const [id, label] of Object.entries({all:'Alle',...story.names, atelier:'Malatelier'})) {
+      const b = button(id === 'all' ? 'Alle Waldspiele' : id === 'atelier' ? label : 'Mit '+label+' spielen', h('span', {}, id === 'all' ? art.icon('book') : id === 'atelier' ? FK.visual.art('painting') : art.character(id), h('small', {text:label})), () => { resident=id; draw(); }, 'forest-book-neighbour');
       b.setAttribute('aria-pressed', String(id === resident)); tabs.append(b);
     }
-    const games = h('div', { class: 'forest-book-games' });
-    for (const pack of story.collections[resident]) {
-      const a = model.getActivity(pack.id), resume = a && !a.finished;
-      games.append(button(pack.title + (resume ? ' fortsetzen' : ' spielen'), h('span', {}, art.practice(pack.game, resident),
-        h('b', { text: pack.title }), h('span', { class: 'forest-book-card-action' }, art.icon(resume ? 'paw' : 'play'))), () => {
-        if (model.startPractice(pack.game, resident)) FK.forestActivity.launch(pack.id);
-      }, 'forest-book-game'));
+    const levels = h('div', {class:'island-levels', role:'group', 'aria-label':'Spielstufe wählen'});
+    FK.learning.stages.forEach((label,i) => levels.append(h('button', {type:'button',class:'island-level'+(FK.learning.stage()===i+1?' selected':''), 'aria-pressed':String(FK.learning.stage()===i+1), onclick:() => {FK.settings.set('learning.stage',i+1); draw();}}, h('b',{text:label}),h('span',{text:'Stufe '+(i+1)}))));
+    const games = h('div', {class:'forest-book-games'});
+    const visible = id => resident === 'all' || FK.play.friends[id] === resident;
+    for (const [screen, entries] of [['learn',FK.learning.games],['adventure',FK.adventures.games],['expedition',FK.expeditions.games.filter(g=>g.id!=='tricks')]]) {
+      entries.filter(g=>visible(g.id)).forEach(g=>games.append(card(screen,g)));
     }
-    body.replaceChildren(h('div', { class: 'woodland-book-cover' }, FK.woodland.vignette(resident), h('h2', { text: 'Gemeinsam entdecken' })), tabs, games,
-      button('Alle Spiele öffnen', h('span', {}, art.icon('book'), h('span', { text: 'Alle Spiele' })), () => FK.go('hub'), 'forest-book-all'));
+    [['read','Leseschatz','📖'],['trace','Schreibspuren','✏️'],['dots','Zahlenwege','🔢']].forEach(([id,title,emoji])=>{
+      if(visible(id)) games.append(card(id,{id,title,emoji,sub:['Entdecken','Üben','Knobeln']}));
+    });
+    if(resident === 'all' || resident === 'atelier') {
+      [['book','Ausmalen','🎨'],['free','Freies Malen','🖐️'],['gallery','Meine Bilder','🖼️'],['album','Waldalbum','⭐']].forEach(([id,title,emoji])=>games.append(card(id,{id,title,emoji})));
+    }
+    const guided = h('div', {class:'forest-book-games forest-guided-games'});
+    if (story.collections[resident] && model.residentAvailable(resident)) {
+      for(const pack of story.collections[resident]) guided.append(button(pack.title+' spielen', h('span',{},art.practice(pack.game,resident),h('b',{text:pack.title})),()=>{
+        if(model.startPractice(pack.game,resident)) FK.forestActivity.launch(pack.id);
+      },'forest-book-game'));
+    }
+    body.replaceChildren(h('section',{class:'play-library-intro'},art.character(resident === 'all' || resident === 'atelier'?'fox':resident),
+      h('div',{},h('h2',{text:resident==='all'?'Ein Wald voller Spiele':resident==='atelier'?'Dein Malatelier':'Spielen mit '+story.names[resident]}),h('p',{text:'Spielen. Helfen. Freunde finden.'}))),
+      tabs, levels, games, guided.childElementCount ? h('h3',{text:'Noch mehr mit '+story.names[resident]}) : null, guided);
   }
   FK.screen('forest-book', {
-    build(element) {
-      root = element; root.classList.add('forest-activity');
-      const bar = FK.ui.topbar({ title: 'Waldspiele', onBack: () => FK.go('forest') });
-      const back = bar.querySelector('.btn-back'); back.replaceChildren(art.character('fox')); back.setAttribute('aria-label', 'Zurück zum Wald');
-      bar.append(button('Nochmals hören', art.icon('speaker'), say, 'forest-round'));
-      bar.append(FK.timerUI.launcher());
-      body = h('div', { class: 'forest-book-body scroll' }); root.append(bar, body);
+    build(root) {
+      root.classList.add('forest-activity');
+      const bar = FK.ui.topbar({title:'Waldspiele',onBack:()=>FK.go('forest')});
+      const back = bar.querySelector('.btn-back'); back.replaceChildren(art.character('fox')); back.setAttribute('aria-label','Zurück zum Wald');
+      bar.append(FK.play.listen(sayText,'Spielebuch erklären'), FK.timerUI.launcher(), FK.ui.settingsButton());
+      body = h('div',{class:'forest-book-body scroll'}); root.append(bar,body);
     },
-    enter(params) { FK.forestActivity.recoverRewards(); if (model.residentAvailable(params.resident)) resident = params.resident; if (!model.residentAvailable(resident)) resident = 'beaver'; draw(); say(); },
+    enter(params) { FK.forestActivity.recoverRewards(); if(params.resident && story.names[params.resident]) resident=params.resident; draw(); },
     leave() { FK.forestVoice.cancel(); },
   });
+  function sayText() { return 'Wähle ein Waldspiel. Oder wähle oben einen Freund. Alle Stufen sind offen. Mit dem Fuchs geht es zurück in den Wald.'; }
 })();
