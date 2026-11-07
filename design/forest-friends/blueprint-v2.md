@@ -27,7 +27,7 @@ The English competency names are game categories, not official Lehrplan titles. 
 | Numbers and arithmetic | MA.1.A.1–4, Zahl und Variable | Count, compare, order, decompose, add and subtract with visible number structures. Use a proposed core range up to 20; equal sharing and doubling remain concrete actions, not formal multiplication/division requirements. |
 | Speech sounds and phonological awareness | D.1.A.1.b/d, Hören | Hear rhymes, syllables and initial sounds; identify sounds in spoken words. Supply audio so reading is not required to solve a listening task. |
 | Reading and writing | D.2.A.1.a–c; D.4.A.1, Grundfertigkeiten | Connect letters and sounds, combine syllables, read familiar short words and simple sentences, and practise individual letter forms. Select letters and vocabulary to match introduced classroom content; use unjoined Deutschschweizer Basisschrift for writing models. |
-| Memory and sequencing | Supporting skill; D.1 listening comprehension for narrated sequences, D.2 reading comprehension for written sequences | Owl tasks must involve understanding a short spoken or readable sequence, recalling relevant details or ordering meaningful story events. Object-location memory alone is optional enrichment, not evidence of literacy attainment. Record the specific subject competency and step for each task variant. |
+| Memory and sequencing | Supporting skill; D.1 listening comprehension for narrated sequences, D.2 reading comprehension for written sequences | Waldkauz tasks must involve understanding a short spoken or readable sequence, recalling relevant details or ordering meaningful story events. Object-location memory alone is optional enrichment, not evidence of literacy attainment. Record the specific subject competency and step for each task variant. |
 | Patterns and logical reasoning | MA.2.A.2, Form und Raum | Recognise, continue and create simple visual patterns. Explain or demonstrate the repeating rule rather than reward guessing. |
 | Geometry and spatial reasoning | MA.2.A.1–2; MA.2.C, Form und Raum | Recognise basic shapes, combine pieces, follow spatial directions and explore simple reflections. Specify the exact competency and step for construction and route variants before implementation. |
 | Data and representations | MA.3.C.1, Grössen, Funktionen, Daten und Zufall | Collect and organise small counts and read simple picture representations. Confirm the chosen representation and competency step suit first grade. |
@@ -49,7 +49,7 @@ Official sources, checked on 7 November 2026:
 
 The fox lives in a den beneath the large tree at the centre of the world. The game starts inside the den: this is the playable home and main menu. Here the fox can play games, eat, sleep, arrange furniture, drink and go outside.
 
-Outside is a freely explorable forest full of friends. Each friend has a personality, a learning competency and a reason to need help. Each visit offers a fresh puzzle from the shared catalogue for that friend's assigned competency. Characters with the same competency offer the same set of puzzle types, with story details adapted to their personalities. Friends give characteristic resources as thanks: Squirrel gives nuts, Beaver gives logs, and Fish gives fish tokens.
+Outside is a freely explorable forest full of friends. Each friend has a personality, a learning competency and a reason to need help. Each visit offers a fresh puzzle from the shared catalogue for that friend's assigned competency. Characters with the same competency offer the same set of puzzle types, with story details adapted to their personalities. Friends give characteristic resources as thanks: Eichhörnchen gives nuts, Biber gives logs, and Fisch gives fish tokens.
 
 1. Start or resume in the fox's furnished den.
 2. Go outside and choose a friend to visit.
@@ -69,25 +69,27 @@ Click or tap a destination to walk there. A picture map lets the child choose a 
 
 ## 4. Characters, appearance and competencies
 
+Use Swiss Standard German character names throughout the game and this blueprint: Fuchs, Waldkauz, Eichhörnchen, Blaumeise, Maus, Biber, Hase, Igel, Reh, Fisch and Eisvogel. English species descriptions remain explanatory text.
+
 Each character needs an expressive, articulated 3D model, a consistent portrait, readable silhouette, idle and interaction animations, and a clear personality. Use warm stylised woodland animals and carry their colours and features into puzzle illustrations.
 
 The following locations, rewards and assignments are proposals where the earlier outline left them open. Resource amounts and prices remain to be balanced.
 
 | Character | Species | Place | 3D appearance | Personality and relationship | Assigned competency | Reward |
 | --- | --- | --- | --- | --- | --- | --- |
-| Fox | Red fox (*Vulpes vulpes*) | Central tree den | Small orange fox, cream muzzle, bushy tail, green neckerchief | Curious and friendly; visits neighbours and makes a home | Creative expression and fine motor skills | Collects and spends resources |
-| Owl | Tawny owl (*Strix aluco*) | Story hollow | Rounded brown owl, large expressive eyes, soft feathers and tilting head | Old, thoughtful storyteller; gets confused, mixes things up and loses belongings; welcomes patient help | Memory and sequencing | Feathers |
-| Squirrel | Eurasian red squirrel (*Sciurus vulgaris*) | Nut tree | Rust-red fur, tufted ears, large curling tail | Plans ahead and wants enough nuts stored for winter | Numbers and arithmetic | Nuts |
-| Blue tit | Eurasian blue tit (*Cyanistes caeruleus*) | Singing tree | Small blue-and-yellow bird with lively head and wing movements | Musical and sociable; needs rhymes for new songs | Speech sounds and phonological awareness | Seeds |
-| Mouse | Wood mouse (*Apodemus sylvaticus*) | Reading nook | Small brown mouse, cream belly, large ears | Eager but unsure; wants to learn letters, syllables and reading with the fox | Reading and writing | Berries |
-| Beaver | Eurasian beaver (*Castor fiber*) | Brook | Sturdy brown body, broad flat tail, visible front teeth | Practical and affectionate; misses Hare across the broken bridge | Geometry and spatial reasoning | Logs |
-| Hare | European hare (*Lepus europaeus*) | Meadow garden | Long ears, long hind legs, warm brown coat | Energetic and welcoming; wants to visit neighbours and invite everyone together | Numbers and arithmetic | Carrots |
-| Hedgehog | European hedgehog (*Erinaceus europaeus*) | Moss grove | Rounded spiny back, soft face, small careful steps | Gentle and observant; needs a comfortable resting place and company | Nature and classification | Mushrooms |
-| Roe deer | European roe deer (*Capreolus capreolus*) | Woodland edge | Slender legs, large ears, warm brown coat | Attentive and calm; notices changes and helps care for the forest | Nature and classification | Leaves |
-| Fish | Brown trout (*Salmo trutta*) | Pond | Spotted body, moving fins, clear underwater silhouette | Playful collector; enjoys arranging pond treasures | Geometry and spatial reasoning | Fish tokens |
-| Kingfisher | Common kingfisher (*Alcedo atthis*) | Reed pond | Bright blue back, orange breast, long beak | Curious and attentive; wants to share the water's view and connect its paths | Geometry and spatial reasoning | Pebbles |
+| Fuchs | Red fox (*Vulpes vulpes*) | Central tree den | Small orange fox, cream muzzle, bushy tail, green neckerchief | Curious and friendly; visits neighbours and makes a home | Creative expression and fine motor skills | Collects and spends resources |
+| Waldkauz | Tawny owl (*Strix aluco*) | Story hollow | Rounded brown owl, large expressive eyes, soft feathers and tilting head | Old, thoughtful storyteller; gets confused, mixes things up and loses belongings; welcomes patient help | Memory and sequencing | Feathers |
+| Eichhörnchen | Eurasian red squirrel (*Sciurus vulgaris*) | Nut tree | Rust-red fur, tufted ears, large curling tail | Plans ahead and wants enough nuts stored for winter | Numbers and arithmetic | Nuts |
+| Blaumeise | Eurasian blue tit (*Cyanistes caeruleus*) | Singing tree | Small blue-and-yellow bird with lively head and wing movements | Musical and sociable; needs rhymes for new songs | Speech sounds and phonological awareness | Seeds |
+| Maus | Wood mouse (*Apodemus sylvaticus*) | Reading nook | Small brown mouse, cream belly, large ears | Eager but unsure; wants to learn letters, syllables and reading with the fox | Reading and writing | Berries |
+| Biber | Eurasian beaver (*Castor fiber*) | Brook | Sturdy brown body, broad flat tail, visible front teeth | Practical and affectionate; misses Hase across the broken bridge | Geometry and spatial reasoning | Logs |
+| Hase | European hare (*Lepus europaeus*) | Meadow garden | Long ears, long hind legs, warm brown coat | Energetic and welcoming; wants to visit neighbours and invite everyone together | Numbers and arithmetic | Carrots |
+| Igel | European hedgehog (*Erinaceus europaeus*) | Moss grove | Rounded spiny back, soft face, small careful steps | Gentle and observant; needs a comfortable resting place and company | Nature and classification | Mushrooms |
+| Reh | European roe deer (*Capreolus capreolus*) | Woodland edge | Slender legs, large ears, warm brown coat | Attentive and calm; notices changes and helps care for the forest | Nature and classification | Leaves |
+| Fisch | Brown trout (*Salmo trutta*) | Pond | Spotted body, moving fins, clear underwater silhouette | Playful collector; enjoys arranging pond treasures | Geometry and spatial reasoning | Fish tokens |
+| Eisvogel | Common kingfisher (*Alcedo atthis*) | Reed pond | Bright blue back, orange breast, long beak | Curious and attentive; wants to share the water's view and connect its paths | Geometry and spatial reasoning | Pebbles |
 
-Fish tokens represent a game resource; the story should make clear how Fish gives them to the fox.
+Fish tokens represent a game resource; the story should make clear how Fisch gives them to the fox.
 
 ## 5. Competencies and puzzle catalogue
 
@@ -192,7 +194,7 @@ This introduces local gameplay logging beyond the current checkout's stated no-t
 
 ## 11. First playable version and checks
 
-Build the den, a small explorable forest, the shop and four friends first: Squirrel, Blue tit, Owl and Beaver. Include at least one puzzle type from each of their assigned competencies, one difficulty level, fresh repeat visits, resource rewards, at least one purchasable furnishing and one consumable reward. The competency determines the available puzzle set for every character who shares it. Add Mouse and the remaining neighbours as further game families are ready.
+Build the den, a small explorable forest, the shop and four friends first: Eichhörnchen, Blaumeise, Waldkauz and Biber. Include at least one puzzle type from each of their assigned competencies, one difficulty level, fresh repeat visits, resource rewards, at least one purchasable furnishing and one consumable reward. The competency determines the available puzzle set for every character who shares it. Add Maus and the remaining neighbours as further game families are ready.
 
 The first version is ready to review when:
 
@@ -232,7 +234,7 @@ Complete the following in order before full development. The blueprint is a desi
 | 3. Confirm cast and shared competencies | Approve character personalities, appearances, assigned competencies, resources and story reasons for helping. Decide which neighbours share puzzle sets and who runs the shop. | A final cast sheet and an explicit character-to-competency mapping. Keep unassigned competencies visible in the backlog. |
 | 4. Storyboard the first session | Draw the flow from waking in the den through leaving, meeting a friend, learning a puzzle, earning a reward, buying an item and returning home. Include mistakes, help, leaving and returning. | A short picture storyboard that a child can follow with little reading, plus draft Swiss Standard German dialogue and speech. |
 | 5. Sketch the world and controls | Map the first playable forest, paths, landmarks, entrances and camera behaviour. Use Emberwick to discuss movement feel. Sketch the den, map, puzzle screen, wallet, shop and adult settings. | An annotated world map and screen wireframes, including touch targets, route guidance and transitions. |
-| 6. Set the visual and audio direction | Make a character reference sheet, starting with Fox and Owl, and one representative forest/den scene. Define model proportions, animation needs, puzzle illustration style, music and ambience. | A small approved reference pack and asset list for the first playable version. |
+| 6. Set the visual and audio direction | Make a character reference sheet, starting with Fuchs and Waldkauz, and one representative forest/den scene. Define model proportions, animation needs, puzzle illustration style, music and ambience. | A small approved reference pack and asset list for the first playable version. |
 | 7. Balance the reward loop | Choose initial rewards, wallet icons, furniture and consumables. Work through sample purchases and repeat visits. Define ownership, consumption and placement rules. | A price/reward table showing how many rounds a first furnishing needs, with no forced upkeep or difficulty multiplier. |
 | 8. Specify persistence and logging | List saved states, migration expectations, interrupted-puzzle behaviour, purchase/reward consistency and development skips. Define log events, sample export, retention and adult controls. | A save-state checklist and sample anonymous log export covering success, mistakes, pauses, refreshes and skips. |
 | 9. Review with children and a teacher | Walk through the storyboard or a small disposable interaction mockup. Observe navigation, instruction comprehension, puzzle relevance and reward understanding. | Recorded findings, agreed revisions and resolved blockers. Use this review to refine design before expanding the world. |
@@ -240,7 +242,7 @@ Complete the following in order before full development. The blueprint is a desi
 
 ### Recommended first design deliverable
 
-Start with the curriculum matrix and four complete puzzle specifications: Squirrel's counting, Blue tit's rhymes, Owl's meaningful story sequencing and Beaver's shape construction. These test different interactions and the core character-to-competency model. Add a Mouse reading specification early so literacy beyond rhyming is designed before the wider game is built.
+Start with the curriculum matrix and four complete puzzle specifications: Eichhörnchen's counting, Blaumeise's rhymes, Waldkauz's meaningful story sequencing and Biber's shape construction. These test different interactions and the core character-to-competency model. Add a Maus reading specification early so literacy beyond rhyming is designed before the wider game is built.
 
 ### Handoff to development
 
