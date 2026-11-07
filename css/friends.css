@@ -54,14 +54,14 @@
 .ff-hotspots{position:absolute;inset:0;pointer-events:none;z-index:2}
 .ff-hotspot{position:absolute;transform:translate(-50%,-100%);pointer-events:auto;border-radius:50%;width:70px;height:70px;padding:6px;
   border:3px solid #fff;background:radial-gradient(circle at 35% 30%,#fffdf5 0%,#fbecc9 60%,#f0d7a4 100%);
-  box-shadow:0 4px 0 #8a6136aa,0 10px 20px #2e21103d;animation:ff-bob 2.8s ease-in-out infinite;transition:scale .18s cubic-bezier(.3,1.6,.5,1)}
-.ff-hotspot:nth-child(2n){animation-delay:-.9s}.ff-hotspot:nth-child(3n){animation-delay:-1.7s}
+  box-shadow:0 4px 0 #8a6136aa,0 10px 20px #2e21103d;transition:scale .18s cubic-bezier(.3,1.6,.5,1)}
+.ff-hotspot:nth-child(2n) .ff-picture,.ff-hotspot:nth-child(2n)::before{animation-delay:-.9s}.ff-hotspot:nth-child(3n) .ff-picture,.ff-hotspot:nth-child(3n)::before{animation-delay:-1.7s}
 .ff-hotspot::before{content:'';position:absolute;inset:-9px;border-radius:50%;border:3px solid #fff8;animation:ff-ring 2.8s ease-out infinite;pointer-events:none}
 .ff-hotspot::after{content:'';position:absolute;bottom:-12px;left:50%;margin-left:-9px;border-left:9px solid transparent;border-right:9px solid transparent;border-top:12px solid #fff;filter:drop-shadow(0 3px 0 #8a613666)}
-.ff-hotspot .ff-picture{width:50px;height:50px}
-@media(hover:hover){.ff-hotspot:hover{scale:1.1;animation-play-state:paused}}
+.ff-hotspot .ff-picture{width:50px;height:50px;animation:ff-bob 2.8s ease-in-out infinite}
+@media(hover:hover){.ff-hotspot:hover{scale:1.1}}
 .ff-hotspot:active{transform:translate(-50%,-97%);scale:.96}
-@keyframes ff-bob{0%,100%{translate:0 0}50%{translate:0 -6px}}
+@keyframes ff-bob{0%,100%{translate:0 1px}50%{translate:0 -3px}}
 @keyframes ff-ring{0%{opacity:.9;scale:.85}70%,100%{opacity:0;scale:1.25}}
 
 /* Narration: a parchment speech ribbon along the bottom. */
@@ -116,7 +116,7 @@
 .ff-target{font:700 clamp(30px,4.8vw,48px)/1.45 Andika,sans-serif;color:var(--ink);white-space:normal;letter-spacing:.01em;text-shadow:0 2px 0 #fff}
 .ff-task-scene>.ff-picture{width:130px;height:130px}
 .ff-count{display:grid;grid-template-columns:repeat(5,56px);gap:8px;align-content:center;min-height:210px;max-width:450px}
-.ff-count .ff-picture{width:56px;height:56px;animation:ff-drop .5s cubic-bezier(.2,1.5,.4,1) backwards}
+.ff-task-scene.ff-count>.ff-picture{width:56px;height:56px;animation:ff-drop .5s cubic-bezier(.2,1.5,.4,1) backwards}
 .ff-count .ff-picture:nth-child(5n+2){animation-delay:.04s}.ff-count .ff-picture:nth-child(5n+3){animation-delay:.08s}.ff-count .ff-picture:nth-child(5n+4){animation-delay:.12s}.ff-count .ff-picture:nth-child(5n){animation-delay:.16s}
 @keyframes ff-drop{0%{opacity:0;translate:0 -14px}100%{opacity:1;translate:0 0}}
 .ff-empty-basket{grid-column:1/-1;width:220px;justify-self:center}
@@ -138,9 +138,9 @@
 @keyframes ff-wiggle{20%{rotate:-4deg}40%{rotate:3deg}60%{rotate:-2deg}80%{rotate:1deg}}
 .ff-feedback{height:46px;margin-top:14px}
 .ff-feedback .ff-picture{width:46px;height:46px;animation:ff-pop-in .5s cubic-bezier(.2,1.8,.4,1)}
-.ff-feedback[data-correct=true]{position:relative}
+.ff-feedback[data-correct=true]{position:relative;isolation:isolate}
 .ff-feedback[data-correct=true]::before{content:'';position:absolute;left:50%;top:50%;width:120px;height:120px;margin:-60px;border-radius:50%;
-  background:radial-gradient(circle,#ffe58f88 0%,transparent 70%);animation:ff-burst .9s ease-out forwards;pointer-events:none}
+  background:radial-gradient(circle,#ffe58f88 0%,transparent 70%);animation:ff-burst .9s ease-out forwards;pointer-events:none;z-index:-1}
 @keyframes ff-burst{0%{scale:.2;opacity:1}100%{scale:1.6;opacity:0}}
 .ff-word-audio{display:flex;justify-content:center;gap:22px;margin-top:6px}
 .ff-word-audio>div{display:flex;gap:7px;align-items:center;font-size:18px;padding:4px 6px 4px 14px;border-radius:30px;background:#f5e6c7aa}
@@ -170,10 +170,10 @@
 .ff-wallet b{font:800 24px/1 'Baloo 2',Andika,sans-serif;color:var(--wood-deep);padding-top:3px}
 
 /* Reward: tokens travel into the bag under a slow sunburst. */
-.ff-reward{position:relative;display:flex;justify-content:center;align-items:center;gap:24px;min-height:220px}
+.ff-reward{position:relative;isolation:isolate;display:flex;justify-content:center;align-items:center;gap:24px;min-height:220px}
 .ff-reward::before{content:'';position:absolute;left:50%;top:50%;width:420px;height:420px;margin:-210px;border-radius:50%;pointer-events:none;
   background:repeating-conic-gradient(from 0deg,#ffe28f44 0 10deg,transparent 10deg 22deg);
-  -webkit-mask:radial-gradient(circle,#000 25%,transparent 68%);mask:radial-gradient(circle,#000 25%,transparent 68%);animation:ff-spin 24s linear infinite}
+  -webkit-mask:radial-gradient(circle,#000 25%,transparent 68%);mask:radial-gradient(circle,#000 25%,transparent 68%);animation:ff-spin 24s linear infinite;z-index:-1}
 @keyframes ff-spin{to{rotate:360deg}}
 .ff-reward>.ff-picture{width:125px;height:145px}
 .ff-flying-tokens{display:flex;gap:8px;animation:ff-transfer 1.8s ease-in-out 2}
@@ -262,7 +262,7 @@
   .ff-progress .ff-picture{width:18px;height:18px}
   .ff-task-scene{min-height:160px;padding:10px;margin-bottom:14px;border-radius:22px}
   .ff-count{grid-template-columns:repeat(5,45px);gap:4px;min-height:170px}
-  .ff-count .ff-picture{width:45px;height:45px}
+  .ff-task-scene.ff-count>.ff-picture{width:45px;height:45px}
   .ff-answer{width:calc((100% - 20px)/3);min-width:85px;min-height:110px;padding:6px;border-radius:20px}
   .ff-answer>.ff-picture{width:76px;height:76px}
   .ff-choices{gap:9px;flex-wrap:nowrap}
@@ -309,7 +309,7 @@
   .ff-card{padding:10px 20px}
   .ff-task-scene{min-height:110px;margin:5px auto}
   .ff-count{grid-template-columns:repeat(10,35px)}
-  .ff-count .ff-picture{width:35px;height:35px}
+  .ff-task-scene.ff-count>.ff-picture{width:35px;height:35px}
   .ff-answer{min-height:90px}
   .ff-answer>.ff-picture{width:60px;height:60px}
   .ff-task-scene>.ff-picture{width:65px;height:65px}

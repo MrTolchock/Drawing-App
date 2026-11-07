@@ -37,6 +37,24 @@ export function createWorld(canvas,{position,onPosition,onNear,onAction,onMove,o
   for(let i=0;i<8;i++)block(forest,13.7+i*.38,.12,8, .34,.18,3.5,woodLight);
   const ripples=[];for(let i=0;i<10;i++){const m=new THREE.Mesh(new THREE.TorusGeometry(.3+rng()*.4,.015,4,22),paint('#d9e6ca'));m.rotation.x=Math.PI/2;m.position.set(14+rng()*2,.05,-15+rng()*30);forest.add(m);ripples.push(m);}
   for(let i=0;i<70;i++){const a=rng()*Math.PI*2,r=17+rng()*6,x=Math.cos(a)*r,z=Math.sin(a)*r;blob(forest,x,.12,z,.18,.13,.18,i%3?green:paint('#e3ca80'));}
+  // Meadow dressing: instanced flowers, grass tufts and mushrooms. Decorative only; never solid or pickable.
+  function meadow(geo,mat,count,place){const m=new THREE.InstancedMesh(geo,mat,count),o=new THREE.Object3D(),c=new THREE.Color();for(let i=0;i<count;i++){o.position.set(0,0,0);o.rotation.set(0,0,0);o.scale.set(1,1,1);if(place(i,o,c))m.setColorAt(i,c);o.updateMatrix();m.setMatrixAt(i,o.matrix);}m.castShadow=m.receiveShadow=true;forest.add(m);return m;}
+  const open=(x,z)=>Object.values(places).every(p=>Math.hypot(x-p.x,z-p.z)>2.7)&&Math.abs(x-15+z*.12)>2.8&&Math.hypot(x,z+1)>3.4&&Math.hypot(x-9,z)>2.6;
+  const spots=[];for(let i=0;i<400&&spots.length<46;i++){const x=-19+rng()*33,z=-17+rng()*35;if(open(x,z))spots.push([x,z,rng()]);}
+  const blooms=spots.flatMap(([x,z,k],i)=>[0,1,2].map(j=>[x+Math.cos(j*2.1+k*6)*.38,z+Math.sin(j*2.1+k*6)*.38,i]));
+  const bloomColors=['#f4c84a','#ef9787','#fbf4e4','#b7a3e3','#f6a6c1'];
+  meadow(new THREE.SphereGeometry(.2,9,6),paint('#ffffff'),blooms.length,(i,o,c)=>{const [x,z,g]=blooms[i];o.position.set(x,.36+(i%3)*.05,z);o.scale.set(1,.5,1);c.set(bloomColors[g%bloomColors.length]);return true;});
+  meadow(new THREE.SphereGeometry(.08,6,4),paint('#ffffff'),blooms.length,(i,o,c)=>{const [x,z]=blooms[i];o.position.set(x,.43+(i%3)*.05,z);c.set('#e8a03a');return true;});
+  meadow(new THREE.CylinderGeometry(.03,.04,.36,5),paint('#5f8a44'),blooms.length,(i,o)=>{const [x,z]=blooms[i];o.position.set(x,.18,z);});
+  const tufts=[];for(let i=0;i<500&&tufts.length<110;i++){const x=-20+rng()*36,z=-18+rng()*37;if(open(x,z))tufts.push([x,z,rng()]);}
+  meadow(new THREE.ConeGeometry(.16,.7,4),paint('#ffffff'),tufts.length*3,(i,o,c)=>{const [x,z,k]=tufts[Math.floor(i/3)],j=i%3;o.position.set(x+(j-1)*.14,.3,z+(j===1?.08:0));o.rotation.set(0,k*3,(j-1)*.35);o.scale.set(1,.8+k*.5,1);c.set(j===1?'#7ea052':'#97b565');return true;});
+  const caps=[[-14.6,3.2],[-9.8,-4.6],[3.2,-14.8],[-10.2,13.6],[13.4,13.2],[-2.4,-3.4],[2.6,-2.6],[18.4,-2.2]];
+  meadow(new THREE.SphereGeometry(.34,12,8,0,Math.PI*2,0,Math.PI/2),paint('#ffffff'),caps.length,(i,o,c)=>{o.position.set(caps[i][0],.42,caps[i][1]);o.scale.set(1,.75,1);c.set(i%3?'#c9573f':'#d9a35a');return true;});
+  meadow(new THREE.CylinderGeometry(.11,.14,.44,8),paint('#f3e6c8'),caps.length,(i,o)=>{o.position.set(caps[i][0],.22,caps[i][1]);});
+  // Drifting pollen motes catch the light above the clearing.
+  const moteCanvas=document.createElement('canvas');moteCanvas.width=moteCanvas.height=32;{const g=moteCanvas.getContext('2d'),r=g.createRadialGradient(16,16,0,16,16,16);r.addColorStop(0,'#fffbe6');r.addColorStop(.35,'#fff1b8cc');r.addColorStop(1,'#fff1b800');g.fillStyle=r;g.fillRect(0,0,32,32);}
+  const moteGeo=new THREE.BufferGeometry(),motePos=new Float32Array(90*3);for(let i=0;i<90;i++){motePos.set([-20+rng()*38,.6+rng()*4.5,-18+rng()*36],i*3);}moteGeo.setAttribute('position',new THREE.BufferAttribute(motePos,3));
+  const motes=new THREE.Points(moteGeo,new THREE.PointsMaterial({size:.32,map:new THREE.CanvasTexture(moteCanvas),transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,opacity:.85}));forest.add(motes);
   function doorway(parent,x,z,id){
     const frame=new THREE.Mesh(new THREE.TorusGeometry(1.05,.2,8,28,Math.PI),woodLight);frame.position.set(x,1.2,z);parent.add(frame);
     block(parent,x-1.05,.6,z,.35,1.2,.35,woodLight);block(parent,x+1.05,.6,z,.35,1.2,.35,woodLight);
@@ -164,7 +182,7 @@ export function createWorld(canvas,{position,onPosition,onNear,onAction,onMove,o
     }
     for(const tree of occluders){const p=player.group.position,hidden=area==='forest'&&tree.position.z>p.z&&tree.position.z<p.z+16&&Math.abs(tree.position.x-p.x)<2.6;tree.traverse(o=>{if(o.isMesh){o.material.opacity=hidden?.25:1;o.material.depthWrite=!hidden;}});}
     if(marker.visible)marker.rotation.y=Math.atan2(player.group.position.x-marker.position.x,player.group.position.z-marker.position.z);
-    sway.forEach((m,i)=>{m.rotation.z=window.FK.reduced?0:Math.sin(time*.7+i)*.02;});ripples.forEach((m,i)=>{m.scale.setScalar(window.FK.reduced?1:1+Math.sin(time+i)*.12);});
+    sway.forEach((m,i)=>{m.rotation.z=window.FK.reduced?0:Math.sin(time*.7+i)*.02;});if(!window.FK.reduced){motes.position.y=Math.sin(time*.35)*.35;motes.rotation.y=time*.012;}ripples.forEach((m,i)=>{m.scale.setScalar(window.FK.reduced?1:1+Math.sin(time+i)*.12);});
     if(area==='forest'&&!anim){wanted.copy(player.group.position);wanted.y=1;focus.lerp(wanted,1-Math.exp(-dt*3));camera.position.copy(focus).add(cameraOffset);camera.lookAt(focus);}
     renderer.render(scene,camera);
     onProject((area==='forest'?hotspots:indoorHotspots[area]||[]).map(h=>({id:h.id,...project(h.point)})));
