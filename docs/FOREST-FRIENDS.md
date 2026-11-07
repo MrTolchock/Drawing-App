@@ -38,7 +38,9 @@ Concurrent tabs detect changes before committing and require reload instead of o
 
 ## Visual style
 
-The interface uses a storybook woodland style in `css/friends.css`: wooden-toy buttons, framed paper cards, floating hotspot pins with still tap targets, twig progress beads and cheer/wiggle answer feedback. Den and shop render on a transparent canvas over warm lantern-lit CSS backdrops (`data-area` on the game root). The forest adds instanced flowers, grass tufts, mushrooms and pollen motes; these are decorative, never solid and never pickable. All motion stops under reduced-motion settings.
+The den, forest and shop show the reviewed visualisation paintings full screen (`assets/forest-friends`, built by `tools/forest-friends-paint-assets.py` from the frozen design art, which is never modified). The painted fox is removed from the den and forest pictures. The playable fox and the owl are cut-out sprites from the character sheet (front, side, back and happy poses), composited by `js/friends/painted.js` with a fixed perspective lens matched to each painting's ground, so the fox walks only on painted dirt, shrinks into the distance and is never blocked by invisible geometry. The beaver has no painted art yet and uses its 3D model beside the bridge. On narrow screens the forest follows the fox; den and shop keep every target visible and fill spare edges with a blurred copy of the painting. Pins mark the painted friends, door, stall and goods; the picture map shows the painting.
+
+Controls follow the review's flat style: cream rounded tiles (speaker top-left; map, bag and adult settings top-right), frosted round pins and plain paper puzzle cards. Apple, bath and sleep use painted sprites and simple drawn props; nothing they show is saved. The earlier procedural 3D world remains available with `?world3d` and is unchanged; saves are shared and positions outside the painted paths fall back to the home door. All motion stops under reduced-motion settings.
 
 ## Audio, logs and development
 

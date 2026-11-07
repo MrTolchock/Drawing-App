@@ -328,8 +328,43 @@
 .ff-world.ff-painted{background-repeat:no-repeat}
 .ff-painted-fill{position:absolute;inset:-48px;z-index:-1;background:#7a4a2a center/cover no-repeat;filter:blur(26px) brightness(.72) saturate(1.1)}
 .ff-painted-game::after{display:none}
+.ff-painted-night{position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at 30% 60%,#1a2440 0%,#0e1428 100%);opacity:0;transition:opacity .9s ease}
+.ff-painted-night.on{opacity:.42}
 .ff-map.ff-map-painted{width:min(100%,calc(62vh*4/3));height:auto;aspect-ratio:4/3;margin:16px auto 4px;border-radius:26px;border:5px solid #fff6e3;box-shadow:0 0 0 3px #c9a46c,0 12px 26px #4a372040;background:url(../assets/forest-friends/forest.webp) center/cover}
 .ff-map.ff-map-painted .ff-button{width:66px;height:66px;transform:translate(-50%,-62%)}
 .ff-painted-game[data-area=shop] .ff-hotspot{width:96px;height:96px}
 .ff-painted-game[data-area=shop] .ff-hotspot .ff-picture{width:70px;height:70px}
+/* Visualisation theme: flat cream controls, frosted pins and plain paper cards, as in the design review. */
+.ff-button{border:1px solid #d0b38a;background:#fff6e6f2;box-shadow:0 2px 6px #5b3f2520}
+@media(hover:hover){.ff-button:not(:disabled):hover{background:#fffaf0;box-shadow:0 4px 12px #5b3f2526}}
+.ff-button:not(:disabled):active{box-shadow:0 1px 3px #5b3f2520}
+.ff-nav{background:none;border:0;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;padding:0;gap:12px}
+.ff-nav .ff-button{border-radius:21px;box-shadow:0 3px 10px #3a2a142e}
+.ff-nav .ff-button[aria-label="Anleitung wiederholen"]{position:fixed;left:max(16px,env(safe-area-inset-left));top:max(14px,env(safe-area-inset-top))}
+.ff-hotspot{border:2px solid #edcf97;background:#fff5dfe8;box-shadow:0 0 0 7px #fff8df45,0 6px 16px #302e1938;backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
+.ff-hotspot::after{display:none}
+.ff-hotspot::before{inset:-12px;border-width:2px;border-color:#fff8dfaa}
+.ff-caption{background:#fffaf0e8;border:1px solid #e4cfaa;border-radius:18px;padding:8px 16px;font-size:15px;box-shadow:0 4px 14px #2d200f2e;text-align:center}
+.ff-caption::before{display:none}
+.ff-pad{background:none;border:0;backdrop-filter:none;-webkit-backdrop-filter:none}
+.ff-pad button{background:#fff6e6ee;border:1px solid #d0b38a;box-shadow:0 3px 10px #3a2a142e;color:#4b3b2d}
+.ff-card{background:#fff4de;border:1px solid #e4cfaa;border-radius:28px;box-shadow:0 18px 50px #1d14084d}
+.ff-card::before{display:none}
+.ff-card-portrait{background:#eae4c9;border:2px solid #c6a474;box-shadow:none}
+.ff-card-top .ff-button,.ff-task-tools .ff-button{border-radius:21px}
+.ff-progress::before{display:none}
+.ff-progress{padding:7px 14px;background:#f3e4c4;border-radius:30px;gap:10px}
+.ff-progress>span{border:2px solid #b9ad8a;background:#fff9ec;box-shadow:none}
+.ff-progress>span.done{background:#6d854d;border-color:#6d854d;box-shadow:none}
+.ff-task-scene{background:#ead8b5;border:2px solid #c9aa78;box-shadow:none;border-radius:26px}
+.ff-target{text-shadow:none}
+.ff-answer{border:2px solid #c7aa7a;background:#fff9eb;box-shadow:none;border-radius:18px}
+.ff-answer.chosen,.ff-button.chosen{background:#e6edcf;border:3px solid #56713e;box-shadow:none}
+.ff-answer.ff-retry{background:#f7e7d3;border-color:#b77d50}
+.ff-numeral{font:700 52px/1 Andika,sans-serif;color:#4b3b2d;text-shadow:none;padding:0}
+.ff-wallet>span{background:#ead8b14d;border:1px solid #d3ba8b;box-shadow:none}
+.ff-meet-scene{border:1px solid #e4cfaa}
+.ff-card>.ff-choices .ff-button:not(.ff-answer){border-radius:24px}
+.ff-map .ff-button{border:2px solid #edcf97;background:#fff5dfe8;box-shadow:0 0 0 6px #fff8df45,0 5px 14px #302e1938}
+@media(max-width:600px){.ff-nav{gap:6px}.ff-nav .ff-button{border-radius:18px}.ff-numeral{font-size:44px}}
 
