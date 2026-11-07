@@ -2,11 +2,11 @@ import {THREE,paint,ellipsoid,limb,curveTube,roundedBlock,paintedPath,seeded} fr
 import {actor} from './actors.js';
 export const places={home:{x:0,z:2,picture:'door',name:'Nach Hause'},shop:{x:8,z:2,picture:'bag',name:'Zum Laden'},squirrel:{x:-8,z:-3,picture:'squirrel',name:'Zu Eichhörnchen'},bird:{x:8,z:-9,picture:'bird',name:'Zu Blaumeise'},owl:{x:-9,z:-12,picture:'owl',name:'Zu Waldkauz'},beaver:{x:11,z:11,picture:'beaver',name:'Zu Biber'},mouse:{x:-7,z:11,picture:'mouse',name:'Zu Maus'}};
 export function createWorld(canvas,{position,onPosition,onNear,onAction,onMove,onAnimationEnd,onProject}){
-  const renderer=new THREE.WebGLRenderer({canvas,antialias:true,powerPreference:'low-power'});
+  const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true,powerPreference:'low-power'});
   const software=new URLSearchParams(location.search).has('software');
   renderer.setPixelRatio(software?.5:Math.min(devicePixelRatio||1,1.25));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.18;
   renderer.shadowMap.enabled=!software;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.shadowMap.autoUpdate=false;
-  const scene=new THREE.Scene();scene.background=new THREE.Color('#dce5cf');scene.fog=new THREE.Fog('#dce5cf',35,80);
+  const scene=new THREE.Scene(),forestSky=new THREE.Color('#dce5cf');scene.background=forestSky;scene.fog=new THREE.Fog('#dce5cf',35,80);
   scene.add(new THREE.HemisphereLight('#fff2d6','#85966e',1.6));
   const sun=new THREE.DirectionalLight('#ffe7bc',1.8);sun.position.set(-10,22,16);sun.castShadow=true;sun.shadow.mapSize.set(1024,1024);Object.assign(sun.shadow.camera,{left:-24,right:24,top:24,bottom:-24,near:1,far:65});sun.shadow.normalBias=.05;scene.add(sun);
   const forest=new THREE.Group(),den=new THREE.Group(),shop=new THREE.Group();scene.add(forest,den,shop);
@@ -91,7 +91,7 @@ export function createWorld(canvas,{position,onPosition,onNear,onAction,onMove,o
   const camera=new THREE.PerspectiveCamera(42,1,.1,110),raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2(),plane=new THREE.Plane(new THREE.Vector3(0,1,0),0),hit=new THREE.Vector3();
   let area='den',paused=false,destination=null,arrival=null,near=null,last=performance.now(),time=0,lastSample=0,raf,anim=null,keys=new Set(),stick={x:0,z:0},width=1,height=1;
   const focus=new THREE.Vector3(),wanted=new THREE.Vector3(),cameraOffset=new THREE.Vector3(0,15,19);
-  function setArea(next){area=next;forest.visible=area==='forest';den.visible=area==='den';shop.visible=area==='shop';scene.fog=area==='forest'?new THREE.Fog('#dce5cf',35,80):null;renderer.shadowMap.needsUpdate=true;scene.background.set(area==='forest'?'#dce5cf':'#c6b18d');destination=null;waypoints=[];arrival=null;if(typeof marker!=='undefined')marker.visible=false;near=null;onNear(null);
+  function setArea(next){area=next;forest.visible=area==='forest';den.visible=area==='den';shop.visible=area==='shop';scene.fog=area==='forest'?new THREE.Fog('#dce5cf',35,80):null;renderer.shadowMap.needsUpdate=true;scene.background=area==='forest'?forestSky:null;destination=null;waypoints=[];arrival=null;if(typeof marker!=='undefined')marker.visible=false;near=null;onNear(null);
     const p=area==='forest'?position():{x:0,z:3.8};player.group.position.set(p.x,.2,p.z);player.group.rotation.y=.2;focus.set(p.x,1,p.z);camera.position.copy(focus).add(area==='forest'?cameraOffset:new THREE.Vector3(0,9,17));camera.lookAt(area==='forest'?focus:new THREE.Vector3(0,1.6,-1));
   }
   const trunks=[{x:0,z:-1,r:1.6},{x:9,z:0,r:1}];

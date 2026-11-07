@@ -20,7 +20,7 @@ function close(){
 }
 function open(kind){clearTimeout(feedbackTimer);panel=kind;world.pause(true);nav.hidden=true;pad.hidden=true;hotspots.replaceChildren();nearButton.hidden=true;overlay.hidden=false;overlay.replaceChildren();}
 function shell(titlePic,back=close){const card=h('div',{class:'ff-card'});card.append(h('div',{class:'ff-card-top'},button('Zurück','back',back),art(titlePic,'ff-card-portrait')));overlay.append(card);requestAnimationFrame(()=>card.querySelector('button')?.focus());return card;}
-function go(next){close();if(next==='forest'&&area==='den')state.position(0,3.6);if(next==='forest'&&area==='shop')state.position(8,3.6);area=next;world.setArea(next);state.record('area_transition',{area:next});pad.hidden=next!=='forest';renderNav();renderHotspots();say(next==='den'?'Das ist dein Zuhause. Du kannst malen, schlafen oder nach draussen gehen.':next==='shop'?'Hier kannst du deine Vorräte tauschen. Wähle ein Bild aus.':'Deine Freunde warten im Wald. Tippe auf den Boden, um zu gehen.');}
+function go(next){close();if(next==='forest'&&area==='den')state.position(0,3.6);if(next==='forest'&&area==='shop')state.position(8,3.6);area=next;root.dataset.area=next;world.setArea(next);state.record('area_transition',{area:next});pad.hidden=next!=='forest';renderNav();renderHotspots();say(next==='den'?'Das ist dein Zuhause. Du kannst malen, schlafen oder nach draussen gehen.':next==='shop'?'Hier kannst du deine Vorräte tauschen. Wähle ein Bild aus.':'Deine Freunde warten im Wald. Tippe auf den Boden, um zu gehen.');}
 function renderNav(){nav.replaceChildren();if(state.development)nav.append(h('strong',{class:'ff-dev',text:'ENTWICKLUNG'}));
   nav.append(button('Bildkarte','map',map),button('Deine Tasche','bag',bag),button('Anleitung wiederholen','speaker',()=>{state.record('instruction_replay',{area});audio.say(caption.textContent);}),button('Einstellungen für Erwachsene','gear',()=>FK.ui.parentGate(settings)));
 }
@@ -98,7 +98,7 @@ function bag(){open('bag');const s=state.get(),card=shell('bag');card.append(wal
 function sequence(item){
   returnArea=area;
   if(item!=='sleep'&&!state.use(item,area)){saveStatus();return;}
-  close();open('animation');world.setArea('den');world.sequence(item);overlay.classList.add('ff-animation-overlay');overlay.append(button('Animation überspringen','skip',()=>endSequence(true),'ff-skip'));
+  close();open('animation');root.dataset.area='den';world.setArea('den');world.sequence(item);overlay.classList.add('ff-animation-overlay');overlay.append(button('Animation überspringen','skip',()=>endSequence(true),'ff-skip'));
   say(item==='apple'?'Mmm, ein Apfel!':item==='bath'?'Zeit für ein Schaumbad.':'Gute Nacht, kleiner Fuchs.');
 }
 function endSequence(skipped=false){world.skip();overlay.classList.remove('ff-animation-overlay');if(state.get().animation&&!state.finishAnimation(skipped)){saveStatus();return;}go(returnArea);}
@@ -125,7 +125,7 @@ function settings(){open('settings');const card=shell('gear');card.classList.add
   card.append(h('p',{text:'Frühere Herzbaum-Fortschritte, Sterne und Bilder wurden nicht verändert. Sie bleiben im bisherigen Spiel zugänglich.'}),h('a',{href:'?screen=forest',text:'Bisherigen Herzbaum öffnen'}),h('a',{href:'?screen=hub',text:'Bisherige Bilder und Waldspiele öffnen'}),h('a',{href:'?dev=1',text:'Getrennte Entwicklungsversion öffnen'}));
 }
 FK.screen('friends',{
-  build(el){root=el;root.classList.add('ff-game');canvas=h('canvas',{class:'ff-world','aria-label':'Dreidimensionale Waldwelt'});hotspots=h('div',{class:'ff-hotspots'});nav=h('nav',{class:'ff-nav','aria-label':'Waldmenü'});overlay=h('div',{class:'ff-overlay',hidden:true,role:'dialog','aria-label':'Waldaktivität','aria-modal':'true'});statusBar=h('div',{class:'ff-save-status',role:'alert',hidden:true});caption=h('div',{class:'ff-caption','aria-live':'polite'});nearButton=button('Mit Freund sprechen','check',()=>act(world.near),'ff-near');nearButton.hidden=true;
+  build(el){root=el;root.classList.add('ff-game');root.dataset.area=area;canvas=h('canvas',{class:'ff-world','aria-label':'Dreidimensionale Waldwelt'});hotspots=h('div',{class:'ff-hotspots'});nav=h('nav',{class:'ff-nav','aria-label':'Waldmenü'});overlay=h('div',{class:'ff-overlay',hidden:true,role:'dialog','aria-label':'Waldaktivität','aria-modal':'true'});statusBar=h('div',{class:'ff-save-status',role:'alert',hidden:true});caption=h('div',{class:'ff-caption','aria-live':'polite'});nearButton=button('Mit Freund sprechen','check',()=>act(world.near),'ff-near');nearButton.hidden=true;
     pad=h('div',{class:'ff-pad','aria-label':'Laufen',hidden:true});for(const [name,symbol,x,z]of [['Nach links','←',-1,0],['Vorwärts','↑',0,-1],['Rückwärts','↓',0,1],['Nach rechts','→',1,0]]){const b=h('button',{type:'button','aria-label':name,text:symbol});const stop=()=>world?.steer(0,0);b.onpointerdown=e=>{b.setPointerCapture(e.pointerId);audio.unlock();world.steer(x,z);};b.onpointerup=b.onpointercancel=b.onlostpointercapture=stop;pad.append(b);}
     root.append(canvas,hotspots,nav,pad,nearButton,caption,overlay,statusBar);
     let storage;try{storage=window.localStorage;}catch{storage={getItem(){throw new Error('storage blocked');},setItem(){throw new Error('storage blocked');},removeItem(){}};}
