@@ -5,7 +5,7 @@
 **Scope:** Design documentation. Implementation will follow when requested.
 
 This document is a separate workspace for the planned major change to Farbtupf.
-The [existing blueprint](BLUEPRINT.md) and [current gameplay notes](../../docs/GAMEPLAY.md)
+The [existing blueprint](../heart-tree/BLUEPRINT.md) and [current gameplay notes](../../docs/GAMEPLAY.md)
 remain available as references. No new design decisions have been recorded yet.
 
 ## 1. The major change

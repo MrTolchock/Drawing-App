@@ -1,6 +1,6 @@
 # Game design
 
-[Blueprint v2 — game redesign draft](heart-tree/blueprint-v2.md) is a separate
+[Blueprint v2 — game redesign draft](forest-friends/blueprint-v2.md) is a separate
 document for the planned major change. The new concept is still to be written;
 implementation will follow when requested.
 
