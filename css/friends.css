@@ -377,3 +377,14 @@
 .ff-pad .ff-jump svg{width:36px;height:36px}.ff-pad .ff-jump:active{translate:0 3px}
 @media(max-width:600px){.ff-leaves{left:12px;transform:none;top:max(72px,env(safe-area-inset-top));font-size:20px;padding:4px 12px 4px 6px}.ff-leaves svg{width:30px;height:30px}.ff-pad{grid-template-columns:repeat(2,54px) 58px}.ff-pad .ff-jump{width:58px;height:114px}}
 @media(max-width:600px){.ff-game[data-area=forest] .ff-caption{top:max(122px,env(safe-area-inset-top));bottom:auto;left:12px;right:12px;transform:none;max-width:none;width:auto}}
+/* Painted pictures and the original games' garden look for the new rounds. */
+.ff-painted-picture img{width:100%;height:100%;object-fit:contain;display:block;filter:drop-shadow(0 2px 3px #4a372033);-webkit-user-drag:none}
+.ff-painted-picture .wa-illustration{display:block;width:100%;height:100%}
+.ff-card-portrait.ff-painted-picture{padding:4px;background:radial-gradient(circle at 50% 40%,#fffdf5,#efe6c8)}
+.ff-task-scene{background:radial-gradient(ellipse at 50% 32%,#f7faea,#e2ecc9 78%);border:2px solid #bcd197;border-radius:30px}
+.ff-meet-scene .ff-painted-picture{width:170px;height:200px}
+.ff-answer>.ff-painted-picture{width:100px;height:100px}
+.ff-hotspot .ff-painted-picture,.ff-map .ff-painted-picture{width:54px;height:54px}
+
+.ff-task-scene>.ff-painted-picture{width:150px;height:150px}
+@media(max-width:600px){.ff-task-scene>.ff-painted-picture{width:110px;height:110px}.ff-answer>.ff-painted-picture{width:80px;height:80px}}

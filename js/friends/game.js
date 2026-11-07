@@ -6,7 +6,15 @@ let root,canvas,world,state,audio,overlay,hotspots,nav,statusBar,nearButton,capt
 let area='den',panel=null,host=null,example=false,selectedItem=null,feedbackTimer=null,activeMs=0,lastTick=performance.now(),pendingDrawing=null,returnArea='den';
 const actionPictures={outside:'door',drawing:'pencils',sleep:'bed',games:'book',...Object.fromEntries(Object.entries(C.shop).map(([k,v])=>[k,v.picture]))};
 const actionNames={outside:'Nach draussen',drawing:'Zeichnen und ausmalen',sleep:'Schlafen',games:'Waldspiele',...Object.fromEntries(Object.entries(C.shop).map(([k,v])=>[k,v.name]))};
-function art(name,cls=''){return h('span',{class:'ff-picture '+cls,html:picture(name)});}
+// Painted pictures where the reviewed art exists: friends from the forest painting and character sheet,
+// nouns from the original Waldatelier sheets. Action poses, nuts, shapes and controls stay drawn.
+const paintedFriends={fox:'fox-front',squirrel:'squirrel',bird:'bird',owl:'owl',mouse:'mouse'};
+const paintedWords={hat:'hat',rose:'rose',nose:'nose',fish:'fish',ball:'ball',boat:'boat',cow:'cow',hare:'rabbit',tin:'tin',bus:'bus',star:'star',whale:'whale'};
+function art(name,cls=''){
+  if(paintedFriends[name])return h('span',{class:'ff-picture ff-painted-picture '+cls},h('img',{src:'assets/forest-friends/'+paintedFriends[name]+'.webp',alt:'',draggable:'false'}));
+  if(paintedWords[name]&&FK.visual?.has(paintedWords[name])){const s=h('span',{class:'ff-picture ff-painted-picture '+cls});s.append(FK.visual.art(paintedWords[name]));return s;}
+  return h('span',{class:'ff-picture '+cls,html:picture(name)});
+}
 function button(name,pic,fn,cls=''){return h('button',{type:'button',class:'ff-button '+cls,'aria-label':name,title:name,onclick:()=>{audio?.unlock();fn();}},art(pic));}
 function say(text){caption.textContent=text;audio.say(text);}
 function saveStatus(){if(!statusBar||!state)return;statusBar.hidden=!state.error&&!pendingDrawing;statusBar.replaceChildren(h('span',{text:state.error||'Dein Bild konnte noch nicht gespeichert werden.'}),button('Erneut speichern','undo',()=>{if(pendingDrawing){const p=pendingDrawing;if(state.draw(p.page,p.strokes))pendingDrawing=null;}else state.retrySave();saveStatus();}),button('Spielstand sichern','bag',()=>download('waldfreunde-spielstand.json',state.exportSave())));}
