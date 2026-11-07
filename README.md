@@ -18,7 +18,9 @@ A woodland adventure for children aged 6–7 in Zürich. Guide a fox through a s
 | Document | Purpose |
 | --- | --- |
 | [Blueprint](design/heart-tree/BLUEPRINT.md) | Current experience, storyline, world, features and design rules |
-| [Blueprint v2 — redesign draft](design/forest-friends/blueprint-v2.md) | Separate space for the planned major change; concept and decisions to be written before implementation |
+| [Blueprint v2 — Forest friends](design/forest-friends/blueprint-v2.md) | Redesign outline, curriculum requirements and picture-led visual design |
+| [Cloud conversation handoff](design/forest-friends/CLOUD-HANDOFF.md) | Decisions, current references and next steps for continuing design across devices |
+| [Visual comparison baseline](design/forest-friends/visuals/baseline.md) | Preserved art, versioned mockups and screenshots for evaluating development |
 | [Design review](design/heart-tree/REVIEW.md) | Assessment of the current game and priorities for the next step |
 | [Gameplay](docs/GAMEPLAY.md) | Story puzzles, library activities, guidance and rewards |
 | [Exploration](docs/EXPLORATION.md) | Movement, camera, map and discovery controls |
