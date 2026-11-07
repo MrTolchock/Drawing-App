@@ -1,4 +1,4 @@
-> Current design pass: [Revision 5](visuals/revisions/v5.md), viewed and updated in [Sites](https://forest-friends-design-review.andreas-itten.chatgpt.site/). This supersedes earlier puzzle-confirmation, wallet and camera-direction notes below; frozen visual references remain intact.
+> Current design pass: [Revision 6](visuals/revisions/v6.md), viewed and updated in [Sites](https://forest-friends-design-review.andreas-itten.chatgpt.site/). This supersedes earlier puzzle-confirmation, wallet and camera-direction notes below; frozen visual references remain intact.
 
 # Drawing-App — cloud conversation handoff
 
@@ -53,3 +53,7 @@ The review is a disposable screen prototype: scenes are generated illustrations,
 5. For development, implement one complete den → friend → puzzle → resource → shop → placed furnishing → refresh loop first, comparing it against the visual baseline.
 
 Continue the design conversation in the cloud project. Start runtime development when the user requests it. Keep project sources current from GitHub; do not assume that syncing a conversation provides access to the Mac's working folder or preview server.
+
+## Ongoing workflow
+
+Always push completed design and project changes to GitHub main. The user reaffirmed this requirement on 7 November 2026. Current outdoor direction follows revision 6: return from v5 to richer v4 art with stronger 3D volume, while preserving the accepted den fox.
