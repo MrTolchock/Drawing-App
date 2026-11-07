@@ -1,3 +1,5 @@
+> Current revision 10: purchases never alter the environment. No teacher testing is planned or required. Child testing happens after implementation, once the game is running. This replaces earlier pre-implementation external-review gates; internal curriculum source checks remain.
+
 > Shared visual rule: [den-led art direction](visuals/art-direction.md). Outdoors, den and shop use 3D; learning puzzles use 2D.
 
 > Latest interaction decisions: [Design revision 9](visuals/revisions/v9.md) sets shared categories and simpler reading-led examples. The single difficulty level and curriculum requirements remain.
@@ -10,7 +12,7 @@
 
 Include Fuchs, Eichhörnchen, Blaumeise, Waldkauz, Biber and Maus. Bringing Maus into the first playable version gives early reading a place alongside Mathematics, with Maus, Blaumeise and Waldkauz sharing Reading. Other characters retain the shared competency assignments in the blueprint and enter later. No old story repairs or chapter requirements are needed to access the first five puzzles.
 
-The opening suggestion leads to Eichhörnchen, but all five friends are freely reachable. A shop counter runs without an additional shopkeeper model for this first version; its permanent owner remains undecided. Basic bed, table and door are available from the start. Buying a furnishing is an invitation, not a gate to further learning.
+The opening suggestion leads to Eichhörnchen, but all five friends are freely reachable. A shop counter runs without an additional shopkeeper model for this first version; its permanent owner remains undecided. Basic bed, table and door are available from the start. Buying a page/tool unlock or treat is an invitation, not a gate to further learning.
 
 ## World layout
 
@@ -39,15 +41,15 @@ Movement proposal: tap/click ground to walk; optional existing keyboard/stick co
 
 | Scene | What the child sees and does | Spoken/UI text | Save and failure behaviour |
 | --- | --- | --- | --- |
-| 1. Wake at home | Fuchs stretches near bed; table, empty furnishing spot and door are visible | «Das ist dein Zuhause. Draussen warten deine Freunde.» | Create or restore save; never reset an existing furnished den. |
+| 1. Wake at home | Fuchs stretches near bed; table, drawing table and door are visible | «Das ist dein Zuhause. Draussen warten deine Freunde.» | Create or restore save; never reset an existing fixed den. |
 | 2. Choose an action | Tap table, bed, bag or door; first suggestion gently indicates door | Door: «Nach draussen» | Exploring home is optional; audio starts after interaction when required by the browser. |
 | 3. Walk outside | Central tree and nut-tree landmark are visible; a short pawprint cue suggests Eichhörnchen | «Eichhörnchen sammelt Nüsse. Möchtest du helfen?» | Any friend can be chosen; a missed cue can be replayed. |
 | 4. Meet | Eichhörnchen gestures to a basket; accept or keep exploring | Buttons: «Helfen», «Später» | No round starts or reward changes until accepted. |
 | 5. Learn and play | Example, then five tasks with replay, hint, direct answer and leave controls | «Wie viele Nüsse sind hier?» | Wrong answers remain editable. Leaving saves the exact task. |
 | 6. Thank and reward | Eichhörnchen thanks Fuchs; three nut icons move into the bag | «Danke! Diese Nüsse sind für dich.» | Grant once even if refreshed during the animation. |
 | 7. Choose next | Return to the same world position; shop suggestion appears | «Im Laden gibt es etwas für dein Zuhause.» | Friend/map/home remain available; no forced shop visit. |
-| 8. Buy | Preview a cushion, picture price and current wallet; confirm or cancel | «Kissen», «2 Nüsse», «Kaufen» | Cancel spends nothing. Insufficient resources keep the preview open. |
-| 9. Make a home | Return through the den door; choose a valid placement spot for the cushion | «Wohin möchtest du das Kissen legen?» | Confirmed placement survives refresh; invalid placement retains the prior position. |
+| 8. Buy | Choose page, pencils, apple or bath; inspect pictured price and confirm | «Kaufen» | Cancel spends nothing; deduction and inventory/unlock are atomic. |
+| 9. Enjoy | Select pages/colours at the table or use apple/bath from the bag | Short eating/bathing scene | One use, skippable; return to the same unchanged world. |
 | 10. Continue or pause | Other friends remain available; bed is optional pretend play | «Bis bald!» when leaving | Closing/reopening preserves state. No daily streak or upkeep demand. |
 
 The guided route is optional. A returning player starts in the den and can resume a saved puzzle through a pictured invitation, preserving the original round. Exiting a puzzle normally returns to its host.
@@ -58,12 +60,12 @@ The user endorsed the character and den direction and requested intuitive naviga
 
 | Screen | Visible interaction | Spoken/visual help |
 | --- | --- | --- |
-| Den | Tap the actual doorway, table or bed; pictured bag and map; placement suggestion for bought furniture | Speaker repeats contextual help; an acted example introduces unfamiliar actions |
+| Den | Tap the actual doorway, table or bed; pictured bag and map; drawing-table pages/colours and inventory treats | Speaker repeats contextual help; an acted example introduces unfamiliar actions |
 | Forest | Recognisable friend portraits and scene landmarks; pictured map destinations and a route cue | Speak destination names on request; show direction without a reading requirement |
 | Friend invitation | Character gesture and preview of the puzzle action; pictured accept and leave | Short spoken request; demonstrate both choices |
 | Puzzle | Clear target, answer choices, five dots and retry cue; answers submit and advance directly | Separate visual example, spoken instruction replay and spoken hints; no required prose |
 | Shop | Item pictures, actual token prices, exchange preview and explicit check-to-buy | Speak item and price; use a check badge for ownership and quantity for consumables |
-| Arrangement | Owned item pictures and visible valid spots; pictured confirm and return-to-inventory | Demonstrate placement; cancel preserves the prior position |
+| Drawing/animation | Purchased pages/colours at the table; bag items launch short scenes | Demonstrate use; no placement or permanent environment changes |
 | Adult settings | Audio, log and save tools outside ordinary child play | Adult-facing written explanations are appropriate here |
 
 Keep targets at least 48 × 48 CSS pixels and well spaced, and test on an actual iPad. Never require dragging alone. Retain meaningful accessible German names, keyboard control, optional captions, non-colour cues and reduced-motion behaviour. Only the learning content itself needs letters or numerals. Do not treat unfamiliar icons as automatically intuitive: child walkthroughs must show whether symbols and gestures are understood.
@@ -85,7 +87,7 @@ Use quiet music in the den and forest, local water/wind/bird ambience and short 
 
 ## Review script
 
-Ask a Zürich teacher to check each initial task and prerequisite. In a supervised child walkthrough, observe whether the child can leave the den, find a friend, understand the example, correct a mistake, request help, resume an interrupted task, buy and place an item, and find a second activity. Record observations instead of treating prototype success as curriculum mastery.
+Check each task internally against curriculum sources. After implementation, in a child walkthrough of the running game, observe whether the child can leave the den, find a friend, understand the example, correct a mistake, request help, resume an interrupted task, buy a drawing unlock and use a consumable, and find a second activity. Record observations instead of treating prototype success as curriculum mastery.
 
 Open design questions after the walkthrough: camera comfort, travel distance, illustration naming, comprehension of the bag/price icons, reading word pool, and whether three reward resources per round feels useful without overpowering learning. No child testing has yet been performed.
 
@@ -97,4 +99,9 @@ Blaumeise uses written word-and-picture rhyme cards from the old game. Waldkauz 
 
 Each answer submits directly. Mistakes can be corrected, success advances automatically and five successes award three pictured host resources once. Separate demonstrations explain the task. Target reading is not narrated by the instruction speaker; answer-revealing support is recorded separately in production. Category sharing does not force every animal to offer identical activities on its first visit.
 
-See [revision 9](visuals/revisions/v9.md), [current review](visuals/review-v9.html) and [review script](visuals/review-script-v9.md). Confirm action-picture recognition and introduced letters with children and a Zürich teacher. This prototype's state survives tab navigation, but refresh resets it; production persistence is still required.
+See [revision 9](visuals/revisions/v9.md), [current review](visuals/review-v9.html) and [review script](visuals/review-script-v9.md). Confirm action-picture recognition and introduced letters with a child after implementation. This prototype's state survives tab navigation, but refresh resets it; production persistence is still required.
+
+
+## Revision 10 handoff
+
+Use the fixed-environment shop: colouring pages and pencils unlock at the drawing table; apple/bubble bath are bag consumables with short skippable sequences. No purchased furniture or placement mode. Preserve legacy save data safely. Switch to Codex implementation after this update is pushed; child testing follows the running build, and no teacher consultation/testing is required.

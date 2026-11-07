@@ -1,3 +1,5 @@
+> Current revision 10: purchases never alter the environment. No teacher testing is planned or required. Child testing happens after implementation, once the game is running. This replaces earlier pre-implementation external-review gates; internal curriculum source checks remain.
+
 > Shared visual rule: [den-led art direction](visuals/art-direction.md). Outdoors, den and shop use 3D; learning puzzles use 2D.
 
 > Latest interaction decisions: [Design revision 8](visuals/revisions/v8.md) supersedes earlier check-to-submit, owl-help and shop-layout proposals. The single difficulty level and curriculum requirements remain.
@@ -25,17 +27,17 @@ Every completed five-task round grants **three units of the host's resource**, r
 
 Keep nuts, berries and other wallet tokens distinct from edible inventory items: the reward bag cannot be accidentally consumed at home. All resources have pictured labels. They do not expire. Resource prices are fictional barter, not a lesson in Swiss currency.
 
-| Shop item | Proposed price | Ownership/use | Complete rounds from an empty bag |
-| --- | --- | --- | --- |
-| Cushion | 2 logs + 1 nut + 1 feather | Permanent furnishing; buy once, freely rearrange | 1 round each with Biber, Eichhörnchen and Waldkauz |
-| Apple | 1 nut | Consumable; eat animation, remove one on committed use | 1 Eichhörnchen round buys up to 3 |
-| Berry drink | 1 berry | Consumable; drink animation | 1 Maus round buys up to 3 |
-| Drawing template: leaf | 2 seeds | Permanent creative unlock; use at table repeatedly | 1 Blaumeise round |
-| Small stool | 2 logs | Permanent furnishing | 1 Biber round |
-| Reading cushion | 2 feathers + 1 berry | Permanent furnishing | 1 Waldkauz and 1 Maus round |
-| Storage chest | 2 nuts + 2 logs | Permanent furnishing; decorative initially | 1 Eichhörnchen and 1 Biber round |
+| Shop item | Initial price | Use/ownership |
+| --- | --- | --- |
+| Colouring page: leaf | 2 seeds | Permanent; reusable at drawing table |
+| New coloured pencils | 2 logs | Permanent extra drawing colours |
+| Apple | 1 nut | One-use bag item; fox eating sequence |
+| Bubble bath | 2 feathers | One-use bag item; fox bathing sequence |
+| Later berry drink | 1 berry | One-use bag item; drinking sequence |
 
-With the current mixed-resource cushion price, an empty wallet needs three friend rounds for that furnishing. The design specimen starts with 3 logs, 3 nuts and 2 feathers so reviewers can inspect a first purchase. This is sample state, not an approved production starting gift. Decide the first-session balance before scope freeze: a starter supply or a simpler entry furnishing could support the intended first-visit purchase loop. Prices involving fish tokens are reserved for the later Fisch release; no first-version item requires an unavailable resource. Permanent purchases show as owned, not as repeatable accidental purchases. Purchases use an explicit confirm action and visible before/after balance. Food does not increase learning rewards or require a hunger meter.
+The first shop contains the first four items. Three host-resource units per five-task round remain. Free drawing/basic pencils are always available. Every initial item is affordable after one round with the relevant host. Sample preview wallet starts with 3 nuts, 3 logs, 2 feathers and 3 seeds for inspection; production starting balances remain a routine balancing choice.
+
+No furniture, decorations, placement spots or persistent scene props are sold. Buy and Use are separate. A permanent unlock is charged once; consumables may be stocked. Use commits one decrement and opens a short skippable 4–6 second sequence; return to the same unchanged world location/camera. The bath set exists only inside its temporary scene. Skip/refresh/replay cannot double-consume or grant another reward. No upkeep meters.
 
 ## State and interruption rules
 
@@ -44,11 +46,11 @@ With the current mixed-resource cushion price, an empty wallet needs three frien
 | Leave or refresh in a puzzle | Stable round/task IDs and content version; current arrangement, submitted answers, progress and support used | Resume exact saved task; don't generate new answers. |
 | Complete task five | Completed round and reward claim in one logical save transaction | Reward credited once; optional thanks animation may replay without payout. |
 | Buy an item | Resource deduction and inventory addition together | Restore both or neither; never charge without granting ownership. |
-| Place/move furniture | Owned item ID and last confirmed position | Cancel or interruption retains the last confirmed position. |
+| Creative unlock | Page/palette ID and selected drawing page | Never charge twice; preserve per-page drawings when switching. |
 | Use food or drink | Consumption transaction and remaining quantity | Refresh cannot duplicate consumption; replayed animation is cosmetic. |
-| Update the game | Save version; migrated wallet, inventory, placed items, settings, active tasks and existing drawings | Validate migration before overwriting; retain previous valid save if migration fails. |
+| Update the game | Save version; migrated wallet, inventory, creative unlocks, settings, active tasks and existing drawings | Validate migration before overwriting; retain previous valid save if migration fails. |
 | Storage fails | Explicit unsaved-state indication | Show «Dein Spielstand konnte nicht gespeichert werden.» Allow retry; do not promise refresh persistence. |
-| Open development version | Separate development state and log flag | No mutation of ordinary player wallet, furniture or task progress. |
+| Open development version | Separate development state and log flag | No mutation of ordinary player wallet, creative unlocks or task progress. |
 
 Before migration, inventory the actual existing keys and drawings store in the current game. There are no approved mappings from legacy stars/stickers to new resources yet: preserve legacy data and propose a conversion separately. Never silently clear old progress. A stale content version must either load the compatible saved task or restart only that task with an explanation and retained completed work.
 
@@ -65,7 +67,7 @@ Proposed format: a JSON export envelope with schema version, game/content versio
 | Help | Instruction replay, example, hint and answer-revealing aid |
 | Timing | Active task duration; separate background, leave and pause intervals |
 | Economy | Resource grant, purchase and consumption with transaction IDs and before/after quantities |
-| Home/save | Furniture change, save/load/migration failure; no drawing image embedded in the log |
+| Home/save | Creative unlock, drawing-page selection, animation use/skip, save/load/migration failure; no drawing image embedded in the log |
 | Development | Task/round skip; explicitly excluded from child correctness statistics |
 
 Example event (illustrative values):
@@ -89,14 +91,15 @@ Example event (illustrative values):
 }
 ```
 
-Keep logs local. Proposed retention: the most recent seven days, capped at 10,000 events; prune oldest events first and report the export's actual retained time range and any truncation. Teacher/child review may change these values. No automatic AI upload. Adult settings explains collection and offers JSON export and separate log deletion without deleting progress. A save backup and a gameplay log are different files.
+Keep logs local. Proposed retention: the most recent seven days, capped at 10,000 events; prune oldest events first and report the export's actual retained time range and any truncation. Post-implementation child testing may change these values. No teacher testing is planned. No automatic AI upload. Adult settings explains collection and offers JSON export and separate log deletion without deleting progress. A save backup and a gameplay log are different files.
 
 ## Development verification scenarios
 
-Check that refresh before/after a reward never duplicates it; purchase interruption restores matching wallet and inventory; moving furniture then cancelling restores its last position; interrupted puzzles retain answers and help state; background time is excluded from active task time; log export remains usable after pruning; development skips cannot earn ordinary rewards; save migrations preserve old drawings and owned objects. Verify on an actual target iPad before claiming support.
+Check that refresh before/after a reward never duplicates it; purchase interruption restores matching wallet and inventory; changing page/colour preserves each drawing; consuming a treat leaves the environment unchanged; interrupted puzzles retain answers and help state; background time is excluded from active task time; log export remains usable after pruning; development skips cannot earn ordinary rewards; save migrations preserve old drawings and owned objects. Verify on an actual target iPad before claiming support.
 
 ## Version-8 reward-screen specimen
 
 The fifth task credits three units exactly once in the specimen state. A pictured transfer into the bag acknowledges the reward; the credit cannot be repeated by revisiting the reward screen. The screen offers forest/shop destinations after acknowledgement. Seeds and berries now join the visible wallet when earned, each on its own token row. The compact dock supports the small sample wallet; review grouping or scrolling for larger balances before production.
 
 Adult example/retry/success/reward previews do not increment scores or issue resources. This prototype has no production save, migration or transaction durability; refresh resets it. Production must implement the atomic state and replay guarantees above.
+

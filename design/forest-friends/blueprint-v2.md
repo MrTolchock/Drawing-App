@@ -1,10 +1,12 @@
+> Current revision 10: purchases never alter the environment. No teacher testing is planned or required. Child testing happens after implementation, once the game is running. This replaces earlier pre-implementation external-review gates; internal curriculum source checks remain.
+
 > Shared visual rule: [den-led art direction](visuals/art-direction.md). Outdoors, den and shop use 3D; learning puzzles use 2D.
 
-> Latest interaction decisions: [Design revision 9](visuals/revisions/v9.md) sets the shared categories, reading-led rhymes, easier owl sentences and clear shape matching. The single difficulty level and curriculum requirements remain.
+> Latest interaction decisions: [Design revision 10](visuals/revisions/v10.md) sets the shared categories, reading-led rhymes, easier owl sentences and clear shape matching. The single difficulty level and curriculum requirements remain.
 
 # Blueprint v2 — Forest friends
 
-**Status:** Updated Blueprint V2. User endorsed the revised examples and simpler categories; Waldkauz simplified further. Teacher and child review pending.
+**Status:** Updated Blueprint V2. User endorsed the revised examples and simpler categories; Waldkauz simplified further. No teacher testing planned; child testing follows implementation.
 **Updated:** 7 November 2026.
 **Scope:** Plan the redesign before implementation. Shared categories and the revised example direction reflect user feedback. Content pools, prices and production interaction details still need review.
 
@@ -12,7 +14,7 @@ Design pack: [Curriculum matrix](curriculum-matrix.md) · [Five puzzle specifica
 
 ## 1. Game outline
 
-Start with a clean design, using the current game and its learning activities as the basis. The player is a small orange fox with a green neckerchief, living beneath a large tree in a welcoming 3D forest. Explore freely, visit friends, help with puzzles, collect rewards and furnish the fox's home.
+Start with a clean design, using the current game and its learning activities as the basis. The player is a small orange fox with a green neckerchief, living beneath a large tree in a welcoming 3D forest. Explore freely, visit friends, help with puzzles, collect rewards, unlock drawing activities and enjoy short animated treats.
 
 The game is for children aged 7–8 in Zürich, Switzerland. Use Swiss Standard German. Pictures, demonstrations and repeatable spoken instructions make ordinary play understandable before fluent reading. Reading puzzles explicitly practise written language.
 
@@ -30,7 +32,7 @@ The game's primary goal is to help children practise the school learning of **fi
 
 Use **Zyklus 1** as the curriculum framework, then select tasks suitable for first grade and the classroom's current learning. Zyklus 1 spans kindergarten and first/second primary classes; its competency steps are not an official first-grade annual or trimester schedule. The app's single difficulty level is a first-grade content selection, not a claim that every child or class follows the same sequence. Prioritise German literacy and mathematics, with related nature learning and creative practice.
 
-Before a puzzle is accepted for implementation, document its official competency code and relevant Zyklus-1 step, concrete learning objective, first-grade task range or vocabulary, required prior learning and observable action. Check the actual question pool, instructions and feedback against that objective. Review first-grade suitability with a Zürich primary teacher before release; mappings below are design mappings, not official approval or a claim of complete curriculum coverage.
+Before a puzzle is accepted for implementation, document its official competency code and relevant Zyklus-1 step, concrete learning objective, first-grade task range or vocabulary, required prior learning and observable action. Check the actual question pool, instructions and feedback against that objective. Check curriculum references and first-grade task boundaries internally during implementation. No teacher consultation/testing is planned or required. The user tests with a child after implementation once the game is running; mappings are design mappings, not official approval or complete curriculum coverage.
 
 ### Simple learning categories
 
@@ -64,7 +66,7 @@ Waldkauz starts with familiar nouns and concrete actions: «Die Maus sitzt.», �
 
 Biber's former 3×3 placement grid and Waldkauz's narrated ordering activity are withdrawn from the initial set. Biber now offers a basic shape-recognition warm-up; do not label it full geometry or shape-composition mastery. Matching a gap does not establish that the child can name a shape. Composition and narrated sequencing can return later as separately specified tasks if useful, rather than as compulsory animal categories.
 
-The curriculum matrix distinguishes game categories from exact subject references. Reading uses D.2.A.1.b for initial decoding and short sentences; rhyming also has a listening/phonological support reference. Biber's recognition exercise supports basic shape vocabulary under MA.2.A.1.a, with naming practised in feedback; full naming/composition assessment is outside this fixture. Teacher review remains required.
+The curriculum matrix distinguishes game categories from exact subject references. Reading uses D.2.A.1.b for initial decoding and short sentences; rhyming also has a listening/phonological support reference. Biber's recognition exercise supports basic shape vocabulary under MA.2.A.1.a, with naming practised in feedback; full naming/composition assessment is outside this fixture. Internal curriculum source checks remain required. No teacher test is planned; child testing follows implementation.
 
 Official sources, checked on 7 November 2026:
 
@@ -76,17 +78,17 @@ Official sources, checked on 7 November 2026:
 
 ## 2. Story and play loop
 
-The fox lives in a den beneath the large tree at the centre of the world. The game starts inside the den: this is the playable home and main menu. Here the fox can play games, eat, sleep, arrange furniture, drink and go outside.
+The fox lives in a den beneath the large tree at the centre of the world. The game starts inside the den: this is the playable home and main menu. Here the fox can draw, colour, use a consumable reward, sleep and go outside. The den layout remains fixed.
 
 Outside is a freely explorable forest full of friends. Each friend has a personality, a shared learning category and a reason to need help. Each visit offers fresh tasks from a puzzle in that category. Friends can introduce different activities inside the same category; the rules of each shared puzzle remain consistent across hosts. Friends give characteristic resources as thanks: Eichhörnchen gives nuts, Biber gives logs, and Fisch gives fish tokens.
 
-1. Start or resume in the fox's furnished den.
+1. Start or resume in the fox's fixed den.
 2. Go outside and choose a friend to visit.
 3. Hear or watch a short introduction and example.
 4. Complete a round of tasks.
 5. Receive the friend's resource reward.
-6. Visit more friends or buy furnishings or other rewards at the shop.
-7. Return home to arrange purchases, play, eat, drink or sleep.
+6. Visit more friends or buy drawing unlocks or consumable rewards at the shop.
+7. Return home to use the drawing table or enjoy a short consumable animation from the bag.
 
 Mistakes allow retries and help. There are no lost lives or required countdowns. Leaving a puzzle preserves its question and interaction state; returning resumes it. Completing a round makes the next visit offer fresh tasks. Task pools should avoid immediate repeats.
 
@@ -174,23 +176,31 @@ The initial hosts cover two shared categories. Writing, Nature and Creativity ex
 
 Use one difficulty level for every puzzle. Vary questions and story objects within that level; there is no level selector or higher-difficulty reward multiplier. Add more tasks and variations within each puzzle type. A round begins with a separate worked example and initially contains five tasks; expand the question pool before increasing round length. Keep explanations short and allow replayable demonstrations and hints.
 
-## 6. Shop, resources and home
+## 6. Shop rewards with a fixed environment
 
-The shop sells furniture, decorations, creative activities, food and drinks for the fox's den. Prices can combine resources: for example, a furnishing might cost **two nuts, one log and two fish tokens**. This is an example price, not a final balance decision.
+Purchases must not change the game environment. The shop no longer sells furniture, decorations or placed objects. The den, forest, paths and navigation remain fixed; there is no purchasing-related placement or rearrangement mode.
 
-Show prices and wallet contents with recognisable pictures and quantities. Preview furnishings before purchase. Purchases deduct resources once and add an owned item that the child can place or rearrange at home.
+| Item | Purchase result | Use | Ownership |
+| --- | --- | --- | --- |
+| Ausmalbilder / colouring pages | Unlock an illustrated outline | Select the page at the drawing table and colour repeatedly | Permanent unlock |
+| New Farbstifte / coloured pencils | Unlock additional colours | Expanded palette inside the drawing-table activity | Permanent tool unlock |
+| Apple | Add one apple to the bag | A short sequence shows Fuchs eating the apple | One-use consumable |
+| Bubble bath / Schaumbad | Add one bath portion to the bag | A short sequence shows Fuchs enjoying a bubble bath | One-use consumable |
+| Later drinks and similar treats | Add one use to the bag | Short self-contained animation | One-use consumable |
 
-The den is a continuing part of play: furnish it with gifts and purchases, play familiar games, eat, sleep and leave through the door. Eating and sleeping are gentle role-play actions; they must not create upkeep pressure or remove earned progress.
+Show pictured prices and an explicit purchase confirmation. Buying never automatically starts an animation. Permanent items show as owned and cannot be bought twice; consumables show quantities and may be bought repeatedly. Free drawing and basic pencils remain available without purchasing.
 
-Repeatable rewards keep the shop useful after the den is furnished. Sell drawing templates to use at the den's table, apples that trigger a short eating animation, and drinks with a drinking animation. Food and drinks are consumed when used; owned furniture remains. Keep the reward catalogue open to further consumable items and activities.
+A consumable's Use action commits exactly one inventory decrement, opens a short skippable 4–6 second sequence, then returns to the same location and camera. An apple moves to the fox's mouth and is eaten; a bath uses foam/bubbles and a temporary bath set inside the sequence only. No bathtub or other prop remains in the world. Skip, close, refresh or a cosmetic replay cannot duplicate consumption or grant resources. There are no hunger/hygiene meters or upkeep pressure.
+
+Purchased pages and colours appear only inside the drawing-table activity. Preserve drawings separately per page and keep them when changing pages or tools. The fixed environment keeps movement, scene composition and navigation predictable.
 
 ## 7. Saving and continuity
 
-Furniture and progress must survive page refreshes, closing and reopening the game, and ordinary game updates on the same device.
+Save the wallet, unlocked colouring-page IDs, unlocked pencil palettes, consumable quantities, per-page drawings, completed tasks, active puzzle state, settings, and unique reward/purchase/use transaction IDs. Save resource deductions and ownership/inventory additions together; refresh or relaunch must not duplicate charges or payouts.
 
-Save the wallet, owned furnishings, furniture placement, unused consumables, unlocked drawing templates, completed tasks, active puzzle state, settings and existing drawings. Save after meaningful changes, including purchases, furniture moves and puzzle rewards. Loading restores the same home and progress without duplicate purchases or payouts.
+On animation interruption restore committed inventory and the return location; the game can return directly to play. Animation completion is never a requirement for keeping a learning reward. Persist creative unlocks and drawings through ordinary updates.
 
-Keep existing progress and drawings through compatible storage and migrations. A clean redesign must not mean clearing the child's save. Provide a deliberate reset separately from normal play. A later backup/export feature can support moving saves between devices.
+Preserve existing drawings/progress during migration. Legacy furniture fields should be retained safely for rollback or migration without enabling the old shopping/placement flow. Never silently erase old saves. A later backup/export feature can support moving devices.
 
 ## 8. Visuals, sound and interaction
 
@@ -216,7 +226,7 @@ Record:
 - Submitted answers, wrong entries, retries, hints and puzzle skips.
 - Time spent per task and round, distinguishing active play from pauses or a hidden browser tab.
 - Puzzle completion, abandonment and resumption.
-- Resource rewards, purchases, furniture changes and save/load failures.
+- Resource rewards, purchases, creative unlocks, consumable use/skip and save/load failures.
 
 Keep logs local by default, bounded in size and available through adult settings with export and clear controls. Use an anonymous session identifier; avoid names, recordings and unrelated personal information. There is no automatic AI upload. Exports should contain enough puzzle context to understand mistakes and timing, with development skips marked explicitly.
 
@@ -224,19 +234,19 @@ This introduces local gameplay logging beyond the current checkout's stated no-t
 
 ## 11. First playable version and checks
 
-Build the den, a small explorable forest, the shop and five friends first: Eichhörnchen, Blaumeise, Waldkauz, Biber and Maus. The design pack brings Maus into the initial set to include explicit reading practice. Include the five initial puzzle types across two shared categories, one difficulty level, fresh repeat visits, resource rewards, at least one purchasable furnishing and one consumable reward. The category groups related puzzles; each initial host introduces the activity listed in section 1, and released puzzles can be reused by other hosts in that category. Add the remaining neighbours as further game families are ready.
+Build the den, a small explorable forest, the shop and five friends first: Eichhörnchen, Blaumeise, Waldkauz, Biber and Maus. The design pack brings Maus into the initial set to include explicit reading practice. Include the five initial puzzle types across two shared categories, one difficulty level, fresh repeat visits, resource rewards, a colouring-page unlock, an extra-pencil palette, an apple and a bubble bath. The category groups related puzzles; each initial host introduces the activity listed in section 1, and released puzzles can be reused by other hosts in that category. Add the remaining neighbours as further game families are ready.
 
 The first version is ready to review when:
 
 - The game starts in the den and the fox can leave, navigate to friends and return.
 - Each friend has a recognisable 3D model, personality and playable puzzle.
 - Every released learning puzzle has a verified Zürcher Lehrplan code and Zyklus-1 step, a concrete first-grade objective, and reviewed task content; supporting or enrichment activities are labelled separately.
-- First-grade suitability has been reviewed with a Zürich primary teacher; remaining curriculum gaps are documented.
+- Curriculum source checks are documented. No teacher testing is required. Child testing happens after implementation on the running game.
 - Each new completed visit can offer fresh tasks; interrupted puzzles resume correctly.
 - There is one difficulty level, with no level selector or difficulty-based reward multiplier.
 - Several animals can share Reading or Mathematics while introducing different puzzle types; shared puzzles keep identical learning rules.
 - Each puzzle occupies its own catalogue row; new puzzles and categories can be added independently of the cast.
-- Buying and placing furniture works, and refresh/relaunch preserves furniture and resources.
+- Page/pencil purchases and apple/bath use work; the environment stays fixed and refresh/relaunch restores ownership, inventory and drawings.
 - Music and forest sounds play gently and their controls persist.
 - A child can follow the main loop using objects, pictures, demonstration and speech without reading navigation text.
 - Matched development screenshots have been compared with the preserved visual baseline; intentional deviations are documented.
@@ -248,42 +258,29 @@ The first version is ready to review when:
 
 - Agree on movement and camera details using the linked Emberwick reference.
 - Confirm the proposed character appearances, category assignments and rewards.
-- Decide who runs the shop and select the first furniture collection.
+- Decide who runs the shop and expand the initial colouring-page/pencil/consumable catalogue.
 - Balance resource amounts, combined prices and task ranges for the single difficulty level.
 - Select suitable tasks from existing three-stage activities for the single level.
 - Select later Writing, Nature and Creativity activities without forcing a new category or character for every skill.
 - Set local log retention limits and the adult export format.
 - Preserve useful interactions from the current game: see [current gameplay](../../docs/GAMEPLAY.md) and [Heart Tree baseline](../heart-tree/BLUEPRINT.md). Inspect existing save keys and assets before implementation; the current checkout now includes the later world and story documentation.
 
-## 13. Next design steps and development handoff
+## 13. Implementation handoff and testing order
 
-Complete the following in order before full development. The blueprint is a design draft until these decisions are resolved; adding this checklist does not mean the design is approved or finished.
+The user will not test with a teacher. Child testing happens **after implementation, once the game is running**. Earlier teacher/child testing gates before development are superseded. Internal curriculum source/content checks still apply; do not claim teacher endorsement or completed child testing.
 
-| Step | Design work | Deliverable and completion criterion |
+**Switch to Codex after revision 10 is saved and pushed to GitHub.** The next phase is implementation of a running game, not further rounds of design-only mockups. Resolve routine implementation details within this blueprint and preserve accepted artwork.
+
+| Order | Work | Result |
 | --- | --- | --- |
-| 1. Validate learning scope | Review the curriculum mapping and choose first-grade objectives, number ranges, introduced letters and vocabulary. Prioritise German and mathematics. Resolve provisional references with a Zürich primary teacher. | A reviewed curriculum matrix with one puzzle per row, exact competency code and step, learning objective, prerequisites and task boundaries. Label enrichment separately. |
-| 2. Define puzzle specifications | For each initial puzzle, write its introduction, worked example, five sample tasks, correct answers, plausible errors, hints and feedback. Define input and resume behaviour. | One short specification per puzzle, with a larger question-generation or content plan and clear evidence that tasks practise the intended objective. Keep one difficulty level. |
-| 3. Confirm cast and shared categories | Approve character personalities, appearances, shared categories, resources and story reasons for helping. Decide which neighbours share puzzle sets and who runs the shop. | A final cast sheet and an explicit character-to-category mapping. Keep later categories visible in the backlog. |
-| 4. Storyboard the first session | Draw the flow from waking in the den through leaving, meeting a friend, learning a puzzle, earning a reward, buying an item and returning home. Include mistakes, help, leaving and returning. | A short picture storyboard that a child can follow with little reading, plus draft Swiss Standard German dialogue and speech. |
-| 5. Sketch the world and controls | Map the first playable forest, paths, landmarks, entrances and camera behaviour. Use Emberwick to discuss movement feel. Sketch the den, map, puzzle screen, wallet, shop and adult settings. | An annotated world map and screen wireframes, including touch targets, route guidance and transitions. |
-| 6. Set the visual and audio direction | Make a character reference sheet, starting with Fuchs and Waldkauz, and one representative forest/den scene. Define model proportions, animation needs, puzzle illustration style, music and ambience. | A small approved reference pack and asset list for the first playable version. |
-| 7. Balance the reward loop | Choose initial rewards, wallet icons, furniture and consumables. Work through sample purchases and repeat visits. Define ownership, consumption and placement rules. | A price/reward table showing how many rounds a first furnishing needs, with no forced upkeep or difficulty multiplier. |
-| 8. Specify persistence and logging | List saved states, migration expectations, interrupted-puzzle behaviour, purchase/reward consistency and development skips. Define log events, sample export, retention and adult controls. | A save-state checklist and sample anonymous log export covering success, mistakes, pauses, refreshes and skips. |
-| 9. Review with children and a teacher | Walk through the storyboard or a small disposable interaction mockup. Observe navigation, instruction comprehension, puzzle relevance and reward understanding. | Recorded findings, agreed revisions and resolved blockers. Use this review to refine design before expanding the world. |
-| 10. Freeze the first playable scope | Choose the exact initial puzzle types, characters, scene boundaries, asset needs and acceptance checks. Separate required work from later additions. | A development-ready brief linking the approved designs, a prioritised implementation backlog and a documented list of remaining optional decisions. |
+| 1. Implement one complete loop | Fixed den/forest → friend → puzzle → resources → shop → drawing unlock or consumable animation → return | Playable loop with unchanged world layout |
+| 2. Complete initial scope | Add all five initial puzzles across Reading/Mathematics, page/pencil unlocks, apple and bath sequences, audio and developer access | Running first playable game |
+| 3. Verify continuity and content | Save/migrate drawings, inventory, unlocks and puzzle state; prevent duplicate transactions; expand and internally check task pools; local logs and responsive controls | Tested running build ready for the user |
+| 4. Child test after implementation | User plays the running game with a child | Observe navigation, instructions, Waldkauz reading, shop, drawing and animations |
+| 5. Iterate | Fix observed confusion and defects before expanding scope | Improved playable game; no teacher test is a dependency |
 
-### Design work completed in the next pass
+### Codex handoff
 
-- [Curriculum matrix](curriculum-matrix.md): five initial puzzle mappings with exact official steps, plus a row-by-row backlog. Unverified mappings and enrichment are explicit.
-- [Puzzle specifications](puzzle-specifications.md): counting, written rhyme pairs, easy sentence-to-picture reading, missing-shape recognition and word reading. Each has an example, five sample tasks, answers, hints, feedback, content boundaries and resume rules.
-- [Experience design](experience-design.md): first-session storyboard, world topology, screen layouts, movement proposal, character/audio direction and review script.
-- [Rewards and continuity](rewards-and-continuity.md): proposed rewards and prices, purchase/consumption rules, save recovery and local log/export contract.
-- [Visual review](visuals/README.md): Fuchs/Waldkauz character reference, den/forest concepts and editable tablet screen mockups with counting, reading and shop interaction specimens.
+Read this blueprint, [curriculum matrix](curriculum-matrix.md), [puzzle specifications](puzzle-specifications.md), [experience design](experience-design.md), [reward/save contract](rewards-and-continuity.md), [visual baseline](visuals/baseline.md) and [revision 10](visuals/revisions/v10.md). Implement one complete saved loop before expanding the world. Compare the running game with the preserved art and record intentional differences.
 
-These are drafts available for review. Next: review the first visual proposals, extend the remaining character/screen references, expand each initial puzzle to at least 15 reviewed tasks or valid generated variants, review curriculum suitability with a Zürich primary teacher, and walk through the interaction design with children. The user endorsed the revised examples and simpler categories and requested an easier Waldkauz start. Teacher approval and child testing have not yet taken place; this feedback is not a release freeze. Do not mark the design frozen until those reviews are recorded.
-
-### Handoff to development
-
-Give the development chat this blueprint, the reviewed curriculum matrix, puzzle specifications, world map, wireframes, reference assets, reward table and [visual comparison baseline](visuals/baseline.md). For each implemented milestone, capture the matching scenes and compare them with the frozen art and screenshots; record differences instead of changing the reference to fit the implementation. Implement one complete loop first: den → friend → puzzle → resource → shop → placed furnishing → refresh with state restored. Validate that loop before adding the remaining puzzle catalogue and forest regions.
-
-The design phase is complete when the first playable deliverables above are approved, curriculum checks are resolved for its puzzles, and the acceptance checks in section 11 can be implemented without inventing major product decisions. Curriculum gaps for later releases stay explicitly listed.
+The design preview demonstrates interactions with temporary 2D animation studies. Production 3D character animation, durable saves and the complete explorable game are implementation work. Older furniture and pre-implementation external-testing requirements are historical references only.

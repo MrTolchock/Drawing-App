@@ -1,3 +1,5 @@
+> Current revision 10: purchases never alter the environment. No teacher testing is planned or required. Child testing happens after implementation, once the game is running. This replaces earlier pre-implementation external-review gates; internal curriculum source checks remain.
+
 > Current design pass: [Revision 9](visuals/revisions/v9.md), viewed and updated in [Sites](https://forest-friends-design-review.andreas-itten.chatgpt.site/). This supersedes earlier puzzle-confirmation, wallet and camera-direction notes below; frozen visual references remain intact.
 
 # Drawing-App — cloud conversation handoff
@@ -22,14 +24,14 @@ For existing runtime behaviour, read [Heart Tree baseline](https://github.com/Mr
 
 ## Decisions and user preferences
 
-- Primary goal: help children with first-grade school learning in Zürich. Zürcher Lehrplan 21 alignment is mandatory. Zyklus 1 is broader than first grade; choose suitable task ranges and prerequisites, and record exact references. Teacher review is still pending; do not claim approval or full curriculum coverage.
+- Primary goal: help children with first-grade school learning in Zürich. Zürcher Lehrplan 21 alignment is mandatory. Zyklus 1 is broader than first grade; choose suitable task ranges and prerequisites, and record exact references. Internal source/content review is still pending; do not claim approval or full curriculum coverage.
 - Use Swiss Standard German in the game and German character names: Fuchs, Waldkauz, Eichhörnchen, Blaumeise, Maus, Biber, Hase, Igel, Reh, Fisch, Eisvogel. Design prose can remain English.
 - There is **one difficulty level**. Earlier suggestions of two or three levels are superseded.
 - Catalogue each puzzle on its own row. Use simple shared categories: Mathematics, Reading, Writing, Nature and Creativity. Several animals can share a category and introduce different activities inside it. Reuse puzzle rules across eligible hosts; never invent an animal-specific category. Precise competencies remain internal curriculum tags.
-- Fuchs is a small orange fox with a green neckerchief. Home is a den beneath the central tree and acts as the playable menu: draw/play, eat, drink, sleep, furnish and go outside.
+- Fuchs is a small orange fox with a green neckerchief. Home is a den beneath the central tree and acts as the playable menu: draw/colour, use a treat animation, sleep and go outside.
 - Outside is a freely explorable 3D forest. Use Emberwick as a movement-feel reference, keeping this game's woodland identity. Each visit offers fresh tasks from the friend's competency. Interrupted tasks resume exactly.
 - Blaumeise needs rhymes for songs; Eichhörnchen counts winter stores; Waldkauz reads very short messages with the child; Maus learns letters, syllables and reading; Biber builds from shapes.
-- Friends give characteristic resources: nuts, logs, feathers, seeds, berries and later other types. Use pictured barter prices in the shop. Sell permanent furnishings and repeatable/consumable rewards such as apples and drinks; drawing templates can unlock ongoing activities.
+- Friends give characteristic resources: nuts, logs, feathers, seeds, berries and later other types. Use pictured barter prices in the shop. Sell colouring pages/pencil palettes and repeatable apple/bubble-bath consumables; no environment placement.
 - Furniture, wallet, owned items, drawings and interrupted puzzles must persist through refreshes, relaunches and normal updates. Preserve existing progress during migration. Development skips are separate from the child's save and rewards.
 - Add subtle background music and forest ambience with replayable speech and saved audio controls. Mistakes and hints cause no resource loss, lives or mandatory countdown.
 - The running version should log local movement, task attempts/errors, hints and active duration. Adults can export the log and manually upload it to AI for improvement. No automatic AI upload; keep logs anonymous and bounded.
@@ -42,15 +44,15 @@ The resulting version-2 interface uses direct object hotspots, pictured destinat
 
 The baseline is tagged **`codex/forest-friends-visual-v2`**, created at commit `e6479ef`. Its original art, frozen `review-v1.html`/`review-v2.html`, eight screenshots, integrity manifest and comparison rubric are checked in. Do not overwrite the references to make development appear to match; create a new revision for a design change. At each development milestone, capture equivalent real-game states and record comparison results and intentional deviations. Run `python3 design/forest-friends/visuals/check-baseline.py` to verify reference integrity.
 
-The review is a disposable screen prototype: scenes are generated illustrations, not a running 3D world; it has one counting and one reading specimen, a sample wallet and fixed furnishing spot. Its refresh resets are not the intended production save behaviour. Teacher/child review, physical iPad testing, narration quality and production model/animation work remain outstanding.
+The review is a disposable screen prototype: scenes are generated illustrations, not a running 3D world; it has one counting and one reading specimen, a sample wallet and drawing/consumable rewards. Its refresh resets are not the intended production save behaviour. Post-implementation child testing, physical iPad testing, narration quality and production model/animation work remain outstanding.
 
 ## Suggested next design work
 
 1. Review the picture-led v2 interface with the user and children, especially speaker/demo/help/check symbols and shop token exchange.
 2. Create remaining character references for Eichhörnchen, Blaumeise, Biber and Maus and screen studies for written rhyme pairs, easy sentence reading and missing-shape recognition, following the endorsed art direction.
-3. Expand initial puzzle content pools to at least 15 reviewed tasks or valid variants per puzzle and resolve teacher-review items.
-4. Freeze the first playable scope only after recorded reviews. Its initial cast includes Eichhörnchen, Blaumeise, Waldkauz, Biber and Maus, with one initial puzzle type per competency represented.
-5. For development, implement one complete den → friend → puzzle → resource → shop → placed furnishing → refresh loop first, comparing it against the visual baseline.
+3. Expand initial puzzle content pools to at least 15 reviewed tasks or valid variants per puzzle and complete internal source/content checks.
+4. Implement the current scope, then record child-test observations. Its initial cast includes Eichhörnchen, Blaumeise, Waldkauz, Biber and Maus, with one initial puzzle type per competency represented.
+5. For development, implement one complete den → friend → puzzle → resource → shop → drawing/animation → refresh loop first, comparing it against the visual baseline.
 
 Continue the design conversation in the cloud project. Start runtime development when the user requests it. Keep project sources current from GitHub; do not assume that syncing a conversation provides access to the Mac's working folder or preview server.
 
@@ -68,4 +70,9 @@ The user endorsed the revised examples and simple category names, and found Wald
 
 Waldkauz's initial content excludes preposition contrasts, three-choice spatial scenes and narrative sequencing. Sentences remain visible; the speaker explains the action without pronouncing the target. Separate examples can be spoken. Biber is a basic geometry warm-up, not the former coordinate-placement grid or a claim of full geometry mastery. See [current puzzle specifications](puzzle-specifications.md).
 
-Each round has five tasks, one difficulty level, direct answer submission, correction, automatic advancement and a pictured reward credited once. Review refreshes still reset disposable state. Production persistence, approved 15-item pools, teacher and child validation remain outstanding. Frozen v1/v2 and earlier revisions stay untouched. Always push completed source, docs and dependencies to GitHub main.
+Each round has five tasks, one difficulty level, direct answer submission, correction, automatic advancement and a pictured reward credited once. Review refreshes still reset disposable state. Production persistence, approved 15-item pools, internal content checks and post-implementation child testing remain outstanding. Frozen v1/v2 and earlier revisions stay untouched. Always push completed source, docs and dependencies to GitHub main.
+
+
+## Revision 10 handoff
+
+Use the fixed-environment shop: colouring pages and pencils unlock at the drawing table; apple/bubble bath are bag consumables with short skippable sequences. No purchased furniture or placement mode. Preserve legacy save data safely. Switch to Codex implementation after this update is pushed; child testing follows the running build, and no teacher consultation/testing is required.

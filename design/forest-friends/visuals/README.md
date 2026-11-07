@@ -1,93 +1,24 @@
-> Current working review: [review-v9.html](review-v9.html). [Revision 9](revisions/v9.md) supersedes the earlier learning-category assignments and three new puzzle designs. User endorsed examples and simpler categories; Waldkauz now starts with three-word sentences and two pictures.
+# Visual review — current revision 10
 
-# Visual design review — version 2
+Open [review.html](review.html), [versioned revision 10](review-v10.html) or the [hosted review](https://forest-friends-design-review.andreas-itten.chatgpt.site/). See [revision-10 decisions](revisions/v10.md).
 
-**Status:** Character and den direction endorsed by the user on 7 November 2026. Version 2 revises navigation for children who cannot yet read; child usability and curriculum review remain outstanding.
+## Current behaviour
 
-The visual pass is preserved as a development comparison baseline: see [baseline.md](baseline.md), [frozen version 2](review-v2.html), [previous version 1](review-v1.html) and the [reference screenshots](baselines/v2). Do not overwrite these references during development.
+- Fixed den/forest art and picture-led navigation; no purchased furniture or placement mode.
+- Reading: Maus words, Blaumeise written rhymes, Waldkauz three-word sentences with two pictures. Mathematics: counting and missing shapes.
+- Shop: colouring page, extra coloured pencils, apple and bubble bath. Buy and Use are separate actions.
+- Pages/colours unlock only at the drawing table. Free drawing/basic colours remain available; drawings are kept separately per page in the tab.
+- Apple/bath consumes one bag item and plays a short skippable illustrated sequence, then returns to the same environment.
+- Sample wallet includes 3 nuts, 3 logs, 2 feathers and 3 seeds to inspect all four products.
 
-Open [the interactive review](review.html) in a browser. It contains home, forest, five learning activities, pictured rewards, shop and character views. The learning activities share Reading and Mathematics. The layout and text are editable in the HTML file. It can also be served locally from the repository root using `python3 -m http.server 8766 --bind 127.0.0.1`, then opened at `http://127.0.0.1:8766/design/forest-friends/visuals/review.html`.
+The preview resets on refresh. Production saves, final 3D animation and the fully explorable running game are implementation work.
 
-Use a separate local port from the installed game's preview: an existing service worker on the game's origin can return an older cached design. The review itself registers no service worker and writes no save data.
+## Dependencies and baseline
 
-## Character reference
+Current HTML uses review-v8.js/css, review-v9.js/css, review-v10.js/css, preserved scene assets and repository fonts. Earlier versioned HTML, original artwork, screenshots and integrity manifest remain untouched. See [baseline](baseline.md), [art direction](art-direction.md) and [generation provenance](prompts.json).
 
-![Fuchs and Waldkauz — front, side, back and expression studies](characters-v1.png)
+## Verification and implementation
 
-Fuchs has an orange/cream coat, dark paws, a cream-tipped tail and green neckerchief. Waldkauz has rounded tawny feathers, facial discs, large warm eyes and no ear tufts. The sheet establishes silhouettes and expressions for review, not final mesh topology, rigging, animation or textures.
+Browser checks: page purchase/ownership, page selection and switching, extra pencil colours, both consumable sequences, single inventory decrement, return to the same shop, and bag-based apple use. JavaScript syntax passed. Physical touch/small-screen testing and durable saves are not claimed.
 
-Model handoff: keep Fuchs's tail and neckerchief readable from behind; preserve Waldkauz's distinct facial discs and independently movable wings. Use simplified broad material shapes in real-time models. The image's feather/fur detail is a mood reference, not a requirement to reproduce dense geometry on tablets. Compare front/side/back views during modelling rather than treating a generated turnaround as exact orthographic construction.
-
-## Home and forest reference
-
-![Fuchs at home in the den](den-v1.png)
-
-The door, drawing table, bed and open floor are the home menu. The generated scene includes starter bedding and a plain cushion; these are background dressing, not the purchased ochre cushion represented in the interaction specimen. In production, separate every movable or buyable furnishing from the environment so ownership and placement are accurately represented.
-
-![Central home tree, shop and brook](forest-v1.png)
-
-The central tree is the home landmark, the smaller tree is the shop, and broad sandy paths lead towards neighbours. The sample world is an illustration; it does not demonstrate the 3D camera, collision, routing or reachability of any location. The two sample friend buttons switch between design views and are not literal map coordinates. The topology in [experience design](../experience-design.md) remains the world-layout reference.
-
-## Picture-led interface
-
-Within the game frame, actions use objects and pictures with repeatable spoken guidance. Reading is required only for the actual reading task. Numerals remain in the counting task and inventory quantities. Written headings and review notes outside the frame are for adults; review notes are collapsed by default.
-
-- **Zuhause:** tap the doorway to leave, the drawing table to draw and the bed to rest. A bought cushion appears as a pictured placement suggestion. The original den art is unchanged.
-- **Wald:** neighbours appear as portraits and places as recognisable scene objects. The picture map selects a destination and shows a direction cue; it does not teleport directly into a puzzle.
-- **Zählen:** seven selectable nuts, three numeral choices and a pictured check. Wrong answers get a retry marker and spoken encouragement. Help is spoken; the worked example uses a separate group of three nuts and a pointing hand.
-- **Lesen:** «Maus» is the only visible word in the task. Directions are spoken; the separate example demonstrates «Ast». The scored target is not automatically pronounced. Descriptive accessibility labels remain available; the accessible reading variant still needs review because labels can reveal a picture match.
-- **Laden:** item pictures, actual nut tokens for prices and available resources, an exchange arrow and explicit check-to-buy. Owned furniture uses a check badge; consumables show quantity. No product description must be read.
-- **Beutel:** pictured wallet and belongings; tap an apple to eat it at home or a cushion to return home for placement.
-- **Figuren:** original Fuchs/Waldkauz reference sheet.
-
-Controls have accessible German names and keyboard focus. The speaker repeats contextual guidance; the hand shows a separate example; the Waldkauz help picture supplies a spoken clue. These symbols still need child testing. Production onboarding must demonstrate unfamiliar symbols, not assume that removing words makes them understandable.
-
-The five progress dots show the planned round structure, but there is only one specimen task for counting and reading. The review includes a small disposable drawing surface and a cosmetic rest effect; they are not production features. Furniture uses one fixed placement spot. Speech uses an available browser voice; audio quality and first-use narration on a physical tablet remain unvalidated. Sample progress resets on refresh; the real game's durable-save requirement remains unchanged.
-
-## Browser review performed
-
-Checked the picture-led review at 1024 × 900 and 390 × 844 viewports. Saved fixed screenshots of home, forest, map, counting, its separate demonstration, reading, shop and compact counting. Confirmed counting and reading wrong-answer correction, separate demonstration content, picture-map route selection, cushion/apple purchases, ownership/balance changes, placement, pictured inventory and consumption. Opened the drawing surface and inspected its controls. Compact counting has no horizontal overflow and a minimum game-control dimension of 48 CSS pixels.
-
-This checks the prototype, not physical iPad performance, narration quality, child comprehension or curriculum attainment. Version 1 browser observations remain in the original Git history. Version 2 reference screenshots and file hashes are preserved for later comparison.
-
-## Review questions and remaining work
-
-| Review topic | Concrete question | What to record |
-| --- | --- | --- |
-| Character identity | Are Fuchs and Waldkauz recognisable, expressive and appropriate for first grade? | Specific silhouette, expression or costume changes |
-| Home clarity | Can the child find the door, table and furnishing action from the image? | First action and any spoken help needed |
-| Counting | Does the child understand the five/ten arrangement and the check button? | Marks, corrections and requested help; no inferred mental strategy |
-| Reading | Are the word, pictures and instructions understandable without speaking the answer? | Introduced letters, picture naming and use of help |
-| Rewards | Can the child explain the cushion price and tell ownership from apple quantity? | Misunderstandings and useful icon changes |
-| World movement | What camera and travel behaviour makes the forest feel comfortable? | Requires a later 3D movement prototype; a still image is insufficient |
-
-Next art work after feedback: individual character references for Eichhörnchen, Blaumeise, Biber and Maus; a geometry workbench; rhyme and story screens; an illustrated map; and approved resource/item icon families. Next content work: expand the five task pools, complete teacher review and record a child walkthrough. Do not freeze design from artwork alone.
-
-## Source and generation record
-
-The three PNGs were created with the built-in image_gen tool. Full final prompts are saved in [prompts.json](prompts.json); no external image references were supplied. Files are project-local and versioned, and no existing game art was overwritten. Screen controls, small SVG illustrations and layout were authored directly for this review; they are not generated screenshots.
-
-| File | Purpose |
-| --- | --- |
-| characters-v1.png | Fuchs/Waldkauz model and expression reference |
-| den-v1.png | Home scene concept |
-| forest-v1.png | Central clearing and world scene concept |
-| review.html | Current editable picture-led review |
-| review-v1.html | Frozen original text-heavy interface |
-| review-v2.html | Frozen picture-led interface |
-| baseline.md | Development comparison rules and acceptance rubric |
-| baseline-manifest.json | Integrity record for frozen reference files |
-| baselines/v2 | Fixed browser screenshots |
-| prompts.json | Exact generation prompt set and tool provenance |
-
-## Review the five learning families
-
-Use the rhyme, owl and beaver icon tabs for the three new 2D specimens. Bag icon opens the thanks design. Adult review-state controls are below the frame. The private review Site stays the viewing destination; source and all versioned dependencies are in GitHub. [Review script](review-script-v8.md).
-
-Version 8 depends on review-v8.js and review-v8.css in this same directory, plus the preserved v7 scene/art assets and repository fonts. Keep those files together when opening a downloaded checkout.
-
-## Revision 9 dependencies and review
-
-Keep review-v9.html, review-v9.js, review-v9.css, review-v8.js and review-v8.css together with preserved scene images and repository fonts. review.html is the current entry point; review-v9.html is the versioned source. V8 remains an unchanged historical reference. See [review script v9](review-script-v9.md).
-
-Reading: Maus words; Blaumeise written rhymes; Waldkauz three-word action sentences with two choices. Mathematics: Eichhörnchen counting; Biber missing shapes. User examples/category feedback is recorded; teacher/child validation remains pending.
+No teacher testing is planned or required. The user will test with a child after implementation, once the game is running. Internal curriculum checks remain. Switch to Codex after this revision is pushed and implement the complete playable loop.

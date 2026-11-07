@@ -1,10 +1,12 @@
+> Current revision 10: purchases never alter the environment. No teacher testing is planned or required. Child testing happens after implementation, once the game is running. This replaces earlier pre-implementation external-review gates; internal curriculum source checks remain.
+
 > Shared visual rule: [den-led art direction](visuals/art-direction.md). Outdoors, den and shop use 3D; learning puzzles use 2D.
 
 > Latest interaction decisions: [Design revision 9](visuals/revisions/v9.md) sets shared categories and the revised Reading/Mathematics examples. The single difficulty level and curriculum requirements remain.
 
 # Initial puzzle specifications
 
-**Status:** Reviewable design drafts, 7 November 2026. No gameplay implementation. Curriculum mappings and prerequisites are in [the matrix](curriculum-matrix.md). First-grade teacher and child review remain outstanding.
+**Status:** Reviewable design drafts, 7 November 2026. No gameplay implementation. Curriculum mappings and prerequisites are in [the matrix](curriculum-matrix.md). No teacher testing is required. Child testing follows implementation.
 
 ## Shared round behaviour
 
@@ -110,7 +112,7 @@ On error, leave the gap visible, mark the selected card gently and allow another
 | 4 | Rose | rose, nose, hat | Rose | Mark Ro-se on request; avoid teaching letter names as blending sounds. |
 | 5 | Nase | nose, mouse, rose | Nose | Mark Na-se on request and allow extra time. |
 
-This sample requires A/a, E/e, H/h, M/m, N/n, O/o, R/r, S/s, T/t and U/u; confirm sounds and capitalisation with the teacher. Picture labels are explanatory English here, not UI text. Requested whole-word audio is a teaching aid: log it as answer-revealing support. After it, completion earns the same resource but cannot count as an independent reading response.
+This sample requires A/a, E/e, H/h, M/m, N/n, O/o, R/r, S/s, T/t and U/u; check sounds and capitalisation against the introduced letter inventory. Picture labels are explanatory English here, not UI text. Requested whole-word audio is a teaching aid: log it as answer-revealing support. After it, completion earns the same resource but cannot count as an independent reading response.
 
 **Completion feedback:** «Danke! Wir haben zusammen gelesen.» Replay of a completed word can pronounce it and show the word-picture match.
 
@@ -125,3 +127,8 @@ For every sample and added variant, review correct/incorrect choices, uniqueness
 The preview includes examples, retries, automatic advancement and pictured rewards. It is disposable and resets on refresh; production persistence/logging remain future implementation. Earlier revision-8 audio-only rhymes, story ordering and composition fixtures remain in frozen files for history only. They are not the initial release specification.
 
 Before release: expand to at least 15 reviewed tasks per puzzle; separate scored tasks from demonstrations; validate letter inventory, verb-picture recognition, rhyme reading support and first-grade appropriateness. Do not treat sample success as curriculum mastery.
+
+
+## Revision 10 handoff
+
+Use the fixed-environment shop: colouring pages and pencils unlock at the drawing table; apple/bubble bath are bag consumables with short skippable sequences. No purchased furniture or placement mode. Preserve legacy save data safely. Switch to Codex implementation after this update is pushed; child testing follows the running build, and no teacher consultation/testing is required.
