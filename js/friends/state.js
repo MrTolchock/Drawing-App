@@ -1,0 +1,109 @@
+/* One validated localStorage envelope is the transaction boundary for all player changes.
+   Legacy farbklecks/farbtupf keys and IndexedDB stores are deliberately left intact. */
+(function(root){
+  'use strict';
+  const clone=x=>JSON.parse(JSON.stringify(x));
+  const SCHEMA=1, RETENTION=7*86400000, LIMIT=10000;
+  function create({storage,content,development=false,now=()=>Date.now(),random=Math.random,onStatus=()=>{}}){
+    const key='farbtupf.friends.'+(development?'development.':'')+'v1', backup=key+'.backup', logKey=key+'.log';
+    let state,blocked=false,readFailed=false,expected=null,error='',events=[],truncated=false;
+    const uid=()=>now().toString(36)+'-'+random().toString(36).slice(2,12);
+    const sessionId=uid();
+    const fresh=()=>({schema:SCHEMA,revision:0,contentVersion:content.version,wallet:{nuts:0,seeds:0,feathers:0,logs:0,berries:0},inventory:{apple:0,bath:0},unlocks:{leaf:false,pencils:false},rounds:{},previous:{},completed:{},seenExamples:{},selectedPage:'free',drawings:{free:[],leaf:[]},settings:{music:true,ambience:true,speech:true},world:{x:0,z:5},animation:null,transactions:[],legacyPreserved:true});
+    function valid(s){
+      const quantity=n=>Number.isSafeInteger(n)&&n>=0;
+      const object=o=>o&&typeof o==='object'&&!Array.isArray(o);
+      const point=p=>Array.isArray(p)&&p.length===2&&p.every(n=>Number.isFinite(n)&&n>=0&&n<=1);
+      const strokes=a=>Array.isArray(a)&&a.length<=2000&&a.every(stroke=>/^#[0-9a-f]{3,8}$/i.test(stroke?.colour)&&Array.isArray(stroke.points)&&stroke.points.length>0&&stroke.points.length<=4000&&stroke.points.every(point));
+      if(s?.schema!==SCHEMA||!quantity(s.revision))return false;
+      if(!['nuts','seeds','feathers','logs','berries'].every(k=>quantity(s.wallet?.[k])))return false;
+      if(!['apple','bath'].every(k=>quantity(s.inventory?.[k]))||!['leaf','pencils'].every(k=>typeof s.unlocks?.[k]==='boolean'))return false;
+      if(!object(s.rounds)||!Object.entries(s.rounds).every(([host,r])=>content.hosts[host]&&r&&r.host===host&&typeof r.id==='string'&&r.tasks?.length===5&&r.tasks.every(t=>typeof t.id==='string'&&Array.isArray(t.choices)&&t.choices.includes(t.answer)&&t.choices.every(v=>typeof v==='string')&&['count','shape','sentence','word','rhyme'].includes(t.kind))&&Number.isInteger(r.index)&&r.index>=0&&r.index<=5&&Array.isArray(r.attempts)&&Array.isArray(r.support)&&Number.isFinite(r.activeMilliseconds)&&r.activeMilliseconds>=0&&typeof r.rewarded==='boolean'&&(r.index===5)===r.rewarded))return false;
+      if(!s.drawings||!['free','leaf'].every(k=>strokes(s.drawings[k]))||!['free','leaf'].includes(s.selectedPage))return false;
+      if(!s.settings||!['speech','music','ambience'].every(k=>typeof s.settings[k]==='boolean'))return false;
+      if(!s.world||!Number.isFinite(s.world.x)||!Number.isFinite(s.world.z))return false;
+      if(s.animation!==null&&(!['apple','bath'].includes(s.animation?.item)||typeof s.animation.transactionId!=='string'||!['den','forest','shop'].includes(s.animation.returnTo)))return false;
+      return object(s.previous)&&object(s.completed)&&object(s.seenExamples)&&Array.isArray(s.transactions);
+    }
+    function decode(raw){try{const s=JSON.parse(raw);return valid(s)?s:null;}catch{return null;}}
+    function status(message=''){error=message;onStatus({saved:!error,error,blocked});}
+    function record(event,details={}){
+      const timestamp=now();events.push({event,timestamp,sessionId,development,appVersion:'7.0.0',saveVersion:SCHEMA,contentVersion:content.version,...clone(details)});
+      const kept=events.filter(e=>e.timestamp>=timestamp-RETENTION).slice(-LIMIT);truncated=truncated||kept.length<events.length;events=kept;
+      // Logs are independent: a full log must never turn a successful purchase into a reported failure.
+      try{storage.setItem(logKey,JSON.stringify({events,truncated}));}catch{truncated=true;}
+    }
+    try{const l=JSON.parse(storage.getItem(logKey));events=Array.isArray(l?.events)?l.events.filter(e=>e&&typeof e.event==='string'&&Number.isFinite(e.timestamp)).slice(-LIMIT):[];truncated=!!l?.truncated;}catch{}
+    try{
+      expected=storage.getItem(key);state=decode(expected);
+      if(!state&&expected!==null){
+        let newer=false;try{newer=JSON.parse(expected)?.schema>SCHEMA;}catch{}
+        const fallback=newer?null:decode(storage.getItem(backup));
+        if(fallback){state=fallback;status('Der letzte sichere Spielstand wurde geladen. Bitte erneut speichern.');}
+        else{state=fresh();blocked=true;status('Dein Spielstand konnte nicht geladen werden. Die gespeicherten Daten bleiben erhalten.');}
+      }else if(!state)state=fresh();
+    }catch{state=fresh();blocked=true;readFailed=true;status('Dein Spielstand konnte nicht geladen werden.');}
+    function commit(change,event,details={}){
+      if(blocked)return false;
+      const next=clone(state);if(change(next)===false)return false;
+      next.schema=SCHEMA;next.revision=state.revision+1;
+      if(!valid(next))throw new Error('Invalid friends save');
+      try{
+        if(storage.getItem(key)!==expected){blocked=true;status('Das Spiel ist in einem anderen Fenster verändert worden. Bitte neu laden.');return false;}
+        // Keep the previous validated envelope before replacing it. setItem itself is atomic.
+        if(decode(expected))storage.setItem(backup,expected);
+        const raw=JSON.stringify(next);storage.setItem(key,raw);expected=raw;state=next;status();
+        if(event)record(event,details);return true;
+      }catch{status('Dein Spielstand konnte nicht gespeichert werden.');return false;}
+    }
+    record('session_start',{loaded:expected!==null});
+    if(expected===null&&!blocked)commit(()=>{},'save_created');
+    function shuffled(a){const out=clone(a);for(let i=out.length-1;i>0;i--){const j=Math.floor(random()*(i+1));[out[i],out[j]]=[out[j],out[i]];}return out;}
+    function start(host){
+      if(!content.hosts[host])return false;
+      if(state.rounds[host]){record('task_resume',{host,roundId:state.rounds[host].id,taskId:state.rounds[host].tasks[state.rounds[host].index]?.id});return true;}
+      let pool=shuffled(content.pools[host]);const previous=state.previous[host]||[];
+      pool.sort((a,b)=>Number(previous.includes(a.id))-Number(previous.includes(b.id)));
+      const tasks=pool.slice(0,5).map(t=>({...t,choices:shuffled(t.choices)}));const id=uid();
+      return commit(s=>{s.rounds[host]={id,host,tasks,index:0,attempts:[],support:[],activeMilliseconds:0,feedback:null,rewarded:false,skipped:false};},'round_start',{host,roundId:id,category:content.hosts[host].category,reference:content.hosts[host].reference,tasks});
+    }
+    function answer(host,value,activeMilliseconds=0,skip=false){
+      const r=state.rounds[host];if(!r||r.index>=5||r.feedback==='correct'||(skip&&!development))return false;
+      const t=r.tasks[r.index];if(!skip&&!t.choices.includes(value))return false;
+      const correct=skip||value===t.answer, completed=correct&&r.index===4;
+      const details={host,roundId:r.id,taskId:t.id,prompt:t,answer:value,correct:skip?null:correct,attempt:r.attempts.filter(a=>a.taskId===t.id).length+1,supportUsed:r.support.filter(a=>a.taskId===t.id),activeMilliseconds};
+      return commit(s=>{
+        const round=s.rounds[host];round.attempts.push({...details,prompt:undefined});round.activeMilliseconds+=activeMilliseconds;round.feedback=correct?'correct':'retry';round.selection=value;round.skipped=round.skipped||skip;
+        if(completed){round.index=5;round.rewarded=true;round.feedback=null;s.previous[host]=round.tasks.map(t=>t.id);s.completed[host]=(s.completed[host]||0)+1;
+          const transactionId='reward:'+round.id;s.transactions.push(transactionId);s.transactions=s.transactions.slice(-100);
+          if(!development&&!round.skipped)s.wallet[content.hosts[host].resource]+=3;
+        }
+      },skip?'development_skip':'answer_submitted',details)&&(!completed||(record('resource_grant',{host,roundId:r.id,transactionId:'reward:'+r.id,resource:content.hosts[host].resource,quantity:development||r.skipped?0:3}),true));
+    }
+    const api={key,get:()=>clone(state),round:host=>clone(state.rounds[host]||null),audioSettings:()=>({...state.settings}),get error(){return error;},get blocked(){return blocked;},development,record,start,answer,
+      retrySave(){
+        if(readFailed){
+          try{const raw=storage.getItem(key),loaded=raw===null?fresh():decode(raw);if(!loaded)return false;state=loaded;expected=raw;blocked=false;readFailed=false;}
+          catch{return false;}
+        }
+        return commit(()=>{},'save_retry');
+      },
+      duration(host,milliseconds){return commit(s=>{if(!s.rounds[host])return false;s.rounds[host].activeMilliseconds+=milliseconds;},'task_duration',{host,activeMilliseconds:milliseconds});},
+      advance(host){return commit(s=>{const r=s.rounds[host];if(!r||r.feedback!=='correct'||r.index>=5)return false;r.index++;r.feedback=null;r.selection=null;},'task_start',{host});},
+      acknowledge(host){return commit(s=>{if(!s.rounds[host]?.rewarded)return false;delete s.rounds[host];},'reward_acknowledged',{host});},
+      help(host,kind){const r=state.rounds[host];if(!r||r.index>=5)return false;return commit(s=>{s.rounds[host].support.push({taskId:r.tasks[r.index].id,kind});},'help',{host,roundId:r.id,taskId:r.tasks[r.index].id,kind});},
+      seenExample(host){return commit(s=>{s.seenExamples[host]=true;},'example',{host});},
+      buy(item){const product=content.shop[item];if(!product)return false;const transactionId='purchase:'+uid();return commit(s=>{if(s.wallet[product.resource]<product.price||(product.permanent&&s.unlocks[item]))return false;s.wallet[product.resource]-=product.price;if(product.permanent)s.unlocks[item]=true;else s.inventory[item]++;s.transactions.push(transactionId);s.transactions=s.transactions.slice(-100);},'purchase',{item,transactionId,resource:product.resource,price:product.price});},
+      use(item,returnTo){if(!['apple','bath'].includes(item))return false;const transactionId='use:'+uid();return commit(s=>{if(s.inventory[item]<1||s.animation)return false;s.inventory[item]--;s.animation={item,transactionId,returnTo,world:clone(s.world)};s.transactions.push(transactionId);s.transactions=s.transactions.slice(-100);},'consumption',{item,transactionId});},
+      finishAnimation(skipped=false){return commit(s=>{if(!s.animation)return false;s.animation=null;},skipped?'animation_skip':'animation_complete');},
+      setting(name,value){if(!['music','ambience','speech'].includes(name))return false;return commit(s=>{s.settings[name]=!!value;},'setting',{name,value});},
+      position(x,z){return commit(s=>{s.world={x,z};},'movement_sample',{area:'forest',x,z});},
+      selectPage(page){return commit(s=>{if(!['free','leaf'].includes(page)||(page==='leaf'&&!s.unlocks.leaf))return false;s.selectedPage=page;},'drawing_page',{page});},
+      draw(page,strokes){return commit(s=>{if(!['free','leaf'].includes(page)||(page==='leaf'&&!s.unlocks.leaf))return false;s.drawings[page]=clone(strokes);},'drawing_saved',{page,strokes:strokes.length});},
+      exportLog(){const timestamp=now(),retained=events.filter(e=>e.timestamp>=timestamp-RETENTION).slice(-LIMIT);return {schema:1,appVersion:'7.0.0',contentVersion:content.version,development,retention:{days:7,maxEvents:LIMIT,truncated:truncated||retained.length<events.length},retainedFrom:retained[0]?.timestamp||null,retainedTo:retained.at(-1)?.timestamp||null,events:clone(retained)};},
+      clearLog(){events=[];truncated=false;try{storage.removeItem(logKey);}catch{}},
+      exportSave:()=>({schema:SCHEMA,save:clone(state),original:blocked?expected:undefined}),
+    };return api;
+  }
+  const api={create,SCHEMA};if(typeof module!=='undefined')module.exports=api;else root.FriendsState=api;
+})(typeof window!=='undefined'?window:globalThis);

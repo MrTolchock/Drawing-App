@@ -49,7 +49,7 @@ function solve(q, start) {
     const world = () => page.evaluate(() => FK.forestState.get());
     const session = id => page.evaluate(id => FK.forestState.getActivity(id), id);
     const currentRoot = async () => page.locator('.screen-' + await page.evaluate(() => FK.current()));
-    await page.goto(BASE_URL + '/'); await ready();
+    await page.goto(BASE_URL + '/?screen=forest'); await ready();
     assert.equal(await page.evaluate(()=>FK.heartTree.count()),0);
     await page.waitForFunction(()=>FK.forestScene.scene.getObjectByName('heart-tree').userData.growth===0);
     await page.evaluate(() => FK.store.put('full-story-legacy-check', { picture: 'kept', revision: 8 }));

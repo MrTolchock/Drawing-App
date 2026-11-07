@@ -20,6 +20,10 @@ Open `http://127.0.0.1:8000`. Browser scripts require Playwright and Chromium. T
 
 For the full story suite on software rendering, set `FARBTUPF_SOFTWARE_RENDERING=1`. It reduces raster resolution and disables shadows, leaving gameplay and state intact. Chromium touch emulation is not physical iPhone/iPad Safari testing. Installed voices and offline speech need device checks.
 
+## Forest friends milestone
+
+The default entry is Forest friends. See [implementation, source checks and persistence](FOREST-FRIENDS.md). Run `node tests/friends-browser.cjs` for the complete loop; use `?screen=forest` for original Heart Tree browser checks. `?software=1` affects rendering only, and `?dev=1` uses separate developer saves.
+
 ## Persistence
 
 Retain existing localStorage and IndexedDB identifiers. Story repairs, exact unfinished story questions, chapter acknowledgements, ending cursor, free world position, exploration journal, tour, stars, pictures and settings are separate records. Optional practice and discoveries must not create story contributions. Exactly nine authored projects grow the Heart Tree.
@@ -42,3 +46,5 @@ The [blueprint](../design/heart-tree/BLUEPRINT.md) describes implemented behavio
 For Forest friends work, read [Blueprint v2](../design/forest-friends/blueprint-v2.md) and the [preserved visual baseline](../design/forest-friends/visuals/baseline.md). The user endorsed the character/den direction and required picture-led navigation that does not depend on reading. The versioned mockups, original art, fixed screenshots and integrity manifest are development references; do not overwrite them to match an implementation.
 
 At each visual milestone, capture equivalent game states at the documented viewports, compare them with the baseline, and record the build, screenshots, outstanding differences and intentional deviations. Verify baseline integrity with `python3 design/forest-friends/visuals/check-baseline.py`. Functional and persistence checks remain necessary in addition to visual comparison. The baseline is a design target, not evidence that the real game already implements its behaviour.
+
+The new Forest friends model suite also tests unknown-schema refusal, corrupt drawing validation, temporary storage recovery and concurrent-tab conflicts. Its log-cap check deliberately exercises the full 10,000-event bound and can take several seconds.

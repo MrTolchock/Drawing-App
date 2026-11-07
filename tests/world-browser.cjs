@@ -27,7 +27,7 @@ const BASE=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000';
       const headers=boxes.filter(r=>r.header);for(let i=0;i<headers.length;i++)for(let j=i+1;j<headers.length;j++){const a=headers[i],b=headers[j];assert.ok(a.x+a.w<=b.x||b.x+b.w<=a.x||a.y+a.h<=b.y||b.y+b.h<=a.y,'header controls overlap');}
       assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
     }
-    await page.goto(BASE+'/');await ready();await frames();
+    await page.goto(BASE+'/?screen=forest');await ready();await frames();
     await page.evaluate(async()=>FK.store.put('exploration-kept-drawing',{kept:8}));
     const world=await page.evaluate(()=>{
       const r=FK.forestScene,fox=r.scene.getObjectByName('fox');let meshes=0,sprites=0;fox.traverse(o=>{if(o.isMesh)meshes++;if(o.isSprite)sprites++;});
@@ -81,7 +81,7 @@ const BASE=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000';
     }
     // Preserve the exact new off-rail position and all discoveries after offline reload.
     await page.evaluate(()=>FK.forestScene.stop());const savedPosition=await position();const originalState=await page.evaluate(()=>FK.forestState.get());
-    await page.waitForFunction(async()=>{if(!navigator.serviceWorker.controller)return false;const cache=await caches.open('farbtupf-v6.6.1-current-baseline');return !!await cache.match('./js/forest/woodland.js');},null,{timeout:60000});
+    await page.waitForFunction(async()=>{if(!navigator.serviceWorker.controller)return false;const cache=await caches.open('farbtupf-v7.0.0-forest-friends');return !!await cache.match('./js/forest/woodland.js');},null,{timeout:60000});
     await context.setOffline(true);await page.reload();await ready();await frames();assert.deepEqual(await position(),savedPosition);
     assert.deepEqual(await page.evaluate(()=>FK.forestState.get().contributions),originalState.contributions);
     assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem('farbtupf.exploration.v1')).length),6);

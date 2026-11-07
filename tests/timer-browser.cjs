@@ -87,7 +87,7 @@ const fs = require('node:fs');
     // check with real frames and the same saved device state in a fresh context.
     const forestContext = await browser.newContext({ viewport:{width:390,height:844}, hasTouch:true, reducedMotion:'reduce', storageState:await context.storageState() });
     const forest = await forestContext.newPage(); forest.on('pageerror',e=>errors.push(e.message));
-    await forest.goto(BASE_URL + '/');
+    await forest.goto(BASE_URL + '/?screen=forest');
     await forest.waitForFunction(() => !!FK.forestScene, null, { timeout: 60000 });
     await forest.getByRole('button', { name: 'Mit dem Fuchs losgehen', exact: true }).tap();
     await forest.getByRole('button', { name: 'Zum Biber gehen', exact: true }).tap();

@@ -1,0 +1,63 @@
+/* Forest friends: warm wood, cream paper and pictured actions over real 3D scenes. */
+.ff-game{padding:0;--ink:#4b3b2d;--paper:#fff5df;--leaf:#48663b;background:#dce5cf;color:var(--ink);font-family:Andika,sans-serif;overflow:hidden;isolation:isolate}
+.ff-game button{cursor:pointer;touch-action:manipulation;-webkit-appearance:none}
+.ff-game button:focus-visible,.ff-game a:focus-visible{outline:4px solid #315e75;outline-offset:3px}
+.ff-game button:disabled{opacity:.42;cursor:default}
+.ff-world{display:block;width:100%;height:100%;touch-action:none}
+.ff-picture{display:inline-flex;align-items:center;justify-content:center;width:52px;height:52px;flex-shrink:0;pointer-events:none}
+.ff-picture svg{width:100%;height:100%;overflow:visible}
+.ff-button{display:inline-flex;align-items:center;justify-content:center;position:relative;min-width:60px;min-height:60px;padding:7px;border:2px solid #bc9a65;border-radius:22px;background:#fff3d8;box-shadow:0 4px 0 #795c3638,0 6px 18px #47391f18;color:var(--ink)}
+.ff-button:hover{background:#fff9ed}.ff-button:active{transform:translateY(2px)}
+.ff-nav{position:absolute;top:max(14px,env(safe-area-inset-top));right:16px;display:flex;gap:10px;z-index:3}
+.ff-nav .ff-button{width:64px;height:64px;background:#fff5dfef}
+.ff-hotspots{position:absolute;inset:0;pointer-events:none;z-index:2}
+.ff-hotspot{position:absolute;transform:translate(-50%,-100%);pointer-events:auto;border-radius:50%;width:68px;height:68px;border:3px solid #fff1ce;background:#f4dfb7ed;box-shadow:0 3px 0 #87673b88,0 7px 14px #493c2526}
+.ff-hotspot:active{transform:translate(-50%,-98%)}
+.ff-hotspot::after{content:'';position:absolute;bottom:-9px;border-left:8px solid transparent;border-right:8px solid transparent;border-top:9px solid #fff1ce}
+.ff-caption{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);max-width:min(70%,620px);background:#fff5dfe8;border-radius:18px;padding:8px 16px;font-size:14px;text-align:center;pointer-events:none;z-index:2}
+.ff-pad{position:absolute;bottom:30px;left:18px;display:grid;grid-template-columns:repeat(2,54px);gap:5px;z-index:3}
+.ff-pad button{width:54px;height:54px;border:2px solid #c7af7e;border-radius:18px;background:#fff5dfe8;font-size:28px;touch-action:none}
+.ff-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:20px;background:#40382460;backdrop-filter:blur(5px);z-index:5;overflow:auto}
+.ff-card{position:relative;width:min(860px,100%);max-height:100%;overflow:auto;background:var(--paper);border:3px solid #e1c394;border-radius:32px;box-shadow:0 12px 60px #44331830;padding:18px 26px 24px;text-align:center;overscroll-behavior:contain}
+.ff-card-top{display:flex;align-items:center;justify-content:space-between;min-height:58px}
+.ff-card-portrait{width:75px;height:75px;border-radius:50%;background:#efe0b9;padding:5px}
+.ff-card-top .ff-button{width:58px;height:58px;min-width:58px;min-height:58px}
+.ff-task-tools{display:flex;gap:12px;justify-content:center;margin:0 0 14px}
+.ff-task-tools .ff-button{width:60px;height:60px}
+.ff-progress{display:flex;justify-content:center;gap:10px;margin:-50px auto 30px;pointer-events:none}
+.ff-progress>span{width:27px;height:27px;border:2px solid #c1b18d;border-radius:50%;background:#e6dbc1}
+.ff-progress>span.done{background:#aabd8a}.ff-progress .ff-picture{width:25px;height:25px}
+.ff-task-scene{min-height:200px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;margin:10px auto 18px;padding:12px;background:#fbefd5;border-radius:24px}
+.ff-target{font:700 clamp(28px,4.5vw,44px)/1.5 Andika,sans-serif;color:#493a2c;white-space:normal}
+.ff-task-scene>.ff-picture{width:130px;height:130px}
+.ff-count{display:grid;grid-template-columns:repeat(5,56px);gap:8px;align-content:center;min-height:210px;max-width:450px}
+.ff-count .ff-picture{width:56px;height:56px}
+.ff-empty-basket{grid-column:1/-1;width:220px;justify-self:center}
+.ff-frames .ff-picture{background:#e5dfbe;border-radius:8px}.ff-shape-scene{width:260px;height:235px;max-width:100%}
+.ff-trace .ff-shape-scene{outline:4px dashed #879b64;outline-offset:4px;border-radius:25px}
+.ff-letter-help{letter-spacing:.12em;text-decoration:underline;text-decoration-style:wavy;text-decoration-color:#8a9f70;text-underline-offset:10px}
+.ff-choices{display:flex;justify-content:center;align-items:stretch;gap:18px;flex-wrap:wrap}
+.ff-answer{width:160px;min-height:125px;flex-direction:column;background:#fffaf0;border:3px solid #cbb586}
+.ff-answer>.ff-picture{width:92px;height:92px}.ff-answer .ff-word{font-size:27px;line-height:1.5}.ff-numeral{font:700 52px Andika,sans-serif}
+.ff-answer.chosen,.ff-button.chosen{border-color:#607e43;box-shadow:0 0 0 4px #a5bb80;background:#f1f3d9}
+.ff-answer.ff-retry{border-style:dashed;border-color:#b68c5a;background:#f9e7c8}
+.ff-feedback{height:42px;margin-top:12px}.ff-feedback .ff-picture{width:42px;height:42px}
+.ff-word-audio{display:flex;justify-content:center;gap:25px;margin-top:5px}.ff-word-audio>div{display:flex;gap:6px;align-items:center;font-size:18px}.ff-word-audio .ff-button{width:48px;height:48px;min-height:48px;min-width:48px;padding:5px}.ff-word-audio .ff-picture{width:32px;height:32px}
+.ff-example-banner{width:44px;height:44px;margin:0 auto 6px}.ff-example-banner svg{width:100%;height:100%}
+.ff-demonstrated{outline:5px solid #cfb36f;outline-offset:5px}
+.ff-meet-scene{display:flex;justify-content:center;align-items:center;gap:35px;min-height:250px}.ff-meet-scene .ff-picture{width:160px;height:190px}
+.ff-wallet{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin:15px 0}.ff-wallet>span{display:flex;align-items:center;gap:6px;background:#e8ddbf;border-radius:16px;padding:4px 9px}.ff-wallet .ff-picture{width:40px;height:40px}.ff-wallet b{font-size:22px}
+.ff-reward{display:flex;justify-content:center;align-items:center;gap:24px;min-height:210px}.ff-reward>.ff-picture{width:125px;height:145px}.ff-flying-tokens{display:flex;gap:8px;animation:ff-transfer 1.8s ease-in-out 2}.ff-flying-tokens .ff-picture{width:55px;height:55px}
+@keyframes ff-transfer{0%{transform:translateX(-20px);opacity:.4}80%,100%{transform:translateX(24px);opacity:1}}
+.ff-map{height:min(58vh,500px);position:relative;margin:20px;background:radial-gradient(ellipse,#dac89a 0 22%,#a4b67e 23% 64%,#d2dabb 65%);border:3px solid #b4ac78;border-radius:45%;overflow:hidden}.ff-map .ff-button{position:absolute;transform:translate(-50%,-50%);border-radius:50%}
+.ff-shop-item>.ff-picture{width:160px;height:160px}.ff-price{display:flex;justify-content:center;gap:10px;margin:10px auto}.ff-price .ff-picture{width:55px;height:55px;background:#ead9ae;border-radius:50%;padding:5px}
+.ff-owned{width:70px;height:70px}.ff-stock{display:flex;justify-content:center;align-items:center;gap:12px;margin-top:18px}.ff-stock b{font-size:24px}
+.ff-bag-items{display:flex;justify-content:center;gap:30px;padding:25px}.ff-bag-items .ff-button{flex-direction:column;width:140px;min-height:160px}.ff-bag-items .ff-picture{width:100px;height:100px}.ff-bag-items b{font-size:28px}
+.ff-animation-overlay{background:transparent;backdrop-filter:none;pointer-events:none}.ff-skip{position:absolute;right:24px;bottom:30px;pointer-events:auto}
+.ff-drawing-card{width:min(960px,100%)}.ff-drawing-tools{display:flex;gap:12px;justify-content:center;margin:8px auto 14px}.ff-paper{display:block;width:min(100%,720px);max-height:48vh;aspect-ratio:4/3;margin:auto;background:#fffaf0;border:2px solid #c9b58b;border-radius:10px;touch-action:none;object-fit:contain}.ff-palette{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:18px}.ff-palette button{width:48px;height:48px;border-radius:50%;border:3px solid #fff8e8;box-shadow:0 0 0 1px #aa9675}.ff-palette button[aria-pressed=true]{outline:4px solid #65523e;outline-offset:3px}
+.ff-save-status{position:absolute;top:6px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:12px;width:min(95%,750px);padding:10px 16px;border-radius:18px;background:#fff0bf;border:3px solid #a27839;z-index:20;box-shadow:0 6px 20px #59442333}.ff-save-status .ff-button{min-width:48px;min-height:48px;width:48px;height:48px;padding:5px}.ff-save-status .ff-picture{width:34px;height:34px}
+.ff-adult{text-align:left}.ff-adult h1{font-size:24px}.ff-adult p{font-size:15px;line-height:1.6}.ff-adult label{display:flex;align-items:center;gap:15px;min-height:52px}.ff-adult input{width:26px;height:26px}.ff-adult>button,.ff-adult>a{display:block;border:2px solid #bfa270;border-radius:12px;padding:12px;margin:10px 0;background:#f6e8c7;color:#4b3b2d;min-height:48px}
+.ff-dev{background:#fff2a4;padding:10px;border-radius:10px;font:700 14px Andika}.ff-dev-dock{position:absolute;bottom:90px;right:10px;display:flex;gap:6px;z-index:4}.ff-dev-dock .ff-button{width:50px;height:50px;min-width:50px;min-height:50px;padding:4px}.ff-dev-dock .ff-picture{width:40px;height:40px}
+@media(max-width:600px){.ff-nav{right:10px;top:10px;gap:6px}.ff-nav .ff-button{width:55px;height:55px;min-width:55px;min-height:55px;border-radius:18px;padding:5px}.ff-nav .ff-picture{width:40px;height:40px}.ff-hotspot{width:58px;height:58px;min-width:58px;min-height:58px}.ff-hotspot>.ff-picture{width:42px;height:42px}.ff-card{padding:12px 14px;border-radius:24px}.ff-overlay{padding:10px}.ff-card-portrait{width:58px;height:58px}.ff-task-tools{gap:9px;margin:10px 0}.ff-progress{margin:-40px 62px 25px;gap:5px}.ff-progress>span{width:23px;height:23px}.ff-progress .ff-picture{width:20px;height:20px}.ff-task-scene{min-height:160px;padding:10px;margin-bottom:14px}.ff-count{grid-template-columns:repeat(5,45px);gap:4px;min-height:170px}.ff-count .ff-picture{width:45px;height:45px}.ff-answer{width:calc((100% - 20px)/3);min-width:85px;min-height:110px;padding:6px;border-radius:18px}.ff-answer>.ff-picture{width:76px;height:76px}.ff-choices{gap:9px;flex-wrap:nowrap}.ff-answer:has(.ff-word){width:42%}.ff-answer .ff-word{font-size:24px}.ff-card:has(.ff-target) .ff-answer:not(:has(.ff-word)){width:30%}.ff-card:has([data-answer="mouse-sit"]) .ff-answer{width:44%}.ff-numeral{font-size:44px}.ff-target{font-size:29px}.ff-shape-scene{width:220px;height:198px}.ff-task-scene>.ff-picture{width:95px;height:95px}.ff-word-audio{gap:8px}.ff-word-audio>div{flex-direction:column;font-size:15px;gap:4px}.ff-caption{font-size:12px;max-width:65%;bottom:9px;padding:6px 10px}.ff-reward{gap:8px}.ff-reward>.ff-picture{width:82px;height:120px}.ff-flying-tokens{gap:0}.ff-flying-tokens .ff-picture{width:39px;height:39px}.ff-wallet{gap:7px}.ff-wallet>span{padding:3px 6px}.ff-wallet .ff-picture{width:31px;height:31px}.ff-map{margin:12px 0;height:55vh}.ff-dev-dock{bottom:150px;gap:2px}.ff-dev-dock .ff-button{min-width:48px;min-height:48px;width:48px;height:48px}.ff-dev{position:absolute;top:67px;right:0;font-size:11px}.ff-save-status{font-size:12px;gap:6px;padding:6px}.ff-paper{max-height:42vh}.ff-palette{gap:9px}.ff-palette button{width:48px;height:48px}}
+@media(max-height:620px) and (min-width:601px){.ff-card{padding:10px 20px}.ff-task-scene{min-height:110px;margin:5px auto}.ff-count{grid-template-columns:repeat(10,35px)}.ff-count .ff-picture{width:35px;height:35px}.ff-answer{min-height:90px}.ff-answer>.ff-picture{width:60px;height:60px}.ff-task-scene>.ff-picture{width:65px;height:65px}.ff-shape-scene{height:135px}.ff-target{font-size:30px}.ff-feedback{height:20px}.ff-feedback .ff-picture{width:25px;height:25px}.ff-task-tools{position:absolute;right:110px;top:14px;gap:8px}.ff-card-top{min-height:50px}.ff-progress{margin:-40px auto 15px}}
+@media(prefers-reduced-motion:reduce){.ff-game *{animation:none!important;transition:none!important}}

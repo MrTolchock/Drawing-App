@@ -1,3 +1,5 @@
+> Implementation continuation: Forest friends now has a runtime entry at the repository root. See [implemented scope and save contract](../../docs/FOREST-FRIENDS.md) and the [first playable comparison](visuals/milestones/playable-loop-1/COMPARISON.md). Design documents below remain the target; runtime art differences and device/child testing are recorded separately.
+
 > Current revision 10: purchases never alter the environment. No teacher testing is planned or required. Child testing happens after implementation, once the game is running. This replaces earlier pre-implementation external-review gates; internal curriculum source checks remain.
 
 > Current design pass: [Revision 9](visuals/revisions/v9.md), viewed and updated in [Sites](https://forest-friends-design-review.andreas-itten.chatgpt.site/). This supersedes earlier puzzle-confirmation, wallet and camera-direction notes below; frozen visual references remain intact.

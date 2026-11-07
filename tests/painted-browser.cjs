@@ -22,7 +22,7 @@ const fs = require('node:fs');
     const shots = process.env.FARBTUPF_SHOTS || '/tmp/farbtupf-painted-test'; fs.mkdirSync(shots, { recursive: true });
     const shot = name => page.screenshot({ path: shots + '/' + name + '.png', animations: 'disabled' });
     const session = () => page.evaluate(() => FK.forestState.getActivity(FK.forestState.QUEST));
-    await page.goto(BASE_URL + '/', { waitUntil: 'networkidle' });
+    await page.goto(BASE_URL + '/?screen=forest', { waitUntil: 'networkidle' });
     await page.waitForFunction(() => !!FK.forestScene, null, { timeout: 60000 });
     await page.evaluate(()=>{const r=FK.forestScene;r.renderer.setPixelRatio(.5);r.renderer.shadowMap.enabled=false;r.renderer.render(r.scene,r.camera);});
     await page.evaluate(async()=>{await document.fonts.ready;await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));});

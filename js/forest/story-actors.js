@@ -106,5 +106,5 @@ export function storyActor(id){
     if(bill)bill.scale.y=talking?1+Math.sin(t*12)*.06:1;
     if(tail)tail.rotation.y=Math.sin(t*(joy?3:1))*(joy?.17:.035);
   }
-  return {group:root,head,animate};
+  return {group:root,head,figure,arms,legs,tail,eyes,animate};
 }

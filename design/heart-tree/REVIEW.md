@@ -1,3 +1,5 @@
+> Retained Heart Tree experience: open `?screen=forest`. Forest friends is now the default runtime; see [implementation status](../../docs/FOREST-FRIENDS.md). These Heart Tree records and original saves remain intact.
+
 # Current design review and next step
 
 The [blueprint](BLUEPRINT.md) is the implemented baseline. This review identifies the next design work; it does not promise that the items below have shipped.

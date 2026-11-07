@@ -1,0 +1,40 @@
+{
+  "appVersion": "7.0.0",
+  "recorded": "2026-11-07",
+  "sources": {
+    "css/friends.css": "ad35ea1830ca38c487eca390a82cd1d0f72dcce3a79d6ca712f54116c6ab72ce",
+    "index.html": "a340755b99a939a64edaa19217b05e0e3334c2a39e75c83dd570c48c2ed89c51",
+    "js/app.js": "8f90f0d1fc648c1a4c2a1aa00d1e3ebdf6ac3af3b5b6ba1eac6945e8fb296f20",
+    "js/core/util.js": "7d3c104b98a37962020bbb455db8cb2251ce58262a3a255d37255b4be36afb78",
+    "js/forest/story-actors.js": "88d63108d8da743eac184039f25a8533ada4e6f19306c8cb983bdae5fdc2bc1a",
+    "js/friends/actors.js": "08358deb1c65f23efdbd33604b9513a55ddce843ffa70c64f103935259cdd8b2",
+    "js/friends/art.js": "a9b43fed2bb15893f0adaf44b4c9f7f04a02a9b23eeb1090e06491db7e859244",
+    "js/friends/audio.js": "038825918e9b90b4647ce19e873ce08389bba70f5b979713bb31ee273d0983b3",
+    "js/friends/content.js": "5cb5795a650430e3d73c09726411e5882c53fde658ed1c20027818400900399b",
+    "js/friends/game.js": "b74bf6d635c4c78ef8d19d2c7404cb0a23b9742f7e7bf322509d388f54a9c465",
+    "js/friends/state.js": "3d82ea7a4e9ec288347504c59c135fc80f0f089a3b065647bb1cb67ba95d0f26",
+    "js/friends/world.js": "b8bffa8985ce13ce23408be316a46aad19148b7b75cdf6704e19710efed2040f",
+    "sw.js": "771d4ad92747bec931c88a47c5a333989e40749efb0399dbd7b659c21e6f16ea"
+  },
+  "captures": {
+    "apple-1024.jpg": "ab238abe8827a9ed7576e31025ccba49c8d6812aafa3e17a41d5ac90cb8a84b5",
+    "bath-1024.jpg": "752eb0443c87118070b1f241a5fd5a27ac3f9c2d43965119910347f401bc5fca",
+    "count-1024.jpg": "6a0639b7cdcdd2df324ba8e67a58b1ce30344cd98e3e8b5189c10e0af9ca7004",
+    "count-390.jpg": "50153fd2bf0960f29be9c994219a3779428791260883d8eb9c0a514add55536d",
+    "demo-1024.jpg": "e84520bdd45e7aced6d23b0e2e395274620ae3fe2a46461013455e9c1cab9f54",
+    "drawing-1024.jpg": "f5e36cb287d018ad1d5980c2d135c6e7a3f83b697958581ddb0b4ec9229ca01c",
+    "forest-1024.jpg": "e5d3fcec8ca133a083694964a5c99a1034b05d4de6d5833f8de122dd58da15ab",
+    "forest-full-1024.jpg": "4fb4a97772f4e4e6d7965e3504e22207586031b93543932bf534842a125698df",
+    "home-1024.jpg": "a3ef877b3515c261b4c2144867a601af7c66808d7287ed2ce160a7e35eb9a993",
+    "home-full-1024.jpg": "aa8dcf920f73591d1e27bc0658d185ce56ffbdb7d4ced8efac31b76f850b2358",
+    "home-full-390.jpg": "a4f4f3487d5ff8e579e01f033be63ef6da30e694ecf9213071182e0a02db0cb4",
+    "map-1024.jpg": "dd6c3ef6c6228bb1f1599161c5d9660dceae56196cde56e82a172b7a4510a479",
+    "reading-1024.jpg": "3521cec4c382990f6da96a3f398ab457eda7e42afec3dee4890187632a75d7e0",
+    "reward-1024.jpg": "1a438bc7ac0040a838981017033c93346b57e192fbd400d5913e41d2841ca7f5",
+    "rhyme-1024.jpg": "b6fda672cd729b8b0cfacaea1ce4e1f3d1c1022dc85d790dd9632564ea1cb748",
+    "sentence-1024.jpg": "6376021d9ffbf661b389a00b3e60b9b4a4574e39e2583769421c03aea83ee809",
+    "sentence-pool.jpg": "a08a5cc64782c92dca3dfb33713b0d69ccadc503fc5c9dd6f00f5ad9048b5912",
+    "shape-1024.jpg": "edf138a34da96c3d3044c752a5313a9adf1f60e997ca6a03012d3136f4cad515",
+    "shop-1024.jpg": "781c289a6bd2225987e6c803f57c440c1890e0452bb1953ef92e3965f8b571a3"
+  }
+}

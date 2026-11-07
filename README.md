@@ -1,17 +1,19 @@
-# Farbtupf — Der Herzbaum
+# Farbtupf — Waldfreunde
 
-[Play the game](https://mrtolchock.github.io/Drawing-App/) · [Design blueprint](design/heart-tree/BLUEPRINT.md) · [Next-step review](design/heart-tree/REVIEW.md)
+[Play the game](https://mrtolchock.github.io/Drawing-App/) · [Implementation and saves](docs/FOREST-FRIENDS.md) · [Design handoff](design/forest-friends/CLOUD-HANDOFF.md)
 
-A woodland adventure for children aged 6–7 in Zürich. Guide a fox through a solid 3D forest, help five animal neighbours reconnect, and bring the bare Heart Tree back to life. Swiss Standard German, pictured controls, spoken guidance and short learning games support children who are beginning to read.
+A woodland learning game for first-grade practice in Zürich, in Swiss Standard German. Fuchs lives in a fixed 3D den, walks to five friends, completes short pictured learning rounds and trades earned resources for drawing unlocks or animated treats.
 
 ## The current game
 
-- Free walking with a held touch stick, arrows/WASD or ground taps; a rotating perspective camera, picture map and friend arrows help with orientation.
-- Five neighbours, three story chapters and nine helping projects. Each completed project restores one leafy bough. An animated gathering completes the story.
-- Acted 3D requests and thanks, a travelling heartlight, companions and lasting repairs connect puzzles to the forest.
-- Six optional nature discoveries, hills, moving vegetation, water, flowers and wildlife give reasons to explore.
-- One **Waldspiele** book contains learning games, reading, writing, drawing, colouring and the sticker album. Optional tours offer a next activity.
-- Saved repairs, interrupted story puzzles, discoveries, pictures and settings survive reloads. Offline play follows a successful initial download; speech depends on device voices.
+- A 3D den, freely explorable forest and fixed shop, with pictured hotspots, a destination map, keyboard/touch walking and replayable instructions.
+- Five-task counting, word reading, written rhymes, short sentences and missing-shape rounds. One content level, unlimited correction, separate examples and no countdown.
+- Three host tokens per completed round, credited once. Leaf colouring page, extra pencils, apple and bubble bath purchases save together with their charges.
+- Articulated 3D apple, bath and pretend-sleep sequences. Consumables commit once before playback and can be skipped.
+- Saved exact interrupted tasks, wallet, inventory, unlocks, per-page drawings and separate audio controls. Local bounded gameplay logs can be exported or deleted by adults.
+- Offline play after the initial successful download. Speech depends on installed voices. Physical iPad and child testing follow implementation; visual polish is recorded separately.
+
+The original [Heart Tree adventure](https://mrtolchock.github.io/Drawing-App/?screen=forest), [Waldspiele book](https://mrtolchock.github.io/Drawing-App/?screen=hub), drawings and progress remain accessible and unchanged. New Forest friends resources start at zero; legacy stars are not converted.
 
 ## Working documents
 
@@ -28,7 +30,7 @@ A woodland adventure for children aged 6–7 in Zürich. Guide a fox through a s
 | [Development and validation](docs/DEVELOPMENT.md) | Run, test, save compatibility and GitHub Pages deployment |
 | [Archive](archive/README.md) | Preserved previous plans, release notes, references and screenshots |
 
-The blueprint describes implemented behaviour. The review separates observations and proposed work from shipped features. Update both when the game changes; previous drafts belong in the archive.
+The Heart Tree blueprint documents the retained original game. Forest friends implementation status is documented in [FOREST-FRIENDS.md](docs/FOREST-FRIENDS.md); Blueprint V2 remains its design target. Update both when the game changes; previous drafts belong in the archive.
 
 ## Run locally
 
@@ -40,4 +42,4 @@ python3 -m http.server 8000 --bind 127.0.0.1
 
 Open `http://127.0.0.1:8000`. Run model and content checks with `node --test tests/*.test.cjs`. Browser-check setup is in [Development](docs/DEVELOPMENT.md).
 
-GitHub Pages serves `main`. Reopen or reload the app after an update downloads. Progress stays on each device and origin; there is no account, cloud sync, advertising or tracking.
+GitHub Pages serves `main`. Reopen or reload the app after an update downloads. Progress and anonymous gameplay logs stay on each device and origin; there is no account, cloud sync, advertising or automatic log upload.

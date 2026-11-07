@@ -21,7 +21,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs');
     const film=()=>page.evaluate(()=>({id:document.querySelector('.screen-forest').dataset.storyScene,index:Number(document.querySelector('.screen-forest').dataset.storyBeat),frame:FK.forestScene.cinematic.frame}));
     async function next(){await page.getByRole('button',{name:'Geschichte weiter',exact:true}).tap();await settled();}
     // The first frame puts the actual bare oak in view; narration begins from a gesture.
-    await page.goto(BASE_URL+'/');await ready();await settled();
+    await page.goto(BASE_URL+'/?screen=forest');await ready();await settled();
     assert.equal((await film()).id,'opening');
     assert.equal(await page.getByRole('button',{name:'Geschichte starten',exact:true}).count(),1);
     assert.equal(await page.evaluate(()=>FK.forestScene.scene.getObjectByName('heart-tree').userData.displayedGrowth),0);
@@ -98,7 +98,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs');
       localStorage.setItem('farbtupf.forest.v1',JSON.stringify({version:1,welcomed:true,bridgeRepaired:true,greetingSeen:true,payoffSeen:true,contributions:Object.fromEntries(ids.map(id=>[id,true])),payoffsSeen:Object.fromEntries(ids.map(id=>[id,true])),chapterSeen:{reconnect:true,gather:true},endingUnlocked:true,endingPage:1}));
       localStorage.setItem('cinema-ending-seed','yes');
     });
-    page=await ending.newPage();page.on('pageerror',e=>errors.push(e.message));await page.goto(BASE_URL+'/');await ready();await settled();
+    page=await ending.newPage();page.on('pageerror',e=>errors.push(e.message));await page.goto(BASE_URL+'/?screen=forest');await ready();await settled();
     assert.equal((await film()).id,'ending');assert.equal((await film()).index,1);assert.equal((await state()).endingPage,1);
     await page.reload();await ready();assert.equal((await film()).index,1);
     await next();await next();assert.equal((await film()).frame.action,'bloom');

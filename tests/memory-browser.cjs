@@ -50,7 +50,7 @@ const fs = require('node:fs');
       localStorage.setItem(m.KEY, JSON.stringify({ version: 1, welcomed: true, bridgeRepaired: true, greetingSeen: true, payoffSeen: true,
         position: m.nodes.hedgehog, contributions: { [m.QUEST]: true, [m.REST]: true } }));
     });
-    await page.goto(BASE_URL + '/');
+    await page.goto(BASE_URL + '/?screen=forest');
     await page.locator('.forest-dialog-hedgehog').waitFor({ timeout: 60000 });
     await page.waitForFunction(() => {
       const p = FK.forestScene.scene.getObjectByName('hedgehog').position.clone().project(FK.forestScene.camera);

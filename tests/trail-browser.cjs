@@ -70,7 +70,7 @@ function solve(q, start = q.start) {
     const ready = () => page.waitForFunction(() => !!window.FK?.forestScene && FK.current() === 'forest', null, { timeout: 60000 });
     const state = () => page.evaluate(() => FK.forestState.getActivity(FK.forestState.TRAIL));
     const root = page.locator('.screen-forest-trail');
-    await page.goto(BASE_URL + '/'); await ready();
+    await page.goto(BASE_URL + '/?screen=forest'); await ready();
     await page.locator('.forest-goal').tap();
     await page.locator('.forest-dialog-owl').waitFor({ timeout: 60000 });
     assert.equal(await page.evaluate(() => FK.forestState.get().met.owl), true);

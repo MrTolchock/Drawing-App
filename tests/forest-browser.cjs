@@ -35,7 +35,7 @@ const path = require('node:path');
     await page.locator('.forest-dialog-beaver .forest-primary').tap();
     await page.locator('.screen-learn.forest-activity').waitFor();
   }
-  await page.goto(BASE_URL, { waitUntil: 'networkidle' }); await ready();
+  await page.goto(BASE_URL + '/?screen=forest', { waitUntil: 'networkidle' }); await ready();
   await page.evaluate(() => FK.store.put('forest-preservation-check', { drawing: 'retained', revision: 4 }));
   await page.getByRole('button', { name: 'Mit dem Fuchs losgehen', exact: true }).tap();
   await shot('01-opening.png');

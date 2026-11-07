@@ -1,3 +1,5 @@
+> Retained Heart Tree experience: open `?screen=forest`. Forest friends is now the default runtime; see [implementation status](../../docs/FOREST-FRIENDS.md). These Heart Tree records and original saves remain intact.
+
 # Farbtupf — Der Herzbaum
 
 This is the current design baseline, reviewed against the implemented game. It describes shipped behaviour. [The design review](REVIEW.md) records what should be improved next; proposals there are not implemented features.
