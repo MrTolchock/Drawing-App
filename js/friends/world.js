@@ -85,7 +85,8 @@ export function createWorld(canvas,{position,onPosition,onNear,onAction,onMove,o
   // Den: open front, warm root arch, round window, functional bed and drawing table.
   function room(parent){
     const floor=new THREE.Mesh(new THREE.CylinderGeometry(8.1,8.2,.28,48),paint('#bb7444'));floor.receiveShadow=true;parent.add(floor);
-    const wall=new THREE.Mesh(new THREE.CylinderGeometry(8,8,8,40,1,true,Math.PI/2,Math.PI),earth);wall.material=earth.clone();wall.material.side=THREE.DoubleSide;wall.position.y=4;parent.add(wall);
+    const outer=new THREE.Mesh(new THREE.CircleGeometry(34,40),paint('#bb7444'));outer.rotation.x=-Math.PI/2;outer.position.y=.12;outer.receiveShadow=true;parent.add(outer);
+    const wall=new THREE.Mesh(new THREE.CylinderGeometry(8,8,17,40,1,true,Math.PI/2,Math.PI),earth);wall.material=earth.clone();wall.material.side=THREE.DoubleSide;wall.position.y=8.5;parent.add(wall);
     for(const i of [0,1,4,5]){const x=-6+i*2.4;curveTube(parent,wood,[[x,.1,-5],[x*.9,3,-5.6],[x*.55,5.1,-4],[x*.35,5.5,-2]],.37);}
     const windowFrame=new THREE.Mesh(new THREE.TorusGeometry(.92,.15,8,32),woodLight);windowFrame.position.set(-3,3.1,-6.7);parent.add(windowFrame);
     blob(parent,-3,3.1,-6.8,.86,.86,.1,glow('#c6e38a'));block(parent,-3,3.1,-6.65,.09,1.7,.1,woodLight);block(parent,-3,3.1,-6.65,1.7,.09,.1,woodLight);
