@@ -1,4 +1,6 @@
-> Latest interaction decisions: [Design revision 5](visuals/revisions/v5.md) supersedes earlier check-to-submit, owl-help and shop-layout proposals. The single difficulty level and curriculum requirements remain.
+> Shared visual rule: [den-led art direction](visuals/art-direction.md). Outdoors, den and shop use 3D; learning puzzles use 2D.
+
+> Latest interaction decisions: [Design revision 7](visuals/revisions/v7.md) supersedes earlier check-to-submit, owl-help and shop-layout proposals. The single difficulty level and curriculum requirements remain.
 
 # Rewards, continuity and logging contract
 

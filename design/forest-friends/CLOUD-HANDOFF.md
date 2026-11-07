@@ -1,4 +1,4 @@
-> Current design pass: [Revision 6](visuals/revisions/v6.md), viewed and updated in [Sites](https://forest-friends-design-review.andreas-itten.chatgpt.site/). This supersedes earlier puzzle-confirmation, wallet and camera-direction notes below; frozen visual references remain intact.
+> Current design pass: [Revision 7](visuals/revisions/v7.md), viewed and updated in [Sites](https://forest-friends-design-review.andreas-itten.chatgpt.site/). This supersedes earlier puzzle-confirmation, wallet and camera-direction notes below; frozen visual references remain intact.
 
 # Drawing-App — cloud conversation handoff
 
@@ -57,3 +57,7 @@ Continue the design conversation in the cloud project. Start runtime development
 ## Ongoing workflow
 
 Always push completed design and project changes to GitHub main. The user reaffirmed this requirement on 7 November 2026. Current outdoor direction follows revision 6: return from v5 to richer v4 art with stronger 3D volume, while preserving the accepted den fox.
+
+## Current shared style and rendering split
+
+The original den and Fuchs are the master art reference. Match outdoors, shop, puzzles and interface to its colours, rounded forms and soft light. Production outside/den/shop are 3D; learning puzzles are 2D. See [art direction](visuals/art-direction.md) and [revision 7](visuals/revisions/v7.md). This supersedes separate flat/clay or unrelated scene styles. Always push changes to GitHub.
