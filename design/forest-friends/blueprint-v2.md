@@ -1,8 +1,10 @@
 # Blueprint v2 — Forest friends
 
-**Status:** Game outline and design draft.
+**Status:** Game outline with first playable design pack; teacher and child review pending.
 **Updated:** 7 November 2026.
-**Scope:** Plan the redesign before implementation. Character assignments and new puzzle ideas below are working proposals.
+**Scope:** Plan the redesign before implementation. Character assignments, content, prices and interaction details remain working proposals until reviewed.
+
+Design pack: [Curriculum matrix](curriculum-matrix.md) · [Five puzzle specifications](puzzle-specifications.md) · [First-session and interaction design](experience-design.md) · [Rewards, continuity and logging](rewards-and-continuity.md).
 
 ## 1. Game outline
 
@@ -20,7 +22,7 @@ Before a puzzle is accepted for implementation, document its official competency
 
 ### Curriculum mapping for the catalogue
 
-The English competency names are game categories, not official Lehrplan titles. Each puzzle inherits the reference for its category unless a more specific reference is recorded. Supporting memory and attention activities must be tied to a subject-specific learning action before release; generic memory play alone does not establish a school competency.
+The English competency names are game categories, not official Lehrplan titles. Category references guide design; each released puzzle needs its own specific code, step and task mapping in the curriculum matrix. Supporting memory and attention activities must be tied to a subject-specific learning action before release; generic memory play alone does not establish a school competency.
 
 | Game competency | Zürcher Lehrplan reference | First-grade focus and acceptance rule |
 | --- | --- | --- |
@@ -97,7 +99,7 @@ Competencies organise learning independently of the number of characters. Each c
 
 Each puzzle belongs to one primary competency and must meet the mandatory Zürich curriculum requirement in section 1. Add new puzzle types under an existing competency as the game develops; add a new competency when a new learning area requires it. Adding a character does not require inventing a competency, and adding a puzzle makes it available to every character assigned to that competency.
 
-The catalogue below has one puzzle type per row, grouped by competency. Existing activities come from the current checkout's README; proposed additions expand the task pool. Creative activities are included alongside puzzles so the home activities have a place in the same catalogue.
+The catalogue below has one puzzle type per row, grouped by competency. Existing activities come from the current checkout's documented learning activities; proposed additions expand the task pool. Creative activities are included alongside puzzles so the home activities have a place in the same catalogue.
 
 | Competency | Puzzle or activity | What the child practises | Basis |
 | --- | --- | --- | --- |
@@ -138,7 +140,8 @@ The catalogue below has one puzzle type per row, grouped by competency. Existing
 | Creative expression and fine motor skills | Colouring | Colour illustrated scenes | Existing |
 | Creative expression and fine motor skills | Guided colouring | Follow visual colour rules | Existing |
 | Creative expression and fine motor skills | Picture stamps | Compose pictures using stamps | Existing |
-| Creative expression and fine motor skills | Creative missions | Respond to open-ended observation and making prompts | Existing collection; split into individual activity rows when its missions are specified |
+
+Creative missions are a source collection outside this table; add each selected mission as its own named row with a learning objective.
 
 Patterns and logical reasoning, Data and representations, and Visual attention currently have no assigned character. Their puzzles remain in the catalogue for future assignments or new neighbours. Competency coverage must not be forced to match the cast size.
 
@@ -194,7 +197,7 @@ This introduces local gameplay logging beyond the current checkout's stated no-t
 
 ## 11. First playable version and checks
 
-Build the den, a small explorable forest, the shop and four friends first: Eichhörnchen, Blaumeise, Waldkauz and Biber. Include at least one puzzle type from each of their assigned competencies, one difficulty level, fresh repeat visits, resource rewards, at least one purchasable furnishing and one consumable reward. The competency determines the available puzzle set for every character who shares it. Add Maus and the remaining neighbours as further game families are ready.
+Build the den, a small explorable forest, the shop and five friends first: Eichhörnchen, Blaumeise, Waldkauz, Biber and Maus. The design pack brings Maus into the initial set to include explicit reading practice. Include at least one puzzle type from each of their assigned competencies, one difficulty level, fresh repeat visits, resource rewards, at least one purchasable furnishing and one consumable reward. The competency determines the available puzzle set for every character who shares it. Add the remaining neighbours as further game families are ready.
 
 The first version is ready to review when:
 
@@ -221,7 +224,7 @@ The first version is ready to review when:
 - Select suitable tasks from existing three-stage activities for the single level.
 - Assign the currently uncovered competencies to existing or future characters.
 - Set local log retention limits and the adult export format.
-- Review the broader current GitHub game before implementation: this local checkout documents an earlier activity-based version, so its inventory may not include every later world puzzle.
+- Preserve useful interactions from the current game: see [current gameplay](../../docs/GAMEPLAY.md) and [Heart Tree baseline](../heart-tree/BLUEPRINT.md). Inspect existing save keys and assets before implementation; the current checkout now includes the later world and story documentation.
 
 ## 13. Next design steps and development handoff
 
@@ -240,9 +243,14 @@ Complete the following in order before full development. The blueprint is a desi
 | 9. Review with children and a teacher | Walk through the storyboard or a small disposable interaction mockup. Observe navigation, instruction comprehension, puzzle relevance and reward understanding. | Recorded findings, agreed revisions and resolved blockers. Use this review to refine design before expanding the world. |
 | 10. Freeze the first playable scope | Choose the exact initial puzzle types, characters, scene boundaries, asset needs and acceptance checks. Separate required work from later additions. | A development-ready brief linking the approved designs, a prioritised implementation backlog and a documented list of remaining optional decisions. |
 
-### Recommended first design deliverable
+### Design work completed in the next pass
 
-Start with the curriculum matrix and four complete puzzle specifications: Eichhörnchen's counting, Blaumeise's rhymes, Waldkauz's meaningful story sequencing and Biber's shape construction. These test different interactions and the core character-to-competency model. Add a Maus reading specification early so literacy beyond rhyming is designed before the wider game is built.
+- [Curriculum matrix](curriculum-matrix.md): five initial puzzle mappings with exact official steps, plus a row-by-row backlog. Unverified mappings and enrichment are explicit.
+- [Puzzle specifications](puzzle-specifications.md): counting, rhymes, spoken-story sequencing, shape composition and reading. Each has an example, five sample tasks, answers, hints, feedback, content boundaries and resume rules.
+- [Experience design](experience-design.md): first-session storyboard, world topology, screen layouts, movement proposal, character/audio direction and review script.
+- [Rewards and continuity](rewards-and-continuity.md): proposed rewards and prices, purchase/consumption rules, save recovery and local log/export contract.
+
+These are drafts available for review. Next: make visual reference sheets and tablet mockups, expand each initial puzzle to at least 15 reviewed tasks or valid generated variants, review curriculum suitability with a Zürich primary teacher, and walk through the interaction design with children. No teacher approval, child testing or asset approval has yet taken place. Do not mark the design frozen until those reviews are recorded.
 
 ### Handoff to development
 
