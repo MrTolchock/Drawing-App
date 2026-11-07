@@ -1,5 +1,9 @@
 # Game design
 
+[Blueprint v2 — game redesign draft](heart-tree/blueprint-v2.md) is a separate
+document for the planned major change. The new concept is still to be written;
+implementation will follow when requested.
+
 [The current blueprint](heart-tree/BLUEPRINT.md) is the design baseline for Farbtupf. It records the game that exists today: an explorable 3D woodland, the Heart Tree story and pictured learning activities.
 
 Read the [design review and next priorities](heart-tree/REVIEW.md) before planning further implementation. Proposed improvements are separate from implemented features.
