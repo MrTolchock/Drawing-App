@@ -1,4 +1,4 @@
-> Current working review: [review-v4.html](review-v4.html). See [revision-4 decisions](revisions/v4.md). Earlier versions remain preserved.
+> Current working review: [review-v5.html](review-v5.html). See [revision-5 decisions](revisions/v5.md). Earlier versions remain preserved.
 
 # Visual design review — version 2
 

@@ -1,4 +1,4 @@
-> Latest interaction decisions: [Design revision 4](visuals/revisions/v4.md) supersedes earlier check-to-submit, owl-help and shop-layout proposals. The single difficulty level and curriculum requirements remain.
+> Latest interaction decisions: [Design revision 5](visuals/revisions/v5.md) supersedes earlier check-to-submit, owl-help and shop-layout proposals. The single difficulty level and curriculum requirements remain.
 
 # Rewards, continuity and logging contract
 

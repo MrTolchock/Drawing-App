@@ -1,4 +1,4 @@
-> Current design pass: [Revision 4](visuals/revisions/v4.md), viewed and updated in [Sites](https://forest-friends-design-review.andreas-itten.chatgpt.site/). This supersedes earlier puzzle-confirmation, wallet and camera-direction notes below; frozen visual references remain intact.
+> Current design pass: [Revision 5](visuals/revisions/v5.md), viewed and updated in [Sites](https://forest-friends-design-review.andreas-itten.chatgpt.site/). This supersedes earlier puzzle-confirmation, wallet and camera-direction notes below; frozen visual references remain intact.
 
 # Drawing-App — cloud conversation handoff
 
