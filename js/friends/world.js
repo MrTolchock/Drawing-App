@@ -1,7 +1,14 @@
 import {THREE,paint,ellipsoid,limb,curveTube,roundedBlock,paintedPath,seeded} from '../forest/materials.js';
 import {actor} from './actors.js';
-export const places={home:{x:0,z:2,picture:'door',name:'Nach Hause'},shop:{x:8,z:2,picture:'bag',name:'Zum Laden'},squirrel:{x:-8,z:-3,picture:'squirrel',name:'Zu Eichhörnchen'},bird:{x:8,z:-9,picture:'bird',name:'Zu Blaumeise'},owl:{x:-9,z:-12,picture:'owl',name:'Zu Waldkauz'},beaver:{x:11,z:11,picture:'beaver',name:'Zu Biber'},mouse:{x:-7,z:11,picture:'mouse',name:'Zu Maus'}};
-export function createWorld(canvas,{position,onPosition,onNear,onAction,onMove,onAnimationEnd,onProject}){
+import {createPaintedWorld,paintedPlaces,paintedExits} from './painted.js';
+// The painted scenes match the reviewed visualisation; ?world3d keeps the earlier procedural 3D world.
+export const painted=!new URLSearchParams(location.search).has('world3d');
+const places3d={home:{x:0,z:2,picture:'door',name:'Nach Hause'},shop:{x:8,z:2,picture:'bag',name:'Zum Laden'},squirrel:{x:-8,z:-3,picture:'squirrel',name:'Zu Eichhörnchen'},bird:{x:8,z:-9,picture:'bird',name:'Zu Blaumeise'},owl:{x:-9,z:-12,picture:'owl',name:'Zu Waldkauz'},beaver:{x:11,z:11,picture:'beaver',name:'Zu Biber'},mouse:{x:-7,z:11,picture:'mouse',name:'Zu Maus'}};
+export const places=painted?paintedPlaces:places3d;
+export const exitPoints=painted?paintedExits:{den:{x:0,z:3.6},shop:{x:8,z:3.6}};
+export function createWorld(canvas,options){return painted?createPaintedWorld(canvas,options):createProceduralWorld(canvas,options);}
+function createProceduralWorld(canvas,{position,onPosition,onNear,onAction,onMove,onAnimationEnd,onProject}){
+  const places=places3d;
   const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true,powerPreference:'low-power'});
   const software=new URLSearchParams(location.search).has('software');
   renderer.setPixelRatio(software?.5:Math.min(devicePixelRatio||1,1.25));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.02;

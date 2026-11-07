@@ -81,7 +81,7 @@ const BASE=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000';
     }
     // Preserve the exact new off-rail position and all discoveries after offline reload.
     await page.evaluate(()=>FK.forestScene.stop());const savedPosition=await position();const originalState=await page.evaluate(()=>FK.forestState.get());
-    await page.waitForFunction(async()=>{if(!navigator.serviceWorker.controller)return false;const cache=await caches.open('farbtupf-v7.2.0-forest-friends-reference');return !!await cache.match('./js/forest/woodland.js');},null,{timeout:60000});
+    await page.waitForFunction(async()=>{if(!navigator.serviceWorker.controller)return false;const cache=await caches.open('farbtupf-v7.3.0-forest-friends-painted');return !!await cache.match('./js/forest/woodland.js');},null,{timeout:60000});
     await context.setOffline(true);await page.reload();await ready();await frames();assert.deepEqual(await position(),savedPosition);
     assert.deepEqual(await page.evaluate(()=>FK.forestState.get().contributions),originalState.contributions);
     assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem('farbtupf.exploration.v1')).length),6);

@@ -324,3 +324,12 @@
   .ff-meet-scene .ff-picture{width:110px;height:130px}
 }
 @media(prefers-reduced-motion:reduce){.ff-game *,.ff-game *::before,.ff-game *::after{animation:none!important;transition:none!important}}
+/* Painted scenes: the reviewed paintings fill the frame; a blurred copy fills any spare edge. */
+.ff-world.ff-painted{background-repeat:no-repeat}
+.ff-painted-fill{position:absolute;inset:-48px;z-index:-1;background:#7a4a2a center/cover no-repeat;filter:blur(26px) brightness(.72) saturate(1.1)}
+.ff-painted-game::after{display:none}
+.ff-map.ff-map-painted{width:min(100%,calc(62vh*4/3));height:auto;aspect-ratio:4/3;margin:16px auto 4px;border-radius:26px;border:5px solid #fff6e3;box-shadow:0 0 0 3px #c9a46c,0 12px 26px #4a372040;background:url(../assets/forest-friends/forest.webp) center/cover}
+.ff-map.ff-map-painted .ff-button{width:66px;height:66px;transform:translate(-50%,-62%)}
+.ff-painted-game[data-area=shop] .ff-hotspot{width:96px;height:96px}
+.ff-painted-game[data-area=shop] .ff-hotspot .ff-picture{width:70px;height:70px}
+
