@@ -1,5 +1,5 @@
 /* Farbtupf – Service Worker: keeps the whole app on the device so it runs without internet. */
-const CACHE = 'farbtupf-v7.1.0-forest-friends-polish';
+const CACHE = 'farbtupf-v7.2.0-forest-friends-reference';
 const ASSETS = [
   './css/friends.css',
   './js/friends/content.js',
