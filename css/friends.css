@@ -376,4 +376,4 @@
 .ff-pad .ff-jump{grid-column:3;grid-row:1/span 2;width:64px;height:124px;border-radius:32px;display:grid;place-items:center;padding:10px;border:1px solid #d0b38a;background:#fff6e6ee;box-shadow:0 3px 10px #3a2a142e;touch-action:none}
 .ff-pad .ff-jump svg{width:36px;height:36px}.ff-pad .ff-jump:active{translate:0 3px}
 @media(max-width:600px){.ff-leaves{left:12px;transform:none;top:max(72px,env(safe-area-inset-top));font-size:20px;padding:4px 12px 4px 6px}.ff-leaves svg{width:30px;height:30px}.ff-pad{grid-template-columns:repeat(2,54px) 58px}.ff-pad .ff-jump{width:58px;height:114px}}
-
+@media(max-width:600px){.ff-game[data-area=forest] .ff-caption{top:max(122px,env(safe-area-inset-top));bottom:auto;left:12px;right:12px;transform:none;max-width:none;width:auto}}

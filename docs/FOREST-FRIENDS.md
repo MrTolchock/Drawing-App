@@ -36,11 +36,15 @@ Refresh during a task restores its content, choice order, attempts, help and cor
 
 Concurrent tabs detect changes before committing and require reload instead of overwriting newer progress. This is a single-device, single-origin save; it is not cloud sync or a guarantee against device storage eviction. Adult backup export covers the new Forest friends state; legacy data remains in its original stores.
 
-## Visual style
+## Visual style and exploration
 
-The den, forest and shop show the reviewed visualisation paintings full screen (`assets/forest-friends`, built by `tools/forest-friends-paint-assets.py` from the frozen design art, which is never modified). The painted fox is removed from the den and forest pictures. The playable fox and the owl are cut-out sprites from the character sheet (front, side, back and happy poses), composited by `js/friends/painted.js` with a fixed perspective lens matched to each painting's ground, so the fox walks only on painted dirt, shrinks into the distance and is never blocked by invisible geometry. The beaver has no painted art yet and uses its 3D model beside the bridge. On narrow screens the forest follows the fox; den and shop keep every target visible and fill spare edges with a blurred copy of the painting. Pins mark the painted friends, door, stall and goods; the picture map shows the painting.
+The forest is an explorable 3D world (`js/friends/forest3d.js`) styled after the reviewed paintings: warm low sun with static soft shadows, canvas-painted grass and terracotta trails, leaf-card canopies, mossy rocks, ferns, lavender and daisies, a flowing brook with an arched bridge, the flared home tree with its glowing round door, the striped stall and lanterns. Its layout mirrors the forest painting, so the picture map stays truthful. Foliage between camera and fox dissolves so it never hides the play area. Colliders keep the fox out of trunks, rocks and water; the bridge is the only crossing.
 
-Controls follow the review's flat style: cream rounded tiles (speaker top-left; map, bag and adult settings top-right), frosted round pins and plain paper puzzle cards. Apple, bath and sleep use painted sprites and simple drawn props; nothing they show is saved. The earlier procedural 3D world remains available with `?world3d` and is unchanged; saves are shared and positions outside the painted paths fall back to the home door. All motion stops under reduced-motion settings.
+The fox, owl, squirrel, blue tit and mouse are the painted characters as sprites (`assets/forest-friends`, built by `tools/forest-friends-paint-assets.py` from the frozen design art, which is never modified). The fox shows front, side, back and happy views. The beaver has no painted art yet and uses its 3D model. The den and shop remain the reviewed paintings with the fox composited by a fixed lens (`js/friends/painted.js`); apple, bath and sleep use painted sprites and drawn props.
+
+Exploration play, separate from the learning rounds and the token economy: twelve golden leaves to find (saved as `collected`, with a counter and a spoken finale), jumping (Space or the jump button), butterflies that flutter away, footstep dust, friends that hop when the fox arrives, and soft collect and jump sounds that follow the forest-sounds setting. Golden leaves never grant tokens.
+
+Controls follow the review's flat style: cream rounded tiles (speaker top-left; map, bag and adult settings top-right), frosted round pins and plain paper puzzle cards. The earlier procedural 3D world remains available with `?world3d`; saves are shared and positions outside the forest fall back to the home door. All motion stops under reduced-motion settings.
 
 ## Audio, logs and development
 

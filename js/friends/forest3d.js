@@ -5,7 +5,7 @@
 import {THREE,paint,curveTube,limb,roundedBlock,paintedPath,seeded} from '../forest/materials.js';
 import {actor} from './actors.js';
 
-const TAU=Math.PI*2,FOX_H=1.35,SPEED=3.4;
+const TAU=Math.PI*2,FOX_H=1.6,SPEED=3.6;
 const pin=(x,y)=>({pu:x/1024,pv:y/768});
 export const forestPlaces={
   home:{x:0,z:-3.3,picture:'door',name:'Nach Hause',...pin(392,262)},
@@ -17,7 +17,7 @@ export const forestPlaces={
   mouse:{x:7.0,z:5.3,picture:'mouse',name:'Zu Maus',...pin(852,532)},
 };
 export const forestExits={den:forestPlaces.home,shop:forestPlaces.shop};
-const leafSpots=[[4.5,1.2],[-12.5,-3],[-4,-13.5],[3.5,-12],[9.2,-9.5],[18.5,-6],[19,3.5],[11,10.5],[2.5,10],[-5,12],[-13,8],[-15.5,-9]];
+const leafSpots=[[4,1.4],[-12.5,-3],[-4,-13.5],[3.5,-12],[9.2,-9.5],[18.5,-6],[19,3.5],[11,10.5],[2.5,10],[-5,12],[-13,8],[-15.5,-9]];
 export const forestCollectibles=leafSpots.map((_,i)=>'goldleaf-'+(i+1));
 
 const stream=[[12.6,-34],[12.1,-20],[12.3,-10],[13,-3],[13.6,4],[14.4,12],[15.8,24],[17,36]];
@@ -32,6 +32,8 @@ const onTrail=(x,z)=>trails.some(t=>lineDistance(x,z,t)<1.6)||((x-2.2)/6.6)**2+(
 const deck=x=>.5*Math.sin(Math.PI*THREE.MathUtils.clamp((x-10.2)/5.6,0,1));
 const groundY=(x,z)=>onBridge(x,z)?deck(x):0;
 
+// Foliage between the camera and the fox dissolves (dithered) so it never hides the play area.
+function nearFade(m){m.onBeforeCompile=sh=>{sh.fragmentShader=sh.fragmentShader.replace('#include <clipping_planes_fragment>','#include <clipping_planes_fragment>\n float nearFade=clamp((9.5-vViewPosition.z)/4.5,0.0,1.0);if(nearFade>0.0&&fract(sin(dot(floor(gl_FragCoord.xy),vec2(12.9898,78.233)))*43758.5453)<nearFade)discard;');};m.customProgramCacheKey=()=>'ff-near-fade';return m;}
 function drawn(w,h,draw,{repeat=0,linear=false}={}){const c=document.createElement('canvas');c.width=w;c.height=h;draw(c.getContext('2d'),w,h);const t=new THREE.CanvasTexture(c);t.colorSpace=linear?THREE.NoColorSpace:THREE.SRGBColorSpace;if(repeat){t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(repeat,repeat);}t.anisotropy=4;return t;}
 function blot(g,x,y,s,color,w,h){for(const dx of [-w,0,w])for(const dy of [-h,0,h]){const r=g.createRadialGradient(x+dx,y+dy,0,x+dx,y+dy,s);r.addColorStop(0,color);r.addColorStop(1,'rgba(0,0,0,0)');g.fillStyle=r;g.fillRect(x+dx-s,y+dy-s,s*2,s*2);}}
 function leaf(g,len,wid,c0,c1,c2){const gr=g.createLinearGradient(-len/2,0,len/2,0);gr.addColorStop(0,c0);gr.addColorStop(.55,c1);gr.addColorStop(1,c2);g.fillStyle=gr;g.beginPath();g.moveTo(-len/2,0);g.bezierCurveTo(-len*.2,-wid*.62,len*.25,-wid*.55,len/2,0);g.bezierCurveTo(len*.25,wid*.55,-len*.2,wid*.62,-len/2,0);g.fill();g.strokeStyle='rgba(55,95,30,.5)';g.lineWidth=Math.max(1,len/45);g.beginPath();g.moveTo(-len/2,0);g.lineTo(len/2-3,0);g.stroke();}
@@ -80,8 +82,8 @@ export function createForest({renderer,looks,texture,software,onPosition,onActio
   {const bank=new THREE.Mesh(ribbon(stream,6,.02),new THREE.MeshLambertMaterial({color:'#7d6a45'}));bank.receiveShadow=true;scene.add(bank);
    const water=new THREE.Mesh(ribbon(stream,4.6,.06),new THREE.MeshLambertMaterial({map:flowTex,transparent:true,opacity:.94}));water.receiveShadow=true;scene.add(water);}
   // Instanced foliage collected while building.
-  const leafCards=[],heroCards=[],blobs=[],dummy=new THREE.Object3D(),tmp=new THREE.Color();
-  function cluster(cx,cy,cz,R,list=leafCards){const inner=new THREE.Mesh(new THREE.SphereGeometry(R*.6,14,10),paint('#477f27'));inner.position.set(cx,cy,cz);inner.castShadow=!software;scene.add(inner);blobs.push(inner);
+  const blobMaterial=nearFade(paint('#477f27').clone()),leafCards=[],heroCards=[],blobs=[],dummy=new THREE.Object3D(),tmp=new THREE.Color();
+  function cluster(cx,cy,cz,R,list=leafCards){const inner=new THREE.Mesh(new THREE.SphereGeometry(R*.6,14,10),blobMaterial);inner.position.set(cx,cy,cz);inner.castShadow=!software;scene.add(inner);blobs.push(inner);
     const count=Math.round(10+R*11);for(let i=0;i<count;i++){let x=rng()*2-1,y=rng()*1.6-.45,z=rng()*2-1;const l=Math.hypot(x,y,z)||1;x/=l;y/=l;z/=l;const d=R*(.55+rng()*.4);
       dummy.position.set(cx+x*d,cy+y*d,cz+z*d);dummy.lookAt(cx+x*d*2,cy+y*d*2,cz+z*d*2);dummy.rotateZ(rng()*TAU);dummy.scale.setScalar(R*(.82+rng()*.38));dummy.updateMatrix();
       tmp.setHSL(.23+rng()*.05,.55,.5+Math.max(0,y)*.18+rng()*.1);list.push({matrix:dummy.matrix.clone(),color:tmp.clone()});}}
@@ -129,7 +131,7 @@ export function createForest({renderer,looks,texture,software,onPosition,onActio
   {const g=new THREE.Group();scene.add(g);const m=barkTiled(1,2);limb(g,m,[-10.3,0,-.7],[-10.3,3.3,-.7],.36,.22);curveTube(g,m,[[-10.25,2.0,-.65],[-9.3,2.2,-.4],[-8.2,2.42,-.2]],.09);cluster(-10.4,4.2,-.8,1.6);cluster(-7.9,2.95,-.45,.6);}
   for(let i=0;i<40;i++){const a=i/40*TAU+rng()*.1,r=24+rng()*9;tree(2+Math.cos(a)*r,-2+Math.sin(a)*r,1.15+rng()*.5,true);}
   for(let i=0;i<500&&blobs.length<420;i++){const a=rng()*TAU,r=8+rng()*13,x=2+Math.cos(a)*r,z=-2+Math.sin(a)*r;if(!onTrail(x,z)&&!inWater(x,z)&&walkable(x,z)&&Math.hypot(x,z+8)>4.5)bush(x,z,.6+rng()*.5);}
-  function cards(list,shadow){const im=new THREE.InstancedMesh(new THREE.PlaneGeometry(1,1),new THREE.MeshLambertMaterial({map:leafTex,alphaTest:.5,side:THREE.DoubleSide,transparent:false}),list.length);list.forEach((c,i)=>{im.setMatrixAt(i,c.matrix);im.setColorAt(i,c.color);});im.castShadow=shadow&&!software;im.receiveShadow=!software;im.customDepthMaterial=leafDepth;scene.add(im);return im;}
+  function cards(list,shadow){const im=new THREE.InstancedMesh(new THREE.PlaneGeometry(1,1),nearFade(new THREE.MeshLambertMaterial({map:leafTex,alphaTest:.5,side:THREE.DoubleSide,transparent:false})),list.length);list.forEach((c,i)=>{im.setMatrixAt(i,c.matrix);im.setColorAt(i,c.color);});im.castShadow=shadow&&!software;im.receiveShadow=!software;im.customDepthMaterial=leafDepth;scene.add(im);return im;}
   cards(leafCards,true);const hero=cards(heroCards,true);
   // Ground cover: grass, lavender, daisies, ferns.
   const cover=[[tuftTex,520,[.7,.55],26],[lavenderTex,90,[.38,.8],18],[daisyTex,110,[.42,.5],20],[fernTex,80,[1.0,.75],22]];
@@ -149,7 +151,7 @@ export function createForest({renderer,looks,texture,software,onPosition,onActio
   function sprite(map,h,order=2,anchor=0){const s=new THREE.Sprite(new THREE.SpriteMaterial({map,transparent:true,toneMapped:false,depthWrite:false,alphaTest:.02}));s.center.set(.5,anchor);s.renderOrder=order;s.userData.h=h;scene.add(s);return s;}
   function size(s,h=s.userData.h,flip=1){const img=s.material.map.image,a=img&&img.width?img.width/img.height:1;s.scale.set(h*a*flip,h,1);}
   function contact(x,z,r,y=.03,o=1){const m=new THREE.Mesh(new THREE.CircleGeometry(1,24),new THREE.MeshBasicMaterial({map:softTex,transparent:true,depthWrite:false,opacity:o,toneMapped:false}));m.rotation.x=-Math.PI/2;m.position.set(x,y,z);m.scale.setScalar(r);m.renderOrder=1;scene.add(m);return m;}
-  const friends={squirrel:{at:[-9.4,0,-12.3],h:.95},bird:{at:[-8.55,2.4,-.25],h:.62},owl:{at:[-5.2,1.0,-4.2],h:1.05},mouse:{at:[8.72,.6,6.88],h:.98}};
+  const friends={squirrel:{at:[-9.4,0,-12.3],h:1.1},bird:{at:[-8.55,2.4,-.25],h:.72},owl:{at:[-5.2,1.0,-4.2],h:1.2},mouse:{at:[8.72,.6,6.88],h:1.12}};
   for(const [id,f]of Object.entries(friends)){f.sprite=sprite(texture(id),f.h);f.sprite.position.set(...f.at);if(id==='squirrel')contact(f.at[0],f.at[2],.42);}
   const beaver=actor('beaver');beaver.group.position.set(18.2,0,-2.4);beaver.group.rotation.y=-1.1;scene.add(beaver.group);{const box=new THREE.Box3().setFromObject(beaver.group);beaver.group.scale.multiplyScalar(1.15/((box.max.y-box.min.y)||1));}contact(18.2,-2.4,.6);
   const fox=sprite(looks.front,FOX_H),foxShadow=contact(0,0,.42,.04,1),pos=new THREE.Vector3(forestPlaces.home.x,0,forestPlaces.home.z);
@@ -174,7 +176,7 @@ export function createForest({renderer,looks,texture,software,onPosition,onActio
   function nearestWalkable(p){if(walkable(p.x,p.z))return new THREE.Vector3(p.x,0,p.z);for(let r=.3;r<6;r+=.3)for(let i=0;i<16;i++){const a=i/16*TAU,x=p.x+Math.cos(a)*r,z=p.z+Math.sin(a)*r;if(walkable(x,z))return new THREE.Vector3(x,0,z);}return pos.clone().setY(0);}
   function walkTo(target,id=null){target=nearestWalkable(target);const route=plan(target);if(!route){onMove({event:'route_failure',reason:'blocked',area:'forest',destination:id});return;}path=route;destination=path.shift();arrival=id;ring.position.set(target.x,groundY(target.x,target.z)+.05,target.z);ring.visible=true;onMove({event:'movement_destination',destination:id,x:target.x,z:target.z,area:'forest'});}
   function snapCamera(){focus.set(pos.x,0,pos.z);placeCamera(1);}
-  function placeCamera(k){const off=narrow?[0,12,17]:[0,9.6,15];camera.position.lerp(new THREE.Vector3(focus.x+off[0],focus.y+off[1],focus.z+off[2]),k);camera.lookAt(focus.x,focus.y+1.4,focus.z-3.2);}
+  function placeCamera(k){const off=narrow?[0,10,14.4]:[0,9,14];camera.position.lerp(new THREE.Vector3(focus.x+off[0],focus.y+off[1],focus.z+off[2]),k);camera.lookAt(focus.x,focus.y+1.4,focus.z-3.2);}
   function setCollected(map){for(const g of golden){g.taken=!!map[g.id];g.sprite.visible=g.halo.visible=!g.taken;}}
   function collect(g){g.taken=true;g.sprite.visible=g.halo.visible=false;sparks.forEach((p,i)=>{p.s.visible=true;p.life=.8;p.s.position.set(g.x,.7,g.z);const a=i/sparks.length*TAU;p.v.set(Math.cos(a)*2.2,2.6+Math.sin(i*1.7)*.8,Math.sin(a)*2.2);});onCollect(g.id);}
   function update(dt,time,{keys,stick}){
@@ -198,7 +200,7 @@ export function createForest({renderer,looks,texture,software,onPosition,onActio
     if(moving&&jumpY===0&&!reduced&&time-lastPuff>.17){lastPuff=time;const p=puffs.find(q=>q.life<=0);if(p){p.life=.55;p.s.visible=true;p.s.position.set(pos.x+(rng()-.5)*.3,base+.12,pos.z+.15);}}
     for(const p of puffs)if(p.life>0){p.life-=dt;const k=1-p.life/.55;size(p.s,.25+k*.45);p.s.material.opacity=.5*(1-k);p.s.position.y+=dt*.25;if(p.life<=0)p.s.visible=false;}
     // Collectibles.
-    for(const g of golden){if(g.taken)continue;const bob=reduced?0:Math.sin(time*2.4+g.x)*.12;g.sprite.position.set(g.x,.75+bob,g.z);g.sprite.material.rotation=reduced?0:Math.sin(time*1.6+g.z)*.4;g.halo.position.copy(g.sprite.position);g.halo.material.opacity=.55+Math.sin(time*3+g.x)*.2;if(Math.hypot(g.x-pos.x,g.z-pos.z)<.9&&jumpY<1.2)collect(g);}
+    for(const g of golden){if(g.taken)continue;const bob=reduced?0:Math.sin(time*2.4+g.x)*.12;g.sprite.position.set(g.x,.75+bob,g.z);g.sprite.material.rotation=reduced?0:Math.sin(time*1.6+g.z)*.4;g.halo.position.copy(g.sprite.position);g.halo.material.opacity=.55+Math.sin(time*3+g.x)*.2;if(Math.hypot(g.x-pos.x,g.z-pos.z)<1.1&&jumpY<1.2)collect(g);}
     for(const p of sparks)if(p.life>0){p.life-=dt;p.v.y-=6*dt;p.s.position.addScaledVector(p.v,dt);p.s.material.opacity=Math.min(1,p.life*2);p.s.material.rotation+=dt*6;if(p.life<=0)p.s.visible=false;}
     // Friends: gentle idle, a happy hop when the fox arrives.
     for(const [id,f]of Object.entries(friends)){const hop=near===id&&!reduced?Math.abs(Math.sin(time*5))*.14:0;f.sprite.position.set(f.at[0],f.at[1]+hop,f.at[2]);size(f.sprite,f.h*(reduced?1:1+Math.sin(time*1.8+f.at[0])*.012));}
@@ -216,7 +218,7 @@ export function createForest({renderer,looks,texture,software,onPosition,onActio
   }
   return {scene,camera,
     enter(position){const p=position&&walkable(position.x,position.z)?position:forestPlaces.home;pos.set(p.x,0,p.z);destination=null;path=[];arrival=null;ring.visible=false;near=null;facing='front';flip=1;jumpY=jumpV=0;setCollected(collected());snapCamera();renderer.shadowMap.needsUpdate=true;},
-    resize(w,h){width=w;height=h;narrow=w<600;camera.aspect=w/Math.max(1,h);camera.fov=narrow?56:42;camera.updateProjectionMatrix();snapCamera();},
+    resize(w,h){width=w;height=h;narrow=w<600;camera.aspect=w/Math.max(1,h);camera.fov=narrow?54:42;camera.updateProjectionMatrix();snapCamera();},
     update,route(id){const p=forestPlaces[id];if(p)walkTo(new THREE.Vector3(p.x,0,p.z),id);},
     pick(x,y){raycaster.setFromCamera(new THREE.Vector2(x,y),camera);const hit=new THREE.Vector3();if(raycaster.ray.intersectPlane(floor,hit))walkTo(hit);},
     jump(){if(jumpY===0&&jumpV===0){jumpV=window.FK.reduced?3.2:5.6;return true;}return false;},
