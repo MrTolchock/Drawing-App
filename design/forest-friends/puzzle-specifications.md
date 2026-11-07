@@ -1,6 +1,6 @@
 > Shared visual rule: [den-led art direction](visuals/art-direction.md). Outdoors, den and shop use 3D; learning puzzles use 2D.
 
-> Latest interaction decisions: [Design revision 7](visuals/revisions/v7.md) supersedes earlier check-to-submit, owl-help and shop-layout proposals. The single difficulty level and curriculum requirements remain.
+> Latest interaction decisions: [Design revision 8](visuals/revisions/v8.md) supersedes earlier check-to-submit, owl-help and shop-layout proposals. The single difficulty level and curriculum requirements remain.
 
 # Initial puzzle specifications
 
@@ -10,7 +10,9 @@
 
 Use one difficulty level, five scored tasks and a separate worked example. No timer, lives, resource deductions or penalty for help. A child can replay the example or leave at any time. First visits show the example; later visits offer it through the demonstration button.
 
-Objects can be selected and placed by tapping as well as dragging. Keep choices editable until the child presses the pictured check button. Its accessible name is «Antwort prüfen»; demonstrate its action and use spoken guidance instead of requiring a written label. Wrong answers preserve the scene, show a gentle retry cue and speak an invitation to try again: «Schau noch einmal. Du kannst es ändern.» Show a specific clue when requested rather than immediately supplying the answer. A correct answer gets a visible and spoken in-scene response and an explicit pictured next action. All quoted child-facing instructions and feedback below are spoken scripts, not required reading. Five completed tasks produce one round reward. Corrections and hints do not reduce it.
+Answer actions submit directly. A numeral or picture tap submits immediately; a story's third card placement or a construction's final piece placement submits the whole arrangement. There is no checkmark or next-task button. Tap placement is available alongside dragging; placed objects remain removable and editable. Wrong answers preserve the arrangement, show a gentle retry cue and say «Schau noch einmal. Du kannst es ändern.» Correct answers show brief feedback, then continue automatically; the current design specimen uses a 1.4-second feedback pause, not a timed question. Pause continuation while an example is open or the child has left. Examples and adult visual-review states are separate from scored tasks.
+
+All quoted child-facing directions below are spoken, not required reading. Five completed tasks grant three of the host's resource once, regardless of retries or requested support. The thanks animation and pictured bag action acknowledge the already-earned reward; replaying them must not grant more resources.
 
 Save the round ID, puzzle/content version, generated task IDs, task order, current task, object placements/selections, completed tasks, attempts, help state and reward transaction ID. Returning to an interrupted round shows a resume invitation; it does not roll a new puzzle. Refresh restores the current task. Developer skip is logged and never counted as a correct child answer.
 
@@ -24,7 +26,7 @@ Eichhörnchen: «Ich sammle Nüsse für den Winter. Wie viele sind hier?» Hase 
 
 **Example:** Show three nuts. The demonstration taps them once each, moves them into a counting row and chooses 3. Say «Jede Nuss zählt einmal. Es sind drei.» The example never becomes one of the scored tasks.
 
-**Interaction:** Child marks or unmarks each object, optionally arranges them into a frame, then chooses among three numeral cards and checks. Mark counts can be hidden while retaining counted-object marks; do not require marking if the child already recognises the quantity. The numeral cards must not be ordered by correctness.
+**Interaction:** Objects are non-interactive pictures in the first screen design. The child taps one of three numeral cards; that tap submits immediately. Do not require tapping or marking the objects. Use visible five/ten structures for support. Shuffle answer positions independently of correctness.
 
 | Task | Collection | Numeral choices | Correct answer | Likely error and useful hint |
 | --- | --- | --- | --- | --- |
@@ -72,7 +74,7 @@ The example rhyme is excluded from this sample round. Child review must check wh
 | 4 | «Ich öffne die Kiste. Dann lege ich mein Tuch hinein. Zum Schluss schliesse ich die Kiste.» | Open → put cloth in → close | Open/close confusion; highlight the relevant action in replay. |
 | 5 | «Zuerst zeichne ich einen Stern. Dann klopfe ich an die Tür. Zum Schluss schenke ich Fuchs das Bild.» | Draw → knock → give | Giving before visiting; replay the last sentence. |
 
-Drag or tap cards into slots, swap and undo, then check the whole arrangement. Card art must distinguish each action. Do not auto-place correct cards before submission. Task 3 makes comprehension of the narrated order necessary even where everyday reasoning cannot determine it. A correct arrangement practises this part of listening comprehension; it does not establish oral retelling.
+Drag or tap cards into three left-to-right slots. The third placement submits the whole arrangement. Tap a placed card to return it and reorder after a retry; no confirm action is needed. Card art must distinguish each action. Do not auto-place correct cards before submission. Task 3 makes comprehension of the narrated order necessary even where everyday reasoning cannot determine it. A correct arrangement practises this part of listening comprehension; it does not establish oral retelling.
 
 **Completion feedback:** «Jetzt stimmt meine Geschichte wieder. Danke fürs Zuhören!» Waldkauz is warmly grateful, never mocked for confusion.
 
@@ -82,7 +84,7 @@ Drag or tap cards into slots, swap and undo, then check the whole arrangement. C
 
 Biber: «Hilfst du mir, die Teile zusammenzusetzen?» The activity builds pictured bridge components on a flat workbench. Fisch can assemble pond mosaics and Eisvogel a lookout sign using identical geometry rules.
 
-**Example:** Two 1×1 squares fill a 2×1 plank outline. Demonstrate selection, placement, undo and check. One unit is a visible grid cell; units below define artwork, not child-facing measurements.
+**Example:** Two vertical 1×2 rectangles fill a 2×2 square outline. Demonstrate selection, placement and undo; the second placement completes the example directly. This separate fixture uses different piece orientation from the scored 2×2 task. One unit is a visible grid cell; units below define artwork, not child-facing measurements.
 
 | Task | Target and provided pieces | Correct arrangement |
 | --- | --- | --- |
@@ -92,7 +94,7 @@ Biber: «Hilfst du mir, die Teile zusammenzusetzen?» The activity builds pictur
 | 4 | 2×2 square; two 2×1 rectangles | Two horizontal rows |
 | 5 | L outline: occupied cells (0,0), (1,0), (0,1); one 2×1 rectangle and one 1×1 square | Rectangle across upper row; square below its left cell |
 
-Allow removal and swapping. Accept any complete non-overlapping solution using all supplied pieces, including permutations of identical pieces. Colour is decorative and must not reveal placement. A hint traces the target boundary or offers a ghost of one piece; it does not silently complete the task. Misplaced pieces remain editable on the workbench. The check identifies gaps or overlaps gently. Exact position tolerance is a usability detail to determine in the mockup.
+Allow removal and swapping. Accept any complete non-overlapping solution using all supplied pieces, including permutations of identical pieces. Colour is decorative and must not reveal placement. A hint traces the target boundary or offers a ghost of one piece; it does not silently complete the task. Misplaced pieces remain editable on the workbench. The last placement checks the complete arrangement automatically and identifies gaps or misplaced pieces gently. Overlapping or out-of-board placements are gently rejected; non-overlapping misplaced pieces remain editable. Exact position tolerance is a usability detail to determine in the mockup.
 
 **Completion feedback:** «Die Teile passen zusammen. Danke!» These are repeatable workbench tasks. Restoring a physical bridge is a separate story event, not repeated after every round.
 
@@ -119,3 +121,11 @@ This sample requires A/a, E/e, H/h, M/m, N/n, O/o, R/r, S/s, T/t and U/u; confir
 ## Content review gate
 
 For every sample and added variant, review correct/incorrect choices, uniqueness, spoken wording, image recognisability, taught content and saved-state recovery. Keep authored content versioned so an update cannot silently change the answer in an active round. If a task becomes unavailable, explain and restart that task safely while retaining earned progress.
+
+## Version-8 screen specimens
+
+The [v8 design review](visuals/review-v8.html) now includes all five initial families, with first-use examples for the three new families, separate word-audio controls for rhyme choices, tap/drag arrangements, retry/success feedback, five tasks per specimen and the pictured reward screen. These are interactive design studies. The shipped Heart Tree game, production storage and logging are unchanged.
+
+Rhyme choices and story-card trays are shuffled once per task and retain their order during an interrupted task. A story cannot be solved reliably by reusing a fixed card-position pattern. Reading targets are never auto-pronounced. The three new fixtures follow the tables above; shape fixtures appear in the order 3, 2, 1, 4, 5 to avoid opening with the same composition as the original demonstration.
+
+Before release, expand to at least 15 reviewed tasks or valid variants per family. In particular review recognition of Stall/Traum, distinction between each story action, listening-comprehension validity rather than visual guessing, and construction touch tolerances. No first-grade teacher approval or child testing is implied by these specimens.

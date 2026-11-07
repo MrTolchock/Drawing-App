@@ -1,6 +1,6 @@
 > Shared visual rule: [den-led art direction](visuals/art-direction.md). Outdoors, den and shop use 3D; learning puzzles use 2D.
 
-> Latest interaction decisions: [Design revision 7](visuals/revisions/v7.md) supersedes earlier check-to-submit, owl-help and shop-layout proposals. The single difficulty level and curriculum requirements remain.
+> Latest interaction decisions: [Design revision 8](visuals/revisions/v8.md) supersedes earlier check-to-submit, owl-help and shop-layout proposals. The single difficulty level and curriculum requirements remain.
 
 # First-session and interaction design
 
@@ -88,3 +88,11 @@ Use quiet music in the den and forest, local water/wind/bird ambience and short 
 Ask a Zürich teacher to check each initial task and prerequisite. In a supervised child walkthrough, observe whether the child can leave the den, find a friend, understand the example, correct a mistake, request help, resume an interrupted task, buy and place an item, and find a second activity. Record observations instead of treating prototype success as curriculum mastery.
 
 Open design questions after the walkthrough: camera comfort, travel distance, illustration naming, comprehension of the bag/price icons, reading word pool, and whether three reward resources per round feels useful without overpowering learning. No child testing has yet been performed.
+
+## Version-8 learning and reward review
+
+The visual review exposes five portrait-led visits from the forest: Eichhörnchen, Blaumeise, Waldkauz, Biber and Maus. The quick-visit row is a review shortcut, not a substitute for modelling the final forest locations or movement. Den/outside/shop stay in the accepted 3D art direction; all learning panels are 2D.
+
+New screen flows: Blaumeise hears a target and chooses the rhyming picture, with separate audio buttons; Waldkauz listens to three events and fills an ordered strip; Biber selects and places pieces on a flat workbench. The last answer action submits, mistakes remain correctable, and success advances automatically. A pictured three-token thank-you follows a completed round, leading to the forest or shop.
+
+Use the [child/teacher review script](visuals/review-script-v8.md) and record findings before freezing the first playable scope. Examples, progress, interruption, reward meaning and first-session affordability remain review topics.

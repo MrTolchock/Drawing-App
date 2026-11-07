@@ -1,6 +1,6 @@
 > Shared visual rule: [den-led art direction](visuals/art-direction.md). Outdoors, den and shop use 3D; learning puzzles use 2D.
 
-> Latest interaction decisions: [Design revision 7](visuals/revisions/v7.md) supersedes earlier check-to-submit, owl-help and shop-layout proposals. The single difficulty level and curriculum requirements remain.
+> Latest interaction decisions: [Design revision 8](visuals/revisions/v8.md) supersedes earlier check-to-submit, owl-help and shop-layout proposals. The single difficulty level and curriculum requirements remain.
 
 # Rewards, continuity and logging contract
 
@@ -27,7 +27,7 @@ Keep nuts, berries and other wallet tokens distinct from edible inventory items:
 
 | Shop item | Proposed price | Ownership/use | Complete rounds from an empty bag |
 | --- | --- | --- | --- |
-| Cushion | 2 nuts | Permanent furnishing; buy once, freely rearrange | 1 Eichhörnchen round |
+| Cushion | 2 logs + 1 nut + 1 feather | Permanent furnishing; buy once, freely rearrange | 1 round each with Biber, Eichhörnchen and Waldkauz |
 | Apple | 1 nut | Consumable; eat animation, remove one on committed use | 1 Eichhörnchen round buys up to 3 |
 | Berry drink | 1 berry | Consumable; drink animation | 1 Maus round buys up to 3 |
 | Drawing template: leaf | 2 seeds | Permanent creative unlock; use at table repeatedly | 1 Blaumeise round |
@@ -35,7 +35,7 @@ Keep nuts, berries and other wallet tokens distinct from edible inventory items:
 | Reading cushion | 2 feathers + 1 berry | Permanent furnishing | 1 Waldkauz and 1 Maus round |
 | Storage chest | 2 nuts + 2 logs | Permanent furnishing; decorative initially | 1 Eichhörnchen and 1 Biber round |
 
-The first round buys a cushion and an apple. Prices involving fish tokens are reserved for the later Fisch release; no first-version item requires an unavailable resource. Permanent purchases show as owned, not as repeatable accidental purchases. Purchases use an explicit confirm action and visible before/after balance. Food does not increase learning rewards or require a hunger meter.
+With the current mixed-resource cushion price, an empty wallet needs three friend rounds for that furnishing. The design specimen starts with 3 logs, 3 nuts and 2 feathers so reviewers can inspect a first purchase. This is sample state, not an approved production starting gift. Decide the first-session balance before scope freeze: a starter supply or a simpler entry furnishing could support the intended first-visit purchase loop. Prices involving fish tokens are reserved for the later Fisch release; no first-version item requires an unavailable resource. Permanent purchases show as owned, not as repeatable accidental purchases. Purchases use an explicit confirm action and visible before/after balance. Food does not increase learning rewards or require a hunger meter.
 
 ## State and interruption rules
 
@@ -94,3 +94,9 @@ Keep logs local. Proposed retention: the most recent seven days, capped at 10,00
 ## Development verification scenarios
 
 Check that refresh before/after a reward never duplicates it; purchase interruption restores matching wallet and inventory; moving furniture then cancelling restores its last position; interrupted puzzles retain answers and help state; background time is excluded from active task time; log export remains usable after pruning; development skips cannot earn ordinary rewards; save migrations preserve old drawings and owned objects. Verify on an actual target iPad before claiming support.
+
+## Version-8 reward-screen specimen
+
+The fifth task credits three units exactly once in the specimen state. A pictured transfer into the bag acknowledges the reward; the credit cannot be repeated by revisiting the reward screen. The screen offers forest/shop destinations after acknowledgement. Seeds and berries now join the visible wallet when earned, each on its own token row. The compact dock supports the small sample wallet; review grouping or scrolling for larger balances before production.
+
+Adult example/retry/success/reward previews do not increment scores or issue resources. This prototype has no production save, migration or transaction durability; refresh resets it. Production must implement the atomic state and replay guarantees above.

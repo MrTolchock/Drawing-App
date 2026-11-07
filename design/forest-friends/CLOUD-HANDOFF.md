@@ -1,4 +1,4 @@
-> Current design pass: [Revision 7](visuals/revisions/v7.md), viewed and updated in [Sites](https://forest-friends-design-review.andreas-itten.chatgpt.site/). This supersedes earlier puzzle-confirmation, wallet and camera-direction notes below; frozen visual references remain intact.
+> Current design pass: [Revision 8](visuals/revisions/v8.md), viewed and updated in [Sites](https://forest-friends-design-review.andreas-itten.chatgpt.site/). This supersedes earlier puzzle-confirmation, wallet and camera-direction notes below; frozen visual references remain intact.
 
 # Drawing-App — cloud conversation handoff
 
@@ -61,3 +61,9 @@ Always push completed design and project changes to GitHub main. The user reaffi
 ## Current shared style and rendering split
 
 The original den and Fuchs are the master art reference. Match outdoors, shop, puzzles and interface to its colours, rounded forms and soft light. Production outside/den/shop are 3D; learning puzzles are 2D. See [art direction](visuals/art-direction.md) and [revision 7](visuals/revisions/v7.md). This supersedes separate flat/clay or unrelated scene styles. Always push changes to GitHub.
+
+## Current design pass: five learning families
+
+Version 8 adds Blaumeise rhymes, Waldkauz story ordering, Biber composition and a pictured reward screen, with five specimen tasks per new family. Count/read remain. Access them from the icon tabs or the five pictured forest visits. Each new family has a separate first-use demonstration. Task and arrangement state survives navigation in the current tab; refresh still resets this disposable review. No runtime game development has started.
+
+The fifth task credits three host-resource units once. Replaying thanks cannot add rewards. Adult review controls below the frame show example/retry/success/reward states separately from scored progress. Curriculum/child review and 15-item approved pools remain outstanding. The mixed-resource cushion price is now consistent in the reward table; the production first-session starter balance remains unresolved. See [review script](visuals/review-script-v8.md) and [revision 8](visuals/revisions/v8.md). Always push completed changes to GitHub main.

@@ -1,4 +1,4 @@
-> Current working review: [review-v7.html](review-v7.html). See [revision-7 decisions](revisions/v7.md). Earlier versions remain preserved.
+> Current working review: [review-v8.html](review-v8.html). See [revision-8 decisions](revisions/v8.md). Earlier versions remain preserved.
 
 # Visual design review — version 2
 
@@ -79,3 +79,9 @@ The three PNGs were created with the built-in image_gen tool. Full final prompts
 | baseline-manifest.json | Integrity record for frozen reference files |
 | baselines/v2 | Fixed browser screenshots |
 | prompts.json | Exact generation prompt set and tool provenance |
+
+## Review the five learning families
+
+Use the rhyme, owl and beaver icon tabs for the three new 2D specimens. Bag icon opens the thanks design. Adult review-state controls are below the frame. The public Site stays the viewing destination; source and all versioned dependencies are in GitHub. [Review script](review-script-v8.md).
+
+Version 8 depends on review-v8.js and review-v8.css in this same directory, plus the preserved v7 scene/art assets and repository fonts. Keep those files together when opening a downloaded checkout.
