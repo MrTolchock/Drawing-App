@@ -224,7 +224,7 @@
 .ff-drawing-card{width:min(960px,100%)}
 .ff-drawing-tools{display:flex;gap:12px;justify-content:center;margin:8px auto 14px}
 .ff-drawing-tools .ff-button[aria-pressed=true]{border-color:#5c8a44;background:linear-gradient(180deg,#f8fdea,#d8eab4)}
-.ff-paper{display:block;width:min(100%,720px);max-height:48vh;aspect-ratio:4/3;margin:auto;background:#fffdf7;border:10px solid #fff;border-radius:6px;touch-action:none;object-fit:contain;
+.ff-paper{display:block;width:min(100%,720px,64vh);max-height:48vh;aspect-ratio:4/3;margin:auto;background:#fffaf0;border:10px solid #fffaf0;border-radius:6px;touch-action:none;object-fit:contain;
   box-shadow:0 0 0 2px #d5ba86,2px 4px 0 #e7d2a8,4px 8px 0 #dcc296,0 18px 34px #4a37202e;rotate:-.4deg}
 .ff-palette{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:20px}
 .ff-palette button{width:48px;height:48px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 1px #aa9675,inset 0 -5px 0 #0000001f,inset 0 4px 0 #ffffff55,0 4px 8px #4a372026;transition:translate .15s cubic-bezier(.3,1.6,.5,1),scale .15s cubic-bezier(.3,1.6,.5,1)}
@@ -301,7 +301,7 @@
   .ff-dev-dock .ff-button{min-width:48px;min-height:48px;width:48px;height:48px}
   .ff-dev{position:absolute;top:67px;right:0;font-size:11px}
   .ff-save-status{font-size:12px;gap:6px;padding:6px}
-  .ff-paper{max-height:42vh;border-width:6px}
+  .ff-paper{width:min(100%,56vh);max-height:42vh;border-width:6px}
   .ff-palette{gap:9px}
   .ff-palette button{width:48px;height:48px}
 }

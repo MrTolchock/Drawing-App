@@ -36,6 +36,10 @@ Refresh during a task restores its content, choice order, attempts, help and cor
 
 Concurrent tabs detect changes before committing and require reload instead of overwriting newer progress. This is a single-device, single-origin save; it is not cloud sync or a guarantee against device storage eviction. Adult backup export covers the new Forest friends state; legacy data remains in its original stores.
 
+## Visual style
+
+The interface uses a storybook woodland style in `css/friends.css`: wooden-toy buttons, framed paper cards, floating hotspot pins with still tap targets, twig progress beads and cheer/wiggle answer feedback. Den and shop render on a transparent canvas over warm lantern-lit CSS backdrops (`data-area` on the game root). The forest adds instanced flowers, grass tufts, mushrooms and pollen motes; these are decorative, never solid and never pickable. All motion stops under reduced-motion settings.
+
 ## Audio, logs and development
 
 Music, ambience and speech have separate saved controls. Procedural music/wind/bird tones begin after interaction. Background audio quietens during speech and mutes while hidden. German device speech explains controls; scored reading targets are never automatically pronounced. Rhyme word audio is explicit, logged support. Narration quality and voice availability depend on the device.

@@ -95,7 +95,10 @@ export function createWorld(canvas,{position,onPosition,onNear,onAction,onMove,o
     if(id==='bath')block(shop,x,1.95,z,.6,.85,.5,paint('#b3c4b6'));
     indoorHotspots.shop.push({id,point:new THREE.Vector3(x,3,z)});
   }
-  indoorHotspots.shop.push(doorway(shop,-4,-6,'outside'));
+  const shopDoor=doorway(shop,-4,-6,'outside');shopDoor.point.y=4.3;indoorHotspots.shop.push(shopDoor);
+  // Lantern-lit dust drifts slowly through the den and shop.
+  const dustGeo=new THREE.BufferGeometry(),dustPos=new Float32Array(40*3);for(let i=0;i<40;i++)dustPos.set([-6+rng()*12,1+rng()*4,-5+rng()*8],i*3);dustGeo.setAttribute('position',new THREE.BufferAttribute(dustPos,3));
+  const dust=[den,shop].map(g=>{const d=new THREE.Points(dustGeo,motes.material.clone());d.material.size=.18;d.material.opacity=.6;g.add(d);return d;});
   // Temporary props live only in this scene group and are never attached to the world save.
   const temporary=new THREE.Group();scene.add(temporary);temporary.visible=false;
   const apple=new THREE.Group();blob(apple,0,0,0,.22,.24,.21,paint('#d78456'));limb(apple,wood,[0,.20,0],[.02,.34,0],.025);temporary.add(apple);
@@ -182,7 +185,7 @@ export function createWorld(canvas,{position,onPosition,onNear,onAction,onMove,o
     }
     for(const tree of occluders){const p=player.group.position,hidden=area==='forest'&&tree.position.z>p.z&&tree.position.z<p.z+16&&Math.abs(tree.position.x-p.x)<2.6;tree.traverse(o=>{if(o.isMesh){o.material.opacity=hidden?.25:1;o.material.depthWrite=!hidden;}});}
     if(marker.visible)marker.rotation.y=Math.atan2(player.group.position.x-marker.position.x,player.group.position.z-marker.position.z);
-    sway.forEach((m,i)=>{m.rotation.z=window.FK.reduced?0:Math.sin(time*.7+i)*.02;});if(!window.FK.reduced){motes.position.y=Math.sin(time*.35)*.35;motes.rotation.y=time*.012;}ripples.forEach((m,i)=>{m.scale.setScalar(window.FK.reduced?1:1+Math.sin(time+i)*.12);});
+    sway.forEach((m,i)=>{m.rotation.z=window.FK.reduced?0:Math.sin(time*.7+i)*.02;});if(!window.FK.reduced){motes.position.y=Math.sin(time*.35)*.35;motes.rotation.y=time*.012;for(const d of dust){d.position.y=Math.sin(time*.25)*.25;d.position.x=Math.sin(time*.13)*.4;}}ripples.forEach((m,i)=>{m.scale.setScalar(window.FK.reduced?1:1+Math.sin(time+i)*.12);});
     if(area==='forest'&&!anim){wanted.copy(player.group.position);wanted.y=1;focus.lerp(wanted,1-Math.exp(-dt*3));camera.position.copy(focus).add(cameraOffset);camera.lookAt(focus);}
     renderer.render(scene,camera);
     onProject((area==='forest'?hotspots:indoorHotspots[area]||[]).map(h=>({id:h.id,...project(h.point)})));
