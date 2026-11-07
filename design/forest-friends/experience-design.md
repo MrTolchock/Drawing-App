@@ -75,7 +75,7 @@ Aim for at least 48 CSS-pixel touch areas and generous spacing; this is a design
 | Biber | Broad tail, sturdy body; carry piece, inspect plan, place piece | Practical and affectionate |
 | Maus | Small body, large ears; point to word, look between pictures, delighted nod | Learns with the child; does not model deliberate wrong pronunciations |
 
-First visual deliverables: one Fuchs/Waldkauz model reference sheet, one den/world scene, one counting screen and one reading screen at tablet size. These artworks are still to be made. Reuse or adapt existing models only after inspecting their quality and licences.
+The [first visual review](visuals/README.md) now includes a Fuchs/Waldkauz reference sheet, den and forest scene concepts, and editable counting/reading/shop screen specimens. These are review proposals; production models, animation and final assets remain to be made. Reuse or adapt existing models only after inspecting their quality and licences.
 
 Use quiet music in the den and forest, local water/wind/bird ambience and short reward sounds. Duck music and ambience during speech; suppress unrelated bird calls during rhyming tasks. Separate remembered music, ambience and speech controls. Avoid an endless reward fanfare or loud incorrect-answer sound.
 

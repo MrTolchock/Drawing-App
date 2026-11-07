@@ -4,7 +4,7 @@
 **Updated:** 7 November 2026.
 **Scope:** Plan the redesign before implementation. Character assignments, content, prices and interaction details remain working proposals until reviewed.
 
-Design pack: [Curriculum matrix](curriculum-matrix.md) · [Five puzzle specifications](puzzle-specifications.md) · [First-session and interaction design](experience-design.md) · [Rewards, continuity and logging](rewards-and-continuity.md).
+Design pack: [Curriculum matrix](curriculum-matrix.md) · [Five puzzle specifications](puzzle-specifications.md) · [First-session and interaction design](experience-design.md) · [Rewards, continuity and logging](rewards-and-continuity.md) · [Visual design review](visuals/README.md) · [Interactive mockups](visuals/review.html).
 
 ## 1. Game outline
 
@@ -249,8 +249,9 @@ Complete the following in order before full development. The blueprint is a desi
 - [Puzzle specifications](puzzle-specifications.md): counting, rhymes, spoken-story sequencing, shape composition and reading. Each has an example, five sample tasks, answers, hints, feedback, content boundaries and resume rules.
 - [Experience design](experience-design.md): first-session storyboard, world topology, screen layouts, movement proposal, character/audio direction and review script.
 - [Rewards and continuity](rewards-and-continuity.md): proposed rewards and prices, purchase/consumption rules, save recovery and local log/export contract.
+- [Visual review](visuals/README.md): Fuchs/Waldkauz character reference, den/forest concepts and editable tablet screen mockups with counting, reading and shop interaction specimens.
 
-These are drafts available for review. Next: make visual reference sheets and tablet mockups, expand each initial puzzle to at least 15 reviewed tasks or valid generated variants, review curriculum suitability with a Zürich primary teacher, and walk through the interaction design with children. No teacher approval, child testing or asset approval has yet taken place. Do not mark the design frozen until those reviews are recorded.
+These are drafts available for review. Next: review the first visual proposals, extend the remaining character/screen references, expand each initial puzzle to at least 15 reviewed tasks or valid generated variants, review curriculum suitability with a Zürich primary teacher, and walk through the interaction design with children. No teacher approval, child testing or asset approval has yet taken place. Do not mark the design frozen until those reviews are recorded.
 
 ### Handoff to development
 
