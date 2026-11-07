@@ -48,21 +48,21 @@ Movement proposal: tap/click ground to walk; optional existing keyboard/stick co
 
 The guided route is optional. A returning player starts in the den and can resume a saved puzzle through a pictured invitation, preserving the original round. Exiting a puzzle normally returns to its host.
 
-## Screen wireframes
+## Picture-led screen design
 
-These describe layout and hierarchy for the next visual mockup, not final artwork.
+The user endorsed the character and den direction and requested intuitive navigation for children who cannot yet read. [Version 2](visuals/review-v2.html) and its [preserved screenshots](visuals/baseline.md) supersede the earlier text-heavy interface proposal. Quoted storyboard lines above are spoken narration or accessible names, not required written controls.
 
-| Screen | Top strip | Main area | Bottom controls |
-| --- | --- | --- | --- |
-| Den | Home label; resource bag; adult settings | Bed, drawing table, placed furnishings, clear exit; camera never hides interactive objects | Home actions appear beside the selected object; furnishing tray only in arrangement mode |
-| Forest | Picture map; resource bag; small home shortcut that sets a route | Fuchs and navigable world; arrow/pawprints to chosen friend | Large contextual talk/enter button near destination; no permanent task text over the scenery |
-| Friend invitation | Friend portrait and name; close | Short acted request and puzzle preview picture | Help / later |
-| Puzzle | Host portrait; five progress dots; leave | One clear task scene; choices close to objects | Replay instruction; example; hint; undo when relevant; check; next after feedback |
-| Shop | Bag and close | Item grid, selected item preview, pictured price and owned quantity | Buy/cancel; no purchase on preview tap |
-| Arrangement | Close/cancel | Den with visible valid placement spots | Owned-item tray, move, confirm and remove-to-inventory |
-| Adult settings | Back | Audio controls; save/log tools; local logging explanation | Export log; clear log with confirmation; deliberate reset kept separate |
+| Screen | Visible interaction | Spoken/visual help |
+| --- | --- | --- |
+| Den | Tap the actual doorway, table or bed; pictured bag and map; placement suggestion for bought furniture | Speaker repeats contextual help; an acted example introduces unfamiliar actions |
+| Forest | Recognisable friend portraits and scene landmarks; pictured map destinations and a route cue | Speak destination names on request; show direction without a reading requirement |
+| Friend invitation | Character gesture and preview of the puzzle action; pictured accept and leave | Short spoken request; demonstrate both choices |
+| Puzzle | Clear task objects, answer choices, five dots, pictured check/next and retry cue | Separate visual example, spoken instruction replay and spoken hints; no required prose |
+| Shop | Item pictures, actual token prices, exchange preview and explicit check-to-buy | Speak item and price; use a check badge for ownership and quantity for consumables |
+| Arrangement | Owned item pictures and visible valid spots; pictured confirm and return-to-inventory | Demonstrate placement; cancel preserves the prior position |
+| Adult settings | Audio, log and save tools outside ordinary child play | Adult-facing written explanations are appropriate here |
 
-Aim for at least 48 CSS-pixel touch areas and generous spacing; this is a design target to validate on an actual iPad. Never require dragging alone. Use shape and position as well as colour, legible text, pictured controls with repeatable labels, and reduced-motion behaviour. Keep the task and check button visible without horizontal scrolling. Pause task timing when the app is hidden or the child leaves.
+Keep targets at least 48 × 48 CSS pixels and well spaced, and test on an actual iPad. Never require dragging alone. Retain meaningful accessible German names, keyboard control, optional captions, non-colour cues and reduced-motion behaviour. Only the learning content itself needs letters or numerals. Do not treat unfamiliar icons as automatically intuitive: child walkthroughs must show whether symbols and gestures are understood.
 
 ## Character and audio direction for the first asset pass
 

@@ -1,6 +1,8 @@
-# Visual design review — version 1
+# Visual design review — version 2
 
-**Status:** First visual proposal, 7 November 2026. Ready for discussion; teacher review, child testing and final art approval are outstanding.
+**Status:** Character and den direction endorsed by the user on 7 November 2026. Version 2 revises navigation for children who cannot yet read; child usability and curriculum review remain outstanding.
+
+The visual pass is preserved as a development comparison baseline: see [baseline.md](baseline.md), [frozen version 2](review-v2.html), [previous version 1](review-v1.html) and the [reference screenshots](baselines/v2). Do not overwrite these references during development.
 
 Open [the interactive review](review.html) in a browser. It contains six views: Zuhause, Wald, Zählen, Lesen, Laden and Figuren. The layout and text are editable in the HTML file. It can also be served locally from the repository root using `python3 -m http.server 8766 --bind 127.0.0.1`, then opened at `http://127.0.0.1:8766/design/forest-friends/visuals/review.html`.
 
@@ -24,21 +26,27 @@ The door, drawing table, bed and open floor are the home menu. The generated sce
 
 The central tree is the home landmark, the smaller tree is the shop, and broad sandy paths lead towards neighbours. The sample world is an illustration; it does not demonstrate the 3D camera, collision, routing or reachability of any location. The two sample friend buttons switch between design views and are not literal map coordinates. The topology in [experience design](../experience-design.md) remains the world-layout reference.
 
-## Interaction specimens
+## Picture-led interface
 
-- **Zählen:** seven selectable nuts, three numeral choices, editable answer, hint and recoverable feedback. One sample task only; it does not award round resources.
-- **Lesen:** the written word «Maus» and three picture choices. Instruction playback does not pronounce the target word. The picture buttons have descriptive accessibility names; a future accessible reading variant needs review because those labels may reveal the match to a screen-reader user.
-- **Laden:** start with three sample nuts; preview and purchase a cushion for two and an apple for one. Returning home exposes placement and consumption actions. Duplicate permanent purchases are prevented. The placed cushion uses one fixed spot; free arrangement and eating animation remain development work.
-- **Zuhause / Wald:** visual composition and screen navigation, with an explanation when opening the future drawing activity.
-- **Figuren:** full character reference sheet.
+Within the game frame, actions use objects and pictures with repeatable spoken guidance. Reading is required only for the actual reading task. Numerals remain in the counting task and inventory quantities. Written headings and review notes outside the frame are for adults; review notes are collapsed by default.
 
-The five progress dots show the planned round design; the review does not implement five-task rounds. «Beispiel» opens an explanatory note instead of the separately authored animated example required by the puzzle specification. The review contains no telemetry, save migration, durable wallet or production audio system. Speech uses the browser's available German voice; pronunciation quality has not been validated.
+- **Zuhause:** tap the doorway to leave, the drawing table to draw and the bed to rest. A bought cushion appears as a pictured placement suggestion. The original den art is unchanged.
+- **Wald:** neighbours appear as portraits and places as recognisable scene objects. The picture map selects a destination and shows a direction cue; it does not teleport directly into a puzzle.
+- **Zählen:** seven selectable nuts, three numeral choices and a pictured check. Wrong answers get a retry marker and spoken encouragement. Help is spoken; the worked example uses a separate group of three nuts and a pointing hand.
+- **Lesen:** «Maus» is the only visible word in the task. Directions are spoken; the separate example demonstrates «Ast». The scored target is not automatically pronounced. Descriptive accessibility labels remain available; the accessible reading variant still needs review because labels can reveal a picture match.
+- **Laden:** item pictures, actual nut tokens for prices and available resources, an exchange arrow and explicit check-to-buy. Owned furniture uses a check badge; consumables show quantity. No product description must be read.
+- **Beutel:** pictured wallet and belongings; tap an apple to eat it at home or a cushion to return home for placement.
+- **Figuren:** original Fuchs/Waldkauz reference sheet.
+
+Controls have accessible German names and keyboard focus. The speaker repeats contextual guidance; the hand shows a separate example; the Waldkauz help picture supplies a spoken clue. These symbols still need child testing. Production onboarding must demonstrate unfamiliar symbols, not assume that removing words makes them understandable.
+
+The five progress dots show the planned round structure, but there is only one specimen task for counting and reading. The review includes a small disposable drawing surface and a cosmetic rest effect; they are not production features. Furniture uses one fixed placement spot. Speech uses an available browser voice; audio quality and first-use narration on a physical tablet remain unvalidated. Sample progress resets on refresh; the real game's durable-save requirement remains unchanged.
 
 ## Browser review performed
 
-Checked the review in the app browser at 820 × 1180 and 390 × 844 viewport sizes. Inspected screenshots of home, counting and reading. Confirmed wrong-answer recovery for counting and reading, the cushion/apple purchase flow, home placement and consumption, and ownership/balance changes. Corrected the progress-label styling and narrow-screen header wrapping. The narrow counting view has no horizontal page overflow and its nut targets are 48 × 54 CSS pixels.
+Checked the picture-led review at 1024 × 900 and 390 × 844 viewports. Saved fixed screenshots of home, forest, map, counting, its separate demonstration, reading, shop and compact counting. Confirmed counting and reading wrong-answer correction, separate demonstration content, picture-map route selection, cushion/apple purchases, ownership/balance changes, placement, pictured inventory and consumption. Opened the drawing surface and inspected its controls. Compact counting has no horizontal overflow and a minimum game-control dimension of 48 CSS pixels.
 
-This checks the prototype's layout and sample interactions. It does not establish physical iPad performance, Safari compatibility, children’s comprehension or curriculum attainment. Production persistence remains a requirement in the blueprint; refresh intentionally resets this disposable review.
+This checks the prototype, not physical iPad performance, narration quality, child comprehension or curriculum attainment. Version 1 browser observations remain in the original Git history. Version 2 reference screenshots and file hashes are preserved for later comparison.
 
 ## Review questions and remaining work
 
@@ -62,5 +70,10 @@ The three PNGs were created with the built-in image_gen tool. Full final prompts
 | characters-v1.png | Fuchs/Waldkauz model and expression reference |
 | den-v1.png | Home scene concept |
 | forest-v1.png | Central clearing and world scene concept |
-| review.html | Editable screen compositions and disposable interaction specimens |
+| review.html | Current editable picture-led review |
+| review-v1.html | Frozen original text-heavy interface |
+| review-v2.html | Frozen picture-led interface |
+| baseline.md | Development comparison rules and acceptance rubric |
+| baseline-manifest.json | Integrity record for frozen reference files |
+| baselines/v2 | Fixed browser screenshots |
 | prompts.json | Exact generation prompt set and tool provenance |

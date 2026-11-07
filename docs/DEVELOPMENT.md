@@ -35,3 +35,10 @@ When changing cached runtime content, bump the app version in `js/core/util.js` 
 ## Maintain the baseline
 
 The [blueprint](../design/heart-tree/BLUEPRINT.md) describes implemented behaviour; the [review](../design/heart-tree/REVIEW.md) describes proposed next work. Archive superseded material and repair links rather than deleting project history. Keep runtime files and production assets at their working paths.
+
+
+## Forest friends redesign visual target
+
+For Forest friends work, read [Blueprint v2](../design/forest-friends/blueprint-v2.md) and the [preserved visual baseline](../design/forest-friends/visuals/baseline.md). The user endorsed the character/den direction and required picture-led navigation that does not depend on reading. The versioned mockups, original art, fixed screenshots and integrity manifest are development references; do not overwrite them to match an implementation.
+
+At each visual milestone, capture equivalent game states at the documented viewports, compare them with the baseline, and record the build, screenshots, outstanding differences and intentional deviations. Verify baseline integrity with `python3 design/forest-friends/visuals/check-baseline.py`. Functional and persistence checks remain necessary in addition to visual comparison. The baseline is a design target, not evidence that the real game already implements its behaviour.

@@ -12,6 +12,14 @@ Start with a clean design, using the current game and its learning activities as
 
 The game is for children aged 7–8 in Zürich, Switzerland. Use Swiss Standard German. Pictures, demonstrations and repeatable spoken instructions make ordinary play understandable before fluent reading. Reading puzzles explicitly practise written language.
 
+### Required intuitive interface
+
+Assume the child cannot yet read navigation or instructions. The complete home → friend → puzzle → reward → shop → home loop must work through recognisable objects, character pictures, a separate visual demonstration and replayable speech. Do not rely on written menus, dialogue paragraphs, item descriptions or error messages. Merely replacing labels with unexplained symbols is insufficient: teach unfamiliar controls by showing the action.
+
+At home, the doorway, drawing table and bed are directly actionable. Use picture destinations on the map, physical resource tokens for prices, a visible selection state and a demonstrated check-to-confirm action. Retry and completion feedback must be visible and audible. Written words remain where reading is the learning objective; numerals remain where relevant to counting and quantities. Retain German accessibility names, keyboard access and optional captions without making them a reading requirement.
+
+The user endorsed the characters and den artwork. Preserve this direction and use the [versioned visual baseline](visuals/baseline.md) to compare real development at each milestone. Keep the original artwork, frozen mockups and screenshots intact; new design changes get new versions. Version 2 is the current picture-led interface target, pending child review.
+
 ### Mandatory curriculum requirement
 
 The game's primary goal is to help children practise the school learning of **first grade in the canton of Zürich**. Alignment with the official **Zürcher Lehrplan 21** is a requirement for every learning puzzle, including future additions. Story, characters and rewards serve that goal.
@@ -211,6 +219,8 @@ The first version is ready to review when:
 - Each puzzle occupies its own catalogue row; new puzzles and competencies can be added independently of the cast.
 - Buying and placing furniture works, and refresh/relaunch preserves furniture and resources.
 - Music and forest sounds play gently and their controls persist.
+- A child can follow the main loop using objects, pictures, demonstration and speech without reading navigation text.
+- Matched development screenshots have been compared with the preserved visual baseline; intentional deviations are documented.
 - Development skips work and remain separate from player progress.
 - The gameplay log exports usable movement, error and timing information.
 - Existing saves and drawings remain accessible after an update.
@@ -255,6 +265,6 @@ These are drafts available for review. Next: review the first visual proposals, 
 
 ### Handoff to development
 
-Give the development chat this blueprint, the reviewed curriculum matrix, puzzle specifications, world map, wireframes, reference assets and reward table. Implement one complete loop first: den → friend → puzzle → resource → shop → placed furnishing → refresh with state restored. Validate that loop before adding the remaining puzzle catalogue and forest regions.
+Give the development chat this blueprint, the reviewed curriculum matrix, puzzle specifications, world map, wireframes, reference assets, reward table and [visual comparison baseline](visuals/baseline.md). For each implemented milestone, capture the matching scenes and compare them with the frozen art and screenshots; record differences instead of changing the reference to fit the implementation. Implement one complete loop first: den → friend → puzzle → resource → shop → placed furnishing → refresh with state restored. Validate that loop before adding the remaining puzzle catalogue and forest regions.
 
 The design phase is complete when the first playable deliverables above are approved, curriculum checks are resolved for its puzzles, and the acceptance checks in section 11 can be implemented without inventing major product decisions. Curriculum gaps for later releases stay explicitly listed.

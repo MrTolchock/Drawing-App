@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "recorded": "2026-11-07",
+  "baseline": "codex/forest-friends-visual-v2",
+  "previousVisualCommit": "6c45667",
+  "artDirection": "User-endorsed characters and den; original PNGs unchanged",
+  "interfaceStatus": "Version 2 picture-led revision; child review pending",
+  "mainViewport": {
+    "width": 1024,
+    "height": 900
+  },
+  "compactViewport": {
+    "width": 390,
+    "height": 844
+  },
+  "files": [
+    {
+      "path": "review-v1.html",
+      "sha256": "89dff019cd9557c7fa0dd3aae2a231d83b86b3759d6e2a9b56eb8b752a9d0bf2",
+      "bytes": 24518
+    },
+    {
+      "path": "review-v2.html",
+      "sha256": "8f618208a3bb9e1c11b7e1f2be0a7d616756a0e20b59fb487c6ef440bcba6ab3",
+      "bytes": 38946
+    },
+    {
+      "path": "characters-v1.png",
+      "sha256": "9305038e44c6787f414080ce3212ad2b1d17ed6275ec9bb819798652fcdbf324",
+      "bytes": 2120909
+    },
+    {
+      "path": "den-v1.png",
+      "sha256": "5885cbd8f0ffe80a96ac9f5a6fff8b6d9519aabf03f7b7777b7b4cc871c504c7",
+      "bytes": 2275267
+    },
+    {
+      "path": "forest-v1.png",
+      "sha256": "ed1539ec9342d4d36f185789d19231dd212bd9d41d8c2b4f748011383ea797c7",
+      "bytes": 2812923
+    },
+    {
+      "path": "prompts.json",
+      "sha256": "b32d9edbe95cdb6fc698d3fbdb2856a861f738fd27dd07018023674acc80b341",
+      "bytes": 4308
+    },
+    {
+      "path": "baselines/v2/v2-count-1024.jpg",
+      "sha256": "7a5213544214e299fd6b95e51814af8c0d802f7e533b12cce6a3843af2de0db2",
+      "bytes": 43567
+    },
+    {
+      "path": "baselines/v2/v2-count-narrow390.jpg",
+      "sha256": "c076bf6b3370bf0f475f031e53f1cbd967640bfb4c09c5eea3ca099fcee435ef",
+      "bytes": 29067
+    },
+    {
+      "path": "baselines/v2/v2-demo-1024.jpg",
+      "sha256": "1836e87b235c9430a462b81a040d11927fced1fc3cbf25a961a668a3a96d6aba",
+      "bytes": 40153
+    },
+    {
+      "path": "baselines/v2/v2-forest-route-1024.jpg",
+      "sha256": "304be96b3567b64619554de4a948eaa37a5612e0d81fda6525f2b79b66ac99bd",
+      "bytes": 184691
+    },
+    {
+      "path": "baselines/v2/v2-home-1024.jpg",
+      "sha256": "d9fc8db83f55767366c66bafd69b8ac00c973621564e09641dceee5b4c1098fd",
+      "bytes": 117832
+    },
+    {
+      "path": "baselines/v2/v2-map-1024.jpg",
+      "sha256": "3ebd7b947910a6313818dababde2a58fffb34c647f8b23e0736a71266a168489",
+      "bytes": 90108
+    },
+    {
+      "path": "baselines/v2/v2-read-1024.jpg",
+      "sha256": "0e5e4ec583080a8ed75deb22ae944c8bcdc123c58bb246dd0f7c781bb2a58f2a",
+      "bytes": 41879
+    },
+    {
+      "path": "baselines/v2/v2-shop-1024.jpg",
+      "sha256": "9e9d5bc7adb5c92a1f31b2ce00ce4312c38a1bea239680832e38410098d29df4",
+      "bytes": 41093
+    }
+  ]
+}
