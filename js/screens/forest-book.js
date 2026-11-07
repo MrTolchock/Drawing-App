@@ -2,7 +2,7 @@
 (function () {
   'use strict';
   const FK = window.FK, h = FK.h, art = FK.forestArt, model = FK.forestState, story = FK.forestStory;
-  let body, resident = 'all';
+  let body, resident = 'all', returnTo = 'forest';
   const button = (label, children, fn, cls = '') => h('button', { type:'button', class:'forest-button ' + cls, 'aria-label':label, onclick:fn }, children);
   function launch(screen, game) { FK.sound.tick(); FK.go(screen, { game, lvl:FK.learning.stage(), stage:FK.learning.stage(), level:FK.learning.stage() }); }
   function card(screen, game, id = game.id) {
@@ -51,12 +51,12 @@
   FK.screen('forest-book', {
     build(root) {
       root.classList.add('forest-activity');
-      const bar = FK.ui.topbar({title:'Waldspiele',onBack:()=>FK.go('forest')});
+      const bar = FK.ui.topbar({title:'Waldspiele',onBack:()=>FK.go(returnTo)});
       const back = bar.querySelector('.btn-back'); back.replaceChildren(art.character('fox')); back.setAttribute('aria-label','Zurück zum Wald');
       bar.append(FK.play.listen(sayText,'Spielebuch erklären'), FK.timerUI.launcher(), FK.ui.settingsButton());
       body = h('div',{class:'forest-book-body scroll'}); root.append(bar,body);
     },
-    enter(params) { FK.forestActivity.recoverRewards(); if(params.resident && story.names[params.resident]) resident=params.resident; draw(); },
+    enter(params) { FK.forestActivity.recoverRewards(); returnTo = params.from === 'friends' ? 'friends' : 'forest'; if(params.resident && story.names[params.resident]) resident=params.resident; else if(params.from === 'friends') resident='all'; draw(); },
     leave() { FK.forestVoice.cancel(); },
   });
   function sayText() { return 'Wähle ein Waldspiel. Oder wähle oben einen Freund. Alle Stufen sind offen. Mit dem Fuchs geht es zurück in den Wald.'; }

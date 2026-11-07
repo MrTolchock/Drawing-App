@@ -4,8 +4,8 @@ import {createAudio} from './audio.js';
 const FK=window.FK,h=FK.h,C=window.FriendsContent;
 let root,canvas,world,state,audio,overlay,hotspots,nav,statusBar,nearButton,caption,devLabel,pad,leaves;
 let area='den',panel=null,host=null,example=false,selectedItem=null,feedbackTimer=null,activeMs=0,lastTick=performance.now(),pendingDrawing=null,returnArea='den';
-const actionPictures={outside:'door',drawing:'pencils',sleep:'bed',...Object.fromEntries(Object.entries(C.shop).map(([k,v])=>[k,v.picture]))};
-const actionNames={outside:'Nach draussen',drawing:'Zeichnen und ausmalen',sleep:'Schlafen',...Object.fromEntries(Object.entries(C.shop).map(([k,v])=>[k,v.name]))};
+const actionPictures={outside:'door',drawing:'pencils',sleep:'bed',games:'book',...Object.fromEntries(Object.entries(C.shop).map(([k,v])=>[k,v.picture]))};
+const actionNames={outside:'Nach draussen',drawing:'Zeichnen und ausmalen',sleep:'Schlafen',games:'Waldspiele',...Object.fromEntries(Object.entries(C.shop).map(([k,v])=>[k,v.name]))};
 function art(name,cls=''){return h('span',{class:'ff-picture '+cls,html:picture(name)});}
 function button(name,pic,fn,cls=''){return h('button',{type:'button',class:'ff-button '+cls,'aria-label':name,title:name,onclick:()=>{audio?.unlock();fn();}},art(pic));}
 function say(text){caption.textContent=text;audio.say(text);}
@@ -25,15 +25,17 @@ function open(kind){clearTimeout(feedbackTimer);panel=kind;world.pause(true);nav
 function shell(titlePic,back=close){const card=h('div',{class:'ff-card'});card.append(h('div',{class:'ff-card-top'},button('Zurück','back',back),art(titlePic,'ff-card-portrait')));overlay.append(card);requestAnimationFrame(()=>card.querySelector('button')?.focus());return card;}
 function go(next){close();if(next==='forest'&&area==='den')state.position(exitPoints.den.x,exitPoints.den.z);if(next==='forest'&&area==='shop')state.position(exitPoints.shop.x,exitPoints.shop.z);area=next;root.dataset.area=next;world.setArea(next);state.record('area_transition',{area:next});pad.hidden=next!=='forest';renderNav();renderHotspots();renderLeaves();say(next==='den'?'Das ist dein Zuhause. Du kannst malen, schlafen oder nach draussen gehen.':next==='shop'?'Hier kannst du deine Vorräte tauschen. Wähle ein Bild aus.':'Deine Freunde warten im Wald. Tippe auf den Boden, um zu gehen.');}
 function renderNav(){nav.replaceChildren();if(state.development)nav.append(h('strong',{class:'ff-dev',text:'ENTWICKLUNG'}));
-  nav.append(button('Bildkarte','map',map),button('Deine Tasche','bag',bag),button('Anleitung wiederholen','speaker',()=>{state.record('instruction_replay',{area});audio.say(caption.textContent);}),button('Einstellungen für Erwachsene','gear',()=>FK.ui.parentGate(settings)));
+  nav.append(button('Bildkarte','map',map),button('Deine Tasche','bag',bag),button('Anleitung wiederholen','speaker',()=>{state.record('instruction_replay',{area});audio.say(caption.textContent);}),button('Waldspiele','book',()=>games()),button('Einstellungen für Erwachsene','gear',()=>FK.ui.parentGate(settings)));
 }
-function renderHotspots(){if(panel)return;hotspots.replaceChildren();const ids=area==='forest'?Object.keys(places):area==='den'?['outside','drawing','sleep']:['outside',...Object.keys(C.shop)];for(const id of ids){const p=places[id];const b=button(area==='forest'?p.name:actionNames[id],area==='forest'?p.picture:actionPictures[id],()=>act(id),'ff-hotspot');b.dataset.place=id;hotspots.append(b);}}
+function renderHotspots(){if(panel)return;hotspots.replaceChildren();const ids=area==='forest'?Object.keys(places):area==='den'?['outside','drawing','sleep','games']:['outside',...Object.keys(C.shop)];for(const id of ids){const p=places[id];const b=button(area==='forest'?p.name:actionNames[id],area==='forest'?p.picture:actionPictures[id],()=>act(id),'ff-hotspot');b.dataset.place=id;hotspots.append(b);}}
 function act(id){if(panel)return;if(area==='forest'){
   const p=world.position;if(Math.hypot(p.x-places[id].x,p.z-places[id].z)>3.2){world.route(id);say('Folge Fuchs zu '+(C.hosts[id]?.name|| (id==='home'?'deinem Zuhause':'dem Laden'))+'.');return;}
   if(id==='home')go('den');else if(id==='shop')go('shop');else meet(id);
-}else if(id==='outside')go('forest');else if(id==='drawing')drawing();else if(id==='sleep')sequence('sleep');else shopItem(id);}
+}else if(id==='outside')go('forest');else if(id==='games')games();else if(id==='drawing')drawing();else if(id==='sleep')sequence('sleep');else shopItem(id);}
+// The original Waldspiele and story puzzles open in their own book and return here.
+function games(resident){if(panel)close();state.record('games_open',{resident:resident||'all'});world.pause(true);FK.go('forest-book',{from:'friends',...(resident?{resident}:{})});}
 function map(){open('map');const card=shell('map');const board=h('div',{class:'ff-map'+(places.home.pu!==undefined?' ff-map-painted':'')});for(const[id,p]of Object.entries(places)){const b=button(p.name,p.picture,()=>{if(area!=='forest')go('forest');else close();world.route(id);say('Fuchs geht zu '+(C.hosts[id]?.name||(id==='home'?'deinem Zuhause':'dem Laden'))+'.');});if(p.pu!==undefined){b.style.left=(p.pu*100)+'%';b.style.top=(p.pv*100)+'%';}else{b.style.left=(50+p.x*2.8)+'%';b.style.top=(48+p.z*2.1)+'%';}board.append(b);}card.append(board);say('Wähle ein Bild. Fuchs zeigt dir den Weg.');}
-function meet(id){host=id;open('meet');const card=shell(id),saved=state.get().rounds[id];card.append(h('div',{class:'ff-meet-scene'},art('fox'),art(id)),h('div',{class:'ff-choices'},button(saved?'Weiterspielen':'Helfen','check',()=>{if(state.start(id)){activeMs=0;puzzle();if(!state.get().seenExamples[id])showExample();}}),button('Später','back',close)));
+function meet(id){host=id;open('meet');const card=shell(id),saved=state.get().rounds[id];card.append(h('div',{class:'ff-meet-scene'},art('fox'),art(id)),h('div',{class:'ff-choices'},button(saved?'Weiterspielen':'Helfen','check',()=>{if(state.start(id)){activeMs=0;puzzle();if(!state.get().seenExamples[id])showExample();}}),FK.forestStory?.names?.[id]?button('Waldspiele mit '+C.hosts[id].name,'book',()=>games(id)):null,button('Später','back',close)));
   say((saved?'Deine Aufgabe wartet auf dich. Möchtest du weiterspielen?':{squirrel:'Ich sammle Nüsse für den Winter. Hilfst du mir beim Zählen?',bird:'Ich suche Reime für ein Lied. Hilfst du mir beim Lesen?',owl:'Liest du mit mir einen kurzen Satz?',beaver:'Welche Form fehlt noch? Hilfst du mir?',mouse:'Liest du mit mir ein Wort?'}[id])+' Mit dem Häkchen spielen wir. Mit dem Pfeil gehst du zurück.');
 }
 function taskScene(t,filled=false){
@@ -146,6 +148,6 @@ FK.screen('friends',{
     root.addEventListener('keydown',e=>{if(e.key==='Escape'&&panel){e.preventDefault();e.stopPropagation();if(panel==='animation')endSequence(true);else close();}if(e.key==='Tab'&&panel){const list=[...overlay.querySelectorAll('button:not(:disabled),a,input')].filter(el=>!el.hidden);const first=list[0],last=list.at(-1);if(e.shiftKey&&document.activeElement===first){last?.focus();e.preventDefault();}else if(!e.shiftKey&&document.activeElement===last){first?.focus();e.preventDefault();}}});
     if(state.development){const dock=h('div',{class:'ff-dev-dock'},Object.entries(C.hosts).map(([id,data])=>button(data.name+' direkt öffnen',id,()=>meet(id))));root.append(dock);}
   },
-  enter(){world?.pause(false);},leave(){world?.pause(true);audio?.dispose();}
+  enter(){world?.pause(!!panel);renderHotspots();},leave(){world?.pause(true);audio?.dispose();if(state)audio=createAudio(()=>state.audioSettings());}
 });
 FK.go('friends');

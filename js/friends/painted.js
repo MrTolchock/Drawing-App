@@ -16,7 +16,7 @@ const heightAt=(p,fraction)=>fraction*depth(p)/F;
 const pinPoint=(u,v)=>{const r=ray(u,v);return r.origin.clone().add(r.direction.clone().multiplyScalar(20));};
 const scenes={den:{need:[.03,.2,.97,.92]},shop:{need:[.04,.28,.96,.96]}};
 const denSpot=at(300,440),cushion=at(176,560),denFrac=.349;
-const pins={den:{outside:at(859,346),drawing:at(899,668),sleep:at(116,540)},shop:{leaf:at(178,488),pencils:at(300,488),apple:at(560,488),bath:at(772,488),outside:at(84,708)}};
+const pins={den:{outside:at(859,346),drawing:at(899,668),sleep:at(116,540),games:at(497,150)},shop:{leaf:at(178,488),pencils:at(300,488),apple:at(560,488),bath:at(772,488),outside:at(84,708)}};
 
 export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,onMove,onAnimationEnd,onProject,onCollect=()=>{},collected=()=>({}),onJump=()=>{}}){
   const software=new URLSearchParams(location.search).has('software');

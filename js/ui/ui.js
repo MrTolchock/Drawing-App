@@ -68,7 +68,7 @@
   FK.back = () => {
     const prev = stack.pop();
     if (prev) FK.go(prev.name, prev.params, { isBack: true });
-    else FK.go(current?.name === 'forest-book' ? 'forest' : 'forest-book', {}, { isBack: true });
+    else FK.go(current?.name === 'forest-book' ? (current.params?.from === 'friends' ? 'friends' : 'forest') : 'forest-book', {}, { isBack: true });
   };
   FK.current = () => (current ? current.name : null);
   FK.screenExists = (name) => !!screens[name];
