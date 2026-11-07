@@ -1,6 +1,6 @@
 > Shared visual rule: [den-led art direction](visuals/art-direction.md). Outdoors, den and shop use 3D; learning puzzles use 2D.
 
-> Latest interaction decisions: [Design revision 8](visuals/revisions/v8.md) supersedes earlier check-to-submit, owl-help and shop-layout proposals. The single difficulty level and curriculum requirements remain.
+> Latest interaction decisions: [Design revision 9](visuals/revisions/v9.md) sets shared categories and the revised Reading/Mathematics examples. The single difficulty level and curriculum requirements remain.
 
 # Initial puzzle specifications
 
@@ -10,9 +10,9 @@
 
 Use one difficulty level, five scored tasks and a separate worked example. No timer, lives, resource deductions or penalty for help. A child can replay the example or leave at any time. First visits show the example; later visits offer it through the demonstration button.
 
-Answer actions submit directly. A numeral or picture tap submits immediately; a story's third card placement or a construction's final piece placement submits the whole arrangement. There is no checkmark or next-task button. Tap placement is available alongside dragging; placed objects remain removable and editable. Wrong answers preserve the arrangement, show a gentle retry cue and say «Schau noch einmal. Du kannst es ändern.» Correct answers show brief feedback, then continue automatically; the current design specimen uses a 1.4-second feedback pause, not a timed question. Pause continuation while an example is open or the child has left. Examples and adult visual-review states are separate from scored tasks.
+Answer actions submit directly. A numeral, written-word card or picture tap submits immediately in the initial five activities. There is no checkmark or next-task button. Tap placement is available alongside dragging; placed objects remain removable and editable. Wrong answers preserve the arrangement, show a gentle retry cue and say «Schau noch einmal. Du kannst es ändern.» Correct answers show brief feedback, then continue automatically; the current design specimen uses a 1.4-second feedback pause, not a timed question. Pause continuation while an example is open or the child has left. Examples and adult visual-review states are separate from scored tasks.
 
-All quoted child-facing directions below are spoken, not required reading. Five completed tasks grant three of the host's resource once, regardless of retries or requested support. The thanks animation and pictured bag action acknowledge the already-earned reward; replaying them must not grant more resources.
+Directions can be spoken and demonstrated. Written target words, rhyme choices and scored sentences are intentional reading content; do not narrate scored reading targets automatically. Five completed tasks grant three of the host's resource once, regardless of retries or requested support. The thanks animation and pictured bag action acknowledge the already-earned reward; replaying them must not grant more resources.
 
 Save the round ID, puzzle/content version, generated task IDs, task order, current task, object placements/selections, completed tasks, attempts, help state and reward transaction ID. Returning to an interrupted round shows a resume invitation; it does not roll a new puzzle. Refresh restores the current task. Developer skip is logged and never counted as a correct child answer.
 
@@ -38,65 +38,61 @@ Eichhörnchen: «Ich sammle Nüsse für den Winter. Wie viele sind hier?» Hase 
 
 **Completion feedback:** «Danke! Jetzt weiss ich, wie viele Nüsse hier sind.» Render any stated quantity from the actual answer. Selecting an answer should not be blocked by an arbitrary requirement to tap every object. Record answer, help and arrangement; do not infer a mental counting strategy from taps alone.
 
-## SOUND-01 — Reimzirkus
+## SOUND-01 — Reimzirkus (Reading)
 
-**Character:** Blaumeise. **Goal:** recognise a rhyme by hearing word endings; D.1.A.1.b. **Prerequisite:** understand the pictured words. **One level:** one spoken target, three spoken pictured choices, exactly one rhyme.
+**Initial host:** Blaumeise; reusable by other Reading hosts. **Goal:** read familiar written words and recognise a rhyme. **References:** D.2.A.1.b; supporting rhyme listening D.1.A.1.b. The legacy ID is retained for compatibility, not as a separate Sound category. Use the original game's word-and-picture presentation from `js/screens/adventure.js` and `js/learn/adventures.js`.
 
-«Für mein Lied fehlt ein Reim. Hör gut zu!» Every picture has a replay button with a fixed spoken label. No written answers are required. Ambient birdsong pauses during word playback.
+Show a large written target with a picture, and two written, pictured choices. Individual audio buttons can pronounce any word; do not hide the writing. «Lies die Wörter. Was reimt sich?» Speech explains the action. Audio is optional support and does not count as independent decoding. Picture matching alone also cannot prove reading; this playful task combines reading exposure with rhyme recognition.
 
-**Example:** Speak «Haus», then label Maus, Baum and Ball. Demonstrate selecting Maus: «Haus und Maus klingen am Ende gleich.»
+**Worked example:** «Haus → Maus», with visible written words and pictures; speak both and explain the shared ending. This familiar approved demonstration is retained in the disposable review. Before release use a reviewed scored pool excluding the demonstrated pair.
 
-| Task | Target | Choices | Correct answer | Hint |
-| --- | --- | --- | --- | --- |
-| 1 | Ball | Stall, Baum, Fisch | Stall | Replay Ball and Stall, stressing the shared ending naturally. |
-| 2 | Tisch | Fisch, Haus, Kuh | Fisch | Replay the target, then each choice with the same speaking pace. |
-| 3 | Bein | Stein, Boot, Maus | Stein | Draw attention to the end of the word, not its first sound. |
-| 4 | Kuh | Schuh, Ball, Tisch | Schuh | Use the fixed label Schuh; do not alternate with Stiefel. |
-| 5 | Baum | Traum, Fisch, Bein | Traum | Use a clear dream-bubble picture with the spoken label Traum. |
-
-The example rhyme is excluded from this sample round. Child review must check whether Stall and Traum are understood; replace confusing pictures/words after review. Reject pools with alternative correct rhymes, identical target answers or inconsistent audio. Wrong attempts can replay the pair. Final help may demonstrate the answer and records that support. Reward remains unchanged.
-
-**Completion feedback:** Blaumeise sings a short phrase with the solved rhyme, then «Danke für die Reime!» This is an authored sound, not a live generated song.
-
-## STORY-01 — Mixed-up stories / Bildergeschichte
-
-**Character:** Waldkauz. **Goal:** follow an audible narrative and reconstruct its events; D.1.B.1.b. **One level:** three spoken sentences and three scene cards. Reading is optional; the spoken story determines the answer.
-
-«Meine Bilder sind durcheinander. Hör meine Geschichte und ordne sie.» The cards have no printed sequence numbers. The three slots have left-to-right arrows; the example teaches this layout.
-
-**Example:** «Ich nehme ein Buch. Dann setze ich mich auf den Ast. Dort lese ich.» Demonstrate book → branch → reading. The scene remains visible while replaying, with no countdown or forced memory delay.
-
-| Task | Full spoken story | Correct scene order | Likely mix-up and hint |
+| Task | Written target | Written/pictured choices | Correct |
 | --- | --- | --- | --- |
-| 1 | «Ich hole eine Tasse. Dann fülle ich Wasser ein. Zum Schluss trinke ich.» | Take cup → fill → drink | Drink before filling; replay «Dann fülle ich Wasser ein.» |
-| 2 | «Ich sammle Blätter. Dann lege ich sie ins Körbchen. Zum Schluss trage ich das Körbchen heim.» | Gather → basket → carry home | Basket/carry swap; replay the middle sentence. |
-| 3 | «Zuerst läute ich die Glocke. Dann winke ich Maus. Zum Schluss öffne ich das Buch.» | Bell → wave → book | Plausible alternative sequences; replay the complete story. |
-| 4 | «Ich öffne die Kiste. Dann lege ich mein Tuch hinein. Zum Schluss schliesse ich die Kiste.» | Open → put cloth in → close | Open/close confusion; highlight the relevant action in replay. |
-| 5 | «Zuerst zeichne ich einen Stern. Dann klopfe ich an die Tür. Zum Schluss schenke ich Fuchs das Bild.» | Draw → knock → give | Giving before visiting; replay the last sentence. |
+| 1 | Haus | Maus, Baum | Maus |
+| 2 | Tisch | Fisch, Hut | Fisch |
+| 3 | Bein | Stein, Boot | Stein |
+| 4 | Kuh | Schuh, Ball | Schuh |
+| 5 | Maus | Haus, Hut | Haus |
 
-Drag or tap cards into three left-to-right slots. The third placement submits the whole arrangement. Tap a placed card to return it and reorder after a retry; no confirm action is needed. Card art must distinguish each action. Do not auto-place correct cards before submission. Task 3 makes comprehension of the narrated order necessary even where everyday reasoning cannot determine it. A correct arrangement practises this part of listening comprehension; it does not establish oral retelling.
+Shuffle positions once per task and retain them after retries. One tap submits. Replay the pair as a requested hint; log that support. Fixed picture names must match the written words. No ambiguous alternatives or abstract Traum/Stall picture naming is required in this fixture. These five specimens repeat the Haus/Maus pair intentionally; a release pool needs at least 15 reviewed distinct tasks and should avoid immediate reversed-pair repeats.
 
-**Completion feedback:** «Jetzt stimmt meine Geschichte wieder. Danke fürs Zuhören!» Waldkauz is warmly grateful, never mocked for confusion.
+## READ-02 — Lies und zeig (Reading; replaces initial STORY-01)
 
-## SPACE-01 — Formenwerkstatt
+**Initial host:** Waldkauz; reusable by other Reading hosts. **Goal:** slowly decode a very short sentence and connect it to a clear action picture. **References:** D.2.A.1.b; D.2.B.1.b for supported sentence meaning. This is an easier replacement for narrated three-card sequencing and for revision-9 spatial sentences, not another difficulty level.
 
-**Characters:** Biber, Fisch and Eisvogel when introduced. **Goal:** compose figures from pieces; the composition part of MA.2.A.2.b. **One level:** two or three pieces, supplied in the needed orientation. No rotation control for this first puzzle.
+«Lies den Satz. Tippe auf das passende Bild.» The target stays visible. Use exactly two large pictures and three-word sentences with familiar nouns and verbs. Do not begin with location/preposition contrasts, nested clauses, negatives, a third distractor or several events. Do not automatically read the target through the instruction speaker. Let the child take unlimited time; optional syllable support changes the presentation, not the level.
 
-Biber: «Hilfst du mir, die Teile zusammenzusetzen?» The activity builds pictured bridge components on a flat workbench. Fisch can assemble pond mosaics and Eisvogel a lookout sign using identical geometry rules.
+**Separate worked example:** «Die Maus schläft.» Show and narrate a sleeping mouse, explaining the match. This sentence is excluded from the scored fixtures below.
 
-**Example:** Two vertical 1×2 rectangles fill a 2×2 square outline. Demonstrate selection, placement and undo; the second placement completes the example directly. This separate fixture uses different piece orientation from the scored 2×2 task. One unit is a visible grid cell; units below define artwork, not child-facing measurements.
+| Task | Written sentence | Picture choices | Correct |
+| --- | --- | --- | --- |
+| 1 | Die Maus sitzt. | Mouse sitting / mouse running | Sitting |
+| 2 | Der Vogel fliegt. | Bird flying / bird perched | Flying |
+| 3 | Die Maus rennt. | Mouse running / mouse sitting | Running |
+| 4 | Der Vogel sitzt. | Bird perched / bird flying | Perched |
+| 5 | Der Fisch schwimmt. | Fish swimming / mouse running | Swimming |
 
-| Task | Target and provided pieces | Correct arrangement |
-| --- | --- | --- |
-| 1 | 2×1 rectangle; two 1×1 squares | Squares side by side |
-| 2 | 1×2 rectangle; two 1×1 squares | Squares above one another |
-| 3 | 3×1 rectangle; three 1×1 squares | One horizontal row |
-| 4 | 2×2 square; two 2×1 rectangles | Two horizontal rows |
-| 5 | L outline: occupied cells (0,0), (1,0), (0,1); one 2×1 rectangle and one 1×1 square | Rectangle across upper row; square below its left cell |
+Pictures must distinguish actions, especially sitting versus running; motion lines alone may be insufficient and need child review. Same-subject alternatives on four tasks make the verb meaningful. Task 5 is a gentle confidence task, not evidence of close sentence reading by itself. Shuffle positions independently; retries preserve position and sentence. One picture tap submits and success advances automatically. Whole-sentence audio, if explicitly requested as help in production, is answer-revealing support and must be logged accordingly. No timer, oral retelling requirement or story-order memory test.
 
-Allow removal and swapping. Accept any complete non-overlapping solution using all supplied pieces, including permutations of identical pieces. Colour is decorative and must not reveal placement. A hint traces the target boundary or offers a ghost of one piece; it does not silently complete the task. Misplaced pieces remain editable on the workbench. The last placement checks the complete arrangement automatically and identifies gaps or misplaced pieces gently. Overlapping or out-of-board placements are gently rejected; non-overlapping misplaced pieces remain editable. Exact position tolerance is a usability detail to determine in the mockup.
+**Feedback:** «Das passt zum Satz. Danke fürs Lesen!» Long sentences and story sequencing remain optional later designs with separate objectives and review.
 
-**Completion feedback:** «Die Teile passen zusammen. Danke!» These are repeatable workbench tasks. Restoring a physical bridge is a separate story event, not repeated after every round.
+## SPACE-01 — Welche Form fehlt? (Mathematics)
+
+**Initial host:** Biber; reusable by other Mathematics hosts. **Goal:** recognise a basic shape in a familiar pictured object. **Reference:** supports MA.2.A.1.a basic shape vocabulary; feedback names the selected shape. This introductory exercise does not assess the full naming step, solids, geometric composition or all first-grade geometry.
+
+«Welche Form passt in die Lücke?» Show a house or cart with one outlined gap and three shape cards. Tapping a card submits immediately and a correct shape fills the gap. There is no grid-coordinate selection, rotation or drag requirement. Use consistent orientation and proportions. Decorative colours cannot identify the answer.
+
+**Worked example:** A triangular roof is missing. Show selecting the triangle and inserting it. The current fixture repeats a roof item; before release use a separate reviewed example object excluded from the scored pool.
+
+| Task | Missing part | Choices | Correct |
+| --- | --- | --- | --- |
+| 1 | House roof | Circle, triangle, square | Triangle |
+| 2 | Square window | Triangle, rectangle, square | Square |
+| 3 | Cart wheel | Square, circle, triangle | Circle |
+| 4 | Tall door | Circle, rectangle, triangle | Rectangle |
+| 5 | Another roof | Square, triangle, circle | Triangle |
+
+On error, leave the gap visible, mark the selected card gently and allow another choice. A hint traces the boundary; it does not silently choose. On success name the shape, e.g. «Das Dreieck passt.» This is a warm-up and may be easy for some 7–8-year-olds. Expand variation after review without adding a level menu. Shape composition/bridge construction remains a later separately specified Mathematics activity; it is no longer this initial puzzle's objective.
 
 ## READ-01 — Leseschatz
 
@@ -122,10 +118,10 @@ This sample requires A/a, E/e, H/h, M/m, N/n, O/o, R/r, S/s, T/t and U/u; confir
 
 For every sample and added variant, review correct/incorrect choices, uniqueness, spoken wording, image recognisability, taught content and saved-state recovery. Keep authored content versioned so an update cannot silently change the answer in an active round. If a task becomes unavailable, explain and restart that task safely while retaining earned progress.
 
-## Version-8 screen specimens
+## Current screen specimens and content status
 
-The [v8 design review](visuals/review-v8.html) now includes all five initial families, with first-use examples for the three new families, separate word-audio controls for rhyme choices, tap/drag arrangements, retry/success feedback, five tasks per specimen and the pictured reward screen. These are interactive design studies. The shipped Heart Tree game, production storage and logging are unchanged.
+[Revision 9](visuals/review-v9.html) contains five introductory activities across two shared categories: counting and missing shapes under Mathematics; word reading, written rhyme pairs and easy sentence matching under Reading. The user endorsed the revised examples/category direction and requested a simpler Waldkauz start; the current sentence fixtures implement that request. This is user design feedback, not a teacher or child validation record.
 
-Rhyme choices and story-card trays are shuffled once per task and retain their order during an interrupted task. A story cannot be solved reliably by reusing a fixed card-position pattern. Reading targets are never auto-pronounced. The three new fixtures follow the tables above; shape fixtures appear in the order 3, 2, 1, 4, 5 to avoid opening with the same composition as the original demonstration.
+The preview includes examples, retries, automatic advancement and pictured rewards. It is disposable and resets on refresh; production persistence/logging remain future implementation. Earlier revision-8 audio-only rhymes, story ordering and composition fixtures remain in frozen files for history only. They are not the initial release specification.
 
-Before release, expand to at least 15 reviewed tasks or valid variants per family. In particular review recognition of Stall/Traum, distinction between each story action, listening-comprehension validity rather than visual guessing, and construction touch tolerances. No first-grade teacher approval or child testing is implied by these specimens.
+Before release: expand to at least 15 reviewed tasks per puzzle; separate scored tasks from demonstrations; validate letter inventory, verb-picture recognition, rhyme reading support and first-grade appropriateness. Do not treat sample success as curriculum mastery.

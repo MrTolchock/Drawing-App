@@ -1,6 +1,6 @@
 > Shared visual rule: [den-led art direction](visuals/art-direction.md). Outdoors, den and shop use 3D; learning puzzles use 2D.
 
-> Latest interaction decisions: [Design revision 8](visuals/revisions/v8.md) supersedes earlier check-to-submit, owl-help and shop-layout proposals. The single difficulty level and curriculum requirements remain.
+> Latest interaction decisions: [Design revision 9](visuals/revisions/v9.md) sets shared categories and simpler reading-led examples. The single difficulty level and curriculum requirements remain.
 
 # First-session and interaction design
 
@@ -8,7 +8,7 @@
 
 ## First playable scope
 
-Include Fuchs, Eichhörnchen, Blaumeise, Waldkauz, Biber and Maus. Bringing Maus into the first playable version gives early reading a place alongside numeracy and listening. Other characters retain the shared competency assignments in the blueprint and enter later. No old story repairs or chapter requirements are needed to access the first five puzzles.
+Include Fuchs, Eichhörnchen, Blaumeise, Waldkauz, Biber and Maus. Bringing Maus into the first playable version gives early reading a place alongside Mathematics, with Maus, Blaumeise and Waldkauz sharing Reading. Other characters retain the shared competency assignments in the blueprint and enter later. No old story repairs or chapter requirements are needed to access the first five puzzles.
 
 The opening suggestion leads to Eichhörnchen, but all five friends are freely reachable. A shop counter runs without an additional shopkeeper model for this first version; its permanent owner remains undecided. Basic bed, table and door are available from the start. Buying a furnishing is an invitation, not a gate to further learning.
 
@@ -43,7 +43,7 @@ Movement proposal: tap/click ground to walk; optional existing keyboard/stick co
 | 2. Choose an action | Tap table, bed, bag or door; first suggestion gently indicates door | Door: «Nach draussen» | Exploring home is optional; audio starts after interaction when required by the browser. |
 | 3. Walk outside | Central tree and nut-tree landmark are visible; a short pawprint cue suggests Eichhörnchen | «Eichhörnchen sammelt Nüsse. Möchtest du helfen?» | Any friend can be chosen; a missed cue can be replayed. |
 | 4. Meet | Eichhörnchen gestures to a basket; accept or keep exploring | Buttons: «Helfen», «Später» | No round starts or reward changes until accepted. |
-| 5. Learn and play | Example, then five tasks with replay, hint, check and leave controls | «Wie viele Nüsse sind hier?» | Wrong answers remain editable. Leaving saves the exact task. |
+| 5. Learn and play | Example, then five tasks with replay, hint, direct answer and leave controls | «Wie viele Nüsse sind hier?» | Wrong answers remain editable. Leaving saves the exact task. |
 | 6. Thank and reward | Eichhörnchen thanks Fuchs; three nut icons move into the bag | «Danke! Diese Nüsse sind für dich.» | Grant once even if refreshed during the animation. |
 | 7. Choose next | Return to the same world position; shop suggestion appears | «Im Laden gibt es etwas für dein Zuhause.» | Friend/map/home remain available; no forced shop visit. |
 | 8. Buy | Preview a cushion, picture price and current wallet; confirm or cancel | «Kissen», «2 Nüsse», «Kaufen» | Cancel spends nothing. Insufficient resources keep the preview open. |
@@ -61,7 +61,7 @@ The user endorsed the character and den direction and requested intuitive naviga
 | Den | Tap the actual doorway, table or bed; pictured bag and map; placement suggestion for bought furniture | Speaker repeats contextual help; an acted example introduces unfamiliar actions |
 | Forest | Recognisable friend portraits and scene landmarks; pictured map destinations and a route cue | Speak destination names on request; show direction without a reading requirement |
 | Friend invitation | Character gesture and preview of the puzzle action; pictured accept and leave | Short spoken request; demonstrate both choices |
-| Puzzle | Clear task objects, answer choices, five dots, pictured check/next and retry cue | Separate visual example, spoken instruction replay and spoken hints; no required prose |
+| Puzzle | Clear target, answer choices, five dots and retry cue; answers submit and advance directly | Separate visual example, spoken instruction replay and spoken hints; no required prose |
 | Shop | Item pictures, actual token prices, exchange preview and explicit check-to-buy | Speak item and price; use a check badge for ownership and quantity for consumables |
 | Arrangement | Owned item pictures and visible valid spots; pictured confirm and return-to-inventory | Demonstrate placement; cancel preserves the prior position |
 | Adult settings | Audio, log and save tools outside ordinary child play | Adult-facing written explanations are appropriate here |
@@ -89,10 +89,12 @@ Ask a Zürich teacher to check each initial task and prerequisite. In a supervis
 
 Open design questions after the walkthrough: camera comfort, travel distance, illustration naming, comprehension of the bag/price icons, reading word pool, and whether three reward resources per round feels useful without overpowering learning. No child testing has yet been performed.
 
-## Version-8 learning and reward review
+## Current learning and reward review
 
-The visual review exposes five portrait-led visits from the forest: Eichhörnchen, Blaumeise, Waldkauz, Biber and Maus. The quick-visit row is a review shortcut, not a substitute for modelling the final forest locations or movement. Den/outside/shop stay in the accepted 3D art direction; all learning panels are 2D.
+Five portrait-led visits remain available: Eichhörnchen and Biber offer Mathematics; Maus, Blaumeise and Waldkauz offer Reading. The quick-visit row is a review shortcut, not the final 3D forest navigation. Child navigation remains picture-led; category names are optional labels and adult organisation, not required navigation reading.
 
-New screen flows: Blaumeise hears a target and chooses the rhyming picture, with separate audio buttons; Waldkauz listens to three events and fills an ordered strip; Biber selects and places pieces on a flat workbench. The last answer action submits, mistakes remain correctable, and success advances automatically. A pictured three-token thank-you follows a completed round, leading to the forest or shop.
+Blaumeise uses written word-and-picture rhyme cards from the old game. Waldkauz starts with three-word action sentences and two choices, e.g. «Die Maus sitzt.» Longer spatial sentences and three-event story ordering are excluded from the initial pool. Biber shows a familiar object with one missing shape; a single tap fills it. Maus and counting retain their existing word/picture and quantity/numeral interactions.
 
-Use the [child/teacher review script](visuals/review-script-v8.md) and record findings before freezing the first playable scope. Examples, progress, interruption, reward meaning and first-session affordability remain review topics.
+Each answer submits directly. Mistakes can be corrected, success advances automatically and five successes award three pictured host resources once. Separate demonstrations explain the task. Target reading is not narrated by the instruction speaker; answer-revealing support is recorded separately in production. Category sharing does not force every animal to offer identical activities on its first visit.
+
+See [revision 9](visuals/revisions/v9.md), [current review](visuals/review-v9.html) and [review script](visuals/review-script-v9.md). Confirm action-picture recognition and introduced letters with children and a Zürich teacher. This prototype's state survives tab navigation, but refresh resets it; production persistence is still required.

@@ -1,12 +1,12 @@
 > Shared visual rule: [den-led art direction](visuals/art-direction.md). Outdoors, den and shop use 3D; learning puzzles use 2D.
 
-> Latest interaction decisions: [Design revision 8](visuals/revisions/v8.md) supersedes earlier check-to-submit, owl-help and shop-layout proposals. The single difficulty level and curriculum requirements remain.
+> Latest interaction decisions: [Design revision 9](visuals/revisions/v9.md) sets the shared categories, reading-led rhymes, easier owl sentences and clear shape matching. The single difficulty level and curriculum requirements remain.
 
 # Blueprint v2 — Forest friends
 
-**Status:** Game outline with first playable design pack; teacher and child review pending.
+**Status:** Updated Blueprint V2. User endorsed the revised examples and simpler categories; Waldkauz simplified further. Teacher and child review pending.
 **Updated:** 7 November 2026.
-**Scope:** Plan the redesign before implementation. Character assignments, content, prices and interaction details remain working proposals until reviewed.
+**Scope:** Plan the redesign before implementation. Shared categories and the revised example direction reflect user feedback. Content pools, prices and production interaction details still need review.
 
 Design pack: [Curriculum matrix](curriculum-matrix.md) · [Five puzzle specifications](puzzle-specifications.md) · [First-session and interaction design](experience-design.md) · [Rewards, continuity and logging](rewards-and-continuity.md) · [Visual design review](visuals/README.md) · [Interactive mockups](visuals/review.html).
 
@@ -22,7 +22,7 @@ Assume the child cannot yet read navigation or instructions. The complete home �
 
 At home, the doorway, drawing table and bed are directly actionable. Use picture destinations on the map, physical resource tokens for prices, a visible selection state and a demonstrated check-to-confirm action. Retry and completion feedback must be visible and audible. Written words remain where reading is the learning objective; numerals remain where relevant to counting and quantities. Retain German accessibility names, keyboard access and optional captions without making them a reading requirement.
 
-The user endorsed the characters and den artwork. Preserve this direction and use the [versioned visual baseline](visuals/baseline.md) to compare real development at each milestone. Keep the original artwork, frozen mockups and screenshots intact; new design changes get new versions. Version 2 is the current picture-led interface target, pending child review.
+The user endorsed the characters and den artwork. Preserve this direction and use the [versioned visual baseline](visuals/baseline.md) to compare real development at each milestone. Keep the original artwork, frozen mockups and screenshots intact; new design changes get new versions. The preserved Version-2 art remains the baseline; revision 9 is the current interaction and learning-category target, pending child review.
 
 ### Mandatory curriculum requirement
 
@@ -32,24 +32,39 @@ Use **Zyklus 1** as the curriculum framework, then select tasks suitable for fir
 
 Before a puzzle is accepted for implementation, document its official competency code and relevant Zyklus-1 step, concrete learning objective, first-grade task range or vocabulary, required prior learning and observable action. Check the actual question pool, instructions and feedback against that objective. Review first-grade suitability with a Zürich primary teacher before release; mappings below are design mappings, not official approval or a claim of complete curriculum coverage.
 
-### Curriculum mapping for the catalogue
+### Simple learning categories
 
-The English competency names are game categories, not official Lehrplan titles. Category references guide design; each released puzzle needs its own specific code, step and task mapping in the curriculum matrix. Supporting memory and attention activities must be tied to a subject-specific learning action before release; generic memory play alone does not establish a school competency.
+Use a small set of familiar categories: **Mathematics (Mathematik), Reading (Lesen), Writing (Schreiben), Nature (Natur), and Creativity (Gestalten)**. Reading is a core priority. The first playable set focuses on Mathematics and Reading; the other categories describe the existing catalogue and later work, not extra launch requirements.
 
-| Game competency | Zürcher Lehrplan reference | First-grade focus and acceptance rule |
+Categories organise puzzles, not animal identities. Several animals can offer Reading or Mathematics. Within a category, different animals may introduce different puzzle types; a shared category does not force identical activities at every visit. Once released, a puzzle can be reused by any assigned friend with an adapted story and host reward. Never invent a category just to give an animal something unique.
+
+| Category | Learning content inside the category | Initial hosts |
 | --- | --- | --- |
-| Numbers and arithmetic | MA.1.A.1–4, Zahl und Variable | Count, compare, order, decompose, add and subtract with visible number structures. Use a proposed core range up to 20; equal sharing and doubling remain concrete actions, not formal multiplication/division requirements. |
-| Speech sounds and phonological awareness | D.1.A.1.b/d, Hören | Hear rhymes, syllables and initial sounds; identify sounds in spoken words. Supply audio so reading is not required to solve a listening task. |
-| Reading and writing | D.2.A.1.a–c; D.4.A.1, Grundfertigkeiten | Connect letters and sounds, combine syllables, read familiar short words and simple sentences, and practise individual letter forms. Select letters and vocabulary to match introduced classroom content; use unjoined Deutschschweizer Basisschrift for writing models. |
-| Memory and sequencing | Supporting skill; D.1 listening comprehension for narrated sequences, D.2 reading comprehension for written sequences | Waldkauz tasks must involve understanding a short spoken or readable sequence, recalling relevant details or ordering meaningful story events. Object-location memory alone is optional enrichment, not evidence of literacy attainment. Record the specific subject competency and step for each task variant. |
-| Patterns and logical reasoning | MA.2.A.2, Form und Raum | Recognise, continue and create simple visual patterns. Explain or demonstrate the repeating rule rather than reward guessing. |
-| Geometry and spatial reasoning | MA.2.A.1–2; MA.2.C, Form und Raum | Recognise basic shapes, combine pieces, follow spatial directions and explore simple reflections. Specify the exact competency and step for construction and route variants before implementation. |
-| Data and representations | MA.3.C.1, Grössen, Funktionen, Daten und Zufall | Collect and organise small counts and read simple picture representations. Confirm the chosen representation and competency step suit first grade. |
-| Nature and classification | NMG.2.1.a/b; NMG.2.4.a/b | Match familiar animals to habitats and classify visible features. Include observation and description prompts; a picture quiz does not replace exploring real habitats. Material-sorting variants require their own relevant NMG reference. |
-| Visual attention | Supporting skill; linked to the subject objective of each task | Use differences that matter to learning, such as animal features or geometric properties. Pure visual search remains optional enrichment and cannot count as curriculum coverage. |
-| Creative expression and fine motor skills | D.4.A.1 for preparatory writing movements; Bildnerisches Gestalten for art tasks | Keep drawing and colouring as creative practice. Assign a specific BG competency and step when defining each mission; do not count generic colouring or stamps as reading or writing mastery. |
+| Mathematics / Mathematik | Counting and arithmetic; patterns; shapes, space and simple data representations | Eichhörnchen, Biber; later Hase, Fisch, Eisvogel |
+| Reading / Lesen | Letters and syllables; written words; written rhyme pairs; short sentence-to-picture matching | Maus, Blaumeise, Waldkauz |
+| Writing / Schreiben | Introduced letter forms and simple spelling tasks | Later activities with Maus or another existing friend |
+| Nature / Natur | Familiar animals, habitats, tracks and material properties | Later Igel and Reh |
+| Creativity / Gestalten | Drawing, colouring and picture composition | Fuchs at home |
 
-Some current catalogue entries need refinement to meet this requirement: attach Lost belongings and Waldschatz to meaningful listening/reading content or mark them as enrichment; give each creative mission its own row and specific objective; verify the route, chart and construction variants against their exact curriculum steps. No unverified variant is release-ready simply because it appears in the catalogue.
+Memory, attention, phonological awareness, sequencing and spatial reasoning are supporting skills or internal curriculum tags. They are not separate main categories. Pure memory/search play remains optional enrichment and does not count as subject coverage. Each learning puzzle still needs its own specific Lehrplan mapping; a simple category name never substitutes for that review.
+
+### Updated initial examples
+
+| Category | Animal | Puzzle | Child's action |
+| --- | --- | --- | --- |
+| Mathematics | Eichhörnchen | Zählgarten | Count pictured nuts and choose a numeral |
+| Mathematics | Biber | Welche Form fehlt? | Choose the shape that fills a visible gap in a house or cart; one tap inserts it |
+| Reading | Maus | Leseschatz | Read a familiar word and choose its picture |
+| Reading | Blaumeise | Reimzirkus | Read a written target and two written, pictured answers; choose the rhyme, e.g. Haus → Maus |
+| Reading | Waldkauz | Lies und zeig | Read a three-word sentence and choose between two clear pictures, e.g. «Die Maus sitzt.» |
+
+The old game's Reimzirkus word-and-picture cards are the basis for Blaumeise. Optional word audio is support; this is a reading-led activity with rhyming practice, not an audio-only game. Log answer-revealing playback as support rather than independent reading.
+
+Waldkauz starts with familiar nouns and concrete actions: «Die Maus sitzt.», «Der Vogel fliegt.», «Die Maus rennt.», «Der Vogel sitzt.», «Der Fisch schwimmt.» Use two large pictures, short sentences, optional syllable support, unlimited time and a separate spoken example. Avoid opening with spatial prepositions, similar multi-detail scenes, three-event ordering or a third distractor. The instruction speaker explains what to do without reading the scored sentence. This is one consistent content level, not a difficulty ladder. Longer sentences remain later content work, outside the initial pool.
+
+Biber's former 3×3 placement grid and Waldkauz's narrated ordering activity are withdrawn from the initial set. Biber now offers a basic shape-recognition warm-up; do not label it full geometry or shape-composition mastery. Matching a gap does not establish that the child can name a shape. Composition and narrated sequencing can return later as separately specified tasks if useful, rather than as compulsory animal categories.
+
+The curriculum matrix distinguishes game categories from exact subject references. Reading uses D.2.A.1.b for initial decoding and short sentences; rhyming also has a listening/phonological support reference. Biber's recognition exercise supports basic shape vocabulary under MA.2.A.1.a, with naming practised in feedback; full naming/composition assessment is outside this fixture. Teacher review remains required.
 
 Official sources, checked on 7 November 2026:
 
@@ -63,7 +78,7 @@ Official sources, checked on 7 November 2026:
 
 The fox lives in a den beneath the large tree at the centre of the world. The game starts inside the den: this is the playable home and main menu. Here the fox can play games, eat, sleep, arrange furniture, drink and go outside.
 
-Outside is a freely explorable forest full of friends. Each friend has a personality, a learning competency and a reason to need help. Each visit offers a fresh puzzle from the shared catalogue for that friend's assigned competency. Characters with the same competency offer the same set of puzzle types, with story details adapted to their personalities. Friends give characteristic resources as thanks: Eichhörnchen gives nuts, Biber gives logs, and Fisch gives fish tokens.
+Outside is a freely explorable forest full of friends. Each friend has a personality, a shared learning category and a reason to need help. Each visit offers fresh tasks from a puzzle in that category. Friends can introduce different activities inside the same category; the rules of each shared puzzle remain consistent across hosts. Friends give characteristic resources as thanks: Eichhörnchen gives nuts, Biber gives logs, and Fisch gives fish tokens.
 
 1. Start or resume in the fox's furnished den.
 2. Go outside and choose a friend to visit.
@@ -81,7 +96,7 @@ The large home tree anchors a central clearing. A smaller tree nearby contains t
 
 Click or tap a destination to walk there. A picture map lets the child choose a friend and shows a directional arrow from the fox. Keep navigation readable and forgiving, with clear paths, gentle camera movement and recognisable landmarks. Use [Emberwick](https://simonw.github.io/emberwick/v11/emberwick.html) as the reference for the feel of moving around the world. Preserve this game’s own woodland character and visual identity.
 
-## 4. Characters, appearance and competencies
+## 4. Characters, appearance and shared categories
 
 Use Swiss Standard German character names throughout the game and this blueprint: Fuchs, Waldkauz, Eichhörnchen, Blaumeise, Maus, Biber, Hase, Igel, Reh, Fisch and Eisvogel. English species descriptions remain explanatory text.
 
@@ -89,73 +104,73 @@ Each character needs an expressive, articulated 3D model, a consistent portrait,
 
 The following locations, rewards and assignments are proposals where the earlier outline left them open. Resource amounts and prices remain to be balanced.
 
-| Character | Species | Place | 3D appearance | Personality and relationship | Assigned competency | Reward |
+| Character | Species | Place | 3D appearance | Personality and relationship | Shared category | Reward |
 | --- | --- | --- | --- | --- | --- | --- |
-| Fuchs | Red fox (*Vulpes vulpes*) | Central tree den | Small orange fox, cream muzzle, bushy tail, green neckerchief | Curious and friendly; visits neighbours and makes a home | Creative expression and fine motor skills | Collects and spends resources |
-| Waldkauz | Tawny owl (*Strix aluco*) | Story hollow | Rounded brown owl, large expressive eyes, soft feathers and tilting head | Old, thoughtful storyteller; gets confused, mixes things up and loses belongings; welcomes patient help | Memory and sequencing | Feathers |
-| Eichhörnchen | Eurasian red squirrel (*Sciurus vulgaris*) | Nut tree | Rust-red fur, tufted ears, large curling tail | Plans ahead and wants enough nuts stored for winter | Numbers and arithmetic | Nuts |
-| Blaumeise | Eurasian blue tit (*Cyanistes caeruleus*) | Singing tree | Small blue-and-yellow bird with lively head and wing movements | Musical and sociable; needs rhymes for new songs | Speech sounds and phonological awareness | Seeds |
-| Maus | Wood mouse (*Apodemus sylvaticus*) | Reading nook | Small brown mouse, cream belly, large ears | Eager but unsure; wants to learn letters, syllables and reading with the fox | Reading and writing | Berries |
-| Biber | Eurasian beaver (*Castor fiber*) | Brook | Sturdy brown body, broad flat tail, visible front teeth | Practical and affectionate; misses Hase across the broken bridge | Geometry and spatial reasoning | Logs |
-| Hase | European hare (*Lepus europaeus*) | Meadow garden | Long ears, long hind legs, warm brown coat | Energetic and welcoming; wants to visit neighbours and invite everyone together | Numbers and arithmetic | Carrots |
-| Igel | European hedgehog (*Erinaceus europaeus*) | Moss grove | Rounded spiny back, soft face, small careful steps | Gentle and observant; needs a comfortable resting place and company | Nature and classification | Mushrooms |
-| Reh | European roe deer (*Capreolus capreolus*) | Woodland edge | Slender legs, large ears, warm brown coat | Attentive and calm; notices changes and helps care for the forest | Nature and classification | Leaves |
-| Fisch | Brown trout (*Salmo trutta*) | Pond | Spotted body, moving fins, clear underwater silhouette | Playful collector; enjoys arranging pond treasures | Geometry and spatial reasoning | Fish tokens |
-| Eisvogel | Common kingfisher (*Alcedo atthis*) | Reed pond | Bright blue back, orange breast, long beak | Curious and attentive; wants to share the water's view and connect its paths | Geometry and spatial reasoning | Pebbles |
+| Fuchs | Red fox (*Vulpes vulpes*) | Central tree den | Small orange fox, cream muzzle, bushy tail, green neckerchief | Curious and friendly; visits neighbours and makes a home | Creativity | Collects and spends resources |
+| Waldkauz | Tawny owl (*Strix aluco*) | Story hollow | Rounded brown owl, large expressive eyes, soft feathers and tilting head | Warm, thoughtful storyteller; reads short messages with the child and welcomes patient help | Reading | Feathers |
+| Eichhörnchen | Eurasian red squirrel (*Sciurus vulgaris*) | Nut tree | Rust-red fur, tufted ears, large curling tail | Plans ahead and wants enough nuts stored for winter | Mathematics | Nuts |
+| Blaumeise | Eurasian blue tit (*Cyanistes caeruleus*) | Singing tree | Small blue-and-yellow bird with lively head and wing movements | Musical and sociable; needs rhymes for new songs | Reading | Seeds |
+| Maus | Wood mouse (*Apodemus sylvaticus*) | Reading nook | Small brown mouse, cream belly, large ears | Eager but unsure; wants to learn letters, syllables and reading with the fox | Reading | Berries |
+| Biber | Eurasian beaver (*Castor fiber*) | Brook | Sturdy brown body, broad flat tail, visible front teeth | Practical and affectionate; misses Hase across the broken bridge | Mathematics | Logs |
+| Hase | European hare (*Lepus europaeus*) | Meadow garden | Long ears, long hind legs, warm brown coat | Energetic and welcoming; wants to visit neighbours and invite everyone together | Mathematics | Carrots |
+| Igel | European hedgehog (*Erinaceus europaeus*) | Moss grove | Rounded spiny back, soft face, small careful steps | Gentle and observant; needs a comfortable resting place and company | Nature | Mushrooms |
+| Reh | European roe deer (*Capreolus capreolus*) | Woodland edge | Slender legs, large ears, warm brown coat | Attentive and calm; notices changes and helps care for the forest | Nature | Leaves |
+| Fisch | Brown trout (*Salmo trutta*) | Pond | Spotted body, moving fins, clear underwater silhouette | Playful collector; enjoys arranging pond treasures | Mathematics | Fish tokens |
+| Eisvogel | Common kingfisher (*Alcedo atthis*) | Reed pond | Bright blue back, orange breast, long beak | Curious and attentive; wants to share the water's view and connect its paths | Mathematics | Pebbles |
 
 Fish tokens represent a game resource; the story should make clear how Fisch gives them to the fox.
 
-## 5. Competencies and puzzle catalogue
+## 5. Shared categories and puzzle catalogue
 
-Competencies organise learning independently of the number of characters. Each character is assigned one competency in the cast table. Several characters can share a competency and therefore present the same set of puzzles. Their introductions, objects and rewards can differ while the learning rules remain the same.
+Use the simple categories in section 1 throughout navigation, adult summaries and logs. Several animals share a category; each puzzle retains a precise objective and its own curriculum tags. A friend may introduce a particular puzzle without owning a new category or exposing the entire category catalogue immediately. Add a puzzle once, then reuse it across eligible hosts with the same answer rules and adapted story objects and rewards.
 
-Each puzzle belongs to one primary competency and must meet the mandatory Zürich curriculum requirement in section 1. Add new puzzle types under an existing competency as the game develops; add a new competency when a new learning area requires it. Adding a character does not require inventing a competency, and adding a puzzle makes it available to every character assigned to that competency.
+The catalogue below has one puzzle type per row, grouped by category. Existing activities come from the current checkout's documented learning activities; proposed additions expand the task pool. Creative activities are included alongside puzzles so the home activities have a place in the same catalogue.
 
-The catalogue below has one puzzle type per row, grouped by competency. Existing activities come from the current checkout's documented learning activities; proposed additions expand the task pool. Creative activities are included alongside puzzles so the home activities have a place in the same catalogue.
-
-| Competency | Puzzle or activity | What the child practises | Basis |
+| Category | Puzzle or activity | What the child practises | Basis |
 | --- | --- | --- | --- |
-| Numbers and arithmetic | Zählgarten | Count objects and match quantities to numbers | Existing |
-| Numbers and arithmetic | Znüni-Rechnen | Addition and subtraction | Existing |
-| Numbers and arithmetic | Sternenrakete | Find number bonds and missing quantities | Existing |
-| Numbers and arithmetic | Zauberzwillinge | Double quantities | Existing |
-| Numbers and arithmetic | Nachbarhäuser | Find predecessor and successor numbers | Existing |
-| Numbers and arithmetic | Beerenvergleich | Compare quantities | Existing |
-| Numbers and arithmetic | Rechenfreunde | Recognise related addition facts | Existing |
-| Numbers and arithmetic | Waldpicknick | Share objects into equal groups | Existing |
-| Numbers and arithmetic | Zahlenwege | Connect numbers in order to reveal a picture | Existing |
-| Speech sounds and phonological awareness | Reimzirkus | Match rhyming words to finish a song | Existing |
-| Speech sounds and phonological awareness | Silbentrommel | Hear and count spoken syllables | Existing |
-| Speech sounds and phonological awareness | Initial-sound matching | Match pictures with the same initial sound | Proposed |
-| Reading and writing | Leseschatz | Read syllables and words | Existing |
-| Reading and writing | Lies genau | Read colour words, phrases and sentences carefully | Existing |
-| Reading and writing | Silben-Ballone | Recognise written syllable families | Existing |
-| Reading and writing | Vokalversteck | Supply missing written vowels | Existing |
-| Reading and writing | Schreibspuren | Trace letter forms | Existing |
-| Reading and writing | Letter–sound matching | Connect written letters with spoken sounds | Proposed |
-| Reading and writing | Build a word | Combine written syllables into a word | Proposed |
-| Memory and sequencing | Waldschatz | Remember objects and identify what is missing | Existing |
-| Memory and sequencing | Was kommt dann? | Put events or actions in a logical order | Existing |
-| Memory and sequencing | Lost belongings | Remember where an object belongs | Proposed |
-| Memory and sequencing | Mixed-up stories | Restore the order of illustrated story scenes | Proposed |
-| Patterns and logical reasoning | Musterzug | Recognise and extend repeating patterns | Existing |
-| Geometry and spatial reasoning | Formenwerkstatt | Recognise and combine geometric shapes | Existing |
-| Geometry and spatial reasoning | Spiegelmosaik | Complete a reflected grid | Existing |
-| Geometry and spatial reasoning | Roboterpost | Follow and construct routes | Existing |
-| Geometry and spatial reasoning | Bridge builder | Fit pieces to a pictured construction plan | Proposed |
-| Data and representations | Waldumfrage | Read and compare quantities in picture charts | Existing |
-| Nature and classification | Naturdetektive | Identify animals, habitats, traits and needs | Existing |
-| Nature and classification | Nest-material sorting | Group materials by properties and suitability | Proposed |
-| Nature and classification | Track matching | Match animal tracks to their owners | Proposed |
-| Visual attention | Spot the difference | Find changes between two forest scenes | Proposed |
-| Creative expression and fine motor skills | Free drawing | Express ideas through drawing | Existing |
-| Creative expression and fine motor skills | Colouring | Colour illustrated scenes | Existing |
-| Creative expression and fine motor skills | Guided colouring | Follow visual colour rules | Existing |
-| Creative expression and fine motor skills | Picture stamps | Compose pictures using stamps | Existing |
+| Mathematics | Zählgarten | Count objects and match quantities to numbers | Existing |
+| Mathematics | Znüni-Rechnen | Addition and subtraction | Existing |
+| Mathematics | Sternenrakete | Find number bonds and missing quantities | Existing |
+| Mathematics | Zauberzwillinge | Double quantities | Existing |
+| Mathematics | Nachbarhäuser | Find predecessor and successor numbers | Existing |
+| Mathematics | Beerenvergleich | Compare quantities | Existing |
+| Mathematics | Rechenfreunde | Recognise related addition facts | Existing |
+| Mathematics | Waldpicknick | Share objects into equal groups | Existing |
+| Mathematics | Zahlenwege | Connect numbers in order to reveal a picture | Existing |
+| Reading | Reimzirkus | Read written words and match rhymes, with pictures and optional audio | Existing, adapted |
+| Reading | Lies und zeig | Read a three-word sentence and select one of two pictures | Initial Waldkauz activity |
+| Reading | Silbentrommel | Hear and count spoken syllables | Existing |
+| Reading | Initial-sound matching | Match pictures with the same initial sound | Proposed |
+| Reading | Leseschatz | Read syllables and words | Existing |
+| Reading | Lies genau | Read colour words, phrases and sentences carefully | Existing |
+| Reading | Silben-Ballone | Recognise written syllable families | Existing |
+| Writing | Vokalversteck | Supply missing written vowels | Existing |
+| Writing | Schreibspuren | Trace letter forms | Existing |
+| Reading | Letter–sound matching | Connect written letters with spoken sounds | Proposed |
+| Reading | Build a word | Combine written syllables into a word | Proposed |
+| Optional enrichment | Waldschatz | Remember objects and identify what is missing | Existing |
+| Reading | Was kommt dann? | Put events or actions in a logical order | Existing |
+| Optional enrichment | Lost belongings | Remember where an object belongs | Proposed |
+| Reading | Mixed-up stories | Understand and order a narrated story | Later proposal; withdrawn from initial set |
+| Mathematics | Musterzug | Recognise and extend repeating patterns | Existing |
+| Mathematics | Welche Form fehlt? | Recognise a missing shape in a familiar object | Initial Biber warm-up |
+| Mathematics | Formenwerkstatt | Combine geometric shapes | Existing; later composition variant |
+| Mathematics | Spiegelmosaik | Complete a reflected grid | Existing |
+| Mathematics | Roboterpost | Follow and construct routes | Existing |
+| Mathematics | Bridge builder | Fit pieces to a pictured construction plan | Proposed |
+| Mathematics | Waldumfrage | Read and compare quantities in picture charts | Existing |
+| Nature | Naturdetektive | Identify animals, habitats, traits and needs | Existing |
+| Nature | Nest-material sorting | Group materials by properties and suitability | Proposed |
+| Nature | Track matching | Match animal tracks to their owners | Proposed |
+| Optional enrichment | Spot the difference | Find changes between two forest scenes | Proposed |
+| Creativity | Free drawing | Express ideas through drawing | Existing |
+| Creativity | Colouring | Colour illustrated scenes | Existing |
+| Creativity | Guided colouring | Follow visual colour rules | Existing |
+| Creativity | Picture stamps | Compose pictures using stamps | Existing |
 
 Creative missions are a source collection outside this table; add each selected mission as its own named row with a learning objective.
 
-Patterns and logical reasoning, Data and representations, and Visual attention currently have no assigned character. Their puzzles remain in the catalogue for future assignments or new neighbours. Competency coverage must not be forced to match the cast size.
+The initial hosts cover two shared categories. Writing, Nature and Creativity expand the catalogue without requiring a new animal for every skill. Optional enrichment is kept outside claims of curriculum coverage.
 
 Use one difficulty level for every puzzle. Vary questions and story objects within that level; there is no level selector or higher-difficulty reward multiplier. Add more tasks and variations within each puzzle type. A round begins with a separate worked example and initially contains five tasks; expand the question pool before increasing round length. Keep explanations short and allow replayable demonstrations and hints.
 
@@ -197,7 +212,7 @@ Record:
 
 - Session identifier, game version, timestamps and save-data version.
 - Movement destinations, sampled positions, routes, area transitions and stuck or interrupted movement.
-- Character visits, puzzle type, task identifier or generation seed, and assigned competency.
+- Character visits, puzzle type, task identifier or generation seed, and shared category.
 - Submitted answers, wrong entries, retries, hints and puzzle skips.
 - Time spent per task and round, distinguishing active play from pauses or a hidden browser tab.
 - Puzzle completion, abandonment and resumption.
@@ -209,7 +224,7 @@ This introduces local gameplay logging beyond the current checkout's stated no-t
 
 ## 11. First playable version and checks
 
-Build the den, a small explorable forest, the shop and five friends first: Eichhörnchen, Blaumeise, Waldkauz, Biber and Maus. The design pack brings Maus into the initial set to include explicit reading practice. Include at least one puzzle type from each of their assigned competencies, one difficulty level, fresh repeat visits, resource rewards, at least one purchasable furnishing and one consumable reward. The competency determines the available puzzle set for every character who shares it. Add the remaining neighbours as further game families are ready.
+Build the den, a small explorable forest, the shop and five friends first: Eichhörnchen, Blaumeise, Waldkauz, Biber and Maus. The design pack brings Maus into the initial set to include explicit reading practice. Include the five initial puzzle types across two shared categories, one difficulty level, fresh repeat visits, resource rewards, at least one purchasable furnishing and one consumable reward. The category groups related puzzles; each initial host introduces the activity listed in section 1, and released puzzles can be reused by other hosts in that category. Add the remaining neighbours as further game families are ready.
 
 The first version is ready to review when:
 
@@ -219,8 +234,8 @@ The first version is ready to review when:
 - First-grade suitability has been reviewed with a Zürich primary teacher; remaining curriculum gaps are documented.
 - Each new completed visit can offer fresh tasks; interrupted puzzles resume correctly.
 - There is one difficulty level, with no level selector or difficulty-based reward multiplier.
-- Characters sharing a competency offer the same catalogue of puzzle types.
-- Each puzzle occupies its own catalogue row; new puzzles and competencies can be added independently of the cast.
+- Several animals can share Reading or Mathematics while introducing different puzzle types; shared puzzles keep identical learning rules.
+- Each puzzle occupies its own catalogue row; new puzzles and categories can be added independently of the cast.
 - Buying and placing furniture works, and refresh/relaunch preserves furniture and resources.
 - Music and forest sounds play gently and their controls persist.
 - A child can follow the main loop using objects, pictures, demonstration and speech without reading navigation text.
@@ -232,11 +247,11 @@ The first version is ready to review when:
 ## 12. Open decisions
 
 - Agree on movement and camera details using the linked Emberwick reference.
-- Confirm the proposed character appearances, competency assignments and rewards.
+- Confirm the proposed character appearances, category assignments and rewards.
 - Decide who runs the shop and select the first furniture collection.
 - Balance resource amounts, combined prices and task ranges for the single difficulty level.
 - Select suitable tasks from existing three-stage activities for the single level.
-- Assign the currently uncovered competencies to existing or future characters.
+- Select later Writing, Nature and Creativity activities without forcing a new category or character for every skill.
 - Set local log retention limits and the adult export format.
 - Preserve useful interactions from the current game: see [current gameplay](../../docs/GAMEPLAY.md) and [Heart Tree baseline](../heart-tree/BLUEPRINT.md). Inspect existing save keys and assets before implementation; the current checkout now includes the later world and story documentation.
 
@@ -248,7 +263,7 @@ Complete the following in order before full development. The blueprint is a desi
 | --- | --- | --- |
 | 1. Validate learning scope | Review the curriculum mapping and choose first-grade objectives, number ranges, introduced letters and vocabulary. Prioritise German and mathematics. Resolve provisional references with a Zürich primary teacher. | A reviewed curriculum matrix with one puzzle per row, exact competency code and step, learning objective, prerequisites and task boundaries. Label enrichment separately. |
 | 2. Define puzzle specifications | For each initial puzzle, write its introduction, worked example, five sample tasks, correct answers, plausible errors, hints and feedback. Define input and resume behaviour. | One short specification per puzzle, with a larger question-generation or content plan and clear evidence that tasks practise the intended objective. Keep one difficulty level. |
-| 3. Confirm cast and shared competencies | Approve character personalities, appearances, assigned competencies, resources and story reasons for helping. Decide which neighbours share puzzle sets and who runs the shop. | A final cast sheet and an explicit character-to-competency mapping. Keep unassigned competencies visible in the backlog. |
+| 3. Confirm cast and shared categories | Approve character personalities, appearances, shared categories, resources and story reasons for helping. Decide which neighbours share puzzle sets and who runs the shop. | A final cast sheet and an explicit character-to-category mapping. Keep later categories visible in the backlog. |
 | 4. Storyboard the first session | Draw the flow from waking in the den through leaving, meeting a friend, learning a puzzle, earning a reward, buying an item and returning home. Include mistakes, help, leaving and returning. | A short picture storyboard that a child can follow with little reading, plus draft Swiss Standard German dialogue and speech. |
 | 5. Sketch the world and controls | Map the first playable forest, paths, landmarks, entrances and camera behaviour. Use Emberwick to discuss movement feel. Sketch the den, map, puzzle screen, wallet, shop and adult settings. | An annotated world map and screen wireframes, including touch targets, route guidance and transitions. |
 | 6. Set the visual and audio direction | Make a character reference sheet, starting with Fuchs and Waldkauz, and one representative forest/den scene. Define model proportions, animation needs, puzzle illustration style, music and ambience. | A small approved reference pack and asset list for the first playable version. |
@@ -260,12 +275,12 @@ Complete the following in order before full development. The blueprint is a desi
 ### Design work completed in the next pass
 
 - [Curriculum matrix](curriculum-matrix.md): five initial puzzle mappings with exact official steps, plus a row-by-row backlog. Unverified mappings and enrichment are explicit.
-- [Puzzle specifications](puzzle-specifications.md): counting, rhymes, spoken-story sequencing, shape composition and reading. Each has an example, five sample tasks, answers, hints, feedback, content boundaries and resume rules.
+- [Puzzle specifications](puzzle-specifications.md): counting, written rhyme pairs, easy sentence-to-picture reading, missing-shape recognition and word reading. Each has an example, five sample tasks, answers, hints, feedback, content boundaries and resume rules.
 - [Experience design](experience-design.md): first-session storyboard, world topology, screen layouts, movement proposal, character/audio direction and review script.
 - [Rewards and continuity](rewards-and-continuity.md): proposed rewards and prices, purchase/consumption rules, save recovery and local log/export contract.
 - [Visual review](visuals/README.md): Fuchs/Waldkauz character reference, den/forest concepts and editable tablet screen mockups with counting, reading and shop interaction specimens.
 
-These are drafts available for review. Next: review the first visual proposals, extend the remaining character/screen references, expand each initial puzzle to at least 15 reviewed tasks or valid generated variants, review curriculum suitability with a Zürich primary teacher, and walk through the interaction design with children. No teacher approval, child testing or asset approval has yet taken place. Do not mark the design frozen until those reviews are recorded.
+These are drafts available for review. Next: review the first visual proposals, extend the remaining character/screen references, expand each initial puzzle to at least 15 reviewed tasks or valid generated variants, review curriculum suitability with a Zürich primary teacher, and walk through the interaction design with children. The user endorsed the revised examples and simpler categories and requested an easier Waldkauz start. Teacher approval and child testing have not yet taken place; this feedback is not a release freeze. Do not mark the design frozen until those reviews are recorded.
 
 ### Handoff to development
 

@@ -1,4 +1,4 @@
-> Current design pass: [Revision 8](visuals/revisions/v8.md), viewed and updated in [Sites](https://forest-friends-design-review.andreas-itten.chatgpt.site/). This supersedes earlier puzzle-confirmation, wallet and camera-direction notes below; frozen visual references remain intact.
+> Current design pass: [Revision 9](visuals/revisions/v9.md), viewed and updated in [Sites](https://forest-friends-design-review.andreas-itten.chatgpt.site/). This supersedes earlier puzzle-confirmation, wallet and camera-direction notes below; frozen visual references remain intact.
 
 # Drawing-App — cloud conversation handoff
 
@@ -25,10 +25,10 @@ For existing runtime behaviour, read [Heart Tree baseline](https://github.com/Mr
 - Primary goal: help children with first-grade school learning in Zürich. Zürcher Lehrplan 21 alignment is mandatory. Zyklus 1 is broader than first grade; choose suitable task ranges and prerequisites, and record exact references. Teacher review is still pending; do not claim approval or full curriculum coverage.
 - Use Swiss Standard German in the game and German character names: Fuchs, Waldkauz, Eichhörnchen, Blaumeise, Maus, Biber, Hase, Igel, Reh, Fisch, Eisvogel. Design prose can remain English.
 - There is **one difficulty level**. Earlier suggestions of two or three levels are superseded.
-- Catalogue each puzzle on its own row. Group by meaningful learning competency, independently of character count. Each character is assigned a competency; multiple characters can share it and present the same puzzle set with different story objects/rewards. Add future puzzles to an existing competency or introduce a new competency as needed.
+- Catalogue each puzzle on its own row. Use simple shared categories: Mathematics, Reading, Writing, Nature and Creativity. Several animals can share a category and introduce different activities inside it. Reuse puzzle rules across eligible hosts; never invent an animal-specific category. Precise competencies remain internal curriculum tags.
 - Fuchs is a small orange fox with a green neckerchief. Home is a den beneath the central tree and acts as the playable menu: draw/play, eat, drink, sleep, furnish and go outside.
 - Outside is a freely explorable 3D forest. Use Emberwick as a movement-feel reference, keeping this game's woodland identity. Each visit offers fresh tasks from the friend's competency. Interrupted tasks resume exactly.
-- Blaumeise needs rhymes for songs; Eichhörnchen counts winter stores; Waldkauz confuses story order or loses belongings; Maus learns letters, syllables and reading; Biber builds from shapes.
+- Blaumeise needs rhymes for songs; Eichhörnchen counts winter stores; Waldkauz reads very short messages with the child; Maus learns letters, syllables and reading; Biber builds from shapes.
 - Friends give characteristic resources: nuts, logs, feathers, seeds, berries and later other types. Use pictured barter prices in the shop. Sell permanent furnishings and repeatable/consumable rewards such as apples and drinks; drawing templates can unlock ongoing activities.
 - Furniture, wallet, owned items, drawings and interrupted puzzles must persist through refreshes, relaunches and normal updates. Preserve existing progress during migration. Development skips are separate from the child's save and rewards.
 - Add subtle background music and forest ambience with replayable speech and saved audio controls. Mistakes and hints cause no resource loss, lives or mandatory countdown.
@@ -47,7 +47,7 @@ The review is a disposable screen prototype: scenes are generated illustrations,
 ## Suggested next design work
 
 1. Review the picture-led v2 interface with the user and children, especially speaker/demo/help/check symbols and shop token exchange.
-2. Create remaining character references for Eichhörnchen, Blaumeise, Biber and Maus and screen studies for rhymes, story order and shape construction, following the endorsed art direction.
+2. Create remaining character references for Eichhörnchen, Blaumeise, Biber and Maus and screen studies for written rhyme pairs, easy sentence reading and missing-shape recognition, following the endorsed art direction.
 3. Expand initial puzzle content pools to at least 15 reviewed tasks or valid variants per puzzle and resolve teacher-review items.
 4. Freeze the first playable scope only after recorded reviews. Its initial cast includes Eichhörnchen, Blaumeise, Waldkauz, Biber and Maus, with one initial puzzle type per competency represented.
 5. For development, implement one complete den → friend → puzzle → resource → shop → placed furnishing → refresh loop first, comparing it against the visual baseline.
@@ -62,8 +62,10 @@ Always push completed design and project changes to GitHub main. The user reaffi
 
 The original den and Fuchs are the master art reference. Match outdoors, shop, puzzles and interface to its colours, rounded forms and soft light. Production outside/den/shop are 3D; learning puzzles are 2D. See [art direction](visuals/art-direction.md) and [revision 7](visuals/revisions/v7.md). This supersedes separate flat/clay or unrelated scene styles. Always push changes to GitHub.
 
-## Current design pass: five learning families
+## Current design pass: shared categories and easier Reading
 
-Version 8 adds Blaumeise rhymes, Waldkauz story ordering, Biber composition and a pictured reward screen, with five specimen tasks per new family. Count/read remain. Access them from the icon tabs or the five pictured forest visits. Each new family has a separate first-use demonstration. Task and arrangement state survives navigation in the current tab; refresh still resets this disposable review. No runtime game development has started.
+The user endorsed the revised examples and simple category names, and found Waldkauz a little difficult. Blueprint V2 and revision 9 now use Reading for Maus (word-picture), Blaumeise (written rhyme pairs from the old game) and Waldkauz (three-word action sentences, two pictures). Mathematics includes Eichhörnchen (counting) and Biber (missing shape in a house/cart). Writing, Nature and Creativity cover later catalogue activities. Attention, phonology, sequencing and spatial reasoning are objective tags, not separate main categories.
 
-The fifth task credits three host-resource units once. Replaying thanks cannot add rewards. Adult review controls below the frame show example/retry/success/reward states separately from scored progress. Curriculum/child review and 15-item approved pools remain outstanding. The mixed-resource cushion price is now consistent in the reward table; the production first-session starter balance remains unresolved. See [review script](visuals/review-script-v8.md) and [revision 8](visuals/revisions/v8.md). Always push completed changes to GitHub main.
+Waldkauz's initial content excludes preposition contrasts, three-choice spatial scenes and narrative sequencing. Sentences remain visible; the speaker explains the action without pronouncing the target. Separate examples can be spoken. Biber is a basic geometry warm-up, not the former coordinate-placement grid or a claim of full geometry mastery. See [current puzzle specifications](puzzle-specifications.md).
+
+Each round has five tasks, one difficulty level, direct answer submission, correction, automatic advancement and a pictured reward credited once. Review refreshes still reset disposable state. Production persistence, approved 15-item pools, teacher and child validation remain outstanding. Frozen v1/v2 and earlier revisions stay untouched. Always push completed source, docs and dependencies to GitHub main.

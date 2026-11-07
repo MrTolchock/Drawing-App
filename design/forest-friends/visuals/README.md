@@ -1,4 +1,4 @@
-> Current working review: [review-v8.html](review-v8.html). See [revision-8 decisions](revisions/v8.md). Earlier versions remain preserved.
+> Current working review: [review-v9.html](review-v9.html). [Revision 9](revisions/v9.md) supersedes the earlier learning-category assignments and three new puzzle designs. User endorsed examples and simpler categories; Waldkauz now starts with three-word sentences and two pictures.
 
 # Visual design review — version 2
 
@@ -6,7 +6,7 @@
 
 The visual pass is preserved as a development comparison baseline: see [baseline.md](baseline.md), [frozen version 2](review-v2.html), [previous version 1](review-v1.html) and the [reference screenshots](baselines/v2). Do not overwrite these references during development.
 
-Open [the interactive review](review.html) in a browser. It contains six views: Zuhause, Wald, Zählen, Lesen, Laden and Figuren. The layout and text are editable in the HTML file. It can also be served locally from the repository root using `python3 -m http.server 8766 --bind 127.0.0.1`, then opened at `http://127.0.0.1:8766/design/forest-friends/visuals/review.html`.
+Open [the interactive review](review.html) in a browser. It contains home, forest, five learning activities, pictured rewards, shop and character views. The learning activities share Reading and Mathematics. The layout and text are editable in the HTML file. It can also be served locally from the repository root using `python3 -m http.server 8766 --bind 127.0.0.1`, then opened at `http://127.0.0.1:8766/design/forest-friends/visuals/review.html`.
 
 Use a separate local port from the installed game's preview: an existing service worker on the game's origin can return an older cached design. The review itself registers no service worker and writes no save data.
 
@@ -82,6 +82,12 @@ The three PNGs were created with the built-in image_gen tool. Full final prompts
 
 ## Review the five learning families
 
-Use the rhyme, owl and beaver icon tabs for the three new 2D specimens. Bag icon opens the thanks design. Adult review-state controls are below the frame. The public Site stays the viewing destination; source and all versioned dependencies are in GitHub. [Review script](review-script-v8.md).
+Use the rhyme, owl and beaver icon tabs for the three new 2D specimens. Bag icon opens the thanks design. Adult review-state controls are below the frame. The private review Site stays the viewing destination; source and all versioned dependencies are in GitHub. [Review script](review-script-v8.md).
 
 Version 8 depends on review-v8.js and review-v8.css in this same directory, plus the preserved v7 scene/art assets and repository fonts. Keep those files together when opening a downloaded checkout.
+
+## Revision 9 dependencies and review
+
+Keep review-v9.html, review-v9.js, review-v9.css, review-v8.js and review-v8.css together with preserved scene images and repository fonts. review.html is the current entry point; review-v9.html is the versioned source. V8 remains an unchanged historical reference. See [review script v9](review-script-v9.md).
+
+Reading: Maus words; Blaumeise written rhymes; Waldkauz three-word action sentences with two choices. Mathematics: Eichhörnchen counting; Biber missing shapes. User examples/category feedback is recorded; teacher/child validation remains pending.
