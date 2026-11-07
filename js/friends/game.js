@@ -1,8 +1,8 @@
-import {createWorld,places,exitPoints} from './world.js';
+import {createWorld,places,exitPoints,collectibles} from './world.js';
 import {picture,resourceNames,shapeNames,shapeScene} from './art.js';
 import {createAudio} from './audio.js';
 const FK=window.FK,h=FK.h,C=window.FriendsContent;
-let root,canvas,world,state,audio,overlay,hotspots,nav,statusBar,nearButton,caption,devLabel,pad;
+let root,canvas,world,state,audio,overlay,hotspots,nav,statusBar,nearButton,caption,devLabel,pad,leaves;
 let area='den',panel=null,host=null,example=false,selectedItem=null,feedbackTimer=null,activeMs=0,lastTick=performance.now(),pendingDrawing=null,returnArea='den';
 const actionPictures={outside:'door',drawing:'pencils',sleep:'bed',...Object.fromEntries(Object.entries(C.shop).map(([k,v])=>[k,v.picture]))};
 const actionNames={outside:'Nach draussen',drawing:'Zeichnen und ausmalen',sleep:'Schlafen',...Object.fromEntries(Object.entries(C.shop).map(([k,v])=>[k,v.name]))};
@@ -16,11 +16,14 @@ function tick(){const now=performance.now();if(panel==='puzzle'&&!example&&!docu
 setInterval(tick,100);
 function close(){
   tick();if(panel==='puzzle'&&host){state.record('task_leave',{host,activeMilliseconds:activeMs});if(activeMs)state.duration(host,activeMs);activeMs=0;}
-  clearTimeout(feedbackTimer);feedbackTimer=null;panel=null;example=false;selectedItem=null;overlay.hidden=true;overlay.replaceChildren();world.pause(false);nav.hidden=false;pad.hidden=area!=='forest';renderHotspots();
+  clearTimeout(feedbackTimer);feedbackTimer=null;panel=null;example=false;selectedItem=null;overlay.hidden=true;overlay.replaceChildren();world.pause(false);nav.hidden=false;pad.hidden=area!=='forest';renderHotspots();renderLeaves();
 }
-function open(kind){clearTimeout(feedbackTimer);panel=kind;world.pause(true);nav.hidden=true;pad.hidden=true;hotspots.replaceChildren();nearButton.hidden=true;overlay.hidden=false;overlay.replaceChildren();}
+const goldLeaf='<svg viewBox="0 0 40 40" aria-hidden="true"><path d="M6 31C6 15 17 6 34 6c0 17-8 28-24 28z" fill="#f2c23c" stroke="#a8700e" stroke-width="2.5"/><path d="M8 33 27 14" stroke="#a8700e" stroke-width="2" fill="none"/></svg>';
+function renderLeaves(bump=false){if(!leaves)return;const total=collectibles.length,n=Object.keys(state.get().collected||{}).length;leaves.hidden=!total||area!=='forest'||!!panel;leaves.innerHTML=goldLeaf+'<b>'+n+'</b><span>/'+total+'</span>';leaves.setAttribute('aria-label',n+' von '+total+' goldenen Blättern gefunden');leaves.classList.toggle('complete',!!total&&n===total);if(bump){leaves.classList.remove('bump');void leaves.offsetWidth;leaves.classList.add('bump');}}
+function found(id){if(!state.collect(id)){saveStatus();return;}audio.sparkle();renderLeaves(true);const n=Object.keys(state.get().collected||{}).length;if(n===collectibles.length)say('Hurra! Du hast alle goldenen Blätter gefunden!');else if(n===1)say('Ein goldenes Blatt! Findest du alle '+collectibles.length+'?');}
+function open(kind){clearTimeout(feedbackTimer);panel=kind;world.pause(true);nav.hidden=true;pad.hidden=true;if(leaves)leaves.hidden=true;hotspots.replaceChildren();nearButton.hidden=true;overlay.hidden=false;overlay.replaceChildren();}
 function shell(titlePic,back=close){const card=h('div',{class:'ff-card'});card.append(h('div',{class:'ff-card-top'},button('Zurück','back',back),art(titlePic,'ff-card-portrait')));overlay.append(card);requestAnimationFrame(()=>card.querySelector('button')?.focus());return card;}
-function go(next){close();if(next==='forest'&&area==='den')state.position(exitPoints.den.x,exitPoints.den.z);if(next==='forest'&&area==='shop')state.position(exitPoints.shop.x,exitPoints.shop.z);area=next;root.dataset.area=next;world.setArea(next);state.record('area_transition',{area:next});pad.hidden=next!=='forest';renderNav();renderHotspots();say(next==='den'?'Das ist dein Zuhause. Du kannst malen, schlafen oder nach draussen gehen.':next==='shop'?'Hier kannst du deine Vorräte tauschen. Wähle ein Bild aus.':'Deine Freunde warten im Wald. Tippe auf den Boden, um zu gehen.');}
+function go(next){close();if(next==='forest'&&area==='den')state.position(exitPoints.den.x,exitPoints.den.z);if(next==='forest'&&area==='shop')state.position(exitPoints.shop.x,exitPoints.shop.z);area=next;root.dataset.area=next;world.setArea(next);state.record('area_transition',{area:next});pad.hidden=next!=='forest';renderNav();renderHotspots();renderLeaves();say(next==='den'?'Das ist dein Zuhause. Du kannst malen, schlafen oder nach draussen gehen.':next==='shop'?'Hier kannst du deine Vorräte tauschen. Wähle ein Bild aus.':'Deine Freunde warten im Wald. Tippe auf den Boden, um zu gehen.');}
 function renderNav(){nav.replaceChildren();if(state.development)nav.append(h('strong',{class:'ff-dev',text:'ENTWICKLUNG'}));
   nav.append(button('Bildkarte','map',map),button('Deine Tasche','bag',bag),button('Anleitung wiederholen','speaker',()=>{state.record('instruction_replay',{area});audio.say(caption.textContent);}),button('Einstellungen für Erwachsene','gear',()=>FK.ui.parentGate(settings)));
 }
@@ -127,13 +130,15 @@ function settings(){open('settings');const card=shell('gear');card.classList.add
 FK.screen('friends',{
   build(el){root=el;root.classList.add('ff-game');root.dataset.area=area;canvas=h('canvas',{class:'ff-world','aria-label':'Dreidimensionale Waldwelt'});hotspots=h('div',{class:'ff-hotspots'});nav=h('nav',{class:'ff-nav','aria-label':'Waldmenü'});overlay=h('div',{class:'ff-overlay',hidden:true,role:'dialog','aria-label':'Waldaktivität','aria-modal':'true'});statusBar=h('div',{class:'ff-save-status',role:'alert',hidden:true});caption=h('div',{class:'ff-caption','aria-live':'polite'});nearButton=button('Mit Freund sprechen','check',()=>act(world.near),'ff-near');nearButton.hidden=true;
     pad=h('div',{class:'ff-pad','aria-label':'Laufen',hidden:true});for(const [name,symbol,x,z]of [['Nach links','←',-1,0],['Vorwärts','↑',0,-1],['Rückwärts','↓',0,1],['Nach rechts','→',1,0]]){const b=h('button',{type:'button','aria-label':name,text:symbol});const stop=()=>world?.steer(0,0);b.onpointerdown=e=>{b.setPointerCapture(e.pointerId);audio.unlock();world.steer(x,z);};b.onpointerup=b.onpointercancel=b.onlostpointercapture=stop;pad.append(b);}
-    root.append(canvas,hotspots,nav,pad,nearButton,caption,overlay,statusBar);
+    const jump=h('button',{type:'button',class:'ff-jump','aria-label':'Springen',html:'<svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 6 9 19h7v8h8v-8h7z" fill="#4b3b2d"/><path d="M8 34h24" stroke="#4b3b2d" stroke-width="3" stroke-linecap="round"/></svg>'});jump.onpointerdown=e=>{e.preventDefault();audio.unlock();world.jump();};pad.append(jump);
+    leaves=h('div',{class:'ff-leaves',role:'status',hidden:true});
+    root.append(canvas,hotspots,nav,pad,nearButton,caption,leaves,overlay,statusBar);
     let storage;try{storage=window.localStorage;}catch{storage={getItem(){throw new Error('storage blocked');},setItem(){throw new Error('storage blocked');},removeItem(){}};}
     state=window.FriendsState.create({storage,content:C,development:new URLSearchParams(location.search).get('dev')==='1',onStatus:()=>queueMicrotask(saveStatus)});
     FK.friends=state;
     audio=createAudio(()=>state.audioSettings());
-    world=createWorld(canvas,{position:()=>state.get().world,onPosition:(x,z)=>state.position(x,z),onMove:e=>state.record(e.event,e),onNear:()=>{},onAction:act,onAnimationEnd:()=>endSequence(false),onProject:items=>{for(const p of items){const b=hotspots.querySelector(`[data-place="${p.id}"]`);if(b){b.hidden=!p.visible;b.style.left=p.x+'px';b.style.top=p.y+'px';}}}});
-    FK.friendsView=()=>world.diagnostics;renderNav();renderHotspots();saveStatus();
+    world=createWorld(canvas,{position:()=>state.get().world,onPosition:(x,z)=>state.position(x,z),onMove:e=>state.record(e.event,e),onNear:()=>{},onAction:act,onAnimationEnd:()=>endSequence(false),onCollect:found,collected:()=>state.get().collected||{},onJump:()=>audio.hop(),onProject:items=>{for(const p of items){const b=hotspots.querySelector(`[data-place="${p.id}"]`);if(b){b.hidden=!p.visible;b.style.left=p.x+'px';b.style.top=p.y+'px';}}}});
+    FK.friendsView=()=>world.diagnostics;renderNav();renderHotspots();renderLeaves();saveStatus();
     const interrupted=state.get().animation;if(interrupted){returnArea=interrupted.returnTo||'den';if(state.finishAnimation(true))go(returnArea);}
     else{say('Das ist dein Zuhause. Draussen warten deine Freunde.');const unfinished=Object.keys(state.get().rounds)[0];if(unfinished)nav.prepend(button('Aufgabe mit '+C.hosts[unfinished].name+' fortsetzen',unfinished,()=>meet(unfinished)));}
     document.addEventListener('visibilitychange',()=>{tick();if(document.hidden){if(panel==='puzzle'&&activeMs){state.duration(host,activeMs);activeMs=0;}state.record('pause',{reason:'hidden'});}else state.record('resume',{reason:'visible'});});

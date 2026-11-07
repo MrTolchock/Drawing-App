@@ -367,4 +367,13 @@
 .ff-card>.ff-choices .ff-button:not(.ff-answer){border-radius:24px}
 .ff-map .ff-button{border:2px solid #edcf97;background:#fff5dfe8;box-shadow:0 0 0 6px #fff8df45,0 5px 14px #302e1938}
 @media(max-width:600px){.ff-nav{gap:6px}.ff-nav .ff-button{border-radius:18px}.ff-numeral{font-size:44px}}
+/* 3D forest: golden-leaf counter and jump button. */
+.ff-leaves{position:absolute;top:max(16px,env(safe-area-inset-top));left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:6px;padding:6px 16px 6px 8px;border-radius:30px;background:#fff6e6ee;border:1px solid #d0b38a;box-shadow:0 3px 10px #3a2a142e;font:700 24px/1 Andika,sans-serif;color:#7a5410;z-index:3;pointer-events:none}
+.ff-leaves svg{width:36px;height:36px}.ff-leaves span{font-size:17px;color:#9a7a44}
+.ff-leaves.bump{animation:ff-cheer .6s cubic-bezier(.2,1.6,.4,1)}
+.ff-leaves.complete{background:linear-gradient(180deg,#fff7cf,#ffe28e);box-shadow:0 0 0 4px #f2c23c77,0 4px 14px #a8700e44}
+.ff-pad{grid-template-columns:repeat(2,58px) 64px}
+.ff-pad .ff-jump{grid-column:3;grid-row:1/span 2;width:64px;height:124px;border-radius:32px;display:grid;place-items:center;padding:10px;border:1px solid #d0b38a;background:#fff6e6ee;box-shadow:0 3px 10px #3a2a142e;touch-action:none}
+.ff-pad .ff-jump svg{width:36px;height:36px}.ff-pad .ff-jump:active{translate:0 3px}
+@media(max-width:600px){.ff-leaves{left:12px;transform:none;top:max(72px,env(safe-area-inset-top));font-size:20px;padding:4px 12px 4px 6px}.ff-leaves svg{width:30px;height:30px}.ff-pad{grid-template-columns:repeat(2,54px) 58px}.ff-pad .ff-jump{width:58px;height:114px}}
 

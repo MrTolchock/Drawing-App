@@ -1,11 +1,13 @@
 import {THREE,paint,ellipsoid,limb,curveTube,roundedBlock,paintedPath,seeded} from '../forest/materials.js';
 import {actor} from './actors.js';
-import {createPaintedWorld,paintedPlaces,paintedExits} from './painted.js';
+import {createPaintedWorld} from './painted.js';
+import {forestPlaces,forestExits,forestCollectibles} from './forest3d.js';
 // The painted scenes match the reviewed visualisation; ?world3d keeps the earlier procedural 3D world.
 export const painted=!new URLSearchParams(location.search).has('world3d');
 const places3d={home:{x:0,z:2,picture:'door',name:'Nach Hause'},shop:{x:8,z:2,picture:'bag',name:'Zum Laden'},squirrel:{x:-8,z:-3,picture:'squirrel',name:'Zu Eichhörnchen'},bird:{x:8,z:-9,picture:'bird',name:'Zu Blaumeise'},owl:{x:-9,z:-12,picture:'owl',name:'Zu Waldkauz'},beaver:{x:11,z:11,picture:'beaver',name:'Zu Biber'},mouse:{x:-7,z:11,picture:'mouse',name:'Zu Maus'}};
-export const places=painted?paintedPlaces:places3d;
-export const exitPoints=painted?paintedExits:{den:{x:0,z:3.6},shop:{x:8,z:3.6}};
+export const places=painted?forestPlaces:places3d;
+export const exitPoints=painted?forestExits:{den:{x:0,z:3.6},shop:{x:8,z:3.6}};
+export const collectibles=painted?forestCollectibles:[];
 export function createWorld(canvas,options){return painted?createPaintedWorld(canvas,options):createProceduralWorld(canvas,options);}
 function createProceduralWorld(canvas,{position,onPosition,onNear,onAction,onMove,onAnimationEnd,onProject}){
   const places=places3d;

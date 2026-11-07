@@ -14,6 +14,9 @@ export function createAudio(settings){
       timer=setInterval(()=>{update();if(document.hidden)return;const scale=[261.63,329.63,392,440,392,329.63,293.66,329.63];tone(scale[notes++%scale.length],3,.22,music);if(notes%3===0){tone(1550, .22,.15,ambience);setTimeout(()=>tone(1900,.28,.10,ambience),230);}},1900);update();
     }catch{ctx=null;}
   }
+  // Short effects follow the forest-sounds setting.
+  function sparkle(){if(!ctx||!settings().ambience)return;[1318.5,1760,2093].forEach((f,i)=>setTimeout(()=>tone(f,.55,.08,bus,'triangle'),i*70));}
+  function hop(){if(!ctx||!settings().ambience||document.hidden)return;const o=ctx.createOscillator(),g=ctx.createGain(),t=ctx.currentTime;o.frequency.setValueAtTime(330,t);o.frequency.exponentialRampToValueAtTime(660,t+.14);g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.06,t+.02);g.gain.exponentialRampToValueAtTime(.0001,t+.2);o.connect(g);g.connect(bus);o.start();o.stop(t+.22);}
   function say(text){if(!settings().speech||document.hidden)return;if(window.speechSynthesis&&window.SpeechSynthesisUtterance){
       const utterance=new SpeechSynthesisUtterance(text),voices=speechSynthesis.getVoices();
       utterance.voice=voices.find(v=>/^de[-_]CH$/i.test(v.lang))||voices.find(v=>/^de/i.test(v.lang))||null;
@@ -21,5 +24,5 @@ export function createAudio(settings){
       speechSynthesis.cancel();speechSynthesis.speak(utterance);
     }speaking=true;update();setTimeout(()=>{speaking=false;update();},Math.max(1500,text.length*80));}
   document.addEventListener('visibilitychange',()=>{update();if(document.hidden)window.FK.forestVoice.cancel();});
-  return {unlock,update,say,dispose(){clearInterval(timer);ctx?.close();}};
+  return {unlock,update,say,sparkle,hop,dispose(){clearInterval(timer);ctx?.close();}};
 }

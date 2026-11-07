@@ -142,3 +142,39 @@ sizes = {
     'owl': cut_sprite(sheet, (24, 516, 294, 856), 'owl'),
 }
 print(sizes)
+
+
+def cut_polygon(image, box, outline, name, scale=3, feather=1.1):
+    """Cut a painted friend out of a scene with a hand-traced outline (traced on a 3× view of box)."""
+    crop = image.crop(box).convert('RGB')
+    points = [(x / scale, y / scale) for x, y in outline]
+    mask = Image.new('L', crop.size, 0)
+    ImageDraw.Draw(mask).polygon(points, fill=255)
+    mask = mask.filter(ImageFilter.MinFilter(5)).filter(ImageFilter.GaussianBlur(feather))
+    sprite = crop.copy()
+    sprite.putalpha(mask)
+    sprite = sprite.crop(mask.point(lambda v: 255 if v > 10 else 0).getbbox())
+    sprite.save(OUT / f'{name}.webp', quality=92, method=6)
+    return sprite.size
+
+
+forest_art = Image.open(SRC / 'forest-v7.webp')
+friends = {
+    'squirrel': cut_polygon(forest_art, (70, 185, 195, 300), [
+        (48, 80), (75, 55), (112, 44), (148, 55), (165, 72), (172, 60), (186, 64), (200, 78), (215, 70), (228, 57), (242, 62),
+        (244, 84), (258, 100), (268, 125), (266, 150), (258, 160), (270, 166), (288, 180), (292, 205), (282, 225), (262, 232),
+        (258, 250), (248, 270), (244, 288), (252, 296), (244, 304), (212, 304), (186, 302), (160, 300), (140, 290), (100, 272),
+        (65, 255), (40, 225), (26, 190), (22, 140), (30, 100)], 'squirrel'),
+    'bird': cut_polygon(forest_art, (70, 545, 215, 665), [
+        (25, 300), (60, 282), (105, 262), (130, 225), (165, 175), (200, 130), (225, 95), (255, 72), (290, 66), (322, 78),
+        (345, 105), (352, 125), (372, 132), (368, 142), (348, 150), (350, 180), (352, 220), (345, 258), (322, 292), (300, 310),
+        (302, 338), (290, 348), (270, 345), (258, 320), (240, 318), (228, 345), (212, 342), (200, 322), (170, 305), (130, 300),
+        (80, 305), (40, 310)], 'bird'),
+    'mouse': cut_polygon(forest_art, (1180, 740, 1340, 900), [
+        (160, 95), (178, 52), (212, 40), (240, 55), (255, 80), (285, 82), (305, 92), (330, 82), (372, 88), (402, 112), (410, 155),
+        (392, 188), (360, 200), (368, 240), (382, 290), (398, 340), (420, 372), (428, 400), (408, 418), (370, 428), (320, 438),
+        (270, 434), (250, 410), (222, 400), (180, 395), (132, 388), (96, 352), (80, 300), (78, 262), (112, 248), (140, 240),
+        (150, 214), (140, 180), (140, 140), (150, 112)], 'mouse'),
+}
+print(friends)
+

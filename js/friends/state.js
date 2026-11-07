@@ -9,7 +9,7 @@
     let state,blocked=false,readFailed=false,expected=null,error='',events=[],truncated=false;
     const uid=()=>now().toString(36)+'-'+random().toString(36).slice(2,12);
     const sessionId=uid();
-    const fresh=()=>({schema:SCHEMA,revision:0,contentVersion:content.version,wallet:{nuts:0,seeds:0,feathers:0,logs:0,berries:0},inventory:{apple:0,bath:0},unlocks:{leaf:false,pencils:false},rounds:{},previous:{},completed:{},seenExamples:{},selectedPage:'free',drawings:{free:[],leaf:[]},settings:{music:true,ambience:true,speech:true},world:{x:0,z:5},animation:null,transactions:[],legacyPreserved:true});
+    const fresh=()=>({schema:SCHEMA,revision:0,contentVersion:content.version,wallet:{nuts:0,seeds:0,feathers:0,logs:0,berries:0},inventory:{apple:0,bath:0},unlocks:{leaf:false,pencils:false},rounds:{},previous:{},completed:{},seenExamples:{},selectedPage:'free',drawings:{free:[],leaf:[]},settings:{music:true,ambience:true,speech:true},world:{x:0,z:5},collected:{},animation:null,transactions:[],legacyPreserved:true});
     function valid(s){
       const quantity=n=>Number.isSafeInteger(n)&&n>=0;
       const object=o=>o&&typeof o==='object'&&!Array.isArray(o);
@@ -22,6 +22,7 @@
       if(!s.drawings||!['free','leaf'].every(k=>strokes(s.drawings[k]))||!['free','leaf'].includes(s.selectedPage))return false;
       if(!s.settings||!['speech','music','ambience'].every(k=>typeof s.settings[k]==='boolean'))return false;
       if(!s.world||!Number.isFinite(s.world.x)||!Number.isFinite(s.world.z))return false;
+      if(s.collected!==undefined&&!(object(s.collected)&&Object.entries(s.collected).every(([id,v])=>/^goldleaf-\d{1,2}$/.test(id)&&v===true)))return false;
       if(s.animation!==null&&(!['apple','bath'].includes(s.animation?.item)||typeof s.animation.transactionId!=='string'||!['den','forest','shop'].includes(s.animation.returnTo)))return false;
       return object(s.previous)&&object(s.completed)&&object(s.seenExamples)&&Array.isArray(s.transactions);
     }
@@ -93,6 +94,7 @@
       acknowledge(host){return commit(s=>{if(!s.rounds[host]?.rewarded)return false;delete s.rounds[host];},'reward_acknowledged',{host});},
       help(host,kind){const r=state.rounds[host];if(!r||r.index>=5)return false;return commit(s=>{s.rounds[host].support.push({taskId:r.tasks[r.index].id,kind});},'help',{host,roundId:r.id,taskId:r.tasks[r.index].id,kind});},
       seenExample(host){return commit(s=>{s.seenExamples[host]=true;},'example',{host});},
+      collect(id){if(!/^goldleaf-\d{1,2}$/.test(id))return false;return commit(s=>{s.collected=s.collected||{};if(s.collected[id])return false;s.collected[id]=true;},'collectible_found',{id});},
       buy(item){const product=content.shop[item];if(!product)return false;const transactionId='purchase:'+uid();return commit(s=>{if(s.wallet[product.resource]<product.price||(product.permanent&&s.unlocks[item]))return false;s.wallet[product.resource]-=product.price;if(product.permanent)s.unlocks[item]=true;else s.inventory[item]++;s.transactions.push(transactionId);s.transactions=s.transactions.slice(-100);},'purchase',{item,transactionId,resource:product.resource,price:product.price});},
       use(item,returnTo){if(!['apple','bath'].includes(item))return false;const transactionId='use:'+uid();return commit(s=>{if(s.inventory[item]<1||s.animation)return false;s.inventory[item]--;s.animation={item,transactionId,returnTo,world:clone(s.world)};s.transactions.push(transactionId);s.transactions=s.transactions.slice(-100);},'consumption',{item,transactionId});},
       finishAnimation(skipped=false){return commit(s=>{if(!s.animation)return false;s.animation=null;},skipped?'animation_skip':'animation_complete');},
