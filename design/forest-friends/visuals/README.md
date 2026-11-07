@@ -1,3 +1,5 @@
+> Current working review: [review-v4.html](review-v4.html). See [revision-4 decisions](revisions/v4.md). Earlier versions remain preserved.
+
 # Visual design review — version 2
 
 **Status:** Character and den direction endorsed by the user on 7 November 2026. Version 2 revises navigation for children who cannot yet read; child usability and curriculum review remain outstanding.
