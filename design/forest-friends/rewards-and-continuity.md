@@ -1,3 +1,5 @@
+> Latest interaction decisions: [Design revision 3](visuals/revisions/v3.md) supersedes earlier check-to-submit, owl-help and shop-layout proposals. The single difficulty level and curriculum requirements remain.
+
 # Rewards, continuity and logging contract
 
 **Status:** Proposed design values for the first playable version, 7 November 2026. Balance and usability still need review. This is a product contract for development, not implemented behaviour.

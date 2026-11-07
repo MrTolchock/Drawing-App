@@ -1,3 +1,5 @@
+> Latest interaction decisions: [Design revision 3](visuals/revisions/v3.md) supersedes earlier check-to-submit, owl-help and shop-layout proposals. The single difficulty level and curriculum requirements remain.
+
 # Blueprint v2 — Forest friends
 
 **Status:** Game outline with first playable design pack; teacher and child review pending.

@@ -1,3 +1,5 @@
+> Latest interaction decisions: [Design revision 3](visuals/revisions/v3.md) supersedes earlier check-to-submit, owl-help and shop-layout proposals. The single difficulty level and curriculum requirements remain.
+
 # First-session and interaction design
 
 **Status:** Working proposal, 7 November 2026. This document resolves routine design details for review; it is not a record of child testing. Character references use Swiss Standard German. See [puzzle specifications](puzzle-specifications.md).

@@ -1,3 +1,5 @@
+> Latest interaction decisions: [Design revision 3](visuals/revisions/v3.md) supersedes earlier check-to-submit, owl-help and shop-layout proposals. The single difficulty level and curriculum requirements remain.
+
 # Initial puzzle specifications
 
 **Status:** Reviewable design drafts, 7 November 2026. No gameplay implementation. Curriculum mappings and prerequisites are in [the matrix](curriculum-matrix.md). First-grade teacher and child review remain outstanding.
