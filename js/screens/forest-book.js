@@ -20,6 +20,7 @@
       button(next?'Entdeckertour fortsetzen':'Entdeckertour starten',h('span',{},art.icon(next?'paw':'play'),h('b',{text:next?'Weiterreisen':'Los geht’s'})),begin,'journey-start'));
   }
   function draw() {
+    if(FK.friendsLibrary?.active){FK.friendsLibrary.render(body,resident,id=>{resident=id;draw();});return;}
     const tabs = h('nav', {class:'forest-book-neighbours', 'aria-label':'Spiele mit deinen Waldfreunden'});
     for (const [id, label] of Object.entries({all:'Alle',...story.names, atelier:'Malatelier'})) {
       const b = button(id === 'all' ? 'Alle Waldspiele' : id === 'atelier' ? label : 'Mit '+label+' spielen', h('span', {}, id === 'all' ? art.icon('book') : id === 'atelier' ? FK.visual.art('painting') : art.character(id), h('small', {text:label})), () => { resident=id; draw(); }, 'forest-book-neighbour');
@@ -56,8 +57,18 @@
       bar.append(FK.play.listen(sayText,'Spielebuch erklären'), FK.timerUI.launcher(), FK.ui.settingsButton());
       body = h('div',{class:'forest-book-body scroll'}); root.append(bar,body);
     },
-    enter(params) { FK.forestActivity.recoverRewards(); returnTo = params.from === 'friends' ? 'friends' : 'forest'; if(params.resident && story.names[params.resident]) resident=params.resident; else if(params.from === 'friends') resident='all'; draw(); },
+    enter(params) {
+      const v2=FK.friendsLibrary?.active;
+      if(!v2)FK.forestActivity.recoverRewards();
+      returnTo=v2?'friends':'forest';
+      const names=v2?window.FriendsContent.hosts:story.names;
+      if(params.resident&&(names[params.resident]||params.resident==='atelier'))resident=params.resident;
+      else if(params.from==='friends'||!names[resident]&&resident!=='atelier')resident='all';
+      const back=body.parentElement.querySelector('.btn-back');
+      back.replaceChildren(v2?FK.friendsLibrary.portrait('fox'):art.character('fox'));
+      draw();
+    },
     leave() { FK.forestVoice.cancel(); },
   });
-  function sayText() { return 'Wähle ein Waldspiel. Oder wähle oben einen Freund. Alle Stufen sind offen. Mit dem Fuchs geht es zurück in den Wald.'; }
+  function sayText() { if(FK.friendsLibrary?.active)return 'Wähle ein Spielbild. Oder wähle oben einen Freund. Beim Fuchs findest du das Malatelier. Mit dem Pfeil geht es zurück in den Wald.'; return 'Wähle ein Waldspiel. Oder wähle oben einen Freund. Alle Stufen sind offen. Mit dem Fuchs geht es zurück in den Wald.'; }
 })();

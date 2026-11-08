@@ -11,6 +11,7 @@ Open `http://127.0.0.1:8000`. Browser scripts require Playwright and Chromium. T
 
 | Check | Coverage |
 | --- | --- |
+| `tests/friends-library-browser.cjs` | Restored v2 catalogue, new host assignments, fixed difficulty, return paths, original gear and full atelier persistence |
 | `tests/world-browser.cjs` | Free walking, held touch, discoveries, map, camera, responsive controls and offline positions |
 | `tests/cinema-browser.cjs` | Opening, requests, heartlight, reunion, saved finale and framed faces |
 | `tests/story-browser.cjs` | Nine repairs, chapter transitions, exact puzzle recovery, practice and offline ending |

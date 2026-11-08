@@ -49,14 +49,14 @@
   let session=null;
   function begin(game,stage){session={game,stage,round:0,missed:new Set(),helped:new Set(),answered:new Set()};}
   function context(game, prompt, round, stage=FK.learning.stage()) {
-    const friend = friends[game] || 'owl';
+    const friend = FK.friendsLibrary?.active ? FK.friendsLibrary.hosts[game] : friends[game] || 'owl';
     if(!session||session.game!==game||session.stage!==stage||round===0&&session.round!==0)session={game,stage,round,missed:new Set(),helped:new Set(),answered:new Set()};
     if(round===0&&session?.answered.size===5)session={game,stage,round,missed:new Set(),helped:new Set(),answered:new Set()};
     session.round=round;
     const tour=FK.journey.get().tour,current=FK.journey.step();
     const onTour=current?.game===game&&current.stage===stage;
-    return h('div', { class:'play-context' }, FK.forestArt.character(friend),
-      h('span', { text:onTour?'Entdeckertour · Halt '+(tour.index+1)+' von 3':FK.forestStory.names[friend] + ' spielt mit dir' }), listen(prompt),
+    return h('div', { class:'play-context' }, (FK.friendsLibrary?.active?FK.friendsLibrary.portrait(friend):FK.forestArt.character(friend)),
+      h('span', { text:FK.friendsLibrary?.active?window.FriendsContent.hosts[friend].name+' spielt mit dir':onTour?'Entdeckertour · Halt '+(tour.index+1)+' von 3':FK.forestStory.names[friend] + ' spielt mit dir' }), listen(prompt),
       h('span', { class:'play-round', text:(round + 1) + ' / 5' }));
   }
   function attempt(ok){if(!session||session.answered.has(session.round))return;if(ok)session.answered.add(session.round);else session.missed.add(session.round);}
@@ -80,6 +80,12 @@
     if (chosen) { FK.ui.bounce(chosen); const r = chosen.getBoundingClientRect(); FK.fx.twinkle(r.x + r.width/2, r.y + r.height/2, '#d4ae59'); }
   }
   function finish(body, group, game, stage, replay) {
+    if(FK.friendsLibrary?.active){
+      const earned=FK.progress.finish(group,game+':1',1),friend=FK.friendsLibrary.hosts[game];
+      const action=(label,icon,fn)=>h('button',{type:'button',class:'learn-button',onclick:fn},FK.forestArt.icon(icon),h('span',{text:label}));
+      body.replaceChildren(h('section',{class:'learn-finish play-finish'},FK.friendsLibrary.portrait(friend),FK.woodland.progress(5),h('h2',{text:'Fünf Aufgaben geschafft!'}),h('p',{text:'Danke fürs Mitspielen!'}),h('div',{class:'play-finish-actions'},action('Nochmals','undo',replay),action('Waldspiele','book',()=>FK.go('forest-book')),action('Zum Wald','paw',()=>FK.go('friends')))));
+      FK.ui.celebrate({stars:earned,from:body,text:'Gemeinsam geschafft!'});speak('Juhui! Danke fürs Mitspielen!');return;
+    }
     const earned = FK.progress.finish(group, game + ':' + stage, 1), friend = friends[game] || 'owl';
     const result=FK.journey.complete(group,game,stage,summary(game,stage));
     const recommendation=result.next||FK.journey.recommendation(group,game,stage,summary(game,stage));

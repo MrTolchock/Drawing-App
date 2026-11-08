@@ -74,5 +74,5 @@
     const cues = [['feather','shell','fin','legs','spines'], ['🐟','🐦','🐝','🦔','🌱'], ['legs','milk','🐛','🪺','🐝']];
     return { prompt: q[0], answer: q[1], choices: q[2].slice(), hint: q[3], cue:cues[stage-1][round%5] };
   }
-  FK.learning = { stages, games, question, stage: () => Math.max(1, Math.min(3, Number(FK.settings.get('learning.stage')) || 1)) };
+  FK.learning = { stages, games, question, stage: () => FK.friendsLibrary?.active ? 1 : Math.max(1, Math.min(3, Number(FK.settings.get('learning.stage')) || 1)) };
 })();

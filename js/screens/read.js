@@ -140,10 +140,11 @@
   }
 
   function getLvl() {
+    if(FK.friendsLibrary?.active)return 1;
     const v = FK.settings.get('read.lvl') | 0;
     return v >= 1 && v <= 3 ? v : 1;
   }
-  function setLvl(n) { FK.settings.set('read.lvl', n); }
+  function setLvl(n) { if(FK.friendsLibrary?.active)return; FK.settings.set('read.lvl', n); }
 
   function starsHtml(n, of) {
     let s = '';
@@ -624,7 +625,7 @@
     h('span', { class: 'rd-tile-art', 'aria-hidden': 'true' }, g.art()),
     h('span', { class: 'rd-tile-title', text: g.title })));
 
-    stage.append(h('div', { class: 'rd-home scroll' }, levels, h('div', { class: 'rd-tiles' }, tiles)));
+    stage.append(h('div', { class: 'rd-home scroll' }, FK.friendsLibrary?.active?null:levels, h('div', { class: 'rd-tiles' }, tiles)));
   }
 
   /* =====================================================================
@@ -817,7 +818,7 @@
       st.cur(-1);
       cancel(idle);
       const actions = [{ icon: 'refresh', label: 'Nochmal', onClick: () => startPuzzle(lvl) }];
-      if (lvl < 3) actions.push({ icon: 'next', label: 'Stufe ' + (lvl + 1), cls: 'btn-go', onClick: () => { setLvl(lvl + 1); startPuzzle(lvl + 1); } });
+      if (!FK.friendsLibrary?.active && lvl < 3) actions.push({ icon: 'next', label: 'Stufe ' + (lvl + 1), cls: 'btn-go', onClick: () => { setLvl(lvl + 1); startPuzzle(lvl + 1); } });
       actions.push({ icon: 'check', label: 'Fertig', cls: 'btn-sun', onClick: () => showHome() });
       finishRound('puzzle-' + lvl, st.el, actions);
     }
@@ -939,7 +940,7 @@
     function finish() {
       B.st.cur(-1);
       const actions = [{ icon: 'refresh', label: 'Nochmal', onClick: () => startWort(lvl) }];
-      if (lvl < 3) actions.push({ icon: 'next', label: 'Stufe ' + (lvl + 1), cls: 'btn-go', onClick: () => { setLvl(lvl + 1); startWort(lvl + 1); } });
+      if (!FK.friendsLibrary?.active && lvl < 3) actions.push({ icon: 'next', label: 'Stufe ' + (lvl + 1), cls: 'btn-go', onClick: () => { setLvl(lvl + 1); startWort(lvl + 1); } });
       actions.push({ icon: 'check', label: 'Fertig', cls: 'btn-sun', onClick: () => showHome() });
       finishRound('wort-' + lvl, B.st.el, actions);
     }

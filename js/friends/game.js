@@ -9,8 +9,12 @@ const actionNames={outside:'Nach draussen',drawing:'Zeichnen und ausmalen',sleep
 // Painted pictures where the reviewed art exists: friends from the forest painting and character sheet,
 // nouns from the original Waldatelier sheets. Action poses, nuts, shapes and controls stay drawn.
 const paintedFriends={fox:'fox-front',squirrel:'squirrel',bird:'bird',owl:'owl',mouse:'mouse'};
-const paintedWords={hat:'hat',rose:'rose',nose:'nose',fish:'fish',ball:'ball',boat:'boat',cow:'cow',hare:'rabbit',tin:'tin',bus:'bus',star:'star',whale:'whale'};
+const paintedWords={tree:'tree',book:'book',apple:'apple',leaf:'leaf',feathers:'feather',berries:'blueberries',pencils:'pencil',bed:'bed',bag:'picnic',beaver:'beaver',hat:'hat',rose:'rose',nose:'nose',fish:'fish',ball:'ball',boat:'boat',cow:'cow',hare:'rabbit',tin:'tin',bus:'bus',star:'star',whale:'whale'};
 function art(name,cls=''){
+  if(name==='gear')return h('span',{class:'ff-picture '+cls,html:FK.icon('gear')});
+  if(name==='nut'||name==='nuts'){const s=h('span',{class:'ff-picture ff-painted-picture '+cls});s.append(FK.woodland.art('nut'));return s;}
+  const oldWord={table:'Tisch',leg:'Bein',stone:'Stein'}[name];
+  if(oldWord)return h('span',{class:'ff-picture '+cls},FK.play.wordDrawing(oldWord));
   if(paintedFriends[name])return h('span',{class:'ff-picture ff-painted-picture '+cls},h('img',{src:'assets/forest-friends/'+paintedFriends[name]+'.webp',alt:'',draggable:'false'}));
   if(paintedWords[name]&&FK.visual?.has(paintedWords[name])){const s=h('span',{class:'ff-picture ff-painted-picture '+cls});s.append(FK.visual.art(paintedWords[name]));return s;}
   return h('span',{class:'ff-picture '+cls,html:picture(name)});
@@ -39,12 +43,12 @@ function renderHotspots(){if(panel)return;hotspots.replaceChildren();const ids=a
 function act(id){if(panel)return;if(area==='forest'){
   const p=world.position;if(Math.hypot(p.x-places[id].x,p.z-places[id].z)>3.2){world.route(id);say('Folge Fuchs zu '+(C.hosts[id]?.name|| (id==='home'?'deinem Zuhause':'dem Laden'))+'.');return;}
   if(id==='home')go('den');else if(id==='shop')go('shop');else meet(id);
-}else if(id==='outside')go('forest');else if(id==='games')games();else if(id==='drawing')drawing();else if(id==='sleep')sequence('sleep');else shopItem(id);}
+}else if(id==='outside')go('forest');else if(id==='games')games();else if(id==='drawing')games('atelier');else if(id==='sleep')sequence('sleep');else shopItem(id);}
 // The original Waldspiele and story puzzles open in their own book and return here.
 function games(resident){if(panel)close();state.record('games_open',{resident:resident||'all'});world.pause(true);FK.go('forest-book',{from:'friends',...(resident?{resident}:{})});}
 function map(){open('map');const card=shell('map');const board=h('div',{class:'ff-map'+(places.home.pu!==undefined?' ff-map-painted':'')});for(const[id,p]of Object.entries(places)){const b=button(p.name,p.picture,()=>{if(area!=='forest')go('forest');else close();world.route(id);say('Fuchs geht zu '+(C.hosts[id]?.name||(id==='home'?'deinem Zuhause':'dem Laden'))+'.');});if(p.pu!==undefined){b.style.left=(p.pu*100)+'%';b.style.top=(p.pv*100)+'%';}else{b.style.left=(50+p.x*2.8)+'%';b.style.top=(48+p.z*2.1)+'%';}board.append(b);}card.append(board);say('Wähle ein Bild. Fuchs zeigt dir den Weg.');}
-function meet(id){host=id;open('meet');const card=shell(id),saved=state.get().rounds[id];card.append(h('div',{class:'ff-meet-scene'},art('fox'),art(id)),h('div',{class:'ff-choices'},button(saved?'Weiterspielen':'Helfen','check',()=>{if(state.start(id)){activeMs=0;puzzle();if(!state.get().seenExamples[id])showExample();}}),FK.forestStory?.names?.[id]?button('Waldspiele mit '+C.hosts[id].name,'book',()=>games(id)):null,button('Später','back',close)));
-  say((saved?'Deine Aufgabe wartet auf dich. Möchtest du weiterspielen?':{squirrel:'Ich sammle Nüsse für den Winter. Hilfst du mir beim Zählen?',bird:'Ich suche Reime für ein Lied. Hilfst du mir beim Lesen?',owl:'Liest du mit mir einen kurzen Satz?',beaver:'Welche Form fehlt noch? Hilfst du mir?',mouse:'Liest du mit mir ein Wort?'}[id])+' Mit dem Häkchen spielen wir. Mit dem Pfeil gehst du zurück.');
+function meet(id){host=id;open('meet');const card=shell(id),saved=state.get().rounds[id];card.append(h('div',{class:'ff-meet-scene'},art('fox'),art(id)),h('div',{class:'ff-choices'},button(saved?'Weiterspielen':'Helfen','check',()=>{if(state.start(id)){activeMs=0;puzzle();if(!state.get().seenExamples[id])showExample();}}),button('Waldspiele mit '+C.hosts[id].name,'book',()=>games(id)),button('Später','back',close)));
+  say((saved?'Deine Aufgabe wartet auf dich. Möchtest du weiterspielen?':{squirrel:'Ich sammle Nüsse für den Winter. Hilfst du mir beim Zählen?',bird:'Ich suche Reime für ein Lied. Hilfst du mir beim Lesen?',owl:'Liest du mit mir einen kurzen Satz?',beaver:'Welche Form fehlt noch? Hilfst du mir?',mouse:'Liest du mit mir ein Wort?'}[id])+' Mit dem Häkchen spielen wir. Im Buch kannst du alle meine Spiele wählen. Mit dem Pfeil gehst du zurück.');
 }
 function taskScene(t,filled=false){
   const scene=h('div',{class:'ff-task-scene'});
@@ -105,7 +109,7 @@ function shopItem(id){selectedItem=id;open('shop');selectedItem=id;const p=C.sho
 }
 function bag(){open('bag');const s=state.get(),card=shell('bag');card.append(wallet());const row=h('div',{class:'ff-bag-items'});
   for(const item of ['apple','bath']){const b=button(C.shop[item].name+' benutzen',item,()=>sequence(item));b.append(h('b',{text:String(s.inventory[item])}));b.disabled=s.inventory[item]===0;row.append(b);}card.append(row);
-  for(const item of ['leaf','pencils'])if(s.unlocks[item])card.append(button(C.shop[item].name+' am Zeichentisch öffnen',C.shop[item].picture,()=>{go('den');drawing();}));
+  for(const item of ['leaf','pencils'])if(s.unlocks[item])card.append(button(C.shop[item].name+' am Zeichentisch öffnen',C.shop[item].picture,()=>{go('den');games('atelier');}));
   say('Hier sind deine Vorräte. Tippe auf einen Apfel oder das Schaumbad, um es zu benutzen.');
 }
 function sequence(item){
@@ -158,4 +162,7 @@ FK.screen('friends',{
   },
   enter(){world?.pause(!!panel);renderHotspots();},leave(){world?.pause(true);audio?.dispose();if(state)audio=createAudio(()=>state.audioSettings());}
 });
+// Shared book callbacks return to the paused world before opening a round/saved sheet.
+FK.friendsStartRound=id=>{FK.go('friends');host=id;if(state.start(id)){activeMs=0;puzzle();if(!state.get().seenExamples[id])showExample();}};
+FK.friendsSavedSheets=()=>{FK.go('friends');drawing();};
 FK.go('friends');

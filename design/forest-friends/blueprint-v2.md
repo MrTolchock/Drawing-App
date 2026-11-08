@@ -1,3 +1,5 @@
+> Implementation update, 8 November 2026: restore the original illustrated activity catalogue inside v2, assign every activity to the five current friends, use one fixed Entdecken level, and restore the original puzzle-selection menu, settings gear and full Malatelier at the fox’s table. New rounds use the original woodland stationery and painted objects. See [the implemented catalogue and host mapping](../../docs/FOREST-FRIENDS.md#restored-illustrated-games-and-malatelier). This updates the earlier five-puzzle-only launch scope; the preserved visual baselines stay unchanged.
+
 > Current revision 10: purchases never alter the environment. No teacher testing is planned or required. Child testing happens after implementation, once the game is running. This replaces earlier pre-implementation external-review gates; internal curriculum source checks remain.
 
 > Shared visual rule: [den-led art direction](visuals/art-direction.md). Outdoors, den and shop use 3D; learning puzzles use 2D.

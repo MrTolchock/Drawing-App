@@ -43,11 +43,17 @@
     if (name === 'hub') name = 'forest-book';
     if (!screens[name]) throw new Error('unknown screen ' + name);
     FK.ui.closeModal();
+    const library=FK.friendsLibrary;
+    if(library){
+      if(name==='friends'||params?.from==='friends')library.active=true;
+      else if(name==='forest')library.active=false;
+      if(library.active&&['learn','adventure','expedition','read','trace','dots'].includes(name))params={...params,stage:1,lvl:1,level:1};
+    }
     const prev = current;
     if (prev && screens[prev.name].def.leave) screens[prev.name].def.leave();
     if (prev && !opts.replace && !opts.isBack) stack.push(prev);
     // Forest and games book are root entries; discard stale return screens there.
-    if (name === 'forest-book' || name === 'forest') stack.length = 0;
+    if (name === 'forest-book' || name === 'forest' || name === 'friends') stack.length = 0;
     while (stack.length && stack[stack.length - 1].name === name) stack.pop();
     const root = rootFor(name);
     if (prev && prev.name !== name) {
@@ -68,7 +74,7 @@
   FK.back = () => {
     const prev = stack.pop();
     if (prev) FK.go(prev.name, prev.params, { isBack: true });
-    else FK.go(current?.name === 'forest-book' ? (current.params?.from === 'friends' ? 'friends' : 'forest') : 'forest-book', {}, { isBack: true });
+    else FK.go(current?.name === 'forest-book' ? (FK.friendsLibrary?.active || current.params?.from === 'friends' ? 'friends' : 'forest') : 'forest-book', {}, { isBack: true });
   };
   FK.current = () => (current ? current.name : null);
   FK.screenExists = (name) => !!screens[name];

@@ -393,3 +393,28 @@
 .ff-fader.on{animation:ff-area-fade .5s ease-out}
 @keyframes ff-area-fade{from{opacity:.9}to{opacity:0}}
 
+/* The restored book uses the original painted stationery with the v2 hosts. */
+.ff-library-portrait{display:inline-flex;align-items:center;justify-content:center}
+.ff-library-portrait img{display:block;width:100%;height:100%;object-fit:contain}
+.screen-forest-book .ff-library-tabs{flex-wrap:wrap;justify-content:center}
+.ff-library-tabs .forest-book-neighbour{width:100px;height:auto;min-height:100px;padding:8px}
+.ff-library-tabs .forest-book-neighbour>span{display:flex;flex-direction:column;align-items:center;gap:5px}
+.ff-library-tabs .forest-book-neighbour .wa-illustration{width:60px;height:60px}
+.ff-library-tabs small{font:13px var(--read);color:var(--ink)}
+.forest-book-game .ff-library-host{display:flex;align-items:center;gap:6px;margin-top:4px}
+.ff-library-host .forest-portrait{width:30px;height:30px}
+.forest-book-game>span>.wa-illustration{width:100px;height:100px}
+.ff-picture>.ic,.ff-painted-picture>.woodland-art{width:100%;height:100%}
+/* New rounds share the garden, paper, sepia outlines and painted objects of the old games. */
+.ff-card:has(.ff-task-scene){background:#fffbed;border:3px solid #c9b28d;border-radius:28px}
+.ff-card:has(.ff-task-scene) .ff-answer{background:#fffaf0;border:2px solid #b9c69d;border-radius:22px;box-shadow:0 4px 0 #a9b78c45}
+.ff-card:has(.ff-task-scene) .ff-answer.chosen{background:#e4edce;border-color:#6b8c4d}
+.ff-card:has(.ff-task-scene) .ff-answer.ff-retry{background:#f7e7d3;border-color:#b77d50}
+.ff-task-scene.ff-count{background:linear-gradient(#e1e9cf,#d2dfbb);border-color:#abbc8d}
+.ff-task-scene.ff-count>.ff-picture{padding:4px;background:#f4f2dc;border:1px dashed #b5c499;border-radius:12px}
+.ff-count.ff-frames>.ff-picture{outline:2px solid #7c995b}
+.ff-target{font-family:var(--read);color:#5c503b}
+.ff-answer .ff-word{font-family:var(--read);color:#5c503b}
+@media(max-width:600px){.ff-library-tabs .forest-book-neighbour{width:75px;min-width:75px;min-height:92px;padding:6px}.ff-library-tabs small{font-size:11px}}
+
+.ff-picture>.play-cue-drawing{width:100%;height:100%}

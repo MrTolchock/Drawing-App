@@ -1,6 +1,6 @@
 # Forest friends implementation
 
-Forest friends is the default entry point. The original Heart Tree remains at `?screen=forest`, and its activity book at `?screen=hub`. Adult settings links to both. No original progress, drawings, stars, furniture fields or database identifiers are converted or deleted.
+Forest friends is the default entry point. The original Heart Tree remains at `?screen=forest`, and its activity book at `?screen=hub`. Adult settings links to both. The v2 picture book also integrates the original activities directly; the drawing table opens the full Malatelier. No original progress, drawings, stars, furniture fields or database identifiers are converted or deleted.
 
 ## Playable loop
 
@@ -18,6 +18,22 @@ There is one content level. Five completed tasks credit three host tokens in the
 
 The fixed shop sells a leaf page (two seeds), four extra pencil colours (two logs), an apple (one nut) and a bath (two feathers). Permanent unlocks cannot be repurchased. Buy and Use are separate. Apple and bath open five seconds of articulated 3D animation; Skip returns immediately. Temporary props never become environment purchases. Bed offers a separate pretend-sleep sequence with no resource cost or upkeep.
 
+## Restored illustrated games and Malatelier
+
+The Waldspiele book is available from the main menu, the den and every friend's meeting card. It includes the five new rounds and all 21 original catalogue entries (18 learning games plus Leseschatz, Schreibspuren and Zahlenwege). Rechenfreunde remains the existing alias of Znüni-Rechenfreunde, rather than a duplicate card. The original illustrations and interactions are reused. The five new rounds share their cream paper, garden panels, sepia outlines and painted objects. Settings uses the original Waldatelier gear.
+
+| V2 host | Restored activities |
+| --- | --- |
+| Eichhörnchen | Zählgarten, Znüni-Rechenfreunde, Sternenrakete, Waldpicknick, Nachbarhäuser, Beerenvergleich |
+| Blaumeise | Reimzirkus, Silbentrommel, Naturdetektive |
+| Maus | Leseschatz (all four reading activities), Vokalversteck, Schreibspuren |
+| Waldkauz | Musterzug, Was kommt dann?, Waldschatz, Waldumfrage |
+| Biber | Formenwerkstatt, Zauberspiegel, Spiegelmosaik, Roboterpost, Zahlenwege |
+
+V2 selects the original **Entdecken** content (stage 1) consistently, including reading, handwriting and number paths. It has no difficulty chooser, higher-level completion suggestion or automatic progression. The original bookmarks retain their prior difficulty settings. V2 practice does not advance an interrupted Heart Tree tour. Restored activities keep their original star rewards; the five new rounds retain their host-token rewards. Every return button leads back to the v2 book or forest.
+
+The fox's table opens Freies Malen, Ausmalen, Meine Bilder and Waldalbum. This restores the original brushes, stamps, fill bucket, eraser, brush sizes, mirror/kaleidoscope, paper colours, undo, gallery saving and colouring modes, using the existing IndexedDB pictures. V2's earlier vector drawings and purchased leaf sheet remain accessible through **Meine bisherigen Blätter** when present. No old picture is overwritten by a migration.
+
 ## Durable state and legacy inventory
 
 The implementation inventory found these existing localStorage keys:
@@ -26,7 +42,7 @@ The implementation inventory found these existing localStorage keys:
 - `farbtupf.forest.v1`, `farbtupf.journey.v1`, `farbtupf.timer.v1`
 - `farbtupf.exploration.v1`, `farbtupf.cinema.v1`
 
-IndexedDB remains `farbklecks`, version 2, with `state` (including `free` and `c:<pageId>:<mode>`) and `bilder`. Those records are untouched and still usable in the previous game. There is no approved star-to-token mapping; new token balances start at zero.
+IndexedDB remains `farbklecks`, version 2, with `state` (including `free` and `c:<pageId>:<mode>`) and `bilder`. Those records are reused by the restored Malatelier and remain usable in the previous game; no migration rewrites them. There is no approved star-to-token mapping; new token balances start at zero.
 
 New state uses `farbtupf.friends.v1`. Wallet, ownership, consumables, per-page vector drawings, audio controls, each host's complete task snapshots and attempts/support, completion cursor, previous sets, last world position and consumption receipt share one envelope. A successful localStorage replacement commits both sides of each economy operation together. Failed writes leave the prior in-memory and stored state unchanged and show the required German unsaved indication with retry and backup export. Unsaved drawing strokes remain available for retry during that session.
 
@@ -72,6 +88,6 @@ Authored pools were checked for one correct answer, distinct options, visible ta
 
 ## Validation
 
-Run `node --test tests/*.test.cjs`, then `node tests/friends-browser.cjs` and `node tests/friends-animation-browser.cjs` against the local server. Set `PLAYWRIGHT_MODULE`, `CHROMIUM_PATH`, `FARBTUPF_BASE_URL` or `FARBTUPF_SHOTS` for another machine. The animation suite checks normal-motion wall-clock completion, skipping and bed sleep with an isolated fixture. The main browser suite exercises real controls for all five rounds, save/reward boundaries, four purchases, drawings, consumption, legacy IndexedDB, offline relaunch and developer isolation. Older browser suites now enter the original game explicitly.
+Run `node --test tests/*.test.cjs` and `node tests/friends-library-browser.cjs`, then `node tests/friends-browser.cjs` and `node tests/friends-animation-browser.cjs` against the local server. Set `PLAYWRIGHT_MODULE`, `CHROMIUM_PATH`, `FARBTUPF_BASE_URL` or `FARBTUPF_SHOTS` for another machine. The animation suite checks normal-motion wall-clock completion, skipping and bed sleep with an isolated fixture. The main browser suite exercises real controls for all five rounds, save/reward boundaries, four purchases, drawings, consumption, legacy IndexedDB, offline relaunch and developer isolation. Older browser suites now enter the original game explicitly.
 
 The [visual milestone record](../design/forest-friends/visuals/milestones/playable-loop-1/COMPARISON.md) records screenshots and remaining art differences. Physical iPad/Safari performance, installed voices, child navigation/reading observations and further model/material polish remain to be checked. Software Chromium evidence does not establish those results.

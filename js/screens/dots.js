@@ -67,6 +67,8 @@
 
   function renderTabs() {
     tabsEl.textContent = '';
+    tabsEl.hidden=!!FK.friendsLibrary?.active;
+    if(FK.friendsLibrary?.active)return;
     [1, 2, 3].forEach((lvl) => {
       const list = dotsOf(lvl);
       const n = list.filter((d) => isDone(d.id)).length;
@@ -478,7 +480,7 @@
   }
 
   function nextPic() {
-    const all = (FK.dots || []).slice().sort((a, b) => a.level - b.level);
+    const all = (FK.friendsLibrary?.active ? dotsOf(1) : (FK.dots || [])).slice().sort((a, b) => a.level - b.level);
     const i = all.indexOf(cur);
     const rest = all.slice(i + 1).concat(all.slice(0, i));
     return rest.find((d) => !isDone(d.id)) || all[(i + 1) % all.length];
@@ -552,7 +554,8 @@
     enter(params) {
       params = params || {};
       active = true;
-      if (params.level >= 1 && params.level <= 3) { level = params.level; FK.settings.set('dots.level', level); }
+      if(FK.friendsLibrary?.active)level=1;
+      else if (params.level >= 1 && params.level <= 3) { level = params.level; FK.settings.set('dots.level', level); }
       window.addEventListener('resize', onResize);
       window.addEventListener('keydown', onKey, true);
       if (ro) ro.observe(paperEl);

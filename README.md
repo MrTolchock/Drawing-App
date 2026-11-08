@@ -8,6 +8,7 @@ A woodland learning game for first-grade practice in Zürich, in Swiss Standard 
 
 - The painted den and shop from the reviewed visualisation, and a freely explorable 3D forest in the same painted style, with pictured hotspots, a picture map, keyboard/touch walking, jumping and replayable instructions.
 - Twelve golden leaves to find in the forest, butterflies and friends who greet the fox; exploration never changes learning rewards.
+- The original illustrated puzzle catalogue, assigned to the five new friends at one fixed level, with direct selection from the picture menu and the full Malatelier at the fox’s table.
 - Five-task counting, word reading, written rhymes, short sentences and missing-shape rounds. One content level, unlimited correction, separate examples and no countdown.
 - Three host tokens per completed round, credited once. Leaf colouring page, extra pencils, apple and bubble bath purchases save together with their charges.
 - Articulated 3D apple, bath and pretend-sleep sequences. Consumables commit once before playback and can be skipped.
