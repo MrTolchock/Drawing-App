@@ -1,5 +1,5 @@
 /* Farbtupf – Service Worker: keeps the whole app on the device so it runs without internet. */
-const CACHE = 'farbtupf-v7.7.0-click-library';
+const CACHE = 'farbtupf-v7.8.0-plush-characters';
 const ASSETS = [
   './css/friends.css',
   './js/friends/content.js',
