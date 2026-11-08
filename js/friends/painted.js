@@ -16,8 +16,8 @@ const depth=p=>p.clone().sub(lens.position).dot(view);
 const heightAt=(p,fraction)=>fraction*depth(p)/F;
 const pinPoint=(u,v)=>{const r=ray(u,v);return r.origin.clone().add(r.direction.clone().multiplyScalar(20));};
 const scenes={den:{need:[.03,.2,.97,.92]}};
-const denSpot=at(300,440),cushion=at(176,560),denFrac=.349;
-const pins={den:{outside:at(859,346),drawing:at(899,668),sleep:at(116,540),games:at(497,150)}};
+const denSpot=at(300,440),bedSpot=at(80,405),denFrac=.349;
+const pins={den:{outside:at(859,346),drawing:at(899,668),sleep:at(70,410),games:at(370,155),gallery:at(626,650)}};
 
 export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,onMove,onAnimationEnd,onProject,onCollect=()=>{},collected=()=>({}),onJump=()=>{}}){
   const software=new URLSearchParams(location.search).has('software');
@@ -36,7 +36,7 @@ export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,o
   const soft=drawn(64,64,(g)=>{const r=g.createRadialGradient(32,32,0,32,32,32);r.addColorStop(0,'rgba(48,26,10,.6)');r.addColorStop(1,'rgba(48,26,10,0)');g.fillStyle=r;g.fillRect(0,0,64,64);});
   const looks={front:texture('fox-front'),side:texture('fox-side'),back:texture('fox-back'),happy:texture('fox-happy')};
   const foxShadow=new THREE.Mesh(new THREE.CircleGeometry(1,24),new THREE.MeshBasicMaterial({map:soft,transparent:true,depthWrite:false,toneMapped:false}));foxShadow.rotation.x=-Math.PI/2;foxShadow.renderOrder=1;scene.add(foxShadow);
-  const denH=heightAt(ground(denSpot.u,denSpot.v),denFrac),sleepH=heightAt(ground(cushion.u,cushion.v),.3);
+  const denH=heightAt(ground(denSpot.u,denSpot.v),denFrac),sleepH=heightAt(ground(bedSpot.u,bedSpot.v),.22);
   // The den's 3D fox, lit like the painting (warm daylight from the door, soft fill from the window).
   scene.add(new THREE.HemisphereLight('#ffe6c4','#7a4a2c',1.3));{const key=new THREE.DirectionalLight('#ffd49a',2.3);key.position.set(40,60,30);scene.add(key);const rim=new THREE.DirectionalLight('#ffb98a',.7);rim.position.set(-40,30,10);scene.add(rim);}
   const foxRig=characters.fox(denH),fox=foxRig.group,foxPos=new THREE.Vector3();scene.add(fox);
@@ -46,15 +46,13 @@ export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,o
     const water=new THREE.Mesh(new THREE.CircleGeometry(.6,28),new THREE.MeshStandardMaterial({color:'#9fd0d2',roughness:.3}));water.rotation.x=-Math.PI/2;water.position.y=.5;tub.add(water);
     const foam=new THREE.MeshStandardMaterial({color:'#fffaf2',roughness:.9});for(let i=0;i<16;i++){const a=i/16*Math.PI*2,b=new THREE.Mesh(new THREE.SphereGeometry(.12+(i%3)*.04,12,8),foam);b.position.set(Math.cos(a)*.48,.55+(i%2)*.04,Math.sin(a)*.48);tub.add(b);}}
   tub.scale.setScalar(denH/1.6);tub.visible=false;scene.add(tub);
-  // Den ambience: drifting dust in the light, a soft sunbeam from the door, a glowing window.
+  // Den ambience follows the painted window light; the closed door does not cast a sunbeam.
   const glowTex=drawn(64,64,(g)=>{const r=g.createRadialGradient(32,32,0,32,32,32);r.addColorStop(0,'rgba(255,240,200,1)');r.addColorStop(.4,'rgba(255,220,160,.45)');r.addColorStop(1,'rgba(255,210,150,0)');g.fillStyle=r;g.fillRect(0,0,64,64);});
-  const beamTex=drawn(64,256,(g)=>{const l=g.createLinearGradient(0,0,0,256);l.addColorStop(0,'rgba(255,236,190,.0)');l.addColorStop(.25,'rgba(255,236,190,.55)');l.addColorStop(1,'rgba(255,236,190,0)');g.fillStyle=l;g.beginPath();g.moveTo(18,0);g.lineTo(46,0);g.lineTo(64,256);g.lineTo(0,256);g.fill();});
   const motes=new THREE.Points(new THREE.BufferGeometry(),new THREE.PointsMaterial({map:glowTex,size:.55,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,opacity:.7,toneMapped:false}));
   {const seeds=[],pos=[];for(let i=0;i<70;i++){const u=.12+Math.random()*.8,v=.12+Math.random()*.6,d=26+Math.random()*16,r=ray(u,v),p=r.origin.clone().add(r.direction.clone().multiplyScalar(d/r.direction.dot(view)));seeds.push(p.x,p.y,p.z,Math.random()*6.3);pos.push(p.x,p.y,p.z);}motes.geometry.setAttribute('position',new THREE.Float32BufferAttribute(pos,3));motes.userData.seeds=seeds;}scene.add(motes);
-  const beam=sprite(beamTex,1,.5),windowGlow=sprite(glowTex,1,.5);beam.material.blending=windowGlow.material.blending=THREE.AdditiveBlending;
-  {const d=ground(...Object.values(at(770,430))),b=ray(...Object.values(at(800,320)));beam.position.copy(b.origin.clone().add(b.direction.clone().multiplyScalar(depth(d)/b.direction.dot(view))));beam.scale.set(denH*.9,denH*2.2,1);beam.material.rotation=.55;
-   const w=ray(...Object.values(at(150,192)));windowGlow.position.copy(w.origin.clone().add(w.direction.clone().multiplyScalar(60/w.direction.dot(view))));windowGlow.scale.setScalar(denH*1.5);}
-  const ambience=[beam,windowGlow,motes];
+  const windowGlow=sprite(glowTex,1,.5);windowGlow.material.blending=THREE.AdditiveBlending;
+  {   const w=ray(...Object.values(at(150,192)));windowGlow.position.copy(w.origin.clone().add(w.direction.clone().multiplyScalar(60/w.direction.dot(view))));windowGlow.scale.setScalar(denH*1.5);}
+  const ambience=[windowGlow,motes];
   // The fox potters about the den between a few spots on the floor when left alone.
   const spots=[denSpot,at(430,470),at(560,515),at(250,505),at(390,560)].map(a=>ground(a.u,a.v));
   const idle={target:null,wait:4,greet:0,turn:.35};
@@ -80,7 +78,7 @@ export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,o
   }
   function setArea(next){if(!['den','forest'].includes(next))next='den';area=next;finishProps();onNear(null);
     if(next==='forest'){canvas.style.backgroundImage='none';fill.hidden=true;forest.enter(position());}
-    else{const url='url('+ART+next+'.webp)';canvas.style.backgroundImage=url;fill.style.backgroundImage=url;fill.hidden=false;forest.stop();fox.visible=next==='den';foxShadow.visible=next==='den';ambience.forEach(a=>a.visible=next==='den');foxPos.copy(spots[0]);fox.position.copy(foxPos);fox.rotation.y=.35;idle.target=null;idle.wait=5;idle.greet=next==='den'?1.6:0;}
+    else{const url='url('+ART+(next==='den'?'den-v2':next)+'.webp)';canvas.style.backgroundImage=url;fill.style.backgroundImage=url;fill.hidden=false;forest.stop();fox.visible=next==='den';foxShadow.visible=next==='den';ambience.forEach(a=>a.visible=next==='den');foxPos.copy(spots[0]);fox.position.copy(foxPos);fox.rotation.y=.35;idle.target=null;idle.wait=5;idle.greet=next==='den'?1.6:0;}
     layout();
   }
   function project(p){const q=p.clone().project(camera);return {x:(q.x*.5+.5)*width,y:(-q.y*.5+.5)*height,visible:q.z<1&&Math.abs(q.x)<1.02&&q.y>-1.02&&q.y<1.12};}
@@ -89,7 +87,24 @@ export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,o
   const visibility=()=>{last=performance.now();keys.clear();stick={x:0,z:0};};document.addEventListener('visibilitychange',visibility);
   const keydown=()=>{},keyup=()=>{},blur=()=>{keys.clear();stick={x:0,z:0};};
   const observer=new ResizeObserver(()=>layout());observer.observe(canvas);
-  function finishProps(){props.forEach(p=>{p.userData.on=false;});night.classList.remove('on');apple.visible=false;tub.visible=false;fox.scale.setScalar(1);fox.rotation.set(0,.35,0);}
+  function finishProps(){props.forEach(p=>{p.userData.on=false;});night.classList.remove('on');apple.visible=false;tub.visible=false;fox.scale.setScalar(1);fox.rotation.set(0,.35,0);foxRig.update(0,{reduced:window.FK.reduced});}
+  function projectedBounds(){
+    fox.updateMatrixWorld(true);const points=[];
+    fox.traverse(o=>{if(!o.isMesh||!o.visible)return;for(let parent=o.parent;parent&&parent!==fox;parent=parent.parent)if(!parent.visible)return;if(!o.geometry.boundingBox)o.geometry.computeBoundingBox();const b=o.geometry.boundingBox;
+      for(const x of [b.min.x,b.max.x])for(const y of [b.min.y,b.max.y])for(const z of [b.min.z,b.max.z])points.push(project(new THREE.Vector3(x,y,z).applyMatrix4(o.matrixWorld)));
+    });
+    const left=Math.min(...points.map(p=>p.x)),top=Math.min(...points.map(p=>p.y));
+    return {x:left,y:top,width:Math.max(...points.map(p=>p.x))-left,height:Math.max(...points.map(p=>p.y))-top};
+  }
+  function fitSleepingFox(){
+    const [fw,fh]=canvas.style.backgroundSize.split(' ').map(parseFloat),[bx,by]=canvas.style.backgroundPosition.split(' ').map(parseFloat);
+    const target={x:bx+fw*20/IW,y:by+fh*480/IH,width:fw*190/IW,height:fh*175/IH};
+    let bounds=projectedBounds();fox.scale.multiplyScalar(Math.min(target.width/bounds.width,target.height/bounds.height)*.94);
+    const ndc=fox.position.clone().project(camera),point=(x,y)=>new THREE.Vector3(x/width*2-1,1-y/height*2,ndc.z).unproject(camera);
+    for(let i=0;i<2;i++){bounds=projectedBounds();fox.position.add(point(target.x+target.width/2,target.y+target.height/2).sub(point(bounds.x+bounds.width/2,bounds.y+bounds.height/2)));}
+    anim.sleepPosition=fox.position.clone();anim.sleepScale=fox.scale.x;anim.sleepViewport=[width,height];
+    anim.zBase=point(target.x+target.width*.8,target.y-14);
+  }
   function animateTreat(dt){
     anim.elapsed+=dt;const t=anim.elapsed,reduced=window.FK.reduced,h=anim.item==='sleep'?sleepH:denH,base=foxPos.clone();
     if(anim.item==='apple'){
@@ -98,8 +113,10 @@ export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,o
       tub.visible=true;tub.position.copy(base);fox.position.copy(base).addScaledVector(new THREE.Vector3(0,1,0),-h*.12);foxRig.update(dt,{action:'bath',reduced});
       bubbles.forEach((b,i)=>{const k=reduced?.4:((t*.32+i*.137)%1);b.userData.on=true;b.position.copy(base).addScaledVector(up,h*(.48+k*.55)).addScaledVector(side,h*(-.38+(i/8)*.76+Math.sin(t*1.6+i)*.03));size(b,h*(.05+(i%3)*.02));b.material.opacity=1-k*.8;});
     }else{
-      fox.position.copy(base);fox.scale.setScalar(sleepH/denH);fox.rotation.set(-.12,.2,0);foxRig.update(dt,{action:'sleep',reduced});night.classList.add('on');
-      zs.forEach((z,i)=>{const k=reduced?.5:((t*.35+i*.33)%1);z.userData.on=true;z.position.copy(base).addScaledVector(up,h*(.95+k*.45)).addScaledVector(side,h*(.12+k*.25));size(z,h*(.1+i*.03));z.material.opacity=1-k;});
+      fox.position.copy(anim.sleepPosition||base);fox.scale.setScalar(anim.sleepScale||sleepH/denH);fox.rotation.set(-.12,.2,0);foxRig.update(dt,{action:'sleep',reduced});
+      if(!anim.sleepViewport||anim.sleepViewport[0]!==width||anim.sleepViewport[1]!==height)fitSleepingFox();
+      night.classList.add('on');
+      zs.forEach((z,i)=>{const k=reduced?.5:((t*.35+i*.33)%1);z.userData.on=true;z.position.copy(anim.zBase).addScaledVector(up,h*k*.3).addScaledVector(side,h*k*.12);size(z,h*(.1+i*.03));z.material.opacity=1-k;});
     }
     if(t>=5){anim=null;finishProps();foxPos.copy(spots[0]);fox.position.copy(foxPos);onAnimationEnd();}
   }
@@ -115,18 +132,19 @@ export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,o
     if(area==='forest'&&!anim){forest.update(dt,time,{keys,stick});renderer.render(forest.scene,forest.camera);onProject(forest.pins());return;}
     if(anim)animateTreat(elapsed);
     else if(area==='den')potter(dt);
+    foxShadow.visible=area==='den'&&anim?.item!=='sleep';
     foxShadow.position.set(fox.position.x,.01,fox.position.z);foxShadow.scale.setScalar((anim?.item==='sleep'?sleepH:denH)*.3);
     for(const s of props)s.visible=s.userData.on&&!!s.material.map.userData.ready;
-    if(area==='den'&&!window.FK.reduced){const p=motes.geometry.attributes.position,sd=motes.userData.seeds;for(let i=0;i<p.count;i++){const k=sd[i*4+3];p.setXYZ(i,sd[i*4]+Math.sin(time*.23+k)*.9,sd[i*4+1]+Math.sin(time*.17+k*1.7)*.7,sd[i*4+2]);}p.needsUpdate=true;beam.material.opacity=.32+Math.sin(time*.6)*.1;windowGlow.material.opacity=.35+Math.sin(time*.8+1)*.12;}
+    if(area==='den'&&!window.FK.reduced){const p=motes.geometry.attributes.position,sd=motes.userData.seeds;for(let i=0;i<p.count;i++){const k=sd[i*4+3];p.setXYZ(i,sd[i*4]+Math.sin(time*.23+k)*.9,sd[i*4+1]+Math.sin(time*.17+k*1.7)*.7,sd[i*4+2]);}p.needsUpdate=true;windowGlow.material.opacity=.18+Math.sin(time*.8+1)*.025;}
     renderer.render(scene,camera);
     onProject((pinList[area]||[]).map(p=>({id:p.id,...project(p.point)})));
   }
   setArea('den');raf=requestAnimationFrame(frame);
   return {setArea(next){setArea(next);},route(id){if(area==='forest')forest.route(id);},mailTarget(id){forest.mailTarget(id);},summonMailman(){forest.summonMailman();},get mailman(){return forest.mailman;},pause(value){paused=value;if(value){blur();if(area==='forest')onPosition(forest.position.x,forest.position.z);}},
     steer(x,z){stick={x,z};if(!x&&!z&&area==='forest')onPosition(forest.position.x,forest.position.z);},
-    sequence(item){anim={item,elapsed:0};idle.target=null;fox.rotation.set(0,.35,0);foxPos.copy(item==='sleep'?ground(cushion.u,cushion.v):spots[0]);fox.position.copy(foxPos);},
+    sequence(item){anim={item,elapsed:0};idle.target=null;fox.rotation.set(0,.35,0);foxPos.copy(item==='sleep'?ground(bedSpot.u,bedSpot.v):spots[0]);fox.position.copy(foxPos);if(item==='sleep'){fox.scale.setScalar(sleepH/denH);fox.rotation.set(-.12,.2,0);foxRig.update(0,{action:'sleep',reduced:window.FK.reduced});fitSleepingFox();}},
     skip(){anim=null;finishProps();foxPos.copy(spots[0]);fox.position.copy(foxPos);},
-    get diagnostics(){const p=area==='forest'?forest.position:{x:foxPos.x,z:foxPos.z};return {area,paused,time,keys:[...keys],destination:area==='forest'?forest.destination?.toArray():undefined,position:p,mailTarget:forest.guideTarget,mailman:forest.mailman,painted:true};},get area(){return area;},get position(){return area==='forest'?forest.position:{x:foxPos.x,z:foxPos.z};},
+    get diagnostics(){const p=area==='forest'?forest.position:{x:foxPos.x,z:foxPos.z};return {area,paused,time,animation:anim?.item||null,sleepBounds:anim?.item==='sleep'?projectedBounds():null,keys:[...keys],destination:area==='forest'?forest.destination?.toArray():undefined,position:p,mailTarget:forest.guideTarget,mailman:forest.mailman,painted:true};},get area(){return area;},get position(){return area==='forest'?forest.position:{x:foxPos.x,z:foxPos.z};},
     dispose(){cancelAnimationFrame(raf);observer.disconnect();canvas.removeEventListener('pointerup',pick);document.removeEventListener('visibilitychange',visibility);document.removeEventListener('keydown',keydown);document.removeEventListener('keyup',keyup);window.removeEventListener('blur',blur);fill.remove();night.remove();renderer.dispose();},
   };
 }

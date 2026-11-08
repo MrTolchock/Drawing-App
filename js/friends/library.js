@@ -41,7 +41,7 @@
       if(saved&&(saved.unlocks.leaf||Object.values(saved.drawings).some(strokes=>strokes.length)))
         card('saved-sheets','Meine bisherigen Blätter',FK.visual.art('leaf'),()=>FK.friendsSavedSheets());
     }
-    body.replaceChildren(h('section',{class:'play-library-intro'},portrait(resident==='all'||resident==='atelier'?'fox':resident),h('div',{},h('h2',{text:resident==='atelier'?'Dein Malatelier':resident==='all'?'Ein Wald voller Spiele':'Spielen mit '+window.FriendsContent.hosts[resident].name}),h('p',{text:resident==='atelier'?'Malen, stempeln, ausmalen und Bilder sammeln.':'Wähle ein Bild und spiele mit.'}))),tabs,resident==='atelier'?null:newGames,games);
+    body.replaceChildren(h('section',{class:'play-library-intro'},portrait(resident==='all'||resident==='atelier'?'fox':resident),h('div',{},h('h2',{text:resident==='atelier'?'Dein Malatelier':resident==='all'?'Ein Wald voller Spiele':'Spielen mit '+window.FriendsContent.hosts[resident].name}),h('p',{text:resident==='atelier'?'Malen, ausmalen und Bilder sammeln.':'Wähle ein Bild und spiele mit.'}))),tabs,resident==='atelier'?null:newGames,games);
   }
   FK.friendsLibrary={active:false,hosts,portrait,catalogue,render};
 })();

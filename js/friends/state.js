@@ -34,7 +34,7 @@
     function decode(raw){try{const s=JSON.parse(raw);return valid(s)?s:null;}catch{return null;}}
     function status(message=''){error=message;onStatus({saved:!error,error,blocked});}
     function record(event,details={}){
-      const timestamp=now();events.push({event,timestamp,sessionId,development,appVersion:'8.0.0',saveVersion:SCHEMA,contentVersion:content.version,...clone(details)});
+      const timestamp=now();events.push({event,timestamp,sessionId,development,appVersion:'8.1.0',saveVersion:SCHEMA,contentVersion:content.version,...clone(details)});
       const kept=events.filter(e=>e.timestamp>=timestamp-RETENTION).slice(-LIMIT);truncated=truncated||kept.length<events.length;events=kept;
       // Logs are independent: log storage failure must never undo saved gameplay.
       try{storage.setItem(logKey,JSON.stringify({events,truncated}));}catch{truncated=true;}
@@ -112,7 +112,7 @@
       position(x,z){return commit(s=>{s.world={x,z};},'movement_sample',{area:'forest',x,z});},
       selectPage(page){return commit(s=>{if(!['free','leaf'].includes(page))return false;s.selectedPage=page;},'drawing_page',{page});},
       draw(page,strokes){return commit(s=>{if(!['free','leaf'].includes(page))return false;s.drawings[page]=clone(strokes);},'drawing_saved',{page,strokes:strokes.length});},
-      exportLog(){const timestamp=now(),retained=events.filter(e=>e.timestamp>=timestamp-RETENTION).slice(-LIMIT);return {schema:1,appVersion:'8.0.0',contentVersion:content.version,development,retention:{days:7,maxEvents:LIMIT,truncated:truncated||retained.length<events.length},retainedFrom:retained[0]?.timestamp||null,retainedTo:retained.at(-1)?.timestamp||null,events:clone(retained)};},
+      exportLog(){const timestamp=now(),retained=events.filter(e=>e.timestamp>=timestamp-RETENTION).slice(-LIMIT);return {schema:1,appVersion:'8.1.0',contentVersion:content.version,development,retention:{days:7,maxEvents:LIMIT,truncated:truncated||retained.length<events.length},retainedFrom:retained[0]?.timestamp||null,retainedTo:retained.at(-1)?.timestamp||null,events:clone(retained)};},
       clearLog(){events=[];truncated=false;try{storage.removeItem(logKey);}catch{}},
       exportSave:()=>({schema:SCHEMA,save:clone(state),original:blocked?expected:undefined}),
     };return api;

@@ -12,6 +12,7 @@
   let renderToken = 0;
 
   function cats() {
+    if(FK.friendsLibrary?.active)return FK.art.CATS.filter(c=>c.id==='waldfreunde');
     const list = FK.art.CATS.filter((c) => !c.hidden && FK.art.list(c.id).length);
     // finished connect-the-dots pictures can be coloured too
     const dots = FK.art.list('punkte').filter((p) => FK.progress.isDone('dots', p.id));
@@ -35,6 +36,7 @@
   }
 
   function chooseMode(page) {
+    if(FK.friendsLibrary?.active){FK.go('color',{pageId:page.id,mode:'frei',from:'book'});return;}
     const idx = (FK.settings.get('color.index') || {})[page.id] || {};
     const body = h('div', { class: 'mode-body' });
     const pic = h('canvas', { class: 'mode-pic', width: 480, height: 360 });
@@ -89,17 +91,18 @@
     gridEl.scrollTop = 0;
     if (gridEl.parentNode) gridEl.parentNode.scrollTop = 0;
     const idx = FK.settings.get('color.index') || {};
-    const pages = FK.art.list(cat);
+    const pages = FK.friendsLibrary?.active ? FK.art.denPages : FK.art.list(cat);
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const jobs = [];
     pages.forEach((p, i) => {
       const card = h('button', { type: 'button', class: 'card book-card', 'aria-label': p.name, style: { '--tilt': ((i % 3) - 1) * 1.1 + 'deg' } });
-      const c = h('canvas', { width: Math.round(240 * dpr), height: Math.round(180 * dpr) });
+      const c = h('canvas', { width: Math.round(240 * dpr), height: Math.round((FK.friendsLibrary?.active?240:180) * dpr) });
       const stars = h('div', { class: 'book-stars' });
-      FK.COLOR_MODE_ORDER.forEach((m) => {
+      (FK.friendsLibrary?.active?[]:FK.COLOR_MODE_ORDER).forEach((m) => {
         if (FK.progress.isDone('color', p.id + ':' + m)) stars.insertAdjacentHTML('beforeend', FK.icon('star', 'ic'));
       });
       card.append(c, h('span', { class: 'name', text: FK.text.word(p.name) }), stars);
+      if(FK.friendsLibrary?.active)card.append(h('span',{class:'book-invitation',text:'Ausmalen'}));
       card.addEventListener('click', () => {
         FK.sound.tick();
         chooseMode(p);
@@ -158,7 +161,13 @@
       window.addEventListener('resize', refit);
       if (document.fonts && document.fonts.ready) document.fonts.ready.then(refit);
     },
-    enter(params) {
+    async enter(params) {
+      const token=++renderToken;
+      root.classList.toggle('den-colouring-book',!!FK.friendsLibrary?.active);
+      root.querySelector('.title').textContent=FK.friendsLibrary?.active?'Ausmalen':'Malbuch';
+      await FK.art.denReady;
+      if(token!==renderToken||FK.current()!=='book')return;
+      if(FK.friendsLibrary?.active)cat='waldfreunde';
       const list = cats();
       if (params && params.cat && list.some((c) => c.id === params.cat)) cat = params.cat;
       if (!cat || !list.some((c) => c.id === cat)) cat = list.length ? list[0].id : null;

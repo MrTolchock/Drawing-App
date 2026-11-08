@@ -35,7 +35,7 @@
   let eng = null;
   let pencils = null;
   let page = null;
-  let mode = 'frei';
+  let mode = 'frei',returnTo='book';
   let spots = [];
   let completed = false;
   let restoring = false;
@@ -730,7 +730,7 @@
       const ok = await FK.ui.confirm(FK.text.word('Nochmal von vorne?'), 'Ja', 'Nein', { read: true });
       if (!ok || tok !== loadToken) return;
     }
-    // undo («Zurück») brings the old picture back together with its gallery id and «finished»
+    // Undo brings the old picture back together with its gallery id and «finished».
     const meta = { gid, completed };
     completed = false;
     gid = newGid();
@@ -767,7 +767,7 @@
       el.title = null;
       el.counter = h('div', { class: 'cl-counter', hidden: true, html: FK.icon('check', 'ic') + '<b></b>' });
       el.chip = h('div', { class: 'cl-mode' });
-      const bar = FK.ui.topbar({ title: '', backIcon: 'back', onBack: () => { FK.back(); }, extra: [el.chip, el.counter] });
+      const bar = FK.ui.topbar({ title: '', backIcon: 'back', onBack: () => { if(FK.friendsLibrary?.active)FK.go(returnTo,returnTo==='book'?{cat:page?.cat}:{},{replace:true});else FK.back(); }, extra: [el.chip, el.counter] });
       el.title = bar.querySelector('.title');
 
       el.fill = railBtn('bucket', 'Eimer', () => { setKind('fill'); });
@@ -784,7 +784,7 @@
       el.size = FK.ui.btn({ label: 'Grösse', onClick: (e) => sizePop(e.currentTarget) });
       el.size.insertAdjacentHTML('afterbegin', '<svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="12" fill="#23203d"/></svg>');
 
-      el.undo = railBtn('undo', 'Zurück', () => {
+      el.undo = railBtn('undo', 'Rückgängig', () => {
         FK.ui.closePop(true);
         if (eng.undo()) FK.sound.undo();
         else {
@@ -870,7 +870,11 @@
         setTimeout(() => FK.back());
         return;
       }
-      mode = MODES[params.mode] && (params.mode === 'frei' || FK.art.hasLabels(page)) ? params.mode : 'frei';
+      returnTo=params.from==='gallery'?'gallery':'book';
+      el.stamp.hidden=!!FK.friendsLibrary?.active;
+      if(FK.friendsLibrary?.active&&T.kind==='stamp')T.kind='fill';
+      root.querySelector('.btn-back').setAttribute('aria-label',FK.friendsLibrary?.active?(returnTo==='gallery'?'Zur Galerie':'Zur Bildauswahl'):'Zurück');
+      mode = FK.friendsLibrary?.active ? 'frei' : MODES[params.mode] && (params.mode === 'frei' || FK.art.hasLabels(page)) ? params.mode : 'frei';
       el.title.textContent = FK.text.word(page.name);
       fitTitle();
       el.chip.textContent = FK.text.word(MODES[mode].short);
@@ -884,6 +888,8 @@
       const token = ++loadToken;
       restoring = true;
       requestAnimationFrame(async () => {
+        if(page.ready)await page.ready;
+        if(token!==loadToken)return;
         eng.fit();
         let rec = null;
         if (params.bild && params.bild.pageId === page.id) {

@@ -449,3 +449,22 @@
 @media(prefers-reduced-motion:reduce){.ff-den-envelope{animation:none;transform:translate(-18%,40%) rotate(-7deg)}.ff-mail-lid{animation:none!important}}
 /* The picture map is parchment now; every destination remains inside its corners. */
 .ff-map{border-radius:26px;overflow:visible;background:radial-gradient(ellipse at 30% 25%,#edf1d8,#cfddb0);border:3px solid #c8b489;box-shadow:inset 0 0 35px #6b8b4c33}
+/* Clear, illustrated colouring choices with one direct action per picture. */
+.den-colouring-book .cat-tabs{display:none}
+.den-colouring-book .book-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%;max-width:1100px;margin:0 auto;gap:22px;padding:12px}
+.den-colouring-book .book-card{padding:16px 16px 12px;border:1px solid #c7b187;border-radius:22px;background:#fffaf0;box-shadow:0 5px 16px #5f46231a;transform:none;overflow:hidden}
+.den-colouring-book .book-card canvas,.den-colouring-book .book-card .book-thumb{width:100%;height:auto;aspect-ratio:1;object-fit:contain;border-radius:12px;background:#fff;display:block}
+.den-colouring-book .book-card .name{display:block;font:700 20px/1.3 var(--font);margin:12px 0 3px;color:#49613b}
+.book-invitation{font:14px var(--read);color:#807057}.den-colouring-book .book-stars{display:none}
+@media(max-width:750px){.den-colouring-book .book-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:8px}.den-colouring-book .book-card{padding:10px}.den-colouring-book .book-card .name{font-size:17px}}
+/* The painted door supplies the wood and hinges; only the small mail flap moves. */
+.ff-mail-lid{opacity:0}
+.ff-mail-opening{opacity:0}
+.ff-game[data-mail=den-letter] .ff-mail-opening{animation:ff-slot-open 2.1s ease-in-out both}
+@keyframes ff-lid-open{0%,20%{opacity:0;transform:scaleY(1)}25%{opacity:1;transform:scaleY(1)}40%,65%{opacity:1;transform:scaleY(.12)}85%{opacity:1;transform:scaleY(1)}90%,100%{opacity:0;transform:scaleY(1)}}
+@keyframes ff-slot-open{0%,23%,90%,100%{opacity:0}28%,85%{opacity:1}}
+.ff-letter-paper{border-radius:8px;padding:28px 32px 16px;background:radial-gradient(ellipse at 30% 10%,#fffef6,#f7ecd4);border-color:#cfb98c;box-shadow:0 9px 25px #4e321e40,inset 0 0 26px #bfa16b12}
+.ff-letter-illustration{background-image:url(../assets/forest-friends/postcard-friends.webp);background-size:300% 200%;background-repeat:no-repeat;width:230px;height:230px;filter:drop-shadow(0 4px 3px #73583b16)}
+.ff-letter-stamp{border-color:#aab88c;background:#eef1df;rotate:8deg}
+@media(max-width:600px){.ff-letter-illustration{width:200px;height:200px}.ff-letter-paper{padding:25px 18px 12px}}
+@media(prefers-reduced-motion:reduce){.ff-mail-opening,.ff-mail-lid{opacity:0!important;animation:none!important}}

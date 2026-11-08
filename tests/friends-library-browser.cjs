@@ -50,10 +50,10 @@ const shots=process.env.FARBTUPF_SHOTS||'/tmp/farbtupf-library';fs.mkdirSync(sho
   assert.equal(await page.evaluate(()=>FK.current()),'friends');
   assert.equal(await page.evaluate(()=>FK.progress.stars()),0);
   await click('Waldspiele');await page.keyboard.press('Escape');assert.equal(await page.evaluate(()=>FK.current()),'friends');
-  await home();await page.locator('[data-place="drawing"]').click();
+  await home();await page.locator('[data-place="drawing"]').click();assert.equal(await page.evaluate(()=>FK.current()),'book');await back();await click('Waldspiele');await click('Malatelier');
   assert.equal(await page.locator('.play-library-intro h2').innerText(),'Dein Malatelier');
   await click('Freies Malen');await page.waitForFunction(()=>document.querySelector('.screen-free .paper canvas')?.width>0);
-  for(const label of ['Stift','Stempel','Eimer','Gummi','Grösse','Spiegel','Neu','Speichern'])assert.equal(await page.getByRole('button',{name:label,exact:true}).isVisible(),true,label);
+  for(const label of ['Stift','Eimer','Gummi','Grösse','Spiegel','Neu','Speichern'])assert.equal(await page.getByRole('button',{name:label,exact:true}).isVisible(),true,label);
   await snapshot('atelier-1024');
   const paper=page.locator('.screen-free .paper'),box=await paper.boundingBox();
   await page.mouse.move(box.x+box.width*.3,box.y+box.height*.4);await page.mouse.down();await page.mouse.move(box.x+box.width*.7,box.y+box.height*.7,{steps:30});await page.mouse.up();
@@ -61,12 +61,12 @@ const shots=process.env.FARBTUPF_SHOTS||'/tmp/farbtupf-library';fs.mkdirSync(sho
   const before=await page.evaluate(async()=>{const s=await FK.store.get('free');return {gid:s.gid,size:s.paint.size};});assert.ok(before.size>0);
   await back();await click('Ausmalen');assert.ok(await page.locator('.book-card').count()>0);await back();await back();
   assert.equal(await page.evaluate(()=>FK.current()),'friends');
-  await page.reload();await page.waitForFunction(()=>window.FK?.friends);await home();await page.locator('[data-place="drawing"]').click();await click('Freies Malen');
+  await page.reload();await page.waitForFunction(()=>window.FK?.friends);await home();await click('Waldspiele');await click('Malatelier');await click('Freies Malen');
   assert.deepEqual(await page.evaluate(async()=>{const s=await FK.store.get('free');return {gid:s.gid,size:s.paint.size};}),before);
   await back();await back();await click('Waldspiele');await page.setViewportSize({width:390,height:844});await snapshot('library-390');
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
   await click('Mit Maus spielen');await page.locator('[data-game="friends-mouse"]').click();assert.equal(await page.evaluate(()=>FK.current()),'friends');assert.equal(await page.locator('.ff-task-scene').isVisible(),true);await snapshot('reading-390');await click('Zurück');
-  await home();await home();await page.locator('[data-place="drawing"]').click();await click('Freies Malen');await snapshot('atelier-390');assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+  await home();await click('Waldspiele');await click('Malatelier');await click('Freies Malen');await snapshot('atelier-390');assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
   // Original bookmarks retain their settings; v2 never rewrites their difficulty.
   await page.goto(BASE+'/?screen=hub');assert.equal(await page.locator('.island-levels').count(),1);assert.equal(await page.evaluate(()=>FK.learning.stage()),3);assert.equal(await page.evaluate(()=>FK.settings.get('read.lvl')),3);assert.equal(await page.evaluate(()=>FK.settings.get('dots.level')),3);
   assert.deepEqual(errors,[]);console.log('PASS: 21 restored games, 5 new rounds, all host filters, fixed level, currency-free completion, v2 returns, original gear, full atelier tools and drawing persistence, phone layouts, legacy settings.');

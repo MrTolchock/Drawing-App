@@ -12,6 +12,7 @@ Open `http://127.0.0.1:8000`. Browser scripts require Playwright and Chromium. T
 | Check | Coverage |
 | --- | --- |
 | `tests/friends-mail-browser.cjs` | Closed-door letter delivery, friend arrow, puzzle completion, nearby mailman, next letter, refresh and offline continuity |
+| `tests/den-browser.cjs` | Fox lying on the mattress, visible shelf books, direct free colouring, new outlines/postcards, back navigation, gallery save/resume and offline restoration at tablet/phone sizes |
 | `tests/friends-library-browser.cjs` | Restored v2 catalogue, new host assignments, fixed difficulty, return paths, original gear and full atelier persistence |
 | `tests/world-browser.cjs` | Free walking, held touch, discoveries, map, camera, responsive controls and offline positions |
 | `tests/cinema-browser.cjs` | Opening, requests, heartlight, reunion, saved finale and framed faces |

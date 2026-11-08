@@ -18,7 +18,7 @@ The game is for children aged 7–8 in Zürich, Switzerland. Use Swiss Standard 
 
 The main loop must be understandable through the letter, a character portrait, the directional arrow, recognisable places, replayable speech and separate worked examples. The invitation letter contains decorative, unreadable handwriting and a clear picture of its recipient. It is a pictured invitation, not a reading exercise. Never depend on deciphering its marks to choose the destination.
 
-At home, the closed doorway, letter, drawing table and bed are directly actionable. The player clicks or taps to open the letter, then leaves the den. Outdoors, clicking/tapping the ground moves Fuchs; an arrow guides the route to the active recipient or mailman. There is no movement pad, keyboard walking or jump feature. Buttons remain keyboard accessible. Keep meaningful German accessibility names and optional captions.
+At home, the closed doorway, letter, drawing table, pile of pictures and bed are directly actionable. The table opens Ausmalen directly; the picture pile opens Meine Bilder. Place the Waldspiele book button beside the shelf books so the books remain visible. The player clicks or taps to open the letter, then leaves the den. Outdoors, clicking/tapping the ground moves Fuchs; an arrow guides the route to the active recipient or mailman. There is no movement pad, keyboard walking or jump feature. Buttons remain keyboard accessible. Keep meaningful German accessibility names and optional captions.
 
 The user endorsed the characters and den artwork. Preserve the warm painted appearance and the original illustrated puzzles. Learning rounds use 2D paper and painted objects; the forest, moving characters and guidance arrow use 3D. Preserve frozen baseline files; record intentional departures as new milestone evidence.
 
@@ -94,7 +94,7 @@ The guidance arrow follows the active invitation, not an arbitrary reward destin
 
 Hase wanders freely on walkable forest ground. After puzzle completion he is staged very near Fuchs, within a short click/tap walk and in a readable camera view. He should remain easy to catch for delivery rather than walking away as the child approaches. His regular wandering resumes between deliveries. No route may cross solid trunks or water without the bridge.
 
-The den's closed door and mail lid belong to the home scene. Reduced motion keeps the arriving envelope visible without requiring an animation; the same letter-opening action and saved outcome remain available.
+The den's closed wooden door and brass mail lid use the same painted texture, shading and perspective as the room. Remove the loose floor cushion. Sleeping places Fuchs lying sideways on the bed's mattress, with his paws and tail curled in; resizing must keep him on the bed. Reduced motion keeps the arriving envelope visible without requiring an animation; the same letter-opening action and saved outcome remain available. An opened postcard uses a large, sharp character illustration on warm paper, not an enlarged small control icon.
 
 ## 4. Characters and assignments
 
@@ -157,8 +157,6 @@ The catalogue below has one puzzle type per row, grouped by category. Existing a
 | Optional enrichment | Spot the difference | Find changes between two forest scenes | Proposed |
 | Creativity | Free drawing | Express ideas through drawing | Existing |
 | Creativity | Colouring | Colour illustrated scenes | Existing |
-| Creativity | Guided colouring | Follow visual colour rules | Existing |
-| Creativity | Picture stamps | Compose pictures using stamps | Existing |
 
 Creative missions are a source collection outside this table; add each selected mission as its own named row with a learning objective.
 
@@ -168,7 +166,9 @@ Use one difficulty level for every puzzle. Vary questions and story objects with
 
 ## 6. Free creativity and completion feedback
 
-The full original Malatelier remains at Fuchs's table: free drawing, colouring, stamps, fill, eraser, brush sizes, mirror/kaleidoscope, paper colours, undo and the saved-picture gallery. All included pages, pencils and colours are available without earning or spending anything. Preserve each existing picture and colouring page.
+Fuchs's table opens **Ausmalen** directly, showing six polished woodland illustrations with clear closed outlines and generous areas to colour. A picture opens immediately in **Frei**. Do not offer Würfel, Zahlen, Silben or colour-word modes in the current adventure, and remove Stempel from both colouring and free drawing. Keep pencils, brushes, fill, patterns, eraser, brush sizes, undo and saved pictures. Freies Malen remains available through Waldspiele → Malatelier, including mirror/kaleidoscope and coloured paper. All pages, pencils and colours are freely available.
+
+A pile of pictures beside the table has a separate **Meine Bilder** button that opens the gallery directly. Back from a picture returns to picture selection; when opened from Meine Bilder, it returns to the gallery. Label undo **Rückgängig** so it cannot be confused with navigation. Preserve each existing saved picture and original page identifier; older pages and guided-mode data remain compatible in the historical game.
 
 Puzzle completion is acknowledged with the friend's friendly reaction and the next delivery. The current adventure has no coins, host tokens, prices, purchases, shop, reward multipliers or consumable inventory flow. Existing numerical progress records can be retained for save compatibility; they do not become a currency in this loop. No drawing activity is gated behind the puzzle journey.
 

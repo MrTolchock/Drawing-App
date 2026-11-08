@@ -10,7 +10,8 @@ A woodland learning game for first-grade practice in Zürich, in Swiss Standard 
 - Click/tap to walk through the 3D forest. A directional arrow guides Fuchs to the pictured friend, then to the nearby mailman after a completed puzzle. There are no movement arrows, keyboard walking or jumping.
 - Hase roams as a recognizable mailman with postal clothing and a satchel. He delivers new letters and never presents puzzles.
 - The five puzzle friends offer both the original illustrated catalogue and the five newer rounds, at one fixed level. The picture-book overview remains available for direct selection.
-- No shop, coins, host-token rewards, prices or purchases in the current adventure. The full Malatelier and all included tools, colours and pages are free at the fox's table.
+- The table opens Ausmalen directly with six illustrated woodland pages and free colouring only, without stamps. The picture pile beside it opens Meine Bilder. Freies Malen remains in Waldspiele → Malatelier; all included tools, colours and pages are free.
+- The fox lies in his bed to sleep. The painted door matches the den, and opened letters show large illustrated portraits. The current adventure has no shop, coins, prices or purchases.
 - Exact interrupted newer puzzles, invitation progress, drawings and separate audio controls remain local. Adults can export or delete bounded anonymous gameplay logs.
 - Offline play follows the initial successful download. Speech depends on installed voices; device and child testing follow implementation.
 

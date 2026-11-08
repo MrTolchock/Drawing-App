@@ -124,6 +124,17 @@ export function fox(height=1.6){
   add(tailTip,new THREE.Mesh(taper([[0,0,0],[.02,-.03,-.18],[.1,.06,-.36],[.24,.26,-.44],[.32,.48,-.38],[.32,.62,-.27]],plume(.06,.215,.56,.6),{color:t=>mix(C('#de6a26'),C('#f8ecd8'),smooth(.64,.72,t))}),mat('#ffffff',{vc:true})),[0,0,0]);
   tail.rotation.set(.1,.55,0);
   const parts={root,body,bodyY:0,head,eyes,ears,arms,legs,tail,tailTip};const rig=finish(group,parts,height);
+  const animate=rig.update,headRest=head.position.clone(),bodyRestY=body.rotation.y,tailRestZ=tail.rotation.z;
+  rig.update=(dt,state={})=>{
+    head.position.copy(headRest);body.rotation.y=bodyRestY;tail.rotation.z=tailRestZ;animate(dt,state);
+    if(state.action==='sleep'){
+      body.rotation.set(.08,.05,1.48);body.position.y=.25;
+      head.position.y=.87;head.rotation.set(.15,.05,-.18);
+      tail.rotation.set(-.15,2.25,-.12);tailTip.rotation.y=-.25;
+      arms.forEach((a,i)=>a.rotation.set(-.9,0,i?-.35:.35));
+      legs.forEach((l,i)=>l.rotation.set(-1.5,0,i?-.25:.25));
+    }
+  };
   rig.paw=arms[1];return rig;
 }
 export function squirrel(height=1.05){

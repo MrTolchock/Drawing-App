@@ -23,6 +23,7 @@
     c.height = rec.H;
     const g = c.getContext('2d');
     const page = rec.pageId ? FK.art.find(rec.pageId) : null;
+    if(page?.ready)await page.ready;
     if (page) FK.art.renderOutline(c, page, 3.2 * (rec.k || 2), [117, 89, 60]);
     g.globalCompositeOperation = 'destination-over';
     g.drawImage(img, 0, 0);
@@ -89,7 +90,7 @@
       body,
       actions: [
         { label: 'Weitermalen', icon: 'pencil', cls: 'btn-sun', onClick: () => {
-          if (rec.kind === 'color' && rec.pageId && FK.art.find(rec.pageId)) FK.go('color', { pageId: rec.pageId, mode: rec.mode || 'frei', bild: rec });
+          if (rec.kind === 'color' && rec.pageId && FK.art.find(rec.pageId)) FK.go('color', { pageId: rec.pageId, mode: rec.mode || 'frei', bild: rec,from:'gallery' });
           else FK.go('free', { bild: rec });
         } },
         { label: 'In Fotos', icon: 'share', keepOpen: true, onClick: () => share(rec, full) },

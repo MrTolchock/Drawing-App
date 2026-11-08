@@ -292,6 +292,8 @@
     },
     enter(params) {
       active = true;
+      el.stamp.hidden=!!FK.friendsLibrary?.active;
+      if(FK.friendsLibrary?.active&&T.kind==='stamp')T.kind='brush';
       pencils.select(T.colorId);
       applyTool();
       loaded = false;

@@ -4,10 +4,10 @@ import {createAudio} from './audio.js';
 const FK=window.FK,h=FK.h,C=window.FriendsContent;
 let root,canvas,world,state,audio,overlay,hotspots,nav,statusBar,nearButton,caption,leaves,fader,doorScene,denEnvelope;
 let area='den',panel=null,host=null,example=false,feedbackTimer=null,activeMs=0,lastTick=performance.now(),pendingDrawing=null,returnArea='den';
-const actionPictures={outside:'door',drawing:'pencils',sleep:'bed',games:'book'};
-const actionNames={outside:'Nach draussen',drawing:'Zeichnen und ausmalen',sleep:'Schlafen',games:'Waldspiele'};
+const actionPictures={outside:'door',drawing:'pencils',sleep:'bed',games:'book',gallery:'gallery'};
+const actionNames={outside:'Nach draussen',drawing:'Ausmalen',sleep:'Schlafen',games:'Waldspiele',gallery:'Meine Bilder'};
 const envelopeSVG='<svg viewBox="0 0 120 85" aria-hidden="true"><rect x="3" y="5" width="114" height="75" rx="7" fill="#fff6dc" stroke="#967044" stroke-width="3"/><path d="m5 76 40-33m70 33L75 43M5 9l55 43 55-43" fill="none" stroke="#b59466" stroke-width="3"/><circle cx="60" cy="53" r="9" fill="#a9bb85"/><path d="m56 53 3 3 5-7" fill="none" stroke="#547043" stroke-width="2"/></svg>';
-const doorSVG=`<svg viewBox="0 0 1448 1086" preserveAspectRatio="none"><defs><linearGradient id="door-wood" x2="1" y2=".2"><stop stop-color="#81512d"/><stop offset=".4" stop-color="#b88046"/><stop offset=".8" stop-color="#a66d39"/><stop offset="1" stop-color="#684123"/></linearGradient><filter id="door-paper"><feTurbulence type="fractalNoise" baseFrequency=".17" numOctaves="3" seed="12"/><feComposite in2="SourceGraphic" operator="in"/><feBlend in="SourceGraphic" mode="soft-light"/></filter><clipPath id="door-clip"><path d="M1078 440C1037 338 1071 205 1146 149 1240 80 1362 91 1403 194 1430 263 1400 386 1359 473Z"/></clipPath></defs><g clip-path="url(#door-clip)"><path d="M1040 95h410v410h-410z" fill="url(#door-wood)"/><g fill="none" stroke="#694124" stroke-width="4" opacity=".6"><path d="M1110 95v420m54-420v420m54-420v420m54-420v420m54-420v420m54-420v420"/><path d="M1098 225q24 32 3 72m77-142q-19 48 1 93m93 81q-18 51 2 88m48-260q24 31 3 68m-170 58q-20 42 4 64"/></g><path d="M1077 421 1412 442M1078 210l324 21" stroke="#d8a05e" stroke-width="15" opacity=".35"/><path d="M1076 414 1402 436M1075 204l329 21" stroke="#6f472b" stroke-width="8"/><g fill="#5d513f" stroke="#c0a06d" stroke-width="2"><path d="M1090 226h45l14 8-14 9h-45zm1 154h45l14 8-14 9h-45z"/><circle cx="1350" cy="330" r="13" fill="#d6aa59"/></g><rect x="1184" y="298" width="119" height="33" rx="8" fill="#583c27" stroke="#d8ad60" stroke-width="5"/><path class="ff-mail-lid" d="M1183 297h120v28h-120z" fill="#c39b51" stroke="#e2bf7a" stroke-width="3"/></g><path d="M1078 440C1037 338 1071 205 1146 149 1240 80 1362 91 1403 194 1430 263 1400 386 1359 473Z" fill="none" stroke="#734a2c" stroke-width="7"/></svg>`;
+const doorSVG=`<svg viewBox="0 0 1448 1086" preserveAspectRatio="none"><defs><linearGradient id="letter-flap" x2="0" y2="1"><stop stop-color="#cc9743"/><stop offset=".5" stop-color="#e5bd70"/><stop offset="1" stop-color="#ae7633"/></linearGradient></defs><rect class="ff-mail-opening" x="1180" y="280" width="106" height="34" rx="3" fill="#49331f"/><rect class="ff-mail-lid" x="1180" y="280" width="106" height="34" rx="3" fill="url(#letter-flap)" stroke="#d7af64" stroke-width="2"/></svg>`;
 function syncMail(){
   if(!world||!state||!doorScene)return;
   const m=state.mail();root.dataset.mail=m.phase;
@@ -21,8 +21,8 @@ function positionDoor(){
   if(!sizes[0]||!sizes[1])return;
   Object.assign(doorScene.style,{width:sizes[0]+'px',height:sizes[1]+'px',left:(pos[0]||0)+'px',top:(pos[1]||0)+'px'});
   const ew=Math.max(65,sizes[0]*.075),eh=Math.max(48,ew*85/120);
-  Object.assign(denEnvelope.style,{left:((pos[0]||0)+sizes[0]*(1243.5/1448)-ew/2)+'px',top:((pos[1]||0)+sizes[1]*.435)+'px',width:ew+'px',height:eh+'px'});
-  denEnvelope.style.setProperty('--ff-mail-start-y',(sizes[1]*(314.5/1086-.435)-eh/2)+'px');
+  Object.assign(denEnvelope.style,{left:((pos[0]||0)+sizes[0]*(1233/1448)-ew/2)+'px',top:((pos[1]||0)+sizes[1]*.435)+'px',width:ew+'px',height:eh+'px'});
+  denEnvelope.style.setProperty('--ff-mail-start-y',(sizes[1]*(297/1086-.435)-eh/2)+'px');
 }
 function showLetter(fromMailman){
   const before=state.mail();
@@ -31,15 +31,19 @@ function showLetter(fromMailman){
   open('letter');syncMail();
   const id=state.mail().host,card=shell('letter');card.classList.add('ff-letter-card');
   const letter=h('div',{class:'ff-letter-paper','aria-label':'Ein Bilderbrief von '+C.hosts[id].name},
-    h('div',{class:'ff-letter-stamp'},art('leaf')),art(id,'ff-letter-friend'),
+    h('div',{class:'ff-letter-stamp'},art('leaf')),letterPortrait(id),
     h('div',{class:'ff-letter-scribbles','aria-hidden':'true',html:'<svg viewBox="0 0 320 100"><path d="M15 18q8-16 18 0t18-2 19 0 22-1m16 0q12-12 24-1t24 0 20-1 25 0 23-2M15 44q10-15 18-1t18 0 24-1 21 0m15 0q14-14 24 0t26-1 22 0 22 0M15 70q9-12 18 0t22 0 22 0m16 0q12-14 24-1t21 0 23-1 25 0 22 0" fill="none" stroke="#877257" stroke-width="3" stroke-linecap="round"/></svg>'}));
   card.append(letter,button('Zum Freund gehen','door',()=>go('forest'),'ff-letter-go'));
   say('Ein Brief von '+C.hosts[id].name+'! Schau auf das Bild. Draussen zeigt dir der Pfeil den Weg.');
 }
+function letterPortrait(id){
+  const cells={squirrel:[0,0],bird:[1,0],owl:[2,0],beaver:[0,1],mouse:[1,1]},[x,y]=cells[id];
+  return h('span',{class:'ff-letter-friend ff-letter-illustration',role:'img','aria-label':C.hosts[id].name,'data-friend':id,style:{backgroundPosition:(x*50)+'% '+(y*100)+'%'}});
+}
 // Painted pictures where the reviewed art exists: friends from the forest painting and character sheet,
 // nouns from the original Waldatelier sheets. Action poses, nuts, shapes and controls stay drawn.
 const paintedFriends={fox:'fox-front',squirrel:'squirrel',bird:'bird',owl:'owl',mouse:'mouse'};
-const paintedWords={tree:'tree',book:'book',mouse:'mouse',bird:'bird',owl:'owl',fox:'fox',apple:'apple',leaf:'leaf',feathers:'feather',berries:'blueberries',pencils:'pencil',bed:'bed',bag:'picnic',beaver:'beaver',hat:'hat',rose:'rose',nose:'nose',fish:'fish',ball:'ball',boat:'boat',cow:'cow',hare:'rabbit',tin:'tin',bus:'bus',star:'star',whale:'whale'};
+const paintedWords={tree:'tree',book:'book',mouse:'mouse',bird:'bird',owl:'owl',fox:'fox',apple:'apple',leaf:'leaf',feathers:'feather',berries:'blueberries',pencils:'pencil',bed:'bed',bag:'picnic',gallery:'pictures',beaver:'beaver',hat:'hat',rose:'rose',nose:'nose',fish:'fish',ball:'ball',boat:'boat',cow:'cow',hare:'rabbit',tin:'tin',bus:'bus',star:'star',whale:'whale'};
 function art(name,cls=''){
   if(name==='letter')return h('span',{class:'ff-picture',html:envelopeSVG});
   if(name==='mailman')return h('span',{class:'ff-picture ff-mailman-picture'},FK.visual.art('rabbit'),h('i',{html:envelopeSVG}));
@@ -75,12 +79,12 @@ function go(next,restore=false){
 function renderNav(){nav.replaceChildren();if(state.development)nav.append(h('strong',{class:'ff-dev',text:'ENTWICKLUNG'}));
   nav.append(button('Bildkarte','map',map),button('Dein Brief','letter',()=>showLetter(false)),button('Anleitung wiederholen','speaker',()=>{state.record('instruction_replay',{area});audio.say(caption.textContent);}),button('Waldspiele','book',()=>games()),button('Einstellungen für Erwachsene','gear',()=>FK.ui.parentGate(settings)));
 }
-function renderHotspots(){if(panel)return;hotspots.replaceChildren();const ids=area==='forest'?Object.keys(places):['outside','drawing','sleep','games'];for(const id of ids){const p=places[id];if(id==='mailman'&&state.mail().phase!=='to-mailman')continue;const b=button(area==='forest'?p.name:actionNames[id],area==='forest'?p.picture:actionPictures[id],()=>act(id),'ff-hotspot');b.dataset.place=id;hotspots.append(b);}}
+function renderHotspots(){if(panel)return;hotspots.replaceChildren();const ids=area==='forest'?Object.keys(places):['outside','drawing','gallery','sleep','games'];for(const id of ids){const p=places[id];if(id==='mailman'&&state.mail().phase!=='to-mailman')continue;const b=button(area==='forest'?p.name:actionNames[id],area==='forest'?p.picture:actionPictures[id],()=>act(id),'ff-hotspot');b.dataset.place=id;hotspots.append(b);}}
 function act(id){if(panel)return;if(area==='forest'){
   const destination=places[id];if(!destination)return;
   const p=world.position;if(Math.hypot(p.x-destination.x,p.z-destination.z)>3.2){world.route(id);say('Folge Fuchs zu '+(C.hosts[id]?.name||(id==='home'?'deinem Zuhause':'dem Briefträger'))+'.');return;}
   if(id==='home')go('den');else if(id==='mailman'){if(state.mail().phase==='to-mailman')showLetter(true);else say('Der Briefträger bringt dir nach deinem Besuch einen neuen Brief.');}else if(state.mail().phase==='den-letter')showLetter(false);else meet(id);
-}else if(id==='outside'){if(state.mail().phase==='den-letter')showLetter(false);else go('forest');}else if(id==='games')games();else if(id==='drawing')games('atelier');else if(id==='sleep')sequence('sleep');}
+}else if(id==='outside'){if(state.mail().phase==='den-letter')showLetter(false);else go('forest');}else if(id==='games')games();else if(id==='drawing')FK.go('book',{from:'friends'});else if(id==='gallery')FK.go('gallery');else if(id==='sleep')sequence('sleep');}
 // The original Waldspiele and story puzzles open in their own book and return here.
 function games(resident){if(panel)close();state.record('games_open',{resident:resident||'all'});world.pause(true);FK.go('forest-book',{from:'friends',...(resident?{resident}:{})});}
 function map(){if(state.mail().phase==='den-letter'){showLetter(false);return;}open('map');const card=shell('map');const board=h('div',{class:'ff-map'});for(const[id,p]of Object.entries(places)){const b=button(p.name,p.picture,()=>{if(area!=='forest')go('forest');else close();world.route(id);say('Fuchs geht zu '+(C.hosts[id]?.name||(id==='home'?'deinem Zuhause':'dem Briefträger'))+'.');});if(p.pu!==undefined){b.style.left=(FK.clamp(p.pu,.14,.86)*100)+'%';b.style.top=(FK.clamp(p.pv,.16,.84)*100)+'%';}else{b.style.left=(50+p.x*2.8)+'%';b.style.top=(48+p.z*2.1)+'%';}board.append(b);}card.append(board);say('Wähle ein Bild. Fuchs zeigt dir den Weg.');}
