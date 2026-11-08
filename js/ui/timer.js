@@ -3,6 +3,7 @@
   'use strict';
   const FK = window.FK, h = FK.h, timer = FK.playTimer;
   let bar, openPanel = null, initialized = false;
+  const activity=()=>timer.setActive(!document.hidden&&!['parents','settings'].includes(FK.current())&&!openPanel);
   const elements = new Set();
   function icon(name) {
     const paths = {
@@ -27,7 +28,8 @@
   }
   function render(state) {
     const enabled = state.mode !== 'off';
-    if (bar) { bar.hidden = !enabled; document.body.classList.toggle('play-timer-enabled', enabled); }
+    const showBar=enabled&&FK.current()!=='settings';
+    if (bar) { bar.hidden = !showBar; document.body.classList.toggle('play-timer-enabled', showBar); }
     const value = FK.playTimerFormat(state.displayMs, state.mode === 'countdown');
     const caption = state.completed ? 'Zeit für eine Pause' : state.running ? state.active ? 'Spielzeit' : 'Start beim Weiterspielen' : 'Pause';
     for (const el of elements) {
@@ -75,11 +77,12 @@
     if (forest) FK.forestScene?.stop();
     const config = settings(), previousFocus = document.activeElement;
     openPanel = FK.ui.modal({ title: 'Spielzeit', body: config.element, cls: 'play-timer-modal', onClose() {
-      config.dispose(); openPanel = null;
+      config.dispose(); openPanel = null;activity();
       if (FK.current() === 'forest' && !document.querySelector('.screen-forest.has-dialog')) FK.forestScene?.start();
       const target = previousFocus.closest?.('.play-timer-bar') && timer.get().mode === 'off' ? document.querySelector('.screen:not([hidden]) button') : previousFocus;
       if (target?.isConnected) target.focus({ preventScroll: true });
     } });
+    activity();
     openPanel.el.addEventListener('keydown', event => {
       if (event.key !== 'Tab') return;
       const buttons = [...openPanel.el.querySelectorAll('button:not(:disabled)')].filter(b => b.getClientRects().length);
@@ -97,10 +100,9 @@
     const label = button('Spielzeit-Uhr öffnen', el.wrap, open, 'play-timer-summary');
     bar = h('aside', { class: 'play-timer-bar', 'aria-label': 'Spielzeit', hidden: true }, label, h('div', { class: 'play-timer-actions' }, el.toggle, el.reset));
     document.body.append(bar); timer.subscribe(render);
-    const active = () => timer.setActive(!document.hidden && FK.current() !== 'parents');
-    FK.on('screen', active); document.addEventListener('visibilitychange', active); window.addEventListener('pageshow', active); window.addEventListener('pagehide', () => timer.flush());
-    window.setInterval(() => timer.tick(), 250); active();
-    timer.onComplete(() => { FK.sound.right(); FK.forestVoice.say('Zeit für eine Pause. Dein Abenteuer wartet auf dich.'); FK.ui.toast('Zeit für eine Pause. Dein Abenteuer wartet auf dich.'); });
+    FK.on('screen', activity); document.addEventListener('visibilitychange', activity); window.addEventListener('pageshow', activity); window.addEventListener('pagehide', () => timer.flush());
+    window.setInterval(() => timer.tick(), 250); activity();
+    timer.onComplete(() => { FK.sound.right(); FK.ui.toast('Zeit für eine Pause. Dein Abenteuer wartet auf dich.'); });
   }
   FK.timerUI = { init, open, launcher, settings };
 })();

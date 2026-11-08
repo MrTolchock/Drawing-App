@@ -17,8 +17,6 @@ export const forestPlaces={
   mouse:{x:7.0,z:5.3,picture:'mouse',name:'Zu Maus',...pin(852,532)},
 };
 export const forestExits={den:forestPlaces.home};
-const leafSpots=[[4,1.4],[-12.5,-3],[-4,-13.5],[3.5,-12],[9.2,-9.5],[18.5,-6],[19,3.5],[11,10.5],[2.5,10],[-5,12],[-13,8],[-15.5,-9]];
-export const forestCollectibles=leafSpots.map((_,i)=>'goldleaf-'+(i+1));
 
 const stream=[[12.6,-34],[12.1,-20],[12.3,-10],[13,-3],[13.6,4],[14.4,12],[15.8,24],[17,36]];
 const solids=[[0,-8,3.05],[-5.2,-4.2,1],[-10.3,-.7,.55],[-11.6,-14.2,1.1],[8.6,6.8,.95],[-9.6,7.2,.75],[-7.8,7.2,.75],[19.4,-3.9,1.05],[-13.5,-5,1],[-5.5,-16,1],[5,-15.5,1],[-14,4,.9],[3.5,13.5,.9],[-3,15,.9],[17,-10.5,1],[19,7.5,1],[-2,9,.6],[9.6,1.2,.55],[-12,-9,.6]].map(([x,z,r])=>({x,z,r}));
@@ -71,7 +69,7 @@ function bake(root){root.updateMatrixWorld(true);const groups=new Map();
       pos.push(...g.attributes.position.array);nor.push(...g.attributes.normal.array);if(g.attributes.uv)uv.push(...g.attributes.uv.array);else for(let i=0;i<n;i++)uv.push(0,0);cast||=m.castShadow;receive||=m.receiveShadow;order=Math.min(order,m.renderOrder);m.removeFromParent();}
     const geo=new THREE.BufferGeometry();geo.setAttribute('position',new THREE.Float32BufferAttribute(pos,3));geo.setAttribute('normal',new THREE.Float32BufferAttribute(nor,3));geo.setAttribute('uv',new THREE.Float32BufferAttribute(uv,2));
     const merged=new THREE.Mesh(geo,material);merged.castShadow=cast;merged.receiveShadow=receive;merged.renderOrder=order;root.add(merged);}}
-export function createForest({renderer,looks,texture,software,onPosition,onAction,onMove,onNear,onCollect,collected}){
+export function createForest({renderer,looks,texture,software,onPosition,onAction,onMove,onNear}){
   const rng=seeded(97),art=seeded(41),plants=seeded(73),scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(42,1,.1,160);
   scene.background=new THREE.Color('#e4d9a7');scene.fog=new THREE.Fog('#e4d9a7',28,74);
   // Sky dome: pale mint overhead fading to the warm haze that the fog shares at the horizon.
@@ -105,8 +103,6 @@ export function createForest({renderer,looks,texture,software,onPosition,onActio
   const glowTex=drawn(64,64,(g)=>{const r=g.createRadialGradient(32,32,0,32,32,32);r.addColorStop(0,'rgba(255,236,170,1)');r.addColorStop(.35,'rgba(255,205,110,.55)');r.addColorStop(1,'rgba(255,190,90,0)');g.fillStyle=r;g.fillRect(0,0,64,64);});
   const softTex=drawn(64,64,(g)=>{const r=g.createRadialGradient(32,32,0,32,32,32);r.addColorStop(0,'rgba(48,30,14,.6)');r.addColorStop(1,'rgba(48,30,14,0)');g.fillStyle=r;g.fillRect(0,0,64,64);});
   const dustTex=drawn(64,64,(g)=>{const r=g.createRadialGradient(32,32,0,32,32,32);r.addColorStop(0,'rgba(236,205,160,.85)');r.addColorStop(1,'rgba(236,205,160,0)');g.fillStyle=r;g.fillRect(0,0,64,64);});
-  const goldTex=drawn(128,128,(g)=>{g.translate(64,64);g.rotate(-.6);leaf(g,104,58,'#c98a14','#f2c23c','#fff0a0');g.strokeStyle='#a8700e';g.lineWidth=3;g.beginPath();g.moveTo(-52,0);g.lineTo(-62,4);g.stroke();});
-  const starTex=drawn(32,32,(g)=>{g.fillStyle='#fff5c2';g.beginPath();for(let i=0;i<10;i++){const r=i%2?5:15,a=i/10*TAU-Math.PI/2;g.lineTo(16+Math.cos(a)*r,16+Math.sin(a)*r);}g.fill();});
   const butterflyTex=['#f29a3a','#7fb6e8','#f5d24a'].map(c=>drawn(64,48,(g)=>{g.fillStyle=c;for(const s of [-1,1]){g.beginPath();g.ellipse(32+s*14,16,13,12,s*.3,0,TAU);g.fill();g.beginPath();g.ellipse(32+s*11,33,9,8,-s*.3,0,TAU);g.fill();}g.fillStyle='rgba(255,255,255,.6)';for(const s of [-1,1]){g.beginPath();g.arc(32+s*16,13,3,0,TAU);g.fill();}g.fillStyle='#4a3424';g.fillRect(30,8,4,32);}));
   const grass=new THREE.MeshLambertMaterial({map:grassTex}),bark=paint('#9a5631','bark'),woodLight=paint('#d9985a','bark'),cream=paint('#f2e4c6'),moss=paint('#6f9c35'),red=paint('#c63a2c');
   const barks=new Map();function barkTiled(rx,ry){const key=rx+'x'+ry;if(!barks.has(key)){const m=bark.clone();m.map=bark.map.clone();m.map.wrapS=m.map.wrapT=THREE.RepeatWrapping;m.map.repeat.set(rx,ry);m.map.needsUpdate=true;barks.set(key,m);}return barks.get(key);}
@@ -218,7 +214,7 @@ export function createForest({renderer,looks,texture,software,onPosition,onActio
     m.position.set(x,6.5,z);m.scale.set(w,15,1);m.rotation.z=.42;m.renderOrder=4;scene.add(m);return m;});
   const vignette=new THREE.Mesh(new THREE.PlaneGeometry(2,2),new THREE.MeshBasicMaterial({map:drawn(256,256,(g)=>{const r=g.createRadialGradient(128,120,70,128,128,184);r.addColorStop(0,'rgba(80,46,16,0)');r.addColorStop(.55,'rgba(80,46,16,.05)');r.addColorStop(1,'rgba(64,34,12,.38)');g.fillStyle=r;g.fillRect(0,0,256,256);}),transparent:true,depthTest:false,depthWrite:false,fog:false,toneMapped:false}));
   vignette.position.z=-1;vignette.renderOrder=30;vignette.frustumCulled=false;camera.add(vignette);scene.add(camera);
-  // Sprites: painted characters, collectibles, butterflies, dust.
+  // Sprites: painted characters, butterflies and dust.
   function sprite(map,h,order=2,anchor=0){const s=new THREE.Sprite(new THREE.SpriteMaterial({map,transparent:true,toneMapped:false,depthWrite:false,alphaTest:.02}));s.center.set(.5,anchor);s.renderOrder=order;s.userData.h=h;scene.add(s);return s;}
   function size(s,h=s.userData.h,flip=1){const img=s.material.map.image,a=img&&img.width?img.width/img.height:1;s.scale.set(h*a*flip,h,1);}
   function contact(x,z,r,y=.03,o=1){const m=new THREE.Mesh(new THREE.CircleGeometry(1,24),new THREE.MeshBasicMaterial({map:softTex,transparent:true,depthWrite:false,opacity:o,toneMapped:false}));m.rotation.x=-Math.PI/2;m.position.set(x,y,z);m.scale.setScalar(r);m.renderOrder=1;scene.add(m);return m;}
@@ -233,8 +229,6 @@ export function createForest({renderer,looks,texture,software,onPosition,onActio
   const destinationHalo=new THREE.Mesh(new THREE.RingGeometry(.6,.72,40),new THREE.MeshBasicMaterial({color:'#ffe5a0',side:THREE.DoubleSide,transparent:true,opacity:.85,depthWrite:false,toneMapped:false}));destinationHalo.rotation.x=-Math.PI/2;destinationHalo.visible=false;destinationHalo.renderOrder=5;scene.add(destinationHalo);
   let guideTarget=null,guidePoints=[],guideFrom=new THREE.Vector3(Infinity,0,Infinity),guideEnd=new THREE.Vector3(Infinity,0,Infinity),guideNext=0;
   const ring=new THREE.Mesh(new THREE.RingGeometry(.4,.52,32),new THREE.MeshBasicMaterial({color:'#fff3c4',transparent:true,opacity:.85,depthWrite:false,toneMapped:false}));ring.rotation.x=-Math.PI/2;ring.visible=false;ring.renderOrder=1;scene.add(ring);
-  const golden=leafSpots.map(([x,z],i)=>{const s=sprite(goldTex,.55,3,.5),h=new THREE.Sprite(new THREE.SpriteMaterial({map:glowTex,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,toneMapped:false}));h.scale.setScalar(1.4);h.renderOrder=2;scene.add(h);size(s);return {id:forestCollectibles[i],x,z,sprite:s,halo:h,taken:false};});
-  const sparks=Array.from({length:10},()=>{const s=sprite(starTex,.22,6,.5);size(s);s.visible=false;return {s,v:new THREE.Vector3(),life:0};});
   const butterflies=Array.from({length:8},(_,i)=>{const s=sprite(butterflyTex[i%3],.32,4,.5);const home=[[-6,4],[3,7],[-9,-7],[9,-1],[-2,-11],[15,6],[-13,0],[5,-9]][i];return {s,hx:home[0],hz:home[1],x:home[0],z:home[1],y:1,phase:rng()*TAU,flee:0};});
   const puffs=Array.from({length:10},()=>{const s=sprite(dustTex,.4,1,.5);s.visible=false;return {s,life:0};});
   const motes=new THREE.Points(new THREE.BufferGeometry().setAttribute('position',new THREE.Float32BufferAttribute(Array.from({length:240},(_,i)=>i%3===1?.6+rng()*5:(rng()*2-1)*24+(i%3===0?2:-2)),3)),new THREE.PointsMaterial({size:.28,map:glowTex,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,opacity:.75}));scene.add(motes);
@@ -254,8 +248,6 @@ export function createForest({renderer,looks,texture,software,onPosition,onActio
   function walkTo(target,id=null){target=nearestWalkable(target);const route=plan(target);if(!route){onMove({event:'route_failure',reason:'blocked',area:'forest',destination:id});return;}path=route;destination=path.shift();arrival=id;ring.position.set(target.x,groundY(target.x,target.z)+.05,target.z);ring.visible=true;onMove({event:'movement_destination',destination:id,x:target.x,z:target.z,area:'forest'});}
   function snapCamera(){focus.set(pos.x,0,pos.z);placeCamera(1);}
   function placeCamera(k){const off=narrow?[0,10,14.4]:[0,9,14];camera.position.lerp(new THREE.Vector3(focus.x+off[0],focus.y+off[1],focus.z+off[2]),k);camera.lookAt(focus.x,focus.y+1.4,focus.z-3.2);camera.updateMatrixWorld();foxView.value.set(pos.x,groundY(pos.x,pos.z)+.9,pos.z).applyMatrix4(camera.matrixWorldInverse);}
-  function setCollected(map){for(const g of golden){g.taken=!!map[g.id];g.sprite.visible=g.halo.visible=!g.taken;}}
-  function collect(g){g.taken=true;g.sprite.visible=g.halo.visible=false;sparks.forEach((p,i)=>{p.s.visible=true;p.life=.8;p.s.position.set(g.x,.7,g.z);const a=i/sparks.length*TAU;p.v.set(Math.cos(a)*2.2,2.6+Math.sin(i*1.7)*.8,Math.sin(a)*2.2);});onCollect(g.id);}
   function publishMailPosition(){const p=forestPlaces.mailman;p.x=mailPos.x;p.z=mailPos.z;p.pu=THREE.MathUtils.clamp(.5+mailPos.x*.023,.07,.93);p.pv=THREE.MathUtils.clamp(.49+mailPos.z*.025,.1,.9);}
   function summonMailman(){
     let chosen=null;for(const radius of [2.2,2.7,3.2,3.8]){for(let i=0;i<16;i++){const a=-.5+i/16*TAU,candidate=new THREE.Vector3(pos.x+Math.cos(a)*radius,0,pos.z+Math.sin(a)*radius);if(walkable(candidate.x,candidate.z)&&clear(pos,candidate,true)){chosen=candidate;break;}}if(chosen)break;}
@@ -296,9 +288,6 @@ export function createForest({renderer,looks,texture,software,onPosition,onActio
     // Dust puffs while walking.
     if(moving&&!reduced&&time-lastPuff>.17){lastPuff=time;const p=puffs.find(q=>q.life<=0);if(p){p.life=.55;p.s.visible=true;p.s.position.set(pos.x+(rng()-.5)*.3,base+.12,pos.z+.15);}}
     for(const p of puffs)if(p.life>0){p.life-=dt;const k=1-p.life/.55;size(p.s,.25+k*.45);p.s.material.opacity=.5*(1-k);p.s.position.y+=dt*.25;if(p.life<=0)p.s.visible=false;}
-    // Collectibles.
-    for(const g of golden){if(g.taken)continue;const bob=reduced?0:Math.sin(time*2.4+g.x)*.12;g.sprite.position.set(g.x,.75+bob,g.z);g.sprite.material.rotation=reduced?0:Math.sin(time*1.6+g.z)*.4;g.halo.position.copy(g.sprite.position);g.halo.material.opacity=.55+Math.sin(time*3+g.x)*.2;if(Math.hypot(g.x-pos.x,g.z-pos.z)<1.1)collect(g);}
-    for(const p of sparks)if(p.life>0){p.life-=dt;p.v.y-=6*dt;p.s.position.addScaledVector(p.v,dt);p.s.material.opacity=Math.min(1,p.life*2);p.s.material.rotation+=dt*6;if(p.life<=0)p.s.visible=false;}
     // Friends: gentle idle, a happy hop when the fox arrives.
     for(const [id,f]of Object.entries(friends))f.rig.update(dt,{action:near===id?(id==='bird'||id==='owl'?'wave':'hop'):'',reduced});
     // Butterflies wander and flutter away from the fox.
@@ -315,7 +304,7 @@ export function createForest({renderer,looks,texture,software,onPosition,onActio
     focus.lerp(new THREE.Vector3(pos.x+vel.x*.35,base*.5,pos.z+vel.y*.35),reduced?1:1-Math.exp(-dt*2.6));placeCamera(1);
   }
   return {scene,camera,
-    enter(position){const p=position&&walkable(position.x,position.z)?position:forestPlaces.home;pos.set(p.x,0,p.z);vel.set(0,0);fox.rotation.y=0;destination=null;path=[];arrival=null;ring.visible=false;near=null;setCollected(collected());snapCamera();renderer.shadowMap.needsUpdate=true;},
+    enter(position){const p=position&&walkable(position.x,position.z)?position:forestPlaces.home;pos.set(p.x,0,p.z);vel.set(0,0);fox.rotation.y=0;destination=null;path=[];arrival=null;ring.visible=false;near=null;snapCamera();renderer.shadowMap.needsUpdate=true;},
     resize(w,h){width=w;height=h;narrow=w<600;camera.aspect=w/Math.max(1,h);camera.fov=narrow?54:42;camera.updateProjectionMatrix();const vh=Math.tan(THREE.MathUtils.degToRad(camera.fov/2))*1.02;vignette.scale.set(vh*camera.aspect,vh,1);snapCamera();},
     update,route(id){const p=forestPlaces[id];if(id==='mailman'){courierGoal=null;courierWait=20;}if(p)walkTo(new THREE.Vector3(p.x,0,p.z),id);},
     mailTarget(id){guideTarget=forestPlaces[id]?id:null;guidePoints=[];guideNext=0;if(id==='mailman'&&mailPos.distanceTo(pos)>6.5)summonMailman();},summonMailman,

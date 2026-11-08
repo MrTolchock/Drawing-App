@@ -19,7 +19,7 @@ const scenes={den:{need:[.03,.2,.97,.92]}};
 const denSpot=at(300,440),bedSpot=at(80,405),denFrac=.349;
 const pins={den:{outside:at(859,346),drawing:at(899,668),sleep:at(70,410),games:at(370,155),gallery:at(626,650)}};
 
-export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,onMove,onAnimationEnd,onProject,onCollect=()=>{},collected=()=>({}),onJump=()=>{}}){
+export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,onMove,onAnimationEnd,onProject}){
   const software=new URLSearchParams(location.search).has('software');
   const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true,powerPreference:'low-power'});
   renderer.setPixelRatio(software?.5:Math.min(devicePixelRatio||1,1.75));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.05;renderer.setClearColor(0,0);
@@ -64,7 +64,7 @@ export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,o
   const bubbles=Array.from({length:9},()=>sprite(bubbleTex,4,.5)),zs=Array.from({length:3},()=>sprite(zTex,4,.5));
   const props=[...bubbles,...zs];props.forEach(p=>p.userData.on=false);
   let area='den',paused=false,last=performance.now(),time=0,raf,anim=null,keys=new Set(),stick={x:0,z:0},width=0,height=0;
-  const forest=createForest({renderer,looks,texture,software,onPosition,onAction,onMove,onNear,onCollect,collected});
+  const forest=createForest({renderer,looks,texture,software,onPosition,onAction,onMove,onNear});
   const crop={x:0,y:0};
   const pinList={den:[]};for(const [name,list]of Object.entries(pins))for(const [id,p]of Object.entries(list))pinList[name].push({id,point:pinPoint(p.u,p.v)});
   function layout(){

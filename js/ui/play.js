@@ -8,7 +8,7 @@
   const names = { '🐦':'Vogel','🐟':'Fisch','🐈':'Katze','🐌':'Schnecke','🐕':'Hund','🐝':'Biene','🦔':'Igel' };
   function speak(text) { return FK.forestVoice.say(text); }
   function listen(text, label = 'Aufgabe nochmals hören') {
-    return h('button', { type:'button', class:'play-listen', 'aria-label':label, onclick:() => speak(typeof text === 'function' ? text() : text) }, FK.forestArt.icon('speaker'));
+    return h('button', { type:'button', class:'play-listen', 'aria-label':label, onclick:() => FK.forestVoice.explain(typeof text === 'function' ? text() : text) }, FK.forestArt.icon('speaker'));
   }
   // Use one action per finger release. Native compatibility clicks can land on
   // a different object after a drop reorders the DOM; keyboard/mouse clicks stay native.
@@ -60,7 +60,7 @@
     const tour=FK.journey.get().tour,current=FK.journey.step();
     const onTour=current?.game===game&&current.stage===stage;
     return h('div', { class:'play-context' }, (FK.friendsLibrary?.active?FK.friendsLibrary.portrait(friend):FK.forestArt.character(friend)),
-      h('span', { text:FK.friendsLibrary?.active?window.FriendsContent.hosts[friend].name+' spielt mit dir':onTour?'Entdeckertour · Halt '+(tour.index+1)+' von 3':FK.forestStory.names[friend] + ' spielt mit dir' }), listen(prompt),
+      h('span', { text:FK.friendsLibrary?.active?window.FriendsContent.hosts[friend].name+' spielt mit dir':onTour?'Entdeckertour · Halt '+(tour.index+1)+' von 3':FK.forestStory.names[friend] + ' spielt mit dir' }), listen(prompt,FK.friendsLibrary?.active?'Spiel erklären':'Aufgabe nochmals hören'),
       h('span', { class:'play-round', text:(round + 1) + ' / 5' }));
   }
   function attempt(ok){if(!session||session.answered.has(session.round))return;if(ok)session.answered.add(session.round);else session.missed.add(session.round);}

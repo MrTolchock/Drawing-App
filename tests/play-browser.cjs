@@ -24,7 +24,7 @@ function route(q) {
     page.on('pageerror',e=>errors.push(e.message));
     await page.goto(BASE_URL + '/?screen=hub');
     await page.evaluate(()=>{
-      window.spoken=[];FK.forestVoice.say=text=>window.spoken.push(text);
+      window.spoken=[];FK.forestVoice.say=FK.forestVoice.explain=text=>window.spoken.push(text);
       for(const api of [FK.learning,FK.adventures,FK.expeditions]) {
         const make=api.question;api.question=(...args)=>{const q=make(...args);window.testQuestion=q;return q;};
       }
@@ -35,12 +35,12 @@ function route(q) {
     assert.equal(await page.getByRole('button',{name:/Kreativmission/}).count(),0);
     assert.equal(await page.evaluate(()=>FK.screenExists('missions')),false);
     // A normal tap opens the parent gate; the right answer opens functioning settings.
-    await page.getByRole('button',{name:'Einstellungen für Eltern',exact:true}).tap();
+    await page.getByRole('button',{name:'Einstellungen für Erwachsene',exact:true}).tap();
     const task=await page.locator('.gate-task').innerText(), [a,b]=task.match(/\d+/g).map(Number);
     await page.locator('.gate').getByRole('button',{name:String(a*b),exact:true}).tap();
-    assert.equal(await page.evaluate(()=>FK.current()),'parents');
-    await page.locator('label[for="set-sound"]').tap();assert.equal(await page.evaluate(()=>FK.settings.get('sound')),true);
-    await page.locator('label[for="set-sound"]').tap();await page.locator('.screen-parents .btn-back').tap();
+    assert.equal(await page.evaluate(()=>FK.current()),'settings');
+    await page.getByRole('checkbox',{name:'Spielklänge',exact:true}).tap();assert.equal(await page.evaluate(()=>FK.settings.get('sound')),true);
+    await page.getByRole('checkbox',{name:'Spielklänge',exact:true}).tap();await page.locator('.screen-settings .btn-back').tap();
     assert.equal(await page.evaluate(()=>FK.current()),'forest-book');
     const cdp=await context.newCDPSession(page);
     async function drag(from,to) {

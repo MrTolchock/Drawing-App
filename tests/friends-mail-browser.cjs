@@ -43,6 +43,7 @@ const shots=process.env.FARBTUPF_SHOTS||'/tmp/farbtupf-mail';fs.mkdirSync(shots,
   const s=await read(),world=await view();assert.equal(s.completed.squirrel,1);assert.equal(s.rounds.squirrel,undefined);assert.equal(Object.values(s.wallet).reduce((a,b)=>a+b,0),0);
   assert.ok(Math.hypot(world.position.x-world.mailman.x,world.position.z-world.mailman.z)<3.2,'mailman waits close to the fox');
   await snapshot('mailman-1024');await page.setViewportSize({width:390,height:844});await snapshot('mailman-390');await page.setViewportSize({width:1024,height:900});
+  await click('Bildkarte');assert.equal(await page.locator('.ff-map-courier').isVisible(),true);await snapshot('courier-map-1024');await page.setViewportSize({width:390,height:844});await snapshot('courier-map-390');assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);await click('Zurück');await page.setViewportSize({width:1024,height:900});
   await page.locator('[data-place="mailman"]').click();
   assert.equal((await read()).mail.host,'bird');assert.equal((await read()).mail.phase,'to-friend');await snapshot('next-letter-1024');
   await click('Zum Freund gehen');assert.equal((await view()).mailTarget,'bird');

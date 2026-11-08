@@ -13,7 +13,7 @@
     const firstMail=()=>({phase:'den-letter',host:mailHosts[0],index:0,completed:0});
     const prepare=s=>{s.mail=s.mail||firstMail();s.unlocks.leaf=true;s.unlocks.pencils=true;return s;};
     function finishMail(s,host){if(s.mail.phase!=='to-friend'||s.mail.host!==host)return false;s.mail.phase='to-mailman';s.mail.completed++;return true;}
-    const fresh=()=>({schema:SCHEMA,revision:0,contentVersion:content.version,wallet:{nuts:0,seeds:0,feathers:0,logs:0,berries:0},inventory:{apple:0,bath:0},unlocks:{leaf:true,pencils:true},rounds:{},previous:{},completed:{},seenExamples:{},selectedPage:'free',drawings:{free:[],leaf:[]},settings:{music:true,ambience:true,speech:true},world:{x:0,z:5},collected:{},animation:null,transactions:[],legacyPreserved:true,mail:firstMail()});
+    const fresh=()=>({schema:SCHEMA,revision:0,contentVersion:content.version,wallet:{nuts:0,seeds:0,feathers:0,logs:0,berries:0},inventory:{apple:0,bath:0},unlocks:{leaf:true,pencils:true},rounds:{},previous:{},completed:{},seenExamples:{},selectedPage:'free',drawings:{free:[],leaf:[]},settings:{music:true,ambience:true,speech:false},world:{x:0,z:5},collected:{},animation:null,transactions:[],legacyPreserved:true,mail:firstMail()});
     function valid(s){
       const quantity=n=>Number.isSafeInteger(n)&&n>=0;
       const object=o=>o&&typeof o==='object'&&!Array.isArray(o);
@@ -34,7 +34,7 @@
     function decode(raw){try{const s=JSON.parse(raw);return valid(s)?s:null;}catch{return null;}}
     function status(message=''){error=message;onStatus({saved:!error,error,blocked});}
     function record(event,details={}){
-      const timestamp=now();events.push({event,timestamp,sessionId,development,appVersion:'8.1.0',saveVersion:SCHEMA,contentVersion:content.version,...clone(details)});
+      const timestamp=now();events.push({event,timestamp,sessionId,development,appVersion:'8.3.0',saveVersion:SCHEMA,contentVersion:content.version,...clone(details)});
       const kept=events.filter(e=>e.timestamp>=timestamp-RETENTION).slice(-LIMIT);truncated=truncated||kept.length<events.length;events=kept;
       // Logs are independent: log storage failure must never undo saved gameplay.
       try{storage.setItem(logKey,JSON.stringify({events,truncated}));}catch{truncated=true;}
@@ -103,7 +103,8 @@
       acknowledge(host){return commit(s=>{if(!s.rounds[host]?.rewarded)return false;delete s.rounds[host];},'round_acknowledged',{host});},
       help(host,kind){const r=state.rounds[host];if(!r||r.index>=5)return false;return commit(s=>{s.rounds[host].support.push({taskId:r.tasks[r.index].id,kind});},'help',{host,roundId:r.id,taskId:r.tasks[r.index].id,kind});},
       seenExample(host){return commit(s=>{s.seenExamples[host]=true;},'example',{host});},
-      collect(id){if(!/^goldleaf-\d{1,2}$/.test(id))return false;return commit(s=>{s.collected=s.collected||{};if(s.collected[id])return false;s.collected[id]=true;},'collectible_found',{id});},
+      // Old collected records remain readable; golden leaves are retired.
+      collect(){return false;},
       // Kept as inert compatibility methods: purchases and paid treats no longer exist.
       buy(){return false;},
       use(){return false;},
@@ -112,7 +113,7 @@
       position(x,z){return commit(s=>{s.world={x,z};},'movement_sample',{area:'forest',x,z});},
       selectPage(page){return commit(s=>{if(!['free','leaf'].includes(page))return false;s.selectedPage=page;},'drawing_page',{page});},
       draw(page,strokes){return commit(s=>{if(!['free','leaf'].includes(page))return false;s.drawings[page]=clone(strokes);},'drawing_saved',{page,strokes:strokes.length});},
-      exportLog(){const timestamp=now(),retained=events.filter(e=>e.timestamp>=timestamp-RETENTION).slice(-LIMIT);return {schema:1,appVersion:'8.1.0',contentVersion:content.version,development,retention:{days:7,maxEvents:LIMIT,truncated:truncated||retained.length<events.length},retainedFrom:retained[0]?.timestamp||null,retainedTo:retained.at(-1)?.timestamp||null,events:clone(retained)};},
+      exportLog(){const timestamp=now(),retained=events.filter(e=>e.timestamp>=timestamp-RETENTION).slice(-LIMIT);return {schema:1,appVersion:'8.3.0',contentVersion:content.version,development,retention:{days:7,maxEvents:LIMIT,truncated:truncated||retained.length<events.length},retainedFrom:retained[0]?.timestamp||null,retainedTo:retained.at(-1)?.timestamp||null,events:clone(retained)};},
       clearLog(){events=[];truncated=false;try{storage.removeItem(logKey);}catch{}},
       exportSave:()=>({schema:SCHEMA,save:clone(state),original:blocked?expected:undefined}),
     };return api;

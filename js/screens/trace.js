@@ -1034,6 +1034,7 @@
         title: 'Schreiben',
         onBack: () => { if (view === 'play') showOver(); else FK.back(); },
       });
+      bar.append(FK.play.listen('Fahre die Schreibspur mit dem Finger oder Stift nach. Beginne beim Punkt und folge dem Pfeil.','Spiel erklären'));
       backUse = bar.querySelector('.btn-back use');
       tabsEl = h('nav', { class: 'tr-tabs', 'aria-label': 'ABC abc 123' });
       gridEl = h('div', { class: 'tr-grid' });
@@ -1064,6 +1065,7 @@
       else showOver();
     },
     leave() {
+      FK.forestVoice.cancel();
       active = false;
       token++;
       stopActivity();

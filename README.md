@@ -10,9 +10,11 @@ A woodland learning game for first-grade practice in Zürich, in Swiss Standard 
 - Click/tap to walk through the 3D forest. A directional arrow guides Fuchs to the pictured friend, then to the nearby mailman after a completed puzzle. There are no movement arrows, keyboard walking or jumping.
 - Hase roams as a recognizable mailman with postal clothing and a satchel. He delivers new letters and never presents puzzles.
 - The five puzzle friends offer both the original illustrated catalogue and the five newer rounds, at one fixed level. The picture-book overview remains available for direct selection.
-- The table opens Ausmalen directly with six illustrated woodland pages and free colouring only, without stamps. The picture pile beside it opens Meine Bilder. Freies Malen remains in Waldspiele → Malatelier; all included tools, colours and pages are free.
+- The table opens Ausmalen directly with six illustrated woodland pages and free colouring only, without stamps. The picture pile beside it opens Meine Bilder. Waldspiele → Malatelier offers Ausmalen and Meine Bilder; all included tools, colours and pages are free.
 - The fox lies in his bed to sleep. The painted door matches the den, and opened letters show large illustrated portraits. The current adventure has no shop, coins, prices or purchases.
-- Exact interrupted newer puzzles, invitation progress, drawings and separate audio controls remain local. Adults can export or delete bounded anonymous gameplay logs.
+- Matching painted toolbar icons and a woodland picture map use the original character artwork's style. Settings is shared by the forest and Waldspiele, including the optional timer.
+- Speech is off during ordinary play. Each puzzle has one **Spiel erklären** button; wind, birds, rustling foliage and brook sounds accompany the forest. Golden leaves are removed.
+- Exact interrupted newer puzzles, invitation progress, drawings and sound preferences remain local. Adults can export or delete bounded anonymous gameplay logs.
 - Offline play follows the initial successful download. Speech depends on installed voices; device and child testing follow implementation.
 
 The original [Heart Tree adventure](https://mrtolchock.github.io/Drawing-App/?screen=forest), [historical Waldspiele book](https://mrtolchock.github.io/Drawing-App/?screen=hub), drawings and progress remain accessible. Earlier currency/inventory fields are preserved as compatibility data; the new letter journey does not spend them.

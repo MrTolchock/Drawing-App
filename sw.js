@@ -1,7 +1,12 @@
 /* Farbtupf – Service Worker: keeps the whole app on the device so it runs without internet. */
-const CACHE = 'farbtupf-v8.2.0-painted-library';
+const CACHE = 'farbtupf-v8.3.0-woodland-interface';
 const ASSETS = [
   './assets/waldatelier/menu.png',
+  './js/friends/interface.js',
+  './js/friends/settings.js',
+  './assets/forest-friends/interface-icons.webp',
+  './assets/forest-friends/picture-map.webp',
+  './assets/forest-friends/mailman-portrait.webp',
   './js/art/den-pages.js',
   './assets/forest-friends/den-v2.webp',
   './assets/forest-friends/postcard-friends.webp',

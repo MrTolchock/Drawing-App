@@ -44,7 +44,7 @@ Eichhörnchen: «Ich sammle Nüsse für den Winter. Wie viele sind hier?» Hase 
 
 **Initial host:** Blaumeise; reusable by other Reading hosts. **Goal:** read familiar written words and recognise a rhyme. **References:** D.2.A.1.b; supporting rhyme listening D.1.A.1.b. The legacy ID is retained for compatibility, not as a separate Sound category. Use the original game's word-and-picture presentation from `js/screens/adventure.js` and `js/learn/adventures.js`.
 
-Show a large written target with a picture, and two written, pictured choices. Individual audio buttons can pronounce any word; do not hide the writing. «Lies die Wörter. Was reimt sich?» Speech explains the action. Audio is optional support and does not count as independent decoding. Picture matching alone also cannot prove reading; this playful task combines reading exposure with rhyme recognition.
+Show a large written target with a picture, and two written, pictured choices. The single **Spiel erklären** button says «Lies die Wörter. Was reimt sich?» on request. There is no automatic speech or individual word-audio control. Keep the writing visible. Picture matching alone cannot prove reading; this playful task combines reading exposure with rhyme recognition.
 
 **Worked example:** «Haus → Maus», with visible written words and pictures; speak both and explain the shared ending. This familiar approved demonstration is retained in the disposable review. Before release use a reviewed scored pool excluding the demonstrated pair.
 
@@ -100,21 +100,21 @@ On error, leave the gap visible, mark the selected card gently and allow another
 
 **Character:** Maus. **Goal:** connect letters into familiar short words; D.2.A.1.b. **Prerequisite:** the classroom has introduced the relevant letter–sound relationships. **One level:** one word and three pictures; no countdown.
 
-«Ich möchte lesen lernen. Welches Bild passt zum Wort?» Narrate the instruction and demonstrate the controls, but do not automatically pronounce a scored target word. Before the round, offer practice with introduced letters; adult content selection determines which approved words are in the pool, without adding difficulty levels.
+«Ich möchte lesen lernen. Welches Bild passt zum Wort?» The single **Spiel erklären** button explains the controls on request, without pronouncing a scored target word. Demonstrations remain visual and use separate example content. Before the round, offer practice with introduced letters; adult content selection determines which approved words are in the pool, without adding difficulty levels.
 
 **Example:** Show «Ast» and three pictures. Demonstrate blending and select the branch. This example introduces an extra letter only if A, s and t are in the selected letter set; otherwise use a separate reviewed word from that set.
 
 | Task | Written target | Picture choices | Correct picture | Support |
 | --- | --- | --- | --- | --- |
 | 1 | Maus | mouse, house, hat | Mouse | Reveal syllable/letter support; do not label the pictures automatically. |
-| 2 | Haus | house, rose, nose | House | Trace the graphemes and offer sounds on request. |
-| 3 | Hut | hat, house, mouse | Hat | Offer separate phonemes then blending, with reviewed audio. |
+| 2 | Haus | house, rose, nose | House | Trace the graphemes visually. |
+| 3 | Hut | hat, house, mouse | Hat | Show letter-by-letter blending visually, using a separate example. |
 | 4 | Rose | rose, nose, hat | Rose | Mark Ro-se on request; avoid teaching letter names as blending sounds. |
 | 5 | Nase | nose, mouse, rose | Nose | Mark Na-se on request and allow extra time. |
 
-This sample requires A/a, E/e, H/h, M/m, N/n, O/o, R/r, S/s, T/t and U/u; check sounds and capitalisation against the introduced letter inventory. Picture labels are explanatory English here, not UI text. Requested whole-word audio is a teaching aid: log it as answer-revealing support. After it, completion earns the same resource but cannot count as an independent reading response.
+This sample requires A/a, E/e, H/h, M/m, N/n, O/o, R/r, S/s, T/t and U/u; check sounds and capitalisation against the introduced letter inventory. Picture labels are explanatory English here, not UI text. The current interface does not offer whole-word audio; its single explanation does not reveal the reading answer.
 
-**Completion feedback:** «Danke! Wir haben zusammen gelesen.» Replay of a completed word can pronounce it and show the word-picture match.
+**Completion feedback:** A friendly visual acknowledgement and the word-picture match, without automatic speech.
 
 ## Content review gate
 

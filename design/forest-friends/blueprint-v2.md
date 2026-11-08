@@ -16,7 +16,7 @@ The game is for children aged 7–8 in Zürich, Switzerland. Use Swiss Standard 
 
 ### Required intuitive interface
 
-The main loop must be understandable through the letter, a character portrait, the directional arrow, recognisable places, replayable speech and separate worked examples. The invitation letter contains decorative, unreadable handwriting and a clear picture of its recipient. It is a pictured invitation, not a reading exercise. Never depend on deciphering its marks to choose the destination.
+The main loop must be understandable through the letter, a character portrait, the directional arrow, recognisable places and separate visual worked examples. Speech is off during ordinary play. A single **Spiel erklären** button inside each puzzle speaks its explanation on request; remove navigation/replay narration controls and automatic reading. The invitation letter contains decorative, unreadable handwriting and a clear picture of its recipient. It is a pictured invitation, not a reading exercise. Never depend on deciphering its marks to choose the destination.
 
 At home, the closed doorway, letter, drawing table, pile of pictures and bed are directly actionable. The table opens Ausmalen directly; the picture pile opens Meine Bilder. Place the Waldspiele book button beside the shelf books so the books remain visible. The player clicks or taps to open the letter, then leaves the den. Outdoors, clicking/tapping the ground moves Fuchs; an arrow guides the route to the active recipient or mailman. There is no movement pad, keyboard walking or jump feature. Buttons remain keyboard accessible. Keep meaningful German accessibility names and optional captions.
 
@@ -56,7 +56,7 @@ Memory, attention, phonological awareness, sequencing and spatial reasoning are 
 | Reading | Blaumeise | Reimzirkus | Read a written target and two written, pictured answers; choose the rhyme, e.g. Haus → Maus |
 | Reading | Waldkauz | Lies und zeig | Read a three-word sentence and choose between two clear pictures, e.g. «Die Maus sitzt.» |
 
-The old game's Reimzirkus word-and-picture cards are the basis for Blaumeise. Optional word audio is support; this is a reading-led activity with rhyming practice, not an audio-only game. Log answer-revealing playback as support rather than independent reading.
+The old game's Reimzirkus word-and-picture cards are the basis for Blaumeise. The single explanation describes the matching action without pronouncing the scored words. Remove individual word-audio buttons. This is a reading-led activity with rhyming practice; picture matching alone does not establish independent reading.
 
 Waldkauz starts with familiar nouns and concrete actions: «Die Maus sitzt.», «Der Vogel fliegt.», «Die Maus rennt.», «Der Vogel sitzt.», «Der Fisch schwimmt.» Use two large pictures, short sentences, optional syllable support, unlimited time and a separate spoken example. Avoid opening with spatial prepositions, similar multi-detail scenes, three-event ordering or a third distractor. The instruction speaker explains what to do without reading the scored sentence. This is one consistent content level, not a difficulty ladder. Longer sentences remain later content work, outside the initial pool.
 
@@ -76,7 +76,7 @@ Official sources, checked on 7 November 2026:
 
 1. **Start at home.** Fuchs is inside the den. The front door is closed, with a visible mail lid/slot.
 2. **Receive the first letter.** The mail lid opens briefly and an envelope slips through onto the inside floor. It remains available until the player clicks it. No timed response is required.
-3. **Open the invitation.** One click opens the letter. Unreadable handwritten marks surround a large picture of one of the five puzzle friends. The character picture and optional speech identify whom to visit.
+3. **Open the invitation.** One click opens the letter. Unreadable handwritten marks surround a large picture of one of the five puzzle friends. The character picture identifies whom to visit without narration.
 4. **Leave the den.** The fox goes outside through the doorway. A directional arrow in the 3D world points toward the pictured friend and updates as the fox moves. It guides clicking, rather than moving Fuchs automatically.
 5. **Play with that friend.** The character starts one of their assigned library puzzles, including both original illustrated activities and the five newer rounds. An interrupted newer round resumes first. The learning rules and single difficulty level stay consistent with the overview.
 6. **Meet the mailman nearby.** After completing the assigned puzzle, return to the 3D forest with Hase visibly close to Fuchs. The arrow now points to Hase rather than the completed friend. There is no currency payout or shopping detour.
@@ -89,6 +89,8 @@ Fuchs can return home to paint, colour or rest. The picture-book overview remain
 ## 3. World, navigation and delivery staging
 
 The home tree anchors the clearing, with a brook, bridge, familiar paths and the five friends' places. The shop and its destination, stall, prices and bag/wallet controls are removed from the current forest. Keep free exploration, the picture map, gentle camera motion, forgiving paths and solid obstacles.
+
+Remove the golden leaf collectibles, counter, collection rewards and related effects. Preserve already stored collection fields as dormant compatibility data. Natural foliage and butterflies remain decorative woodland life.
 
 The guidance arrow follows the active invitation, not an arbitrary reward destination. In the friend phase it indicates the invited friend; in the delivery phase it indicates Hase's current position. It stays visible and truthful as Fuchs and Hase move. It must not resemble a movement-control pad.
 
@@ -129,7 +131,7 @@ The catalogue below has one puzzle type per row, grouped by category. Existing a
 | Mathematics | Rechenfreunde | Recognise related addition facts | Existing |
 | Mathematics | Waldpicknick | Share objects into equal groups | Existing |
 | Mathematics | Zahlenwege | Connect numbers in order to reveal a picture | Existing |
-| Reading | Reimzirkus | Read written words and match rhymes, with pictures and optional audio | Existing, adapted |
+| Reading | Reimzirkus | Read written words and match rhymes, with pictures and an optional action explanation | Existing, adapted |
 | Reading | Lies und zeig | Read a three-word sentence and select one of two pictures | Initial Waldkauz activity |
 | Reading | Silbentrommel | Hear and count spoken syllables | Existing |
 | Reading | Initial-sound matching | Match pictures with the same initial sound | Proposed |
@@ -184,9 +186,13 @@ On relaunch Fuchs starts in the den. The saved invitation can be reopened and it
 
 ## 8. Visuals, sound and access
 
-Use warm ivory, woodland greens, honey timber, blue water and the orange fox. Letter paper, envelope, slot, portraits and postal costume should belong to the same illustrated family as the existing game. Do not replace clear action illustrations with decorative marks that hide the puzzle's distinction.
+Use warm ivory, woodland greens, honey timber, blue water and the orange fox. Redraw the map, letter, book and settings icons as one consistent painted set based on **characters-v1.png**. Centre each object optically inside an equally sized tile, including the open book. Letter paper, envelope, slot, portraits and postal costume belong to that illustrated family. Do not replace clear action illustrations with decorative marks that hide the puzzle's distinction.
 
-Music, forest ambience and speech have independent saved controls. Background sound quietens during speech and hidden tabs. The letter can be explained aloud; scored reading targets are not automatically pronounced. Instructions and examples can be replayed. Touch controls must remain usable at 390 × 844 as well as tablet viewports; no timing pressure is introduced by the delivery animation.
+The picture map is a polished painted woodland diorama with recognizable homes, clear connecting paths, brook and bridge. Use matching large character portraits as tappable destinations; mark the invited friend. Keep each touch target at least 48 × 48 and separated on a phone. A pending mailman destination uses his current reachable location rather than a fixed puzzle host position.
+
+All settings entry points open the same new screen, including from the 3D world and Waldspiele. Put the optional stopwatch/countdown there and remove its Waldspiele launcher. Keep forest ambience, music, game effects, reading letter case and local save/log controls together. The clock waits in settings and in the background, restores paused after reload and never ends an activity.
+
+Use locally available forest sounds: wind, rustling foliage, flowing water and varied birdsong. Start audio after a gesture, soften it in the den, quieten it during an explicit puzzle explanation and mute it while hidden. Speech is off by default and ordinary navigation, letters, feedback and task changes remain silent. Each original/new puzzle has one explicit explanation button; examples remain visual and reading answers are not pronounced. Silbentrommel's explanation can include its word as the listening stimulus. Touch controls remain usable at 390 × 844 as well as tablet viewports; neither letters nor the optional play timer introduce a puzzle deadline.
 
 ## 9. Development mode and local logs
 

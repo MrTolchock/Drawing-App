@@ -51,6 +51,7 @@
   let stage = null;
   let titleEl = null;
   let backUse = null;
+  let explainButton = null;
   let view = '';
   let token = 0; // bumped on every view change: pending timers and awaits of the old view stop
   let timers = [];
@@ -85,6 +86,7 @@
   function setView(name, title) {
     stopAll();
     view = name;
+    if(explainButton)explainButton.hidden=!FK.friendsLibrary?.active||['home','ballpick'].includes(name);
     stage.textContent = '';
     stage.className = 'rd-stage rd-on-' + name;
     titleEl.textContent = title;
@@ -1255,6 +1257,8 @@
     build(r) {
       root = r;
       const bar = FK.ui.topbar({ title: 'Lesen', onBack: goBack });
+      explainButton=FK.play.listen(()=>({puzzle:'Setze die Silben zum passenden Bild zusammen. Ziehe eine Silbe auf eine freie Stelle.',wort:'Lies das Wort. Tippe auf das Bild, das zum Wort passt.',genau:'Lies den Satz genau. Wähle die passenden Bilder und Farben.',ballone:'Lies die gesuchte Silbe. Tippe auf die Ballone mit dieser Silbe.'}[view]||'Wähle ein Lesespiel.'),'Spiel erklären');
+      bar.append(explainButton);
       titleEl = bar.querySelector('.title');
       backUse = bar.querySelector('.btn-back use');
       stage = h('div', { class: 'rd-stage' });
@@ -1274,6 +1278,7 @@
       else showHome();
     },
     leave() {
+      FK.forestVoice.cancel();
       stopAll();
       if (resizeRaf) cancelAnimationFrame(resizeRaf);
       resizeRaf = 0;

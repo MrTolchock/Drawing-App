@@ -526,6 +526,7 @@
         title: 'Punkt zu Punkt',
         onBack: () => { if (view === 'play') showOver(); else FK.back(); },
       });
+      bar.append(FK.play.listen('Beginne bei eins. Verbinde die Zahlen der Reihe nach mit dem Finger oder Stift. So entsteht ein Bild.','Spiel erklären'));
       backUse = bar.querySelector('.btn-back use');
       tabsEl = h('nav', { class: 'pp-tabs', 'aria-label': 'Stufen' });
       gridEl = h('div', { class: 'pp-grid' });
@@ -570,6 +571,7 @@
       else showOver();
     },
     leave() {
+      FK.forestVoice.cancel();
       active = false;
       token++;
       stopPlay();

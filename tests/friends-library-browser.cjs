@@ -14,7 +14,7 @@ const shots=process.env.FARBTUPF_SHOTS||'/tmp/farbtupf-library';fs.mkdirSync(sho
   const snapshot=async name=>{await page.waitForTimeout(350);await page.screenshot({path:shots+'/'+name+'.png',animations:'disabled'});};
   const back=()=>page.locator('.screen:not([hidden]) .btn-back').click();
   const home=async()=>{if(await page.evaluate(()=>FK.friendsView().area)==='forest'){await click('Bildkarte');await click('Nach Hause');await page.waitForFunction(()=>document.querySelector('.ff-game')?.dataset.area==='den',null,{timeout:60000});}};
-  assert.equal(await page.locator('.ff-nav [aria-label="Einstellungen für Erwachsene"] use').getAttribute('href'),'#i-gear');
+  assert.equal(await page.locator('.ff-nav [aria-label="Einstellungen für Erwachsene"] .ff-ui-art').getAttribute('data-icon'),'gear');
   await page.evaluate(()=>{FK.settings.set('learning.stage',3);FK.settings.set('read.lvl',3);FK.settings.set('dots.level',3);});
   await click('Waldspiele');
   assert.equal(await page.locator('.forest-book-game').count(),28);
@@ -94,6 +94,6 @@ const shots=process.env.FARBTUPF_SHOTS||'/tmp/farbtupf-library';fs.mkdirSync(sho
   // Original bookmarks retain their settings; v2 never rewrites their difficulty.
   await page.goto(BASE+'/?screen=hub');assert.equal(await page.locator('.island-levels').count(),1);assert.equal(await page.evaluate(()=>FK.learning.stage()),3);assert.equal(await page.evaluate(()=>FK.settings.get('read.lvl')),3);assert.equal(await page.evaluate(()=>FK.settings.get('dots.level')),3);
   await click('Malatelier');assert.deepEqual(await atelierIds(),['book','gallery','album']);assert.equal(await page.locator('.forest-book-body').innerText().then(text=>/\b(?:null|undefined)\b/.test(text)),false);
-  assert.deepEqual(errors,[]);console.log('PASS: 21 restored games, 5 new rounds, all host filters, fixed level, currency-free completion, v2 returns, original gear, full atelier tools and drawing persistence, phone layouts, legacy settings.');
+  assert.deepEqual(errors,[]);console.log('PASS: 21 restored games, 5 new rounds, all host filters, fixed level, currency-free completion, v2 returns, painted settings icon, full atelier tools and drawing persistence, phone layouts, legacy settings.');
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

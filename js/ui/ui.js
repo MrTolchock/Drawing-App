@@ -41,6 +41,7 @@
   FK.go = (name, params, opts) => {
     opts = opts || {};
     if (name === 'hub') name = 'forest-book';
+    if (name === 'parents' && screens.settings) name = 'settings';
     if (!screens[name]) throw new Error('unknown screen ' + name);
     FK.ui.closeModal();
     const library=FK.friendsLibrary;
@@ -115,7 +116,9 @@
 
   // Header with a home/back button, a title and the star counter.
   function settingsButton() {
-    return btn({ icon:'gear', cls:'btn-round btn-parents', title:'Einstellungen für Eltern', onClick:() => parentGate(() => FK.go('parents')) });
+    const b=btn({ icon:'gear', cls:'btn-round btn-parents', title:'Einstellungen für Erwachsene', onClick:() => parentGate(() => FK.go('settings')) });
+    if(FK.friendsArt)b.replaceChildren(FK.friendsArt.icon('gear'));
+    return b;
   }
 
   function topbar(o) {

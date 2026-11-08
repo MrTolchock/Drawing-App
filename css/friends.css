@@ -340,7 +340,6 @@
 .ff-button:not(:disabled):active{box-shadow:0 1px 3px #5b3f2520}
 .ff-nav{background:none;border:0;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;padding:0;gap:12px}
 .ff-nav .ff-button{border-radius:21px;box-shadow:0 3px 10px #3a2a142e}
-.ff-nav .ff-button[aria-label="Anleitung wiederholen"]{position:fixed;left:max(16px,env(safe-area-inset-left));top:max(14px,env(safe-area-inset-top))}
 .ff-hotspot{border:2px solid #edcf97;background:#fff5dfe8;box-shadow:0 0 0 7px #fff8df45,0 6px 16px #302e1938;backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
 .ff-hotspot::after{display:none}
 .ff-hotspot::before{inset:-12px;border-width:2px;border-color:#fff8dfaa}
@@ -368,14 +367,9 @@
 .ff-map .ff-button{border:2px solid #edcf97;background:#fff5dfe8;box-shadow:0 0 0 6px #fff8df45,0 5px 14px #302e1938}
 @media(max-width:600px){.ff-nav{gap:6px}.ff-nav .ff-button{border-radius:18px}.ff-numeral{font-size:44px}}
 /* 3D forest: golden-leaf counter and jump button. */
-.ff-leaves{position:absolute;top:max(16px,env(safe-area-inset-top));left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:6px;padding:6px 16px 6px 8px;border-radius:30px;background:#fff6e6ee;border:1px solid #d0b38a;box-shadow:0 3px 10px #3a2a142e;font:700 24px/1 Andika,sans-serif;color:#7a5410;z-index:3;pointer-events:none}
-.ff-leaves svg{width:36px;height:36px}.ff-leaves span{font-size:17px;color:#9a7a44}
-.ff-leaves.bump{animation:ff-cheer .6s cubic-bezier(.2,1.6,.4,1)}
-.ff-leaves.complete{background:linear-gradient(180deg,#fff7cf,#ffe28e);box-shadow:0 0 0 4px #f2c23c77,0 4px 14px #a8700e44}
 .ff-pad{grid-template-columns:repeat(2,58px) 64px}
 .ff-pad .ff-jump{grid-column:3;grid-row:1/span 2;width:64px;height:124px;border-radius:32px;display:grid;place-items:center;padding:10px;border:1px solid #d0b38a;background:#fff6e6ee;box-shadow:0 3px 10px #3a2a142e;touch-action:none}
 .ff-pad .ff-jump svg{width:36px;height:36px}.ff-pad .ff-jump:active{translate:0 3px}
-@media(max-width:600px){.ff-leaves{left:12px;transform:none;top:max(72px,env(safe-area-inset-top));font-size:20px;padding:4px 12px 4px 6px}.ff-leaves svg{width:30px;height:30px}.ff-pad{grid-template-columns:repeat(2,54px) 58px}.ff-pad .ff-jump{width:58px;height:114px}}
 @media(max-width:600px){.ff-game[data-area=forest] .ff-caption{top:max(122px,env(safe-area-inset-top));bottom:auto;left:12px;right:12px;transform:none;max-width:none;width:auto}}
 /* Painted pictures and the original games' garden look for the new rounds. */
 .ff-painted-picture img{width:100%;height:100%;object-fit:contain;display:block;filter:drop-shadow(0 2px 3px #4a372033);-webkit-user-drag:none}
@@ -463,3 +457,34 @@
 .ff-letter-stamp{border-color:#aab88c;background:#eef1df;rotate:8deg}
 @media(max-width:600px){.ff-letter-illustration{width:200px;height:200px}.ff-letter-paper{padding:25px 18px 12px}}
 @media(prefers-reduced-motion:reduce){.ff-mail-opening,.ff-mail-lid{opacity:0!important;animation:none!important}}
+/* Navigation artwork shares the character sheet's warm painted materials. */
+.ff-ui-art{display:block;width:48px;height:48px;flex:none;background-image:url(../assets/forest-friends/interface-icons.webp);background-size:200% 200%;background-repeat:no-repeat;pointer-events:none}
+.ff-nav .ff-button{display:grid;place-items:center;padding:3px;width:62px;height:62px;min-width:62px;min-height:62px;background:#fff9eadd;border:1px solid #e2c89c;border-radius:20px;box-shadow:0 4px 12px #37281124}
+.ff-nav .ff-button .ff-picture{display:grid;place-items:center;width:52px;height:52px;overflow:hidden}
+.ff-nav .ff-ui-art{width:52px;height:52px}
+.ff-den-envelope .ff-ui-art{width:100%;height:100%}
+.btn-parents{display:grid;place-items:center;min-width:56px;width:56px;height:56px;padding:3px;background:#fff9e9;border:1px solid #d9bb8b;box-shadow:0 3px 10px #66503118}
+.btn-parents .ff-ui-art{width:47px;height:47px}
+.ff-map-card{width:min(950px,100%);padding:14px 18px 22px;border:2px solid #d4b986;background:#fff8e9}
+.ff-map.ff-map-storybook{height:auto;width:100%;aspect-ratio:3/2;margin:10px auto 0;background:url(../assets/forest-friends/picture-map.webp) center/100% 100% no-repeat;border:0;border-radius:24px;box-shadow:0 5px 20px #70563218;overflow:visible}
+.ff-map-storybook .ff-button{width:68px;height:68px;min-width:68px;min-height:68px;padding:4px;display:grid;place-items:center;background:#fff9e7ed;border:2px solid #ba9561;box-shadow:0 4px 0 #94704255,0 6px 15px #60412738;overflow:visible}
+.ff-map-friend{display:block;width:100%;height:100%;object-fit:contain;pointer-events:none}
+.ff-map-friend-sheet{background-image:url(../assets/forest-friends/postcard-friends.webp);background-size:300% 200%;background-repeat:no-repeat}
+.ff-map-storybook .ff-map-friend{position:absolute;inset:4px;width:auto;height:auto}
+.ff-map-storybook .ff-map-invited{border-color:#667c39;box-shadow:0 0 0 5px #e5edc5cc,0 5px 15px #60412738}
+.ff-map-invited::after{content:'';position:absolute;right:-6px;bottom:-5px;width:25px;height:25px;background:#fff6db url(../assets/forest-friends/interface-icons.webp) 100% 0/200% 200%;border:1px solid #a5b16c;border-radius:50%}
+.ff-map-courier{margin:14px auto 0;gap:12px;padding:7px 20px;font:700 17px var(--read)}
+.ff-map-courier .ff-map-friend{width:48px;height:66px}
+.ff-settings-screen{background:#f7f1e5;color:#4e422f}
+.ff-settings-body{width:min(750px,100%);margin:0 auto;padding:8px 22px 36px;display:flex;flex-direction:column;gap:18px}
+.ff-settings-body .setting-card{padding:22px;background:#fffbf2;border:1px solid #d9c6a3;border-radius:22px;box-shadow:0 4px 14px #6c512a0c}
+.ff-setting-toggle{display:flex;align-items:center;justify-content:space-between;min-height:56px;border-top:1px solid #ebe0cd;gap:20px;font:700 17px var(--read)}
+.ff-setting-toggle input{width:26px;height:26px;accent-color:#698249;flex:none}
+.ff-setting-note{font:14px/1.6 var(--read);color:#84745b;margin:12px 0 0}
+.ff-font-choices{display:flex;flex-wrap:wrap;gap:10px}.ff-font-choices .btn{min-height:52px;padding:10px 16px;border:1px solid #cfbc98;border-radius:14px;background:#fff9ee;font:700 15px var(--read)}
+.ff-font-choices .btn[aria-pressed=true]{background:#e7edcf;border-color:#8b9e62}
+.ff-data-settings summary{font:700 17px var(--read);cursor:pointer;min-height:40px;align-content:center}
+.ff-data-settings p{font:14px/1.6 var(--read);color:#796a53}
+.ff-data-settings>.btn{display:block;min-height:48px;margin-top:10px;padding:10px 14px;border:1px solid #d4c3a4;border-radius:12px;background:#fff8e7;font:15px var(--read)}
+.ff-settings-version{text-align:center;color:#96856c;font:13px var(--read);margin:0}
+@media(max-width:600px){.ff-nav{right:10px;gap:8px}.ff-nav .ff-button{width:54px;height:54px;min-width:54px;min-height:54px;padding:2px;border-radius:17px}.ff-nav .ff-button .ff-picture,.ff-nav .ff-ui-art{width:46px;height:46px}.ff-map-card{padding:10px 8px 16px;border-radius:24px}.ff-map-storybook .ff-button{width:52px;height:52px;min-width:52px;min-height:52px;padding:3px}.ff-map-invited::after{width:19px;height:19px;right:-4px;bottom:-4px}.ff-settings-body{padding:8px 14px 26px;gap:14px}.ff-settings-body .setting-card{padding:17px}.ff-setting-toggle{font-size:16px}}

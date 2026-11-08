@@ -54,7 +54,7 @@
       root.classList.add('forest-activity');
       const bar = FK.ui.topbar({title:'Waldspiele',onBack:()=>FK.go(returnTo)});
       const back = bar.querySelector('.btn-back'); back.replaceChildren(art.character('fox')); back.setAttribute('aria-label','Zurück zum Wald');
-      bar.append(FK.play.listen(sayText,'Spielebuch erklären'), FK.timerUI.launcher(), FK.ui.settingsButton());
+      bar.append(FK.ui.settingsButton());
       body = h('div',{class:'forest-book-body scroll'}); root.append(bar,body);
     },
     enter(params) {
@@ -70,5 +70,4 @@
     },
     leave() { FK.forestVoice.cancel(); },
   });
-  function sayText() { if(FK.friendsLibrary?.active)return 'Wähle ein Spielbild. Oder wähle oben einen Freund. Beim Fuchs findest du das Malatelier. Mit dem Pfeil geht es zurück in den Wald.'; return 'Wähle ein Waldspiel. Oder wähle oben einen Freund. Alle Stufen sind offen. Mit dem Fuchs geht es zurück in den Wald.'; }
 })();

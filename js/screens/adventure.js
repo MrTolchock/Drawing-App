@@ -48,7 +48,7 @@
       shapeBoard(host);
     } else if(q.mode==='clap') {
       let count=0;const meter=h('p',{class:'adventure-meter',role:'status',text:'0 Schläge'});
-      host.append(FK.play.picture(q.emoji,q.word),FK.play.listen(()=>q.word,'Wort hören'),h('p',{class:'adventure-word',text:FK.text.word(q.word)}),
+      host.append(FK.play.picture(q.emoji,q.word),FK.friendsLibrary?.active?null:FK.play.listen(()=>q.word,'Wort hören'),h('p',{class:'adventure-word',text:FK.text.word(q.word)}),
         button('🥁',()=>{if(count<8){count++;meter.textContent=count+' '+(count===1?'Schlag':'Schläge');FK.sound.tick();}},'adventure-drum'),meter,
         button('↶',()=>{count=Math.max(0,count-1);meter.textContent=count+' Schläge';}),button('✓ Prüfen',()=>check(count===q.answer),'learn-next'));
     } else if(q.mode==='route') {
@@ -57,7 +57,7 @@
     } else if(q.mode==='order') {
       orderBoard(host);
     } else {
-      if(q.kind==='rhyme') host.append(h('div',{class:'play-rhyme-word'},h('div',{class:'play-word-card'},wordPicture(q.word),h('small',{text:FK.text.word(q.word)})),FK.play.listen(()=>q.word,'Suchwort '+q.word+' hören')));
+      if(q.kind==='rhyme') host.append(h('div',{class:'play-rhyme-word'},h('div',{class:'play-word-card'},wordPicture(q.word),h('small',{text:FK.text.word(q.word)})),FK.friendsLibrary?.active?null:FK.play.listen(()=>q.word,'Suchwort '+q.word+' hören')));
       const row=h('div',{class:'learn-answers'});
       FK.shuffle(q.choices).forEach(value=>{
         const name=q.kind==='shapes'?FK.adventures.shapes.find(s=>s.id===value).name:String(value);
@@ -66,7 +66,7 @@
         if(q.kind==='shapes') b.innerHTML=shape(value,q.rotated);
         if(q.kind==='rhyme') {
           b.replaceChildren(h('span',{class:'play-word-card'},wordPicture(value),h('small',{text:FK.text.word(value)})));
-          row.append(h('div',{class:'play-word-choice'},b,FK.play.listen(()=>String(value),'Wort '+value+' hören')));
+          row.append(h('div',{class:'play-word-choice'},b,FK.friendsLibrary?.active?null:FK.play.listen(()=>String(value),'Wort '+value+' hören')));
         } else row.append(b);
       });host.append(row);
     }

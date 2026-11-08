@@ -5,6 +5,11 @@ const {create}=require('../js/friends/state.js');
 function storage(){const map=new Map();return {getItem:k=>map.get(k)??null,setItem:(k,v)=>map.set(k,v),removeItem:k=>map.delete(k),map};}
 function fixture(options={}){const s=options.storage||storage();return {storage:s,state:create({storage:s,content,...options})};}
 function round(state,host){assert.ok(state.start(host));for(let i=0;i<5;i++){const r=state.get().rounds[host];assert.ok(state.answer(host,r.tasks[r.index].answer,100));if(i<4)assert.ok(state.advance(host));}}
+test('new playthroughs start without narration and retired leaves preserve old save data',()=>{
+  const {state,storage:s}=fixture();assert.equal(state.get().settings.speech,false);
+  const old=state.get();old.collected={'goldleaf-1':true};s.setItem(state.key,JSON.stringify(old));
+  const restored=create({storage:s,content}),before=restored.get();assert.equal(restored.collect('goldleaf-2'),false);assert.deepEqual(restored.get(),before);assert.deepEqual(restored.get().collected,{'goldleaf-1':true});
+});
 test('versioned content has valid, distinct five-task rounds and separate examples',()=>{
   for(const [host,pool] of Object.entries(content.pools)){
     assert.ok(pool.length>=15,host);assert.equal(new Set(pool.map(t=>t.id)).size,pool.length);

@@ -251,7 +251,7 @@ test('malformed route recovery keeps completed story places and safely replaces 
 });
 test('narration prefers Swiss German-language voices, cancels older speech and respects mute', () => {
   const spoken = []; let cancelled = 0, muted = false;
-  const FK = { settings: { get: () => !muted }, on() {} };
+  const FK = { settings: { get: () => !muted }, on() {}, emit() {} };
   const voices = [{ lang: 'en-US' }, { lang: 'de-DE' }, { lang: 'de-CH' }];
   const Utterance = class { constructor(text) { this.text = text; } };
   const context = { window: { FK, SpeechSynthesisUtterance: Utterance, speechSynthesis: { getVoices: () => voices, cancel: () => cancelled++, speak: u => spoken.push(u) } },
@@ -260,4 +260,14 @@ test('narration prefers Swiss German-language voices, cancels older speech and r
   FK.forestVoice.say('Tippe auf den Weg.'); FK.forestVoice.say('Hilfst du mir?');
   assert.equal(spoken.length, 2); assert.equal(spoken[0].lang, 'de-CH'); assert.equal(cancelled, 2);
   muted = true; assert.equal(FK.forestVoice.repeat(), false); assert.equal(spoken.length, 2);
+});
+test('Forest friends speaks only explicit puzzle explanations, including with effects muted',()=>{
+  const spoken=[];let cancelled=0;
+  const FK={settings:{get:()=>false},friendsLibrary:{active:true},on(){},emit(){}};
+  const Utterance=class{constructor(text){this.text=text;}};
+  const context={window:{FK,SpeechSynthesisUtterance:Utterance,speechSynthesis:{getVoices:()=>[{lang:'de-CH'}],cancel:()=>cancelled++,speak:u=>spoken.push(u)}},SpeechSynthesisUtterance:Utterance,document:{hidden:false,addEventListener(){}}};
+  vm.runInNewContext(fs.readFileSync('js/forest/speech.js','utf8'),context);
+  assert.equal(FK.forestVoice.say('Eine neue Aufgabe.'),false);assert.equal(spoken.length,0);
+  assert.equal(FK.forestVoice.explain('Lies das Wort und wähle das passende Bild.'),true);assert.equal(spoken.length,1);assert.equal(spoken[0].lang,'de-CH');
+  assert.equal(FK.forestVoice.say('Das passt!'),false);assert.equal(spoken.length,1);assert.equal(cancelled,1,'automatic feedback must not cut off a requested explanation');
 });
