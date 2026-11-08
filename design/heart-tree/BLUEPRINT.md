@@ -82,7 +82,7 @@ Found places are recorded on the map in a separate journal. These encounters awa
 
 **Waldspiele is the single activity library.** It offers pictured neighbour filters, all games, freely selectable stages and an optional saved three-stop Entdeckertour. The forest provides story purpose; the book provides direct practice and creative tools.
 
-Story rounds use three established families: pattern completion, remembering a missing object and finding a route. Library activities broaden counting, arithmetic, spatial thinking, nature, language, reading and writing. Drawing, colouring, saved pictures and the sticker album remain available. Creative missions are absent. [Current activity inventory](../../docs/GAMEPLAY.md).
+Story rounds use three established families: pattern completion, remembering a missing object and finding a route. Library activities broaden counting, arithmetic, spatial thinking, nature, language, reading and writing. The Malatelier menu offers colouring, saved pictures and the sticker album; the free editor remains accessible by its direct route, without a Waldspiele card. Menu pictures use the painted Waldatelier family, including matching berry, house, mirror and wand illustrations. Creative missions are absent. [Current activity inventory](../../docs/GAMEPLAY.md).
 
 Picture cues and reversible manipulation teach ordinary rules. Demonstrations use separate examples and never reveal a live answer. Reading exercises retain their reading purpose. Device speech supports guidance; recorded voices are not currently included and offline speech is device-dependent.
 

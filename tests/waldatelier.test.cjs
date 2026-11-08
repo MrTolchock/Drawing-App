@@ -40,12 +40,12 @@ test('all stamp and album choices can render the same illustration onto a canvas
 });
 test('every production illustration is available offline', () => {
   const sw = fs.readFileSync('sw.js', 'utf8');
-  const sheets = new Set(Object.values(FK.visual.subjects).map(subject => subject.sheet));
-  for (const sheet of sheets) {
+  const sheets = new Map(Object.values(FK.visual.subjects).map(subject => [subject.sheet, subject]));
+  for (const [sheet, {columns, rows}] of sheets) {
     const file = 'assets/waldatelier/' + sheet + '.png';
     const bytes = fs.readFileSync(file);
     assert.equal(bytes.toString('ascii', 1, 4), 'PNG', file);
-    assert.equal(bytes.readUInt32BE(16), bytes.readUInt32BE(20), file + ' must be square');
+    assert.equal(bytes.readUInt32BE(16) / columns, bytes.readUInt32BE(20) / rows, file + ' must have square sprite cells');
     assert.ok(sw.includes("'./" + file + "'"), file + ' missing from offline cache');
   }
   assert.ok(sw.includes("'./assets/waldatelier/hero.png'"));

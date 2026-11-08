@@ -162,11 +162,13 @@ Creative missions are a source collection outside this table; add each selected 
 
 The restored catalogue includes Writing, Nature and Creativity alongside the newer Reading and Mathematics rounds, without requiring a new animal for every skill. Optional enrichment is kept outside claims of curriculum coverage.
 
+The Waldspiele overview shows all 26 puzzles in one grid, with the same friend filters and no separate newer-round section. Animal portraits and puzzle icons use the painted Waldatelier style of Waldumfrage, Zahlenwege and Naturdetektive, including matching blueberries, houses, mirror and wand art.
+
 Use one difficulty level for every puzzle. Vary questions and story objects within that level; there is no level selector or automatic difficulty progression. Add more tasks and variations within each puzzle type. A round begins with a separate worked example and initially contains five tasks; expand the question pool before increasing round length. Keep explanations short and allow replayable demonstrations and hints.
 
 ## 6. Free creativity and completion feedback
 
-Fuchs's table opens **Ausmalen** directly, showing six polished woodland illustrations with clear closed outlines and generous areas to colour. A picture opens immediately in **Frei**. Do not offer Würfel, Zahlen, Silben or colour-word modes in the current adventure, and remove Stempel from both colouring and free drawing. Keep pencils, brushes, fill, patterns, eraser, brush sizes, undo and saved pictures. Freies Malen remains available through Waldspiele → Malatelier, including mirror/kaleidoscope and coloured paper. All pages, pencils and colours are freely available.
+Fuchs's table opens **Ausmalen** directly, showing six polished woodland illustrations with clear closed outlines and generous areas to colour. A picture opens immediately in **Frei**. Do not offer Würfel, Zahlen, Silben or colour-word modes in the current adventure, and remove Stempel from both colouring and free drawing. Keep pencils, brushes, fill, patterns, eraser, brush sizes, undo and saved pictures. Waldspiele → Malatelier offers **Ausmalen** and **Meine Bilder**; remove Freies Malen and Meine bisherigen Blätter from its menu. The original free editor remains compatible by its direct route, including mirror/kaleidoscope and coloured paper. Preserve saved pictures and vector sheets. All pages, pencils and colours are freely available.
 
 A pile of pictures beside the table has a separate **Meine Bilder** button that opens the gallery directly. Back from a picture returns to picture selection; when opened from Meine Bilder, it returns to the gallery. Label undo **Rückgängig** so it cannot be confused with navigation. Preserve each existing saved picture and original page identifier; older pages and guided-mode data remain compatible in the historical game.
 

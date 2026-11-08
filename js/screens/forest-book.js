@@ -7,7 +7,7 @@
   function launch(screen, game) { FK.sound.tick(); FK.go(screen, { game, lvl:FK.learning.stage(), stage:FK.learning.stage(), level:FK.learning.stage() }); }
   function card(screen, game, id = game.id) {
     const earned = FK.progress.isDone(screen, id + ':' + FK.learning.stage()) || (id==='add' && FK.progress.isDone('expedition','tricks:'+FK.learning.stage()));
-    const b = button(game.title, h('span', {}, FK.play.picture(game.emoji), h('b', {text:game.title}),
+    const b = button(game.title, h('span', {}, FK.play.gamePicture(game), h('b', {text:game.title}),
       h('small', {text:game.sub?.[FK.learning.stage()-1] || ''}), earned ? h('span', {class:'play-earned',text:'⭐'}) : null), () => launch(screen, id), 'forest-book-game');
     b.dataset.game = id; return b;
   }
@@ -37,7 +37,7 @@
       if(visible(id)) games.append(card(id,{id,title,emoji,sub:['Entdecken','Üben','Knobeln']}));
     });
     if(resident === 'all' || resident === 'atelier') {
-      [['book','Ausmalen','🎨'],['free','Freies Malen','🖐️'],['gallery','Meine Bilder','🖼️'],['album','Waldalbum','⭐']].forEach(([id,title,emoji])=>games.append(card(id,{id,title,emoji})));
+      [['book','Ausmalen','🎨'],['gallery','Meine Bilder','🖼️'],['album','Waldalbum','⭐']].forEach(([id,title,emoji])=>games.append(card(id,{id,title,emoji})));
     }
     const guided = h('div', {class:'forest-book-games forest-guided-games'});
     if (story.collections[resident] && model.residentAvailable(resident)) {
@@ -45,9 +45,9 @@
         if(model.startPractice(pack.game,resident)) FK.forestActivity.launch(pack.id);
       },'forest-book-game'));
     }
-    body.replaceChildren(h('section',{class:'play-library-intro'},art.character(resident === 'all' || resident === 'atelier'?'fox':resident),
+    body.replaceChildren(...[h('section',{class:'play-library-intro'},art.character(resident === 'all' || resident === 'atelier'?'fox':resident),
       h('div',{},h('h2',{text:resident==='all'?'Ein Wald voller Spiele':resident==='atelier'?'Dein Malatelier':'Spielen mit '+story.names[resident]}),h('p',{text:'Spielen. Helfen. Freunde finden.'}))),
-      resident==='atelier'?null:tourCard(),tabs, resident==='atelier'?null:levels,h('h3',{class:'journey-free-label',text:resident==='atelier'?'Wähle, was du machen möchtest':'Oder wähle dein eigenes Spiel'}), games, guided.childElementCount ? h('h3',{text:'Noch mehr mit '+story.names[resident]}) : null, guided);
+      resident==='atelier'?null:tourCard(),tabs, resident==='atelier'?null:levels,h('h3',{class:'journey-free-label',text:resident==='atelier'?'Wähle, was du machen möchtest':'Oder wähle dein eigenes Spiel'}), games, guided.childElementCount ? h('h3',{text:'Noch mehr mit '+story.names[resident]}) : null, guided].filter(Boolean));
   }
   FK.screen('forest-book', {
     build(root) {

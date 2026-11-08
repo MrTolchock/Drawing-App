@@ -17,7 +17,13 @@ const shots=process.env.FARBTUPF_SHOTS||'/tmp/farbtupf-library';fs.mkdirSync(sho
   assert.equal(await page.locator('.ff-nav [aria-label="Einstellungen für Erwachsene"] use').getAttribute('href'),'#i-gear');
   await page.evaluate(()=>{FK.settings.set('learning.stage',3);FK.settings.set('read.lvl',3);FK.settings.set('dots.level',3);});
   await click('Waldspiele');
-  assert.equal(await page.locator('.forest-book-game').count(),30);
+  assert.equal(await page.locator('.forest-book-game').count(),28);
+  assert.equal(await page.getByText('Spiele aus dem Wald',{exact:true}).count(),0);
+  assert.equal(await page.locator('.forest-book-body > .forest-book-games > .forest-book-game').count(),28);
+  assert.equal(await page.locator('.forest-book-body').innerText().then(text=>/\b(?:null|undefined)\b/.test(text)),false);
+  assert.equal(await page.locator('.forest-book-body img,.forest-book-games .wa-symbol').count(),0);
+  assert.equal(await page.locator('.forest-book-game > span > .wa-illustration').count(),28);
+  for(const id of ['compare','neighbours','mirror','double'])assert.match(await page.locator('[data-game="'+id+'"] > span > .wa-illustration').getAttribute('style'),/menu\.png/);
   assert.equal(await page.locator('.island-levels').count(),0);
   await snapshot('library-1024');
   const catalogue=await page.evaluate(()=>FK.friendsLibrary.catalogue());assert.equal(catalogue.length,21);
@@ -52,7 +58,17 @@ const shots=process.env.FARBTUPF_SHOTS||'/tmp/farbtupf-library';fs.mkdirSync(sho
   await click('Waldspiele');await page.keyboard.press('Escape');assert.equal(await page.evaluate(()=>FK.current()),'friends');
   await home();await page.locator('[data-place="drawing"]').click();assert.equal(await page.evaluate(()=>FK.current()),'book');await back();await click('Waldspiele');await click('Malatelier');
   assert.equal(await page.locator('.play-library-intro h2').innerText(),'Dein Malatelier');
-  await click('Freies Malen');await page.waitForFunction(()=>document.querySelector('.screen-free .paper canvas')?.width>0);
+  const atelierIds=()=>page.locator('.forest-book-game').evaluateAll(bs=>bs.map(b=>b.dataset.game));
+  assert.deepEqual(await atelierIds(),['book','gallery']);
+  assert.equal(await page.locator('.forest-book-body').innerText().then(text=>/\b(?:null|undefined)\b/.test(text)),false);
+  await snapshot('atelier-menu-1024');
+  // Preserved vector drawings do not bring back the removed shortcut.
+  const strokes=[{colour:'#73955b',points:[[.3,.4],[.7,.6]]}];
+  await page.evaluate(strokes=>{FK.friends.draw('free',strokes);FK.go('forest-book',{resident:'atelier'});},strokes);
+  assert.deepEqual(await atelierIds(),['book','gallery']);
+  assert.deepEqual(await page.evaluate(()=>FK.friends.get().drawings.free),strokes);
+  // The legacy free editor still opens directly and preserves existing pictures.
+  await page.evaluate(()=>FK.go('free'));await page.waitForFunction(()=>document.querySelector('.screen-free .paper canvas')?.width>0);
   for(const label of ['Stift','Eimer','Gummi','Grösse','Spiegel','Neu','Speichern'])assert.equal(await page.getByRole('button',{name:label,exact:true}).isVisible(),true,label);
   await snapshot('atelier-1024');
   const paper=page.locator('.screen-free .paper'),box=await paper.boundingBox();
@@ -61,14 +77,23 @@ const shots=process.env.FARBTUPF_SHOTS||'/tmp/farbtupf-library';fs.mkdirSync(sho
   const before=await page.evaluate(async()=>{const s=await FK.store.get('free');return {gid:s.gid,size:s.paint.size};});assert.ok(before.size>0);
   await back();await click('Ausmalen');assert.ok(await page.locator('.book-card').count()>0);await back();await back();
   assert.equal(await page.evaluate(()=>FK.current()),'friends');
-  await page.reload();await page.waitForFunction(()=>window.FK?.friends);await home();await click('Waldspiele');await click('Malatelier');await click('Freies Malen');
+  await page.reload();await page.waitForFunction(()=>window.FK?.friends);await home();await click('Waldspiele');await click('Malatelier');await page.evaluate(()=>FK.go('free'));
   assert.deepEqual(await page.evaluate(async()=>{const s=await FK.store.get('free');return {gid:s.gid,size:s.paint.size};}),before);
   await back();await back();await click('Waldspiele');await page.setViewportSize({width:390,height:844});await snapshot('library-390');
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
   await click('Mit Maus spielen');await page.locator('[data-game="friends-mouse"]').click();assert.equal(await page.evaluate(()=>FK.current()),'friends');assert.equal(await page.locator('.ff-task-scene').isVisible(),true);await snapshot('reading-390');await click('Zurück');
-  await home();await click('Waldspiele');await click('Malatelier');await click('Freies Malen');await snapshot('atelier-390');assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+  await home();await click('Waldspiele');await click('Malatelier');await snapshot('atelier-menu-390');assert.deepEqual(await atelierIds(),['book','gallery']);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+  await page.evaluate(()=>FK.go('free'));await snapshot('atelier-390');assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+  // The menu's painted assets also load after an offline restart.
+  await page.evaluate(()=>navigator.serviceWorker.ready);await page.waitForFunction(()=>!!navigator.serviceWorker.controller);await context.setOffline(true);
+  await page.reload();await page.waitForFunction(()=>window.FK?.friends);await click('Waldspiele');
+  assert.equal(await page.locator('.forest-book-game').count(),28);
+  assert.ok(await page.evaluate(async()=>{const im=new Image();im.src='assets/waldatelier/menu.png';await im.decode();return im.naturalWidth>0;}));
+  assert.deepEqual(await page.evaluate(()=>FK.friends.get().drawings.free),strokes);
+  await context.setOffline(false);
   // Original bookmarks retain their settings; v2 never rewrites their difficulty.
   await page.goto(BASE+'/?screen=hub');assert.equal(await page.locator('.island-levels').count(),1);assert.equal(await page.evaluate(()=>FK.learning.stage()),3);assert.equal(await page.evaluate(()=>FK.settings.get('read.lvl')),3);assert.equal(await page.evaluate(()=>FK.settings.get('dots.level')),3);
+  await click('Malatelier');assert.deepEqual(await atelierIds(),['book','gallery','album']);assert.equal(await page.locator('.forest-book-body').innerText().then(text=>/\b(?:null|undefined)\b/.test(text)),false);
   assert.deepEqual(errors,[]);console.log('PASS: 21 restored games, 5 new rounds, all host filters, fixed level, currency-free completion, v2 returns, original gear, full atelier tools and drawing persistence, phone layouts, legacy settings.');
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

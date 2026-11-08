@@ -1,6 +1,7 @@
 /* Farbtupf – Service Worker: keeps the whole app on the device so it runs without internet. */
-const CACHE = 'farbtupf-v8.1.0-cosy-den';
+const CACHE = 'farbtupf-v8.2.0-painted-library';
 const ASSETS = [
+  './assets/waldatelier/menu.png',
   './js/art/den-pages.js',
   './assets/forest-friends/den-v2.webp',
   './assets/forest-friends/postcard-friends.webp',

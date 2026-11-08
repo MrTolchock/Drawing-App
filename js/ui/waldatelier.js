@@ -14,9 +14,12 @@
     discovery: ['bean','seedling','plant','water','rain','cloud','sunset','bucket','letter','postbox','mailbox','nest','chick','cocoon','leaf','fire-engine'],
     people: ['mummy','daddy','grandma','grandpa','llama','judo','ufo','moped','lemonade','canoe','pilot','honey','cheese','comet','reader','blueberries'],
     alphabet: ['monkey','clown','dinosaur','elephant','giraffe','ear','whale','taxi','teddy','spoon','jacket','sunflower','ant','badger','bowl','spade'],
+    menu: ['squirrel','blue-tit','berry-cluster','neighbour-houses','hand-mirror','magic-wand'],
   };
   const subjects = {};
-  Object.keys(sheets).forEach(sheet => sheets[sheet].forEach((id,index) => { subjects[id] = { sheet, index }; }));
+  Object.keys(sheets).forEach(sheet => sheets[sheet].forEach((id,index) => {
+    subjects[id] = { sheet, index, columns:sheet==='menu'?3:4, rows:sheet==='menu'?2:4 };
+  }));
   const tokens = {};
   function bind(id, values) { values.split(' ').filter(Boolean).forEach(v => { tokens[v] = id; }); }
   [
@@ -79,7 +82,8 @@
     if (label) { el.setAttribute('role', 'img'); el.setAttribute('aria-label', label); } else el.setAttribute('aria-hidden', 'true');
     if (rec) {
       el.style.backgroundImage = 'url("assets/waldatelier/' + rec.sheet + '.png")';
-      el.style.backgroundPosition = (rec.index % 4 * 100 / 3) + '% ' + (Math.floor(rec.index / 4) * 100 / 3) + '%';
+      el.style.backgroundSize = (rec.columns * 100) + '% ' + (rec.rows * 100) + '%';
+      el.style.backgroundPosition = (rec.index % rec.columns * 100 / (rec.columns - 1)) + '% ' + (Math.floor(rec.index / rec.columns) * 100 / (rec.rows - 1)) + '%';
     }
     return el;
   }
@@ -118,8 +122,8 @@
     const rec = subjects[resolve(value)];
     if (!rec) return false;
     const img = images[rec.sheet]; if (!img || !img.complete || !img.naturalWidth) return false;
-    const w = img.naturalWidth / 4, hh = img.naturalHeight / 4;
-    ctx.drawImage(img, rec.index % 4 * w, Math.floor(rec.index / 4) * hh, w, hh, x, y, size, size);
+    const w = img.naturalWidth / rec.columns, hh = img.naturalHeight / rec.rows;
+    ctx.drawImage(img, rec.index % rec.columns * w, Math.floor(rec.index / rec.columns) * hh, w, hh, x, y, size, size);
     return true;
   }
   FK.visual = { art, decorate, draw, ready, subjects, tokens, has: value => !!resolve(value), supports: value => !!(resolve(value) || symbols[value] || symbols[aliases[value]]) };

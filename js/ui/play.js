@@ -46,6 +46,10 @@
     return h('span', { class:'play-picture', role: label ? 'img' : null, 'aria-label':label || null },
       symbols.map(token => h('span', { class:'play-token', text:token })));
   }
+  // Menu art can show a group of berries; scored counters stay exactly one berry.
+  function gamePicture(game) {
+    return FK.visual.art({compare:'berry-cluster',neighbours:'neighbour-houses',mirror:'hand-mirror',double:'magic-wand'}[game.id] || game.emoji);
+  }
   let session=null;
   function begin(game,stage){session={game,stage,round:0,missed:new Set(),helped:new Set(),answered:new Set()};}
   function context(game, prompt, round, stage=FK.learning.stage()) {
@@ -158,5 +162,5 @@
     }
     return picture(scenes[value] || value, value.replace(/^\S+\s*/,''));
   }
-  FK.play = { friends, names, natureCue, wordDrawing, sequencePicture, speak, listen, picture, bindTouch, context, begin, attempt, hint, tourPictures, feedback:taskFeedback, finish, steps };
+  FK.play = { friends, names, natureCue, wordDrawing, sequencePicture, speak, listen, picture, gamePicture, bindTouch, context, begin, attempt, hint, tourPictures, feedback:taskFeedback, finish, steps };
 })();

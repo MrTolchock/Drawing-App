@@ -394,12 +394,10 @@
 @keyframes ff-area-fade{from{opacity:.9}to{opacity:0}}
 
 /* The restored book uses the original painted stationery with the v2 hosts. */
-.ff-library-portrait{display:inline-flex;align-items:center;justify-content:center}
-.ff-library-portrait img{display:block;width:100%;height:100%;object-fit:contain}
 .screen-forest-book .ff-library-tabs{flex-wrap:wrap;justify-content:center}
 .ff-library-tabs .forest-book-neighbour{width:100px;height:auto;min-height:100px;padding:8px}
 .ff-library-tabs .forest-book-neighbour>span{display:flex;flex-direction:column;align-items:center;gap:5px}
-.ff-library-tabs .forest-book-neighbour .wa-illustration{width:60px;height:60px}
+.ff-library-tabs .forest-book-neighbour :is(.wa-illustration,.woodland-art){width:60px;height:60px}
 .ff-library-tabs small{font:13px var(--read);color:var(--ink)}
 .forest-book-game .ff-library-host{display:flex;align-items:center;gap:6px;margin-top:4px}
 .ff-library-host .forest-portrait{width:30px;height:30px}
@@ -418,9 +416,6 @@
 @media(max-width:600px){.ff-library-tabs .forest-book-neighbour{width:75px;min-width:75px;min-height:92px;padding:6px}.ff-library-tabs small{font-size:11px}}
 
 .ff-picture>.play-cue-drawing{width:100%;height:100%}
-.ff-library-new{max-width:1000px;margin:0 auto 28px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;padding:18px;background:#e9eed7;border:2px solid #becb9e;border-radius:26px}
-.ff-library-new h3{grid-column:1/-1;margin:0;font:700 24px var(--font);color:#49613b}
-.screen-forest-book .ff-library-new .forest-book-game{width:100%}
 .ff-round-title{font:700 26px var(--font);color:#49613b;margin:12px auto;text-align:center}
 .ff-illustrated-round .ff-progress{margin:12px auto}
 .ff-illustrated-round .ff-task-scene{background:radial-gradient(ellipse at center,#fffdf2 45%,#e4edce);border:2px solid #abbc8d;box-shadow:inset 0 0 30px #a3bb7822}
@@ -428,7 +423,7 @@
 .ff-illustrated-round .ff-target{font-size:clamp(28px,4vw,42px)}
 .ff-illustrated-round .ff-answer{min-height:150px;padding:15px}
 .ff-illustrated-round .ff-answer>.ff-picture{width:115px;height:115px}
-@media(max-width:600px){.ff-library-new{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:10px}.ff-round-title{font-size:22px}.ff-illustrated-round .ff-answer{min-height:105px;padding:5px}.ff-illustrated-round .ff-answer>.ff-picture{width:76px;height:76px}.ff-illustrated-round .ff-task-scene{min-height:120px}.ff-illustrated-round .ff-progress{margin:8px auto}}
+@media(max-width:600px){.ff-round-title{font-size:22px}.ff-illustrated-round .ff-answer{min-height:105px;padding:5px}.ff-illustrated-round .ff-answer>.ff-picture{width:76px;height:76px}.ff-illustrated-round .ff-task-scene{min-height:120px}.ff-illustrated-round .ff-progress{margin:8px auto}}
 /* Letters arrive through the closed den door; the card communicates with pictures. */
 .ff-den-door{position:absolute;z-index:1;pointer-events:none;overflow:hidden}
 .ff-den-door>svg{width:100%;height:100%;display:block}
