@@ -4,6 +4,7 @@
    Interior coordinates are authored on a 1024×768 view of each painting (assets/forest-friends). */
 import {THREE} from '../forest/materials.js';
 import {createForest} from './forest3d.js';
+import {characters} from './characters3d.js';
 
 const ART='assets/forest-friends/',IW=1448,IH=1086,FOV=30,F=.5/Math.tan(THREE.MathUtils.degToRad(FOV/2));
 const lens=new THREE.PerspectiveCamera(FOV,IW/IH,.1,600);lens.position.set(0,12,0);lens.rotation.set(THREE.MathUtils.degToRad(-17),0,0);lens.updateMatrixWorld(true);lens.updateProjectionMatrix();
@@ -34,16 +35,36 @@ export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,o
   function size(s,h,flip=1){const img=s.material.map.image,a=img&&img.width?img.width/img.height:.7;s.scale.set(h*a*flip,h,1);}
   const soft=drawn(64,64,(g)=>{const r=g.createRadialGradient(32,32,0,32,32,32);r.addColorStop(0,'rgba(48,26,10,.6)');r.addColorStop(1,'rgba(48,26,10,0)');g.fillStyle=r;g.fillRect(0,0,64,64);});
   const looks={front:texture('fox-front'),side:texture('fox-side'),back:texture('fox-back'),happy:texture('fox-happy')};
-  const fox=sprite(looks.front),foxPos=new THREE.Vector3();
   const foxShadow=new THREE.Mesh(new THREE.CircleGeometry(1,24),new THREE.MeshBasicMaterial({map:soft,transparent:true,depthWrite:false,toneMapped:false}));foxShadow.rotation.x=-Math.PI/2;foxShadow.renderOrder=1;scene.add(foxShadow);
   const denH=heightAt(ground(denSpot.u,denSpot.v),denFrac),sleepH=heightAt(ground(cushion.u,cushion.v),.3);
+  // The den's 3D fox, lit like the painting (warm daylight from the door, soft fill from the window).
+  scene.add(new THREE.HemisphereLight('#ffe6c4','#7a4a2c',1.3));{const key=new THREE.DirectionalLight('#ffd49a',2.3);key.position.set(40,60,30);scene.add(key);const rim=new THREE.DirectionalLight('#ffb98a',.7);rim.position.set(-40,30,10);scene.add(rim);}
+  const foxRig=characters.fox(denH),fox=foxRig.group,foxPos=new THREE.Vector3();scene.add(fox);
+  const red=new THREE.MeshStandardMaterial({color:'#d4402f',roughness:.45}),wood=new THREE.MeshStandardMaterial({color:'#c98a4c',roughness:.8});
+  const apple=new THREE.Group();{const body=new THREE.Mesh(new THREE.SphereGeometry(.1,16,12),red);apple.add(body);const stem=new THREE.Mesh(new THREE.CylinderGeometry(.01,.012,.06,6),wood);stem.position.y=.1;apple.add(stem);}apple.position.set(0,-.34,.09);apple.visible=false;foxRig.paw.add(apple);
+  const tub=new THREE.Group();{const side=new THREE.Mesh(new THREE.CylinderGeometry(.62,.5,.55,28,1,true),wood);side.material.side=THREE.DoubleSide;side.position.y=.28;tub.add(side);for(const y of [.12,.44]){const band=new THREE.Mesh(new THREE.TorusGeometry(.6-y*.18,.025,6,28),new THREE.MeshStandardMaterial({color:'#6b4426'}));band.rotation.x=Math.PI/2;band.position.y=y;tub.add(band);}
+    const water=new THREE.Mesh(new THREE.CircleGeometry(.6,28),new THREE.MeshStandardMaterial({color:'#9fd0d2',roughness:.3}));water.rotation.x=-Math.PI/2;water.position.y=.5;tub.add(water);
+    const foam=new THREE.MeshStandardMaterial({color:'#fffaf2',roughness:.9});for(let i=0;i<16;i++){const a=i/16*Math.PI*2,b=new THREE.Mesh(new THREE.SphereGeometry(.12+(i%3)*.04,12,8),foam);b.position.set(Math.cos(a)*.48,.55+(i%2)*.04,Math.sin(a)*.48);tub.add(b);}}
+  tub.scale.setScalar(denH/1.6);tub.visible=false;scene.add(tub);
+  // Den ambience: drifting dust in the light, a soft sunbeam from the door, a glowing window.
+  const glowTex=drawn(64,64,(g)=>{const r=g.createRadialGradient(32,32,0,32,32,32);r.addColorStop(0,'rgba(255,240,200,1)');r.addColorStop(.4,'rgba(255,220,160,.45)');r.addColorStop(1,'rgba(255,210,150,0)');g.fillStyle=r;g.fillRect(0,0,64,64);});
+  const beamTex=drawn(64,256,(g)=>{const l=g.createLinearGradient(0,0,0,256);l.addColorStop(0,'rgba(255,236,190,.0)');l.addColorStop(.25,'rgba(255,236,190,.55)');l.addColorStop(1,'rgba(255,236,190,0)');g.fillStyle=l;g.beginPath();g.moveTo(18,0);g.lineTo(46,0);g.lineTo(64,256);g.lineTo(0,256);g.fill();});
+  const motes=new THREE.Points(new THREE.BufferGeometry(),new THREE.PointsMaterial({map:glowTex,size:.55,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,opacity:.7,toneMapped:false}));
+  {const seeds=[],pos=[];for(let i=0;i<70;i++){const u=.12+Math.random()*.8,v=.12+Math.random()*.6,d=26+Math.random()*16,r=ray(u,v),p=r.origin.clone().add(r.direction.clone().multiplyScalar(d/r.direction.dot(view)));seeds.push(p.x,p.y,p.z,Math.random()*6.3);pos.push(p.x,p.y,p.z);}motes.geometry.setAttribute('position',new THREE.Float32BufferAttribute(pos,3));motes.userData.seeds=seeds;}scene.add(motes);
+  const beam=sprite(beamTex,1,.5),windowGlow=sprite(glowTex,1,.5);beam.material.blending=windowGlow.material.blending=THREE.AdditiveBlending;
+  {const d=ground(...Object.values(at(770,430))),b=ray(...Object.values(at(800,320)));beam.position.copy(b.origin.clone().add(b.direction.clone().multiplyScalar(depth(d)/b.direction.dot(view))));beam.scale.set(denH*.9,denH*2.2,1);beam.material.rotation=.55;
+   const w=ray(...Object.values(at(150,192)));windowGlow.position.copy(w.origin.clone().add(w.direction.clone().multiplyScalar(60/w.direction.dot(view))));windowGlow.scale.setScalar(denH*1.5);}
+  const ambience=[beam,windowGlow,motes];
+  // The fox potters about the den between a few spots on the floor when left alone.
+  const spots=[denSpot,at(430,470),at(560,515),at(250,505),at(390,560)].map(a=>ground(a.u,a.v));
+  const idle={target:null,wait:4,greet:0,turn:.35};
   // Temporary treat props are drawn here and never saved.
   const appleTex=drawn(128,128,(g)=>{const r=g.createRadialGradient(52,60,6,64,74,50);r.addColorStop(0,'#f2766a');r.addColorStop(.6,'#d5443a');r.addColorStop(1,'#9e2a24');g.fillStyle=r;g.beginPath();g.arc(64,76,46,0,Math.PI*2);g.fill();g.fillStyle='rgba(255,255,255,.45)';g.beginPath();g.ellipse(46,58,10,15,-.5,0,Math.PI*2);g.fill();g.strokeStyle='#6b4423';g.lineWidth=6;g.lineCap='round';g.beginPath();g.moveTo(64,34);g.quadraticCurveTo(66,22,72,12);g.stroke();g.fillStyle='#6f9a3c';g.beginPath();g.ellipse(84,22,16,8,-.4,0,Math.PI*2);g.fill();});
   const tubTex=drawn(256,170,(g)=>{const w=g.createLinearGradient(0,0,256,0);w.addColorStop(0,'#a8693a');w.addColorStop(.5,'#dba468');w.addColorStop(1,'#a0622f');g.fillStyle=w;g.beginPath();g.moveTo(26,70);g.lineTo(230,70);g.lineTo(208,166);g.lineTo(48,166);g.closePath();g.fill();g.strokeStyle='rgba(90,52,24,.35)';g.lineWidth=2;for(let x=50;x<220;x+=22){g.beginPath();g.moveTo(x,72);g.lineTo(x+(128-x)*.12,164);g.stroke();}g.fillStyle='#7a4a28';g.fillRect(34,100,188,9);g.fillRect(42,140,172,9);g.fillStyle='#9fd0d2';g.beginPath();g.ellipse(128,70,104,18,0,0,Math.PI*2);g.fill();g.fillStyle='#fffaf0';for(let i=0;i<14;i++){const x=34+i*14.5,y=62+Math.sin(i*1.7)*6;g.beginPath();g.arc(x,y,10+(i%3)*4,0,Math.PI*2);g.fill();}});
   const bubbleTex=drawn(64,64,(g)=>{g.fillStyle='rgba(255,255,255,.28)';g.strokeStyle='#d8eef0';g.lineWidth=3;g.beginPath();g.arc(32,32,26,0,Math.PI*2);g.fill();g.stroke();g.fillStyle='rgba(255,255,255,.8)';g.beginPath();g.arc(23,22,6,0,Math.PI*2);g.fill();});
   const zTex=drawn(64,64,(g)=>{g.font='bold 52px Andika, sans-serif';g.textAlign='center';g.textBaseline='middle';g.lineWidth=5;g.strokeStyle='#4c5f8f';g.strokeText('z',32,34);g.fillStyle='#fff6d8';g.fillText('z',32,34);});
-  const apple=sprite(appleTex,3,.5),tub=sprite(tubTex,3,0),bubbles=Array.from({length:9},()=>sprite(bubbleTex,4,.5)),zs=Array.from({length:3},()=>sprite(zTex,4,.5));
-  const props=[apple,tub,...bubbles,...zs];props.forEach(p=>p.userData.on=false);
+  const bubbles=Array.from({length:9},()=>sprite(bubbleTex,4,.5)),zs=Array.from({length:3},()=>sprite(zTex,4,.5));
+  const props=[...bubbles,...zs];props.forEach(p=>p.userData.on=false);
   let area='den',paused=false,last=performance.now(),time=0,raf,anim=null,keys=new Set(),stick={x:0,z:0},width=0,height=0;
   const forest=createForest({renderer,looks,texture,software,onPosition,onAction,onMove,onNear,onCollect,collected});
   const crop={x:0,y:0};
@@ -59,7 +80,7 @@ export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,o
   }
   function setArea(next){area=next;finishProps();onNear(null);
     if(next==='forest'){canvas.style.backgroundImage='none';fill.hidden=true;forest.enter(position());}
-    else{const url='url('+ART+next+'.webp)';canvas.style.backgroundImage=url;fill.style.backgroundImage=url;fill.hidden=false;forest.stop();fox.userData.on=next==='den';foxShadow.visible=next==='den';foxPos.copy(ground(denSpot.u,denSpot.v));}
+    else{const url='url('+ART+next+'.webp)';canvas.style.backgroundImage=url;fill.style.backgroundImage=url;fill.hidden=false;forest.stop();fox.visible=next==='den';foxShadow.visible=next==='den';ambience.forEach(a=>a.visible=next==='den');foxPos.copy(spots[0]);fox.position.copy(foxPos);fox.rotation.y=.35;idle.target=null;idle.wait=5;idle.greet=next==='den'?1.6:0;}
     layout();
   }
   function project(p){const q=p.clone().project(camera);return {x:(q.x*.5+.5)*width,y:(-q.y*.5+.5)*height,visible:q.z<1&&Math.abs(q.x)<1.02&&q.y>-1.02&&q.y<1.12};}
@@ -70,38 +91,43 @@ export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,o
     keyup=e=>{if(keys.delete(e.key)&&area==='forest')onPosition(forest.position.x,forest.position.z);},blur=()=>{keys.clear();stick={x:0,z:0};};
   document.addEventListener('keydown',keydown);document.addEventListener('keyup',keyup);window.addEventListener('blur',blur);
   const observer=new ResizeObserver(()=>layout());observer.observe(canvas);
-  function finishProps(){props.forEach(p=>{p.userData.on=false;});night.classList.remove('on');fox.material.rotation=0;}
+  function finishProps(){props.forEach(p=>{p.userData.on=false;});night.classList.remove('on');apple.visible=false;tub.visible=false;fox.scale.setScalar(1);fox.rotation.set(0,.35,0);}
   function animateTreat(dt){
     anim.elapsed+=dt;const t=anim.elapsed,reduced=window.FK.reduced,h=anim.item==='sleep'?sleepH:denH,base=foxPos.clone();
     if(anim.item==='apple'){
-      fox.material.map=t<3.8?looks.front:looks.happy;apple.userData.on=t<3.8;size(apple,h*.17*(t<2?1:t<3?.72:.42));apple.position.copy(base).addScaledVector(up,h*.43).addScaledVector(side,h*.03);
-      fox.position.copy(base).addScaledVector(up,reduced?0:Math.abs(Math.sin(t*7))*h*.012);
+      apple.visible=t<3.8;apple.scale.setScalar(t<2?1:t<3?.72:.42);fox.position.copy(base);foxRig.update(dt,{action:t<3.8?'eat':'happy',reduced});
     }else if(anim.item==='bath'){
-      fox.material.map=looks.happy;tub.userData.on=true;tub.position.copy(base).addScaledVector(up,-h*.03);size(tub,h*.5);tub.scale.x=h*.95;
-      fox.position.copy(base).addScaledVector(up,reduced?h*.04:h*(.04+Math.abs(Math.sin(t*2.6))*.02));
+      tub.visible=true;tub.position.copy(base);fox.position.copy(base).addScaledVector(new THREE.Vector3(0,1,0),-h*.12);foxRig.update(dt,{action:'bath',reduced});
       bubbles.forEach((b,i)=>{const k=reduced?.4:((t*.32+i*.137)%1);b.userData.on=true;b.position.copy(base).addScaledVector(up,h*(.48+k*.55)).addScaledVector(side,h*(-.38+(i/8)*.76+Math.sin(t*1.6+i)*.03));size(b,h*(.05+(i%3)*.02));b.material.opacity=1-k*.8;});
     }else{
-      fox.material.map=looks.happy;fox.position.copy(base);fox.material.rotation=reduced?.08:.08+Math.sin(t*1.4)*.03;night.classList.add('on');
+      fox.position.copy(base);fox.scale.setScalar(sleepH/denH);fox.rotation.set(-.12,.2,0);foxRig.update(dt,{action:'sleep',reduced});night.classList.add('on');
       zs.forEach((z,i)=>{const k=reduced?.5:((t*.35+i*.33)%1);z.userData.on=true;z.position.copy(base).addScaledVector(up,h*(.95+k*.45)).addScaledVector(side,h*(.12+k*.25));size(z,h*(.1+i*.03));z.material.opacity=1-k;});
     }
-    if(t>=5){anim=null;finishProps();fox.material.map=looks.front;foxPos.copy(ground(denSpot.u,denSpot.v));onAnimationEnd();}
+    if(t>=5){anim=null;finishProps();foxPos.copy(spots[0]);fox.position.copy(foxPos);onAnimationEnd();}
   }
+  function potter(dt){const reduced=window.FK.reduced;let moving=false,speed=0;
+    if(idle.greet>0){idle.greet-=dt;foxRig.update(dt,{action:'wave',reduced});return;}
+    if(!idle.target&&!reduced){idle.wait-=dt;if(idle.wait<0){const choices=spots.filter(s=>s.distanceTo(foxPos)>1);idle.target=choices[Math.floor(Math.random()*choices.length)].clone();}}
+    if(idle.target){const dx=idle.target.x-foxPos.x,dz=idle.target.z-foxPos.z,d=Math.hypot(dx,dz),step=Math.min(d,denH*.75*dt);
+      if(d<.05){idle.target=null;idle.wait=6+Math.random()*7;}else{foxPos.x+=dx/d*step;foxPos.z+=dz/d*step;moving=true;speed=3;const want=Math.atan2(dx,dz);let diff=want-fox.rotation.y;diff=Math.atan2(Math.sin(diff),Math.cos(diff));fox.rotation.y+=diff*Math.min(1,dt*8);}}
+    else{let diff=idle.turn-fox.rotation.y;diff=Math.atan2(Math.sin(diff),Math.cos(diff));fox.rotation.y+=diff*Math.min(1,dt*3);}
+    fox.position.copy(foxPos);foxRig.update(dt,{moving,speed,reduced});}
   function frame(now){raf=requestAnimationFrame(frame);const elapsed=Math.max(0,(now-last)/1000),dt=Math.min(.25,elapsed);last=now;if(document.hidden)return;if(paused&&!anim)return;time+=dt;
     layout();
     if(area==='forest'&&!anim){forest.update(dt,time,{keys,stick});renderer.render(forest.scene,forest.camera);onProject(forest.pins());return;}
     if(anim)animateTreat(elapsed);
-    else{const reduced=window.FK.reduced;fox.material.map=looks.front;fox.position.copy(foxPos);fox.material.rotation=0;size(fox,denH*(reduced?1:1+Math.sin(time*2.2)*.008));}
-    if(anim)size(fox,anim.item==='sleep'?sleepH:denH);
-    foxShadow.position.set(foxPos.x,.01,foxPos.z);foxShadow.scale.setScalar((anim?.item==='sleep'?sleepH:denH)*.3);
-    for(const s of [fox,...props])s.visible=s.userData.on&&!!s.material.map.userData.ready;
+    else if(area==='den')potter(dt);
+    foxShadow.position.set(fox.position.x,.01,fox.position.z);foxShadow.scale.setScalar((anim?.item==='sleep'?sleepH:denH)*.3);
+    for(const s of props)s.visible=s.userData.on&&!!s.material.map.userData.ready;
+    if(area==='den'&&!window.FK.reduced){const p=motes.geometry.attributes.position,sd=motes.userData.seeds;for(let i=0;i<p.count;i++){const k=sd[i*4+3];p.setXYZ(i,sd[i*4]+Math.sin(time*.23+k)*.9,sd[i*4+1]+Math.sin(time*.17+k*1.7)*.7,sd[i*4+2]);}p.needsUpdate=true;beam.material.opacity=.32+Math.sin(time*.6)*.1;windowGlow.material.opacity=.35+Math.sin(time*.8+1)*.12;}
     renderer.render(scene,camera);
     onProject((pinList[area]||[]).map(p=>({id:p.id,...project(p.point)})));
   }
   setArea('den');raf=requestAnimationFrame(frame);
   return {setArea(next){setArea(next);},route(id){if(area==='forest')forest.route(id);},pause(value){paused=value;if(value){blur();if(area==='forest')onPosition(forest.position.x,forest.position.z);}},
     steer(x,z){stick={x,z};if(!x&&!z&&area==='forest')onPosition(forest.position.x,forest.position.z);},jump(){const ok=area==='forest'&&!paused&&forest.jump();if(ok)onJump();return ok;},
-    sequence(item){anim={item,elapsed:0};foxPos.copy(item==='sleep'?ground(cushion.u,cushion.v):ground(denSpot.u,denSpot.v));fox.position.copy(foxPos);},
-    skip(){anim=null;finishProps();fox.material.map=looks.front;foxPos.copy(ground(denSpot.u,denSpot.v));},
+    sequence(item){anim={item,elapsed:0};idle.target=null;fox.rotation.set(0,.35,0);foxPos.copy(item==='sleep'?ground(cushion.u,cushion.v):spots[0]);fox.position.copy(foxPos);},
+    skip(){anim=null;finishProps();foxPos.copy(spots[0]);fox.position.copy(foxPos);},
     get diagnostics(){const p=area==='forest'?forest.position:{x:foxPos.x,z:foxPos.z};return {area,paused,time,keys:[...keys],destination:area==='forest'?forest.destination?.toArray():undefined,position:p,painted:true};},get area(){return area;},get position(){return area==='forest'?forest.position:{x:foxPos.x,z:foxPos.z};},
     dispose(){cancelAnimationFrame(raf);observer.disconnect();canvas.removeEventListener('pointerup',pick);document.removeEventListener('visibilitychange',visibility);document.removeEventListener('keydown',keydown);document.removeEventListener('keyup',keyup);window.removeEventListener('blur',blur);fill.remove();night.remove();renderer.dispose();},
   };
