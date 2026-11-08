@@ -44,6 +44,14 @@ function ribbon(points,width,y){const curve=new THREE.CatmullRomCurve3(points.ma
   const ax=pos[3]-pos[0],az=pos[5]-pos[2],bx=pos[6]-pos[0],bz=pos[8]-pos[2];if(az*bx-ax*bz<0)for(let i=0;i<idx.length;i+=3)[idx[i+1],idx[i+2]]=[idx[i+2],idx[i+1]];
   const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(pos,3));g.setAttribute('uv',new THREE.Float32BufferAttribute(uv,2));g.setAttribute('normal',new THREE.Float32BufferAttribute(nor,3));g.setIndex(idx);return g;}
 
+// Merge static meshes that share a material into one draw call each (trunks, roots, stall, bridge...).
+function bake(root){root.updateMatrixWorld(true);const groups=new Map();
+  root.traverse(o=>{if(o.isMesh&&!o.isInstancedMesh&&!o.userData.keep)(groups.get(o.material)||groups.set(o.material,[]).get(o.material)).push(o);});
+  for(const [material,list]of groups){if(list.length<2)continue;const pos=[],nor=[],uv=[];let cast=false,receive=false,order=0;
+    for(const m of list){const g=(m.geometry.index?m.geometry.toNonIndexed():m.geometry.clone()).applyMatrix4(m.matrixWorld);if(!g.attributes.normal)g.computeVertexNormals();const n=g.attributes.position.count;
+      pos.push(...g.attributes.position.array);nor.push(...g.attributes.normal.array);if(g.attributes.uv)uv.push(...g.attributes.uv.array);else for(let i=0;i<n;i++)uv.push(0,0);cast||=m.castShadow;receive||=m.receiveShadow;order=Math.min(order,m.renderOrder);m.removeFromParent();}
+    const geo=new THREE.BufferGeometry();geo.setAttribute('position',new THREE.Float32BufferAttribute(pos,3));geo.setAttribute('normal',new THREE.Float32BufferAttribute(nor,3));geo.setAttribute('uv',new THREE.Float32BufferAttribute(uv,2));
+    const merged=new THREE.Mesh(geo,material);merged.castShadow=cast;merged.receiveShadow=receive;merged.renderOrder=order;root.add(merged);}}
 export function createForest({renderer,looks,texture,software,onPosition,onAction,onMove,onNear,onCollect,collected}){
   const rng=seeded(97),scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(42,1,.1,160);
   scene.background=new THREE.Color('#cdd39f');scene.fog=new THREE.Fog('#cdd39f',30,70);
@@ -71,7 +79,7 @@ export function createForest({renderer,looks,texture,software,onPosition,onActio
   const starTex=drawn(32,32,(g)=>{g.fillStyle='#fff5c2';g.beginPath();for(let i=0;i<10;i++){const r=i%2?5:15,a=i/10*TAU-Math.PI/2;g.lineTo(16+Math.cos(a)*r,16+Math.sin(a)*r);}g.fill();});
   const butterflyTex=['#f29a3a','#7fb6e8','#f5d24a'].map(c=>drawn(64,48,(g)=>{g.fillStyle=c;for(const s of [-1,1]){g.beginPath();g.ellipse(32+s*14,16,13,12,s*.3,0,TAU);g.fill();g.beginPath();g.ellipse(32+s*11,33,9,8,-s*.3,0,TAU);g.fill();}g.fillStyle='rgba(255,255,255,.6)';for(const s of [-1,1]){g.beginPath();g.arc(32+s*16,13,3,0,TAU);g.fill();}g.fillStyle='#4a3424';g.fillRect(30,8,4,32);}));
   const grass=new THREE.MeshLambertMaterial({map:grassTex}),bark=paint('#9a5631','bark'),woodLight=paint('#d9985a','bark'),cream=paint('#f2e4c6'),moss=paint('#6f9c35'),red=paint('#c63a2c');
-  function barkTiled(rx,ry){const m=bark.clone();m.map=bark.map.clone();m.map.wrapS=m.map.wrapT=THREE.RepeatWrapping;m.map.repeat.set(rx,ry);m.map.needsUpdate=true;return m;}
+  const barks=new Map();function barkTiled(rx,ry){const key=rx+'x'+ry;if(!barks.has(key)){const m=bark.clone();m.map=bark.map.clone();m.map.wrapS=m.map.wrapT=THREE.RepeatWrapping;m.map.repeat.set(rx,ry);m.map.needsUpdate=true;barks.set(key,m);}return barks.get(key);}
   function mesh(geometry,material,parent=scene){const m=new THREE.Mesh(geometry,material);m.castShadow=m.receiveShadow=!software;parent.add(m);return m;}
   const ground=mesh(new THREE.PlaneGeometry(130,130),grass);ground.rotation.x=-Math.PI/2;ground.castShadow=false;
   // Terracotta trails and the plaza in front of the home tree.
@@ -83,7 +91,7 @@ export function createForest({renderer,looks,texture,software,onPosition,onActio
    const water=new THREE.Mesh(ribbon(stream,4.6,.06),new THREE.MeshLambertMaterial({map:flowTex,transparent:true,opacity:.94}));water.receiveShadow=true;scene.add(water);}
   // Instanced foliage collected while building.
   const blobMaterial=nearFade(paint('#477f27').clone()),leafCards=[],heroCards=[],blobs=[],dummy=new THREE.Object3D(),tmp=new THREE.Color();
-  function cluster(cx,cy,cz,R,list=leafCards){const inner=new THREE.Mesh(new THREE.SphereGeometry(R*.6,14,10),blobMaterial);inner.position.set(cx,cy,cz);inner.castShadow=!software;scene.add(inner);blobs.push(inner);
+  function cluster(cx,cy,cz,R,list=leafCards){dummy.position.set(cx,cy,cz);dummy.rotation.set(0,0,0);dummy.scale.setScalar(R*.6);dummy.updateMatrix();blobs.push(dummy.matrix.clone());
     const count=Math.round(10+R*11);for(let i=0;i<count;i++){let x=rng()*2-1,y=rng()*1.6-.45,z=rng()*2-1;const l=Math.hypot(x,y,z)||1;x/=l;y/=l;z/=l;const d=R*(.55+rng()*.4);
       dummy.position.set(cx+x*d,cy+y*d,cz+z*d);dummy.lookAt(cx+x*d*2,cy+y*d*2,cz+z*d*2);dummy.rotateZ(rng()*TAU);dummy.scale.setScalar(R*(.82+rng()*.38));dummy.updateMatrix();
       tmp.setHSL(.23+rng()*.05,.55,.5+Math.max(0,y)*.18+rng()*.1);list.push({matrix:dummy.matrix.clone(),color:tmp.clone()});}}
@@ -147,6 +155,8 @@ export function createForest({renderer,looks,texture,software,onPosition,onActio
   // Lanterns: glowing lamps with halos.
   const halos=[];function lantern(x,y,z){const lamp=new THREE.Mesh(new THREE.CylinderGeometry(.13,.13,.3,10),new THREE.MeshBasicMaterial({color:'#ffd47e',toneMapped:false}));lamp.position.set(x,y,z);scene.add(lamp);const cap=mesh(new THREE.ConeGeometry(.2,.16,8),paint('#5e3f27'));cap.position.set(x,y+.23,z);const halo=new THREE.Sprite(new THREE.SpriteMaterial({map:glowTex,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,toneMapped:false}));halo.position.set(x,y,z);halo.scale.setScalar(1.3);halo.renderOrder=5;scene.add(halo);halos.push(halo);}
   lantern(-1.45,1.6,-5.35);lantern(1.45,1.6,-5.35);lantern(8.2,2.25,-4.2);lantern(8.35,.9,6.5);
+  {const im=new THREE.InstancedMesh(new THREE.SphereGeometry(1,14,10),blobMaterial,blobs.length);blobs.forEach((m,i)=>im.setMatrixAt(i,m));im.castShadow=!software;scene.add(im);}
+  bake(scene);
   // Sprites: painted characters, collectibles, butterflies, dust.
   function sprite(map,h,order=2,anchor=0){const s=new THREE.Sprite(new THREE.SpriteMaterial({map,transparent:true,toneMapped:false,depthWrite:false,alphaTest:.02}));s.center.set(.5,anchor);s.renderOrder=order;s.userData.h=h;scene.add(s);return s;}
   function size(s,h=s.userData.h,flip=1){const img=s.material.map.image,a=img&&img.width?img.width/img.height:1;s.scale.set(h*a*flip,h,1);}

@@ -388,3 +388,8 @@
 
 .ff-task-scene>.ff-painted-picture{width:150px;height:150px}
 @media(max-width:600px){.ff-task-scene>.ff-painted-picture{width:110px;height:110px}.ff-answer>.ff-painted-picture{width:80px;height:80px}}
+/* Soft fade when the fox moves between den, forest and shop. */
+.ff-fader{position:absolute;inset:0;z-index:4;background:#2b1d10;opacity:0;pointer-events:none}
+.ff-fader.on{animation:ff-area-fade .5s ease-out}
+@keyframes ff-area-fade{from{opacity:.9}to{opacity:0}}
+
