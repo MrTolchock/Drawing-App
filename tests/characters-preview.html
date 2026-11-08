@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="de-CH"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Forest friends model sheet</title>
+<style>html,body{margin:0;height:100%;background:#efe4cc}canvas{display:block;width:100%;height:100%}</style></head>
+<body><canvas id="c"></canvas>
+<script type="module">
+/* Development model sheet: renders every Forest friends rig side by side (front and three-quarter). */
+import {THREE} from '../js/forest/materials.js';
+import {characters} from '../js/friends/characters3d.js';
+window.FK=window.FK||{reduced:true};
+const canvas=document.getElementById('c'),renderer=new THREE.WebGLRenderer({canvas,antialias:true});renderer.setPixelRatio(1);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;
+const scene=new THREE.Scene();scene.background=new THREE.Color('#efe4cc');scene.add(new THREE.HemisphereLight('#ffe9c2','#6b5636',1.3));const sun=new THREE.DirectionalLight('#ffd9a0',2.4);sun.position.set(-3,6,5);scene.add(sun);
+const ids=['fox','squirrel','bird','owl','mouse','beaver'],rigs=[];
+ids.forEach((id,i)=>{for(const [row,yaw] of [[0,0],[1,.7]]){const r=characters[id](id==='bird'?.8:1.4);r.group.position.set((i-2.5)*1.9,row?-2.1:0,0);r.group.rotation.y=yaw;scene.add(r.group);rigs.push(r);}});
+const camera=new THREE.PerspectiveCamera(30,1,.1,100);camera.position.set(0,.6,13);camera.lookAt(0,-.4,0);
+function frame(){const w=canvas.clientWidth,h=canvas.clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();rigs.forEach(r=>r.update(.016,{reduced:true}));renderer.render(scene,camera);requestAnimationFrame(frame);}frame();
+</script></body></html>

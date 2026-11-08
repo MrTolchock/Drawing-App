@@ -3,7 +3,7 @@
    the world as sprites. Decoration is visual only; simple circles keep the fox out of trunks, rocks
    and water. Places mirror the painting, so the picture map stays truthful. */
 import {THREE,paint,curveTube,limb,roundedBlock,paintedPath,seeded} from '../forest/materials.js';
-import {actor} from './actors.js';
+import {characters} from './characters3d.js';
 
 const TAU=Math.PI*2,FOX_H=1.6,SPEED=3.6;
 const pin=(x,y)=>({pu:x/1024,pv:y/768});
@@ -151,10 +151,9 @@ export function createForest({renderer,looks,texture,software,onPosition,onActio
   function sprite(map,h,order=2,anchor=0){const s=new THREE.Sprite(new THREE.SpriteMaterial({map,transparent:true,toneMapped:false,depthWrite:false,alphaTest:.02}));s.center.set(.5,anchor);s.renderOrder=order;s.userData.h=h;scene.add(s);return s;}
   function size(s,h=s.userData.h,flip=1){const img=s.material.map.image,a=img&&img.width?img.width/img.height:1;s.scale.set(h*a*flip,h,1);}
   function contact(x,z,r,y=.03,o=1){const m=new THREE.Mesh(new THREE.CircleGeometry(1,24),new THREE.MeshBasicMaterial({map:softTex,transparent:true,depthWrite:false,opacity:o,toneMapped:false}));m.rotation.x=-Math.PI/2;m.position.set(x,y,z);m.scale.setScalar(r);m.renderOrder=1;scene.add(m);return m;}
-  const friends={squirrel:{at:[-9.4,0,-12.3],h:1.1},bird:{at:[-8.55,2.4,-.25],h:.72},owl:{at:[-5.2,1.0,-4.2],h:1.2},mouse:{at:[8.72,.6,6.88],h:1.12}};
-  for(const [id,f]of Object.entries(friends)){f.sprite=sprite(texture(id),f.h);f.sprite.position.set(...f.at);if(id==='squirrel')contact(f.at[0],f.at[2],.42);}
-  const beaver=actor('beaver');beaver.group.position.set(18.2,0,-2.4);beaver.group.rotation.y=-1.1;scene.add(beaver.group);{const box=new THREE.Box3().setFromObject(beaver.group);beaver.group.scale.multiplyScalar(1.15/((box.max.y-box.min.y)||1));}contact(18.2,-2.4,.6);
-  const fox=sprite(looks.front,FOX_H),foxShadow=contact(0,0,.42,.04,1),pos=new THREE.Vector3(forestPlaces.home.x,0,forestPlaces.home.z);
+  const friends={squirrel:{at:[-9.4,0,-12.3],yaw:.35,h:1.15},bird:{at:[-8.5,2.38,-.25],yaw:.4,h:.6},owl:{at:[-5.2,1.0,-4.2],yaw:.55,h:1.25},mouse:{at:[8.72,.62,6.88],yaw:-.55,h:1.1},beaver:{at:[18.2,0,-2.4],yaw:-1.2,h:1.2}};
+  for(const [id,f]of Object.entries(friends)){f.rig=characters[id](f.h);f.rig.group.position.set(...f.at);f.rig.group.rotation.y=f.yaw;scene.add(f.rig.group);if(f.at[1]===0)contact(f.at[0],f.at[2],f.h*.42);}
+  const foxRig=characters.fox(FOX_H),fox=foxRig.group,foxShadow=contact(0,0,.42,.04,1),pos=new THREE.Vector3(forestPlaces.home.x,0,forestPlaces.home.z),vel=new THREE.Vector2();scene.add(fox);
   const ring=new THREE.Mesh(new THREE.RingGeometry(.4,.52,32),new THREE.MeshBasicMaterial({color:'#fff3c4',transparent:true,opacity:.85,depthWrite:false,toneMapped:false}));ring.rotation.x=-Math.PI/2;ring.visible=false;ring.renderOrder=1;scene.add(ring);
   const golden=leafSpots.map(([x,z],i)=>{const s=sprite(goldTex,.55,3,.5),h=new THREE.Sprite(new THREE.SpriteMaterial({map:glowTex,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,toneMapped:false}));h.scale.setScalar(1.4);h.renderOrder=2;scene.add(h);size(s);return {id:forestCollectibles[i],x,z,sprite:s,halo:h,taken:false};});
   const sparks=Array.from({length:10},()=>{const s=sprite(starTex,.22,6,.5);size(s);s.visible=false;return {s,v:new THREE.Vector3(),life:0};});
@@ -181,20 +180,21 @@ export function createForest({renderer,looks,texture,software,onPosition,onActio
   function collect(g){g.taken=true;g.sprite.visible=g.halo.visible=false;sparks.forEach((p,i)=>{p.s.visible=true;p.life=.8;p.s.position.set(g.x,.7,g.z);const a=i/sparks.length*TAU;p.v.set(Math.cos(a)*2.2,2.6+Math.sin(i*1.7)*.8,Math.sin(a)*2.2);});onCollect(g.id);}
   function update(dt,time,{keys,stick}){
     const reduced=window.FK.reduced;let dx=Number(keys.has('ArrowRight')||keys.has('d'))-Number(keys.has('ArrowLeft')||keys.has('a'))+stick.x,dz=Number(keys.has('ArrowDown')||keys.has('s'))-Number(keys.has('ArrowUp')||keys.has('w'))+stick.z;
-    const manual=Math.hypot(dx,dz)>0;let moving=false;
-    if(manual){destination=null;path=[];arrival=null;ring.visible=false;}else if(destination){dx=destination.x-pos.x;dz=destination.z-pos.z;}
-    const distance=Math.hypot(dx,dz);
-    if(distance>.08){const step=Math.min(manual?Infinity:distance,SPEED*dt),nx=pos.x+dx/distance*step,nz=pos.z+dz/distance*step;
-      if(walkable(nx,nz)){pos.x=nx;pos.z=nz;}else if(walkable(nx,pos.z))pos.x=nx;else if(walkable(pos.x,nz))pos.z=nz;
-      if(Math.abs(dx)>Math.abs(dz)*.7){facing='side';flip=dx<0?-1:1;}else{facing=dz<0?'back':'front';flip=1;}moving=true;}
-    else if(destination){if(path.length)destination=path.shift();else{destination=null;ring.visible=false;onPosition(pos.x,pos.z);const reached=arrival;arrival=null;if(reached)onAction(reached);}}
+    const manual=Math.hypot(dx,dz)>0,want=new THREE.Vector2();
+    if(manual){destination=null;path=[];arrival=null;ring.visible=false;want.set(dx,dz).normalize().multiplyScalar(SPEED*Math.min(1,Math.hypot(dx,dz)));}
+    else if(destination){let ddx=destination.x-pos.x,ddz=destination.z-pos.z,d=Math.hypot(ddx,ddz);
+      while(path.length&&d<.55){destination=path.shift();ddx=destination.x-pos.x;ddz=destination.z-pos.z;d=Math.hypot(ddx,ddz);}
+      if(!path.length&&d<.1){destination=null;ring.visible=false;vel.set(0,0);onPosition(pos.x,pos.z);const reached=arrival;arrival=null;if(reached)onAction(reached);}
+      else{const sp=SPEED*(path.length?1:Math.min(1,.25+d/1.2));want.set(ddx/d*sp,ddz/d*sp);}}
+    vel.lerp(want,1-Math.exp(-dt*(want.lengthSq()?9:12)));const speed=vel.length(),moving=speed>.15;
+    if(speed>.02){const nx=pos.x+vel.x*dt,nz=pos.z+vel.y*dt;if(walkable(nx,nz)){pos.x=nx;pos.z=nz;}else if(walkable(nx,pos.z)){pos.x=nx;vel.y*=.5;}else if(walkable(pos.x,nz)){pos.z=nz;vel.x*=.5;}else vel.multiplyScalar(.5);
+      if(speed>.2){const target=Math.atan2(vel.x,vel.y);let diff=target-fox.rotation.y;diff=Math.atan2(Math.sin(diff),Math.cos(diff));fox.rotation.y+=diff*(1-Math.exp(-dt*12));}}
     if(moving&&time-lastSample>1){lastSample=time;onPosition(pos.x,pos.z);}
     let closest=null,best=3.2;for(const [id,p]of Object.entries(forestPlaces)){const d=Math.hypot(p.x-pos.x,p.z-pos.z);if(d<best){closest=id;best=d;}}if(closest!==near){near=closest;onNear(near);}
     // Jump arc and landing squash.
     if(jumpY>0||jumpV>0){jumpV-=18*dt;jumpY+=jumpV*dt;if(jumpY<=0){jumpY=0;jumpV=0;squash=.14;}}squash=Math.max(0,squash-dt);
-    const base=groundY(pos.x,pos.z);fox.material.map=looks[jumpY>0?'happy':facing];fox.position.set(pos.x,base+jumpY,pos.z);
-    if(moving&&!reduced&&jumpY===0){fox.position.y+=Math.abs(Math.sin(time*11))*.05;fox.material.rotation=Math.sin(time*11)*.05;}else fox.material.rotation=0;
-    size(fox,FOX_H*(squash>0?.9:moving||reduced?1:1+Math.sin(time*2.2)*.008),facing==='side'&&jumpY===0?flip:1);if(squash>0)fox.scale.x*=1.08;
+    const base=groundY(pos.x,pos.z);fox.position.set(pos.x,base+jumpY,pos.z);fox.scale.set(squash>0?1.08:1,squash>0?.9:1,squash>0?1.08:1);
+    foxRig.update(dt,{moving,speed,action:jumpY>0?'happy':'',reduced});
     foxShadow.position.set(pos.x,base+.04,pos.z);foxShadow.scale.setScalar(.42*(1-Math.min(.5,jumpY*.25)));
     // Dust puffs while walking.
     if(moving&&jumpY===0&&!reduced&&time-lastPuff>.17){lastPuff=time;const p=puffs.find(q=>q.life<=0);if(p){p.life=.55;p.s.visible=true;p.s.position.set(pos.x+(rng()-.5)*.3,base+.12,pos.z+.15);}}
@@ -203,8 +203,7 @@ export function createForest({renderer,looks,texture,software,onPosition,onActio
     for(const g of golden){if(g.taken)continue;const bob=reduced?0:Math.sin(time*2.4+g.x)*.12;g.sprite.position.set(g.x,.75+bob,g.z);g.sprite.material.rotation=reduced?0:Math.sin(time*1.6+g.z)*.4;g.halo.position.copy(g.sprite.position);g.halo.material.opacity=.55+Math.sin(time*3+g.x)*.2;if(Math.hypot(g.x-pos.x,g.z-pos.z)<1.1&&jumpY<1.2)collect(g);}
     for(const p of sparks)if(p.life>0){p.life-=dt;p.v.y-=6*dt;p.s.position.addScaledVector(p.v,dt);p.s.material.opacity=Math.min(1,p.life*2);p.s.material.rotation+=dt*6;if(p.life<=0)p.s.visible=false;}
     // Friends: gentle idle, a happy hop when the fox arrives.
-    for(const [id,f]of Object.entries(friends)){const hop=near===id&&!reduced?Math.abs(Math.sin(time*5))*.14:0;f.sprite.position.set(f.at[0],f.at[1]+hop,f.at[2]);size(f.sprite,f.h*(reduced?1:1+Math.sin(time*1.8+f.at[0])*.012));}
-    beaver.animate(time,{action:near==='beaver'?'wave':'',mood:near==='beaver'?'joyful':'gentle',reduced});
+    for(const [id,f]of Object.entries(friends))f.rig.update(dt,{action:near===id?(id==='bird'||id==='owl'?'wave':'hop'):'',reduced});
     // Butterflies wander and flutter away from the fox.
     for(const b of butterflies){const t=time*.55+b.phase,d=Math.hypot(b.x-pos.x,b.z-pos.z);if(d<2.2)b.flee=1.2;b.flee=Math.max(0,b.flee-dt);
       const tx=b.hx+Math.sin(t)*2.2+(b.flee?(b.x-pos.x)/(d||1)*3:0),tz=b.hz+Math.cos(t*1.3)*1.6+(b.flee?(b.z-pos.z)/(d||1)*3:0);b.x+=(tx-b.x)*Math.min(1,dt*(b.flee?2.5:.8));b.z+=(tz-b.z)*Math.min(1,dt*(b.flee?2.5:.8));b.y=1+Math.sin(t*2.3)*.35+(b.flee?.8:0);
@@ -214,15 +213,15 @@ export function createForest({renderer,looks,texture,software,onPosition,onActio
     if(ring.visible)ring.material.opacity=.55+Math.sin(time*4)*.25;
     // Fade the home canopy when the fox walks behind the trunk.
     const behind=pos.z<-9.4&&Math.abs(pos.x)<5.5;hero.material.opacity+=((behind?.3:1)-hero.material.opacity)*Math.min(1,dt*5);hero.material.transparent=hero.material.opacity<.99;hero.material.depthWrite=!hero.material.transparent;
-    focus.lerp(new THREE.Vector3(pos.x,base*.5,pos.z),reduced?1:1-Math.exp(-dt*3.2));placeCamera(1);
+    focus.lerp(new THREE.Vector3(pos.x+vel.x*.35,base*.5,pos.z+vel.y*.35),reduced?1:1-Math.exp(-dt*2.6));placeCamera(1);
   }
   return {scene,camera,
-    enter(position){const p=position&&walkable(position.x,position.z)?position:forestPlaces.home;pos.set(p.x,0,p.z);destination=null;path=[];arrival=null;ring.visible=false;near=null;facing='front';flip=1;jumpY=jumpV=0;setCollected(collected());snapCamera();renderer.shadowMap.needsUpdate=true;},
+    enter(position){const p=position&&walkable(position.x,position.z)?position:forestPlaces.home;pos.set(p.x,0,p.z);vel.set(0,0);fox.rotation.y=0;destination=null;path=[];arrival=null;ring.visible=false;near=null;jumpY=jumpV=0;setCollected(collected());snapCamera();renderer.shadowMap.needsUpdate=true;},
     resize(w,h){width=w;height=h;narrow=w<600;camera.aspect=w/Math.max(1,h);camera.fov=narrow?54:42;camera.updateProjectionMatrix();snapCamera();},
     update,route(id){const p=forestPlaces[id];if(p)walkTo(new THREE.Vector3(p.x,0,p.z),id);},
     pick(x,y){raycaster.setFromCamera(new THREE.Vector2(x,y),camera);const hit=new THREE.Vector3();if(raycaster.ray.intersectPlane(floor,hit))walkTo(hit);},
     jump(){if(jumpY===0&&jumpV===0){jumpV=window.FK.reduced?3.2:5.6;return true;}return false;},
-    stop(){destination=null;path=[];arrival=null;ring.visible=false;},
+    stop(){destination=null;path=[];arrival=null;ring.visible=false;vel.set(0,0);},
     pins(){return pins.map(p=>{const q=p.point.clone().project(camera);return {id:p.id,x:(q.x*.5+.5)*width,y:(-q.y*.5+.5)*height,visible:q.z<1&&Math.abs(q.x)<1.02&&q.y>-1.02&&q.y<1.12};});},
     get position(){return {x:pos.x,z:pos.z};},get destination(){return destination;},get near(){return near;},
   };
