@@ -70,10 +70,10 @@ function animator(parts){
     const walk=moving&&!reduced?1:0,s=Math.sin(phase),c=Math.cos(phase);
     blink-=dt;if(blink<0){blinkT=.14;blink=2.4+Math.random()*3.2;}blinkT=Math.max(0,blinkT-dt);
     const closed=action==='sleep'||blinkT>0,happyEyes=action==='happy'&&!reduced;for(const e of parts.eyes||[])e.scale.y=closed?.1:happyEyes?.55+Math.abs(Math.sin(t*6))*.1:1;
-    const body=parts.body;if(body){const breathe=reduced?0:Math.sin(t*2.1)*.012;body.position.y=parts.bodyY+(walk?Math.abs(s)*.035:0)+(action==='happy'||action==='wave'?Math.abs(Math.sin(t*6))*.045:0);
+    const sit=action==='sleep'&&parts.legs?.length?1:0,body=parts.body;if(body){const breathe=reduced?0:Math.sin(t*(sit?1.2:2.1))*(sit?.022:.012);body.position.y=parts.bodyY-sit*.2+(walk?Math.abs(s)*.035:0)+(action==='happy'||action==='wave'?Math.abs(Math.sin(t*6))*.045:0);
       body.rotation.z=walk?s*.045:0;body.rotation.x=walk?.07:0;body.scale.set(1-breathe*.5+squash*.5,1+breathe-squash,1-breathe*.5+squash*.5);}
     if(parts.head){parts.head.rotation.z=walk?-s*.05:Math.sin(t*.7)*.07+(action==='sleep'?.25:0)+(action==='wave'?.12:0);parts.head.rotation.x=action==='sleep'?.22:action==='eat'?Math.sin(t*9)*.08:walk?c*.04-.05:Math.sin(t*.45)*.04;parts.head.rotation.y=walk?0:Math.sin(t*.33)*.18;}
-    const legs=parts.legs||[];legs.forEach((l,i)=>{l.rotation.x=walk?(i?-s:s)*.7:action==='bath'?-.9:0;});
+    const legs=parts.legs||[];legs.forEach((l,i)=>{l.rotation.x=walk?(i?-s:s)*.7:action==='bath'?-.9:sit?-1.45:0;l.rotation.z=sit?(i?-1:1)*.18:0;});
     const arms=parts.arms||[];arms.forEach((a,i)=>{let x=walk?(i?s:-s)*.6:Math.sin(t*1.4+i)*.04,z=(i?-1:1)*.1;
       if(action==='wave'&&i===1){x=-2.4;z=-.3+Math.sin(t*9)*.35;}
       if(action==='happy'){x=-2.2;z=(i?-1:1)*(.35+Math.sin(t*8)*.1);}
@@ -82,7 +82,7 @@ function animator(parts){
       if(action==='sleep'){x=-.5;z=(i?-1:1)*-.25;}
       a.rotation.x+=(x-a.rotation.x)*Math.min(1,dt*14);a.rotation.z+=(z-a.rotation.z)*Math.min(1,dt*14);});
     if(parts.tail){const wag=Math.sin(t*(walk?6:1.4))*(walk?.32:.2)+(action==='hop'||action==='happy'?Math.sin(t*10)*.25:0);tailLag+=(wag-tailLag)*Math.min(1,dt*7);
-      parts.tail.rotation.y=tailBase.y+wag;parts.tail.rotation.x=tailBase.x+(walk?s*.08:Math.sin(t*1.1)*.05);if(parts.tailTip)parts.tailTip.rotation.y=(tailLag-wag)*1.4+wag*.35;}
+      parts.tail.rotation.y=tailBase.y+(sit?1.5:wag);parts.tail.rotation.x=tailBase.x+(walk?s*.08:Math.sin(t*1.1)*.05);if(parts.tailTip)parts.tailTip.rotation.y=(tailLag-wag)*1.4+wag*.35;}
     flickT-=dt;if(flickT<0){flick=.18;flickT=2.5+Math.random()*5;}flick=Math.max(0,flick-dt);
     for(const [i,e] of (parts.ears||[]).entries()){e.rotation.z=e.userData.z+(!reduced&&flick>0&&i===(Math.floor(flickT*10)%2)?Math.sin(flick/.18*Math.PI)*.3:0)+(walk?Math.sin(phase+i)*.04:0);}
     for(const [i,w] of (parts.wings||[]).entries()){w.rotation.z=(i?-1:1)*(action==='wave'||action==='happy'?.6+Math.sin(t*12)*.45:.06+Math.sin(t*1.6)*.03);}
