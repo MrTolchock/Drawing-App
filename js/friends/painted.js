@@ -87,9 +87,7 @@ export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,o
   function pick(event){if(paused||anim||event.button>0||area!=='forest')return;const rect=canvas.getBoundingClientRect();forest.pick((event.clientX-rect.left)/rect.width*2-1,-(event.clientY-rect.top)/rect.height*2+1);}
   canvas.addEventListener('pointerup',pick);
   const visibility=()=>{last=performance.now();keys.clear();stick={x:0,z:0};};document.addEventListener('visibilitychange',visibility);
-  const keydown=e=>{if(paused||/INPUT|TEXTAREA|SELECT/.test(e.target.tagName))return;if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','w','a','s','d'].includes(e.key)){keys.add(e.key);e.preventDefault();}else if(e.key===' '&&area==='forest'&&!e.repeat&&e.target===document.body){if(forest.jump())onJump();e.preventDefault();}},
-    keyup=e=>{if(keys.delete(e.key)&&area==='forest')onPosition(forest.position.x,forest.position.z);},blur=()=>{keys.clear();stick={x:0,z:0};};
-  document.addEventListener('keydown',keydown);document.addEventListener('keyup',keyup);window.addEventListener('blur',blur);
+  const keydown=()=>{},keyup=()=>{},blur=()=>{keys.clear();stick={x:0,z:0};};
   const observer=new ResizeObserver(()=>layout());observer.observe(canvas);
   function finishProps(){props.forEach(p=>{p.userData.on=false;});night.classList.remove('on');apple.visible=false;tub.visible=false;fox.scale.setScalar(1);fox.rotation.set(0,.35,0);}
   function animateTreat(dt){
@@ -125,7 +123,7 @@ export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,o
   }
   setArea('den');raf=requestAnimationFrame(frame);
   return {setArea(next){setArea(next);},route(id){if(area==='forest')forest.route(id);},pause(value){paused=value;if(value){blur();if(area==='forest')onPosition(forest.position.x,forest.position.z);}},
-    steer(x,z){stick={x,z};if(!x&&!z&&area==='forest')onPosition(forest.position.x,forest.position.z);},jump(){const ok=area==='forest'&&!paused&&forest.jump();if(ok)onJump();return ok;},
+    steer(x,z){stick={x,z};if(!x&&!z&&area==='forest')onPosition(forest.position.x,forest.position.z);},
     sequence(item){anim={item,elapsed:0};idle.target=null;fox.rotation.set(0,.35,0);foxPos.copy(item==='sleep'?ground(cushion.u,cushion.v):spots[0]);fox.position.copy(foxPos);},
     skip(){anim=null;finishProps();foxPos.copy(spots[0]);fox.position.copy(foxPos);},
     get diagnostics(){const p=area==='forest'?forest.position:{x:foxPos.x,z:foxPos.z};return {area,paused,time,keys:[...keys],destination:area==='forest'?forest.destination?.toArray():undefined,position:p,painted:true};},get area(){return area;},get position(){return area==='forest'?forest.position:{x:foxPos.x,z:foxPos.z};},

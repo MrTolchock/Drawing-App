@@ -182,8 +182,8 @@ function createProceduralWorld(canvas,{position,onPosition,onNear,onAction,onMov
   }
   canvas.addEventListener('pointerup',pick);
   const visibility=()=>{last=performance.now();keys.clear();stick={x:0,z:0};};document.addEventListener('visibilitychange',visibility);
-  const keydown=e=>{if(paused||/INPUT|TEXTAREA|SELECT/.test(e.target.tagName))return;if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','w','a','s','d'].includes(e.key)){keys.add(e.key);e.preventDefault();}},keyup=e=>{if(keys.delete(e.key)&&area==='forest')onPosition(player.group.position.x,player.group.position.z);},blur=()=>{keys.clear();stick={x:0,z:0};};
-  document.addEventListener('keydown',keydown);document.addEventListener('keyup',keyup);window.addEventListener('blur',blur);
+  const keydown=()=>{},keyup=()=>{},blur=()=>{keys.clear();stick={x:0,z:0};};
+  window.addEventListener('blur',blur);
   function resize(){width=canvas.clientWidth;height=canvas.clientHeight;renderer.setSize(width,height,false);camera.aspect=width/Math.max(1,height);camera.fov=width<600?(area==='forest'?57:62):42;camera.updateProjectionMatrix();if(area!=='forest'&&!anim)indoorCamera();}
   const observer=new ResizeObserver(resize);observer.observe(canvas);
   function animateTreat(dt){

@@ -173,7 +173,7 @@ export function createForest({renderer,looks,texture,software,onPosition,onActio
   const pinPoints={home:[0,3.75,-5.3],shop:[6.6,3.55,-4.3],squirrel:[-9.4,1.75,-12.3],bird:[-8.55,3.35,-.25],owl:[-5.2,2.55,-4.2],beaver:[18.2,2.35,-2.4],mouse:[8.7,2.2,6.88]};
   const pins=Object.entries(pinPoints).map(([id,p])=>({id,point:new THREE.Vector3(...p)}));
   // Movement, routes and camera.
-  let destination=null,path=[],arrival=null,near=null,facing='front',flip=1,jumpY=0,jumpV=0,squash=0,lastSample=0,lastPuff=0,narrow=false,width=1,height=1;
+  let destination=null,path=[],arrival=null,near=null,facing='front',flip=1,lastSample=0,lastPuff=0,narrow=false,width=1,height=1;
   const focus=new THREE.Vector3(),raycaster=new THREE.Raycaster(),floor=new THREE.Plane(new THREE.Vector3(0,1,0),0);
   const hubs=[[9.8,-3],[13,-3],[16.2,-3],[2,-2.4]];for(const s of solids)if(Math.hypot(s.x-2,s.z+2)<19)for(let i=0;i<8;i++){const a=i/8*TAU;hubs.push([s.x+Math.cos(a)*(s.r+.8),s.z+Math.sin(a)*(s.r+.8)]);}
   const hubPoints=hubs.filter(([x,z])=>walkable(x,z)).map(([x,z])=>new THREE.Vector3(x,0,z));
@@ -201,16 +201,14 @@ export function createForest({renderer,looks,texture,software,onPosition,onActio
       if(speed>.2){const target=Math.atan2(vel.x,vel.y);let diff=target-fox.rotation.y;diff=Math.atan2(Math.sin(diff),Math.cos(diff));fox.rotation.y+=diff*(1-Math.exp(-dt*12));}}
     if(moving&&time-lastSample>1){lastSample=time;onPosition(pos.x,pos.z);}
     let closest=null,best=3.2;for(const [id,p]of Object.entries(forestPlaces)){const d=Math.hypot(p.x-pos.x,p.z-pos.z);if(d<best){closest=id;best=d;}}if(closest!==near){near=closest;onNear(near);}
-    // Jump arc and landing squash.
-    if(jumpY>0||jumpV>0){jumpV-=18*dt;jumpY+=jumpV*dt;if(jumpY<=0){jumpY=0;jumpV=0;squash=.14;}}squash=Math.max(0,squash-dt);
-    const base=groundY(pos.x,pos.z);fox.position.set(pos.x,base+jumpY,pos.z);fox.scale.set(squash>0?1.08:1,squash>0?.9:1,squash>0?1.08:1);
-    foxRig.update(dt,{moving,speed,action:jumpY>0?'happy':'',reduced});
-    foxShadow.position.set(pos.x,base+.04,pos.z);foxShadow.scale.setScalar(.42*(1-Math.min(.5,jumpY*.25)));
+    const base=groundY(pos.x,pos.z);fox.position.set(pos.x,base,pos.z);
+    foxRig.update(dt,{moving,speed,reduced});
+    foxShadow.position.set(pos.x,base+.04,pos.z);foxShadow.scale.setScalar(.42);
     // Dust puffs while walking.
-    if(moving&&jumpY===0&&!reduced&&time-lastPuff>.17){lastPuff=time;const p=puffs.find(q=>q.life<=0);if(p){p.life=.55;p.s.visible=true;p.s.position.set(pos.x+(rng()-.5)*.3,base+.12,pos.z+.15);}}
+    if(moving&&!reduced&&time-lastPuff>.17){lastPuff=time;const p=puffs.find(q=>q.life<=0);if(p){p.life=.55;p.s.visible=true;p.s.position.set(pos.x+(rng()-.5)*.3,base+.12,pos.z+.15);}}
     for(const p of puffs)if(p.life>0){p.life-=dt;const k=1-p.life/.55;size(p.s,.25+k*.45);p.s.material.opacity=.5*(1-k);p.s.position.y+=dt*.25;if(p.life<=0)p.s.visible=false;}
     // Collectibles.
-    for(const g of golden){if(g.taken)continue;const bob=reduced?0:Math.sin(time*2.4+g.x)*.12;g.sprite.position.set(g.x,.75+bob,g.z);g.sprite.material.rotation=reduced?0:Math.sin(time*1.6+g.z)*.4;g.halo.position.copy(g.sprite.position);g.halo.material.opacity=.55+Math.sin(time*3+g.x)*.2;if(Math.hypot(g.x-pos.x,g.z-pos.z)<1.1&&jumpY<1.2)collect(g);}
+    for(const g of golden){if(g.taken)continue;const bob=reduced?0:Math.sin(time*2.4+g.x)*.12;g.sprite.position.set(g.x,.75+bob,g.z);g.sprite.material.rotation=reduced?0:Math.sin(time*1.6+g.z)*.4;g.halo.position.copy(g.sprite.position);g.halo.material.opacity=.55+Math.sin(time*3+g.x)*.2;if(Math.hypot(g.x-pos.x,g.z-pos.z)<1.1)collect(g);}
     for(const p of sparks)if(p.life>0){p.life-=dt;p.v.y-=6*dt;p.s.position.addScaledVector(p.v,dt);p.s.material.opacity=Math.min(1,p.life*2);p.s.material.rotation+=dt*6;if(p.life<=0)p.s.visible=false;}
     // Friends: gentle idle, a happy hop when the fox arrives.
     for(const [id,f]of Object.entries(friends))f.rig.update(dt,{action:near===id?(id==='bird'||id==='owl'?'wave':'hop'):'',reduced});
@@ -226,11 +224,11 @@ export function createForest({renderer,looks,texture,software,onPosition,onActio
     focus.lerp(new THREE.Vector3(pos.x+vel.x*.35,base*.5,pos.z+vel.y*.35),reduced?1:1-Math.exp(-dt*2.6));placeCamera(1);
   }
   return {scene,camera,
-    enter(position){const p=position&&walkable(position.x,position.z)?position:forestPlaces.home;pos.set(p.x,0,p.z);vel.set(0,0);fox.rotation.y=0;destination=null;path=[];arrival=null;ring.visible=false;near=null;jumpY=jumpV=0;setCollected(collected());snapCamera();renderer.shadowMap.needsUpdate=true;},
+    enter(position){const p=position&&walkable(position.x,position.z)?position:forestPlaces.home;pos.set(p.x,0,p.z);vel.set(0,0);fox.rotation.y=0;destination=null;path=[];arrival=null;ring.visible=false;near=null;setCollected(collected());snapCamera();renderer.shadowMap.needsUpdate=true;},
     resize(w,h){width=w;height=h;narrow=w<600;camera.aspect=w/Math.max(1,h);camera.fov=narrow?54:42;camera.updateProjectionMatrix();snapCamera();},
     update,route(id){const p=forestPlaces[id];if(p)walkTo(new THREE.Vector3(p.x,0,p.z),id);},
     pick(x,y){raycaster.setFromCamera(new THREE.Vector2(x,y),camera);const hit=new THREE.Vector3();if(raycaster.ray.intersectPlane(floor,hit))walkTo(hit);},
-    jump(){if(jumpY===0&&jumpV===0){jumpV=window.FK.reduced?3.2:5.6;return true;}return false;},
+
     stop(){destination=null;path=[];arrival=null;ring.visible=false;vel.set(0,0);},
     pins(){return pins.map(p=>{const q=p.point.clone().project(camera);return {id:p.id,x:(q.x*.5+.5)*width,y:(-q.y*.5+.5)*height,visible:q.z<1&&Math.abs(q.x)<1.02&&q.y>-1.02&&q.y<1.12};});},
     get position(){return {x:pos.x,z:pos.z};},get destination(){return destination;},get near(){return near;},

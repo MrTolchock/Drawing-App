@@ -4,7 +4,7 @@ Forest friends is the default entry point. The original Heart Tree remains at `?
 
 ## Playable loop
 
-The fixed 3D den offers bed, doorway and drawing table. Outside, walk with ground taps, WASD/arrows or the held direction pad. The picture map sets a walking destination, not a teleport. Routes plan around solid central trunks; a destination ring points the way. The reward screen’s shop choice walks to the shop. All five friends and the shop are available immediately. Each friend offers five distinct tasks, direct answer submission, non-punitive retries, optional help and a separate example. Correct answers continue automatically after 1.4 seconds; examples and hidden tabs pause continuation.
+The fixed 3D den offers bed, doorway and drawing table. Outside, walk only by clicking/tapping the ground or a map destination. Movement arrows, keyboard movement and jumping are removed. The picture map sets a walking destination, not a teleport. Routes plan around solid central trunks; a destination ring points the way. The reward screen’s shop choice walks to the shop. All five friends and the shop are available immediately. Each friend offers five distinct tasks, direct answer submission, non-punitive retries, optional help and a separate example. Correct answers continue automatically after 1.4 seconds; examples and hidden tabs pause continuation.
 
 | Friend | Activity | Resource | Scored pool |
 | --- | --- | --- | --- |
@@ -60,7 +60,7 @@ The fox, squirrel, blue tit, owl, mouse and beaver are articulated 3D models (`j
 
 The den and shop remain the reviewed paintings (`js/friends/painted.js`). The den is animated: the 3D fox, lit like the painting, waves on arrival and potters between spots on the floor; dust drifts through a sunbeam from the door and the round window glows. Apple, bath and sleep use the 3D fox with real props. Painted cut-outs from the reviewed art (`assets/forest-friends`, built by `tools/forest-friends-paint-assets.py` from the frozen design art) are used for portraits, pins and meeting cards.
 
-Exploration play, separate from the learning rounds and the token economy: twelve golden leaves to find (saved as `collected`, with a counter and a spoken finale), jumping (Space or the jump button), butterflies that flutter away, footstep dust, friends that hop when the fox arrives, and soft collect and jump sounds that follow the forest-sounds setting. Golden leaves never grant tokens.
+Exploration play, separate from the learning rounds and the token economy: twelve golden leaves to find (saved as `collected`, with a counter and a spoken finale), butterflies that flutter away, footstep dust, friends that hop when the fox arrives, and soft collect sounds that follow the forest-sounds setting. Golden leaves never grant tokens.
 
 Controls follow the review's flat style: cream rounded tiles (speaker top-left; map, bag and adult settings top-right), frosted round pins and plain paper puzzle cards. The earlier procedural 3D world remains available with `?world3d`; saves are shared and positions outside the forest fall back to the home door. All motion stops under reduced-motion settings.
 
@@ -91,3 +91,5 @@ Authored pools were checked for one correct answer, distinct options, visible ta
 Run `node --test tests/*.test.cjs` and `node tests/friends-library-browser.cjs`, then `node tests/friends-browser.cjs` and `node tests/friends-animation-browser.cjs` against the local server. Set `PLAYWRIGHT_MODULE`, `CHROMIUM_PATH`, `FARBTUPF_BASE_URL` or `FARBTUPF_SHOTS` for another machine. The animation suite checks normal-motion wall-clock completion, skipping and bed sleep with an isolated fixture. The main browser suite exercises real controls for all five rounds, save/reward boundaries, four purchases, drawings, consumption, legacy IndexedDB, offline relaunch and developer isolation. Older browser suites now enter the original game explicitly.
 
 The [visual milestone record](../design/forest-friends/visuals/milestones/playable-loop-1/COMPARISON.md) records screenshots and remaining art differences. Physical iPad/Safari performance, installed voices, child navigation/reading observations and further model/material polish remain to be checked. Software Chromium evidence does not establish those results.
+
+Talking to a friend starts an assigned activity immediately. Visits cycle through the new round and that friend’s original library activities; an interrupted new round resumes first. The five new rounds have a prominent “Spiele aus dem Wald” section in the picture book.

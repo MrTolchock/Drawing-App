@@ -9,13 +9,13 @@ const actionNames={outside:'Nach draussen',drawing:'Zeichnen und ausmalen',sleep
 // Painted pictures where the reviewed art exists: friends from the forest painting and character sheet,
 // nouns from the original Waldatelier sheets. Action poses, nuts, shapes and controls stay drawn.
 const paintedFriends={fox:'fox-front',squirrel:'squirrel',bird:'bird',owl:'owl',mouse:'mouse'};
-const paintedWords={tree:'tree',book:'book',apple:'apple',leaf:'leaf',feathers:'feather',berries:'blueberries',pencils:'pencil',bed:'bed',bag:'picnic',beaver:'beaver',hat:'hat',rose:'rose',nose:'nose',fish:'fish',ball:'ball',boat:'boat',cow:'cow',hare:'rabbit',tin:'tin',bus:'bus',star:'star',whale:'whale'};
+const paintedWords={tree:'tree',book:'book',mouse:'mouse',bird:'bird',owl:'owl',fox:'fox',apple:'apple',leaf:'leaf',feathers:'feather',berries:'blueberries',pencils:'pencil',bed:'bed',bag:'picnic',beaver:'beaver',hat:'hat',rose:'rose',nose:'nose',fish:'fish',ball:'ball',boat:'boat',cow:'cow',hare:'rabbit',tin:'tin',bus:'bus',star:'star',whale:'whale'};
 function art(name,cls=''){
   if(name==='gear')return h('span',{class:'ff-picture '+cls,html:FK.icon('gear')});
   if(name==='nut'||name==='nuts'){const s=h('span',{class:'ff-picture ff-painted-picture '+cls});s.append(FK.woodland.art('nut'));return s;}
   const oldWord={table:'Tisch',leg:'Bein',stone:'Stein'}[name];
   if(oldWord)return h('span',{class:'ff-picture '+cls},FK.play.wordDrawing(oldWord));
-  if(paintedFriends[name])return h('span',{class:'ff-picture ff-painted-picture '+cls},h('img',{src:'assets/forest-friends/'+paintedFriends[name]+'.webp',alt:'',draggable:'false'}));
+  if(paintedFriends[name]&&(!['mouse','bird'].includes(name)||cls.includes('portrait')))return h('span',{class:'ff-picture ff-painted-picture '+cls},h('img',{src:'assets/forest-friends/'+paintedFriends[name]+'.webp',alt:'',draggable:'false'}));
   if(paintedWords[name]&&FK.visual?.has(paintedWords[name])){const s=h('span',{class:'ff-picture ff-painted-picture '+cls});s.append(FK.visual.art(paintedWords[name]));return s;}
   return h('span',{class:'ff-picture '+cls,html:picture(name)});
 }
@@ -47,8 +47,15 @@ function act(id){if(panel)return;if(area==='forest'){
 // The original Waldspiele and story puzzles open in their own book and return here.
 function games(resident){if(panel)close();state.record('games_open',{resident:resident||'all'});world.pause(true);FK.go('forest-book',{from:'friends',...(resident?{resident}:{})});}
 function map(){open('map');const card=shell('map');const board=h('div',{class:'ff-map'+(places.home.pu!==undefined?' ff-map-painted':'')});for(const[id,p]of Object.entries(places)){const b=button(p.name,p.picture,()=>{if(area!=='forest')go('forest');else close();world.route(id);say('Fuchs geht zu '+(C.hosts[id]?.name||(id==='home'?'deinem Zuhause':'dem Laden'))+'.');});if(p.pu!==undefined){b.style.left=(p.pu*100)+'%';b.style.top=(p.pv*100)+'%';}else{b.style.left=(50+p.x*2.8)+'%';b.style.top=(48+p.z*2.1)+'%';}board.append(b);}card.append(board);say('Wähle ein Bild. Fuchs zeigt dir den Weg.');}
-function meet(id){host=id;open('meet');const card=shell(id),saved=state.get().rounds[id];card.append(h('div',{class:'ff-meet-scene'},art('fox'),art(id)),h('div',{class:'ff-choices'},button(saved?'Weiterspielen':'Helfen','check',()=>{if(state.start(id)){activeMs=0;puzzle();if(!state.get().seenExamples[id])showExample();}}),button('Waldspiele mit '+C.hosts[id].name,'book',()=>games(id)),button('Später','back',close)));
-  say((saved?'Deine Aufgabe wartet auf dich. Möchtest du weiterspielen?':{squirrel:'Ich sammle Nüsse für den Winter. Hilfst du mir beim Zählen?',bird:'Ich suche Reime für ein Lied. Hilfst du mir beim Lesen?',owl:'Liest du mit mir einen kurzen Satz?',beaver:'Welche Form fehlt noch? Hilfst du mir?',mouse:'Liest du mit mir ein Wort?'}[id])+' Mit dem Häkchen spielen wir. Im Buch kannst du alle meine Spiele wählen. Mit dem Pfeil gehst du zurück.');
+function meet(id){
+  if(panel)close();
+  const library=FK.friendsLibrary;
+  if(state.get().rounds[id]){FK.friendsStartRound(id);return;}
+  const pool=[{id:'friends-'+id,host:id},...library.catalogue().filter(g=>g.host===id)];
+  const key='friends.next.'+id,index=Number(FK.settings.get(key))||0;
+  const selected=pool[index%pool.length];FK.settings.set(key,(index+1)%pool.length);
+  if(selected.id.startsWith('friends-'))FK.friendsStartRound(id);
+  else{world.pause(true);FK.go(selected.screen,{game:selected.id,stage:1});}
 }
 function taskScene(t,filled=false){
   const scene=h('div',{class:'ff-task-scene'});
@@ -64,7 +71,7 @@ function choice(t,value,isExample=false){const isWord=t.kind==='rhyme';const pic
 }
 function puzzle(){
   const r=state.get().rounds[host];if(!r)return meet(host);if(r.index===5)return reward();
-  open('puzzle');example=false;const t=r.tasks[r.index],card=shell(host,close);
+  open('puzzle');example=false;const t=r.tasks[r.index],card=shell(host,close);card.classList.add('ff-illustrated-round');card.dataset.kind=t.kind;card.append(h('h2',{class:'ff-round-title',text:{count:'Nüsse zählen',word:'Wörter und Bilder',rhyme:'Reimpaare lesen',sentence:'Lies und zeig',shape:'Welche Form fehlt?'}[t.kind]}));
   const tools=h('div',{class:'ff-task-tools'},button('Anleitung hören','speaker',()=>{state.help(host,'instruction');say(C.hosts[host].instruction);}),button('Beispiel ansehen','demo',showExample),button('Tipp','help',hint));
   if(state.development)tools.append(button('Aufgabe überspringen (Entwicklung)','skip',()=>answer(t.answer,true)));
   const progress=h('div',{class:'ff-progress','aria-label':r.index+' von 5 Aufgaben gelöst'},Array.from({length:5},(_,i)=>h('span',{class:i<r.index?'done':''},i<r.index?art('check'):'')));
@@ -143,10 +150,9 @@ function settings(){open('settings');const card=shell('gear');card.classList.add
 }
 FK.screen('friends',{
   build(el){root=el;root.classList.add('ff-game');root.dataset.area=area;canvas=h('canvas',{class:'ff-world','aria-label':'Dreidimensionale Waldwelt'});hotspots=h('div',{class:'ff-hotspots'});nav=h('nav',{class:'ff-nav','aria-label':'Waldmenü'});overlay=h('div',{class:'ff-overlay',hidden:true,role:'dialog','aria-label':'Waldaktivität','aria-modal':'true'});statusBar=h('div',{class:'ff-save-status',role:'alert',hidden:true});caption=h('div',{class:'ff-caption','aria-live':'polite'});nearButton=button('Mit Freund sprechen','check',()=>act(world.near),'ff-near');nearButton.hidden=true;
-    pad=h('div',{class:'ff-pad','aria-label':'Laufen',hidden:true});for(const [name,symbol,x,z]of [['Nach links','←',-1,0],['Vorwärts','↑',0,-1],['Rückwärts','↓',0,1],['Nach rechts','→',1,0]]){const b=h('button',{type:'button','aria-label':name,text:symbol});const stop=()=>world?.steer(0,0);b.onpointerdown=e=>{b.setPointerCapture(e.pointerId);audio.unlock();world.steer(x,z);};b.onpointerup=b.onpointercancel=b.onlostpointercapture=stop;pad.append(b);}
-    const jump=h('button',{type:'button',class:'ff-jump','aria-label':'Springen',html:'<svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 6 9 19h7v8h8v-8h7z" fill="#4b3b2d"/><path d="M8 34h24" stroke="#4b3b2d" stroke-width="3" stroke-linecap="round"/></svg>'});jump.onpointerdown=e=>{e.preventDefault();audio.unlock();world.jump();};pad.append(jump);
+    pad=h('div',{hidden:true});
     leaves=h('div',{class:'ff-leaves',role:'status',hidden:true});fader=h('div',{class:'ff-fader','aria-hidden':'true'});
-    root.append(canvas,hotspots,nav,pad,nearButton,caption,leaves,fader,overlay,statusBar);
+    root.append(canvas,hotspots,nav,nearButton,caption,leaves,fader,overlay,statusBar);
     let storage;try{storage=window.localStorage;}catch{storage={getItem(){throw new Error('storage blocked');},setItem(){throw new Error('storage blocked');},removeItem(){}};}
     state=window.FriendsState.create({storage,content:C,development:new URLSearchParams(location.search).get('dev')==='1',onStatus:()=>queueMicrotask(saveStatus)});
     FK.friends=state;
