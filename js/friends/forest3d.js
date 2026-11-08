@@ -9,19 +9,19 @@ const TAU=Math.PI*2,FOX_H=1.6,SPEED=3.6;
 const pin=(x,y)=>({pu:x/1024,pv:y/768});
 export const forestPlaces={
   home:{x:0,z:-3.3,picture:'door',name:'Nach Hause',...pin(392,262)},
-  shop:{x:6.6,z:-2.5,picture:'bag',name:'Zum Laden',...pin(600,240)},
+  mailman:{x:3.2,z:-.8,picture:'mailman',name:'Zum Briefträger',...pin(570,390)},
   squirrel:{x:-8.2,z:-10.4,picture:'squirrel',name:'Zu Eichhörnchen',...pin(86,134)},
   bird:{x:-7.2,z:.9,picture:'bird',name:'Zu Blaumeise',...pin(98,390)},
   owl:{x:-4.0,z:-2.6,picture:'owl',name:'Zu Waldkauz',...pin(262,300)},
   beaver:{x:16.9,z:-1.4,picture:'beaver',name:'Zu Biber',...pin(792,352)},
   mouse:{x:7.0,z:5.3,picture:'mouse',name:'Zu Maus',...pin(852,532)},
 };
-export const forestExits={den:forestPlaces.home,shop:forestPlaces.shop};
+export const forestExits={den:forestPlaces.home};
 const leafSpots=[[4,1.4],[-12.5,-3],[-4,-13.5],[3.5,-12],[9.2,-9.5],[18.5,-6],[19,3.5],[11,10.5],[2.5,10],[-5,12],[-13,8],[-15.5,-9]];
 export const forestCollectibles=leafSpots.map((_,i)=>'goldleaf-'+(i+1));
 
 const stream=[[12.6,-34],[12.1,-20],[12.3,-10],[13,-3],[13.6,4],[14.4,12],[15.8,24],[17,36]];
-const solids=[[0,-8,3.05],[5.7,-5.3,1.05],[7.5,-5.3,1.05],[-5.2,-4.2,1],[-10.3,-.7,.55],[-11.6,-14.2,1.1],[8.6,6.8,.95],[-9.6,7.2,.75],[-7.8,7.2,.75],[19.4,-3.9,1.05],[-13.5,-5,1],[-5.5,-16,1],[5,-15.5,1],[-14,4,.9],[3.5,13.5,.9],[-3,15,.9],[17,-10.5,1],[19,7.5,1],[-2,9,.6],[9.6,1.2,.55],[-12,-9,.6]].map(([x,z,r])=>({x,z,r}));
+const solids=[[0,-8,3.05],[-5.2,-4.2,1],[-10.3,-.7,.55],[-11.6,-14.2,1.1],[8.6,6.8,.95],[-9.6,7.2,.75],[-7.8,7.2,.75],[19.4,-3.9,1.05],[-13.5,-5,1],[-5.5,-16,1],[5,-15.5,1],[-14,4,.9],[3.5,13.5,.9],[-3,15,.9],[17,-10.5,1],[19,7.5,1],[-2,9,.6],[9.6,1.2,.55],[-12,-9,.6]].map(([x,z,r])=>({x,z,r}));
 const trails=[[[1.5,-2.6],[-3,-5.8],[-6.5,-8],[-8.2,-10.4],[-9.6,-17.5]],[[0,-1.4],[-4,-.5],[-7.2,.9],[-10.5,2.6]],[[1.5,-1],[.5,6],[-.5,17]],[[6,-2.8],[10.2,-3]],[[15.8,-3],[16.9,-1.4],[19.5,1]],[[1,1],[4.5,4.2],[7,5.3]]];
 function segment(px,pz,ax,az,bx,bz){const dx=bx-ax,dz=bz-az,t=Math.max(0,Math.min(1,((px-ax)*dx+(pz-az)*dz)/(dx*dx+dz*dz||1)));return Math.hypot(px-ax-dx*t,pz-az-dz*t);}
 function lineDistance(px,pz,line){let d=Infinity;for(let i=0;i<line.length-1;i++)d=Math.min(d,segment(px,pz,line[i][0],line[i][1],line[i+1][0],line[i+1][1]));return d;}
@@ -162,17 +162,6 @@ export function createForest({renderer,looks,texture,software,onPosition,onActio
     for(const [x,y,z,k]of [[-.62,2.18,2.72,1],[0,2.4,2.74,1.2],[.6,2.2,2.72,.9],[-.9,1.85,2.7,.7],[.92,1.9,2.7,.75]]){const m=mesh(new THREE.SphereGeometry(1,12,8),moss,g);m.position.set(x,y,z);m.scale.set(.32*k,.13*k,.2*k);}
     const light=new THREE.PointLight('#ffb760',8,9,2);light.position.set(0,1.4,3.6);g.add(light);}
   const doormat=mesh(roundedBlock(1.8,.04,.9,.05),paint('#d8b071'));doormat.position.set(0,.03,-4.75);
-  // Market stall with striped awning, apples, cushions and a lantern.
-  {const g=new THREE.Group();g.position.set(6.6,0,-5.2);scene.add(g);
-    mesh(roundedBlock(3.2,1.05,1.1,.08),woodLight,g).position.set(0,.53,.4);mesh(roundedBlock(3.4,.12,1.3,.06),paint('#b97a45','bark'),g).position.set(0,1.1,.4);
-    mesh(roundedBlock(3.2,.1,.5,.04),woodLight,g).position.set(0,1.8,-.45);for(let i=0;i<4;i++){const jar=mesh(new THREE.CylinderGeometry(.13,.13,.3,10),paint(['#e8d5a8','#c6a46a','#9fbf8a','#e8d5a8'][i]),g);jar.position.set(-1.1+i*.7,2.0,-.45);}
-    for(const sx of [-1.6,1.6])for(const sz of [-.75,.95])limb(g,woodLight,[sx,0,sz],[sx,2.65,sz],.09);
-    for(let i=0;i<7;i++){const stripe=mesh(roundedBlock(.5,.06,1.95,.02),paint(i%2?'#f4ecd6':'#5f9433'),g);stripe.position.set(-1.5+i*.5,2.82,.25);stripe.rotation.x=.34;}
-    for(let i=0;i<7;i++){const s=mesh(new THREE.CylinderGeometry(.25,.25,.06,12,1,false,0,Math.PI),paint(i%2?'#f4ecd6':'#5f9433'),g);s.rotation.set(Math.PI/2,0,Math.PI);s.position.set(-1.5+i*.5,2.5,1.17);}
-    for(let i=0;i<5;i++)mesh(new THREE.SphereGeometry(.13,10,8),red,g).position.set(-1.1+i*.22,1.28,.55+(i%2)*.15);
-    mesh(roundedBlock(.9,.55,.7,.05),woodLight,g).position.set(2.15,.3,1.05);for(let i=0;i<6;i++)mesh(new THREE.SphereGeometry(.14,10,8),red,g).position.set(1.85+(i%3)*.3,.66,.92+Math.floor(i/3)*.28);
-    for(const [cx,cz,c]of [[-1.3,1.9,'#8faa49'],[-.2,2.1,'#e0b54d']]){const c1=mesh(new THREE.SphereGeometry(.45,16,10),paint(c),g);c1.position.set(cx,.22,cz);c1.scale.y=.45;}
-    mesh(roundedBlock(2.6,.03,1.5,.05),paint('#d8b071'),g).position.set(-.6,.02,1.95);}
   // Chunky arched bridge: planks on curved stringers, square posts with round caps, top and middle rails.
   {const plankB=paint('#c98b52','bark'),beam=paint('#a86638','bark');
    for(let i=0;i<15;i++){const x=10.3+i*.38,y=deck(x)+.07,slope=deck(x+.2)-deck(x-.2);const p=mesh(roundedBlock(.34,.12,2.15,.04),i%3===1?plankB:woodLight);p.position.set(x,y,-3+(i%2?.03:-.03));p.rotation.z=Math.atan2(slope,.4);}
@@ -220,7 +209,7 @@ export function createForest({renderer,looks,texture,software,onPosition,onActio
    for(let i=0;i<16;i++){const a=i/16*Math.PI,r=1.05;limb(scene,bark,[19.4+Math.cos(a)*r,0,-3.9+Math.sin(a*2)*.4],[19.4+Math.cos(a)*.15,.9+rng()*.3,-3.9],.08);}}
   // Lanterns: glowing lamps with halos.
   const halos=[];function lantern(x,y,z){const lamp=new THREE.Mesh(new THREE.CylinderGeometry(.13,.13,.3,10),new THREE.MeshBasicMaterial({color:'#ffd47e',toneMapped:false}));lamp.position.set(x,y,z);scene.add(lamp);const cap=mesh(new THREE.ConeGeometry(.2,.16,8),paint('#5e3f27'));cap.position.set(x,y+.23,z);const halo=new THREE.Sprite(new THREE.SpriteMaterial({map:glowTex,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,toneMapped:false}));halo.position.set(x,y,z);halo.scale.setScalar(1.3);halo.renderOrder=5;scene.add(halo);halos.push(halo);}
-  lantern(-1.45,1.6,-5.35);lantern(1.45,1.6,-5.35);lantern(8.2,2.25,-4.2);lantern(8.35,.9,6.5);
+  lantern(-1.45,1.6,-5.35);lantern(1.45,1.6,-5.35);lantern(8.35,.9,6.5);
   {const im=new THREE.InstancedMesh(new THREE.SphereGeometry(1,14,10),blobMaterial,blobs.length);blobs.forEach((m,i)=>im.setMatrixAt(i,m));im.castShadow=!software;scene.add(im);}
   bake(scene);
   const beamTex=drawn(64,256,(g)=>{const l=g.createLinearGradient(0,0,0,256);l.addColorStop(0,'rgba(255,240,200,0)');l.addColorStop(.35,'rgba(255,236,190,.55)');l.addColorStop(1,'rgba(255,236,190,0)');g.fillStyle=l;g.fillRect(0,0,64,256);
@@ -236,13 +225,20 @@ export function createForest({renderer,looks,texture,software,onPosition,onActio
   const friends={squirrel:{at:[-9.4,0,-12.3],yaw:.35,h:1.15},bird:{at:[-8.5,2.38,-.25],yaw:.4,h:.6},owl:{at:[-5.2,1.0,-4.2],yaw:.55,h:1.25},mouse:{at:[8.72,.62,6.88],yaw:-.55,h:1.1},beaver:{at:[18.2,0,-2.4],yaw:-1.2,h:1.2}};
   for(const [id,f]of Object.entries(friends)){f.rig=characters[id](f.h);f.rig.group.position.set(...f.at);f.rig.group.rotation.y=f.yaw;scene.add(f.rig.group);if(f.at[1]===0)contact(f.at[0],f.at[2],f.h*.42);}
   const foxRig=characters.fox(FOX_H),fox=foxRig.group,foxShadow=contact(0,0,.42,.04,1),pos=new THREE.Vector3(forestPlaces.home.x,0,forestPlaces.home.z),vel=new THREE.Vector2();scene.add(fox);
+  const courierRig=characters.mailman(1.72),courier=courierRig.group,mailPos=new THREE.Vector3(forestPlaces.mailman.x,0,forestPlaces.mailman.z),courierShadow=contact(mailPos.x,mailPos.z,.48,.04,.85);
+  courier.name='rabbit-mailman';scene.add(courier);let courierGoal=null,courierWait=2;
+  const guide=new THREE.Group();guide.name='letter-direction-arrow';scene.add(guide);guide.visible=false;
+  function arrowShape(scale,y,color){const outline=new THREE.Shape();outline.moveTo(-.19*scale,.48*scale);outline.lineTo(.19*scale,.48*scale);outline.lineTo(.19*scale,-.08*scale);outline.lineTo(.5*scale,-.08*scale);outline.lineTo(0,-.75*scale);outline.lineTo(-.5*scale,-.08*scale);outline.lineTo(-.19*scale,-.08*scale);outline.closePath();const arrow=new THREE.Mesh(new THREE.ShapeGeometry(outline),new THREE.MeshBasicMaterial({color,side:THREE.DoubleSide,toneMapped:false}));arrow.rotation.x=Math.PI/2;arrow.position.y=y;arrow.renderOrder=8;guide.add(arrow);}
+  arrowShape(1.25,0,'#8b6531');arrowShape(1.08,.014,'#ffe5a0');arrowShape(.77,.025,'#f8bd4a');
+  const destinationHalo=new THREE.Mesh(new THREE.RingGeometry(.6,.72,40),new THREE.MeshBasicMaterial({color:'#ffe5a0',side:THREE.DoubleSide,transparent:true,opacity:.85,depthWrite:false,toneMapped:false}));destinationHalo.rotation.x=-Math.PI/2;destinationHalo.visible=false;destinationHalo.renderOrder=5;scene.add(destinationHalo);
+  let guideTarget=null,guidePoints=[],guideFrom=new THREE.Vector3(Infinity,0,Infinity),guideEnd=new THREE.Vector3(Infinity,0,Infinity),guideNext=0;
   const ring=new THREE.Mesh(new THREE.RingGeometry(.4,.52,32),new THREE.MeshBasicMaterial({color:'#fff3c4',transparent:true,opacity:.85,depthWrite:false,toneMapped:false}));ring.rotation.x=-Math.PI/2;ring.visible=false;ring.renderOrder=1;scene.add(ring);
   const golden=leafSpots.map(([x,z],i)=>{const s=sprite(goldTex,.55,3,.5),h=new THREE.Sprite(new THREE.SpriteMaterial({map:glowTex,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,toneMapped:false}));h.scale.setScalar(1.4);h.renderOrder=2;scene.add(h);size(s);return {id:forestCollectibles[i],x,z,sprite:s,halo:h,taken:false};});
   const sparks=Array.from({length:10},()=>{const s=sprite(starTex,.22,6,.5);size(s);s.visible=false;return {s,v:new THREE.Vector3(),life:0};});
   const butterflies=Array.from({length:8},(_,i)=>{const s=sprite(butterflyTex[i%3],.32,4,.5);const home=[[-6,4],[3,7],[-9,-7],[9,-1],[-2,-11],[15,6],[-13,0],[5,-9]][i];return {s,hx:home[0],hz:home[1],x:home[0],z:home[1],y:1,phase:rng()*TAU,flee:0};});
   const puffs=Array.from({length:10},()=>{const s=sprite(dustTex,.4,1,.5);s.visible=false;return {s,life:0};});
   const motes=new THREE.Points(new THREE.BufferGeometry().setAttribute('position',new THREE.Float32BufferAttribute(Array.from({length:240},(_,i)=>i%3===1?.6+rng()*5:(rng()*2-1)*24+(i%3===0?2:-2)),3)),new THREE.PointsMaterial({size:.28,map:glowTex,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,opacity:.75}));scene.add(motes);
-  const pinPoints={home:[0,3.75,-5.3],shop:[6.6,3.55,-4.3],squirrel:[-9.4,1.75,-12.3],bird:[-8.55,3.35,-.25],owl:[-5.2,2.55,-4.2],beaver:[18.2,2.35,-2.4],mouse:[8.7,2.2,6.88]};
+  const pinPoints={home:[0,3.75,-5.3],squirrel:[-9.4,1.75,-12.3],bird:[-8.55,3.35,-.25],owl:[-5.2,2.55,-4.2],beaver:[18.2,2.35,-2.4],mouse:[8.7,2.2,6.88]};
   const pins=Object.entries(pinPoints).map(([id,p])=>({id,point:new THREE.Vector3(...p)}));
   // Movement, routes and camera.
   let destination=null,path=[],arrival=null,near=null,facing='front',flip=1,lastSample=0,lastPuff=0,narrow=false,width=1,height=1;
@@ -260,8 +256,29 @@ export function createForest({renderer,looks,texture,software,onPosition,onActio
   function placeCamera(k){const off=narrow?[0,10,14.4]:[0,9,14];camera.position.lerp(new THREE.Vector3(focus.x+off[0],focus.y+off[1],focus.z+off[2]),k);camera.lookAt(focus.x,focus.y+1.4,focus.z-3.2);camera.updateMatrixWorld();foxView.value.set(pos.x,groundY(pos.x,pos.z)+.9,pos.z).applyMatrix4(camera.matrixWorldInverse);}
   function setCollected(map){for(const g of golden){g.taken=!!map[g.id];g.sprite.visible=g.halo.visible=!g.taken;}}
   function collect(g){g.taken=true;g.sprite.visible=g.halo.visible=false;sparks.forEach((p,i)=>{p.s.visible=true;p.life=.8;p.s.position.set(g.x,.7,g.z);const a=i/sparks.length*TAU;p.v.set(Math.cos(a)*2.2,2.6+Math.sin(i*1.7)*.8,Math.sin(a)*2.2);});onCollect(g.id);}
+  function publishMailPosition(){const p=forestPlaces.mailman;p.x=mailPos.x;p.z=mailPos.z;p.pu=THREE.MathUtils.clamp(.5+mailPos.x*.023,.07,.93);p.pv=THREE.MathUtils.clamp(.49+mailPos.z*.025,.1,.9);}
+  function summonMailman(){
+    let chosen=null;for(const radius of [2.2,2.7,3.2,3.8]){for(let i=0;i<16;i++){const a=-.5+i/16*TAU,candidate=new THREE.Vector3(pos.x+Math.cos(a)*radius,0,pos.z+Math.sin(a)*radius);if(walkable(candidate.x,candidate.z)&&clear(pos,candidate,true)){chosen=candidate;break;}}if(chosen)break;}
+    mailPos.copy(chosen||nearestWalkable(new THREE.Vector3(pos.x+2.5,0,pos.z)));courierGoal=null;courierWait=5;publishMailPosition();courier.position.set(mailPos.x,groundY(mailPos.x,mailPos.z),mailPos.z);guidePoints=[];guideNext=0;
+  }
+  function updateMailman(dt,time,reduced){
+    courierWait=Math.max(0,courierWait-dt);const distance=mailPos.distanceTo(pos),greeting=guideTarget==='mailman'&&distance<3.1;
+    if(greeting){courierGoal=null;courierWait=Math.max(courierWait,1.2);}
+    if(!courierGoal&&!courierWait){for(let i=0;i<16;i++){const a=rng()*TAU,r=2+rng()*3,target=new THREE.Vector3(mailPos.x+Math.cos(a)*r,0,mailPos.z+Math.sin(a)*r);if(walkable(target.x,target.z)&&clear(mailPos,target)){courierGoal=target;break;}}courierWait=2+rng()*4;}
+    let moving=false;if(courierGoal){const d=courierGoal.distanceTo(mailPos);if(d<.12){courierGoal=null;courierWait=2+rng()*4;}else{const direction=courierGoal.clone().sub(mailPos).normalize();mailPos.addScaledVector(direction,Math.min(d,dt*.75));const yaw=Math.atan2(direction.x,direction.z),diff=Math.atan2(Math.sin(yaw-courier.rotation.y),Math.cos(yaw-courier.rotation.y));courier.rotation.y+=diff*Math.min(1,dt*7);moving=true;}}
+    if(greeting){const yaw=Math.atan2(pos.x-mailPos.x,pos.z-mailPos.z),diff=Math.atan2(Math.sin(yaw-courier.rotation.y),Math.cos(yaw-courier.rotation.y));courier.rotation.y+=diff*Math.min(1,dt*5);}
+    courier.position.set(mailPos.x,groundY(mailPos.x,mailPos.z),mailPos.z);courierShadow.position.set(mailPos.x,groundY(mailPos.x,mailPos.z)+.04,mailPos.z);courierRig.update(dt,{moving,speed:.75,action:greeting?'wave':'',reduced});publishMailPosition();
+  }
+  function updateGuide(time){
+    const place=forestPlaces[guideTarget];guide.visible=destinationHalo.visible=!!place;if(!place)return;
+    const endpoint=nearestWalkable(place);destinationHalo.position.set(endpoint.x,groundY(endpoint.x,endpoint.z)+.075,endpoint.z);destinationHalo.material.opacity=window.FK.reduced?.85:.7+Math.sin(time*3)*.15;
+    if(time>guideNext&&(guideFrom.distanceTo(pos)>3||guideEnd.distanceTo(endpoint)>1.2||!guidePoints.length)){guidePoints=plan(endpoint)||[endpoint];guideFrom.copy(pos);guideEnd.copy(endpoint);guideNext=time+1;}
+    while(guidePoints.length>1&&guidePoints[0].distanceTo(pos)<1.9)guidePoints.shift();
+    const waypoint=guidePoints[0]||endpoint,dx=waypoint.x-pos.x,dz=waypoint.z-pos.z,d=Math.hypot(dx,dz)||1,offset=Math.min(1.6,d*.6);
+    guide.position.set(pos.x+dx/d*offset,groundY(pos.x+dx/d*offset,pos.z+dz/d*offset)+.12+(window.FK.reduced?0:Math.sin(time*3)*.025),pos.z+dz/d*offset);guide.rotation.y=Math.atan2(-dx,-dz);guide.scale.setScalar(d<1?.75:1);
+  }
   function update(dt,time,{keys,stick}){
-    const reduced=window.FK.reduced;let dx=Number(keys.has('ArrowRight')||keys.has('d'))-Number(keys.has('ArrowLeft')||keys.has('a'))+stick.x,dz=Number(keys.has('ArrowDown')||keys.has('s'))-Number(keys.has('ArrowUp')||keys.has('w'))+stick.z;
+    const reduced=window.FK.reduced;updateMailman(dt,time,reduced);let dx=Number(keys.has('ArrowRight')||keys.has('d'))-Number(keys.has('ArrowLeft')||keys.has('a'))+stick.x,dz=Number(keys.has('ArrowDown')||keys.has('s'))-Number(keys.has('ArrowUp')||keys.has('w'))+stick.z;
     const manual=Math.hypot(dx,dz)>0,want=new THREE.Vector2();
     if(manual){destination=null;path=[];arrival=null;ring.visible=false;want.set(dx,dz).normalize().multiplyScalar(SPEED*Math.min(1,Math.hypot(dx,dz)));}
     else if(destination){let ddx=destination.x-pos.x,ddz=destination.z-pos.z,d=Math.hypot(ddx,ddz);
@@ -294,16 +311,18 @@ export function createForest({renderer,looks,texture,software,onPosition,onActio
     if(ring.visible)ring.material.opacity=.55+Math.sin(time*4)*.25;
     // Fade the home canopy when the fox walks behind the trunk.
     const behind=pos.z<-9.4&&Math.abs(pos.x)<5.5;hero.material.opacity+=((behind?.3:1)-hero.material.opacity)*Math.min(1,dt*5);hero.material.transparent=hero.material.opacity<.99;hero.material.depthWrite=!hero.material.transparent;
+    updateGuide(time);
     focus.lerp(new THREE.Vector3(pos.x+vel.x*.35,base*.5,pos.z+vel.y*.35),reduced?1:1-Math.exp(-dt*2.6));placeCamera(1);
   }
   return {scene,camera,
     enter(position){const p=position&&walkable(position.x,position.z)?position:forestPlaces.home;pos.set(p.x,0,p.z);vel.set(0,0);fox.rotation.y=0;destination=null;path=[];arrival=null;ring.visible=false;near=null;setCollected(collected());snapCamera();renderer.shadowMap.needsUpdate=true;},
     resize(w,h){width=w;height=h;narrow=w<600;camera.aspect=w/Math.max(1,h);camera.fov=narrow?54:42;camera.updateProjectionMatrix();const vh=Math.tan(THREE.MathUtils.degToRad(camera.fov/2))*1.02;vignette.scale.set(vh*camera.aspect,vh,1);snapCamera();},
-    update,route(id){const p=forestPlaces[id];if(p)walkTo(new THREE.Vector3(p.x,0,p.z),id);},
-    pick(x,y){raycaster.setFromCamera(new THREE.Vector2(x,y),camera);const hit=new THREE.Vector3();if(raycaster.ray.intersectPlane(floor,hit))walkTo(hit);},
+    update,route(id){const p=forestPlaces[id];if(id==='mailman'){courierGoal=null;courierWait=20;}if(p)walkTo(new THREE.Vector3(p.x,0,p.z),id);},
+    mailTarget(id){guideTarget=forestPlaces[id]?id:null;guidePoints=[];guideNext=0;if(id==='mailman'&&mailPos.distanceTo(pos)>6.5)summonMailman();},summonMailman,
+    pick(x,y){raycaster.setFromCamera(new THREE.Vector2(x,y),camera);if(raycaster.intersectObject(courier,true).length){courierGoal=null;courierWait=20;if(mailPos.distanceTo(pos)<3.2)onAction('mailman');else walkTo(mailPos.clone(),'mailman');return;}const hit=new THREE.Vector3();if(raycaster.ray.intersectPlane(floor,hit))walkTo(hit);},
 
     stop(){destination=null;path=[];arrival=null;ring.visible=false;vel.set(0,0);},
-    pins(){return pins.map(p=>{const q=p.point.clone().project(camera);return {id:p.id,x:(q.x*.5+.5)*width,y:(-q.y*.5+.5)*height,visible:q.z<1&&Math.abs(q.x)<1.02&&q.y>-1.02&&q.y<1.12};});},
-    get position(){return {x:pos.x,z:pos.z};},get destination(){return destination;},get near(){return near;},
+    pins(){return [...pins,{id:'mailman',point:new THREE.Vector3(mailPos.x,groundY(mailPos.x,mailPos.z)+2.2,mailPos.z)}].map(p=>{const q=p.point.clone().project(camera);return {id:p.id,x:(q.x*.5+.5)*width,y:(-q.y*.5+.5)*height,visible:q.z<1&&Math.abs(q.x)<1.02&&q.y>-1.02&&q.y<1.12};});},
+    get mailman(){return {x:mailPos.x,z:mailPos.z};},get guideTarget(){return guideTarget;},get position(){return {x:pos.x,z:pos.z};},get destination(){return destination;},get near(){return near;},
   };
 }

@@ -1,4 +1,4 @@
-/* Forest friends scenes in the visualisation's style. The den and shop are the reviewed paintings,
+/* Forest friends scenes in the visualisation's style. The den uses the reviewed painting,
    with the painted fox composited by a fixed perspective "lens" matched to each painting's floor.
    The forest is the explorable 3D world in forest3d.js, with the same painted characters.
    Interior coordinates are authored on a 1024×768 view of each painting (assets/forest-friends). */
@@ -15,9 +15,9 @@ function ground(u,v){const p=new THREE.Vector3();return ray(u,v).intersectPlane(
 const depth=p=>p.clone().sub(lens.position).dot(view);
 const heightAt=(p,fraction)=>fraction*depth(p)/F;
 const pinPoint=(u,v)=>{const r=ray(u,v);return r.origin.clone().add(r.direction.clone().multiplyScalar(20));};
-const scenes={den:{need:[.03,.2,.97,.92]},shop:{need:[.04,.28,.96,.96]}};
+const scenes={den:{need:[.03,.2,.97,.92]}};
 const denSpot=at(300,440),cushion=at(176,560),denFrac=.349;
-const pins={den:{outside:at(859,346),drawing:at(899,668),sleep:at(116,540),games:at(497,150)},shop:{leaf:at(178,488),pencils:at(300,488),apple:at(560,488),bath:at(772,488),outside:at(84,708)}};
+const pins={den:{outside:at(859,346),drawing:at(899,668),sleep:at(116,540),games:at(497,150)}};
 
 export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,onMove,onAnimationEnd,onProject,onCollect=()=>{},collected=()=>({}),onJump=()=>{}}){
   const software=new URLSearchParams(location.search).has('software');
@@ -68,7 +68,7 @@ export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,o
   let area='den',paused=false,last=performance.now(),time=0,raf,anim=null,keys=new Set(),stick={x:0,z:0},width=0,height=0;
   const forest=createForest({renderer,looks,texture,software,onPosition,onAction,onMove,onNear,onCollect,collected});
   const crop={x:0,y:0};
-  const pinList={den:[],shop:[]};for(const [name,list]of Object.entries(pins))for(const [id,p]of Object.entries(list))pinList[name].push({id,point:pinPoint(p.u,p.v)});
+  const pinList={den:[]};for(const [name,list]of Object.entries(pins))for(const [id,p]of Object.entries(list))pinList[name].push({id,point:pinPoint(p.u,p.v)});
   function layout(){
     const w=canvas.clientWidth||1,h=canvas.clientHeight||1;if(w!==width||h!==height){width=w;height=h;renderer.setSize(w,h,false);forest.resize(w,h);}
     if(area==='forest')return;
@@ -78,7 +78,7 @@ export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,o
     camera.setViewOffset(fw,fh,crop.x,crop.y,w,h);
     canvas.style.backgroundSize=fw+'px '+fh+'px';canvas.style.backgroundPosition=(-crop.x)+'px '+(-crop.y)+'px';
   }
-  function setArea(next){area=next;finishProps();onNear(null);
+  function setArea(next){if(!['den','forest'].includes(next))next='den';area=next;finishProps();onNear(null);
     if(next==='forest'){canvas.style.backgroundImage='none';fill.hidden=true;forest.enter(position());}
     else{const url='url('+ART+next+'.webp)';canvas.style.backgroundImage=url;fill.style.backgroundImage=url;fill.hidden=false;forest.stop();fox.visible=next==='den';foxShadow.visible=next==='den';ambience.forEach(a=>a.visible=next==='den');foxPos.copy(spots[0]);fox.position.copy(foxPos);fox.rotation.y=.35;idle.target=null;idle.wait=5;idle.greet=next==='den'?1.6:0;}
     layout();
@@ -122,11 +122,11 @@ export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,o
     onProject((pinList[area]||[]).map(p=>({id:p.id,...project(p.point)})));
   }
   setArea('den');raf=requestAnimationFrame(frame);
-  return {setArea(next){setArea(next);},route(id){if(area==='forest')forest.route(id);},pause(value){paused=value;if(value){blur();if(area==='forest')onPosition(forest.position.x,forest.position.z);}},
+  return {setArea(next){setArea(next);},route(id){if(area==='forest')forest.route(id);},mailTarget(id){forest.mailTarget(id);},summonMailman(){forest.summonMailman();},get mailman(){return forest.mailman;},pause(value){paused=value;if(value){blur();if(area==='forest')onPosition(forest.position.x,forest.position.z);}},
     steer(x,z){stick={x,z};if(!x&&!z&&area==='forest')onPosition(forest.position.x,forest.position.z);},
     sequence(item){anim={item,elapsed:0};idle.target=null;fox.rotation.set(0,.35,0);foxPos.copy(item==='sleep'?ground(cushion.u,cushion.v):spots[0]);fox.position.copy(foxPos);},
     skip(){anim=null;finishProps();foxPos.copy(spots[0]);fox.position.copy(foxPos);},
-    get diagnostics(){const p=area==='forest'?forest.position:{x:foxPos.x,z:foxPos.z};return {area,paused,time,keys:[...keys],destination:area==='forest'?forest.destination?.toArray():undefined,position:p,painted:true};},get area(){return area;},get position(){return area==='forest'?forest.position:{x:foxPos.x,z:foxPos.z};},
+    get diagnostics(){const p=area==='forest'?forest.position:{x:foxPos.x,z:foxPos.z};return {area,paused,time,keys:[...keys],destination:area==='forest'?forest.destination?.toArray():undefined,position:p,mailTarget:forest.guideTarget,mailman:forest.mailman,painted:true};},get area(){return area;},get position(){return area==='forest'?forest.position:{x:foxPos.x,z:foxPos.z};},
     dispose(){cancelAnimationFrame(raf);observer.disconnect();canvas.removeEventListener('pointerup',pick);document.removeEventListener('visibilitychange',visibility);document.removeEventListener('keydown',keydown);document.removeEventListener('keyup',keyup);window.removeEventListener('blur',blur);fill.remove();night.remove();renderer.dispose();},
   };
 }

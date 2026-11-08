@@ -2,27 +2,26 @@
 
 [Play the game](https://mrtolchock.github.io/Drawing-App/) · [Implementation and saves](docs/FOREST-FRIENDS.md) · [Design handoff](design/forest-friends/CLOUD-HANDOFF.md)
 
-A woodland learning game for first-grade practice in Zürich, in Swiss Standard German. Fuchs lives in a fixed 3D den, walks to five friends, completes short pictured learning rounds and trades earned resources for drawing unlocks or animated treats.
+A woodland learning game for first-grade practice in Zürich, in Swiss Standard German. Fuchs receives pictured letters, visits the invited friend, solves a puzzle and meets Hase the rabbit mailman for the next invitation.
 
 ## The current game
 
-- The painted den and shop from the reviewed visualisation, and a freely explorable 3D forest in the same painted style, with pictured hotspots, a picture map, click/tap walking and replayable instructions.
-- Twelve golden leaves to find in the forest, butterflies and friends who greet the fox; exploration never changes learning rewards.
-- The original illustrated puzzle catalogue, assigned to the five new friends at one fixed level, with direct selection from the picture menu and the full Malatelier at the fox’s table.
-- Five-task counting, word reading, written rhymes, short sentences and missing-shape rounds. One content level, unlimited correction, separate examples and no countdown.
-- Three host tokens per completed round, credited once. Leaf colouring page, extra pencils, apple and bubble bath purchases save together with their charges.
-- Articulated 3D apple, bath and pretend-sleep sequences. Consumables commit once before playback and can be skipped.
-- Saved exact interrupted tasks, wallet, inventory, unlocks, per-page drawings and separate audio controls. Local bounded gameplay logs can be exported or deleted by adults.
-- Offline play after the initial successful download. Speech depends on installed voices. Physical iPad and child testing follow implementation; visual polish is recorded separately.
+- Start inside the den with its door closed. A letter slips through the mail lid; clicking opens unreadable handwriting and a clear portrait of the friend to visit.
+- Click/tap to walk through the 3D forest. A directional arrow guides Fuchs to the pictured friend, then to the nearby mailman after a completed puzzle. There are no movement arrows, keyboard walking or jumping.
+- Hase roams as a recognizable mailman with postal clothing and a satchel. He delivers new letters and never presents puzzles.
+- The five puzzle friends offer both the original illustrated catalogue and the five newer rounds, at one fixed level. The picture-book overview remains available for direct selection.
+- No shop, coins, host-token rewards, prices or purchases in the current adventure. The full Malatelier and all included tools, colours and pages are free at the fox's table.
+- Exact interrupted newer puzzles, invitation progress, drawings and separate audio controls remain local. Adults can export or delete bounded anonymous gameplay logs.
+- Offline play follows the initial successful download. Speech depends on installed voices; device and child testing follow implementation.
 
-The original [Heart Tree adventure](https://mrtolchock.github.io/Drawing-App/?screen=forest), [Waldspiele book](https://mrtolchock.github.io/Drawing-App/?screen=hub), drawings and progress remain accessible and unchanged. New Forest friends resources start at zero; legacy stars are not converted.
+The original [Heart Tree adventure](https://mrtolchock.github.io/Drawing-App/?screen=forest), [historical Waldspiele book](https://mrtolchock.github.io/Drawing-App/?screen=hub), drawings and progress remain accessible. Earlier currency/inventory fields are preserved as compatibility data; the new letter journey does not spend them.
 
 ## Working documents
 
 | Document | Purpose |
 | --- | --- |
-| [Blueprint](design/heart-tree/BLUEPRINT.md) | Current experience, storyline, world, features and design rules |
-| [Blueprint v2 — Forest friends](design/forest-friends/blueprint-v2.md) | Redesign outline, curriculum requirements and picture-led visual design |
+| [Heart Tree blueprint](design/heart-tree/BLUEPRINT.md) | Retained original adventure and its historical design rules |
+| [Blueprint v2 — Forest friends](design/forest-friends/blueprint-v2.md) | Current letter adventure, curriculum requirements and picture-led visual design |
 | [Cloud conversation handoff](design/forest-friends/CLOUD-HANDOFF.md) | Decisions, current references and next steps for continuing design across devices |
 | [Visual comparison baseline](design/forest-friends/visuals/baseline.md) | Preserved art, versioned mockups and screenshots for evaluating development |
 | [Design review](design/heart-tree/REVIEW.md) | Assessment of the current game and priorities for the next step |

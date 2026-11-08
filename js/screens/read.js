@@ -286,6 +286,11 @@
   }
 
   async function finishRound(id, fromEl, actions) {
+    if(FK.friendsLibrary?.active){
+      FK.progress.finish('read',id,0);
+      FK.friendsPuzzleCompleted('mouse');
+      return;
+    }
     const t = token;
     stage.classList.add('rd-locked');
     const n = FK.progress.finish('read', id, 1);

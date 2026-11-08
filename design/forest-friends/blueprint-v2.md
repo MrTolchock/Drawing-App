@@ -1,36 +1,30 @@
-> Implementation update, 8 November 2026: restore the original illustrated activity catalogue inside v2, assign every activity to the five current friends, use one fixed Entdecken level, and restore the original puzzle-selection menu, settings gear and full Malatelier at the fox’s table. New rounds use the original woodland stationery and painted objects. See [the implemented catalogue and host mapping](../../docs/FOREST-FRIENDS.md#restored-illustrated-games-and-malatelier). This updates the earlier five-puzzle-only launch scope; the preserved visual baselines stay unchanged.
+# Blueprint v2 — Forest friends: letters through the forest
 
-> Current revision 10: purchases never alter the environment. No teacher testing is planned or required. Child testing happens after implementation, once the game is running. This replaces earlier pre-implementation external-review gates; internal curriculum source checks remain.
+**Updated:** 8 November 2026.
+**Current direction:** A continuous letter adventure, with a rabbit mailman and no shop or currency rewards.
+**Scope:** This is the current game contract. It supersedes revision 10's economy, consumables and Hase puzzle-host role. The [previous blueprint](blueprint-before-letters.md), frozen visual references and original Heart Tree adventure remain historical records.
 
-> Shared visual rule: [den-led art direction](visuals/art-direction.md). Outdoors, den and shop use 3D; learning puzzles use 2D.
+Design references: [curriculum matrix](curriculum-matrix.md) · [puzzle specifications](puzzle-specifications.md) · [visual baseline](visuals/baseline.md) · [letter-loop specification](letter-loop.md) · [current implementation and saves](../../docs/FOREST-FRIENDS.md).
 
-> Latest interaction decisions: [Design revision 10](visuals/revisions/v10.md) sets the shared categories, reading-led rhymes, easier owl sentences and clear shape matching. The single difficulty level and curriculum requirements remain.
+The earlier [experience design](experience-design.md), [reward/save design](rewards-and-continuity.md) and frozen mockups contain historical shopping flows. Where they conflict with this document, the letter loop below governs. The curriculum, readable puzzle objectives and accepted woodland art direction still apply.
 
-# Blueprint v2 — Forest friends
+## 1. Game outline and learning
 
-**Status:** Updated Blueprint V2. User endorsed the revised examples and simpler categories; Waldkauz simplified further. No teacher testing planned; child testing follows implementation.
-**Updated:** 7 November 2026.
-**Scope:** Plan the redesign before implementation. Shared categories and the revised example direction reflect user feedback. Content pools, prices and production interaction details still need review.
-
-Design pack: [Curriculum matrix](curriculum-matrix.md) · [Five puzzle specifications](puzzle-specifications.md) · [First-session and interaction design](experience-design.md) · [Rewards, continuity and logging](rewards-and-continuity.md) · [Visual design review](visuals/README.md) · [Interactive mockups](visuals/review.html).
-
-## 1. Game outline
-
-Start with a clean design, using the current game and its learning activities as the basis. The player is a small orange fox with a green neckerchief, living beneath a large tree in a welcoming 3D forest. Explore freely, visit friends, help with puzzles, collect rewards, unlock drawing activities and enjoy short animated treats.
+Fuchs, a small orange fox with a green neckerchief, lives beneath a large tree in a warm woodland. A letter arrives at home and invites him to visit a pictured friend. Solving that friend's puzzle brings the next letter, delivered nearby by Hase the mailman. Each delivery points to another friend, so the adventure continues without a shop, prices, coins, host currencies or purchases.
 
 The game is for children aged 7–8 in Zürich, Switzerland. Use Swiss Standard German. Pictures, demonstrations and repeatable spoken instructions make ordinary play understandable before fluent reading. Reading puzzles explicitly practise written language.
 
 ### Required intuitive interface
 
-Assume the child cannot yet read navigation or instructions. The complete home → friend → puzzle → reward → shop → home loop must work through recognisable objects, character pictures, a separate visual demonstration and replayable speech. Do not rely on written menus, dialogue paragraphs, item descriptions or error messages. Merely replacing labels with unexplained symbols is insufficient: teach unfamiliar controls by showing the action.
+The main loop must be understandable through the letter, a character portrait, the directional arrow, recognisable places, replayable speech and separate worked examples. The invitation letter contains decorative, unreadable handwriting and a clear picture of its recipient. It is a pictured invitation, not a reading exercise. Never depend on deciphering its marks to choose the destination.
 
-At home, the doorway, drawing table and bed are directly actionable. Use picture destinations on the map, physical resource tokens for prices, a visible selection state and a demonstrated check-to-confirm action. Retry and completion feedback must be visible and audible. Written words remain where reading is the learning objective; numerals remain where relevant to counting and quantities. Retain German accessibility names, keyboard access and optional captions without making them a reading requirement.
+At home, the closed doorway, letter, drawing table and bed are directly actionable. The player clicks or taps to open the letter, then leaves the den. Outdoors, clicking/tapping the ground moves Fuchs; an arrow guides the route to the active recipient or mailman. There is no movement pad, keyboard walking or jump feature. Buttons remain keyboard accessible. Keep meaningful German accessibility names and optional captions.
 
-The user endorsed the characters and den artwork. Preserve this direction and use the [versioned visual baseline](visuals/baseline.md) to compare real development at each milestone. Keep the original artwork, frozen mockups and screenshots intact; new design changes get new versions. The preserved Version-2 art remains the baseline; revision 9 is the current interaction and learning-category target, pending child review.
+The user endorsed the characters and den artwork. Preserve the warm painted appearance and the original illustrated puzzles. Learning rounds use 2D paper and painted objects; the forest, moving characters and guidance arrow use 3D. Preserve frozen baseline files; record intentional departures as new milestone evidence.
 
 ### Mandatory curriculum requirement
 
-The game's primary goal is to help children practise the school learning of **first grade in the canton of Zürich**. Alignment with the official **Zürcher Lehrplan 21** is a requirement for every learning puzzle, including future additions. Story, characters and rewards serve that goal.
+The game's primary goal is to help children practise the school learning of **first grade in the canton of Zürich**. Alignment with the official **Zürcher Lehrplan 21** is a requirement for every learning puzzle, including future additions. Story, characters and the letter journey serve that goal.
 
 Use **Zyklus 1** as the curriculum framework, then select tasks suitable for first grade and the classroom's current learning. Zyklus 1 spans kindergarten and first/second primary classes; its competency steps are not an official first-grade annual or trimester schedule. The app's single difficulty level is a first-grade content selection, not a claim that every child or class follows the same sequence. Prioritise German literacy and mathematics, with related nature learning and creative practice.
 
@@ -40,11 +34,11 @@ Before a puzzle is accepted for implementation, document its official competency
 
 Use a small set of familiar categories: **Mathematics (Mathematik), Reading (Lesen), Writing (Schreiben), Nature (Natur), and Creativity (Gestalten)**. Reading is a core priority. The first playable set focuses on Mathematics and Reading; the other categories describe the existing catalogue and later work, not extra launch requirements.
 
-Categories organise puzzles, not animal identities. Several animals can offer Reading or Mathematics. Within a category, different animals may introduce different puzzle types; a shared category does not force identical activities at every visit. Once released, a puzzle can be reused by any assigned friend with an adapted story and host reward. Never invent a category just to give an animal something unique.
+Categories organise puzzles, not animal identities. Several animals can offer Reading or Mathematics. Within a category, different animals may introduce different puzzle types; a shared category does not force identical activities at every visit. Once released, a puzzle can be reused by any assigned friend with an adapted story. Never invent a category just to give an animal something unique.
 
 | Category | Learning content inside the category | Initial hosts |
 | --- | --- | --- |
-| Mathematics / Mathematik | Counting and arithmetic; patterns; shapes, space and simple data representations | Eichhörnchen, Biber; later Hase, Fisch, Eisvogel |
+| Mathematics / Mathematik | Counting and arithmetic; patterns; shapes, space and simple data representations | Eichhörnchen, Biber; later Fisch and Eisvogel |
 | Reading / Lesen | Letters and syllables; written words; written rhyme pairs; short sentence-to-picture matching | Maus, Blaumeise, Waldkauz |
 | Writing / Schreiben | Introduced letter forms and simple spelling tasks | Later activities with Maus or another existing friend |
 | Nature / Natur | Familiar animals, habitats, tracks and material properties | Later Igel and Reh |
@@ -66,7 +60,7 @@ The old game's Reimzirkus word-and-picture cards are the basis for Blaumeise. Op
 
 Waldkauz starts with familiar nouns and concrete actions: «Die Maus sitzt.», «Der Vogel fliegt.», «Die Maus rennt.», «Der Vogel sitzt.», «Der Fisch schwimmt.» Use two large pictures, short sentences, optional syllable support, unlimited time and a separate spoken example. Avoid opening with spatial prepositions, similar multi-detail scenes, three-event ordering or a third distractor. The instruction speaker explains what to do without reading the scored sentence. This is one consistent content level, not a difficulty ladder. Longer sentences remain later content work, outside the initial pool.
 
-Biber's former 3×3 placement grid and Waldkauz's narrated ordering activity are withdrawn from the initial set. Biber now offers a basic shape-recognition warm-up; do not label it full geometry or shape-composition mastery. Matching a gap does not establish that the child can name a shape. Composition and narrated sequencing can return later as separately specified tasks if useful, rather than as compulsory animal categories.
+Biber's newer round is a basic shape-recognition warm-up; do not label it full geometry or shape-composition mastery. Matching a gap does not establish that the child can name a shape. The restored Formenwerkstatt, Roboterpost and Was kommt dann? remain separate catalogue activities with their original interaction rules, rather than replacing the simpler newer examples.
 
 The curriculum matrix distinguishes game categories from exact subject references. Reading uses D.2.A.1.b for initial decoding and short sentences; rhyming also has a listening/phonological support reference. Biber's recognition exercise supports basic shape vocabulary under MA.2.A.1.a, with naming practised in feedback; full naming/composition assessment is outside this fixture. Internal curriculum source checks remain required. No teacher test is planned; child testing follows implementation.
 
@@ -78,55 +72,49 @@ Official sources, checked on 7 November 2026:
 - [NMG — Tiere und Lebensräume, NMG.2.1](https://zh.lehrplan.ch/index.php?code=a%7C6%7C1%7C2%7C0%7C1).
 - [Earlier project research with writing and nature references](../../docs/RESEARCH.md).
 
-## 2. Story and play loop
+## 2. The continuous letter loop
 
-The fox lives in a den beneath the large tree at the centre of the world. The game starts inside the den: this is the playable home and main menu. Here the fox can draw, colour, use a consumable reward, sleep and go outside. The den layout remains fixed.
+1. **Start at home.** Fuchs is inside the den. The front door is closed, with a visible mail lid/slot.
+2. **Receive the first letter.** The mail lid opens briefly and an envelope slips through onto the inside floor. It remains available until the player clicks it. No timed response is required.
+3. **Open the invitation.** One click opens the letter. Unreadable handwritten marks surround a large picture of one of the five puzzle friends. The character picture and optional speech identify whom to visit.
+4. **Leave the den.** The fox goes outside through the doorway. A directional arrow in the 3D world points toward the pictured friend and updates as the fox moves. It guides clicking, rather than moving Fuchs automatically.
+5. **Play with that friend.** The character starts one of their assigned library puzzles, including both original illustrated activities and the five newer rounds. An interrupted newer round resumes first. The learning rules and single difficulty level stay consistent with the overview.
+6. **Meet the mailman nearby.** After completing the assigned puzzle, return to the 3D forest with Hase visibly close to Fuchs. The arrow now points to Hase rather than the completed friend. There is no currency payout or shopping detour.
+7. **Receive another invitation.** Click Hase to receive/open a new letter. Its portrait identifies another friend. The arrow changes to that recipient. Continue from step 4 without returning home for every delivery.
 
-Outside is a freely explorable forest full of friends. Each friend has a personality, a shared learning category and a reason to need help. Each visit offers fresh tasks from a puzzle in that category. Friends can introduce different activities inside the same category; the rules of each shared puzzle remain consistent across hosts. Friends give characteristic resources as thanks: Eichhörnchen gives nuts, Biber gives logs, and Fisch gives fish tokens.
+The next invitation leads to a different friend; the host sequence revisits all five over time. The loop has no final purchasing goal or resource requirement. Mistakes, help, time spent and repeated play do not block the next letter once the puzzle is complete. Leaving an unfinished puzzle does not count as completion or trigger mailman delivery.
 
-1. Start or resume in the fox's fixed den.
-2. Go outside and choose a friend to visit.
-3. Hear or watch a short introduction and example.
-4. Complete a round of tasks.
-5. Receive the friend's resource reward.
-6. Visit more friends or buy drawing unlocks or consumable rewards at the shop.
-7. Return home to use the drawing table or enjoy a short consumable animation from the bag.
+Fuchs can return home to paint, colour or rest. The picture-book overview remains available for choosing any old or new puzzle directly. Only a completed puzzle associated with the current invitation advances that invitation; unrelated practice never fabricates mail deliveries.
 
-Mistakes allow retries and help. There are no lost lives or required countdowns. Leaving a puzzle preserves its question and interaction state; returning resumes it. Completing a round makes the next visit offer fresh tasks. Task pools should avoid immediate repeats.
+## 3. World, navigation and delivery staging
 
-## 3. World and navigation
+The home tree anchors the clearing, with a brook, bridge, familiar paths and the five friends' places. The shop and its destination, stall, prices and bag/wallet controls are removed from the current forest. Keep free exploration, the picture map, gentle camera motion, forgiving paths and solid obstacles.
 
-The large home tree anchors a central clearing. A smaller tree nearby contains the shop. Other places include a brook, beaver dam and pond, meadow garden, moss grove, story hollow, reed pond, mountain cave, deeper misty woodland and swamp. Bridges connect paths across the brook. The den, shop and cave have enterable interiors.
+The guidance arrow follows the active invitation, not an arbitrary reward destination. In the friend phase it indicates the invited friend; in the delivery phase it indicates Hase's current position. It stays visible and truthful as Fuchs and Hase move. It must not resemble a movement-control pad.
 
-Click or tap a destination to walk there. A picture map lets the child choose a friend and shows a directional arrow from the fox. Keep navigation readable and forgiving, with clear paths, gentle camera movement and recognisable landmarks. Use [Emberwick](https://simonw.github.io/emberwick/v11/emberwick.html) as the reference for the feel of moving around the world. Preserve this game’s own woodland character and visual identity.
+Hase wanders freely on walkable forest ground. After puzzle completion he is staged very near Fuchs, within a short click/tap walk and in a readable camera view. He should remain easy to catch for delivery rather than walking away as the child approaches. His regular wandering resumes between deliveries. No route may cross solid trunks or water without the bridge.
 
-## 4. Characters, appearance and shared categories
+The den's closed door and mail lid belong to the home scene. Reduced motion keeps the arriving envelope visible without requiring an animation; the same letter-opening action and saved outcome remain available.
 
-Use Swiss Standard German character names throughout the game and this blueprint: Fuchs, Waldkauz, Eichhörnchen, Blaumeise, Maus, Biber, Hase, Igel, Reh, Fisch and Eisvogel. English species descriptions remain explanatory text.
+## 4. Characters and assignments
 
-Each character needs an expressive, articulated 3D model, a consistent portrait, readable silhouette, idle and interaction animations, and a clear personality. Use warm stylised woodland animals and carry their colours and features into puzzle illustrations.
+Use Swiss Standard German names in speech, captions and accessibility labels. Every character has an expressive, articulated 3D model and a consistent portrait. The rabbit's current role is **Hase, der Briefträger**. He is not a puzzle friend, has no learning category or puzzle reward, and never presents an exercise.
 
-The following locations, rewards and assignments are proposals where the earlier outline left them open. Resource amounts and prices remain to be balanced.
+| Character | Role and place | Appearance and behaviour | Learning role |
+| --- | --- | --- | --- |
+| Fuchs | Player; tree den and woodland paths | Orange fur, cream muzzle, bushy tail, green neckerchief; curious and friendly | Visits the pictured friend and uses the free Malatelier |
+| Eichhörnchen | Puzzle friend at the nut tree | Rust-red fur, tufted ears and curling tail | Counting and arithmetic |
+| Blaumeise | Puzzle friend at the singing tree | Blue and yellow, lively head and wings | Rhymes, syllables and nature activities |
+| Waldkauz | Puzzle friend in the story hollow | Warm rounded brown owl, expressive face and head tilt | Short sentence reading, patterns and discovery |
+| Maus | Puzzle friend in the reading nook | Small brown mouse, cream belly, large ears | Words, vowels and writing |
+| Biber | Puzzle friend near the brook | Sturdy brown body, broad tail and visible teeth | Shapes and spatial activities |
+| Hase, der Briefträger | Roaming delivery character, arriving nearby after a puzzle | Long ears and warm brown fur; clearly identifiable postal cap, mail satchel and envelope insignia; carries/delivers letters | Delivery only; no puzzles |
 
-| Character | Species | Place | 3D appearance | Personality and relationship | Shared category | Reward |
-| --- | --- | --- | --- | --- | --- | --- |
-| Fuchs | Red fox (*Vulpes vulpes*) | Central tree den | Small orange fox, cream muzzle, bushy tail, green neckerchief | Curious and friendly; visits neighbours and makes a home | Creativity | Collects and spends resources |
-| Waldkauz | Tawny owl (*Strix aluco*) | Story hollow | Rounded brown owl, large expressive eyes, soft feathers and tilting head | Warm, thoughtful storyteller; reads short messages with the child and welcomes patient help | Reading | Feathers |
-| Eichhörnchen | Eurasian red squirrel (*Sciurus vulgaris*) | Nut tree | Rust-red fur, tufted ears, large curling tail | Plans ahead and wants enough nuts stored for winter | Mathematics | Nuts |
-| Blaumeise | Eurasian blue tit (*Cyanistes caeruleus*) | Singing tree | Small blue-and-yellow bird with lively head and wing movements | Musical and sociable; needs rhymes for new songs | Reading | Seeds |
-| Maus | Wood mouse (*Apodemus sylvaticus*) | Reading nook | Small brown mouse, cream belly, large ears | Eager but unsure; wants to learn letters, syllables and reading with the fox | Reading | Berries |
-| Biber | Eurasian beaver (*Castor fiber*) | Brook | Sturdy brown body, broad flat tail, visible front teeth | Practical and affectionate; misses Hase across the broken bridge | Mathematics | Logs |
-| Hase | European hare (*Lepus europaeus*) | Meadow garden | Long ears, long hind legs, warm brown coat | Energetic and welcoming; wants to visit neighbours and invite everyone together | Mathematics | Carrots |
-| Igel | European hedgehog (*Erinaceus europaeus*) | Moss grove | Rounded spiny back, soft face, small careful steps | Gentle and observant; needs a comfortable resting place and company | Nature | Mushrooms |
-| Reh | European roe deer (*Capreolus capreolus*) | Woodland edge | Slender legs, large ears, warm brown coat | Attentive and calm; notices changes and helps care for the forest | Nature | Leaves |
-| Fisch | Brown trout (*Salmo trutta*) | Pond | Spotted body, moving fins, clear underwater silhouette | Playful collector; enjoys arranging pond treasures | Mathematics | Fish tokens |
-| Eisvogel | Common kingfisher (*Alcedo atthis*) | Reed pond | Bright blue back, orange breast, long beak | Curious and attentive; wants to share the water's view and connect its paths | Mathematics | Pebbles |
-
-Fish tokens represent a game resource; the story should make clear how Fisch gives them to the fox.
+Igel, Reh, Fisch and Eisvogel remain possible later puzzle friends. Hase remains the mailman when further neighbours are added. Historical Heart Tree character roles are retained only in that separate original adventure.
 
 ## 5. Shared categories and puzzle catalogue
 
-Use the simple categories in section 1 throughout navigation, adult summaries and logs. Several animals share a category; each puzzle retains a precise objective and its own curriculum tags. A friend may introduce a particular puzzle without owning a new category or exposing the entire category catalogue immediately. Add a puzzle once, then reuse it across eligible hosts with the same answer rules and adapted story objects and rewards.
+Use the simple categories in section 1 throughout navigation, adult summaries and logs. Several animals share a category; each puzzle retains a precise objective and its own curriculum tags. A friend may introduce a particular puzzle without owning a new category or exposing the entire category catalogue immediately. Add a puzzle once, then reuse it across eligible hosts with the same answer rules and adapted story objects.
 
 The catalogue below has one puzzle type per row, grouped by category. Existing activities come from the current checkout's documented learning activities; proposed additions expand the task pool. Creative activities are included alongside puzzles so the home activities have a place in the same catalogue.
 
@@ -158,7 +146,7 @@ The catalogue below has one puzzle type per row, grouped by category. Existing a
 | Reading | Mixed-up stories | Understand and order a narrated story | Later proposal; withdrawn from initial set |
 | Mathematics | Musterzug | Recognise and extend repeating patterns | Existing |
 | Mathematics | Welche Form fehlt? | Recognise a missing shape in a familiar object | Initial Biber warm-up |
-| Mathematics | Formenwerkstatt | Combine geometric shapes | Existing; later composition variant |
+| Mathematics | Formenwerkstatt | Combine geometric shapes | Existing, restored composition activity |
 | Mathematics | Spiegelmosaik | Complete a reflected grid | Existing |
 | Mathematics | Roboterpost | Follow and construct routes | Existing |
 | Mathematics | Bridge builder | Fit pieces to a pictured construction plan | Proposed |
@@ -174,115 +162,49 @@ The catalogue below has one puzzle type per row, grouped by category. Existing a
 
 Creative missions are a source collection outside this table; add each selected mission as its own named row with a learning objective.
 
-The initial hosts cover two shared categories. Writing, Nature and Creativity expand the catalogue without requiring a new animal for every skill. Optional enrichment is kept outside claims of curriculum coverage.
+The restored catalogue includes Writing, Nature and Creativity alongside the newer Reading and Mathematics rounds, without requiring a new animal for every skill. Optional enrichment is kept outside claims of curriculum coverage.
 
-Use one difficulty level for every puzzle. Vary questions and story objects within that level; there is no level selector or higher-difficulty reward multiplier. Add more tasks and variations within each puzzle type. A round begins with a separate worked example and initially contains five tasks; expand the question pool before increasing round length. Keep explanations short and allow replayable demonstrations and hints.
+Use one difficulty level for every puzzle. Vary questions and story objects within that level; there is no level selector or automatic difficulty progression. Add more tasks and variations within each puzzle type. A round begins with a separate worked example and initially contains five tasks; expand the question pool before increasing round length. Keep explanations short and allow replayable demonstrations and hints.
 
-## 6. Shop rewards with a fixed environment
+## 6. Free creativity and completion feedback
 
-Purchases must not change the game environment. The shop no longer sells furniture, decorations or placed objects. The den, forest, paths and navigation remain fixed; there is no purchasing-related placement or rearrangement mode.
+The full original Malatelier remains at Fuchs's table: free drawing, colouring, stamps, fill, eraser, brush sizes, mirror/kaleidoscope, paper colours, undo and the saved-picture gallery. All included pages, pencils and colours are available without earning or spending anything. Preserve each existing picture and colouring page.
 
-| Item | Purchase result | Use | Ownership |
-| --- | --- | --- | --- |
-| Ausmalbilder / colouring pages | Unlock an illustrated outline | Select the page at the drawing table and colour repeatedly | Permanent unlock |
-| New Farbstifte / coloured pencils | Unlock additional colours | Expanded palette inside the drawing-table activity | Permanent tool unlock |
-| Apple | Add one apple to the bag | A short sequence shows Fuchs eating the apple | One-use consumable |
-| Bubble bath / Schaumbad | Add one bath portion to the bag | A short sequence shows Fuchs enjoying a bubble bath | One-use consumable |
-| Later drinks and similar treats | Add one use to the bag | Short self-contained animation | One-use consumable |
-
-Show pictured prices and an explicit purchase confirmation. Buying never automatically starts an animation. Permanent items show as owned and cannot be bought twice; consumables show quantities and may be bought repeatedly. Free drawing and basic pencils remain available without purchasing.
-
-A consumable's Use action commits exactly one inventory decrement, opens a short skippable 4–6 second sequence, then returns to the same location and camera. An apple moves to the fox's mouth and is eaten; a bath uses foam/bubbles and a temporary bath set inside the sequence only. No bathtub or other prop remains in the world. Skip, close, refresh or a cosmetic replay cannot duplicate consumption or grant resources. There are no hunger/hygiene meters or upkeep pressure.
-
-Purchased pages and colours appear only inside the drawing-table activity. Preserve drawings separately per page and keep them when changing pages or tools. The fixed environment keeps movement, scene composition and navigation predictable.
+Puzzle completion is acknowledged with the friend's friendly reaction and the next delivery. The current adventure has no coins, host tokens, prices, purchases, shop, reward multipliers or consumable inventory flow. Existing numerical progress records can be retained for save compatibility; they do not become a currency in this loop. No drawing activity is gated behind the puzzle journey.
 
 ## 7. Saving and continuity
 
-Save the wallet, unlocked colouring-page IDs, unlocked pencil palettes, consumable quantities, per-page drawings, completed tasks, active puzzle state, settings, and unique reward/purchase/use transaction IDs. Save resource deductions and ownership/inventory additions together; refresh or relaunch must not duplicate charges or payouts.
+Save the letter phase, current recipient, delivery sequence/cursor, completed invitation and exact interrupted newer puzzle state with attempts/support and audio settings. Completion and its transition to the nearby mailman must commit once. Reopening or refreshing must not create duplicate letters or advance the sequence twice.
 
-On animation interruption restore committed inventory and the return location; the game can return directly to play. Animation completion is never a requirement for keeping a learning reward. Persist creative unlocks and drawings through ordinary updates.
+Preserve old localStorage identifiers and IndexedDB drawings. Old wallets, purchases, consumables, unlocks and furniture fields can remain safely in the stored envelope for compatibility, but must not expose the retired shop or block access to drawing tools. Do not clear or destructively replace old data to demonstrate the new opening.
 
-Preserve existing drawings/progress during migration. Legacy furniture fields should be retained safely for rollback or migration without enabling the old shopping/placement flow. Never silently erase old saves. A later backup/export feature can support moving devices.
+On relaunch Fuchs starts in the den. The saved invitation can be reopened and its correct arrow restored outside. A completed invitation still points to the mailman, rather than replaying a payout. A corrupt or newer unsupported envelope remains exportable and must not be overwritten silently. Maintain the validated previous-save backup and concurrent-tab protection.
 
-## 8. Visuals, sound and interaction
+## 8. Visuals, sound and access
 
-Use warm ivory, woodland greens, honey-coloured timber, blue water and the orange fox. Give the forest depth through sloping terrain, solid tree crowns, moving foliage, water, flowers and wildlife. Keep puzzle objects readable and consistent with the 3D cast.
+Use warm ivory, woodland greens, honey timber, blue water and the orange fox. Letter paper, envelope, slot, portraits and postal costume should belong to the same illustrated family as the existing game. Do not replace clear action illustrations with decorative marks that hide the puzzle's distinction.
 
-Add subtle background music and forest ambience: birdsong, wind through leaves, running water and occasional animal sounds. Keep loops gentle and reduce background sound during spoken instructions. Provide separate controls for music, ambience and speech, and remember them across sessions.
+Music, forest ambience and speech have independent saved controls. Background sound quietens during speech and hidden tabs. The letter can be explained aloud; scored reading targets are not automatically pronounced. Instructions and examples can be replayed. Touch controls must remain usable at 390 × 844 as well as tablet viewports; no timing pressure is introduced by the delivery animation.
 
-## 9. Development version
+## 9. Development mode and local logs
 
-Provide a clearly identified development version with direct access to characters and all puzzle types at the single difficulty level. Developers can skip a puzzle or task to inspect later content and test the complete flow.
+Keep direct puzzle access and explicit task skips inside a visibly marked, separate development save. Test skips are distinguishable from completed child answers. They must not overwrite a child's invitation or drawing records.
 
-A skip must be distinguishable from a solved puzzle in the log. Keep development progress and rewards separate from ordinary player progress so testing does not change a child's home or wallet.
+Keep bounded, local gameplay logs with anonymous sessions, version/schema identifiers, letter arrival/opening, recipient selection, friend visits, mailman delivery, puzzle attempts/support, active durations, movement and save failures. Adults can export or clear logs; there is no automatic upload. Historic economy entries can remain in old logs, but current play does not emit payouts or purchases.
 
-## 10. Gameplay log and export
+## 10. Acceptance and validation order
 
-The running version records a general gameplay log to help improve movement, instructions and puzzles. Export it as a file that an adult can review and manually upload to an AI for analysis.
+A complete reviewable loop must demonstrate:
 
-Record:
+- Closed den door → visible mail-lid delivery → click to picture letter → leave home.
+- A truthful in-world arrow from Fuchs to the invited friend, without automatic movement.
+- Old and new assigned puzzles available through both friend visits and the picture overview.
+- Completion returns to the forest with the recognizable rabbit mailman very close; the arrow points to him.
+- Clicking Hase opens a new invitation to another friend; Hase never launches a puzzle.
+- Free wandering and delivery staging stay on walkable ground and remain understandable on a phone.
+- No shop, currency grants, purchase controls or creative locks in current play.
+- Refresh/relaunch, retries, abandoned rounds and repeated completion cannot skip or duplicate invitations.
+- Existing drawings, newer puzzle snapshots, prior progress and adult audio choices survive the update.
+- Model/content checks, browser flow, screenshots and offline continuity are checked before describing the build as verified.
 
-- Session identifier, game version, timestamps and save-data version.
-- Movement destinations, sampled positions, routes, area transitions and stuck or interrupted movement.
-- Character visits, puzzle type, task identifier or generation seed, and shared category.
-- Submitted answers, wrong entries, retries, hints and puzzle skips.
-- Time spent per task and round, distinguishing active play from pauses or a hidden browser tab.
-- Puzzle completion, abandonment and resumption.
-- Resource rewards, purchases, creative unlocks, consumable use/skip and save/load failures.
-
-Keep logs local by default, bounded in size and available through adult settings with export and clear controls. Use an anonymous session identifier; avoid names, recordings and unrelated personal information. There is no automatic AI upload. Exports should contain enough puzzle context to understand mistakes and timing, with development skips marked explicitly.
-
-This introduces local gameplay logging beyond the current checkout's stated no-tracking behaviour; explain it in adult settings when implemented.
-
-## 11. First playable version and checks
-
-Build the den, a small explorable forest, the shop and five friends first: Eichhörnchen, Blaumeise, Waldkauz, Biber and Maus. The design pack brings Maus into the initial set to include explicit reading practice. Include the five initial puzzle types across two shared categories, one difficulty level, fresh repeat visits, resource rewards, a colouring-page unlock, an extra-pencil palette, an apple and a bubble bath. The category groups related puzzles; each initial host introduces the activity listed in section 1, and released puzzles can be reused by other hosts in that category. Add the remaining neighbours as further game families are ready.
-
-The first version is ready to review when:
-
-- The game starts in the den and the fox can leave, navigate to friends and return.
-- Each friend has a recognisable 3D model, personality and playable puzzle.
-- Every released learning puzzle has a verified Zürcher Lehrplan code and Zyklus-1 step, a concrete first-grade objective, and reviewed task content; supporting or enrichment activities are labelled separately.
-- Curriculum source checks are documented. No teacher testing is required. Child testing happens after implementation on the running game.
-- Each new completed visit can offer fresh tasks; interrupted puzzles resume correctly.
-- There is one difficulty level, with no level selector or difficulty-based reward multiplier.
-- Several animals can share Reading or Mathematics while introducing different puzzle types; shared puzzles keep identical learning rules.
-- Each puzzle occupies its own catalogue row; new puzzles and categories can be added independently of the cast.
-- Page/pencil purchases and apple/bath use work; the environment stays fixed and refresh/relaunch restores ownership, inventory and drawings.
-- Music and forest sounds play gently and their controls persist.
-- A child can follow the main loop using objects, pictures, demonstration and speech without reading navigation text.
-- Matched development screenshots have been compared with the preserved visual baseline; intentional deviations are documented.
-- Development skips work and remain separate from player progress.
-- The gameplay log exports usable movement, error and timing information.
-- Existing saves and drawings remain accessible after an update.
-
-## 12. Open decisions
-
-- Agree on movement and camera details using the linked Emberwick reference.
-- Confirm the proposed character appearances, category assignments and rewards.
-- Decide who runs the shop and expand the initial colouring-page/pencil/consumable catalogue.
-- Balance resource amounts, combined prices and task ranges for the single difficulty level.
-- Select suitable tasks from existing three-stage activities for the single level.
-- Select later Writing, Nature and Creativity activities without forcing a new category or character for every skill.
-- Set local log retention limits and the adult export format.
-- Preserve useful interactions from the current game: see [current gameplay](../../docs/GAMEPLAY.md) and [Heart Tree baseline](../heart-tree/BLUEPRINT.md). Inspect existing save keys and assets before implementation; the current checkout now includes the later world and story documentation.
-
-## 13. Implementation handoff and testing order
-
-The user will not test with a teacher. Child testing happens **after implementation, once the game is running**. Earlier teacher/child testing gates before development are superseded. Internal curriculum source/content checks still apply; do not claim teacher endorsement or completed child testing.
-
-**Switch to Codex after revision 10 is saved and pushed to GitHub.** The next phase is implementation of a running game, not further rounds of design-only mockups. Resolve routine implementation details within this blueprint and preserve accepted artwork.
-
-| Order | Work | Result |
-| --- | --- | --- |
-| 1. Implement one complete loop | Fixed den/forest → friend → puzzle → resources → shop → drawing unlock or consumable animation → return | Playable loop with unchanged world layout |
-| 2. Complete initial scope | Add all five initial puzzles across Reading/Mathematics, page/pencil unlocks, apple and bath sequences, audio and developer access | Running first playable game |
-| 3. Verify continuity and content | Save/migrate drawings, inventory, unlocks and puzzle state; prevent duplicate transactions; expand and internally check task pools; local logs and responsive controls | Tested running build ready for the user |
-| 4. Child test after implementation | User plays the running game with a child | Observe navigation, instructions, Waldkauz reading, shop, drawing and animations |
-| 5. Iterate | Fix observed confusion and defects before expanding scope | Improved playable game; no teacher test is a dependency |
-
-### Codex handoff
-
-Read this blueprint, [curriculum matrix](curriculum-matrix.md), [puzzle specifications](puzzle-specifications.md), [experience design](experience-design.md), [reward/save contract](rewards-and-continuity.md), [visual baseline](visuals/baseline.md) and [revision 10](visuals/revisions/v10.md). Implement one complete saved loop before expanding the world. Compare the running game with the preserved art and record intentional differences.
-
-The design preview demonstrates interactions with temporary 2D animation studies. Production 3D character animation, durable saves and the complete explorable game are implementation work. Older furniture and pre-implementation external-testing requirements are historical references only.
+No teacher testing is required. Internal first-grade curriculum/source checks remain mandatory; the user tests with a child after implementation. Software-browser success does not establish physical iPad/Safari performance, voice availability or child usability. Preserve the baseline art and add matched screenshot evidence for the changed opening, letter, arrow and mailman scenes.

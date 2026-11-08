@@ -11,6 +11,7 @@ Open `http://127.0.0.1:8000`. Browser scripts require Playwright and Chromium. T
 
 | Check | Coverage |
 | --- | --- |
+| `tests/friends-mail-browser.cjs` | Closed-door letter delivery, friend arrow, puzzle completion, nearby mailman, next letter, refresh and offline continuity |
 | `tests/friends-library-browser.cjs` | Restored v2 catalogue, new host assignments, fixed difficulty, return paths, original gear and full atelier persistence |
 | `tests/world-browser.cjs` | Free walking, held touch, discoveries, map, camera, responsive controls and offline positions |
 | `tests/cinema-browser.cjs` | Opening, requests, heartlight, reunion, saved finale and framed faces |
@@ -23,7 +24,7 @@ For the full story suite on software rendering, set `FARBTUPF_SOFTWARE_RENDERING
 
 ## Forest friends milestone
 
-The default entry is Forest friends. See [implementation, source checks and persistence](FOREST-FRIENDS.md). Run `node tests/friends-browser.cjs` for the complete loop; use `?screen=forest` for original Heart Tree browser checks. `?software=1` affects rendering only, and `?dev=1` uses separate developer saves.
+The default entry is Forest friends. See [implementation, source checks and persistence](FOREST-FRIENDS.md). Run `node tests/friends-mail-browser.cjs` (also available as `friends-browser.cjs`) for the letter loop; `node tests/friends-animation-browser.cjs` checks free bed sleep and Skip; use `?screen=forest` for original Heart Tree browser checks. `?software=1` affects rendering only, and `?dev=1` uses separate developer saves.
 
 ## Persistence
 

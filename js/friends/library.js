@@ -35,7 +35,7 @@
     for(const g of catalogue())if(resident==='all'||resident===g.host)
       card(g.id,g.title,FK.play.picture(g.emoji),()=>FK.go(g.screen,{game:g.id,stage:1,lvl:1,level:1}),g.host);
     if(resident==='all'||resident==='atelier'){
-      for(const [id,title,pic]of [['free','Freies Malen','pencil'],['book','Ausmalen','painting'],['gallery','Meine Bilder','pictures'],['album','Waldalbum','star']])
+      for(const [id,title,pic]of [['free','Freies Malen','pencil'],['book','Ausmalen','painting'],['gallery','Meine Bilder','pictures']])
         card(id,title,FK.visual.art(pic),()=>FK.go(id));
       const saved=FK.friends?.get();
       if(saved&&(saved.unlocks.leaf||Object.values(saved.drawings).some(strokes=>strokes.length)))

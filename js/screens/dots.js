@@ -443,6 +443,12 @@
   }
 
   function finish() {
+    if(FK.friendsLibrary?.active){
+      phase='end';ptr=null;clearTimeout(idle);
+      FK.progress.finish('dots',cur.id,0);
+      FK.friendsPuzzleCompleted('beaver');
+      return;
+    }
     // the picture is complete: the star is earned now, even if the child leaves during the animation
     wonStars = FK.progress.finish('dots', cur.id, 1);
     ptr = null;

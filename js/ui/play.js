@@ -81,10 +81,9 @@
   }
   function finish(body, group, game, stage, replay) {
     if(FK.friendsLibrary?.active){
-      const earned=FK.progress.finish(group,game+':1',1),friend=FK.friendsLibrary.hosts[game];
-      const action=(label,icon,fn)=>h('button',{type:'button',class:'learn-button',onclick:fn},FK.forestArt.icon(icon),h('span',{text:label}));
-      body.replaceChildren(h('section',{class:'learn-finish play-finish'},FK.friendsLibrary.portrait(friend),FK.woodland.progress(5),h('h2',{text:'Fünf Aufgaben geschafft!'}),h('p',{text:'Danke fürs Mitspielen!'}),h('div',{class:'play-finish-actions'},action('Nochmals','undo',replay),action('Waldspiele','book',()=>FK.go('forest-book')),action('Zum Wald','paw',()=>FK.go('friends')))));
-      FK.ui.celebrate({stars:earned,from:body,text:'Gemeinsam geschafft!'});speak('Juhui! Danke fürs Mitspielen!');return;
+      FK.progress.finish(group,game+':1',0);
+      FK.friendsPuzzleCompleted(FK.friendsLibrary.hosts[game]);
+      return;
     }
     const earned = FK.progress.finish(group, game + ':' + stage, 1), friend = friends[game] || 'owl';
     const result=FK.journey.complete(group,game,stage,summary(game,stage));

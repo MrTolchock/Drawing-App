@@ -205,4 +205,26 @@ export function beaver(height=1.15){
   const tail=joint(body,[0,.1,-.28]);{const s=new THREE.Shape();s.absellipse(0,0,.19,.3,0,TAU);const geo=new THREE.ExtrudeGeometry(s,{depth:.04,bevelEnabled:true,bevelThickness:.02,bevelSize:.02,bevelSegments:3,curveSegments:24});geo.rotateX(Math.PI/2);add(tail,new THREE.Mesh(geo,tailMat),[0,-.02,-.3],null,[.22,0,0]);}
   const parts={root,body,bodyY:0,head,eyes,ears,arms,legs,tail};return finish(group,parts,height);
 }
-export const characters={fox,squirrel,bird,owl,mouse,beaver};
+// A delivery friend, never a puzzle host: long ears, blue post cap and a leather mail satchel.
+export function mailman(height=1.65){
+  const group=new THREE.Group(),root=joint(group,[0,0,0]),fur=mat('#b78a61'),cream=mat('#f5e4cb'),pink=mat('#e7b6a1'),navy=plain('#416c91',.8),deepBlue=plain('#294a69',.8),leather=plain('#9a653d',.8),paper=plain('#fff8df',.9),gold=plain('#e6be66',.5);
+  const body=joint(root,[0,0,0]);blob(body,fur,[0,.48,0],[.25,.33,.22]);blob(body,cream,[0,.46,.16],[.16,.23,.09]);
+  const head=joint(body,[0,.86,.025]);blob(head,fur,[0,.1,0],[.29,.25,.25]);
+  for(const sx of [-1,1])blob(head,cream,[sx*.1,.015,.2],[.11,.08,.1]);blob(head,pink,[0,.07,.29],[.04,.03,.03]);smile(head,-.015,.27,.035);
+  const eyes=[eye(head,-.115,.15,.215,.06),eye(head,.115,.15,.215,.06)],ears=[];
+  for(const sx of [-1,1]){const e=joint(head,[sx*.17,.31,-.025]);e.userData.z=sx*-.1;e.rotation.z=e.userData.z;blob(e,fur,[0,.24,0],[.075,.3,.06]);blob(e,pink,[0,.25,.04],[.043,.235,.025]);ears.push(e);}
+  // Cap rests between the ears, with a forward visor and a little envelope badge.
+  blob(head,navy,[0,.345,.01],[.245,.085,.205]);blob(head,deepBlue,[0,.31,.18],[.25,.027,.12]);
+  const badge=new THREE.Mesh(new THREE.BoxGeometry(.095,.06,.012),gold);badge.position.set(0,.36,.2);head.add(badge);
+  const flap=new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(-.04,.385,.208),new THREE.Vector3(0,.355,.21),new THREE.Vector3(0,.355,.21),new THREE.Vector3(.04,.385,.208)]),new THREE.LineBasicMaterial({color:'#294a69'}));head.add(flap);
+  const arms=[];for(const sx of [-1,1]){const a=joint(body,[sx*.23,.66,.045]);capsule(a,fur,.055,.15,[0,-.12,0]);blob(a,cream,[0,-.25,.025],[.065,.07,.07]);arms.push(a);}
+  const legs=[];for(const sx of [-1,1]){const l=joint(body,[sx*.13,.22,.015]);capsule(l,fur,.075,.12,[0,-.07,0]);blob(l,cream,[0,-.18,.09],[.1,.065,.16]);legs.push(l);}
+  blob(body,cream,[0,.35,-.23],[.12,.12,.1]);
+  const strap=new THREE.Mesh(new THREE.BoxGeometry(.055,.63,.035),leather);strap.position.set(-.015,.57,.23);strap.rotation.z=-.65;body.add(strap);
+  const bag=new THREE.Mesh(new THREE.BoxGeometry(.32,.3,.15),leather);bag.position.set(.28,.4,.17);bag.rotation.z=.06;body.add(bag);
+  const lid=new THREE.Mesh(new THREE.BoxGeometry(.34,.12,.035),plain('#b6814e',.8));lid.position.set(.28,.49,.255);body.add(lid);
+  const letter=new THREE.Mesh(new THREE.BoxGeometry(.23,.14,.012),paper);letter.position.set(.29,.58,.19);letter.rotation.z=-.12;body.add(letter);
+  const seam=new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(.18,.63,.202),new THREE.Vector3(.29,.56,.202),new THREE.Vector3(.29,.56,.202),new THREE.Vector3(.4,.63,.202)]),new THREE.LineBasicMaterial({color:'#9a653d'}));body.add(seam);
+  const parts={root,body,bodyY:0,head,eyes,ears,arms,legs};return finish(group,parts,height);
+}
+export const characters={fox,squirrel,bird,owl,mouse,beaver,mailman};

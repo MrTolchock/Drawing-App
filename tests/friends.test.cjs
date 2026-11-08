@@ -13,10 +13,10 @@ test('versioned content has valid, distinct five-task rounds and separate exampl
   assert.ok(content.pools.squirrel.every(t=>t.count>=0&&t.count<=20));
   assert.ok(content.pools.owl.every(t=>t.target.split(' ').length===3&&t.choices.length===2));
 });
-test('all five rounds grant exactly three, never on animation replay or duplicate answer',()=>{
+test('all five rounds record completion without granting currency or duplicate answers',()=>{
   const {state,storage:s}=fixture();for(const [host,data] of Object.entries(content.hosts)){
-    round(state,host);assert.equal(state.get().wallet[data.resource],3);assert.equal(state.answer(host,'x'),false);
-    const restored=create({storage:s,content});assert.equal(restored.get().wallet[data.resource],3);assert.equal(restored.get().rounds[host].index,5);
+    round(state,host);assert.equal(state.get().wallet[data.resource],0);assert.equal(state.answer(host,'x'),false);
+    const restored=create({storage:s,content});assert.equal(restored.get().wallet[data.resource],0);assert.equal(restored.get().rounds[host].index,5);
     assert.ok(state.acknowledge(host));assert.equal(state.acknowledge(host),false);
   }
 });
@@ -28,21 +28,20 @@ test('interrupted answers, attempts, support, order and feedback recover as exac
 test('visiting another host retains interrupted work and subsequent rounds avoid last set',()=>{
   const {state}=fixture();state.start('mouse');const saved=state.get().rounds.mouse;state.start('owl');assert.deepEqual(state.get().rounds.mouse,saved);round(state,'squirrel');const previous=state.get().rounds.squirrel.tasks.map(t=>t.id);state.acknowledge('squirrel');state.start('squirrel');assert.ok(state.get().rounds.squirrel.tasks.every(t=>!previous.includes(t.id)));
 });
-test('purchase is atomic, ownership cannot be charged twice and nothing changes the world',()=>{
-  const {state,storage:s}=fixture();const world=state.get().world;assert.equal(state.buy('apple'),false);round(state,'bird');round(state,'beaver');assert.ok(state.buy('leaf'));assert.ok(state.buy('pencils'));assert.equal(state.buy('leaf'),false);assert.equal(state.get().wallet.seeds,1);assert.equal(state.get().wallet.logs,1);
-  const restored=create({storage:s,content});assert.deepEqual(restored.get().unlocks,{leaf:true,pencils:true});assert.deepEqual(restored.get().world,world);assert.equal('furniture' in restored.get(),false);
+test('shop and paid treats are disabled while drawing unlocks are available freely',()=>{
+  const {state}=fixture(),before=state.get();assert.equal(state.buy('apple'),false);assert.equal(state.buy('leaf'),false);assert.equal(state.use('apple','forest'),false);assert.deepEqual(state.get(),before);assert.deepEqual(state.get().unlocks,{leaf:true,pencils:true});assert.ok(state.selectPage('leaf'));
 });
-test('storage failure rolls back both sides of economy, then retry works',()=>{
-  const {state,storage:s}=fixture();round(state,'squirrel');const before=state.get();const original=s.setItem;s.setItem=(k,v)=>{if(k===state.key)throw Error('quota');original(k,v);};assert.equal(state.buy('apple'),false);assert.deepEqual(state.get(),before);assert.match(state.error,/nicht gespeichert/);assert.deepEqual(create({storage:s,content}).get().inventory,before.inventory);s.setItem=original;assert.ok(state.buy('apple'));assert.equal(state.get().wallet.nuts,2);assert.equal(state.get().inventory.apple,1);
+test('storage failure rolls back letter opening, then retry works',()=>{
+  const {state,storage:s}=fixture();const before=state.get(),original=s.setItem;s.setItem=(k,v)=>{if(k===state.key)throw Error('quota');original(k,v);};assert.equal(state.openLetter(),false);assert.deepEqual(state.get(),before);assert.match(state.error,/nicht gespeichert/);assert.deepEqual(create({storage:s,content}).get().mail,before.mail);s.setItem=original;assert.ok(state.openLetter());assert.equal(state.get().mail.phase,'to-friend');
 });
-test('refresh at final-answer failure neither loses the task nor credits a partial reward',()=>{
-  const {state,storage:s}=fixture();state.start('squirrel');for(let i=0;i<4;i++){state.answer('squirrel',state.get().rounds.squirrel.tasks[i].answer);state.advance('squirrel');}const original=s.setItem;s.setItem=(k,v)=>{if(k===state.key)throw Error();original(k,v);};assert.equal(state.answer('squirrel',state.get().rounds.squirrel.tasks[4].answer),false);assert.equal(state.get().wallet.nuts,0);s.setItem=original;const restored=create({storage:s,content});assert.equal(restored.get().rounds.squirrel.index,4);restored.answer('squirrel',restored.get().rounds.squirrel.tasks[4].answer);assert.equal(restored.get().wallet.nuts,3);
+test('refresh at final-answer failure retains the task without currency rewards',()=>{
+  const {state,storage:s}=fixture();state.start('squirrel');for(let i=0;i<4;i++){state.answer('squirrel',state.get().rounds.squirrel.tasks[i].answer);state.advance('squirrel');}const original=s.setItem;s.setItem=(k,v)=>{if(k===state.key)throw Error();original(k,v);};assert.equal(state.answer('squirrel',state.get().rounds.squirrel.tasks[4].answer),false);assert.equal(state.get().wallet.nuts,0);s.setItem=original;const restored=create({storage:s,content});assert.equal(restored.get().rounds.squirrel.index,4);restored.answer('squirrel',restored.get().rounds.squirrel.tasks[4].answer);assert.equal(restored.get().wallet.nuts,0);
 });
-test('consuming commits once, refresh/skip never consumes again and return position stays',()=>{
-  const {state,storage:s}=fixture();round(state,'squirrel');state.buy('apple');state.buy('apple');state.position(-5,9);assert.ok(state.use('apple','forest'));assert.equal(state.use('apple','forest'),false);assert.equal(state.get().inventory.apple,1);const restored=create({storage:s,content});assert.equal(restored.get().animation.returnTo,'forest');assert.deepEqual(restored.get().animation.world,{x:-5,z:9});assert.ok(restored.finishAnimation(true));assert.equal(restored.finishAnimation(),false);assert.equal(restored.get().inventory.apple,1);assert.deepEqual(restored.get().world,{x:-5,z:9});
+test('saved legacy inventory and interrupted animation survive without another consumption',()=>{
+  const {state,storage:s}=fixture();const prior=state.get();prior.wallet.nuts=13;prior.inventory.apple=2;prior.animation={item:'apple',transactionId:'old-use',returnTo:'forest',world:{x:-5,z:9}};s.setItem(state.key,JSON.stringify(prior));const restored=create({storage:s,content});assert.equal(restored.use('apple','forest'),false);assert.ok(restored.finishAnimation(true));assert.equal(restored.get().inventory.apple,2);assert.equal(restored.get().wallet.nuts,13);assert.equal(restored.finishAnimation(),false);
 });
 test('drawing pages, palette, audio settings, unknown legacy fields and old stores survive',()=>{
-  const s=storage();s.setItem('farbklecks.progress.v1','{"stars":47}');s.setItem('farbtupf.forest.v1','{"version":1,"furniture":{"chair":true}}');const {state}=fixture({storage:s});round(state,'bird');state.buy('leaf');const strokes=[{colour:'#abc',points:[[0,0],[1,1]]}];state.draw('free',strokes);state.selectPage('leaf');state.draw('leaf',[{colour:'#def',points:[[.5,.5]]}]);state.setting('speech',false);const restored=create({storage:s,content});assert.deepEqual(restored.get().drawings.free,strokes);assert.equal(restored.get().drawings.leaf.length,1);assert.equal(restored.get().selectedPage,'leaf');assert.equal(restored.get().settings.speech,false);assert.equal(s.getItem('farbklecks.progress.v1'),'{"stars":47}');assert.match(s.getItem('farbtupf.forest.v1'),/furniture/);
+  const s=storage();s.setItem('farbklecks.progress.v1','{"stars":47}');s.setItem('farbtupf.forest.v1','{"version":1,"furniture":{"chair":true}}');const {state}=fixture({storage:s});round(state,'bird');const strokes=[{colour:'#abc',points:[[0,0],[1,1]]}];state.draw('free',strokes);state.selectPage('leaf');state.draw('leaf',[{colour:'#def',points:[[.5,.5]]}]);state.setting('speech',false);const restored=create({storage:s,content});assert.deepEqual(restored.get().drawings.free,strokes);assert.equal(restored.get().drawings.leaf.length,1);assert.equal(restored.get().selectedPage,'leaf');assert.equal(restored.get().settings.speech,false);assert.equal(s.getItem('farbklecks.progress.v1'),'{"stars":47}');assert.match(s.getItem('farbtupf.forest.v1'),/furniture/);
 });
 test('invalid current save recovers validated backup; unreadable records are never overwritten',()=>{
   const {state,storage:s}=fixture();state.position(2,3);s.setItem(state.key,'{broken');const recovered=create({storage:s,content});assert.match(recovered.error,/sichere/);assert.ok(recovered.retrySave());assert.equal(JSON.parse(s.getItem(state.key)).schema,1);

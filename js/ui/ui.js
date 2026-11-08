@@ -107,6 +107,9 @@
     const set = () => { val.textContent = String(FK.progress.stars()); };
     set();
     FK.on('stars', set);
+    const visibility=()=>{el.hidden=!!FK.friendsLibrary?.active;};
+    visibility();
+    FK.on('screen',visibility);
     return el;
   }
 

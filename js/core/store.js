@@ -55,7 +55,9 @@
       const key = kind + ':' + id;
       const first = !progress.done[key];
       progress.done[key] = (progress.done[key] | 0) + 1;
-      const n = first || always ? stars | 0 : 0;
+      // Current letter adventures record completion without introducing a currency.
+      // Existing stars remain available in the retained Heart Tree game.
+      const n = FK.friendsLibrary?.active ? 0 : first || always ? stars | 0 : 0;
       progress.stars = (progress.stars | 0) + n;
       writeJSON(PROGRESS_KEY, progress);
       if (n) FK.emit && FK.emit('stars', { total: progress.stars, added: n });

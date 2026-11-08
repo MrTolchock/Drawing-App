@@ -855,6 +855,11 @@
     later(() => {
       if (my !== token) return;
       const id = mode === 'frei' ? cur.g + ':frei' : cur.g;
+      if(FK.friendsLibrary?.active){
+        FK.progress.finish('trace',id,0);
+        FK.friendsPuzzleCompleted('mouse');
+        return;
+      }
       const n = FK.progress.finish('trace', id, 1);
       showEnd();
       playEl.classList.add('is-done');
