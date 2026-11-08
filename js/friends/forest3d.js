@@ -121,7 +121,9 @@ export function createForest({renderer,looks,texture,software,onPosition,onActio
    const water=new THREE.Mesh(ribbon(stream,4.6,.06),new THREE.MeshLambertMaterial({map:flowTex,transparent:true,opacity:.95,emissive:'#1d5a6a',emissiveIntensity:.25}));water.receiveShadow=true;scene.add(water);
    const foam=new THREE.Mesh(ribbon(stream,4.9,.07),new THREE.MeshLambertMaterial({map:foamTex,transparent:true,depthWrite:false,emissive:'#ffffff',emissiveIntensity:.18}));foam.renderOrder=1;scene.add(foam);}
   // Instanced foliage collected while building.
-  const blobMaterial=nearFade(paint('#5a922f').clone()),leafCards=[],heroCards=[],blobs=[],dummy=new THREE.Object3D(),tmp=new THREE.Color();
+  const leafyTex=drawn(256,256,(g,w,h)=>{g.fillStyle='#3d7522';g.fillRect(0,0,w,h);for(let i=0;i<46;i++){const x=art()*w,y=art()*h,a=art()*TAU,l=40+art()*30;for(const ox of [-w,0,w])for(const oy of [-h,0,h]){g.save();g.translate(x+ox,y+oy);g.rotate(a);broadLeaf(g,l,l*.52,'#3f7a22','#5f9a32','#86bb4a',art);g.restore();}}},{repeat:0});
+  leafyTex.wrapS=leafyTex.wrapT=THREE.RepeatWrapping;leafyTex.repeat.set(3,2);
+  const blobMaterial=nearFade(new THREE.MeshLambertMaterial({map:leafyTex})),leafCards=[],heroCards=[],blobs=[],dummy=new THREE.Object3D(),tmp=new THREE.Color();
   function cluster(cx,cy,cz,R,list=leafCards){dummy.position.set(cx,cy,cz);dummy.rotation.set(0,0,0);dummy.scale.setScalar(R*.6);dummy.updateMatrix();blobs.push(dummy.matrix.clone());
     const count=Math.round(10+R*11);for(let i=0;i<count;i++){let x=rng()*2-1,y=rng()*1.6-.45,z=rng()*2-1;const l=Math.hypot(x,y,z)||1;x/=l;y/=l;z/=l;const d=R*(.55+rng()*.4);
       dummy.position.set(cx+x*d,cy+y*d,cz+z*d);dummy.lookAt(cx+x*d*2,cy+y*d*2,cz+z*d*2);dummy.rotateZ(rng()*TAU);dummy.scale.setScalar(R*(.82+rng()*.38));dummy.updateMatrix();
@@ -179,12 +181,20 @@ export function createForest({renderer,looks,texture,software,onPosition,onActio
        const cap=mesh(new THREE.SphereGeometry(end?.13:.1,12,8),woodLight);cap.position.set(x,y+h+.02,z);cap.scale.y=.75;tops.push([x,y+1,z]);mids.push([x,y+.55,z]);}
      curveTube(scene,woodLight,tops,.075);curveTube(scene,woodLight,mids,.05);}}
   // Mossy rocks (smooth spheres pushed out by position noise, moss on the tops).
-  const rockGeo=new THREE.SphereGeometry(1,18,12);{const p=rockGeo.attributes.position,v=new THREE.Vector3();for(let i=0;i<p.count;i++){v.fromBufferAttribute(p,i);const n=1+.14*Math.sin(v.x*3.1+v.y*1.7)+.1*Math.sin(v.z*4.3-v.x*2.2)+.06*Math.sin(v.y*7.1);v.multiplyScalar(n);p.setXYZ(i,v.x,v.y,v.z);}rockGeo.computeVertexNormals();const n=rockGeo.attributes.normal,c=[];for(let i=0;i<n.count;i++){const top=THREE.MathUtils.smoothstep(n.getY(i),.45,.85);c.push(.5-top*.16,.48+top*.06,.44-top*.22);}rockGeo.setAttribute('color',new THREE.Float32BufferAttribute(c,3));}
+  const rockGeo=new THREE.SphereGeometry(1,18,12);{const p=rockGeo.attributes.position,v=new THREE.Vector3();for(let i=0;i<p.count;i++){v.fromBufferAttribute(p,i);const n=1+.14*Math.sin(v.x*3.1+v.y*1.7)+.1*Math.sin(v.z*4.3-v.x*2.2)+.06*Math.sin(v.y*7.1);v.multiplyScalar(n);p.setXYZ(i,v.x,v.y,v.z);}rockGeo.computeVertexNormals();const n=rockGeo.attributes.normal,c=[];for(let i=0;i<n.count;i++){const top=THREE.MathUtils.smoothstep(n.getY(i),.45,.85);c.push(.47-top*.17,.45-top*.03,.41-top*.26);}rockGeo.setAttribute('color',new THREE.Float32BufferAttribute(c,3));}
   const rocks=[[-5.2,-4.2,1.05,.7],[-2,9,.65,.55],[9.6,1.2,.6,.5],[-12,-9,.65,.55]];
   for(let z=-30;z<34;z+=1.7){if(Math.abs(z+3)<1.6)continue;for(const side of [-1,1])if(rng()<.8)rocks.push([lineCenter(z)+side*(2.45+rng()*.6),z+rng()*.8,.3+rng()*.4,.6]);}
   function lineCenter(z){for(let i=0;i<stream.length-1;i++){const a=stream[i],b=stream[i+1];if(z>=a[1]&&z<=b[1])return a[0]+(b[0]-a[0])*(z-a[1])/(b[1]-a[1]);}return stream[0][0];}
   for(let i=0;i<400&&rocks.length<70;i++){const x=-22+rng()*44,z=-22+rng()*44;if(!onTrail(x,z)&&!inWater(x,z)&&Math.hypot(x-2,z+2)>8&&solids.every(s=>Math.hypot(x-s.x,z-s.z)>s.r+1))rocks.push([x,z,.25+rng()*.35,.6]);}
-  {const im=new THREE.InstancedMesh(rockGeo,new THREE.MeshLambertMaterial({vertexColors:true}),rocks.length);rocks.forEach(([x,z,k,f],i)=>{dummy.position.set(x,k*.38,z);dummy.rotation.set(0,i*1.7,0);dummy.scale.set(k*1.15,k*f,k);dummy.updateMatrix();im.setMatrixAt(i,dummy.matrix);});im.castShadow=im.receiveShadow=!software;scene.add(im);}
+  // Pebbles along the trail edges and stones in the brook's little rapids (art stream, layout untouched).
+  for(const t of trails)for(let i=0;i<t.length-1;i++){const [ax,az]=t[i],[bx,bz]=t[i+1],len=Math.hypot(bx-ax,bz-az);for(let d=0;d<len;d+=.9){const u=d/len,nx=-(bz-az)/len,nz=(bx-ax)/len,side=art()<.5?-1:1,o=1.05+art()*.4,x=ax+(bx-ax)*u+nx*side*o,z=az+(bz-az)*u+nz*side*o;if(art()<.55&&!inWater(x,z)&&!onBridge(x,z))rocks.push([x,z,.07+art()*.08,.6]);}}
+  const rapids=[-15,7.5,19].map(z=>{const cx=lineCenter(z);rocks.push([cx-1.3,z+.25,.36,.5],[cx+.3,z-.35,.26,.5],[cx+1.35,z+.3,.32,.55]);return [cx,z];});
+  const speckle=drawn(128,128,(g,w,h)=>{g.fillStyle='#f4f1ea';g.fillRect(0,0,w,h);for(let i=0;i<900;i++){g.fillStyle=art()<.5?'rgba(90,80,70,.22)':'rgba(255,255,250,.4)';g.fillRect(art()*w,art()*h,1+art()*2,1+art()*2);}for(let i=0;i<30;i++)blot(g,art()*w,art()*h,8+art()*20,'rgba(100,90,70,.12)',w,h);},{repeat:2});
+  {const im=new THREE.InstancedMesh(rockGeo,new THREE.MeshLambertMaterial({vertexColors:true,map:speckle}),rocks.length);rocks.forEach(([x,z,k,f],i)=>{dummy.position.set(x,k*.38,z);dummy.rotation.set(0,i*1.7,0);dummy.scale.set(k*1.15,k*f,k);dummy.updateMatrix();im.setMatrixAt(i,dummy.matrix);});im.castShadow=im.receiveShadow=!software;scene.add(im);}
+  const rapidTex=drawn(128,64,(g,w,h)=>{for(let i=0;i<190;i++){const x=art()*w,y=art()*h,rx=2+art()*7,ry=1+art()*2.6;g.fillStyle='rgba(255,255,255,'+(.35+art()*.55)+')';for(const ox of [-w,0,w])for(const oy of [-h,0,h]){g.beginPath();g.ellipse(x+ox,y+oy,rx,ry,0,0,TAU);g.fill();}}},{repeat:0});
+  rapidTex.wrapS=rapidTex.wrapT=THREE.RepeatWrapping;
+  {const m=new THREE.MeshLambertMaterial({map:rapidTex,transparent:true,depthWrite:false,emissive:'#ffffff',emissiveIntensity:.25,alphaMap:drawn(64,64,(g)=>{const r=g.createRadialGradient(32,32,8,32,32,32);r.addColorStop(0,'#fff');r.addColorStop(1,'#000');g.fillStyle=r;g.fillRect(0,0,64,64);},{linear:true})});
+   for(const [x,z]of rapids){const f=new THREE.Mesh(new THREE.PlaneGeometry(4.6,1.6),m);f.rotation.x=-Math.PI/2;f.position.set(x,.08,z);f.renderOrder=2;scene.add(f);}}
   // Trees, bushes and the forest edge.
   for(const [x,z]of [[-11.6,-14.2],[-13.5,-5],[-5.5,-16],[5,-15.5],[-14,4],[3.5,13.5],[-3,15],[17,-10.5],[19,7.5]])tree(x,z,1.05+rng()*.25);
   {const g=new THREE.Group();scene.add(g);const m=barkTiled(1,2);mesh(trunk(taperProfile(.4,.21,3.4),{flutes:5,twist:.35,depth:.06,flare:.35,phase:1.3}),m,g).position.set(-10.3,0,-.7);curveTube(g,m,[[-10.25,2.0,-.65],[-9.3,2.2,-.4],[-8.2,2.42,-.2]],.09);cluster(-10.4,4.2,-.8,1.6);cluster(-7.9,2.95,-.45,.6);}
@@ -198,6 +208,9 @@ export function createForest({renderer,looks,texture,software,onPosition,onActio
   const cover=[[tuftTex,520,[.7,.55],26],[lavenderTex,90,[.38,.8],18],[daisyTex,110,[.42,.5],20],[fernTex,80,[1.0,.75],22]];
   for(const [tex,count,[w,h],range]of cover){const spots=[];for(let i=0;i<count*6&&spots.length<count;i++){const x=2+(rng()*2-1)*range,z=-2+(rng()*2-1)*range;if(!onTrail(x,z)&&!inWater(x,z)&&solids.every(s=>Math.hypot(x-s.x,z-s.z)>s.r+.2))spots.push([x,z]);}
     const im=new THREE.InstancedMesh(crossQuad(),new THREE.MeshLambertMaterial({map:tex,alphaTest:.45}),spots.length);spots.forEach(([x,z],i)=>{const k=.7+rng()*.6;dummy.position.set(x,0,z);dummy.rotation.set(0,rng()*TAU,0);dummy.scale.set(w*k,h*k,w*k);dummy.updateMatrix();im.setMatrixAt(i,dummy.matrix);});im.receiveShadow=!software;scene.add(im);}
+  {const edge=[];for(const t of trails)for(let i=0;i<t.length-1;i++){const [ax,az]=t[i],[bx,bz]=t[i+1],len=Math.hypot(bx-ax,bz-az);for(let d=0;d<len;d+=.42){const u=d/len,nx=-(bz-az)/len,nz=(bx-ax)/len,side=art()<.5?-1:1,o=1.15+art()*.45,x=ax+(bx-ax)*u+nx*side*o,z=az+(bz-az)*u+nz*side*o;
+     if(!inWater(x,z)&&!onBridge(x,z)&&solids.every(s=>Math.hypot(x-s.x,z-s.z)>s.r+.2)&&trails.every(q=>lineDistance(x,z,q)>1.12)&&((x-2.2)/6.6)**2+((z+2.4)/4.8)**2>1.08)edge.push([x,z,art()]);}}
+   const im=new THREE.InstancedMesh(crossQuad(),new THREE.MeshLambertMaterial({map:tuftTex,alphaTest:.45}),edge.length);edge.forEach(([x,z,k],i)=>{dummy.position.set(x,0,z);dummy.rotation.set(0,k*TAU,0);const sc=.55+k*.5;dummy.scale.set(.75*sc,.5*sc,.75*sc);dummy.updateMatrix();im.setMatrixAt(i,dummy.matrix);});im.receiveShadow=!software;scene.add(im);}
   // Friends' places: owl stone (a rock above), squirrel's acorns, mouse stump, log, beaver lodge.
   {for(let i=0;i<5;i++)mesh(new THREE.SphereGeometry(.09,8,6),paint('#8a5a2c'),scene).position.set(-9.0+i*.22,.08,-11.9+(i%2)*.2);
    const stump=mesh(new THREE.CylinderGeometry(.75,.9,.62,18),barkTiled(3,1));stump.position.set(8.6,.31,6.8);const top=new THREE.Mesh(new THREE.CircleGeometry(.75,24),new THREE.MeshLambertMaterial({map:ringTex}));top.rotation.x=-Math.PI/2;top.position.set(8.6,.625,6.8);scene.add(top);
@@ -277,7 +290,7 @@ export function createForest({renderer,looks,texture,software,onPosition,onActio
       b.s.position.set(b.x,b.y,b.z);const flap=reduced?1:.25+Math.abs(Math.cos(time*14+b.phase))*.75;b.s.scale.set(.42*flap,.32,1);}
     for(const h of halos)h.material.opacity=reduced?.8:.72+Math.sin(time*7+h.position.x)*.08;
     shafts.forEach((b,i)=>b.material.opacity=reduced?.15:.14+Math.sin(time*.35+i*1.7)*.05);
-    if(!reduced){flowTex.offset.y-=dt*.22;foamTex.offset.y-=dt*.12;motes.position.y=Math.sin(time*.35)*.3;motes.rotation.y=time*.01;}
+    if(!reduced){flowTex.offset.y-=dt*.22;foamTex.offset.y-=dt*.12;rapidTex.offset.y+=dt*.5;motes.position.y=Math.sin(time*.35)*.3;motes.rotation.y=time*.01;}
     if(ring.visible)ring.material.opacity=.55+Math.sin(time*4)*.25;
     // Fade the home canopy when the fox walks behind the trunk.
     const behind=pos.z<-9.4&&Math.abs(pos.x)<5.5;hero.material.opacity+=((behind?.3:1)-hero.material.opacity)*Math.min(1,dt*5);hero.material.transparent=hero.material.opacity<.99;hero.material.depthWrite=!hero.material.transparent;
