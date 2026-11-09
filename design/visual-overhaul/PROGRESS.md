@@ -5,7 +5,7 @@ Claude Code keeps this file current: tick items as they land on `main`, add the 
 **Design handed over:** 9 November 2026 (blueprint, mockups, 3D look-dev, asset requests).
 **Implementation started:** —
 
-## Phase 1 · Tokens and puzzle shell
+## Phase 1 · Tokens and puzzle shell · Opus 5.5, effort `high`
 - [ ] `css/waldbuch.css` with tokens and components from `mockup/waldbuch.css`, loaded last in `index.html`
 - [ ] Friend accent via `data-host` on puzzle screens
 - [ ] Back, speaker and demo buttons restyled
@@ -14,20 +14,21 @@ Claude Code keeps this file current: tick items as they land on `main`, add the 
 - [ ] P3 (no blur over the canvas) and P8 (CSS cost)
 - [ ] `puzzles-browser.cjs` passes at 1024 and 390; milestone screenshots and `COMPARISON.md`
 
-## Phase 2 · Menus
+## Phase 2 · Menus · Opus 5.5, effort `high`
 - [ ] Waldspiele bookmark tabs and cards (no human figure)
 - [ ] Ausmalen taped pages, Meine Bilder clothes line, Einstellungen switches
 - [ ] Map frame, letter postcard with stamp and vignette
 - [ ] P4 (pause 3D under every overlay)
 - [ ] `friends-library-browser.cjs`, `den-browser.cjs`, `interface-browser.cjs` pass; screenshots
 
-## Phase 3 · Consistency
+## Phase 3 · Consistency · Opus 5.5, effort `high`
 - [ ] Cast remapping (crayon foxes retired, mailman portrait)
 - [ ] Picture-family rules; vector → library pictures (Haus, Stein, Nuss, Ast)
 - [ ] Wooden-toy finish for colour and shape answers
 - [ ] Celebration on correct answers (reduced-motion safe)
 
-## Phase 4 · 3D world and characters
+## Phase 4 · 3D world and characters · effort `xhigh` (or Fable 5.1)
+- [ ] **Before starting:** told the owner to switch (`/effort xhigh` or `/model fable`) and got confirmation
 - [ ] Landscape ported from `lookdev/forest.js` (terrain, meandering brook with banks and flowing water, narrow trails, grass, ferns, flowers, reeds, rocks, trees)
 - [ ] Log bridge as a second walkable crossing
 - [ ] Den door and round window outside; fireflies replace the arrow; gold ring on the invited friend
@@ -37,8 +38,9 @@ Claude Code keeps this file current: tick items as they land on `main`, add the 
 - [ ] Context-loss handling, forest built while in the den (section 7B)
 - [ ] P1 adaptive render scale, P2 draw-call budget, P5 den idle at 30 fps, P9 `?perf=1` overlay
 - [ ] `friends-mail-browser.cjs`, `friends-animation-browser.cjs`, `world-browser.cjs` pass; renders match the look-dev
+- [ ] **After finishing:** told the owner to switch back with `/effort high`
 
-## Phase 5 · Assets and offline
+## Phase 5 · Assets and offline · Opus 5.5, effort `high`
 - [ ] P6 PNG sheets → WebP; P7 atlas decode budget; precache list updated
 - [ ] Optional new word pictures from `ASSET-REQUESTS.md`
 - [ ] Offline reload passes; precached total < 25 MB
