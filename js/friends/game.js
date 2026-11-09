@@ -4,7 +4,7 @@ import {createAudio} from './audio.js';
 const FK=window.FK,h=FK.h,C=window.FriendsContent;
 let root,canvas,world,state,audio,overlay,hotspots,nav,statusBar,nearButton,caption,fader,doorScene,denEnvelope;
 let area='den',panel=null,host=null,example=false,feedbackTimer=null,activeMs=0,lastTick=performance.now(),pendingDrawing=null,returnArea='den';
-const actionPictures={outside:'door',drawing:'pencils',sleep:'bed',games:'book',gallery:'gallery'};
+const actionPictures={outside:'door',drawing:'pencils',sleep:'fox-sleep',games:'book',gallery:'gallery'};
 const actionNames={outside:'Nach draussen',drawing:'Ausmalen',sleep:'Schlafen',games:'Waldspiele',gallery:'Meine Bilder'};
 const envelopeSVG='<svg viewBox="0 0 120 85" aria-hidden="true"><rect x="3" y="5" width="114" height="75" rx="7" fill="#fff6dc" stroke="#967044" stroke-width="3"/><path d="m5 76 40-33m70 33L75 43M5 9l55 43 55-43" fill="none" stroke="#b59466" stroke-width="3"/><circle cx="60" cy="53" r="9" fill="#a9bb85"/><path d="m56 53 3 3 5-7" fill="none" stroke="#547043" stroke-width="2"/></svg>';
 const doorSVG=`<svg viewBox="0 0 1448 1086" preserveAspectRatio="none"><defs><linearGradient id="letter-flap" x2="0" y2="1"><stop stop-color="#cc9743"/><stop offset=".5" stop-color="#e5bd70"/><stop offset="1" stop-color="#ae7633"/></linearGradient></defs><rect class="ff-mail-opening" x="1180" y="280" width="106" height="34" rx="3" fill="#49331f"/><rect class="ff-mail-lid" x="1180" y="280" width="106" height="34" rx="3" fill="url(#letter-flap)" stroke="#d7af64" stroke-width="2"/></svg>`;
@@ -31,7 +31,7 @@ function showLetter(fromMailman){
   open('letter');syncMail();
   const id=state.mail().host;
   overlay.classList.add('ff-postcard-overlay');
-  const letter=h('button',{type:'button',class:'ff-letter-paper','aria-label':'Zum Freund gehen',onclick:()=>go('forest')},
+  const letter=h('button',{type:'button',class:'ff-letter-paper','data-host':id,'aria-label':'Zum Freund gehen',onclick:()=>go('forest')},
     h('div',{class:'ff-letter-stamp'},art('leaf')),letterPortrait(id),
     h('div',{class:'ff-letter-scribbles','aria-hidden':'true',html:'<svg viewBox="0 0 320 100"><path d="M15 18q8-16 18 0t18-2 19 0 22-1m16 0q12-12 24-1t24 0 20-1 25 0 23-2M15 44q10-15 18-1t18 0 24-1 21 0m15 0q14-14 24 0t26-1 22 0 22 0M15 70q9-12 18 0t22 0 22 0m16 0q12-14 24-1t21 0 23-1 25 0 22 0" fill="none" stroke="#877257" stroke-width="3" stroke-linecap="round"/></svg>'}));
   overlay.append(letter);requestAnimationFrame(()=>letter.focus());

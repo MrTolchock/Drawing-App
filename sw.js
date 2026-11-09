@@ -1,5 +1,5 @@
 /* Farbtupf – Service Worker: keeps the whole app on the device so it runs without internet. */
-const CACHE = 'farbtupf-v8.5.0-waldbuch-shell';
+const CACHE = 'farbtupf-v8.6.0-waldbuch-menus';
 const ASSETS = [
   './js/friends/puzzles.js',
   './css/puzzles.css',

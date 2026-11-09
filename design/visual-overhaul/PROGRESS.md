@@ -15,11 +15,11 @@ Claude Code keeps this file current: tick items as they land on `main`, add the 
 - [x] `puzzles-browser.cjs` passes at 1024 and 390; milestone screenshots and `COMPARISON.md` — app 8.5.0, branch `claude/inspiring-thompson-wnlj9u` (see notes)
 
 ## Phase 2 · Menus · Opus 5.5, effort `high`
-- [ ] Waldspiele bookmark tabs and cards (no human figure)
-- [ ] Ausmalen taped pages, Meine Bilder clothes line, Einstellungen switches
-- [ ] Map frame, letter postcard with stamp and vignette
-- [ ] P4 (pause 3D under every overlay)
-- [ ] `friends-library-browser.cjs`, `den-browser.cjs`, `interface-browser.cjs` pass; screenshots
+- [x] Waldspiele bookmark tabs and cards (no human figure)
+- [x] Ausmalen taped pages, Meine Bilder clothes line, Einstellungen switches
+- [x] Map frame, letter postcard with stamp and vignette
+- [x] P4 (pause 3D under every overlay)
+- [x] `friends-library-browser.cjs`, `den-browser.cjs`, `interface-browser.cjs` pass; screenshots — app 8.6.0, same branch and PR
 
 ## Phase 3 · Consistency · Opus 5.5, effort `high`
 - [ ] Cast remapping (crayon foxes retired, mailman portrait)
@@ -60,3 +60,9 @@ Claude Code keeps this file current: tick items as they land on `main`, add the 
 - Celebration (confetti, hop, check badge, moss page ring) is left for phase 3 as listed there.
 - Fixed a literal "null" printed on the Silben-klopfen screen; scoped one flaky `puzzles-browser.cjs` locator to the visible screen.
 - `play-layout-browser.cjs` already fails on the base commit (retired `#set-sound`); `play-browser.cjs` and `play-layout-browser.cjs` hard-code a Playwright path that only exists on the old runner.
+
+**Phase 2:**
+- Waldspiele intro kept for screen readers only; title and selected tab show the same thing. Back button keeps Fuchs' portrait in the wooden ring.
+- Meine Bilder: no "new picture" frame, because the gallery has no new-picture action; dates stay under the pictures.
+- Den toolbar pill, unread-letter dot and hotspot rings (mockup 1a) done here, as no phase listed them.
+- P4 was already in place (overlays and leaving the friends screen pause the world); verified for every menu and overlay.
