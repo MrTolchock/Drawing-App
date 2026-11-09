@@ -41,6 +41,9 @@ export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,o
   // The den's 3D fox, lit like the painting (warm daylight from the door, soft fill from the window).
   scene.add(new THREE.HemisphereLight('#ffe6c4','#7a4a2c',1.3));{const key=new THREE.DirectionalLight('#ffd49a',2.3);key.position.set(40,60,30);scene.add(key);const rim=new THREE.DirectionalLight('#ffb98a',.7);rim.position.set(-40,30,10);scene.add(rim);}
   const foxRig=characters.fox(denH),fox=foxRig.group,foxPos=new THREE.Vector3();scene.add(fox);
+  // The den fox gets its own copies of the shared fur materials: a material drawn by both the den
+  // (no shadows) and the forest (shadows) on one renderer left the forest fox undrawn.
+  fox.traverse(o=>{if(!o.isMesh)return;const m=o.material.clone();m.onBeforeCompile=o.material.onBeforeCompile;if(Object.prototype.hasOwnProperty.call(o.material,'customProgramCacheKey'))m.customProgramCacheKey=o.material.customProgramCacheKey;o.material=m;});
   const red=new THREE.MeshStandardMaterial({color:'#d4402f',roughness:.45}),wood=new THREE.MeshStandardMaterial({color:'#c98a4c',roughness:.8});
   const apple=new THREE.Group();{const body=new THREE.Mesh(new THREE.SphereGeometry(.1,16,12),red);apple.add(body);const stem=new THREE.Mesh(new THREE.CylinderGeometry(.01,.012,.06,6),wood);stem.position.y=.1;apple.add(stem);}apple.position.set(0,-.34,.09);apple.visible=false;foxRig.paw.add(apple);
   const tub=new THREE.Group();{const side=new THREE.Mesh(new THREE.CylinderGeometry(.62,.5,.55,28,1,true),wood);side.material.side=THREE.DoubleSide;side.position.y=.28;tub.add(side);for(const y of [.12,.44]){const band=new THREE.Mesh(new THREE.TorusGeometry(.6-y*.18,.025,6,28),new THREE.MeshStandardMaterial({color:'#6b4426'}));band.rotation.x=Math.PI/2;band.position.y=y;tub.add(band);}
@@ -65,7 +68,7 @@ export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,o
   const bubbles=Array.from({length:9},()=>sprite(bubbleTex,4,.5)),zs=Array.from({length:3},()=>sprite(zTex,4,.5));
   const props=[...bubbles,...zs];props.forEach(p=>p.userData.on=false);
   let area='den',paused=false,last=performance.now(),time=0,raf,anim=null,keys=new Set(),stick={x:0,z:0},width=0,height=0;
-  const forest=createForest({renderer,looks,texture,software,onPosition,onAction,onMove,onNear});
+  const forest=createForest({renderer,looks,texture,software,onPosition,onAction,onMove,onNear,perf});window.FK.friendsForest=forest;window.__r=renderer;
   const crop={x:0,y:0};
   const pinList={den:[]};for(const [name,list]of Object.entries(pins))for(const [id,p]of Object.entries(list))pinList[name].push({id,point:pinPoint(p.u,p.v)});
   function layout(){
@@ -142,7 +145,9 @@ export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,o
   let denFrame=0;
   function frame(now){raf=requestAnimationFrame(frame);const elapsed=Math.max(0,(now-last)/1000),dt=Math.min(.25,elapsed);last=now;
     perf.frame(elapsed*1000,now,!document.hidden&&!lost&&(!paused||!!anim));
-    if(document.hidden||lost)return;if(paused&&!anim)return;time+=dt;
+    if(document.hidden||lost)return;
+    // Blueprint 7B: the den shows at once; the forest is built in slices while the child is inside.
+    if(area!=='forest'&&forest.pending)forest.build(8);if(paused&&!anim)return;time+=dt;
     layout();
     if(area==='forest'&&!anim){forest.update(dt,time,{keys,stick});renderer.render(forest.scene,forest.camera);perf.rendered(forest.budget?.()||{});onProject(forest.pins());return;}
     // P5: an idle den (no walk, greeting or animation) is drawn every second frame.

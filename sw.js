@@ -1,5 +1,5 @@
 /* Farbtupf – Service Worker: keeps the whole app on the device so it runs without internet. */
-const CACHE = 'farbtupf-v8.7.1-waldbuch-perf';
+const CACHE = 'farbtupf-v8.7.2-waldbuch-forest';
 const ASSETS = [
   './js/friends/puzzles.js',
   './css/puzzles.css',
@@ -27,6 +27,14 @@ const ASSETS = [
   './js/friends/world.js',
   './js/friends/painted.js',
   './js/friends/perf.js',
+  './js/friends/world/index.js',
+  './js/friends/world/noise.js',
+  './js/friends/world/region.js',
+  './js/friends/world/textures.js',
+  './js/friends/world/tiles.js',
+  './js/friends/world/landmarks.js',
+  './js/friends/world/streamer.js',
+  './js/friends/world/regions/home.js',
   './js/friends/forest3d.js',
   './js/friends/characters3d.js',
   './assets/forest-friends/squirrel.webp',

@@ -80,7 +80,7 @@ function go(next,restore=false){
 function renderNav(){nav.replaceChildren();if(state.development)nav.append(h('strong',{class:'ff-dev',text:'ENTWICKLUNG'}));
   nav.append(button('Bildkarte','map',map),button('Dein Brief','letter',()=>showLetter(false)),button('Waldspiele','book',()=>games()),button('Einstellungen für Erwachsene','gear',()=>FK.ui.parentGate(settings)));
 }
-function renderHotspots(){if(panel)return;hotspots.replaceChildren();const ids=area==='forest'?Object.keys(places):['outside','drawing','gallery','sleep','games'];for(const id of ids){const p=places[id];if(id==='mailman'&&state.mail().phase!=='to-mailman')continue;const b=button(area==='forest'?p.name:actionNames[id],area==='forest'?p.picture:actionPictures[id],()=>act(id),'ff-hotspot');b.dataset.place=id;hotspots.append(b);}}
+function renderHotspots(){if(panel)return;hotspots.replaceChildren();const ids=area==='forest'?Object.keys(places):['outside','drawing','gallery','sleep','games'];for(const id of ids){const p=places[id];if(id==='mailman'&&state.mail().phase!=='to-mailman')continue;const b=button(area==='forest'?p.name:actionNames[id],area==='forest'?p.picture:actionPictures[id],()=>act(id),'ff-hotspot');b.dataset.place=id;const m=state.mail();b.classList.toggle('ff-invited',area==='forest'&&((m.phase==='to-friend'&&m.host===id)||(m.phase==='to-mailman'&&id==='mailman')));hotspots.append(b);}}
 function act(id){if(panel)return;if(area==='forest'){
   const destination=places[id];if(!destination)return;
   const p=world.position;if(Math.hypot(p.x-destination.x,p.z-destination.z)>3.2){world.route(id);say('Folge Fuchs zu '+(C.hosts[id]?.name||(id==='home'?'deinem Zuhause':'dem Briefträger'))+'.');return;}

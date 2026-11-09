@@ -619,3 +619,6 @@
 }
 /* Wooden-toy highlight mask for the colour objects (Farben lesen): the object's silhouette in white. */
 .wb-toy-mask *{fill:#fff;stroke:#fff;opacity:1}
+
+/* Phase 4: the invited friend's bubble in the forest wears a gold ring (fireflies lead there). */
+.friends-interface .ff-hotspot.ff-invited{border-color:#e0a92c;box-shadow:0 0 0 5px #f6cf62,0 0 0 12px #ffd76a55,var(--wb-lift)}
