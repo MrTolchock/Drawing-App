@@ -57,6 +57,9 @@
     if (name === 'forest-book' || name === 'forest' || name === 'friends') stack.length = 0;
     while (stack.length && stack[stack.length - 1].name === name) stack.pop();
     const root = rootFor(name);
+    // Waldbuch: the friend who set the puzzle colours its page (ribbon, tag, twig items).
+    const host = library?.active ? library.hosts[params?.game] || library.hosts[name] : null;
+    if (host) root.dataset.host = host; else delete root.dataset.host;
     if (prev && prev.name !== name) {
       const pr = screens[prev.name].root;
       pr.hidden = true;

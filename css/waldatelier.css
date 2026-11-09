@@ -27,7 +27,7 @@ body { background:#f7f2e7; background-image:radial-gradient(ellipse at 5% 0%,#e7
 }
 .card,.empty,.album-head,.album-sticker,.toggle,.setting-card,.info,.pop-card,.modal-card { background:#fffbf3; }
 .card,.book-card,.frame-card,.mode-pic,.end-frame,.viewer-frame,.album-sticker { transform:none; }
-.modal { background:#24382155; backdrop-filter:blur(3px); }
+.modal { background:#24382155; }
 .modal-card { border-radius:23px; }
 .modal-title,.pop-title { color:var(--ink); font-family:var(--read); font-weight:700; }
 .praise { color:var(--ink); background:#f5e6bb; }
@@ -117,7 +117,7 @@ body { background:#f7f2e7; background-image:radial-gradient(ellipse at 5% 0%,#e7
 .rd-t-sun { background:#f2e2b6; }.rd-t-mint { background:#e2e9d1; }.rd-t-sky { background:#e2edef; }.rd-t-lilac { background:#e8e1e9; }
 .rd-card,.rd-chip,.rd-slot,.screen-trace .tr-paper,.screen-dots .pp-paper { background:#fffdf6; }
 .rd-pic { background:#f6efdc; }.rd-card { transform:none; }
-.rd-done { background:#24382140; backdrop-filter:blur(2px); }
+.rd-done { background:#24382140; }
 .rd-done-card { border:1px solid #b9ac8c; background:#fffbf1; box-shadow:0 8px 32px #26382025; }
 .rd-card-emoji .wa-illustration { width:1.7em; height:1.7em; }
 .screen-trace { --tr-track:#e0e1cf; --tr-line:#a6bdc7; --tr-line-strong:#5d8493; --tr-band:#eff4ed; }

@@ -52,7 +52,7 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
   for(let round=0;round<5;round++){
    const q=await page.evaluate(()=>window.puzzleTestQuestion);
    if(game==='rocket'){for(let n=0;n<q.answer;n++)await page.locator('.rocket-load[data-amount="1"]').click();await click('✓ Prüfen');}
-   else{for(let n=0;n<q.n;n++)await page.locator('.mirror-add').click();await page.locator('.mirror-check').click();await page.locator('.learn-answer[data-answer="'+q.answer+'"]').click();}
+   else{for(let n=0;n<q.n;n++)await page.locator('.mirror-add').click();await page.locator('.mirror-check').click();await page.locator('.screen:not([hidden]) .learn-answer[data-answer="'+q.answer+'"]').click();}
    await page.locator('.adventure-next').click();
   }
   assert.equal(await page.evaluate(()=>FK.current()),'friends',game);

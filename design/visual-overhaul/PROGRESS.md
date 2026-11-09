@@ -3,16 +3,16 @@
 Claude Code keeps this file current: tick items as they land on `main`, add the commit, and note deviations from the [blueprint](BLUEPRINT.md). A new session reads this file first to know where to continue.
 
 **Design handed over:** 9 November 2026 (blueprint, mockups, 3D look-dev, asset requests).
-**Implementation started:** —
+**Implementation started:** 9 November 2026 (phase 1).
 
 ## Phase 1 · Tokens and puzzle shell · Opus 5.5, effort `high`
-- [ ] `css/waldbuch.css` with tokens and components from `mockup/waldbuch.css`, loaded last in `index.html`
-- [ ] Friend accent via `data-host` on puzzle screens
-- [ ] Back, speaker and demo buttons restyled
-- [ ] Book page, ribbon, host on the margin, progress twig, stage, answer tiles, syllable chips on all 29 puzzles
-- [ ] Older activity step strips restyled
-- [ ] P3 (no blur over the canvas) and P8 (CSS cost)
-- [ ] `puzzles-browser.cjs` passes at 1024 and 390; milestone screenshots and `COMPARISON.md`
+- [x] `css/waldbuch.css` with tokens and components from `mockup/waldbuch.css`, loaded last in `index.html`
+- [x] Friend accent via `data-host` on puzzle screens
+- [x] Back, speaker and demo buttons restyled
+- [x] Book page, ribbon, host on the margin, progress twig, stage, answer tiles, syllable chips on all 29 puzzles
+- [x] Older activity step strips restyled
+- [x] P3 (no blur over the canvas) and P8 (CSS cost)
+- [x] `puzzles-browser.cjs` passes at 1024 and 390; milestone screenshots and `COMPARISON.md` — app 8.5.0, branch `claude/inspiring-thompson-wnlj9u` (see notes)
 
 ## Phase 2 · Menus · Opus 5.5, effort `high`
 - [ ] Waldspiele bookmark tabs and cards (no human figure)
@@ -51,4 +51,12 @@ Claude Code keeps this file current: tick items as they land on `main`, add the 
 - [ ] Results recorded in `design/forest-friends/visuals/milestones/waldbuch/COMPARISON.md`
 
 ## Notes and deviations
-_None yet._
+**Phase 1** (details in [`milestones/waldbuch/COMPARISON.md`](../forest-friends/visuals/milestones/waldbuch/COMPARISON.md)):
+- Pushed to the session branch `claude/inspiring-thompson-wnlj9u` with a draft pull request, not straight to `main`; merging it publishes the phase.
+- Page in normal flow (title kept on the scene, long activities scroll inside the page); ribbon/paper as background layers and stitching as a dashed outline, so no new DOM.
+- Phones keep the host small in the page header instead of 120 px above the page corner.
+- Counter scatter fixed by position (nth-child), not by task id. Schreibspuren/Zahlenwege pages have no ribbon; their host is drawn on the scene.
+- Step strips restyled (pills, moss first step) but keep their icons; library pictures there move to phase 3.
+- Celebration (confetti, hop, check badge, moss page ring) is left for phase 3 as listed there.
+- Fixed a literal "null" printed on the Silben-klopfen screen; scoped one flaky `puzzles-browser.cjs` locator to the visible screen.
+- `play-layout-browser.cjs` already fails on the base commit (retired `#set-sound`); `play-browser.cjs` and `play-layout-browser.cjs` hard-code a Playwright path that only exists on the old runner.

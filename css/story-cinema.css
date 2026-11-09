@@ -6,7 +6,7 @@
 .forest-cinema-top > span { max-width:55%; color:#405338; text-shadow:0 1px 8px #fff9e4; font:700 clamp(16px,2.3vw,24px)/1.25 var(--font); }
 .forest-cinema-skip { min-height:44px; min-width:44px; padding:9px 12px; border-radius:22px; background:#fff9e7c9; box-shadow:none; font-size:12px; gap:7px; }
 .forest-cinema-skip .forest-icon { width:23px; height:23px; }
-.forest-cinema-tray,.forest-dialog.forest-dialog-cinematic { width:min(740px,calc(100% - 28px)); margin:0 auto max(15px,env(safe-area-inset-bottom)); padding:17px 23px 15px; border:1px solid #d1c59e; border-radius:26px; background:#fff8e8f2; box-shadow:0 8px 35px #35492720; backdrop-filter:none; pointer-events:auto; }
+.forest-cinema-tray,.forest-dialog.forest-dialog-cinematic { width:min(740px,calc(100% - 28px)); margin:0 auto max(15px,env(safe-area-inset-bottom)); padding:17px 23px 15px; border:1px solid #d1c59e; border-radius:26px; background:#fff8e8f2; box-shadow:0 8px 35px #35492720; pointer-events:auto; }
 .forest-cinema-tray { align-self:center; }
 .forest-dialog.forest-dialog-cinematic { align-self:flex-end; }
 .forest-film-speaker { display:flex; align-items:center; gap:9px; min-height:37px; color:#6f8052; font:700 15px var(--read); }

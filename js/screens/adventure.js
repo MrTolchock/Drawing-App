@@ -49,7 +49,7 @@
       shapeBoard(host);
     } else if(q.mode==='clap') {
       let count=0;const meter=h('p',{class:'adventure-meter',role:'status',text:'0 Schläge'});
-      host.append(FK.play.picture(q.emoji,q.word),FK.friendsLibrary?.active?null:FK.play.listen(()=>q.word,'Wort hören'),h('p',{class:'adventure-word',text:FK.text.word(q.word)}),
+      host.append(FK.play.picture(q.emoji,q.word),FK.friendsLibrary?.active?'':FK.play.listen(()=>q.word,'Wort hören'),h('p',{class:'adventure-word',text:FK.text.word(q.word)}),
         button('🥁',()=>{if(count<8){count++;meter.textContent=count+' '+(count===1?'Schlag':'Schläge');FK.sound.tick();}},'adventure-drum'),meter,
         button('↶',()=>{count=Math.max(0,count-1);meter.textContent=count+' Schläge';}),button('✓ Prüfen',()=>check(count===q.answer),'learn-next'));
     } else if(q.mode==='route') {

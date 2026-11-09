@@ -1,6 +1,5 @@
 /* Exploration controls are pictures, with large held targets for little hands. */
 .forest-header,.forest-footer { z-index:4; }
-.screen-forest .forest-round,.screen-forest .forest-goal { backdrop-filter:none; }
 .forest-stick,.forest-wayfinder,.forest-look,.forest-nearby,.forest-tree-beacon { z-index:3; }
 .forest-nature-card { z-index:5; }
 .forest-map { z-index:10; }

@@ -1,0 +1,339 @@
+/* ==========================================================================
+   Waldbuch — the shared visual system of Forest friends (blueprint sections 2–3).
+   Loaded after every other stylesheet. Plain CSS for Safari 15+ on the iPad 9:
+   no backdrop-filter, no blur, no color-mix, no nesting, no :has in layout;
+   animations use transform and opacity only. Components are applied to the
+   existing elements by selector, so the DOM and the tests' class names stay.
+   ========================================================================== */
+
+:root{
+  /* Ink and paper */
+  --wb-ink:#4b3b2d;
+  --wb-ink-soft:#7a6650;
+  --wb-paper:#fff8e8;
+  --wb-paper-inset:#f5ebd2;
+  --wb-paper-edge:#dcc59c;
+  /* Timber and honey: everything that can be pressed */
+  --wb-honey:#e8b968;
+  --wb-honey-deep:#c98d3e;
+  --wb-timber:#a8703f;
+  --wb-timber-deep:#74482a;
+  /* Moss: correct, chosen, current step */
+  --wb-moss:#7f9a48;
+  --wb-moss-deep:#4f6b34;
+  --wb-moss-tint:#e8efcf;
+  /* Keyboard and switch access */
+  --wb-focus:#3f6a8c;
+  /* Friend accents */
+  --wb-fox:#d9692a;--wb-squirrel:#cf7a33;--wb-bluetit:#4f86b8;--wb-owl:#9c7046;
+  --wb-beaver:#8a5a34;--wb-mouse:#968a80;--wb-hare:#4d6886;
+  /* Shape and depth */
+  --wb-r-xl:32px;--wb-r-l:24px;--wb-r-m:18px;--wb-r-s:12px;
+  --wb-lift:0 10px 24px #5a3f2420;
+  --wb-press:6px;
+  /* Type */
+  --wb-display:"Baloo 2",ui-rounded,system-ui,sans-serif;
+  --wb-read:"Andika","Baloo 2",system-ui,sans-serif;
+  /* Progress item: a cell of forest-objects.png (4 × 4). Nut by default. */
+  --wb-item:0% 0%;
+}
+
+/* ---------- Friend accents (data-host on the screen root or the round card) ---------- */
+[data-host]{--accent:var(--wb-fox)}
+[data-host=squirrel]{--accent:var(--wb-squirrel);--wb-item:0% 0%;--wb-host-cell:0% 0%}
+[data-host=bird]{--accent:var(--wb-bluetit);--wb-item:0% 33.333%;--wb-host-cell:50% 0%}
+[data-host=owl]{--accent:var(--wb-owl);--wb-item:0% 100%;--wb-host-cell:100% 0%}
+[data-host=beaver]{--accent:var(--wb-beaver);--wb-item:100% 66.667%;--wb-host-cell:0% 100%}
+[data-host=mouse]{--accent:var(--wb-mouse);--wb-item:66.667% 0%;--wb-host-cell:50% 100%}
+
+/* ==========================================================================
+   Puzzle shell: every puzzle is a page of Fuchs' book lying in a clearing.
+   S = the screen roots, P = the page, measured for 1080 × 810 (section 4.3).
+   ========================================================================== */
+.friends-interface :is(.screen-learn,.screen-adventure,.screen-expedition,.screen-read,.screen-trace,.screen-dots){
+  --wb-gutter:clamp(150px,18.5vw,200px);
+  padding:16px max(22px,env(safe-area-inset-right)) max(18px,env(safe-area-inset-bottom)) max(22px,env(safe-area-inset-left));
+  color:var(--wb-ink);
+}
+
+/* Top row on the scene: wooden back button and the page title. */
+.friends-interface :is(.screen-learn,.screen-adventure,.screen-expedition,.screen-read,.screen-trace,.screen-dots)>.topbar{
+  width:100%;max-width:none;min-height:64px;margin:0 0 10px;padding:0;gap:16px;
+  background:none;border:0;border-radius:0;box-shadow:none;
+}
+.friends-interface :is(.screen-learn,.screen-adventure,.screen-expedition,.screen-read,.screen-trace,.screen-dots)>.topbar .title{
+  color:#fffaf0;font:800 clamp(24px,3.2vw,34px)/1.1 var(--wb-display);letter-spacing:0;
+  -webkit-text-stroke:6px var(--wb-timber-deep);paint-order:stroke fill;text-shadow:0 3px 0 var(--wb-timber-deep);
+}
+
+/* Wooden round button: back in every puzzle (and the friend rounds). */
+.friends-interface :is(.screen-learn,.screen-adventure,.screen-expedition,.screen-read,.screen-trace,.screen-dots) .btn-back,
+.friends-interface .ff-illustrated-round .ff-card-top>.ff-button{
+  --btn:64px;--btn-w:64px;--ic:30px;
+  flex:none;width:64px;min-width:64px;height:64px;min-height:64px;padding:0;border-radius:50%;
+  display:grid;place-items:center;
+  background:linear-gradient(#c98d4d,#a8703f);border:2px solid var(--wb-timber-deep);color:#fff4dc;
+  box-shadow:0 var(--wb-press) 0 var(--wb-timber-deep),var(--wb-lift);
+  transition:transform .08s,box-shadow .08s;
+}
+.friends-interface :is(.screen-learn,.screen-adventure,.screen-expedition,.screen-read,.screen-trace,.screen-dots) .btn-back .ic{width:36px;height:36px;filter:brightness(0) invert(.96)}
+.friends-interface :is(.screen-learn,.screen-adventure,.screen-expedition,.screen-read,.screen-trace,.screen-dots) .btn-back:active,
+.friends-interface .ff-illustrated-round .ff-card-top>.ff-button:not(:disabled):active{transform:translateY(4px);translate:none;box-shadow:0 2px 0 var(--wb-timber-deep),var(--wb-lift)}
+.friends-interface .ff-illustrated-round .ff-card-top>.ff-button .ff-picture{width:34px;height:34px;filter:brightness(0) invert(.95) sepia(.3)}
+
+/* Paper round button: speaker, demo and hint buttons on the page. */
+.friends-interface :is(.play-listen,.forest-learning-controls .forest-button,.ff-illustrated-round .ff-task-tools .ff-button,.ff-illustrated-round>.ff-button,.screen-trace .topbar .btn-round:not(.btn-back),.screen-dots .topbar .btn-round:not(.btn-back)){
+  flex:none;width:64px;min-width:64px;height:64px;min-height:64px;padding:0;border-radius:50%;
+  display:grid;place-items:center;
+  background:var(--wb-paper);border:2px solid var(--wb-honey-deep);color:var(--wb-ink);
+  box-shadow:0 var(--wb-press) 0 var(--wb-timber),var(--wb-lift);
+  transition:transform .08s,box-shadow .08s;
+}
+.friends-interface :is(.play-listen,.forest-learning-controls .forest-button,.ff-illustrated-round .ff-task-tools .ff-button,.ff-illustrated-round>.ff-button,.screen-trace .topbar .btn-round:not(.btn-back),.screen-dots .topbar .btn-round:not(.btn-back)):not(:disabled):active{
+  transform:translateY(4px);translate:none;box-shadow:0 2px 0 var(--wb-timber),var(--wb-lift);
+}
+.friends-interface .play-listen .forest-icon{width:30px;height:30px}
+.friends-interface .ff-illustrated-round .ff-task-tools .ff-button .ff-picture{width:36px;height:36px}
+
+/* The page. Ribbon and paper are background layers, so the page needs no
+   extra DOM and the ribbon stays put while long activities scroll. */
+.friends-interface :is(.screen-learn,.screen-adventure,.screen-expedition)>.learn-body,
+.friends-interface .screen-read>.rd-stage,
+.friends-interface :is(.screen-trace .tr-over-view,.screen-dots .pp-over,.screen-trace .tr-play,.screen-dots .pp-play),
+.friends-interface .ff-illustrated-round{
+  background:
+    linear-gradient(to bottom right,var(--accent,var(--wb-fox)) 50%,transparent 50%) 60px 60px/17px 14px no-repeat,
+    linear-gradient(to bottom left,var(--accent,var(--wb-fox)) 50%,transparent 50%) 77px 60px/17px 14px no-repeat,
+    linear-gradient(90deg,transparent 28px,#0000001a 28px) 60px 0/34px 60px no-repeat,
+    linear-gradient(var(--accent,var(--wb-fox)),var(--accent,var(--wb-fox))) 60px 0/34px 60px no-repeat,
+    var(--wb-paper);
+  border:0;border-radius:var(--wb-r-xl);
+  box-shadow:0 0 0 2px #e6d2aa,0 14px 0 -4px #e9d8b6,0 14px 0 -2px #d2b98d,0 22px 40px #4a33201f;
+  outline:2px dashed #ead9b6;outline-offset:-12px;
+  color:var(--wb-ink);
+}
+.friends-interface :is(.screen-learn,.screen-adventure,.screen-expedition)>.learn-body,
+.friends-interface .screen-read>.rd-stage{padding:26px 34px 30px}
+.friends-interface :is(.screen-trace .tr-over-view,.screen-dots .pp-over,.screen-trace .tr-play,.screen-dots .pp-play){background:var(--wb-paper)}
+
+/* Text a child reads: Andika; the prompt 26 px. */
+.friends-interface :is(.learn-prompt,.ff-round-title){font:700 clamp(22px,2.6vw,26px)/1.35 var(--wb-read);color:var(--wb-ink);margin:12px auto 18px}
+.friends-interface .ff-round-title{font-family:var(--wb-display);font-weight:800}
+.friends-interface :is(.learn-feedback,.play-instruction,.adventure-meter){font:16px/1.5 var(--wb-read);color:var(--wb-ink-soft)}
+
+/* Context row on the page: what is left once the host stands on the margin. */
+.friends-interface .play-context{border-bottom:0;padding:0;margin:0 auto 6px;min-height:64px;color:var(--wb-ink-soft)}
+.friends-interface .play-context .play-round{font:700 17px var(--wb-display);color:var(--wb-ink-soft)}
+.friends-interface .play-context>.forest-portrait+span{font:600 16px/1.2 var(--wb-display);color:var(--wb-ink)}
+
+/* ---------- Host on the margin (wide screens) ---------- */
+@media (min-width:700px){
+  .friends-interface :is(.screen-learn,.screen-adventure,.screen-expedition)>.learn-body,
+  .friends-interface .screen-read>.rd-stage,
+  .friends-interface :is(.screen-trace .tr-over-view,.screen-dots .pp-over,.screen-trace .tr-play,.screen-dots .pp-play){
+    width:min(900px,calc(100% - var(--wb-gutter)));max-width:none;margin:0 0 14px var(--wb-gutter);
+  }
+  /* The portrait is positioned against the screen root (learn) or the stage (read). */
+  .friends-interface :is(.screen-learn,.screen-adventure,.screen-expedition) .play-context>.forest-portrait,
+  .friends-interface .screen-read .play-context>.forest-portrait{
+    position:absolute;z-index:5;left:max(6px,env(safe-area-inset-left));bottom:max(54px,calc(env(safe-area-inset-bottom) + 40px));
+    width:min(230px,calc(var(--wb-gutter) + 26px));height:auto;aspect-ratio:1;pointer-events:none;
+  }
+  .friends-interface .screen-read .play-context>.forest-portrait{left:calc(max(6px,env(safe-area-inset-left)) - 22px - var(--wb-gutter));bottom:24px}
+  .friends-interface :is(.screen-learn,.screen-adventure,.screen-expedition,.screen-read) .play-context>.forest-portrait::after{
+    content:"";position:absolute;z-index:-1;left:16%;right:16%;bottom:2%;height:9%;border-radius:50%;background:#3d2a1a38;
+  }
+  /* "… spielt mit dir" becomes the name tag under the host. */
+  .friends-interface :is(.screen-learn,.screen-adventure,.screen-expedition,.screen-read) .play-context>.forest-portrait+span{
+    position:absolute;z-index:6;flex:none;
+    left:calc(max(6px,env(safe-area-inset-left)) + min(115px,calc(var(--wb-gutter)/2 + 13px)));bottom:max(30px,calc(env(safe-area-inset-bottom) + 16px));
+    transform:translateX(-50%);white-space:nowrap;max-width:calc(var(--wb-gutter) + 40px);overflow:hidden;text-overflow:ellipsis;
+    padding:5px 14px 6px;border-radius:var(--wb-r-s);background:var(--wb-paper);border:2px solid var(--accent,var(--wb-honey-deep));
+    box-shadow:var(--wb-lift);font:700 16px/1.1 var(--wb-display);color:var(--wb-ink);
+  }
+  .friends-interface .screen-read .play-context>.forest-portrait+span{
+    left:calc(max(6px,env(safe-area-inset-left)) - 22px - var(--wb-gutter) + min(115px,calc(var(--wb-gutter)/2 + 13px)));bottom:0;
+  }
+  .friends-interface :is(.screen-learn,.screen-adventure,.screen-expedition,.screen-read) .play-context{justify-content:flex-end}
+
+  /* Writing and number paths have no host element: draw the host on the scene. */
+  .friends-interface :is(.screen-trace,.screen-dots)[data-host]::after{
+    content:"";position:absolute;z-index:4;left:max(6px,env(safe-area-inset-left));bottom:max(30px,env(safe-area-inset-bottom));
+    width:min(230px,calc(var(--wb-gutter) + 26px));aspect-ratio:1;pointer-events:none;
+    background:url(../assets/forest-friends/postcard-friends.webp) var(--wb-host-cell)/300% 200% no-repeat;
+  }
+}
+
+/* ---------- Progress twig: five of the host's items ---------- */
+.friends-interface :is(.woodland-progress,.rd-steps,.ff-progress){
+  display:flex;justify-content:center;align-items:center;gap:8px;width:max-content;max-width:100%;
+  margin:4px auto 16px;padding:6px 16px;border-radius:20px;background:var(--wb-paper-inset);letter-spacing:0;
+}
+.friends-interface .ff-progress::before{display:none}
+.friends-interface :is(.woodland-progress-leaf,.rd-step,.ff-progress>span){
+  display:block;width:30px;height:30px;padding:0;border:0;border-radius:0;box-shadow:none;transform:none;opacity:1;animation:none;
+  background:url(../assets/waldatelier/forest-objects.png) var(--wb-item)/400% 400% no-repeat;
+  filter:grayscale(1) opacity(.35);
+}
+.friends-interface :is(.woodland-progress-leaf,.rd-step,.ff-progress>span)>*{display:none}
+.friends-interface :is(.woodland-progress-leaf.done,.rd-step.done,.ff-progress>span.done){filter:none;border:0;box-shadow:none;background:url(../assets/waldatelier/forest-objects.png) var(--wb-item)/400% 400% no-repeat;}
+.friends-interface :is(.rd-step.cur,.woodland-progress-leaf:not(.done):first-child,.woodland-progress-leaf.done+.woodland-progress-leaf:not(.done),.ff-progress>span:not(.done):first-child,.ff-progress>span.done+span:not(.done)){
+  filter:none;border:0;box-shadow:none;background:url(../assets/waldatelier/forest-objects.png) var(--wb-item)/400% 400% no-repeat;transform:scale(1.25);animation:wb-bob 1.6s ease-in-out infinite;
+}
+@keyframes wb-bob{50%{transform:scale(1.25) translateY(-3px)}}
+
+/* ---------- Stage: where the task picture lives ---------- */
+.friends-interface :is(.learn-visual,.ff-task-scene,.play-garden,.exp-bowl,.rd-pic,.play-word-card){
+  background:var(--wb-paper-inset);border:0;border-radius:var(--wb-r-l);box-shadow:inset 0 3px 0 #e6d6b3;
+}
+
+/* ---------- Answer tiles: a paper face on a timber block ---------- */
+.friends-interface :is(.learn-answer,.ff-answer,.rd-card){
+  background:#fffdf6;border:2px solid #e3cc9f;border-radius:var(--wb-r-l);color:var(--wb-ink);
+  box-shadow:0 var(--wb-press) 0 #d6b680,var(--wb-lift);
+  transition:transform .08s,box-shadow .08s,opacity .15s;
+}
+.friends-interface .learn-answer{font:700 clamp(28px,4vw,40px)/1 var(--wb-read)}
+.friends-interface .ff-answer .ff-numeral{font:800 clamp(40px,5vw,54px)/1 var(--wb-display);color:var(--wb-ink)}
+.friends-interface .ff-answer .ff-word{font:700 clamp(24px,2.8vw,30px)/1.1 var(--wb-read);color:var(--wb-ink)}
+.friends-interface :is(.learn-answer,.ff-answer,.rd-card):not(:disabled):active{transform:translateY(4px);translate:none;box-shadow:0 2px 0 #d6b680,var(--wb-lift)}
+.friends-interface :is(.learn-answer.correct,.learn-button.correct,.ff-answer.chosen,.rd-card.right){
+  background:var(--wb-moss-tint);border-color:var(--wb-moss);border-style:solid;opacity:1;
+  box-shadow:0 2px 0 var(--wb-moss),0 0 0 6px #a9bf7a55;transform:translateY(4px);translate:none;animation:none;
+}
+.friends-interface :is(.learn-button.try-again,.learn-answer.try-again,.ff-answer.ff-retry,.ff-retry,.rd-card.dim){
+  background:#fffdf6;border-style:dashed;opacity:.65;
+}
+.friends-interface :is(.learn-button,.learn-answer,.ff-answer,.ff-button,.rd-card,.rd-chip,.play-listen,.btn-back):focus-visible{
+  outline:4px solid var(--wb-focus);outline-offset:5px;
+}
+
+/* Other page buttons (next, hint, finish actions): the same paper and timber. */
+.friends-interface .learn-button:not(.learn-answer){
+  background:#fffdf6;border:2px solid #e3cc9f;border-radius:var(--wb-r-m);color:var(--wb-ink);
+  box-shadow:0 4px 0 #d6b680;font-family:var(--wb-display);
+}
+.friends-interface :is(.learn-next,.adventure-next,.exp-next){background:var(--wb-moss-tint);border-color:var(--wb-moss);box-shadow:0 4px 0 var(--wb-moss);min-height:64px;font-size:20px}
+
+/* ---------- Syllable chips (Lesen) ---------- */
+.friends-interface .rd-chip{
+  background:#fffdf6;border:2px solid #e3cc9f;border-radius:20px;color:var(--wb-ink);font-family:var(--wb-read);font-weight:700;
+  box-shadow:0 6px 0 var(--c,#d6b680),var(--wb-lift);
+}
+.friends-interface .rd-slot{border:3px dashed #c9b384;background:#fffdf6}
+.friends-interface .rd-slot.cur{background:var(--wb-moss-tint);border-color:#9db06f}
+.friends-interface .rd-paper{background:var(--wb-paper-inset);border:0;box-shadow:inset 0 3px 0 #e6d6b3}
+
+/* ---------- Step strip (older activities) ---------- */
+.friends-interface .play-steps{gap:12px;max-width:740px;margin:8px auto 18px}
+.friends-interface .play-step{
+  flex-direction:row;gap:8px;padding:6px 16px 6px 6px;border:0;border-radius:30px;background:var(--wb-paper-inset);
+  font:700 17px var(--wb-display);color:var(--wb-ink-soft);
+}
+.friends-interface .play-step>b{
+  position:static;display:grid;place-items:center;flex:none;width:30px;height:30px;border-radius:50%;
+  background:#e2cfa6;color:#fff;font:800 16px/1 var(--wb-display);
+}
+.friends-interface .play-step:first-child{background:var(--wb-moss-tint);color:var(--wb-ink)}
+.friends-interface .play-step:first-child>b{background:var(--wb-moss)}
+.friends-interface .play-step small{font:700 16px/1.2 var(--wb-display);color:inherit}
+.friends-interface .play-step :is(.wa-illustration,.wa-symbol,.forest-icon){width:34px;height:34px}
+
+/* ==========================================================================
+   Friend rounds (Nüsse zählen, Reimpaare lesen, Lies und zeig, Welche Form
+   fehlt?, Wörter und Bilder): the same page in the clearing.
+   ========================================================================== */
+.friends-interface .ff-illustrated-round{
+  --wb-gutter:clamp(150px,18.5vw,200px);
+  padding:26px 34px 28px;
+}
+.friends-interface .ff-illustrated-round::before{display:none}
+.friends-interface .ff-illustrated-round .ff-task-scene{background:var(--wb-paper-inset);border:0;box-shadow:inset 0 3px 0 #e6d6b3}
+.friends-interface .ff-illustrated-round .ff-answer{background:#fffdf6;border:2px solid #e3cc9f;box-shadow:0 var(--wb-press) 0 #d6b680,var(--wb-lift)}
+.friends-interface .ff-illustrated-round .ff-answer.chosen{background:var(--wb-moss-tint);border-color:var(--wb-moss);box-shadow:0 2px 0 var(--wb-moss),0 0 0 6px #a9bf7a55}
+.friends-interface .ff-illustrated-round .ff-progress{margin:0 auto 10px}
+/* Nüsse zählen: larger counters lying a little scattered. Each counter stays exactly one nut;
+   the scatter is fixed by position, so a saved task looks the same after reload. */
+.friends-interface .ff-illustrated-round .ff-task-scene.ff-count{grid-template-columns:repeat(5,var(--wb-counter,56px));justify-content:center;gap:10px 14px;max-width:none;padding:18px 26px}
+.friends-interface .ff-illustrated-round .ff-task-scene.ff-count>.ff-picture{width:var(--wb-counter,56px);height:var(--wb-counter,56px);padding:0;background:none;border:0;border-radius:0}
+.friends-interface .ff-illustrated-round .ff-count>.ff-picture:nth-child(7n+1){rotate:-8deg;translate:0 4px}
+.friends-interface .ff-illustrated-round .ff-count>.ff-picture:nth-child(7n+2){rotate:6deg;translate:0 -8px}
+.friends-interface .ff-illustrated-round .ff-count>.ff-picture:nth-child(7n+3){rotate:-3deg;translate:0 9px}
+.friends-interface .ff-illustrated-round .ff-count>.ff-picture:nth-child(7n+4){rotate:8deg;translate:0 -3px}
+.friends-interface .ff-illustrated-round .ff-count>.ff-picture:nth-child(7n+5){rotate:-6deg;translate:0 -10px}
+.friends-interface .ff-illustrated-round .ff-count>.ff-picture:nth-child(7n+6){rotate:4deg;translate:0 7px}
+.friends-interface .ff-illustrated-round .ff-count>.ff-picture:nth-child(7n){rotate:-1deg;translate:0 -5px}
+.friends-interface .ff-illustrated-round .ff-count.ff-frames>.ff-picture{background:#ecdcb2;border-radius:var(--wb-r-s);outline:2px solid var(--wb-moss);rotate:none;translate:none}
+/* Reimpaare lesen and Lies und zeig: picture over the word, words in Andika. */
+.friends-interface .ff-illustrated-round .ff-target{font:700 clamp(30px,4.4vw,48px)/1.2 var(--wb-read);color:var(--wb-ink)}
+.friends-interface .ff-illustrated-round[data-kind=rhyme] .ff-task-scene{flex-direction:column-reverse;gap:4px;padding:16px 28px}
+.friends-interface .ff-illustrated-round[data-kind=rhyme] .ff-task-scene>.ff-picture{width:clamp(110px,15vw,170px);height:clamp(110px,15vw,170px)}
+.friends-interface .ff-illustrated-round[data-kind=rhyme] .ff-choices{padding-top:46px;margin-top:-6px;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 44'%3E%3Cpath d='M10 6c30 40 90 40 120 0' fill='none' stroke='%23c8b285' stroke-width='3' stroke-dasharray='2 8' stroke-linecap='round'/%3E%3C/svg%3E") 50% 0/140px 44px no-repeat}
+.friends-interface .ff-illustrated-round[data-kind=rhyme] .ff-answer{min-width:clamp(150px,19vw,200px);min-height:clamp(150px,19vw,200px)}
+.friends-interface .ff-illustrated-round[data-kind=sentence] .ff-task-scene{padding:20px 30px}
+.friends-interface .ff-illustrated-round[data-kind=sentence] .ff-answer{min-width:clamp(150px,21vw,230px);min-height:clamp(140px,19vw,210px)}
+@media (min-width:700px){
+  .friends-interface .ff-illustrated-round{--wb-counter:clamp(64px,10vw,112px)}
+  .friends-interface .ff-illustrated-round .ff-answer{min-height:120px}
+  .friends-interface .ff-illustrated-round[data-kind=count] .ff-answer{min-width:150px;min-height:132px}
+  .friends-interface .ff-illustrated-round{
+    position:static;width:min(880px,calc(100% - var(--wb-gutter)));margin:0 auto 0 var(--wb-gutter);
+    display:grid;grid-template-columns:1fr auto 1fr;align-items:center;column-gap:12px;
+  }
+  .friends-interface .ff-illustrated-round>*{grid-column:1/-1}
+  .friends-interface .ff-illustrated-round>.ff-card-top{position:static}
+  .friends-interface .ff-illustrated-round[data-kind]>.ff-card-top{order:-3;min-height:0;height:0}
+  .friends-interface .ff-illustrated-round:not([data-kind])>.ff-card-top{justify-content:center}
+  .friends-interface .ff-illustrated-round>.ff-progress{order:-2;grid-column:2}
+  .friends-interface .ff-illustrated-round>.ff-task-tools{order:-1;grid-column:3;justify-self:end;margin:0}
+  .friends-interface .ff-illustrated-round>.ff-round-title{margin:10px auto 14px}
+  /* Back button on the scene, host on the margin. */
+  .friends-interface .ff-illustrated-round .ff-card-top>.ff-button{position:absolute;left:max(22px,env(safe-area-inset-left));top:16px;z-index:6}
+  .friends-interface .ff-illustrated-round[data-kind] .ff-card-top>.ff-card-portrait{
+    position:absolute;z-index:5;left:max(6px,env(safe-area-inset-left));bottom:54px;
+    width:min(230px,calc(var(--wb-gutter) + 26px));height:auto;aspect-ratio:1;padding:0;border-radius:0;background:none;border:0;box-shadow:none;
+  }
+  .friends-interface .ff-illustrated-round[data-kind] .ff-card-top>.ff-card-portrait>*{width:100%;height:100%}
+  .friends-interface .ff-illustrated-round[data-kind] .ff-card-top::after{
+    position:absolute;z-index:6;left:calc(max(6px,env(safe-area-inset-left)) + min(115px,calc(var(--wb-gutter)/2 + 13px)));bottom:32px;transform:translateX(-50%);
+    padding:5px 16px 6px;border-radius:var(--wb-r-s);background:var(--wb-paper);border:2px solid var(--accent,var(--wb-honey-deep));
+    box-shadow:var(--wb-lift);font:700 18px/1.1 var(--wb-display);color:var(--wb-ink);white-space:nowrap;
+  }
+  .friends-interface .ff-illustrated-round[data-kind][data-host=squirrel] .ff-card-top::after{content:"Eichhörnchen"}
+  .friends-interface .ff-illustrated-round[data-kind][data-host=bird] .ff-card-top::after{content:"Blaumeise"}
+  .friends-interface .ff-illustrated-round[data-kind][data-host=owl] .ff-card-top::after{content:"Waldkauz"}
+  .friends-interface .ff-illustrated-round[data-kind][data-host=beaver] .ff-card-top::after{content:"Biber"}
+  .friends-interface .ff-illustrated-round[data-kind][data-host=mouse] .ff-card-top::after{content:"Maus"}
+}
+
+/* ==========================================================================
+   Phones: the page fills the width, the host stays small in the page header
+   and controls keep their current breakpoints.
+   ========================================================================== */
+@media (max-width:699px){
+  .friends-interface :is(.screen-learn,.screen-adventure,.screen-expedition,.screen-read,.screen-trace,.screen-dots){padding:10px max(10px,env(safe-area-inset-right)) max(10px,env(safe-area-inset-bottom)) max(10px,env(safe-area-inset-left))}
+  .friends-interface :is(.screen-learn,.screen-adventure,.screen-expedition,.screen-read,.screen-trace,.screen-dots)>.topbar{min-height:56px;margin-bottom:8px;gap:12px}
+  .friends-interface :is(.screen-learn,.screen-adventure,.screen-expedition,.screen-read,.screen-trace,.screen-dots) .btn-back,
+  .friends-interface .ff-illustrated-round .ff-card-top>.ff-button{--btn:56px;--btn-w:56px;width:56px;min-width:56px;height:56px;min-height:56px}
+  .friends-interface :is(.play-listen,.forest-learning-controls .forest-button,.ff-illustrated-round .ff-task-tools .ff-button,.ff-illustrated-round>.ff-button,.screen-trace .topbar .btn-round:not(.btn-back),.screen-dots .topbar .btn-round:not(.btn-back)){width:56px;min-width:56px;height:56px;min-height:56px}
+  .friends-interface :is(.screen-learn,.screen-adventure,.screen-expedition)>.learn-body,
+  .friends-interface .screen-read>.rd-stage,
+  .friends-interface .ff-illustrated-round{padding:18px 14px 20px;border-radius:26px;outline-offset:-9px}
+  .friends-interface :is(.learn-body,.rd-stage,.ff-illustrated-round){background-position:24px 48px,41px 48px,24px 0,24px 0,0 0;background-size:17px 12px,17px 12px,30px 48px,30px 48px,auto}
+  .friends-interface .play-context>.forest-portrait{width:72px;height:72px;margin-left:44px}
+  .friends-interface .play-context>.forest-portrait+span{font-size:15px}
+  .friends-interface .ff-illustrated-round .ff-card-top>.ff-card-portrait{width:72px;height:72px;padding:0;background:none;border:0;box-shadow:none}
+  .friends-interface .ff-illustrated-round .ff-card-top{padding-left:0}
+  .friends-interface .ff-illustrated-round{background-position:96px 48px,113px 48px,96px 0,96px 0,0 0}
+  .friends-interface :is(.woodland-progress,.rd-steps,.ff-progress){gap:5px;padding:5px 12px}
+  .friends-interface :is(.woodland-progress-leaf,.rd-step,.ff-progress>span){width:26px;height:26px}
+  .friends-interface .play-steps{gap:6px}
+  .friends-interface .play-step{flex-direction:column;padding:6px;border-radius:18px;gap:4px}
+  .friends-interface .play-step small{font-size:13px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .friends-interface :is(.rd-step.cur,.woodland-progress-leaf,.ff-progress>span){animation:none!important}
+  .friends-interface :is(.learn-answer,.ff-answer,.rd-card,.play-listen,.btn-back){transition:none}
+}
