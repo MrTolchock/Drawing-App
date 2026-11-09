@@ -42,10 +42,13 @@ test('every production illustration is available offline', () => {
   const sw = fs.readFileSync('sw.js', 'utf8');
   const sheets = new Map(Object.values(FK.visual.subjects).map(subject => [subject.sheet, subject]));
   for (const [sheet, {columns, rows}] of sheets) {
-    const file = 'assets/waldatelier/' + sheet + '.png';
+    const file = FK.visual.source(sheet);
     const bytes = fs.readFileSync(file);
-    assert.equal(bytes.toString('ascii', 1, 4), 'PNG', file);
-    assert.equal(bytes.readUInt32BE(16) / columns, bytes.readUInt32BE(20) / rows, file + ' must have square sprite cells');
+    // PNG sheets, or the master cast's WebP postcard sheet (VP8X canvas size).
+    const webp = bytes.toString('ascii', 8, 16) === 'WEBPVP8X';
+    assert.ok(webp || bytes.toString('ascii', 1, 4) === 'PNG', file);
+    const [width, height] = webp ? [bytes.readUIntLE(24, 3) + 1, bytes.readUIntLE(27, 3) + 1] : [bytes.readUInt32BE(16), bytes.readUInt32BE(20)];
+    assert.equal(width / columns, height / rows, file + ' must have square sprite cells');
     assert.ok(sw.includes("'./" + file + "'"), file + ' missing from offline cache');
   }
   assert.ok(sw.includes("'./assets/waldatelier/hero.png'"));

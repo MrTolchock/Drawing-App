@@ -273,7 +273,7 @@
     o = o || {};
     if (FK.visual) {
       const fox = h('div', { class: 'mascot wa-mascot' + (o.cls ? ' ' + o.cls : '') + (o.mood ? ' mood-' + o.mood : ''), 'aria-hidden': 'true' });
-      fox.append(FK.visual.art('fox')); return fox;
+      fox.append(FK.visual.art('friend-fox')); return fox;
     }
     const cheer = o.mood === 'cheer';
     const el = h('div', { class: 'mascot' + (o.mood ? ' mood-' + o.mood : '') + (o.cls ? ' ' + o.cls : ''), 'aria-hidden': 'true' });

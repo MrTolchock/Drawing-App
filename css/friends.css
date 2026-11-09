@@ -433,7 +433,7 @@
 .ff-letter-stamp .ff-picture{width:100%;height:100%}
 .ff-letter-scribbles{height:90px;margin-top:12px;opacity:.75}.ff-letter-scribbles svg{width:100%;height:100%}
 .ff-letter-go{display:block;margin:auto}.ff-letter-card .ff-card-portrait{background:none;border:0}
-.ff-mailman-picture{position:relative}.ff-mailman-picture>.wa-illustration{width:100%;height:100%}.ff-mailman-picture>i{position:absolute;bottom:0;right:-3px;width:55%;height:40%;display:block}
+.ff-mailman-picture{position:relative}.ff-mailman-picture>:is(.wa-illustration,.ff-map-friend){width:100%;height:100%}.ff-mailman-picture>i{position:absolute;bottom:0;right:-3px;width:55%;height:40%;display:block}
 @media(max-width:600px){.ff-letter-paper{padding:30px 15px 16px;margin:12px auto}.ff-letter-friend{width:150px;height:150px}.ff-letter-stamp{width:38px;height:45px;right:8px;top:8px}.ff-letter-scribbles{height:65px}}
 @media(prefers-reduced-motion:reduce){.ff-den-envelope{animation:none;transform:translate(-18%,40%) rotate(-7deg)}.ff-mail-lid{animation:none!important}}
 /* The picture map is parchment now; every destination remains inside its corners. */

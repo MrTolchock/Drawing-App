@@ -1,5 +1,10 @@
 /* Small, self-contained paper illustrations: no network, platform emoji or answer text in picture cards. */
 const ink='#624a34', cream='#fff0d2';
+// Wooden-toy finish (blueprint 5.3) for shapes whose colour or form is the answer: a top-left
+// highlight, an outline in the same hue at 70 % lightness and a soft contact shadow. Fills stay as they are.
+const toyDefs='<defs><linearGradient id="wb-toy-hi" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset=".6" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>';
+export function toyEdge(hex){const n=parseInt(hex.slice(1),16);return '#'+[n>>16,n>>8&255,n&255].map(v=>Math.round(v*.7).toString(16).padStart(2,'0')).join('');}
+const toy=(shape,fill,width=3)=>`<g fill="${fill}" stroke="${toyEdge(fill)}" stroke-width="${width}">${shape}</g><g fill="url(#wb-toy-hi)" stroke="none">${shape}</g>`;
 export function picture(name, label='') {
   let drawing='';
   const ellipse=(x,y,rx,ry,fill)=>`<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}" fill="${fill}"/>`;
@@ -98,8 +103,8 @@ export function picture(name, label='') {
       check:path('M19 53 L42 76 L83 24'),back:path('M58 19 L26 50 L58 81 M27 50 H86'),close:path('M24 24 L77 77 M77 24 L24 77'),skip:path('M18 24 L57 50 L18 77 Z','#a9b88c')+path('M69 21 V80'),gear:circle(50,50,31,'#bac4aa')+circle(50,50,12,cream)+path('M50 8 V18 M50 82 V92 M8 50 H18 M82 50 H92 M20 20 L28 28 M72 72 L80 80 M20 80 L28 72 M72 28 L80 20'),undo:path('M26 23 L11 42 L32 53 M13 42 Q82 6 83 65 Q84 88 47 87'),
     };
     drawing=drawings[name]||circle(50,50,25,'#c7ba90');
-    const shapes={circle:circle(50,50,32,'#d8b987'),square:rect(20,20,60,60,'#d8b987',1),rectangle:rect(29,10,42,80,'#d8b987',1),triangle:path('M50 12 L89 82 H11 Z','#d8b987')};
-    if(shapes[name])drawing=shapes[name];
+    const shapes={circle:'<circle cx="50" cy="47" r="32"/>',square:'<rect x="20" y="17" width="60" height="60" rx="1"/>',rectangle:'<rect x="29" y="7" width="42" height="80" rx="1"/>',triangle:'<path d="M50 10 L89 80 H11 Z"/>'};
+    if(shapes[name])drawing=toyDefs+'<ellipse cx="50" cy="91" rx="30" ry="4.5" fill="#5a3f2433" stroke="none"/>'+toy(shapes[name],'#d8b987');
   }
   return `<svg viewBox="0 0 100 100" role="img" ${label?`aria-label="${label}"`:'aria-hidden="true"'} xmlns="http://www.w3.org/2000/svg"><g stroke="${ink}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">${drawing}</g></svg>`;
 }
@@ -117,6 +122,6 @@ export function shapeScene(task,filled=false){
   const layout=layouts[task.object],gap=layout.parts[task.answer];
   // The selected part is removed from the object; the other defining parts stay visible.
   const colours={circle:'#aec8d1',triangle:'#cb8b70',square:'#e8c579',rectangle:'#a9bb86'};
-  let parts='';for(const [shape,[x,y]]of Object.entries(layout.parts)){if(shape!==task.answer&&!(task.object==='house'&&['circle','square'].includes(shape)&&((task.answer==='circle'&&shape==='square')||(task.answer!=='circle'&&shape==='circle'))))parts+='<g fill="'+colours[shape]+'">'+part(shape,x,y)+'</g>'; }
-  return `<svg class="ff-shape-scene" viewBox="0 0 200 185" aria-label="${task.object==='house'?'Haus':task.object==='cart'?'Wagen':task.object==='train'?'Zug':task.object==='boat'?'Boot':'Zelt'} mit einer fehlenden Form" role="img"><defs><filter id="paper-grain"><feTurbulence type="fractalNoise" baseFrequency=".55" numOctaves="3" seed="8" result="noise"/><feComposite in="noise" in2="SourceGraphic" operator="in" result="grain"/><feBlend in="SourceGraphic" in2="grain" mode="soft-light"/></filter></defs><path d="M3 173 Q45 160 95 174 T197 171" fill="none" stroke="${task.object==='boat'?'#a6c8d3':'#b8c99a'}" stroke-width="12" stroke-linecap="round"/><g filter="url(#paper-grain)"><g fill="#dfbc86" stroke="${ink}" stroke-width="3" stroke-linejoin="round">${layout.base}</g><g fill="#bc9968" stroke="${ink}" stroke-width="2">${parts}</g><g fill="${filled?'#98ac78':'#fff8e7'}" stroke="${ink}" stroke-width="3" stroke-dasharray="${filled?'0':'5 5'}">${part(task.answer,...gap)}</g></g></svg>`;
+  let parts='';for(const [shape,[x,y]]of Object.entries(layout.parts)){if(shape!==task.answer&&!(task.object==='house'&&['circle','square'].includes(shape)&&((task.answer==='circle'&&shape==='square')||(task.answer!=='circle'&&shape==='circle'))))parts+=toy(part(shape,x,y),colours[shape],2); }
+  return `<svg class="ff-shape-scene" viewBox="0 0 200 185" aria-label="${task.object==='house'?'Haus':task.object==='cart'?'Wagen':task.object==='train'?'Zug':task.object==='boat'?'Boot':'Zelt'} mit einer fehlenden Form" role="img"><defs><linearGradient id="wb-toy-hi" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset=".6" stop-color="#fff" stop-opacity="0"/></linearGradient><filter id="paper-grain"><feTurbulence type="fractalNoise" baseFrequency=".55" numOctaves="3" seed="8" result="noise"/><feComposite in="noise" in2="SourceGraphic" operator="in" result="grain"/><feBlend in="SourceGraphic" in2="grain" mode="soft-light"/></filter></defs><path d="M3 173 Q45 160 95 174 T197 171" fill="none" stroke="${task.object==='boat'?'#a6c8d3':'#b8c99a'}" stroke-width="12" stroke-linecap="round"/><g filter="url(#paper-grain)"><g fill="#dfbc86" stroke="${ink}" stroke-width="3" stroke-linejoin="round">${layout.base}</g><g fill="url(#wb-toy-hi)" stroke="none">${layout.base}</g><g fill="#bc9968" stroke="${ink}" stroke-width="2">${parts}</g><g fill="${filled?'#98ac78':'#fff8e7'}" stroke="${ink}" stroke-width="3" stroke-dasharray="${filled?'0':'5 5'}">${part(task.answer,...gap)}</g>${filled?'<g fill="url(#wb-toy-hi)" stroke="none">'+part(task.answer,...gap)+'</g>':''}</g></svg>`;
 }

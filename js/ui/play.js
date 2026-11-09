@@ -81,7 +81,7 @@
     if (!ok) { FK.sound.undo(); return; }
     FK.sound.right();
     const chosen = body.querySelector('.correct') || body.querySelector('.learn-prompt');
-    if (chosen) { FK.ui.bounce(chosen); const r = chosen.getBoundingClientRect(); FK.fx.twinkle(r.x + r.width/2, r.y + r.height/2, '#d4ae59'); }
+    if (chosen) { FK.ui.bounce(chosen); const r = chosen.getBoundingClientRect(); FK.fx.twinkle(r.x + r.width/2, r.y + r.height/2, '#d4ae59'); FK.waldbuch?.celebrate(chosen); }
   }
   function finish(body, group, game, stage, replay) {
     if(FK.friendsLibrary?.active){

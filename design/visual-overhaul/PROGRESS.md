@@ -19,13 +19,13 @@ Claude Code keeps this file current: tick items as they land on `main`, add the 
 - [x] Ausmalen taped pages, Meine Bilder clothes line, Einstellungen switches
 - [x] Map frame, letter postcard with stamp and vignette
 - [x] P4 (pause 3D under every overlay)
-- [x] `friends-library-browser.cjs`, `den-browser.cjs`, `interface-browser.cjs` pass; screenshots — app 8.6.0, same branch and PR
+- [x] `friends-library-browser.cjs`, `den-browser.cjs`, `interface-browser.cjs` pass; screenshots — app 8.6.0, on `main`
 
 ## Phase 3 · Consistency · Opus 5.5, effort `high`
-- [ ] Cast remapping (crayon foxes retired, mailman portrait)
-- [ ] Picture-family rules; vector → library pictures (Haus, Stein, Nuss, Ast)
-- [ ] Wooden-toy finish for colour and shape answers
-- [ ] Celebration on correct answers (reduced-motion safe)
+- [x] Cast remapping (crayon foxes retired, mailman portrait)
+- [x] Picture-family rules; vector → library pictures (Haus, Stein, Nuss, Ast)
+- [x] Wooden-toy finish for colour and shape answers
+- [x] Celebration on correct answers (reduced-motion safe)
 
 ## Phase 4 · 3D world and characters · effort `xhigh` (or Fable 5.1)
 - [ ] **Before starting:** told the owner to switch (`/effort xhigh` or `/model fable`) and got confirmation
@@ -52,7 +52,7 @@ Claude Code keeps this file current: tick items as they land on `main`, add the 
 
 ## Notes and deviations
 **Phase 1** (details in [`milestones/waldbuch/COMPARISON.md`](../forest-friends/visuals/milestones/waldbuch/COMPARISON.md)):
-- Pushed to the session branch `claude/inspiring-thompson-wnlj9u` with a draft pull request, not straight to `main`; merging it publishes the phase.
+- Phases 1–2 went to `main` via the session branch (PR #3, fast-forward). From phase 3 on, the owner asked to always push straight to `main`.
 - Page in normal flow (title kept on the scene, long activities scroll inside the page); ribbon/paper as background layers and stitching as a dashed outline, so no new DOM.
 - Phones keep the host small in the page header instead of 120 px above the page corner.
 - Counter scatter fixed by position (nth-child), not by task id. Schreibspuren/Zahlenwege pages have no ribbon; their host is drawn on the scene.
@@ -66,3 +66,10 @@ Claude Code keeps this file current: tick items as they land on `main`, add the 
 - Meine Bilder: no "new picture" frame, because the gallery has no new-picture action; dates stay under the pictures.
 - Den toolbar pill, unread-letter dot and hotspot rings (mockup 1a) done here, as no phase listed them.
 - P4 was already in place (overlays and leaving the friends screen pause the world); verified for every menu and overlay.
+
+**Phase 3** (app 8.7.0, on `main`):
+- Fuchs for 🦊 comes from postcard cell 6 (square, for paint stamps) rather than `fox-front.webp`.
+- Den Ausmalen / Meine Bilder hotspots keep storybook-crayon object icons (no plush art for them).
+- Farben-lesen objects keep their ink outline; highlight and contact shadow added.
+- `tests/waldatelier.test.cjs` reads sheet paths from `FK.visual.source` so the WebP cast sheet is checked too.
+- **Next: phase 4.** Before starting it, the owner must switch to `/effort xhigh` (or `/model fable`) and confirm.

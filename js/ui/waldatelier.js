@@ -17,10 +17,16 @@
     menu: ['squirrel','blue-tit','berry-cluster','neighbour-houses','hand-mirror','magic-wand'],
     'forest-objects':['forest-nut','forest-apple','forest-berry','forest-leaf','forest-feather','forest-fir','forest-mushroom','forest-flower','forest-honey','forest-rose','forest-stone','forest-branch','forest-lantern','forest-shapes','forest-post','forest-basket'],
     'forest-actions':['mouse-sit','mouse-run','mouse-sleep','bird-fly','bird-sit','fish-swim','hare-run','hare-sit','fox-sleep','fox-run','cat-sleep','cat-sit','dog-run','dog-sleep','duck-swim','duck-fly'],
+    // The master cast (postcard sheet). The friends always come from here, never from a crayon sheet.
+    postcard:['friend-squirrel','friend-bluetit','friend-owl','friend-beaver','friend-mouse','friend-fox'],
   };
+  const grid = { menu:[3,2], postcard:[3,2] };
+  const source = sheet => sheet === 'postcard' ? 'assets/forest-friends/postcard-friends.webp' : 'assets/waldatelier/' + sheet + '.png';
+  // Crayon versions of the cast are retired: their subjects and emoji show the master cast.
+  const cast = { fox:'friend-fox', 'fox-animal':'friend-fox', beaver:'friend-beaver', mouse:'mouse-sit', rabbit:'hare-sit' };
   const subjects = {};
   Object.keys(sheets).forEach(sheet => sheets[sheet].forEach((id,index) => {
-    subjects[id] = { sheet, index, columns:sheet==='menu'?3:4, rows:sheet==='menu'?2:4 };
+    subjects[id] = { sheet, index, columns:(grid[sheet]||[4])[0], rows:(grid[sheet]||[4,4])[1] };
   }));
   const tokens = {};
   function bind(id, values) { values.split(' ').filter(Boolean).forEach(v => { tokens[v] = id; }); }
@@ -72,12 +78,13 @@
   const aliases = { '❔':'❓', '🔐':'🔒', '🏆':'✨', '💎':'✨', '🛝':'🏘️', '🌆':'🏘️', '👤':'💭', '🎉':'✨', '😋':'💬', '🚶':'🗺️', '🔎':'magnifier' };
   delete tokens['🫐']; // A counter is one berry, never a whole jar of berries.
   bind('forest-nut','🌰');
-  const resolve = value => subjects[value] ? value : tokens[value] || (aliases[value] && (subjects[aliases[value]] ? aliases[value] : tokens[aliases[value]])) || null;
+  const lookup = value => subjects[value] ? value : tokens[value] || (aliases[value] && (subjects[aliases[value]] ? aliases[value] : tokens[aliases[value]])) || null;
+  const resolve = value => { const id = lookup(value); return cast[id] || id; };
   const images = {};
   const ready = Promise.all(Object.keys(sheets).map(sheet => new Promise(resolveReady => {
     const img = new Image(); images[sheet] = img;
     img.onload = () => resolveReady(true); img.onerror = () => resolveReady(false);
-    img.src = 'assets/waldatelier/' + sheet + '.png';
+    img.src = source(sheet);
   })));
   function art(id, cls, label) {
     const resolved=resolve(id),themed=FK.friendsLibrary?.active?FK.puzzles?.pictures[resolved]:null;
@@ -85,7 +92,7 @@
     const el = document.createElement('span'); el.className = 'wa-illustration ' + (cls || '');
     if (label) { el.setAttribute('role', 'img'); el.setAttribute('aria-label', label); } else el.setAttribute('aria-hidden', 'true');
     if (rec) {
-      el.style.backgroundImage = 'url("assets/waldatelier/' + rec.sheet + '.png")';
+      el.style.backgroundImage = 'url("' + source(rec.sheet) + '")';
       el.style.backgroundSize = (rec.columns * 100) + '% ' + (rec.rows * 100) + '%';
       el.style.backgroundPosition = (rec.index % rec.columns * 100 / (rec.columns - 1)) + '% ' + (Math.floor(rec.index / rec.columns) * 100 / (rec.rows - 1)) + '%';
     }
@@ -130,7 +137,7 @@
     ctx.drawImage(img, rec.index % rec.columns * w, Math.floor(rec.index / rec.columns) * hh, w, hh, x, y, size, size);
     return true;
   }
-  FK.visual = { art, decorate, draw, ready, subjects, tokens, has: value => !!resolve(value), supports: value => !!(resolve(value) || symbols[value] || symbols[aliases[value]]) };
+  FK.visual = { art, decorate, draw, ready, subjects, tokens, source, has: value => !!resolve(value), supports: value => !!(resolve(value) || symbols[value] || symbols[aliases[value]]) };
   new MutationObserver(records => records.forEach(rec => {
     if (rec.type === 'characterData') decorateText(rec.target);
     else rec.addedNodes.forEach(decorate);

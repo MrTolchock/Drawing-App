@@ -44,14 +44,14 @@ function letterPortrait(id){
 // Painted pictures where the reviewed art exists: friends from the forest painting and character sheet,
 // nouns from the original Waldatelier sheets. Action poses, nuts, shapes and controls stay drawn.
 const paintedFriends={fox:'fox-front',squirrel:'squirrel',bird:'bird',owl:'owl',mouse:'mouse'};
-const paintedWords={tree:'tree',book:'book',mouse:'mouse',bird:'bird',owl:'owl',fox:'fox',apple:'apple',leaf:'leaf',feathers:'feather',berries:'blueberries',pencils:'pencil',bed:'bed',bag:'picnic',gallery:'pictures',beaver:'beaver',hat:'hat',rose:'rose',nose:'nose',fish:'fish',ball:'ball',boat:'boat',cow:'cow',hare:'rabbit',tin:'tin',bus:'bus',star:'star',whale:'whale'};
+const paintedWords={house:'neighbour-houses',stone:'forest-stone',branch:'forest-branch',tree:'tree',book:'book',mouse:'mouse',bird:'bird',owl:'owl',fox:'fox',apple:'apple',leaf:'leaf',feathers:'feather',berries:'blueberries',pencils:'pencil',bed:'bed',bag:'picnic',gallery:'pictures',beaver:'beaver',hat:'hat',rose:'rose',nose:'nose',fish:'fish',ball:'ball',boat:'boat',cow:'cow',hare:'rabbit',tin:'tin',bus:'bus',star:'star',whale:'whale'};
 function art(name,cls=''){
   if(FK.puzzles.actions.includes(name))return h('span',{class:'ff-picture ff-painted-picture '+cls},FK.visual.art(name));
   if(['fox','squirrel','bird','owl','beaver','mouse'].includes(name))return h('span',{class:'ff-picture ff-painted-picture '+cls},FK.friendsArt.portrait(name));
   if(['map','letter','book','gear'].includes(name))return h('span',{class:'ff-picture '+cls},FK.friendsArt.icon(name));
-  if(name==='mailman')return h('span',{class:'ff-picture ff-mailman-picture'},FK.visual.art('rabbit'),h('i',{html:envelopeSVG}));
-  if(name==='nut'||name==='nuts'){const s=h('span',{class:'ff-picture ff-painted-picture '+cls});s.append(FK.woodland.art('nut'));return s;}
-  const oldWord={table:'Tisch',leg:'Bein',stone:'Stein'}[name];
+  if(name==='mailman')return h('span',{class:'ff-picture ff-mailman-picture'},FK.friendsArt.portrait('mailman'),h('i',{html:envelopeSVG}));
+  if(name==='nut'||name==='nuts'){const s=h('span',{class:'ff-picture ff-painted-picture '+cls});s.append(FK.visual.art('forest-nut'));return s;}
+  const oldWord={table:'Tisch',leg:'Bein'}[name];
   if(oldWord)return h('span',{class:'ff-picture '+cls},FK.play.wordDrawing(oldWord));
   if(paintedFriends[name]&&(!['mouse','bird'].includes(name)||cls.includes('portrait')||cls.includes('letter-friend')))return h('span',{class:'ff-picture ff-painted-picture '+cls},h('img',{src:'assets/forest-friends/'+paintedFriends[name]+'.webp',alt:'',draggable:'false'}));
   if(paintedWords[name]&&FK.visual?.has(paintedWords[name])){const s=h('span',{class:'ff-picture ff-painted-picture '+cls});s.append(FK.visual.art(paintedWords[name]));return s;}
@@ -145,7 +145,7 @@ function puzzle(){
   if(r.feedback)showFeedback(r.feedback==='correct',r.selection);
   else say(C.hosts[host].instruction);
 }
-function answer(value,skip=false){if(example)return;tick();if(!state.answer(host,value,activeMs,skip)){saveStatus();return;}activeMs=0;const r=state.get().rounds[host];if(r.index===5){reward();return;}showFeedback(r.feedback==='correct',value);}
+function answer(value,skip=false){if(example)return;tick();if(!state.answer(host,value,activeMs,skip)){saveStatus();return;}activeMs=0;const r=state.get().rounds[host];if(r.index===5){reward();return;}showFeedback(r.feedback==='correct',value);if(r.feedback==='correct')FK.waldbuch?.celebrate(overlay.querySelector('.ff-answer.chosen'));}
 function showFeedback(correct,value){
   const r=state.get().rounds[host],t=r.tasks[r.index];for(const b of overlay.querySelectorAll('.ff-answer')){b.classList.toggle('chosen',b.dataset.answer===String(value));b.classList.toggle('ff-retry',!correct&&b.dataset.answer===String(value));b.disabled=correct;}
   const feedback=overlay.querySelector('.ff-feedback');feedback.replaceChildren(art(correct?'check':'undo'));feedback.dataset.correct=String(correct);

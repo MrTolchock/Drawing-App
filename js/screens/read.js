@@ -502,8 +502,15 @@
       return '<svg class="rd-obj" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="48" fill="' + col.hex + '"' + ST + '/>' +
         '<text x="60" y="78" text-anchor="middle" font-size="52">' + (emoji || '') + '</text></svg>';
     }
-    return '<svg class="rd-obj" viewBox="0 0 120 120" aria-hidden="true">' + OBJ[key](col.hex, col.id) + '</svg>';
+    // Wooden-toy finish: soft contact shadow and a top-left highlight clipped to the object itself.
+    const body = OBJ[key](col.hex, col.id), id = 'wb-toy-' + (++toyCount);
+    return '<svg class="rd-obj" viewBox="0 0 120 120" aria-hidden="true"><defs><linearGradient id="' + id + '-hi" x1="0" y1="0" x2="1" y2="1">' +
+      '<stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset=".6" stop-color="#fff" stop-opacity="0"/></linearGradient>' +
+      '<mask id="' + id + '-m"><g class="wb-toy-mask">' + body + '</g></mask></defs>' +
+      '<ellipse cx="60" cy="114" rx="38" ry="5" fill="#5a3f2433"/>' + body +
+      '<rect width="120" height="120" fill="url(#' + id + '-hi)" mask="url(#' + id + '-m)"/></svg>';
   }
+  let toyCount = 0;
 
   // Syllables for the words of a sentence (Silbenbögen like in the reading books).
   const HYPH = {
@@ -814,6 +821,7 @@
       slotsEl.append(wordEl);
       FK.ui.bounce(pic);
       burstAt(pic, ['#ffc93c', '#ff4fa3', '#5bc0ff', '#8bd448', '#ffffff'], 12);
+      FK.waldbuch?.celebrate(pic);
       chips.forEach((c) => { if (!c.classList.contains('used')) c.classList.add('gone'); });
       st.done(idx);
       later(idx + 1 >= words.length ? 900 : 1500, () => {
@@ -906,6 +914,7 @@
         c.insertAdjacentHTML('beforeend', FK.icon('star', 'ic rd-card-star'));
         cards.forEach((x) => { if (x !== c) x.classList.add('fade'); });
         burstAt(c, ['#ffc93c', '#ffffff', '#ff4fa3', '#8bd448'], 12);
+        FK.waldbuch?.celebrate(c);
         twinkleAround(c, 5, '#ffc93c');
       },
       wrong(c) {

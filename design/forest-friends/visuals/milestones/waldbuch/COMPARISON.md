@@ -63,3 +63,26 @@ All menu styles are in the phase 2 section of `css/waldbuch.css`. Script changes
 **P4.** Opening the letter/map, Waldspiele, a friend round, Ausmalen, painting, Meine Bilder or Einstellungen leaves the world `paused` and its clock stops (0.000 s advanced over 700 ms in each case, against 0.5–0.8 s in the den), so no 3D frames are drawn under them. This was already the case: `open()` pauses for overlays and the friends screen pauses on `leave()`.
 
 **Validation.** `node --test tests/*.test.cjs` (169 pass); `friends-library-browser.cjs`, `den-browser.cjs`, `interface-browser.cjs`, `friends-mail-browser.cjs` and `puzzles-browser.cjs` pass.
+
+## Phase 3 · Consistency
+
+Build: app/cache 8.7.0 (`farbtupf-v8.7.0-waldbuch-consistency`), 9 November 2026, on top of phase 2 (`11bc136`). Same capture settings; celebration frames use normal motion, 450 ms after the tap.
+
+| Item | Evidence | Result |
+| --- | --- | --- |
+| One cast (5.1) | probe of `FK.visual.art` | The crayon subjects are retired everywhere `FK.visual` draws, including paint stamps and the album: 🦊 / `fox` / `fox-animal` → Fuchs from the postcard sheet (cell 6), 🦫 / `beaver` → postcard Biber, 🐭 / `mouse` → `mouse-sit`, 🐰 / `rabbit` → `hare-sit`. The mailman fallback shows `mailman-portrait.webp`, and the old mascot uses the postcard Fuchs. |
+| Picture families (5.2) | probe of every navigation picture | Waldspiele cards, tabs, toolbar and hotspots use no `people` picture and no crayon friend. |
+| Vector → library (5.3) | — | Haus → `neighbour-houses`, Stein → `forest-stone`, Nuss → `forest-nut` (also the Nüsse-zählen counters, one nut each), Ast → `forest-branch`. The other vector words keep their 3 px ink outline until new art arrives (`ASSET-REQUESTS.md`). |
+| Wooden-toy finish | [Shapes](toy-shapes-1080.jpg) ([phone](toy-shapes-390.jpg)), [colours](toy-colours-1080.jpg) ([phone](toy-colours-390.jpg)) | Shape answers and the shape scene: top-left highlight, same-hue outline at 70 % lightness, contact shadow. Farben-lesen objects: highlight clipped to the object's silhouette and a contact shadow, keeping their ink outline. Fills and colours unchanged. |
+| Celebration (4.4) | [Friend round](celebrate-1080.jpg) ([phone](celebrate-390.jpg)), [older activity](celebrate-learn-1080.jpg) ([phone](celebrate-learn-390.jpg)) | On a correct answer: moss tile with a 52 px check badge, moss page ring, current twig item pops, host hops twice, 12 leaves/flowers/host items burst from the tile (1.4 s, transform and opacity only, `will-change` only on those pieces). It fits inside the existing advance delay; with reduced motion only the badge and moss tile show. A wrong answer is still only dashed and faded. |
+
+The celebration lives in `js/ui/waldbuch.js` (`FK.waldbuch.celebrate`) and is called from the existing correct-answer paths: `FK.play.feedback` (learn, adventure, expedition), the friend rounds' `answer()`, and `read.js` (`right()` and a completed syllable word).
+
+**Intentional deviations**
+
+- Fuchs for 🦊 comes from the postcard sheet (cell 6, a listed source) rather than `fox-front.webp`: paint stamps need square cells and `fox-front.webp` is 249 × 360.
+- The den's Ausmalen and Meine Bilder hotspots still use storybook-crayon object icons (pencil, pictures); there is no plush version yet.
+- Farben-lesen objects keep their ink outline; only the shapes take the same-hue outline, so the colour objects stay as recognisable as before.
+- Silbenblätter (leaf popping) keeps its own pop effect and is not given the page celebration on every leaf.
+
+**Validation.** `node --test tests/*.test.cjs` (169 pass; the offline sheet test now reads each sheet's path from `FK.visual.source` and accepts the WebP postcard sheet); `puzzles-browser.cjs`, `den-browser.cjs`, `friends-mail-browser.cjs`, `interface-browser.cjs`, `friends-library-browser.cjs` and `play-browser.cjs` pass.
