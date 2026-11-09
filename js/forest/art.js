@@ -17,7 +17,13 @@
     hand: '<rect x="5" y="7" width="26" height="24" rx="5" fill="#e5eaca" stroke="currentColor" stroke-width="2"/><path d="M25 41 15 29q-3-5 1-6l7 6V15q0-5 4-4 3 0 3 4v11l3-2 4 3 3 1q5 7-2 15z" fill="#fff7e6" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>',
   };
   function icon(name, cls) { return h('span', { class: 'forest-icon ' + (cls || ''), 'aria-hidden': 'true', html: '<svg viewBox="0 0 48 48">' + (paths[name] || paths.paw) + '</svg>' }); }
-  function character(id, cls) { return FK.woodland.art(id, 'forest-portrait ' + (cls || '')); }
+  function character(id, cls) {
+    if(FK.friendsLibrary?.active){
+      if(['fox','squirrel','bird','owl','beaver','mouse'].includes(id)){const pic=FK.friendsLibrary.portrait(id);if(cls)pic.classList.add(...cls.split(' ').filter(Boolean));return pic;}
+      if(id==='hare')return FK.visual.art('hare-sit','forest-portrait '+(cls||''));
+    }
+    return FK.woodland.art(id, 'forest-portrait ' + (cls || ''));
+  }
   function bridge(complete, cls) {
     const planks = complete ? [10, 19, 28, 37, 46, 55, 64] : [10, 19, 55, 64];
     const timber = planks.map(x => '<path d="M' + x + ' 25v29h8V25z" fill="#dcb77c" stroke="#a17c4d" stroke-width=".8"/>').join('');

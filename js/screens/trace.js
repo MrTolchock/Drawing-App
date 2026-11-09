@@ -1053,6 +1053,7 @@
     enter(params) {
       params = params || {};
       active = true;
+      root.querySelector('.title').textContent=FK.puzzles.title('trace','Schreiben');
       learningStage = params.stage >= 1 && params.stage <= 3 ? params.stage : FK.learning.stage();
       window.addEventListener('resize', onResize);
       window.addEventListener('orientationchange', onOrient);

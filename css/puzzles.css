@@ -1,0 +1,92 @@
+/* The character sheet's cream paper, honey timber and quiet woodland light.
+   All current puzzles share the Silben-Puzzle's picture / task / answer cards. */
+.friends-interface :is(.screen-learn,.screen-adventure,.screen-expedition,.screen-read,.screen-trace,.screen-dots,.screen-forest-book){
+  --ink:#4b3b2d;--muted:#81735e;--sun:#e6bf72;--mint:#e4eacb;--sky:#e5ece6;
+  background:#f3edda url('../assets/forest-friends/puzzle-clearing.png') center/cover no-repeat;
+  color:var(--ink);padding:16px max(18px,env(safe-area-inset-left));
+}
+.friends-interface :is(.screen-learn,.screen-adventure,.screen-expedition,.screen-read,.screen-trace,.screen-dots,.screen-forest-book)>.topbar{width:min(1000px,100%);margin:0 auto 12px;padding:8px 12px;min-height:64px;background:#fff8e9ed;border:1px solid #dbc6a4;border-radius:20px}
+.friends-interface .play-library-intro h2{color:#4b3b2d}
+.friends-interface .topbar .title{color:#4b3b2d;font:700 clamp(22px,3vw,32px)/1.25 var(--read);letter-spacing:-.025em}
+.friends-interface :is(.screen-learn,.screen-adventure,.screen-expedition)>.learn-body,
+.friends-interface .screen-read>.rd-stage{width:min(1000px,100%);margin:0 auto;padding:22px 26px;background:#fffaf0ed;border:1px solid #ceb58d;border-radius:28px;box-shadow:0 12px 40px #5d472f16}
+.friends-interface .play-context{width:100%;max-width:none;margin:0 auto 12px;padding:0 0 10px;background:transparent;border-bottom:1px solid #e5d8be;border-radius:0;gap:12px;color:#78664e}
+.friends-interface .play-context>.forest-portrait{width:52px;height:52px}
+.friends-interface .play-context .play-round{font:700 15px var(--read);color:#8c785a}
+.friends-interface :is(.learn-prompt,.ff-round-title){font:700 clamp(23px,3vw,30px)/1.4 var(--read);color:#4b3b2d;max-width:800px;margin:16px auto 22px}
+.friends-interface .learn-visual{margin:10px auto 20px}
+.friends-interface :is(.learn-button,.rd-chip,.rd-card,.rd-paper,.rd-pic,.ff-answer){border:1px solid #c5ad88;border-radius:20px;background:#fffcf5;box-shadow:0 4px 12px #6f512916;color:#4b3b2d}
+.friends-interface :is(.learn-answer,.ff-answer){min-height:82px;min-width:84px;font:700 clamp(25px,4vw,36px) var(--read);padding:16px 22px}
+.friends-interface :is(.learn-button,.rd-chip,.rd-card,.ff-answer):focus-visible{outline:3px solid #687e43;outline-offset:4px}
+.friends-interface :is(.learn-button.correct,.rd-card.right,.ff-answer.chosen){background:#e9efd6;border-color:#7c944f;box-shadow:0 0 0 2px #a7ba7a55}
+.friends-interface :is(.learn-button.try-again,.ff-retry,.rd-card.dim){border-style:dashed;background:#fff5e7;opacity:.8}
+.friends-interface :is(.learn-next,.adventure-next,.exp-next){background:#e4eacb;border-color:#a2b27b;min-height:56px;font-size:19px}
+.friends-interface .learn-hint{background:#f8efd9;min-height:48px;font-size:16px}
+.friends-interface .learn-feedback{font:17px/1.5 var(--read);color:#7c6c54;min-height:26px;margin:18px auto;max-width:740px}
+.friends-interface .play-instruction,.friends-interface .adventure-meter{font:16px/1.5 var(--read);color:#7c6c54}
+.friends-interface .play-steps{max-width:740px;gap:10px;margin:10px auto 18px}
+.friends-interface .play-step{background:#f5edda;border:1px solid #e0ceab;border-radius:16px}
+.friends-interface :is(.play-garden,.learn-garden-field,.ff-task-scene,.exp-bowl,.mirror-side,.play-word-card,.play-order-card,.rocket-cargo section,.play-snack-table section){background:#f4f0df;border:1px solid #d6c5a4;border-radius:24px;box-shadow:none}
+.friends-interface .forest-book-body{background:#fff9eceb;border:1px solid #d7c2a0;border-radius:28px;max-width:1100px;margin:auto}
+.friends-interface :is(.woodland-progress,.rd-steps,.ff-progress){display:flex;justify-content:center;gap:10px;margin:12px auto 20px;letter-spacing:0}
+.friends-interface :is(.woodland-progress-leaf,.rd-step,.ff-progress>span){display:grid;place-items:center;width:30px;height:30px;border:1px solid #d4c19b;border-radius:50%;background:#f1e9d4;opacity:.6;box-shadow:none;transform:none}
+.friends-interface :is(.woodland-progress-leaf.done,.rd-step.done,.ff-progress>span.done){background:#dce6bc;border-color:#8da45d;opacity:1}
+.friends-interface .rd-step.cur{border:2px solid #b28a45;background:#f8e5ad;opacity:1}
+.friends-interface :is(.woodland-progress-leaf,.rd-step,.ff-progress>span)>:is(.wa-illustration,.forest-icon,.ic){width:20px;height:20px}
+.friends-interface .rd-pic{background:#f4efde;transform:none}
+.friends-interface .rd-paper{background:#fffdf7}
+.friends-interface .rd-chip{background:#fffcf5;border-bottom:4px solid var(--c,#dbbd7d);box-shadow:0 5px 12px #78572b12}
+.friends-interface .rd-slot{border-color:#bfa777;background:#fffaf0}
+.friends-interface .rd-slot.cur{background:#f7edc9}
+.friends-interface .rd-slot.s0 .arc path{stroke:#7e945b}.friends-interface .rd-slot.s1 .arc path{stroke:#bc8559}
+.friends-interface .rd-step .ic{opacity:.65}
+.friends-interface .rd-card{transform:none}
+.friends-interface .rd-cards{max-width:100%}
+.friends-interface .rd-card-emoji{display:grid;place-items:center;width:85%;height:85%;min-width:0}
+.friends-interface .rd-card-emoji .wa-illustration{width:100%;height:100%}
+.friends-interface .rd-in{animation:forest-card-in .2s ease both}
+.friends-interface .rd-out{animation:forest-card-out .15s ease both}
+@keyframes forest-card-in{from{opacity:0}to{opacity:1}}
+@keyframes forest-card-out{to{opacity:0}}
+.friends-interface .rd-obj{filter:drop-shadow(0 4px 2px #75532d1a)}
+.friends-interface :is(.screen-trace .tr-over-view,.screen-dots .pp-over,.screen-trace .tr-play,.screen-dots .pp-play){background:#fffaf0ed;border:1px solid #ceb58d;border-radius:28px;padding:18px;width:min(1000px,100%);margin-inline:auto}
+.friends-interface .rd-field{background:linear-gradient(#ecf0dacc,#f7eed7aa);border-radius:24px;border:1px solid #d4c39f}
+.friends-interface .ff-overlay:has(.ff-illustrated-round){background:#f2ebd9 url('../assets/forest-friends/puzzle-clearing.png') center/cover no-repeat;padding:18px}
+.friends-interface .ff-illustrated-round{width:min(1000px,100%);max-height:100%;padding:20px 28px;background:#fffaf0ef;border:1px solid #ceb58d;border-radius:28px;box-shadow:0 12px 40px #5d472f16}
+.friends-interface .ff-illustrated-round .ff-card-top{height:58px}
+.friends-interface .ff-illustrated-round .ff-card-portrait{width:54px;height:54px;background:none;border:0;box-shadow:none}
+.friends-interface .ff-illustrated-round .ff-task-scene{background:#f4efdf;border:1px solid #d6c5a4;box-shadow:none}
+.friends-interface .ff-illustrated-round .ff-answer{background:#fffcf5;border:1px solid #c5ad88;box-shadow:0 4px 12px #6f512916}
+.friends-interface .ff-illustrated-round .ff-answer.chosen{background:#e9efd6;border-color:#7c944f}
+.friends-interface .ff-illustrated-round .ff-answer>.ff-picture{width:clamp(92px,13vw,148px);height:clamp(92px,13vw,148px)}
+.puzzle-firefly{display:inline-block;width:42px;height:42px;flex:none;vertical-align:middle}
+.puzzle-firefly svg{width:100%;height:100%}
+.friends-interface .adventure-rocket .rocket-challenge>.adventure-scene{display:none}
+.friends-interface .adventure-rocket .rocket-challenge.launching{animation:none}
+.friends-interface .adventure-work.adventure-rocket{display:flex;flex-direction:column;align-items:center;gap:10px;padding:0}
+.friends-interface .rocket-challenge{width:min(650px,100%);background:#f4efdf;border:1px solid #d6c5a4}
+.friends-interface .rocket-cargo h3{font-size:17px;color:#79664d}
+.friends-interface .compare-berry .play-picture .wa-illustration{width:27px;height:27px}
+.friends-interface .compare-pair .play-picture .wa-illustration{width:22px;height:22px}
+.friends-interface .exp-work .learn-answer{font-size:24px;padding:12px 16px}
+.friends-interface .learn-pattern-train .learn-engine{display:none}
+.friends-interface .learn-pattern-train{padding:22px;background:#f4efdf;border:1px solid #d6c5a4;border-radius:24px}
+.friends-interface .learn-wagon{background:#fffaf0;border:1px solid #c5ad88;border-radius:16px}
+.friends-interface .ff-postcard-overlay{padding:20px;background:#2b1b0e55;backdrop-filter:blur(3px)}
+.friends-interface .ff-postcard-overlay .ff-letter-paper{display:flex;flex-direction:column;align-items:center;position:relative;width:min(440px,90vw);max-height:90dvh;margin:0;padding:36px 30px 25px;border:1px solid #d6bc8c;border-radius:8px;cursor:pointer;box-shadow:0 14px 50px #1e100e55;transform:rotate(-2deg);font:inherit;touch-action:manipulation}
+.friends-interface .ff-postcard-overlay .ff-letter-paper:focus-visible{outline:4px solid #98ad6d;outline-offset:8px}
+.friends-interface .ff-postcard-overlay .ff-letter-stamp{position:absolute;right:20px;top:18px}
+.friends-interface .ff-postcard-overlay .ff-letter-scribbles{width:100%}
+@media(max-width:600px){
+ .friends-interface :is(.screen-learn,.screen-adventure,.screen-expedition,.screen-read,.screen-trace,.screen-dots,.screen-forest-book){padding:10px}
+ .friends-interface :is(.screen-learn,.screen-adventure,.screen-expedition)>.learn-body,.friends-interface .screen-read>.rd-stage{padding:14px 12px;border-radius:22px}
+ .friends-interface .play-context{font-size:12px;gap:7px}.friends-interface .play-context>.forest-portrait{width:40px;height:40px}
+ .friends-interface .learn-prompt{font-size:22px;margin:12px auto 16px}
+ .friends-interface .learn-answer{font-size:26px;min-height:68px;padding:12px 14px}
+ .friends-interface .play-steps{gap:5px}.friends-interface .play-step small{font-size:11px}
+ .friends-interface .learn-feedback{font-size:15px;margin:14px auto}.friends-interface .ff-illustrated-round{padding:12px;border-radius:22px}
+ .friends-interface .ff-task-tools{gap:8px}.friends-interface .ff-illustrated-round .ff-answer{padding:8px;min-width:0}
+ .friends-interface .ff-illustrated-round .ff-task-scene{min-height:130px}
+ .friends-interface .forest-book-body{padding:14px 8px}
+}
+@media(prefers-reduced-motion:reduce){.friends-interface :is(.screen,.rd-in,.rd-out,.rd-slot,.rd-chip){animation:none!important;transition:none!important}}

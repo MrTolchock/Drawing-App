@@ -177,7 +177,7 @@
 
   const renderers = { treasure, neighbours, compare, mirror, tricks, vowels, survey };
   function draw() {
-    q = FK.expeditions.question(game.id, stage, round, Math.random, wordOffset); locked = false;
+    q = FK.puzzles.question(FK.expeditions.question(game.id, stage, round, Math.random, wordOffset, FK.friendsLibrary?.active?'swiss-woodland':undefined),game.id,round); locked = false;
     const host = h('div', { class: 'exp-work exp-game-' + game.id });
     feedback = h('p', { class: 'learn-feedback', role: 'status', 'aria-live': 'polite', text: 'Probiere aus. Du hast Zeit.' });
     next = button(round === 4 ? '⭐ Geschafft!' : 'Weiter →', () => { if (!locked) return; round++; if (round === 5) finish(); else draw(); }, 'learn-next exp-next'); next.hidden = true;
@@ -192,7 +192,7 @@
   }
   FK.screen('expedition', {
     build(root) { FK.play.bindTouch(root); const bar = FK.ui.topbar({ title: 'Forschen & Knobeln' }); title = bar.querySelector('.title'); body = h('div', { class: 'learn-body scroll' }); root.append(bar, body); },
-    enter(params) { if(params.game==='tricks'){FK.go('learn',{game:'add'},{replace:true});return;} game = FK.expeditions.games.find(g => g.id === (params || {}).game) || FK.expeditions.games[0]; stage = FK.learning.stage(); round = 0; wordOffset = Math.floor(Math.random() * 8); title.textContent = game.title;FK.play.begin(game.id,stage); draw(); },
+    enter(params) { if(params.game==='tricks'){FK.go('learn',{game:'add'},{replace:true});return;} game = FK.expeditions.games.find(g => g.id === (params || {}).game) || FK.expeditions.games[0]; stage = FK.learning.stage(); round = 0; wordOffset = Math.floor(Math.random() * 8); title.textContent = FK.puzzles.title(game.id,game.title);FK.play.begin(game.id,stage); draw(); },
     leave() { locked = true; FK.forestVoice.cancel(); },
   });
 })();

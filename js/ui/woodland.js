@@ -12,6 +12,10 @@
     strawberry: ['props', 0, 1], beech: ['props', 1, 1], alder: ['props', 2, 1], log: ['props', 3, 1],
   };
   function art(name, cls = '') {
+    if(FK.friendsLibrary?.active){
+      const themed=FK.puzzles?.pictures[name];
+      if(themed)return FK.visual.art(themed,'woodland-art '+cls);
+    }
     const id = { fox: 'fox-right', home: 'oak' }[name] || name;
     const [sheet, column, row] = cells[id] || cells.leaf, rows = sheet === 'cast' ? 4 : 2;
     return h('span', { class: 'woodland-art ' + cls, 'aria-hidden': 'true', 'data-painting': id,

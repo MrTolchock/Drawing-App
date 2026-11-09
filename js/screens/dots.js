@@ -561,6 +561,7 @@
     enter(params) {
       params = params || {};
       active = true;
+      root.querySelector('.title').textContent=FK.puzzles.title('dots','Punkt zu Punkt');
       if(FK.friendsLibrary?.active)level=1;
       else if (params.level >= 1 && params.level <= 3) { level = params.level; FK.settings.set('dots.level', level); }
       window.addEventListener('resize', onResize);

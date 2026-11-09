@@ -15,6 +15,8 @@
     people: ['mummy','daddy','grandma','grandpa','llama','judo','ufo','moped','lemonade','canoe','pilot','honey','cheese','comet','reader','blueberries'],
     alphabet: ['monkey','clown','dinosaur','elephant','giraffe','ear','whale','taxi','teddy','spoon','jacket','sunflower','ant','badger','bowl','spade'],
     menu: ['squirrel','blue-tit','berry-cluster','neighbour-houses','hand-mirror','magic-wand'],
+    'forest-objects':['forest-nut','forest-apple','forest-berry','forest-leaf','forest-feather','forest-fir','forest-mushroom','forest-flower','forest-honey','forest-rose','forest-stone','forest-branch','forest-lantern','forest-shapes','forest-post','forest-basket'],
+    'forest-actions':['mouse-sit','mouse-run','mouse-sleep','bird-fly','bird-sit','fish-swim','hare-run','hare-sit','fox-sleep','fox-run','cat-sleep','cat-sit','dog-run','dog-sleep','duck-swim','duck-fly'],
   };
   const subjects = {};
   Object.keys(sheets).forEach(sheet => sheets[sheet].forEach((id,index) => {
@@ -69,6 +71,7 @@
   };
   const aliases = { '❔':'❓', '🔐':'🔒', '🏆':'✨', '💎':'✨', '🛝':'🏘️', '🌆':'🏘️', '👤':'💭', '🎉':'✨', '😋':'💬', '🚶':'🗺️', '🔎':'magnifier' };
   delete tokens['🫐']; // A counter is one berry, never a whole jar of berries.
+  bind('forest-nut','🌰');
   const resolve = value => subjects[value] ? value : tokens[value] || (aliases[value] && (subjects[aliases[value]] ? aliases[value] : tokens[aliases[value]])) || null;
   const images = {};
   const ready = Promise.all(Object.keys(sheets).map(sheet => new Promise(resolveReady => {
@@ -77,7 +80,8 @@
     img.src = 'assets/waldatelier/' + sheet + '.png';
   })));
   function art(id, cls, label) {
-    const rec = subjects[resolve(id)];
+    const resolved=resolve(id),themed=FK.friendsLibrary?.active?FK.puzzles?.pictures[resolved]:null;
+    const rec = subjects[themed||resolved];
     const el = document.createElement('span'); el.className = 'wa-illustration ' + (cls || '');
     if (label) { el.setAttribute('role', 'img'); el.setAttribute('aria-label', label); } else el.setAttribute('aria-hidden', 'true');
     if (rec) {
@@ -103,7 +107,7 @@
     const fragment = document.createDocumentFragment(); let last = 0, match;
     while ((match = matcher.exec(text))) {
       if (match.index > last) fragment.append(text.slice(last, match.index));
-      fragment.append(resolve(match[0]) ? art(match[0]) : glyph(match[0]));
+      fragment.append(match[0]==='🫐'&&FK.friendsLibrary?.active ? art('forest-berry') : resolve(match[0]) ? art(match[0]) : glyph(match[0]));
       const original = document.createElement('span'); original.className = 'wa-original'; original.textContent = match[0]; fragment.append(original);
       last = matcher.lastIndex;
     }

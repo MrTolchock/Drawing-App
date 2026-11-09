@@ -27,7 +27,7 @@ const BASE=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
  }
  await page.setViewportSize({width:1024,height:900});
  await click('Brief öffnen');assert.equal(await page.locator('.ff-letter-illustration').isVisible(),true);
- const portrait=await page.locator('.ff-letter-illustration').evaluate(el=>getComputedStyle(el).backgroundImage);assert.match(portrait,/postcard-friends/);await snapshot('postcard-1024');await page.setViewportSize({width:390,height:844});await snapshot('postcard-390');await click('Zurück');await page.setViewportSize({width:1024,height:900});
+ const portrait=await page.locator('.ff-letter-illustration').evaluate(el=>getComputedStyle(el).backgroundImage);assert.match(portrait,/postcard-friends/);assert.equal(await page.locator('.ff-overlay button').count(),1);assert.equal(await page.locator('.ff-letter-card,.ff-letter-go').count(),0);await snapshot('postcard-1024');await page.setViewportSize({width:390,height:844});await snapshot('postcard-390');await click('Zum Freund gehen');await page.setViewportSize({width:1024,height:900});await click('Bildkarte');await click('Nach Hause');await page.waitForFunction(()=>FK.friendsView().area==='den',null,{timeout:60000});
  await page.locator('[data-place="drawing"]').click();await page.locator('.book-card').first().waitFor();
  assert.equal(await page.evaluate(()=>FK.current()),'book');assert.equal(await page.locator('.book-card').count(),6);assert.equal(await page.locator('.mode-grid').count(),0);await snapshot('selection-1024');
  // Every new page has many closed paint regions at the real display sizes.

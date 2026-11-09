@@ -1,6 +1,6 @@
 # Blueprint v2 — Forest friends: letters through the forest
 
-**Updated:** 8 November 2026.
+**Updated:** 9 November 2026.
 **Current direction:** A continuous letter adventure, with a rabbit mailman and no shop or currency rewards.
 **Scope:** This is the current game contract. It supersedes revision 10's economy, consumables and Hase puzzle-host role. The [previous blueprint](blueprint-before-letters.md), frozen visual references and original Heart Tree adventure remain historical records.
 
@@ -50,10 +50,10 @@ Memory, attention, phonological awareness, sequencing and spatial reasoning are 
 
 | Category | Animal | Puzzle | Child's action |
 | --- | --- | --- | --- |
-| Mathematics | Eichhörnchen | Zählgarten | Count pictured nuts and choose a numeral |
+| Mathematics | Eichhörnchen | Waldkäfer zählen | Count pictured nuts and choose a numeral |
 | Mathematics | Biber | Welche Form fehlt? | Choose the shape that fills a visible gap in a house or cart; one tap inserts it |
-| Reading | Maus | Leseschatz | Read a familiar word and choose its picture |
-| Reading | Blaumeise | Reimzirkus | Read a written target and two written, pictured answers; choose the rhyme, e.g. Haus → Maus |
+| Reading | Maus | Wort und Waldbild | Read a familiar word and choose its picture |
+| Reading | Blaumeise | Waldreime | Read a written target and two written, pictured answers; choose the rhyme, e.g. Haus → Maus |
 | Reading | Waldkauz | Lies und zeig | Read a three-word sentence and choose between two clear pictures, e.g. «Die Maus sitzt.» |
 
 The old game's Reimzirkus word-and-picture cards are the basis for Blaumeise. The single explanation describes the matching action without pronouncing the scored words. Remove individual word-audio buttons. This is a reading-led activity with rhyming practice; picture matching alone does not establish independent reading.
@@ -96,7 +96,7 @@ The guidance arrow follows the active invitation, not an arbitrary reward destin
 
 Hase wanders freely on walkable forest ground. After puzzle completion he is staged very near Fuchs, within a short click/tap walk and in a readable camera view. He should remain easy to catch for delivery rather than walking away as the child approaches. His regular wandering resumes between deliveries. No route may cross solid trunks or water without the bridge.
 
-The den's closed wooden door and brass mail lid use the same painted texture, shading and perspective as the room. Remove the loose floor cushion. Sleeping places Fuchs lying sideways on the bed's mattress, with his paws and tail curled in; resizing must keep him on the bed. Reduced motion keeps the arriving envelope visible without requiring an animation; the same letter-opening action and saved outcome remain available. An opened postcard uses a large, sharp character illustration on warm paper, not an enlarged small control icon.
+The den's closed wooden door and brass mail lid use the same painted texture, shading and perspective as the room. Remove the loose floor cushion. Sleeping places Fuchs lying sideways on the bed's mattress, with his paws and tail curled in, at a size comparable to the standing fox; resizing must keep him visible and on the bed. Reduced motion keeps the arriving envelope visible without requiring an animation; the same letter-opening action and saved outcome remain available. An opened postcard shows only the illustrated card, without a surrounding panel or separate door button. Clicking the card (or pressing Enter) takes Fuchs outside. Lower the shelf's Waldspiele book away from the screen edge.
 
 ## 4. Characters and assignments
 
@@ -122,23 +122,24 @@ The catalogue below has one puzzle type per row, grouped by category. Existing a
 
 | Category | Puzzle or activity | What the child practises | Basis |
 | --- | --- | --- | --- |
-| Mathematics | Zählgarten | Count objects and match quantities to numbers | Existing |
-| Mathematics | Znüni-Rechnen | Addition and subtraction | Existing |
-| Mathematics | Sternenrakete | Find number bonds and missing quantities | Existing |
-| Mathematics | Zauberzwillinge | Double quantities | Existing |
+| Mathematics | Waldkäfer zählen | Count objects and match quantities to numbers | Existing |
+| Mathematics | Äpfel rechnen | Addition and subtraction | Existing |
+| Mathematics | Glühwürmchen sammeln | Find number bonds and missing quantities | Existing |
+| Mathematics | Nüsse verdoppeln | Double quantities | Existing |
 | Mathematics | Nachbarhäuser | Find predecessor and successor numbers | Existing |
 | Mathematics | Beerenvergleich | Compare quantities | Existing |
 | Mathematics | Rechenfreunde | Recognise related addition facts | Existing |
 | Mathematics | Waldpicknick | Share objects into equal groups | Existing |
 | Mathematics | Zahlenwege | Connect numbers in order to reveal a picture | Existing |
-| Reading | Reimzirkus | Read written words and match rhymes, with pictures and an optional action explanation | Existing, adapted |
+| Reading | Waldreime | Read written words and match rhymes, with pictures and an optional action explanation | Existing, adapted |
 | Reading | Lies und zeig | Read a three-word sentence and select one of two pictures | Initial Waldkauz activity |
-| Reading | Silbentrommel | Hear and count spoken syllables | Existing |
+| Reading | Silben klopfen | Hear and count spoken syllables | Existing |
 | Reading | Initial-sound matching | Match pictures with the same initial sound | Proposed |
-| Reading | Leseschatz | Read syllables and words | Existing |
-| Reading | Lies genau | Read colour words, phrases and sentences carefully | Existing |
-| Reading | Silben-Ballone | Recognise written syllable families | Existing |
-| Writing | Vokalversteck | Supply missing written vowels | Existing |
+| Reading | Silben-Puzzle | Assemble woodland words from written syllables | Existing, direct entry |
+| Reading | Wort und Waldbild | Read a woodland word and choose its picture | Existing, direct entry |
+| Reading | Farben lesen | Read colour words, phrases and sentences carefully | Existing |
+| Reading | Silbenblätter | Recognise written syllable families | Existing |
+| Writing | Waldwörter ergänzen | Supply missing written vowels | Existing |
 | Writing | Schreibspuren | Trace letter forms | Existing |
 | Reading | Letter–sound matching | Connect written letters with spoken sounds | Proposed |
 | Reading | Build a word | Combine written syllables into a word | Proposed |
@@ -146,11 +147,11 @@ The catalogue below has one puzzle type per row, grouped by category. Existing a
 | Reading | Was kommt dann? | Put events or actions in a logical order | Existing |
 | Optional enrichment | Lost belongings | Remember where an object belongs | Proposed |
 | Reading | Mixed-up stories | Understand and order a narrated story | Later proposal; withdrawn from initial set |
-| Mathematics | Musterzug | Recognise and extend repeating patterns | Existing |
+| Mathematics | Waldmuster | Recognise and extend repeating patterns | Existing |
 | Mathematics | Welche Form fehlt? | Recognise a missing shape in a familiar object | Initial Biber warm-up |
-| Mathematics | Formenwerkstatt | Combine geometric shapes | Existing, restored composition activity |
-| Mathematics | Spiegelmosaik | Complete a reflected grid | Existing |
-| Mathematics | Roboterpost | Follow and construct routes | Existing |
+| Mathematics | Waldwerkstatt | Combine geometric shapes | Existing, restored composition activity |
+| Mathematics | Waldspiegel | Complete a reflected grid | Existing |
+| Mathematics | Waldpost | Follow and construct routes | Existing |
 | Mathematics | Bridge builder | Fit pieces to a pictured construction plan | Proposed |
 | Mathematics | Waldumfrage | Read and compare quantities in picture charts | Existing |
 | Nature | Naturdetektive | Identify animals, habitats, traits and needs | Existing |
@@ -164,7 +165,7 @@ Creative missions are a source collection outside this table; add each selected 
 
 The restored catalogue includes Writing, Nature and Creativity alongside the newer Reading and Mathematics rounds, without requiring a new animal for every skill. Optional enrichment is kept outside claims of curriculum coverage.
 
-The Waldspiele overview shows all 26 puzzles in one grid, with the same friend filters and no separate newer-round section. Animal portraits and puzzle icons use the painted Waldatelier style of Waldumfrage, Zahlenwege and Naturdetektive, including matching blueberries, houses, mirror and wand art.
+The Waldspiele overview shows all 29 puzzles in one grid, with the same friend filters and no separate newer-round section. The four Leseschatz activities are direct independent puzzles: Silben-Puzzle, Wort und Waldbild, Silbenblätter and Farben lesen. Use the Silben-Puzzle's pictured task, clear paper, large answer tiles and quiet feedback as the common design. Match characters-v1.png with warm dimensional woodland animals, softly shaded natural objects and one forest clearing. Use woodland names and motifs: Waldmuster, Waldreime, Glühwürmchen sammeln, Nüsse verdoppeln and Waldpost replace unrelated train, circus, rocket and robot settings. Keep internal IDs and historical progress compatible.
 
 Use one difficulty level for every puzzle. Vary questions and story objects within that level; there is no level selector or automatic difficulty progression. Add more tasks and variations within each puzzle type. A round begins with a separate worked example and initially contains five tasks; expand the question pool before increasing round length. Keep explanations short and allow replayable demonstrations and hints.
 

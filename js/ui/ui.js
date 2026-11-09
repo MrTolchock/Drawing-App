@@ -345,7 +345,12 @@
     });
     wrap._onClose = o.onClose;
     document.body.append(wrap);
+    // Touch confirmation works on pointer release, including browsers that omit
+    // a compatibility click after the paint canvas has handled a gesture.
+    FK.play?.bindTouch(wrap);
     modalEl = wrap;
+    requestAnimationFrame(()=>rowFocus());
+    function rowFocus(){if(modalEl===wrap)(wrap.querySelector('.modal-actions button')||close).focus();}
     FK.sound.open();
     return { close: closeModal, el: card };
   }

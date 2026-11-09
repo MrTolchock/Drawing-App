@@ -48,7 +48,7 @@
   }
   // Menu art can show a group of berries; scored counters stay exactly one berry.
   function gamePicture(game) {
-    return FK.visual.art({compare:'berry-cluster',neighbours:'neighbour-houses',mirror:'hand-mirror',double:'magic-wand'}[game.id] || game.emoji);
+    return FK.visual.art(game.picture||{compare:'berry-cluster',neighbours:'neighbour-houses',mirror:'hand-mirror',double:FK.friendsLibrary?.active?'forest-nut':'magic-wand'}[game.id] || game.emoji);
   }
   let session=null;
   function begin(game,stage){session={game,stage,round:0,missed:new Set(),helped:new Set(),answered:new Set()};}

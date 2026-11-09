@@ -16,21 +16,23 @@ Completion of the invited friend's puzzle changes the destination to the mailman
 
 Hase wears recognizable postal clothing and a mail satchel/envelope badge. He wanders freely on walkable forest ground between deliveries, stays easy to reach for the handover, and never presents a puzzle. He is not part of the puzzle-host tabs or learning categories.
 
-The picture-book overview remains available for direct practice. All 26 puzzles share one grid, without a separate section for the five newer rounds. A completion only advances a letter when it belongs to that letter's current friend; unrelated practice does not create a delivery.
+The picture-book overview remains available for direct practice. All 29 puzzles share one grid, without a separate section for the five newer rounds or a nested Leseschatz menu. A completion only advances a letter when it belongs to that letter's current friend; unrelated practice does not create a delivery.
 
 ## Puzzles and assignments
 
 | Friend | Newer round | Original illustrated activities |
 | --- | --- | --- |
-| Eichhörnchen | Nüsse zählen | Zählgarten, Znüni-Rechenfreunde, Sternenrakete, Waldpicknick, Nachbarhäuser, Beerenvergleich |
-| Blaumeise | Reimpaare lesen | Reimzirkus, Silbentrommel, Naturdetektive |
-| Waldkauz | Lies und zeig | Musterzug, Was kommt dann?, Waldschatz, Waldumfrage |
-| Biber | Welche Form fehlt? | Formenwerkstatt, Zauberspiegel, Spiegelmosaik, Roboterpost, Zahlenwege |
-| Maus | Wörter und Bilder | Leseschatz (four reading activities), Vokalversteck, Schreibspuren |
+| Eichhörnchen | Nüsse zählen | Waldkäfer zählen, Äpfel rechnen, Glühwürmchen sammeln, Waldpicknick, Zahlennachbarn, Beeren vergleichen |
+| Blaumeise | Reimpaare lesen | Waldreime, Silben klopfen, Naturdetektive |
+| Waldkauz | Lies und zeig | Waldmuster, Was kommt zuerst?, Waldschatz, Waldumfrage |
+| Biber | Welche Form fehlt? | Waldwerkstatt, Nüsse verdoppeln, Waldspiegel, Waldpost, Zahlenwege |
+| Maus | Wörter und Bilder | Silben-Puzzle, Wort und Waldbild, Silbenblätter, Farben lesen, Waldwörter ergänzen, Schreibspuren |
 
-There are 21 original catalogue entries: 18 learning-game entries plus Leseschatz, Schreibspuren and Zahlenwege. Rechenfreunde remains an alias of Znüni-Rechenfreunde. V2 uses the original **Entdecken** content (stage 1), including reading, handwriting and number paths. The original bookmarks retain their prior difficulty settings. Forest friends practice does not advance an interrupted Heart Tree tour.
+There are 24 direct catalogue entries: 18 learning-game families, the four former Leseschatz activities, Schreibspuren and Zahlenwege. Rechenfreunde remains an alias of the addition game. The original internal IDs, reading progress keys and historical difficulty settings remain compatible. The current game uses one fixed first-grade content selection, including woodland picture words, short syllables and natural two-picture sequences. Forest friends practice does not advance an interrupted Heart Tree tour.
 
-The newer rounds keep their exact five-task snapshots, choice order, attempts and help state. Their pools remain 20 scored quantities (three reserved for the example), 15 rhyme pairs, 15 sentences, 16 object/shape combinations and 18 pictured words (Ast reserved for the example). A next round avoids the prior five task IDs when the pool allows it. Cream paper, garden panels, sepia outlines and original painted objects provide the shared puzzle style. Menu animal portraits and puzzle icons use that painted Waldatelier family; matching squirrel, blue tit, blueberries, neighbouring houses, mirror and wand illustrations are in `assets/waldatelier/menu.png`. Individual berry counters inside puzzles remain one berry.
+The newer rounds keep their exact five-task snapshots, choice order, attempts and help state. Their pools remain 20 scored quantities (three reserved for the example), 15 rhyme pairs, 15 sentences, 16 object/shape combinations and 18 pictured words (Ast reserved for the example). A next round avoids the prior five task IDs when the pool allows it.
+
+All current puzzle families use the Silben-Puzzle's clear picture cards, cream task paper, large response tiles and consistent progress badges, framed by one quiet woodland clearing. `characters-v1.png` is the art reference: warm dimensional animals, soft natural materials, honey wood, cream and green. New shared object and action-pose sheets cover individual counting objects and unambiguous sitting/running/sleeping/flying/swimming pictures; each berry still represents exactly one counter. Geometry and scored colour choices keep their exact shapes/colours. `js/friends/puzzles.js` holds the current names, direct reading routes and woodland content adapters; `css/puzzles.css` supplies the shared presentation. Historical entry points retain their original questions and names. The four independent reading puzzles still use their original progress keys and each completes through the mouse's letter callback.
 
 ## Shared interface and settings
 
@@ -44,7 +46,7 @@ The fox's table opens **Ausmalen** directly. Six new woodland illustrations repl
 
 The pile of pictures beside the table has its own **Meine Bilder** button, opening the saved gallery directly. The back arrow inside a colouring page returns to its picture selection, or to the gallery when resuming a saved picture; **Rückgängig** separately undoes a paint action. Existing IndexedDB drawings and original page IDs remain usable, including older colouring pages and modes in the historical game. Earlier v2 vector sheets and ownership records remain stored without migration.
 
-The den painting has a matching closed wooden door with a brass mail lid and no loose cushion beside the bed. Sleeping curls the fox sideways on the green mattress, including after resizing. The Waldspiele button sits beside the shelf books so their spines remain visible. Opened letters use new large illustrated character portraits rather than enlarging the small navigation icons.
+The den painting has a matching closed wooden door with a brass mail lid and no loose cushion beside the bed. Sleeping curls the fox sideways on the green mattress at a size comparable to the standing fox; resizing keeps the full body visible. The Waldspiele book sits lower beside the shelf, with room above it. An opened letter shows only the postcard; tapping it or pressing Enter takes Fuchs outside. The surrounding panel and separate door button are removed. New/Cancel/Undo at the painting table also works when a touch browser delivers pointer events without a compatibility click.
 
 The shop, bag/wallet controls, prices and currency payout flow are removed from current play. Completing a puzzle brings friendly acknowledgement and a new delivery. Previously stored ownership, token and consumable values are compatibility data, not a gate on drawing tools or the new story. No picture is overwritten by a migration.
 
@@ -87,7 +89,7 @@ Logs remain local and bounded to seven days / 10,000 events, with anonymous sess
 
 `?dev=1` uses a visibly marked separate development save/log/backup. Portrait shortcuts and task skips belong only there; test activity must not alter a child's letter journey or drawings. `?software=1` reduces raster resolution and shadows for automated rendering; it does not change puzzle answers or saved letter rules.
 
-Run `node --test tests/*.test.cjs` and the current Forest friends browser suites against the local server. Letter-loop checks must cover the closed-door arrival, letter opening, friend arrow, old/new assigned puzzle completion, nearby mailman, next letter, repeated completion, refresh, old saves, offline relaunch and phone layouts. `tests/friends-mail-browser.cjs` (also `friends-browser.cjs`) checks the letter loop; `friends-animation-browser.cjs` checks free bed sleep and Skip. The original economy fixtures have been replaced. All 15 model/content/save test suites passed. The integrated mail journey, library/atelier and free-bed browser suites passed in Chromium at tablet and phone sizes, including offline reload, actual tracing/number-path completion and normal-motion delivery. [Visual evidence and comparison](../design/forest-friends/visuals/milestones/letter-adventure/COMPARISON.md) record this implementation.
+Run `node --test tests/*.test.cjs` and the current Forest friends browser suites against the local server. Letter-loop checks must cover the closed-door arrival, letter opening, friend arrow, old/new assigned puzzle completion, nearby mailman, next letter, repeated completion, refresh, old saves, offline relaunch and phone layouts. `tests/friends-mail-browser.cjs` (also `friends-browser.cjs`) checks the letter loop; `friends-animation-browser.cjs` checks free bed sleep and Skip. The original economy fixtures have been replaced. All 16 model/content/save test suites passed. The integrated mail journey, library/atelier and den browser suites passed in Chromium at tablet and phone sizes, including offline reload, actual tracing/number-path completion and normal-motion delivery. The puzzle suite checks all 24 catalogue routes at 1024/390, four independent reading completions, rethemed arithmetic, sleep size and pointer-only painting confirmation. [Visual evidence and comparison](../design/forest-friends/visuals/milestones/letter-adventure/COMPARISON.md) record this implementation.
 
 The den repair adds `tests/den-browser.cjs`: mattress placement at both viewports, shelf visibility, illustrated postcard, six closed-region colouring pages, direct free mode, absence of stamps, working back paths, gallery save/resume and offline restoration. [Den comparison evidence](../design/forest-friends/visuals/milestones/den-polish/COMPARISON.md) records the new artwork and layouts.
 

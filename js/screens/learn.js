@@ -135,10 +135,10 @@
   }
   function patternTrain(visual) {
     const gap=h('span',{class:'learn-wagon learn-pattern-gap','aria-label':'Hier fehlt eine Form',text:'?'});
-    const wagons=current.sequence.map(token=>h('span',{class:'learn-wagon'},FK.play.picture(token)));
+    const wagons=current.sequence.map(token=>h('span',{class:'learn-wagon'},FK.friendsLibrary?.active?FK.woodland.pattern(token):FK.play.picture(token)));
     const train=h('div',{class:'learn-train learn-pattern-train','aria-label':'Muster',style:{'--pattern-count':current.sequence.length+1}},h('span',{class:'learn-engine'},FK.play.picture('🚂')),wagons,gap);
     visual.append(train,h('p',{class:'play-instruction',text:'Ziehe das passende Bild in den letzten Wagen. Oder tippe es an.'}));
-    return {target:gap,solve(value){gap.replaceChildren(FK.play.picture(value));gap.classList.add('filled');train.classList.add('train-departs');},hint(){const period=[1,2,3].find(p=>current.sequence.every((v,i)=>v===current.sequence[i%p]))||3;wagons.forEach((wagon,i)=>wagon.classList.toggle('pattern-group',i<period));}};
+    return {target:gap,solve(value){gap.replaceChildren(FK.friendsLibrary?.active?FK.woodland.pattern(value):FK.play.picture(value));gap.classList.add('filled');if(!FK.friendsLibrary?.active)train.classList.add('train-departs');},hint(){const period=[1,2,3].find(p=>current.sequence.every((v,i)=>v===current.sequence[i%p]))||3;wagons.forEach((wagon,i)=>wagon.classList.toggle('pattern-group',i<period));}};
   }
   function natureInvestigation(visual) {
     const cue=FK.play.natureCue(current.cue),target=cue.querySelector('.play-question');
@@ -158,9 +158,9 @@
       options = session.choices || FK.shuffle(current.choices);
       if (!session.question || !session.choices) FK.forestState.question(current, options, quest);
       locked = session.answered;
-    } else { current = FK.learning.question(game.id, stage, round); locked = false; options = FK.shuffle(current.choices); }
+    } else { current = FK.puzzles.question(FK.learning.question(game.id, stage, round),game.id,round); locked = false; options = FK.shuffle(current.choices); }
     body.replaceChildren();
-    body.append(h('p', { class: 'learn-meta', text: 'Stufe ' + stage + ' · ' + FK.learning.stages[stage - 1] + ' · Aufgabe ' + (round + 1) + ' von 5' }),
+    body.append(h('p', { class: 'learn-meta', hidden:!!FK.friendsLibrary?.active, text: 'Stufe ' + stage + ' · ' + FK.learning.stages[stage - 1] + ' · Aufgabe ' + (round + 1) + ' von 5' }),
       FK.woodland.progress(round),
       h('h2', { class: 'learn-prompt', text: forest ? 'Wie geht es weiter?' : current.prompt }));
     if (!forest) body.prepend(FK.play.context(game.id, current.prompt, round, stage));
@@ -191,14 +191,14 @@
         answers.querySelectorAll('button').forEach(x => { x.disabled = true; });
         b.classList.add('correct');
         if (forest) { FK.forestState.answer(value, quest); FK.sound.right(); FK.forestVoice.say('Das passt! Tippe auf den Pfeil.'); }
-        else { FK.play.attempt?.(true); scene.solve?.(value); FK.play.feedback(body, game.id === 'nature' ? current.hint : game.id === 'count' ? 'Danke! Jetzt wissen wir, wie viele kleine Gartenfreunde hier wohnen.' : game.id === 'add' ? 'Mmmh, danke! Mit dir ist unser Waldpicknick gerettet!' : 'Juhui, der Musterzug kann weiterfahren!', true); }
+        else { FK.play.attempt?.(true); scene.solve?.(value); FK.play.feedback(body, game.id === 'nature' ? current.hint : game.id === 'count' ? 'Danke! Jetzt wissen wir, wie viele kleine Gartenfreunde hier wohnen.' : game.id === 'add' ? 'Mmmh, danke! Mit dir ist unser Waldpicknick gerettet!' : (FK.friendsLibrary?.active?'Juhui, dein Waldmuster passt!':'Juhui, der Musterzug kann weiterfahren!'), true); }
         live.textContent = game.id === 'nature' ? 'Bravo! ' + current.hint : 'Juhui! Das stimmt.';
         next.hidden = false;
       };
       b = button(String(value), choose, 'learn-answer');
       b.setAttribute('aria-label', forest ? FK.woodland.patternName(value) : String(value));
       b.dataset.answer = String(value);
-      if (forest) b.replaceChildren(FK.woodland.pattern(value));
+      if (forest || FK.friendsLibrary?.active&&game.id==='pattern') b.replaceChildren(FK.woodland.pattern(value));
       else if (game.id === 'nature' || game.id === 'pattern') b.replaceChildren(FK.play.picture(value, value));
       if (!forest && scene.target) { b.classList.add('learn-movable'); dragTo(b,scene.target,choose); }
       if (locked) { b.disabled = true; if (value === current.answer) b.classList.add('correct'); }
@@ -248,7 +248,7 @@
       back.replaceChildren(); back.insertAdjacentHTML('beforeend', forest ? '' : FK.icon('back'));
       back.setAttribute('aria-label', forest ? 'Zurück zum Biber' : 'Zurück');
       game = FK.learning.games.find(g => g.id === (forest ? 'pattern' : p.game)) || FK.learning.games[0];
-      stage = forest ? 1 : FK.learning.stage(); round = 0; if (!forest) FK.play.begin?.(game.id, stage); title.textContent = forest ? 'Waldspiele' : game.title; if (forest) FK.forestActivity.prepare(root, quest);
+      stage = forest ? 1 : FK.learning.stage(); round = 0; if (!forest) FK.play.begin?.(game.id, stage); title.textContent = forest ? 'Waldspiele' : FK.puzzles.title(game.id,game.title); if (forest) FK.forestActivity.prepare(root, quest);
       if (forest) {
         const session = FK.forestState.getActivity(quest) || FK.forestState.startActivity(quest);
         if (session?.finished) { finish(); return; }

@@ -1,6 +1,11 @@
 /* Farbtupf – Service Worker: keeps the whole app on the device so it runs without internet. */
-const CACHE = 'farbtupf-v8.3.0-woodland-interface';
+const CACHE = 'farbtupf-v8.4.0-forest-puzzles';
 const ASSETS = [
+  './js/friends/puzzles.js',
+  './css/puzzles.css',
+  './assets/forest-friends/puzzle-clearing.png',
+  './assets/waldatelier/forest-objects.png',
+  './assets/waldatelier/forest-actions.png',
   './assets/waldatelier/menu.png',
   './js/friends/interface.js',
   './js/friends/settings.js',

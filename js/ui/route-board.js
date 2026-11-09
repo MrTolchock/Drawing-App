@@ -46,13 +46,13 @@
     const root = h('div', { class: 'route-board' + (pictured ? ' route-pictured' : '') });
     const field = h('div', { class: 'adventure-map', style: { '--size': q.size }, role: 'group', 'aria-label': pictured ? 'Fuchs und ' + (FK.forestStory?.names[options.targetResident || 'owl'] || 'Waldkauz') + ' auf der Wegekarte' : 'Postkarte mit ' + q.size + ' mal ' + q.size + ' Feldern' });
     const commands = h('p', { class: 'adventure-commands', role: 'status', 'aria-live': 'polite' });
-    const arrows = h('div', { class: 'adventure-arrows', role: 'group', 'aria-label': pictured ? 'Fuchs bewegen' : 'Roboter steuern' });
+    const arrows = h('div', { class: 'adventure-arrows', role: 'group', 'aria-label': pictured ? 'Fuchs bewegen' : FK.friendsLibrary?.active?'Waldpost bewegen':'Roboter steuern' });
     const cells = [], controls = [];
     for (let i = 0; i < q.size * q.size; i++) { const cell = h('span', { class: 'adventure-map-cell', 'aria-hidden': 'true' }); cells.push(cell); field.append(cell); }
     function update() {
       cells.forEach((cell, i) => {
         cell.replaceChildren(); cell.classList.toggle('route-goal', i === q.goal); cell.classList.toggle('route-arrived', i === q.goal && state.answered);
-        if (!pictured) { cell.textContent = i === state.position ? '🤖' : i === q.goal ? '📬' : q.obstacles.includes(i) ? '🌳' : state.history.includes(i) ? '·' : ''; FK.visual?.decorate(cell); }
+        if (!pictured) { cell.textContent = i === state.position ? (FK.friendsLibrary?.active?'🐰':'🤖') : i === q.goal ? '📬' : q.obstacles.includes(i) ? '🌳' : state.history.includes(i) ? '·' : ''; FK.visual?.decorate(cell); }
         else {
           if (i === q.goal) cell.append(FK.forestArt.character(options.targetResident || 'owl'));
           if (i === state.position) cell.append(FK.forestArt.character('fox'));
@@ -60,7 +60,7 @@
           else if (i !== q.goal && state.history.includes(i)) cell.append(h('span', { class: 'route-footprint' }, FK.forestArt.icon('paw')));
         }
       });
-      commands.textContent = (pictured ? 'Fuchs' : 'Roboter') + ': Reihe ' + (Math.floor(state.position / q.size) + 1) + ', Spalte ' + (state.position % q.size + 1) + '.';
+      commands.textContent = (pictured ? 'Fuchs' : FK.friendsLibrary?.active?'Hase':'Roboter') + ': Reihe ' + (Math.floor(state.position / q.size) + 1) + ', Spalte ' + (state.position % q.size + 1) + '.';
       controls.forEach(b => { b.disabled = state.answered || (options.demonstration === true && b.dataset.direction !== 'right'); }); undo.disabled = state.answered || state.history.length < 2;
       if (options.demonstration) {
         arrows.querySelector('.route-demo-hand')?.remove();

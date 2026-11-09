@@ -9,9 +9,9 @@ A woodland learning game for first-grade practice in Zürich, in Swiss Standard 
 - Start inside the den with its door closed. A letter slips through the mail lid; clicking opens unreadable handwriting and a clear portrait of the friend to visit.
 - Click/tap to walk through the 3D forest. A directional arrow guides Fuchs to the pictured friend, then to the nearby mailman after a completed puzzle. There are no movement arrows, keyboard walking or jumping.
 - Hase roams as a recognizable mailman with postal clothing and a satchel. He delivers new letters and never presents puzzles.
-- The five puzzle friends offer both the original illustrated catalogue and the five newer rounds, at one fixed level. The picture-book overview remains available for direct selection.
+- The five puzzle friends offer 29 directly selectable puzzles at one fixed level, with a common forest design based on the character sheet and Silben-Puzzle. The four reading activities are separate entries. Puzzle names and objects match the woodland setting.
 - The table opens Ausmalen directly with six illustrated woodland pages and free colouring only, without stamps. The picture pile beside it opens Meine Bilder. Waldspiele → Malatelier offers Ausmalen and Meine Bilder; all included tools, colours and pages are free.
-- The fox lies in his bed to sleep. The painted door matches the den, and opened letters show large illustrated portraits. The current adventure has no shop, coins, prices or purchases.
+- The sleeping fox keeps the standing fox's proportions. Opened postcards are directly clickable, without a surrounding frame or door button. The current adventure has no shop, coins, prices or purchases.
 - Matching painted toolbar icons and a woodland picture map use the original character artwork's style. Settings is shared by the forest and Waldspiele, including the optional timer.
 - Speech is off during ordinary play. Each puzzle has one **Spiel erklären** button; wind, birds, rustling foliage and brook sounds accompany the forest. Golden leaves are removed.
 - Exact interrupted newer puzzles, invitation progress, drawings and sound preferences remain local. Adults can export or delete bounded anonymous gameplay logs.

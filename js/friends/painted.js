@@ -17,7 +17,7 @@ const heightAt=(p,fraction)=>fraction*depth(p)/F;
 const pinPoint=(u,v)=>{const r=ray(u,v);return r.origin.clone().add(r.direction.clone().multiplyScalar(20));};
 const scenes={den:{need:[.03,.2,.97,.92]}};
 const denSpot=at(300,440),bedSpot=at(80,405),denFrac=.349;
-const pins={den:{outside:at(859,346),drawing:at(899,668),sleep:at(70,410),games:at(370,155),gallery:at(626,650)}};
+const pins={den:{outside:at(859,346),drawing:at(899,668),sleep:at(70,410),games:at(370,205),gallery:at(626,650)}};
 
 export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,onMove,onAnimationEnd,onProject}){
   const software=new URLSearchParams(location.search).has('software');
@@ -98,8 +98,12 @@ export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,o
   }
   function fitSleepingFox(){
     const [fw,fh]=canvas.style.backgroundSize.split(' ').map(parseFloat),[bx,by]=canvas.style.backgroundPosition.split(' ').map(parseFloat);
-    const target={x:bx+fw*20/IW,y:by+fh*480/IH,width:fw*190/IW,height:fh*175/IH};
-    let bounds=projectedBounds();fox.scale.multiplyScalar(Math.min(target.width/bounds.width,target.height/bounds.height)*.94);
+    // Size the curled body relative to the standing fox, not the narrow mattress.
+    fox.scale.setScalar(1);
+    let bounds=projectedBounds();
+    fox.scale.multiplyScalar(Math.min(fh*denFrac*.82,width*.8)/bounds.width);
+    bounds=projectedBounds();
+    const target={x:Math.max(4,bx+fw*115/IW-bounds.width/2),y:by+fh*565/IH-bounds.height/2,width:bounds.width,height:bounds.height};
     const ndc=fox.position.clone().project(camera),point=(x,y)=>new THREE.Vector3(x/width*2-1,1-y/height*2,ndc.z).unproject(camera);
     for(let i=0;i<2;i++){bounds=projectedBounds();fox.position.add(point(target.x+target.width/2,target.y+target.height/2).sub(point(bounds.x+bounds.width/2,bounds.y+bounds.height/2)));}
     anim.sleepPosition=fox.position.clone();anim.sleepScale=fox.scale.x;anim.sleepViewport=[width,height];
@@ -144,7 +148,7 @@ export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,o
     steer(x,z){stick={x,z};if(!x&&!z&&area==='forest')onPosition(forest.position.x,forest.position.z);},
     sequence(item){anim={item,elapsed:0};idle.target=null;fox.rotation.set(0,.35,0);foxPos.copy(item==='sleep'?ground(bedSpot.u,bedSpot.v):spots[0]);fox.position.copy(foxPos);if(item==='sleep'){fox.scale.setScalar(sleepH/denH);fox.rotation.set(-.12,.2,0);foxRig.update(0,{action:'sleep',reduced:window.FK.reduced});fitSleepingFox();}},
     skip(){anim=null;finishProps();foxPos.copy(spots[0]);fox.position.copy(foxPos);},
-    get diagnostics(){const p=area==='forest'?forest.position:{x:foxPos.x,z:foxPos.z};return {area,paused,time,animation:anim?.item||null,sleepBounds:anim?.item==='sleep'?projectedBounds():null,keys:[...keys],destination:area==='forest'?forest.destination?.toArray():undefined,position:p,mailTarget:forest.guideTarget,mailman:forest.mailman,painted:true};},get area(){return area;},get position(){return area==='forest'?forest.position:{x:foxPos.x,z:foxPos.z};},
+    get diagnostics(){const p=area==='forest'?forest.position:{x:foxPos.x,z:foxPos.z};return {area,paused,time,animation:anim?.item||null,foxBounds:area==='den'?projectedBounds():null,sleepBounds:anim?.item==='sleep'?projectedBounds():null,keys:[...keys],destination:area==='forest'?forest.destination?.toArray():undefined,position:p,mailTarget:forest.guideTarget,mailman:forest.mailman,painted:true};},get area(){return area;},get position(){return area==='forest'?forest.position:{x:foxPos.x,z:foxPos.z};},
     dispose(){cancelAnimationFrame(raf);observer.disconnect();canvas.removeEventListener('pointerup',pick);document.removeEventListener('visibilitychange',visibility);document.removeEventListener('keydown',keydown);document.removeEventListener('keyup',keyup);window.removeEventListener('blur',blur);fill.remove();night.remove();renderer.dispose();},
   };
 }

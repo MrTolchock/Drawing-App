@@ -25,7 +25,8 @@
     if(q.kind==='rocket') body.querySelector('.play-rocket').classList.add('launching');
   }
   function check(ok, message = q.hint) { if(locked) return; if(ok) success(); else {FK.play.attempt?.(false);FK.sound.undo();say(message);} }
-  function stars(n) { return h('span',{class:'adventure-quantity','aria-label':n+' Sterne'},Array.from({length:n},()=>FK.visual.art('star'))); }
+  function counter(){return FK.friendsLibrary?.active?(q.kind==='rocket'?FK.puzzles.firefly():FK.visual.art('forest-nut')):FK.visual.art('star');}
+  function stars(n) { return h('span',{class:'adventure-quantity','aria-label':n+(FK.friendsLibrary?.active?(q.kind==='rocket'?' Glühwürmchen':' Nüsse'):' Sterne')},Array.from({length:n},counter)); }
   function shape(id, rotated, target = false) {
     const paths = {circle:'<circle cx="60" cy="60" r="36"/>',triangle:'<path d="M60 16 104 98H16Z"/>',square:'<rect x="27" y="27" width="66" height="66"/>',rectangle:'<rect x="14" y="38" width="92" height="44"/>'};
     const vertices = {circle:[],triangle:[[60,16],[104,98],[16,98]],square:[[27,27],[93,27],[93,93],[27,93]],rectangle:[[14,38],[106,38],[106,82],[14,82]]};
@@ -130,16 +131,16 @@
   function rocketBoard(host) {
     const loaded=[],bank=[],gestures=dragBoard(host);let id=0;
     cleanup=gestures.dispose;
-    const hold=h('div',{class:'rocket-hold',dataset:{drop:'rocket'},'aria-label':'Sterne neu einladen'});
+    const hold=h('div',{class:'rocket-hold',dataset:{drop:'rocket'},'aria-label':FK.friendsLibrary?.active?'Glühwürmchen ergänzen':'Sterne neu einladen'});
     const meter=h('p',{class:'adventure-meter',role:'status'});
     const rocket=h('div',{class:'play-rocket rocket-challenge'},
-      h('div',{class:'rocket-destination'},FK.play.picture('⭐'),h('strong',{text:String(q.total)}),h('span',{text:'für den Start'})),
+      h('div',{class:'rocket-destination'},FK.friendsLibrary?.active?null:FK.play.picture('⭐'),h('strong',{text:String(q.total)}),h('span',{text:FK.friendsLibrary?.active?'insgesamt':'für den Start'})),
       h('div',{class:'adventure-scene',text:'🚀'}),
-      h('div',{class:'rocket-cargo'},h('section',{class:'rocket-original'},h('h3',{text:'Schon an Bord: '+q.filled}),stars(q.filled)),
-        h('span',{class:'rocket-plus',text:'+'}),h('section',{class:'rocket-new'},h('h3',{text:'Deine Ladung'}),hold,meter)));
-    const empty=h('span',{class:'rocket-empty',text:'⭐ ↓','aria-hidden':'true'});
+      h('div',{class:'rocket-cargo'},h('section',{class:'rocket-original'},h('h3',{text:(FK.friendsLibrary?.active?'Schon da: ':'Schon an Bord: ')+q.filled}),stars(q.filled)),
+        h('span',{class:'rocket-plus',text:'+'}),h('section',{class:'rocket-new'},h('h3',{text:FK.friendsLibrary?.active?'Du ergänzt':'Deine Ladung'}),hold,meter)));
+    const empty=h('span',{class:'rocket-empty',text:FK.friendsLibrary?.active?'＋ ?':'⭐ ↓','aria-hidden':'true'});
     function update(){
-      meter.textContent=loaded.length+' neu geladen';empty.hidden=loaded.length>0;
+      meter.textContent=loaded.length+(FK.friendsLibrary?.active?' ergänzt':' neu geladen');empty.hidden=loaded.length>0;
       unload.disabled=loaded.length===0;
       bank.forEach(b=>b.disabled=loaded.length+Number(b.dataset.amount)>q.total+5);
       rocket.classList.toggle('has-cargo',loaded.length>0);
@@ -148,23 +149,23 @@
     function add(amount){
       if(loaded.length+amount>q.total+5)return;
       for(let i=0;i<amount;i++){
-        const b=h('button',{type:'button',class:'learn-button rocket-star','aria-label':'Geladenen Stern '+(++id)+' herausnehmen'},FK.visual.art('star'));
+        const b=h('button',{type:'button',class:'learn-button rocket-star','aria-label':(FK.friendsLibrary?.active?'Glühwürmchen ':'Geladenen Stern ')+(++id)+' herausnehmen'},counter());
         gestures.wire(b,()=>remove(b),target=>{if(target==='rocket-bank')remove(b);});loaded.push(b);hold.append(b);
       }
       FK.sound.tick();update();
     }
     const controls=h('div',{class:'rocket-controls',dataset:{drop:'rocket-bank'}});
     q.loads.forEach(amount=>{
-      const b=h('button',{type:'button',class:'learn-button rocket-load',dataset:{amount},'aria-label':amount+' '+(amount===1?'Stern':'Sterne')+' einladen'},
+      const b=h('button',{type:'button',class:'learn-button rocket-load',dataset:{amount},'aria-label':amount+' '+(FK.friendsLibrary?.active?'Glühwürmchen':amount===1?'Stern':'Sterne')+' einladen'},
         stars(amount),h('b',{text:'+'+amount}));
       gestures.wire(b,()=>add(amount),target=>{if(target==='rocket')add(amount);});bank.push(b);controls.append(b);
     });
     const unload=button('↶ Einen herausnehmen',()=>remove(loaded[loaded.length-1]),'rocket-unload');
     hold.append(empty);
-    host.append(FK.play.steps([['⭐','Ziel ansehen'],['🖐️','Sterne einladen'],['🚀','Start versuchen']]),rocket,controls,unload,
-      button('🚀 Starten',()=>{
+    host.append(FK.play.steps(FK.friendsLibrary?.active?[['🔢','Ziel ansehen'],['🖐️','Ergänzen'],['✓','Prüfen']]:[['⭐','Ziel ansehen'],['🖐️','Sterne einladen'],['🚀','Start versuchen']]),rocket,controls,unload,
+      button(FK.friendsLibrary?.active?'✓ Prüfen':'🚀 Starten',()=>{
         const count=q.filled+loaded.length;
-        check(count===q.total,count<q.total?'Pffft … die Rakete hat noch zu wenig Sternenkraft! Zähle die Sterne an Bord und lade noch welche ein.':'Uff, diese Ladung ist zu schwer! Nimm ein paar neu geladene Sterne heraus.');
+        check(count===q.total,FK.friendsLibrary?.active?'Vergleiche mit der Zielzahl. Ergänze noch oder nimm eines zurück.':count<q.total?'Pffft … die Rakete hat noch zu wenig Sternenkraft! Zähle die Sterne an Bord und lade noch welche ein.':'Uff, diese Ladung ist zu schwer! Nimm ein paar neu geladene Sterne heraus.');
       },'learn-next'));
     update();
   }
@@ -227,12 +228,12 @@
   }
   function doubleBoard(host) {
     const copies=[];let matched=false;
-    const reflected=h('div',{class:'mirror-copy-group','aria-label':'Deine zweite Sternengruppe'}),count=h('span',{class:'mirror-copy-count',role:'status'});
+    const reflected=h('div',{class:'mirror-copy-group','aria-label':FK.friendsLibrary?.active?'Deine zweite Nussgruppe':'Deine zweite Sternengruppe'}),count=h('span',{class:'mirror-copy-count',role:'status'});
     const mirror=h('div',{class:'mirror-building'},
       h('section',{class:'mirror-side'},h('h3',{text:'Hier: '+q.n}),stars(q.n)),
-      h('div',{class:'mirror-magic-axis','aria-hidden':'true'},FK.play.picture('🪄')),
+      h('div',{class:'mirror-magic-axis','aria-hidden':'true'},FK.friendsLibrary?.active?h('b',{text:'＋'}):FK.play.picture('🪄')),
       h('section',{class:'mirror-side mirror-copy'},h('h3',{text:'Noch einmal gleich viel'}),reflected,count));
-    const empty=h('span',{class:'mirror-empty',text:'⭐ ?','aria-hidden':'true'});reflected.append(empty);
+    const empty=h('span',{class:'mirror-empty',text:FK.friendsLibrary?.active?'?':'⭐ ?','aria-hidden':'true'});reflected.append(empty);
     const answerRow=h('div',{class:'learn-answers'}),numberTask=h('section',{class:'mirror-number-task',hidden:true},
       h('p',{class:'learn-equation',text:q.n+' + '+q.n+' = ?'}),answerRow);
     FK.shuffle(q.choices).forEach(value=>{
@@ -240,22 +241,22 @@
       b.dataset.answer=String(value);b.setAttribute('aria-label',String(value));answerRow.append(b);
     });
     function update(){
-      count.textContent=copies.length+' Sterne';empty.hidden=copies.length>0;
+      count.textContent=copies.length+(FK.friendsLibrary?.active?' Nüsse':' Sterne');empty.hidden=copies.length>0;
       remove.disabled=copies.length===0||matched;add.disabled=copies.length>=q.n+3||matched;
       copyCheck.disabled=matched;
     }
     function take(b){if(matched)return;const i=copies.indexOf(b);if(i>=0){copies.splice(i,1);b.remove();FK.sound.tick();update();}}
-    const add=button('🪄 +1 Stern',()=>{
+    const add=button(FK.friendsLibrary?.active?'＋ Eine Nuss':'🪄 +1 Stern',()=>{
       if(matched||copies.length>=q.n+3)return;
-      const b=button('',()=>take(b),'mirror-star');b.setAttribute('aria-label','Stern aus deiner Gruppe entfernen');b.append(FK.visual.art('star'));copies.push(b);reflected.append(b);FK.sound.tick();update();
+      const b=button('',()=>take(b),'mirror-star');b.setAttribute('aria-label',FK.friendsLibrary?.active?'Nuss aus deiner Gruppe entfernen':'Stern aus deiner Gruppe entfernen');b.append(counter());copies.push(b);reflected.append(b);FK.sound.tick();update();
     },'mirror-add');
-    const remove=button('↶ Ein Stern zurück',()=>take(copies[copies.length-1]),'mirror-remove');
+    const remove=button(FK.friendsLibrary?.active?'↶ Eine Nuss zurück':'↶ Ein Stern zurück',()=>take(copies[copies.length-1]),'mirror-remove');
     const copyCheck=button('🪞 Gleich viele?',()=>{
-      if(copies.length!==q.n){check(false,copies.length<q.n?'Der Spiegel braucht noch Sterne. Für jeden Stern links soll rechts einer leuchten.':'Huch, rechts funkeln mehr Sterne! Nimm Sterne weg, bis beide Gruppen gleich gross sind.');return;}
+      if(copies.length!==q.n){check(false,FK.friendsLibrary?.active?'Lege rechts genau gleich viele Nüsse wie links.':copies.length<q.n?'Der Spiegel braucht noch Sterne. Für jeden Stern links soll rechts einer leuchten.':'Huch, rechts funkeln mehr Sterne! Nimm Sterne weg, bis beide Gruppen gleich gross sind.');return;}
       matched=true;mirror.classList.add('mirror-matched');numberTask.hidden=false;copies.forEach(b=>b.disabled=true);FK.sound.right();
-      say('Hui, der Zauber wirkt! Zwei gleiche Gruppen. Wie viele Sterne sind es jetzt zusammen?');update();
+      say(FK.friendsLibrary?.active?'Zwei gleiche Nussgruppen. Wie viele Nüsse sind es zusammen?':'Hui, der Zauber wirkt! Zwei gleiche Gruppen. Wie viele Sterne sind es jetzt zusammen?');update();
     },'mirror-check');
-    host.append(FK.play.steps([['⭐','Sterne ansehen'],['🪄','Gleich viele zaubern'],['🔢','Beide Gruppen zählen']]),mirror,
+    host.append(FK.play.steps(FK.friendsLibrary?.active?[['🌰','Nüsse ansehen'],['🖐️','Gleich viele legen'],['🔢','Zusammen zählen']]:[['⭐','Sterne ansehen'],['🪄','Gleich viele zaubern'],['🔢','Beide Gruppen zählen']]),mirror,
       h('div',{class:'mirror-tools'},add,remove,copyCheck),numberTask);
     update();
   }
@@ -357,7 +358,7 @@
   }
   function draw() {
     cleanup();cleanup=()=>{};
-    q=FK.adventures.question(game.id,stage,round);locked=false;
+    q=FK.puzzles.question(FK.adventures.question(game.id,stage,round),game.id,round);locked=false;
     const host=h('div',{class:'adventure-work adventure-'+q.kind});
     feedback=h('p',{class:'learn-feedback',role:'status','aria-live':'polite',text:'Probiere aus. Du hast Zeit.'});
     const advance=()=>{if(!locked)return;round++;if(round===5)finish();else draw();};
@@ -369,7 +370,7 @@
   function finish(){cleanup();FK.play.finish(body,'adventure',game.id,stage,()=>{round=0;draw();});}
   FK.screen('adventure',{
     build(root){FK.play.bindTouch(root);const bar=FK.ui.topbar({title:'Waldspiel'});title=bar.querySelector('.title');body=h('div',{class:'learn-body scroll'});root.append(bar,body);},
-    enter(p){game=FK.adventures.games.find(g=>g.id===p.game)||FK.adventures.games[0];stage=FK.journey.stageOf(p.stage||FK.learning.stage());round=0;FK.play.begin?.(game.id,stage);title.textContent=game.title;draw();},
+    enter(p){game=FK.adventures.games.find(g=>g.id===p.game)||FK.adventures.games[0];stage=FK.journey.stageOf(p.stage||FK.learning.stage());round=0;FK.play.begin?.(game.id,stage);title.textContent=FK.puzzles.title(game.id,game.title);draw();},
     leave(){locked=true;cleanup();FK.forestVoice.cancel();},
   });
 })();

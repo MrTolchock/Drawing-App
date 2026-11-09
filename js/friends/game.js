@@ -29,11 +29,12 @@ function showLetter(fromMailman){
   if(before.phase==='to-mailman'&&!fromMailman){say('Der Briefträger hat deinen nächsten Brief. Folge dem Pfeil zu ihm.');return;}
   if(before.phase!=='to-friend'&&!state.openLetter()){saveStatus();return;}
   open('letter');syncMail();
-  const id=state.mail().host,card=shell('letter');card.classList.add('ff-letter-card');
-  const letter=h('div',{class:'ff-letter-paper','aria-label':'Ein Bilderbrief von '+C.hosts[id].name},
+  const id=state.mail().host;
+  overlay.classList.add('ff-postcard-overlay');
+  const letter=h('button',{type:'button',class:'ff-letter-paper','aria-label':'Zum Freund gehen',onclick:()=>go('forest')},
     h('div',{class:'ff-letter-stamp'},art('leaf')),letterPortrait(id),
     h('div',{class:'ff-letter-scribbles','aria-hidden':'true',html:'<svg viewBox="0 0 320 100"><path d="M15 18q8-16 18 0t18-2 19 0 22-1m16 0q12-12 24-1t24 0 20-1 25 0 23-2M15 44q10-15 18-1t18 0 24-1 21 0m15 0q14-14 24 0t26-1 22 0 22 0M15 70q9-12 18 0t22 0 22 0m16 0q12-14 24-1t21 0 23-1 25 0 22 0" fill="none" stroke="#877257" stroke-width="3" stroke-linecap="round"/></svg>'}));
-  card.append(letter,button('Zum Freund gehen','door',()=>go('forest'),'ff-letter-go'));
+  overlay.append(letter);requestAnimationFrame(()=>letter.focus());
   say('Ein Brief von '+C.hosts[id].name+'! Schau auf das Bild. Draussen zeigt dir der Pfeil den Weg.');
 }
 function letterPortrait(id){
@@ -45,6 +46,8 @@ function letterPortrait(id){
 const paintedFriends={fox:'fox-front',squirrel:'squirrel',bird:'bird',owl:'owl',mouse:'mouse'};
 const paintedWords={tree:'tree',book:'book',mouse:'mouse',bird:'bird',owl:'owl',fox:'fox',apple:'apple',leaf:'leaf',feathers:'feather',berries:'blueberries',pencils:'pencil',bed:'bed',bag:'picnic',gallery:'pictures',beaver:'beaver',hat:'hat',rose:'rose',nose:'nose',fish:'fish',ball:'ball',boat:'boat',cow:'cow',hare:'rabbit',tin:'tin',bus:'bus',star:'star',whale:'whale'};
 function art(name,cls=''){
+  if(FK.puzzles.actions.includes(name))return h('span',{class:'ff-picture ff-painted-picture '+cls},FK.visual.art(name));
+  if(['fox','squirrel','bird','owl','beaver','mouse'].includes(name))return h('span',{class:'ff-picture ff-painted-picture '+cls},FK.friendsArt.portrait(name));
   if(['map','letter','book','gear'].includes(name))return h('span',{class:'ff-picture '+cls},FK.friendsArt.icon(name));
   if(name==='mailman')return h('span',{class:'ff-picture ff-mailman-picture'},FK.visual.art('rabbit'),h('i',{html:envelopeSVG}));
   if(name==='nut'||name==='nuts'){const s=h('span',{class:'ff-picture ff-painted-picture '+cls});s.append(FK.woodland.art('nut'));return s;}
@@ -61,6 +64,7 @@ function download(name,data){const url=URL.createObjectURL(new Blob([JSON.string
 function tick(){const now=performance.now();if(panel==='puzzle'&&!example&&!document.hidden&&state.round(host)?.feedback!=='correct')activeMs+=Math.min(500,now-lastTick);lastTick=now;}
 setInterval(tick,100);
 function close(){
+  overlay.classList.remove('ff-postcard-overlay');
   FK.forestVoice.cancel();
   tick();if(panel==='puzzle'&&host){state.record('task_leave',{host,activeMilliseconds:activeMs});if(activeMs)state.duration(host,activeMs);activeMs=0;}
   clearTimeout(feedbackTimer);feedbackTimer=null;panel=null;example=false;overlay.hidden=true;overlay.replaceChildren();world.pause(false);nav.hidden=false;renderHotspots();caption.hidden=true;syncMail();
@@ -112,7 +116,7 @@ function meet(id){
   if(selected.id.startsWith('friends-'))FK.friendsStartRound(id);
   else{
     world.pause(true);const params={game:selected.id,stage:1};
-    if(selected.screen==='read')params.game='wort';
+    if(selected.params)Object.assign(params,selected.params);
     if(selected.screen==='trace')params.glyph='I';
     if(selected.screen==='dots')params.id=FK.dots.find(d=>d.level===1).id;
     FK.go(selected.screen,params);
@@ -155,7 +159,7 @@ function hint(){const r=state.get().rounds[host],t=r.tasks[r.index];if(!state.he
   else{overlay.querySelector('.ff-target').classList.add('ff-letter-help');say('Nimm dir Zeit. Schau jeden Buchstaben an. Du kannst dir das Beispiel ansehen.');}
 }
 function showExample(){
-  const r=state.get().rounds[host];if(!r||r.index===5)return;tick();example=true;state.help(host,'example');clearTimeout(feedbackTimer);const t=C.examples[host];overlay.replaceChildren();const card=shell('demo',()=>{state.seenExample(host);example=false;puzzle();});
+  const r=state.get().rounds[host];if(!r||r.index===5)return;tick();example=true;state.help(host,'example');clearTimeout(feedbackTimer);const t=C.examples[host];overlay.replaceChildren();const card=shell('demo',()=>{state.seenExample(host);example=false;puzzle();});card.classList.add('ff-illustrated-round');
   card.append(h('div',{class:'ff-example-banner',html:picture('demo')}),taskScene(t),h('div',{class:'ff-choices'},t.choices.map(v=>choice(t,v,true))),button('Spiel erklären','speaker',()=>FK.forestVoice.explain(t.explanation)));
   say(t.explanation+' Mit dem Pfeil geht es zur Aufgabe.');const correct=card.querySelector(`[data-answer="${t.answer}"]`);correct.classList.add('ff-demonstrated');
 }

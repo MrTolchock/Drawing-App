@@ -39,9 +39,9 @@
   function data() {
     const W = FK.words || {};
     return {
-      list: W.list && W.list.length ? W.list : FALLBACK.list,
+      list: FK.friendsLibrary?.active ? FK.puzzles.words : W.list && W.list.length ? W.list : FALLBACK.list,
       syllables: W.syllables && Object.keys(W.syllables).length ? W.syllables : FALLBACK.syllables,
-      phrases: W.phrases && W.phrases.length ? W.phrases : FALLBACK.phrases,
+      phrases: FK.friendsLibrary?.active ? FK.puzzles.phrases : W.phrases && W.phrases.length ? W.phrases : FALLBACK.phrases,
     };
   }
 
@@ -89,12 +89,14 @@
     if(explainButton)explainButton.hidden=!FK.friendsLibrary?.active||['home','ballpick'].includes(name);
     stage.textContent = '';
     stage.className = 'rd-stage rd-on-' + name;
-    titleEl.textContent = title;
+    titleEl.textContent = FK.puzzles.title({puzzle:'read-puzzle',wort:'read-word',ballone:'read-leaves',ballpick:'read-leaves',genau:'read-colours'}[name],title);
+    if(FK.friendsLibrary?.active)stage.append(h('div',{class:'play-context'},FK.friendsLibrary.portrait('mouse'),h('span',{text:'Maus spielt mit dir'}),explainButton));
     backUse.setAttribute('href', name === 'home' ? '#i-home' : '#i-back');
     return token;
   }
 
   function goBack() {
+    if(FK.friendsLibrary?.active){FK.back();return;}
     if (view === 'home' || !view) FK.back();
     else if (view === 'ballone') { FK.sound.close(); showBallPick(); }
     else { FK.sound.close(); showHome(); }
@@ -263,6 +265,7 @@
   }
 
   function balloonSvg(color, cls) {
+    if(FK.friendsLibrary?.active)return '<svg class="'+(cls||'')+'" viewBox="0 0 100 150" aria-hidden="true"><path d="M50 125C-3 103 0 29 50 6c50 23 53 97 0 119Z" fill="'+color+'" stroke="#8d774f" stroke-width="2"/><path d="M50 147V26m0 57L26 62m24 0 21-22" fill="none" stroke="#8d774f" stroke-width="2" opacity=".45"/></svg>';
     return '<svg class="' + (cls || 'rd-b-svg') + '" viewBox="0 0 100 150" aria-hidden="true">' +
       '<path class="rd-b-str" d="M50 110 C41 119 59 127 49 136 C43 142 53 146 50 150" fill="none" stroke="' + INK + '" stroke-width="3" stroke-linecap="round"/>' +
       '<path d="M50 4 C76 4 94 25 94 52 C94 79 73 99 55 104 L45 104 C27 99 6 79 6 52 C6 25 24 4 50 4 Z" fill="' + color + '" stroke="' + INK + '" stroke-width="2"/>' +
@@ -866,6 +869,7 @@
       ch = Math.max(72, Math.floor(ch));
       cardsEl.style.setProperty('--cw', cw + 'px');
       cardsEl.style.setProperty('--ch', ch + 'px');
+      cardsEl.style.gap=gap+'px';
     }
     onResize = layout;
     afterFonts(layout);
@@ -1114,7 +1118,7 @@
       B.colorI = (B.colorI + 1 + ((Math.random() * 2) | 0)) % BALLOON_COLORS.length;
       const color = BALLOON_COLORS[B.colorI];
       const hit = h('div', { class: 'rd-b-hit' });
-      const el = h('div', { class: 'rd-balloon' + (same(syl, B.target) ? ' is-t' : '') },
+      const el = h('div', { class: 'rd-balloon' + (same(syl, B.target) ? ' is-t' : ''),role:'button',tabindex:'0','aria-label':FK.text.syllable(syl) },
         h('div', { class: 'rd-b-in', html: balloonSvg(color) }, h('span', { class: 'rd-b-syl', text: FK.text.syllable(syl) })),
         hit);
       const b = {
@@ -1125,6 +1129,7 @@
         e.preventDefault();
         tapBalloon(b);
       });
+      el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();tapBalloon(b);}});
       place(b);
       field.append(el);
       B.list.push(b);
@@ -1257,7 +1262,7 @@
     build(r) {
       root = r;
       const bar = FK.ui.topbar({ title: 'Lesen', onBack: goBack });
-      explainButton=FK.play.listen(()=>({puzzle:'Setze die Silben zum passenden Bild zusammen. Ziehe eine Silbe auf eine freie Stelle.',wort:'Lies das Wort. Tippe auf das Bild, das zum Wort passt.',genau:'Lies den Satz genau. Wähle die passenden Bilder und Farben.',ballone:'Lies die gesuchte Silbe. Tippe auf die Ballone mit dieser Silbe.'}[view]||'Wähle ein Lesespiel.'),'Spiel erklären');
+      explainButton=FK.play.listen(()=>({puzzle:'Setze die Silben zum passenden Bild zusammen. Tippe sie in der richtigen Reihenfolge an.',wort:'Lies das Wort. Tippe auf das Bild, das zum Wort passt.',genau:FK.friendsLibrary?.active?'Lies das Farbwort. Tippe auf das Bild mit dieser Farbe.':'Lies den Satz genau. Wähle die passenden Bilder und Farben.',ballone:FK.friendsLibrary?.active?'Lies die gesuchte Silbe. Wähle die Blätter mit dieser Silbe.':'Lies die gesuchte Silbe. Tippe auf die Ballone mit dieser Silbe.'}[view]||'Wähle ein Lesespiel.'),'Spiel erklären');
       bar.append(explainButton);
       titleEl = bar.querySelector('.title');
       backUse = bar.querySelector('.btn-back use');
@@ -1275,6 +1280,7 @@
       else if (p.game === 'wort') startWort(lvl);
       else if (p.game === 'genau') startGenau();
       else if (p.game === 'ballone') (p.row ? startBall(p.row) : showBallPick());
+      else if(FK.friendsLibrary?.active)startPuzzle(1);
       else showHome();
     },
     leave() {

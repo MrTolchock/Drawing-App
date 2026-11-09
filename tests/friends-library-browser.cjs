@@ -17,16 +17,16 @@ const shots=process.env.FARBTUPF_SHOTS||'/tmp/farbtupf-library';fs.mkdirSync(sho
   assert.equal(await page.locator('.ff-nav [aria-label="Einstellungen für Erwachsene"] .ff-ui-art').getAttribute('data-icon'),'gear');
   await page.evaluate(()=>{FK.settings.set('learning.stage',3);FK.settings.set('read.lvl',3);FK.settings.set('dots.level',3);});
   await click('Waldspiele');
-  assert.equal(await page.locator('.forest-book-game').count(),28);
+  assert.equal(await page.locator('.forest-book-game').count(),31);
   assert.equal(await page.getByText('Spiele aus dem Wald',{exact:true}).count(),0);
-  assert.equal(await page.locator('.forest-book-body > .forest-book-games > .forest-book-game').count(),28);
+  assert.equal(await page.locator('.forest-book-body > .forest-book-games > .forest-book-game').count(),31);
   assert.equal(await page.locator('.forest-book-body').innerText().then(text=>/\b(?:null|undefined)\b/.test(text)),false);
   assert.equal(await page.locator('.forest-book-body img,.forest-book-games .wa-symbol').count(),0);
-  assert.equal(await page.locator('.forest-book-game > span > .wa-illustration').count(),28);
-  for(const id of ['compare','neighbours','mirror','double'])assert.match(await page.locator('[data-game="'+id+'"] > span > .wa-illustration').getAttribute('style'),/menu\.png/);
+  assert.equal(await page.locator('.forest-book-game > span > .wa-illustration').count(),31);
+  for(const id of ['neighbours','mirror'])assert.match(await page.locator('[data-game="'+id+'"] > span > .wa-illustration').getAttribute('style'),/menu\.png/);
   assert.equal(await page.locator('.island-levels').count(),0);
   await snapshot('library-1024');
-  const catalogue=await page.evaluate(()=>FK.friendsLibrary.catalogue());assert.equal(catalogue.length,21);
+  const catalogue=await page.evaluate(()=>FK.friendsLibrary.catalogue());assert.equal(catalogue.length,24);
   for(const g of catalogue){
    await page.locator('[data-game="'+g.id+'"]').click();
    assert.equal(await page.evaluate(()=>FK.current()),g.screen,g.id);
@@ -87,13 +87,13 @@ const shots=process.env.FARBTUPF_SHOTS||'/tmp/farbtupf-library';fs.mkdirSync(sho
   // The menu's painted assets also load after an offline restart.
   await page.evaluate(()=>navigator.serviceWorker.ready);await page.waitForFunction(()=>!!navigator.serviceWorker.controller);await context.setOffline(true);
   await page.reload();await page.waitForFunction(()=>window.FK?.friends);await click('Waldspiele');
-  assert.equal(await page.locator('.forest-book-game').count(),28);
+  assert.equal(await page.locator('.forest-book-game').count(),31);
   assert.ok(await page.evaluate(async()=>{const im=new Image();im.src='assets/waldatelier/menu.png';await im.decode();return im.naturalWidth>0;}));
   assert.deepEqual(await page.evaluate(()=>FK.friends.get().drawings.free),strokes);
   await context.setOffline(false);
   // Original bookmarks retain their settings; v2 never rewrites their difficulty.
   await page.goto(BASE+'/?screen=hub');assert.equal(await page.locator('.island-levels').count(),1);assert.equal(await page.evaluate(()=>FK.learning.stage()),3);assert.equal(await page.evaluate(()=>FK.settings.get('read.lvl')),3);assert.equal(await page.evaluate(()=>FK.settings.get('dots.level')),3);
   await click('Malatelier');assert.deepEqual(await atelierIds(),['book','gallery','album']);assert.equal(await page.locator('.forest-book-body').innerText().then(text=>/\b(?:null|undefined)\b/.test(text)),false);
-  assert.deepEqual(errors,[]);console.log('PASS: 21 restored games, 5 new rounds, all host filters, fixed level, currency-free completion, v2 returns, painted settings icon, full atelier tools and drawing persistence, phone layouts, legacy settings.');
+  assert.deepEqual(errors,[]);console.log('PASS: 24 catalogue games, 5 new rounds, all host filters, fixed level, currency-free completion, v2 returns, painted settings icon, full atelier tools and drawing persistence, phone layouts, legacy settings.');
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});
