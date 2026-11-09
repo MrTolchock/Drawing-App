@@ -388,6 +388,7 @@
     el.eraser.classList.toggle('on', T.kind === 'eraser');
     el.brush.querySelector('use').setAttribute('href', '#i-' + BRUSH_ICON[T.brush]);
     el.stamp.querySelector('.emoji').textContent = T.emoji;
+    FK.visual?.load?.(T.emoji);   // the stamp's atlas is ready before the first tap
     el.size.querySelector('circle').setAttribute('r', SIZE_INFO[T.size].r);
     el.pattern.classList.toggle('off', labelMode);
     el.pattern.classList.toggle('on', !labelMode && T.pattern !== 'voll');

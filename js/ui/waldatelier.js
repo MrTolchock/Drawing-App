@@ -21,7 +21,7 @@
     postcard:['friend-squirrel','friend-bluetit','friend-owl','friend-beaver','friend-mouse','friend-fox'],
   };
   const grid = { menu:[3,2], postcard:[3,2] };
-  const source = sheet => sheet === 'postcard' ? 'assets/forest-friends/postcard-friends.webp' : 'assets/waldatelier/' + sheet + '.png';
+  const source = sheet => sheet === 'postcard' ? 'assets/forest-friends/postcard-friends.webp' : 'assets/waldatelier/' + sheet + '.webp';
   // Crayon versions of the cast are retired: their subjects and emoji show the master cast.
   const cast = { fox:'friend-fox', 'fox-animal':'friend-fox', beaver:'friend-beaver', mouse:'mouse-sit', rabbit:'hare-sit' };
   const subjects = {};
@@ -80,12 +80,25 @@
   bind('forest-nut','🌰');
   const lookup = value => subjects[value] ? value : tokens[value] || (aliases[value] && (subjects[aliases[value]] ? aliases[value] : tokens[aliases[value]])) || null;
   const resolve = value => { const id = lookup(value); return cast[id] || id; };
-  const images = {};
-  const ready = Promise.all(Object.keys(sheets).map(sheet => new Promise(resolveReady => {
-    const img = new Image(); images[sheet] = img;
-    img.onload = () => resolveReady(true); img.onerror = () => resolveReady(false);
-    img.src = source(sheet);
-  })));
+  // Atlases (P7): CSS backgrounds load with the screen that shows them. Canvas drawing (paint stamps)
+  // loads a sheet on first use and keeps at most six, dropping the least recently used: each 1254 px
+  // atlas is about 6 MB once decoded.
+  const MAX_SHEETS = 6, images = new Map();
+  function sheet(id) {
+    let entry = images.get(id);
+    if (entry) { images.delete(id); images.set(id, entry); return entry; }
+    const img = new Image(); img.decoding = 'async';
+    entry = { img, loaded: new Promise(done => { img.onload = () => done(true); img.onerror = () => done(false); }) };
+    images.set(id, entry); img.src = source(id);
+    while (images.size > MAX_SHEETS) { const [oldest, old] = images.entries().next().value; images.delete(oldest); old.img.onload = old.img.onerror = null; old.img.removeAttribute?.('src'); }
+    return entry;
+  }
+  /** Load the sheets of the given pictures for canvas drawing; resolves when they are ready. */
+  function load(values) {
+    const ids = new Set([].concat(values).map(v => subjects[resolve(v)]?.sheet).filter(Boolean));
+    return Promise.all([...ids].map(id => sheet(id).loaded));
+  }
+  const ready = Promise.resolve(true);
   function art(id, cls, label) {
     const resolved=resolve(id),themed=FK.friendsLibrary?.active?FK.puzzles?.pictures[resolved]:null;
     const rec = subjects[themed||resolved];
@@ -132,12 +145,12 @@
   function draw(value, ctx, x, y, size) {
     const rec = subjects[resolve(value)];
     if (!rec) return false;
-    const img = images[rec.sheet]; if (!img || !img.complete || !img.naturalWidth) return false;
+    const {img} = sheet(rec.sheet); if (!img.complete || !img.naturalWidth) return false;
     const w = img.naturalWidth / rec.columns, hh = img.naturalHeight / rec.rows;
     ctx.drawImage(img, rec.index % rec.columns * w, Math.floor(rec.index / rec.columns) * hh, w, hh, x, y, size, size);
     return true;
   }
-  FK.visual = { art, decorate, draw, ready, subjects, tokens, source, has: value => !!resolve(value), supports: value => !!(resolve(value) || symbols[value] || symbols[aliases[value]]) };
+  FK.visual = { art, decorate, draw, load, ready, loadedSheets: () => [...images.keys()], subjects, tokens, source, has: value => !!resolve(value), supports: value => !!(resolve(value) || symbols[value] || symbols[aliases[value]]) };
   new MutationObserver(records => records.forEach(rec => {
     if (rec.type === 'characterData') decorateText(rec.target);
     else rec.addedNodes.forEach(decorate);

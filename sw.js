@@ -1,14 +1,14 @@
 /* Farbtupf – Service Worker: keeps the whole app on the device so it runs without internet. */
-const CACHE = 'farbtupf-v8.8.0-waldbuch-world';
+const CACHE = 'farbtupf-v8.9.0-waldbuch-webp';
 const ASSETS = [
   './js/friends/puzzles.js',
   './css/puzzles.css',
   './css/waldbuch.css',
   './js/ui/waldbuch.js',
-  './assets/forest-friends/puzzle-clearing.png',
-  './assets/waldatelier/forest-objects.png',
-  './assets/waldatelier/forest-actions.png',
-  './assets/waldatelier/menu.png',
+  './assets/forest-friends/puzzle-clearing.webp',
+  './assets/waldatelier/forest-objects.webp',
+  './assets/waldatelier/forest-actions.webp',
+  './assets/waldatelier/menu.webp',
   './js/friends/interface.js',
   './js/friends/settings.js',
   './assets/forest-friends/interface-icons.webp',
@@ -75,10 +75,10 @@ const ASSETS = [
   './css/expeditions.css',
   './css/forest.css',
   './css/woodland.css',
-  './assets/woodland/characters-nature.png',
-  './assets/woodland/forest-props.png',
-  './assets/woodland/places.png',
-  './assets/woodland/ground.png',
+  './assets/woodland/characters-nature.webp',
+  './assets/woodland/forest-props.webp',
+  './assets/woodland/places.webp',
+  './assets/woodland/ground.webp',
   './js/ui/woodland.js',
   './js/forest/painted.js',
   './css/timer.css',
@@ -120,16 +120,16 @@ const ASSETS = [
   './js/screens/forest-book.js',
   './js/ui/waldatelier.js',
   './js/ui/waldatelier-icons.js',
-  './assets/waldatelier/hero.png',
-  './assets/waldatelier/navigation.png',
-  './assets/waldatelier/animals.png',
-  './assets/waldatelier/creatures.png',
-  './assets/waldatelier/words-one.png',
-  './assets/waldatelier/words-two.png',
-  './assets/waldatelier/words-three.png',
-  './assets/waldatelier/discovery.png',
-  './assets/waldatelier/people.png',
-  './assets/waldatelier/alphabet.png',
+  './assets/waldatelier/hero.webp',
+  './assets/waldatelier/navigation.webp',
+  './assets/waldatelier/animals.webp',
+  './assets/waldatelier/creatures.webp',
+  './assets/waldatelier/words-one.webp',
+  './assets/waldatelier/words-two.webp',
+  './assets/waldatelier/words-three.webp',
+  './assets/waldatelier/discovery.webp',
+  './assets/waldatelier/people.webp',
+  './assets/waldatelier/alphabet.webp',
   './js/learn/learning.js',
   './js/learn/adventures.js',
   './js/learn/expeditions.js',
@@ -184,8 +184,15 @@ const ASSETS = [
   './icons/apple-touch-icon.png',
 ];
 
+// A new version installs next to the running one and waits: the open app keeps its own cache, so a
+// puzzle never switches version half-way. The app asks a waiting version to take over at its next
+// start, in the den (js/app.js); a first install takes over at once.
 self.addEventListener('install', (event) => {
-  event.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS.map((u) => new Request(u, { cache: 'reload' })))).then(() => self.skipWaiting()));
+  event.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS.map((u) => new Request(u, { cache: 'reload' })))));
+});
+
+self.addEventListener('message', (event) => {
+  if (event.data === 'activate') self.skipWaiting();
 });
 
 self.addEventListener('activate', (event) => {

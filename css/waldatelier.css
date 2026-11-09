@@ -50,7 +50,7 @@ body { background:#f7f2e7; background-image:radial-gradient(ellipse at 5% 0%,#e7
 .island-header { position:absolute; z-index:2; top:35px; left:36px; right:36px; pointer-events:none; }
 .island-header > * { pointer-events:auto; }
 .island-body { padding:0 0 32px; scroll-padding-top:24px; }
-.wa-welcome { position:relative; padding:48px 36px 32px; min-height:620px; border:1px solid #bec4aa; border-radius:24px; overflow:hidden; background:#e1ebe1 url('../assets/waldatelier/hero.png') left center / cover no-repeat; }
+.wa-welcome { position:relative; padding:48px 36px 32px; min-height:620px; border:1px solid #bec4aa; border-radius:24px; overflow:hidden; background:#e1ebe1 url('../assets/waldatelier/hero.webp') left center / cover no-repeat; }
 .wa-hero-head { position:relative; margin:0 0 20px 34%; text-align:center; }
 .wa-hero-head > p:last-child { margin:7px 0 0; font-size:18px; }
 .wa-kicker { margin:0 0 6px; font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#5e7352; }

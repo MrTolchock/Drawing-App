@@ -53,6 +53,7 @@
     el.fill.classList.toggle('on', T.kind === 'fill');
     el.eraser.classList.toggle('on', T.kind === 'eraser');
     el.stamp.querySelector('.emoji').textContent = T.emoji;
+    FK.visual?.load?.(T.emoji);   // the stamp's atlas is ready before the first tap
     el.size.querySelector('circle').setAttribute('r', SIZE_INFO[T.size].r);
     el.mirror.querySelector('use').setAttribute('href', '#i-' + MIRRORS.find((m) => m.id === T.mirror).icon);
     el.mirror.classList.toggle('on', T.mirror !== 'off');

@@ -2,7 +2,7 @@
 (function () {
   'use strict';
   const FK = window.FK, h = FK.h;
-  const sources = { cast: 'assets/woodland/characters-nature.png', props: 'assets/woodland/forest-props.png' };
+  const sources = { cast: 'assets/woodland/characters-nature.webp', props: 'assets/woodland/forest-props.webp' };
   const cells = {
     'fox-right': ['cast', 0, 0], 'fox-left': ['cast', 1, 0], 'fox-away-right': ['cast', 2, 0], 'fox-away-left': ['cast', 3, 0],
     beaver: ['cast', 0, 1], hare: ['cast', 1, 1], hedgehog: ['cast', 2, 1], owl: ['cast', 3, 1],

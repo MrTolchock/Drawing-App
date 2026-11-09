@@ -3,7 +3,7 @@ import { THREE } from './materials.js';
 
 const { cells, sources: paths } = window.FK.woodland;
 const sources = Object.fromEntries(Object.entries(paths).map(([id, path]) => [id, new URL(path, document.baseURI).href]));
-sources.ground = new URL('../../assets/woodland/ground.png', import.meta.url).href;
+sources.ground = new URL('../../assets/woodland/ground.webp', import.meta.url).href;
 const sheets = {}, alpha = {}, maps = new Map();
 const loader = new THREE.TextureLoader();
 const ready = Promise.all(Object.entries(sources).map(async ([id, url]) => {

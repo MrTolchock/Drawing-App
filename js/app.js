@@ -39,17 +39,26 @@
     }
   });
 
-  if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('sw.js').catch(() => { /* e.g. inside a sandboxed preview */ });
-    });
-  }
-
   FK.store.persist();
   const entry = new URLSearchParams(location.search).get('screen');
+  let started = Promise.resolve();
   if (entry === 'hub' || entry === 'forest') FK.go(entry);
-  else import('./friends/game.js').catch(error => {
+  else started = import('./friends/game.js').catch(error => {
     console.error(error);
     document.getElementById('screens').textContent = 'Der Wald konnte nicht geöffnet werden. Bitte lade die Seite neu.';
   });
+
+  if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js').then(async (reg) => {
+        // An update downloaded during an earlier visit waits (sw.js). Apply it now, at the start, while
+        // the child is still in the den; otherwise it waits for the next start.
+        await started;
+        const waiting = reg.waiting, inDen = FK.current() === 'friends' && FK.friendsView?.().area === 'den';
+        if (!waiting || !navigator.serviceWorker.controller || !inDen) return;
+        navigator.serviceWorker.addEventListener('controllerchange', () => location.reload(), { once: true });
+        waiting.postMessage('activate');
+      }).catch(() => { /* e.g. inside a sandboxed preview */ });
+    });
+  }
 })();

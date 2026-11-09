@@ -41,7 +41,7 @@ Retain existing localStorage and IndexedDB identifiers. Story repairs, exact unf
 
 GitHub Pages serves the repository root from `main`: <https://mrtolchock.github.io/Drawing-App/>. A push starts the Pages deployment. Check the workflow result and live assets before reporting a release as deployed.
 
-When changing cached runtime content, bump the app version in `js/core/util.js` and cache identifier in `sw.js`; include new runtime assets in its list. Keep technical cache versions and persistent schema IDs even though active product documentation does not use a release-by-release narrative. Reload after an update downloads. Documentation outside the offline parent guide is not part of the installed game.
+When changing cached runtime content, bump the app version in `js/core/util.js` and cache identifier in `sw.js`; include new runtime assets in its list. Keep technical cache versions and persistent schema IDs even though active product documentation does not use a release-by-release narrative. An update downloads in the background and waits: the open game keeps its own cache, and the next start in the den switches to the new version with one automatic reload (never during a puzzle). Picture sheets are WebP (quality 82, exact alpha); keep the precached total under 25 MB. Atlases for canvas drawing load on first use, at most six at a time (`FK.visual.load`). Documentation outside the offline parent guide is not part of the installed game.
 
 ## Maintain the baseline
 

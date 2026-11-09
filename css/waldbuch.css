@@ -172,13 +172,13 @@
 .friends-interface .ff-progress::before{display:none}
 .friends-interface :is(.woodland-progress-leaf,.rd-step,.ff-progress>span){
   display:block;width:30px;height:30px;padding:0;border:0;border-radius:0;box-shadow:none;transform:none;opacity:1;animation:none;
-  background:url(../assets/waldatelier/forest-objects.png) var(--wb-item)/400% 400% no-repeat;
+  background:url(../assets/waldatelier/forest-objects.webp) var(--wb-item)/400% 400% no-repeat;
   filter:grayscale(1) opacity(.35);
 }
 .friends-interface :is(.woodland-progress-leaf,.rd-step,.ff-progress>span)>*{display:none}
-.friends-interface :is(.woodland-progress-leaf.done,.rd-step.done,.ff-progress>span.done){filter:none;border:0;box-shadow:none;background:url(../assets/waldatelier/forest-objects.png) var(--wb-item)/400% 400% no-repeat;}
+.friends-interface :is(.woodland-progress-leaf.done,.rd-step.done,.ff-progress>span.done){filter:none;border:0;box-shadow:none;background:url(../assets/waldatelier/forest-objects.webp) var(--wb-item)/400% 400% no-repeat;}
 .friends-interface :is(.rd-step.cur,.woodland-progress-leaf:not(.done):first-child,.woodland-progress-leaf.done+.woodland-progress-leaf:not(.done),.ff-progress>span:not(.done):first-child,.ff-progress>span.done+span:not(.done)){
-  filter:none;border:0;box-shadow:none;background:url(../assets/waldatelier/forest-objects.png) var(--wb-item)/400% 400% no-repeat;transform:scale(1.25);animation:wb-bob 1.6s ease-in-out infinite;
+  filter:none;border:0;box-shadow:none;background:url(../assets/waldatelier/forest-objects.webp) var(--wb-item)/400% 400% no-repeat;transform:scale(1.25);animation:wb-bob 1.6s ease-in-out infinite;
 }
 @keyframes wb-bob{50%{transform:scale(1.25) translateY(-3px)}}
 
@@ -401,7 +401,7 @@
   right:34px;top:30px;width:76px;height:88px;padding:6px;rotate:4deg;border:3px dashed var(--accent,var(--wb-fox));background:var(--wb-paper-inset);
 }
 .friends-interface .ff-postcard-overlay .ff-letter-stamp>*{display:none}
-.friends-interface .ff-postcard-overlay .ff-letter-stamp::before{content:"";position:absolute;inset:10px;background:url(../assets/waldatelier/forest-objects.png) var(--wb-item)/400% 400% no-repeat}
+.friends-interface .ff-postcard-overlay .ff-letter-stamp::before{content:"";position:absolute;inset:10px;background:url(../assets/waldatelier/forest-objects.webp) var(--wb-item)/400% 400% no-repeat}
 .friends-interface .ff-postcard-overlay .ff-letter-stamp::after{
   content:"";position:absolute;left:-74px;top:14px;width:96px;height:60px;pointer-events:none;
   background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 60'%3E%3Ccircle cx='28' cy='30' r='22' fill='none' stroke='%23b9a17c' stroke-width='2.5'/%3E%3Cpath d='M46 22q8-6 16 0t16 0 16 0M46 38q8-6 16 0t16 0 16 0' fill='none' stroke='%23b9a17c' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E") center/contain no-repeat;
@@ -427,7 +427,7 @@
 .friends-interface .ff-map-storybook .ff-button.ff-map-invited{border-color:#e0a92c;box-shadow:0 0 0 5px #f6cf62,0 0 0 12px #ffd76a55,var(--wb-lift)}
 
 /* ---------- Waldspiele: bookmark tabs over a page of cards (4.5) ---------- */
-.friends-interface .screen-forest-book{background:#efe3c2 url('../assets/forest-friends/puzzle-clearing.png') center/cover no-repeat}
+.friends-interface .screen-forest-book{background:#efe3c2 url('../assets/forest-friends/puzzle-clearing.webp') center/cover no-repeat}
 .friends-interface .screen-forest-book .forest-book-body{
   width:100%;max-width:1000px;margin:0 auto;padding:0 0 26px;background:none;border:0;border-radius:0;box-shadow:none;outline:0;text-align:center;
 }
@@ -550,7 +550,7 @@
 
 /* ---------- Einstellungen: one calm page, switches and segmented choices (4.8) ---------- */
 .friends-interface .ff-settings-screen{
-  background:linear-gradient(#f7f1e5a6,#f7f1e5a6),#f7f1e5 url('../assets/forest-friends/puzzle-clearing.png') center/cover no-repeat;
+  background:linear-gradient(#f7f1e5a6,#f7f1e5a6),#f7f1e5 url('../assets/forest-friends/puzzle-clearing.webp') center/cover no-repeat;
   padding:16px max(22px,env(safe-area-inset-right)) max(18px,env(safe-area-inset-bottom)) max(22px,env(safe-area-inset-left));color:var(--wb-ink);
 }
 .friends-interface .ff-settings-body{
@@ -609,7 +609,7 @@
 .wb-confetti{position:fixed;z-index:60;width:0;height:0;pointer-events:none}
 .wb-confetti i{
   position:absolute;left:-17px;top:-17px;width:34px;height:34px;opacity:0;will-change:transform,opacity;
-  background:url(../assets/waldatelier/forest-objects.png) 0 0/400% 400% no-repeat;animation:wb-fall 1.4s cubic-bezier(.2,.7,.3,1) both;
+  background:url(../assets/waldatelier/forest-objects.webp) 0 0/400% 400% no-repeat;animation:wb-fall 1.4s cubic-bezier(.2,.7,.3,1) both;
 }
 @keyframes wb-fall{from{transform:translate(0,0) rotate(0) scale(.4);opacity:0}15%{opacity:1}to{transform:translate(var(--x),var(--y)) rotate(var(--r)) scale(1);opacity:0}}
 @media (prefers-reduced-motion:reduce){

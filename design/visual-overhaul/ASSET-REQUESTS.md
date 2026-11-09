@@ -4,7 +4,7 @@ Implementation does not wait for these: every item has an interim fallback in [B
 
 ## A1 · `words-four.webp` — 16 storybook word pictures
 
-**Reference to attach:** `assets/waldatelier/words-three.png` (style only).
+**Reference to attach:** `assets/waldatelier/words-three.webp` (style only; the PNG original is in git history before app 8.9.0).
 
 **Prompt**
 

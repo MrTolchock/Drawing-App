@@ -1,7 +1,7 @@
 /* Original A: warm painted woodland, shared between exploration and flat puzzles. */
 .woodland-art { display:inline-block; flex:none; width:1em; height:1em; background-repeat:no-repeat; vertical-align:middle; filter:url(#woodland-ink); }
 .forest-portrait.woodland-art { border-radius:0; background-color:transparent; object-fit:contain; }
-.woodland-vignette { display:block; flex:none; background-image:url('../assets/woodland/places.png'); background-size:300% 200%; background-repeat:no-repeat; aspect-ratio:1; }
+.woodland-vignette { display:block; flex:none; background-image:url('../assets/woodland/places.webp'); background-size:300% 200%; background-repeat:no-repeat; aspect-ratio:1; }
 .forest-viewport::before { content:''; position:absolute; inset:0; z-index:1; pointer-events:none; box-shadow:inset 0 0 105px 20px #7462321c; background:linear-gradient(145deg,#fff2c21c,transparent 50%,#536c1910); }
 .forest-heading { padding:11px 20px 12px; border-radius:5px 29px 21px 24px; background:#fff8e7c7; box-shadow:0 4px 25px #5363360d; }
 .forest-eyebrow { color:#7b8153; letter-spacing:.2em; font-size:9px; }

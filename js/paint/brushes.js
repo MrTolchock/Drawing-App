@@ -137,7 +137,7 @@
     c.width = c.height = s + pad * 2;
     const g = c.getContext('2d');
     if (FK.visual && FK.visual.has(e)) {
-      if (!FK.visual.draw(e, g, pad, pad, s)) return null;
+      if (!FK.visual.draw(e, g, pad, pad, s)) { FK.visual.load?.(e); return null; }
       if (emojiCache.size > 24) emojiCache.delete(emojiCache.keys().next().value);
       emojiCache.set(key, c); return c;
     }

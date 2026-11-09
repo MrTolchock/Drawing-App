@@ -23,7 +23,7 @@ const shots=process.env.FARBTUPF_SHOTS||'/tmp/farbtupf-library';fs.mkdirSync(sho
   assert.equal(await page.locator('.forest-book-body').innerText().then(text=>/\b(?:null|undefined)\b/.test(text)),false);
   assert.equal(await page.locator('.forest-book-body img,.forest-book-games .wa-symbol').count(),0);
   assert.equal(await page.locator('.forest-book-game > span > .wa-illustration').count(),31);
-  for(const id of ['neighbours','mirror'])assert.match(await page.locator('[data-game="'+id+'"] > span > .wa-illustration').getAttribute('style'),/menu\.png/);
+  for(const id of ['neighbours','mirror'])assert.match(await page.locator('[data-game="'+id+'"] > span > .wa-illustration').getAttribute('style'),/menu\.webp/);
   assert.equal(await page.locator('.island-levels').count(),0);
   await snapshot('library-1024');
   const catalogue=await page.evaluate(()=>FK.friendsLibrary.catalogue());assert.equal(catalogue.length,24);
@@ -88,7 +88,7 @@ const shots=process.env.FARBTUPF_SHOTS||'/tmp/farbtupf-library';fs.mkdirSync(sho
   await page.evaluate(()=>navigator.serviceWorker.ready);await page.waitForFunction(()=>!!navigator.serviceWorker.controller);await context.setOffline(true);
   await page.reload();await page.waitForFunction(()=>window.FK?.friends);await click('Waldspiele');
   assert.equal(await page.locator('.forest-book-game').count(),31);
-  assert.ok(await page.evaluate(async()=>{const im=new Image();im.src='assets/waldatelier/menu.png';await im.decode();return im.naturalWidth>0;}));
+  assert.ok(await page.evaluate(async()=>{const im=new Image();im.src='assets/waldatelier/menu.webp';await im.decode();return im.naturalWidth>0;}));
   assert.deepEqual(await page.evaluate(()=>FK.friends.get().drawings.free),strokes);
   await context.setOffline(false);
   // Original bookmarks retain their settings; v2 never rewrites their difficulty.

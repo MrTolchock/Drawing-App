@@ -2,7 +2,7 @@
    All current puzzles share the Silben-Puzzle's picture / task / answer cards. */
 .friends-interface :is(.screen-learn,.screen-adventure,.screen-expedition,.screen-read,.screen-trace,.screen-dots,.screen-forest-book){
   --ink:#4b3b2d;--muted:#81735e;--sun:#e6bf72;--mint:#e4eacb;--sky:#e5ece6;
-  background:#f3edda url('../assets/forest-friends/puzzle-clearing.png') center/cover no-repeat;
+  background:#f3edda url('../assets/forest-friends/puzzle-clearing.webp') center/cover no-repeat;
   color:var(--ink);padding:16px max(18px,env(safe-area-inset-left));
 }
 .friends-interface :is(.screen-learn,.screen-adventure,.screen-expedition,.screen-read,.screen-trace,.screen-dots,.screen-forest-book)>.topbar{width:min(1000px,100%);margin:0 auto 12px;padding:8px 12px;min-height:64px;background:#fff8e9ed;border:1px solid #dbc6a4;border-radius:20px}
@@ -51,7 +51,7 @@
 .friends-interface .rd-obj{filter:drop-shadow(0 4px 2px #75532d1a)}
 .friends-interface :is(.screen-trace .tr-over-view,.screen-dots .pp-over,.screen-trace .tr-play,.screen-dots .pp-play){background:#fffaf0ed;border:1px solid #ceb58d;border-radius:28px;padding:18px;width:min(1000px,100%);margin-inline:auto}
 .friends-interface .rd-field{background:linear-gradient(#ecf0dacc,#f7eed7aa);border-radius:24px;border:1px solid #d4c39f}
-.friends-interface .ff-overlay:has(.ff-illustrated-round){background:#f2ebd9 url('../assets/forest-friends/puzzle-clearing.png') center/cover no-repeat;padding:18px}
+.friends-interface .ff-overlay:has(.ff-illustrated-round){background:#f2ebd9 url('../assets/forest-friends/puzzle-clearing.webp') center/cover no-repeat;padding:18px}
 .friends-interface .ff-illustrated-round{width:min(1000px,100%);max-height:100%;padding:20px 28px;background:#fffaf0ef;border:1px solid #ceb58d;border-radius:28px;box-shadow:0 12px 40px #5d472f16}
 .friends-interface .ff-illustrated-round .ff-card-top{height:58px}
 .friends-interface .ff-illustrated-round .ff-card-portrait{width:54px;height:54px;background:none;border:0;box-shadow:none}

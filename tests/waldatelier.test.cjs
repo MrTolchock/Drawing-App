@@ -37,6 +37,9 @@ test('all stamp and album choices can render the same illustration onto a canvas
     assert.equal(FK.visual.draw(token, canvasContext, 0, 0, 128), true, name);
     assert.ok(drawn, name);
   }
+  // P7: drawing from every sheet keeps at most six atlases loaded for the canvas.
+  assert.ok(new Set(FK.REWARDS.concat(FK.STICKERS.flatMap(group => group.items)).map(([token]) => FK.visual.subjects[FK.visual.tokens[token]]?.sheet).filter(Boolean)).size > 6);
+  assert.ok(FK.visual.loadedSheets().length <= 6, FK.visual.loadedSheets().join());
 });
 test('every production illustration is available offline', () => {
   const sw = fs.readFileSync('sw.js', 'utf8');
@@ -51,7 +54,7 @@ test('every production illustration is available offline', () => {
     assert.equal(width / columns, height / rows, file + ' must have square sprite cells');
     assert.ok(sw.includes("'./" + file + "'"), file + ' missing from offline cache');
   }
-  assert.ok(sw.includes("'./assets/waldatelier/hero.png'"));
+  assert.ok(sw.includes("'./assets/waldatelier/hero.webp'"));
 });
 test('both Waldatelier colouring pages support all guided paint modes', () => {
   const pages = FK.art.list('waldatelier');
