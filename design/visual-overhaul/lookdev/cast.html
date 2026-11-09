@@ -1,0 +1,20 @@
+<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:#f3e6c9}canvas{display:block}</style></head><body><canvas id="c"></canvas>
+<script type="module">
+import * as THREE from '../../../vendor/three/three.module.js';
+import {plush} from './plush.js';
+const T0=performance.now();
+const W=innerWidth,H=innerHeight,r=new THREE.WebGLRenderer({canvas:document.getElementById('c'),antialias:true});r.setPixelRatio(devicePixelRatio);r.setSize(W,H);
+r.outputColorSpace=THREE.SRGBColorSpace;r.toneMapping=THREE.ACESFilmicToneMapping;r.toneMappingExposure=1.05;r.setClearColor('#f3e6c9');r.shadowMap.enabled=true;
+const s=new THREE.Scene();s.add(new THREE.HemisphereLight('#fff6e6','#9a7a50',1.5));
+const k=new THREE.DirectionalLight('#fff0d8',2.4);k.position.set(-2.5,4,5);k.castShadow=true;k.shadow.mapSize.set(2048,2048);Object.assign(k.shadow.camera,{left:-4,right:4,top:3,bottom:-1});s.add(k);
+const rim=new THREE.DirectionalLight('#ffe2b0',1.6);rim.position.set(3,3,-4);s.add(rim);
+const floor=new THREE.Mesh(new THREE.PlaneGeometry(20,10),new THREE.ShadowMaterial({opacity:.18}));floor.rotation.x=-Math.PI/2;floor.receiveShadow=true;s.add(floor);
+const q=new URLSearchParams(location.search),only=q.get('only');
+const list=only?[[only,1.6,0,0]]:[['fox',1.0,-2.3,.35],['squirrel',.66,-1.45,.35],['bluetit',.34,-.85,.15],['owl',.84,-.2,.25],['mouse',.44,.5,.15],['beaver',.72,1.2,-.2],['hare',1.08,2.05,-.3]];
+let tris=0;
+for(const [name,h,x,yaw] of list){const c=plush[name]({detail:+(q.get('detail')||1)});const box=new THREE.Box3().setFromObject(c.group);const sc=h/(box.max.y-box.min.y);c.group.scale.setScalar(sc);c.group.position.set(x,-box.min.y*sc,0);c.group.rotation.y=+(q.get('yaw')||yaw);s.add(c.group);
+  c.group.traverse(o=>{if(o.isMesh)tris+=(o.geometry.index?o.geometry.index.count:o.geometry.attributes.position.count)/3;});}
+const cam=new THREE.PerspectiveCamera(only?26:24,W/H,.1,50);
+if(only){cam.position.set(0,1.0,5.2);cam.lookAt(0,.78,0);}else{cam.position.set(0,.9,6.4);cam.lookAt(0,.52,0);}
+r.render(s,cam);console.log(JSON.stringify({buildMs:Math.round(performance.now()-T0),tris:Math.round(tris),calls:r.info.render.calls}));window.done=true;
+</script></body></html>

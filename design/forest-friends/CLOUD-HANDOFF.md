@@ -1,3 +1,5 @@
+> **9 November 2026 — visual overhaul handed to Claude Code.** The current design work is the [Waldbuch visual overhaul](../visual-overhaul/README.md): blueprint, mockups, 3D look-dev and progress checklist. Implementation continues with Claude Code (see the repository `CLAUDE.md`), not Codex.
+
 > Implementation continuation: Forest friends now has a runtime entry at the repository root. See [implemented scope and save contract](../../docs/FOREST-FRIENDS.md) and the [first playable comparison](visuals/milestones/playable-loop-1/COMPARISON.md). Design documents below remain the target; runtime art differences and device/child testing are recorded separately.
 
 > Current revision 10: purchases never alter the environment. No teacher testing is planned or required. Child testing happens after implementation, once the game is running. This replaces earlier pre-implementation external-review gates; internal curriculum source checks remain.

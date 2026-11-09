@@ -1,5 +1,7 @@
 # Game design
 
+**Current visual work:** [Waldbuch visual overhaul](visual-overhaul/README.md): blueprint, mockups and iPad performance plan for the next implementation pass.
+
 [Blueprint v2 — game redesign draft](forest-friends/blueprint-v2.md) is a separate
 document for the planned major change. The new concept is still to be written;
 implementation will follow when requested.

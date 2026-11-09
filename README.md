@@ -27,6 +27,7 @@ The original [Heart Tree adventure](https://mrtolchock.github.io/Drawing-App/?sc
 | [Blueprint v2 — Forest friends](design/forest-friends/blueprint-v2.md) | Current letter adventure, curriculum requirements and picture-led visual design |
 | [Cloud conversation handoff](design/forest-friends/CLOUD-HANDOFF.md) | Decisions, current references and next steps for continuing design across devices |
 | [Visual comparison baseline](design/forest-friends/visuals/baseline.md) | Preserved art, versioned mockups and screenshots for evaluating development |
+| [Waldbuch visual overhaul](design/visual-overhaul/README.md) | Visual consistency, mockups and iPad 9 performance plan, ready for implementation |
 | [Design review](design/heart-tree/REVIEW.md) | Assessment of the current game and priorities for the next step |
 | [Gameplay](docs/GAMEPLAY.md) | Story puzzles, library activities, guidance and rewards |
 | [Exploration](docs/EXPLORATION.md) | Movement, camera, map and discovery controls |

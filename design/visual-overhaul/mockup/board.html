@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Waldbuch — visual overhaul</title>
+<link rel="stylesheet" href="waldbuch.css">
+<style>
+  body{margin:0;background:#2e2a24;color:#f4ead6;font:16px/1.5 var(--wb-display)}
+  header.top{padding:40px 6vw 10px;max-width:1300px;margin:auto}
+  header.top h1{font:800 44px/1.1 var(--wb-display);margin:0 0 8px;color:#ffe9bd}
+  header.top p{max-width:820px;color:#d9ccb3;margin:0}
+  section.sec{max-width:1300px;margin:auto;padding:30px 6vw 10px}
+  section.sec>h2{font:800 28px/1.2 var(--wb-display);color:#ffe9bd;margin:30px 0 4px}
+  section.sec>p.lead{color:#cbbd9f;max-width:900px;margin:0 0 18px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,560px),1fr));gap:34px}
+  figure{margin:0}
+  figcaption{color:#d8cbb0;font-size:15px;margin-top:10px}
+  figcaption b{color:#ffe1a3}
+  .frame{width:100%;aspect-ratio:1080/810;position:relative;overflow:hidden;border-radius:18px;box-shadow:0 0 0 8px #15120f,0 20px 50px #0008}
+  .ab{position:absolute;left:0;top:0;width:1080px;height:810px;transform-origin:0 0;overflow:hidden;background:#000}
+  .wide .frame{aspect-ratio:1600/900}.wide .ab{width:1600px;height:900px;background:#fbf3e2;color:var(--wb-ink)}
+  .tall .frame{aspect-ratio:1600/1100}.tall .ab{width:1600px;height:1100px;background:#fbf3e2;color:var(--wb-ink)}
+  .full{grid-column:1/-1}
+  .note{position:absolute;z-index:30;max-width:250px;padding:8px 12px;border-radius:12px;background:#2f3e5c;color:#fff;font:600 15px/1.35 var(--wb-display);box-shadow:0 6px 16px #0005}
+  .note::before{content:attr(data-n);display:inline-grid;place-items:center;width:22px;height:22px;margin-right:6px;border-radius:50%;background:#ffd36b;color:#2f3e5c;font-weight:800}
+  .pin{position:absolute;z-index:31;width:28px;height:28px;margin:-14px;border-radius:50%;background:#ffd36b;color:#2f3e5c;display:grid;place-items:center;font:800 15px var(--wb-display);box-shadow:0 0 0 4px #2f3e5c}
+  .ab .note{display:none}
+  .ann .pin{display:none} body.show-notes .ann .pin{display:grid}
+  ol.legend{margin:10px 0 0;padding:0;list-style:none;display:grid;gap:6px}
+  ol.legend li{display:flex;gap:8px;color:#e9dcc3;font-size:15px;line-height:1.4}
+  ol.legend li span{flex:none;display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:#ffd36b;color:#2f3e5c;font-weight:800;font-size:13px}
+  .toggle{position:fixed;right:18px;bottom:18px;z-index:99;padding:12px 18px;border-radius:30px;background:#ffd36b;color:#2f3e5c;border:0;font:800 16px var(--wb-display);box-shadow:0 6px 18px #0006}
+  .ab h3{margin:0}
+  .muted{color:var(--wb-ink-soft)}
+  .ic{width:30px;height:30px}
+</style>
+</head>
+<body class="show-notes">
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="i-back" viewBox="0 0 32 32"><path d="M19 7 10 16l9 9" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-speak" viewBox="0 0 32 32"><path d="M5 12h5l7-6v20l-7-6H5z" fill="currentColor"/><path d="M21 11c2 2.5 2 7.5 0 10M25 7c4 5 4 13 0 18" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-demo" viewBox="0 0 32 32"><circle cx="16" cy="16" r="12" fill="none" stroke="currentColor" stroke-width="2.6"/><path d="M13 10.5v11l9-5.5z" fill="currentColor"/></symbol>
+  <symbol id="i-skip" viewBox="0 0 32 32"><path d="M8 7v18l12-9zM23 7v18" fill="currentColor" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 32 32"><path d="M7 17l6 6L25 9" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 32 32"><path d="M16 7v18M7 16h18" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></symbol>
+</svg>
+
+<header class="top">
+  <h1>Waldbuch — visual overhaul for Farbtupf</h1>
+  <p>Every screen below is built from the game's own artwork and the shared stylesheet <code>waldbuch.css</code>. Numbered yellow notes explain what changes and why. Screens are shown at iPad 9th generation size (1080 × 810 points, landscape). Gameplay, puzzle rules and the order of elements are unchanged.</p>
+</header>
+
+<!-- =============================== 1. HOME =============================== -->
+<section class="sec">
+<h2>1 · Home: the den and the letter</h2>
+<p class="lead">The den stays the accepted painting. What changes: one fox (the 3D fox is rebuilt to match the character sheet), one hotspot style, a calmer toolbar and a postcard moment that no longer blurs the live 3D canvas.</p>
+<div class="grid">
+
+<figure class="ann"><div class="frame"><div class="ab">
+  <img src="a/den-v2.webp" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+  <img src="a/fox-front.webp" style="position:absolute;left:236px;top:206px;height:268px">
+  <div style="position:absolute;left:250px;top:458px;width:150px;height:26px;border-radius:50%;background:#3b22122e"></div>
+  <img src="a/letter.webp" style="position:absolute;left:868px;top:388px;width:78px;transform:rotate(-8deg)">
+  <div class="wb-spot" style="left:390px;top:176px"><img src="a/i-book.webp"></div>
+  <div class="wb-spot" style="left:905px;top:318px"><img src="a/i-letter.webp"></div>
+  <div class="wb-spot" style="left:96px;top:390px"><img src="a/fox-sleep.webp"></div>
+  <div class="wb-spot" style="left:660px;top:640px"><img src="a/n-pictures.webp"></div>
+  <div class="wb-spot" style="left:950px;top:660px"><img src="a/n-pencil.webp"></div>
+  <div class="wb-hud"><div class="wb-btn wb-btn--square"><img src="a/i-map.webp"></div><div class="wb-btn wb-btn--square" style="position:relative"><img src="a/i-letter.webp"><span class="wb-badge"></span></div><div class="wb-btn wb-btn--square"><img src="a/i-book.webp"></div><div class="wb-btn wb-btn--square"><img src="a/i-gear.webp"></div></div>
+  <span class="pin" style="left:236px;top:206px">1</span><div class="note" data-n="1" style="left:20px;top:520px">The 3D fox in the den is rebuilt to match this sheet fox: brown irises, cream cheeks inside the head outline, short dark legs, tail visible from the front.</div>
+  <span class="pin" style="left:905px;top:276px">2</span><div class="note" data-n="2" style="left:560px;top:250px;max-width:230px">One hotspot style everywhere: a paper disc with a softly glowing honey ring and a painted icon (84 px).</div>
+  <span class="pin" style="left:96px;top:348px">3</span><div class="note" data-n="3" style="left:20px;top:250px;max-width:190px">Bed hotspot shows the sleeping-fox picture, not a generic bed.</div>
+  <span class="pin" style="left:700px;top:18px">4</span><div class="note" data-n="4" style="left:620px;top:110px;max-width:230px">One toolbar pill; a fox-orange dot on the letter when mail is waiting.</div>
+</div></div><figcaption><b>Den — target.</b> Same painting, same objects, same places. Fox shown with the sheet art as the target for the rebuilt 3D model.</figcaption></figure>
+
+<figure class="ann"><div class="frame"><div class="ab">
+  <img src="a/den-v2.webp" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 48%,#3a24127a,#2a180bcc)"></div>
+  <div style="position:absolute;left:250px;top:150px;width:580px;height:420px;transform:rotate(-3deg);border-radius:14px;background:#fffaf0;box-shadow:0 0 0 10px #fffaf0,0 0 0 12px #e6d3ad,0 30px 60px #0007">
+    <div style="position:absolute;inset:16px;border:2px solid #ead9b6;border-radius:6px"></div>
+    <div style="position:absolute;right:28px;top:26px;width:96px;height:112px;background:#f5ecd6;border:3px dashed var(--wb-squirrel);border-radius:6px;display:grid;place-items:center"><img src="a/nut.webp" style="width:58px"></div>
+    <svg style="position:absolute;right:92px;top:92px;width:120px;height:80px;opacity:.55" viewBox="0 0 120 80"><circle cx="40" cy="40" r="34" fill="none" stroke="#a8703f" stroke-width="3"/><path d="M60 28c12-6 24 6 36 0s20-4 24 0M60 44c12-6 24 6 36 0s20-4 24 0M60 60c12-6 24 6 36 0" fill="none" stroke="#a8703f" stroke-width="3"/></svg>
+    <img src="a/p-squirrel.webp" style="position:absolute;left:150px;top:40px;height:250px">
+    <svg style="position:absolute;left:60px;bottom:40px;width:300px;height:80px" viewBox="0 0 300 80"><path d="M5 20c20-14 30 14 50 0s30-14 50 0 30 14 50 0M5 50c20-14 30 14 50 0s30-14 50 0M180 50c15-10 25 10 40 0s30-10 45 0" fill="none" stroke="#7a6650" stroke-width="3.5" stroke-linecap="round"/></svg>
+  </div>
+  <span class="pin" style="left:540px;top:150px">1</span><div class="note" data-n="1" style="left:20px;top:40px">No live blur over the WebGL canvas. Freeze the 3D frame, then lay a pre-made warm vignette on top. Same mood, a fraction of the GPU cost.</div>
+  <span class="pin" style="left:800px;top:225px">2</span><div class="note" data-n="2" style="left:850px;top:180px;max-width:200px">Stamp frame and accent take the friend's colour (here squirrel orange).</div>
+</div></div><figcaption><b>The letter.</b> The postcard keeps the picture-only invitation. It gains a friend-coloured stamp, a postmark, a stitched paper edge and a cheap vignette in place of the blur. Tapping the card still takes Fuchs outside; no extra button.</figcaption></figure>
+</div>
+</section>
+
+<!-- =============================== 2. PUZZLES =============================== -->
+<section class="sec">
+<h2>2 · Puzzles: the Waldbuch page</h2>
+<p class="lead">Every puzzle opens as a page of Fuchs' picture book, lying in the friend's clearing. The friend who set the puzzle stands at the page margin, so the child always sees who they are helping. All five newer rounds and all 24 original activities use the same page, ribbon, progress twig and tiles. Only the visual layer changes; rules, answers, order and buttons stay.</p>
+<div class="grid">
+
+<!-- Nüsse zählen -->
+<figure class="ann"><div class="frame"><div class="ab" style="--accent:var(--wb-squirrel)">
+  <div class="wb-scene"></div>
+  <div class="wb-btn wb-btn--wood" style="position:absolute;left:22px;top:22px"><svg><use href="#i-back"/></svg></div>
+  <div class="wb-page" style="left:200px;top:70px;width:850px;height:690px">
+    <div class="wb-ribbon" style="left:60px"></div>
+    <div style="position:absolute;left:0;right:0;top:34px;display:flex;justify-content:center"><div class="wb-twig"><img class="done" src="a/nut.webp"><img class="done" src="a/nut.webp"><img class="now" src="a/nut.webp"><img src="a/nut.webp"><img src="a/nut.webp"></div></div>
+    <div style="position:absolute;right:34px;top:26px;display:flex;gap:14px"><div class="wb-btn"><svg><use href="#i-demo"/></svg></div><div class="wb-btn"><svg><use href="#i-speak"/></svg></div></div>
+    <div class="wb-stage" style="position:absolute;left:130px;right:70px;top:130px;height:270px;gap:26px">
+      <img src="a/nut.webp" style="width:118px;transform:rotate(-8deg)"><img src="a/nut.webp" style="width:118px;transform:rotate(6deg) translateY(10px)"><img src="a/nut.webp" style="width:118px;transform:rotate(-3deg)">
+      <img src="a/leaf.webp" style="position:absolute;right:20px;bottom:14px;width:70px;opacity:.5;transform:rotate(30deg)">
+    </div>
+    <div style="position:absolute;left:130px;right:70px;top:450px;display:flex;justify-content:center;gap:28px">
+      <div class="wb-tile" style="width:150px">2</div><div class="wb-tile is-focus" style="width:150px">3</div><div class="wb-tile" style="width:150px">4</div>
+    </div>
+  </div>
+  <div class="wb-host"><img src="a/p-squirrel.webp"><span class="wb-tag">Eichhörnchen</span></div>
+  <span class="pin" style="left:240px;top:600px">1</span><div class="note" data-n="1" style="left:200px;top:700px;max-width:300px">Host on the margin: the friend's sheet portrait, 190 px, never a different drawing of them.</div>
+  <span class="pin" style="left:520px;top:110px">2</span><div class="note" data-n="2" style="left:600px;top:96px;max-width:200px">Progress = five of the friend's items on a twig.</div>
+  <span class="pin" style="left:254px;top:76px">3</span><div class="note" data-n="3" style="left:20px;top:110px;max-width:150px">Friend-coloured bookmark ribbon.</div>
+  <span class="pin" style="left:760px;top:470px">4</span><div class="note" data-n="4" style="left:820px;top:430px;max-width:200px">Answer tiles are wooden blocks with a paper face: 6 px underside, press = sink 4 px.</div>
+</div></div><figcaption><b>Nüsse zählen (Eichhörnchen).</b> Same three counters, same three numerals, same demo and speaker buttons. Counters are larger (118 px) and lie a little scattered, like real nuts.</figcaption></figure>
+
+<!-- Reimpaare -->
+<figure class="ann"><div class="frame"><div class="ab" style="--accent:var(--wb-bluetit)">
+  <div class="wb-scene"></div>
+  <div class="wb-btn wb-btn--wood" style="position:absolute;left:22px;top:22px"><svg><use href="#i-back"/></svg></div>
+  <div class="wb-page" style="left:200px;top:70px;width:850px;height:690px">
+    <div class="wb-ribbon" style="left:60px"></div>
+    <div style="position:absolute;left:0;right:0;top:34px;display:flex;justify-content:center"><div class="wb-twig"><img class="done" src="a/feather.webp"><img class="now" src="a/feather.webp"><img src="a/feather.webp"><img src="a/feather.webp"><img src="a/feather.webp"></div></div>
+    <div style="position:absolute;right:34px;top:26px;display:flex;gap:14px"><div class="wb-btn"><svg><use href="#i-demo"/></svg></div><div class="wb-btn"><svg><use href="#i-speak"/></svg></div></div>
+    <div class="wb-stage" style="position:absolute;left:130px;right:70px;top:120px;height:280px;flex-direction:column;gap:6px">
+      <img src="a/m-houses.webp" style="height:170px"><span class="wb-read">Haus</span>
+    </div>
+    <svg style="position:absolute;left:400px;top:388px;width:140px;height:44px" viewBox="0 0 140 44"><path d="M10 6c30 40 90 40 120 0" fill="none" stroke="#c8b285" stroke-width="3" stroke-dasharray="2 8" stroke-linecap="round"/></svg>
+    <div style="position:absolute;left:130px;right:70px;top:440px;display:flex;justify-content:center;gap:34px">
+      <div class="wb-tile" style="width:200px;height:200px"><img src="a/mouse-sit.webp" style="width:120px;height:120px"><span class="wb-word">Maus</span></div>
+      <div class="wb-tile" style="width:200px;height:200px"><img src="a/tree.webp" style="width:120px;height:120px"><span class="wb-word">Baum</span></div>
+    </div>
+  </div>
+  <div class="wb-host"><img src="a/p-bluetit.webp" style="width:84%;margin:auto"><span class="wb-tag">Blaumeise</span></div>
+  <span class="pin" style="left:470px;top:250px">1</span><div class="note" data-n="1" style="left:560px;top:250px;max-width:240px">The flat vector house is replaced by a painted house from the illustration library.</div>
+  <span class="pin" style="left:520px;top:600px">2</span><div class="note" data-n="2" style="left:620px;top:690px;max-width:300px">Reading words: Andika 30–48 px, always under the picture, never inside it.</div>
+</div></div><figcaption><b>Reimpaare lesen (Blaumeise).</b> One target word and two picture-word choices, as now. A faint dotted "rhyme arc" links the target to the choice row: decoration only, not a hint.</figcaption></figure>
+
+<!-- Silben-Puzzle -->
+<figure class="ann"><div class="frame"><div class="ab" style="--accent:var(--wb-mouse)">
+  <div class="wb-scene"></div>
+  <div class="wb-btn wb-btn--wood" style="position:absolute;left:22px;top:22px"><svg><use href="#i-back"/></svg></div>
+  <div class="wb-page" style="left:200px;top:70px;width:850px;height:690px">
+    <div class="wb-ribbon" style="left:60px"></div>
+    <div style="position:absolute;left:0;right:0;top:34px;display:flex;justify-content:center"><div class="wb-twig"><img class="now" src="a/berry.webp"><img src="a/berry.webp"><img src="a/berry.webp"><img src="a/berry.webp"><img src="a/berry.webp"></div></div>
+    <div style="position:absolute;right:34px;top:26px;display:flex;gap:14px"><div class="wb-btn"><svg><use href="#i-speak"/></svg></div></div>
+    <div class="wb-stage" style="position:absolute;left:100px;top:170px;width:260px;height:340px"><img src="a/fir.webp" style="height:250px"></div>
+    <div style="position:absolute;left:430px;top:200px;display:flex;gap:0;padding:14px;border-radius:24px;background:var(--wb-paper-inset)">
+      <div style="width:160px;height:96px;border-radius:16px 0 0 16px;background:#fffdf6;border:3px dashed #9db06f;display:grid;place-items:end center"><svg width="110" height="30"><path d="M8 6q47 34 94 0" fill="none" stroke="#7e945b" stroke-width="5" stroke-linecap="round"/></svg></div>
+      <div style="width:160px;height:96px;border-radius:0 16px 16px 0;background:#fffdf6;border:3px dashed #d0a274;border-left:none;display:grid;place-items:end center"><svg width="110" height="30"><path d="M8 6q47 34 94 0" fill="none" stroke="#bc8559" stroke-width="5" stroke-linecap="round"/></svg></div>
+    </div>
+    <div style="position:absolute;left:420px;top:400px;display:flex;gap:16px">
+      <div class="wb-chip" style="--c:#7e945b;min-width:112px;padding:0 14px">TAN</div><div class="wb-chip" style="--c:#d6b680;min-width:112px;padding:0 14px">TON</div><div class="wb-chip" style="--c:#bc8559;min-width:112px;padding:0 14px">NE</div>
+    </div>
+  </div>
+  <div class="wb-host"><img src="a/p-mouse.webp" style="width:80%;margin:auto"><span class="wb-tag">Maus</span></div>
+  <span class="pin" style="left:610px;top:180px">1</span><div class="note" data-n="1" style="left:640px;top:520px;max-width:280px">Syllable bows (green, then terracotta) stay exactly as now; slots get dashed paper wells, chips get coloured undersides.</div>
+</div></div><figcaption><b>Silben-Puzzle (Maus).</b> Same picture, two slots and three syllable chips. The mouse on the margin is the grey sheet mouse, the same one used for the 3D model and the postcard.</figcaption></figure>
+
+<!-- Success -->
+<figure class="ann"><div class="frame"><div class="ab" style="--accent:var(--wb-owl)">
+  <div class="wb-scene"></div>
+  <div class="wb-btn wb-btn--wood" style="position:absolute;left:22px;top:22px"><svg><use href="#i-back"/></svg></div>
+  <div class="wb-page" style="left:200px;top:70px;width:850px;height:690px;box-shadow:0 0 0 2px #b9cc8d,0 0 0 10px #e8efcf,0 14px 0 6px #d2b98d,0 22px 40px #4a33201f">
+    <div class="wb-ribbon" style="left:60px"></div>
+    <div style="position:absolute;left:0;right:0;top:34px;display:flex;justify-content:center"><div class="wb-twig"><img class="done" src="a/lantern.webp"><img class="done" src="a/lantern.webp"><img class="done" src="a/lantern.webp"><img class="done" src="a/lantern.webp"><img class="done" src="a/lantern.webp" style="transform:scale(1.3)"></div></div>
+    <div style="position:absolute;right:34px;top:26px;display:flex;gap:14px"><div class="wb-btn"><svg><use href="#i-demo"/></svg></div><div class="wb-btn"><svg><use href="#i-speak"/></svg></div></div>
+    <div class="wb-stage" style="position:absolute;left:130px;right:70px;top:140px;height:150px"><span class="wb-read">Die Maus schläft.</span></div>
+    <div style="position:absolute;left:130px;right:70px;top:350px;display:flex;justify-content:center;gap:40px">
+      <div class="wb-tile is-retry" style="width:230px;height:210px"><img src="a/mouse-run.webp" style="width:170px;height:150px"></div>
+      <div class="wb-tile is-chosen" style="width:230px;height:210px"><img src="a/mouse-sleep.webp" style="width:170px;height:150px">
+        <span style="position:absolute;top:-18px;right:-18px;width:52px;height:52px;border-radius:50%;background:var(--wb-moss);color:#fff;display:grid;place-items:center;box-shadow:0 4px 0 var(--wb-moss-deep)"><svg width="30" height="30"><use href="#i-check"/></svg></span></div>
+    </div>
+    <div class="wb-confetti" style="position:absolute;left:690px;top:380px">
+      <i style="background-image:url(a/leaf.webp);--x:-140px;--y:-220px;--r:-200deg"></i><i style="background-image:url(a/lantern.webp);--x:-40px;--y:-260px;--r:90deg;left:-150px;top:-200px;opacity:.9"></i>
+      <i style="background-image:url(a/flower.webp);--x:120px;--y:-200px;--r:160deg;left:60px;top:-150px"></i><i style="background-image:url(a/leaf.webp);--x:160px;--y:-80px;--r:220deg;left:120px;top:-60px"></i>
+      <i style="background-image:url(a/feather.webp);left:-220px;top:-90px"></i><i style="background-image:url(a/flower.webp);left:-90px;top:-250px"></i><i style="background-image:url(a/leaf.webp);left:140px;top:-230px;transform:rotate(80deg)"></i>
+    </div>
+  </div>
+  <div class="wb-host wb-hop"><img src="a/p-owl.webp" style="width:82%;margin:auto"><span class="wb-tag">Waldkauz</span></div>
+  <span class="pin" style="left:600px;top:72px">1</span><div class="note" data-n="1" style="left:660px;top:100px;max-width:230px">Correct: tile sinks, moss check badge, page edge glows moss, last twig item pops.</div>
+  <span class="pin" style="left:120px;top:560px">2</span><div class="note" data-n="2" style="left:20px;top:420px;max-width:150px">The host hops twice (CSS transform).</div>
+  <span class="pin" style="left:700px;top:240px">3</span><div class="note" data-n="3" style="left:740px;top:300px;max-width:260px">Up to 12 painted leaves, flowers and items burst from the tile. Only transform and opacity animate. Off when motion is reduced.</div>
+</div></div><figcaption><b>Feedback moment (Lies und zeig, Waldkauz).</b> The existing automatic advance keeps its timing; the celebration fits inside it. A wrong tap only turns the tile dashed and faded, as now: nothing red, nothing lost.</figcaption></figure>
+
+<!-- Older family: Äpfel rechnen -->
+<figure class="ann full"><div class="frame" style="max-width:820px"><div class="ab" style="--accent:var(--wb-squirrel)">
+  <div class="wb-scene"></div>
+  <div class="wb-btn wb-btn--wood" style="position:absolute;left:22px;top:22px"><svg><use href="#i-back"/></svg></div>
+  <div class="wb-page" style="left:200px;top:70px;width:850px;height:690px">
+    <div class="wb-ribbon" style="left:60px"></div>
+    <div style="position:absolute;left:0;right:0;top:34px;display:flex;justify-content:center"><div class="wb-twig"><img class="now" src="a/nut.webp"><img src="a/nut.webp"><img src="a/nut.webp"><img src="a/nut.webp"><img src="a/nut.webp"></div></div>
+    <div style="position:absolute;right:34px;top:26px;display:flex;gap:14px"><div class="wb-btn"><svg><use href="#i-speak"/></svg></div></div>
+    <div style="position:absolute;left:110px;right:50px;top:110px;text-align:center;font:700 26px/1.3 var(--wb-read);color:var(--wb-ink)">Znüni kommen dazu. Wie viele sind es zusammen?</div>
+    <div style="position:absolute;left:110px;right:50px;top:170px;display:flex;justify-content:center;gap:12px">
+      <div style="display:flex;align-items:center;gap:8px;padding:6px 16px 6px 6px;border-radius:30px;background:var(--wb-moss-tint);font:700 17px var(--wb-display)"><span style="display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--wb-moss);color:#fff">1</span><img src="a/apple.webp" style="height:30px"> ansehen</div>
+      <div style="display:flex;align-items:center;gap:8px;padding:6px 16px 6px 6px;border-radius:30px;background:var(--wb-paper-inset);font:700 17px var(--wb-display);color:var(--wb-ink-soft)"><span style="display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#e2cfa6;color:#fff">2</span><img src="a/basket.webp" style="height:30px"> legen</div>
+      <div style="display:flex;align-items:center;gap:8px;padding:6px 16px 6px 6px;border-radius:30px;background:var(--wb-paper-inset);font:700 17px var(--wb-display);color:var(--wb-ink-soft)"><span style="display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#e2cfa6;color:#fff">3</span><svg width="22" height="22"><use href="#i-check"/></svg> zählen</div>
+    </div>
+    <div style="position:absolute;left:110px;right:50px;top:240px;display:flex;justify-content:center;align-items:center;gap:20px">
+      <div class="wb-stage" style="width:300px;height:230px;flex-direction:column;gap:6px"><img src="a/fox-front.webp" style="height:90px"><div><img src="a/apple.webp" style="width:52px"><img src="a/apple.webp" style="width:52px"><img src="a/apple.webp" style="width:52px"><img src="a/apple.webp" style="width:52px"></div></div>
+      <svg width="40" height="40" style="color:var(--wb-timber)"><use href="#i-plus"/></svg>
+      <div class="wb-stage" style="width:300px;height:230px;flex-direction:column;gap:6px"><img src="a/basket.webp" style="height:90px"><div><img src="a/apple.webp" style="width:52px"></div></div>
+    </div>
+    <div style="position:absolute;left:110px;right:50px;top:520px;display:flex;justify-content:center;align-items:center;gap:18px;font:800 54px var(--wb-display);color:var(--wb-ink)">4 + 1 = <div class="wb-tile" style="min-width:110px;min-height:100px;font-size:48px;color:#c8b285">?</div></div>
+  </div>
+  <div class="wb-host"><img src="a/p-squirrel.webp"><span class="wb-tag">Eichhörnchen</span></div>
+  <span class="pin" style="left:450px;top:186px">1</span><div class="note" data-n="1" style="left:520px;top:130px;max-width:260px">Older activities keep their step strip. Line icons become small painted pictures; the current step is moss-coloured.</div>
+  <span class="pin" style="left:420px;top:330px">2</span><div class="note" data-n="2" style="left:20px;top:300px;max-width:150px">"Beim Fuchs" uses the one sheet fox, never the crayon fox.</div>
+</div></div><figcaption><b>Older activity family (Äpfel rechnen).</b> The same page shell wraps the original activities; only class names in <code>puzzles.css</code> change their skin. Task wording, steps and controls stay where they are.</figcaption></figure>
+</div>
+</section>
+
+<!-- =============================== 3. MENUS =============================== -->
+<section class="sec">
+<h2>3 · Menus: Waldspiele, Ausmalen, Meine Bilder, Einstellungen</h2>
+<p class="lead">Menus are pages of the same book. Friends are bookmarks with their portraits; colouring pages are taped to the den wall; finished pictures hang on a clothes line.</p>
+<div class="grid">
+
+<figure class="ann"><div class="frame"><div class="ab">
+  <div class="wb-scene"></div>
+  <div class="wb-btn wb-btn--wood" style="position:absolute;left:22px;top:22px"><svg><use href="#i-back"/></svg></div>
+  <div style="position:absolute;left:110px;top:24px;font:800 40px/1 var(--wb-display);color:#fff8e8;text-shadow:0 3px 0 #74482a,0 6px 14px #0006">Waldspiele</div>
+  <div style="position:absolute;left:60px;top:84px;display:flex;gap:8px;z-index:2">
+    <div class="wb-tab is-on" style="--accent:var(--wb-honey-deep)"><img src="a/i-book.webp">Alle</div>
+    <div class="wb-tab" style="--accent:var(--wb-squirrel)"><img src="a/p-squirrel.webp">Eichhörnchen</div>
+    <div class="wb-tab" style="--accent:var(--wb-bluetit)"><img src="a/p-bluetit.webp">Blaumeise</div>
+    <div class="wb-tab" style="--accent:var(--wb-owl)"><img src="a/p-owl.webp">Waldkauz</div>
+    <div class="wb-tab" style="--accent:var(--wb-beaver)"><img src="a/p-beaver.webp">Biber</div>
+    <div class="wb-tab" style="--accent:var(--wb-mouse)"><img src="a/p-mouse.webp">Maus</div>
+    <div class="wb-tab" style="--accent:var(--wb-fox)"><img src="a/n-palette.webp">Malen</div>
+  </div>
+  <div class="wb-page" style="left:40px;top:200px;width:1000px;height:640px;border-radius:0 32px 32px 32px">
+    <div style="position:absolute;left:40px;right:40px;top:36px;display:grid;grid-template-columns:repeat(4,1fr);gap:22px">
+      <div class="wb-card" style="padding:18px 10px 14px"><img src="a/nut.webp" style="height:92px"><h4>Nüsse zählen</h4><span class="wb-friend"><img src="a/p-squirrel.webp">Eichhörnchen</span></div>
+      <div class="wb-card" style="padding:18px 10px 14px"><img src="a/m-houses.webp" style="height:92px"><h4>Reimpaare lesen</h4><span class="wb-friend"><img src="a/p-bluetit.webp">Blaumeise</span></div>
+      <div class="wb-card" style="padding:18px 10px 14px"><img src="a/mouse-sleep.webp" style="height:92px"><h4>Lies und zeig</h4><span class="wb-friend"><img src="a/p-owl.webp">Waldkauz</span></div>
+      <div class="wb-card" style="padding:18px 10px 14px"><img src="a/shapes.webp" style="height:92px"><h4>Welche Form fehlt?</h4><span class="wb-friend"><img src="a/p-beaver.webp">Biber</span></div>
+      <div class="wb-card" style="padding:18px 10px 14px"><img src="a/mouse-sit.webp" style="height:92px"><h4>Wörter und Bilder</h4><span class="wb-friend"><img src="a/p-mouse.webp">Maus</span></div>
+      <div class="wb-card" style="padding:18px 10px 14px"><img src="a/ladybird.webp" style="height:92px"><h4>Waldkäfer zählen</h4><span class="wb-friend"><img src="a/p-squirrel.webp">Eichhörnchen</span></div>
+      <div class="wb-card" style="padding:18px 10px 14px"><img src="a/apple.webp" style="height:92px"><h4>Äpfel rechnen</h4><span class="wb-friend"><img src="a/p-squirrel.webp">Eichhörnchen</span></div>
+      <div class="wb-card" style="padding:18px 10px 14px"><img src="a/fir.webp" style="height:92px"><h4>Silben-Puzzle</h4><span class="wb-friend"><img src="a/p-mouse.webp">Maus</span></div>
+    </div>
+  </div>
+  <span class="pin" style="left:520px;top:120px">1</span><div class="note" data-n="1" style="left:700px;top:20px;max-width:330px">Friend filters become bookmarks: sheet portrait, friend colour on top. Same filters as now.</div>
+  <span class="pin" style="left:610px;top:480px">2</span><div class="note" data-n="2" style="left:650px;top:520px;max-width:250px">"Wörter und Bilder" no longer shows a human child: the grey sheet mouse instead.</div>
+  <span class="pin" style="left:200px;top:300px">3</span><div class="note" data-n="3" style="left:20px;top:690px;max-width:300px">Cards: one painted picture (92 px), title, friend chip. 4 columns on iPad, 2 on phones.</div>
+</div></div><figcaption><b>Waldspiele.</b> Same 29 entries and the same filters. The page scrolls inside the book; the clearing stays still.</figcaption></figure>
+
+<figure class="ann"><div class="frame"><div class="ab">
+  <img src="a/den-v2.webp" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+  <div style="position:absolute;inset:0;background:#5a3418a6"></div>
+  <div class="wb-btn wb-btn--wood" style="position:absolute;left:22px;top:22px"><svg><use href="#i-back"/></svg></div>
+  <div style="position:absolute;left:110px;top:24px;font:800 40px/1 var(--wb-display);color:#fff8e8;text-shadow:0 3px 0 #74482a,0 6px 14px #0006">Ausmalen</div>
+  <div style="position:absolute;left:70px;top:120px;right:70px;display:grid;grid-template-columns:repeat(3,1fr);gap:46px 40px">
+    <div class="wb-card" style="--accent:var(--wb-fox);padding:14px;transform:rotate(-2deg)"><span class="wb-tape"></span><div style="height:230px;background:url(a/colouring-friends.webp) 0 0/300% 200%;border-radius:10px"></div></div>
+    <div class="wb-card" style="--accent:var(--wb-squirrel);padding:14px;transform:rotate(1.5deg)"><span class="wb-tape"></span><div style="height:230px;background:url(a/colouring-friends.webp) 50% 0/300% 200%;border-radius:10px"></div></div>
+    <div class="wb-card" style="--accent:var(--wb-owl);padding:14px;transform:rotate(-1deg)"><span class="wb-tape"></span><div style="height:230px;background:url(a/colouring-friends.webp) 100% 0/300% 200%;border-radius:10px"></div></div>
+    <div class="wb-card" style="--accent:var(--wb-beaver);padding:14px;transform:rotate(2deg)"><span class="wb-tape"></span><div style="height:230px;background:url(a/colouring-friends.webp) 0 100%/300% 200%;border-radius:10px"></div></div>
+    <div class="wb-card" style="--accent:var(--wb-mouse);padding:14px;transform:rotate(-2.5deg)"><span class="wb-tape"></span><div style="height:230px;background:url(a/colouring-friends.webp) 50% 100%/300% 200%;border-radius:10px"></div></div>
+    <div class="wb-card" style="--accent:var(--wb-bluetit);padding:14px;transform:rotate(1deg)"><span class="wb-tape"></span><div style="height:230px;background:url(a/colouring-friends.webp) 100% 100%/300% 200%;border-radius:10px"></div></div>
+  </div>
+  <span class="pin" style="left:540px;top:130px">1</span><div class="note" data-n="1" style="left:600px;top:30px;max-width:380px">The den itself is the backdrop (darkened, not blurred). Six pages taped to the wall in their friend's colour. Picture names move to accessible labels only.</div>
+</div></div><figcaption><b>Ausmalen.</b> Same six pages, same direct start into free colouring. No small title text under each page: children recognise the picture.</figcaption></figure>
+
+<figure class="ann"><div class="frame"><div class="ab">
+  <img src="a/den-v2.webp" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+  <div style="position:absolute;inset:0;background:#5a3418a6"></div>
+  <div class="wb-btn wb-btn--wood" style="position:absolute;left:22px;top:22px"><svg><use href="#i-back"/></svg></div>
+  <div style="position:absolute;left:110px;top:24px;font:800 40px/1 var(--wb-display);color:#fff8e8;text-shadow:0 3px 0 #74482a,0 6px 14px #0006">Meine Bilder</div>
+  <svg style="position:absolute;left:0;top:150px;width:1080px;height:120px" viewBox="0 0 1080 120"><path d="M-10 20 Q540 110 1090 20" fill="none" stroke="#e9d3a8" stroke-width="4"/><path d="M-10 20 Q540 110 1090 20" fill="none" stroke="#8a6238" stroke-width="2" stroke-dasharray="6 6"/></svg>
+  <div class="wb-card" style="position:absolute;left:110px;top:200px;width:230px;padding:12px;transform:rotate(-4deg)"><span class="wb-peg"></span><div style="height:170px;border-radius:8px;background:#fff url(a/colouring-friends.webp) 50% 0/300% 200%;filter:sepia(.1)"></div><div style="position:absolute;inset:12px;border-radius:8px;background:radial-gradient(circle at 40% 45%,#e98a3fbb 0 22%,transparent 23%),radial-gradient(circle at 75% 65%,#8fbf6aaa 0 18%,transparent 19%),radial-gradient(circle at 30% 80%,#7fb3d8aa 0 15%,transparent 16%),radial-gradient(circle at 50% 50%,#fff4d6 0 100%);mix-blend-mode:multiply;height:170px"></div></div>
+  <div class="wb-card" style="position:absolute;left:425px;top:236px;width:230px;padding:12px;transform:rotate(2deg)"><span class="wb-peg"></span><div style="height:170px;border-radius:8px;background:#fff url(a/colouring-friends.webp) 100% 0/300% 200%"></div><div style="position:absolute;inset:12px;border-radius:8px;background:radial-gradient(circle at 50% 45%,#b98a5cbb 0 24%,transparent 25%),radial-gradient(circle at 40% 70%,#f2d36baa 0 20%,transparent 21%),radial-gradient(circle at 20% 20%,#9cc3e0aa 0 14%,transparent 15%),#fffaf0;mix-blend-mode:multiply;height:170px"></div></div>
+  <div style="position:absolute;left:740px;top:205px;width:230px;height:194px;border:3px dashed #f3dcb0;border-radius:18px;transform:rotate(4deg);display:grid;place-items:center"><span class="wb-peg" style="top:-24px"></span><div class="wb-btn wb-btn--wood" style="width:84px;height:84px"><img src="a/n-pencil.webp" style="width:56px"></div></div>
+  <img src="a/fox-happy.webp" style="position:absolute;left:470px;top:500px;height:270px">
+  <span class="pin" style="left:540px;top:200px">1</span><div class="note" data-n="1" style="left:600px;top:450px;max-width:260px">Saved pictures hang from wooden pegs. The last peg is an empty frame with a pencil: tap to paint a new one.</div>
+  <span class="pin" style="left:420px;top:620px">2</span><div class="note" data-n="2" style="left:120px;top:620px;max-width:280px">Empty state: the happy fox and the empty peg, no sentence needed.</div>
+</div></div><figcaption><b>Meine Bilder.</b> Same gallery data and the same resume behaviour. Pictures scroll sideways along the line.</figcaption></figure>
+
+<figure class="ann"><div class="frame"><div class="ab" style="background:#f4ead2">
+  <div style="position:absolute;inset:0;background:url(a/puzzle-clearing.webp) center/cover;opacity:.35"></div>
+  <div class="wb-btn wb-btn--wood" style="position:absolute;left:22px;top:22px"><svg><use href="#i-back"/></svg></div>
+  <div style="position:absolute;left:110px;top:28px;font:800 36px/1 var(--wb-display);color:var(--wb-ink)">Einstellungen <span style="font:600 18px var(--wb-display);color:var(--wb-ink-soft)">für Erwachsene</span></div>
+  <div class="wb-page" style="left:110px;top:100px;width:860px;height:680px">
+    <div style="position:absolute;left:46px;right:46px;top:40px;font:16px/1.4 var(--wb-display);color:var(--wb-ink)">
+      <h3 style="font:800 22px var(--wb-display);margin-bottom:10px">Klänge im Wald</h3>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:2px solid #f0e3c6"><span style="font-weight:700;font-size:19px">Waldgeräusche</span><span class="wb-switch on"></span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:2px solid #f0e3c6"><span style="font-weight:700;font-size:19px">Musik</span><span class="wb-switch on"></span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0"><span style="font-weight:700;font-size:19px">Spielklänge</span><span class="wb-switch"></span></div>
+      <h3 style="font:800 22px var(--wb-display);margin:26px 0 10px">Spielzeit</h3>
+      <div class="wb-seg"><span class="on">Aus</span><span>Stoppuhr</span><span>Countdown</span></div>
+      <h3 style="font:800 22px var(--wb-display);margin:26px 0 10px">Schrift zum Lesen</h3>
+      <div class="wb-seg"><span class="on" style="font-family:var(--wb-read)">GROSS</span><span style="font-family:var(--wb-read)">Gross und klein</span></div>
+      <h3 style="font:800 22px var(--wb-display);margin:26px 0 10px">Speichern und Protokoll</h3>
+      <div style="display:flex;gap:12px"><span class="wb-seg"><span class="on">Sicherung exportieren</span></span><span class="wb-seg"><span class="on">Protokoll exportieren</span></span></div>
+    </div>
+  </div>
+  <span class="pin" style="left:830px;top:180px">1</span><div class="note" data-n="1" style="left:880px;top:150px;max-width:180px">Native checkboxes become large switches; same settings, same order.</div>
+</div></div><figcaption><b>Einstellungen.</b> Adults read this screen, so it stays calm and text-based, but uses the same paper, timber and moss materials.</figcaption></figure>
+</div>
+</section>
+
+<!-- =============================== 4. CONSISTENCY =============================== -->
+<section class="sec">
+<h2>4 · Consistency: one cast, one door, two picture families</h2>
+<p class="lead">The game currently shows several different foxes (sheet fox, crayon fox, 3D fox with white cheek wings, a different curled sleeping fox) and two different den doors. The rules below make every appearance trace back to one source.</p>
+<div class="grid">
+
+<figure class="full wide"><div class="frame"><div class="ab" style="padding:40px">
+  <h3 style="font:800 34px var(--wb-display)">The cast: canonical source for every appearance</h3>
+  <p class="muted" style="margin:4px 0 20px;font-size:18px">Master = <code>design/forest-friends/visuals/characters-v1.png</code> and <code>assets/forest-friends/postcard-friends.webp</code>. Every 2D portrait is cut from these; every 3D model is matched to them.</p>
+  <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:14px;text-align:center;font:700 17px var(--wb-display)">
+    <div><img src="a/p-fox.webp" style="height:150px"><br>Fuchs<div style="height:14px;border-radius:7px;background:var(--wb-fox);margin:8px 20px"></div><span class="muted" style="font-weight:600;font-size:14px">#d9692a</span></div>
+    <div><img src="a/p-squirrel.webp" style="height:150px"><br>Eichhörnchen<div style="height:14px;border-radius:7px;background:var(--wb-squirrel);margin:8px 20px"></div><span class="muted" style="font-weight:600;font-size:14px">#cf7a33</span></div>
+    <div><img src="a/p-bluetit.webp" style="height:150px"><br>Blaumeise<div style="height:14px;border-radius:7px;background:var(--wb-bluetit);margin:8px 20px"></div><span class="muted" style="font-weight:600;font-size:14px">#4f86b8</span></div>
+    <div><img src="a/p-owl.webp" style="height:150px"><br>Waldkauz<div style="height:14px;border-radius:7px;background:var(--wb-owl);margin:8px 20px"></div><span class="muted" style="font-weight:600;font-size:14px">#9c7046</span></div>
+    <div><img src="a/p-beaver.webp" style="height:150px"><br>Biber<div style="height:14px;border-radius:7px;background:var(--wb-beaver);margin:8px 20px"></div><span class="muted" style="font-weight:600;font-size:14px">#8a5a34</span></div>
+    <div><img src="a/p-mouse.webp" style="height:150px"><br>Maus<div style="height:14px;border-radius:7px;background:var(--wb-mouse);margin:8px 20px"></div><span class="muted" style="font-weight:600;font-size:14px">#968a80</span></div>
+    <div><img src="a/mailman-portrait.webp" style="height:150px"><br>Hase<div style="height:14px;border-radius:7px;background:var(--wb-hare);margin:8px 20px"></div><span class="muted" style="font-weight:600;font-size:14px">#4d6886</span></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:34px">
+    <div style="padding:20px;border-radius:20px;background:#f3e2c8">
+      <b style="font:800 20px var(--wb-display);color:#9a3d1e">Retire these foxes</b>
+      <div style="display:flex;gap:18px;align-items:flex-end;margin-top:12px">
+        <figure style="text-align:center"><img src="a/n-fox.webp" style="height:110px"><figcaption style="color:#6b5a45">crayon fox (menu)</figcaption></figure>
+        <figure style="text-align:center"><img src="a/a-fox.webp" style="height:110px"><figcaption style="color:#6b5a45">crayon fox (animals)</figcaption></figure>
+        <figure style="text-align:center"><div style="width:120px;height:120px;background:url(a/now-12-models.webp) -98px -175px/1400px 800px;border-radius:12px"></div><figcaption style="color:#6b5a45">current 3D fox</figcaption></figure>
+        <figure style="text-align:center"><div style="width:180px;height:120px;background:url(a/now-04-sleep.webp) -10px -320px/1080px 810px;border-radius:12px"></div><figcaption style="color:#6b5a45">current 3D sleep</figcaption></figure>
+      </div>
+    </div>
+    <div style="padding:20px;border-radius:20px;background:#e5ecd0">
+      <b style="font:800 20px var(--wb-display);color:#4f6b34">Use only these foxes</b>
+      <div style="display:flex;gap:18px;align-items:flex-end;margin-top:12px">
+        <figure style="text-align:center"><img src="a/fox-front.webp" style="height:110px"><figcaption style="color:#4f5a3a">standing</figcaption></figure>
+        <figure style="text-align:center"><img src="a/fox-happy.webp" style="height:110px"><figcaption style="color:#4f5a3a">happy</figcaption></figure>
+        <figure style="text-align:center"><img src="a/fox-run.webp" style="height:100px"><figcaption style="color:#4f5a3a">running</figcaption></figure>
+        <figure style="text-align:center"><img src="a/fox-sleep.webp" style="height:90px"><figcaption style="color:#4f5a3a">sleeping (3D pose target)</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</div></div><figcaption><b>Cast board.</b> Same rule for the other friends: the orange-brown 3D mouse becomes the grey sheet mouse with pink ears; the crayon beaver and crayon mouse in the creature sheet are never used for the friends.</figcaption></figure>
+
+<figure class="full wide"><div class="frame"><div class="ab" style="padding:36px 40px">
+  <h3 style="font:800 34px var(--wb-display)">The den door, inside = outside</h3>
+  <p class="muted" style="margin:4px 0 6px;font-size:18px">Inside the den the door is closed, arched, five honey planks, black strap hinges, brass mail lid and knob. Outside it currently shows an open arch with a bookshelf and armchair that the den does not have.</p>
+<div style="display:grid;grid-template-columns:1fr 360px;gap:20px;align-items:center">  <svg viewBox="0 0 1100 720" style="width:100%;height:auto">
+    <defs>
+      <linearGradient id="plank" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#c88a4e"/><stop offset="1" stop-color="#a86c38"/></linearGradient>
+      <g id="door">
+        <path d="M-130 380V40A130 130 0 0 1 130 40V380Z" fill="#7a4a28"/>
+        <path d="M-112 380V48A112 112 0 0 1 112 48V380Z" fill="url(#plank)"/>
+        <g stroke="#7b4a26" stroke-width="5"><path d="M-67 -50V380M-22 -64V380M23 -64V380M68 -50V380"/></g>
+        <g fill="#2f2621"><path d="M-112 60h150l14 10-14 10h-150z"/><path d="M-112 270h150l14 10-14 10h-150z"/><circle cx="-90" cy="70" r="6" fill="#5b4a40"/><circle cx="-90" cy="280" r="6" fill="#5b4a40"/></g>
+        <rect x="-50" y="170" width="100" height="34" rx="5" fill="#c99a3c" stroke="#8a6420" stroke-width="4"/><rect x="-38" y="182" width="76" height="8" rx="3" fill="#5a4214"/>
+        <circle cx="84" cy="220" r="14" fill="#d8aa4a" stroke="#8a6420" stroke-width="4"/>
+      </g>
+    </defs>
+    <g transform="translate(380 190)">
+      <text x="0" y="-150" text-anchor="middle" font-family="Baloo 2" font-weight="800" font-size="30" fill="#4b3b2d">INSIDE (den painting)</text>
+      <use href="#door"/>
+      <circle cx="-260" cy="20" r="50" fill="#ffe9a8" stroke="#8a5a30" stroke-width="12"/><text x="-260" y="100" text-anchor="middle" font-family="Baloo 2" font-size="20" fill="#7a6650">round window</text>
+      <text x="0" y="430" text-anchor="middle" font-family="Baloo 2" font-size="20" fill="#7a6650">hinges left · knob right</text>
+    </g>
+    <g transform="translate(830 190)">
+      <text x="0" y="-150" text-anchor="middle" font-family="Baloo 2" font-weight="800" font-size="30" fill="#4b3b2d">OUTSIDE (3D tree)</text>
+      <path d="M-230 400C-200 200-190 0-170 -140H170C190 0 200 200 230 400Z" fill="#a9673c"/><path d="M-230 400c-40 10-70 20-90 40h640c-20-20-50-30-90-40z" fill="#8c5330"/>
+      <g transform="scale(-1 1)"><use href="#door"/></g>
+      <circle cx="178" cy="-50" r="52" fill="#ffe7a844"/><circle cx="178" cy="-50" r="30" fill="#ffe2a0" stroke="#7a4a28" stroke-width="10"/>
+      <rect x="-200" y="250" width="22" height="30" rx="6" fill="#ffd27a"/><rect x="178" y="250" width="22" height="30" rx="6" fill="#ffd27a"/>
+      <text x="0" y="430" text-anchor="middle" font-family="Baloo 2" font-size="20" fill="#7a6650">mirrored: hinges right · knob left</text>
+    </g>
+  </svg><div style="font:18px/1.55 var(--wb-display);color:var(--wb-ink)"><b style="font-size:24px">3D build sheet</b><br>
+Opening 1.10 × 1.70 m (fox 0.62 m)<br>Arch: semicircle, r = 0.55 m<br>Frame: root ring 0.12 m, #7a4a28<br>Planks: 5 × 0.22 m, #c88a4e → #a86c38<br>Grooves: 0.02 m, #7b4a26<br>Hinges: 2 straps #2f2621 at 0.25 / 1.20 m<br>Mail lid: 0.36 × 0.12 m brass at 0.95 m<br>Knob: Ø 0.10 m brass at 0.80 m<br>Window: Ø 0.32 m, emissive #ffe2a0, right of door<br>
+<b>Closed by default.</b> It swings inward only during the fade in or out of the den.<br>One 512 × 512 canvas texture for the door face.</div></div>
+</div></div><figcaption><b>Door blueprint.</b> Removing the fake lit room also removes a bookshelf, armchair, rug and lantern mesh from the forest: a small saving in draw calls.</figcaption></figure>
+
+<figure class="full wide"><div class="frame"><div class="ab" style="padding:36px 40px">
+  <h3 style="font:800 34px var(--wb-display)">3D fox: rebuild to the sheet</h3>
+  <div style="display:grid;grid-template-columns:420px 420px 1fr;gap:36px;margin-top:18px">
+    <div style="position:relative;height:640px;border-radius:20px;background:#f3e6cc;display:grid;place-items:center">
+      <img src="a/fox-front.webp" style="height:560px">
+      <svg style="position:absolute;inset:0" viewBox="0 0 420 640"><g stroke="#2f3e5c" stroke-width="2" stroke-dasharray="6 6"><path d="M20 40H400M20 300H400M20 600H400"/></g><g font-family="Baloo 2" font-size="17" font-weight="700" fill="#2f3e5c"><text x="24" y="34">ear tips 0 %</text><text x="24" y="294">chin 45 %</text><text x="24" y="594">feet 100 %</text></g></svg>
+      <span style="position:absolute;bottom:10px;font:800 18px var(--wb-display);color:#4f6b34">TARGET</span>
+    </div>
+    <div style="position:relative;height:640px;border-radius:20px;background:#f3e2d4;overflow:hidden">
+      <div style="position:absolute;left:50%;top:40px;width:110px;height:170px;margin-left:-55px;background:url(a/now-12-models.webp) -95px -188px/1400px 800px;transform:scale(3.3);transform-origin:50% 0"></div>
+      <span style="position:absolute;bottom:10px;left:0;right:0;text-align:center;font:800 18px var(--wb-display);color:#9a3d1e">NOW (characters3d.js)</span>
+    </div>
+    <div style="font:18px/1.45 var(--wb-display);color:var(--wb-ink)">
+      <b style="font-size:21px">Changes (all in <code>characters3d.js</code> parameters)</b>
+      <ol style="padding-left:22px;margin:10px 0">
+        <li><b>Head</b> 45 % of total height incl. ears (now ≈ 35 %). Rounder skull, shorter snout.</li>
+        <li><b>Cheeks</b>: cream muzzle and cheek fluff stay inside the head silhouette. Remove the sideways white "wings".</li>
+        <li><b>Eyes</b>: dark brown iris #3a2414 with 2 white highlights, set lower and wider; arched brown brows #6b3a1e.</li>
+        <li><b>Ears</b>: large, inner cream #f1dcc0, tips dark #5a2f1a for top 20 %.</li>
+        <li><b>Legs</b>: shorter (legs 22 % of height), dark brown #5b2f1c from knee; arms dark from elbow.</li>
+        <li><b>Tail</b>: 70 % of body height, cream tip 35 %, swung to fox's right so it shows from the front.</li>
+        <li><b>Neckerchief</b>: moss #5f7a34 triangle, knot at the side, one merged mesh.</li>
+        <li><b>Sleep pose</b>: lying on the side, legs tucked, tail wrapped over the nose (target = sheet sleep picture).</li>
+      </ol>
+      <b style="font-size:21px">Same for the cast</b>
+      <p style="margin:6px 0">Maus: grey-taupe #9a8c80, belly cream, ears pink inside #e8a4a0. Hase: cap and vest #4d6886, satchel #8a5a34 as on the portrait. Keep material count ≤ 4 per character.</p>
+    </div>
+  </div>
+</div></div><figcaption><b>Model spec.</b> Proportions are read off the master sheet. The den, forest, letter, puzzle margin and Waldspiele all then show the same fox.</figcaption></figure>
+
+<figure class="full wide"><div class="frame"><div class="ab" style="padding:36px 40px">
+  <h3 style="font:800 34px var(--wb-display)">Two picture families, each with one job</h3>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:20px">
+    <div style="padding:24px;border-radius:24px;background:#f2e7d0">
+      <b style="font:800 24px var(--wb-display)">World and characters: plush</b>
+      <p style="font-size:18px;margin:6px 0 14px">Soft felt, warm light, no outlines. Used for: all friends, Fuchs, counters and rewards, toolbar icons, hotspots, progress items, celebrations.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px"><img src="a/nut.webp" height="80"><img src="a/apple.webp" height="80"><img src="a/berry.webp" height="80"><img src="a/leaf.webp" height="80"><img src="a/feather.webp" height="80"><img src="a/lantern.webp" height="80"><img src="a/mouse-sleep.webp" height="80"><img src="a/hare-sit.webp" height="80"><img src="a/i-map.webp" height="80"></div>
+    </div>
+    <div style="padding:24px;border-radius:24px;background:#fbf6ea;box-shadow:inset 0 0 0 2px #e6d6b3">
+      <b style="font:800 24px var(--wb-display)">Book pictures: storybook crayon</b>
+      <p style="font-size:18px;margin:6px 0 14px">Hand-coloured, thin ink outline. Used only for word and object pictures inside the book (rhymes, vocabulary, sequences). Never for the friends.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px"><img src="a/m-houses.webp" height="80"><img src="a/tree.webp" height="80"><img src="a/hat.webp" height="80"><img src="a/bus.webp" height="80"><img src="a/rose-w.webp" height="80"><img src="a/boat.webp" height="80"><img src="a/book.webp" height="80"><img src="a/bean.webp" height="80"><img src="a/nest.webp" height="80"></div>
+    </div>
+  </div>
+  <div style="margin-top:28px;padding:20px 24px;border-radius:20px;background:#f3e2c8;font-size:18px">
+    <b style="font:800 22px var(--wb-display);color:#9a3d1e">Third style to remove:</b> flat vector drawings (Haus, Ast, Hut in the newer rounds; the mushrooms in Farben lesen; outline step icons). Replace with library pictures. Where a colour or shape is the answer (Farben lesen, Welche Form fehlt?), keep the SVG but give it the "wooden toy" finish: soft top highlight, 3 px darker outline of the same hue, contact shadow.
+  </div>
+</div></div><figcaption><b>Why two families.</b> Repainting about 190 library pictures as plush would need a large new image-generation batch. Giving each family its own job keeps the game coherent now; the few missing plush pictures are listed in the blueprint.</figcaption></figure>
+</div>
+</section>
+
+<!-- =============================== 5. FOREST + PERFORMANCE =============================== -->
+<section class="sec">
+<h2>5 · Outside and iPad performance</h2>
+<p class="lead">The 3D forest is already in the right style. It needs the matching door, the rebuilt cast, a softer brook and fewer draw calls so it holds a steady frame rate on an iPad 9.</p>
+<div class="grid">
+
+<figure class="ann full"><div class="frame" style="max-width:1100px"><div class="ab">
+  <img src="a/lookdev-hero.webp" style="position:absolute;inset:0;width:100%;height:100%">
+  <div style="position:absolute;left:16px;bottom:16px;width:260px;height:195px;border-radius:14px;overflow:hidden;box-shadow:0 0 0 4px #fff8e8,0 10px 24px #0006"><img src="a/forest-old.webp" style="width:100%;height:100%"><span style="position:absolute;left:8px;top:8px;padding:2px 10px;border-radius:10px;background:#2f3e5c;color:#fff;font:700 14px var(--wb-display)">today</span></div>
+  <span class="pin" style="left:720px;top:410px">1</span><div class="note" data-n="1">A real little stream: it meanders, changes width (0.6–1.8 m), has cut banks with wet soil, sand and pebbles, and its water flows (animated shader with bank foam and sun glints).</div>
+  <span class="pin" style="left:470px;top:430px">2</span><div class="note" data-n="2">Narrow trails (0.7–1 m) that wander and branch, with stepping stones, fallen leaves and grass spilling over the edges.</div>
+  <span class="pin" style="left:560px;top:560px">3</span><div class="note" data-n="3">Ground cover instead of green blobs: dense grass, ferns with drawn fronds, flower drifts, clover, reeds and cattails at the water, mushrooms at the roots.</div>
+  <span class="pin" style="left:690px;top:470px">4</span><div class="note" data-n="4">The new sculpted plush cast (see the cast sheet): one seamless body per character, painted fur, glossy eyes.</div>
+  <span class="pin" style="left:880px;top:300px">5</span><div class="note" data-n="5">A fallen tree across the brook is the second bridge; the invited squirrel waits on it. Fireflies lead there and its portrait ring glows gold.</div>
+  <span class="pin" style="left:370px;top:270px">6</span><div class="note" data-n="6">The den door and round window match the den inside; small lanterns and fly agarics at the doorstep.</div>
+  <span class="pin" style="left:1000px;top:560px">7</span><div class="note" data-n="7">An arched footbridge where the trail meets the brook.</div>
+</div></div><figcaption><b>Forest look-dev — game camera.</b> Rendered in three.js at iPad 9 resolution (2160 × 1620) from the look-dev scene in <code>lookdev/</code>, using the game's character rigs. Everything is generated in code: no extra downloads, works offline in the home-screen app. Measured: 119 draw calls and 352 k triangles in this view; the landscape alone is 54 calls and 251 k triangles.</figcaption></figure>
+
+<figure class="ann"><div class="frame"><div class="ab">
+  <img src="a/lookdev-log.webp" style="position:absolute;inset:0;width:100%;height:100%">
+  <span class="pin" style="left:560px;top:430px">1</span><div class="note" data-n="1">A fallen tree lies across the brook as a second, wilder bridge: bark grain along the trunk, moss on top, shelf fungi, a tapered broken end.</div>
+  <span class="pin" style="left:1020px;top:440px">2</span><div class="note" data-n="2">The uprooted end: a root plate with roots fanning out and earth still clinging to it.</div>
+  <span class="pin" style="left:540px;top:300px">3</span><div class="note" data-n="3">Eichhörnchen balances on the log with its acorn.</div>
+</div></div><figcaption><b>The log bridge.</b> Fuchs can cross here as well as at the arched bridge; in the game the log is walkable (a second crossing in the collider data) and a natural place for a friend to wait.</figcaption></figure>
+
+<figure class="ann full"><div class="frame" style="max-width:1100px;aspect-ratio:1600/760"><div class="ab" style="width:1600px;height:760px;background:#f3e6c9">
+  <img src="a/lookdev-cast.webp" style="position:absolute;inset:0;width:100%;height:100%">
+  <span class="pin" style="left:150px;top:200px">1</span><div class="note" data-n="1">Each character is one seamless, sculpted body (no visible ball joints): soft shapes blended into each other, then turned into a smooth mesh.</div>
+  <span class="pin" style="left:610px;top:270px">2</span><div class="note" data-n="2">Fur colours are painted onto the surface with soft edges: cream chests and cheeks, dark socks and ear tips, the owl's facial disc, the blue tit's cap and eye stripe.</div>
+  <span class="pin" style="left:1190px;top:250px">3</span><div class="note" data-n="3">One plush material for all: fine fur fuzz in colour and shading, a warm velvet rim and soft fill light. Painted eyes with a lighter lower iris and two catchlights.</div>
+  <span class="pin" style="left:1380px;top:190px">4</span><div class="note" data-n="4">Hase wears the postal waistcoat with brass buttons, cap with badge, strap and satchel, as on his portrait.</div>
+</div></div><figcaption><b>The new cast.</b> Fuchs, Eichhörnchen, Blaumeise, Waldkauz, Maus, Biber and Hase, rendered in three.js from <code>lookdev/plush.js</code>. Same names, sizes and joints as today's rigs, so the existing animations can drive them.</figcaption></figure>
+
+<figure class="ann"><div class="frame"><div class="ab">
+  <img src="a/lookdev-close.webp" style="position:absolute;inset:0;width:100%;height:100%">
+  <span class="pin" style="left:540px;top:330px">1</span><div class="note" data-n="1">Fuchs up close: one seamless sculpted body, soft fur fuzz and velvet rim light, painted brown eyes with catchlights, cream cheeks and chest, dark socks and ear tips, green neckerchief.</div>
+  <span class="pin" style="left:150px;top:300px">2</span><div class="note" data-n="2">Closed den door with hinges, mail lid and knob; the round window glows.</div>
+  <span class="pin" style="left:880px;top:330px">3</span><div class="note" data-n="3">Fireflies lead toward the invited friend.</div>
+</div></div><figcaption><b>Close to Fuchs.</b> Same scene, low camera (as when the fox greets a friend).</figcaption></figure>
+
+<figure class="ann"><div class="frame"><div class="ab">
+  <img src="a/lookdev-brook.webp" style="position:absolute;inset:0;width:100%;height:100%">
+  <span class="pin" style="left:120px;top:620px">1</span><div class="note" data-n="1">Brook bends around a bank with mossy stones and ferns; the bed shows through the shallow edges.</div>
+  <span class="pin" style="left:380px;top:640px">2</span><div class="note" data-n="2">Biber by his stream.</div>
+  <span class="pin" style="left:615px;top:290px">3</span><div class="note" data-n="3">Arched bridge with the blue tit on the rail; behind it the fallen-log bridge with the squirrel. Fuchs, Hase and the owl on the far bank.</div>
+</div></div><figcaption><b>Along the brook.</b> With all seven characters in view this angle needs 156 draw calls; merging each character into one skinned mesh (section 6.2) brings it to about 75.</figcaption></figure>
+
+<figure class="ann"><div class="frame"><div class="ab">
+  <img src="a/now-03-forest.webp" style="position:absolute;inset:0;width:100%;height:100%">
+  <span class="pin" style="left:540px;top:430px">1</span><div class="note" data-n="1" style="left:330px;top:600px;max-width:300px">Replace the open arch and lit room with the closed den door (blueprint above) plus the glowing round window.</div>
+  <span class="pin" style="left:940px;top:260px">2</span><div class="note" data-n="2" style="left:760px;top:330px;max-width:290px">Brook and trails: replaced by the meandering stream and narrow trails of the look-dev scene above.</div>
+  <span class="pin" style="left:460px;top:525px">3</span><div class="note" data-n="3" style="left:20px;top:690px;max-width:420px">Guidance arrow becomes a short trail of 5–7 glowing fireflies on the path toward the target (instanced sprites). It still only points; it never moves the fox.</div>
+  <span class="pin" style="left:125px;top:250px">4</span><div class="note" data-n="4" style="left:20px;top:110px;max-width:250px">World portrait bubbles use the same hotspot ring as the den.</div>
+  <span class="pin" style="left:790px;top:620px">5</span><div class="note" data-n="5" style="left:680px;top:700px;max-width:330px">Hase: cap, vest and satchel colours match the portrait.</div>
+</div></div><figcaption><b>Forest, current build, with the changes marked.</b> Layout, paths and colliders stay.</figcaption></figure>
+
+<figure><div class="frame"><div class="ab" style="background:#fbf3e2;color:var(--wb-ink);padding:34px 40px;box-sizing:border-box">
+  <h3 style="font:800 32px var(--wb-display)">iPad 9 frame budget</h3>
+  <p class="muted" style="font-size:17px;margin:2px 0 16px">A13 Bionic · 3 GB RAM · 2160 × 1620 px panel · Safari. Measured on the current build in desktop Chromium; device numbers must be re-measured on the iPad.</p>
+  <table style="width:100%;border-collapse:collapse;font:17px/1.35 var(--wb-display)">
+    <tr style="text-align:left;color:var(--wb-ink-soft)"><th style="padding:6px 0">Metric</th><th>Now</th><th>Target</th></tr>
+    <tr style="border-top:2px solid #ead9b6"><td style="padding:8px 0">Render scale (px per point)</td><td>1.75 fixed</td><td><b>1.25–1.5 adaptive</b></td></tr>
+    <tr style="border-top:2px solid #ead9b6"><td style="padding:8px 0">Pixels shaded per frame</td><td>2.68 M</td><td><b>≤ 1.97 M</b></td></tr>
+    <tr style="border-top:2px solid #ead9b6"><td style="padding:8px 0">Forest draw calls</td><td>≈ 236</td><td><b>≤ 150</b></td></tr>
+    <tr style="border-top:2px solid #ead9b6"><td style="padding:8px 0">Forest triangles</td><td>≈ 650 k</td><td><b>≤ 350 k</b></td></tr>
+    <tr style="border-top:2px solid #ead9b6"><td style="padding:8px 0">Den (3D fox only)</td><td>33 calls, 60 fps</td><td><b>30 fps when idle</b></td></tr>
+    <tr style="border-top:2px solid #ead9b6"><td style="padding:8px 0">Blur over the canvas</td><td>filter: blur(26 px)</td><td><b>none</b></td></tr>
+    <tr style="border-top:2px solid #ead9b6"><td style="padding:8px 0">Puzzle art download</td><td>≈ 36 MB PNG</td><td><b>≤ 8 MB WebP</b></td></tr>
+    <tr style="border-top:2px solid #ead9b6"><td style="padding:8px 0">Frame rate</td><td>not measured on iPad</td><td><b>60 menus · ≥ 50 forest</b></td></tr>
+  </table>
+  <p style="font-size:16px;margin-top:14px">Under a puzzle page the 3D loop is already paused. Keep it so: the page and the 3D world never animate at the same time.</p>
+</div></div><figcaption><b>Performance targets.</b> Each line has a concrete implementation step and check in the blueprint.</figcaption></figure>
+</div>
+</section>
+
+<section class="sec">
+<h2>6 · Room to grow: a world ten times larger</h2>
+<p class="lead">Today the walkable forest is one clearing of about 1,200 m², built in one piece at start-up. Ten times that, built the same way, would need about 2,400 draw calls per frame. The plan below splits the world into regions and 16 m tiles, so the iPad only ever draws what is near the fox: the cost per frame stays the same at 1× and at 10×.</p>
+<div class="grid">
+<figure class="full wide"><div class="frame"><div class="ab" style="padding:34px 40px">
+  <h3 style="font:800 34px var(--wb-display)">World ×10: regions, tiles and detail rings</h3>
+  <p class="muted" style="margin:2px 0 0;font-size:17px">Map scale 1 m = 3.2 px. Region names are placeholders for later content.</p>
+  <div style="position:absolute;left:40px;top:120px;width:800px;height:520px;border-radius:24px;background:#e3ecc9;overflow:hidden;box-shadow:inset 0 0 0 2px #c9d6a6">
+    <div style="position:absolute;inset:0;background-image:linear-gradient(#5a7a3a22 1px,transparent 1px),linear-gradient(90deg,#5a7a3a22 1px,transparent 1px);background-size:51.2px 51.2px"></div>
+    <svg viewBox="0 0 800 520" style="position:absolute;inset:0;width:800px;height:520px" aria-hidden="true">
+      <path d="M150 130 C260 140 300 220 400 250 S560 230 640 140 M400 250 C410 330 330 380 250 410 M400 250 C470 320 560 360 650 400 M150 130 C120 220 120 320 250 410 M640 140 C700 220 700 320 650 400" fill="none" stroke="#c98a52" stroke-width="10" stroke-linecap="round" opacity=".55"/>
+      <path d="M-10 300 C120 280 200 330 330 470 S500 540 520 540" fill="none" stroke="#6fb3c4" stroke-width="12" opacity=".6"/>
+    </svg>
+    <div style="position:absolute;left:337px;top:187px;width:126px;height:126px;border-radius:50%;background:#f5dfa8;box-shadow:0 0 0 3px #c98d3e;display:grid;place-items:center;text-align:center;font:800 15px/1.1 var(--wb-display)">Heimat-<br>lichtung<br><span style="font-weight:600;font-size:12px">today</span></div>
+    <div style="position:absolute;left:90px;top:70px;width:120px;height:120px;border-radius:46%;background:#ffffffaa;box-shadow:0 0 0 2px #b6c48f;display:grid;place-items:center;font:700 14px var(--wb-display)">Region 2</div>
+    <div style="position:absolute;left:580px;top:80px;width:120px;height:120px;border-radius:46%;background:#ffffffaa;box-shadow:0 0 0 2px #b6c48f;display:grid;place-items:center;font:700 14px var(--wb-display)">Region 3</div>
+    <div style="position:absolute;left:190px;top:350px;width:120px;height:120px;border-radius:46%;background:#ffffffaa;box-shadow:0 0 0 2px #b6c48f;display:grid;place-items:center;font:700 14px var(--wb-display)">Region 4</div>
+    <div style="position:absolute;left:590px;top:340px;width:120px;height:120px;border-radius:46%;background:#ffffffaa;box-shadow:0 0 0 2px #b6c48f;display:grid;place-items:center;font:700 14px var(--wb-display)">Region 5</div>
+    <div style="position:absolute;left:30px;top:230px;width:100px;height:100px;border-radius:46%;background:#ffffff88;box-shadow:0 0 0 2px #b6c48f;display:grid;place-items:center;font:700 13px var(--wb-display)">6</div>
+    <div style="position:absolute;left:350px;top:20px;width:100px;height:100px;border-radius:46%;background:#ffffff88;box-shadow:0 0 0 2px #b6c48f;display:grid;place-items:center;font:700 13px var(--wb-display)">7</div>
+    <div style="position:absolute;left:690px;top:230px;width:100px;height:100px;border-radius:46%;background:#ffffff88;box-shadow:0 0 0 2px #b6c48f;display:grid;place-items:center;font:700 13px var(--wb-display)">8</div>
+    <div style="position:absolute;left:380px;top:410px;width:100px;height:100px;border-radius:46%;background:#ffffff88;box-shadow:0 0 0 2px #b6c48f;display:grid;place-items:center;font:700 13px var(--wb-display)">9</div>
+    <div style="position:absolute;left:470px;top:20px;width:90px;height:90px;border-radius:46%;background:#ffffff88;box-shadow:0 0 0 2px #b6c48f;display:grid;place-items:center;font:700 13px var(--wb-display)">10</div>
+    <div style="position:absolute;left:236px;top:-6px;width:512px;height:512px;border-radius:50%;border:3px dashed #8a6a3a;background:#ffffff14"></div>
+    <div style="position:absolute;left:364px;top:122px;width:256px;height:256px;border-radius:50%;border:4px solid #d9692a;background:#d9692a18"></div>
+    <img src="a/fox-front.webp" style="position:absolute;left:478px;top:225px;height:50px">
+    <span style="position:absolute;left:600px;top:150px;padding:2px 8px;border-radius:8px;background:#d9692a;color:#fff;font:700 13px var(--wb-display)">40 m · full detail</span>
+    <span style="position:absolute;left:640px;top:40px;padding:2px 8px;border-radius:8px;background:#8a6a3a;color:#fff;font:700 13px var(--wb-display)">80 m · simple trees</span>
+    <span style="position:absolute;left:10px;top:488px;padding:2px 8px;border-radius:8px;background:#ffffffcc;font:700 13px var(--wb-display)">grid = 16 m tiles · beyond 80 m: haze and painted horizon</span>
+  </div>
+  <div style="position:absolute;left:880px;top:120px;width:680px;font:17px/1.45 var(--wb-display);color:var(--wb-ink)">
+    <b style="font-size:21px">Per-frame budget: the same at 1× and 10×</b>
+    <table style="width:100%;border-collapse:collapse;margin:8px 0 18px">
+      <tr style="color:var(--wb-ink-soft);text-align:left"><th style="padding:4px 0">Item</th><th>Limit</th></tr>
+      <tr style="border-top:2px solid #ead9b6"><td style="padding:5px 0">Draw calls</td><td><b>≤ 150</b></td></tr>
+      <tr style="border-top:2px solid #ead9b6"><td style="padding:5px 0">Triangles</td><td><b>≤ 350 k</b></td></tr>
+      <tr style="border-top:2px solid #ead9b6"><td style="padding:5px 0">Tiles live (near / far)</td><td><b>≤ 25 / ≤ 40</b></td></tr>
+      <tr style="border-top:2px solid #ead9b6"><td style="padding:5px 0">Animated characters</td><td><b>≤ 6</b></td></tr>
+      <tr style="border-top:2px solid #ead9b6"><td style="padding:5px 0">GPU memory</td><td><b>≤ 250 MB</b> (textures shared by all tiles ≤ 64 MB)</td></tr>
+      <tr style="border-top:2px solid #ead9b6"><td style="padding:5px 0">Tile building</td><td><b>≤ 4 ms per frame</b>, ahead of the fox</td></tr>
+      <tr style="border-top:2px solid #ead9b6"><td style="padding:5px 0">Download per new region</td><td><b>≤ 150 KB</b> (built from code and data)</td></tr>
+    </table>
+    <b style="font-size:21px">How</b>
+    <ol style="margin:6px 0 0;padding-left:22px">
+      <li>Each region is a data file: places, paths, water, solids, decoration seed.</li>
+      <li>Tiles of 16 m are built from the seed when the fox comes near and freed when it leaves.</li>
+      <li>Near ring: full detail. Far ring: two-sided tree cards from one shared atlas. Beyond: haze.</li>
+      <li>One material per surface kind for the whole world, compiled once at start.</li>
+      <li>Collision in a tile grid; routes over a region graph, then inside the region.</li>
+      <li>A dev test world <code>?world=10x</code> proves the budget before any new content exists.</li>
+    </ol>
+  </div>
+</div></div><figcaption><b>World ×10 plan.</b> The world can grow region by region; the frame cost depends only on what is within 80 m of the fox.</figcaption></figure>
+</div>
+</section>
+
+<!-- =============================== 6. TOKENS =============================== -->
+<section class="sec">
+<h2>7 · Building blocks</h2>
+<div class="grid">
+<figure class="full wide"><div class="frame"><div class="ab" style="padding:36px 40px">
+  <h3 style="font:800 34px var(--wb-display)">Tokens and components (<code>waldbuch.css</code>)</h3>
+  <div style="display:flex;gap:14px;margin:18px 0;flex-wrap:wrap">
+    <div style="text-align:center;font:600 14px var(--wb-display)"><div style="width:110px;height:70px;border-radius:14px;background:#4b3b2d"></div>ink #4b3b2d</div>
+    <div style="text-align:center;font:600 14px var(--wb-display)"><div style="width:110px;height:70px;border-radius:14px;background:#fff8e8;box-shadow:inset 0 0 0 2px #dcc59c"></div>paper #fff8e8</div>
+    <div style="text-align:center;font:600 14px var(--wb-display)"><div style="width:110px;height:70px;border-radius:14px;background:#f5ebd2"></div>inset #f5ebd2</div>
+    <div style="text-align:center;font:600 14px var(--wb-display)"><div style="width:110px;height:70px;border-radius:14px;background:#e8b968"></div>honey #e8b968</div>
+    <div style="text-align:center;font:600 14px var(--wb-display)"><div style="width:110px;height:70px;border-radius:14px;background:#a8703f"></div>timber #a8703f</div>
+    <div style="text-align:center;font:600 14px var(--wb-display)"><div style="width:110px;height:70px;border-radius:14px;background:#7f9a48"></div>moss #7f9a48</div>
+    <div style="text-align:center;font:600 14px var(--wb-display)"><div style="width:110px;height:70px;border-radius:14px;background:#e8efcf"></div>moss tint #e8efcf</div>
+    <div style="text-align:center;font:600 14px var(--wb-display)"><div style="width:110px;height:70px;border-radius:14px;background:#3f6a8c"></div>focus #3f6a8c</div>
+  </div>
+  <div style="display:flex;gap:46px;align-items:flex-start">
+    <div><div style="font:800 46px/1 var(--wb-display)">Baloo 2</div><div class="muted" style="font-size:16px">buttons, titles, numerals</div><div style="font:800 64px/1.1 var(--wb-display)">3 4 5</div></div>
+    <div><div style="font:700 46px/1 var(--wb-read)">Andika</div><div class="muted" style="font-size:16px">every word a child reads · 30–48 px</div><div style="font:700 44px/1.3 var(--wb-read)">Maus · Baum · TAN</div></div>
+    <div style="font:16px/1.5 var(--wb-display)"><b>Sizes on iPad</b><br>touch target ≥ 64 pt (answers ≥ 120 pt)<br>secondary text ≥ 15 px<br>one shadow token, one 6 px "press"<br>radii 32 / 24 / 18 / 12</div>
+  </div>
+  <div style="display:flex;gap:28px;align-items:center;margin-top:30px">
+    <div class="wb-btn wb-btn--wood"><svg><use href="#i-back"/></svg></div>
+    <div class="wb-btn"><svg><use href="#i-speak"/></svg></div>
+    <div class="wb-btn"><svg><use href="#i-demo"/></svg></div>
+    <div class="wb-btn wb-btn--square"><img src="a/i-letter.webp"></div>
+    <div style="position:relative;width:100px;height:100px"><div class="wb-spot" style="left:50px;top:50px"><img src="a/i-book.webp"></div></div>
+    <div class="wb-tile">7</div>
+    <div class="wb-tile is-chosen">8</div>
+    <div class="wb-tile is-retry">9</div>
+    <div class="wb-chip">TAN</div>
+    <div class="wb-twig"><img class="done" src="a/nut.webp"><img class="done" src="a/nut.webp"><img class="now" src="a/nut.webp"><img src="a/nut.webp"><img src="a/nut.webp"></div>
+  </div>
+  <div style="display:flex;gap:30px;align-items:center;margin-top:30px">
+    <span class="wb-switch on"></span><span class="wb-switch"></span><div class="wb-seg"><span class="on">Aus</span><span>Stoppuhr</span></div>
+    <span class="wb-tag" style="--accent:var(--wb-owl)">Waldkauz</span>
+    <span class="wb-friend"><img src="a/p-mouse.webp">Maus</span>
+  </div>
+</div></div><figcaption><b>Component sheet.</b> The same classes are used in every mockup above.</figcaption></figure>
+</div>
+</section>
+<div style="height:80px"></div>
+<button class="toggle" onclick="document.body.classList.toggle('show-notes')">Notes on/off</button>
+<script>
+  document.querySelectorAll('figure.ann').forEach(fig=>{const notes=[...fig.querySelectorAll('.ab .note')].sort((a,b)=>a.dataset.n-b.dataset.n);if(!notes.length)return;const ol=document.createElement('ol');ol.className='legend';notes.forEach(n=>{const li=document.createElement('li');li.innerHTML='<span>'+n.dataset.n+'</span><div>'+n.innerHTML+'</div>';ol.append(li);});fig.querySelector('figcaption').after(ol);});
+  function fit(){document.querySelectorAll('.frame').forEach(f=>{const ab=f.querySelector('.ab');ab.style.transform='scale('+(f.clientWidth/ab.offsetWidth)+')';});}
+  addEventListener('resize',fit);addEventListener('load',fit);fit();
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+--- /home/claude/mrtolchock/drawing-app/js/friends/characters3d.js	2026-11-09 10:19:44.801552111 +0100
++++ characters3d.js	2026-11-09 11:42:55.285314951 +0100
+@@ -3,9 +3,11 @@
+    stroke texture, gentle bump and a warm velvet rim) so the models read like the painted plush
+    characters. Every rig shares one update(dt,state) with procedural idle, walk and interaction
+    poses, and normalises its height to `height`. */
+-import {THREE} from '../forest/materials.js';
++import {THREE} from '../../../js/forest/materials.js';
+ 
+-const TAU=Math.PI*2,SPHERE=new THREE.SphereGeometry(1,32,22);
++const TAU=Math.PI*2;let SPHERE=new THREE.SphereGeometry(1,32,22);
++// Look-dev: level of detail for distant characters (same shapes, fewer sphere segments).
++export function setDetail(w,h){SPHERE=new THREE.SphereGeometry(1,w,h);}
+ const smooth=(a,b,x)=>THREE.MathUtils.smoothstep(x,a,b);
+ function rand(seed){return ()=>{seed=(seed*16807)%2147483647;return (seed-1)/2147483646;};}
+ 
+@@ -110,19 +112,21 @@
+    const geo=new THREE.ExtrudeGeometry(s,{depth:.018,bevelEnabled:true,bevelThickness:.012,bevelSize:.014,bevelSegments:3,curveSegments:12});add(body,new THREE.Mesh(geo,scarf),[0,.9,.155],null,[-.32,0,0]);
+    blob(body,scarf,[.1,.885,.15],[.045,.04,.04]);}
+   const head=joint(body,[0,.98,.02]);
+-  blob(head,orange,[0,.25,0],[.4,.33,.355]);
+-  blob(head,cream,[0,.07,.17],[.18,.12,.17]);
+-  for(const sx of [-1,1]){blob(head,cream,[sx*.17,.115,.14],[.2,.135,.18],[0,0,sx*.42]);tuft(head,cream,[sx*.29,.09,.03],[.085,.12,.08],[0,sx*.2,-sx*(Math.PI/2+.95)]);}
+-  blob(head,cream,[0,.1,.29],[.125,.09,.16]);blob(head,orange,[0,.215,.24],[.08,.055,.15],[-.3,0,0]);
+-  blob(head,nose,[0,.16,.445],[.052,.04,.038]);smile(head,.075,.4,.04);
+-  const eyes=[eye(head,-.15,.27,.3,.085,{yaw:-.28}),eye(head,.15,.27,.3,.085,{yaw:.28})];brow(head,-.155,.385,.315,.07,.05);brow(head,.155,.385,.315,.07,-.05);
+-  const ears=[];for(const sx of [-1,1]){const e=joint(head,[sx*.22,.47,-.05]);e.userData.z=sx*-.3;e.rotation.z=e.userData.z;ear(e,{r:.17,h:.38,outer:'#de6a26',inner:'#f6e6cf',tip:'#4b2817',tipFrom:.74,depth:.55});ears.push(e);}
++  // Round skull with a soft jaw; cream cheeks stay inside the head outline (sheet: no side "wings").
++  blob(head,orange,[0,.27,0],[.42,.36,.37]);blob(head,orange,[0,.13,.02],[.37,.24,.33]);
++  for(const sx of [-1,1]){blob(head,cream,[sx*.16,.1,.17],[.19,.13,.17],[0,sx*.25,sx*.28]);tuft(head,cream,[sx*.34,.09,.08],[.07,.09,.06],[0,sx*.3,-sx*(Math.PI/2+.75)]);}
++  blob(head,cream,[0,.05,.2],[.2,.11,.16]);
++  // A short, gently pointed fox muzzle: cream underside, orange bridge, dark nose at the tip.
++  blob(head,cream,[0,.1,.34],[.125,.09,.2]);blob(head,orange,[0,.19,.32],[.095,.065,.2],[-.24,0,0]);
++  blob(head,nose,[0,.17,.53],[.055,.042,.04]);smile(head,.065,.45,.045);
++  const eyes=[eye(head,-.155,.27,.305,.092,{yaw:-.3}),eye(head,.155,.27,.305,.092,{yaw:.3})];brow(head,-.16,.395,.32,.075,.05);brow(head,.16,.395,.32,.075,-.05);
++  const ears=[];for(const sx of [-1,1]){const e=joint(head,[sx*.23,.5,-.04]);e.userData.z=sx*-.34;e.rotation.z=e.userData.z;ear(e,{r:.215,h:.37,outer:'#de6a26',inner:'#f6e6cf',tip:'#4b2817',tipFrom:.78,depth:.5,innerScale:.72});ears.push(e);}
+   const arms=[];for(const sx of [-1,1]){const a=joint(body,[sx*.225,.775,.03]);capsule(a,orange,.066,.13,[0,-.09,0]);capsule(a,dark,.064,.08,[0,-.2,.005]);blob(a,dark,[0,-.285,.02],[.074,.072,.074]);arms.push(a);}
+-  const legs=[];for(const sx of [-1,1]){const l=joint(body,[sx*.12,.36,0]);blob(l,orange,[0,-.03,0],[.115,.13,.12]);capsule(l,dark,.078,.07,[0,-.17,0]);blob(l,dark,[0,-.295,.05],[.092,.062,.135]);legs.push(l);}
++  const legs=[];for(const sx of [-1,1]){const l=joint(body,[sx*.12,.37,0]);blob(l,orange,[0,-.02,.01],[.135,.16,.14]);capsule(l,dark,.088,.06,[0,-.165,.01]);blob(l,dark,[0,-.28,.06],[.105,.07,.15]);legs.push(l);}
+   // Big brush tail sweeping to one side, with a cream tip.
+   const tail=joint(body,[0,.42,-.2]),tailTip=joint(tail,[0,0,0]);
+   add(tailTip,new THREE.Mesh(taper([[0,0,0],[.02,-.03,-.18],[.1,.06,-.36],[.24,.26,-.44],[.32,.48,-.38],[.32,.62,-.27]],plume(.06,.215,.56,.6),{color:t=>mix(C('#de6a26'),C('#f8ecd8'),smooth(.64,.72,t))}),mat('#ffffff',{vc:true})),[0,0,0]);
+-  tail.rotation.set(.1,.55,0);
++  tail.rotation.set(.12,.95,0);
+   const parts={root,body,bodyY:0,head,eyes,ears,arms,legs,tail,tailTip};const rig=finish(group,parts,height);
+   const animate=rig.update,headRest=head.position.clone(),bodyRestY=body.rotation.y,tailRestZ=tail.rotation.z;
+   rig.update=(dt,state={})=>{

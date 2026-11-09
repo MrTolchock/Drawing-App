@@ -1,0 +1,142 @@
+/* ==========================================================================
+   Waldbuch — shared visual system for Farbtupf (Forest friends)
+   Reference implementation used by the design mockups. Every rule here is
+   plain CSS that runs in Safari 15+ (iPad 9th gen): no backdrop-filter, no
+   filter:blur, animations limited to transform and opacity.
+   ========================================================================== */
+
+@font-face{font-family:"Baloo 2";src:url(a/baloo2.woff2) format("woff2");font-weight:400 800;font-display:swap}
+@font-face{font-family:"Andika";src:url(a/andika-400.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Andika";src:url(a/andika-700.woff2) format("woff2");font-weight:700;font-display:swap}
+
+:root{
+  /* Ink and paper */
+  --wb-ink:#4b3b2d;          /* all text, outlines of drawn UI glyphs      */
+  --wb-ink-soft:#7a6650;     /* secondary text (min 15px)                  */
+  --wb-paper:#fff8e8;        /* page / card face                           */
+  --wb-paper-inset:#f5ebd2;  /* stages, wells, empty slots                 */
+  --wb-paper-edge:#dcc59c;   /* hairlines, stitching                       */
+  /* Timber and honey (all pressable things) */
+  --wb-honey:#e8b968;
+  --wb-honey-deep:#c98d3e;
+  --wb-timber:#a8703f;
+  --wb-timber-deep:#74482a;
+  /* Moss (success, chosen) */
+  --wb-moss:#7f9a48;
+  --wb-moss-deep:#4f6b34;
+  --wb-moss-tint:#e8efcf;
+  /* Focus (keyboard / switch access) */
+  --wb-focus:#3f6a8c;
+  /* Friend accents: one colour per character, used for tabs, stamps, tape */
+  --wb-fox:#d9692a; --wb-squirrel:#cf7a33; --wb-bluetit:#4f86b8; --wb-owl:#9c7046;
+  --wb-beaver:#8a5a34; --wb-mouse:#968a80; --wb-hare:#4d6886;
+  /* Shape and depth */
+  --wb-r-xl:32px; --wb-r-l:24px; --wb-r-m:18px; --wb-r-s:12px;
+  --wb-lift:0 10px 24px #5a3f2420;          /* the ONE soft shadow token   */
+  --wb-press:6px;                           /* timber underside thickness  */
+  /* Type */
+  --wb-display:"Baloo 2",ui-rounded,system-ui,sans-serif;  /* UI, headings, numerals */
+  --wb-read:"Andika","Baloo 2",system-ui,sans-serif;      /* all words a child reads */
+}
+
+/* ---------- Pressable timber button (back, speaker, demo, HUD) ---------- */
+.wb-btn{display:grid;place-items:center;width:64px;height:64px;border-radius:50%;
+  background:var(--wb-paper);border:2px solid var(--wb-honey-deep);
+  box-shadow:0 var(--wb-press) 0 var(--wb-timber),var(--wb-lift);color:var(--wb-ink);
+  transition:transform .08s,box-shadow .08s}
+.wb-btn:active,.wb-btn.is-pressed{transform:translateY(4px);box-shadow:0 2px 0 var(--wb-timber),var(--wb-lift)}
+.wb-btn svg{width:30px;height:30px}
+.wb-btn--wood{background:linear-gradient(#c98d4d,#a8703f);border-color:var(--wb-timber-deep);color:#fff4dc;box-shadow:0 var(--wb-press) 0 var(--wb-timber-deep),var(--wb-lift)}
+.wb-btn--square{border-radius:20px;width:72px;height:72px}
+.wb-btn--square img{width:52px;height:52px;object-fit:contain}
+
+/* ---------- HUD (map, letter, book, settings) ---------- */
+.wb-hud{position:absolute;top:16px;right:16px;display:flex;gap:10px;padding:8px;border-radius:28px;
+  background:#fff8e8e6;border:2px solid #e2c99a;box-shadow:var(--wb-lift)}
+.wb-hud .wb-btn--square{width:64px;height:64px;border-radius:18px}
+.wb-hud .wb-btn--square img{width:46px;height:46px}
+.wb-badge{position:absolute;top:-6px;right:-6px;width:22px;height:22px;border-radius:50%;background:var(--wb-fox);border:3px solid var(--wb-paper)}
+
+/* ---------- World hotspot ("Glühwürmchen-Ring") ---------- */
+.wb-spot{position:absolute;width:84px;height:84px;margin:-42px 0 0 -42px;border-radius:50%;display:grid;place-items:center;
+  background:radial-gradient(circle,#fffaf0 0 56%,#fff6dccc 57% 64%,transparent 65%);}
+.wb-spot::before{content:"";position:absolute;inset:0;border-radius:50%;border:3px solid #f2cf7e;opacity:.9}
+.wb-spot::after{content:"";position:absolute;inset:-10px;border-radius:50%;background:radial-gradient(circle,#ffe3a055 40%,transparent 70%);animation:wb-glow 2.6s ease-in-out infinite}
+.wb-spot img{width:50px;height:50px;object-fit:contain;position:relative;z-index:1}
+@keyframes wb-glow{0%,100%{transform:scale(.92);opacity:.55}50%{transform:scale(1.08);opacity:1}}
+
+/* ---------- The book page (every puzzle, every list) ---------- */
+.wb-scene{position:absolute;inset:0;background:#efe3c2 url(a/puzzle-clearing.webp) center/cover}
+.wb-page{position:absolute;border-radius:var(--wb-r-xl);background:var(--wb-paper);
+  box-shadow:0 0 0 2px #e6d2aa,0 14px 0 -4px #e9d8b6,0 14px 0 -2px #d2b98d,0 22px 40px #4a33201f}
+.wb-page::before{content:"";position:absolute;inset:12px;border-radius:24px;border:2px dashed #ead9b6;pointer-events:none}
+.wb-ribbon{position:absolute;top:-8px;width:34px;height:74px;background:var(--accent,var(--wb-fox));
+  clip-path:polygon(0 0,100% 0,100% 100%,50% 82%,0 100%);box-shadow:inset -6px 0 0 #0000001a}
+
+/* Host on the margin: the friend who gave the puzzle stands beside the page */
+.wb-host{position:absolute;left:6px;bottom:16px;width:230px;z-index:5;text-align:center}
+.wb-host img{width:100%;filter:none;display:block}
+.wb-host::before{content:"";position:absolute;left:30px;right:30px;bottom:4px;height:22px;border-radius:50%;background:#3d2a1a38}
+.wb-tag{display:inline-block;margin-top:-8px;position:relative;padding:4px 16px 5px;border-radius:12px;background:var(--wb-paper);
+  border:2px solid var(--accent,var(--wb-honey-deep));font:700 18px/1 var(--wb-display);color:var(--wb-ink)}
+
+/* Progress: five acorns on a twig */
+.wb-twig{display:flex;align-items:center;gap:8px;padding:6px 16px;border-radius:20px;background:var(--wb-paper-inset)}
+.wb-twig img{width:30px;height:30px;object-fit:contain;filter:grayscale(1) opacity(.35)}
+.wb-twig img.done{filter:none}
+.wb-twig img.now{filter:none;transform:scale(1.25);animation:wb-bob 1.6s ease-in-out infinite}
+@keyframes wb-bob{50%{transform:scale(1.25) translateY(-3px)}}
+
+/* Stage: where the task picture lives */
+.wb-stage{border-radius:var(--wb-r-l);background:var(--wb-paper-inset);box-shadow:inset 0 3px 0 #e6d6b3;display:flex;align-items:center;justify-content:center;gap:18px}
+
+/* Answer tile: pressed-paper face on a timber block */
+.wb-tile{position:relative;display:grid;place-items:center;min-width:132px;min-height:132px;padding:12px 18px;border-radius:var(--wb-r-l);
+  background:#fffdf6;border:2px solid #e3cc9f;box-shadow:0 var(--wb-press) 0 #d6b680,0 var(--wb-press) 0 1px #b88f55,var(--wb-lift);
+  font:800 54px/1 var(--wb-display);color:var(--wb-ink)}
+.wb-tile img{width:96px;height:96px;object-fit:contain}
+.wb-tile .wb-word{font:700 30px/1.1 var(--wb-read);margin-top:6px}
+.wb-tile.is-chosen{background:var(--wb-moss-tint);border-color:var(--wb-moss);box-shadow:0 2px 0 var(--wb-moss),0 0 0 6px #a9bf7a55;transform:translateY(4px)}
+.wb-tile.is-retry{border-style:dashed;opacity:.65}
+.wb-tile.is-focus{outline:4px solid var(--wb-focus);outline-offset:5px}
+
+/* Syllable chip */
+.wb-chip{display:grid;place-items:center;min-width:120px;height:84px;padding:0 20px;border-radius:20px;background:#fffdf6;
+  border:2px solid #e3cc9f;box-shadow:0 6px 0 var(--c,#d6b680),var(--wb-lift);font:700 40px/1 var(--wb-read);letter-spacing:.02em;color:var(--wb-ink)}
+
+/* Reading word (scored text: always Andika, never smaller than 40px) */
+.wb-read{font:700 48px/1.15 var(--wb-read);color:var(--wb-ink);letter-spacing:.01em}
+
+/* Celebration: CSS-only confetti, max 12 particles, transform/opacity only */
+.wb-confetti i{position:absolute;width:34px;height:34px;background:center/contain no-repeat;animation:wb-fall 1.4s cubic-bezier(.2,.7,.3,1) both}
+@keyframes wb-fall{from{transform:translate(0,0) rotate(0) scale(.4);opacity:0}15%{opacity:1}to{transform:translate(var(--x),var(--y)) rotate(var(--r)) scale(1);opacity:0}}
+.wb-hop{animation:wb-hop .7s ease-out 2}
+@keyframes wb-hop{40%{transform:translateY(-26px)}70%{transform:translateY(0) scaleY(.94)}}
+
+/* Card in lists (Waldspiele, Ausmalen) */
+.wb-card{position:relative;border-radius:var(--wb-r-l);background:#fffdf6;border:2px solid #e8d4ab;box-shadow:0 6px 0 #e2c995,var(--wb-lift);text-align:center}
+.wb-card h4{margin:0;font:700 20px/1.2 var(--wb-display);color:var(--wb-ink)}
+.wb-friend{display:inline-flex;align-items:center;gap:6px;padding:3px 10px 3px 4px;border-radius:14px;background:var(--wb-paper-inset);font:600 15px/1 var(--wb-display);color:var(--wb-ink-soft)}
+.wb-friend img{width:26px;height:26px;object-fit:contain}
+.wb-tab{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;width:96px;height:104px;padding-bottom:8px;border-radius:20px 20px 0 0;
+  background:#fffdf6;border:2px solid #e8d4ab;border-bottom:none;font:700 15px/1 var(--wb-display);color:var(--wb-ink-soft);box-shadow:inset 0 6px 0 var(--accent)}
+.wb-tab img{width:60px;height:60px;object-fit:contain;margin-bottom:6px}
+.wb-tab.is-on{height:118px;background:var(--wb-paper);color:var(--wb-ink);box-shadow:inset 0 10px 0 var(--accent)}
+
+/* Washi tape and clothes pegs (Ausmalen, Meine Bilder) */
+.wb-tape{position:absolute;top:-14px;left:50%;width:96px;height:28px;margin-left:-48px;transform:rotate(-4deg);
+  background:repeating-linear-gradient(90deg,#ffffff4d 0 10px,transparent 10px 20px),var(--accent);opacity:.85;border-radius:3px}
+.wb-peg{position:absolute;top:-24px;left:50%;width:16px;height:44px;margin-left:-8px;border-radius:5px;background:linear-gradient(90deg,#d9a866,#b8834a);box-shadow:0 2px 0 #7a4f2b}
+
+/* Settings (adult): calm, same materials */
+.wb-switch{width:76px;height:42px;border-radius:21px;background:var(--wb-paper-inset);border:2px solid var(--wb-paper-edge);position:relative}
+.wb-switch::after{content:"";position:absolute;top:3px;left:3px;width:32px;height:32px;border-radius:50%;background:#fff;box-shadow:0 3px 0 #d6b680}
+.wb-switch.on{background:var(--wb-moss);border-color:var(--wb-moss-deep)}
+.wb-switch.on::after{left:37px;box-shadow:0 3px 0 var(--wb-moss-deep)}
+.wb-seg{display:inline-flex;padding:4px;border-radius:16px;background:var(--wb-paper-inset);gap:4px}
+.wb-seg span{padding:10px 18px;border-radius:12px;font:700 17px var(--wb-display);color:var(--wb-ink-soft)}
+.wb-seg span.on{background:#fffdf6;color:var(--wb-ink);box-shadow:0 3px 0 #d6b680}
+
+@media (prefers-reduced-motion:reduce){
+  .wb-spot::after,.wb-twig img.now,.wb-hop,.wb-confetti i{animation:none}
+}
