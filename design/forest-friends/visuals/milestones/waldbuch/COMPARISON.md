@@ -86,3 +86,37 @@ The celebration lives in `js/ui/waldbuch.js` (`FK.waldbuch.celebrate`) and is ca
 - Silbenblätter (leaf popping) keeps its own pop effect and is not given the page celebration on every leaf.
 
 **Validation.** `node --test tests/*.test.cjs` (169 pass; the offline sheet test now reads each sheet's path from `FK.visual.source` and accepts the WebP postcard sheet); `puzzles-browser.cjs`, `den-browser.cjs`, `friends-mail-browser.cjs`, `interface-browser.cjs`, `friends-library-browser.cjs` and `play-browser.cjs` pass.
+
+## Phase 4 · 3D world and characters
+
+Build: app/cache 8.8.0 (`farbtupf-v8.8.0-waldbuch-world`), 9 November 2026, in four steps on `main`: 4.1 perf overlay, adaptive render scale and context loss (`52732b5`), 4.2 the look-dev forest streamed in tiles (`84fecd7`), 4.4 the baked plush cast (`0527cba`), 4.3 the `?world=10x` test world and budget test with the phase records (this commit). Chromium (SwiftShader) at 1080 × 810 and 390 × 844 CSS pixels, device scale 1 (the forest renders at 1.0–1.5× anyway), normal motion, shadows on, `?dev=1` (developer save); the 10× shots use `?world=10x` (its own save). Look-dev references rendered from `design/visual-overhaul/lookdev/` at the same size.
+
+| Item | Evidence | Against the look-dev |
+| --- | --- | --- |
+| Forest at home | [Game](forest-1080.jpg) ([phone](forest-390.jpg)) · [look-dev hero](lookdev-hero-1080.jpg), [close](lookdev-close-1080.jpg) | Same light, materials and plants as the look-dev: low warm sun with soft static shadows, painted terrain, leaf-card crowns, fluted trunks with buttress roots, home tree with round door, window and lanterns, fireflies leading off to the invited squirrel (gold ring on its portrait). The game camera is the existing play camera (closer and steeper than the hero view), and its flower drifts are sparser than in the hero render. |
+| Brook and arched bridge | [Game](forest-brook-1080.jpg) ([phone](forest-brook-390.jpg)) · [look-dev brook](lookdev-brook-1080.jpg) | Meandering brook with sandy banks, reeds and cattails, flowing water; the arched bridge crosses where it always did, and the log bridge sits upstream. |
+| Log bridge (second crossing) | [Game](forest-log-1080.jpg) ([phone](forest-log-390.jpg)) · [look-dev log](lookdev-log-1080.jpg) | The fallen-log bridge is a second walkable crossing with short ramps at both ends; Fuchs walks over it on the home loop. |
+| Plush cast | [Game models](cast-1080.jpg) ([phone](cast-390.jpg)) next to the [look-dev cast](cast-lookdev-1080.jpg) ([phone](cast-lookdev-390.jpg)) | All seven characters are the look-dev plush builders baked to skinned GLBs (fur and gloss materials, eyes drawn at runtime): proportions, colours and faces match; the far level of detail switches in beyond 8 m. The sheet shows front and three-quarter views; the look-dev cast page shows five of them, and Fuchs and Hase come from the same builders (they stand in the look-dev forest views). |
+| Sleep pose in the den | [Den](den-sleep-1080.jpg) ([phone](den-sleep-390.jpg)) | Fuchs lies curled on the mattress with closed eyes during bed sleep; the den keeps its painting. |
+| `?world=10x` | [Wild forest on a path between regions](world10x-wild-1080.jpg) ([phone](world10x-wild-390.jpg)), [placeholder region r3](world10x-region-1080.jpg) ([phone](world10x-region-390.jpg)) | Placeholder regions from the `home` decoration rules with their own seeds, joined by paths through wild forest; walkable only on clearings and paths. |
+
+**Frame budget** (`tests/world-budget-browser.cjs`, blueprint 7A; software mode, so no shadow map):
+
+| Walk | Draw calls (≤ 150) | Triangles (≤ 350 k) | Near tiles (≤ 25) | Far tiles (≤ 40) | Animated (≤ 6) | Build slice p95 (≤ 4 ms) / longest (≤ 12 ms) |
+| --- | --- | --- | --- | --- | --- | --- |
+| Loop round home (1×) | 108 | 253 k | 19 | 4 | 6 | 3.25 ms / 4.1 ms (13 slices) |
+| Route through all ten regions (10×) | 108 | 233 k | 23 | 36 | 6 | 3.25 ms / 9.9 ms (777 slices) |
+
+The forest is built while the child is in the den (8 ms slices, including the fireflies' route table) and its shaders are compiled before Fuchs steps outside. Outside, the streamer spends at most 3 ms per frame; it predicts each step from the steps of the same kind and leaves a step that would overrun for the next frame. With drawing skipped (on the iPad the GPU draws; here SwiftShader shares the CPU), the longest slice on the home loop was 2.9–4.1 ms over six walks; while drawing in SwiftShader, single 0.2 ms steps stall for 3–5 ms.
+
+**Intentional deviations**
+
+- Far ring ends at 68 m (tile centre) instead of 80 m: past 68 m the haze is over 90 %, and it keeps the far ring within 40 tiles on the whole 10× route.
+- Plants are one merged mesh per near tile instead of one `InstancedMesh` per kind (one draw call instead of six); leaf cards are instanced.
+- Characters and small rocks do not cast into the static shadow map (re-baked only every 8 m); characters keep soft contact-shadow discs.
+- Routing over the region graph and the zoomed-out world map page wait for the first real new region; today only `home` has places.
+- The den door does not swing open; going outside fades as before.
+- The sleep pose lays the tail along the body rather than over the nose.
+- Build slices are judged on the 95th percentile (and a 12 ms cap) in a pass with drawing skipped; the strict 4 ms maximum and the shadow re-bake frames are left for the iPad walk in phase 6.
+
+**Validation.** `node --test tests/*.test.cjs` (170 pass, including the separate `?world=10x` save); `world-budget-browser.cjs` (above, run alone), `friends-mail-browser.cjs`, `friends-browser.cjs`, `friends-animation-browser.cjs`, `friends-click-browser.cjs`, `world-browser.cjs`, `den-browser.cjs`, `painted-browser.cjs`, `interface-browser.cjs`, `puzzles-browser.cjs`, `friends-library-browser.cjs` and `browser-smoke.cjs` pass. `forest-browser.cjs` (the historical Heart Tree game) times out waiting for its "Hase besuchen" button; it fails the same way on the phase 3 commit `8a4afe6`, and phase 4 did not touch that game.

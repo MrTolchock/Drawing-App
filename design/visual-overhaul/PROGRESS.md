@@ -28,17 +28,17 @@ Claude Code keeps this file current: tick items as they land on `main`, add the 
 - [x] Celebration on correct answers (reduced-motion safe)
 
 ## Phase 4 · 3D world and characters · effort `xhigh` (or Fable 5.1)
-- [ ] **Before starting:** told the owner to switch (`/effort xhigh` or `/model fable`) and got confirmation
-- [ ] Landscape ported from `lookdev/forest.js` (terrain, meandering brook with banks and flowing water, narrow trails, grass, ferns, flowers, reeds, rocks, trees)
-- [ ] Log bridge as a second walkable crossing
-- [ ] Den door and round window outside; fireflies replace the arrow; gold ring on the invited friend
-- [ ] `tools/bake-characters.mjs` and baked plush cast (`assets/characters/*.glb`, ≤ 600 KB, two LODs)
-- [ ] `characters3d.js` loads the baked cast; animations and sleep pose work; den fox uses the same model
-- [ ] Region/tile/ring world structure with `home` as the only region; `?world=10x` test world and budget test
-- [ ] Context-loss handling, forest built while in the den (section 7B)
-- [ ] P1 adaptive render scale, P2 draw-call budget, P5 den idle at 30 fps, P9 `?perf=1` overlay
-- [ ] `friends-mail-browser.cjs`, `friends-animation-browser.cjs`, `world-browser.cjs` pass; renders match the look-dev
-- [ ] **After finishing:** told the owner to switch back with `/effort high`
+- [x] **Before starting:** told the owner to switch (`/effort xhigh` or `/model fable`) and got confirmation
+- [x] Landscape ported from `lookdev/forest.js` (terrain, meandering brook with banks and flowing water, narrow trails, grass, ferns, flowers, reeds, rocks, trees) — 4.2, `84fecd7`
+- [x] Log bridge as a second walkable crossing — 4.2
+- [x] Den door and round window outside; fireflies replace the arrow; gold ring on the invited friend — 4.2
+- [x] `tools/bake-characters.mjs` and baked plush cast (`assets/characters/*.glb`, 570 KB, two LODs) — 4.4, `0527cba`
+- [x] `characters3d.js` loads the baked cast; animations and sleep pose work; den fox uses the same model — 4.4
+- [x] Region/tile/ring world structure with `home` as the only region; `?world=10x` test world and budget test — 4.2 and 4.3, `46008f4`
+- [x] Context-loss handling, forest built while in the den (section 7B) — 4.1, 4.2
+- [x] P1 adaptive render scale, P2 draw-call budget, P5 den idle at 30 fps, P9 `?perf=1` overlay — 4.1, `52732b5`
+- [x] `friends-mail-browser.cjs`, `friends-animation-browser.cjs`, `world-browser.cjs` pass; renders match the look-dev — app 8.8.0, on `main`
+- [x] **After finishing:** told the owner to switch back with `/effort high`
 
 ## Phase 5 · Assets and offline · Opus 5.5, effort `high`
 - [ ] P6 PNG sheets → WebP; P7 atlas decode budget; precache list updated
@@ -72,4 +72,16 @@ Claude Code keeps this file current: tick items as they land on `main`, add the 
 - Den Ausmalen / Meine Bilder hotspots keep storybook-crayon object icons (no plush art for them).
 - Farben-lesen objects keep their ink outline; highlight and contact shadow added.
 - `tests/waldatelier.test.cjs` reads sheet paths from `FK.visual.source` so the WebP cast sheet is checked too.
-- **Next: phase 4.** Before starting it, the owner must switch to `/effort xhigh` (or `/model fable`) and confirm.
+
+**Phase 4** (app 8.8.0, on `main`; details in [`milestones/waldbuch/COMPARISON.md`](../forest-friends/visuals/milestones/waldbuch/COMPARISON.md)):
+- Far ring ends at 68 m (tile centre), not 80 m: beyond 68 m the haze is over 90 %, and it keeps the far ring within 40 tiles at every point of the 10× route. Rings are measured from tile centres.
+- Plants are one merged mesh per near tile (grass, flowers, ferns, clover, litter, reeds share the plant atlas) rather than one `InstancedMesh` per kind: one draw call instead of six. Leaf cards are instanced.
+- Characters and small rocks do not cast into the static shadow map (it is re-baked only every 8 m, so moving characters would leave frozen shadows); characters keep their soft contact-shadow discs.
+- Route planning stays local: only `home` has places, so map routing over the region graph and the zoomed-out world map page wait for the first real new region. The fireflies' route planner caches hub-to-hub sight lines (built in the den).
+- The den door does not swing open; going outside fades as before.
+- The sleep pose lays the tail along the body rather than over the nose.
+- Budget test (`tests/world-budget-browser.cjs`): draw calls, triangles, tiles and animated characters are measured while drawing in software mode (no shadows); build slices in a second pass with drawing skipped, because SwiftShader shares the CPU with the page here. Criterion there: 95th percentile ≤ 4 ms, longest ≤ 12 ms. The strict ≤ 4 ms maximum and the shadow re-bake frames are for the iPad walk (phase 6).
+- `forest-browser.cjs` (historical Heart Tree game) already fails on the phase 3 commit ("Hase besuchen" never appears); phase 4 did not touch that game.
+- `tests/characters-preview.html` now fits the camera to the window and stacks the characters on portrait screens.
+- `navigator.storage.persist()` and "apply updates at the next start in the den" (section 7B) are offline topics and left for phase 5.
+- **Next: phase 5.** Before starting it, the owner switches back to `/effort high`.
