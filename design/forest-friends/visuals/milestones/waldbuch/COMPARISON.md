@@ -120,3 +120,27 @@ The forest is built while the child is in the den (8 ms slices, including the fi
 - Build slices are judged on the 95th percentile (and a 12 ms cap) in a pass with drawing skipped; the strict 4 ms maximum and the shadow re-bake frames are left for the iPad walk in phase 6.
 
 **Validation.** `node --test tests/*.test.cjs` (170 pass, including the separate `?world=10x` save); `world-budget-browser.cjs` (above, run alone), `friends-mail-browser.cjs`, `friends-browser.cjs`, `friends-animation-browser.cjs`, `friends-click-browser.cjs`, `world-browser.cjs`, `den-browser.cjs`, `painted-browser.cjs`, `interface-browser.cjs`, `puzzles-browser.cjs`, `friends-library-browser.cjs` and `browser-smoke.cjs` pass. `forest-browser.cjs` (the historical Heart Tree game) times out waiting for its "Hase besuchen" button; it fails the same way on the phase 3 commit `8a4afe6`, and phase 4 did not touch that game.
+
+## Phase 5 · Assets and offline
+
+Build: app/cache 8.9.0 (`farbtupf-v8.9.0-waldbuch-webp`), 9 November 2026, `6226578` on `main`. Chromium (SwiftShader), 1080 × 810 and 390 × 844 at device scale 2, reduced motion, `?software=1&dev=1`, service workers off; each screen captured from app 8.8.0 (PNG sheets) and 8.9.0 (WebP) in the same run.
+
+| Screen | Evidence (8.9.0) | Difference from 8.8.0 |
+| --- | --- | --- |
+| Waldspiele (menu sheet) | [Tablet](webp-waldspiele-1080.jpg), [phone](webp-waldspiele-390.jpg) | mean 0.6 / 0.3 of 255, no pixel over 16 |
+| Muster (woodland and object sheets) | [Tablet](webp-pattern-1080.jpg), [phone](webp-pattern-390.jpg) | mean 0.6 / 0.3, 0.2 % of pixels over 16 |
+| Wörter (word sheets) | [Tablet](webp-words-1080.jpg), [phone](webp-words-390.jpg) | mean 3.1 / 3.7 |
+| Nüsse zählen (forest objects, clearing background) | [Tablet](webp-nuts-1080.jpg), [phone](webp-nuts-390.jpg) | tablet mean 3.3; phone 27.7 because the round drew 14 nuts instead of 19 |
+| Wort und Waldbild (word sheets) | [Tablet](webp-word-picture-1080.jpg), [phone](webp-word-picture-390.jpg) | mean 9.2 / 4.8: a different random word (BLUME instead of BEERE) |
+
+The larger differences come from tasks being chosen at random, not from compression; side by side the pictures cannot be told apart at full size.
+
+| Item | Result |
+| --- | --- |
+| P6 WebP | The 18 PNG sheets in `assets/waldatelier/`, `assets/woodland/` and `puzzle-clearing` are WebP at quality 82 with exact alpha: 37.7 MB → 7.0 MB (target ≤ 8 MB). The PNGs are removed from the app and kept in git history. |
+| Precache | 182 files, 16.0 MB in total (limit 25 MB). |
+| P7 decode budget | Atlases are no longer preloaded at start-up; CSS backgrounds load with the screen that shows them. Canvas drawing (paint stamps) loads a sheet on first use and keeps at most six; the paint screens load the selected stamp's sheet before the first tap. Checked in Chromium: no sheet loaded at start, stamps draw, six sheets held after drawing every reward. Memory on the iPad is phase 6. |
+| Updates (7B) | A new version downloads and waits; the open game keeps its cache. The next start in the den switches over with one automatic reload, never during a puzzle. Checked in Chromium with a changed `sw.js`. `navigator.storage.persist()` was already requested at start-up. |
+| New pictures | None delivered yet (`words-four`, `words-five` in `ASSET-REQUESTS.md`); the interim fallbacks stay. |
+
+**Validation.** `node --test tests/*.test.cjs` (170 pass; the offline sheet test now also checks the six-sheet limit); `puzzles-browser.cjs` (including offline reload), `friends-library-browser.cjs`, `interface-browser.cjs`, `den-browser.cjs`, `friends-mail-browser.cjs`, `browser-smoke.cjs`, `painted-browser.cjs`, `world-browser.cjs` and `friends-animation-browser.cjs` pass.

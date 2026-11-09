@@ -41,9 +41,9 @@ Claude Code keeps this file current: tick items as they land on `main`, add the 
 - [x] **After finishing:** told the owner to switch back with `/effort high`
 
 ## Phase 5 · Assets and offline · Opus 5.5, effort `high`
-- [ ] P6 PNG sheets → WebP; P7 atlas decode budget; precache list updated
-- [ ] Optional new word pictures from `ASSET-REQUESTS.md`
-- [ ] Offline reload passes; precached total < 25 MB
+- [x] P6 PNG sheets → WebP; P7 atlas decode budget; precache list updated — `6226578`
+- [x] Optional new word pictures from `ASSET-REQUESTS.md` — none delivered yet; fallbacks stay
+- [x] Offline reload passes; precached total < 25 MB (16.0 MB) — app 8.9.0, on `main`
 
 ## Phase 6 · Device check (owner)
 - [ ] iPad 9, home-screen app, `?perf=1`: fps, render scale, memory in the normal game
@@ -84,4 +84,9 @@ Claude Code keeps this file current: tick items as they land on `main`, add the 
 - `forest-browser.cjs` (historical Heart Tree game) already fails on the phase 3 commit ("Hase besuchen" never appears); phase 4 did not touch that game.
 - `tests/characters-preview.html` now fits the camera to the window and stacks the characters on portrait screens.
 - `navigator.storage.persist()` and "apply updates at the next start in the den" (section 7B) are offline topics and left for phase 5.
-- **Next: phase 5.** Before starting it, the owner switches back to `/effort high`.
+
+**Phase 5** (app 8.9.0, on `main`):
+- WebP at quality 82 with exact alpha: 37.7 MB → 7.0 MB; the PNGs are removed and kept in git history (no `archive/` copy).
+- Canvas drawing keeps at most six atlases (`FK.visual.load`, least recently used dropped); CSS backgrounds are left to the browser, which loads them with the screen that shows them.
+- Updates now wait and apply at the next start in the den (section 7B); `navigator.storage.persist()` was already in place.
+- **Next: phase 6** (owner): iPad 9, home-screen app, `?perf=1` in the normal game and on the `?world=10x` route; record fps, render scale and memory here and in `COMPARISON.md`.
