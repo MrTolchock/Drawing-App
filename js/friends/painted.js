@@ -5,6 +5,7 @@
 import {THREE} from '../forest/materials.js';
 import {createForest} from './forest3d.js';
 import {characters} from './characters3d.js';
+import {createPerf} from './perf.js';
 
 const ART='assets/forest-friends/',IW=1448,IH=1086,FOV=30,F=.5/Math.tan(THREE.MathUtils.degToRad(FOV/2));
 const lens=new THREE.PerspectiveCamera(FOV,IW/IH,.1,600);lens.position.set(0,12,0);lens.rotation.set(THREE.MathUtils.degToRad(-17),0,0);lens.updateMatrixWorld(true);lens.updateProjectionMatrix();
@@ -22,7 +23,7 @@ const pins={den:{outside:at(859,346),drawing:at(899,668),sleep:at(70,410),games:
 export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,onMove,onAnimationEnd,onProject}){
   const software=new URLSearchParams(location.search).has('software');
   const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true,powerPreference:'low-power'});
-  renderer.setPixelRatio(software?.5:Math.min(devicePixelRatio||1,1.75));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.05;renderer.setClearColor(0,0);
+  const perf=createPerf(renderer,{software});window.FK.perf=perf;renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.05;renderer.setClearColor(0,0);
   renderer.shadowMap.enabled=!software;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.shadowMap.autoUpdate=false;
   canvas.classList.add('ff-painted');canvas.parentElement?.classList.add('ff-painted-game');
   const fill=document.createElement('div');fill.className='ff-painted-fill';fill.setAttribute('aria-hidden','true');canvas.before(fill);
@@ -85,6 +86,13 @@ export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,o
   function pick(event){if(paused||anim||event.button>0||area!=='forest')return;const rect=canvas.getBoundingClientRect();forest.pick((event.clientX-rect.left)/rect.width*2-1,-(event.clientY-rect.top)/rect.height*2+1);}
   canvas.addEventListener('pointerup',pick);
   const visibility=()=>{last=performance.now();keys.clear();stick={x:0,z:0};};document.addEventListener('visibilitychange',visibility);
+  // iPadOS may drop the WebGL context while the home-screen app is in the background (blueprint 7B).
+  // Stop drawing while it is lost; three.js re-uploads geometry and textures from the same objects on
+  // restore, and the static shadow map is baked again.
+  let lost=false;
+  const contextLost=e=>{e.preventDefault();lost=true;perf.stats.lost=true;};
+  const contextRestored=()=>{lost=false;perf.stats.lost=false;renderer.shadowMap.needsUpdate=true;forest.restored?.();last=performance.now();};
+  canvas.addEventListener('webglcontextlost',contextLost);canvas.addEventListener('webglcontextrestored',contextRestored);
   const keydown=()=>{},keyup=()=>{},blur=()=>{keys.clear();stick={x:0,z:0};};
   const observer=new ResizeObserver(()=>layout());observer.observe(canvas);
   function finishProps(){props.forEach(p=>{p.userData.on=false;});night.classList.remove('on');apple.visible=false;tub.visible=false;fox.scale.setScalar(1);fox.rotation.set(0,.35,0);foxRig.update(0,{reduced:window.FK.reduced});}
@@ -131,16 +139,21 @@ export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,o
       if(d<.05){idle.target=null;idle.wait=6+Math.random()*7;}else{foxPos.x+=dx/d*step;foxPos.z+=dz/d*step;moving=true;speed=3;const want=Math.atan2(dx,dz);let diff=want-fox.rotation.y;diff=Math.atan2(Math.sin(diff),Math.cos(diff));fox.rotation.y+=diff*Math.min(1,dt*8);}}
     else{let diff=idle.turn-fox.rotation.y;diff=Math.atan2(Math.sin(diff),Math.cos(diff));fox.rotation.y+=diff*Math.min(1,dt*3);}
     fox.position.copy(foxPos);foxRig.update(dt,{moving,speed,reduced});}
-  function frame(now){raf=requestAnimationFrame(frame);const elapsed=Math.max(0,(now-last)/1000),dt=Math.min(.25,elapsed);last=now;if(document.hidden)return;if(paused&&!anim)return;time+=dt;
+  let denFrame=0;
+  function frame(now){raf=requestAnimationFrame(frame);const elapsed=Math.max(0,(now-last)/1000),dt=Math.min(.25,elapsed);last=now;
+    perf.frame(elapsed*1000,now,!document.hidden&&!lost&&(!paused||!!anim));
+    if(document.hidden||lost)return;if(paused&&!anim)return;time+=dt;
     layout();
-    if(area==='forest'&&!anim){forest.update(dt,time,{keys,stick});renderer.render(forest.scene,forest.camera);onProject(forest.pins());return;}
+    if(area==='forest'&&!anim){forest.update(dt,time,{keys,stick});renderer.render(forest.scene,forest.camera);perf.rendered(forest.budget?.()||{});onProject(forest.pins());return;}
+    // P5: an idle den (no walk, greeting or animation) is drawn every second frame.
+    const idleDen=area==='den'&&!anim&&!idle.target&&idle.greet<=0;if(idleDen&&(++denFrame&1)){potter(dt);return;}
     if(anim)animateTreat(elapsed);
     else if(area==='den')potter(dt);
     foxShadow.visible=area==='den'&&anim?.item!=='sleep';
     foxShadow.position.set(fox.position.x,.01,fox.position.z);foxShadow.scale.setScalar((anim?.item==='sleep'?sleepH:denH)*.3);
     for(const s of props)s.visible=s.userData.on&&!!s.material.map.userData.ready;
     if(area==='den'&&!window.FK.reduced){const p=motes.geometry.attributes.position,sd=motes.userData.seeds;for(let i=0;i<p.count;i++){const k=sd[i*4+3];p.setXYZ(i,sd[i*4]+Math.sin(time*.23+k)*.9,sd[i*4+1]+Math.sin(time*.17+k*1.7)*.7,sd[i*4+2]);}p.needsUpdate=true;windowGlow.material.opacity=.18+Math.sin(time*.8+1)*.025;}
-    renderer.render(scene,camera);
+    renderer.render(scene,camera);perf.rendered();
     onProject((pinList[area]||[]).map(p=>({id:p.id,...project(p.point)})));
   }
   setArea('den');raf=requestAnimationFrame(frame);
@@ -149,6 +162,6 @@ export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,o
     sequence(item){anim={item,elapsed:0};idle.target=null;fox.rotation.set(0,.35,0);foxPos.copy(item==='sleep'?ground(bedSpot.u,bedSpot.v):spots[0]);fox.position.copy(foxPos);if(item==='sleep'){fox.scale.setScalar(sleepH/denH);fox.rotation.set(-.12,.2,0);foxRig.update(0,{action:'sleep',reduced:window.FK.reduced});fitSleepingFox();}},
     skip(){anim=null;finishProps();foxPos.copy(spots[0]);fox.position.copy(foxPos);},
     get diagnostics(){const p=area==='forest'?forest.position:{x:foxPos.x,z:foxPos.z};return {area,paused,time,animation:anim?.item||null,foxBounds:area==='den'?projectedBounds():null,sleepBounds:anim?.item==='sleep'?projectedBounds():null,keys:[...keys],destination:area==='forest'?forest.destination?.toArray():undefined,position:p,mailTarget:forest.guideTarget,mailman:forest.mailman,painted:true};},get area(){return area;},get position(){return area==='forest'?forest.position:{x:foxPos.x,z:foxPos.z};},
-    dispose(){cancelAnimationFrame(raf);observer.disconnect();canvas.removeEventListener('pointerup',pick);document.removeEventListener('visibilitychange',visibility);document.removeEventListener('keydown',keydown);document.removeEventListener('keyup',keyup);window.removeEventListener('blur',blur);fill.remove();night.remove();renderer.dispose();},
+    dispose(){cancelAnimationFrame(raf);observer.disconnect();perf.dispose();canvas.removeEventListener('webglcontextlost',contextLost);canvas.removeEventListener('webglcontextrestored',contextRestored);canvas.removeEventListener('pointerup',pick);document.removeEventListener('visibilitychange',visibility);document.removeEventListener('keydown',keydown);document.removeEventListener('keyup',keyup);window.removeEventListener('blur',blur);fill.remove();night.remove();renderer.dispose();},
   };
 }
