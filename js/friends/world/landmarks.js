@@ -159,7 +159,7 @@ export function landmarkSteps(region, look, world, group, out) {
   if (region.brook) steps.push(() => group.add(waterMesh(region, look, world.fog)));
   // finally, one mesh per material
   const mk = (geos, material, name, cast = true) => { const g = merge(geos); if (!g) return; const m = new THREE.Mesh(g, material); m.name = name; m.castShadow = cast && M.shadows; m.receiveShadow = M.shadows; group.add(m); };
-  steps.push(() => mk(bark, M.bark, 'landmark bark'), () => mk(rocks, M.rock, 'landmark rocks'), () => mk(logs, M.log, 'log bridge'), () => mk(wood, M.wood, 'bridge'));
+  steps.push(() => mk(bark, M.bark, 'landmark bark'), () => mk(rocks, M.rock, 'landmark rocks', false), () => mk(logs, M.log, 'log bridge'), () => mk(wood, M.wood, 'bridge'));
   steps.push(() => {
     const leaves = instanced(new THREE.PlaneGeometry(1, 1), M.leaves, leafCards, {cast: M.shadows, receive: false, depth: M.leafDepth, name: 'home canopy'});
     if (leaves) { const n = leaves.geometry.attributes.normal; for (let i = 0; i < n.count; i++) n.setXYZ(i, 0, 1, 0); group.add(leaves); out.canopy = leaves; }

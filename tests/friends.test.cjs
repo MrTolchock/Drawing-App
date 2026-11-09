@@ -71,3 +71,11 @@ test('temporarily inaccessible storage can recover without overwriting an existi
 test('malformed local logs do not block valid player state',()=>{
  const s=storage();s.setItem('farbtupf.friends.v1.log',JSON.stringify({events:[null,{}, {event:'valid',timestamp:Date.now()}]}));const {state}=fixture({storage:s});assert.equal(state.blocked,false);assert.ok(state.start('mouse'));assert.ok(state.exportLog().events.every(e=>typeof e.event==='string'));
 });
+test('the ?world=10x test world keeps its own save; the home save format is unchanged',()=>{
+  const s=storage(),home=create({storage:s,content}),tenfold=create({storage:s,content,namespace:'world10x'});
+  assert.equal(tenfold.key,'farbtupf.friends.world10x.v1');assert.notEqual(tenfold.key,home.key);
+  assert.ok(home.position(1.5,-2));assert.ok(tenfold.position(112,-51,'r3'));
+  assert.deepEqual(create({storage:s,content}).get().world,{x:1.5,z:-2});
+  assert.deepEqual(create({storage:s,content,namespace:'world10x'}).get().world,{region:'r3',x:112,z:-51});
+  assert.ok(home.position(3,4,'home'));assert.deepEqual(create({storage:s,content}).get().world,{x:3,z:4});
+});

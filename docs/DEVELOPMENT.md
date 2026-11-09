@@ -18,6 +18,7 @@ Open `http://127.0.0.1:8000`. Browser scripts require Playwright and Chromium. T
 | `tests/friends-library-browser.cjs` | Restored v2 catalogue, new host assignments, fixed difficulty, return paths, original gear and full atelier persistence |
 | `tests/puzzles-browser.cjs` | All 24 catalogue routes at 1024/390, common forest layout, four independent reading completions, sleep size, postcard keyboard/touch activation, paint New/Cancel/Undo with pointer-only confirmation and offline assets |
 | `tests/world-browser.cjs` | Free walking, held touch, discoveries, map, camera, responsive controls and offline positions |
+| `tests/world-budget-browser.cjs` | Frame budget (blueprint 7A) on a loop round home and the fixed route through `?world=10x`: draw calls, triangles, near/far tiles and animated characters while drawing; build slices in a second pass with drawing skipped |
 | `tests/cinema-browser.cjs` | Opening, requests, heartlight, reunion, saved finale and framed faces |
 | `tests/story-browser.cjs` | Nine repairs, chapter transitions, exact puzzle recovery, practice and offline ending |
 | `tests/painted-browser.cjs` | Solid world picking, shared puzzle pictures and saved questions |
@@ -28,7 +29,7 @@ For the full story suite on software rendering, set `FARBTUPF_SOFTWARE_RENDERING
 
 ## Forest friends milestone
 
-The default entry is Forest friends. See [implementation, source checks and persistence](FOREST-FRIENDS.md). Run `node tests/friends-mail-browser.cjs` (also available as `friends-browser.cjs`) for the letter loop; `node tests/friends-animation-browser.cjs` checks free bed sleep and Skip; use `?screen=forest` for original Heart Tree browser checks. `?software=1` affects rendering only, and `?dev=1` uses separate developer saves.
+The default entry is Forest friends. See [implementation, source checks and persistence](FOREST-FRIENDS.md). Run `node tests/friends-mail-browser.cjs` (also available as `friends-browser.cjs`) for the letter loop; `node tests/friends-animation-browser.cjs` checks free bed sleep and Skip; use `?screen=forest` for original Heart Tree browser checks. `?software=1` affects rendering only, and `?dev=1` uses separate developer saves. `?perf=1` shows the frame counters, and `?world=10x` opens the ten-region test world with its own save.
 
 ## Persistence
 

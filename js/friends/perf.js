@@ -10,9 +10,10 @@ export function createPerf(renderer, {software = false} = {}) {
   const dpr = window.devicePixelRatio || 1;
   const max = software ? .5 : Math.min(dpr, 1.5), min = software ? .5 : Math.min(dpr, 1);
   const stats = {fps: 0, frameMs: 0, scale: max, calls: 0, triangles: 0, textures: 0, geometries: 0, programs: 0,
-    maxCalls: 0, maxTriangles: 0, buildSliceMs: 0, maxBuildSliceMs: 0, liveTiles: 0, maxLiveTiles: 0, farTiles: 0, maxFarTiles: 0,
+    maxCalls: 0, maxTriangles: 0, buildSliceMs: 0, maxBuildSliceMs: 0, buildSlices: 0, p95BuildSliceMs: 0, liveTiles: 0, maxLiveTiles: 0, farTiles: 0, maxFarTiles: 0,
     animated: 0, maxAnimated: 0, lost: false, frames: 0, rendered: 0};
   let sum = 0, count = 0, lastStep = 0, overlay = null;
+  const sliceBins = new Uint32Array(81);   // build slices in 0.25 ms bins (the last one is 20 ms and more)
   if (params.get('perf') === '1') {
     overlay = document.createElement('pre');
     overlay.className = 'ff-perf'; overlay.setAttribute('aria-hidden', 'true');
@@ -49,10 +50,17 @@ export function createPerf(renderer, {software = false} = {}) {
       if (overlay && stats.rendered % 10 === 0) overlay.textContent =
         `${stats.fps.toFixed(0)} fps  ${stats.frameMs.toFixed(1)} ms  scale ${stats.scale.toFixed(3)}\n` +
         `calls ${stats.calls}  tris ${(stats.triangles / 1000).toFixed(0)}k  tex ${stats.textures}  geo ${stats.geometries}\n` +
-        `tiles ${stats.liveTiles}+${stats.farTiles}  slice ${stats.buildSliceMs.toFixed(1)} ms (max ${stats.maxBuildSliceMs.toFixed(1)})  anim ${stats.animated}`;
+        `tiles ${stats.liveTiles}+${stats.farTiles}  slice ${stats.buildSliceMs.toFixed(1)} ms (p95 ${stats.p95BuildSliceMs.toFixed(2)}, max ${stats.maxBuildSliceMs.toFixed(1)})  anim ${stats.animated}`;
     },
-    slice(ms) { stats.buildSliceMs = ms; stats.maxBuildSliceMs = Math.max(stats.maxBuildSliceMs, ms); },
-    reset() { for (const k of ['maxCalls', 'maxTriangles', 'maxBuildSliceMs', 'maxLiveTiles', 'maxFarTiles', 'maxAnimated']) stats[k] = 0; },
+    /** Call with the duration of each frame's build slice (frames that built something). */
+    slice(ms) {
+      stats.buildSliceMs = ms; stats.maxBuildSliceMs = Math.max(stats.maxBuildSliceMs, ms);
+      sliceBins[Math.min(80, Math.floor(ms * 4))]++; stats.buildSlices++;
+      // 95th percentile (upper bin edge, and at least the second-longest slice): one stall (garbage
+      // collection, the OS) does not decide the result alone
+      let left = Math.max(2, Math.ceil(stats.buildSlices * .05)), bin = 80; while (bin > 0 && (left -= sliceBins[bin]) > 0) bin--; stats.p95BuildSliceMs = (bin + 1) / 4;
+    },
+    reset() { for (const k of ['maxCalls', 'maxTriangles', 'maxBuildSliceMs', 'buildSlices', 'p95BuildSliceMs', 'maxLiveTiles', 'maxFarTiles', 'maxAnimated']) stats[k] = 0; sliceBins.fill(0); },
     dispose() { overlay?.remove(); },
   };
 }

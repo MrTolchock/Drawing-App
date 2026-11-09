@@ -64,16 +64,16 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
 
   /* ---------- characters ---------- */
   function contact(r, o = 1) { const m = new THREE.Mesh(new THREE.CircleGeometry(1, 24), new THREE.MeshBasicMaterial({map: softTex, transparent: true, depthWrite: false, opacity: o, toneMapped: false})); m.rotation.x = -Math.PI / 2; m.scale.setScalar(r); m.renderOrder = 1; scene.add(m); return m; }
-  const friends = {};
+  const friends = {}, noCast = rig => { const off = () => rig.group.traverse(o => { o.castShadow = false; }); off(); rig.ready.then(off); return rig; };
   for (const [id, f] of Object.entries(home.friends)) {
-    const rig = characters[id](f.h), [x, z] = f.at, y = groundY(x, z) + f.y;
+    const rig = noCast(characters[id](f.h)), [x, z] = f.at, y = groundY(x, z) + f.y;
     rig.group.position.set(x, y, z); rig.group.rotation.y = f.yaw; scene.add(rig.group);
     friends[id] = {...f, rig, x, z, y, shadow: f.y === 0 ? contact(f.h * .42) : null};
     if (friends[id].shadow) friends[id].shadow.position.set(x, y + .03, z);
   }
-  const foxRig = characters.fox(FOX_H), fox = foxRig.group, foxShadow = contact(.42), pos = new THREE.Vector3(forestPlaces.home.x, 0, forestPlaces.home.z), vel = new THREE.Vector2();
+  const foxRig = noCast(characters.fox(FOX_H)), fox = foxRig.group, foxShadow = contact(.42), pos = new THREE.Vector3(forestPlaces.home.x, 0, forestPlaces.home.z), vel = new THREE.Vector2();
   fox.name = 'fox'; scene.add(fox);
-  const courierRig = characters.mailman(1.72), courier = courierRig.group, mailPos = new THREE.Vector3(forestPlaces.mailman.x, 0, forestPlaces.mailman.z), courierShadow = contact(.48, .85);
+  const courierRig = noCast(characters.mailman(1.72)), courier = courierRig.group, mailPos = new THREE.Vector3(forestPlaces.mailman.x, 0, forestPlaces.mailman.z), courierShadow = contact(.48, .85);
   courier.name = 'rabbit-mailman'; scene.add(courier); let courierGoal = null, courierWait = 2;
 
   /* ---------- guidance: fireflies from Fuchs toward the invited friend ---------- */
@@ -96,13 +96,19 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   }
   const hubPoints = hubs.filter(([x, z]) => walkable(x, z)).map(([x, z]) => new THREE.Vector3(x, 0, z));
   function clear(a, b, skipStart = false) { const d = Math.hypot(b.x - a.x, b.z - a.z), n = Math.max(2, Math.ceil(d / .3)); for (let i = skipStart ? 1 : 0; i <= n; i++) { const t = i / n; if (skipStart && t * d < .35) continue; if (!walkable(a.x + (b.x - a.x) * t, a.z + (b.z - a.z) * t)) return false; } return true; }
+  // Hubs never move, so whether two hubs see each other is worked out once (the fireflies re-plan every second).
+  // The whole table is filled in the den's build slices (row by row), so Fuchs never waits for it.
+  let hubRows = 0;
+  const hubSight = new Map(), hubClear = (a, b) => { const k = Math.min(a, b) * 4096 + Math.max(a, b); let v = hubSight.get(k); if (v === undefined) hubSight.set(k, v = clear(hubPoints[a], hubPoints[b])); return v; };
   function plan(target) {
     if (clear(pos, target, true)) return [target];
-    const points = [pos.clone().setY(0), target, ...hubPoints.filter(p => p.distanceTo(pos) < 60 || p.distanceTo(target) < 60)], cost = points.map(() => Infinity), previous = [], visited = new Set(); cost[0] = 0;
+    const ids = [-1, -1]; hubPoints.forEach((p, h) => { if (p.distanceTo(pos) < 60 || p.distanceTo(target) < 60) ids.push(h); });
+    const points = [pos.clone().setY(0), target, ...ids.slice(2).map(h => hubPoints[h])], cost = points.map(() => Infinity), previous = [], visited = new Set(); cost[0] = 0;
+    const sees = (a, b) => a > 1 && b > 1 ? hubClear(ids[a], ids[b]) : clear(points[a], points[b], a === 0);
     while (visited.size < points.length) {
       let next = -1; for (let i = 0; i < points.length; i++) if (!visited.has(i) && (next < 0 || cost[i] < cost[next])) next = i;
       if (next < 0 || !Number.isFinite(cost[next]) || next === 1) break; visited.add(next);
-      for (let i = 0; i < points.length; i++) { if (visited.has(i)) continue; const c = cost[next] + points[next].distanceTo(points[i]); if (c >= cost[i] || !clear(points[next], points[i], next === 0)) continue; cost[i] = c; previous[i] = next; }
+      for (let i = 0; i < points.length; i++) { if (visited.has(i)) continue; const c = cost[next] + points[next].distanceTo(points[i]); if (c >= cost[i] || !sees(next, i)) continue; cost[i] = c; previous[i] = next; }
     }
     if (!Number.isFinite(cost[1])) return null; const route = []; let cursor = 1; while (cursor !== 0) { route.unshift(points[cursor]); cursor = previous[cursor]; } return route;
   }
@@ -146,12 +152,14 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     if (manual) { destination = null; path = []; arrival = null; ring.visible = false; want.set(dx, dz).normalize().multiplyScalar(speedMax * Math.min(1, Math.hypot(dx, dz))); }
     else if (destination) { let ddx = destination.x - pos.x, ddz = destination.z - pos.z, d = Math.hypot(ddx, ddz);
       while (path.length && d < .55) { destination = path.shift(); ddx = destination.x - pos.x; ddz = destination.z - pos.z; d = Math.hypot(ddx, ddz); }
-      if (!path.length && d < .1) { destination = null; ring.visible = false; vel.set(0, 0); onPosition(pos.x, pos.z); const reached = arrival; arrival = null; if (reached) onAction(reached); }
+      if (!path.length && d < .1) { destination = null; ring.visible = false; vel.set(0, 0); onPosition(pos.x, pos.z, WORLD.regionAt(pos.x, pos.z)?.id); const reached = arrival; arrival = null; if (reached) onAction(reached); }
       else { const sp = speedMax * (path.length ? 1 : Math.min(1, .25 + d / 1.2)); want.set(ddx / d * sp, ddz / d * sp); } }
     vel.lerp(want, 1 - Math.exp(-dt * (want.lengthSq() ? 9 : 12))); const speed = vel.length(), moving = speed > .15;
-    if (speed > .02) { const nx = pos.x + vel.x * dt, nz = pos.z + vel.y * dt; if (walkable(nx, nz)) { pos.x = nx; pos.z = nz; } else if (walkable(nx, pos.z)) { pos.x = nx; vel.y *= .5; } else if (walkable(pos.x, nz)) { pos.z = nz; vel.x *= .5; } else vel.multiplyScalar(.5);
+    if (speed > .02) { let nx = pos.x + vel.x * dt, nz = pos.z + vel.y * dt;
+      // the last step lands on the target instead of overshooting it (long frames, fast walking)
+      if (destination && !path.length && !manual && Math.hypot(destination.x - pos.x, destination.z - pos.z) <= speed * dt) { nx = destination.x; nz = destination.z; } if (walkable(nx, nz)) { pos.x = nx; pos.z = nz; } else if (walkable(nx, pos.z)) { pos.x = nx; vel.y *= .5; } else if (walkable(pos.x, nz)) { pos.z = nz; vel.x *= .5; } else vel.multiplyScalar(.5);
       if (speed > .2) { const target = Math.atan2(vel.x, vel.y); let diff = target - fox.rotation.y; diff = Math.atan2(Math.sin(diff), Math.cos(diff)); fox.rotation.y += diff * (1 - Math.exp(-dt * 12)); } }
-    if (moving && time - lastSample > 1) { lastSample = time; onPosition(pos.x, pos.z); }
+    if (moving && time - lastSample > 1) { lastSample = time; onPosition(pos.x, pos.z, WORLD.regionAt(pos.x, pos.z)?.id); }
     let closest = null, best = 3.2; for (const [id, p] of Object.entries(forestPlaces)) { const d = Math.hypot(p.x - pos.x, p.z - pos.z); if (d < best) { closest = id; best = d; } } if (closest !== near) { near = closest; onNear(near); }
     const base = groundY(pos.x, pos.z); fox.position.set(pos.x, base, pos.z); foxRig.update(dt, {moving, speed, reduced});
     foxShadow.position.set(pos.x, base + .04, pos.z);
@@ -174,14 +182,19 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     updateGuide(time);
     focus.lerp(new THREE.Vector3(pos.x + vel.x * .35, base * .5, pos.z + vel.y * .35), reduced ? 1 : 1 - Math.exp(-dt * 2.6)); placeCamera(1);
     // stream tiles around Fuchs and ahead of him (≤ 4 ms per frame); move the static shadow with him
-    streamer.focus(pos.x, pos.z, pos.x + vel.x * 2, pos.z + vel.y * 2); streamer.work(4);
+    streamer.focus(pos.x, pos.z, pos.x + vel.x * 2, pos.z + vel.y * 2); streamer.work(3);
     if (Math.hypot(pos.x - shadowAt.x, pos.z - shadowAt.z) > 8) aimSun(pos.x, pos.z);
   }
   let animatedCount = 0;
   return {scene, camera,
     /** Build in slices while the child is in the den; returns true while work remains. */
-    build(budget = 8) { const more = streamer.work(budget); if (!more) compile(); return more; },
-    get pending() { return streamer.pending(); },
+    build(budget = 8) {
+      const t0 = performance.now(), more = streamer.work(budget);
+      while (!more && hubRows < hubPoints.length && performance.now() - t0 < budget) { for (let b = hubRows + 1; b < hubPoints.length; b++) hubClear(hubRows, b); hubRows++; }
+      if (!more && hubRows >= hubPoints.length) compile();
+      return more || hubRows < hubPoints.length;
+    },
+    get pending() { return streamer.pending() || hubRows < hubPoints.length; },
     enter(position) {
       const p = position && walkable(position.x, position.z) ? position : forestPlaces.home; pos.set(p.x, 0, p.z); vel.set(0, 0); fox.rotation.y = 0; destination = null; path = []; arrival = null; ring.visible = false; near = null;
       streamer.focus(pos.x, pos.z); const finishing = streamer.complete(); if (perf) perf.stats.enterBuildMs = finishing; compile(); aimSun(WORLD.mode === 'home' ? 2 : pos.x, WORLD.mode === 'home' ? -2 : pos.z); snapCamera(); renderer.shadowMap.needsUpdate = true;
@@ -203,6 +216,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     pins() { return [...pins, {id: 'mailman', point: new THREE.Vector3(mailPos.x, groundY(mailPos.x, mailPos.z) + 2.2, mailPos.z)}].map(p => { const q = p.point.clone().project(camera); return {id: p.id, x: (q.x * .5 + .5) * width, y: (-q.y * .5 + .5) * height, visible: q.z < 1 && Math.abs(q.x) < 1.02 && q.y > -1.02 && q.y < 1.12 && p.point.distanceTo(pos) < NEAR}; }); },
     get mailman() { return {x: mailPos.x, z: mailPos.z}; }, get guideTarget() { return guideTarget; }, get position() { return {x: pos.x, z: pos.z}; }, get destination() { return destination; }, get near() { return near; },
     get world() { return WORLD; },
+    get region() { return WORLD.regionAt(pos.x, pos.z)?.id || 'wild'; },
   };
 }
 function mergePlain(geos) {

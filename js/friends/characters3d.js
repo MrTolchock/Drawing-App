@@ -286,7 +286,8 @@ function plushSleep(p){
 }
 function plushModel(id,height){
   const model=cloneSkinned(baked[id]),bones={},meshes=[];
-  model.traverse(o=>{if(o.isBone)bones[o.name]=o;if(o.isSkinnedMesh){meshes.push(o);o.castShadow=true;o.frustumCulled=false;}});
+  // Characters stay out of the static shadow map (it is not redrawn as they move); each has a soft contact shadow.
+  model.traverse(o=>{if(o.isBone)bones[o.name]=o;if(o.isSkinnedMesh){meshes.push(o);o.castShadow=false;o.frustumCulled=false;}});
   const own=new Map();for(const m of meshes){if(!own.has(m.material))own.set(m.material,m.material.name==='fur'?plushFur(m.material):Object.assign(m.material.clone(),{map:eyes(),roughness:.12}));m.material=own.get(m.material);}
   const list=prefix=>Object.keys(bones).filter(n=>n.startsWith(prefix+'_')).sort((a,b)=>+a.split('_')[1]-+b.split('_')[1]).map(n=>bones[n]);
   const root=new THREE.Group();root.add(model);

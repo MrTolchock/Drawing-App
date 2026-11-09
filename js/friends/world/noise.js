@@ -25,9 +25,14 @@ export const fbm = (x, y) => vnoise(x, y) * .55 + vnoise(x * 2.1 + 5, y * 2.1 + 
 /** Nearest-sample lookup over a dense polyline (brook and trail splines), bucketed for speed. */
 export function sampleIndex(points, cell = 4) {
   const grid = new Map(), key = (i, j) => i * 65536 + j;
-  points.forEach((p, n) => { const k = key(Math.floor(p.x / cell), Math.floor(p.z / cell)); (grid.get(k) || grid.set(k, []).get(k)).push(n); });
-  return function nearest(x, z, reach = 3) {
+  let i0 = Infinity, i1 = -Infinity, j0 = Infinity, j1 = -Infinity;
+  points.forEach((p, n) => { const i = Math.floor(p.x / cell), j = Math.floor(p.z / cell), k = key(i, j); (grid.get(k) || grid.set(k, []).get(k)).push(n); i0 = Math.min(i0, i); i1 = Math.max(i1, i); j0 = Math.min(j0, j); j1 = Math.max(j1, j); });
+  /** Nearest sample within `reach` buckets: {d, i, t}, written into `out` when given (no allocation). */
+  return function nearest(x, z, reach = 3, out = {}) {
     const ci = Math.floor(x / cell), cj = Math.floor(z / cell);
+    out.d = Infinity; out.i = 0; out.t = 0;
+    // no bucket within reach: the polyline is far away
+    if (ci + reach < i0 || ci - reach > i1 || cj + reach < j0 || cj - reach > j1) return out;
     let best = Infinity, bi = -1, stop = reach;
     for (let r = 0; r <= stop; r++) {
       if (bi >= 0 && stop > r) stop = r;   // after the first hit, scan one more ring and finish
@@ -37,7 +42,7 @@ export function sampleIndex(points, cell = 4) {
         for (const n of list) { const p = points[n], dx = p.x - x, dz = p.z - z, d = dx * dx + dz * dz; if (d < best) { best = d; bi = n; } }
       }
     }
-    if (bi < 0) return {d: Infinity, i: 0, t: 0};
-    return {d: Math.sqrt(best), i: bi, t: bi / (points.length - 1)};
+    if (bi >= 0) { out.d = Math.sqrt(best); out.i = bi; out.t = bi / (points.length - 1); }
+    return out;
   };
 }

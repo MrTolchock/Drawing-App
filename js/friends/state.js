@@ -4,8 +4,8 @@
   'use strict';
   const clone=x=>JSON.parse(JSON.stringify(x));
   const SCHEMA=1, RETENTION=7*86400000, LIMIT=10000;
-  function create({storage,content,development=false,now=()=>Date.now(),random=Math.random,onStatus=()=>{}}){
-    const key='farbtupf.friends.'+(development?'development.':'')+'v1', backup=key+'.backup', logKey=key+'.log';
+  function create({storage,content,development=false,namespace='',now=()=>Date.now(),random=Math.random,onStatus=()=>{}}){
+    const key='farbtupf.friends.'+(namespace?namespace+'.':development?'development.':'')+'v1', backup=key+'.backup', logKey=key+'.log';
     let state,blocked=false,readFailed=false,expected=null,error='',events=[],truncated=false;
     const uid=()=>now().toString(36)+'-'+random().toString(36).slice(2,12);
     const sessionId=uid();
@@ -26,7 +26,7 @@
       if(!object(s.rounds)||!Object.entries(s.rounds).every(([host,r])=>content.hosts[host]&&r&&r.host===host&&typeof r.id==='string'&&r.tasks?.length===5&&r.tasks.every(t=>typeof t.id==='string'&&Array.isArray(t.choices)&&t.choices.includes(t.answer)&&t.choices.every(v=>typeof v==='string')&&['count','shape','sentence','word','rhyme'].includes(t.kind))&&Number.isInteger(r.index)&&r.index>=0&&r.index<=5&&Array.isArray(r.attempts)&&Array.isArray(r.support)&&Number.isFinite(r.activeMilliseconds)&&r.activeMilliseconds>=0&&typeof r.rewarded==='boolean'&&(r.index===5)===r.rewarded))return false;
       if(!s.drawings||!['free','leaf'].every(k=>strokes(s.drawings[k]))||!['free','leaf'].includes(s.selectedPage))return false;
       if(!s.settings||!['speech','music','ambience'].every(k=>typeof s.settings[k]==='boolean'))return false;
-      if(!s.world||!Number.isFinite(s.world.x)||!Number.isFinite(s.world.z))return false;
+      if(!s.world||!Number.isFinite(s.world.x)||!Number.isFinite(s.world.z)||(s.world.region!==undefined&&typeof s.world.region!=='string'))return false;
       if(s.collected!==undefined&&!(object(s.collected)&&Object.entries(s.collected).every(([id,v])=>/^goldleaf-\d{1,2}$/.test(id)&&v===true)))return false;
       if(s.animation!==null&&(!['apple','bath'].includes(s.animation?.item)||typeof s.animation.transactionId!=='string'||!['den','forest','shop'].includes(s.animation.returnTo)))return false;
       return object(s.previous)&&object(s.completed)&&object(s.seenExamples)&&Array.isArray(s.transactions);
@@ -110,7 +110,8 @@
       use(){return false;},
       finishAnimation(skipped=false){return commit(s=>{if(!s.animation)return false;s.animation=null;},skipped?'animation_skip':'animation_complete');},
       setting(name,value){if(!['music','ambience','speech'].includes(name))return false;return commit(s=>{s.settings[name]=!!value;},'setting',{name,value});},
-      position(x,z){return commit(s=>{s.world={x,z};},'movement_sample',{area:'forest',x,z});},
+      // Positions are {x,z} in world metres; outside region `home` the region id is added ({region,x,z}).
+      position(x,z,region){return commit(s=>{s.world=region&&region!=='home'?{region,x,z}:{x,z};},'movement_sample',{area:'forest',x,z,...(region&&region!=='home'?{region}:{})});},
       selectPage(page){return commit(s=>{if(!['free','leaf'].includes(page))return false;s.selectedPage=page;},'drawing_page',{page});},
       draw(page,strokes){return commit(s=>{if(!['free','leaf'].includes(page))return false;s.drawings[page]=clone(strokes);},'drawing_saved',{page,strokes:strokes.length});},
       exportLog(){const timestamp=now(),retained=events.filter(e=>e.timestamp>=timestamp-RETENTION).slice(-LIMIT);return {schema:1,appVersion:'8.3.0',contentVersion:content.version,development,retention:{days:7,maxEvents:LIMIT,truncated:truncated||retained.length<events.length},retainedFrom:retained[0]?.timestamp||null,retainedTo:retained.at(-1)?.timestamp||null,events:clone(retained)};},

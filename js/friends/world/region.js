@@ -33,9 +33,13 @@ export function createRegion(data) {
     const curve = new THREE.CatmullRomCurve3(ctrl.map(([x, z]) => V3(x, z)), false, 'centripetal');
     const N = Math.max(60, Math.round(curve.getLength() / .14)), samples = curve.getSpacedPoints(N), near = sampleIndex(samples, 3);
     const w = t => width[0] + width[1] * Math.sin(t * 23) + width[2] * Math.sin(t * 57 + 1.3);
+    const scratch = {d: Infinity, i: 0, t: 0};
     brook = {curve, samples, N, nearest: near, width: w,
       level: t => { const p = samples[Math.round(t * N)]; return region.hills(p.x, p.z) * .85 - .32; },
-      at(x, z) { const n = near(x, z, 3); return n.d === Infinity ? null : {...n, w: w(n.t), level: brook.level(n.t)}; }};
+      at(x, z) { const n = near(x, z, 3); return n.d === Infinity ? null : {...n, w: w(n.t), level: brook.level(n.t)}; },
+      /** Distance from the water's edge (negative in the water); allocation-free, for collision checks. */
+      // One ring of 3 m buckets finds every sample within 3 m, more than the widest brook needs.
+      gap(x, z) { near(x, z, 1, scratch); return scratch.d - w(scratch.t) / 2; }};
   }
   region.brook = brook;
 
@@ -110,7 +114,7 @@ export function createRegion(data) {
     return null;
   };
   region.deck = (c, t) => c.kind === 'bridge' ? .5 * Math.sin(Math.PI * t) + lerp(region.ground(...c.a), region.ground(...c.b), t) * (1 - Math.sin(Math.PI * t)) : lerp(c.ya, c.yb, t) - Math.sin(t * Math.PI) * .06 + c.radius * (1 - t * .28) * .92;
-  region.inWater = (x, z) => { if (!brook) return false; const n = brook.at(x, z); return !!n && n.d < n.w / 2 + .45 && !onCrossing(x, z); };
+  region.inWater = (x, z) => !!brook && brook.gap(x, z) < .45 && !onCrossing(x, z);
   region.groundY = (x, z) => {
     const on = onCrossing(x, z); if (on) return region.deck(on.c, on.t);
     // little ramps onto the log ends

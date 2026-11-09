@@ -200,10 +200,10 @@ FK.screen('friends',{
     fader=h('div',{class:'ff-fader','aria-hidden':'true'});
     root.append(canvas,doorScene,denEnvelope,hotspots,nav,nearButton,caption,fader,overlay,statusBar);
     let storage;try{storage=window.localStorage;}catch{storage={getItem(){throw new Error('storage blocked');},setItem(){throw new Error('storage blocked');},removeItem(){}};}
-    state=window.FriendsState.create({storage,content:C,development:new URLSearchParams(location.search).get('dev')==='1',onStatus:()=>queueMicrotask(saveStatus)});
+    state=window.FriendsState.create({storage,content:C,development:new URLSearchParams(location.search).get('dev')==='1',namespace:new URLSearchParams(location.search).get('world')==='10x'?'world10x':'',onStatus:()=>queueMicrotask(saveStatus)});
     FK.friends=state;
     audio=createAudio(()=>state.audioSettings());FK.friendsAudio=audio;
-    world=createWorld(canvas,{position:()=>state.get().world,onPosition:(x,z)=>state.position(x,z),onMove:e=>state.record(e.event,e),onNear:()=>{},onAction:act,onAnimationEnd:()=>endSequence(false),onProject:items=>{positionDoor();for(const p of items){const b=hotspots.querySelector(`[data-place="${p.id}"]`);if(b){b.hidden=!p.visible;b.style.left=p.x+'px';b.style.top=p.y+'px';}}}});
+    world=createWorld(canvas,{position:()=>state.get().world,onPosition:(x,z,region)=>state.position(x,z,region),onMove:e=>state.record(e.event,e),onNear:()=>{},onAction:act,onAnimationEnd:()=>endSequence(false),onProject:items=>{positionDoor();for(const p of items){const b=hotspots.querySelector(`[data-place="${p.id}"]`);if(b){b.hidden=!p.visible;b.style.left=p.x+'px';b.style.top=p.y+'px';}}}});
     FK.friendsView=()=>world.diagnostics;renderNav();renderHotspots();saveStatus();
     const interrupted=state.get().animation;if(interrupted)state.finishAnimation(true);
     if(state.mail().phase==='to-mailman'){go('forest',true);world.summonMailman();}
