@@ -45,7 +45,7 @@ export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,o
   // (no shadows) and the forest (shadows) on one renderer left the forest fox undrawn.
   fox.traverse(o=>{if(!o.isMesh)return;const m=o.material.clone();m.onBeforeCompile=o.material.onBeforeCompile;if(Object.prototype.hasOwnProperty.call(o.material,'customProgramCacheKey'))m.customProgramCacheKey=o.material.customProgramCacheKey;o.material=m;});
   const red=new THREE.MeshStandardMaterial({color:'#d4402f',roughness:.45}),wood=new THREE.MeshStandardMaterial({color:'#c98a4c',roughness:.8});
-  const apple=new THREE.Group();{const body=new THREE.Mesh(new THREE.SphereGeometry(.1,16,12),red);apple.add(body);const stem=new THREE.Mesh(new THREE.CylinderGeometry(.01,.012,.06,6),wood);stem.position.y=.1;apple.add(stem);}apple.position.set(0,-.34,.09);apple.visible=false;foxRig.paw.add(apple);
+  const apple=new THREE.Group();{const body=new THREE.Mesh(new THREE.SphereGeometry(.1,16,12),red);apple.add(body);const stem=new THREE.Mesh(new THREE.CylinderGeometry(.01,.012,.06,6),wood);stem.position.y=.1;apple.add(stem);}apple.position.set(0,-.34,.09);apple.visible=false;foxRig.paw.add(apple);foxRig.ready.then(()=>{foxRig.paw.add(apple);apple.position.set(0,-.2,.06);apple.scale.setScalar(.6);});
   const tub=new THREE.Group();{const side=new THREE.Mesh(new THREE.CylinderGeometry(.62,.5,.55,28,1,true),wood);side.material.side=THREE.DoubleSide;side.position.y=.28;tub.add(side);for(const y of [.12,.44]){const band=new THREE.Mesh(new THREE.TorusGeometry(.6-y*.18,.025,6,28),new THREE.MeshStandardMaterial({color:'#6b4426'}));band.rotation.x=Math.PI/2;band.position.y=y;tub.add(band);}
     const water=new THREE.Mesh(new THREE.CircleGeometry(.6,28),new THREE.MeshStandardMaterial({color:'#9fd0d2',roughness:.3}));water.rotation.x=-Math.PI/2;water.position.y=.5;tub.add(water);
     const foam=new THREE.MeshStandardMaterial({color:'#fffaf2',roughness:.9});for(let i=0;i<16;i++){const a=i/16*Math.PI*2,b=new THREE.Mesh(new THREE.SphereGeometry(.12+(i%3)*.04,12,8),foam);b.position.set(Math.cos(a)*.48,.55+(i%2)*.04,Math.sin(a)*.48);tub.add(b);}}
@@ -101,7 +101,9 @@ export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,o
   function finishProps(){props.forEach(p=>{p.userData.on=false;});night.classList.remove('on');apple.visible=false;tub.visible=false;fox.scale.setScalar(1);fox.rotation.set(0,.35,0);foxRig.update(0,{reduced:window.FK.reduced});}
   function projectedBounds(){
     fox.updateMatrixWorld(true);const points=[];
-    fox.traverse(o=>{if(!o.isMesh||!o.visible)return;for(let parent=o.parent;parent&&parent!==fox;parent=parent.parent)if(!parent.visible)return;if(!o.geometry.boundingBox)o.geometry.computeBoundingBox();const b=o.geometry.boundingBox;
+    fox.traverse(o=>{if(!o.isMesh||!o.visible)return;for(let parent=o.parent;parent&&parent!==fox;parent=parent.parent)if(!parent.visible)return;
+      // skinned plush parts are measured in their posed shape, not the bind pose
+      let b;if(o.isSkinnedMesh){o.skeleton.update();o.computeBoundingBox();b=o.boundingBox;}else{if(!o.geometry.boundingBox)o.geometry.computeBoundingBox();b=o.geometry.boundingBox;}
       for(const x of [b.min.x,b.max.x])for(const y of [b.min.y,b.max.y])for(const z of [b.min.z,b.max.z])points.push(project(new THREE.Vector3(x,y,z).applyMatrix4(o.matrixWorld)));
     });
     const left=Math.min(...points.map(p=>p.x)),top=Math.min(...points.map(p=>p.y));

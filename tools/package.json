@@ -1,0 +1,11 @@
+{
+  "name": "farbtupf-tools",
+  "private": true,
+  "description": "Development tools only (character bake). Not part of the game.",
+  "type": "module",
+  "devDependencies": {
+    "gltfpack": "1.3.0",
+    "meshoptimizer": "1.3.0",
+    "three": "0.187.0"
+  }
+}

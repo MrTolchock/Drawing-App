@@ -159,8 +159,8 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     const others = [...Object.entries(friends).map(([id, f]) => ({id, f, d: Math.hypot(f.x - pos.x, f.z - pos.z)})), {id: 'mailman', d: mailPos.distanceTo(pos)}].sort((a, b) => a.d - b.d);
     let animated = 1;
     for (const o of others) { const show = o.d < NEAR, anim = show && animated < MAX_ANIMATED; if (anim) animated++;
-      if (o.id === 'mailman') { courier.visible = courierShadow.visible = show; updateMailman(dt, reduced, anim); }
-      else { o.f.rig.group.visible = show; if (o.f.shadow) o.f.shadow.visible = show; if (anim) o.f.rig.update(dt, {action: near === o.id ? (o.id === 'bird' || o.id === 'owl' ? 'wave' : 'hop') : '', reduced}); } }
+      if (o.id === 'mailman') { courier.visible = courierShadow.visible = show; courierRig.lod(o.d < 8 ? 0 : 1); updateMailman(dt, reduced, anim); }
+      else { o.f.rig.group.visible = show; if (o.f.shadow) o.f.shadow.visible = show; o.f.rig.lod(o.d < 8 ? 0 : 1); if (anim) o.f.rig.update(dt, {action: near === o.id ? (o.id === 'bird' || o.id === 'owl' ? 'wave' : 'hop') : '', reduced}); } }
     animatedCount = animated;
     if (moving && !reduced && time - lastPuff > .17) { lastPuff = time; const p = puffs.find(q => q.life <= 0); if (p) { p.life = .55; p.s.visible = true; p.s.position.set(pos.x + (R() - .5) * .3, base + .12, pos.z + .15); } }
     for (const p of puffs) if (p.life > 0) { p.life -= dt; const k = 1 - p.life / .55; size(p.s, .25 + k * .45); p.s.material.opacity = .5 * (1 - k); p.s.position.y += dt * .25; if (p.life <= 0) p.s.visible = false; }

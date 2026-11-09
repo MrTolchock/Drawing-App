@@ -238,4 +238,84 @@ export function mailman(height=1.65){
   const seam=new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(.18,.63,.202),new THREE.Vector3(.29,.56,.202),new THREE.Vector3(.29,.56,.202),new THREE.Vector3(.4,.63,.202)]),new THREE.LineBasicMaterial({color:'#9a653d'}));body.add(seam);
   const parts={root,body,bodyY:0,head,eyes,ears,arms,legs};return finish(group,parts,height);
 }
-export const characters={fox,squirrel,bird,owl,mouse,beaver,mailman};
+const procedural={fox,squirrel,bird,owl,mouse,beaver,mailman};
+
+/* ---------- the baked plush cast (blueprint 6.2) ----------
+   tools/bake-characters.mjs writes assets/characters/<id>.glb: two skinned meshes per level of detail
+   ("fur" and "gloss"), every part bound rigidly to its joint bone (body, head, ear_*, arm_*, leg_*, tail,
+   wing_*, eye_*). Rigs keep the joint names, the height normalisation and the animator above, so the
+   forest, the den fox and the sleep pose work unchanged. Until the files have loaded (they come from the
+   offline cache), a rig shows the procedural model and then swaps to the plush one in place. */
+import {GLTFLoader} from '../../vendor/three/addons/GLTFLoader.js';
+import {clone as cloneSkinned} from '../../vendor/three/addons/SkeletonUtils.js';
+import {MeshoptDecoder} from '../../vendor/meshoptimizer/meshopt_decoder.js';
+
+const CAST=['fox','squirrel','bird','owl','mouse','beaver','mailman'],baked={};
+const NOISE=`
+float plHash(vec3 p){p=fract(p*.3183099+.1);p*=17.;return fract(p.x*p.y*p.z*(p.x+p.y+p.z));}
+float plNoise(vec3 x){vec3 i=floor(x),f=fract(x);f=f*f*(3.-2.*f);
+ return mix(mix(mix(plHash(i),plHash(i+vec3(1,0,0)),f.x),mix(plHash(i+vec3(0,1,0)),plHash(i+vec3(1,1,0)),f.x),f.y),
+            mix(mix(plHash(i+vec3(0,0,1)),plHash(i+vec3(1,0,1)),f.x),mix(plHash(i+vec3(0,1,1)),plHash(i+vec3(1,1,1)),f.x),f.y),f.z);}`;
+// Plush fur: fine fuzz in colour and normal (in bind-pose space, so it never swims), a warm velvet rim and a little self-light.
+function plushFur(source,{fuzz=1,rim=.5}={}){const m=source.clone();m.vertexColors=true;m.roughness=.92;m.metalness=0;
+  m.onBeforeCompile=sh=>{sh.vertexShader=sh.vertexShader.replace('#include <common>','#include <common>\nvarying vec3 vPl;').replace('#include <begin_vertex>','#include <begin_vertex>\nvPl=position;');
+    sh.fragmentShader=sh.fragmentShader.replace('#include <common>','#include <common>\nvarying vec3 vPl;'+NOISE)
+      .replace('#include <color_fragment>',`#include <color_fragment>\n float fz=plNoise(vPl*300.)*.5+plNoise(vPl*110.+7.)*.5; diffuseColor.rgb*=mix(1.,.9+.16*fz,${fuzz.toFixed(2)});`)
+      .replace('#include <normal_fragment_maps>',`#include <normal_fragment_maps>\n vec3 fzN=vec3(plNoise(vPl*260.),plNoise(vPl*260.+3.1),plNoise(vPl*260.+5.7))-.5; normal=normalize(normal+fzN*${(.4*fuzz).toFixed(2)});`)
+      .replace('#include <opaque_fragment>',`float plRim=pow(1.-clamp(dot(normal,normalize(vViewPosition)),0.,1.),2.4);\n outgoingLight+=diffuseColor.rgb*vec3(1.,.9,.78)*plRim*${rim.toFixed(2)}+diffuseColor.rgb*.07;\n #include <opaque_fragment>`);};
+  m.customProgramCacheKey=()=>'plush-fur-'+fuzz+'-'+rim;return m;}
+// The painted eye (left half: dark lid, warm iris lighter below, big pupil, two catchlights) next to plain
+// white (right half) for noses and beaks, which take their colour from the vertices. Drawn once, shared.
+let eyeAtlas=null;
+function eyes(){if(eyeAtlas)return eyeAtlas;const c=document.createElement('canvas');c.width=512;c.height=256;const g=c.getContext('2d');
+  g.fillStyle='#ffffff';g.fillRect(256,0,256,256);g.fillStyle='#1c0f07';g.fillRect(0,0,256,256);
+  const ir=g.createRadialGradient(128,150,10,128,140,100);ir.addColorStop(0,'#2a1508');ir.addColorStop(.45,'#5a3016');ir.addColorStop(.8,'#9a5a28');ir.addColorStop(1,'#3a1d0c');
+  g.fillStyle=ir;g.beginPath();g.arc(128,132,96,0,TAU);g.fill();g.fillStyle='#120804';g.beginPath();g.arc(128,128,52,0,TAU);g.fill();
+  g.fillStyle='#fff';g.beginPath();g.ellipse(96,92,30,24,-.5,0,TAU);g.fill();g.beginPath();g.arc(160,168,11,0,TAU);g.fill();
+  eyeAtlas=new THREE.CanvasTexture(c);eyeAtlas.colorSpace=THREE.SRGBColorSpace;eyeAtlas.flipY=false;return eyeAtlas;}
+const loader=new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
+export const castReady=Promise.all(CAST.map(id=>loader.loadAsync(new URL('../../assets/characters/'+id+'.glb',import.meta.url).href).then(g=>{baked[id]=g.scene;}).catch(()=>{/* keep the procedural model */}))).then(()=>CAST.filter(id=>baked[id]));
+
+// Sleep pose for the plush Fuchs: lying stretched out, head resting on his front paws, legs tucked
+// under, the brush tail lying behind him (body turned first, then lowered: Euler order YXZ).
+function plushSleep(p){
+  p.body.rotation.order='YXZ';p.body.rotation.set(1.5,1.55,.35);p.body.position.y=p.bodyY+.11;
+  if(p.head)p.head.rotation.set(-1.4,-1.15,.25);
+  if(p.tail)p.tail.rotation.set(-1.6,1.5,0);
+  p.arms.forEach((a,i)=>a.rotation.set(-2.5,0,i?-.15:.15));p.legs.forEach((l,i)=>l.rotation.set(.35,0,i?-.3:.3));
+}
+function plushModel(id,height){
+  const model=cloneSkinned(baked[id]),bones={},meshes=[];
+  model.traverse(o=>{if(o.isBone)bones[o.name]=o;if(o.isSkinnedMesh){meshes.push(o);o.castShadow=true;o.frustumCulled=false;}});
+  const own=new Map();for(const m of meshes){if(!own.has(m.material))own.set(m.material,m.material.name==='fur'?plushFur(m.material):Object.assign(m.material.clone(),{map:eyes(),roughness:.12}));m.material=own.get(m.material);}
+  const list=prefix=>Object.keys(bones).filter(n=>n.startsWith(prefix+'_')).sort((a,b)=>+a.split('_')[1]-+b.split('_')[1]).map(n=>bones[n]);
+  const root=new THREE.Group();root.add(model);
+  const parts={root,body:bones.body,bodyY:bones.body?bones.body.position.y:0,head:bones.head,eyes:list('eye'),ears:list('ear'),arms:list('arm'),legs:list('leg'),tail:bones.tail,tailTip:null,wings:list('wing')};
+  for(const e of parts.ears)e.userData.z=e.rotation.z;
+  // Levels of detail: per material, the mesh with more triangles is the near one (gltfpack renames nodes).
+  for(const name of ['fur','gloss'])meshes.filter(m=>m.material.name===name).sort((a,b)=>b.geometry.index.count-a.geometry.index.count).forEach((m,i)=>m.userData.lod=i);
+  const lod=level=>{for(const m of meshes)m.visible=m.userData.lod===level;};lod(0);
+  // height normalisation on the near level, measured in the posed (skinned, dequantised) shape
+  model.updateMatrixWorld(true);const box=new THREE.Box3();for(const m of meshes)if(m.visible){m.skeleton.update();m.computeBoundingBox();box.union(m.boundingBox.clone().applyMatrix4(m.matrixWorld));}
+  root.scale.setScalar(height/((box.max.y-box.min.y)||1));
+  const rest=new Map();model.traverse(o=>{if(o.isBone)rest.set(o,{p:o.position.clone(),q:o.quaternion.clone()});});
+  const animate=animator(parts);
+  function update(dt,state={}){
+    for(const [b,r]of rest){if(b===parts.body||b===parts.head||b===parts.tail||parts.arms.includes(b)||parts.legs.includes(b)){b.position.copy(r.p);}}
+    if(parts.body)parts.body.rotation.set(0,0,0);
+    if(parts.tail)parts.tail.rotation.setFromQuaternion(rest.get(parts.tail).q);
+    animate(dt,state);if(state.action==='sleep'&&id==='fox')plushSleep(parts);
+  }
+  return {root,parts,update,lod,meshes,paw:parts.arms[1]||parts.body};
+}
+// A rig shows the procedural model at once and becomes the baked plush model when it has loaded.
+function rig(id,height){
+  const made=procedural[id](height),group=made.group;
+  const out={group,height,get parts(){return current.parts;},update:(dt,s)=>current.update(dt,s),lod:level=>current.lod?.(level),plush:false,paw:made.paw||made.parts.arms?.[1]||made.parts.body};
+  let current=made;
+  function upgrade(){if(!baked[id])return;const p=plushModel(id,height);group.clear();group.add(p.root);current=p;out.paw=p.paw;out.plush=true;}
+  if(baked[id])upgrade();
+  out.ready=castReady.then(()=>{if(!out.plush)upgrade();return out;});
+  return out;
+}
+export const characters=Object.fromEntries(CAST.map(id=>[id,height=>rig(id,height)]));
