@@ -59,7 +59,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setAttribute('color', new THREE.Float32BufferAttribute(col, 3)); g.setIndex(idx);
     backdrop = new THREE.Mesh(g, new THREE.ShaderMaterial({depthWrite: false, uniforms: {uHaze: {value: WORLD.fog.color}, uFox: {value: new THREE.Vector3()}},
       vertexShader: 'attribute vec3 color;varying vec3 vC;varying vec3 vW;void main(){vC=color;vW=position;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',
-      fragmentShader: 'uniform vec3 uHaze,uFox;varying vec3 vC;varying vec3 vW;void main(){float d=distance(vW.xz,uFox.xz);if(d<64.)discard;float far=smoothstep(64.,150.,d);gl_FragColor=vec4(uHaze*mix(vC,vec3(1.),far*.55),1.);\n#include <tonemapping_fragment>\n#include <colorspace_fragment>\n}'}));
+      fragmentShader: 'uniform vec3 uHaze,uFox;varying vec3 vC;varying vec3 vW;void main(){float d=distance(vW.xz,uFox.xz);if(d<58.)discard;float far=smoothstep(58.,150.,d);gl_FragColor=vec4(uHaze*mix(vC,vec3(1.),far*.55),1.);\n#include <tonemapping_fragment>\n#include <colorspace_fragment>\n}'}));
     backdrop.name = 'backdrop hills'; backdrop.renderOrder = -8; backdrop.frustumCulled = false; scene.add(backdrop);
   }
   const MOODS = {wood: ['#e8dcae', 24, 72], meadow: ['#f1e8bd', 30, 78], swamp: ['#c5d2ae', 11, 50], rock: ['#e0e6d6', 26, 78], spruce: ['#d3d8b2', 18, 62]}, moodC = new THREE.Color(), moodT = new THREE.Color();

@@ -43,7 +43,7 @@ const pick=(s,budget)=>Object.fromEntries(Object.keys(budget).map(k=>[k,+(+s[k])
     page.on('pageerror',e=>errors.push(e.message));
     await page.goto(BASE+'/?world=10x');
     const route10=await page.evaluate(async()=>(await import('/js/friends/world/index.js')).TEST_ROUTE);
-    for(const [label,query,route] of [['home 1×','dev=1&software=1',HOME_LOOP],['world 10×','world=10x&software=1',route10]]){
+    for(const [label,query,route] of [['big world','dev=1&software=1',route10]]){
       const drawn=await walk(page,query,route,true);
       console.log(label.padEnd(10),'draw ',JSON.stringify({...pick(drawn,DRAW_BUDGET),frames:drawn.rendered}));
       check(label,drawn,DRAW_BUDGET);

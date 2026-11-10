@@ -107,5 +107,11 @@ export function siteSteps(site, look, world, group, out) {
     add(mud, new THREE.CircleGeometry(.42, 12).rotateY(-.9).translate(lx - 1.75, ly + .32, lz + 1.05), .08, .06, .05);
     mesh(mud, M.rock, 'dam mud', false); mesh(logs, M.log, 'dam and lodge');
   });
+  if (site.id === 'friends') steps.push(() => { // the friends' props: the mouse's stump, the squirrel's acorns
+    const wood = new Buffer(), bits = new Buffer(), [mx, mz] = L.FRIENDS.mouse.at, my = T.ground(mx, mz);
+    add(wood, new THREE.CylinderGeometry(.75, .9, .62, 18, 1).translate(mx, my + .31, mz), 1.25, 1, .78);
+    const [qx, qz] = L.FRIENDS.squirrel.at; for (let i = 0; i < 5; i++) { const x = qx + .5 + i * .22, z = qz + .5 + (i % 2) * .2; add(bits, new THREE.SphereGeometry(.09, 10, 7).scale(1, 1.2, 1).translate(x, T.ground(x, z) + .08, z), .6, .39, .2); }
+    mesh(wood, M.log, 'stump'); mesh(bits, M.rock, 'acorns', false);
+  });
   return steps;
 }

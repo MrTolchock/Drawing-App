@@ -91,7 +91,7 @@ export const NEIGHBOURS = {
   deer: {at: [-80.5, -12.5], y: 0, yaw: 1.0, h: 1.75},
   frog: {at: [-23.4, 80.2], y: .06, yaw: .9, h: .8, onWater: true},
   hedgehog: {at: [53.6, 45.4], y: 0, yaw: -.7, h: .85},
-  fish: {at: [62.6, -49.2], y: -.1, yaw: -.6, h: .8, onWater: true},
+  fish: {at: [62.6, -49.2], y: .02, yaw: -.6, h: .8, onWater: true},
   kingfisher: {at: [12.9, 22.85], y: 1.6, yaw: -1.2, h: .6},
 };
 /* Authored trees [x, z, size, options]: the friends' trees and a few giants. */

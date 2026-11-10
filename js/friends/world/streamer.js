@@ -7,7 +7,7 @@ import {THREE} from '../../forest/materials.js';
 import {buildTile, templates, TILE} from './tiles.js';
 import {landmarkSteps} from './landmarks.js';
 
-export const NEAR = 40, FAR = 68, SLACK = 4;
+export const NEAR = 40, FAR = 64, SLACK = 2;
 const centreDistance = (x, z, i, j) => Math.hypot((i + .5) * TILE - x, (j + .5) * TILE - z);
 
 export function createStreamer(world, look, scene, options = {}) {
@@ -45,9 +45,10 @@ export function createStreamer(world, look, scene, options = {}) {
       if (jobs.some(j => j.i === w.i && j.j === w.j && j.ring === w.ring)) continue;
       const hit = cache.findIndex(c => c.key === key(w.i, w.j, w.ring));
       if (hit >= 0) { const c = cache.splice(hit, 1)[0]; c.group.visible = true; if (entry) release(entry); live.set(k, c); continue; }
-      jobs.push({...w, it: build(world, look, w.i, w.j, w.ring), next: 'tile start'});
+      // a near tile that only needs its cheap far version is swapped first: it frees a full-detail tile
+      jobs.push({...w, it: build(world, look, w.i, w.j, w.ring), next: 'tile start', swap: w.ring === 'far' && entry?.ring === 'near'});
     }
-    jobs.sort((a, b) => (a.ring === b.ring ? 0 : a.ring === 'near' ? -1 : 1) || a.d - b.d);
+    jobs.sort((a, b) => (b.swap ? 1 : 0) - (a.swap ? 1 : 0) || (a.ring === b.ring ? 0 : a.ring === 'near' ? -1 : 1) || a.d - b.d);
     // landmarks of regions within the near ring
     for (const region of world.regions) {
       const b = region.bounds, d = Math.hypot(Math.max(b.x0 - focus.x, 0, focus.x - b.x1), Math.max(b.z0 - focus.z, 0, focus.z - b.z1));

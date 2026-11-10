@@ -11,7 +11,8 @@ import {createBigWorld, BIG_ROUTE} from './big/index.js';
 import {buildBigTile} from './big/tiles.js';
 import {siteSteps} from './big/sites.js';
 
-export const WORLD_MODE = new URLSearchParams(location.search).get('world') === '10x' ? '10x' : 'home';
+// The big world is the game's world; `?world=home` still opens the old clearing (to be removed).
+export const WORLD_MODE = new URLSearchParams(location.search).get('world') === 'home' ? 'home' : '10x';
 
 /** The fixed walk used by the budget test (the big world's own route). */
 export const TEST_ROUTE = BIG_ROUTE;
