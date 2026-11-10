@@ -4,18 +4,35 @@
   'use strict';
   const FK=window.FK, h=FK.h;
   const hosts={count:'squirrel',add:'squirrel',rocket:'squirrel',neighbours:'squirrel',compare:'squirrel',tricks:'squirrel',picnic:'squirrel',
-    rhyme:'bird',syllable:'bird',nature:'bird',read:'mouse',vowels:'mouse',trace:'mouse',
+    rhyme:'bird',syllable:'bird',nature:'bird',read:'mouse',vowels:'mouse',trace:'mouse','trace-numbers':'mouse',
     pattern:'owl',sequence:'owl',treasure:'owl',survey:'owl',robot:'beaver',double:'beaver',mirror:'beaver',shapes:'beaver',dots:'beaver'};
   const rounds={squirrel:['Nüsse zählen','forest-nut'],bird:['Reimpaare lesen','words'],owl:['Lies und zeig','book'],beaver:['Welche Form fehlt?','shapes'],mouse:['Wörter und Bilder','mouse-sit']};
   function portrait(id){
     const pic=FK.friendsArt.portrait(id);pic.classList.add('forest-portrait');return pic;
   }
   function catalogue(){
-    return [['learn',FK.learning.games],['adventure',FK.adventures.games],['expedition',FK.expeditions.games.filter(g=>g.id!=='tricks')]]
-      .flatMap(([screen,games])=>games.map(g=>({...g,title:FK.puzzles.names[g.id]||g.title,picture:FK.puzzles.icons[g.id],screen,host:hosts[g.id]})))
-      .concat(FK.puzzles.reading,[['trace','Schreibspuren','✏️'],['dots','Zahlenwege','🔢']].map(([id,title,emoji])=>({id,screen:id,title,emoji,host:hosts[id]})));
+    const originals=Object.entries(rounds).map(([host,[title,picture]])=>({id:'friends-'+host,host,title,picture,screen:'puzzle'}));
+    const games=[...FK.learning.games,...FK.adventures.games,...FK.expeditions.games].filter(g=>!['tricks','rhyme'].includes(g.id))
+      .map(g=>({...g,title:FK.puzzles.names[g.id]||g.title,picture:FK.puzzles.icons[g.id],screen:'puzzle',host:hosts[g.id]}));
+    return originals.concat(games,FK.puzzles.reading.map(g=>({...g,screen:'puzzle'})),
+      [['trace','Schreibspuren','pencil'],['trace-numbers','Zahlenspuren','numbers']].map(([id,title,picture])=>({id,screen:'trace',title,picture,host:hosts[id]})));
   }
-  function launch(g){FK.go(g.screen,{game:g.id,stage:1,lvl:1,level:1,...g.params});}
+  function launch(g,returnTo=FK.current()==='forest-book'?'forest-book':'friends'){
+    if(returnTo==='friends'){
+      FK.settings.set('friends.rotation.'+g.host,g.id);
+      FK.settings.set('friends.active.'+g.host,g.id);
+    }
+    FK.go(g.screen,{game:g.id,stage:1,lvl:1,level:1,returnTo});
+  }
+  function pick(host){
+    const pool=catalogue().filter(g=>g.host===host),active=FK.settings.get('friends.active.'+host);
+    const unfinished=pool.find(g=>g.id===active&&FK.puzzleRounds.pending(g.id));
+    if(unfinished)return unfinished;
+    if(FK.friends?.round(host))return pool.find(g=>g.id==='friends-'+host);
+    const last=pool.findIndex(g=>g.id===FK.settings.get('friends.rotation.'+host));
+    return pool[(last+1)%pool.length];
+  }
+  function complete(host,game){if(!game||FK.settings.get('friends.active.'+host)===game)FK.settings.set('friends.active.'+host,null);}
   function render(body,resident,select){
     const button=(label,pic,fn,cls)=>h('button',{type:'button',class:'forest-button '+cls,'aria-label':label,onclick:fn},pic);
     const tabs=h('nav',{class:'forest-book-neighbours ff-library-tabs','aria-label':'Spiele mit deinen Waldfreunden'});
@@ -28,8 +45,6 @@
       const b=button(title,h('span',{},pic,h('b',{text:title}),owner?h('small',{class:'ff-library-host'},portrait(owner),window.FriendsContent.hosts[owner].name):null),fn,'forest-book-game');
       b.dataset.game=id;games.append(b);
     }
-    for(const [id,[title,pic]]of Object.entries(rounds))if(resident==='all'||resident===id)
-      card('friends-'+id,title,FK.visual.art(pic),()=>FK.friendsStartRound(id),id);
     for(const g of catalogue())if(resident==='all'||resident===g.host)
       card(g.id,g.title,FK.play.gamePicture(g),()=>launch(g),g.host);
     if(resident==='all'||resident==='atelier'){
@@ -38,5 +53,7 @@
     }
     body.replaceChildren(h('section',{class:'play-library-intro'},portrait(resident==='all'||resident==='atelier'?'fox':resident),h('div',{},h('h2',{text:resident==='atelier'?'Dein Malatelier':resident==='all'?'Ein Wald voller Spiele':'Spielen mit '+window.FriendsContent.hosts[resident].name}),h('p',{text:resident==='atelier'?'Ausmalen und Bilder sammeln.':'Wähle ein Bild und spiele mit.'}))),tabs,games);
   }
-  FK.friendsLibrary={active:false,hosts,portrait,catalogue,render,launch};
+  for(const id of Object.keys(rounds))hosts['friends-'+id]=id;
+  for(const entry of ['read-puzzle','read-word','read-leaves','read-colours'])hosts[entry]='mouse';
+  FK.friendsLibrary={active:false,hosts,portrait,catalogue,render,launch,pick,complete};
 })();

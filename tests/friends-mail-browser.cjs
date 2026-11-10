@@ -29,8 +29,8 @@ const shots=process.env.FARBTUPF_SHOTS||'/tmp/farbtupf-mail';fs.mkdirSync(shots,
   await click('Zum Freund gehen');assert.equal((await view()).area,'forest');assert.equal((await view()).mailTarget,'squirrel');
   await snapshot('arrow-to-squirrel-1024');
   await click('Bildkarte');await snapshot('picture-map-1024');assert.equal(await page.getByRole('button',{name:'Zum Laden',exact:true}).count(),0);assert.equal(await page.locator('.ff-map [data-place="shop"]').count(),0);
-  await click('Zu Eichhörnchen');await page.locator('.ff-example-banner').waitFor({state:'visible',timeout:120000});await click('Zurück');
-  assert.equal(await page.locator('.ff-task-scene').isVisible(),true);await snapshot('assigned-puzzle-1024');
+  await click('Zu Eichhörnchen');await page.locator('.screen-puzzle').waitFor({state:'visible',timeout:120000});
+  assert.equal(await page.locator('.puzzle-scene').isVisible(),true);await snapshot('assigned-puzzle-1024');
   for(let index=0;index<5;index++){
    const state=await read(),round=state.rounds.squirrel,task=round.tasks[round.index];
    assert.equal(round.index,index);
@@ -38,7 +38,7 @@ const shots=process.env.FARBTUPF_SHOTS||'/tmp/farbtupf-mail';fs.mkdirSync(shots,
    await page.locator('[data-answer="'+task.answer+'"]').click();
    if(index<4)await page.waitForFunction(i=>FK.friends.get().rounds.squirrel.index>i,index,{timeout:15000});
   }
-  await page.waitForFunction(()=>FK.friends.mail().phase==='to-mailman');
+  await page.waitForFunction(()=>FK.current()==='friends'&&FK.friends.mail().phase==='to-mailman');
   assert.equal(await page.evaluate(()=>FK.current()),'friends');assert.equal((await view()).area,'forest');assert.equal((await view()).mailTarget,'mailman');
   const s=await read(),world=await view();assert.equal(s.completed.squirrel,1);assert.equal(s.rounds.squirrel,undefined);assert.equal(Object.values(s.wallet).reduce((a,b)=>a+b,0),0);
   assert.ok(Math.hypot(world.position.x-world.mailman.x,world.position.z-world.mailman.z)<3.2,'mailman waits close to the fox');
@@ -52,42 +52,18 @@ const shots=process.env.FARBTUPF_SHOTS||'/tmp/farbtupf-mail';fs.mkdirSync(shots,
   await click('Dein Brief');assert.equal(await page.locator('.ff-letter-paper').isVisible(),true);await click('Zum Freund gehen');assert.equal((await view()).mailTarget,'bird');
   // Completing practice for a different friend must not consume the current letter.
   await page.evaluate(()=>FK.friendsPuzzleCompleted('mouse'));assert.deepEqual((await read()).mail,saved);
-  // Complete an original assigned puzzle using its real answer/continue controls.
-  await page.evaluate(()=>{const make=FK.adventures.question;FK.adventures.question=(...args)=>{const q=make(...args);window.mailTestQuestion=q;return q;};});
-  await click('Waldspiele');await click('Mit Blaumeise spielen');await page.locator('[data-game="rhyme"]').click();
+  // The next assigned bird game uses the same automatic five-task flow.
+  await page.evaluate(()=>FK.friendsLibrary.launch(FK.friendsLibrary.catalogue().find(g=>g.id==='syllable'),'friends'));
   for(let index=0;index<5;index++){
-   const answer=await page.evaluate(()=>window.mailTestQuestion.answer);
-   await page.locator('.screen-adventure .learn-answer[data-answer='+JSON.stringify(String(answer))+']').click();
-   await page.locator('.screen-adventure .adventure-next').click();
+   const answer=await page.evaluate(()=>{const s=FK.puzzleRounds.start('syllable');return FK.puzzleRounds.question('syllable',s.round,s.seed).answer;});
+   await page.locator('.screen-puzzle [data-answer="'+answer+'"]').click();
+   if(index<4)await page.waitForFunction(n=>document.querySelector('.screen-puzzle .puzzle-round')?.textContent===n+' / 5',index+2);
   }
   await page.waitForFunction(()=>FK.current()==='friends'&&FK.friends.mail().phase==='to-mailman');
   const completed=await read();assert.equal(completed.mail.host,'bird');assert.equal((await view()).mailTarget,'mailman');assert.equal(await page.evaluate(()=>FK.progress.stars()),0);
   await page.evaluate(()=>FK.friendsPuzzleCompleted('bird'));assert.deepEqual((await read()).mail,completed.mail);
-  // Standalone number paths also return safely from the final pointer event.
-  await page.evaluate(()=>FK.go('dots',{id:FK.dots.find(d=>d.level===1).id}));
-  await page.evaluate(()=>document.fonts.ready);await page.waitForTimeout(350);
-  const dotCount=await page.evaluate(()=>FK.dots.find(d=>d.level===1).points.length);
-  for(let index=0;index<dotCount;index++){
-   const point=await page.evaluate(i=>{
-    const d=FK.dots.find(d=>d.level===1),paper=document.querySelector('.screen-dots .pp-paper'),cv=paper.querySelector('.pp-dots'),r=paper.getBoundingClientRect(),fit=FK.art.fitOf(cv.width,cv.height),dpr=Math.min(devicePixelRatio||1,2),scale=r.width/paper.offsetWidth;
-    const [x,y]=d.points[i];return {x:r.left+(paper.clientLeft+(fit.ox+x*fit.s)/dpr)*scale,y:r.top+(paper.clientTop+(fit.oy+y*fit.s)/dpr)*scale};
-   },index);
-   await page.touchscreen.tap(point.x,point.y);
-  }
-  await page.waitForFunction(()=>FK.current()==='friends');assert.deepEqual((await read()).mail,completed.mail);
-  // Standalone handwriting completes through the same mouse-host callback.
-  await page.evaluate(()=>FK.go('trace',{glyph:'I'}));await page.waitForTimeout(350);
-  const paths=await page.locator('.tr-track path').evaluateAll(paths=>paths.map(path=>{
-   const length=path.getTotalLength(),matrix=path.getScreenCTM(),steps=Math.max(1,Math.ceil(length));
-   return Array.from({length:steps+1},(_,i)=>{const point=path.getPointAtLength(length*i/steps).matrixTransform(matrix);return {x:point.x,y:point.y};});
-  }));
-  const cdp=await context.newCDPSession(page);
-  for(const points of paths){
-   await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[points[0]]});
-   for(const point of points.slice(1))await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[point]});
-   await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
-  }
-  await page.waitForFunction(()=>FK.current()==='friends');assert.deepEqual((await read()).mail,completed.mail);
+  assert.equal(await page.evaluate(()=>FK.friendsLibrary.catalogue().some(g=>g.id==='dots'||g.id==='rhyme')),false);
+  // All five-glyph handwriting and digit flows are exercised in puzzle-rounds-browser.cjs.
   await page.waitForFunction(async()=>!!(await navigator.serviceWorker.getRegistration())?.active,null,{timeout:60000});await page.waitForFunction(()=>!!navigator.serviceWorker.controller);
   const beforeOffline=(await read()).world;
   await context.setOffline(true);await page.reload();await ready();
@@ -114,6 +90,6 @@ const shots=process.env.FARBTUPF_SHOTS||'/tmp/farbtupf-mail';fs.mkdirSync(shots,
   await delivery.waitForTimeout(2600);await delivery.screenshot({path:shots+'/den-delivered-normal-motion.png'});
   await delivery.getByRole('button',{name:'Brief öffnen',exact:true}).click();assert.equal(await delivery.locator('.ff-letter-paper').isVisible(),true);
   assert.deepEqual(errors,[]);await moving.close();
-  console.log('PASS: den delivery, picture letters, assigned new and original puzzles, directional targets, nearby rabbit courier, next recipient, replay/reload boundaries, zero currency, number-path and handwriting callbacks, offline saves, normal-motion delivery and 390px layouts.');
+  console.log('PASS: den delivery, picture letters, assigned new and original puzzles, directional targets, nearby rabbit courier, next recipient, replay/reload boundaries, zero currency, retired-game removal, offline saves, normal-motion delivery and 390px layouts.');
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

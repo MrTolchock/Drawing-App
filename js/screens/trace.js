@@ -183,7 +183,7 @@
   // Vertical frame shared by all glyphs of a set (so line spacing stays the same inside a set).
   const frameCache = {};
   function frameOf(sid) {
-    const key = sid + ':' + learningStage;
+    const key = sid + ':' + learningStage + ':' + !!woodlandSession;
     if (frameCache[key]) return frameCache[key];
     const set = setById(sid);
     let y0 = 0;
@@ -197,7 +197,7 @@
 
   let learningStage = 3;
   function sets() {
-    const allowed = learningStage === 1 ? 'ILOTAMilota m012345'.replace(/ /g, '') : learningStage === 2 ? 'ILOTAMENSRUDFBilota mensrudfb0123456789'.replace(/ /g, '') : null;
+    const allowed = woodlandSession ? null : learningStage === 1 ? 'ILOTAMilota m012345'.replace(/ /g, '') : learningStage === 2 ? 'ILOTAMENSRUDFBilota mensrudfb0123456789'.replace(/ /g, '') : null;
     return ((FK.glyphs && FK.glyphs.sets) || []).map(s => Object.assign({}, s, { items: allowed ? s.items.filter(g => allowed.includes(g)) : s.items }));
   }
   function setById(id) { return sets().find((s) => s.id === id) || null; }
@@ -257,6 +257,26 @@
   let misses = 0;
   let ro = null;
   let active = false;
+  let woodlandSession=null,woodlandGame='trace',woodlandOrigin='friends',woodlandContext,woodlandEnd,cancelWoodland=()=>{};
+
+  function woodlandNext() {
+    if(!active||!woodlandSession)return;
+    if(document.hidden||document.querySelector('.modal')){later(woodlandNext,250);return;}
+    if(woodlandSession.round===5){
+      playEl.hidden=true;overEl.hidden=true;woodlandContext.hidden=true;woodlandEnd.hidden=false;
+      if(woodlandOrigin==='friends'&&FK.friends.mail().host==='mouse'&&FK.friends.mail().phase==='to-friend'&&!FK.friends.completeMail('mouse'))return;
+      FK.puzzleRounds.clear(woodlandGame);
+      FK.friendsLibrary.complete('mouse',woodlandGame);
+      cancelWoodland=FK.puzzleUI.completion(woodlandEnd,'mouse',()=>{
+        if(woodlandOrigin==='forest-book')FK.go('forest-book');else FK.friendsPuzzleCompleted('mouse');
+      });return;
+    }
+    woodlandEnd.hidden=true;woodlandContext.hidden=false;
+    woodlandContext.replaceChildren(FK.puzzleUI.context('mouse',woodlandSession.round,FK.puzzleRounds.instructions[woodlandGame]),FK.puzzleUI.progress(woodlandSession.round));
+    const glyph=FK.puzzleRounds.question(woodlandGame,woodlandSession.round,woodlandSession.seed).glyph;
+    root.dataset.glyph=glyph;
+    openGlyph(glyph,'guided');
+  }
 
   function later(fn, ms) {
     const t = setTimeout(() => {
@@ -492,6 +512,10 @@
     const data = cur.data;
     mystSil.textContent = data.emoji || '⭐';
     mystCol.textContent = data.emoji || '⭐';
+    if(woodlandSession){
+      const pic=cur.digit?'forest-nut':data.emoji||'forest-leaf';
+      mystSil.replaceChildren(FK.puzzleUI.picture(pic));mystCol.replaceChildren(FK.puzzleUI.picture(pic));
+    }
     pipsEl.innerHTML = '';
     cur.strokes.forEach((st, i) => pipsEl.append(h('span', { class: 'tr-pip' + (st.dot ? ' is-dot' : ''), style: { '--c': colorOf(i) }, text: st.dot ? '' : String(i + 1) })));
   }
@@ -857,7 +881,8 @@
       const id = mode === 'frei' ? cur.g + ':frei' : cur.g;
       if(FK.friendsLibrary?.active){
         FK.progress.finish('trace',id,0);
-        FK.friendsPuzzleCompleted('mouse');
+        woodlandSession.round++;woodlandSession.work={};FK.puzzleRounds.save(woodlandSession);
+        woodlandNext();
         return;
       }
       const n = FK.progress.finish('trace', id, 1);
@@ -875,7 +900,7 @@
         const w = endEl.querySelector('.tr-go');
         if (w && my === token) w.classList.add('tr-invite');
       }, 2600);
-    }, 650);
+    }, woodlandSession ? 900 : 650);
   }
 
   /* ---------- the end card ---------- */
@@ -1018,7 +1043,7 @@
     if (e.key !== 'Escape' || view !== 'play' || document.querySelector('.modal')) return;
     e.stopImmediatePropagation();
     e.preventDefault();
-    showOver();
+    if(woodlandSession)FK.go(woodlandOrigin);else showOver();
   }
   function onVis() {
     if (document.hidden) {
@@ -1032,7 +1057,7 @@
       root = r;
       const bar = FK.ui.topbar({
         title: 'Schreiben',
-        onBack: () => { if (view === 'play') showOver(); else FK.back(); },
+        onBack: () => { if(woodlandSession)FK.go(woodlandOrigin);else if (view === 'play') showOver(); else FK.back(); },
       });
       bar.append(FK.play.listen('Fahre die Schreibspur mit dem Finger oder Stift nach. Beginne beim Punkt und folge dem Pfeil.','Spiel erklären'));
       backUse = bar.querySelector('.btn-back use');
@@ -1041,7 +1066,8 @@
       gridScroll = h('div', { class: 'scroll tr-scroll' }, gridEl);
       overEl = h('div', { class: 'tr-over-view' }, tabsEl, gridScroll);
       playEl = h('div', { class: 'tr-play', hidden: true }, buildPaper(), buildTools());
-      r.append(bar, overEl, playEl);
+      woodlandContext=h('div',{class:'puzzle-trace-context',hidden:true});woodlandEnd=h('div',{class:'puzzle-trace-completion',hidden:true});
+      r.append(bar, woodlandContext,overEl, playEl,woodlandEnd);
       if (window.ResizeObserver) ro = new ResizeObserver(() => { if (active) onResize(); });
       // Words follow the parents' GROSS/normal setting.
       FK.on('settings', (e) => {
@@ -1053,19 +1079,28 @@
     enter(params) {
       params = params || {};
       active = true;
-      root.querySelector('.title').textContent=FK.puzzles.title('trace','Schreiben');
+      woodlandSession=FK.friendsLibrary?.active?FK.puzzleRounds.start(params.game==='trace-numbers'?'trace-numbers':'trace'):null;
+      woodlandGame=params.game==='trace-numbers'?'trace-numbers':'trace';woodlandOrigin=params.returnTo==='forest-book'?'forest-book':'friends';
+      if(woodlandSession)root.dataset.game=woodlandGame;else delete root.dataset.game;
+      root.querySelector('.title').textContent=woodlandSession?FK.puzzleRounds.title(woodlandGame):'Schreiben';
+      root.querySelector('.topbar .play-listen').hidden=!!woodlandSession;
+      root.querySelector('.star-count').hidden=!!woodlandSession;
+      root.querySelector('.btn-back').setAttribute('aria-label',woodlandSession?(woodlandOrigin==='forest-book'?'Zurück zu Waldspiele':'Zurück zum Wald'):'Zurück');
+      woodlandContext.hidden=true;woodlandEnd.hidden=true;
       learningStage = params.stage >= 1 && params.stage <= 3 ? params.stage : FK.learning.stage();
       window.addEventListener('resize', onResize);
       window.addEventListener('orientationchange', onOrient);
       window.addEventListener('keydown', onKey, true);
       document.addEventListener('visibilitychange', onVis);
       if (ro) ro.observe(paperEl);
+      if(woodlandSession){woodlandNext();return;}
       if (params.set && setById(params.set)) setId = params.set;
       if (!setById(setId) && sets().length) setId = sets()[0].id;
       if (params.glyph && FK.glyphs && FK.glyphs.data[params.glyph]) openGlyph(params.glyph, params.mode);
       else showOver();
     },
     leave() {
+      cancelWoodland();
       FK.forestVoice.cancel();
       active = false;
       token++;

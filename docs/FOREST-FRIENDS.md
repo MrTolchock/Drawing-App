@@ -10,29 +10,31 @@ At startup the fox is inside the den. Its front door is closed and has a mail li
 
 After leaving the den, a line of fireflies in the 3D world leads toward the pictured friend. The player moves Fuchs by clicking/tapping the ground or a map destination; there is no movement pad, keyboard walking or jumping. The fireflies guide the next click and update with the destination.
 
-Talking to the friend starts an assigned library puzzle. Both the five newer rounds and original illustrated activities participate. Interrupted newer rounds resume first; visits otherwise rotate through the friend's assigned activities. Mistakes permit correction, help and a separate worked example, with one fixed content level and no countdown.
+Talking to the friend starts an assigned library puzzle. Both the five newer rounds and original illustrated activities participate. Interrupted rounds resume first; visits otherwise cycle through every assigned game using stable game IDs. Mistakes permit correction, with one fixed content level and no countdown. Each game has exactly five tasks, one manual explanation, automatic continuation and a short woodland celebration.
 
 Completion of the invited friend's puzzle changes the destination to the mailman. Hase is staged very close to Fuchs in the 3D forest. The fireflies lead to him. Clicking Hase gives the next picture letter, inviting Fuchs to another friend. The cycle continues without needing to return home between every delivery. Leaving an unfinished puzzle does not trigger the next letter.
 
 Hase wears recognizable postal clothing and a mail satchel/envelope badge. He wanders freely on walkable forest ground between deliveries, stays easy to reach for the handover, and never presents a puzzle. He is not part of the puzzle-host tabs or learning categories.
 
-The picture-book overview remains available for direct practice. All 29 puzzles share one grid, without a separate section for the five newer rounds or a nested Leseschatz menu. A completion only advances a letter when it belongs to that letter's current friend; unrelated practice does not create a delivery.
+The picture-book overview remains available for direct practice. All 28 puzzles share one grid, without a separate section for the five newer rounds or a nested Leseschatz menu. A completion only advances a letter when it belongs to that letter's current friend; unrelated practice does not create a delivery.
 
 ## Puzzles and assignments
 
 | Friend | Newer round | Original illustrated activities |
 | --- | --- | --- |
 | Eichhörnchen | Nüsse zählen | Waldkäfer zählen, Äpfel rechnen, Glühwürmchen sammeln, Waldpicknick, Zahlennachbarn, Beeren vergleichen |
-| Blaumeise | Reimpaare lesen | Waldreime, Silben klopfen, Naturdetektive |
+| Blaumeise | Reimpaare lesen | Silben klopfen, Naturdetektive (reading riddles) |
 | Waldkauz | Lies und zeig | Waldmuster, Was kommt zuerst?, Waldschatz, Waldumfrage |
-| Biber | Welche Form fehlt? | Waldwerkstatt, Nüsse verdoppeln, Waldspiegel, Waldpost, Zahlenwege |
-| Maus | Wörter und Bilder | Silben-Puzzle, Wort und Waldbild, Silbenblätter, Farben lesen, Waldwörter ergänzen, Schreibspuren |
+| Biber | Welche Form fehlt? | Waldwerkstatt, Nüsse verdoppeln, Waldspiegel, Waldpost |
+| Maus | Wörter und Bilder | Silben-Puzzle, Wort und Waldbild, Silbenblätter, Farben lesen, Waldwörter ergänzen, Schreibspuren, Zahlenspuren |
 
-There are 24 direct catalogue entries: 18 learning-game families, the four former Leseschatz activities, Schreibspuren and Zahlenwege. Rechenfreunde remains an alias of the addition game. The original internal IDs, reading progress keys and historical difficulty settings remain compatible. The current game uses one fixed first-grade content selection, including woodland picture words, short syllables and natural two-picture sequences. Forest friends practice does not advance an interrupted Heart Tree tour.
+The active catalogue has 28 entries, including the original five friends. Waldreime is merged into Reimpaare lesen; Zahlenwege is absent from current play. Letters and digits are separate five-glyph writing games. Historical puzzle IDs, saves and difficulty settings remain available through the historical entry points; Forest friends practice does not advance a Heart Tree tour.
 
-The newer rounds keep their exact five-task snapshots, choice order, attempts and help state. Their pools remain 20 scored quantities (three reserved for the example), 15 rhyme pairs, 15 sentences, 16 object/shape combinations and 18 pictured words (Ast reserved for the example). A next round avoids the prior five task IDs when the pool allows it.
+All current games use `js/screens/puzzle.js` and `css/puzzle-rounds.css`, with the existing finger-tracing engine adapted to five-glyph sessions. Andika, one portrait/context row, five leaf badges and consistent answer tiles are shared. There is no pointer mode, question-mark button, tip footer, duplicate success row or next-task button. A correct response is shown on the tile for 900 ms, followed after task five by a 2.2-second leaf-and-flower celebration. Leaving cancels pending transitions. Navigation from Waldspiele returns to that menu; a completed forest invitation returns to the nearby mailman.
 
-All current puzzle families use the Silben-Puzzle's clear picture cards, cream task paper, large response tiles and consistent progress badges, framed by one quiet woodland clearing. `characters-v1.png` is the art reference: warm dimensional animals, soft natural materials, honey wood, cream and green. New shared object and action-pose sheets cover individual counting objects and unambiguous sitting/running/sleeping/flying/swimming pictures; each berry still represents exactly one counter. Geometry and scored colour choices keep their exact shapes/colours. `js/friends/puzzles.js` holds the current names, direct reading routes and woodland content adapters; `css/puzzles.css` supplies the shared presentation and `css/waldbuch.css` (loaded last) the Waldbuch page, buttons, twig and tiles from the visual-overhaul blueprint. Historical entry points retain their original questions and names. The four independent reading puzzles still use their original progress keys and each completes through the mouse's letter callback.
+`js/friends/puzzle-rounds.js` defines bounded first-grade content and repeatable seeded sessions. Original friend rounds retain FriendsState's exact five-task snapshots and answer order. Other games save their seed, task index and partial placements/selections in `farbtupf.puzzles.v1` (separate developer key), including a pending correct transition. Writing resumes at the current glyph; incomplete strokes can be retraced. No historical key is migrated or erased. Host rotation uses stable IDs in the existing settings record and resumes unfinished work before selecting another game.
+
+Portrait and interface sheets preload with the app. Twenty missing vocabulary pictures and six coloured flowers have matching crayon atlases with equal-sized cells. Every counting berry is a single berry. Shape and colour answers remain visually exact. See [the current puzzle specification and learning boundaries](PUZZLES.md) for individual changes and validation.
 
 ## Shared interface and settings
 
@@ -83,7 +85,7 @@ The shop and its destination/stall are removed. Hase adds a roaming postal chara
 
 The den preserves its warm painted composition and animated fox. Reduced motion leaves an immediately available envelope instead of relying on the arrival animation. Butterflies, footsteps and friend greetings remain optional exploration. Golden leaf objects, collection checks, counter and effects are removed. Existing `collected` save fields remain compatibility data and cannot grant another collection.
 
-Speech starts only when **Spiel erklären** is pressed inside a puzzle. Navigation, letters, feedback, new tasks and examples do not speak automatically, including on a prior save with speech enabled. New saves start with speech off; the older preference field remains readable for compatibility. Original and newer activity families each offer one explanation button. Separate rhyme/word and example-replay speech buttons are removed; Silbentrommel's explanation includes its word because hearing syllables is its task. Scored reading words and sentences are not spoken by the explanation. Device German voice availability still governs explicit spoken help.
+Speech starts only when **Spiel erklären** is pressed inside a puzzle. Navigation, letters, feedback, new tasks and examples do not speak automatically, including on a prior save with speech enabled. New saves start with speech off; the older preference field remains readable for compatibility. Original and current activity families each offer one explanation button. Separate rhyme/word and example-replay speech buttons are removed. Silben klopfen shows a pictured word and a large tapping leaf; speaking and clapping are the child's actions. Scored reading words and sentences are not spoken by the explanation. Device German voice availability still governs explicit spoken help.
 
 Forest ambience is synthesized locally after the first user gesture: stereo wind, softly varying leaf rustle, flowing brook and varied bird phrases. It works offline, is softer indoors, quietens during a requested explanation and mutes while hidden. Ambience and music continue across activity screens and have separate saved controls; no remote audio request is made.
 

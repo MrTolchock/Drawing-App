@@ -8,8 +8,8 @@
     beaver: { name: 'Biber', picture: 'beaver', resource: 'logs', category: 'Mathematik', code: 'SPACE-01', reference: 'MA.2.A.1.a', instruction: 'Welche Form passt in die Lücke?' },
     mouse: { name: 'Maus', picture: 'mouse', resource: 'berries', category: 'Lesen', code: 'READ-01', reference: 'D.2.A.1.b', instruction: 'Lies das Wort. Welches Bild passt?' },
   };
-  const words = { Maus:'mouse', Haus:'house', Hut:'hat', Rose:'rose', Nase:'nose', Fisch:'fish', Tisch:'table', Ball:'ball', Baum:'tree', Boot:'boat', Kuh:'cow', Schuh:'shoe', Bein:'leg', Stein:'stone', Buch:'book', Tuch:'cloth', Hase:'hare', Dose:'tin', Bus:'bus', Nuss:'nut', Stern:'star', Turm:'tower', Wurm:'worm', Topf:'pot', Kopf:'head', Hand:'hand', Sand:'sand', Schal:'scarf', Wal:'whale', Seil:'rope', Pfeil:'arrow', Tasse:'cup', Kasse:'till', Bank:'bench', Schrank:'wardrobe', Kern:'seeds' };
-  const version = 'friends-1';
+  const words = { Maus:'mouse', Haus:'house', Hose:'trousers', Hut:'hat', Rose:'rose', Nase:'nose', Fisch:'fish', Tisch:'table', Ball:'ball', Baum:'tree', Boot:'boat', Kuh:'cow', Schuh:'shoe', Bein:'leg', Stein:'stone', Buch:'book', Tuch:'cloth', Hase:'hare', Dose:'tin', Bus:'bus', Nuss:'nut', Stern:'star', Turm:'tower', Wurm:'worm', Topf:'pot', Kopf:'head', Hand:'hand', Sand:'sand', Schal:'scarf', Wal:'whale', Seil:'rope', Pfeil:'arrow', Tasse:'cup', Kasse:'till', Bank:'bench', Schrank:'wardrobe', Kern:'seeds' };
+  const version = 'friends-2';
   function task(host, id, data) { return { id: hosts[host].code+'-'+id, version, host, ...data }; }
   const pools = {};
   pools.squirrel = Array.from({length:21}, (_,n) => task('squirrel',n,{ kind:'count', count:n, answer:String(n), choices:[Math.max(0,n-1),n,n+1].filter((v,i,a)=>a.indexOf(v)===i).concat(n===0?[2]:[]).map(v=>String(v>20?18:v)) })).filter(t=>t.count!==3);
@@ -17,7 +17,7 @@
   const reading = ['Maus','Haus','Hut','Rose','Nase','Fisch','Tisch','Ball','Baum','Boot','Kuh','Schuh','Bein','Stein','Buch','Hase','Dose','Nuss'];
   pools.mouse = reading.map((word,i) => task('mouse',i,{kind:'word',target:word,answer:words[word],choices:[words[word],words[reading[(i+3)%reading.length]],words[reading[(i+7)%reading.length]]] }));
   // No Haus/Maus demonstration, reversed duplicates or abstract picture names in scored rhymes.
-  const rhymes = [['Tisch','Fisch','Hut'],['Bein','Stein','Boot'],['Kuh','Schuh','Ball'],['Hase','Nase','Baum'],['Rose','Dose','Hut'],['Buch','Tuch','Ball'],['Bus','Nuss','Hut'],['Turm','Wurm','Boot'],['Topf','Kopf','Baum'],['Hand','Sand','Kuh'],['Schal','Wal','Hut'],['Seil','Pfeil','Rose'],['Tasse','Kasse','Schuh'],['Bank','Schrank','Fisch'],['Stern','Kern','Hut']];
+  const rhymes = [['Tisch','Fisch','Hut'],['Bein','Stein','Boot'],['Kuh','Schuh','Ball'],['Hase','Nase','Baum'],['Rose','Dose','Hut'],['Buch','Tuch','Ball'],['Hose','Rose','Hut'],['Turm','Wurm','Boot'],['Topf','Kopf','Baum'],['Hand','Sand','Kuh'],['Schal','Wal','Hut'],['Seil','Pfeil','Rose'],['Tasse','Kasse','Schuh'],['Bank','Schrank','Fisch'],['Stern','Kern','Hut']];
   pools.bird = rhymes.map(([word,right,wrong],i)=>task('bird',i,{kind:'rhyme',target:word,targetPicture:words[word],answer:right,choices:[right,wrong]}));
   const sentences = [
     ['Die Maus sitzt.','mouse-sit','mouse-run'],['Die Maus rennt.','mouse-run','mouse-sit'],['Der Vogel fliegt.','bird-fly','bird-sit'],['Der Vogel sitzt.','bird-sit','bird-fly'],['Der Fisch schwimmt.','fish-swim','mouse-run'],

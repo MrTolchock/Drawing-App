@@ -49,6 +49,15 @@
       if(name==='friends'||params?.from==='friends')library.active=true;
       else if(name==='forest')library.active=false;
       if(library.active&&['learn','adventure','expedition','read','trace','dots'].includes(name))params={...params,stage:1,lvl:1,level:1};
+      if(library.active&&FK.puzzleRounds&&!params?.forest){
+        const returnTo=params?.returnTo||(current?.name==='forest-book'?'forest-book':'friends');
+        if(['learn','adventure','expedition','read'].includes(name)){
+          const reading={puzzle:'read-puzzle',wort:'read-word',ballone:'read-leaves',genau:'read-colours'};
+          const game=name==='read'?(reading[params?.game]||'read-puzzle'):params?.game==='rhyme'?'friends-bird':params?.game;
+          if(game){name='puzzle';params={...params,game,returnTo};}
+        }else if(name==='trace')params={...params,returnTo};
+        else if(name==='dots'){name='forest-book';params={};}
+      }
     }
     const prev = current;
     if (prev && screens[prev.name].def.leave) screens[prev.name].def.leave();

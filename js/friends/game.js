@@ -108,19 +108,8 @@ function map(){
 }
 function meet(id){
   if(panel)close();
-  const library=FK.friendsLibrary;
-  if(state.get().rounds[id]){FK.friendsStartRound(id);return;}
-  const pool=[{id:'friends-'+id,host:id},...library.catalogue().filter(g=>g.host===id)];
-  const key='friends.next.'+id,index=Number(FK.settings.get(key))||0;
-  const selected=pool[index%pool.length];FK.settings.set(key,(index+1)%pool.length);
-  if(selected.id.startsWith('friends-'))FK.friendsStartRound(id);
-  else{
-    world.pause(true);const params={game:selected.id,stage:1};
-    if(selected.params)Object.assign(params,selected.params);
-    if(selected.screen==='trace')params.glyph='I';
-    if(selected.screen==='dots')params.id=FK.dots.find(d=>d.level===1).id;
-    FK.go(selected.screen,params);
-  }
+  world.pause(true);
+  FK.friendsLibrary.launch(FK.friendsLibrary.pick(id),'friends');
 }
 function taskScene(t,filled=false){
   const scene=h('div',{class:'ff-task-scene'});
@@ -214,7 +203,7 @@ FK.screen('friends',{
     root.addEventListener('keydown',e=>{if(e.key==='Escape'&&panel){e.preventDefault();e.stopPropagation();if(panel==='animation')endSequence(true);else close();}if(e.key==='Tab'&&panel){const list=[...overlay.querySelectorAll('button:not(:disabled),a,input')].filter(el=>!el.hidden);const first=list[0],last=list.at(-1);if(e.shiftKey&&document.activeElement===first){last?.focus();e.preventDefault();}else if(!e.shiftKey&&document.activeElement===last){first?.focus();e.preventDefault();}}});
     if(state.development){const dock=h('div',{class:'ff-dev-dock'},Object.entries(C.hosts).map(([id,data])=>button(data.name+' direkt öffnen',id,()=>meet(id))));root.append(dock);}
   },
-  enter(){world?.pause(!!panel);renderHotspots();syncMail();},leave(){world?.pause(true);FK.forestVoice.cancel();}
+  enter(){world?.pause(!!panel);if(state?.mail().phase==='to-mailman')world?.summonMailman();renderHotspots();syncMail();},leave(){world?.pause(true);FK.forestVoice.cancel();}
 });
 // Shared book callbacks return to the paused world before opening a round/saved sheet.
 FK.friendsPuzzleCompleted=id=>{
@@ -224,6 +213,6 @@ FK.friendsPuzzleCompleted=id=>{
   go(state.mail().phase==='den-letter'?'den':'forest');
   if(matching&&state.mail().phase==='to-mailman'){world.summonMailman();syncMail();say('Danke fürs Helfen! Der Briefträger wartet mit einem neuen Brief auf dich. Folge dem Pfeil.');}
 };
-FK.friendsStartRound=id=>{FK.go('friends');host=id;if(state.start(id)){activeMs=0;puzzle();if(!state.get().seenExamples[id])showExample();}};
+FK.friendsStartRound=id=>FK.friendsLibrary.launch(FK.friendsLibrary.catalogue().find(g=>g.id==='friends-'+id));
 FK.friendsSavedSheets=()=>{FK.go('friends');drawing();};
 FK.go('friends');

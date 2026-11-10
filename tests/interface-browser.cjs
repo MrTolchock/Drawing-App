@@ -50,14 +50,14 @@ const BASE=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);await snapshot('map-'+width);
   }
   assert.equal(await page.locator('.ff-map-storybook .ff-map-invited').getAttribute('data-place'),'squirrel');
-  await page.locator('.ff-map-storybook [data-place="owl"]').click();await page.locator('.ff-example-banner').waitFor({timeout:120000});assert.equal(await spoken(),0);
-  await click('Zurück');assert.equal(await page.getByRole('button',{name:'Spiel erklären',exact:true}).count(),1);await click('Spiel erklären');assert.equal(await spoken(),1);
-  assert.equal(await page.evaluate(()=>window.testSpeech.at(-1)),await page.evaluate(()=>FriendsContent.hosts.owl.instruction));await snapshot('puzzle-explanation-1024');await click('Zurück');
+  await page.locator('.ff-map-storybook [data-place="owl"]').click();await page.locator('.screen-puzzle').waitFor({state:'visible',timeout:120000});assert.equal(await spoken(),0);
+  assert.equal(await page.getByRole('button',{name:'Spiel erklären',exact:true}).count(),1);await click('Spiel erklären');assert.equal(await spoken(),1);
+  assert.equal(await page.evaluate(()=>window.testSpeech.at(-1)),await page.evaluate(()=>FK.puzzleRounds.instructions['friends-owl']));await snapshot('puzzle-explanation-1024');await page.locator('.screen:not([hidden]) .btn-back').click();
   // Original activity families have the same one explicit explanation and no automatic reading.
-  for(const [screen,params]of [['learn',{game:'count'}],['adventure',{game:'rhyme'}],['adventure',{game:'syllable'}],['expedition',{game:'vowels'}],['read',{game:'wort'}],['trace',{glyph:'I'}],['dots',{}]]){
+  for(const [screen,params]of [['learn',{game:'count'}],['adventure',{game:'rhyme'}],['adventure',{game:'syllable'}],['expedition',{game:'vowels'}],['read',{game:'wort'}],['trace',{glyph:'I'}]]){
    const before=await spoken();await page.evaluate(({screen,params})=>FK.go(screen,params),{screen,params});
    assert.equal(await spoken(),before,screen+' stays quiet');const explain=page.locator('.screen:not([hidden])').getByRole('button',{name:'Spiel erklären',exact:true});assert.equal(await explain.isVisible(),true,screen);await explain.click();assert.equal(await spoken(),before+1);
-   assert.equal(await page.locator('.screen:not([hidden]) .play-listen:visible').count(),1,screen+' has one speech action');
+   assert.equal(await page.locator('.screen:not([hidden]) .play-listen:visible,.screen:not([hidden]) .puzzle-listen:visible').count(),1,screen+' has one speech action');
   }
   await page.evaluate(()=>FK.go('friends'));await settings();await page.getByRole('checkbox',{name:'Waldgeräusche',exact:true}).uncheck();
   await page.waitForFunction(()=>FK.friendsAudio.diagnostics.rms<.00001,null,{timeout:15000});

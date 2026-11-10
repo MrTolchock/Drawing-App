@@ -16,7 +16,7 @@ Open `http://127.0.0.1:8000`. Browser scripts require Playwright and Chromium. T
 | `tests/interface-browser.cjs` | Matching centred icons, shared settings, timer pause, painted map and actual route, manual-only puzzle explanations, audible ambience/mute/background behaviour, retired leaves and offline saves |
 | `tests/timer-browser.cjs` | Optional stopwatch/countdown in shared settings, visual reminder, foreground timing, paused reload and retained mounted puzzles |
 | `tests/friends-library-browser.cjs` | Restored v2 catalogue, new host assignments, fixed difficulty, return paths, original gear and full atelier persistence |
-| `tests/puzzles-browser.cjs` | All 24 catalogue routes at 1024/390, common forest layout, four independent reading completions, sleep size, postcard keyboard/touch activation, paint New/Cancel/Undo with pointer-only confirmation and offline assets |
+| `tests/puzzle-rounds-browser.cjs` | All 28 routes at 1024/390, all 140 tasks with real answers/touch tracing, five-task celebration, retry, menu/world returns, host rotation, persisted work and offline assets |
 | `tests/world-browser.cjs` | Free walking, held touch, discoveries, map, camera, responsive controls and offline positions |
 | `tests/world-budget-browser.cjs` | Frame budget (blueprint 7A) on a loop round home and the fixed route through `?world=10x`: draw calls, triangles, near/far tiles and animated characters while drawing; build slices in a second pass with drawing skipped |
 | `tests/cinema-browser.cjs` | Opening, requests, heartlight, reunion, saved finale and framed faces |

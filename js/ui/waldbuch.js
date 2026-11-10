@@ -6,10 +6,10 @@
 (function () {
   'use strict';
   const FK = window.FK;
-  const TILE = '.learn-answer,.learn-button,.ff-answer,.rd-card';
-  const PAGE = '.learn-body,.rd-stage,.ff-illustrated-round';
-  const HOST = '.play-context>.forest-portrait,.ff-card-top>.ff-card-portrait';
-  const TWIG = '.rd-step.cur,.ff-progress>span:not(.done),.woodland-progress-leaf:not(.done)';
+  const TILE = '.learn-answer,.learn-button,.ff-answer,.rd-card,.puzzle-answer,.puzzle-berry-plate';
+  const PAGE = '.learn-body,.rd-stage,.ff-illustrated-round,.puzzle-paper';
+  const HOST = '.play-context>.forest-portrait,.ff-card-top>.ff-card-portrait,.puzzle-context>.forest-portrait';
+  const TWIG = '.rd-step.cur,.ff-progress>span:not(.done),.woodland-progress-leaf:not(.done),.puzzle-progress>span.current';
   // forest-objects.png cells: leaf, flower, then the host's item (set by data-host on an ancestor).
   const PIECES = ['100% 0%', '100% 33.333%', 'var(--wb-item)'];
   const DURATION = 1500;

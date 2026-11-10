@@ -17,10 +17,12 @@
     menu: ['squirrel','blue-tit','berry-cluster','neighbour-houses','hand-mirror','magic-wand'],
     'forest-objects':['forest-nut','forest-apple','forest-berry','forest-leaf','forest-feather','forest-fir','forest-mushroom','forest-flower','forest-honey','forest-rose','forest-stone','forest-branch','forest-lantern','forest-shapes','forest-post','forest-basket'],
     'forest-actions':['mouse-sit','mouse-run','mouse-sleep','bird-fly','bird-sit','fish-swim','hare-run','hare-sit','fox-sleep','fox-run','cat-sleep','cat-sit','dog-run','dog-sleep','duck-swim','duck-fly'],
+    'puzzle-vocabulary':['vocab-house','vocab-table','vocab-shoe','vocab-leg','vocab-stone','vocab-cloth','vocab-tower','vocab-worm','vocab-pot','vocab-head','vocab-hand','vocab-sand','vocab-scarf','vocab-rope','vocab-arrow','vocab-cup','vocab-till','vocab-bench','vocab-wardrobe','vocab-seed'],
+    'puzzle-flowers':['puzzle-flower-rot','puzzle-flower-gelb','puzzle-flower-blau','puzzle-flower-rosa','puzzle-flower-weiss','puzzle-flower-lila'],
     // The master cast (postcard sheet). The friends always come from here, never from a crayon sheet.
     postcard:['friend-squirrel','friend-bluetit','friend-owl','friend-beaver','friend-mouse','friend-fox'],
   };
-  const grid = { menu:[3,2], postcard:[3,2] };
+  const grid = { menu:[3,2], postcard:[3,2], 'puzzle-vocabulary':[4,5], 'puzzle-flowers':[3,2] };
   const source = sheet => sheet === 'postcard' ? 'assets/forest-friends/postcard-friends.webp' : 'assets/waldatelier/' + sheet + '.webp';
   // Crayon versions of the cast are retired: their subjects and emoji show the master cast.
   const cast = { fox:'friend-fox', 'fox-animal':'friend-fox', beaver:'friend-beaver', mouse:'mouse-sit', rabbit:'hare-sit' };

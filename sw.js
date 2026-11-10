@@ -1,6 +1,11 @@
 /* Farbtupf – Service Worker: keeps the whole app on the device so it runs without internet. */
-const CACHE = 'farbtupf-v8.9.2-world-wip';
+const CACHE = 'farbtupf-v8.10.0-puzzles';
 const ASSETS = [
+  './js/friends/puzzle-rounds.js',
+  './js/screens/puzzle.js',
+  './css/puzzle-rounds.css',
+  './assets/waldatelier/puzzle-vocabulary.webp',
+  './assets/waldatelier/puzzle-flowers.webp',
   './js/friends/puzzles.js',
   './css/puzzles.css',
   './css/waldbuch.css',
