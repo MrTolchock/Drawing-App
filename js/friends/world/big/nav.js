@@ -49,7 +49,8 @@ export function createNav({extent, walkable, crossings}) {
       const c = cells[k], id = cross[c];
       if (id < 0) { pts.push({x: X0 + c % W + .5, z: Z0 + ((c / W) | 0) + .5}); k++; continue; }
       while (k < cells.length && cross[cells[k]] === id) k++;
-      const cr = crossings[id], dx = cr.b[0] - cr.a[0], dz = cr.b[1] - cr.a[1], l = Math.hypot(dx, dz), A = {x: cr.a[0] - dx / l * .7, z: cr.a[1] - dz / l * .7, hard: true}, B = {x: cr.b[0] + dx / l * .7, z: cr.b[1] + dz / l * .7, hard: true};
+      const cr = crossings[id], dx = cr.b[0] - cr.a[0], dz = cr.b[1] - cr.a[1], l = Math.hypot(dx, dz), over = cr.kind === 'planks' || cr.kind === 'dam' ? 0 : .7,   // planks meet end to end: turn exactly at the joint
+        A = {x: cr.a[0] - dx / l * over, z: cr.a[1] - dz / l * over, hard: true}, B = {x: cr.b[0] + dx / l * over, z: cr.b[1] + dz / l * over, hard: true};
       const prev = pts[pts.length - 1] || {x: ax, z: az}; if (Math.hypot(prev.x - A.x, prev.z - A.z) <= Math.hypot(prev.x - B.x, prev.z - B.z)) pts.push(A, B); else pts.push(B, A);
     }
     // pull the string tight between the hard corners
