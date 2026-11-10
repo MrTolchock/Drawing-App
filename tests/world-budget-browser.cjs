@@ -52,6 +52,6 @@ const pick=(s,budget)=>Object.fromEntries(Object.keys(budget).map(k=>[k,+(+s[k])
       check(label,built,BUILD_BUDGET);
     }
     assert.deepEqual(errors,[]);
-    console.log('PASS: home 1× and the ten-region test world stay within the frame budget ('+Object.entries({...DRAW_BUDGET,...BUILD_BUDGET}).map(([k,v])=>k.replace(/^max/,'')+' ≤ '+v).join(', ')+').');
+    console.log('PASS: the big world stays within the frame budget ('+Object.entries({...DRAW_BUDGET,...BUILD_BUDGET}).map(([k,v])=>k.replace(/^max/,'')+' ≤ '+v).join(', ')+').');
   }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

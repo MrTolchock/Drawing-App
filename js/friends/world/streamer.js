@@ -67,6 +67,9 @@ export function createStreamer(world, look, scene, options = {}) {
   function work(budget) {
     const t0 = performance.now(); let first = true;
     while (lookSteps.length && room(t0, budget, first, 'look')) { timed('look', lookSteps.shift()); first = false; }
+    // Nothing is built before the shared textures and materials exist: a mesh made earlier would get
+    // three.js' default white material (this once turned the den tree white).
+    if (lookSteps.length) { if (!first) onSlice(performance.now() - t0); return true; }
     for (const r of regionGroups.values()) while (r.steps.length && room(t0, budget, first, 'landmark')) { timed('landmark', r.steps.shift()); first = false; }
     while (jobs.length && room(t0, budget, first, jobs[0].next)) {
       first = false; const job = jobs[0], step = timed(job.next, () => job.it.next());
