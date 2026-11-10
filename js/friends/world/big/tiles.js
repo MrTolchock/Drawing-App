@@ -33,7 +33,7 @@ function solid(buf, geo, colour) {
 const BIRCH = C('#f1ece0'), BIRCH_D = C('#3b352d'), SNAG = C('#9a9384'), SNAG_D = C('#6c6659'), SPRUCE_BARK = C('#c9a58a');
 
 /* ---------- the water material: flowing streams and still pools in one shader ---------- */
-function waterMaterial(look, fog) {
+export function waterMaterial(look, fog) {
   if (look.M.water) return look.M.water;
   return look.M.water = new THREE.ShaderMaterial({
     transparent: true, depthWrite: false, side: THREE.DoubleSide,

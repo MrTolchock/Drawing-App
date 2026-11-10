@@ -81,8 +81,8 @@ export const PLACES = {
 /* Where every character stands: `y` above the ground (branch, rock, stump), `h` body height. */
 export const FRIENDS = {
   squirrel: {at: [-31.2, -61.2], y: 0, yaw: .6, h: 1.15},
-  bird: {at: [-57.6, 53.4], y: 2.38, yaw: .9, h: .6},
-  owl: {at: [86.4, -6.3], y: 2.05, yaw: -.5, h: 1.25},
+  bird: {at: [-57.6, 54.45], y: 2.38, yaw: .9, h: .6},
+  owl: {at: [86.4, -7.15], y: 2.12, yaw: -.5, h: 1.25},
   mouse: {at: [-33.4, 11.2], y: .62, yaw: .7, h: 1.1},
   beaver: {at: [24.6, -17.2], y: 0, yaw: -.5, h: 1.2},
 };
@@ -92,12 +92,12 @@ export const NEIGHBOURS = {
   frog: {at: [-23.4, 80.2], y: .06, yaw: .9, h: .8, onWater: true},
   hedgehog: {at: [53.6, 45.4], y: 0, yaw: -.7, h: .85},
   fish: {at: [62.6, -49.2], y: -.1, yaw: -.6, h: .8, onWater: true},
-  kingfisher: {at: [12.9, 22.3], y: 1.5, yaw: -1.2, h: .6},
+  kingfisher: {at: [12.9, 22.85], y: 1.6, yaw: -1.2, h: .6},
 };
 /* Authored trees [x, z, size, options]: the friends' trees and a few giants. */
 export const TREES = [
   [-59.3, 54.2, .62, {kind: 'birch', branch: [1.7, 2.42, .45]}],
-  [88.2, -7.4, 1.5, {kind: 'hollow'}],
+  [88.2, -7.4, 1.5, {kind: 'hollow', branch: [-1.8, 2.0, .6]}],
   [-83, -15, 1.35, {kind: 'oak'}],
   [-33.6, -62.8, 1.3, {kind: 'oak'}],
   [11.4, 22.6, .7, {kind: 'willow', branch: [1.5, 1.52, .45]}],

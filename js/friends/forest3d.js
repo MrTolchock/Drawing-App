@@ -45,6 +45,33 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   let compiled = false;
   function compile() { if (compiled) return; compiled = true; try { (renderer.compileAsync || renderer.compile).call(renderer, scene, camera); } catch (e) { /* compiled on first draw instead */ } }
 
+  /* ---------- the big world: hazy hills far away, and each area's own light ---------- */
+  let backdrop = null; const mood = {near: WORLD.fog.near, far: WORLD.fog.far, bm: {}};
+  if (WORLD.big) {
+    // One coarse mesh of the whole land (tree tops included) in the colour of the haze, drawn behind
+    // everything and only beyond the far ring: the Rock and the wooded hills stay on the horizon.
+    const T = WORLD.terrain, E = WORLD.extent, G = 8, M = 40, nx = (E.x1 - E.x0 + 2 * M) / G, nz = (E.z1 - E.z0 + 2 * M) / G, pos = [], col = [], idx = [], bm = {};
+    for (let j = 0; j <= nz; j++) for (let i = 0; i <= nx; i++) {
+      const x = E.x0 - M + i * G, z = E.z0 - M + j * G, b = T.biome(x, z, bm), wood = (1 - b.meadow) * (1 - b.swamp) * (1 - b.rock) * (1 - b.glade), h = T.ground(x, z) + wood * (b.spruce > .5 ? 9 : 7);
+      const shade = .93 - wood * .07 + b.rock * .02 + Math.min(.05, h * .004) + ((i * 7 + j * 13) % 5) * .004; pos.push(x, h, z); col.push(shade * .97, shade, shade * (1 + b.rock * .04 - wood * .03));
+    }
+    for (let j = 0; j < nz; j++) for (let i = 0; i < nx; i++) { const a = j * (nx + 1) + i, b = a + 1, c = a + nx + 1, d = c + 1; idx.push(a, c, b, b, c, d); }   // north first: the camera looks north
+    const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setAttribute('color', new THREE.Float32BufferAttribute(col, 3)); g.setIndex(idx);
+    backdrop = new THREE.Mesh(g, new THREE.ShaderMaterial({depthWrite: false, uniforms: {uHaze: {value: WORLD.fog.color}, uFox: {value: new THREE.Vector3()}},
+      vertexShader: 'attribute vec3 color;varying vec3 vC;varying vec3 vW;void main(){vC=color;vW=position;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',
+      fragmentShader: 'uniform vec3 uHaze,uFox;varying vec3 vC;varying vec3 vW;void main(){float d=distance(vW.xz,uFox.xz);if(d<64.)discard;float far=smoothstep(64.,150.,d);gl_FragColor=vec4(uHaze*mix(vC,vec3(1.),far*.55),1.);\n#include <tonemapping_fragment>\n#include <colorspace_fragment>\n}'}));
+    backdrop.name = 'backdrop hills'; backdrop.renderOrder = -8; backdrop.frustumCulled = false; scene.add(backdrop);
+  }
+  const MOODS = {wood: ['#e8dcae', 24, 72], meadow: ['#f1e8bd', 30, 78], swamp: ['#c5d2ae', 11, 50], rock: ['#e0e6d6', 26, 78], spruce: ['#d3d8b2', 18, 62]}, moodC = new THREE.Color(), moodT = new THREE.Color();
+  /** Lean the haze toward the area Fuchs is in (the water and the backdrop share the colour object). */
+  function updateMood(dt, x, z) {
+    const b = WORLD.terrain.biome(x, z, mood.bm), w = {meadow: b.meadow, swamp: b.swamp, rock: b.rock * .8, spruce: b.spruce}; let rest = 1, near = 0, far = 0; moodT.setRGB(0, 0, 0);
+    for (const k in w) { const v = Math.min(rest, w[k]); rest -= v; moodC.set(MOODS[k][0]); moodT.r += moodC.r * v; moodT.g += moodC.g * v; moodT.b += moodC.b * v; near += MOODS[k][1] * v; far += MOODS[k][2] * v; }
+    moodC.set(MOODS.wood[0]); moodT.r += moodC.r * rest; moodT.g += moodC.g * rest; moodT.b += moodC.b * rest; near += MOODS.wood[1] * rest; far += MOODS.wood[2] * rest;
+    const k = 1 - Math.exp(-dt * .9); WORLD.fog.color.lerp(moodT, k); mood.near += (near - mood.near) * k; mood.far += (far - mood.far) * k; scene.fog.near = mood.near; scene.fog.far = mood.far;
+    if (look.M.water) { look.M.water.uniforms.fogNear.value = mood.near; look.M.water.uniforms.fogFar.value = mood.far; }
+  }
+
   /* ---------- atmosphere: light shafts, pollen motes, butterflies, dust, vignette ---------- */
   const glow = canvasTex(64, 64, (g) => { const r = g.createRadialGradient(32, 32, 1, 32, 32, 32); r.addColorStop(0, 'rgba(255,255,230,1)'); r.addColorStop(.25, 'rgba(255,228,150,.85)'); r.addColorStop(1, 'rgba(255,200,90,0)'); g.fillStyle = r; g.fillRect(0, 0, 64, 64); });
   const softTex = canvasTex(64, 64, (g) => { const r = g.createRadialGradient(32, 32, 0, 32, 32, 32); r.addColorStop(0, 'rgba(42,26,12,.55)'); r.addColorStop(1, 'rgba(42,26,12,0)'); g.fillStyle = r; g.fillRect(0, 0, 64, 64); });
@@ -188,6 +215,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     if (!reduced) { if (look.M.water) look.M.water.uniforms.uTime.value += dt; motes.position.set(pos.x, Math.sin(time * .35) * .3, pos.z); motes.rotation.y = time * .01; } else motes.position.set(pos.x, 0, pos.z);
     if (ring.visible) ring.material.opacity = .55 + Math.sin(time * 4) * .25;
     updateGuide(time);
+    if (WORLD.big) { updateMood(dt, pos.x, pos.z); backdrop.material.uniforms.uFox.value.copy(pos); const sw = streamer.landmarks.swamp; if (sw?.glow) sw.glow.material.opacity = reduced ? .8 : .55 + .4 * Math.sin(time * 1.7); if (sw?.mist && !reduced) sw.mist.position.x = Math.sin(time * .12) * 1.5; }
     focus.lerp(new THREE.Vector3(pos.x + vel.x * .35, base * lift, pos.z + vel.y * .35), reduced ? 1 : 1 - Math.exp(-dt * 2.6)); placeCamera(1);
     // stream tiles around Fuchs and ahead of him (≤ 4 ms per frame); move the static shadow with him
     // (when frames are already long, a tenth of the frame: the wait for new ground matters more than the slice)
