@@ -33,13 +33,13 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   scene.add(new THREE.HemisphereLight('#e4f0ff', '#8a7444', 1.35));
   const sun = new THREE.DirectionalLight('#ffe0ab', 2.6); scene.add(sun, sun.target);
   const shadowAt = new THREE.Vector3(Infinity, 0, 0);
-  function aimSun(x, z) { sun.target.position.set(x, 0, z); sun.position.copy(sunDir).multiplyScalar(40).add(sun.target.position); sun.target.updateMatrixWorld(); shadowAt.set(x, 0, z); renderer.shadowMap.needsUpdate = true; }
+  function aimSun(x, z) { sun.target.position.set(x, WORLD.big ? WORLD.ground(x, z) : 0, z); sun.position.copy(sunDir).multiplyScalar(40).add(sun.target.position); sun.target.updateMatrixWorld(); shadowAt.set(x, 0, z); renderer.shadowMap.needsUpdate = true; }
   if (!software) { sun.castShadow = true; sun.shadow.mapSize.set(2048, 2048); Object.assign(sun.shadow.camera, {left: -30, right: 30, top: 30, bottom: -30, near: 5, far: 95}); sun.shadow.bias = -.0004; sun.shadow.normalBias = .04; }
   aimSun(2, -2);
   const fill = new THREE.DirectionalLight('#fff4e0', .55); scene.add(fill, fill.target);   // camera-side fill so faces read against the low sun
 
   /* ---------- the world, streamed in tiles ---------- */
-  const look = createLook({software});
+  const look = createLook({software, big: !!WORLD.big});
   const streamer = createStreamer(WORLD, look, scene, {onSlice: ms => perf?.slice(ms)});
   streamer.focus(forestPlaces.home.x, forestPlaces.home.z);
   let compiled = false;
@@ -65,7 +65,9 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   /* ---------- characters ---------- */
   function contact(r, o = 1) { const m = new THREE.Mesh(new THREE.CircleGeometry(1, 24), new THREE.MeshBasicMaterial({map: softTex, transparent: true, depthWrite: false, opacity: o, toneMapped: false})); m.rotation.x = -Math.PI / 2; m.scale.setScalar(r); m.renderOrder = 1; scene.add(m); return m; }
   const friends = {}, noCast = rig => { const off = () => rig.group.traverse(o => { o.castShadow = false; }); off(); rig.ready.then(off); return rig; };
-  for (const [id, f] of Object.entries(home.friends)) {
+  // The puzzle friends and, in the big world, the new neighbours (those whose models exist already).
+  for (const [id, f] of Object.entries({...(WORLD.friends || home.friends), ...(WORLD.neighbours || {})})) {
+    if (!characters[id]) continue;
     const rig = noCast(characters[id](f.h)), [x, z] = f.at, y = groundY(x, z) + f.y;
     rig.group.position.set(x, y, z); rig.group.rotation.y = f.yaw; scene.add(rig.group);
     friends[id] = {...f, rig, x, z, y, shadow: f.y === 0 ? contact(f.h * .42) : null};
@@ -83,14 +85,14 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   let guideTarget = null, guidePoints = [], guideFrom = new THREE.Vector3(Infinity, 0, Infinity), guideEnd = new THREE.Vector3(Infinity, 0, Infinity), guideNext = 0;
   const ring = new THREE.Mesh(new THREE.RingGeometry(.4, .52, 32), new THREE.MeshBasicMaterial({color: '#fff3c4', transparent: true, opacity: .85, depthWrite: false, toneMapped: false}));
   ring.rotation.x = -Math.PI / 2; ring.visible = false; ring.renderOrder = 1; scene.add(ring);
-  const pins = Object.entries(home.pins).map(([id, [x, y, z]]) => ({id, point: new THREE.Vector3(x, y + groundY(x, z), z)}));
+  const pins = Object.entries(WORLD.pins || home.pins).map(([id, [x, y, z]]) => ({id, point: new THREE.Vector3(x, y + groundY(x, z), z)}));
 
   /* ---------- movement, routes and camera ---------- */
   let destination = null, path = [], arrival = null, near = null, lastSample = 0, lastPuff = 0, narrow = false, width = 1, height = 1, speedScale = 1;
   const focus = new THREE.Vector3(), raycaster = new THREE.Raycaster(), floor = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
   // Route hubs: around every collider and at both ends of each crossing.
   const hubs = [[2, -2.4]];
-  for (const region of WORLD.regions) {
+  if (!WORLD.big) for (const region of WORLD.regions) {
     for (const c of region.crossings) { const dx = c.b[0] - c.a[0], dz = c.b[1] - c.a[1], l = Math.hypot(dx, dz); hubs.push([c.a[0] - dx / l * .9, c.a[1] - dz / l * .9], [c.b[0] + dx / l * .9, c.b[1] + dz / l * .9], [(c.a[0] + c.b[0]) / 2, (c.a[1] + c.b[1]) / 2]); }
     for (const s of region.solids) if (Math.hypot(s.x - region.clearing.x, s.z - region.clearing.z) < region.clearing.r) for (let i = 0; i < 8; i++) { const a = i / 8 * TAU; hubs.push([s.x + Math.cos(a) * (s.r + .8), s.z + Math.sin(a) * (s.r + .8)]); }
   }
@@ -101,6 +103,10 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   let hubRows = 0;
   const hubSight = new Map(), hubClear = (a, b) => { const k = Math.min(a, b) * 4096 + Math.max(a, b); let v = hubSight.get(k); if (v === undefined) hubSight.set(k, v = clear(hubPoints[a], hubPoints[b])); return v; };
   function plan(target) {
+    if (WORLD.plan) { // the big world searches its own grid
+      if (pos.distanceTo(target) < 10 && clear(pos, target, true)) return [target];
+      const route = WORLD.plan(pos.x, pos.z, target.x, target.z); return route && route.map(([x, z]) => new THREE.Vector3(x, 0, z));
+    }
     if (clear(pos, target, true)) return [target];
     const ids = [-1, -1]; hubPoints.forEach((p, h) => { if (p.distanceTo(pos) < 60 || p.distanceTo(target) < 60) ids.push(h); });
     const points = [pos.clone().setY(0), target, ...ids.slice(2).map(h => hubPoints[h])], cost = points.map(() => Infinity), previous = [], visited = new Set(); cost[0] = 0;
@@ -114,8 +120,10 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   }
   function nearestWalkable(p) { if (walkable(p.x, p.z)) return new THREE.Vector3(p.x, 0, p.z); for (let r = .3; r < 6; r += .3) for (let i = 0; i < 16; i++) { const a = i / 16 * TAU, x = p.x + Math.cos(a) * r, z = p.z + Math.sin(a) * r; if (walkable(x, z)) return new THREE.Vector3(x, 0, z); } return pos.clone().setY(0); }
   function walkTo(target, id = null) { target = nearestWalkable(target); const route = plan(target); if (!route) { onMove({event: 'route_failure', reason: 'blocked', area: 'forest', destination: id}); return; } path = route; destination = path.shift(); arrival = id; ring.position.set(target.x, groundY(target.x, target.z) + .05, target.z); ring.visible = true; onMove({event: 'movement_destination', destination: id, x: target.x, z: target.z, area: 'forest'}); }
-  function snapCamera() { focus.set(pos.x, groundY(pos.x, pos.z) * .5, pos.z); placeCamera(1); }
-  function placeCamera(k) { const off = narrow ? [0, 10, 14.4] : [0, 9, 14]; camera.position.lerp(new THREE.Vector3(focus.x + off[0], focus.y + off[1], focus.z + off[2]), k); camera.lookAt(focus.x, focus.y + 1.4, focus.z - 3.2); camera.updateMatrixWorld(); foxView.value.set(pos.x, groundY(pos.x, pos.z) + .9, pos.z).applyMatrix4(camera.matrixWorldInverse); fill.position.copy(camera.position).add(new THREE.Vector3(0, 4, 0)); fill.target.position.copy(focus); fill.target.updateMatrixWorld(); horizon.position.x = camera.position.x; horizon.position.z = camera.position.z - 20; }
+  // On the big world's hills the camera follows the full height of the ground and never sinks into a slope.
+  const lift = WORLD.big ? 1 : .5;
+  function snapCamera() { focus.set(pos.x, groundY(pos.x, pos.z) * lift, pos.z); placeCamera(1); }
+  function placeCamera(k) { const off = narrow ? [0, 10, 14.4] : [0, 9, 14]; camera.position.lerp(new THREE.Vector3(focus.x + off[0], focus.y + off[1], focus.z + off[2]), k); if (WORLD.big) camera.position.y = Math.max(camera.position.y, WORLD.ground(camera.position.x, camera.position.z) + 3.5); camera.lookAt(focus.x, focus.y + 1.4, focus.z - 3.2); camera.updateMatrixWorld(); foxView.value.set(pos.x, groundY(pos.x, pos.z) + .9, pos.z).applyMatrix4(camera.matrixWorldInverse); fill.position.copy(camera.position).add(new THREE.Vector3(0, 4, 0)); fill.target.position.copy(focus); fill.target.updateMatrixWorld(); horizon.position.x = camera.position.x; horizon.position.z = camera.position.z - 20; }
   function publishMailPosition() { const p = forestPlaces.mailman; p.x = mailPos.x; p.z = mailPos.z; p.pu = THREE.MathUtils.clamp(.5 + mailPos.x * .023, .07, .93); p.pv = THREE.MathUtils.clamp(.49 + mailPos.z * .025, .1, .9); }
   function summonMailman() {
     let chosen = null; for (const radius of [2.2, 2.7, 3.2, 3.8]) { for (let i = 0; i < 16; i++) { const a = -.5 + i / 16 * TAU, candidate = new THREE.Vector3(pos.x + Math.cos(a) * radius, 0, pos.z + Math.sin(a) * radius); if (walkable(candidate.x, candidate.z) && clear(pos, candidate, true)) { chosen = candidate; break; } } if (chosen) break; }
@@ -180,9 +188,10 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     if (!reduced) { if (look.M.water) look.M.water.uniforms.uTime.value += dt; motes.position.set(pos.x, Math.sin(time * .35) * .3, pos.z); motes.rotation.y = time * .01; } else motes.position.set(pos.x, 0, pos.z);
     if (ring.visible) ring.material.opacity = .55 + Math.sin(time * 4) * .25;
     updateGuide(time);
-    focus.lerp(new THREE.Vector3(pos.x + vel.x * .35, base * .5, pos.z + vel.y * .35), reduced ? 1 : 1 - Math.exp(-dt * 2.6)); placeCamera(1);
+    focus.lerp(new THREE.Vector3(pos.x + vel.x * .35, base * lift, pos.z + vel.y * .35), reduced ? 1 : 1 - Math.exp(-dt * 2.6)); placeCamera(1);
     // stream tiles around Fuchs and ahead of him (≤ 4 ms per frame); move the static shadow with him
-    streamer.focus(pos.x, pos.z, pos.x + vel.x * 2, pos.z + vel.y * 2); streamer.work(3);
+    // (when frames are already long, a tenth of the frame: the wait for new ground matters more than the slice)
+    streamer.focus(pos.x, pos.z, pos.x + vel.x * 2, pos.z + vel.y * 2); streamer.work(Math.max(3, Math.min(12, dt * 100)));
     if (Math.hypot(pos.x - shadowAt.x, pos.z - shadowAt.z) > 8) aimSun(pos.x, pos.z);
   }
   let animatedCount = 0;
@@ -190,11 +199,12 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     /** Build in slices while the child is in the den; returns true while work remains. */
     build(budget = 8) {
       const t0 = performance.now(), more = streamer.work(budget);
+      if (WORLD.nav) { const filling = !more && WORLD.nav.work(Math.max(1, budget - (performance.now() - t0))); if (!more && !filling) compile(); return more || filling; }
       while (!more && hubRows < hubPoints.length && performance.now() - t0 < budget) { for (let b = hubRows + 1; b < hubPoints.length; b++) hubClear(hubRows, b); hubRows++; }
       if (!more && hubRows >= hubPoints.length) compile();
       return more || hubRows < hubPoints.length;
     },
-    get pending() { return streamer.pending() || hubRows < hubPoints.length; },
+    get pending() { return streamer.pending() || (WORLD.nav ? WORLD.nav.pending : hubRows < hubPoints.length); },
     enter(position) {
       const p = position && walkable(position.x, position.z) ? position : forestPlaces.home; pos.set(p.x, 0, p.z); vel.set(0, 0); fox.rotation.y = 0; destination = null; path = []; arrival = null; ring.visible = false; near = null;
       streamer.focus(pos.x, pos.z); const finishing = streamer.complete(); if (perf) perf.stats.enterBuildMs = finishing; compile(); aimSun(WORLD.mode === 'home' ? 2 : pos.x, WORLD.mode === 'home' ? -2 : pos.z); snapCamera(); renderer.shadowMap.needsUpdate = true;
@@ -202,6 +212,8 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     resize(w, h) { width = w; height = h; narrow = w < 600; camera.aspect = w / Math.max(1, h); camera.fov = narrow ? 54 : 42; camera.updateProjectionMatrix(); const vh = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * 1.02; vignette.scale.set(vh * camera.aspect, vh, 1); snapCamera(); },
     update, route(id) { const p = forestPlaces[id]; if (id === 'mailman') { courierGoal = null; courierWait = 20; } if (p) walkTo(new THREE.Vector3(p.x, 0, p.z), id); },
     walkTo(x, z) { walkTo(new THREE.Vector3(x, 0, z)); },
+    /** Development: put Fuchs somewhere at once. */
+    teleport(x, z) { const p = nearestWalkable(new THREE.Vector3(x, 0, z)); pos.set(p.x, 0, p.z); vel.set(0, 0); destination = null; path = []; ring.visible = false; streamer.focus(pos.x, pos.z); streamer.complete(); aimSun(pos.x, pos.z); snapCamera(); },
     mailTarget(id) { guideTarget = forestPlaces[id] ? id : null; guidePoints = []; guideNext = 0; if (id === 'mailman' && mailPos.distanceTo(pos) > 6.5) summonMailman(); }, summonMailman,
     pick(x, y) {
       raycaster.setFromCamera(new THREE.Vector2(x, y), camera);

@@ -3,6 +3,7 @@
    Materials are created once, shared by every tile and never disposed. */
 import {THREE} from '../../forest/materials.js';
 import {TAU, rng, hash, vnoise} from './noise.js';
+import {drawBigCells} from './big/atlas.js';
 
 export function canvasTex(w, h, draw, {repeat = null, srgb = true} = {}) {
   const c = document.createElement('canvas'); c.width = w; c.height = h; draw(c.getContext('2d'), w, h);
@@ -39,7 +40,7 @@ function patch(material, {foliage = false, near = false}, key) {
 }
 
 /* ---------- textures and materials, built lazily in small steps ---------- */
-export function createLook({software = false} = {}) {
+export function createLook({software = false, big = false} = {}) {
   const T = {}, M = {};
   function pixelSteps(name, size, value, options) {
     const c = document.createElement('canvas'); c.width = c.height = size; const g = c.getContext('2d'), img = g.createImageData(size, size), bands = 8, rows = size / bands;
@@ -56,7 +57,8 @@ export function createLook({software = false} = {}) {
       for (let i = 0; i < 70; i++) { const a = r() * TAU, d = Math.sqrt(r()) * w * .3, x = w / 2 + Math.cos(a) * d, y = h / 2 + Math.sin(a) * d; g.save(); g.translate(x, y); g.rotate(a + Math.PI / 2 + (r() - .5) * .9); leafShape(g, 60 + r() * 50, 26 + r() * 16, ...cols[(r() * cols.length) | 0]); g.restore(); } }); },
     // Plant atlas, 4 × 4 cells of 256 px: daisy, buttercup, bellflower, campion / clover, leaf litter, fern frond, reeds /
     // grass (two cells wide) / two crown cards for distant trees (two cells each). One texture for all ground foliage.
-    () => { T.plants = canvasTex(1024, 1024, (g) => {
+    // The big world's atlas is twice as wide: the same cells on the left, new ones on the right (big/atlas.js).
+    () => { T.plants = canvasTex(big ? 2048 : 1024, 1024, (g) => {
       const cell = (i, fn) => { g.save(); g.beginPath(); g.rect((i % 4) * 256 + 4, Math.floor(i / 4) * 256 + 4, 248, 248); g.clip(); g.translate((i % 4) * 256 + 128, Math.floor(i / 4) * 256 + 128); fn(); g.restore(); };
       cell(0, () => { g.scale(1.6, 1.6); for (let k = 0; k < 14; k++) { g.rotate(TAU / 14); g.fillStyle = '#fffaf0'; g.beginPath(); g.ellipse(0, -26, 7, 22, 0, 0, TAU); g.fill(); } g.fillStyle = '#f2c230'; g.beginPath(); g.arc(0, 0, 13, 0, TAU); g.fill(); });
       cell(1, () => { g.scale(1.6, 1.6); for (let k = 0; k < 5; k++) { g.rotate(TAU / 5); g.fillStyle = '#ffd53a'; g.beginPath(); g.ellipse(0, -22, 19, 24, 0, 0, TAU); g.fill(); } g.fillStyle = '#e6a020'; g.beginPath(); g.arc(0, 0, 10, 0, TAU); g.fill(); });
@@ -80,6 +82,7 @@ export function createLook({software = false} = {}) {
         const cols = [['#2f5f1c', '#4f8a2c', '#7fb447'], ['#3b6d22', '#5c9a33', '#94c454'], ['#4a7a23', '#77a83e', '#b2d36a']];
         for (let i = 0; i < 120; i++) { const a = r() * TAU, d = Math.sqrt(r()), x = Math.cos(a) * d * 210 * (k ? .82 : 1), y = 108 + Math.sin(a) * d * 92 - (1 - d) * 18; g.save(); g.translate(x, y); g.rotate(a + Math.PI / 2 + (r() - .5)); leafShape(g, 34 + r() * 26, 15 + r() * 9, ...cols[(r() * 3) | 0]); g.restore(); }
         g.restore(); }
+      if (big) drawBigCells(g);
     }); },
     () => { T.bark = canvasTex(256, 512, (g, w, h) => { g.fillStyle = '#a2683f'; g.fillRect(0, 0, w, h); const r = rng(13); for (let i = 0; i < 260; i++) { const x = r() * w, y = r() * h, l = 30 + r() * 90; g.strokeStyle = r() < .55 ? 'rgba(60,32,16,.45)' : 'rgba(190,130,80,.35)'; g.lineWidth = 2 + r() * 5; g.beginPath(); g.moveTo(x, y); g.bezierCurveTo(x + 6, y + l * .3, x - 6, y + l * .6, x + 2, y + l); g.stroke(); } }, {repeat: [3, 2]}); },
     () => { T.wood = canvasTex(256, 64, (g, w, h) => { g.fillStyle = '#b07a46'; g.fillRect(0, 0, w, h); const r = rng(21); for (let i = 0; i < 40; i++) { g.strokeStyle = r() < .5 ? 'rgba(90,52,26,.35)' : 'rgba(230,180,120,.3)'; g.lineWidth = 1 + r() * 2; const y = r() * h; g.beginPath(); g.moveTo(0, y); g.bezierCurveTo(w * .3, y + 4, w * .6, y - 4, w, y + 2); g.stroke(); } }, {repeat: [1, 1]}); },

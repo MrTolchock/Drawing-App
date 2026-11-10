@@ -12,6 +12,8 @@ const centreDistance = (x, z, i, j) => Math.hypot((i + .5) * TILE - x, (j + .5) 
 
 export function createStreamer(world, look, scene, options = {}) {
   let onSlice = options.onSlice || (() => {});
+  // The big world brings its own tile builder and landmark sites (world/big/).
+  const build = world.buildTile || buildTile, marks = world.landmarkSteps || landmarkSteps;
   const all = world.tiles(), live = new Map(), cache = [], jobs = [], regionGroups = new Map(), landmarks = {};
   const root = new THREE.Group(); root.name = 'world'; scene.add(root);
   let lookSteps = [...look.steps, () => templates()], focus = {x: 0, z: 0, ahead: {x: 0, z: 0}};
@@ -43,13 +45,13 @@ export function createStreamer(world, look, scene, options = {}) {
       if (jobs.some(j => j.i === w.i && j.j === w.j && j.ring === w.ring)) continue;
       const hit = cache.findIndex(c => c.key === key(w.i, w.j, w.ring));
       if (hit >= 0) { const c = cache.splice(hit, 1)[0]; c.group.visible = true; if (entry) release(entry); live.set(k, c); continue; }
-      jobs.push({...w, it: buildTile(world, look, w.i, w.j, w.ring), next: 'tile start'});
+      jobs.push({...w, it: build(world, look, w.i, w.j, w.ring), next: 'tile start'});
     }
     jobs.sort((a, b) => (a.ring === b.ring ? 0 : a.ring === 'near' ? -1 : 1) || a.d - b.d);
     // landmarks of regions within the near ring
     for (const region of world.regions) {
       const b = region.bounds, d = Math.hypot(Math.max(b.x0 - focus.x, 0, focus.x - b.x1), Math.max(b.z0 - focus.z, 0, focus.z - b.z1));
-      if (d < NEAR && !regionGroups.has(region.id)) { const g = new THREE.Group(); g.name = 'landmarks ' + region.id; root.add(g); const out = {}; regionGroups.set(region.id, {g, steps: landmarkSteps(region, look, world, g, out), out}); landmarks[region.id] = out; }
+      if (d < NEAR && !regionGroups.has(region.id)) { const g = new THREE.Group(); g.name = 'landmarks ' + region.id; root.add(g); const out = {}; regionGroups.set(region.id, {g, steps: marks(region, look, world, g, out), out}); landmarks[region.id] = out; }
     }
   }
   /* Build in slices of at most `budget` ms. Before each step the streamer predicts its cost from steps of

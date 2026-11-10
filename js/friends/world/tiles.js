@@ -15,7 +15,7 @@ const tone = new THREE.Color(), crownTone = new THREE.Color(.95, .95, .95);   //
 /* ---------- vertex buffer builder (merge many small transformed templates into one mesh) ---------- */
 // Typed arrays that double when full: building a tile allocates a handful of buffers, not millions of
 // array slots, which keeps garbage collection out of the build slices.
-class Buffer {
+export class Buffer {
   constructor(color = true) { this.n = 0; this.ni = 0; this.cap = 0; this.icap = 0; this.color = color; this.grow(1024, 2048); }
   grow(v, i) {
     if (v > this.cap) { const cap = Math.max(v, this.cap * 2), copy = (a, k) => { const b = new Float32Array(cap * k); if (a) b.set(a.subarray(0, this.n * k)); return b; };
@@ -57,8 +57,8 @@ class Buffer {
     g.computeBoundingSphere(); g.computeBoundingBox(); return g;
   }
 }
-const template = (g, color = null) => { const t = {pos: [...g.attributes.position.array], nor: [...g.attributes.normal.array], uv: g.attributes.uv ? [...g.attributes.uv.array] : null, idx: g.index ? [...g.index.array] : [...Array(g.attributes.position.count).keys()], col: g.attributes.color ? [...g.attributes.color.array] : null}; if (color) t.col = t.pos.map((_, i) => [color.r, color.g, color.b][i % 3]); return t; };
-const quads = (w, h, angles, lift = 0) => { const parts = angles.map(a => new THREE.PlaneGeometry(w, h).translate(0, h / 2 + lift, 0).rotateY(a)); const b = new Buffer(false); parts.forEach(p => b.addGeometry(p)); return template(b.geometry()); };
+export const template = (g, color = null) => { const t = {pos: [...g.attributes.position.array], nor: [...g.attributes.normal.array], uv: g.attributes.uv ? [...g.attributes.uv.array] : null, idx: g.index ? [...g.index.array] : [...Array(g.attributes.position.count).keys()], col: g.attributes.color ? [...g.attributes.color.array] : null}; if (color) t.col = t.pos.map((_, i) => [color.r, color.g, color.b][i % 3]); return t; };
+export const quads = (w, h, angles, lift = 0) => { const parts = angles.map(a => new THREE.PlaneGeometry(w, h).translate(0, h / 2 + lift, 0).rotateY(a)); const b = new Buffer(false); parts.forEach(p => b.addGeometry(p)); return template(b.geometry()); };
 // Atlas cells as [u0, v0, du, dv] (v from the bottom, as three.js flips canvas textures).
 const cell = (col, row, w = 1, h = 1) => [col / 4, 1 - (row + h) / 4, w / 4, h / 4];
 const ATLAS = {daisy: cell(0, 0), buttercup: cell(1, 0), bell: cell(2, 0), campion: cell(3, 0), clover: cell(0, 1), litter: cell(1, 1), fern: cell(2, 1), reeds: cell(3, 1), grass: cell(0, 2, 2, 1), crownA: cell(0, 3, 2, 1), crownB: cell(2, 3, 2, 1)};

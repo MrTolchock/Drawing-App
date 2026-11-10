@@ -7,43 +7,21 @@ import {createRegion, baseGround} from './region.js';
 import {home} from './regions/home.js';
 import {fbm, sstep} from './noise.js';
 import {TILE} from './tiles.js';
+import {createBigWorld, BIG_ROUTE} from './big/index.js';
+import {buildBigTile} from './big/tiles.js';
+import {siteSteps} from './big/sites.js';
 
 export const WORLD_MODE = new URLSearchParams(location.search).get('world') === '10x' ? '10x' : 'home';
 
-// Mockup positions (map scale 1 m = 3.2 px around the Heimatlichtung), scaled ×1.5 so no region overlaps home.
-const PLACEHOLDERS = [['r2', -117, -56], ['r3', 112, -51], ['r4', -70, 75], ['r5', 117, 70], ['r6', -150, 13], ['r7', 0, -84], ['r8', 159, 13], ['r9', 13, 99], ['r10', 54, -87]];
-// Paths between regions, as polylines (home's east paths leave over the log bridge and the arched bridge).
-const LINKS = [
-  ['home', 'r2', [[-6, -10], [-30, -20], [-117, -56]]], ['home', 'r3', [[13.4, -9.6], [24, -16], [112, -51]]], ['home', 'r4', [[-2, 8], [-26, 26], [-70, 75]]],
-  ['home', 'r5', [[19.5, 1], [30, 12], [117, 70]]], ['home', 'r7', [[-4, -14], [-6, -30], [0, -84]]], ['home', 'r9', [[2, 12], [6, 34], [13, 99]]],
-  ['r2', 'r6', [[-117, -56], [-150, 13]]], ['r3', 'r8', [[112, -51], [159, 13]]], ['r3', 'r10', [[112, -51], [54, -87]]], ['r5', 'r8', [[117, 70], [159, 13]]], ['r4', 'r6', [[-70, 75], [-150, 13]]], ['r7', 'r10', [[0, -84], [54, -87]]], ['r9', 'r5', [[13, 99], [117, 70]]],
-];
-/** The fixed walk through all ten regions used by the budget test. */
-export const TEST_ROUTE = [[2, -2], [8.8, -9.4], [13.4, -9.6], [24, -16], [112, -51], [54, -87], [0, -84], [-6, -30], [-4, -14], [-6, -10], [-30, -20], [-117, -56], [-150, 13], [-70, 75], [-26, 26], [-2, 8], [2, 12], [6, 34], [13, 99], [117, 70], [159, 13]];
-
-function placeholder(id, cx, cz, k, links) {
-  const corridors = links.filter(([a, b]) => a === id || b === id).flatMap(([, , pts]) => pts.slice(1).map((p, i) => [pts[i], p, 1.4]));
-  return {
-    id, origin: [cx, cz], seed: 1000 + k * 7919, bounds: {x0: cx - 20, x1: cx + 20, z0: cz - 20, z1: cz + 20},
-    clearing: {x: cx, z: cz, r: 11}, places: {}, friends: {}, corridors,
-    trails: corridors.map(([a, b]) => ({pts: [a, [(a[0] + b[0]) / 2 + 1.5, (a[1] + b[1]) / 2 - 1], b], w: .9})),
-    solids: [], trees: [], rocks: [], landmarks: [], treeDensity: .012,
-    hills: (x, z) => sstep(10, 20, Math.hypot(x - cx, z - cz)) * (1 + fbm(x * .05 + k, z * .05) * 1.5),
-    neighbours: ['n', 's', 'e', 'w'],
-  };
-}
+/** The fixed walk used by the budget test (the big world's own route). */
+export const TEST_ROUTE = BIG_ROUTE;
 
 export function createWorld(mode = WORLD_MODE) {
+  if (mode === '10x') return Object.assign(createBigWorld(), {buildTile: buildBigTile, landmarkSteps: siteSteps});
   const sunDir = new THREE.Vector3(-.55, .62, -.56).normalize();
   const fog = {color: new THREE.Color('#e8dcae'), near: 24, far: 72, sunDir};
   const data = [home()];
-  let links = [];
-  if (mode === '10x') {
-    links = LINKS;
-    data[0].corridors = LINKS.filter(([a, b]) => a === 'home' || b === 'home').flatMap(([, , pts]) => pts.slice(1).map((p, i) => [pts[i], p, 1.4]));
-    data[0].neighbours = ['n', 's', 'e', 'w'];
-    PLACEHOLDERS.forEach(([id, x, z], k) => data.push(placeholder(id, x, z, k + 1, LINKS)));
-  }
+  const links = [];
   const regions = data.map(createRegion);
   // Between regions: wild forest on the shared base ground, walkable only along the paths.
   const segments = links.flatMap(([, , pts]) => pts.slice(1).map((p, i) => [pts[i], p]));
@@ -69,10 +47,6 @@ export function createWorld(mode = WORLD_MODE) {
       return [...keys].map(k => k.split(',').map(Number));
     },
   };
-  // The wild forest between regions: trees and grass scattered per tile, away from the paths.
-  world.wild = mode === '10x' ? {
-    id: 'wild', seed: 4242, trees: [], decoration: {grass: 1.2, ferns: .1, flowers: .03, clover: .05, rocks: .01},
-    treeAt: (x, z) => linkDistance(x, z) > 3.5,
-  } : null;
+  world.wild = null;
   return world;
 }
