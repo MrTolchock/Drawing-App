@@ -48,10 +48,14 @@ export function createNav({extent, walkable, crossings}) {
     while (k < cells.length) {
       const c = cells[k], id = cross[c];
       if (id < 0) { pts.push({x: X0 + c % W + .5, z: Z0 + ((c / W) | 0) + .5}); k++; continue; }
-      while (k < cells.length && cross[cells[k]] === id) k++;
-      const cr = crossings[id], dx = cr.b[0] - cr.a[0], dz = cr.b[1] - cr.a[1], l = Math.hypot(dx, dz), over = cr.kind === 'planks' || cr.kind === 'dam' ? 0 : .7,   // planks meet end to end: turn exactly at the joint
-        A = {x: cr.a[0] - dx / l * over, z: cr.a[1] - dz / l * over, hard: true}, B = {x: cr.b[0] + dx / l * over, z: cr.b[1] + dz / l * over, hard: true};
-      const prev = pts[pts.length - 1] || {x: ax, z: az}; if (Math.hypot(prev.x - A.x, prev.z - A.z) <= Math.hypot(prev.x - B.x, prev.z - B.z)) pts.push(A, B); else pts.push(B, A);
+      const first = k; while (k < cells.length && cross[cells[k]] === id) k++;
+      const cr = crossings[id], dx = cr.b[0] - cr.a[0], dz = cr.b[1] - cr.a[1], l = Math.hypot(dx, dz), over = cr.kind === 'planks' || cr.kind === 'dam' ? 0 : .7;   // planks meet end to end: turn exactly at the joint
+      const A = {x: cr.a[0] - dx / l * over, z: cr.a[1] - dz / l * over, hard: true}, B = {x: cr.b[0] + dx / l * over, z: cr.b[1] + dz / l * over, hard: true};
+      const nearer = q => Math.hypot(q.x - A.x, q.z - A.z) <= Math.hypot(q.x - B.x, q.z - B.z) ? A : B, centre = c => ({x: X0 + c % W + .5, z: Z0 + ((c / W) | 0) + .5});
+      // enter by the end nearer to where the route comes from, leave by the end nearer to where it goes on;
+      // a route that starts or ends on the crossing itself uses only the one end it needs
+      const entry = first > 0 ? nearer(pts[pts.length - 1] || centre(cells[first - 1])) : null, exit = k < cells.length ? nearer(centre(cells[k])) : null;
+      if (entry) pts.push(entry); if (exit && exit !== entry) pts.push(exit);
     }
     // pull the string tight between the hard corners
     const out = []; let anchor = {x: ax, z: az}, i = 0;
