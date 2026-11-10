@@ -35,14 +35,24 @@ render on the iPad 9; hardest 3D work first, clean-up for a weaker model later.
 ## Status
 See the checklist at the end of this file; update it at every checkpoint.
 
-- [ ] 1 Terrain, water, biomes, walkability, path search, streamed tiles (near + far)
-- [ ] 2 Rock and waterfall
-- [ ] 3 Beaver dam, pond and lodge
-- [ ] 4 Swamp (pools, boardwalk, lily pads, mist)
-- [ ] 5 Meadow, tree species (birch, spruce), backdrop hills, mood per area
-- [ ] 6 New plush characters: Reh, Frosch, Igel, Fisch, Eisvogel (sculpt, bake, place)
-- [ ] 7 Budget test on the new route, mail-loop suites, switch the default
-- [ ] 8 Clean-up list for later (below)
+- [x] 1 Terrain, water, biomes, walkability, path search, streamed tiles (near + far) — on `main` behind `?world=10x`
+- [ ] 2 Rock and waterfall (cliff is there; no falling water yet) — **high effort**
+- [ ] 3 Beaver dam, pond and lodge (pond and a plain log pile are there) — **high effort** for the look
+- [ ] 4 Swamp (pools, boardwalk, lily pads are there; mist, light and dead-wood mood missing) — **high effort**
+- [ ] 5 Backdrop hills, light and haze per area, tree species polish (birch, spruce, willow, the owl's hollow tree) — **high effort**
+- [ ] 6 New plush characters: Reh, Frosch, Igel, Fisch, Eisvogel (sculpt in the look-dev style, bake, place) — **high effort**
+- [ ] 7 Friends' props at their new places (stump, lodge, nest box, acorns), budget test on `BIG_ROUTE`
+      (the plateau point 72.5, −62.5 is not walkable yet), mail-loop suites, switch the default — medium effort
+- [ ] 8 Clean-up list for later (below) — medium or smaller
+
+## How to look at it
+`/?world=10x` (own save). `FK.friendsForest.teleport(x, z)` in the console jumps anywhere;
+`tests/world-map.html?s=4&nav=1` draws the whole map from above.
 
 ## Left for later (clean-up, suitable for a smaller model)
-(filled in as work proceeds)
+- Remove the old `home` region engine (`world/region.js`, `regions/home.js`, the non-big branches in
+  `world/index.js`, `forest3d.js`, `tiles.js` `buildTile`) once the big world is the default.
+- The fireflies re-plan their route every second; re-plan only when Fuchs leaves the route.
+- Picture map, letters and puzzles for the new neighbours; map pins for the moved friends.
+- `docs/FOREST-FRIENDS.md` and `docs/DEVELOPMENT.md`: describe the big world.
+- Decorative rocks are not colliders; large ones are only placed where Fuchs cannot walk.
