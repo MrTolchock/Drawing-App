@@ -1,5 +1,5 @@
 /* Farbtupf – Service Worker: keeps the whole app on the device so it runs without internet. */
-const CACHE = 'farbtupf-v8.9.1-world-wip';
+const CACHE = 'farbtupf-v8.9.2-world-wip';
 const ASSETS = [
   './js/friends/puzzles.js',
   './css/puzzles.css',
@@ -49,6 +49,11 @@ const ASSETS = [
   './assets/characters/mouse.glb',
   './assets/characters/beaver.glb',
   './assets/characters/mailman.glb',
+  './assets/characters/deer.glb',
+  './assets/characters/frog.glb',
+  './assets/characters/hedgehog.glb',
+  './assets/characters/fish.glb',
+  './assets/characters/kingfisher.glb',
   './vendor/three/addons/GLTFLoader.js',
   './vendor/three/addons/BufferGeometryUtils.js',
   './vendor/three/addons/SkeletonUtils.js',

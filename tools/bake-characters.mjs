@@ -29,8 +29,9 @@ const server = createServer(async (req, res) => {
     const url = decodeURIComponent(req.url.split('?')[0]);
     const file = url.startsWith('/__bake/') ? path.join(MODULES, url.slice(8)) : path.join(ROOT, url);
     if (!file.startsWith(ROOT)) throw new Error('outside');
-    res.writeHead(200, {'content-type': TYPES[path.extname(file)] || 'application/octet-stream'}); res.end(await readFile(file));
-  } catch { res.writeHead(404); res.end(); }
+    const data = await readFile(file);
+    res.writeHead(200, {'content-type': TYPES[path.extname(file)] || 'application/octet-stream'}); res.end(data);
+  } catch { console.error('bake server: not found', req.url); res.writeHead(404); res.end(); }
 });
 await new Promise(r => server.listen(0, '127.0.0.1', r));
 const base = 'http://127.0.0.1:' + server.address().port;
@@ -42,7 +43,7 @@ try {
   await page.goto(base + '/tools/bake/bake.html');
   await page.waitForFunction(() => window.bakeReady, null, {timeout: 60000});
   await mkdir(OUT, {recursive: true});
-  const ids = only.length ? only : ['fox', 'squirrel', 'bird', 'owl', 'mouse', 'beaver', 'mailman'];
+  const ids = only.length ? only : ['fox', 'squirrel', 'bird', 'owl', 'mouse', 'beaver', 'mailman', 'deer', 'frog', 'hedgehog', 'fish', 'kingfisher'];
   let total = 0;
   for (const id of ids) {
     const t0 = Date.now();

@@ -305,4 +305,89 @@ export function bluetit({detail = 1} = {}) {
   return {group};
 }
 
-export const plush = {fox, squirrel, owl, hare, mouse, beaver, bluetit};
+/* ---------- the big world's neighbours: Reh, Frosch, Igel, Fisch, Eisvogel ---------- */
+const dots = (p, fx, fy, min) => sstep(min, min + .08, Math.sin(p[0] * fx + p[1] * 9) * Math.sin(p[1] * fy + p[0] * 7));
+
+export function deer({detail = 1} = {}) {
+  const cell = .0105 / detail, fur = furMaterial(), group = new THREE.Group(), root = new THREE.Group(); group.add(root);
+  const TN = C('#b98c5e'), TNd = C('#96683c'), CR = C('#f7ecd8'), DK = C('#3d2616'), IN = C('#f0cdb8'), WH = C('#fffaf0');
+  const body = part(root, 'body', [0, 0, 0], [E([0, .34, 0], [.15, .2, .135]), E([0, .25, .02], [.15, .14, .13], {k: .06}), E([0, .2, -.01], [.14, .1, .125], {k: .06}), E([0, .52, .01], [.085, .11, .08], {k: .07})],
+    p => { const chest = inside(E([0, .32, .1], [.09, .17, .08]), p, .025), spot = p[2] < -.02 && p[1] > .22 && p[1] < .5 ? dots(p, 36, 33, .78) : 0; return mixC([0, TN], [sstep(.5, .2, p[1]) * .25, TNd], [chest, CR], [spot, WH]); }, {cell, mat: fur});
+  const head = part(body, 'head', [0, .58, .01], [E([0, .17, 0], [.2, .185, .18]), E([0, .1, .15], [.098, .085, .17], {rot: [.3, 0, 0], k: .08}), E([0, .06, .08], [.11, .06, .09], {k: .05})],
+    p => { const muzzle = inside(E([0, .06, .22], [.1, .06, .12]), p, .025), chin = inside(E([0, .03, .08], [.13, .05, .1]), p, .03), ring = Math.max(inside(E([.112, .2, .12], [.07, .074, .05]), p, .012), inside(E([-.112, .2, .12], [.07, .074, .05]), p, .012)) * .5; return mixC([0, TN], [sstep(.3, .1, p[1]) * .12, TNd], [Math.max(muzzle, chin), CR], [ring, CR]); }, {cell, mat: fur});
+  const eyes = [-1, 1].map(s => { const e = eye(.064); e.position.set(s * .112, .2, .135); e.rotation.y = s * .5; head.add(e); return e; });
+  const nose = new THREE.Mesh(new THREE.SphereGeometry(1, 20, 14), glossy('#22120a', .2)); nose.scale.set(.036, .028, .026); nose.position.set(0, .085, .312); head.add(nose);
+  const mouth = new THREE.Mesh(new THREE.TorusGeometry(.024, .005, 6, 16, Math.PI * .9), glossy('#3a1c0e', .6)); mouth.position.set(0, .04, .275); mouth.rotation.set(-.35, 0, Math.PI + .14); head.add(mouth);
+  const ears = [-1, 1].map(s => { const j = part(head, 'ear', [s * .15, .29, -.02], [T([0, 0, 0], [s * .15, .15, -.01], .06, .085, {flat: 2.2, k: .03}), T([s * .15, .15, -.01], [s * .2, .23, -.01], .085, .02, {flat: 2.2, k: .03})], p => { const inner = p[2] > .004 ? inside(T([s * .04, .04, .02], [s * .18, .2, .02], .04, .02, {flat: 2.6}), p, .012) : 0; return mixC([0, TN], [inner, IN]); }, {cell: cell * .8, mat: fur}); j.rotation.x = -.1; return j; });
+  const arms = [-1, 1].map(s => part(body, 'arm', [s * .14, .44, .03], [...chain([[0, 0, 0], [s * .01, -.13, .02], [s * .015, -.24, .035]], [.042, .034, .03]), E([s * .016, -.26, .04], [.034, .03, .038], {k: .03})], p => mixC([0, TN], [sstep(-.2, -.24, p[1]), DK]), {cell, mat: fur}));
+  arms.forEach((a, i) => a.rotation.z = (i ? -1 : 1) * .1);
+  const legs = [-1, 1].map(s => part(body, 'leg', [s * .08, .21, 0], [E([0, -.02, 0], [.07, .09, .08]), T([0, -.06, .01], [0, -.19, .012], .044, .036), E([0, -.21, .025], [.045, .03, .062], {k: .03})], p => mixC([0, TN], [sstep(-.16, -.19, p[1]), DK]), {cell, mat: fur}));
+  const tail = part(body, 'tail', [0, .22, -.12], [E([0, .01, -.03], [.05, .055, .05])], p => mixC([0, TN], [sstep(.0, -.03, p[1]) + sstep(-.04, -.07, p[2]), WH]), {cell, mat: fur});
+  group.traverse(o => { if (o.isMesh) o.castShadow = true; });
+  return {group, parts: {body, head, eyes, ears, arms, legs, tail}};
+}
+
+export function frog({detail = 1} = {}) {
+  const cell = .0105 / detail, fur = furMaterial({fuzz: .6}), group = new THREE.Group(), root = new THREE.Group(); group.add(root);
+  const GR = C('#74b23e'), GRd = C('#4f8c2e'), CR = C('#f3f0c6'), YE = C('#c9d85a');
+  const body = part(root, 'body', [0, 0, 0], [E([0, .17, 0], [.2, .16, .17]), E([0, .12, .04], [.19, .115, .16], {k: .06})],
+    p => { const belly = inside(E([0, .11, .11], [.15, .12, .1]), p, .03), spot = p[2] < .02 && p[1] > .14 ? dots(p, 30, 28, .8) : 0; return mixC([0, GR], [sstep(.2, .05, p[1]) * .3, YE], [spot, GRd], [belly, CR]); }, {cell, mat: fur});
+  const head = part(body, 'head', [0, .25, .03], [E([0, .06, .02], [.2, .1, .16]), E([.11, .14, 0], [.068, .068, .062], {k: .05}), E([-.11, .14, 0], [.068, .068, .062], {k: .05})],
+    p => { const lip = sstep(.045, .02, p[1]) * sstep(-.02, .06, p[2]); return mixC([0, GR], [lip, CR], [p[2] < -.02 ? dots(p, 30, 28, .82) : 0, GRd]); }, {cell, mat: fur});
+  const eyes = [-1, 1].map(s => { const e = eye(.052); e.position.set(s * .112, .16, .04); e.rotation.y = s * .3; head.add(e); return e; });
+  const mouth = new THREE.Mesh(new THREE.TorusGeometry(.105, .0055, 6, 24, Math.PI * .7), glossy('#2f4a1c', .6)); mouth.position.set(0, .135, .118); mouth.rotation.set(-.62, 0, Math.PI + Math.PI * .15); head.add(mouth);
+  const arms = [-1, 1].map(s => part(body, 'arm', [s * .15, .15, .09], [...chain([[0, 0, 0], [s * .02, -.06, .03], [s * .03, -.11, .05]], [.04, .034, .03]), E([s * .035, -.125, .07], [.05, .02, .055], {k: .03})], p => mixC([0, GR], [sstep(-.09, -.12, p[1]), YE]), {cell, mat: fur}));
+  const legs = [-1, 1].map(s => part(body, 'leg', [s * .16, .1, -.03], [E([s * .03, 0, 0], [.09, .08, .12]), E([s * .07, -.075, .1], [.06, .026, .1], {k: .04})], p => mixC([0, GR], [sstep(-.04, -.07, p[1]), YE]), {cell, mat: fur}));
+  group.traverse(o => { if (o.isMesh) o.castShadow = true; });
+  return {group, parts: {body, head, eyes, arms, legs}};
+}
+
+export function hedgehog({detail = 1} = {}) {
+  const cell = .0105 / detail, fur = furMaterial(), group = new THREE.Group(), root = new THREE.Group(); group.add(root);
+  const BR = C('#6f5238'), TIP = C('#d2b88e'), CR = C('#f1dfc4'), CRd = C('#d9bf9c'), DK = C('#3a2416');
+  const spikes = []; for (let i = 0; i < 96; i++) { const y = 1 - (i + .5) / 96 * 2, r = Math.sqrt(1 - y * y), a = i * 2.39996, dx = Math.cos(a) * r, dz = Math.sin(a) * r; if (dz > .32 || y < -.55) continue; spikes.push(T([dx * .17, .21 + y * .17, -.01 + dz * .17], [dx * .275, .21 + y * .27, -.01 + dz * .275], .034, .006, {k: .012})); }
+  const body = part(root, 'body', [0, 0, 0], [E([0, .21, -.01], [.2, .2, .2]), E([0, .14, .06], [.17, .13, .15], {k: .05}), ...spikes],
+    p => { const front = inside(E([0, .15, .14], [.16, .16, .12]), p, .03), out = Math.hypot(p[0], p[1] - .21, p[2] + .01); return mixC([0, BR], [sstep(.2, .27, out), TIP], [front * sstep(.215, .2, out), CR]); }, {cell: cell * .85, mat: fur});
+  const head = part(body, 'head', [0, .2, .15], [E([0, .02, .03], [.125, .115, .11]), T([0, .0, .09], [0, -.012, .2], .062, .026, {k: .05})], p => mixC([0, CR], [sstep(.08, .13, p[1]) * sstep(.06, -.02, p[2]), BR], [sstep(.12, .2, p[2]) * .5, CRd]), {cell, mat: fur});
+  const eyes = [-1, 1].map(s => { const e = eye(.032); e.position.set(s * .062, .055, .115); e.rotation.y = s * .5; head.add(e); return e; });
+  const nose = new THREE.Mesh(new THREE.SphereGeometry(1, 18, 12), glossy('#22120a', .2)); nose.scale.set(.03, .026, .026); nose.position.set(0, -.008, .222); head.add(nose);
+  const ears = [-1, 1].map(s => part(head, 'ear', [s * .095, .105, .01], [E([0, .01, 0], [.04, .045, .022])], p => mixC([0, CRd], [p[2] > .005 ? .6 : 0, C('#e8b9a0')]), {cell: cell * .8, mat: fur}));
+  const arms = [-1, 1].map(s => part(body, 'arm', [s * .115, .15, .15], [T([0, 0, 0], [s * .015, -.07, .03], .036, .03), E([s * .018, -.085, .04], [.034, .028, .036], {k: .03})], p => mixC([0, CR], [sstep(-.06, -.09, p[1]), CRd]), {cell, mat: fur}));
+  const legs = [-1, 1].map(s => part(body, 'leg', [s * .09, .05, .06], [E([0, -.01, .03], [.052, .04, .075])], p => mixC([0, CRd], [sstep(.0, -.03, p[1]) * .5, DK]), {cell, mat: fur}));
+  group.traverse(o => { if (o.isMesh) o.castShadow = true; });
+  return {group, parts: {body, head, eyes, ears, arms, legs}};
+}
+
+export function fish({detail = 1} = {}) {
+  const cell = .0095 / detail, fur = furMaterial({fuzz: .5, rim: .6}), group = new THREE.Group(), root = new THREE.Group(); group.add(root);
+  const BL = C('#3c93a8'), BLd = C('#2a6f86'), SV = C('#e4efe6'), PK = C('#f2a48c'), OR = C('#f08a3c');
+  const body = part(root, 'body', [0, 0, 0], [E([0, .18, -.04], [.115, .15, .24]), E([0, .33, -.07], [.022, .07, .1], {rot: [.5, 0, 0], k: .03})],
+    p => { const back = sstep(.17, .26, p[1]), stripe = sstep(.035, .0, Math.abs(p[1] - .165)) * .7, spot = p[1] > .2 ? dots(p, 40, 30, .8) : 0, fin = sstep(.31, .34, p[1]); return mixC([0, SV], [stripe, PK], [back, BL], [spot, BLd], [fin, OR]); }, {cell, mat: fur});
+  const head = part(body, 'head', [0, .18, .15], [E([0, 0, .03], [.108, .135, .125])], p => mixC([0, SV], [sstep(.0, .08, p[1]), BL], [sstep(.1, .14, p[2]) * sstep(.02, -.04, p[1]) * .6, PK]), {cell, mat: fur});
+  const eyes = [-1, 1].map(s => { const e = eye(.043); e.position.set(s * .088, .035, .075); e.rotation.y = s * 1.15; head.add(e); return e; });
+  const mouth = new THREE.Mesh(new THREE.TorusGeometry(.022, .006, 6, 16), glossy('#b5574a', .5)); mouth.position.set(0, -.02, .15); head.add(mouth);
+  const arms = [-1, 1].map(s => part(body, 'arm', [s * .1, .12, .08], [E([s * .045, -.02, -.035], [.055, .02, .065], {rot: [0, 0, s * -.5]})], () => OR, {cell, mat: fur}));
+  const tail = part(body, 'tail', [0, .18, -.25], [T([0, 0, .02], [0, 0, -.07], .05, .03), E([0, .075, -.12], [.022, .095, .07], {rot: [-.5, 0, 0], k: .04}), E([0, -.075, -.12], [.022, .095, .07], {rot: [.5, 0, 0], k: .04})], p => mixC([0, BL], [sstep(-.04, -.09, p[2]), OR]), {cell, mat: fur});
+  group.traverse(o => { if (o.isMesh) o.castShadow = true; });
+  return {group, parts: {body, head, eyes, arms, tail}};
+}
+
+export function kingfisher({detail = 1} = {}) {
+  const cell = .0055 / detail, fur = furMaterial({fuzz: .7}), group = new THREE.Group();
+  const OR = C('#ea8530'), TQ = C('#1c9fc0'), TQd = C('#14708f'), WH = C('#f8f6ee'), DK = C('#1f2b3c');
+  const body = part(group, 'body', [0, 0, 0], [E([0, .11, -.01], [.082, .085, .098]), E([0, .208, .03], [.07, .064, .07], {k: .025}), T([0, .1, -.08], [0, .085, -.16], .034, .028, {flat: 3, k: .03})],
+    p => {
+      const head = sstep(.17, .185, p[1] + p[2] * .25), cap = sstep(.212, .224, p[1] - p[2] * .12) * head, throat = inside(E([0, .168, .07], [.04, .022, .03]), p, .008);
+      const cheek = Math.max(inside(E([.055, .2, .03], [.02, .02, .03]), p, .006), inside(E([-.055, .2, .03], [.02, .02, .03]), p, .006)), neck = Math.max(inside(E([.06, .185, -.01], [.02, .016, .022]), p, .006), inside(E([-.06, .185, -.01], [.02, .016, .022]), p, .006));
+      const back = sstep(.0, -.05, p[2]) * (1 - head), speck = cap * dots(p, 150, 140, .7) * .5;
+      return mixC([0, OR], [back, TQ], [cap, TQ], [speck, C('#7fd6e8')], [cheek, OR], [Math.max(throat, neck), WH]);
+    }, {cell, mat: fur});
+  [-1, 1].forEach(s => { const e = eye(.012); e.position.set(s * .05, .212, .078); e.rotation.y = s * .8; body.add(e); });
+  const beak = new THREE.Mesh(new THREE.ConeGeometry(.013, .085, 10), glossy('#23262c', .3)); beak.position.set(0, .2, .135); beak.rotation.x = Math.PI / 2; body.add(beak);
+  [-1, 1].forEach(s => part(body, 'wing', [s * .068, .12, -.02], [E([0, 0, -.03], [.02, .05, .078], {rot: [.3, 0, 0]})], p => mixC([0, TQ], [sstep(-.04, -.09, p[2]), TQd], [dots(p, 120, 110, .75) * .4, C('#7fd6e8')]), {cell, mat: fur}));
+  [-1, 1].forEach(s => { const l = new THREE.Mesh(new THREE.CylinderGeometry(.005, .005, .04, 6), glossy('#d8552a', .5)); l.position.set(s * .03, .03, .0); body.add(l); });
+  group.traverse(o => { if (o.isMesh) o.castShadow = true; });
+  return {group};
+}
+
+export const plush = {fox, squirrel, owl, hare, mouse, beaver, bluetit, deer, frog, hedgehog, fish, kingfisher};

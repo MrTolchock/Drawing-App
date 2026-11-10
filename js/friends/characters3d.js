@@ -250,7 +250,8 @@ import {GLTFLoader} from '../../vendor/three/addons/GLTFLoader.js';
 import {clone as cloneSkinned} from '../../vendor/three/addons/SkeletonUtils.js';
 import {MeshoptDecoder} from '../../vendor/meshoptimizer/meshopt_decoder.js';
 
-const CAST=['fox','squirrel','bird','owl','mouse','beaver','mailman'],baked={};
+// The last five are the big world's neighbours: they exist only as baked models.
+const CAST=['fox','squirrel','bird','owl','mouse','beaver','mailman','deer','frog','hedgehog','fish','kingfisher'],baked={};
 const NOISE=`
 float plHash(vec3 p){p=fract(p*.3183099+.1);p*=17.;return fract(p.x*p.y*p.z*(p.x+p.y+p.z));}
 float plNoise(vec3 x){vec3 i=floor(x),f=fract(x);f=f*f*(3.-2.*f);
@@ -311,7 +312,7 @@ function plushModel(id,height){
 }
 // A rig shows the procedural model at once and becomes the baked plush model when it has loaded.
 function rig(id,height){
-  const made=procedural[id](height),group=made.group;
+  const made=procedural[id]?procedural[id](height):{group:new THREE.Group(),parts:{},update(){}},group=made.group;
   const out={group,height,get parts(){return current.parts;},update:(dt,s)=>current.update(dt,s),lod:level=>current.lod?.(level),plush:false,paw:made.paw||made.parts.arms?.[1]||made.parts.body};
   let current=made;
   function upgrade(){if(!baked[id])return;const p=plushModel(id,height);group.clear();group.add(p.root);current=p;out.paw=p.paw;out.plush=true;}

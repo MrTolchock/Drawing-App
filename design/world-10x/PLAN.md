@@ -36,11 +36,11 @@ render on the iPad 9; hardest 3D work first, clean-up for a weaker model later.
 See the checklist at the end of this file; update it at every checkpoint.
 
 - [x] 1 Terrain, water, biomes, walkability, path search, streamed tiles (near + far) — on `main` behind `?world=10x`
-- [ ] 2 Rock and waterfall (cliff is there; no falling water yet) — **high effort**
-- [ ] 3 Beaver dam, pond and lodge (pond and a plain log pile are there) — **high effort** for the look
-- [ ] 4 Swamp (pools, boardwalk, lily pads are there; mist, light and dead-wood mood missing) — **high effort**
-- [ ] 5 Backdrop hills, light and haze per area, tree species polish (birch, spruce, willow, the owl's hollow tree) — **high effort**
-- [ ] 6 New plush characters: Reh, Frosch, Igel, Fisch, Eisvogel (sculpt in the look-dev style, bake, place) — **high effort**
+- [x] 2 Rock and waterfall (cliff is there; no falling water yet) — **high effort**
+- [x] 3 Beaver dam, pond and lodge (pond and a plain log pile are there) — **high effort** for the look
+- [x] 4 Swamp (pools, boardwalk, lily pads are there; mist, light and dead-wood mood missing) — **high effort**
+- [x] 5 Backdrop hills, light and haze per area, tree species polish (birch, spruce, willow, the owl's hollow tree) — **high effort**
+- [x] 6 New plush characters: Reh, Frosch, Igel, Fisch, Eisvogel (sculpt in the look-dev style, bake, place) — **high effort**
 - [ ] 7 Friends' props at their new places (stump, lodge, nest box, acorns), budget test on `BIG_ROUTE`
       (the plateau point 72.5, −62.5 is not walkable yet), mail-loop suites, switch the default — medium effort
 - [ ] 8 Clean-up list for later (below) — medium or smaller
@@ -49,7 +49,16 @@ See the checklist at the end of this file; update it at every checkpoint.
 `/?world=10x` (own save). `FK.friendsForest.teleport(x, z)` in the console jumps anywhere;
 `tests/world-map.html?s=4&nav=1` draws the whole map from above.
 
+## Done on high effort (10 November 2026)
+Waterfall with foam and mist, boulders, sculpted dam and lodge, swamp mist and fireflies, hazy backdrop
+hills, haze per area, and the five neighbours (builders in `design/visual-overhaul/lookdev/plush.js`,
+baked with `node tools/bake-characters.mjs deer frog hedgehog fish kingfisher`; model sheet:
+`tests/characters-preview.html?only=deer,frog,hedgehog,fish,kingfisher`).
+Not done: willow shape and a hole in the owl's hollow tree; check that Fisch shows above the water.
+
 ## Left for later (clean-up, suitable for a smaller model)
+- Budget test on the big world counted 32 near / 41 far tiles (limits 25 / 40) at triple walking speed:
+  check whether lagging far versions of near tiles are counted, then fix the streamer or the count.
 - Remove the old `home` region engine (`world/region.js`, `regions/home.js`, the non-big branches in
   `world/index.js`, `forest3d.js`, `tiles.js` `buildTile`) once the big world is the default.
 - The fireflies re-plan their route every second; re-plan only when Fuchs leaves the route.
