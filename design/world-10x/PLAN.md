@@ -54,7 +54,7 @@ Waterfall with foam and mist, boulders, sculpted dam and lodge, swamp mist and f
 hills, haze per area, and the five neighbours (builders in `design/visual-overhaul/lookdev/plush.js`,
 baked with `node tools/bake-characters.mjs deer frog hedgehog fish kingfisher`; model sheet:
 `tests/characters-preview.html?only=deer,frog,hedgehog,fish,kingfisher`).
-Not done: willow shape and a hole in the owl's hollow tree; check that Fisch shows above the water.
+Later added: the willow's hanging curtains and the owl's hollow tree. Open: from about 30 m the den tree looks white (seen from the willow); check that Fisch shows above the water.
 
 ## State on 11 November 2026
 The big world is the game's world (`?world=home` opens the old clearing). Mail loop, den, sleep, click and

@@ -97,7 +97,7 @@ export const NEIGHBOURS = {
 /* Authored trees [x, z, size, options]: the friends' trees and a few giants. */
 export const TREES = [
   [-59.3, 54.2, .62, {kind: 'birch', branch: [1.7, 2.42, .45]}],
-  [88.2, -7.4, 1.5, {kind: 'hollow', branch: [-1.8, 2.0, .6]}],
+  [88.2, -7.4, 3.4, {kind: 'hollow', branch: [-1.8, 2.0, .6]}],   // the owl's old tree: 1.15 m thick, with a hollow
   [-83, -15, 1.35, {kind: 'oak'}],
   [-33.6, -62.8, 1.3, {kind: 'oak'}],
   [11.4, 22.6, .7, {kind: 'willow', branch: [1.5, 1.52, .45]}],

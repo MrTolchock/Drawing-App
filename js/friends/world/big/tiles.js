@@ -94,7 +94,9 @@ export function* buildBigTile(world, look, i, j, ring) {
     if (tree.branch) { const [dx, dy, r] = tree.branch, pts = [[0, dy - .25, 0], [dx * .5, dy, .1], [dx, dy + .08, .25]].map(([a, b, c]) => new THREE.Vector3(tree.x + a, y0 + b, tree.z + c)); const g = new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 8, r * .22, 6); const col = new Float32Array(g.attributes.position.count * 3); for (let k = 0; k < col.length; k += 3) { col[k] = 1; col[k + 1] = .92; col[k + 2] = .85; } g.setAttribute('color', new THREE.BufferAttribute(col, 3)); trunks.addGeometry(g); g.dispose(); }
     yield 'crown';
     const crownR = (3.0 + tree.r * 2.6) * (small ? .62 : 1), cards = crownCards(tree.x, crownY, tree.z, crownR, small ? 40 : big ? 110 : 80, R, world.sunDir, small ? [1.4, 1] : [2.1, 1.4]);
-    if (tree.kind === 'alder' || tree.kind === 'willow') for (const c of cards) c.c = new THREE.Color(c.c * .8, c.c * .95, c.c * .78);
+    if (tree.kind === 'alder') for (const c of cards) c.c = new THREE.Color(c.c * .8, c.c * .95, c.c * .78);
+    if (tree.kind === 'willow') { willow(tree, crownY, y0, R, leaves); continue; }
+    if (tree.kind === 'hollow') hollow(tree, y0, trunks);
     leaves.push(...cards);
   }
   yield 'leaves';
@@ -230,6 +232,27 @@ export function* buildBigTile(world, look, i, j, ring) {
   yield 'water';
   { const g = waterGeometry(); if (g) { const m = new THREE.Mesh(g, waterMaterial(look, world.fog)); m.name = 'water'; m.renderOrder = 2; group.add(m); } }
   return group;
+
+  /* ---------- the willow and the owl's hollow tree ---------- */
+  // A willow: a low dome of pale leaves and curtains of them hanging almost to the ground
+  // (none on the side of its perch branch, so the bird on it stays in view).
+  function willow(tree, crownY, y0, R, leafList) {
+    const top = Math.max(crownY, y0 + 4.6), sun = world.sunDir, pale = (l, v) => new THREE.Color(l * 1.25 * v, l * 1.42 * v, l * .7 * v), open = tree.branch ? Math.atan2(.25, tree.branch[0]) : null;
+    for (let k = 0; k < 34; k++) { const a = R() * TAU, u = Math.sqrt(R()), rr = u * 2.7, l = clamp(.7 + .3 * (Math.cos(a) * sun.x + Math.sin(a) * sun.z) + .2 * (1 - u), .55, 1.15);
+      leafList.push({x: tree.x + Math.cos(a) * rr, y: top + .9 * (1 - u * u) - .2, z: tree.z + Math.sin(a) * rr, rx: (R() - .5) * 1.2, ry: R() * TAU, rz: (R() - .5) * 1.2, s: 1.5 + R() * .9, c: pale(l, .95 + R() * .1)}); }
+    for (let q = 0, n = 17; q < n; q++) {
+      const a = q / n * TAU + R() * .25; if (open !== null && Math.abs(Math.atan2(Math.sin(a - open), Math.cos(a - open))) < .75) continue;
+      const rr = 2.5 + R() * .9, len = 2.6 + R() * 1.5, l = clamp(.72 + .3 * (Math.cos(a) * sun.x + Math.sin(a) * sun.z), .55, 1.1), sway = (R() - .5) * .5;
+      for (let i = 0, m = Math.round(len / .55); i < m; i++) { const t = i / (m - 1), bow = rr + Math.sin(t * 2.2) * .35;   // a strand: small cards one below the other
+        leafList.push({x: tree.x + Math.cos(a + sway * t * .2) * bow, y: top + .25 - t * len, z: tree.z + Math.sin(a + sway * t * .2) * bow, rx: (R() - .5) * .35, ry: -a + Math.PI / 2 + (R() - .5) * .7, rz: (R() - .5) * .35, s: (1.25 - t * .45) * (.9 + R() * .3), c: pale(l * (1 - t * .12), .95 + R() * .1)}); }
+    }
+  }
+  // The hollow: a dark opening with a rim of bark, facing south where the path comes from.
+  function hollow(tree, y0, trunkBuf) {
+    const r = tree.r * 1.04, y = y0 + 3.0, paint = (g, cr, cg, cb) => { const c = new Float32Array(g.attributes.position.count * 3); for (let k = 0; k < c.length; k += 3) { c[k] = cr; c[k + 1] = cg; c[k + 2] = cb; } g.setAttribute('color', new THREE.BufferAttribute(c, 3)); trunkBuf.addGeometry(g); g.dispose(); };
+    paint(new THREE.SphereGeometry(1, 16, 10).scale(.42, .56, .16).translate(tree.x + .1, y, tree.z + r - .02), .05, .035, .03);
+    paint(new THREE.TorusGeometry(.5, .12, 8, 20).scale(.92, 1.2, .8).translate(tree.x + .1, y, tree.z + r + .02), .8, .68, .58);
+  }
 
   /* ---------- trees of the "stand" kinds ---------- */
   function spruce(tree, y0, R, trunkBuf, standBuf) {
