@@ -41,7 +41,7 @@ See the checklist at the end of this file; update it at every checkpoint.
 - [x] 4 Swamp (pools, boardwalk, lily pads are there; mist, light and dead-wood mood missing) — **high effort**
 - [x] 5 Backdrop hills, light and haze per area, tree species polish (birch, spruce, willow, the owl's hollow tree) — **high effort**
 - [x] 6 New plush characters: Reh, Frosch, Igel, Fisch, Eisvogel (sculpt in the look-dev style, bake, place) — **high effort**
-- [ ] 7 Friends' props at their new places (stump, lodge, nest box, acorns), budget test on `BIG_ROUTE`
+- [x] 7 (except the longest build slice, see below) Friends' props at their new places (stump, lodge, nest box, acorns), budget test on `BIG_ROUTE`
       (the plateau point 72.5, −62.5 is not walkable yet), mail-loop suites, switch the default — medium effort
 - [ ] 8 Clean-up list for later (below) — medium or smaller
 
@@ -55,6 +55,14 @@ hills, haze per area, and the five neighbours (builders in `design/visual-overha
 baked with `node tools/bake-characters.mjs deer frog hedgehog fish kingfisher`; model sheet:
 `tests/characters-preview.html?only=deer,frog,hedgehog,fish,kingfisher`).
 Not done: willow shape and a hole in the owl's hollow tree; check that Fisch shows above the water.
+
+## State on 11 November 2026
+The big world is the game's world (`?world=home` opens the old clearing). Mail loop, den, sleep, click and
+interface suites pass. Budget walk: draw calls 88–111, triangles ≤ 245 k, near ≤ 22, far ≤ 36, animated 5,
+build slice p95 3.25 ms: all within limits. Still failing: the longest single build slice, 16.4 ms
+(limit 12 ms), most likely a landmark site built in one step (dam and lodge, waterfall): split those steps.
+One build-timing run also stopped with Fuchs not arriving somewhere on the route (not reproduced with
+positions logged): watch for it.
 
 ## Left for later (clean-up, suitable for a smaller model)
 - Budget test on the big world counted 32 near / 41 far tiles (limits 25 / 40) at triple walking speed:
