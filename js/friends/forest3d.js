@@ -219,7 +219,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     focus.lerp(new THREE.Vector3(pos.x + vel.x * .35, base * lift, pos.z + vel.y * .35), reduced ? 1 : 1 - Math.exp(-dt * 2.6)); placeCamera(1);
     // stream tiles around Fuchs and ahead of him (≤ 4 ms per frame); move the static shadow with him
     // (when frames are already long, a tenth of the frame: the wait for new ground matters more than the slice)
-    streamer.focus(pos.x, pos.z, pos.x + vel.x * 2, pos.z + vel.y * 2); streamer.work(Math.max(3, Math.min(12, dt * 100)));
+    streamer.focus(pos.x, pos.z, pos.x + vel.x * 2, pos.z + vel.y * 2); streamer.work(Math.max(3, Math.min(6, dt * 100)));
     if (Math.hypot(pos.x - shadowAt.x, pos.z - shadowAt.z) > 8) aimSun(pos.x, pos.z);
   }
   let animatedCount = 0;
