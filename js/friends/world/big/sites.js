@@ -90,23 +90,27 @@ export function siteSteps(site, look, world, group, out) {
       rocks.add(t.rock, {x, y: T.ground(x, z) - sc * .3, z, ry: R() * TAU, sx: sc, sy: sc * (.6 + R() * .5), sz: sc * (.8 + R() * .4), c: new THREE.Color(v, v, v * .97)}); }
     mesh(rocks, M.rock, 'fall boulders');
   });
-  if (site.id === 'pond') steps.push(() => { // the beaver's dam: a tight weave of gnawed logs and sticks, packed with mud
+  if (site.id === 'pond') { // the beaver's dam: a tight weave of gnawed logs and sticks, packed with mud (built in small steps)
     const logs = new Buffer(), mud = new Buffer(), c = T.crossings.find(k => k.kind === 'dam'), dx = c.b[0] - c.a[0], dz = c.b[1] - c.a[1], len = Math.hypot(dx, dz), yaw = Math.atan2(dx, dz), nx = dz / len, nz = -dx / len;
-    for (let k = 0; k <= 12; k++) { const t = k / 12, x = c.a[0] + dx * t, z = c.a[1] + dz * t, v = .62 + R() * .12; add(mud, new THREE.SphereGeometry(1, 9, 6).scale(.95 + R() * .3, .5, .8 + R() * .2).translate(x + nx * (R() - .5) * .3, c.y - .42, z + nz * (R() - .5) * .3), v, v * .8, v * .6); }
-    for (let k = 0; k < 110; k++) { // sticks lean against the downstream face and lie along the crest
+    steps.push(() => { for (let k = 0; k <= 12; k++) { const t = k / 12, x = c.a[0] + dx * t, z = c.a[1] + dz * t, v = .62 + R() * .12; add(mud, new THREE.SphereGeometry(1, 9, 6).scale(.95 + R() * .3, .5, .8 + R() * .2).translate(x + nx * (R() - .5) * .3, c.y - .42, z + nz * (R() - .5) * .3), v, v * .8, v * .6); } });
+    const sticks = () => { for (let k = 0; k < 28; k++) { // sticks lean against the downstream face and lie along the crest
       const t = R(), crest = R() < .35, side = crest ? (R() - .5) * 1.1 : (R() < .72 ? 1 : -1) * (.5 + R() * 1.4), l = crest ? 1.2 + R() * 1.8 : 1.1 + R() * 1.4, x = c.a[0] + dx * t + nx * side, z = c.a[1] + dz * t + nz * side, y = c.y - .02 - Math.abs(side) * .5 + R() * .12, v = .78 + R() * .4, r0 = crest ? .05 + R() * .05 : .035 + R() * .05;
       const g = new THREE.CylinderGeometry(r0 * .7, r0, l, 5).rotateX(Math.PI / 2);
       if (crest) g.rotateY(yaw + (R() - .5) * .7); else g.rotateX((side > 0 ? 1 : -1) * (.5 + R() * .4)).rotateY(yaw + Math.PI / 2 + (R() - .5) * .8);
       add(logs, g.translate(x, y, z), v, v * .93, v * .84);
-    }
+    } };
+    steps.push(sticks, sticks, sticks, sticks);
     // the lodge: a dome of sticks on its island in the pond
     const [lx, lz] = [37.5, -18.6], ly = T.stillLevel(lx, lz) || c.y - .3;
+    steps.push(() => {
     add(mud, new THREE.SphereGeometry(1, 14, 8, 0, TAU, 0, Math.PI / 2).scale(2.1, 1.45, 1.9).translate(lx, ly - .1, lz), .5, .4, .3);
-    for (let k = 0; k < 90; k++) { const a = R() * TAU, u = R(), rr = lerp(2.25, .4, u), l = 1 + R() * 1.2, v = .75 + R() * .4, x = lx + Math.cos(a) * rr, z = lz + Math.sin(a) * rr * .9, y = ly + 1.4 * Math.sqrt(Math.max(0, 1 - (rr / 2.3) ** 2));
-      add(logs, new THREE.CylinderGeometry(.03 + R() * .03, .05 + R() * .04, l, 5).rotateZ(.5 + u * .7 + (R() - .5) * .4).rotateY(-a + (R() - .5) * .6).translate(x, y + .05, z), v, v * .93, v * .84); }
+    });
+    const dome = () => { for (let k = 0; k < 30; k++) { const a = R() * TAU, u = R(), rr = lerp(2.25, .4, u), l = 1 + R() * 1.2, v = .75 + R() * .4, x = lx + Math.cos(a) * rr, z = lz + Math.sin(a) * rr * .9, y = ly + 1.4 * Math.sqrt(Math.max(0, 1 - (rr / 2.3) ** 2));
+      add(logs, new THREE.CylinderGeometry(.03 + R() * .03, .05 + R() * .04, l, 5).rotateZ(.5 + u * .7 + (R() - .5) * .4).rotateY(-a + (R() - .5) * .6).translate(x, y + .05, z), v, v * .93, v * .84); } };
+    steps.push(dome, dome, dome, () => {
     add(mud, new THREE.CircleGeometry(.42, 12).rotateY(-.9).translate(lx - 1.75, ly + .32, lz + 1.05), .08, .06, .05);
-    mesh(mud, M.rock, 'dam mud', false); mesh(logs, M.log, 'dam and lodge');
-  });
+    mesh(mud, M.rock, 'dam mud', false); }, () => mesh(logs, M.log, 'dam and lodge'));
+  }
   if (site.id === 'friends') steps.push(() => { // the friends' props: the mouse's stump, the squirrel's acorns
     const wood = new Buffer(), bits = new Buffer(), [mx, mz] = L.FRIENDS.mouse.at, my = T.ground(mx, mz);
     add(wood, new THREE.CylinderGeometry(.75, .9, .62, 18, 1).translate(mx, my + .31, mz), 1.25, 1, .78);
