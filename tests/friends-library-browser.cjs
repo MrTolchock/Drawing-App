@@ -17,16 +17,16 @@ const shots=process.env.FARBTUPF_SHOTS||'/tmp/farbtupf-library';fs.mkdirSync(sho
   assert.equal(await page.locator('.ff-nav [aria-label="Einstellungen für Erwachsene"] .ff-ui-art').getAttribute('data-icon'),'gear');
   await page.evaluate(()=>{FK.settings.set('learning.stage',3);FK.settings.set('read.lvl',3);FK.settings.set('dots.level',3);});
   await click('Waldspiele');
-  assert.equal(await page.locator('.forest-book-game').count(),30);
+  assert.equal(await page.locator('.forest-book-game').count(),35);
   assert.equal(await page.getByText('Spiele aus dem Wald',{exact:true}).count(),0);
-  assert.equal(await page.locator('.forest-book-body > .forest-book-games > .forest-book-game').count(),30);
+  assert.equal(await page.locator('.forest-book-body > .forest-book-games > .forest-book-game').count(),35);
   assert.equal(await page.locator('.forest-book-body').innerText().then(text=>/\b(?:null|undefined)\b/.test(text)),false);
   assert.equal(await page.locator('.forest-book-body img,.forest-book-games .wa-symbol').count(),0);
-  assert.equal(await page.locator('.forest-book-game > span > .wa-illustration').count(),30);
+  assert.equal(await page.locator('.forest-book-game > span > .wa-illustration').count(),35);
   for(const id of ['neighbours','mirror'])assert.match(await page.locator('[data-game="'+id+'"] > span > .wa-illustration').getAttribute('style'),/menu\.webp/);
   assert.equal(await page.locator('.island-levels').count(),0);
   await snapshot('library-1024');
-  const catalogue=await page.evaluate(()=>FK.friendsLibrary.catalogue());assert.equal(catalogue.length,28);
+  const catalogue=await page.evaluate(()=>FK.friendsLibrary.catalogue());assert.equal(catalogue.length,33);
   for(const g of catalogue){
    await page.locator('[data-game="'+g.id+'"]').click();
    assert.equal(await page.evaluate(()=>FK.current()),g.screen,g.id);
@@ -86,7 +86,7 @@ const shots=process.env.FARBTUPF_SHOTS||'/tmp/farbtupf-library';fs.mkdirSync(sho
   // The menu's painted assets also load after an offline restart.
   await page.evaluate(()=>navigator.serviceWorker.ready);await page.waitForFunction(()=>!!navigator.serviceWorker.controller);await context.setOffline(true);
   await page.reload();await page.waitForFunction(()=>window.FK?.friends);await click('Waldspiele');
-  assert.equal(await page.locator('.forest-book-game').count(),30);
+  assert.equal(await page.locator('.forest-book-game').count(),35);
   assert.ok(await page.evaluate(async()=>{const im=new Image();im.src='assets/waldatelier/menu.webp';await im.decode();return im.naturalWidth>0;}));
   assert.deepEqual(await page.evaluate(()=>FK.friends.get().drawings.free),strokes);
   await context.setOffline(false);

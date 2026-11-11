@@ -45,7 +45,7 @@ const BASE=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
   for(const width of [390,1024]){
    await page.setViewportSize({width,height:width===390?844:900});await page.waitForTimeout(300);
    const pins=await page.locator('.ff-map-storybook .ff-button').evaluateAll(bs=>bs.map(b=>({r:b.getBoundingClientRect().toJSON(),p:b.firstElementChild.getBoundingClientRect().toJSON()})));
-   assert.equal(pins.length,6);assert.ok(pins.every(p=>p.r.width>=48&&p.r.height>=48&&p.p.width>35&&p.p.height>35),'all map portraits are visible touch targets');
+   assert.equal(pins.length,11);assert.ok(pins.every(p=>p.r.width>=48&&p.r.height>=48&&p.p.width>35&&p.p.height>35),'all map portraits are visible touch targets');
    for(let i=0;i<pins.length;i++)for(let j=0;j<i;j++){const a=pins[i].r,b=pins[j].r;assert.ok(a.right<=b.left||b.right<=a.left||a.bottom<=b.top||b.bottom<=a.top,'map destinations do not overlap at '+width);}
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);await snapshot('map-'+width);
   }
@@ -73,6 +73,6 @@ const BASE=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
   assert.equal(await page.evaluate(()=>FK.friends.collect('goldleaf-2')),false);assert.equal(await page.locator('.ff-leaves').count(),0);
   await settings();assert.equal(await page.getByRole('checkbox',{name:'Musik',exact:true}).isChecked(),false);await page.locator('.screen-settings .btn-back').click();await click('Bildkarte');assert.equal(await page.locator('.ff-map-storybook').isVisible(),true);await snapshot('map-offline-1024');
   await context.setOffline(false);assert.deepEqual(errors,[]);await context.close();
-  console.log('PASS: matching centred toolbar at1024/390, shared gated settings, timer moved/paused, six visible non-overlapping map destinations and actual route, manual-only explanation in every activity family, audible four-layer ambience with birds/mute/background pause, retired leaves and saved/offline continuity.');
+  console.log('PASS: matching centred toolbar at1024/390, shared gated settings, timer moved/paused, eleven visible non-overlapping map destinations and actual route, manual-only explanation in every activity family, audible four-layer ambience with birds/mute/background pause, retired leaves and saved/offline continuity.');
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

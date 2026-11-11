@@ -19,7 +19,7 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
  };
  await page.goto(base+(uiOnly?'/?screen=hub':'/?software=1'),{waitUntil:'domcontentloaded'});await ready();
  await page.evaluate(()=>{FK.settings.set('sound',false);FK.go('forest-book',{from:'friends'});});await page.evaluate(()=>document.fonts.ready);console.log('READY catalogue');
- const entries=await page.evaluate(()=>FK.friendsLibrary.catalogue());assert.equal(entries.length,28);
+ const entries=await page.evaluate(()=>FK.friendsLibrary.catalogue());assert.equal(entries.length,33);
  assert.equal(await page.locator('[data-game="rhyme"],[data-game="dots"]').count(),0);
  const menu=()=>page.evaluate(()=>FK.go('forest-book',{from:'friends'}));
  const open=async id=>{await page.locator('.forest-book-game[data-game="'+id+'"]').click();};

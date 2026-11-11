@@ -64,7 +64,15 @@ build slice p95 3.25 ms: all within limits. Still failing: the longest single bu
 One build-timing run also stopped with Fuchs not arriving somewhere on the route (not reproduced with
 positions logged): watch for it.
 
+## Done on 11 November 2026
+- The old clearing is removed (region engine, old tile builder, `?world=home`).
+- The neighbours have letters, puzzles, portraits (`tools/portraits/`) and map pins; the picture map is painted
+  from the world (`tools/map/`). Letters cycle through all ten friends; older saves stay valid.
+- To check: the Lehrplan 21 references NMG.2.4.a (Igel) and NMG.2.1.a (Reh).
+
 ## Left for later (clean-up, suitable for a smaller model)
+- `friends-library-browser.cjs` line 83 and `friends-click-browser.cjs` still expect the screens from before
+  the puzzle unification (`7ad24dc`); they fail on that commit too.
 - Budget test on the big world counted 32 near / 41 far tiles (limits 25 / 40) at triple walking speed:
   check whether lagging far versions of near tiles are counted, then fix the streamer or the count.
 - Remove the old `home` region engine (`world/region.js`, `regions/home.js`, the non-big branches in

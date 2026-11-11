@@ -103,7 +103,8 @@ function map(){
     b.classList.toggle('ff-map-invited',mail.phase==='to-friend'&&mail.host===id);
     const [x,y]=mapPins[id];b.style.left=(x*100)+'%';b.style.top=(y*100)+'%';board.append(b);
   }
-  card.append(board);
+  // On a phone the map is wider than the screen (eleven pins need room) and scrolls sideways, starting at the den.
+  const scroller=h('div',{class:'ff-map-scroll'},board);card.append(scroller);requestAnimationFrame(()=>{scroller.scrollLeft=(scroller.scrollWidth-scroller.clientWidth)/2;});
   if(mail.phase==='to-mailman'){
     const b=button('Zum Briefträger','mailman',()=>{if(area!=='forest')go('forest');else close();world.route('mailman');},'ff-map-courier');
     b.replaceChildren(FK.friendsArt.portrait('mailman'),h('span',{text:'Zum Briefträger'}));b.dataset.place='mailman';card.append(b);
