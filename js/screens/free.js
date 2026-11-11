@@ -333,18 +333,20 @@
       });
     },
     leave() {
+      let saving;
       loadToken++;
       active = false;
       FK.ui.closePop(true);
       if (eng.W && loaded) {
         // lands a «Neu» swap still in the air, so the save below stores the real paper
         eng.settle();
-        Promise.resolve(save()).then(() => { if (!active) eng.release(); });
+        saving=Promise.resolve(save()).then(() => { if (!active) eng.release(); });
       } else {
         // nothing loaded yet (the load is aborted by the token): just give the canvases back
         eng.release();
       }
       loaded = false;
+      return saving;
     },
   });
 })();

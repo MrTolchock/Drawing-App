@@ -11,6 +11,7 @@ Open `http://127.0.0.1:8000`. Browser scripts require Playwright and Chromium. T
 
 | Check | Coverage |
 | --- | --- |
+| `tests/updates-browser.cjs` | Real upgrade from the old cached app; foreground/online/manual checks, no reload during puzzles/drawing, awaiting IndexedDB snapshots, failed downloads, offline reload, version isolation and first-install loop prevention |
 | `tests/input-typography-browser.cjs` | Parent-gate error/retry and immediate reopen; first-tap activation with finger movement in world, books, settings, puzzles and painting; rapid taps, scrolling, cancellation, overlay dismissal, mouse/keyboard and shared font roles at phone/tablet sizes |
 | `tests/friends-mail-browser.cjs` | Closed-door letter delivery, friend arrow, puzzle completion, nearby mailman, next letter, refresh and offline continuity |
 | `tests/den-browser.cjs` | Fox lying on the mattress, visible shelf books, direct free colouring, new outlines/postcards, back navigation, gallery save/resume and offline restoration at tablet/phone sizes |
@@ -42,7 +43,13 @@ Retain existing localStorage and IndexedDB identifiers. Story repairs, exact unf
 
 GitHub Pages serves the repository root from `main`: <https://mrtolchock.github.io/Drawing-App/>. A push starts the Pages deployment. Check the workflow result and live assets before reporting a release as deployed.
 
-When changing cached runtime content, bump the app version in `js/core/util.js` and cache identifier in `sw.js`; include new runtime assets in its list. Keep technical cache versions and persistent schema IDs even though active product documentation does not use a release-by-release narrative. An update downloads in the background and waits: the open game keeps its own cache, and the next start in the den switches to the new version with one automatic reload (never during a puzzle). Picture sheets are WebP (quality 82, exact alpha); keep the precached total under 25 MB. Atlases for canvas drawing load on first use, at most six at a time (`FK.visual.load`). Documentation outside the offline parent guide is not part of the installed game.
+When changing cached runtime content, bump the app version in `js/core/util.js` and cache identifier in `sw.js`; include new runtime assets in its list. Keep technical cache versions and persistent schema IDs even though active product documentation does not use a release-by-release narrative. `js/core/updates.js` checks on startup, foreground/page restoration, reconnection and **Nach Updates suchen** in Settings, using `updateViaCache: none`. Automatic repeated checks are limited to once per minute; the parent button and reconnection bypass that limit.
+
+A release activates only after its complete offline cache downloads successfully. Activation does not depend on JavaScript in an older installed app. The current page reloads once on an idle menu/settings screen or in the den, after asynchronous editor saves finish. Puzzles, drawing, outdoor play and open dialogs remain uninterrupted. The worker reads its own version's cache and removes only old Farbtupf caches. LocalStorage and IndexedDB records remain intact; a failed download retains the working version and offline access.
+
+For an installation stuck on older code, open the Home Screen app online and allow the update to download (roughly 30 seconds on a normal connection), then close it fully in the app switcher and reopen. The **App-Version** section in Settings shows the running version and offers a manual check for future updates. Opening a separate Safari tab can use different storage from the installed iPhone app, so verify the version inside the Home Screen app itself.
+
+Picture sheets are WebP (quality 82, exact alpha); keep the precached total under 25 MB. Atlases for canvas drawing load on first use, at most six at a time (`FK.visual.load`). Documentation outside the offline parent guide is not part of the installed game.
 
 ## Maintain the baseline
 

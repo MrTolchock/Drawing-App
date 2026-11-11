@@ -1,6 +1,7 @@
 /* Farbtupf – Service Worker: keeps the whole app on the device so it runs without internet. */
-const CACHE = 'farbtupf-v9.0.2-quiet-default';
+const CACHE = 'farbtupf-v9.0.3-updates';
 const ASSETS = [
+  './js/core/updates.js',
   './css/typography.css',
   './js/friends/puzzle-rounds.js',
   './js/screens/puzzle.js',
@@ -202,11 +203,11 @@ const ASSETS = [
   './icons/apple-touch-icon.png',
 ];
 
-// A new version installs next to the running one and waits: the open app keeps its own cache, so a
-// puzzle never switches version half-way. The app asks a waiting version to take over at its next
-// start, in the den (js/app.js); a first install takes over at once.
+// Fully cache the release before activation. Legacy installed pages cannot ask a
+// waiting worker to activate, so activation must not depend on their JavaScript.
+// Current pages reload only on idle screens (updates.js), never during a task.
 self.addEventListener('install', (event) => {
-  event.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS.map((u) => new Request(u, { cache: 'reload' })))));
+  event.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS.map((u) => new Request(u, { cache: 'reload' })))).then(()=>self.skipWaiting()));
 });
 
 self.addEventListener('message', (event) => {
@@ -216,7 +217,7 @@ self.addEventListener('message', (event) => {
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys()
-      .then((keys) => Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k))))
+      .then((keys) => Promise.all(keys.filter((k) => k.startsWith('farbtupf-') && k !== CACHE).map((k) => caches.delete(k))))
       .then(() => self.clients.claim())
   );
 });
@@ -225,7 +226,7 @@ self.addEventListener('fetch', (event) => {
   const req = event.request;
   if (req.method !== 'GET' || new URL(req.url).origin !== self.location.origin) return;
   event.respondWith(
-    caches.match(req, { ignoreSearch: true }).then((hit) => {
+    caches.open(CACHE).then(c=>c.match(req, { ignoreSearch: true })).then((hit) => {
       if (hit) return hit;
       return fetch(req)
         .then((res) => {
@@ -235,7 +236,7 @@ self.addEventListener('fetch', (event) => {
           }
           return res;
         })
-        .catch(() => (req.mode === 'navigate' ? caches.match('./index.html') : Response.error()));
+        .catch(() => (req.mode === 'navigate' ? caches.open(CACHE).then(c=>c.match('./index.html')) : Response.error()));
     })
   );
 });

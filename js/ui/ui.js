@@ -17,6 +17,7 @@
   /* ---------- router ---------- */
   const screens = {};
   const stack = [];
+  const pendingSaves = new Set(); // Updates wait for editor snapshots before replacing the document.
   let current = null;
 
   FK.screen = (name, def) => { screens[name] = { def, root: null }; };
@@ -60,7 +61,10 @@
       }
     }
     const prev = current;
-    if (prev && screens[prev.name].def.leave) screens[prev.name].def.leave();
+    if (prev && screens[prev.name].def.leave) {
+      const saving=screens[prev.name].def.leave();
+      if(saving?.then){pendingSaves.add(saving);saving.then(()=>pendingSaves.delete(saving),()=>pendingSaves.delete(saving));}
+    }
     if (prev && !opts.replace && !opts.isBack) stack.push(prev);
     // Forest and games book are root entries; discard stale return screens there.
     if (name === 'forest-book' || name === 'forest' || name === 'friends') stack.length = 0;
@@ -309,6 +313,7 @@
     modalEl = null;
     if (m._onClose) m._onClose();
     m.remove();
+    FK.emit('modal-closed');
   }
 
   // Dismissing an overlay consumes this pointer gesture, never the next tap.
@@ -447,5 +452,6 @@
     toastTimer = setTimeout(() => { t.hidden = true; }, ms || 2200);
   }
 
-  FK.ui = { btn, topbar, settingsButton, starCounter, praise, celebrate, word, mascot, modal, closeModal, confirm, parentGate, longPress, shake, bounce, toast, eatClick, PRAISE };
+  async function whenSaved(){while(pendingSaves.size)await Promise.all([...pendingSaves]);}
+  FK.ui = { btn, topbar, settingsButton, starCounter, praise, celebrate, word, mascot, modal, closeModal, confirm, parentGate, longPress, shake, bounce, toast, eatClick, PRAISE, whenSaved };
 })();

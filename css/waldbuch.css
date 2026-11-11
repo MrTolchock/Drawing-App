@@ -591,7 +591,9 @@
 .friends-interface :is(.ff-font-choices,.play-timer-modes,.play-timer-presets)>button[aria-pressed=true]{background:#fffdf6;color:var(--wb-ink);box-shadow:0 3px 0 #d6b680}
 .friends-interface :is(.ff-font-choices,.play-timer-modes,.play-timer-presets)>button:focus-visible{outline:4px solid var(--wb-focus);outline-offset:2px}
 .friends-interface .play-timer-settings{align-items:flex-start}
-.friends-interface .ff-data-settings>.btn{display:inline-block;margin:10px 10px 0 0;min-height:48px;padding:10px 16px;border:2px solid #e3cc9f;border-radius:var(--wb-r-s);background:#fffdf6;box-shadow:0 4px 0 #d6b680;font:700 15px var(--type-body);color:var(--wb-ink)}
+.friends-interface :is(.ff-data-settings,.ff-update-settings)>.btn{display:inline-block;width:auto;min-width:48px;margin:10px 10px 0 0;min-height:48px;padding:10px 16px;border:2px solid #e3cc9f;border-radius:var(--wb-r-s);background:#fffdf6;box-shadow:0 4px 0 #d6b680;font:700 15px var(--type-body);color:var(--wb-ink)}
+.friends-interface .ff-update-settings>.btn{--lbl:15px;min-height:54px;height:auto}
+.friends-interface .ff-update-status{min-height:21px;margin:12px 0 0;font:400 14px/1.5 var(--type-body);color:var(--wb-ink-soft)}
 .friends-interface .ff-settings-version{margin-top:12px;font:400 15px var(--type-body);color:var(--wb-ink-soft)}
 @media (max-width:600px){
   .friends-interface :is(.den-colouring-book,.screen-gallery,.ff-settings-screen){padding:10px max(10px,env(safe-area-inset-right)) max(10px,env(safe-area-inset-bottom)) max(10px,env(safe-area-inset-left))}

@@ -938,6 +938,7 @@
     },
 
     leave() {
+      let saving;
       loadToken++;
       active = false;
       finishing = false;
@@ -947,11 +948,12 @@
         eng.settle();
         const p = save();
         // free the big canvases once the drawing is safely stored
-        Promise.resolve(p).then(() => { if (!active) eng.release(); });
+        saving=Promise.resolve(p).then(() => { if (!active) eng.release(); });
       }
       // after settle(): its last change must not start a label check on the hidden screen
       clearTimeout(checkTimer);
       clearTimeout(layoutTimer);
+      return saving;
     },
   });
 

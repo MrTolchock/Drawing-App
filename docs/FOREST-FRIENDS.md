@@ -44,6 +44,10 @@ Every settings button, including Waldspiele and old `parents` routes, opens the 
 
 The parent gate accepts an entered multiplication result. A wrong or empty answer remains editable with visible feedback; closing/reopening has no hidden lockout. All buttons share gesture-specific touch/click handling, including pictures and the world toolbar. The [typography and input guide](TYPOGRAPHY.md) defines Andika for controls/learning and Baloo 2 for menu headings.
 
+**App-Version** shows the running version and **Nach Updates suchen** checks for a new release, with download, current, offline and error feedback. The installed app also checks when it resumes or reconnects. A fully downloaded update reloads on an idle screen after pending drawing saves, while an active puzzle or drawing stays open. Older installed code can receive the new worker without implementing the latest activation handshake.
+
+The [installed-app update review](../design/forest-friends/visuals/milestones/pwa-updates/README.md) records the parent control and upgrade checks.
+
 The [input and typography comparison](../design/forest-friends/visuals/milestones/input-typography/README.md) records the phone/tablet review and intentional changes to the earlier type styles.
 
 ## Den and free Malatelier

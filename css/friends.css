@@ -492,4 +492,6 @@
 .ff-data-settings p{font:14px/1.6 var(--read);color:#796a53}
 .ff-data-settings>.btn{display:block;min-height:48px;margin-top:10px;padding:10px 14px;border:1px solid #d4c3a4;border-radius:12px;background:#fff8e7;font:15px var(--read)}
 .ff-settings-version{text-align:center;color:#96856c;font:13px var(--read);margin:0}
+.ff-update-settings>.btn{--lbl:15px;display:inline-flex;width:auto;height:auto;min-width:54px;min-height:54px;padding:10px 16px}
+.ff-update-status{min-height:21px;font:400 14px/1.5 var(--type-body);color:var(--muted);margin:12px 0 0}
 @media(max-width:600px){.ff-nav{right:10px;gap:8px}.ff-nav .ff-button{width:54px;height:54px;min-width:54px;min-height:54px;padding:2px;border-radius:17px}.ff-nav .ff-button .ff-picture,.ff-nav .ff-ui-art{width:46px;height:46px}.ff-map-card{padding:10px 8px 16px;border-radius:24px}.ff-map-storybook .ff-button{width:52px;height:52px;min-width:52px;min-height:52px;padding:3px}.ff-map-invited::after{width:19px;height:19px;right:-4px;bottom:-4px}.ff-settings-body{padding:8px 14px 26px;gap:14px}.ff-settings-body .setting-card{padding:17px}.ff-setting-toggle{font-size:16px}}

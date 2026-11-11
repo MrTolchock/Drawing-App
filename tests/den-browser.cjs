@@ -7,7 +7,7 @@ const BASE=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
  page.on('pageerror',e=>errors.push(e.message));
  await context.addInitScript(()=>localStorage.setItem('farbklecks.settings.v2',JSON.stringify({'color.tool':{kind:'stamp',colorId:'rot'},'free.tool':{kind:'stamp',colorId:'rot'}})));
  const click=name=>page.getByRole('button',{name,exact:true}).click();
- const snapshot=async name=>{await page.waitForTimeout(350);await page.screenshot({path:shots+'/'+name+'.png',animations:'disabled'});};
+ const snapshot=async name=>{if(process.env.FARBTUPF_SCREENSHOTS==='0')return;await page.waitForTimeout(350);await page.screenshot({path:shots+'/'+name+'.png',animations:'disabled'});};
  const ready=()=>page.waitForFunction(()=>!!window.FK?.friendsView,null,{timeout:60000});
  const waitForStored=async read=>{const until=Date.now()+30000;do{const value=await page.evaluate(read);if(value)return value;await page.waitForTimeout(100);}while(Date.now()<until);assert.fail('Drawing did not finish saving.');};
  await page.goto(BASE+'/?software=1');await ready();await page.evaluate(()=>document.fonts.ready);
@@ -18,12 +18,15 @@ const BASE=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
   await snapshot('den-'+width);
   const shelf=await page.evaluate(()=>{const world=document.querySelector('.ff-world'),[fw,fh]=world.style.backgroundSize.split(' ').map(parseFloat),[x,y]=world.style.backgroundPosition.split(' ').map(parseFloat),b=document.querySelector('[data-place="games"]').getBoundingClientRect();return {bookRight:b.right,booksLeft:x+fw*650/1448};});
   assert.ok(shelf.bookRight<shelf.booksLeft,'Waldspiele button leaves shelf books visible at '+width);
-  await page.locator('[data-place="sleep"]').click();await page.waitForFunction(()=>{const v=FK.friendsView();return v.animation==='sleep'&&v.sleepBounds?.width>v.sleepBounds?.height;});
+  await page.locator('[data-place="sleep"]').tap();await page.waitForFunction(()=>{const v=FK.friendsView();return v.animation==='sleep'&&v.sleepBounds?.width>v.sleepBounds?.height;});
   const box=await page.evaluate(()=>{const e=document.querySelector('.ff-world'),[fw,fh]=e.style.backgroundSize.split(' ').map(parseFloat),[x,y]=e.style.backgroundPosition.split(' ').map(parseFloat);return {fox:FK.friendsView().sleepBounds,bed:{left:x,top:y+fh*450/1086,right:x+fw*230/1448,bottom:y+fh*720/1086}};});
   assert.ok(box.fox.width>box.fox.height,'fox lies horizontally');
   const cx=box.fox.x+box.fox.width/2,cy=box.fox.y+box.fox.height/2;
   assert.ok(cx>box.bed.left&&cx<box.bed.right&&cy>box.bed.top&&cy<box.bed.bottom,'sleeping fox lies on the mattress at '+width);
-  await snapshot('sleep-'+width);await click('Animation überspringen');
+  await snapshot('sleep-'+width);
+  const skip=page.getByRole('button',{name:'Animation überspringen',exact:true});
+  if(await skip.isVisible())await skip.tap();
+  else assert.equal(await page.evaluate(()=>FK.friendsView().animation),null,'sleep already finished');
  }
  await page.setViewportSize({width:1024,height:900});
  await click('Brief öffnen');assert.equal(await page.locator('.ff-letter-illustration').isVisible(),true);
