@@ -1,5 +1,5 @@
 /* One readable typeface, one paper, one answer treatment for the active catalogue. */
-.friends-interface :is(.screen-puzzle,.screen-trace){--ink:#4b3b2d;--muted:#78664f;--font:var(--read);font-family:var(--read);color:var(--ink);background:#f3edda url('../assets/forest-friends/puzzle-clearing.webp') center/cover no-repeat;padding:16px max(16px,env(safe-area-inset-left))}
+.friends-interface :is(.screen-puzzle,.screen-trace){--ink:#4b3b2d;--muted:#78664f;--font:var(--read);font-family:var(--read);color:var(--ink);background:#f3edda url('../assets/forest-friends/puzzle-clearing.webp') center/cover no-repeat;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right)) 16px max(16px,env(safe-area-inset-left))}
 .friends-interface :is(.screen-puzzle,.screen-trace) :is(button,h1,h2,h3,p,b,small,span){font-family:var(--read)}
 .friends-interface :is(.screen-puzzle,.screen-trace)>.topbar{flex:none;gap:14px;width:min(1000px,100%);min-height:64px;margin:0 auto 12px;padding:8px 12px;background:#fff8e9ee;border:1px solid #dbc6a4;border-radius:20px;box-shadow:0 4px 20px #60442a12}
 .friends-interface :is(.screen-puzzle,.screen-trace) .topbar .title{font:700 clamp(20px,3vw,30px)/1.25 var(--read);color:#4b3b2d;letter-spacing:0;text-shadow:none;-webkit-text-stroke:0}

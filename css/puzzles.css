@@ -3,7 +3,7 @@
 .friends-interface :is(.screen-learn,.screen-adventure,.screen-expedition,.screen-read,.screen-trace,.screen-dots,.screen-forest-book){
   --ink:#4b3b2d;--muted:#81735e;--sun:#e6bf72;--mint:#e4eacb;--sky:#e5ece6;
   background:#f3edda url('../assets/forest-friends/puzzle-clearing.webp') center/cover no-repeat;
-  color:var(--ink);padding:16px max(18px,env(safe-area-inset-left));
+  color:var(--ink);padding:max(16px,env(safe-area-inset-top,0px)) max(18px,env(safe-area-inset-right)) 16px max(18px,env(safe-area-inset-left));
 }
 .friends-interface :is(.screen-learn,.screen-adventure,.screen-expedition,.screen-read,.screen-trace,.screen-dots,.screen-forest-book)>.topbar{width:min(1000px,100%);margin:0 auto 12px;padding:8px 12px;min-height:64px;background:#fff8e9ed;border:1px solid #dbc6a4;border-radius:20px}
 .friends-interface .play-library-intro h2{color:#4b3b2d}

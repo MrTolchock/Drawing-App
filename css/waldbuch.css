@@ -57,7 +57,7 @@
    ========================================================================== */
 .friends-interface :is(.screen-learn,.screen-adventure,.screen-expedition,.screen-read,.screen-trace,.screen-dots){
   --wb-gutter:clamp(150px,18.5vw,200px);
-  padding:16px max(22px,env(safe-area-inset-right)) max(18px,env(safe-area-inset-bottom)) max(22px,env(safe-area-inset-left));
+  padding:max(16px,env(safe-area-inset-top,0px)) max(22px,env(safe-area-inset-right)) max(18px,env(safe-area-inset-bottom)) max(22px,env(safe-area-inset-left));
   color:var(--wb-ink);
 }
 
@@ -294,7 +294,7 @@
   .friends-interface .ff-illustrated-round>.ff-task-tools{order:-1;grid-column:3;justify-self:end;margin:0}
   .friends-interface .ff-illustrated-round>.ff-round-title{margin:10px auto 14px}
   /* Back button on the scene, host on the margin. */
-  .friends-interface .ff-illustrated-round .ff-card-top>.ff-button{position:absolute;left:max(22px,env(safe-area-inset-left));top:16px;z-index:6}
+  .friends-interface .ff-illustrated-round .ff-card-top>.ff-button{position:absolute;left:max(22px,env(safe-area-inset-left));top:max(16px,env(safe-area-inset-top,0px));z-index:6}
   .friends-interface .ff-illustrated-round[data-kind] .ff-card-top>.ff-card-portrait{
     position:absolute;z-index:5;left:max(6px,env(safe-area-inset-left));bottom:54px;
     width:min(230px,calc(var(--wb-gutter) + 26px));height:auto;aspect-ratio:1;padding:0;border-radius:0;background:none;border:0;box-shadow:none;
@@ -322,7 +322,7 @@
    and controls keep their current breakpoints.
    ========================================================================== */
 @media (max-width:699px){
-  .friends-interface :is(.screen-learn,.screen-adventure,.screen-expedition,.screen-read,.screen-trace,.screen-dots){padding:10px max(10px,env(safe-area-inset-right)) max(10px,env(safe-area-inset-bottom)) max(10px,env(safe-area-inset-left))}
+  .friends-interface :is(.screen-learn,.screen-adventure,.screen-expedition,.screen-read,.screen-trace,.screen-dots){padding:max(10px,env(safe-area-inset-top,0px)) max(10px,env(safe-area-inset-right)) max(10px,env(safe-area-inset-bottom)) max(10px,env(safe-area-inset-left))}
   .friends-interface :is(.screen-learn,.screen-adventure,.screen-expedition,.screen-read,.screen-trace,.screen-dots)>.topbar{min-height:56px;margin-bottom:8px;gap:12px}
   .friends-interface :is(.screen-learn,.screen-adventure,.screen-expedition,.screen-read,.screen-trace,.screen-dots) .btn-back,
   .friends-interface .ff-illustrated-round .ff-card-top>.ff-button{--btn:56px;--btn-w:56px;width:56px;min-width:56px;height:56px;min-height:56px}
@@ -504,7 +504,7 @@
 /* ---------- Ausmalen and Meine Bilder: the den painting under a flat tint (4.6, 4.7) ---------- */
 .friends-interface :is(.den-colouring-book,.screen-gallery){
   background:linear-gradient(#5a3418a6,#5a3418a6),#5a3418 url('../assets/forest-friends/den-v2.webp') center/cover no-repeat;
-  padding:16px max(22px,env(safe-area-inset-right)) max(18px,env(safe-area-inset-bottom)) max(22px,env(safe-area-inset-left));
+  padding:max(16px,env(safe-area-inset-top,0px)) max(22px,env(safe-area-inset-right)) max(18px,env(safe-area-inset-bottom)) max(22px,env(safe-area-inset-left));
 }
 /* Ausmalen: six taped pages; the names stay as each card's aria-label. */
 .friends-interface .den-colouring-book .book-grid{gap:40px 30px;padding:24px 14px 30px;max-width:1000px}
@@ -561,7 +561,7 @@
 /* ---------- Einstellungen: one calm page, switches and segmented choices (4.8) ---------- */
 .friends-interface .ff-settings-screen{
   background:linear-gradient(#f7f1e5a6,#f7f1e5a6),#f7f1e5 url('../assets/forest-friends/puzzle-clearing.webp') center/cover no-repeat;
-  padding:16px max(22px,env(safe-area-inset-right)) max(18px,env(safe-area-inset-bottom)) max(22px,env(safe-area-inset-left));color:var(--wb-ink);
+  padding:max(16px,env(safe-area-inset-top,0px)) max(22px,env(safe-area-inset-right)) max(18px,env(safe-area-inset-bottom)) max(22px,env(safe-area-inset-left));color:var(--wb-ink);
 }
 .friends-interface .ff-settings-body{
   width:min(780px,100%);margin:0 auto 26px;padding:24px 40px 28px;gap:0;background:var(--wb-paper);border-radius:var(--wb-r-xl);
@@ -596,7 +596,7 @@
 .friends-interface .ff-update-status{min-height:21px;margin:12px 0 0;font:400 14px/1.5 var(--type-body);color:var(--wb-ink-soft)}
 .friends-interface .ff-settings-version{margin-top:12px;font:400 15px var(--type-body);color:var(--wb-ink-soft)}
 @media (max-width:600px){
-  .friends-interface :is(.den-colouring-book,.screen-gallery,.ff-settings-screen){padding:10px max(10px,env(safe-area-inset-right)) max(10px,env(safe-area-inset-bottom)) max(10px,env(safe-area-inset-left))}
+  .friends-interface :is(.den-colouring-book,.screen-gallery,.ff-settings-screen){padding:max(10px,env(safe-area-inset-top,0px)) max(10px,env(safe-area-inset-right)) max(10px,env(safe-area-inset-bottom)) max(10px,env(safe-area-inset-left))}
   .friends-interface .ff-settings-body{padding:16px 18px 20px;border-radius:26px;outline-offset:-9px}
   .friends-interface :is(.screen-forest-book,.den-colouring-book,.screen-gallery,.ff-settings-screen) .btn-back{width:56px;min-width:56px;height:56px;min-height:56px}
 }
