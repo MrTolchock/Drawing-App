@@ -63,7 +63,8 @@ export function createStreamer(world, look, scene, options = {}) {
   const costs = new Map();
   const expected = kind => { const c = costs.get(kind); return c ? Math.max(c.avg * 1.5, c.peak) : 1; };
   const room = (t0, budget, first, kind) => first || performance.now() - t0 + expected(kind) <= budget;
-  const timed = (kind, fn) => { const s = performance.now(), v = fn(), ms = performance.now() - s; const c = costs.get(kind); if (c) { c.avg = c.avg * .7 + ms * .3; c.peak = Math.max(ms, c.peak * .8); } else costs.set(kind, {avg: ms, peak: ms}); return v; };
+  const slowest = {kind: '', ms: 0};
+  const timed = (kind, fn) => { const s = performance.now(), v = fn(), ms = performance.now() - s; if (ms > slowest.ms) { slowest.kind = kind; slowest.ms = ms; } const c = costs.get(kind); if (c) { c.avg = c.avg * .7 + ms * .3; c.peak = Math.max(ms, c.peak * .8); } else costs.set(kind, {avg: ms, peak: ms}); return v; };
   /** Spend up to `budget` ms building. Returns true while work remains. */
   function work(budget) {
     const t0 = performance.now(); let first = true;
@@ -84,6 +85,8 @@ export function createStreamer(world, look, scene, options = {}) {
   const pending = () => lookSteps.length > 0 || jobs.length > 0 || [...regionGroups.values()].some(r => r.steps.length);
   return {
     root, landmarks,
+    /** The longest single build step so far and its kind (a step that should be split up shows here). */
+    slowest,
     /** Where Fuchs is and where he is heading (tiles ahead are built first). */
     focus(x, z, ax = x, az = z) {
       // Compared with the place of the last plan, not with the previous frame: a steady walk moves a few
