@@ -144,3 +144,19 @@ The larger differences come from tasks being chosen at random, not from compress
 | New pictures | None delivered yet (`words-four`, `words-five` in `ASSET-REQUESTS.md`); the interim fallbacks stay. |
 
 **Validation.** `node --test tests/*.test.cjs` (170 pass; the offline sheet test now also checks the six-sheet limit); `puzzles-browser.cjs` (including offline reload), `friends-library-browser.cjs`, `interface-browser.cjs`, `den-browser.cjs`, `friends-mail-browser.cjs`, `browser-smoke.cjs`, `painted-browser.cjs`, `world-browser.cjs` and `friends-animation-browser.cjs` pass.
+
+## Neighbour portraits · app 9.0.5
+
+Build: app/cache 9.0.5 (`farbtupf-v9.0.5-recovery`), 11 November 2026. Chromium (SwiftShader), 1080 × 810 and 390 × 844 at device scale 2, reduced motion, `?software=1`.
+
+The owner found Igel, Fisch, Reh, Eisvogel and Frosch smaller and less detailed than the painted friends in the Waldspiele tabs and on the picture map. Cause: their sheet (`assets/forest-friends/neighbours.webp`) was a plain 512 px render with a loose camera, so each character filled only about half of its cell (for example the Igel 294 × 257 px, the Eichhörnchen 405 × 468 px), with flat light and no fur detail.
+
+| Evidence | What changed |
+| --- | --- |
+| [Sheet, before above and after below](neighbours-sheet.jpg) | Rendered at 1536 px and cropped to the character: 448 × 472 px at most, centred, standing at 500 px like the painted friends. Brushed fur strokes, fluffy outline and a warm edge shade painted over the render; eyes, nose and beak stay crisp; fish and frog keep a smooth felt look. Fish and Eisvogel turned to show both eyes. |
+| Waldspiele: [tablet](neighbours-menu-1080.jpg), [phone](neighbours-menu-390.jpg) | Tabs and host chips show the neighbours at the same size as the first five friends. |
+| Picture map: [tablet](neighbours-map-1080.jpg), [phone](neighbours-map-390.jpg) | Pins of the neighbours filled like the others. |
+
+Only the sheet changed (68 KB → 146 KB); code, cells and the 3D models are as before. The models themselves stay simpler than the painted art (no brows, simpler paws), so the portraits match the plush characters in the forest rather than adding detail they do not have. Painted portraits in the style of `postcard-friends.webp` would close the remaining gap; they can replace the sheet cell for cell.
+
+**Validation.** `node --test tests/*.test.cjs` (176 pass); `interface-browser.cjs` passes (eleven map pins). `friends-library-browser.cjs` stops at line 83 as before this change (known since the puzzle unification, see `design/world-10x/PLAN.md`).
