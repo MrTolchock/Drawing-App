@@ -81,3 +81,11 @@ positions logged): watch for it.
 - Picture map, letters and puzzles for the new neighbours; map pins for the moved friends.
 - `docs/FOREST-FRIENDS.md` and `docs/DEVELOPMENT.md`: describe the big world.
 - Decorative rocks are not colliders; large ones are only placed where Fuchs cannot walk.
+
+## Done on 11 November 2026 (evening)
+- Streamer plans from the place of its last plan (it used the previous frame and never planned on a steady
+  walk: plain ground and holes on the iPad); holes before detail; `?perf=1` shows waiting tiles, holes, plain.
+- Fuchs no longer circles a waypoint on long frames or stays wedged (re-plan after 0.5 s).
+- Beaver dam rebuilt (mud wall, thatched face, crest poles, seep), pond water ends at the dam, lodge to match,
+  stumps, felled trunks and a pole stack at Biber's (`STUMPS`, `FELLED`, `POLES` in `layout.js`).
+- Open: the longest build slice is 12.3 ms (limit 12 ms); `FK.perf.stats.slowestStep` names the step kind.

@@ -160,3 +160,25 @@ The owner found Igel, Fisch, Reh, Eisvogel and Frosch smaller and less detailed 
 Only the sheet changed (68 KB → 146 KB); code, cells and the 3D models are as before. The models themselves stay simpler than the painted art (no brows, simpler paws), so the portraits match the plush characters in the forest rather than adding detail they do not have. Painted portraits in the style of `postcard-friends.webp` would close the remaining gap; they can replace the sheet cell for cell.
 
 **Validation.** `node --test tests/*.test.cjs` (176 pass); `interface-browser.cjs` passes (eleven map pins). `friends-library-browser.cjs` stops at line 83 as before this change (known since the puzzle unification, see `design/world-10x/PLAN.md`).
+
+## Forest keeps up while walking · app 9.0.7
+
+The owner's iPad walk (`?perf=1`, 55–60 fps) showed plain green ground without plants and holes to the sky. Cause: the tile streamer compared Fuchs' position with the previous frame, so on a steady walk it never planned new tiles; ground only arrived when he started or stopped.
+
+| Item | Result |
+| --- | --- |
+| Streamer | Plans are compared with the place of the last plan; waiting jobs follow Fuchs; tiles with nothing drawn come before detail; a build slice may take 8 ms only while ground near Fuchs is missing or plain. |
+| Measured here | Route walked at normal speed, at full speed and with the CPU slowed 4×: no hole and no plain tile at any frame (before: up to 29 missing tiles). Triple speed, drawing skipped: none either, p95 build slice 3.25 ms, longest 12.3 ms (limit 12 ms; 16.4 ms before). |
+| Walking | A waypoint counts as reached within one frame's travel; a wedged Fuchs plans again after half a second and stops after three tries. Both showed up once the streamer really built during the test walk. |
+| `?perf=1` | New line: tiles waiting, holes and plain ground now and at most. On the iPad both maxima should stay 0. |
+
+**Validation.** `node --test tests/*.test.cjs` (177 pass, new `world-streamer.test.cjs` fails on the old streamer); `friends-mail-browser.cjs`, `friends-animation-browser.cjs` pass; `world-budget-browser.cjs` passes drawing and p95, the longest slice is 0.3 ms over.
+
+## Beaver dam and felled trees · app 9.0.8
+
+| Evidence | What changed |
+| --- | --- |
+| On the dam: [tablet](dam-1080.jpg), [phone](dam-390.jpg) | A wall of dark mud across the outlet, long gnawed poles on the crest, a thatch of about 200 sticks pushed into the downstream face, short sticks on the pond side, water seeping over the middle. The pond's water no longer hangs in the air below the dam. Lodge in the same mud and sticks. |
+| At Biber's: [tablet](biber-1080.jpg), [phone](biber-390.jpg) | Eight stumps gnawed to a point with wood chips, three felled trunks beside their stumps, a stack of cut poles; all west of the trail or south of the pond, none on a path (colliders in `layout.js`). |
+
+Draw calls at the pond 81 (limit 150), triangles 180 k (limit 350 k).

@@ -134,6 +134,8 @@ export function createTerrain() {
 
   /* ---------- the ground ---------- */
   const seg = {d: 0, t: 0}, dam = {...L.DAM, top: poolOf('pond').level + .3};
+  // The dam's normal towards the pond: the pond's water ends at the dam, the brook below it runs lower.
+  { const dx = dam.b[0] - dam.a[0], dz = dam.b[1] - dam.a[1], l = Math.hypot(dx, dz), p = poolOf('pond'), side = Math.sign((p.x - dam.a[0]) * dz - (p.z - dam.a[1]) * dx) || 1; dam.n = [dz / l * side, -dx / l * side]; dam.len = l; }
   // One spot is usually asked several times in a row (height, colour, water): remember the last answer.
   const memo = {x: NaN, z: NaN, h: 0, raw: 0, sd: Infinity, sw: 1, sl: 0, pd: Infinity, pw: 1, still: NaN};
   function site(x, z) {
@@ -153,7 +155,8 @@ export function createTerrain() {
       h = lerp(h, clamp(h, lerp(p.level + .12, Math.min(h, p.level + .12), nearStream), p.level + .5), sstep(1.9, 1.15, e));
       if (e < 1.15) { h = Math.min(h, lerp(p.level + .12, p.level - p.depth, sstep(1.15, .5, e)) + (fbm(x * 1.7, z * 1.7) - .5) * .08); still = p.level; }
     }
-    if (Math.abs(x - dam.a[0]) < 12 && Math.abs(z - dam.a[1]) < 12) { segment(x, z, dam.a[0], dam.a[1], dam.b[0], dam.b[1], seg); if (seg.d < 2.4) h = Math.max(h, dam.top - .12 - Math.max(0, seg.d - .45) * 1.5); }
+    if (Math.abs(x - dam.a[0]) < 12 && Math.abs(z - dam.a[1]) < 12) { segment(x, z, dam.a[0], dam.a[1], dam.b[0], dam.b[1], seg); if (seg.d < 2.4) h = Math.max(h, dam.top - .12 - Math.max(0, seg.d - .45) * 1.5);
+      if (still === still && (x - dam.a[0]) * dam.n[0] + (z - dam.a[1]) * dam.n[1] < -.25 && seg.d < 9) still = NaN; }
     if (swampMask(x, z) > .04 && !(still === still)) still = S.level;
     pathAt(x, z); if (pa.d < pa.w / 2 + .35) h -= .045 * sstep(pa.w / 2 + .35, pa.w / 2 - .1, pa.d);
     memo.x = x; memo.z = z; memo.h = h; memo.sd = sd; memo.sw = st.w; memo.sl = st.level; memo.pd = pa.d; memo.pw = pa.w; memo.still = still;

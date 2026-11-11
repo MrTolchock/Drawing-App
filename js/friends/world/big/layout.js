@@ -111,8 +111,15 @@ export const TREES = [
 ];
 /* Big rocks [x, z, size, height] (colliders). */
 export const ROCKS = [[-5.2, -4.2, 1.05, 1.6], [-2, 9, .65, .9], [9.6, 1.2, .6, .8], [57.6, -54.4, 1.5, 1.7], [66.4, -47.6, 1.2, 1.3], [-70, 8, .9, 1], [50.5, 48.4, .8, .9]];
-/* Further colliders [x, z, radius]: the den tree, the stump, the lodge. */
-export const SOLIDS = [[0, -8, 3.05], [-33.4, 11.2, .95], [37.5, -18.6, 2.3]];
+/* Further colliders [x, z, radius]: the den tree, the stump, the lodge, the beaver's stack of poles. */
+export const SOLIDS = [[0, -8, 3.05], [-33.4, 11.2, .95], [37.5, -18.6, 2.3], [20.8, -16.9, .6]];
+
+/* What Biber felled for his dam: gnawed stumps [x, z, radius] and trunks lying beside some of them
+   [x, z, radius, yaw, length] (colliders; built with the pond site). */
+export const STUMPS = [[20.6, -19, .3], [18.8, -16.2, .24], [20.9, -22.4, .34], [29.6, -25.2, .26], [16.6, -22.4, .3], [19.6, -13.9, .22], [16.2, -17.6, .28], [21, -25.6, .26]];
+export const FELLED = [[18.6, -19.92, .2, -2, 3], [16.98, -15.69, .16, -1.3, 2.4], [19.86, -24.12, .18, -2.6, 2.6]];
+/* His stack of cut poles [x, z, yaw]. */
+export const POLES = [20.8, -16.9, .9];
 
 /* Landmark sites: objects built when Fuchs comes near (centre and radius decide when). */
 export const SITES = [

@@ -17,7 +17,8 @@ export function createBigWorld() {
   const fog = {color: new THREE.Color('#e8dcae'), near: 24, far: 72, sunDir};
 
   /* ---------- colliders that are placed by hand ---------- */
-  const solids = [...L.SOLIDS.map(([x, z, r]) => ({x, z, r})), ...L.ROCKS.map(([x, z, s]) => ({x, z, r: s * .95})), ...L.TREES.map(([x, z, s]) => ({x, z, r: .55 + .25 * (s - 1)}))];
+  const solids = [...L.SOLIDS.map(([x, z, r]) => ({x, z, r})), ...L.ROCKS.map(([x, z, s]) => ({x, z, r: s * .95})), ...L.TREES.map(([x, z, s]) => ({x, z, r: .55 + .25 * (s - 1)})),
+    ...L.STUMPS.map(([x, z, r]) => ({x, z, r: r + .08})), ...L.FELLED.flatMap(([x, z, r, yaw, len]) => [-.4, -.13, .13, .4].map(t => ({x: x + Math.sin(yaw) * len * t, z: z + Math.cos(yaw) * len * t, r: r + .1})))];
   const hash = new Map(), HC = 4, hkey = (i, j) => i * 65536 + j;
   for (const s of solids) for (let i = Math.floor((s.x - s.r - 1) / HC); i <= Math.floor((s.x + s.r + 1) / HC); i++) for (let j = Math.floor((s.z - s.r - 1) / HC); j <= Math.floor((s.z + s.r + 1) / HC); j++) (hash.get(hkey(i, j)) || hash.set(hkey(i, j), []).get(hkey(i, j))).push(s);
   // Trees keep away from everything a child should reach or see.
