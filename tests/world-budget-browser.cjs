@@ -1,6 +1,6 @@
 /* World budget (blueprint 7A): the per-frame cost must depend on what is near Fuchs, not on the size of
-   the world. Walks a loop round the home clearing (1×) and the fixed route through all ten regions of the
-   development test world (?world=10x, separate save) and fails above the budget.
+   the world. Walks the fixed route through the whole big world (world/big/index.js BIG_ROUTE) and fails
+   above the budget.
    - Drawing pass: the worst frame's draw calls, triangles, live near/far tiles and animated characters.
    - Build pass: the same walk with drawing skipped, timing the build slices. On the iPad drawing runs on the
      GPU, but here SwiftShader draws on the same CPU cores as the page and keeps preempting it, which turns
@@ -15,7 +15,6 @@ const BASE=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000';
 const SLICE=Number(process.env.FARBTUPF_SLICE_BUDGET||4);
 const DRAW_BUDGET={maxCalls:150,maxTriangles:350000,maxLiveTiles:25,maxFarTiles:40,maxAnimated:6};
 const BUILD_BUDGET={p95BuildSliceMs:SLICE,maxBuildSliceMs:SLICE*3};
-const HOME_LOOP=[[-3.2,-2.4],[-7,-9.6],[-6.4,1.6],[1,4],[6.6,4.2],[9.6,-3],[16.2,-2.4],[15.6,-9.8],[8.8,-9.4],[1.4,-3.4]];
 
 async function walk(page,query,route,draw){
   await page.goto(BASE+'/?'+query);
@@ -41,7 +40,7 @@ const pick=(s,budget)=>Object.fromEntries(Object.keys(budget).map(k=>[k,+(+s[k])
   try{
     const context=await browser.newContext({viewport:{width:1080,height:810},reducedMotion:'reduce'}),page=await context.newPage(),errors=[];
     page.on('pageerror',e=>errors.push(e.message));
-    await page.goto(BASE+'/?world=10x');
+    await page.goto(BASE+'/');
     const route10=await page.evaluate(async()=>(await import('/js/friends/world/index.js')).TEST_ROUTE);
     for(const [label,query,route] of [['big world','dev=1&software=1',route10]]){
       const drawn=await walk(page,query,route,true);

@@ -4,16 +4,15 @@
    first, freed tiles dispose their geometry and the last 8 freed tiles are kept for quick returns.
    Materials and textures are shared and never disposed. Region landmarks load with their region. */
 import {THREE} from '../../forest/materials.js';
-import {buildTile, templates, TILE} from './tiles.js';
-import {landmarkSteps} from './landmarks.js';
+import {templates, TILE} from './tiles.js';
 
 export const NEAR = 40, FAR = 64, SLACK = 2;
 const centreDistance = (x, z, i, j) => Math.hypot((i + .5) * TILE - x, (j + .5) * TILE - z);
 
 export function createStreamer(world, look, scene, options = {}) {
   let onSlice = options.onSlice || (() => {});
-  // The big world brings its own tile builder and landmark sites (world/big/).
-  const build = world.buildTile || buildTile, marks = world.landmarkSteps || landmarkSteps;
+  // The world brings its tile builder and landmark sites (world/big/).
+  const build = world.buildTile, marks = world.landmarkSteps;
   const all = world.tiles(), live = new Map(), cache = [], jobs = [], regionGroups = new Map(), landmarks = {};
   const root = new THREE.Group(); root.name = 'world'; scene.add(root);
   let lookSteps = [...look.steps, () => templates()], focus = {x: 0, z: 0, ahead: {x: 0, z: 0}};

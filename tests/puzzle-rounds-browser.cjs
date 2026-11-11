@@ -17,7 +17,7 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
    const complete=FK.puzzleUI.completion;FK.puzzleUI.completion=(container,host,done)=>{const cancel=complete(container,host,done);window.puzzleCompletions.push({game:container.closest('.screen').dataset.game,leaves:container.querySelectorAll('.puzzle-progress .done').length});return cancel;};
   });
  };
- await page.goto(base+(uiOnly?'/?screen=hub':'/?software=1&world=home'),{waitUntil:'domcontentloaded'});await ready();
+ await page.goto(base+(uiOnly?'/?screen=hub':'/?software=1'),{waitUntil:'domcontentloaded'});await ready();
  await page.evaluate(()=>{FK.settings.set('sound',false);FK.go('forest-book',{from:'friends'});});await page.evaluate(()=>document.fonts.ready);console.log('READY catalogue');
  const entries=await page.evaluate(()=>FK.friendsLibrary.catalogue());assert.equal(entries.length,28);
  assert.equal(await page.locator('[data-game="rhyme"],[data-game="dots"]').count(),0);

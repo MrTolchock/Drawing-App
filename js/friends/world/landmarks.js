@@ -20,46 +20,6 @@ function merge(geos) {
 }
 const at = (g, x, y, z) => g.translate(x, y, z);
 
-/* ---------- the brook's water: depth colour, two flowing noise layers, glints, fresnel, bank foam ---------- */
-export function waterMesh(region, look, fog) {
-  const br = region.brook, b = region.bounds, pos = [], uv = [], idx = []; let count = 0;
-  const len = br.curve.getLength();
-  for (let i = 0; i <= br.N; i++) {
-    const t = i / br.N, p = br.samples[i]; if (p.z < b.z0 - 2 || p.z > b.z1 + 2) continue;
-    const q = br.samples[Math.min(br.N, i + 1)], o = br.samples[Math.max(0, i - 1)], dx = q.x - o.x, dz = q.z - o.z, l = Math.hypot(dx, dz) || 1, hw = br.width(t) / 2 + .16, y = br.level(t);
-    for (const s of [-1, 1]) { pos.push(p.x - dz / l * hw * s, y, p.z + dx / l * hw * s); uv.push(s < 0 ? 0 : 1, i * len / br.N); }
-    if (count) { const a = (count - 1) * 2; idx.push(a, a + 2, a + 1, a + 1, a + 2, a + 3); } count++;
-  }
-  const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2)); g.setIndex(idx); g.computeBoundingSphere();
-  if (!look.M.water) look.M.water = new THREE.ShaderMaterial({
-    transparent: true, depthWrite: false, side: THREE.DoubleSide,
-    uniforms: {uTime: {value: 3.7}, uNoise: {value: look.T.noise}, uShallow: {value: C('#7fc3b0')}, uDeep: {value: C('#1d6476')}, uFoam: {value: C('#f6fbf2')}, uSky: {value: C('#e6f1df')}, uSun: {value: C('#fff1c8')}, uSunDir: {value: fog.sunDir}, fogColor: {value: fog.color}, fogNear: {value: fog.near}, fogFar: {value: fog.far}},
-    vertexShader: 'varying vec2 vUv;varying vec3 vW;varying float vFog;void main(){vUv=uv;vec4 w=modelMatrix*vec4(position,1.);vW=w.xyz;vec4 mv=viewMatrix*w;vFog=-mv.z;gl_Position=projectionMatrix*mv;}',
-    fragmentShader: `uniform float uTime;uniform sampler2D uNoise;uniform vec3 uShallow,uDeep,uFoam,uSky,uSun,uSunDir,fogColor;uniform float fogNear,fogFar;varying vec2 vUv;varying vec3 vW;varying float vFog;
-    void main(){
-      float across=abs(vUv.x-.5)*2.;float along=vUv.y;
-      vec2 f1=vec2(vUv.x*.6,along*.07-uTime*.12),f2=vec2(vUv.x*1.1+.37,along*.12-uTime*.2);
-      float n1=texture2D(uNoise,f1).r,n2=texture2D(uNoise,f2).r,n=(n1+n2)*.5;
-      float e=.015;float nx=texture2D(uNoise,f2+vec2(e,0.)).r-n2,nz=texture2D(uNoise,f2+vec2(0.,e)).r-n2;
-      vec3 N=normalize(vec3(-nx*2.5,1.,-nz*2.5));vec3 V=normalize(cameraPosition-vW);
-      float depth=1.-across*across;
-      vec3 c=mix(uShallow,uDeep,smoothstep(.0,.8,depth)*.92);
-      c*=.94+.12*n;
-      float fres=pow(1.-max(dot(N,V),0.),4.);c=mix(c,uSky,fres*.35);
-      vec3 Hh=normalize(uSunDir+V);c+=uSun*smoothstep(.72,.92,n2)*pow(max(dot(N,Hh),0.),260.)*1.4;
-      float streak=smoothstep(.7,.82,n2)*(.2+.6*depth);c=mix(c,uFoam,streak*.08);
-      float foam=smoothstep(.84,.99,across)*smoothstep(.45,.7,n1+.18*sin(along*2.6+uTime*1.7));
-      c=mix(c,uFoam,foam*.7);
-      float alpha=mix(.86,.35,smoothstep(.45,1.,across));alpha=max(alpha,foam*.8);
-      c=mix(c,fogColor,smoothstep(fogNear,fogFar,vFog));
-      gl_FragColor=vec4(c,alpha);
-      #include <tonemapping_fragment>
-      #include <colorspace_fragment>
-    }`,
-  });
-  const m = new THREE.Mesh(g, look.M.water); m.name = 'water'; m.renderOrder = 2; return m;
-}
-
 /* ---------- landmarks, built in steps ---------- */
 export function landmarkSteps(region, look, world, group, out) {
   const {M, T} = look, R = rng(region.seed + 77), ground = region.ground;
@@ -156,7 +116,6 @@ export function landmarkSteps(region, look, world, group, out) {
     for (let i = 0; i < 18; i++) { const a = i / 18 * Math.PI, r = 1.05 + R() * .15, from = new THREE.Vector3(cx + Math.cos(a) * r, y, cz + Math.sin(a * 2) * .4), to = new THREE.Vector3(cx + Math.cos(a) * .15, y + .9 + R() * .3, cz);
       bark.push(tint(new THREE.TubeGeometry(new THREE.CatmullRomCurve3([from, from.clone().lerp(to, .5).add(new THREE.Vector3(0, .1, 0)), to]), 6, .08, 5), '#c99a72')); }
   });
-  if (region.brook) steps.push(() => group.add(waterMesh(region, look, world.fog)));
   // finally, one mesh per material
   const mk = (geos, material, name, cast = true) => { const g = merge(geos); if (!g) return; const m = new THREE.Mesh(g, material); m.name = name; m.castShadow = cast && M.shadows; m.receiveShadow = M.shadows; group.add(m); };
   steps.push(() => mk(bark, M.bark, 'landmark bark'), () => mk(rocks, M.rock, 'landmark rocks', false), () => mk(logs, M.log, 'log bridge'), () => mk(wood, M.wood, 'bridge'));

@@ -1,7 +1,6 @@
-/* The explorable 3D forest in the Waldbuch look (blueprint 6): a carved terrain with a meandering
-   brook, narrow trails, grass, ferns and flowers, fluted trees, the home tree with its closed door,
-   an arched bridge and a fallen-log bridge, built from region data in 16 m tiles that stream with
-   Fuchs (world/). The layout, colliders, routes and places are today's; the picture map stays true.
+/* The explorable 3D forest in the Waldbuch look (blueprint 6): the big world of js/friends/world/big/
+   (hills, the Rock and its waterfall, brook, beaver pond, meadow, swamp, trails), streamed in 16 m tiles
+   round Fuchs, with the cast, guidance fireflies, haze per area and a hazy backdrop of distant hills.
    Building is time-sliced while the child is in the den; nothing is downloaded. */
 import {THREE} from '../forest/materials.js';
 import {characters} from './characters3d.js';
@@ -18,7 +17,7 @@ export const walkable = (x, z) => WORLD.walkable(x, z);
 const groundY = (x, z) => WORLD.groundY(x, z);
 
 export function createForest({renderer, software, onPosition, onAction, onMove, onNear, perf}) {
-  const R = rng(97), home = WORLD.home, scene = new THREE.Scene(), camera = new THREE.PerspectiveCamera(42, 1, .1, 160);
+  const R = rng(97), scene = new THREE.Scene(), camera = new THREE.PerspectiveCamera(42, 1, .1, 160);
   scene.background = WORLD.fog.color; scene.fog = new THREE.Fog(WORLD.fog.color, WORLD.fog.near, WORLD.fog.far);
   const sunDir = WORLD.sunDir;
   // Sky: warm haze at the horizon, pale mint above, a soft glow around the low sun.
@@ -33,13 +32,13 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   scene.add(new THREE.HemisphereLight('#e4f0ff', '#8a7444', 1.35));
   const sun = new THREE.DirectionalLight('#ffe0ab', 2.6); scene.add(sun, sun.target);
   const shadowAt = new THREE.Vector3(Infinity, 0, 0);
-  function aimSun(x, z) { sun.target.position.set(x, WORLD.big ? WORLD.ground(x, z) : 0, z); sun.position.copy(sunDir).multiplyScalar(40).add(sun.target.position); sun.target.updateMatrixWorld(); shadowAt.set(x, 0, z); renderer.shadowMap.needsUpdate = true; }
+  function aimSun(x, z) { sun.target.position.set(x, WORLD.ground(x, z), z); sun.position.copy(sunDir).multiplyScalar(40).add(sun.target.position); sun.target.updateMatrixWorld(); shadowAt.set(x, 0, z); renderer.shadowMap.needsUpdate = true; }
   if (!software) { sun.castShadow = true; sun.shadow.mapSize.set(2048, 2048); Object.assign(sun.shadow.camera, {left: -30, right: 30, top: 30, bottom: -30, near: 5, far: 95}); sun.shadow.bias = -.0004; sun.shadow.normalBias = .04; }
   aimSun(2, -2);
   const fill = new THREE.DirectionalLight('#fff4e0', .55); scene.add(fill, fill.target);   // camera-side fill so faces read against the low sun
 
   /* ---------- the world, streamed in tiles ---------- */
-  const look = createLook({software, big: !!WORLD.big});
+  const look = createLook({software, big: true});
   const streamer = createStreamer(WORLD, look, scene, {onSlice: ms => perf?.slice(ms)});
   streamer.focus(forestPlaces.home.x, forestPlaces.home.z);
   let compiled = false;
@@ -47,7 +46,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
 
   /* ---------- the big world: hazy hills far away, and each area's own light ---------- */
   let backdrop = null; const mood = {near: WORLD.fog.near, far: WORLD.fog.far, bm: {}};
-  if (WORLD.big) {
+  {
     // One coarse mesh of the whole land (tree tops included) in the colour of the haze, drawn behind
     // everything and only beyond the far ring: the Rock and the wooded hills stay on the horizon.
     const T = WORLD.terrain, E = WORLD.extent, G = 8, M = 40, nx = (E.x1 - E.x0 + 2 * M) / G, nz = (E.z1 - E.z0 + 2 * M) / G, pos = [], col = [], idx = [], bm = {};
@@ -93,7 +92,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   function contact(r, o = 1) { const m = new THREE.Mesh(new THREE.CircleGeometry(1, 24), new THREE.MeshBasicMaterial({map: softTex, transparent: true, depthWrite: false, opacity: o, toneMapped: false})); m.rotation.x = -Math.PI / 2; m.scale.setScalar(r); m.renderOrder = 1; scene.add(m); return m; }
   const friends = {}, noCast = rig => { const off = () => rig.group.traverse(o => { o.castShadow = false; }); off(); rig.ready.then(off); return rig; };
   // The puzzle friends and, in the big world, the new neighbours (those whose models exist already).
-  for (const [id, f] of Object.entries({...(WORLD.friends || home.friends), ...(WORLD.neighbours || {})})) {
+  for (const [id, f] of Object.entries({...WORLD.friends, ...WORLD.neighbours})) {
     if (!characters[id]) continue;
     const rig = noCast(characters[id](f.h)), [x, z] = f.at, y = groundY(x, z) + f.y;
     rig.group.position.set(x, y, z); rig.group.rotation.y = f.yaw; scene.add(rig.group);
@@ -112,45 +111,23 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   let guideTarget = null, guidePoints = [], guideFrom = new THREE.Vector3(Infinity, 0, Infinity), guideEnd = new THREE.Vector3(Infinity, 0, Infinity), guideNext = 0;
   const ring = new THREE.Mesh(new THREE.RingGeometry(.4, .52, 32), new THREE.MeshBasicMaterial({color: '#fff3c4', transparent: true, opacity: .85, depthWrite: false, toneMapped: false}));
   ring.rotation.x = -Math.PI / 2; ring.visible = false; ring.renderOrder = 1; scene.add(ring);
-  const pins = Object.entries(WORLD.pins || home.pins).map(([id, [x, y, z]]) => ({id, point: new THREE.Vector3(x, y + groundY(x, z), z)}));
+  const pins = Object.entries(WORLD.pins).map(([id, [x, y, z]]) => ({id, point: new THREE.Vector3(x, y + groundY(x, z), z)}));
 
   /* ---------- movement, routes and camera ---------- */
   let destination = null, path = [], arrival = null, near = null, lastSample = 0, lastPuff = 0, narrow = false, width = 1, height = 1, speedScale = 1;
   const focus = new THREE.Vector3(), raycaster = new THREE.Raycaster(), floor = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
-  // Route hubs: around every collider and at both ends of each crossing.
-  const hubs = [[2, -2.4]];
-  if (!WORLD.big) for (const region of WORLD.regions) {
-    for (const c of region.crossings) { const dx = c.b[0] - c.a[0], dz = c.b[1] - c.a[1], l = Math.hypot(dx, dz); hubs.push([c.a[0] - dx / l * .9, c.a[1] - dz / l * .9], [c.b[0] + dx / l * .9, c.b[1] + dz / l * .9], [(c.a[0] + c.b[0]) / 2, (c.a[1] + c.b[1]) / 2]); }
-    for (const s of region.solids) if (Math.hypot(s.x - region.clearing.x, s.z - region.clearing.z) < region.clearing.r) for (let i = 0; i < 8; i++) { const a = i / 8 * TAU; hubs.push([s.x + Math.cos(a) * (s.r + .8), s.z + Math.sin(a) * (s.r + .8)]); }
-  }
-  const hubPoints = hubs.filter(([x, z]) => walkable(x, z)).map(([x, z]) => new THREE.Vector3(x, 0, z));
   function clear(a, b, skipStart = false) { const d = Math.hypot(b.x - a.x, b.z - a.z), n = Math.max(2, Math.ceil(d / .3)); for (let i = skipStart ? 1 : 0; i <= n; i++) { const t = i / n; if (skipStart && t * d < .35) continue; if (!walkable(a.x + (b.x - a.x) * t, a.z + (b.z - a.z) * t)) return false; } return true; }
-  // Hubs never move, so whether two hubs see each other is worked out once (the fireflies re-plan every second).
-  // The whole table is filled in the den's build slices (row by row), so Fuchs never waits for it.
-  let hubRows = 0;
-  const hubSight = new Map(), hubClear = (a, b) => { const k = Math.min(a, b) * 4096 + Math.max(a, b); let v = hubSight.get(k); if (v === undefined) hubSight.set(k, v = clear(hubPoints[a], hubPoints[b])); return v; };
+  // Routes come from the world's grid search; a short straight walk needs none.
   function plan(target) {
-    if (WORLD.plan) { // the big world searches its own grid
-      if (pos.distanceTo(target) < 10 && clear(pos, target, true)) return [target];
-      const route = WORLD.plan(pos.x, pos.z, target.x, target.z); return route && route.map(([x, z]) => new THREE.Vector3(x, 0, z));
-    }
-    if (clear(pos, target, true)) return [target];
-    const ids = [-1, -1]; hubPoints.forEach((p, h) => { if (p.distanceTo(pos) < 60 || p.distanceTo(target) < 60) ids.push(h); });
-    const points = [pos.clone().setY(0), target, ...ids.slice(2).map(h => hubPoints[h])], cost = points.map(() => Infinity), previous = [], visited = new Set(); cost[0] = 0;
-    const sees = (a, b) => a > 1 && b > 1 ? hubClear(ids[a], ids[b]) : clear(points[a], points[b], a === 0);
-    while (visited.size < points.length) {
-      let next = -1; for (let i = 0; i < points.length; i++) if (!visited.has(i) && (next < 0 || cost[i] < cost[next])) next = i;
-      if (next < 0 || !Number.isFinite(cost[next]) || next === 1) break; visited.add(next);
-      for (let i = 0; i < points.length; i++) { if (visited.has(i)) continue; const c = cost[next] + points[next].distanceTo(points[i]); if (c >= cost[i] || !sees(next, i)) continue; cost[i] = c; previous[i] = next; }
-    }
-    if (!Number.isFinite(cost[1])) return null; const route = []; let cursor = 1; while (cursor !== 0) { route.unshift(points[cursor]); cursor = previous[cursor]; } return route;
+    if (pos.distanceTo(target) < 10 && clear(pos, target, true)) return [target];
+    const route = WORLD.plan(pos.x, pos.z, target.x, target.z); return route && route.map(([x, z]) => new THREE.Vector3(x, 0, z));
   }
   function nearestWalkable(p) { if (walkable(p.x, p.z)) return new THREE.Vector3(p.x, 0, p.z); for (let r = .3; r < 6; r += .3) for (let i = 0; i < 16; i++) { const a = i / 16 * TAU, x = p.x + Math.cos(a) * r, z = p.z + Math.sin(a) * r; if (walkable(x, z)) return new THREE.Vector3(x, 0, z); } return pos.clone().setY(0); }
   function walkTo(target, id = null) { target = nearestWalkable(target); const route = plan(target); if (!route) { onMove({event: 'route_failure', reason: 'blocked', area: 'forest', destination: id}); return; } path = route; destination = path.shift(); arrival = id; ring.position.set(target.x, groundY(target.x, target.z) + .05, target.z); ring.visible = true; onMove({event: 'movement_destination', destination: id, x: target.x, z: target.z, area: 'forest'}); }
-  // On the big world's hills the camera follows the full height of the ground and never sinks into a slope.
-  const lift = WORLD.big ? 1 : .5;
+  // On the hills the camera follows the full height of the ground and never sinks into a slope.
+  const lift = 1;
   function snapCamera() { focus.set(pos.x, groundY(pos.x, pos.z) * lift, pos.z); placeCamera(1); }
-  function placeCamera(k) { const off = narrow ? [0, 10, 14.4] : [0, 9, 14]; camera.position.lerp(new THREE.Vector3(focus.x + off[0], focus.y + off[1], focus.z + off[2]), k); if (WORLD.big) camera.position.y = Math.max(camera.position.y, WORLD.ground(camera.position.x, camera.position.z) + 3.5); camera.lookAt(focus.x, focus.y + 1.4, focus.z - 3.2); camera.updateMatrixWorld(); foxView.value.set(pos.x, groundY(pos.x, pos.z) + .9, pos.z).applyMatrix4(camera.matrixWorldInverse); fill.position.copy(camera.position).add(new THREE.Vector3(0, 4, 0)); fill.target.position.copy(focus); fill.target.updateMatrixWorld(); horizon.position.x = camera.position.x; horizon.position.z = camera.position.z - 20; }
+  function placeCamera(k) { const off = narrow ? [0, 10, 14.4] : [0, 9, 14]; camera.position.lerp(new THREE.Vector3(focus.x + off[0], focus.y + off[1], focus.z + off[2]), k); camera.position.y = Math.max(camera.position.y, WORLD.ground(camera.position.x, camera.position.z) + 3.5); camera.lookAt(focus.x, focus.y + 1.4, focus.z - 3.2); camera.updateMatrixWorld(); foxView.value.set(pos.x, groundY(pos.x, pos.z) + .9, pos.z).applyMatrix4(camera.matrixWorldInverse); fill.position.copy(camera.position).add(new THREE.Vector3(0, 4, 0)); fill.target.position.copy(focus); fill.target.updateMatrixWorld(); horizon.position.x = camera.position.x; horizon.position.z = camera.position.z - 20; }
   function publishMailPosition() { const p = forestPlaces.mailman; p.x = mailPos.x; p.z = mailPos.z; p.pu = THREE.MathUtils.clamp(.5 + mailPos.x * .023, .07, .93); p.pv = THREE.MathUtils.clamp(.49 + mailPos.z * .025, .1, .9); }
   function summonMailman() {
     let chosen = null; for (const radius of [2.2, 2.7, 3.2, 3.8]) { for (let i = 0; i < 16; i++) { const a = -.5 + i / 16 * TAU, candidate = new THREE.Vector3(pos.x + Math.cos(a) * radius, 0, pos.z + Math.sin(a) * radius); if (walkable(candidate.x, candidate.z) && clear(pos, candidate, true)) { chosen = candidate; break; } } if (chosen) break; }
@@ -215,7 +192,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     if (!reduced) { if (look.M.water) look.M.water.uniforms.uTime.value += dt; motes.position.set(pos.x, Math.sin(time * .35) * .3, pos.z); motes.rotation.y = time * .01; } else motes.position.set(pos.x, 0, pos.z);
     if (ring.visible) ring.material.opacity = .55 + Math.sin(time * 4) * .25;
     updateGuide(time);
-    if (WORLD.big) { updateMood(dt, pos.x, pos.z); backdrop.material.uniforms.uFox.value.copy(pos); const sw = streamer.landmarks.swamp; if (sw?.glow) sw.glow.material.opacity = reduced ? .8 : .55 + .4 * Math.sin(time * 1.7); if (sw?.mist && !reduced) sw.mist.position.x = Math.sin(time * .12) * 1.5; }
+    { updateMood(dt, pos.x, pos.z); backdrop.material.uniforms.uFox.value.copy(pos); const sw = streamer.landmarks.swamp; if (sw?.glow) sw.glow.material.opacity = reduced ? .8 : .55 + .4 * Math.sin(time * 1.7); if (sw?.mist && !reduced) sw.mist.position.x = Math.sin(time * .12) * 1.5; }
     focus.lerp(new THREE.Vector3(pos.x + vel.x * .35, base * lift, pos.z + vel.y * .35), reduced ? 1 : 1 - Math.exp(-dt * 2.6)); placeCamera(1);
     // stream tiles around Fuchs and ahead of him (≤ 4 ms per frame); move the static shadow with him
     // (when frames are already long, a tenth of the frame: the wait for new ground matters more than the slice)
@@ -227,15 +204,12 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     /** Build in slices while the child is in the den; returns true while work remains. */
     build(budget = 8) {
       const t0 = performance.now(), more = streamer.work(budget);
-      if (WORLD.nav) { const filling = !more && WORLD.nav.work(Math.max(1, budget - (performance.now() - t0))); if (!more && !filling) compile(); return more || filling; }
-      while (!more && hubRows < hubPoints.length && performance.now() - t0 < budget) { for (let b = hubRows + 1; b < hubPoints.length; b++) hubClear(hubRows, b); hubRows++; }
-      if (!more && hubRows >= hubPoints.length) compile();
-      return more || hubRows < hubPoints.length;
+      const filling = !more && WORLD.nav.work(Math.max(1, budget - (performance.now() - t0))); if (!more && !filling) compile(); return more || filling;
     },
-    get pending() { return streamer.pending() || (WORLD.nav ? WORLD.nav.pending : hubRows < hubPoints.length); },
+    get pending() { return streamer.pending() || WORLD.nav.pending; },
     enter(position) {
       const p = position && walkable(position.x, position.z) ? position : forestPlaces.home; pos.set(p.x, 0, p.z); vel.set(0, 0); fox.rotation.y = 0; destination = null; path = []; arrival = null; ring.visible = false; near = null;
-      streamer.focus(pos.x, pos.z); const finishing = streamer.complete(); if (perf) perf.stats.enterBuildMs = finishing; compile(); aimSun(WORLD.mode === 'home' ? 2 : pos.x, WORLD.mode === 'home' ? -2 : pos.z); snapCamera(); renderer.shadowMap.needsUpdate = true;
+      streamer.focus(pos.x, pos.z); const finishing = streamer.complete(); if (perf) perf.stats.enterBuildMs = finishing; compile(); aimSun(pos.x, pos.z); snapCamera(); renderer.shadowMap.needsUpdate = true;
     },
     resize(w, h) { width = w; height = h; narrow = w < 600; camera.aspect = w / Math.max(1, h); camera.fov = narrow ? 54 : 42; camera.updateProjectionMatrix(); const vh = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * 1.02; vignette.scale.set(vh * camera.aspect, vh, 1); snapCamera(); },
     update, route(id) { const p = forestPlaces[id]; if (id === 'mailman') { courierGoal = null; courierWait = 20; } if (p) walkTo(new THREE.Vector3(p.x, 0, p.z), id); },
