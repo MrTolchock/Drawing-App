@@ -68,7 +68,7 @@ positions logged): watch for it.
 - The old clearing is removed (region engine, old tile builder, `?world=home`).
 - The neighbours have letters, puzzles, portraits (`tools/portraits/`) and map pins; the picture map is painted
   from the world (`tools/map/`). Letters cycle through all ten friends; older saves stay valid.
-- To check: the Lehrplan 21 references NMG.2.4.a (Igel) and NMG.2.1.a (Reh).
+- Lehrplan 21 references NMG.2.4.a (Igel) and NMG.2.1.a (Reh) confirmed by the owner.
 
 ## Left for later (clean-up, suitable for a smaller model)
 - `friends-library-browser.cjs` line 83 and `friends-click-browser.cjs` still expect the screens from before
