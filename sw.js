@@ -1,5 +1,8 @@
 /* Farbtupf – Service Worker: keeps the whole app on the device so it runs without internet. */
-const CACHE = 'farbtupf-v9.0.3-updates';
+const CACHE = 'farbtupf-v9.0.4-recovery';
+const SCOPE=self.registration.scope;
+const INDEX=new URL('index.html',SCOPE).href;
+const ACTIVE_MARKER=new URL('.farbtupf-active-cache',SCOPE).href;
 const ASSETS = [
   './js/core/updates.js',
   './css/typography.css',
@@ -203,21 +206,67 @@ const ASSETS = [
   './icons/apple-touch-icon.png',
 ];
 
+async function appCaches(){
+  const result=[];
+  for(const name of await caches.keys()){
+    if(!name.startsWith('farbtupf-'))continue;
+    const cache=await caches.open(name);
+    if(await cache.match(INDEX,{ignoreVary:true}))result.push({name,marked:!!await cache.match(ACTIVE_MARKER)});
+  }
+  return result;
+}
+async function removeAppCache(name){
+  if(!await caches.has(name))return;
+  const cache=await caches.open(name),requests=await cache.keys();
+  // Other installations can share this origin. Remove only this app's URLs.
+  await Promise.all(requests.filter(r=>r.url.startsWith(SCOPE)).map(r=>cache.delete(r)));
+  if(!(await cache.keys()).length)await caches.delete(name);
+}
+async function prepareCache(){
+  const entries=await appCaches();
+  // Legacy activation deleted every other cache, so its earliest complete cache
+  // is the active one; later caches are abandoned waiting downloads. New releases
+  // mark the active cache explicitly. Keep it until the replacement is complete.
+  const marked=entries.filter(e=>e.marked);
+  const active=self.registration.active?(marked[marked.length-1]?.name||entries[0]?.name):null;
+  await Promise.all(entries.filter(e=>e.name!==active).map(e=>removeAppCache(e.name)));
+  if(CACHE!==active)await removeAppCache(CACHE);
+  return active===CACHE;
+}
+async function reportFailure(error){
+  for(const client of await self.clients.matchAll({type:'window',includeUncontrolled:true})){
+    if(client.url.startsWith(SCOPE))client.postMessage({type:'farbtupf-update-error',name:error.name||'Error',message:error.message||'Update failed'});
+  }
+}
+
 // Fully cache the release before activation. Legacy installed pages cannot ask a
 // waiting worker to activate, so activation must not depend on their JavaScript.
 // Current pages reload only on idle screens (updates.js), never during a task.
 self.addEventListener('install', (event) => {
-  event.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS.map((u) => new Request(u, { cache: 'reload' })))).then(()=>self.skipWaiting()));
+  event.waitUntil((async()=>{
+    let alreadyActive=true;
+    try{
+      alreadyActive=await prepareCache();
+      const cache=await caches.open(CACHE);
+      await cache.addAll(ASSETS.map(u=>new Request(u,{cache:'reload'})));
+      await self.skipWaiting();
+    }catch(error){
+      if(!alreadyActive)await removeAppCache(CACHE);
+      await reportFailure(error);throw error;
+    }
+  })());
 });
 
 self.addEventListener('message', (event) => {
   if (event.data === 'activate') self.skipWaiting();
+  if(event.data==='version')event.ports[0]?.postMessage({version:CACHE.match(/^farbtupf-v([^-]+)/)?.[1]||CACHE});
 });
 
 self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys()
-      .then((keys) => Promise.all(keys.filter((k) => k.startsWith('farbtupf-') && k !== CACHE).map((k) => caches.delete(k))))
+    appCaches()
+      .then(entries=>Promise.all(entries.filter(e=>e.name!==CACHE).map(e=>removeAppCache(e.name))))
+      .then(()=>caches.open(CACHE)).then(cache=>cache.put(ACTIVE_MARKER,new Response(CACHE)))
       .then(() => self.clients.claim())
   );
 });
@@ -225,6 +274,8 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   const req = event.request;
   if (req.method !== 'GET' || new URL(req.url).origin !== self.location.origin) return;
+  // This small independent recovery page must remain reachable from old shells.
+  if(new URL(req.url).pathname===new URL('update.html',SCOPE).pathname){event.respondWith(fetch(req,{cache:'no-store'}));return;}
   event.respondWith(
     caches.open(CACHE).then(c=>c.match(req, { ignoreSearch: true })).then((hit) => {
       if (hit) return hit;

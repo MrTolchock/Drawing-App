@@ -1,16 +1,22 @@
 /* Real old-to-new service workers: recovery, foreground checks, safe reload and saved work. */
 const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'/opt/codex/cua_node/lib/node_modules/playwright');
-const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),http=require('node:http'),{execFileSync}=require('node:child_process');
-const root=path.resolve(__dirname,'..'),read=file=>fs.readFileSync(path.join(root,file));
-const legacy=new Map(['index.html','js/app.js','js/friends/settings.js','sw.js'].map(file=>[file,execFileSync('git',['show','95b27dc:'+file],{cwd:root})]));
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),http=require('node:http'),os=require('node:os'),{execFileSync}=require('node:child_process');
+const root=path.resolve(__dirname,'..');
+const legacyRef=process.env.FARBTUPF_LEGACY_REF||'95b27dc',legacyVersion=process.env.FARBTUPF_LEGACY_VERSION||'9.0.2';
+const legacySW=execFileSync('git',['show',legacyRef+':sw.js'],{cwd:root,encoding:'utf8'});
+const legacyHTML=execFileSync('git',['show',legacyRef+':index.html'],{cwd:root,encoding:'utf8'});
+const files=[...new Set(['index.html','sw.js',...Array.from(legacySW.split('const ASSETS = [')[1].split('];')[0].matchAll(/'\.\/([^']*)'/g),m=>m[1]||'index.html'),...Array.from(legacyHTML.matchAll(/(?:src|href)="([^"#]+)"/g),m=>m[1]).filter(p=>!p.includes(':'))])];
+const legacyRoot=fs.mkdtempSync(path.join(os.tmpdir(),'farbtupf-legacy-'));
+execFileSync('tar',['-xf','-','-C',legacyRoot],{input:execFileSync('git',['archive',legacyRef,'--',...files],{cwd:root,maxBuffer:128*1024*1024})});
 const mime={'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json','.webmanifest':'application/manifest+json','.woff2':'font/woff2','.svg':'image/svg+xml','.png':'image/png','.webp':'image/webp','.glb':'model/gltf-binary'};
-let version='9.0.2',broken=false;
+let version=legacyVersion,broken=false,staleBareWorker=false;
 const server=http.createServer((req,res)=>{
- const file=decodeURIComponent(new URL(req.url,'http://localhost').pathname).replace(/^\//,'')||'index.html',full=path.resolve(root,file);
- if(!full.startsWith(root+path.sep)||!fs.existsSync(full)||!fs.statSync(full).isFile()){res.writeHead(404);res.end();return;}
- let data=version==='9.0.2'&&legacy.has(file)?legacy.get(file):read(file);
+ const requestURL=new URL(req.url,'http://localhost'),file=decodeURIComponent(requestURL.pathname).replace(/^\//,'')||'index.html',sourceRoot=version===legacyVersion?legacyRoot:root,full=path.resolve(sourceRoot,file);
+ if(!full.startsWith(sourceRoot+path.sep)||!fs.existsSync(full)||!fs.statSync(full).isFile()){res.writeHead(404);res.end();return;}
+ let data=fs.readFileSync(full);
  if(file==='js/core/util.js')data=data.toString().replace(/FK.VERSION = '[^']+'/,"FK.VERSION = '"+version+"'");
- if(file==='sw.js'&&version!=='9.0.2')data=data.toString().replace(/farbtupf-v[^']+/, 'farbtupf-v'+version+'-update-test').replace('const ASSETS = [','const ASSETS = ['+(broken?"'./missing-update-fixture.png',":''));
+ if(file==='sw.js'&&version!==legacyVersion)data=data.toString().replace(/farbtupf-v[^']+/, 'farbtupf-v'+version+'-update-test').replace('const ASSETS = [','const ASSETS = ['+(broken?"'./missing-update-fixture.png',":''));
+ if(file==='sw.js'&&staleBareWorker&&!requestURL.searchParams.has('repair'))data=legacySW;
  res.writeHead(200,{'Content-Type':mime[path.extname(file)]||'application/octet-stream','Cache-Control':'no-store'});res.end(data);
 });
 (async()=>{await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));const base='http://127.0.0.1:'+server.address().port;
@@ -21,16 +27,20 @@ const server=http.createServer((req,res)=>{
  let navigations=0;page.on('framenavigated',f=>{if(f===page.mainFrame())navigations++;console.log('DOCUMENT',navigations);});
  await page.goto(base+'/?screen=hub');await page.evaluate(()=>navigator.serviceWorker.ready);await page.waitForFunction(()=>!!navigator.serviceWorker.controller);
  await page.evaluate(async()=>{FK.settings.set('schrift','normal');FK.progress.finish('trace','A',1);localStorage.setItem('update-save-sentinel','retained');await FK.store.put('update-sentinel',{drawing:'retained'});await (await caches.open('unrelated-app-cache')).put('other.txt',new Response('retained'));});
- assert.equal(await page.evaluate(()=>FK.VERSION),'9.0.2');assert.equal(await page.evaluate(()=>!!FK.updates),false);
+ assert.equal(await page.evaluate(()=>FK.VERSION),legacyVersion);assert.equal(await page.evaluate(()=>!!FK.updates),false);
+ if(process.env.FARBTUPF_ORPHAN_CACHES==='1'){
+  await page.evaluate(async()=>{const name=(await caches.keys()).find(n=>n.startsWith('farbtupf-')),old=await caches.open(name),keys=await old.keys();for(const suffix of ['abandoned-a','abandoned-b']){const copy=await caches.open('farbtupf-'+suffix);for(const key of keys)await copy.put(key,await old.match(key));}});
+  const cdp=await context.newCDPSession(page);await cdp.send('Storage.overrideQuotaForOrigin',{origin:base,quotaSize:50*1024*1024});const usage=await cdp.send('Storage.getUsageAndQuota',{origin:base});console.log('SIMULATED STORAGE',JSON.stringify({usage:usage.usage,quota:usage.quota}));
+ }
  // This old app has no controllerchange reload or foreground checker. The new
  // worker must activate on its own, without old code posting an activate message.
  version='9.0.3';await page.evaluate(async()=>{window.oldController=navigator.serviceWorker.controller;await (await navigator.serviceWorker.getRegistration()).update();});
  await page.waitForFunction(()=>navigator.serviceWorker.controller!==window.oldController);
- assert.equal(await page.evaluate(()=>FK.VERSION),'9.0.2');await page.reload();await page.waitForFunction(()=>FK.VERSION==='9.0.3'&&!!FK.updates);
+ assert.equal(await page.evaluate(()=>FK.VERSION),legacyVersion);await page.reload();await page.waitForFunction(()=>FK.VERSION==='9.0.3'&&!!FK.updates);
  await page.waitForFunction(()=>FK.updates.get().status==='current');
  assert.equal(await page.evaluate(async()=>(await navigator.serviceWorker.getRegistration()).updateViaCache),'none');
  async function saved(){assert.equal(await page.evaluate(()=>localStorage.getItem('update-save-sentinel')),'retained');assert.equal(await page.evaluate(()=>FK.settings.get('schrift')),'normal');assert.equal(await page.evaluate(()=>FK.progress.isDone('trace','A')),true);assert.deepEqual(await page.evaluate(()=>FK.store.get('update-sentinel')),{drawing:'retained'});}
- await saved();assert.equal(await page.evaluate(()=>caches.has('unrelated-app-cache')),true);
+ await saved();assert.equal(await page.evaluate(()=>caches.has('unrelated-app-cache')),true);assert.deepEqual(await page.evaluate(async()=>(await caches.keys()).filter(n=>n.includes('abandoned-'))),[],'abandoned waiting downloads removed');
  await page.evaluate(async()=>{await (await caches.open('unrelated-app-cache')).put('cache-probe',new Response('wrong cache'));const name=(await caches.keys()).find(k=>k.startsWith('farbtupf-v9.0.3'));await (await caches.open(name)).put('cache-probe',new Response('own cache'));});
  assert.equal(await page.evaluate(()=>fetch('cache-probe').then(r=>r.text())),'own cache');
  console.log('PASS: legacy installation recovers without new page code; own cache, unrelated caches and local/IndexedDB saves retained.');
@@ -63,5 +73,11 @@ const server=http.createServer((req,res)=>{
  version='9.0.3';broken=false;
  const first=await browser.newContext({viewport:{width:390,height:844}}),fresh=await first.newPage();let freshLoads=0;fresh.on('framenavigated',f=>{if(f===fresh.mainFrame())freshLoads++;});await fresh.goto(base+'/?screen=hub');await fresh.waitForFunction(()=>!!navigator.serviceWorker.controller&&window.FK?.updates?.get().status==='current');assert.equal(freshLoads,1,'first install does not reload');await fresh.evaluate(()=>FK.go('settings'));assert.equal(await fresh.getByRole('button',{name:'Nach Updates suchen',exact:true}).isEnabled(),true);await first.close();console.log('PASS: first install finishes with an enabled update control and no reload loop.');
 
- }finally{await browser.close();server.closeAllConnections();await new Promise(resolve=>server.close(resolve));}
+ // Recovery must escape even a stale bare sw.js URL and keep all saved data.
+ version=legacyVersion;const repairContext=await browser.newContext({viewport:{width:390,height:844}}),repairPage=await repairContext.newPage();repairPage.on('pageerror',e=>errors.push(e.message));await repairPage.goto(base+'/?screen=hub');await repairPage.evaluate(()=>navigator.serviceWorker.ready);await repairPage.waitForFunction(()=>!!navigator.serviceWorker.controller);await repairPage.evaluate(async()=>{localStorage.setItem('recovery-sentinel','retained');await FK.store.put('recovery-drawing',{retained:true});});
+ version='9.0.4';staleBareWorker=true;await repairPage.evaluate(async()=>{await (await navigator.serviceWorker.getRegistration()).update();});assert.equal(await repairPage.evaluate(()=>FK.VERSION),legacyVersion);
+ await repairPage.goto(base+'/update.html');await repairPage.getByRole('link',{name:'Spiel öffnen',exact:true}).waitFor({state:'visible',timeout:60000});assert.match(await repairPage.locator('#status').innerText(),/9\.0\.4/);
+ for(const width of [390,1024]){await repairPage.setViewportSize({width,height:width===390?844:900});await repairPage.screenshot({path:shots+'/recovery-'+width+'.png',animations:'disabled'});}
+ await repairPage.goto(base+'/?screen=hub');await repairPage.waitForFunction(()=>window.FK?.VERSION==='9.0.4'&&FK.updates?.get().status==='current');assert.match(await repairPage.evaluate(()=>navigator.serviceWorker.controller.scriptURL),/repair=/);assert.equal(await repairPage.evaluate(()=>localStorage.getItem('recovery-sentinel')),'retained');assert.deepEqual(await repairPage.evaluate(()=>FK.store.get('recovery-drawing')),{retained:true});assert.deepEqual(errors,[]);await repairContext.close();console.log('PASS: independent recovery page bypasses a stale updater URL, verifies 9.0.4 and retains saves without another installation.');
+ }finally{await browser.close();server.closeAllConnections();await new Promise(resolve=>server.close(resolve));fs.rmSync(legacyRoot,{recursive:true,force:true});}
 })().catch(e=>{console.error(e);process.exitCode=1;server.close();});

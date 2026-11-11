@@ -48,6 +48,8 @@ The parent gate accepts an entered multiplication result. A wrong or empty answe
 
 The [installed-app update review](../design/forest-friends/visuals/milestones/pwa-updates/README.md) records the parent control and upgrade checks.
 
+For cached versions that cannot use the current Settings control, [the independent recovery page](../update.html) forces a fresh updater check and confirms the installed release. The worker clears abandoned download caches before installation while keeping the working release and all saved game data.
+
 The [input and typography comparison](../design/forest-friends/visuals/milestones/input-typography/README.md) records the phone/tablet review and intentional changes to the earlier type styles.
 
 ## Den and free Malatelier

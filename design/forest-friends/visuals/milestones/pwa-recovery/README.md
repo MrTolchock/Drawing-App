@@ -1,0 +1,7 @@
+# Recovery from cached releases — 11 November 2026
+
+App 9.0.4, based on `2db8278`. [Phone, 390 × 844](recovery-390.jpg) and [tablet, 1024 × 900](recovery-1024.jpg) show the independent update page after the worker confirms its actual installed version. It offers one **Spiel öffnen** action after success, retry after errors, and optional technical details. The warm paper/honey/green palette and Baloo 2 heading/Andika body follow the shared guide. Frozen art and baseline specimens are unchanged.
+
+Browser tests use full archived runtime snapshots of the reported 8.9.2 and 9.0.0 releases. They create two abandoned download caches, then impose a 50 MiB origin quota: measured usage starts above the quota (about 53.4 MB for 8.9.2 and 57.3 MB for 9.0.0). Installation frees abandoned app resources before downloading, retains the working cache, and completes successfully. Settings, progress and IndexedDB records survive; later puzzle/drawing deferral, failed downloads and offline reload also pass.
+
+The recovery test deliberately serves stale code for the ordinary updater URL. The independent page uses a unique registration URL, confirms 9.0.4 via a worker message, and opens the game without reverting to the stale URL. A separate current-release smoke check verifies the success/retry presentation and both viewports. These are Chromium tests with simulated storage constraints, not an inspection of the user's iPhone or physical Safari testing.

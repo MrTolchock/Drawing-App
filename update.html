@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="de-CH">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#fff5df">
+<title>Farbtupf aktualisieren</title>
+<style>
+@font-face{font-family:Andika;src:url('fonts/andika-400.woff2');font-weight:400;font-display:swap}
+@font-face{font-family:Andika;src:url('fonts/andika-700.woff2');font-weight:700;font-display:swap}
+@font-face{font-family:'Baloo 2';src:url('fonts/baloo2.woff2');font-weight:400 800;font-display:swap}
+*{box-sizing:border-box}body{margin:0;padding:32px 16px;background:#f3edda;color:#4b3b2d;font:16px/1.6 Andika,system-ui,sans-serif}
+main{max-width:580px;margin:5vh auto;padding:28px;background:#fffaf0;border:2px solid #d4b986;border-radius:24px;box-shadow:0 5px 0 #d6b680}
+h1{font:700 clamp(26px,6vw,34px)/1.25 'Baloo 2',system-ui,sans-serif;margin:0 0 16px}p{margin:16px 0}.note{font-size:14px;color:#78664f}
+button,.open-game{display:block;width:100%;margin-top:20px;min-height:54px;padding:12px 16px;border:2px solid #bda482;border-radius:14px;background:#f2e2b6;color:#4b3b2d;text-align:center;text-decoration:none;font:700 17px/1.4 Andika,system-ui,sans-serif;cursor:pointer}
+button:disabled{opacity:.6;cursor:wait}.open-game{background:#e3edcf;border-color:#789450}button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #456d83;outline-offset:4px}
+#status{padding:14px;border-radius:14px;background:#f0ecd9;min-height:80px}details{margin-top:20px;font-size:14px}summary{cursor:pointer;min-height:44px;align-content:center}pre{white-space:pre-wrap;overflow-wrap:anywhere;font:13px/1.5 Andika,system-ui,sans-serif}[hidden]{display:none!important}
+</style>
+<main>
+<h1>Farbtupf aktualisieren</h1>
+<p>Diese Seite lädt die aktuelle Version. Deine gespeicherten Bilder, Einstellungen und Spielstände bleiben erhalten.</p>
+<p id="status" role="status" aria-live="polite">Die Aktualisierung wird vorbereitet …</p>
+<button id="retry" type="button">Erneut versuchen</button>
+<a id="open" class="open-game" hidden>Spiel öffnen</a>
+<p class="note">Auf dem iPhone können Safari und die Home-Screen-App getrennte Speicher haben. Diese Seite aktualisiert das Fenster, in dem sie geöffnet ist.</p>
+<details><summary>Technische Details</summary><pre id="details"></pre></details>
+</main>
+<script>
+(function(){
+ 'use strict';
+ const status=document.getElementById('status'),retry=document.getElementById('retry'),open=document.getElementById('open'),details=document.getElementById('details');
+ const base=new URL('./',location.href);open.href=base.href;
+ let busy=false,lastFailure;
+ function diagnostics(error,reg){
+  details.textContent=JSON.stringify({error:error?{name:error.name,message:error.message}:null,online:navigator.onLine,active:reg?.active?.scriptURL,waiting:reg?.waiting?.state},null,2);
+ }
+ function activated(reg,url){return new Promise((resolve,reject)=>{
+  const timer=setTimeout(()=>finish(new Error('Die Aktualisierung dauert zu lange. Bitte nochmals versuchen.')),90000),seen=new WeakSet();
+  function finish(error,worker){clearTimeout(timer);reg.removeEventListener('updatefound',inspect);error?reject(error):resolve(worker);}
+  function watch(worker){
+   if(!worker||worker.scriptURL!==url||seen.has(worker))return;
+   seen.add(worker);
+   const state=()=>{
+    if(worker.state==='activated')finish(null,worker);
+    if(worker.state==='installed')version(worker).then(current=>{if(!current&&worker.state==='installed')finish(new Error('Der Browser hat noch einen älteren Updater geladen. Bitte nochmals versuchen.'));});
+    if(worker.state==='redundant')finish(lastFailure||new Error('Die neue Version konnte nicht vollständig geladen werden.'));
+   };
+   worker.addEventListener('statechange',state);state();
+  }
+  function inspect(){watch(reg.installing);watch(reg.waiting);watch(reg.active);}
+  reg.addEventListener('updatefound',inspect);inspect();
+ });}
+ function version(worker){return new Promise(resolve=>{
+  const channel=new MessageChannel(),timer=setTimeout(()=>{channel.port1.close();resolve('');},10000);
+  channel.port1.onmessage=event=>{clearTimeout(timer);channel.port1.close();resolve(event.data?.version||'');};
+  worker.postMessage('version',[channel.port2]);
+ });}
+ async function run(){
+  if(busy)return;busy=true;lastFailure=null;retry.disabled=true;retry.hidden=true;open.hidden=true;let reg;
+  status.textContent='Die aktuelle Version wird geladen. Bitte lass diese Seite geöffnet.';
+  try{
+   if(!('serviceWorker' in navigator))throw new Error('Bitte öffne diese Seite in Safari mit einer Internetverbindung.');
+   if(navigator.onLine===false)throw new Error('Du bist offline. Bitte verbinde dich mit dem Internet.');
+   // Changing the script URL forces old browsers past a cached update check.
+   const url=new URL('sw.js?repair='+Date.now(),base).href;
+   reg=await navigator.serviceWorker.register(url,{scope:base.href,updateViaCache:'none'});
+   const worker=await activated(reg,url),current=await version(worker);
+   if(!current)throw new Error('Der Browser hat noch einen älteren Updater geladen. Bitte nochmals versuchen.');
+   status.textContent='Bereit – Version '+current+'. Du kannst das Spiel jetzt öffnen.';
+   open.hidden=false;diagnostics(null,reg);
+  }catch(error){
+   retry.hidden=false;
+   status.textContent=error.name==='QuotaExceededError'?'Für das Update ist zu wenig Speicher frei. Bitte gib auf dem Gerät Speicher frei und versuche es nochmals.':error.name==='TypeError'?'Das Update konnte nicht geladen werden. Prüfe die Internetverbindung und versuche es nochmals.':error.message;
+   diagnostics(error,reg);
+  }finally{busy=false;retry.disabled=false;}
+ }
+ navigator.serviceWorker?.addEventListener('message',event=>{if(event.data?.type==='farbtupf-update-error'){lastFailure=new Error(event.data.message);lastFailure.name=event.data.name;}});
+ retry.addEventListener('click',run);run();
+})();
+</script>
+</html>

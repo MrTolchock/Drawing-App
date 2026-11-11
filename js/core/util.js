@@ -3,7 +3,7 @@
   'use strict';
   const FK = (window.FK = window.FK || {});
 
-  FK.VERSION = '9.0.3';
+  FK.VERSION = '9.0.4';
   FK.TAU = Math.PI * 2;
   FK.$ = (sel, root) => (root || document).querySelector(sel);
   FK.$$ = (sel, root) => Array.prototype.slice.call((root || document).querySelectorAll(sel));
