@@ -114,7 +114,8 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   const pins = Object.entries(WORLD.pins).map(([id, [x, y, z]]) => ({id, point: new THREE.Vector3(x, y + groundY(x, z), z)}));
 
   /* ---------- movement, routes and camera ---------- */
-  let destination = null, path = [], arrival = null, near = null, lastSample = 0, lastPuff = 0, narrow = false, width = 1, height = 1, speedScale = 1;
+  let destination = null, path = [], arrival = null, near = null, lastSample = 0, lastPuff = 0, narrow = false, width = 1, height = 1, speedScale = 1, stuck = 0, replans = 0;
+  const stuckAt = new THREE.Vector2();
   const focus = new THREE.Vector3(), raycaster = new THREE.Raycaster(), floor = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
   function clear(a, b, skipStart = false) { const d = Math.hypot(b.x - a.x, b.z - a.z), n = Math.max(2, Math.ceil(d / .3)); for (let i = skipStart ? 1 : 0; i <= n; i++) { const t = i / n; if (skipStart && t * d < .35) continue; if (!walkable(a.x + (b.x - a.x) * t, a.z + (b.z - a.z) * t)) return false; } return true; }
   // Routes come from the world's grid search; a short straight walk needs none.
@@ -123,7 +124,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     const route = WORLD.plan(pos.x, pos.z, target.x, target.z); return route && route.map(([x, z]) => new THREE.Vector3(x, 0, z));
   }
   function nearestWalkable(p) { if (walkable(p.x, p.z)) return new THREE.Vector3(p.x, 0, p.z); for (let r = .3; r < 6; r += .3) for (let i = 0; i < 16; i++) { const a = i / 16 * TAU, x = p.x + Math.cos(a) * r, z = p.z + Math.sin(a) * r; if (walkable(x, z)) return new THREE.Vector3(x, 0, z); } return pos.clone().setY(0); }
-  function walkTo(target, id = null) { target = nearestWalkable(target); const route = plan(target); if (!route) { onMove({event: 'route_failure', reason: 'blocked', area: 'forest', destination: id}); return; } path = route; destination = path.shift(); arrival = id; ring.position.set(target.x, groundY(target.x, target.z) + .05, target.z); ring.visible = true; onMove({event: 'movement_destination', destination: id, x: target.x, z: target.z, area: 'forest'}); }
+  function walkTo(target, id = null) { target = nearestWalkable(target); const route = plan(target); if (!route) { onMove({event: 'route_failure', reason: 'blocked', area: 'forest', destination: id}); return; } path = route; destination = path.shift(); arrival = id; stuck = 0; replans = 0; stuckAt.set(pos.x, pos.z); ring.position.set(target.x, groundY(target.x, target.z) + .05, target.z); ring.visible = true; onMove({event: 'movement_destination', destination: id, x: target.x, z: target.z, area: 'forest'}); }
   // On the hills the camera follows the full height of the ground and never sinks into a slope.
   const lift = 1;
   function snapCamera() { focus.set(pos.x, groundY(pos.x, pos.z) * lift, pos.z); placeCamera(1); }
@@ -163,13 +164,20 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     const manual = Math.hypot(dx, dz) > 0, want = new THREE.Vector2(), speedMax = SPEED * speedScale;
     if (manual) { destination = null; path = []; arrival = null; ring.visible = false; want.set(dx, dz).normalize().multiplyScalar(speedMax * Math.min(1, Math.hypot(dx, dz))); }
     else if (destination) { let ddx = destination.x - pos.x, ddz = destination.z - pos.z, d = Math.hypot(ddx, ddz);
-      while (path.length && d < .55) { destination = path.shift(); ddx = destination.x - pos.x; ddz = destination.z - pos.z; d = Math.hypot(ddx, ddz); }
+      // a waypoint counts as reached within one frame's travel too (long frames must not circle it)
+      while (path.length && d < Math.max(.55, vel.length() * dt)) { destination = path.shift(); ddx = destination.x - pos.x; ddz = destination.z - pos.z; d = Math.hypot(ddx, ddz); }
       if (!path.length && d < .1) { destination = null; ring.visible = false; vel.set(0, 0); onPosition(pos.x, pos.z, WORLD.regionAt(pos.x, pos.z)?.id); const reached = arrival; arrival = null; if (reached) onAction(reached); }
       else { const sp = speedMax * (path.length ? 1 : Math.min(1, .25 + d / 1.2)); want.set(ddx / d * sp, ddz / d * sp); } }
     vel.lerp(want, 1 - Math.exp(-dt * (want.lengthSq() ? 9 : 12))); const speed = vel.length(), moving = speed > .15;
     if (speed > .02) { let nx = pos.x + vel.x * dt, nz = pos.z + vel.y * dt;
       // the last step lands on the target instead of overshooting it (long frames, fast walking)
       if (destination && !path.length && !manual && Math.hypot(destination.x - pos.x, destination.z - pos.z) <= speed * dt) { nx = destination.x; nz = destination.z; } if (walkable(nx, nz)) { pos.x = nx; pos.z = nz; } else if (walkable(nx, pos.z)) { pos.x = nx; vel.y *= .5; } else if (walkable(pos.x, nz)) { pos.z = nz; vel.x *= .5; } else vel.multiplyScalar(.5);
+      // Wedged on the way to a waypoint (a corner cut at speed): after half a second almost on the spot, plan
+      // again from where Fuchs stands; after three tries in the same place, stop instead of pushing forever.
+      if (destination && !manual && (stuck += dt) > .5) { stuck = 0; const moved = Math.hypot(pos.x - stuckAt.x, pos.z - stuckAt.y); stuckAt.set(pos.x, pos.z);
+        if (moved > 1) replans = 0;
+        if (moved < .15 && Math.hypot(destination.x - pos.x, destination.z - pos.z) > .3) { const goal = path.length ? path[path.length - 1] : destination, route = replans++ < 3 ? plan(goal.clone()) : null;
+          if (route) { path = route; destination = path.shift(); } else { destination = null; path = []; arrival = null; ring.visible = false; vel.set(0, 0); replans = 0; onMove({event: 'route_failure', reason: 'blocked', area: 'forest', destination: null}); } } }
       if (speed > .2) { const target = Math.atan2(vel.x, vel.y); let diff = target - fox.rotation.y; diff = Math.atan2(Math.sin(diff), Math.cos(diff)); fox.rotation.y += diff * (1 - Math.exp(-dt * 12)); } }
     if (moving && time - lastSample > 1) { lastSample = time; onPosition(pos.x, pos.z, WORLD.regionAt(pos.x, pos.z)?.id); }
     let closest = null, best = 3.2; for (const [id, p] of Object.entries(forestPlaces)) { const d = Math.hypot(p.x - pos.x, p.z - pos.z); if (d < best) { closest = id; best = d; } } if (closest !== near) { near = closest; onNear(near); }
