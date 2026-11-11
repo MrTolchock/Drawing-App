@@ -1,5 +1,5 @@
 /* Farbtupf – Service Worker: keeps the whole app on the device so it runs without internet. */
-const CACHE = 'farbtupf-v8.10.0-puzzles';
+const CACHE = 'farbtupf-v9.0.0-big-world';
 const ASSETS = [
   './js/friends/puzzle-rounds.js',
   './js/screens/puzzle.js',
@@ -18,6 +18,8 @@ const ASSETS = [
   './js/friends/settings.js',
   './assets/forest-friends/interface-icons.webp',
   './assets/forest-friends/picture-map.webp',
+  './assets/forest-friends/world-map.webp',
+  './assets/forest-friends/neighbours.webp',
   './assets/forest-friends/mailman-portrait.webp',
   './js/art/den-pages.js',
   './assets/forest-friends/den-v2.webp',

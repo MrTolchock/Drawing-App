@@ -466,10 +466,11 @@
 .btn-parents{display:grid;place-items:center;min-width:56px;width:56px;height:56px;padding:3px;background:#fff9e9;border:1px solid #d9bb8b;box-shadow:0 3px 10px #66503118}
 .btn-parents .ff-ui-art{width:47px;height:47px}
 .ff-map-card{width:min(950px,100%);padding:14px 18px 22px;border:2px solid #d4b986;background:#fff8e9}
-.ff-map.ff-map-storybook{height:auto;width:100%;aspect-ratio:3/2;margin:10px auto 0;background:url(../assets/forest-friends/picture-map.webp) center/100% 100% no-repeat;border:0;border-radius:24px;box-shadow:0 5px 20px #70563218;overflow:visible}
+.ff-map.ff-map-storybook{height:auto;width:100%;aspect-ratio:3/2;margin:10px auto 0;background:url(../assets/forest-friends/world-map.webp) center/100% 100% no-repeat;border:0;border-radius:24px;box-shadow:0 5px 20px #70563218;overflow:visible}
 .ff-map-storybook .ff-button{width:68px;height:68px;min-width:68px;min-height:68px;padding:4px;display:grid;place-items:center;background:#fff9e7ed;border:2px solid #ba9561;box-shadow:0 4px 0 #94704255,0 6px 15px #60412738;overflow:visible}
 .ff-map-friend{display:block;width:100%;height:100%;object-fit:contain;pointer-events:none}
 .ff-map-friend-sheet{background-image:url(../assets/forest-friends/postcard-friends.webp);background-size:300% 200%;background-repeat:no-repeat}
+.ff-map-friend-sheet.ff-neighbour-sheet{background-image:url(../assets/forest-friends/neighbours.webp)}
 .ff-map-storybook .ff-map-friend{position:absolute;inset:4px;width:auto;height:auto}
 .ff-map-storybook .ff-map-invited{border-color:#667c39;box-shadow:0 0 0 5px #e5edc5cc,0 5px 15px #60412738}
 .ff-map-invited::after{content:'';position:absolute;right:-6px;bottom:-5px;width:25px;height:25px;background:#fff6db url(../assets/forest-friends/interface-icons.webp) 100% 0/200% 200%;border:1px solid #a5b16c;border-radius:50%}

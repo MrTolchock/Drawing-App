@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="de-CH"><head><meta charset="utf-8"><title>Picture map painter (development)</title>
+<style>html,body{margin:0;background:#222}canvas{display:block}</style></head>
+<body><canvas id="c"></canvas>
+<script type="module">
+/* Paints the picture map from the world (tools/map/README.md): soft hill light, meadow and wood colours,
+   tree crowns as dabs with a shadow, water with a light rim, earth trails, the Rock's stone, a paper grain
+   and a warm vignette. Covers layout MAP at ?s pixels per metre (default 1200 × 800). */
+import {THREE} from '../../js/forest/materials.js';
+import {createBigWorld} from '../../js/friends/world/big/index.js';
+import {MAP} from '../../js/friends/world/big/layout.js';
+import {fbm, rng} from '../../js/friends/world/noise.js';
+const S = +(new URLSearchParams(location.search).get('s') || 1200 / (MAP.x1 - MAP.x0)), W = Math.round((MAP.x1 - MAP.x0) * S), H = Math.round((MAP.z1 - MAP.z0) * S);
+const world = createBigWorld(), T = world.terrain, c = document.getElementById('c'); c.width = W; c.height = H;
+const g = c.getContext('2d'), img = g.createImageData(W, H), col = new THREE.Color(), sun = new THREE.Vector3(-.55, .8, -.56).normalize(), n = new THREE.Vector3();
+const water = new THREE.Color('#6fb3b4'), deep = new THREE.Color('#3f8d9a'), paper = new THREE.Color('#f3e6c4'), rim = new THREE.Color('#d8e7cf');
+for (let j = 0; j < H; j++) for (let i = 0; i < W; i++) {
+  const x = MAP.x0 + (i + .5) / S, z = MAP.z0 + (j + .5) / S, e = 1.2, h = T.ground(x, z);
+  n.set(-(T.ground(x + e, z) - T.ground(x - e, z)) / (2 * e), 1, -(T.ground(x, z + e) - T.ground(x, z - e)) / (2 * e)).normalize();
+  T.colour(x, z, col); T.cliff(x, z, n.y, col);
+  let k = .78 + .42 * Math.max(0, n.dot(sun)) + (fbm(x * .5, z * .5) - .5) * .08;
+  const d = T.stillDepth(x, z), s = T.streamAt(x, z);
+  if (d > 0) { col.copy(water).lerp(deep, Math.min(1, d * .9)); if (d < .25) col.lerp(rim, .6 * (1 - d / .25)); k = 1; }
+  else if (s.d < s.w / 2 + .3) { col.copy(water); if (s.d > s.w / 2 - .2) col.lerp(rim, .5); k = 1; }
+  const out = Math.min(x - world.extent.x0, world.extent.x1 - x, z - world.extent.z0, world.extent.z1 - z, T.edge(x, z) - 9);
+  if (out < 0) { col.lerp(new THREE.Color('#5d7a3a'), Math.min(.8, -out / 14)); k *= .92; }
+  col.lerp(paper, .16); col.convertLinearToSRGB();
+  const grain = .97 + .06 * fbm(i * .9, j * .9), o = (j * W + i) * 4;
+  img.data[o] = 255 * Math.min(1, col.r * k * grain); img.data[o + 1] = 255 * Math.min(1, col.g * k * grain); img.data[o + 2] = 255 * Math.min(1, col.b * k * grain); img.data[o + 3] = 255;
+}
+g.putImageData(img, 0, 0);
+const P = (x, z) => [(x - MAP.x0) * S, (z - MAP.z0) * S];
+// trails as soft earth strokes under the trees
+g.lineCap = g.lineJoin = 'round'; for (const tr of T.trails) { g.strokeStyle = 'rgba(196,146,92,.85)'; g.lineWidth = 1.5 * S; g.beginPath(); tr.samples.forEach((q, k) => { const [px, pz] = P(q.x, q.z); k ? g.lineTo(px, pz) : g.moveTo(px, pz); }); g.stroke(); }
+// tree crowns: a shadow to the south-east, then a dab with a lighter top-left
+const R = rng(5), trees = world.allTrees(); for (let x = MAP.x0; x < MAP.x1; x += 7) for (let z = MAP.z0; z < MAP.z1; z += 7) { const out = Math.min(x - world.extent.x0, world.extent.x1 - x, z - world.extent.z0, world.extent.z1 - z); if (out < 0) trees.push({x: x + R() * 5, z: z + R() * 5, r: .6, kind: R() < .5 ? 'spruce' : 'beech'}); }
+const tone = {beech: ['#4f7f2c', '#7aa847'], oak: ['#4a7a2a', '#76a444'], hollow: ['#4a7a2a', '#76a444'], spruce: ['#2f5b36', '#4f7f4a'], birch: ['#8fb44a', '#c4d56c'], alder: ['#55803a', '#83aa55'], willow: ['#7fa64a', '#b8cd6a'], snag: ['#8d8676', '#aba493']};
+trees.sort((a, b) => a.z - b.z);
+for (const t of trees) { const [px, pz] = P(t.x, t.z), r = (t.kind === 'spruce' ? 2.6 : t.kind === 'birch' ? 2.2 : t.kind === 'snag' ? 1 : 3.3) * S * Math.min(t.s || 1, 1.25), [d, l] = tone[t.kind] || tone.beech;
+  g.fillStyle = 'rgba(40,52,24,.28)'; g.beginPath(); g.ellipse(px + r * .35, pz + r * .3, r, r * .85, 0, 0, 7); g.fill();
+  const gr = g.createRadialGradient(px - r * .35, pz - r * .4, r * .1, px, pz, r); gr.addColorStop(0, l); gr.addColorStop(1, d); g.fillStyle = gr; g.beginPath(); g.arc(px, pz, r, 0, 7); g.fill(); }
+// the den tree, the dam and the boardwalk as small drawings
+{ const [x, z] = P(0, -8); g.fillStyle = '#6a4426'; g.beginPath(); g.arc(x, z, 3.6 * S, 0, 7); g.fill(); g.fillStyle = '#3f7a2c'; g.beginPath(); g.arc(x, z - 1.2 * S, 6 * S, 0, 7); g.fill(); g.fillStyle = '#5f9a3a'; g.beginPath(); g.arc(x - 1.5 * S, z - 2.6 * S, 3.4 * S, 0, 7); g.fill(); }
+g.lineCap = 'round'; for (const cr of T.crossings) { const [ax, az] = P(...cr.a), [bx, bz] = P(...cr.b); g.strokeStyle = cr.kind === 'dam' ? '#7a5634' : cr.kind === 'stones' ? '#a39c8c' : '#a8753f'; g.lineWidth = Math.max(3, cr.width * S); g.beginPath(); g.moveTo(ax, az); g.lineTo(bx, bz); g.stroke(); }
+// a warm vignette
+const v = g.createRadialGradient(W / 2, H / 2, H * .35, W / 2, H / 2, W * .62); v.addColorStop(0, 'rgba(90,60,20,0)'); v.addColorStop(1, 'rgba(90,60,20,.28)'); g.fillStyle = v; g.fillRect(0, 0, W, H);
+window.mapReady = true;
+</script></body></html>

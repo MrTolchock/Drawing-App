@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="de-CH"><head><meta charset="utf-8"><title>Neighbour portraits (development)</title>
+<style>html,body{margin:0;background:transparent}canvas{display:block}</style></head>
+<body><canvas id="c" width="512" height="512"></canvas>
+<script type="module">
+/* Renders one plush character as a portrait cell for assets/forest-friends/neighbours.webp
+   (see tools/portraits/README.md): ?id=deer. Transparent background, three-quarter view, soft key light. */
+import {THREE} from '../../js/forest/materials.js';
+import {characters,castReady} from '../../js/friends/characters3d.js';
+await castReady;
+window.FK=window.FK||{reduced:true};
+const id=new URLSearchParams(location.search).get('id')||'deer',canvas=document.getElementById('c');
+const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true,preserveDrawingBuffer:true});renderer.setPixelRatio(1);renderer.setClearColor(0,0);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;
+const scene=new THREE.Scene();scene.add(new THREE.HemisphereLight('#fff1d6','#8a6c46',1.5));const key=new THREE.DirectionalLight('#ffe2b0',2.4);key.position.set(-2,4,5);scene.add(key);const rim=new THREE.DirectionalLight('#ffffff',1.1);rim.position.set(3,2,-3);scene.add(rim);
+const rig=characters[id](1);rig.group.rotation.y=.42;scene.add(rig.group);rig.update(.016,{reduced:true});
+const box=new THREE.Box3();rig.group.updateMatrixWorld(true);rig.group.traverse(o=>{if(o.isSkinnedMesh&&o.visible){o.skeleton.update();o.computeBoundingBox();box.union(o.boundingBox.clone().applyMatrix4(o.matrixWorld));}});
+const c=box.getCenter(new THREE.Vector3()),size=box.getSize(new THREE.Vector3()),r=Math.max(size.x,size.y)*.62;
+const camera=new THREE.OrthographicCamera(-r,r,r,-r,.1,50);camera.position.set(c.x,c.y+r*.05,c.z+10);camera.lookAt(c.x,c.y,c.z);
+renderer.render(scene,camera);window.ready=true;
+</script></body></html>

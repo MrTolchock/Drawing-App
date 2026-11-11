@@ -38,8 +38,8 @@ function showLetter(fromMailman){
   say('Ein Brief von '+C.hosts[id].name+'! Schau auf das Bild. Draussen zeigt dir der Pfeil den Weg.');
 }
 function letterPortrait(id){
-  const cells={squirrel:[0,0],bird:[1,0],owl:[2,0],beaver:[0,1],mouse:[1,1]},[x,y]=cells[id];
-  return h('span',{class:'ff-letter-friend ff-letter-illustration',role:'img','aria-label':C.hosts[id].name,'data-friend':id,style:{backgroundPosition:(x*50)+'% '+(y*100)+'%'}});
+  const cells={squirrel:[0,0],bird:[1,0],owl:[2,0],beaver:[0,1],mouse:[1,1]},near={hedgehog:[0,0],fish:[1,0],deer:[2,0],kingfisher:[0,1],frog:[1,1]},[x,y]=cells[id]||near[id];
+  return h('span',{class:'ff-letter-friend ff-letter-illustration',role:'img','aria-label':C.hosts[id].name,'data-friend':id,style:{backgroundPosition:(x*50)+'% '+(y*100)+'%',...(near[id]?{backgroundImage:'url(assets/forest-friends/neighbours.webp)'}:{})}});
 }
 // Painted pictures where the reviewed art exists: friends from the forest painting and character sheet,
 // nouns from the original Waldatelier sheets. Action poses, nuts, shapes and controls stay drawn.
@@ -48,6 +48,7 @@ const paintedWords={house:'neighbour-houses',stone:'forest-stone',branch:'forest
 function art(name,cls=''){
   if(FK.puzzles.actions.includes(name))return h('span',{class:'ff-picture ff-painted-picture '+cls},FK.visual.art(name));
   if(['fox','squirrel','bird','owl','beaver','mouse'].includes(name))return h('span',{class:'ff-picture ff-painted-picture '+cls},FK.friendsArt.portrait(name));
+  if(name.startsWith('friend-'))return h('span',{class:'ff-picture ff-painted-picture '+cls},FK.friendsArt.portrait(name.slice(7)));
   if(['map','letter','book','gear'].includes(name))return h('span',{class:'ff-picture '+cls},FK.friendsArt.icon(name));
   if(name==='mailman')return h('span',{class:'ff-picture ff-mailman-picture'},FK.friendsArt.portrait('mailman'),h('i',{html:envelopeSVG}));
   if(name==='nut'||name==='nuts'){const s=h('span',{class:'ff-picture ff-painted-picture '+cls});s.append(FK.visual.art('forest-nut'));return s;}
@@ -88,7 +89,9 @@ function act(id){if(panel)return;if(area==='forest'){
 }else if(id==='outside'){if(state.mail().phase==='den-letter')showLetter(false);else go('forest');}else if(id==='games')games();else if(id==='drawing')FK.go('book',{from:'friends'});else if(id==='gallery')FK.go('gallery');else if(id==='sleep')sequence('sleep');}
 // The original Waldspiele and story puzzles open in their own book and return here.
 function games(resident){if(panel)close();state.record('games_open',{resident:resident||'all'});world.pause(true);FK.go('forest-book',{from:'friends',...(resident?{resident}:{})});}
-const mapPins={home:[.45,.29],squirrel:[.16,.18],owl:[.25,.46],bird:[.14,.74],beaver:[.86,.49],mouse:[.57,.80]};
+// The picture map is drawn from the world (tools/map/): a place's pin is where it lies on it.
+const MAP={x0:-168,x1:168,z0:-112,z1:112};   // as world/big/layout.js MAP
+const mapPins=new Proxy({},{get:(_,id)=>{const p=places[id];return [(p.x-MAP.x0)/(MAP.x1-MAP.x0),(p.z-MAP.z0)/(MAP.z1-MAP.z0)];}});
 function map(){
   if(state.mail().phase==='den-letter'){showLetter(false);return;}
   open('map');const card=shell('map');card.classList.add('ff-map-card');

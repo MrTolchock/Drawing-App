@@ -77,7 +77,14 @@ export const PLACES = {
   owl: {x: 84.5, z: -4.5, picture: 'owl', name: 'Zu Waldkauz', ...pin(262, 300)},
   beaver: {x: 23.2, z: -15.5, picture: 'beaver', name: 'Zu Biber', ...pin(792, 352)},
   mouse: {x: -31.5, z: 9.6, picture: 'mouse', name: 'Zu Maus', ...pin(852, 532)},
+  hedgehog: {x: 51.6, z: 43.8, picture: 'friend-hedgehog', name: 'Zu Igel'},
+  fish: {x: 59.5, z: -43.1, picture: 'friend-fish', name: 'Zu Fisch'},
+  deer: {x: -78.6, z: -11, picture: 'friend-deer', name: 'Zu Reh'},
+  kingfisher: {x: 11.2, z: 21.5, picture: 'friend-kingfisher', name: 'Zu Eisvogel'},
+  frog: {x: -27.4, z: 83.2, picture: 'friend-frog', name: 'Zu Frosch'},
 };
+/** The picture map (assets/forest-friends/world-map.webp, tools/map/) shows this part of the world. */
+export const MAP = {x0: -168, x1: 168, z0: -112, z1: 112};
 /* Where every character stands: `y` above the ground (branch, rock, stump), `h` body height. */
 export const FRIENDS = {
   squirrel: {at: [-31.2, -61.2], y: 0, yaw: .6, h: 1.15},

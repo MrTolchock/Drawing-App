@@ -3,9 +3,14 @@
 (function () {
   'use strict';
   const FK=window.FK;
-  const base={squirrel:'Nüsse zählen',bird:'Reimpaare lesen',owl:'Lies und zeig',beaver:'Welche Form fehlt?',mouse:'Wörter und Bilder'};
+  const base={squirrel:'Nüsse zählen',bird:'Reimpaare lesen',owl:'Lies und zeig',beaver:'Welche Form fehlt?',mouse:'Wörter und Bilder',hedgehog:'Tierrätsel',fish:'Fische zählen',deer:'Wer wohnt wo?',kingfisher:'Am Bach zählen',frog:'Tierwörter lesen'};
   const instructions={
     'friends-squirrel':'Zähle die Nüsse. Du kannst sie zum Zählen markieren. Tippe auf die passende Zahl.',
+    'friends-fish':'Zähle die Fische. Du kannst sie zum Zählen markieren. Tippe auf die passende Zahl.',
+    'friends-kingfisher':'Zähle die Bilder. Du kannst sie zum Zählen markieren. Tippe auf die passende Zahl.',
+    'friends-hedgehog':'Lies die Frage. Tippe auf das Tier, das gemeint ist.',
+    'friends-deer':'Lies die Frage. Tippe auf das passende Bild.',
+    'friends-frog':'Lies das Wort. Tippe auf das passende Tier.',
     'friends-bird':'Lies das Wort und die Wörter bei den Bildern. Wähle das Wort, das sich reimt.',
     'friends-owl':'Lies den Satz. Wähle das passende Bild.',
     'friends-beaver':'In jeder Reihe stehen dieselben drei Formen. Welche Form fehlt beim Fragezeichen?',

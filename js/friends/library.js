@@ -6,7 +6,8 @@
   const hosts={count:'squirrel',add:'squirrel',rocket:'squirrel',neighbours:'squirrel',compare:'squirrel',tricks:'squirrel',picnic:'squirrel',
     rhyme:'bird',syllable:'bird',nature:'bird',read:'mouse',vowels:'mouse',trace:'mouse','trace-numbers':'mouse',
     pattern:'owl',sequence:'owl',treasure:'owl',survey:'owl',robot:'beaver',double:'beaver',mirror:'beaver',shapes:'beaver',dots:'beaver'};
-  const rounds={squirrel:['Nüsse zählen','forest-nut'],bird:['Reimpaare lesen','words'],owl:['Lies und zeig','book'],beaver:['Welche Form fehlt?','shapes'],mouse:['Wörter und Bilder','mouse-sit']};
+  const rounds={squirrel:['Nüsse zählen','forest-nut'],bird:['Reimpaare lesen','words'],owl:['Lies und zeig','book'],beaver:['Welche Form fehlt?','shapes'],mouse:['Wörter und Bilder','mouse-sit'],
+    hedgehog:['Tierrätsel','hedgehog'],fish:['Fische zählen','fish'],deer:['Wer wohnt wo?','nest'],kingfisher:['Am Bach zählen','forest-feather'],frog:['Tierwörter lesen','frog']};
   function portrait(id){
     const pic=FK.friendsArt.portrait(id);pic.classList.add('forest-portrait');return pic;
   }

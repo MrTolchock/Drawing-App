@@ -5,8 +5,8 @@ function setup(saved){
  for(const path of ['js/learn/glyphs.js','js/learn/learning.js','js/learn/adventures.js','js/learn/expeditions.js','js/learn/routes.js','js/friends/puzzles.js','js/friends/library.js','js/friends/puzzle-rounds.js'])vm.runInContext(fs.readFileSync(path,'utf8'),ctx);
  return {FK,memory};
 }
-test('all 28 active puzzles have one route, one instruction and five tasks; retired games are absent',()=>{
- const {FK}=setup(),entries=FK.friendsLibrary.catalogue();assert.equal(entries.length,28);assert.equal(new Set(entries.map(g=>g.id)).size,28);
+test('all 33 active puzzles have one route, one instruction and five tasks; retired games are absent',()=>{
+ const {FK}=setup(),entries=FK.friendsLibrary.catalogue();assert.equal(entries.length,33);assert.equal(new Set(entries.map(g=>g.id)).size,33);
  for(const g of entries){assert.ok(FK.puzzleRounds.instructions[g.id],g.id);assert.ok(g.host);assert.ok(['puzzle','trace'].includes(g.screen));}
  assert.ok(!entries.some(g=>['rhyme','dots'].includes(g.id)));assert.ok(entries.some(g=>g.id==='trace-numbers'));
 });

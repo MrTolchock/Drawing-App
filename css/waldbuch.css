@@ -45,6 +45,11 @@
 [data-host=owl]{--accent:var(--wb-owl);--wb-item:0% 100%;--wb-host-cell:100% 0%}
 [data-host=beaver]{--accent:var(--wb-beaver);--wb-item:100% 66.667%;--wb-host-cell:0% 100%}
 [data-host=mouse]{--accent:var(--wb-mouse);--wb-item:66.667% 0%;--wb-host-cell:50% 100%}
+[data-host=hedgehog]{--accent:#8a6648;--wb-item:66.667% 0%}
+[data-host=fish]{--accent:#2f8ea3;--wb-item:66.667% 0%}
+[data-host=deer]{--accent:#a8743f;--wb-item:66.667% 0%}
+[data-host=kingfisher]{--accent:#1c8fb0;--wb-item:66.667% 0%}
+[data-host=frog]{--accent:#5f9a32;--wb-item:66.667% 0%}
 
 /* ==========================================================================
    Puzzle shell: every puzzle is a page of Fuchs' book lying in a clearing.
@@ -305,6 +310,11 @@
   .friends-interface .ff-illustrated-round[data-kind][data-host=owl] .ff-card-top::after{content:"Waldkauz"}
   .friends-interface .ff-illustrated-round[data-kind][data-host=beaver] .ff-card-top::after{content:"Biber"}
   .friends-interface .ff-illustrated-round[data-kind][data-host=mouse] .ff-card-top::after{content:"Maus"}
+  .friends-interface .ff-illustrated-round[data-kind][data-host=hedgehog] .ff-card-top::after{content:"Igel"}
+  .friends-interface .ff-illustrated-round[data-kind][data-host=fish] .ff-card-top::after{content:"Fisch"}
+  .friends-interface .ff-illustrated-round[data-kind][data-host=deer] .ff-card-top::after{content:"Reh"}
+  .friends-interface .ff-illustrated-round[data-kind][data-host=kingfisher] .ff-card-top::after{content:"Eisvogel"}
+  .friends-interface .ff-illustrated-round[data-kind][data-host=frog] .ff-card-top::after{content:"Frosch"}
 }
 
 /* ==========================================================================

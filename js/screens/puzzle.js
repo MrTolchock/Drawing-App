@@ -55,10 +55,11 @@
   }
   function numeric(q=question) {q.choices.forEach(n=>option(n,null,String(n)));}
   function objects(id,n,cls='') {return h('div',{class:'puzzle-objects '+cls,'aria-label':n+' Objekte'},Array.from({length:n},()=>picture(id)));}
+  const countNames={fish:'Fische','forest-feather':'Federn','forest-leaf':'Blätter','forest-stone':'Steine','forest-flower':'Blumen','forest-berry':'Beeren','forest-mushroom':'Pilze'};
   function originalQuestion(t) {
     const q={...t,choices:t.choices.slice()};
-    if(t.kind==='count')return {...q,kind:'nuts',prompt:'Wie viele Nüsse sind hier?'};
-    if(t.kind==='word'||t.kind==='sentence')return {...q,kind:'reading',prompt:t.kind==='word'?'Welches Bild passt zum Wort?':'Welches Bild passt zum Satz?',text:t.target};
+    if(t.kind==='count')return {...q,kind:'nuts',prompt:'Wie viele '+(countNames[t.item]||'Nüsse')+' sind hier?'};
+    if(t.kind==='word'||t.kind==='sentence')return {...q,kind:'reading',prompt:t.target.endsWith('?')?'Welches Bild passt zur Frage?':t.kind==='word'?'Welches Bild passt zum Wort?':'Welches Bild passt zum Satz?',text:t.target};
     if(t.kind==='rhyme')return {...q,kind:'rhyme',prompt:'Welches Wort reimt sich?',text:t.target,picture:R.wordArt[t.target]};
     const line=t.choices.slice();
     const rows=[line,line.slice(1).concat(line[0]),line.slice(2).concat(line.slice(0,2))];
@@ -67,9 +68,9 @@
   }
   function renderCount(q) {
     const field=h('div',{class:q.kind==='nuts'?'puzzle-nuts':'puzzle-meadow'}),marks=new Set(Array.isArray(work().marks)?work().marks:[]);
-    const items=q.kind==='nuts'?Array(q.count).fill('forest-nut'):q.bugs;
+    const items=q.kind==='nuts'?Array(q.count).fill(q.item||'forest-nut'):q.bugs;
     items.forEach((id,i)=>{
-      let node;node=button(id==='ladybird'?'Marienkäfer markieren':id==='forest-nut'?'Nuss markieren':id==='bee'?'Biene':'Schnecke',()=>{
+      let node;node=button(id==='ladybird'?'Marienkäfer markieren':id==='forest-nut'?'Nuss markieren':q.kind==='nuts'?'Bild markieren':id==='bee'?'Biene':'Schnecke',()=>{
         if(locked)return;if(id!=='ladybird'&&q.kind!=='nuts'){fail(node,'Zähle nur die roten Marienkäfer.');return;}
         if(marks.has(i))marks.delete(i);else marks.add(i);
         node.classList.toggle('marked',marks.has(i));node.setAttribute('aria-pressed',String(marks.has(i)));work().marks=[...marks];persist();FK.sound.tick();

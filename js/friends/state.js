@@ -9,7 +9,8 @@
     let state,blocked=false,readFailed=false,expected=null,error='',events=[],truncated=false;
     const uid=()=>now().toString(36)+'-'+random().toString(36).slice(2,12);
     const sessionId=uid();
-    const mailHosts=['squirrel','bird','owl','beaver','mouse'];
+    // The first five keep their order, so a letter cycle that is under way goes on as before.
+    const mailHosts=['squirrel','bird','owl','beaver','mouse','hedgehog','fish','deer','kingfisher','frog'];
     const firstMail=()=>({phase:'den-letter',host:mailHosts[0],index:0,completed:0});
     const prepare=s=>{s.mail=s.mail||firstMail();s.unlocks.leaf=true;s.unlocks.pencils=true;return s;};
     function finishMail(s,host){if(s.mail.phase!=='to-friend'||s.mail.host!==host)return false;s.mail.phase='to-mailman';s.mail.completed++;return true;}
@@ -20,7 +21,7 @@
       const point=p=>Array.isArray(p)&&p.length===2&&p.every(n=>Number.isFinite(n)&&n>=0&&n<=1);
       const strokes=a=>Array.isArray(a)&&a.length<=2000&&a.every(stroke=>/^#[0-9a-f]{3,8}$/i.test(stroke?.colour)&&Array.isArray(stroke.points)&&stroke.points.length>0&&stroke.points.length<=4000&&stroke.points.every(point));
       if(s?.schema!==SCHEMA||!quantity(s.revision))return false;
-      if(s.mail!==undefined&&(!object(s.mail)||!['den-letter','to-friend','to-mailman'].includes(s.mail.phase)||!quantity(s.mail.index)||!quantity(s.mail.completed)||s.mail.host!==mailHosts[s.mail.index%mailHosts.length]))return false;
+      if(s.mail!==undefined&&(!object(s.mail)||!['den-letter','to-friend','to-mailman'].includes(s.mail.phase)||!quantity(s.mail.index)||!quantity(s.mail.completed)||!mailHosts.includes(s.mail.host)))return false;
       if(!['nuts','seeds','feathers','logs','berries'].every(k=>quantity(s.wallet?.[k])))return false;
       if(!['apple','bath'].every(k=>quantity(s.inventory?.[k]))||!['leaf','pencils'].every(k=>typeof s.unlocks?.[k]==='boolean'))return false;
       if(!object(s.rounds)||!Object.entries(s.rounds).every(([host,r])=>content.hosts[host]&&r&&r.host===host&&typeof r.id==='string'&&r.tasks?.length===5&&r.tasks.every(t=>typeof t.id==='string'&&Array.isArray(t.choices)&&t.choices.includes(t.answer)&&t.choices.every(v=>typeof v==='string')&&['count','shape','sentence','word','rhyme'].includes(t.kind))&&Number.isInteger(r.index)&&r.index>=0&&r.index<=5&&Array.isArray(r.attempts)&&Array.isArray(r.support)&&Number.isFinite(r.activeMilliseconds)&&r.activeMilliseconds>=0&&typeof r.rewarded==='boolean'&&(r.index===5)===r.rewarded))return false;
@@ -89,7 +90,7 @@
     }
     const api={key,get:()=>clone(state),round:host=>clone(state.rounds[host]||null),audioSettings:()=>({...state.settings}),get error(){return error;},get blocked(){return blocked;},development,record,start,answer,
       mail:()=>clone(state.mail),
-      openLetter(){return commit(s=>{if(!['den-letter','to-mailman'].includes(s.mail.phase))return false;if(s.mail.phase==='to-mailman'){s.mail.index++;s.mail.host=mailHosts[s.mail.index%mailHosts.length];}s.mail.phase='to-friend';},'letter_opened');},
+      openLetter(){return commit(s=>{if(!['den-letter','to-mailman'].includes(s.mail.phase))return false;if(s.mail.phase==='to-mailman'){s.mail.index++;s.mail.host=mailHosts[(mailHosts.indexOf(s.mail.host)+1)%mailHosts.length];}s.mail.phase='to-friend';},'letter_opened');},
       completeMail(host){return commit(s=>finishMail(s,host),'mail_puzzle_completed',{host});},
       retrySave(){
         if(readFailed){
