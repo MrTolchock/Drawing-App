@@ -15,7 +15,7 @@ export function createStreamer(world, look, scene, options = {}) {
   const build = world.buildTile, marks = world.landmarkSteps;
   const all = world.tiles(), live = new Map(), cache = [], jobs = [], regionGroups = new Map(), landmarks = {};
   const root = new THREE.Group(); root.name = 'world'; scene.add(root);
-  let lookSteps = [...look.steps, () => templates()], focus = {x: 0, z: 0, ahead: {x: 0, z: 0}};
+  let lookSteps = [...look.steps, () => templates()], focus = {x: 0, z: 0, ahead: {x: 0, z: 0}}, planned = null;
   const key = (i, j, ring) => i + ',' + j + ',' + ring;
   function dispose(group) { group.traverse(o => { if (o.isMesh || o.isPoints) { if (!o.userData.shared) o.geometry.dispose(); if (o.isInstancedMesh) o.dispose(); } }); group.removeFromParent(); }
   function release(entry) {
@@ -41,13 +41,15 @@ export function createStreamer(world, look, scene, options = {}) {
     for (const [k, w] of wanted) {
       const entry = live.get(k);
       if (entry && entry.ring === w.ring) continue;
-      if (jobs.some(j => j.i === w.i && j.j === w.j && j.ring === w.ring)) continue;
+      const waiting = jobs.find(j => j.i === w.i && j.j === w.j && j.ring === w.ring);
+      if (waiting) { waiting.d = entry ? w.d : w.d - 24; continue; }   // priorities follow Fuchs
       const hit = cache.findIndex(c => c.key === key(w.i, w.j, w.ring));
       if (hit >= 0) { const c = cache.splice(hit, 1)[0]; c.group.visible = true; if (entry) release(entry); live.set(k, c); continue; }
       // a near tile that only needs its cheap far version is swapped first: it frees a full-detail tile
-      jobs.push({...w, it: build(world, look, w.i, w.j, w.ring), next: 'tile start', swap: w.ring === 'far' && entry?.ring === 'near'});
+      // (a tile with nothing drawn yet counts as 24 m closer: a hole in the ground shows more than missing detail)
+      jobs.push({...w, d: entry ? w.d : w.d - 24, it: build(world, look, w.i, w.j, w.ring), next: 'tile start', swap: w.ring === 'far' && entry?.ring === 'near'});
     }
-    jobs.sort((a, b) => (b.swap ? 1 : 0) - (a.swap ? 1 : 0) || (a.ring === b.ring ? 0 : a.ring === 'near' ? -1 : 1) || a.d - b.d);
+    jobs.sort((a, b) => (b.swap ? 1 : 0) - (a.swap ? 1 : 0) || a.d - b.d);
     // landmarks of regions within the near ring
     for (const region of world.regions) {
       const b = region.bounds, d = Math.hypot(Math.max(b.x0 - focus.x, 0, focus.x - b.x1), Math.max(b.z0 - focus.z, 0, focus.z - b.z1));
@@ -83,11 +85,19 @@ export function createStreamer(world, look, scene, options = {}) {
   return {
     root, landmarks,
     /** Where Fuchs is and where he is heading (tiles ahead are built first). */
-    focus(x, z, ax = x, az = z) { const moved = Math.hypot(x - focus.x, z - focus.z) > 2 || Math.hypot(ax - focus.ahead.x, az - focus.ahead.z) > 4; focus = {x, z, ahead: {x: ax, z: az}}; if (moved || !live.size) schedule(); },
+    focus(x, z, ax = x, az = z) {
+      // Compared with the place of the last plan, not with the previous frame: a steady walk moves a few
+      // centimetres per frame and would otherwise never ask for new tiles.
+      focus = {x, z, ahead: {x: ax, z: az}};
+      if (!planned || !live.size || Math.hypot(x - planned.x, z - planned.z) > 2 || Math.hypot(ax - x - planned.ax, az - z - planned.az) > 4) { planned = {x, z, ax: ax - x, az: az - z}; schedule(); }
+    },
     work, pending,
     /** Finish everything now (used when Fuchs steps outside before the slices are done). */
     complete() { const t0 = performance.now(), report = onSlice; onSlice = () => {}; while (work(1e9)); onSlice = report; return performance.now() - t0; },
     get counts() { let near = 0, far = 0; for (const e of live.values()) e.ring === 'near' ? near++ : far++; return {near, far, jobs: jobs.length}; },
+    /** How far streaming is behind at Fuchs' place: tiles well inside the far ring with nothing drawn (holes) and tiles
+        within `inner` m still without their full version (plain ground). Both are 0 when streaming keeps up. */
+    gaps(inner = NEAR - TILE) { let holes = 0, plain = 0; for (const [i, j] of all) { const d = centreDistance(focus.x, focus.z, i, j), e = live.get(i + ',' + j); if (d < FAR - TILE / 2 && !e) holes++; if (d < inner && e?.ring !== 'near') plain++; } return {holes, plain}; },
     terrain() { const out = []; for (const e of live.values()) if (e.ring === 'near') e.group.traverse(o => { if (o.userData.terrain) out.push(o); }); return out; },
   };
 }

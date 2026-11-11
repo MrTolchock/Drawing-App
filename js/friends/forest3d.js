@@ -194,9 +194,10 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     updateGuide(time);
     { updateMood(dt, pos.x, pos.z); backdrop.material.uniforms.uFox.value.copy(pos); const sw = streamer.landmarks.swamp; if (sw?.glow) sw.glow.material.opacity = reduced ? .8 : .55 + .4 * Math.sin(time * 1.7); if (sw?.mist && !reduced) sw.mist.position.x = Math.sin(time * .12) * 1.5; }
     focus.lerp(new THREE.Vector3(pos.x + vel.x * .35, base * lift, pos.z + vel.y * .35), reduced ? 1 : 1 - Math.exp(-dt * 2.6)); placeCamera(1);
-    // stream tiles around Fuchs and ahead of him (≤ 4 ms per frame); move the static shadow with him
+    // stream tiles around Fuchs and ahead of him (≤ 4 ms per frame; 8 ms while ground near him is missing or plain,
+    // which shows more than a slower frame); move the static shadow with him
     // (when frames are already long, a tenth of the frame: the wait for new ground matters more than the slice)
-    streamer.focus(pos.x, pos.z, pos.x + vel.x * 2, pos.z + vel.y * 2); streamer.work(Math.max(3, Math.min(6, dt * 100)));
+    streamer.focus(pos.x, pos.z, pos.x + vel.x * 2, pos.z + vel.y * 2); { const g = streamer.pending() ? streamer.gaps() : null, behind = g && (g.holes || g.plain); streamer.work(behind ? 8 : Math.max(3, Math.min(6, dt * 100))); }
     if (Math.hypot(pos.x - shadowAt.x, pos.z - shadowAt.z) > 8) aimSun(pos.x, pos.z);
   }
   let animatedCount = 0;
@@ -225,7 +226,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     },
     stop() { destination = null; path = []; arrival = null; ring.visible = false; vel.set(0, 0); },
     restored() { renderer.shadowMap.needsUpdate = true; },
-    budget() { const c = streamer.counts; return {liveTiles: c.near, farTiles: c.far, animated: animatedCount}; },
+    budget() { const c = streamer.counts, g = streamer.gaps(); return {liveTiles: c.near, farTiles: c.far, animated: animatedCount, holes: g.holes, plain: g.plain, jobs: c.jobs}; },
     set speed(k) { speedScale = k; },
     pins() { return [...pins, {id: 'mailman', point: new THREE.Vector3(mailPos.x, groundY(mailPos.x, mailPos.z) + 2.2, mailPos.z)}].map(p => { const q = p.point.clone().project(camera); return {id: p.id, x: (q.x * .5 + .5) * width, y: (-q.y * .5 + .5) * height, visible: q.z < 1 && Math.abs(q.x) < 1.02 && q.y > -1.02 && q.y < 1.12 && p.point.distanceTo(pos) < NEAR}; }); },
     get mailman() { return {x: mailPos.x, z: mailPos.z}; }, get guideTarget() { return guideTarget; }, get position() { return {x: pos.x, z: pos.z}; }, get destination() { return destination; }, get near() { return near; },
