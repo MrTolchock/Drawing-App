@@ -11,7 +11,10 @@ const assert=require('node:assert/strict');
    window.routeWins=0;const host=document.querySelector('.screen-expedition .learn-body');host.replaceChildren();
    const board=FK.ui.routeBoard({planning:true,question:{kind:'robot',mode:'route',size:3,start:0,goal:8,obstacles:[4]},onSuccess:()=>routeWins++});host.append(board);window.testProgram=board;
   });
-  await page.getByRole('button',{name:'Nach links',exact:true}).tap();
+  // Simulate a busy phone between pointer release and its native click. The
+  // compatibility click must not add a second command even after one second.
+  await page.evaluate(()=>document.addEventListener('pointerup',()=>{const until=performance.now()+1100;while(performance.now()<until){}},{once:true}));
+  await page.getByRole('button',{name:'Nach links',exact:true}).tap();await page.waitForTimeout(400);
   assert.equal(await page.locator('.route-command').count(),1);
   assert.equal(await page.evaluate(()=>routeWins),0,'planning never moves the character');
   await page.locator('.route-run').tap();await page.waitForFunction(()=>!document.querySelector('.route-run').disabled);

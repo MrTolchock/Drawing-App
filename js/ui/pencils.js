@@ -204,7 +204,7 @@
       if (e.target === popEl) {
         e.preventDefault();
         closePop();
-        FK.ui.eatClick();
+        FK.ui.eatClick(e);
       }
     });
     document.body.append(popEl);

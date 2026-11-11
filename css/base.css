@@ -1,7 +1,7 @@
 /* Farbtupf – Grundlagen: Farben, Schriften, Knöpfe, Karten, Dialoge.
    Look: a toy-like sticker world on a polka-dot craft table. Thick ink outlines, hard "sticker" shadows,
-   bright crayon colours. Baloo 2 for playful headings and buttons, Andika (made for children learning to
-   read) for every letter, syllable and word the child reads. One deliberate bright look, no dark variant. */
+   bright crayon colours. Baloo 2 for section headings, Andika for controls, prose and all learning text.
+   Roles and sizes: docs/TYPOGRAPHY.md and css/typography.css. One deliberate bright look, no dark variant. */
 
 @font-face { font-family: "Baloo 2"; src: url("../fonts/baloo2.woff2") format("woff2"); font-weight: 400 800; font-display: swap; }
 @font-face { font-family: "Andika"; src: url("../fonts/andika-400.woff2") format("woff2"); font-weight: 400; font-display: swap; }
@@ -28,8 +28,11 @@
   --cur: #e5322d;
   --paper: #ffffff;
 
-  --font: "Baloo 2", ui-rounded, "SF Pro Rounded", "Arial Rounded MT Bold", system-ui, -apple-system, sans-serif;
-  --read: "Andika", "Baloo 2", ui-rounded, system-ui, sans-serif;
+  --type-body: "Andika", system-ui, -apple-system, sans-serif;
+  --type-heading: "Baloo 2", ui-rounded, system-ui, sans-serif;
+  --type-learning: var(--type-body);
+  --font: var(--type-body);
+  --read: var(--type-learning);
   --emoji: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
 
   --btn: 66px;
@@ -121,7 +124,7 @@ button { font: inherit; color: inherit; }
   margin: 0;
   color: #fff;
   font-size: clamp(26px, 4.4vw, 40px);
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1.05;
   letter-spacing: .01em;
   white-space: nowrap;
@@ -145,7 +148,7 @@ button { font: inherit; color: inherit; }
   background: var(--sticker);
   box-shadow: 0 4px 0 var(--ink);
   font-size: 26px;
-  font-weight: 800;
+  font-weight: 700;
   font-variant-numeric: tabular-nums;
   flex: none;
 }
@@ -186,7 +189,7 @@ button.star-count:focus-visible { outline: 4px solid var(--sun); outline-offset:
 .btn .emoji { font-size: calc(var(--ic) * .85); line-height: var(--ic); text-align: center; pointer-events: none; }
 .btn .lbl {
   font-size: var(--lbl);
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: -.01em;
   line-height: 1;
   white-space: nowrap;
@@ -225,7 +228,7 @@ button.star-count:focus-visible { outline: 4px solid var(--sun); outline-offset:
 }
 .card:active { transform: translateY(3px) scale(.98); box-shadow: 0 2px 0 var(--ink); }
 .card:focus-visible { outline: 4px solid var(--sun); outline-offset: 3px; }
-.card .name { font-size: 19px; font-weight: 800; line-height: 1.1; }
+.card .name { font-size: 19px; font-weight: 700; line-height: 1.1; }
 
 /* ---------- reading: words with Silbenbögen ---------- */
 
@@ -303,7 +306,7 @@ button.star-count:focus-visible { outline: 4px solid var(--sun); outline-offset:
 .modal-title {
   margin: 0 56px 16px 0;
   font-size: clamp(24px, 4vw, 32px);
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1.1;
   text-wrap: balance;
 }
@@ -324,7 +327,7 @@ button.star-count:focus-visible { outline: 4px solid var(--sun); outline-offset:
   background: var(--sun);
   box-shadow: 0 7px 0 var(--ink);
   font-size: clamp(32px, 7vw, 60px);
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1.1;
   white-space: nowrap;
   pointer-events: none;
@@ -366,12 +369,17 @@ button.star-count:focus-visible { outline: 4px solid var(--sun); outline-offset:
   z-index: 55;
 }
 
-/* parent gate: a small multiplication with four big answers */
-.gate-body { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+/* Parent gate: enter the product, with a visible, correctable retry. */
 .gate-task { margin: 0; font-family: var(--read); font-size: clamp(40px, 8vw, 56px); font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; }
-.gate-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; width: 100%; }
-.gate-ans { --btn: 76px; --btn-w: 100%; --lbl: 30px; }
-.gate-ans .lbl { font-family: var(--read); font-weight: 700; margin: 0; }
+.gate-body { display:flex; flex-direction:column; align-items:center; gap:10px; width:min(380px,100%); margin:auto; }
+.gate-label { font:700 16px/1.4 var(--type-body); }
+.gate-input { min-width:0; width:100%; min-height:54px; padding:8px 12px; border:2px solid #bda482; border-radius:12px; background:#fffdf6; color:#4b3b2d; font:700 30px/1.3 var(--type-learning); text-align:center; -webkit-user-select:text; user-select:text; }
+.gate-input:focus-visible { outline:3px solid #456d83; outline-offset:3px; }
+.gate-input[aria-invalid=true] { border-color:#b16b4d; border-style:dashed; }
+.gate-feedback { min-height:24px; margin:0; color:#8b503c; font:400 15px/1.5 var(--type-body); }
+.gate-submit { --lbl:18px; width:100%; min-height:52px; }
+.gate-submit .lbl { font:700 18px/1.3 var(--type-body); }
+
 
 /* «Neuer Sticker!» after a celebration: the sticker pops up and flies into the album book */
 .new-sticker {

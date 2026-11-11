@@ -7,7 +7,7 @@
   --berry:#c25b45;--gold:#efbf4f;--sky:#e3ecd6;
   --focus:#2f6f8f;
   --lift:0 5px 0 #8a613655,0 10px 22px #4a37201f;
-  padding:0;background:var(--sky);color:var(--ink);font-family:Andika,sans-serif;overflow:hidden;isolation:isolate;
+  padding:0;background:var(--sky);color:var(--ink);font-family:var(--type-body);overflow:hidden;isolation:isolate;
   transition:background-color .6s ease;
 }
 /* Area backdrops show through the transparent indoor render; the forest keeps its fogged meadow. */
@@ -75,7 +75,7 @@
 /* Walking pad: round wooden stones in a cross. */
 .ff-pad{position:absolute;bottom:max(26px,env(safe-area-inset-bottom));left:18px;display:grid;grid-template-columns:repeat(2,58px);gap:8px;z-index:3;
   padding:9px;border-radius:26px;background:#fff6e133;border:2px solid #ffffff55}
-.ff-pad button{width:58px;height:58px;border:2px solid #c9a46c;border-radius:50%;font:700 26px/1 'Baloo 2',Andika,sans-serif;color:var(--wood-deep);touch-action:none;
+.ff-pad button{width:58px;height:58px;border:2px solid #c9a46c;border-radius:50%;font:700 26px/1 var(--type-body);color:var(--wood-deep);touch-action:none;
   background:radial-gradient(circle at 40% 30%,#fffdf5,#f6e2b9);box-shadow:inset 0 -3px 0 #e2c48d,0 4px 0 #8a613688,0 8px 16px #2e21102e;transition:translate .08s ease}
 .ff-pad button:active{translate:0 3px;box-shadow:inset 0 -2px 0 #e2c48d,0 1px 0 #8a613688}
 
@@ -113,7 +113,7 @@
 /* The question stage. */
 .ff-task-scene{min-height:200px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;margin:10px auto 20px;padding:16px;
   background:radial-gradient(ellipse at 50% 30%,#fffdf6,#f8ead0 80%);border:2px solid #eed8ae;border-radius:28px;box-shadow:inset 0 3px 10px #c9a46c26}
-.ff-target{font:700 clamp(30px,4.8vw,48px)/1.45 Andika,sans-serif;color:var(--ink);white-space:normal;letter-spacing:.01em;text-shadow:0 2px 0 #fff}
+.ff-target{font:700 clamp(30px,4.8vw,48px)/1.45 var(--type-learning);color:var(--ink);white-space:normal;letter-spacing:.01em;text-shadow:0 2px 0 #fff}
 .ff-task-scene>.ff-picture{width:130px;height:130px}
 .ff-count{display:grid;grid-template-columns:repeat(5,56px);gap:8px;align-content:center;min-height:210px;max-width:450px}
 .ff-task-scene.ff-count>.ff-picture{width:56px;height:56px;animation:ff-drop .5s cubic-bezier(.2,1.5,.4,1) backwards}
@@ -131,7 +131,7 @@
   background:linear-gradient(180deg,#fffefb 0%,#fff6e4 100%);box-shadow:inset 0 -4px 0 #f0dcb4,0 6px 0 #a97b4580,0 12px 22px #4a37201f}
 .ff-answer>.ff-picture{width:92px;height:92px}
 .ff-answer .ff-word{font-size:28px;line-height:1.45;font-weight:700}
-.ff-numeral{font:800 56px/1 'Baloo 2',Andika,sans-serif;color:var(--wood-deep);text-shadow:0 2px 0 #fff;padding-top:6px}
+.ff-numeral{font:700 56px/1 var(--type-body);color:var(--wood-deep);text-shadow:0 2px 0 #fff;padding-top:6px}
 .ff-answer.chosen,.ff-button.chosen{border-color:#5c8a44;background:linear-gradient(180deg,#f7fbea,#e2efc6);box-shadow:inset 0 -4px 0 #c3dba0,0 0 0 5px #b9d39499,0 6px 0 #4d74398a,0 14px 26px #3c5a2a33;animation:ff-cheer .55s cubic-bezier(.2,1.6,.4,1)}
 .ff-answer.ff-retry{border-style:dashed;border-color:#c08a52;background:linear-gradient(180deg,#fff6e6,#f8e3c2);animation:ff-wiggle .45s ease-in-out}
 @keyframes ff-cheer{0%{scale:1}35%{scale:1.1}65%{scale:.97}100%{scale:1}}
@@ -167,7 +167,7 @@
 .ff-wallet>span{display:flex;align-items:center;gap:6px;padding:4px 14px 4px 6px;border-radius:30px;
   background:linear-gradient(180deg,#fffaf0,#f1e1bd);border:2px solid #e2c48d;box-shadow:0 3px 0 #c9a46c77}
 .ff-wallet .ff-picture{width:40px;height:40px}
-.ff-wallet b{font:800 24px/1 'Baloo 2',Andika,sans-serif;color:var(--wood-deep);padding-top:3px}
+.ff-wallet b{font:700 24px/1 var(--type-body);color:var(--wood-deep);padding-top:3px}
 
 /* Reward: tokens travel into the bag under a slow sunburst. */
 .ff-reward{position:relative;isolation:isolate;display:flex;justify-content:center;align-items:center;gap:24px;min-height:220px}
@@ -206,14 +206,14 @@
 .ff-price .ff-picture{width:56px;height:56px;padding:6px;border-radius:50%;background:radial-gradient(circle at 40% 30%,#fff7e3,#ecd6a6);border:2px solid #fff;box-shadow:0 0 0 2px #d5ad72,0 3px 0 #a97b4566}
 .ff-owned{width:76px;height:76px;padding:10px;border-radius:50%;background:#e2efc6;box-shadow:0 0 0 4px #fff,0 0 0 6px #7fa75a}
 .ff-stock{display:inline-flex;justify-content:center;align-items:center;gap:12px;margin-top:18px;padding:4px 18px 4px 8px;border-radius:30px;background:#f3e3c1}
-.ff-stock b{font:800 26px/1 'Baloo 2',Andika,sans-serif;color:var(--wood-deep)}
+.ff-stock b{font:700 26px/1 var(--type-body);color:var(--wood-deep)}
 
 /* Bag. */
 .ff-bag-items{display:flex;justify-content:center;gap:30px;padding:25px}
 .ff-bag-items .ff-button{flex-direction:column;width:150px;min-height:170px;border-radius:30px}
 .ff-bag-items .ff-picture{width:100px;height:100px}
 .ff-bag-items b{position:absolute;top:-10px;right:-10px;display:flex;align-items:center;justify-content:center;min-width:42px;height:42px;padding:3px 8px 0;border-radius:21px;border:3px solid #fff;
-  background:linear-gradient(180deg,#ee8a5b,#c25b45);color:#fff;font:800 24px/1 'Baloo 2',Andika,sans-serif;box-shadow:0 3px 0 #8a3c2b88}
+  background:linear-gradient(180deg,#ee8a5b,#c25b45);color:#fff;font:700 24px/1 var(--type-body);box-shadow:0 3px 0 #8a3c2b88}
 .ff-bag-items .ff-button:disabled b{background:#b6a78d}
 .ff-card>.ff-button[aria-label$="öffnen"]{margin:6px}
 
@@ -235,13 +235,13 @@
 .ff-save-status .ff-button{min-width:48px;min-height:48px;width:48px;height:48px;padding:5px}
 .ff-save-status .ff-picture{width:34px;height:34px}
 .ff-adult{text-align:left}
-.ff-adult h1{font:800 28px/1.2 'Baloo 2',Andika,sans-serif;color:var(--wood-deep);margin:6px 0 10px}
+.ff-adult h1{font:700 28px/1.2 var(--type-heading);color:var(--wood-deep);margin:6px 0 10px}
 .ff-adult p{font-size:15px;line-height:1.6;color:var(--ink-soft)}
 .ff-adult label{display:flex;align-items:center;gap:15px;min-height:52px;padding:2px 14px;margin:6px 0;border-radius:16px;background:#f7ead0}
 .ff-adult input{width:26px;height:26px;accent-color:var(--leaf)}
 .ff-adult>button,.ff-adult>a{display:block;border:2px solid #d0ad75;border-radius:16px;padding:12px 16px;margin:10px 0;background:linear-gradient(180deg,#fffaf0,#f4e4c3);color:var(--ink);min-height:48px;font:inherit;text-decoration:none;box-shadow:0 3px 0 #a97b4555;text-align:left}
 .ff-adult>button:active,.ff-adult>a:active{translate:0 2px;box-shadow:0 1px 0 #a97b4555}
-.ff-dev{background:#fff2a4;padding:10px;border-radius:12px;font:700 14px Andika;align-self:center}
+.ff-dev{background:#fff2a4;padding:10px;border-radius:12px;font:700 14px var(--type-body);align-self:center}
 .ff-dev-dock{position:absolute;bottom:90px;right:10px;display:flex;gap:6px;z-index:4}
 .ff-dev-dock .ff-button{width:50px;height:50px;min-width:50px;min-height:50px;padding:4px}
 .ff-dev-dock .ff-picture{width:40px;height:40px}
@@ -360,7 +360,7 @@
 .ff-answer{border:2px solid #c7aa7a;background:#fff9eb;box-shadow:none;border-radius:18px}
 .ff-answer.chosen,.ff-button.chosen{background:#e6edcf;border:3px solid #56713e;box-shadow:none}
 .ff-answer.ff-retry{background:#f7e7d3;border-color:#b77d50}
-.ff-numeral{font:700 52px/1 Andika,sans-serif;color:#4b3b2d;text-shadow:none;padding:0}
+.ff-numeral{font:700 52px/1 var(--type-learning);color:#4b3b2d;text-shadow:none;padding:0}
 .ff-wallet>span{background:#ead8b14d;border:1px solid #d3ba8b;box-shadow:none}
 .ff-meet-scene{border:1px solid #e4cfaa}
 .ff-card>.ff-choices .ff-button:not(.ff-answer){border-radius:24px}

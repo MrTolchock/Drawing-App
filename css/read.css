@@ -22,7 +22,7 @@
 .rd-lv-label {
   color: #fff;
   font-size: 24px;
-  font-weight: 800;
+  font-weight: 700;
   -webkit-text-stroke: 5px var(--ink);
   paint-order: stroke fill;
   text-shadow: 0 3px 0 var(--ink);
@@ -77,8 +77,8 @@
 .rd-t-mint { background: var(--mint); }
 .rd-t-sky { background: var(--sky); }
 .rd-t-lilac { background: var(--lilac); }
-.rd-tile-title { font-size: clamp(22px, 3vw, 32px); font-weight: 800; line-height: 1.05; }
-.rd-tile-badge { position: absolute; top: 10px; right: 12px; display: flex; align-items: center; gap: 0; font-size: 20px; font-weight: 800; }
+.rd-tile-title { font-size: clamp(22px, 3vw, 32px); font-weight: 700; line-height: 1.05; }
+.rd-tile-badge { position: absolute; top: 10px; right: 12px; display: flex; align-items: center; gap: 0; font-size: 20px; font-weight: 700; }
 .rd-tile-badge .ic { width: 30px; height: 30px; margin-left: -4px; }
 .rd-tile-art { flex: 1; min-height: 0; width: 100%; display: flex; align-items: center; justify-content: center; pointer-events: none; }
 @keyframes rd-pop { from { transform: scale(.7); opacity: 0; } to { transform: none; opacity: 1; } }

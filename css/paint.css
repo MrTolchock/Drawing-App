@@ -273,7 +273,7 @@
   animation: pop-in .22s cubic-bezier(.3, 1.6, .5, 1);
   touch-action: pan-x pan-y;
 }
-.pop-title { margin: 0 4px 10px; font-size: 20px; font-weight: 800; }
+.pop-title { margin: 0 4px 10px; font-size: 20px; font-weight: 700; }
 .grid-opts { display: grid; grid-template-columns: repeat(var(--cols, 4), auto); gap: 10px; }
 .opt {
   position: relative;
@@ -290,7 +290,7 @@
   background: var(--sticker);
   box-shadow: 0 3px 0 var(--ink);
   font-size: 13px;
-  font-weight: 800;
+  font-weight: 700;
   cursor: pointer;
   touch-action: manipulation;
 }

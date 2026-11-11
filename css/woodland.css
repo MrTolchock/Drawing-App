@@ -5,11 +5,11 @@
 .forest-viewport::before { content:''; position:absolute; inset:0; z-index:1; pointer-events:none; box-shadow:inset 0 0 105px 20px #7462321c; background:linear-gradient(145deg,#fff2c21c,transparent 50%,#536c1910); }
 .forest-heading { padding:11px 20px 12px; border-radius:5px 29px 21px 24px; background:#fff8e7c7; box-shadow:0 4px 25px #5363360d; }
 .forest-eyebrow { color:#7b8153; letter-spacing:.2em; font-size:9px; }
-.forest-heading h1 { font-family:Georgia,'Times New Roman',serif; font-size:clamp(27px,3.1vw,41px); color:#354a26; letter-spacing:-.035em; }
+.forest-heading h1 { font-family:var(--type-heading); font-size:clamp(27px,3.1vw,41px); color:#354a26; letter-spacing:-.035em; }
 .forest-header .forest-round,.forest-repeat { background:#fff9e9ed; border-color:#beb98b; box-shadow:0 4px 16px #4b57291a; }
 .forest-goal { background:#fff9e8f2; border:1px solid #d1bf96; box-shadow:0 8px 30px #4a5b2717; }
 .forest-dialog { border:1px solid #d3bc93; background:linear-gradient(135deg,#fffaf0fa,#f9f1dcfa); box-shadow:0 15px 55px #39451e24,inset 0 0 0 5px #fff8e277; }
-.forest-dialog h2 { font-family:Georgia,'Times New Roman',serif; line-height:1.18; }
+.forest-dialog h2 { font-family:var(--type-heading); line-height:1.18; }
 .forest-primary { background:#e9eccd; border-color:#98a16b; box-shadow:0 3px 0 #acb17d33; }
 .forest-dialog-welcome .forest-portrait { width:132px; height:132px; }
 .forest-activity { background:radial-gradient(ellipse at 20% 20%,#fffaf0 0,transparent 70%),#f2ecd9; }
@@ -69,7 +69,7 @@
 .forest-book-body { width:min(1000px,100%); align-self:center; padding-top:8px; }
 .woodland-book-cover { position:relative; width:100%; height:180px; overflow:hidden; margin:0 auto 20px; border-radius:27px; background:#e5ddb6; }
 .woodland-book-cover > .woodland-vignette { position:absolute; width:100%; top:50%; transform:translateY(-50%); }
-.woodland-book-cover h2 { position:absolute; left:0; right:0; bottom:0; margin:0; padding:28px 15px 13px; font:700 28px Georgia,serif; color:#344b29; background:linear-gradient(transparent,#fff6deee); }
+.woodland-book-cover h2 { position:absolute; left:0; right:0; bottom:0; margin:0; padding:28px 15px 13px; font:700 28px var(--type-heading); color:#344b29; background:linear-gradient(transparent,#fff6deee); }
 .forest-book-neighbours { margin-bottom:24px; }
 .forest-book-games { max-width:950px; gap:18px; }
 .forest-book-game { width:260px; min-height:220px; background:#fff9eb; border-color:#c7b488; box-shadow:0 6px 24px #6e784410; }

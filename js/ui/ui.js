@@ -311,15 +311,8 @@
     m.remove();
   }
 
-  // A backdrop closes on pointerdown; the click of the same tap must not reach the button underneath.
-  function eatClick() {
-    const eat = (e) => {
-      e.stopPropagation();
-      e.preventDefault();
-    };
-    document.addEventListener('click', eat, true);
-    setTimeout(() => document.removeEventListener('click', eat, true), 450);
-  }
+  // Dismissing an overlay consumes this pointer gesture, never the next tap.
+  function eatClick(event) { FK.play?.consumeGesture(event); }
 
   // FK.ui.modal({ title, read, body: element, actions: [{ label, icon, cls, onClick }], wide, cls, onClose })
   // read: the title is a word the child reads (Andika). A card with a body and actions is laid out
@@ -348,12 +341,10 @@
     const close = btn({ icon: 'close', cls: 'btn-round modal-x', title: 'Schliessen', onClick: closeModal });
     card.append(close);
     const wrap = h('div', { class: 'modal' }, card);
-    const opened = performance.now();
     wrap.addEventListener('pointerdown', (e) => {
-      // a tap that was meant for the button underneath (e.g. a repeated «Fertig») must not close a fresh card
-      if (e.target !== wrap || performance.now() - opened < 600) return;
+      if (e.target !== wrap) return;
       closeModal();
-      eatClick();
+      eatClick(e);
     });
     wrap._onClose = o.onClose;
     document.body.append(wrap);
@@ -362,7 +353,7 @@
     FK.play?.bindTouch(wrap);
     modalEl = wrap;
     requestAnimationFrame(()=>rowFocus());
-    function rowFocus(){if(modalEl===wrap)(wrap.querySelector('.modal-actions button')||close).focus();}
+    function rowFocus(){if(modalEl===wrap)(wrap.querySelector('input,.modal-actions button')||close).focus();}
     FK.sound.open();
     return { close: closeModal, el: card };
   }
@@ -383,43 +374,26 @@
     });
   }
 
-  // Parent gate: an easy multiplication with four big answers. Right → fn(); wrong → just closes,
-  // and the gate stays shut for a while, so guessing until it opens takes too long for a child.
-  let gateShutUntil = 0;
+  // Adults enter the product themselves, so a wrong answer can be corrected
+  // without a hidden lockout or four choices that can be guessed by elimination.
   function parentGate(fn) {
-    if (Date.now() < gateShutUntil) {
-      FK.sound.nope();
-      toast('Bitte kurz warten');
-      return;
-    }
-    const x = 3 + Math.floor(Math.random() * 7);
-    const y = 3 + Math.floor(Math.random() * 7);
-    const right = x * y;
-    const set = [right];
-    const near = [right + x, right - x, right + y, right - y, right + 1, right - 1, right + 10, right - 10];
-    while (set.length < 4 && near.length) {
-      const v = near.splice(Math.floor(Math.random() * near.length), 1)[0];
-      if (v > 0 && set.indexOf(v) < 0) set.push(v);
-    }
-    set.sort(() => Math.random() - 0.5);
-    const grid = h('div', { class: 'gate-grid' });
-    const m = modal({
-      title: 'Für Eltern',
-      cls: 'gate',
-      body: h('div', { class: 'gate-body' }, h('p', { class: 'gate-task', text: x + ' × ' + y + ' = ?' }), grid),
-    });
-    set.forEach((v) => grid.append(btn({
-      label: String(v),
-      cls: 'gate-ans',
-      onClick: () => {
-        m.close();
-        if (v === right) fn();
-        else {
-          gateShutUntil = Date.now() + 20000;
-          FK.sound.nope();
-        }
-      },
-    })));
+    const x=3+Math.floor(Math.random()*7),y=3+Math.floor(Math.random()*7);
+    const task=h('p',{class:'gate-task',id:'parent-gate-task',text:x+' × '+y+' = ?'});
+    const answer=h('input',{class:'gate-input',id:'parent-gate-answer',type:'text',inputmode:'numeric',pattern:'[0-9]*',maxlength:3,autocomplete:'off',enterkeyhint:'done','aria-describedby':'parent-gate-task parent-gate-feedback'});
+    const feedback=h('p',{class:'gate-feedback',id:'parent-gate-feedback',role:'status','aria-live':'polite'});
+    const submit=h('button',{type:'submit',class:'btn btn-go gate-submit'},h('span',{class:'lbl',text:'Öffnen'}));
+    let opened=false;
+    const form=h('form',{class:'gate-body',novalidate:true,onsubmit:event=>{
+      event.preventDefault();if(opened)return;
+      if(!/^\d{1,3}$/.test(answer.value.trim())||Number(answer.value)!==x*y){
+        answer.setAttribute('aria-invalid','true');feedback.textContent='Das stimmt noch nicht. Bitte nochmals versuchen.';
+        FK.sound.nope();answer.focus();answer.select();return;
+      }
+      opened=true;m.close();fn();
+    }},task,h('label',{class:'gate-label',for:'parent-gate-answer',text:'Deine Antwort'}),answer,feedback,submit);
+    answer.addEventListener('input',()=>{answer.removeAttribute('aria-invalid');feedback.textContent='';});
+    const m=modal({title:'Für Eltern',cls:'gate',body:form});
+    answer.focus(); // Synchronous with the opening tap, including iPhone keyboards.
   }
 
   // Calls fn after the element was held for `ms`. Shows a filling ring.

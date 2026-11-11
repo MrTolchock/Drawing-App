@@ -17,7 +17,7 @@ const BASE=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
   const ready=()=>page.waitForFunction(()=>!!window.FK?.friendsView,null,{timeout:60000});
   const snapshot=async name=>{await page.waitForTimeout(350);await page.screenshot({path:shots+'/'+name+'.png',animations:'disabled'});};
   const spoken=()=>page.evaluate(()=>window.testSpeech.length);
-  async function settings(){await click('Einstellungen für Erwachsene');const n=(await page.locator('.gate-task').innerText()).match(/\d+/g).map(Number);await click(String(n[0]*n[1]));assert.equal(await page.evaluate(()=>FK.current()),'settings');}
+  async function settings(){await click('Einstellungen für Erwachsene');const n=(await page.locator('.gate-task').innerText()).match(/\d+/g).map(Number);await page.locator('.gate-input').fill(String(n[0]*n[1]));await click('Öffnen');assert.equal(await page.evaluate(()=>FK.current()),'settings');}
   await page.goto(BASE+'/?software=1');await ready();await page.evaluate(()=>document.fonts.ready);
   assert.equal(await page.evaluate(()=>FK.friends.get().settings.speech),false);assert.equal(await spoken(),0);
   assert.deepEqual(await page.locator('.ff-nav .ff-ui-art').evaluateAll(es=>es.map(e=>e.dataset.icon)),['map','letter','book','gear']);

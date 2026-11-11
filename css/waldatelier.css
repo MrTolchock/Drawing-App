@@ -5,7 +5,7 @@
   --ink:#29432e; --sticker:#fffaf0; --sun:#edcf83; --sun-deep:#b38c3d;
   --box:#d9c8a8; --box-hi:#e8d9bc; --mint:#dce6ca; --sky:#dce9eb;
   --rose:#f0ddd3; --lilac:#e4dfe9; --apricot:#efdbbf; --leaf:#76945c;
-  --muted:#67715c; --wood:#d5bc94; --font:'Andika',system-ui,sans-serif;
+  --muted:#67715c; --wood:#d5bc94; --font:var(--type-body);
   --wa-line:#b7a887; --wa-soft:#e6dbc6; --wa-sepia:#75593c;
   --wa-shadow:0 5px 18px #5b60330d; --radius:15px;
 }
@@ -54,7 +54,7 @@ body { background:#f7f2e7; background-image:radial-gradient(ellipse at 5% 0%,#e7
 .wa-hero-head { position:relative; margin:0 0 20px 34%; text-align:center; }
 .wa-hero-head > p:last-child { margin:7px 0 0; font-size:18px; }
 .wa-kicker { margin:0 0 6px; font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#5e7352; }
-.wa-wordmark { color:#234025; display:inline-block; position:relative; font-family:'Baloo 2',var(--read); font-size:clamp(56px,7vw,86px); font-weight:800; letter-spacing:-.045em; line-height:1; margin:0; }
+.wa-wordmark { color:#234025; display:inline-block; position:relative; font-family:var(--type-heading); font-size:clamp(56px,7vw,86px); font-weight:800; letter-spacing:-.045em; line-height:1; margin:0; }
 .wa-wordmark::after { content:''; display:block; width:65%; height:7px; margin:2px auto 0; border-radius:80% 30% 70% 30%; transform:rotate(-2deg); background:#d5ad4c; opacity:.8; }
 .wa-hero-cards { position:relative; margin-left:35%; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
 .wa-home-card { display:flex; flex-direction:column; align-items:center; justify-content:center; min-width:0; min-height:162px; padding:9px 5px 14px; border:1px solid #b5a782a6; border-radius:21px; background:#fff8e9f0; color:#28432c; box-shadow:0 3px 12px #4c5c2620; cursor:pointer; touch-action:manipulation; }

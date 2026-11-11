@@ -32,8 +32,8 @@
   --wb-lift:0 10px 24px #5a3f2420;
   --wb-press:6px;
   /* Type */
-  --wb-display:"Baloo 2",ui-rounded,system-ui,sans-serif;
-  --wb-read:"Andika","Baloo 2",system-ui,sans-serif;
+  --wb-display:var(--type-heading);
+  --wb-read:var(--type-learning);
   /* Progress item: a cell of forest-objects.png (4 × 4). Nut by default. */
   --wb-item:0% 0%;
 }
@@ -67,7 +67,7 @@
   background:none;border:0;border-radius:0;box-shadow:none;
 }
 .friends-interface :is(.screen-learn,.screen-adventure,.screen-expedition,.screen-read,.screen-trace,.screen-dots)>.topbar .title{
-  color:#fffaf0;font:800 clamp(24px,3.2vw,34px)/1.1 var(--wb-display);letter-spacing:0;
+  color:#fffaf0;font:700 clamp(24px,3.2vw,34px)/1.1 var(--wb-display);letter-spacing:0;
   -webkit-text-stroke:6px var(--wb-timber-deep);paint-order:stroke fill;text-shadow:0 3px 0 var(--wb-timber-deep);
 }
 
@@ -123,13 +123,13 @@
 
 /* Text a child reads: Andika; the prompt 26 px. */
 .friends-interface :is(.learn-prompt,.ff-round-title){font:700 clamp(22px,2.6vw,26px)/1.35 var(--wb-read);color:var(--wb-ink);margin:12px auto 18px}
-.friends-interface .ff-round-title{font-family:var(--wb-display);font-weight:800}
+.friends-interface .ff-round-title{font-family:var(--type-body);font-weight:700}
 .friends-interface :is(.learn-feedback,.play-instruction,.adventure-meter){font:16px/1.5 var(--wb-read);color:var(--wb-ink-soft)}
 
 /* Context row on the page: what is left once the host stands on the margin. */
 .friends-interface .play-context{border-bottom:0;padding:0;margin:0 auto 6px;min-height:64px;color:var(--wb-ink-soft)}
-.friends-interface .play-context .play-round{font:700 17px var(--wb-display);color:var(--wb-ink-soft)}
-.friends-interface .play-context>.forest-portrait+span{font:600 16px/1.2 var(--wb-display);color:var(--wb-ink)}
+.friends-interface .play-context .play-round{font:700 17px var(--type-body);color:var(--wb-ink-soft)}
+.friends-interface .play-context>.forest-portrait+span{font:400 16px/1.2 var(--type-body);color:var(--wb-ink)}
 
 /* ---------- Host on the margin (wide screens) ---------- */
 @media (min-width:700px){
@@ -154,7 +154,7 @@
     left:calc(max(6px,env(safe-area-inset-left)) + min(115px,calc(var(--wb-gutter)/2 + 13px)));bottom:max(30px,calc(env(safe-area-inset-bottom) + 16px));
     transform:translateX(-50%);white-space:nowrap;max-width:calc(var(--wb-gutter) + 40px);overflow:hidden;text-overflow:ellipsis;
     padding:5px 14px 6px;border-radius:var(--wb-r-s);background:var(--wb-paper);border:2px solid var(--accent,var(--wb-honey-deep));
-    box-shadow:var(--wb-lift);font:700 16px/1.1 var(--wb-display);color:var(--wb-ink);
+    box-shadow:var(--wb-lift);font:700 16px/1.1 var(--type-body);color:var(--wb-ink);
   }
   .friends-interface .screen-read .play-context>.forest-portrait+span{
     left:calc(max(6px,env(safe-area-inset-left)) - 22px - var(--wb-gutter) + min(115px,calc(var(--wb-gutter)/2 + 13px)));bottom:0;
@@ -199,7 +199,7 @@
   transition:transform .08s,box-shadow .08s,opacity .15s;
 }
 .friends-interface .learn-answer{font:700 clamp(28px,4vw,40px)/1 var(--wb-read)}
-.friends-interface .ff-answer .ff-numeral{font:800 clamp(40px,5vw,54px)/1 var(--wb-display);color:var(--wb-ink)}
+.friends-interface .ff-answer .ff-numeral{font:700 clamp(40px,5vw,54px)/1 var(--type-body);color:var(--wb-ink)}
 .friends-interface .ff-answer .ff-word{font:700 clamp(24px,2.8vw,30px)/1.1 var(--wb-read);color:var(--wb-ink)}
 .friends-interface :is(.learn-answer,.ff-answer,.rd-card):not(:disabled):active{transform:translateY(4px);translate:none;box-shadow:0 2px 0 #d6b680,var(--wb-lift)}
 .friends-interface :is(.learn-answer.correct,.learn-button.correct,.ff-answer.chosen,.rd-card.right){
@@ -216,7 +216,7 @@
 /* Other page buttons (next, hint, finish actions): the same paper and timber. */
 .friends-interface .learn-button:not(.learn-answer){
   background:#fffdf6;border:2px solid #e3cc9f;border-radius:var(--wb-r-m);color:var(--wb-ink);
-  box-shadow:0 4px 0 #d6b680;font-family:var(--wb-display);
+  box-shadow:0 4px 0 #d6b680;font-family:var(--type-body);
 }
 .friends-interface :is(.learn-next,.adventure-next,.exp-next){background:var(--wb-moss-tint);border-color:var(--wb-moss);box-shadow:0 4px 0 var(--wb-moss);min-height:64px;font-size:20px}
 
@@ -233,15 +233,15 @@
 .friends-interface .play-steps{gap:12px;max-width:740px;margin:8px auto 18px}
 .friends-interface .play-step{
   flex-direction:row;gap:8px;padding:6px 16px 6px 6px;border:0;border-radius:30px;background:var(--wb-paper-inset);
-  font:700 17px var(--wb-display);color:var(--wb-ink-soft);
+  font:700 17px var(--type-body);color:var(--wb-ink-soft);
 }
 .friends-interface .play-step>b{
   position:static;display:grid;place-items:center;flex:none;width:30px;height:30px;border-radius:50%;
-  background:#e2cfa6;color:#fff;font:800 16px/1 var(--wb-display);
+  background:#e2cfa6;color:#fff;font:700 16px/1 var(--type-body);
 }
 .friends-interface .play-step:first-child{background:var(--wb-moss-tint);color:var(--wb-ink)}
 .friends-interface .play-step:first-child>b{background:var(--wb-moss)}
-.friends-interface .play-step small{font:700 16px/1.2 var(--wb-display);color:inherit}
+.friends-interface .play-step small{font:700 16px/1.2 var(--type-body);color:inherit}
 .friends-interface .play-step :is(.wa-illustration,.wa-symbol,.forest-icon){width:34px;height:34px}
 
 /* ==========================================================================
@@ -303,7 +303,7 @@
   .friends-interface .ff-illustrated-round[data-kind] .ff-card-top::after{
     position:absolute;z-index:6;left:calc(max(6px,env(safe-area-inset-left)) + min(115px,calc(var(--wb-gutter)/2 + 13px)));bottom:32px;transform:translateX(-50%);
     padding:5px 16px 6px;border-radius:var(--wb-r-s);background:var(--wb-paper);border:2px solid var(--accent,var(--wb-honey-deep));
-    box-shadow:var(--wb-lift);font:700 18px/1.1 var(--wb-display);color:var(--wb-ink);white-space:nowrap;
+    box-shadow:var(--wb-lift);font:700 18px/1.1 var(--type-body);color:var(--wb-ink);white-space:nowrap;
   }
   .friends-interface .ff-illustrated-round[data-kind][data-host=squirrel] .ff-card-top::after{content:"Eichhörnchen"}
   .friends-interface .ff-illustrated-round[data-kind][data-host=bird] .ff-card-top::after{content:"Blaumeise"}
@@ -358,10 +358,10 @@
   width:100%;max-width:none;min-height:64px;margin:0 0 12px;padding:0;gap:16px;background:none;border:0;border-radius:0;box-shadow:none;
 }
 .friends-interface :is(.screen-forest-book,.den-colouring-book,.screen-gallery)>.topbar .title{
-  color:#fffaf0;font:800 clamp(28px,3.6vw,40px)/1.1 var(--wb-display);letter-spacing:0;
+  color:#fffaf0;font:700 clamp(28px,3.6vw,40px)/1.1 var(--wb-display);letter-spacing:0;
   -webkit-text-stroke:6px var(--wb-timber-deep);paint-order:stroke fill;text-shadow:0 3px 0 var(--wb-timber-deep);
 }
-.friends-interface .ff-settings-screen>.topbar .title{color:var(--wb-ink);font:800 clamp(26px,3.2vw,34px)/1.1 var(--wb-display);-webkit-text-stroke:0;text-shadow:none}
+.friends-interface .ff-settings-screen>.topbar .title{color:var(--wb-ink);font:700 clamp(26px,3.2vw,34px)/1.1 var(--wb-display);-webkit-text-stroke:0;text-shadow:none}
 .friends-interface :is(.screen-forest-book,.den-colouring-book,.screen-gallery,.ff-settings-screen) .btn-back,
 .friends-interface .ff-map-card .ff-card-top>.ff-button:first-child{
   --btn:64px;--btn-w:64px;--ic:30px;flex:none;width:64px;min-width:64px;height:64px;min-height:64px;padding:0;border-radius:50%;
@@ -459,7 +459,7 @@
 }
 .friends-interface .screen-forest-book .ff-library-tabs .forest-book-neighbour>span{gap:6px}
 .friends-interface .screen-forest-book .ff-library-tabs .forest-book-neighbour :is(.wa-illustration,.woodland-art,.forest-portrait){width:60px;height:60px}
-.friends-interface .screen-forest-book .ff-library-tabs small{font:700 15px/1 var(--wb-display);color:inherit;white-space:nowrap}
+.friends-interface .screen-forest-book .ff-library-tabs small{font:700 15px/1 var(--type-body);color:inherit;white-space:nowrap}
 .friends-interface .screen-forest-book .ff-library-tabs .forest-book-neighbour[aria-pressed=true]{height:118px;background:var(--wb-paper);color:var(--wb-ink);box-shadow:inset 0 10px 0 var(--accent);border-color:#e6d2aa}
 .friends-interface .ff-library-tabs [aria-label="Mit Eichhörnchen spielen"]{--accent:var(--wb-squirrel)}
 .friends-interface .ff-library-tabs [aria-label="Mit Blaumeise spielen"]{--accent:var(--wb-bluetit)}
@@ -481,10 +481,10 @@
 .friends-interface .screen-forest-book .forest-book-game:focus-visible{outline:4px solid var(--wb-focus);outline-offset:5px}
 .friends-interface .screen-forest-book .forest-book-game>span{gap:8px}
 .friends-interface .screen-forest-book .forest-book-game>span>.wa-illustration{width:92px;height:92px}
-.friends-interface .screen-forest-book .forest-book-game b{font:700 20px/1.2 var(--wb-display);color:var(--wb-ink)}
+.friends-interface .screen-forest-book .forest-book-game b{font:700 20px/1.2 var(--type-body);color:var(--wb-ink)}
 .friends-interface .screen-forest-book .forest-book-game .ff-library-host{
   display:inline-flex;align-items:center;gap:6px;margin-top:2px;padding:3px 10px 3px 4px;border-radius:14px;
-  background:var(--wb-paper-inset);font:600 15px/1 var(--wb-display);color:var(--wb-ink-soft);
+  background:var(--wb-paper-inset);font:400 15px/1 var(--type-body);color:var(--wb-ink-soft);
 }
 .friends-interface .screen-forest-book .ff-library-host .forest-portrait{width:26px;height:26px}
 @media (max-width:860px){.friends-interface .screen-forest-book .forest-book-games{grid-template-columns:repeat(3,minmax(0,1fr))}}
@@ -545,7 +545,7 @@
   content:"";position:absolute;z-index:1;top:-26px;left:50%;width:16px;height:44px;margin-left:-8px;border-radius:5px;
   background:linear-gradient(90deg,#d9a866,#b8834a);box-shadow:0 2px 0 #7a4f2b;
 }
-.friends-interface .screen-gallery .frame-date{display:block;margin-top:6px;font:600 15px var(--wb-display);color:var(--wb-ink-soft)}
+.friends-interface .screen-gallery .frame-date{display:block;margin-top:6px;font:400 15px var(--type-body);color:var(--wb-ink-soft)}
 .friends-interface .screen-gallery .gallery-grid:empty{position:relative}
 .friends-interface .screen-gallery .gallery-grid:empty::before{top:30px;left:50%}
 /* Empty: a happy Fuchs under the empty peg; the sentence stays for screen readers. */
@@ -570,9 +570,9 @@
 .friends-interface .ff-settings-body .setting-card{padding:20px 0;background:none;border:0;border-radius:0;box-shadow:none}
 .friends-interface .ff-settings-body .setting-card+.setting-card{border-top:2px solid #f0e3c8}
 .friends-interface .ff-settings-body .setting-head{text-align:left}
-.friends-interface .ff-settings-body .setting-head b,.friends-interface .ff-data-settings summary{font:800 22px/1.2 var(--wb-display);color:var(--wb-ink)}
-.friends-interface .ff-settings-body .setting-head small{font:600 15px/1.4 var(--wb-display);color:var(--wb-ink-soft)}
-.friends-interface .ff-setting-toggle{min-height:60px;border-top:1px solid #f0e3c8;font:700 17px var(--wb-display);color:var(--wb-ink)}
+.friends-interface .ff-settings-body .setting-head b,.friends-interface .ff-data-settings summary{font:700 22px/1.2 var(--type-body);color:var(--wb-ink)}
+.friends-interface .ff-settings-body .setting-head small{font:400 15px/1.4 var(--type-body);color:var(--wb-ink-soft)}
+.friends-interface .ff-setting-toggle{min-height:60px;border-top:1px solid #f0e3c8;font:700 17px var(--type-body);color:var(--wb-ink)}
 .friends-interface .ff-setting-toggle input{
   -webkit-appearance:none;appearance:none;flex:none;width:76px;height:42px;margin:0;border-radius:21px;cursor:pointer;
   border:2px solid var(--wb-paper-edge);background:radial-gradient(circle at 19px 50%,#fff 0 15px,transparent 16px),var(--wb-paper-inset);
@@ -585,14 +585,14 @@
 .friends-interface .ff-settings-body :is(.play-timer-modes,.play-timer-presets){margin-top:10px}
 .friends-interface :is(.ff-font-choices,.play-timer-modes,.play-timer-presets)>button{
   width:auto;height:auto;min-height:48px;padding:10px 18px;border:0;border-radius:12px;background:transparent;box-shadow:none;
-  font:700 17px var(--wb-display);color:var(--wb-ink-soft);transform:none;
+  font:700 17px var(--type-body);color:var(--wb-ink-soft);transform:none;
 }
 .friends-interface :is(.ff-font-choices,.play-timer-modes,.play-timer-presets)>button :is(.lbl,span){font:inherit;margin:0;color:inherit}
 .friends-interface :is(.ff-font-choices,.play-timer-modes,.play-timer-presets)>button[aria-pressed=true]{background:#fffdf6;color:var(--wb-ink);box-shadow:0 3px 0 #d6b680}
 .friends-interface :is(.ff-font-choices,.play-timer-modes,.play-timer-presets)>button:focus-visible{outline:4px solid var(--wb-focus);outline-offset:2px}
 .friends-interface .play-timer-settings{align-items:flex-start}
-.friends-interface .ff-data-settings>.btn{display:inline-block;margin:10px 10px 0 0;min-height:48px;padding:10px 16px;border:2px solid #e3cc9f;border-radius:var(--wb-r-s);background:#fffdf6;box-shadow:0 4px 0 #d6b680;font:700 15px var(--wb-display);color:var(--wb-ink)}
-.friends-interface .ff-settings-version{margin-top:12px;font:600 15px var(--wb-display);color:var(--wb-ink-soft)}
+.friends-interface .ff-data-settings>.btn{display:inline-block;margin:10px 10px 0 0;min-height:48px;padding:10px 16px;border:2px solid #e3cc9f;border-radius:var(--wb-r-s);background:#fffdf6;box-shadow:0 4px 0 #d6b680;font:700 15px var(--type-body);color:var(--wb-ink)}
+.friends-interface .ff-settings-version{margin-top:12px;font:400 15px var(--type-body);color:var(--wb-ink-soft)}
 @media (max-width:600px){
   .friends-interface :is(.den-colouring-book,.screen-gallery,.ff-settings-screen){padding:10px max(10px,env(safe-area-inset-right)) max(10px,env(safe-area-inset-bottom)) max(10px,env(safe-area-inset-left))}
   .friends-interface .ff-settings-body{padding:16px 18px 20px;border-radius:26px;outline-offset:-9px}

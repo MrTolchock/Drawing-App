@@ -1,8 +1,10 @@
 # Current woodland puzzles
 
-The current catalogue contains 28 games. All use Andika, the same portrait and five-leaf progress row, a single manual **Spiel erklären** button, large answer cards and automatic continuation after a correct answer. Mistakes leave the task editable. No tips, pointer mode, question-mark controls, next-task button or second success row appear. Task feedback lasts 900 ms; the fifth answer leads to a 2.2-second friend celebration with painted leaves and flowers. Reduced motion keeps a static wreath. No question is timed.
+The current catalogue contains 33 games. All use Andika, the same portrait and five-leaf progress row, a single manual **Spiel erklären** button, large answer cards and automatic continuation after a correct answer. Mistakes leave the task editable. No tips, pointer mode, question-mark controls, next-task button or second success row appear. Task feedback lasts 900 ms; the fifth answer leads to a 2.2-second friend celebration with painted leaves and flowers. Reduced motion keeps a static wreath. No question is timed.
 
 Launching from Waldspiele preserves that return destination, including the original five friends and both tracing games. Forest visits rotate through all games assigned to the host, resuming unfinished work first. A completed invitation returns to the forest and nearby courier. Waldreime is integrated into Reimpaare lesen, and Zahlenwege is removed from current play. Their historical files and saved progress remain usable through the original game.
+
+The five newer neighbours use the same task presentation: **Fische zählen** and **Am Bach zählen** practise quantities to 20; **Tierrätsel** and **Wer wohnt wo?** ask short written animal questions; **Tierwörter lesen** matches written animal names with pictures. Their existing authored task pools and snapshots are preserved.
 
 ## Tasks and learning boundaries
 
@@ -45,4 +47,4 @@ These are practice mappings to the Zürich Zyklus-1 references already documente
 
 Original friend rounds retain transactional `FriendsState` snapshots. Other current games save a deterministic seed, task index, correct-answer transition and partial board work separately in `farbtupf.puzzles.v1`, with a separate developer key. Tracing resumes at the current glyph and permits retracing unfinished strokes. Historical settings, drawings, questions and progress are retained.
 
-`tests/puzzle-rounds.test.cjs` covers the 28-game catalogue, generated content, reachable routes, arithmetic invariants, five distinct tasks, session restoration and full host rotation. `tests/puzzle-rounds-browser.cjs` opens every route at 1024×900 and 390×844 and completes all 140 tasks through actual inputs, including touch tracing. It also checks retry, return destinations, celebration, partial work and offline continuation. Screenshots are written to `/tmp/woodland-rounds`; the visual baseline integrity check remains unchanged.
+`tests/puzzle-rounds.test.cjs` covers the 33-game catalogue, generated content, reachable routes, arithmetic invariants, five distinct tasks, session restoration and full host rotation. `tests/puzzle-rounds-browser.cjs` opens every route at 1024×900 and 390×844 and completes all 165 tasks through actual inputs, including touch tracing. It also checks retry, return destinations, celebration, partial work and offline continuation. Screenshots are written to `/tmp/woodland-rounds`; the visual baseline integrity check remains unchanged.

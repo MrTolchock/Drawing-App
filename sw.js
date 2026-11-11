@@ -1,6 +1,7 @@
 /* Farbtupf – Service Worker: keeps the whole app on the device so it runs without internet. */
-const CACHE = 'farbtupf-v9.0.0-big-world';
+const CACHE = 'farbtupf-v9.0.1-input-type';
 const ASSETS = [
+  './css/typography.css',
   './js/friends/puzzle-rounds.js',
   './js/screens/puzzle.js',
   './css/puzzle-rounds.css',

@@ -20,6 +20,8 @@ Use honey timber, earthy terracotta, warm cream, leafy greens and restrained blu
 
 Current interface tokens: ink `#4b3b2d`, green `#48663b`, paper `#fff5df`, honey `#e3b46b`, muted `#7c735d`. These are working design values, not a claim of completed accessibility validation. Puzzle cards are flat; world objects remain dimensional. Keep numerals/words only where they are learning content or useful accessible metadata, not required navigation prose.
 
+Follow the shared [typography and input guide](../../../docs/TYPOGRAPHY.md): Andika for controls, instructions and learning content; Baloo 2 for menu/section headings. Puzzle titles remain Andika. Use the shared role tokens and supplied font weights across every screen.
+
 ## Interaction rules retained
 
 One difficulty level; first-grade Zürich curriculum alignment; direct answer submission and automatic continuation after brief success feedback; syllable bows; non-punitive retry. The shop shows individual resource tokens on separate rows, with a compact price/wallet dock outside the shelf artwork. Purchase confirmation is separate from answering a puzzle.

@@ -37,7 +37,7 @@ function route(q) {
     // A normal tap opens the parent gate; the right answer opens functioning settings.
     await page.getByRole('button',{name:'Einstellungen für Erwachsene',exact:true}).tap();
     const task=await page.locator('.gate-task').innerText(), [a,b]=task.match(/\d+/g).map(Number);
-    await page.locator('.gate').getByRole('button',{name:String(a*b),exact:true}).tap();
+    await page.locator('.gate-input').fill(String(a*b));await page.locator('.gate').getByRole('button',{name:'Öffnen',exact:true}).tap();
     assert.equal(await page.evaluate(()=>FK.current()),'settings');
     await page.getByRole('checkbox',{name:'Spielklänge',exact:true}).tap();assert.equal(await page.evaluate(()=>FK.settings.get('sound')),true);
     await page.getByRole('checkbox',{name:'Spielklänge',exact:true}).tap();await page.locator('.screen-settings .btn-back').tap();

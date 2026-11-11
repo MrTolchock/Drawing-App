@@ -3,18 +3,9 @@
   'use strict';
   const FK = window.FK, h = FK.h;
   let body, title, game, stage, round, q, locked, feedback, next, cleanup = () => {};
-  function touchAction(node,fn){
-    node.addEventListener('pointerup',event=>{
-      if(event.pointerType!=='touch'||!event.isPrimary||node.disabled||event.fkPlayHandled)return;
-      const r=node.getBoundingClientRect();
-      if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)return;
-      event.fkPlayHandled=true;fn();
-    });
-    return node;
-  }
   const button = (text, fn, cls = '') => {
     const run=()=>{if(!locked)fn();};
-    return touchAction(h('button',{type:'button',class:'learn-button '+cls,text,onclick:run}),run);
+    return h('button',{type:'button',class:'learn-button '+cls,text,onclick:run});
   };
   function say(text) { feedback.textContent=text; FK.play.speak(text); }
   function success() {
@@ -362,7 +353,7 @@
     const host=h('div',{class:'adventure-work adventure-'+q.kind});
     feedback=h('p',{class:'learn-feedback',role:'status','aria-live':'polite',text:'Probiere aus. Du hast Zeit.'});
     const advance=()=>{if(!locked)return;round++;if(round===5)finish();else draw();};
-    next=touchAction(h('button',{type:'button',class:'learn-button learn-next adventure-next',hidden:true,text:round===4?'⭐ Geschafft!':'Weiter →',onclick:advance}),advance);
+    next=h('button',{type:'button',class:'learn-button learn-next adventure-next',hidden:true,text:round===4?'⭐ Geschafft!':'Weiter →',onclick:advance});
     body.replaceChildren(FK.play.context(game.id,q.prompt,round,stage),FK.woodland.progress(round),h('h2',{class:'learn-prompt',text:q.prompt}),host,feedback,next,
       h('button',{type:'button',class:'learn-button learn-hint',text:'💡 Tipp',onclick:()=>{FK.play.hint?.();say(q.hint);}}));
     work(host);body.scrollTop=0;FK.play.speak(q.prompt);

@@ -11,12 +11,13 @@ Open `http://127.0.0.1:8000`. Browser scripts require Playwright and Chromium. T
 
 | Check | Coverage |
 | --- | --- |
+| `tests/input-typography-browser.cjs` | Parent-gate error/retry and immediate reopen; first-tap activation with finger movement in world, books, settings, puzzles and painting; rapid taps, scrolling, cancellation, overlay dismissal, mouse/keyboard and shared font roles at phone/tablet sizes |
 | `tests/friends-mail-browser.cjs` | Closed-door letter delivery, friend arrow, puzzle completion, nearby mailman, next letter, refresh and offline continuity |
 | `tests/den-browser.cjs` | Fox lying on the mattress, visible shelf books, direct free colouring, new outlines/postcards, back navigation, gallery save/resume and offline restoration at tablet/phone sizes |
 | `tests/interface-browser.cjs` | Matching centred icons, shared settings, timer pause, painted map and actual route, manual-only puzzle explanations, audible ambience/mute/background behaviour, retired leaves and offline saves |
 | `tests/timer-browser.cjs` | Optional stopwatch/countdown in shared settings, visual reminder, foreground timing, paused reload and retained mounted puzzles |
 | `tests/friends-library-browser.cjs` | Restored v2 catalogue, new host assignments, fixed difficulty, return paths, original gear and full atelier persistence |
-| `tests/puzzle-rounds-browser.cjs` | All 28 routes at 1024/390, all 140 tasks with real answers/touch tracing, five-task celebration, retry, menu/world returns, host rotation, persisted work and offline assets |
+| `tests/puzzle-rounds-browser.cjs` | All 33 routes at 1024/390, all 165 tasks with real answers/touch tracing, five-task celebration, retry, menu/world returns, host rotation, persisted work and offline assets |
 | `tests/world-browser.cjs` | Free walking, held touch, discoveries, map, camera, responsive controls and offline positions |
 | `tests/world-budget-browser.cjs` | Frame budget (blueprint 7A) on a loop round home and the fixed route through `?world=10x`: draw calls, triangles, near/far tiles and animated characters while drawing; build slices in a second pass with drawing skipped |
 | `tests/cinema-browser.cjs` | Opening, requests, heartlight, reunion, saved finale and framed faces |

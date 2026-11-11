@@ -27,6 +27,9 @@
   }
   document.addEventListener('touchmove', (e) => {
     if (e.touches && e.touches.length > 1) e.preventDefault();
+    // A little finger movement must not cancel native form controls or links.
+    // Drawing surfaces keep their own touch-action and pointer handling.
+    else if (e.target.closest?.('button,a,input,label,select,textarea,summary')) return;
     else if (!canScroll(e.target)) e.preventDefault();
   }, { passive: false });
 

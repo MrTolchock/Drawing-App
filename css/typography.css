@@ -1,0 +1,46 @@
+/* Runtime type roles, loaded last. Keep the two bundled families and avoid
+   screen-specific font stacks. See docs/TYPOGRAPHY.md. */
+:root {
+  --type-size-title:clamp(22px,3vw,32px);
+  --type-size-learning-title:clamp(21px,2.5vw,28px);
+  --type-size-section:clamp(21px,2.6vw,28px);
+  --type-size-body:16px;
+  --type-size-label:17px;
+  --type-size-meta:14px;
+}
+body { font-family:var(--type-body); font-size:var(--type-size-body); line-height:1.5; }
+button,input,select,textarea { font-family:var(--type-body); }
+.topbar .title { font-size:var(--type-size-title); }
+:is(.topbar .title,.modal-title,.pop-title,.forest-heading h1,.forest-dialog h2,.ff-adult h1,.play-library-intro h2,.forest-book-body h2,.journey-card h2) {
+  font-family:var(--type-heading);font-weight:700;line-height:1.25;letter-spacing:0;text-shadow:none;-webkit-text-stroke:0;
+}
+.friends-interface .screen .topbar .title {
+  font-family:var(--type-heading);font-size:var(--type-size-title);font-weight:700;line-height:1.25;letter-spacing:0;text-shadow:none;-webkit-text-stroke:0;color:var(--wb-ink);
+}
+.friends-interface .screen :is(button,input,select,textarea),.friends-interface .modal :is(button,input) { font-family:var(--type-body); }
+.friends-interface .screen button :is(.lbl,b,small),.friends-interface .modal button .lbl { font-family:var(--type-body); }
+.friends-interface .screen :is(.forest-book-game b,.book-card .name,.viewer-name) { font-family:var(--type-body);font-weight:700;line-height:1.3;letter-spacing:0; }
+.friends-interface .screen-forest-book .play-library-intro h2,.friends-interface .screen-forest-book .forest-book-body h2 {
+  font-family:var(--type-heading);font-size:var(--type-size-section);font-weight:700;line-height:1.3;letter-spacing:0;
+}
+.friends-interface .screen-forest-book .forest-book-game b { font-family:var(--type-body);font-weight:700;line-height:1.3; }
+.friends-interface .ff-settings-body .setting-head b,.friends-interface .ff-data-settings summary {
+  font:700 20px/1.4 var(--type-body);
+}
+.friends-interface .ff-settings-body .setting-head small { font:400 var(--type-size-meta)/1.5 var(--type-body); }
+.friends-interface .ff-setting-toggle { font:700 var(--type-size-label)/1.4 var(--type-body); }
+.friends-interface :is(.ff-font-choices,.play-timer-modes,.play-timer-presets)>button { font:700 var(--type-size-label)/1.35 var(--type-body); }
+.friends-interface .ff-data-settings>.btn { font:700 15px/1.4 var(--type-body); }
+.friends-interface .ff-settings-version { font:400 var(--type-size-meta)/1.4 var(--type-body); }
+/* Learning screens keep a single family even for their titles and end cards. */
+:is(.screen-puzzle,.screen-trace,.screen-learn,.screen-adventure,.screen-expedition,.screen-read,.screen-dots,.screen-color) { --font:var(--type-learning);--wb-display:var(--type-learning);--type-size-title:var(--type-size-learning-title); }
+.friends-interface :is(.screen-puzzle,.screen-trace,.screen-learn,.screen-adventure,.screen-expedition,.screen-read,.screen-dots,.screen-color) :is(.topbar .title,h1,h2,h3,.puzzle-read-text,.puzzle-answer,.tr-pip),
+:is(.screen-puzzle,.screen-trace,.screen-learn,.screen-adventure,.screen-expedition,.screen-read,.screen-dots,.screen-color) :is(.topbar .title,h1,h2,h3) {
+  font-family:var(--type-learning);font-weight:700;letter-spacing:0;
+}
+.gate-task,.gate-input { font-family:var(--type-learning);font-weight:700;font-variant-numeric:tabular-nums; }
+.modal-title,.pop-title { font-family:var(--type-heading);font-weight:700; }
+.modal-title.read { font-family:var(--type-learning); }
+.modal :is(p,label,input),.toast { font-family:var(--type-body); }
+/* Illustrations are part of their button's hit area, not separate tap targets. */
+button :is(svg,img,.wa-illustration,.wa-symbol) { pointer-events:none; }

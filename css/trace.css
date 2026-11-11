@@ -68,7 +68,7 @@
   background: rgba(255, 255, 255, .75);
   border: 2px solid rgba(35, 32, 61, .2);
   font-size: 18px;
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1;
 }
 .screen-trace .tr-tab.on .tr-tab-prog { background: #fff; }
@@ -139,7 +139,7 @@
   animation: tr-next 1.6s ease-in-out infinite;
 }
 @keyframes tr-next { 0%, 100% { opacity: .25; transform: scale(.97); } 50% { opacity: 1; transform: scale(1.02); } }
-.screen-trace .tr-empty { color: #fff; font-size: 28px; font-weight: 800; text-align: center; grid-column: 1 / -1; }
+.screen-trace .tr-empty { color: #fff; font-size: 28px; font-weight: 700; text-align: center; grid-column: 1 / -1; }
 
 /* ---------- tracing ---------- */
 
@@ -353,7 +353,7 @@
   background: var(--sun);
   box-shadow: 0 3px 0 var(--ink);
   font-size: 16px;
-  font-weight: 800;
+  font-weight: 700;
   white-space: nowrap;
 }
 .screen-trace .tr-chip .ic { width: 26px; height: 26px; }

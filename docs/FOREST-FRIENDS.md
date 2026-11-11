@@ -16,7 +16,7 @@ Completion of the invited friend's puzzle changes the destination to the mailman
 
 Hase wears recognizable postal clothing and a mail satchel/envelope badge. He wanders freely on walkable forest ground between deliveries, stays easy to reach for the handover, and never presents a puzzle. He is not part of the puzzle-host tabs or learning categories.
 
-The picture-book overview remains available for direct practice. All 28 puzzles share one grid, without a separate section for the five newer rounds or a nested Leseschatz menu. A completion only advances a letter when it belongs to that letter's current friend; unrelated practice does not create a delivery.
+The picture-book overview remains available for direct practice. All 33 puzzles share one grid, without a separate section for the five newer rounds or a nested Leseschatz menu. A completion only advances a letter when it belongs to that letter's current friend; unrelated practice does not create a delivery.
 
 ## Puzzles and assignments
 
@@ -28,7 +28,7 @@ The picture-book overview remains available for direct practice. All 28 puzzles 
 | Biber | Welche Form fehlt? | Waldwerkstatt, Nüsse verdoppeln, Waldspiegel, Waldpost |
 | Maus | Wörter und Bilder | Silben-Puzzle, Wort und Waldbild, Silbenblätter, Farben lesen, Waldwörter ergänzen, Schreibspuren, Zahlenspuren |
 
-The active catalogue has 28 entries, including the original five friends. Waldreime is merged into Reimpaare lesen; Zahlenwege is absent from current play. Letters and digits are separate five-glyph writing games. Historical puzzle IDs, saves and difficulty settings remain available through the historical entry points; Forest friends practice does not advance a Heart Tree tour.
+The active catalogue has 33 entries, including the ten friends’ counting, reading and animal questions. Waldreime is merged into Reimpaare lesen; Zahlenwege is absent from current play. Letters and digits are separate five-glyph writing games. Historical puzzle IDs, saves and difficulty settings remain available through the historical entry points; Forest friends practice does not advance a Heart Tree tour.
 
 All current games use `js/screens/puzzle.js` and `css/puzzle-rounds.css`, with the existing finger-tracing engine adapted to five-glyph sessions. Andika, one portrait/context row, five leaf badges and consistent answer tiles are shared. There is no pointer mode, question-mark button, tip footer, duplicate success row or next-task button. A correct response is shown on the tile for 900 ms, followed after task five by a 2.2-second leaf-and-flower celebration. Leaving cancels pending transitions. Navigation from Waldspiele returns to that menu; a completed forest invitation returns to the nearby mailman.
 
@@ -41,6 +41,10 @@ Portrait and interface sheets preload with the app. Twenty missing vocabulary pi
 The top-right map, letter, book and gear use one newly painted icon sheet in the style of `characters-v1.png`. Each icon is centred inside the same cream tile; the book no longer uses an off-centre atlas illustration. The map uses a new painted woodland background with six recognizable portrait destinations, paths and the brook/bridge. The active invitation is marked. A pending mail delivery adds a separate postal-rabbit destination, whose route follows his actual current position.
 
 Every settings button, including Waldspiele and old `parents` routes, opens the same **Einstellungen** screen. It contains independent forest ambience, music and game-effect controls, the optional play timer, reading letter case and local save/log export. The Waldspiele header has neither a timer launcher nor a narration button. The timer waits while settings is open, retains its stored mode/duration, restores paused after reload and never ends a puzzle. A countdown completion shows a quiet visual reminder.
+
+The parent gate accepts an entered multiplication result. A wrong or empty answer remains editable with visible feedback; closing/reopening has no hidden lockout. All buttons share gesture-specific touch/click handling, including pictures and the world toolbar. The [typography and input guide](TYPOGRAPHY.md) defines Andika for controls/learning and Baloo 2 for menu headings.
+
+The [input and typography comparison](../design/forest-friends/visuals/milestones/input-typography/README.md) records the phone/tablet review and intentional changes to the earlier type styles.
 
 ## Den and free Malatelier
 

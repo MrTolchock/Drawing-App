@@ -10,37 +10,51 @@
   function listen(text, label = 'Aufgabe nochmals hören') {
     return h('button', { type:'button', class:'play-listen', 'aria-label':label, onclick:() => FK.forestVoice.explain(typeof text === 'function' ? text() : text) }, FK.forestArt.icon('speaker'));
   }
-  // Use one action per finger release. Native compatibility clicks can land on
-  // a different object after a drop reorders the DOM; keyboard/mouse clicks stay native.
-  let lastManagedTouch=-Infinity;
-  // A screen can change during pointerup, before the browser emits its native
-  // click. Catch that click across screens, and always allow a new gesture.
-  document.addEventListener('pointerdown',()=>{lastManagedTouch=-Infinity;},true);
-  document.addEventListener('click',event=>{
-    if(performance.now()-lastManagedTouch>700)return;
-    const touch=event.pointerType==='touch'||event.sourceCapabilities?.firesTouchEvents||(!event.pointerType&&event.detail>0);
-    if(touch){event.preventDefault();event.stopImmediatePropagation();}
+  // One shared button gesture for the whole app, including the world, books,
+  // settings and popovers. Suppress only the compatibility click of that gesture.
+  const presses=new Map(), consumed=new Set();
+  let compatibility=null,lastDown=null;
+  const buttonAt=target=>target?.closest?.('button');
+  function suppressCompatibility(event){compatibility={id:event.pointerId,type:event.pointerType,x:event.clientX,y:event.clientY};}
+  document.addEventListener('pointerdown',event=>{
+    compatibility=null;consumed.delete(event.pointerId);lastDown=event;
+    if(event.pointerType!=='touch')return;
+    if(!event.isPrimary){presses.forEach(p=>p.moved=true);return;}
+    presses.set(event.pointerId,{button:buttonAt(event.target),x:event.clientX,y:event.clientY,moved:false});
   },true);
-  function bindTouch(root){
-    const down=new Map();let lastTouch=0;
-    root.addEventListener('pointerdown',event=>{
-      if(event.pointerType!=='touch'||!event.isPrimary)return;
-      down.set(event.pointerId,event.target.closest('button'));
-    },true);
-    root.addEventListener('pointercancel',event=>down.delete(event.pointerId),true);
-    root.addEventListener('pointerup',event=>{
-      if(event.pointerType!=='touch'||!event.isPrimary)return;
-      lastManagedTouch=lastTouch=performance.now();
-      const button=down.get(event.pointerId);down.delete(event.pointerId);
-      if(event.fkPlayHandled||!button||button.disabled||!button.isConnected||!root.contains(button)||event.target.closest('button')!==button)return;
-      const r=button.getBoundingClientRect();
-      if(event.clientX>=r.left&&event.clientX<=r.right&&event.clientY>=r.top&&event.clientY<=r.bottom)button.click();
-    });
-    root.addEventListener('click',event=>{
-      const touch=event.pointerType==='touch'||event.sourceCapabilities?.firesTouchEvents||(!event.pointerType&&event.detail>0&&performance.now()-lastTouch<700);
-      if(touch){event.preventDefault();event.stopImmediatePropagation();}
-    },true);
-  }
+  document.addEventListener('pointermove',event=>{
+    const press=presses.get(event.pointerId);
+    if(press&&Math.hypot(event.clientX-press.x,event.clientY-press.y)>14)press.moved=true;
+  },true);
+  document.addEventListener('pointercancel',event=>{presses.delete(event.pointerId);consumed.delete(event.pointerId);},true);
+  document.addEventListener('pointerup',event=>{
+    const press=presses.get(event.pointerId);presses.delete(event.pointerId);
+    if(consumed.delete(event.pointerId)||event.fkPlayHandled){suppressCompatibility(event);return;}
+    if(event.pointerType!=='touch'||!event.isPrimary||!press?.button)return;
+    const button=press.button;
+    // Hit-test the stable button, rather than a picture/text node that an atlas
+    // or a counter may replace between down and up. Scrolling is never a tap.
+    if(press.moved||!button.isConnected||button.disabled||buttonAt(document.elementFromPoint(event.clientX,event.clientY))!==button){
+      suppressCompatibility(event);return;
+    }
+    suppressCompatibility(event);
+    button.click(); // detail=0: keyboard and programmatic activation stay native.
+  });
+  document.addEventListener('click',event=>{
+    if(!compatibility||event.detail===0)return;
+    // A busy render can delay this click. Match its gesture regardless of time;
+    // the next pointerdown clears the record, so fresh input is never blocked.
+    const samePointer=event.pointerId===compatibility.id;
+    const convertedTouch=compatibility.type==='touch'&&(event.pointerType==='touch'||event.sourceCapabilities?.firesTouchEvents||!event.pointerType);
+    const legacyMouse=!event.pointerType&&compatibility.type==='mouse';
+    if((samePointer||convertedTouch||legacyMouse)&&Math.hypot(event.clientX-compatibility.x,event.clientY-compatibility.y)<26){
+      compatibility=null;event.preventDefault();event.stopImmediatePropagation();
+    }
+  },true);
+  document.addEventListener('visibilitychange',()=>{if(document.hidden){presses.clear();consumed.clear();compatibility=null;lastDown=null;}});
+  function consumeGesture(event=lastDown){if(event)consumed.add(event.pointerId);}
+  // Kept for existing activities; the document delegate already includes them.
+  function bindTouch(root){return root;}
   function picture(value, label = '') {
     const symbols = String(value).match(/\p{Extended_Pictographic}[\uFE0F]*(?:\u200D\p{Extended_Pictographic}[\uFE0F]*)*/gu) || [];
     return h('span', { class:'play-picture', role: label ? 'img' : null, 'aria-label':label || null },
@@ -162,5 +176,5 @@
     }
     return picture(scenes[value] || value, value.replace(/^\S+\s*/,''));
   }
-  FK.play = { friends, names, natureCue, wordDrawing, sequencePicture, speak, listen, picture, gamePicture, bindTouch, context, begin, attempt, hint, tourPictures, feedback:taskFeedback, finish, steps };
+  FK.play = { friends, names, natureCue, wordDrawing, sequencePicture, speak, listen, picture, gamePicture, bindTouch, consumeGesture, context, begin, attempt, hint, tourPictures, feedback:taskFeedback, finish, steps };
 })();

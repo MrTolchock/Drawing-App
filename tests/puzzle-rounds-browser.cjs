@@ -86,7 +86,7 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
      await answer(q.answer);
     }
     assert.deepEqual(await page.evaluate(()=>window.lastPuzzleCorrect),{game:g.id,round,visible:true},g.id+' visible correct answer');assert.equal(await page.locator('.learn-feedback,.ff-feedback,.learn-next,.adventure-next,.exp-next').count(),0,g.id+' obsolete UI');
-    if(round<4)await page.waitForFunction(e=>!e.isConnected,old,{timeout:5000});
+    if(round<4)try{await page.waitForFunction(e=>!e.isConnected,old,{timeout:5000});}catch(error){console.error('TRANSITION STATE',g.id,round,await page.evaluate(()=>({screen:FK.current(),hidden:document.hidden,modal:document.querySelector('.modal')?.innerText,session:FK.puzzleRounds.start(document.querySelector('.screen-puzzle').dataset.game),text:document.querySelector('.screen:not([hidden])').innerText})));throw error;}
    }
    if(round<4)await page.waitForFunction(n=>document.querySelector('.screen:not([hidden]) .puzzle-round')?.textContent===n+' / 5',round+2,{timeout:7000});
   }
@@ -107,6 +107,6 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
  }
  await menu();await page.evaluate(()=>navigator.serviceWorker.ready);await page.waitForFunction(()=>!!navigator.serviceWorker.controller);await context.setOffline(true);await page.reload();await ready();await menu();await open('friends-bird');
  assert.match(await page.locator('.screen-puzzle').evaluate(e=>getComputedStyle(e).backgroundImage),/puzzle-clearing/);assert.ok(await page.locator('.puzzle-answer .wa-illustration').count()>0);
- assert.deepEqual(errors,[]);console.log('PASS: '+(process.env.FARBTUPF_FLOW_ONLY?'selected gameplay flows':'28 tablet/phone routes and gameplay')+'; five-task celebrations; retry; persisted work; host rotation; '+(uiOnly?'menu returns':'menu/world returns')+' and offline assets.');
+ assert.deepEqual(errors,[]);console.log('PASS: '+(process.env.FARBTUPF_FLOW_ONLY?'selected gameplay flows':entries.length+' tablet/phone routes and gameplay')+'; five-task celebrations; retry; persisted work; host rotation; '+(uiOnly?'menu returns':'menu/world returns')+' and offline assets.');
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});
