@@ -23,7 +23,7 @@
 
   /* ---------- settings ---------- */
   const SETTINGS_KEY = 'farbklecks.settings.v2';
-  const DEFAULTS = { sound: true, schrift: 'gross' };
+  const DEFAULTS = { sound: false, schrift: 'gross' };
   let settings = Object.assign({}, DEFAULTS, readJSON(SETTINGS_KEY));
   FK.settings = {
     get(k) { return settings[k]; },
