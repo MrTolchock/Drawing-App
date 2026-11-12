@@ -26,12 +26,14 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
  assert.equal(await page.evaluate(()=>reviewSpeechRequests.length),34);console.log('PASS one spoken rule on each of 34 puzzle overviews');
  await page.getByRole('button',{name:'Alle Puzzles',exact:true}).click();
  await page.locator('[data-puzzle="add"]').click();assert.equal(await page.getByRole('button',{name:'Puzzle freigeben',exact:true}).isDisabled(),true);
+ await page.screenshot({path:shots+'/puzzle-overview-tablet.png'});
  await page.locator('[data-iteration="add/1-1"]').click();
  assert.equal(await page.getByRole('button',{name:'Spiel erklären',exact:true}).count(),0);
+ await page.screenshot({path:shots+'/iteration-decision-tablet.png'});
  await page.getByRole('button',{name:'Iteration freigeben',exact:true}).click();
  assert.equal(await page.evaluate(()=>FK.puzzleReview.status('add','add/1-1').status),'approved');
  await page.getByRole('button',{name:'Verbessern',exact:true}).click();assert.equal(await page.evaluate(()=>FK.puzzleReview.status('add','add/1-1').decision.note),'');
- await page.locator('.review-decision summary').click();await page.getByLabel('Prüfnotiz (optional)',{exact:true}).fill('Bitte Bildgrösse prüfen');await page.getByRole('button',{name:'Verbessern',exact:true}).click();
+ await page.locator('.screen:not([hidden]) .review-decision summary').click();await page.locator('.screen:not([hidden])').getByLabel('Prüfnotiz (optional)',{exact:true}).fill('Bitte Bildgrösse prüfen');await page.getByRole('button',{name:'Verbessern',exact:true}).click();
  assert.equal(await page.evaluate(()=>FK.puzzleReview.status('add','add/1-1').status),'improve');
  await page.getByRole('button',{name:'Zur Puzzle-Prüfung',exact:true}).click();
  // Backup through the actual download/upload controls.
