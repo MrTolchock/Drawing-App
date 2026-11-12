@@ -6,7 +6,7 @@ import {THREE} from '../../scene/materials.js';
 
 const TAU = Math.PI * 2;
 
-export function createLife({scene, canvasTex, groundY, walkable, terrain, random}) {
+export function createLife({scene, canvasTex, groundY, walkable, terrain, random, hives = []}) {
   const r = (a, b) => a + (b - a) * random();
   function sprite(map, h, order = 4) { const s = new THREE.Sprite(new THREE.SpriteMaterial({map, transparent: true, toneMapped: false, depthWrite: false, alphaTest: .02})); s.center.set(.5, .5); s.renderOrder = order; s.visible = false; s.userData.h = h; scene.add(s); return s; }
   const fit = (s, k = 1) => { const img = s.material.map.image; s.scale.set(s.userData.h * img.width / img.height * k, s.userData.h, 1); };
@@ -51,6 +51,11 @@ export function createLife({scene, canvasTex, groundY, walkable, terrain, random
   const birds = [0, 1, 2].map(i => ({s: sprite(birdTex[0], .2, 3), state: 'wait', t: 1 + i * 1.5, x: 0, y: 0, z: 0, vx: 0, vy: 0, vz: 0, hop: 0, face: 1}));
   let flockAt = null, heading = 0, last = null;
 
+  /* ---------- bees round the hive ---------- */
+  const BEES = 7, beeTex = canvasTex(32, 32, g => { g.fillStyle = 'rgba(235,245,255,.7)'; g.beginPath(); g.ellipse(11, 9, 8, 5, -.5, 0, TAU); g.fill(); g.beginPath(); g.ellipse(21, 9, 8, 5, .5, 0, TAU); g.fill(); g.fillStyle = '#f2b824'; g.beginPath(); g.ellipse(16, 18, 9, 7, 0, 0, TAU); g.fill(); g.fillStyle = '#3a2a1a'; g.fillRect(12, 12, 3, 12); g.fillRect(18, 12, 3, 12); });
+  const bees = new THREE.Points(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(new Float32Array(BEES * 3), 3)), new THREE.PointsMaterial({map: beeTex, size: .13, transparent: true, alphaTest: .3, toneMapped: false}));
+  bees.name = 'bees'; bees.frustumCulled = false; bees.visible = false; scene.add(bees);
+
   function update(dt, time, pos, {reduced = false, trees = 1, meadow = 0, height = 800, fov = 42} = {}) {
     const gy = groundY(pos.x, pos.z);
     if (last) { const dx = pos.x - last.x, dz = pos.z - last.z; if (dx * dx + dz * dz > 1e-5) heading = Math.atan2(dx, dz); } last = {x: pos.x, z: pos.z};
@@ -73,6 +78,10 @@ export function createLife({scene, canvasTex, groundY, walkable, terrain, random
         const k = Math.min(1, dt * 7); d.x += (d.tx - d.x) * k; d.y += (d.ty - d.y) * k; d.z += (d.tz - d.z) * k; }
       d.s.visible = true; d.s.position.set(d.x, d.y + (reduced ? 0 : Math.sin(time * 9 + d.tx) * .02), d.z);
     }
+    // bees circle the nearest hive when Fuchs is in its neighbourhood
+    { const hive = hives.find(h => Math.hypot(h[0] - pos.x, h[1] - pos.z) < 30); bees.visible = !!hive;
+      if (hive) { const p = bees.geometry.attributes.position, hy = groundY(hive[0], hive[1]) + .95, t = reduced ? 0 : time;
+        for (let k = 0; k < BEES; k++) { const a = t * (1.1 + k * .23) + k * 2.1, q = .35 + .5 * (.5 + .5 * Math.sin(t * .7 + k * 1.3)); p.setXYZ(k, hive[0] + Math.cos(a) * q, hy + Math.sin(t * 1.9 + k) * .28 + (k % 3) * .12, hive[1] + Math.sin(a * 1.13) * q); } p.needsUpdate = true; } }
     // little birds: a few hop about together ahead of Fuchs and fly off when he is close
     if (!flockAt && !reduced && birds.every(b => b.state === 'wait' && b.t <= 0)) { flockAt = spotNear(pos, heading, 9, 15, (x, z) => walkable(x, z) && !terrain.onCrossing(x, z)); if (flockAt) for (const b of birds) { b.state = 'ground'; b.x = flockAt[0] + r(-.9, .9); b.z = flockAt[1] + r(-.9, .9); b.y = groundY(b.x, b.z) + .1; b.t = r(.3, 1.5); b.s.material.map = birdTex[0]; fit(b.s); } }
     for (const b of birds) {

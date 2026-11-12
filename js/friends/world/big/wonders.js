@@ -1,10 +1,12 @@
 /* Small things to discover beside the paths of the big world: a ring of toadstools, a hollow log, a circle of
-   old stones, a tree in blossom, berry bushes. Each is its own little site (layout.js WONDERS), built in one
+   old stones, a tree in blossom, berry bushes, a stone well, lanterns at the den, a stump laid as a table,
+   a beehive (its bees fly in world/life.js) and signposts. Each is its own little site (layout.js WONDERS), built in one
    short step when Fuchs comes near, from a few hundred triangles on the shared rock, log, bark and soft
    materials; the solid ones have colliders (layout.js SOLIDS) and a small clearing (GLADES). */
 import {THREE} from '../../../scene/materials.js';
 import {rng} from '../noise.js';
 import {Buffer} from '../tiles.js';
+import {canvasTex} from '../textures.js';
 
 const TAU = Math.PI * 2;
 function tinted(g, [r, gr, b]) { const c = new Float32Array(g.attributes.position.count * 3); for (let k = 0; k < c.length; k += 3) { c[k] = r; c[k + 1] = gr; c[k + 2] = b; } g.setAttribute('color', new THREE.BufferAttribute(c, 3)); return g; }
@@ -47,5 +49,39 @@ export function wonderSteps(site, look, world, group) {
         add('rock', lump(R, s, 1, .2).scale(1, .82, 1), k % 2 ? [.24, .44, .14] : [.3, .52, .17], x, y, z);
         for (let j = 0; j < 9; j++) { const u = r(0, TAU), v = r(.15, 1.25), q = s * 1.02; add('rock', new THREE.SphereGeometry(r(.045, .06), 7, 5), berry, x + Math.sin(v) * Math.cos(u) * q, y + Math.cos(v) * q * .82, z + Math.sin(v) * Math.sin(u) * q); } } },
   };
+  Object.assign(kinds, {
+    well() { const rot = g => g.rotateY(yaw), off = (dx, dz) => [x0 + Math.cos(yaw) * dx + Math.sin(yaw) * dz, z0 - Math.sin(yaw) * dx + Math.cos(yaw) * dz];
+      add('rock', new THREE.CylinderGeometry(.84, .9, .72, 14, 1, true), [.72, .7, .66], x0, y0 + .36, z0);
+      const inner = new THREE.CylinderGeometry(.7, .7, .72, 14, 1, true).scale(-1, 1, 1); inner.computeVertexNormals(); add('rock', inner, [.3, .3, .3], x0, y0 + .36, z0);
+      add('rock', new THREE.TorusGeometry(.77, .11, 6, 16).rotateX(Math.PI / 2), [.8, .78, .73], x0, y0 + .72, z0);
+      for (let k = 0; k < 9; k++) { const a = k / 9 * TAU; add('rock', lump(R, .13, 0, .2).scale(1.3, .8, 1), [.6, .6, .57], x0 + Math.cos(a) * .9, y0 + r(.12, .5), z0 + Math.sin(a) * .9); }
+      add('rock', new THREE.CircleGeometry(.7, 14).rotateX(-Math.PI / 2), [.1, .3, .46], x0, y0 + .46, z0);
+      for (const sd of [-1, 1]) { const [x, z] = off(sd * .86, 0); add('wood', new THREE.BoxGeometry(.13, 1.75, .13), [1.05, .85, .68], x, y0 + .87, z); }
+      add('wood', rot(new THREE.CylinderGeometry(.05, .05, 1.8, 8).rotateZ(Math.PI / 2)), [.9, .72, .56], x0, y0 + 1.5, z0);
+      for (const sd of [-1, 1]) { const [x, z] = off(0, sd * .36); add('wood', rot(new THREE.BoxGeometry(2.1, .07, .86).rotateX(sd * .62)), [1.05, .5, .36], x, y0 + 1.98, z); }
+      add('wood', new THREE.CylinderGeometry(.012, .012, .55, 5), [.7, .6, .45], x0, y0 + 1.22, z0); add('wood', new THREE.CylinderGeometry(.15, .12, .22, 9), [1.1, .85, .6], x0, y0 + .9, z0); },
+    lanterns() { const lights = [];
+      for (const [x, z, a] of site.posts) { const y = ground(x, z), lx = x + Math.cos(a) * .32, lz = z + Math.sin(a) * .32;
+        add('wood', new THREE.CylinderGeometry(.05, .075, 1.75, 7), [.72, .55, .42], x, y + .87, z); add('wood', new THREE.BoxGeometry(.5, .06, .06).rotateY(-a), [.72, .55, .42], x + Math.cos(a) * .18, y + 1.72, z + Math.sin(a) * .18);
+        add('rock', new THREE.BoxGeometry(.2, .05, .2), [.3, .24, .2], lx, y + 1.62, lz); add('rock', new THREE.BoxGeometry(.2, .04, .2), [.3, .24, .2], lx, y + 1.36, lz);
+        add('rock', new THREE.BoxGeometry(.15, .22, .15), [3.4, 2.5, 1.1], lx, y + 1.49, lz); add('rock', new THREE.ConeGeometry(.16, .12, 4).rotateY(Math.PI / 4), [.3, .24, .2], lx, y + 1.7, lz);
+        lights.push(lx, y + 1.49, lz); }
+      const glow = canvasTex(64, 64, g => { const q = g.createRadialGradient(32, 32, 0, 32, 32, 32); q.addColorStop(0, 'rgba(255,236,170,.9)'); q.addColorStop(.3, 'rgba(255,205,110,.4)'); q.addColorStop(1, 'rgba(255,190,90,0)'); g.fillStyle = q; g.fillRect(0, 0, 64, 64); });
+      const p = new THREE.Points(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(lights, 3)), new THREE.PointsMaterial({map: glow, size: 1.5, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, toneMapped: false}));
+      p.name = 'lantern glow'; p.renderOrder = 5; group.add(p); },
+    table() { add('log', new THREE.CylinderGeometry(.85, 1, .55, 18), [1.3, 1.05, .8], x0, y0 + .27, z0);
+      for (let k = 0; k < 3; k++) { const a = k * 2.1 + .5, x = x0 + Math.cos(a) * 1.35, z = z0 + Math.sin(a) * 1.35; add('log', new THREE.CylinderGeometry(.27, .32, .32, 12), [1.2, .98, .76], x, ground(x, z) + .16, z); }
+      add('rock', new THREE.CylinderGeometry(.6, .6, .015, 20), [1.25, 1.2, 1.05], x0, y0 + .56, z0);
+      add('rock', new THREE.CylinderGeometry(.11, .11, .17, 10), [1.5, .95, .2], x0 + .28, y0 + .65, z0 - .12); add('rock', new THREE.CylinderGeometry(.12, .12, .03, 10), [.9, .7, .5], x0 + .28, y0 + .75, z0 - .12);
+      add('rock', new THREE.CylinderGeometry(.17, .18, .1, 12), [1.3, 1.15, .9], x0 - .2, y0 + .62, z0 + .1); add('rock', new THREE.SphereGeometry(.04, 7, 5), [.9, .12, .14], x0 - .2, y0 + .7, z0 + .1);
+      for (let k = 0; k < 3; k++) { const a = k * 2.1 + .5; add('rock', new THREE.SphereGeometry(.07, 9, 5, 0, TAU, Math.PI / 2, Math.PI / 2), [.62, .42, .24], x0 + Math.cos(a) * .42, y0 + .64, z0 + Math.sin(a) * .42); } },
+    hive() { add('log', new THREE.CylinderGeometry(.46, .54, .5, 14), [1.25, 1, .78], x0, y0 + .25, z0);
+      for (let k = 0; k < 6; k++) add('rock', new THREE.TorusGeometry(.37 - k * .052, .085, 7, 16).rotateX(Math.PI / 2), k % 2 ? [1.3, .98, .38] : [1.2, .88, .3], x0, y0 + .58 + k * .125, z0);
+      add('rock', new THREE.SphereGeometry(.1, 8, 6), [1.25, .93, .34], x0, y0 + 1.3, z0); add('rock', new THREE.SphereGeometry(.07, 8, 6).scale(1, 1, .5), [.2, .13, .08], x0, y0 + .62, z0 + .43); },
+    sign() { add('wood', new THREE.CylinderGeometry(.06, .085, 1.9, 7), [.85, .66, .5], x0, y0 + .95, z0);
+      site.arms.forEach((a, k) => { const sh = new THREE.Shape(); sh.moveTo(0, -.1); sh.lineTo(.62, -.1); sh.lineTo(.8, 0); sh.lineTo(.62, .1); sh.lineTo(0, .1); sh.closePath();
+        add('wood', new THREE.ExtrudeGeometry(sh, {depth: .045, bevelEnabled: false}).translate(.02, 0, -.022).rotateY(-a), [1.25, 1, .72], x0, y0 + 1.68 - k * .27, z0); });
+      add('rock', new THREE.SphereGeometry(.085, 8, 6), [.85, .66, .5], x0, y0 + 1.92, z0); },
+  });
   return [() => { kinds[site.kind]?.(); finish(); }];
 }
