@@ -16,7 +16,7 @@ Completion of the invited friend's puzzle changes the destination to the mailman
 
 Hase wears recognizable postal clothing and a mail satchel/envelope badge. He wanders freely on walkable forest ground between deliveries, stays easy to reach for the handover, and never presents a puzzle. He is not part of the puzzle-host tabs or learning categories.
 
-The picture-book overview remains available for direct practice. All 33 puzzles share one grid, without a separate section for the five newer rounds or a nested Leseschatz menu. A completion only advances a letter when it belongs to that letter's current friend; unrelated practice does not create a delivery.
+The picture-book overview remains available for direct practice. All 34 puzzles share one grid, without a separate section for the five newer rounds or a nested Leseschatz menu. A completion only advances a letter when it belongs to that letter's current friend; unrelated practice does not create a delivery.
 
 ## Puzzles and assignments
 
@@ -27,12 +27,18 @@ The picture-book overview remains available for direct practice. All 33 puzzles 
 | Waldkauz | Lies und zeig | Waldmuster, Was kommt zuerst?, Waldschatz, Waldumfrage |
 | Biber | Welche Form fehlt? | Waldwerkstatt, Nüsse verdoppeln, Waldspiegel, Waldpost |
 | Maus | Wörter und Bilder | Silben-Puzzle, Wort und Waldbild, Silbenblätter, Farben lesen, Waldwörter ergänzen, Schreibspuren, Zahlenspuren |
+| Igel | Tierrätsel | — |
+| Fisch | Fische zählen | — |
+| Reh | Wer wohnt wo? | — |
+| Eisvogel | Am Bach zählen | — |
+| Frosch | Tierwörter lesen | — |
+| Dachs | Naturrätsel | — |
 
-The active catalogue has 33 entries, including the ten friends’ counting, reading and animal questions. Waldreime is merged into Reimpaare lesen; Zahlenwege is absent from current play. Letters and digits are separate five-glyph writing games. Historical puzzle IDs, saves and difficulty settings remain available through the historical entry points; Forest friends practice does not advance a Heart Tree tour.
+The active catalogue has 34 entries, including the eleven friends’ counting, reading and animal questions. All 1,048 iterations and their bounded competences are listed in the [GitHub catalogue](PUZZLE-CATALOGUE.md). The [shared puzzle blueprint](PUZZLE-BLUEPRINT.md) and [adult review mode](PUZZLE-REVIEW.md) apply to each entry. Nothing is preapproved; child play requires every iteration and the puzzle checklist to be signed off. Waldreime is merged into Reimpaare lesen; Zahlenwege is absent from current play. Letters and digits are separate five-glyph writing games. Historical puzzle IDs, saves and difficulty settings remain available through the historical entry points; Forest friends practice does not advance a Heart Tree tour.
 
 All current games use `js/screens/puzzle.js` and `css/puzzle-rounds.css`, with the existing finger-tracing engine adapted to five-glyph sessions. Andika, one portrait/context row, five leaf badges and consistent answer tiles are shared. There is no pointer mode, question-mark button, tip footer, duplicate success row or next-task button. A correct response is shown on the tile for 900 ms, followed after task five by a 2.2-second leaf-and-flower celebration. Leaving cancels pending transitions. Navigation from Waldspiele returns to that menu; a completed forest invitation returns to the nearby mailman.
 
-`js/friends/puzzle-rounds.js` defines bounded first-grade content and repeatable seeded sessions. Original friend rounds retain FriendsState's exact five-task snapshots and answer order. Other games save their seed, task index and partial placements/selections in `farbtupf.puzzles.v1` (separate developer key), including a pending correct transition. Writing resumes at the current glyph; incomplete strokes can be retraced. No historical key is migrated or erased. Host rotation uses stable IDs in the existing settings record and resumes unfinished work before selecting another game.
+`js/friends/puzzle-catalogue.js` defines finite, bounded first-grade content. `js/friends/puzzle-rounds.js` selects five distinct iterations, preferring tasks outside the previous completed round, and saves exact question snapshots, task index and partial placements/selections in `farbtupf.puzzles.v1` (separate developer key), including a pending correct transition. Older seeded sessions are kept in `legacy` when a newly reviewed catalogue starts a fresh round. Original FriendsState snapshots are preserved verbatim in their existing record; current catalogue play uses the shared snapshot format. Writing resumes at the current glyph; incomplete strokes can be retraced. No historical key is migrated or erased. Host rotation uses stable IDs in the existing settings record and resumes unfinished work before selecting another game.
 
 Portrait and interface sheets preload with the app. Twenty missing vocabulary pictures and six coloured flowers have matching crayon atlases with equal-sized cells. Every counting berry is a single berry. Shape and colour answers remain visually exact. See [the current puzzle specification and learning boundaries](PUZZLES.md) for individual changes and validation.
 

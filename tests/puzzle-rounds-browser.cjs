@@ -12,6 +12,7 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
   await page.waitForFunction(()=>!!window.FK?.puzzleUI,null,{timeout:60000});
   if(uiOnly)await page.evaluate(()=>{FK.friends=FriendsState.create({storage:localStorage,content:FriendsContent});FK.friendsPuzzleCompleted=()=>FK.go('forest-book',{from:'friends'});});else await page.waitForFunction(()=>!!window.FK?.friends,null,{timeout:60000});
   await page.evaluate(()=>{
+   for(const g of FK.friendsLibrary.catalogue()){for(const it of FK.puzzleCatalogue.iterations(g.id)){FK.puzzleReview.seen(g.id,it.id);FK.puzzleReview.decide(g.id,it.id,'approved','','Browser fixture');}FK.puzzleReview.decide(g.id,null,'approved','','Browser fixture',Object.keys(FK.puzzleCatalogue.checklist));}
    window.lastPuzzleCorrect=null;window.puzzleCompletions=[];
    const celebrate=FK.waldbuch.celebrate;FK.waldbuch.celebrate=node=>{const screen=node.closest('.screen');window.lastPuzzleCorrect={game:screen.dataset.game,round:Number(screen.querySelector('.puzzle-round').textContent.split('/')[0])-1,visible:node.classList.contains('is-correct')};celebrate(node);};
    const complete=FK.puzzleUI.completion;FK.puzzleUI.completion=(container,host,done)=>{const cancel=complete(container,host,done);window.puzzleCompletions.push({game:container.closest('.screen').dataset.game,leaves:container.querySelectorAll('.puzzle-progress .done').length});return cancel;};
@@ -65,10 +66,10 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
     },paths);
     console.log('Traced:',g.id,round+1,glyph);
    }else{
-    const q=await page.evaluate(id=>{if(id.startsWith('friends-')){const r=FK.friends.round(id.slice(8));return r.tasks[r.index];}const s=FK.puzzleRounds.start(id);return FK.puzzleRounds.question(id,s.round,s.seed);},g.id);
+    const q=await page.evaluate(id=>{const s=FK.puzzleRounds.start(id);return FK.puzzleRounds.current(s);},g.id);
     const old=await page.locator('.puzzle-prompt').elementHandle();
-    if(q.kind==='picnic'){for(let i=0;i<q.friends;i++)for(let n=0;n<q.each;n++)await page.locator('.puzzle-plate').nth(i).tap();}
-    else if(q.kind==='double'){for(const partner of await page.locator('.puzzle-partner').all())await partner.tap();await answer(q.answer);}
+    if(q.kind==='picnic'){for(let i=0;i<q.friends;i++)for(let n=(q.plates?.[i]||0);n<q.each;n++)await page.locator('.puzzle-plate').nth(i).tap();}
+    else if(q.kind==='double'){while(await page.locator('.puzzle-partner:not(.filled)').count())await page.locator('.puzzle-partner:not(.filled)').first().tap();await answer(q.answer);}
     else if(q.kind==='build'){
      for(let n=0;n<2;n++){const s=await page.evaluate(()=>FK.puzzleRounds.start('shapes')),target=q.holes.find(i=>!(s.work.built||[]).includes(i)),part=q.parts[target];await page.locator('.puzzle-answer[data-shape="'+part[0]+'"][data-rotation="'+part[5]+'"]').tap();}
     }else if(q.kind==='robot'){
@@ -76,7 +77,7 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
      for(const cell of route)await page.locator('.puzzle-route-cell[data-cell="'+cell+'"]').tap();
     }else if(q.kind==='order'){for(const n of [0,1,2])await page.locator('.puzzle-story-card[data-order="'+n+'"]').tap();}
     else if(q.kind==='treasure'){await page.getByRole('button',{name:'Ich habe sie mir gemerkt',exact:true}).tap();await answer(q.answer);}
-    else if(q.kind==='neighbours'){await answer(q.answer[0]);await answer(q.answer[1]);}
+    else if(q.kind==='neighbours'){if(!q.given)await answer(q.answer[0]);await answer(q.answer[1]);}
     else if(q.kind==='mirror'){for(const n of q.answer)await page.locator('.puzzle-mirror-grid button[data-cell="'+n+'"]').tap();}
     else if(q.kind==='syllables'){for(const part of q.parts)await page.locator('.puzzle-syllable-chip:not(:disabled)[data-part="'+part+'"]').first().tap();}
     else {
@@ -102,7 +103,7 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
  if(!uiOnly){
  // A completed invitation uses the world return; the book is never a detour.
  await page.evaluate(()=>{FK.friends.openLetter();const host=FK.friends.mail().host;FK.friendsLibrary.launch(FK.friendsLibrary.catalogue().find(g=>g.id==='friends-'+host),'friends');});
- for(let i=0;i<5;i++){const value=await page.evaluate(()=>{const r=FK.friends.round(FK.friends.mail().host);return r.tasks[r.index].answer;});await answer(value);if(i<4)await page.waitForFunction(n=>document.querySelector('.screen:not([hidden]) .puzzle-round')?.textContent===n+' / 5',i+2);}
+ for(let i=0;i<5;i++){const value=await page.evaluate(()=>{return FK.puzzleRounds.current(FK.puzzleRounds.start('friends-'+FK.friends.mail().host)).answer;});await answer(value);if(i<4)await page.waitForFunction(n=>document.querySelector('.screen:not([hidden]) .puzzle-round')?.textContent===n+' / 5',i+2);}
  await page.locator('.screen:not([hidden]) .puzzle-completion').waitFor({state:'visible'});await page.waitForFunction(()=>FK.current()==='friends');assert.equal(await page.evaluate(()=>FK.friends.mail().phase),'to-mailman');
  }
  await menu();await page.evaluate(()=>navigator.serviceWorker.ready);await page.waitForFunction(()=>!!navigator.serviceWorker.controller);await context.setOffline(true);await page.reload();await ready();await menu();await open('friends-bird');

@@ -1,6 +1,7 @@
 # Working agreement
 
-- Push finished work directly to `main` — the owner's standing instruction (7 November 2026). GitHub Pages serves `main`, so a push publishes the game.
+- Work on a feature branch and regularly push checkpoints to that branch — the owner's instruction (12 November 2026), superseding the older direct-to-main instruction. Do not merge/push to main without a later instruction. GitHub Pages serves `main`.
+- Puzzle work follows [the shared blueprint](docs/PUZZLE-BLUEPRINT.md) and [review process](docs/PUZZLE-REVIEW.md). This authorized work expands task pools and changes review gating; the older visual-only task-pool restriction below does not apply to it.
 - Before pushing, run `node --test tests/*.test.cjs` and the browser suites for what changed (see [Development](docs/DEVELOPMENT.md)).
 
 # Current work: Waldbuch visual overhaul (handed over 9 November 2026)

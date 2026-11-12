@@ -33,7 +33,8 @@
       updateButton=FK.ui.btn({label:'Nach Updates suchen',onClick:()=>FK.updates.check()});
       updateStatus=h('p',{class:'ff-update-status',role:'status','aria-live':'polite'});
       const updates=h('section',{class:'setting-card ff-update-settings'},h('div',{class:'setting-head'},h('b',{text:'App-Version'})),h('p',{class:'ff-settings-version',text:'Farbtupf '+FK.VERSION}),updateButton,updateStatus);
-      body.append(sounds,timerConfig.element,font,records,updates);showUpdate();
+      const review=h('section',{class:'setting-card ff-puzzle-review-settings'},h('b',{text:'Puzzle-Prüfung'}),h('p',{text:'Jedes Puzzle und jede einzelne Aufgabe vor dem Spielen prüfen und freigeben.'}),FK.ui.btn({label:'Puzzle-Prüfung öffnen',onClick:()=>FK.puzzleReview.open()}));
+      body.append(sounds,timerConfig.element,font,review,records,updates);showUpdate();
     },
     leave(){timerConfig?.dispose();timerConfig=null;}
   });

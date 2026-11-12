@@ -62,7 +62,7 @@
 .puzzle-goal>span{display:flex;flex-direction:column;align-items:center}.puzzle-goal b{font-size:36px}.puzzle-goal small{font-size:18px}
 .puzzle-firefly-slots{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;max-width:430px;margin:auto}
 .puzzle-firefly-slot{display:grid;place-items:center;aspect-ratio:1;border:1px solid #cabb8f;background:#ece9cb;border-radius:16px;font-size:30px;color:#a69673}
-.puzzle-firefly-slot.empty{border-style:dashed;background:#fff9eb}.puzzle-firefly{width:85%;height:85%}
+.puzzle-firefly-slot.is-empty{border-style:dashed;background:#fff9eb}.puzzle-firefly{width:85%;height:85%}
 .puzzle-picnic-basket{display:flex;justify-content:center;align-items:center;gap:12px;min-height:90px;padding:5px 12px;border-radius:20px;background:#eee4cc;border:1px solid #d9c59e;margin-bottom:18px}
 .puzzle-picnic-basket>.puzzle-picture{width:74px;height:74px}.puzzle-picnic-basket .puzzle-objects{max-width:350px;grid-template-columns:repeat(6,minmax(0,1fr))}
 .puzzle-plates{display:grid;grid-template-columns:repeat(var(--plates),minmax(0,1fr));gap:10px}

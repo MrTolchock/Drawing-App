@@ -29,7 +29,6 @@
     const pool=catalogue().filter(g=>g.host===host),active=FK.settings.get('friends.active.'+host);
     const unfinished=pool.find(g=>g.id===active&&FK.puzzleRounds.pending(g.id));
     if(unfinished)return unfinished;
-    if(FK.friends?.round(host))return pool.find(g=>g.id==='friends-'+host);
     const last=pool.findIndex(g=>g.id===FK.settings.get('friends.rotation.'+host));
     return pool[(last+1)%pool.length];
   }
@@ -44,7 +43,7 @@
     const games=h('div',{class:'forest-book-games'});
     function card(id,title,pic,fn,owner){
       const b=button(title,h('span',{},pic,h('b',{text:title}),owner?h('small',{class:'ff-library-host'},portrait(owner),window.FriendsContent.hosts[owner].name):null),fn,'forest-book-game');
-      b.dataset.game=id;games.append(b);
+      b.dataset.game=id;if(FK.puzzleReview&&!FK.puzzleReview.ready(id)&&FK.puzzleCatalogue.puzzle(id)){b.classList.add('puzzle-awaiting-review');b.append(FK.forestArt.icon('lock'));b.setAttribute('aria-label',title+' – wartet auf Freigabe');}games.append(b);
     }
     for(const g of catalogue())if(resident==='all'||resident===g.host)
       card(g.id,g.title,FK.play.gamePicture(g),()=>launch(g),g.host);

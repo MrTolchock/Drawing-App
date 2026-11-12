@@ -160,11 +160,22 @@
   }
   // Separate from historical save keys and the transactional FriendsState records.
   const key='farbtupf.puzzles.'+(new URLSearchParams(location.search).get('dev')==='1'?'development.':'')+'v1';
-  let sessions={};try{const saved=JSON.parse(localStorage.getItem(key));if(saved&&saved.version===1)sessions=saved.sessions||{};}catch{}
+  let sessions={},previous={},legacy={};try{const saved=JSON.parse(localStorage.getItem(key));if(saved&&saved.version===1){sessions=saved.sessions||{};previous=saved.previous||{};legacy=saved.legacy||{};}}catch{}
   const valid=(s,id)=>s&&s.id===id&&Number.isInteger(s.seed)&&s.seed>=0&&s.seed<=0xffffffff&&Number.isInteger(s.round)&&s.round>=0&&s.round<=5&&typeof s.solved==='boolean'&&s.work&&typeof s.work==='object'&&!Array.isArray(s.work);
-  function save(session){if(!valid(session,session.id)||!instructions[session.id])return false;sessions[session.id]=JSON.parse(JSON.stringify(session));try{localStorage.setItem(key,JSON.stringify({version:1,sessions}));}catch{}return true;}
-  function start(id){const old=sessions[id];if(valid(old,id))return JSON.parse(JSON.stringify(old));const session={id,seed:Math.floor(Math.random()*0x100000000),round:0,solved:false,work:{}};save(session);return session;}
-  function clear(id){delete sessions[id];try{localStorage.setItem(key,JSON.stringify({version:1,sessions}));}catch{}}
+  function save(session){if(session.review||!valid(session,session.id)||!instructions[session.id])return false;sessions[session.id]=JSON.parse(JSON.stringify(session));try{localStorage.setItem(key,JSON.stringify({version:1,sessions,previous,legacy}));}catch{}return true;}
+  function start(id){
+    const old=sessions[id],catalogue=FK.puzzleCatalogue;
+    if(valid(old,id)&&(!catalogue||old.questions&&old.catalogueRevision===catalogue.puzzleRevision(id)&&catalogue.matchesSession(old)))return JSON.parse(JSON.stringify(old));
+    // Keep earlier snapshots verbatim; changed content starts a separately reviewed round.
+    if(old)legacy[id]=JSON.parse(JSON.stringify(old));
+    const session={id,seed:Math.floor(Math.random()*0x100000000),round:0,solved:false,work:{}};
+    if(catalogue){const items=catalogue.select(id,session.seed,previous[id]||[]);session.questions=items.map(i=>i.question);session.iterationIds=items.map(i=>i.id);session.catalogueRevision=catalogue.puzzleRevision(id);}
+    save(session);return session;
+  }
+  function current(session){return session.questions?JSON.parse(JSON.stringify(session.questions[session.round])):question(session.id,session.round,session.seed);}
+  function complete(id){const s=sessions[id];if(s?.iterationIds)previous[id]=s.iterationIds.slice();clear(id);}
+
+  function clear(id){delete sessions[id];try{localStorage.setItem(key,JSON.stringify({version:1,sessions,previous,legacy}));}catch{}}
   function pending(id){return !!valid(sessions[id],id);}
-  FK.puzzleRounds={base,instructions,title,wordArt,words,shapes,shapeNames,rng,mix,question,start,save,clear,pending};
+  FK.puzzleRounds={base,instructions,title,wordArt,words,shapes,shapeNames,rng,mix,question,current,start,save,clear,complete,pending};
 })();
