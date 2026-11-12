@@ -8,6 +8,7 @@ import {createWorld} from './world/index.js';
 import {createLook, foxView, canvasTex} from './world/textures.js';
 import {createStreamer, NEAR} from './world/streamer.js';
 import {TAU, rng} from './world/noise.js';
+import {createLife} from './world/life.js';
 
 const WORLD = createWorld();
 const FOX_H = 1.6, SPEED = 3.6, MAX_ANIMATED = 6;
@@ -78,10 +79,9 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   const shaftTex = canvasTex(64, 256, (g, w, h) => { const gr = g.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, 'rgba(255,236,180,0)'); gr.addColorStop(.25, 'rgba(255,236,180,.8)'); gr.addColorStop(1, 'rgba(255,236,180,0)'); g.fillStyle = gr; g.fillRect(0, 0, w, h); const hg = g.createLinearGradient(0, 0, w, 0); hg.addColorStop(0, 'rgba(0,0,0,1)'); hg.addColorStop(.5, 'rgba(0,0,0,0)'); hg.addColorStop(1, 'rgba(0,0,0,1)'); g.globalCompositeOperation = 'destination-out'; g.fillStyle = hg; g.fillRect(0, 0, w, h); });
   const shaftMat = new THREE.MeshBasicMaterial({map: shaftTex, transparent: true, opacity: .16, depthWrite: false, blending: THREE.AdditiveBlending, side: THREE.DoubleSide, fog: false, toneMapped: false});
   { const g = []; for (const [x, z, w] of [[-4, -14, 2.6], [3, -18, 3.4], [10, -12, 2.4], [-11, -9, 2.2], [6, -26, 4]]) g.push(new THREE.PlaneGeometry(w, 22).rotateZ(.48).rotateY(.5).translate(x, 9, z)); const m = new THREE.Mesh(mergePlain(g), shaftMat); m.name = 'light shafts'; m.renderOrder = 4; scene.add(m); }
-  const butterflyTex = ['#f29a3a', '#7fb6e8', '#f5d24a'].map(c => canvasTex(64, 48, (g) => { g.fillStyle = c; for (const s of [-1, 1]) { g.beginPath(); g.ellipse(32 + s * 14, 16, 13, 12, s * .3, 0, TAU); g.fill(); g.beginPath(); g.ellipse(32 + s * 11, 33, 9, 8, -s * .3, 0, TAU); g.fill(); } g.fillStyle = 'rgba(255,255,255,.6)'; for (const s of [-1, 1]) { g.beginPath(); g.arc(32 + s * 16, 13, 3, 0, TAU); g.fill(); } g.fillStyle = '#4a3424'; g.fillRect(30, 8, 4, 32); }));
   function sprite(map, h, order = 2, anchor = 0) { const s = new THREE.Sprite(new THREE.SpriteMaterial({map, transparent: true, toneMapped: false, depthWrite: false, alphaTest: .02})); s.center.set(.5, anchor); s.renderOrder = order; s.userData.h = h; scene.add(s); return s; }
   function size(s, h = s.userData.h) { const img = s.material.map.image, a = img && img.width ? img.width / img.height : 1; s.scale.set(h * a, h, 1); }
-  const butterflies = Array.from({length: 5}, (_, i) => { const s = sprite(butterflyTex[i % 3], .32, 4, .5), h = [[-6, 4], [3, 7], [-9, -7], [9, -1], [-2, -11]][i]; return {s, hx: h[0], hz: h[1], x: h[0], z: h[1], y: 1, phase: R() * TAU, flee: 0}; });
+  const life = createLife({scene, canvasTex, groundY, walkable, terrain: WORLD.terrain, random: R});   // falling leaves, butterflies, dragonflies, little birds
   const puffs = Array.from({length: 8}, () => { const s = sprite(dustTex, .4, 1, .5); s.visible = false; return {s, life: 0}; });
   const motes = new THREE.Points(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(Array.from({length: 240}, (_, i) => i % 3 === 1 ? .4 + R() * 5 : (R() * 2 - 1) * 15 + (i % 3 === 0 ? 1 : -5)), 3)), new THREE.PointsMaterial({size: .08, map: glow, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, opacity: .8}));
   motes.name = 'pollen'; scene.add(motes);
@@ -225,9 +225,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     animatedCount = animated;
     if (moving && !reduced && time - lastPuff > .17) { lastPuff = time; const p = puffs.find(q => q.life <= 0); if (p) { p.life = .55; p.s.visible = true; p.s.position.set(pos.x + (R() - .5) * .3, base + .12, pos.z + .15); } }
     for (const p of puffs) if (p.life > 0) { p.life -= dt; const k = 1 - p.life / .55; size(p.s, .25 + k * .45); p.s.material.opacity = .5 * (1 - k); p.s.position.y += dt * .25; if (p.life <= 0) p.s.visible = false; }
-    for (const b of butterflies) { const t = time * .55 + b.phase, d = Math.hypot(b.x - pos.x, b.z - pos.z); if (d < 2.2) b.flee = 1.2; b.flee = Math.max(0, b.flee - dt);
-      const tx = b.hx + Math.sin(t) * 2.2 + (b.flee ? (b.x - pos.x) / (d || 1) * 3 : 0), tz = b.hz + Math.cos(t * 1.3) * 1.6 + (b.flee ? (b.z - pos.z) / (d || 1) * 3 : 0); b.x += (tx - b.x) * Math.min(1, dt * (b.flee ? 2.5 : .8)); b.z += (tz - b.z) * Math.min(1, dt * (b.flee ? 2.5 : .8)); b.y = groundY(b.x, b.z) + 1 + Math.sin(t * 2.3) * .35 + (b.flee ? .8 : 0);
-      b.s.position.set(b.x, b.y, b.z); const flap = reduced ? 1 : .25 + Math.abs(Math.cos(time * 14 + b.phase)) * .75; b.s.scale.set(.42 * flap, .32, 1); }
+    life.update(dt, time, pos, {reduced, trees: sound.trees, meadow: sound.meadow, height, fov: camera.fov});
     const halos = streamer.landmarks.home?.halos; if (halos) halos.material.opacity = reduced ? .55 : .5 + Math.sin(time * 7) * .06;
     shaftMat.opacity = reduced ? .15 : .14 + Math.sin(time * .35) * .04;
     if (!reduced) { if (look.M.water) look.M.water.uniforms.uTime.value += dt; motes.position.set(pos.x, Math.sin(time * .35) * .3, pos.z); motes.rotation.y = time * .01; } else motes.position.set(pos.x, 0, pos.z);
@@ -268,6 +266,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     },
     stop() { destination = null; path = []; arrival = null; ring.visible = false; vel.set(0, 0); },
     restored() { renderer.shadowMap.needsUpdate = true; },
+    get life() { return life.counts; },
     budget() { const c = streamer.counts, g = streamer.gaps(); return {liveTiles: c.near, farTiles: c.far, animated: animatedCount, holes: g.holes, plain: g.plain, jobs: c.jobs, slowestStep: streamer.slowest.kind, slowestStepMs: streamer.slowest.ms}; },
     set speed(k) { speedScale = k; },
     pins() { return [...pins, {id: 'mailman', point: new THREE.Vector3(mailPos.x, groundY(mailPos.x, mailPos.z) + 2.2, mailPos.z)}].map(p => { const q = p.point.clone().project(camera); return {id: p.id, x: (q.x * .5 + .5) * width, y: (-q.y * .5 + .5) * height, visible: q.z < 1 && Math.abs(q.x) < 1.02 && q.y > -1.02 && q.y < 1.12 && p.point.distanceTo(pos) < NEAR}; }); },
