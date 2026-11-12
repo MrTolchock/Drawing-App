@@ -65,7 +65,7 @@ export function createDirector({random = Math.random} = {}) {
     if (now >= nextGust) { gustTo = breezy ? range(.35, 1) : range(0, .42); nextGust = now + range(3, 9); }
     gust += (gustTo - gust) * (1 - Math.exp(-dt / 2.4)); flutter = .78 + .44 * random();
     const cover = Math.max(env.trees, env.meadow * .55, env.swamp * .4);
-    const beds = {wind: .3 + .7 * gust, leaves: cover * (.1 + .9 * gust ** 1.6) * flutter, bright: clamp(.5 + .5 * env.meadow - .35 * env.spruce), brook: env.brook, falls: env.falls, fallsPan: env.fallsPan, gust};
+    const beds = {wind: .3 + .7 * gust, leaves: cover * sstep(.3, 1, gust) * flutter, bright: clamp(.5 + .5 * env.meadow - .35 * env.spruce), brook: env.brook, falls: env.falls, fallsPan: env.fallsPan, gust};
 
     // birds and other voices
     const lively = settled * (env.indoors ? .4 : 1);

@@ -1,5 +1,5 @@
 /* Offline woodland sound, made in the browser (no recordings, nothing is fetched):
-   four steady layers (wind, leaves, brook, waterfall) that follow the weather and the place, and single
+   three steady layers (leaves in the gusts, brook, waterfall; no constant wind, which sounded like noise) that follow the weather and the place, and single
    sounds on top: footsteps for each kind of ground, blackbird, chaffinch, great tit, blue tit, wood pigeon,
    cuckoo and woodpecker, frogs at the swamp, crickets and bees in the meadow, bubbles in the brook, and a
    quiet tune with long rests. js/friends/soundscape.js decides what plays when; this file only makes the sounds.
@@ -106,16 +106,14 @@ export function createAudio(settings, environment = () => null) {
   const level = (value = 0) => { const g = ctx.createGain(); g.gain.value = value; return g; };
   const chain = (...nodes) => { for (let i = 0; i < nodes.length - 1; i++) nodes[i].connect(nodes[i + 1]); return nodes; };
   function buildBeds(brown, white) {
-    const wind = {tone: filter('lowpass', 480, .3), out: level()}; chain(loop(brown, 1), wind.tone, wind.out, room);
     const leaves = {tone: filter('bandpass', 3400, .5), out: level()}; chain(loop(white, .87), filter('highpass', 1500, .4), leaves.tone, leaves.out, room);
     const brook = {bands: [[700, 2.2, 1], [1750, 1.6, .7], [2900, 1.2, .35]].map(([f, q, g]) => ({f, node: filter('bandpass', f, q), g: level(g)})), out: level()}, water = loop(white, 1.19);
     for (const b of brook.bands) chain(water, b.node, b.g, brook.out); brook.out.connect(room);
     const falls = {out: level(), pan: ctx.createStereoPanner?.()}; chain(loop(white, .71), filter('lowpass', 2600, .3), falls.out); chain(loop(brown, 1.31), filter('lowpass', 520, .3), level(1.6), falls.out); if (falls.pan) chain(falls.out, falls.pan, room); else falls.out.connect(room);
-    return {wind, leaves, brook, falls};
+    return {leaves, brook, falls};
   }
   function setBeds(b) { const t = ctx.currentTime, to = (param, value, tc = .5) => param.setTargetAtTime(value, t, tc);
-    to(beds.wind.out.gain, .26 * b.wind, 1.2); to(beds.wind.tone.frequency, 380 + 460 * b.gust, 1.2);
-    to(beds.leaves.out.gain, .2 * b.leaves, .22); to(beds.leaves.tone.frequency, 2500 + 1900 * b.bright, 1.5);
+    to(beds.leaves.out.gain, .11 * b.leaves, .22); to(beds.leaves.tone.frequency, 2500 + 1900 * b.bright, 1.5);
     to(beds.brook.out.gain, .5 * b.brook ** 1.5, .5); for (const band of beds.brook.bands) to(band.node.frequency, band.f * r(.84, 1.18), .12);   // the bands wander: babbling
     to(beds.falls.out.gain, .17 * b.falls ** 1.7, .6); if (beds.falls.pan) to(beds.falls.pan.pan, b.fallsPan * .7, .6);
   }
@@ -152,7 +150,7 @@ export function createAudio(settings, environment = () => null) {
   const offSettings = window.FK.on('friends-audio', () => { unlock(); update(); }), offSpeech = window.FK.on('speech', event => { speaking = event.active; update(); });
   return {unlock, update, setArea(value) { area = value; update(); },
     get diagnostics() { const data = new Float32Array(analyser?.fftSize || 0); analyser?.getFloatTimeDomainData(data);
-      return {state: ctx?.state || 'locked', area, layers: beds ? Object.keys(beds).length : 0, birdCalls, steps, ambience: settings().ambience, music: settings().music, rms: data.length ? Math.sqrt(data.reduce((n, v) => n + v * v, 0) / data.length) : 0}; },
+      return {state: ctx?.state || 'locked', area, layers: beds ? Object.keys(beds).length : 0, birdCalls, steps, audible: !!ambience && ambience.gain.value > .01, ambience: settings().ambience, music: settings().music, rms: data.length ? Math.sqrt(data.reduce((n, v) => n + v * v, 0) / data.length) : 0}; },
     dispose() { clearInterval(timer); offSettings(); offSpeech(); document.removeEventListener('pointerdown', unlock); document.removeEventListener('keydown', key); document.removeEventListener('visibilitychange', visibility); sources.forEach(s => s.stop()); ctx?.close(); }
   };
 }

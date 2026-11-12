@@ -31,7 +31,7 @@ const BASE=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
   assert.equal(await page.locator('.screen-settings .play-timer-settings').isVisible(),true);
   await page.getByRole('checkbox',{name:'Musik',exact:true}).uncheck();
   await page.waitForFunction(()=>FK.friendsAudio.diagnostics.state==='running'&&FK.friendsAudio.diagnostics.rms>.00001);
-  assert.equal(await page.evaluate(()=>FK.friendsAudio.diagnostics.layers),4);await page.waitForFunction(()=>FK.friendsAudio.diagnostics.birdCalls>0);
+  assert.equal(await page.evaluate(()=>FK.friendsAudio.diagnostics.layers),3);await page.waitForFunction(()=>FK.friendsAudio.diagnostics.birdCalls>0);
   await click('Stoppuhr');await page.locator('.screen-settings').getByRole('button',{name:'Uhr starten',exact:true}).click();await page.waitForTimeout(650);
   assert.equal(await page.evaluate(()=>FK.playTimer.get().elapsedMs),0,'timer waits inside settings');await snapshot('settings-1024');
   await page.setViewportSize({width:390,height:844});await snapshot('settings-390');await page.locator('.screen-settings .btn-back').click();
@@ -61,9 +61,9 @@ const BASE=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
   }
   await page.evaluate(()=>FK.go('friends'));await settings();await page.getByRole('checkbox',{name:'Waldgeräusche',exact:true}).uncheck();
   await page.waitForFunction(()=>FK.friendsAudio.diagnostics.rms<.00001,null,{timeout:15000});
-  await page.getByRole('checkbox',{name:'Waldgeräusche',exact:true}).check();await page.waitForFunction(()=>FK.friendsAudio.diagnostics.rms>.00001);
+  await page.getByRole('checkbox',{name:'Waldgeräusche',exact:true}).check();await page.waitForFunction(()=>FK.friendsAudio.diagnostics.audible);   // between bird phrases the wood may be silent, so ask the sound itself
   await page.evaluate(()=>{window.testHidden=true;document.dispatchEvent(new Event('visibilitychange'));});await page.waitForTimeout(150);assert.ok(await page.evaluate(()=>FK.friendsAudio.diagnostics.rms)<.00001,'hidden page is silent');
-  await page.evaluate(()=>{window.testHidden=false;document.dispatchEvent(new Event('visibilitychange'));});await page.waitForFunction(()=>FK.friendsAudio.diagnostics.rms>.00001);
+  await page.evaluate(()=>{window.testHidden=false;document.dispatchEvent(new Event('visibilitychange'));});await page.waitForFunction(()=>FK.friendsAudio.diagnostics.audible);
   await page.locator('.screen-settings .btn-back').click();assert.equal(await page.locator('.ff-leaves').count(),0);
   await page.evaluate(()=>navigator.serviceWorker.ready);await page.waitForFunction(()=>!!navigator.serviceWorker.controller);
   const mail=await page.evaluate(()=>FK.friends.mail());

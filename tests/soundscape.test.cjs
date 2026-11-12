@@ -58,7 +58,8 @@ test('water is heard only near water; wind comes in gusts', async () => {
   assert.equal(dry.of('bubble').length, 0); const perSecond = brook.of('bubble').length / 300; assert.ok(perSecond > 1 && perSecond < 8, 'bubbles a second: ' + perSecond);
   assert.ok(dry.beds.every(b => b.brook === 0 && b.falls === 0));
   const wind = (await play(WOOD)).beds.map(b => b.gust); assert.ok(Math.min(...wind) < .15 && Math.max(...wind) > .7, 'calm and gusts');
-  assert.ok((await play(WOOD)).beds.every(b => b.leaves >= 0 && b.leaves <= 1.25 && b.wind <= 1));
+  assert.ok((await play(WOOD)).beds.every(b => b.leaves >= 0 && b.leaves <= 1.25));
+  assert.ok((await play(WOOD)).beds.filter(b => b.leaves === 0).length > 3000, 'the leaves are still for long stretches');
 });
 
 test('the tune plays a few notes and then rests', async () => {

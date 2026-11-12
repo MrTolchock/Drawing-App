@@ -235,3 +235,10 @@ Measured at the output in the real game (median level, same machine; before → 
 **Not verified here: how it sounds.** Levels, timing and variety are measured; whether it is pleasant has to be judged by ear on the iPad. `tests/audio-preview.html` plays every voice, every kind of step and every place by itself for that.
 
 **Validation.** `node --test tests/*.test.cjs` (182 pass, five new); `interface-browser.cjs` (four steady layers, birds, mute, silent when hidden) and `friends-mail-browser.cjs` pass.
+
+### After listening on the iPad · app 9.0.12
+
+- The owner found the wind too close to white noise: the constant wind layer is removed. Leaves are heard only in the gusts and at about half the level; between voices the wood can now be silent. Brook and waterfall are unchanged.
+- The friends on the ground stroll near their home (Reh up to 3.4 m, Igel and Dachs 1.8 m, Eichhörnchen and Biber 1.3 m): a few slow steps, 3 to 12 seconds of pause, never onto a trail or crossing. Within about 4 m of Fuchs they stand and turn to him. Not with reduced motion.
+
+`node --test tests/*.test.cjs` (182 pass), `interface-browser.cjs` (three steady layers) and `friends-mail-browser.cjs` pass.
