@@ -3,14 +3,15 @@
 <head>
 <meta charset="utf-8">
 <title>Farbtupf</title>
-<!-- Keep the page inside iOS's safe viewport. Full-bleed cover causes a native
-     Home Screen scroll-edge blur over the header (WebKit bugs 330085/325807). -->
+<!-- Home-screen app on iPad and iPhone (iOS 26 and later): the page cannot draw under the clock without iOS
+     blurring it, so there is no "black-translucent" status bar style here (Apple's advice in WebKit bug 317153).
+     iOS then keeps an opaque bar above the page; #status-band (css/base.css) gives it its colour and a clean edge.
+     iOS reads this when the icon is added: an existing icon keeps the old behaviour until it is added again. -->
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <meta name="description" content="Farbtupf – Spielend zählen, lesen, schreiben und entdecken in der 1. Klasse. Funktioniert auch ohne Internet.">
-<meta name="theme-color" content="#f7f2e7">
+<meta name="theme-color" content="#6b4a2c">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Farbtupf">
 <meta name="format-detection" content="telephone=no">
 <link rel="manifest" href="manifest.webmanifest">
@@ -33,6 +34,7 @@
 <link rel="preload" href="assets/forest-friends/character-portraits.webp" as="image">
 </head>
 <body>
+<div id="status-band" aria-hidden="true"></div>
 <svg class="icon-sprite" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden"><defs id="utility-icons"><linearGradient id="fk-rainbow" x2="0" y2="1"><stop stop-color="#cf7256"/><stop offset=".2" stop-color="#dfa15b"/><stop offset=".4" stop-color="#e8ca70"/><stop offset=".6" stop-color="#89a06b"/><stop offset=".8" stop-color="#83a5b6"/><stop offset="1" stop-color="#a58eae"/></linearGradient></defs></svg>
 
 <main id="screens"></main>
