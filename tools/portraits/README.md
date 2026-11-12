@@ -8,7 +8,8 @@ the painted friends in the Waldspiele tabs, on the picture map and on letters:
 - `portraits.html?id=…` renders one character at 1536 px with a transparent background, turned three-quarters
   towards the viewer and lit warm and soft from the front, plus a mask of its glossy parts (eyes, nose, beak, mouth).
 - `render.cjs` paints over each render (a warm shade towards the outline, brushed fur strokes, a fluffy fringe,
-  the glossy parts kept crisp on top; fish and frog get only a faint felt texture), crops it to the character and
+  the glossy parts and the drawn lines (brows, smile, beak, the gaps between spines) kept crisp on top; fish and
+  frog get only a faint felt texture), crops it to the character and
   scales it into its cell with the framing of the painted friends: up to 448 × 472 px, centred, lowest pixel at
   500 px. The turn per character is `YAW` in `portraits.html`, the brushwork per character `BRUSH` in `render.cjs`.
 

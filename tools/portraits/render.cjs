@@ -1,8 +1,8 @@
 // Renders the neighbour portraits and writes assets/forest-friends/neighbours.webp (see README.md).
 // Each character is rendered at 1536 px (portraits.html), then painted over in 2D so it reads like the
 // painted friends in postcard-friends.webp: a warm shade towards the silhouette, brushed fur strokes that
-// grow outwards and down from the body, a fluffy fringe on the outline, and the glossy eyes, nose and beak
-// kept crisp on top. Finally it is cropped to the character and scaled into its 512 px cell with the same
+// grow outwards and down from the body, a fluffy fringe on the outline, and the glossy eyes and nose and
+// the drawn lines (brows, smile, beak) kept crisp on top. Finally it is cropped to the character and scaled into its 512 px cell with the same
 // framing as the painted friends (about 92 % of the cell height, centred, standing near the bottom edge).
 // FARBTUPF_PORTRAITS_OUT writes the sheet somewhere else for a look.
 const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
@@ -16,7 +16,7 @@ const FIT={w:448,h:472,bottom:500};
 const BRUSH={
   hedgehog:{len:24,width:3.6,vary:.15,alpha:.5,fringe:10,shade:.24},
   deer:{len:24,width:3.6,vary:.12,alpha:.45,fringe:11,shade:.24},
-  kingfisher:{len:20,width:4,vary:.1,alpha:.42,fringe:8,shade:.22},
+  kingfisher:{len:16,width:4,vary:.1,alpha:.4,fringe:6,shade:.22},
   badger:{len:24,width:3.6,vary:.12,alpha:.45,fringe:10,shade:.22},
   frog:{len:14,width:4,vary:.06,alpha:.28,fringe:4,shade:.2},
   fish:{len:12,width:4,vary:.05,alpha:.2,fringe:2.5,shade:.18},
@@ -37,7 +37,9 @@ const BRUSH={
     let seed=7;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
     function paint({colour,mask,brush:B},C0,M0){
       const W=C0.c.width,H=C0.c.height,C=C0.d.data,M=M0.d.data,n=W*H;
-      const alpha=new Float32Array(n),gloss=new Float32Array(n);for(let i=0;i<n;i++){alpha[i]=C[i*4+3]/255;gloss[i]=M[i*4+3]>0?M[i*4]/255:0;}
+      const alpha=new Float32Array(n),gloss=new Float32Array(n),lum=new Float32Array(n);for(let i=0;i<n;i++){alpha[i]=C[i*4+3]/255;gloss[i]=M[i*4+3]>0?M[i*4]/255:0;lum[i]=(.3*C[i*4]+.59*C[i*4+1]+.11*C[i*4+2])/255*alpha[i];}
+      // Drawn lines (brows, the smile, a beak, the gaps between spines) are much darker than the fur round them: keep them crisp too.
+      {const bl=blur(lum,W,H,22),ba=blur(alpha,W,H,22);for(let i=0;i<n;i++){if(alpha[i]<.5)continue;const d=Math.min(1,Math.max(0,(bl[i]/Math.max(.05,ba[i])-lum[i]-.1)*7));if(d>gloss[i])gloss[i]=d;}}
       const wide=blur(alpha,W,H,40),edge=blur(alpha,W,H,3),shadeA=blur(alpha,W,H,12),nearGloss=blur(gloss,W,H,5);
       const out=document.createElement('canvas');out.width=W;out.height=H;const g=out.getContext('2d');
       // Underpainting: the render with a warm shade towards the outline, as the painted friends have.

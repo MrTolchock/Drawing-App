@@ -182,3 +182,23 @@ The owner's iPad walk (`?perf=1`, 55–60 fps) showed plain green ground without
 | At Biber's: [tablet](biber-1080.jpg), [phone](biber-390.jpg) | Eight stumps gnawed to a point with wood chips, three felled trunks beside their stumps, a stack of cut poles; all west of the trail or south of the pond, none on a path (colliders in `layout.js`). |
 
 Draw calls at the pond 81 (limit 150), triangles 180 k (limit 350 k).
+
+## The whole cast in the painted style · app 9.0.10
+
+Build: app/cache 9.0.10 (`farbtupf-v9.0.10-recovery`), 12 November 2026. Chromium (SwiftShader), 1080 × 810 and 390 × 844 at device scale 2, reduced motion, `?dev=1`.
+
+The owner asked for all characters to look their best and to fit each other wherever they appear, and chose the painted friends sheet (`assets/forest-friends/postcard-friends.webp`) as the reference. The painted pictures of the first six friends and of Hase stay as they are; the thirteen 3D models and the six rendered neighbour portraits were brought to them.
+
+| Evidence | What changed |
+| --- | --- |
+| Model sheet [before](cast-models-before.jpg), [after](cast-models-after.jpg) (front and three-quarter view of every baked model) | All thirteen characters resculpted in `design/visual-overhaul/lookdev/plush.js` and baked again. One face kit for everyone, taken from the painted faces: a cream eyeball with a soft shade, a thick dark upper lid, a large brown iris and one big catchlight; short thick brows; a button nose; a small "w" smile. Heads are bigger and rounder, cheeks cream, paws and feet brown. |
+| The same sheet | Eichhörnchen: broad ears with tufts, a brush that rises behind the back and curls away, an acorn with cap and stalk. Blaumeise: white face, one stripe through the eye, collar, wing bar, toes. Waldkauz: two pale face discs, short hooked beak, rows of breast feathers, a head that turns and wings that wave, no ear tufts. Maus: large round ears, pink nose, hands, feet and a curling tail. Biber: wide cream muzzle, two teeth, twig with leaves, cross-hatched paddle. Hase: warmer fur, leaf ears, cap with letter badge, waistcoat with buttons, satchel with letters. |
+| The same sheet | Igel sits upright under a hood of about 400 soft spines. Reh has a short muzzle, leaf ears and white spots. Fisch has scales, pink cheeks and rayed fins. Eisvogel has the cap down to the eyes and a long beak. Frosch has a wide drawn smile, cheeks and toes. Dachs got the shared eyes, nose and smile. |
+| In the den: [tablet](cast-den-1080.jpg), [phone](cast-den-390.jpg) | Fuchs with the new face. |
+| In the forest, at Eichhörnchen: [tablet](cast-squirrel-1080.jpg), [phone](cast-squirrel-390.jpg); at Igel: [tablet](cast-hedgehog-1080.jpg), [phone](cast-hedgehog-390.jpg) | The fur is brushed (fine strokes running down the body) instead of grainy, and the strokes fade with distance, so small characters stay soft. The eye drawing was upside down in the game until now (catchlight below); it is the right way up. |
+| Neighbour portraits [before above, after below](cast-portraits.jpg) | `neighbours.webp` rendered again from the new models; brows, smile and beak stay crisp under the painted fur strokes. |
+| Waldspiele: [tablet](cast-menu-1080.jpg), [phone](cast-menu-390.jpg); picture map: [tablet](cast-map-1080.jpg), [phone](cast-map-390.jpg) | Tabs, host chips and map pins of the six neighbours with the new portraits, next to the painted friends. |
+
+Sizes: 13 character files, 1.07 MB together (as before); triangles unchanged (Fuchs 20 k, friends 8–14 k near, 3–4.5 k far); still two draw calls per character. `neighbours.webp` 151 KB (175 KB before).
+
+Not done here: fully painted portraits for the six neighbours (asset request A4, with an updated prompt) would still match the first six friends more closely than a painted-over render. Whiskers are left out of the 3D models (they would flicker at forest distance).
