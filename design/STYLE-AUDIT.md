@@ -21,7 +21,27 @@ Audit date: 12 November 2026. Release: 9.3.0. This checks the active game agains
 
 The design browser audit checks all 34 real puzzle pages at 1080 × 810 and 390 × 844: Andika learning titles, model identity portraits, drawn subject sources, five progress leaves, exactly one rule explanation, no hint controls, no horizontal overflow, current routes and preserved historical storage. The finite-content suite separately solves every iteration in the actual puzzle/tracing renderers and exercises review decisions, invalidation, backup and offline access. The journey suite exercises the parent allowance, invitations, actual five-task rounds, courier, return home, sleep and durable game over.
 
-Current validation results and screenshots are recorded below when the checks finish. Original fixed design references remain unchanged: all 14 files pass their SHA-256 checker after archiving. The archive manifest also verifies every moved/preserved original.
+Validation completed for the current runtime:
+
+- Design browser checks: **34 puzzles × 2 viewports**, including visible writing paper and real glyph paths. [Per-page report](evidence/2026-11-12/report.json).
+- Finite content: **all 1,048 iterations** opened and solved in the real renderers. The first pass completed 810; the remaining 238 (all survey, reading and writing items) passed after the survey correction. Previews, release blocking, export/import, isolated saves, five-task celebration and offline review passed.
+- Journey browser checks: Settings, invitation-only access, two letters/ten answers, actual return-home route, sleep/game over, reload/offline lock and parent restart passed.
+- All **10 current model suites** passed; final content/revision/art suites passed again after the renderer correction.
+- Repository checks passed: **84 live source files, 132 unique offline files, 34 puzzle mappings, 606 preserved originals**, all current Markdown links and runtime dependencies. The offline download is approximately **13.4 MiB**.
+- Upgrade from **9.2.2** passed: old installation activation, cache isolation, partial-puzzle preservation, delayed drawing saves, failed download/offline recovery, first install and independent recovery page.
+- The original **14 fixed visual references** pass their SHA-256 checker after archiving.
+
+The [screenshots](evidence/2026-11-12/) were captured from the real 9.3.0 UI. The “Vorschau” strip belongs to adult review only; child puzzles do not show it.
+
+| Example | Tablet 1080 × 810 | Phone 390 × 844 |
+| --- | --- | --- |
+| Addition: rendered companions with drawn apples | [View](evidence/2026-11-12/add-1080.png) | [View](evidence/2026-11-12/add-390.png) |
+| Reading: same page and drawn subjects | [View](evidence/2026-11-12/friends-owl-1080.png) | [View](evidence/2026-11-12/friends-owl-390.png) |
+| Syllable puzzle | [View](evidence/2026-11-12/read-puzzle-1080.png) | [View](evidence/2026-11-12/read-puzzle-390.png) |
+| Writing: precise paths in the shared shell | [View](evidence/2026-11-12/trace-1080.png) | [View](evidence/2026-11-12/trace-390.png) |
+| Final sleeping fox | [View](evidence/2026-11-12/game-over-tablet.png) | [View](evidence/2026-11-12/game-over-phone.png) |
+
+Additional views: [den](evidence/2026-11-12/den-start.png), [pictured letter](evidence/2026-11-12/letter-tablet.png), [parent settings](evidence/2026-11-12/settings-phone.png).
 
 ## Owner review still required
 

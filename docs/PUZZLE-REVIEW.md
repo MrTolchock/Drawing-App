@@ -26,7 +26,7 @@ Adding an iteration changes the puzzle revision and requires puzzle sign-off aga
 
 ## Developer process
 
-1. Work on a branch; never push this work to main without a subsequent instruction.
+1. Work on a branch and push checkpoints. Publish to main when the owner authorizes it.
 2. Edit the finite definitions in `js/friends/puzzle-catalogue.js`. Give every new iteration a new stable ID. Change the definition of an existing ID only for a correction; its fingerprint changes automatically. Keep difficulty in `meta` accurate.
 3. Reuse the real puzzle or tracing renderer and the shared blueprint. Do not ship a separate approximate review renderer.
 4. Run `node tools/puzzle-catalogue.cjs`. This writes all GitHub catalogue pages and the shared implementation fingerprint. The fingerprint hashes actual shared runtime source and artwork; individual content/difficulty also has its own fingerprint. Generated files must be committed with the implementation.
