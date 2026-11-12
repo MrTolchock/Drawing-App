@@ -1,0 +1,3032 @@
+[
+  {
+    "original": "design/README.md",
+    "archived": "archive/design-history/prior-design-index.md",
+    "sha256": "cbc29dbf7dc33483630769245f8ce9abc18fa77d38a522c6afe939e5729fc6c3"
+  },
+  {
+    "original": "design/archive/GALLERY.md",
+    "archived": "archive/design-history/archive/GALLERY.md",
+    "sha256": "12eb38b18b5c0ab54dd4dc3d7dae938d3eac798768bbd0f8c0204ce6b0258eaf"
+  },
+  {
+    "original": "design/archive/README.md",
+    "archived": "archive/design-history/archive/README.md",
+    "sha256": "4a4612a35f1f74bc3ad698934808d047c1f2ab6a421834c77ed29ea8a2ef8ffe"
+  },
+  {
+    "original": "design/archive/early-options/README.md",
+    "archived": "archive/design-history/archive/early-options/README.md",
+    "sha256": "bda1a4edc96668206e314ab083ef9019d4a80e63a23c13a9befea9b0812df447"
+  },
+  {
+    "original": "design/archive/early-options/five-forest-layouts.png",
+    "archived": "archive/design-history/archive/early-options/five-forest-layouts.png",
+    "sha256": "9a4d05ec033ddc241eb1e239a8b3e62d4d4cbd08a1b7c92cf447068d2adad2c2"
+  },
+  {
+    "original": "design/archive/early-options/forest-in-chapters.png",
+    "archived": "archive/design-history/archive/early-options/forest-in-chapters.png",
+    "sha256": "3359cd41269510b2cb8da06e1a5e5b4d550650ec8cd70a96e14d897c87706249"
+  },
+  {
+    "original": "design/archive/early-options/gameplay-directions.png",
+    "archived": "archive/design-history/archive/early-options/gameplay-directions.png",
+    "sha256": "d4503e442cfeca959840d6d87c8d36cbeae66bfbf127ebd91bb3f75685643d95"
+  },
+  {
+    "original": "design/archive/early-options/opening-support-study.png",
+    "archived": "archive/design-history/archive/early-options/opening-support-study.png",
+    "sha256": "f88c6e2f5063c76f11df7881a65e87b9fe1b5bc04d9bb2a06ba40690636ddbc7"
+  },
+  {
+    "original": "design/archive/early-options/opening-woodland-study.png",
+    "archived": "archive/design-history/archive/early-options/opening-woodland-study.png",
+    "sha256": "ec8368ccd6a63aede643486480bdb7a5adcf1bd62859391239a0cab61fb6fc7a"
+  },
+  {
+    "original": "design/archive/early-options/places-and-neighbours.png",
+    "archived": "archive/design-history/archive/early-options/places-and-neighbours.png",
+    "sha256": "1a9010ec25e3a562b23334ae6b583c1b534edb06e2d838ca8f97bf39341b591b"
+  },
+  {
+    "original": "design/archive/early-options/story-gameplay-options-01.png",
+    "archived": "archive/design-history/archive/early-options/story-gameplay-options-01.png",
+    "sha256": "5e30ab8cc6026eb59dab9f2551c0d737dbc85b39bdcb44eb3f1a2f935fedf7cd"
+  },
+  {
+    "original": "design/archive/early-options/story-gameplay-options-02.png",
+    "archived": "archive/design-history/archive/early-options/story-gameplay-options-02.png",
+    "sha256": "3e21c8cda61cfae32b0a1b0a5f0bdfed5d5ade61f7d56a9477f4b8a5f04c04c1"
+  },
+  {
+    "original": "design/archive/early-options/story-openings.png",
+    "archived": "archive/design-history/archive/early-options/story-openings.png",
+    "sha256": "c722d16f178377bdb5ce355d5e8e990be7daa4730571eb2cd0fa52e65bd054ab"
+  },
+  {
+    "original": "design/archive/early-options/story-progression.png",
+    "archived": "archive/design-history/archive/early-options/story-progression.png",
+    "sha256": "7b8ba457c9ff4ee18ea26c3735b0e3e09b4da6600c8ff6a3a13484de58b4a874"
+  },
+  {
+    "original": "design/archive/early-options/three-first-quests.png",
+    "archived": "archive/design-history/archive/early-options/three-first-quests.png",
+    "sha256": "285cc91689166f449c7e32546c1881ba047557c10b2698fe6d7a59bf327a13ca"
+  },
+  {
+    "original": "design/archive/early-options/two-ways-to-play.png",
+    "archived": "archive/design-history/archive/early-options/two-ways-to-play.png",
+    "sha256": "947d764e0610a179d312ccfa4e532839ffea1c35120834dd3de03eff74df40d0"
+  },
+  {
+    "original": "design/archive/implementation-notes/IMPLEMENTATION-PLAN.md",
+    "archived": "archive/design-history/archive/implementation-notes/IMPLEMENTATION-PLAN.md",
+    "sha256": "5126ee8a1e7cd9764de3cca6e27daa36133d684d5e54234e657e03e0c1ce4a54"
+  },
+  {
+    "original": "design/archive/implementation-notes/MAIN-RELEASE.md",
+    "archived": "archive/design-history/archive/implementation-notes/MAIN-RELEASE.md",
+    "sha256": "2459b84e3555262e6289ba09a66271c4f71030a256886eb19b45e21d4627a8fc"
+  },
+  {
+    "original": "design/archive/implementation-notes/NEXT-STEPS.md",
+    "archived": "archive/design-history/archive/implementation-notes/NEXT-STEPS.md",
+    "sha256": "f1bba66cda36ad4a98c866fcf9ac5f2568b4e3cb8cfcac7a327c533960c2cd64"
+  },
+  {
+    "original": "design/archive/implementation-notes/PLAYABLE-SLICE.md",
+    "archived": "archive/design-history/archive/implementation-notes/PLAYABLE-SLICE.md",
+    "sha256": "7e9431e1a49be2a24aeeacaabd0f4d730e8801006e8ac0eedca6b13c92adfec9"
+  },
+  {
+    "original": "design/archive/implementation-notes/PREVIEW-HOSTING.md",
+    "archived": "archive/design-history/archive/implementation-notes/PREVIEW-HOSTING.md",
+    "sha256": "ca43b7519de7d75d9fb86fcb27e2c75a2c5b1d4091b3ab8438b18d4f04625cec"
+  },
+  {
+    "original": "design/archive/implementation-notes/README.md",
+    "archived": "archive/design-history/archive/implementation-notes/README.md",
+    "sha256": "f51f3861ef6e0d2d1f4177cee2024f2a196f33869d713ffc4bfc68f3aab1f6de"
+  },
+  {
+    "original": "design/archive/prototype-screenshots/01-opening.png",
+    "archived": "archive/design-history/archive/prototype-screenshots/01-opening.png",
+    "sha256": "57c344e785552f7851036a248439544b6e3e3d8c32c58c5cb2d7bc7f7452127f"
+  },
+  {
+    "original": "design/archive/prototype-screenshots/02-bridge-request.png",
+    "archived": "archive/design-history/archive/prototype-screenshots/02-bridge-request.png",
+    "sha256": "55f8cb9493ccb65a110dce1be7b0344e113e72258ba31459c08445496fc4dcb1"
+  },
+  {
+    "original": "design/archive/prototype-screenshots/03-demonstration.png",
+    "archived": "archive/design-history/archive/prototype-screenshots/03-demonstration.png",
+    "sha256": "e65773e70a82bfa4e74b796d4ad9b33a88dcc55d3baefcf95ed9c8c4a654784b"
+  },
+  {
+    "original": "design/archive/prototype-screenshots/04-flat-puzzle.png",
+    "archived": "archive/design-history/archive/prototype-screenshots/04-flat-puzzle.png",
+    "sha256": "73d7355a73af91c2b1aaf15221effbd02e9f60f9c9f3cd95719b425522b2ffe7"
+  },
+  {
+    "original": "design/archive/prototype-screenshots/05-pictured-return.png",
+    "archived": "archive/design-history/archive/prototype-screenshots/05-pictured-return.png",
+    "sha256": "817d387c9a0d3900df72cf87103d78e9dce728a6762916a6e45032f2b4048642"
+  },
+  {
+    "original": "design/archive/prototype-screenshots/06-crossing.png",
+    "archived": "archive/design-history/archive/prototype-screenshots/06-crossing.png",
+    "sha256": "8f7b6b8457b93fefb7f5bc21a4ff1c91578f34faf3eea86d2b80f9bc2dacaf25"
+  },
+  {
+    "original": "design/archive/prototype-screenshots/07-phone.png",
+    "archived": "archive/design-history/archive/prototype-screenshots/07-phone.png",
+    "sha256": "61eb29f54108045fd8567f626b91dae7d8208bc2cb7bfc315c16b606fb7ebf20"
+  },
+  {
+    "original": "design/archive/prototype-screenshots/08-hedgehog-resting-place-phone.png",
+    "archived": "archive/design-history/archive/prototype-screenshots/08-hedgehog-resting-place-phone.png",
+    "sha256": "163a685011631e0f91cbdba6f0e665da6f393d5768f0df9104af67635aef2a83"
+  },
+  {
+    "original": "design/archive/prototype-screenshots/09-owl-sign-phone.png",
+    "archived": "archive/design-history/archive/prototype-screenshots/09-owl-sign-phone.png",
+    "sha256": "1c7f3d74a3682779639b913aded7525692bd2ca17da3e3b2287ddf4a01182ae9"
+  },
+  {
+    "original": "design/archive/prototype-screenshots/10-owl-story-hollow.png",
+    "archived": "archive/design-history/archive/prototype-screenshots/10-owl-story-hollow.png",
+    "sha256": "1472762d386560f61d55faa9551eac55a1c58dc09e18a215c18f698d656a478d"
+  },
+  {
+    "original": "design/archive/prototype-screenshots/11-flat-route-phone.png",
+    "archived": "archive/design-history/archive/prototype-screenshots/11-flat-route-phone.png",
+    "sha256": "0ebd5e8ff388cb43dae0ff8552ad8754d80c654a1976c1585116e452e625521a"
+  },
+  {
+    "original": "design/archive/prototype-screenshots/12-kingfisher-request.png",
+    "archived": "archive/design-history/archive/prototype-screenshots/12-kingfisher-request.png",
+    "sha256": "fe2638f8203046fba4c82627f72b360876c0789f083d185f8de00f7f4f6c1c2a"
+  },
+  {
+    "original": "design/archive/prototype-screenshots/13-water-view.png",
+    "archived": "archive/design-history/archive/prototype-screenshots/13-water-view.png",
+    "sha256": "c78a79b02c742b1a696aaad659b865b7bece3369c840460492f6c689c225e08b"
+  },
+  {
+    "original": "design/archive/prototype-screenshots/14-gathering-phone.png",
+    "archived": "archive/design-history/archive/prototype-screenshots/14-gathering-phone.png",
+    "sha256": "e5ee8534462c28cca20513e3439c9257579ec4ec66027ed59b3e5b0d9fa3dad8"
+  },
+  {
+    "original": "design/archive/prototype-screenshots/15-guided-practice-book.png",
+    "archived": "archive/design-history/archive/prototype-screenshots/15-guided-practice-book.png",
+    "sha256": "ec9cca7fcd1db10f998a6787ef70f46d50141d2197ac436f12a31e7d7cc850f6"
+  },
+  {
+    "original": "design/archive/prototype-screenshots/README.md",
+    "archived": "archive/design-history/archive/prototype-screenshots/README.md",
+    "sha256": "4e73cc0e52b20997fc44ea6d68fb34710d886bfce057fc348ccb0fd915da9f39"
+  },
+  {
+    "original": "design/archive/reviews/DESIGN-REVIEW.pdf",
+    "archived": "archive/design-history/archive/reviews/DESIGN-REVIEW.pdf",
+    "sha256": "581a2a54670b48f648c8e231ede5d27b30e300c204fa11f16fe3e6128b95d315"
+  },
+  {
+    "original": "design/archive/reviews/OPENING-REVIEW.pdf",
+    "archived": "archive/design-history/archive/reviews/OPENING-REVIEW.pdf",
+    "sha256": "f81be29a7ebc76c256b3dab761bc090306a4edd2811d0807eb9578a8c469df83"
+  },
+  {
+    "original": "design/archive/reviews/README.md",
+    "archived": "archive/design-history/archive/reviews/README.md",
+    "sha256": "0d2b287a60ca629effe403ec47505ad1401565b9337abc8f930ce985f898a63f"
+  },
+  {
+    "original": "design/archive/reviews/authoring/README.md",
+    "archived": "archive/design-history/archive/reviews/authoring/README.md",
+    "sha256": "0fee875ecb30ecab49b38038ee6ce33816d4f9e8f3639fe7f54d2859f90f2e5d"
+  },
+  {
+    "original": "design/archive/reviews/authoring/create_heart_tree_opening_review.py",
+    "archived": "archive/design-history/archive/reviews/authoring/create_heart_tree_opening_review.py",
+    "sha256": "d3d169a9929158f70fc938af8f3ae670edf039abdfe139e5af4a89f3b27965f2"
+  },
+  {
+    "original": "design/archive/reviews/authoring/create_heart_tree_review.py",
+    "archived": "archive/design-history/archive/reviews/authoring/create_heart_tree_review.py",
+    "sha256": "6b0a697e6be9fa5805e438167e0e3a6f1d3c028b50f36667e80b1ddb851769a1"
+  },
+  {
+    "original": "design/archive/reviews/authoring/create_heart_tree_walkthrough.py",
+    "archived": "archive/design-history/archive/reviews/authoring/create_heart_tree_walkthrough.py",
+    "sha256": "d33206de552fa5b06bde7aec308d57eae200213a93fd25695ac6adbbdea8330b"
+  },
+  {
+    "original": "design/archive/reviews/design-review-cover.png",
+    "archived": "archive/design-history/archive/reviews/design-review-cover.png",
+    "sha256": "2a833e3e89c36404c593d13b6dc7e3ff75ce9e6ba38211d47319744b21ccdce9"
+  },
+  {
+    "original": "design/archive/reviews/design-review-scope.png",
+    "archived": "archive/design-history/archive/reviews/design-review-scope.png",
+    "sha256": "a6d691b2023844469d3b94736afb7fca4aad3cdd90e5777ce70b842f4f2d93e5"
+  },
+  {
+    "original": "design/archive/reviews/opening-review-cover.png",
+    "archived": "archive/design-history/archive/reviews/opening-review-cover.png",
+    "sha256": "1d9f2c03bb6b17d7bcaa1f753f65e18f9c58cddb1d4f884155c5eb28af70a146"
+  },
+  {
+    "original": "design/archive/reviews/opening-review-summary.png",
+    "archived": "archive/design-history/archive/reviews/opening-review-summary.png",
+    "sha256": "56b06c72bb7306d4dfdc3084aafa1a8d333ebec120d3cce00eedd57af978dfeb"
+  },
+  {
+    "original": "design/archive/storyboards/README.md",
+    "archived": "archive/design-history/archive/storyboards/README.md",
+    "sha256": "77b0cae2a07657da25a163b12a53a32c08c1eae658194dd020af1582e6d81a64"
+  },
+  {
+    "original": "design/archive/storyboards/adventure-blueprint-v2.png",
+    "archived": "archive/design-history/archive/storyboards/adventure-blueprint-v2.png",
+    "sha256": "a2fbec8b558ddbcbde9c9e5d3deedb929049f7089426f10842c6631412464b5c"
+  },
+  {
+    "original": "design/archive/storyboards/adventure-blueprint.png",
+    "archived": "archive/design-history/archive/storyboards/adventure-blueprint.png",
+    "sha256": "dffe119aa7ea5900892d1e8a78f36d2f398b7d29fbfaab74eba653cdef0d1faf"
+  },
+  {
+    "original": "design/archive/storyboards/before-reading-storyboard.png",
+    "archived": "archive/design-history/archive/storyboards/before-reading-storyboard.png",
+    "sha256": "910d5cf38b650a53249919a62f24407b471b6056b531f0a761c799636068bf24"
+  },
+  {
+    "original": "design/archive/storyboards/child-interface.png",
+    "archived": "archive/design-history/archive/storyboards/child-interface.png",
+    "sha256": "fc02bafaf6a5cdb47f171c4cccecb6409b96dafa8a704630e637b30e2876985e"
+  },
+  {
+    "original": "design/archive/storyboards/opening-storyboard.png",
+    "archived": "archive/design-history/archive/storyboards/opening-storyboard.png",
+    "sha256": "2eede6f60a8e7f70bcfe5ad3637e2a82cf0af0bc02856d676f47cfe3a173f5ef"
+  },
+  {
+    "original": "design/archive/storyboards/puzzle-library.png",
+    "archived": "archive/design-history/archive/storyboards/puzzle-library.png",
+    "sha256": "ac37edae9b26aca85bdd739c48e3adf05f9681c55e3027b55cee804f3298154d"
+  },
+  {
+    "original": "design/archive/verification/README.md",
+    "archived": "archive/design-history/archive/verification/README.md",
+    "sha256": "9f8e71dcafa1720315cbf53095346e04579009de7e6f1da550b3a40a548f3be1"
+  },
+  {
+    "original": "design/archive/verification/early-live-preview/heart-tree-first-frame.png",
+    "archived": "archive/design-history/archive/verification/early-live-preview/heart-tree-first-frame.png",
+    "sha256": "fc457f46ec5aaed872d457d2806c1f9648d7774d576130cc94ef05e1432e552e"
+  },
+  {
+    "original": "design/archive/verification/early-live-preview/heart-tree-walking.png",
+    "archived": "archive/design-history/archive/verification/early-live-preview/heart-tree-walking.png",
+    "sha256": "c952445c64cd24bda16d9c007acd21c0236e5fe95269e91e0f792dcff4537fca"
+  },
+  {
+    "original": "design/archive/verification/early-live-preview/heart-tree-welcome.png",
+    "archived": "archive/design-history/archive/verification/early-live-preview/heart-tree-welcome.png",
+    "sha256": "85402e41c3fe38aeed7b6c4751e52b7773fd92f676a76440b57c34a6906bac3e"
+  },
+  {
+    "original": "design/archive/verification/farbtupf-complete-story/chapter-gather.png",
+    "archived": "archive/design-history/archive/verification/farbtupf-complete-story/chapter-gather.png",
+    "sha256": "5476931a60b8778db97b7f73b67f1b62abe8db04fc2da252915ae08d728bb30f"
+  },
+  {
+    "original": "design/archive/verification/farbtupf-complete-story/chapter-reconnect.png",
+    "archived": "archive/design-history/archive/verification/farbtupf-complete-story/chapter-reconnect.png",
+    "sha256": "f0afa8a0f7974dd9f9292cd61ade5f58ac2057bd01a826c72b6196e2946a0b5e"
+  },
+  {
+    "original": "design/archive/verification/farbtupf-forest-test/02-bridge-request.png",
+    "archived": "archive/design-history/archive/verification/farbtupf-forest-test/02-bridge-request.png",
+    "sha256": "5843de719ef093d56eb63b81e0d1fb68d097ad037326d94aa1e163a2299175d4"
+  },
+  {
+    "original": "design/archive/verification/farbtupf-forest-test/04-flat-puzzle.png",
+    "archived": "archive/design-history/archive/verification/farbtupf-forest-test/04-flat-puzzle.png",
+    "sha256": "44029faf450179eb3a7c9b1755e26fb61bddb12eba8167a363652f0337e9f343"
+  },
+  {
+    "original": "design/archive/verification/farbtupf-forest-test/05-pictured-return.png",
+    "archived": "archive/design-history/archive/verification/farbtupf-forest-test/05-pictured-return.png",
+    "sha256": "dd324378e095ed48a607ee57e845a6345d30e079c6279d31ac4bd0a4640289f9"
+  },
+  {
+    "original": "design/archive/verification/farbtupf-forest-test/06-crossing.png",
+    "archived": "archive/design-history/archive/verification/farbtupf-forest-test/06-crossing.png",
+    "sha256": "13affaf619e3817a533641920f2bf73a81a9300afe38c81101ae523c2ede82fa"
+  },
+  {
+    "original": "design/archive/verification/farbtupf-forest-test/07-phone.png",
+    "archived": "archive/design-history/archive/verification/farbtupf-forest-test/07-phone.png",
+    "sha256": "acbfce37b3f162e64d64bbb34f9373118dcd53e6976acaad8f519880f6aec39b"
+  },
+  {
+    "original": "design/archive/verification/farbtupf-forest-test/08-grove-request.png",
+    "archived": "archive/design-history/archive/verification/farbtupf-forest-test/08-grove-request.png",
+    "sha256": "9fbb524fdae3e73bb62625cbb0eb0a05ea02ecf3576e8c40e39e0836ea40990d"
+  },
+  {
+    "original": "design/archive/verification/farbtupf-forest-test/09-memory-example.png",
+    "archived": "archive/design-history/archive/verification/farbtupf-forest-test/09-memory-example.png",
+    "sha256": "10ed40dcb66ce8b4a04a7e56f8143107263d4b6877bad570c40e3a93114eaf71"
+  },
+  {
+    "original": "design/archive/verification/farbtupf-forest-test/10-memory-phone.png",
+    "archived": "archive/design-history/archive/verification/farbtupf-forest-test/10-memory-phone.png",
+    "sha256": "440edcc5188fc6cedd975d9a642ce355b3f37728e139ae043852899bb4b7dbb6"
+  },
+  {
+    "original": "design/archive/verification/farbtupf-forest-test/11-resting-place-phone.png",
+    "archived": "archive/design-history/archive/verification/farbtupf-forest-test/11-resting-place-phone.png",
+    "sha256": "b7695c9d3702799e3430807f6faa8104ecae1cbc771cede2ae062150a7cc0b3a"
+  },
+  {
+    "original": "design/archive/verification/farbtupf-forest-test/12-resting-place.png",
+    "archived": "archive/design-history/archive/verification/farbtupf-forest-test/12-resting-place.png",
+    "sha256": "0ab212e2658cdcc101ab90196185a7caefdf7441ffdff911d0888242c47d835d"
+  },
+  {
+    "original": "design/archive/verification/farbtupf-forest-test/13-grove-clear-phone.png",
+    "archived": "archive/design-history/archive/verification/farbtupf-forest-test/13-grove-clear-phone.png",
+    "sha256": "a1c2d1e186c57aed27b4f39d36fdae0f30b0b25b2708f1ffa71770dd18a00953"
+  },
+  {
+    "original": "design/archive/verification/farbtupf-painted-review/01-world-desktop.png",
+    "archived": "archive/design-history/archive/verification/farbtupf-painted-review/01-world-desktop.png",
+    "sha256": "f58be096e526e628396b10ace0222b697af0bb5f990baaf1f99d62a29e45ccc8"
+  },
+  {
+    "original": "design/archive/verification/farbtupf-painted-review/02-pattern-desktop.png",
+    "archived": "archive/design-history/archive/verification/farbtupf-painted-review/02-pattern-desktop.png",
+    "sha256": "48302f6406f33c2e6bb36d19d5a7c116ea358e34c053699fdc1f11631fc468c9"
+  },
+  {
+    "original": "design/archive/verification/farbtupf-painted-review/03-pattern-phone.png",
+    "archived": "archive/design-history/archive/verification/farbtupf-painted-review/03-pattern-phone.png",
+    "sha256": "85bd08ef19d5e4aacf17f5925402e8cab6aaf2c5bf6cc23f7e36185bc0ec3d25"
+  },
+  {
+    "original": "design/archive/verification/farbtupf-painted-review/04-book-phone.png",
+    "archived": "archive/design-history/archive/verification/farbtupf-painted-review/04-book-phone.png",
+    "sha256": "d4ce88da43cf18d9138cb7a677ebb0a95609d95fe1474c0709f2129215c2e92c"
+  },
+  {
+    "original": "design/archive/verification/farbtupf-painted-review/05-world-phone.png",
+    "archived": "archive/design-history/archive/verification/farbtupf-painted-review/05-world-phone.png",
+    "sha256": "7d8a0d01818bdc88602b553689d108b09f3dbe4851f5c3aa82fff62ed6cbbb91"
+  },
+  {
+    "original": "design/archive/verification/farbtupf-timer-test/01-clock-book-phone.png",
+    "archived": "archive/design-history/archive/verification/farbtupf-timer-test/01-clock-book-phone.png",
+    "sha256": "5b550e3648e0b4155fafec7bf83d9567e2f3054d7ecce9e9ee587b81c861f087"
+  },
+  {
+    "original": "design/archive/verification/farbtupf-timer-test/02-clock-settings-phone.png",
+    "archived": "archive/design-history/archive/verification/farbtupf-timer-test/02-clock-settings-phone.png",
+    "sha256": "962a553284a9cc02b9c38de45b059023c7ab5880754df8fdec90b7c82053a171"
+  },
+  {
+    "original": "design/archive/verification/farbtupf-trail-test/01-owl-request-phone.png",
+    "archived": "archive/design-history/archive/verification/farbtupf-trail-test/01-owl-request-phone.png",
+    "sha256": "24685a82217751c6daecffb1433f72b9a19bea7ce63de675d7898c2717749de2"
+  },
+  {
+    "original": "design/archive/verification/farbtupf-trail-test/02-separate-route-example.png",
+    "archived": "archive/design-history/archive/verification/farbtupf-trail-test/02-separate-route-example.png",
+    "sha256": "340a018aea92561a13911d22995e9a9b35b5488555fddcc0d2378e31a4f46685"
+  },
+  {
+    "original": "design/archive/verification/farbtupf-trail-test/04-renewed-sign-phone.png",
+    "archived": "archive/design-history/archive/verification/farbtupf-trail-test/04-renewed-sign-phone.png",
+    "sha256": "2d50c917d89ba08053c7f0f9b4e4551e4f6132b5ea8b57f6ad06ecc6d652869a"
+  },
+  {
+    "original": "design/archive/verification/farbtupf-trail-test/05-story-hollow.png",
+    "archived": "archive/design-history/archive/verification/farbtupf-trail-test/05-story-hollow.png",
+    "sha256": "e64ba0f55ca749b8f4efb20fee14d8e7f83f49a086dddcf862cfd4f48747e580"
+  },
+  {
+    "original": "design/archive/verification/library-smoke/farbtupf-phone.png",
+    "archived": "archive/design-history/archive/verification/library-smoke/farbtupf-phone.png",
+    "sha256": "99e531f6dd4e7df2a0d79f39f81c4276786649f2ef700e8462eecb457e007de7"
+  },
+  {
+    "original": "design/archive/verification/library-smoke/farbtupf-tablet.png",
+    "archived": "archive/design-history/archive/verification/library-smoke/farbtupf-tablet.png",
+    "sha256": "1cfc5c721ad39031a57bbb21be3ca5d0d9059d6694a10b5a9b5d8983d0566594"
+  },
+  {
+    "original": "design/archive/visual-identities/02-formenfreude.png",
+    "archived": "archive/design-history/archive/visual-identities/02-formenfreude.png",
+    "sha256": "3a6c8037b1cbca414b1f4902c8865868e616f3708691b9a474a41cfb62341ab2"
+  },
+  {
+    "original": "design/archive/visual-identities/03-papierwelt.png",
+    "archived": "archive/design-history/archive/visual-identities/03-papierwelt.png",
+    "sha256": "f0d63068bcf9359d9835c06790a8503fd62fe5cece12c745899765c4c94f0a19"
+  },
+  {
+    "original": "design/archive/visual-identities/04-kleine-welten.png",
+    "archived": "archive/design-history/archive/visual-identities/04-kleine-welten.png",
+    "sha256": "9dc68598c5182dbf321bffb5da2ed87f894157f987e57befa330e391a631294f"
+  },
+  {
+    "original": "design/archive/visual-identities/05-tintenabenteuer.png",
+    "archived": "archive/design-history/archive/visual-identities/05-tintenabenteuer.png",
+    "sha256": "bc7e61fc94d3807ffceb0e3475f2fc85239f15a830f16b2b111d009b19e8f594"
+  },
+  {
+    "original": "design/archive/visual-identities/README.md",
+    "archived": "archive/design-history/archive/visual-identities/README.md",
+    "sha256": "52bda7f5b5c146bfacfcf721c66798b446fc0457e27dcc5cd8e69d51dcc36829"
+  },
+  {
+    "original": "design/archive/visual-identities/index.html",
+    "archived": "archive/design-history/archive/visual-identities/index.html",
+    "sha256": "314c9ef03d2bd377d307c244d83fc8c4253ad6c37ec039d00cd1ca30ab33d394"
+  },
+  {
+    "original": "design/archive/visual-identities/manifest.json",
+    "archived": "archive/design-history/archive/visual-identities/manifest.json",
+    "sha256": "adcd33628146477bddf8f889de6f8dc4da4cd37133fc275b688589b734208eac"
+  },
+  {
+    "original": "design/archive/visual-identities/prompts.json",
+    "archived": "archive/design-history/archive/visual-identities/prompts.json",
+    "sha256": "a8758cd4fd1cf8fa3e6d8d4c4f2fb3e11dd5937a9f06c15657c448338a9ce545"
+  },
+  {
+    "original": "design/archive/woodland-studies/PAINTED-WOODLAND-VARIANTS.md",
+    "archived": "archive/design-history/archive/woodland-studies/PAINTED-WOODLAND-VARIANTS.md",
+    "sha256": "84b23b404baf829507ba7b5816f83c25c8837a838e33c3ee24b2a516abff8e46"
+  },
+  {
+    "original": "design/archive/woodland-studies/README.md",
+    "archived": "archive/design-history/archive/woodland-studies/README.md",
+    "sha256": "5a23bc7da35d7b039a244e36f1a58fda9dd04481aa62b50b4180bffca6d82907"
+  },
+  {
+    "original": "design/archive/woodland-studies/VISUAL-MIDDLE-GROUND.md",
+    "archived": "archive/design-history/archive/woodland-studies/VISUAL-MIDDLE-GROUND.md",
+    "sha256": "69b2bdc873d09d7ca919b8d0889adceb97308c8811c15a2e806966dcd8861333"
+  },
+  {
+    "original": "design/archive/woodland-studies/VISUAL-REFINEMENT.md",
+    "archived": "archive/design-history/archive/woodland-studies/VISUAL-REFINEMENT.md",
+    "sha256": "2eb8fcee97544acf9d5cfcd5e363082e03d5c6fcf61a3392d084b3defa9b5746"
+  },
+  {
+    "original": "design/archive/woodland-studies/painted-woodland-variants.png",
+    "archived": "archive/design-history/archive/woodland-studies/painted-woodland-variants.png",
+    "sha256": "0c98911268e76b737aa273b8e17aa850a7f40c606a694ca97d7c46339f666ac6"
+  },
+  {
+    "original": "design/archive/woodland-studies/visual-middle-ground-options.png",
+    "archived": "archive/design-history/archive/woodland-studies/visual-middle-ground-options.png",
+    "sha256": "5c58fe959c4e2d8f578bf677cd1f1cfdf8d1ad53d4d81d29de7de22d5c8a677c"
+  },
+  {
+    "original": "design/archive/woodland-studies/visual-refinement-options.png",
+    "archived": "archive/design-history/archive/woodland-studies/visual-refinement-options.png",
+    "sha256": "aea31be379a32844370a3c925861bc47f2964a20087ce5da663ac2a41fdab572"
+  },
+  {
+    "original": "design/forest-friends/CLOUD-HANDOFF.md",
+    "archived": "archive/design-history/forest-friends/CLOUD-HANDOFF.md",
+    "sha256": "1c0163f09755e06bbb7c37627fc023e8a233917c0da483bd5a77a0c0fba60123"
+  },
+  {
+    "original": "design/forest-friends/blueprint-before-letters.md",
+    "archived": "archive/design-history/forest-friends/blueprint-before-letters.md",
+    "sha256": "ca72641434f380e2437c656ff2ec289346970331aa1643279bad5522be936941"
+  },
+  {
+    "original": "design/forest-friends/blueprint-v2.md",
+    "archived": "archive/design-history/forest-friends/blueprint-v2.md",
+    "sha256": "e7a0f4ada68d1c67dcba96c086c3379dd99d0af00090acd53d4babb0267e24bd"
+  },
+  {
+    "original": "design/forest-friends/curriculum-matrix.md",
+    "archived": "archive/design-history/forest-friends/curriculum-matrix.md",
+    "sha256": "9933cd302091af0ab45fd99d59ec3e765faa1366fdd063fc19970c1f74bd940b"
+  },
+  {
+    "original": "design/forest-friends/experience-design.md",
+    "archived": "archive/design-history/forest-friends/experience-design.md",
+    "sha256": "579b12a3a4206b9d52bf8f332feb96af728b5f1fcac9a9bd87d034352b0f1b6c"
+  },
+  {
+    "original": "design/forest-friends/letter-loop.md",
+    "archived": "archive/design-history/forest-friends/letter-loop.md",
+    "sha256": "337ae227b228251752c9154e63075235a63087fbda4b1f75c156488c99c76299"
+  },
+  {
+    "original": "design/forest-friends/puzzle-specifications.md",
+    "archived": "archive/design-history/forest-friends/puzzle-specifications.md",
+    "sha256": "eaa185992a097280a648b2d4774e10423c13bf19e3e9b42fc0bafc54e1f1be5e"
+  },
+  {
+    "original": "design/forest-friends/rewards-and-continuity.md",
+    "archived": "archive/design-history/forest-friends/rewards-and-continuity.md",
+    "sha256": "cb66cf605849bfddc3112da14ecdf9a450bca4d5586d139c5a656c899fb18a52"
+  },
+  {
+    "original": "design/forest-friends/visuals/README.md",
+    "archived": "archive/design-history/forest-friends/visuals/README.md",
+    "sha256": "16ea0ebd99ce3e7ee6ae841d91eea95e60b58d20a9a6858a3e777069dc0d5397"
+  },
+  {
+    "original": "design/forest-friends/visuals/art-direction.md",
+    "archived": "archive/design-history/forest-friends/visuals/art-direction.md",
+    "sha256": "6a34c814162e6f55ae56fd404427f9895f52b9551e9270be0f629cf87fcaeac4"
+  },
+  {
+    "original": "design/forest-friends/visuals/baseline-manifest.json",
+    "archived": "archive/design-history/forest-friends/visuals/baseline-manifest.json",
+    "sha256": "11ce5f5a9eed7af8944d8ccb3d3dc96aed1a13af900f81c342256c4fbbe0bafc"
+  },
+  {
+    "original": "design/forest-friends/visuals/baseline.md",
+    "archived": "archive/design-history/forest-friends/visuals/baseline.md",
+    "sha256": "a3c56098b5c8ce073a5dfb6988a3720417e7503032d05333871d15f7b781d78e"
+  },
+  {
+    "original": "design/forest-friends/visuals/baselines/v2/v2-count-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/baselines/v2/v2-count-1024.jpg",
+    "sha256": "7a5213544214e299fd6b95e51814af8c0d802f7e533b12cce6a3843af2de0db2"
+  },
+  {
+    "original": "design/forest-friends/visuals/baselines/v2/v2-count-narrow390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/baselines/v2/v2-count-narrow390.jpg",
+    "sha256": "c076bf6b3370bf0f475f031e53f1cbd967640bfb4c09c5eea3ca099fcee435ef"
+  },
+  {
+    "original": "design/forest-friends/visuals/baselines/v2/v2-demo-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/baselines/v2/v2-demo-1024.jpg",
+    "sha256": "1836e87b235c9430a462b81a040d11927fced1fc3cbf25a961a668a3a96d6aba"
+  },
+  {
+    "original": "design/forest-friends/visuals/baselines/v2/v2-forest-route-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/baselines/v2/v2-forest-route-1024.jpg",
+    "sha256": "304be96b3567b64619554de4a948eaa37a5612e0d81fda6525f2b79b66ac99bd"
+  },
+  {
+    "original": "design/forest-friends/visuals/baselines/v2/v2-home-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/baselines/v2/v2-home-1024.jpg",
+    "sha256": "d9fc8db83f55767366c66bafd69b8ac00c973621564e09641dceee5b4c1098fd"
+  },
+  {
+    "original": "design/forest-friends/visuals/baselines/v2/v2-map-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/baselines/v2/v2-map-1024.jpg",
+    "sha256": "3ebd7b947910a6313818dababde2a58fffb34c647f8b23e0736a71266a168489"
+  },
+  {
+    "original": "design/forest-friends/visuals/baselines/v2/v2-read-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/baselines/v2/v2-read-1024.jpg",
+    "sha256": "0e5e4ec583080a8ed75deb22ae944c8bcdc123c58bb246dd0f7c781bb2a58f2a"
+  },
+  {
+    "original": "design/forest-friends/visuals/baselines/v2/v2-shop-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/baselines/v2/v2-shop-1024.jpg",
+    "sha256": "9e9d5bc7adb5c92a1f31b2ce00ce4312c38a1bea239680832e38410098d29df4"
+  },
+  {
+    "original": "design/forest-friends/visuals/characters-v1.png",
+    "archived": "archive/design-history/forest-friends/visuals/characters-v1.png",
+    "sha256": "9305038e44c6787f414080ce3212ad2b1d17ed6275ec9bb819798652fcdbf324"
+  },
+  {
+    "original": "design/forest-friends/visuals/check-baseline.py",
+    "archived": "archive/design-history/forest-friends/visuals/check-baseline.py",
+    "sha256": "09479149faa7555d8e65880c3b129133644fc1b83e452b3f926c0c00857768c5"
+  },
+  {
+    "original": "design/forest-friends/visuals/den-v1.png",
+    "archived": "archive/design-history/forest-friends/visuals/den-v1.png",
+    "sha256": "5885cbd8f0ffe80a96ac9f5a6fff8b6d9519aabf03f7b7777b7b4cc871c504c7"
+  },
+  {
+    "original": "design/forest-friends/visuals/forest-v1.png",
+    "archived": "archive/design-history/forest-friends/visuals/forest-v1.png",
+    "sha256": "ed1539ec9342d4d36f185789d19231dd212bd9d41d8c2b4f748011383ea797c7"
+  },
+  {
+    "original": "design/forest-friends/visuals/forest-v4.webp",
+    "archived": "archive/design-history/forest-friends/visuals/forest-v4.webp",
+    "sha256": "e019fc32622adf71510e34a2c2ceb9506273afa07c38620e81132cc0213e90b8"
+  },
+  {
+    "original": "design/forest-friends/visuals/forest-v5.webp",
+    "archived": "archive/design-history/forest-friends/visuals/forest-v5.webp",
+    "sha256": "cb11469eee7262cf09dd365aafd12c283dbc4846f3a9d3cb377612d24b96c453"
+  },
+  {
+    "original": "design/forest-friends/visuals/forest-v6.webp",
+    "archived": "archive/design-history/forest-friends/visuals/forest-v6.webp",
+    "sha256": "54f4040b6e240c8f43b2d48154cc67752944e041486d72084a2cbe7c5594a80c"
+  },
+  {
+    "original": "design/forest-friends/visuals/forest-v7.webp",
+    "archived": "archive/design-history/forest-friends/visuals/forest-v7.webp",
+    "sha256": "b79d486fb03a2e7b7df37fad1b8f6807db55527598d094d6d6ea5d880a5f9312"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/den-polish/COMPARISON.md",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/den-polish/COMPARISON.md",
+    "sha256": "b4e5cf1d689615a53bd238eb9ca36d2607369133114a069feebdae8611e35994"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/den-polish/colouring-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/den-polish/colouring-1024.jpg",
+    "sha256": "7c19f0c89eaa8077e7da195ec9c2160b3e98ba512741f33fd1f903409b553bae"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/den-polish/colouring-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/den-polish/colouring-390.jpg",
+    "sha256": "44a1d249f6ea320602c537698739375a3f4899c4490f04028b143b00679ac2d2"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/den-polish/den-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/den-polish/den-1024.jpg",
+    "sha256": "b5a3bccc7b7707325df0e4849786b042bb41a858a02281922355474aa5a4dde1"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/den-polish/den-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/den-polish/den-390.jpg",
+    "sha256": "b158682e4ee1b38ba28d402ec77f493c9495503f1fec2f400ca1221fe3731d2d"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/den-polish/gallery-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/den-polish/gallery-1024.jpg",
+    "sha256": "c61689006b8fab177bdd10a9d4d07d56844cd586ffbfbffb57963c586650d86b"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/den-polish/postcard-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/den-polish/postcard-1024.jpg",
+    "sha256": "38506d0691c1d444a074b8676aea48d66cea47c3f1f66bef3dc8e6ebe5dd5a56"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/den-polish/postcard-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/den-polish/postcard-390.jpg",
+    "sha256": "e1f46fb121cb51bca530908c92b6b9261fc2dcd5b156d0e946db94602572ac07"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/den-polish/selection-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/den-polish/selection-1024.jpg",
+    "sha256": "5d0108aa984e7cf1ef9eca0f3a59c5473472e6316b4082e59338469896102353"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/den-polish/selection-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/den-polish/selection-390.jpg",
+    "sha256": "e7e4831d49bc0e40de29aec54af523c37e64b3d869a50be08d65fd049b60760a"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/den-polish/sleep-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/den-polish/sleep-1024.jpg",
+    "sha256": "99a5ebdac99bd862274de3de9ef6db4011069243da38c49f3aac454b7e91b072"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/den-polish/sleep-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/den-polish/sleep-390.jpg",
+    "sha256": "12a105be8a780129a592ffb384c04cb1a6d2303c122cea0c54b834e28c2ecd18"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/forest-puzzles/COMPARISON.md",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/forest-puzzles/COMPARISON.md",
+    "sha256": "f1a0a317fcd90c3777b6625ec3eae1e73fb9194df4e08cad4c37e6c3392540e5"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/forest-puzzles/berries-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/forest-puzzles/berries-1024.jpg",
+    "sha256": "c55a0e63196fe49b0933b9b6d1be9ea052e2b2ad8510d6730507ddfa1ed11d8e"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/forest-puzzles/berries-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/forest-puzzles/berries-390.jpg",
+    "sha256": "e4982d1e86ef39ad3e53b5be0be6f83b9a55f0dbe93ef1637ba3b9a891f393df"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/forest-puzzles/den-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/forest-puzzles/den-1024.jpg",
+    "sha256": "c265ee2c636bf0664959b904e0e0e28480852ad09075187837472b33fc658a84"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/forest-puzzles/menu-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/forest-puzzles/menu-1024.jpg",
+    "sha256": "e6e498131c4127c2683c6f88b22e11252a2822bc99498389858f7a92e989228c"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/forest-puzzles/menu-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/forest-puzzles/menu-390.jpg",
+    "sha256": "a5df5a4c6c7d8c2273c7343f8ead4b33e86b77d023c03184ffa542d40d9c73a6"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/forest-puzzles/paint-undo-1024.png",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/forest-puzzles/paint-undo-1024.png",
+    "sha256": "434c1793080fb98caf8a03b3169325a8c17992d56bd450a90675e99a73abbe93"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/forest-puzzles/postcard-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/forest-puzzles/postcard-1024.jpg",
+    "sha256": "dc14ad038056e62e16310ef40d28e8481c74a9116f2713fbf394d9fe55b5cb91"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/forest-puzzles/postcard-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/forest-puzzles/postcard-390.jpg",
+    "sha256": "0893a3cdb267bf80531ce5c05a3cfc6e34a4f81b5bbb1ee9acdce0868642a758"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/forest-puzzles/sentences-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/forest-puzzles/sentences-1024.jpg",
+    "sha256": "d0ad9ddff5537be007a3124467e9759cab679469989a3f09a5c18c0f650ef91f"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/forest-puzzles/sleep-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/forest-puzzles/sleep-1024.jpg",
+    "sha256": "881fc197fd98effe2bc6e4768fa61ab496eb01b9487de5b381f52a795903b87a"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/forest-puzzles/sleep-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/forest-puzzles/sleep-390.jpg",
+    "sha256": "6bc92ed1eb0017cf2a447f9c6e4e88569f1bcecd7dc675af9acf6ef127b35a22"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/forest-puzzles/syllables-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/forest-puzzles/syllables-1024.jpg",
+    "sha256": "1ee689383cf76383f0dfe1372a490755c75e2f1262f376017d347b345a8433be"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/forest-puzzles/syllables-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/forest-puzzles/syllables-390.jpg",
+    "sha256": "08efd2a94cae8dd243e4031c29b5bacf7ac42d22cb59b8f2e56449033de13734"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/input-typography/README.md",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/input-typography/README.md",
+    "sha256": "a37429160c2bc11743690e646616ef1726420331135bf45176aead7e03c26d1e"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/input-typography/games-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/input-typography/games-390.jpg",
+    "sha256": "7087be7af65cebe7ff0bc9ff8b7425a46d44f3239ab106999576246e13a2c45a"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/input-typography/gate-retry-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/input-typography/gate-retry-390.jpg",
+    "sha256": "84424c58392ba595e7541922cd13465e3bc4c7bf770cd708ff1c1d72bc003be0"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/input-typography/reading-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/input-typography/reading-1024.jpg",
+    "sha256": "8de06619071ba67583f83e45aef8796c88d62a76e4195c4850c64c91e2afc02a"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/input-typography/reading-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/input-typography/reading-390.jpg",
+    "sha256": "70574781a92df8fe8b8cd7ad934d4ff608dd353c5d1e26afa8ab31c5aca0e845"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/input-typography/settings-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/input-typography/settings-1024.jpg",
+    "sha256": "7b1067a170b91610c95a5c3bdbde1cfa73098e118e2eb76bef02a0d5ea29b3f6"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/input-typography/settings-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/input-typography/settings-390.jpg",
+    "sha256": "6b71cacf00a66cdc6db548435e501bffb9e87df7d468fd3615b6d47724eb3890"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/interface-polish/COMPARISON.md",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/interface-polish/COMPARISON.md",
+    "sha256": "29411eb481ce2cc40f1b454226f6a190a46edfdab199d9512ddaa7aa77dc330b"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/interface-polish/courier-map-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/interface-polish/courier-map-1024.jpg",
+    "sha256": "85685ca856ea91d52bd5b1d223beb018ced240ba238e2648a496751a43ce34e0"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/interface-polish/courier-map-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/interface-polish/courier-map-390.jpg",
+    "sha256": "23859f4f959f6bc76476afbc619f662d6f65300c682aac44056ac48db86ecb72"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/interface-polish/den-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/interface-polish/den-1024.jpg",
+    "sha256": "71acaed567f64e034b870ca7fbe0dfd7b9968986a5079bea19a21029c94e3267"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/interface-polish/den-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/interface-polish/den-390.jpg",
+    "sha256": "9c4aa4dbf73ac8c24ef23db001104caf14e271300d736f0cd5c7574c593e4f18"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/interface-polish/forest-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/interface-polish/forest-1024.jpg",
+    "sha256": "47446c6ae054f9ed3f78746e2b41d999e8adddf5e4730092e2ba87e3fc8e6966"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/interface-polish/map-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/interface-polish/map-1024.jpg",
+    "sha256": "930507a1227daa8d40dd1e93517a664ac07bbc6af655d787cb64d676f10c8f6d"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/interface-polish/map-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/interface-polish/map-390.jpg",
+    "sha256": "c25d37ddcee2f23f1d72c3cef943ddb4be6df741d4fac153395370fb28c2566c"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/interface-polish/puzzle-explanation-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/interface-polish/puzzle-explanation-1024.jpg",
+    "sha256": "a1c6da3a138c58811bd30651b01c38336473f49cc19b91015cb9304c72cf89cd"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/interface-polish/settings-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/interface-polish/settings-1024.jpg",
+    "sha256": "8f2eb3903df4b7d12f8fc95efd89607615c46851bf67c382a1b45a32141d913a"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/interface-polish/settings-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/interface-polish/settings-390.jpg",
+    "sha256": "e605924c0baf7eb61d1d2a625f3817fa28ff57212e97efea73cb8229581f189b"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/letter-adventure/COMPARISON.md",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/letter-adventure/COMPARISON.md",
+    "sha256": "7cb465f9cf62cfa6a33e56f037e23042e82682ee8e6b486322e1279ead6f8dee"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/letter-adventure/arrow-to-squirrel-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/letter-adventure/arrow-to-squirrel-1024.jpg",
+    "sha256": "07493a8a1f5169a13c76ed33e6380f977ed6fcb1f6c953b1d00a3e2288b350b8"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/letter-adventure/den-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/letter-adventure/den-1024.jpg",
+    "sha256": "d38239ed94ec70c8e32b56b964036d92cac526de0ae9200eecb49a9b626bc610"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/letter-adventure/den-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/letter-adventure/den-390.jpg",
+    "sha256": "8fed75a84c13312b7adbc3bf6fa4bfd2d6ceebbd9515787c087e1d127dc6a3c2"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/letter-adventure/den-delivered-normal-motion.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/letter-adventure/den-delivered-normal-motion.jpg",
+    "sha256": "1dffccb991d637ab8605ccb926c0002aad330bd1dc80917ed2ec66c01902b17c"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/letter-adventure/letter-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/letter-adventure/letter-1024.jpg",
+    "sha256": "9f090bc8b9a714a0b9c04429d436374d7a3b4f414df2cd1a38deffd874593946"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/letter-adventure/letter-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/letter-adventure/letter-390.jpg",
+    "sha256": "9c1ef990cd9c1ee4b2b029edfb426d71e06c08c82897d9e3ae6a71c918584be5"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/letter-adventure/mailman-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/letter-adventure/mailman-1024.jpg",
+    "sha256": "4746fbafeebd6cf0ecd6259d01cdeda22ee8c8e9c382c3247b0fd2451fa39ced"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/letter-adventure/mailman-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/letter-adventure/mailman-390.jpg",
+    "sha256": "9563ed9b84d074f9943a24c66496451ad2fc79ce1a7ef23a989e100d6b8317de"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/letter-adventure/next-letter-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/letter-adventure/next-letter-1024.jpg",
+    "sha256": "b709374561edeab01b07eb606e36cbecf20bf5bb85e92ea389b02c4ab7094fcc"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/letter-sessions/COMPARISON.md",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/letter-sessions/COMPARISON.md",
+    "sha256": "0f5bb2a30fef9c81b6cba59b49a5e7f262721b6ea01745191e7c880fa2e2c450"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/letter-sessions/game-over-phone.png",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/letter-sessions/game-over-phone.png",
+    "sha256": "912bd553be227cbe81bc5d3bf44bb056aeeebef07fa20212bc6f5e3357b334c6"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/letter-sessions/game-over-tablet.png",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/letter-sessions/game-over-tablet.png",
+    "sha256": "50f419fd5a2183bf251a08d865a0b57f8ed832a9de8bf1ee2a846051eba8c089"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/letter-sessions/return-home.png",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/letter-sessions/return-home.png",
+    "sha256": "a2685143094f8b0517a5a13303ba512d915be4d5c1a5c9b9dc1a1b79fd448946"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/letter-sessions/settings-phone.png",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/letter-sessions/settings-phone.png",
+    "sha256": "5394869019cde0cd7613f8d3867860ef9424de381b4f6e9244ed2979365788c1"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/letter-sessions/settings-tablet.png",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/letter-sessions/settings-tablet.png",
+    "sha256": "255e99b59867f80c852e472834c35ea0dd0314817545659d8a16b68e409fc6e3"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/painted-library/COMPARISON.md",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/painted-library/COMPARISON.md",
+    "sha256": "06a953a126bd0c451fb00fe9835d40f67f0f52b68ff2dbb137049a199ab605e6"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/painted-library/menu-all-1024.png",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/painted-library/menu-all-1024.png",
+    "sha256": "ee808c31f3225359a564ab54c8238cd4a7bb3b8f948967e91540e0c0809dda30"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/painted-library/menu-all-390.png",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/painted-library/menu-all-390.png",
+    "sha256": "208b173bba233905db9fea184e3c40944dcabb86b3957a7fe2f4fb32ccea68aa"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/painted-library/menu-atelier-1024.png",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/painted-library/menu-atelier-1024.png",
+    "sha256": "d9df38c526f6175e54dd7f41530d263463473fffdf1cef61d35e62e3a3bd52cd"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/painted-library/menu-atelier-390.png",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/painted-library/menu-atelier-390.png",
+    "sha256": "5db9ea5ac091159ceb791a11abed390d6c1e9b70b9fdf845acc99d510e36f4de"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/painted-library/menu-details-1024.png",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/painted-library/menu-details-1024.png",
+    "sha256": "f773f900b4f677cf43d92be64e664b5b0a7a1683178e17bf2d47057c80840a61"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/painted-library/menu-details-390.png",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/painted-library/menu-details-390.png",
+    "sha256": "57c8b9ce8254fcfcefa51e38313268685b7f36dfbc4821cb8c646ef50b717f37"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/playable-loop-1/COMPARISON.md",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/playable-loop-1/COMPARISON.md",
+    "sha256": "750f9561b68fc09353a4e92b810332300c8b4dfb2fd8e094959375f0205d48d6"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/playable-loop-1/apple-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/playable-loop-1/apple-1024.jpg",
+    "sha256": "ab238abe8827a9ed7576e31025ccba49c8d6812aafa3e17a41d5ac90cb8a84b5"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/playable-loop-1/bath-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/playable-loop-1/bath-1024.jpg",
+    "sha256": "752eb0443c87118070b1f241a5fd5a27ac3f9c2d43965119910347f401bc5fca"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/playable-loop-1/count-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/playable-loop-1/count-1024.jpg",
+    "sha256": "6a0639b7cdcdd2df324ba8e67a58b1ce30344cd98e3e8b5189c10e0af9ca7004"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/playable-loop-1/count-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/playable-loop-1/count-390.jpg",
+    "sha256": "50153fd2bf0960f29be9c994219a3779428791260883d8eb9c0a514add55536d"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/playable-loop-1/demo-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/playable-loop-1/demo-1024.jpg",
+    "sha256": "e84520bdd45e7aced6d23b0e2e395274620ae3fe2a46461013455e9c1cab9f54"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/playable-loop-1/drawing-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/playable-loop-1/drawing-1024.jpg",
+    "sha256": "f5e36cb287d018ad1d5980c2d135c6e7a3f83b697958581ddb0b4ec9229ca01c"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/playable-loop-1/forest-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/playable-loop-1/forest-1024.jpg",
+    "sha256": "e5d3fcec8ca133a083694964a5c99a1034b05d4de6d5833f8de122dd58da15ab"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/playable-loop-1/forest-full-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/playable-loop-1/forest-full-1024.jpg",
+    "sha256": "4fb4a97772f4e4e6d7965e3504e22207586031b93543932bf534842a125698df"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/playable-loop-1/home-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/playable-loop-1/home-1024.jpg",
+    "sha256": "a3ef877b3515c261b4c2144867a601af7c66808d7287ed2ce160a7e35eb9a993"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/playable-loop-1/home-full-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/playable-loop-1/home-full-1024.jpg",
+    "sha256": "aa8dcf920f73591d1e27bc0658d185ce56ffbdb7d4ced8efac31b76f850b2358"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/playable-loop-1/home-full-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/playable-loop-1/home-full-390.jpg",
+    "sha256": "a4f4f3487d5ff8e579e01f033be63ef6da30e694ecf9213071182e0a02db0cb4"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/playable-loop-1/manifest.json",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/playable-loop-1/manifest.json",
+    "sha256": "3c8840c26e04f1f8211aa4a5b755edc1726ee5376bcebcc8a7ced4621f4c9509"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/playable-loop-1/map-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/playable-loop-1/map-1024.jpg",
+    "sha256": "dd6c3ef6c6228bb1f1599161c5d9660dceae56196cde56e82a172b7a4510a479"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/playable-loop-1/reading-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/playable-loop-1/reading-1024.jpg",
+    "sha256": "3521cec4c382990f6da96a3f398ab457eda7e42afec3dee4890187632a75d7e0"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/playable-loop-1/reward-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/playable-loop-1/reward-1024.jpg",
+    "sha256": "1a438bc7ac0040a838981017033c93346b57e192fbd400d5913e41d2841ca7f5"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/playable-loop-1/rhyme-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/playable-loop-1/rhyme-1024.jpg",
+    "sha256": "b6fda672cd729b8b0cfacaea1ce4e1f3d1c1022dc85d790dd9632564ea1cb748"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/playable-loop-1/sentence-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/playable-loop-1/sentence-1024.jpg",
+    "sha256": "6376021d9ffbf661b389a00b3e60b9b4a4574e39e2583769421c03aea83ee809"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/playable-loop-1/sentence-pool.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/playable-loop-1/sentence-pool.jpg",
+    "sha256": "a08a5cc64782c92dca3dfb33713b0d69ccadc503fc5c9dd6f00f5ad9048b5912"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/playable-loop-1/shape-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/playable-loop-1/shape-1024.jpg",
+    "sha256": "edf138a34da96c3d3044c752a5313a9adf1f60e997ca6a03012d3136f4cad515"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/playable-loop-1/shop-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/playable-loop-1/shop-1024.jpg",
+    "sha256": "781c289a6bd2225987e6c803f57c440c1890e0452bb1953ef92e3965f8b571a3"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/puzzle-consistency/README.md",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/puzzle-consistency/README.md",
+    "sha256": "06a98b6c903f30b21a00dc18b854d66d729df9789f483bc32a265173754ecad6"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/puzzle-consistency/nuts-20-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/puzzle-consistency/nuts-20-1024.jpg",
+    "sha256": "0828874c473ea8223a9aee297c3744d8e9de3ebffcabeeea2f6807b942fdc88e"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/puzzle-consistency/nuts-20-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/puzzle-consistency/nuts-20-390.jpg",
+    "sha256": "7026686c732b406bbc87a229157e625cc5f91df2b3770c71adc125b153ee6957"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/puzzle-consistency/nuts-7-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/puzzle-consistency/nuts-7-1024.jpg",
+    "sha256": "b8af9c8f90bee937ad997c813d18dd29b317a949f6a9f4b3382b340822eb63fc"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/puzzle-consistency/nuts-7-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/puzzle-consistency/nuts-7-390.jpg",
+    "sha256": "82ac63cca3dbcdc657c873931f23722a3fc884c738109d92c19aa5a067834482"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/puzzle-consistency/read-colours-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/puzzle-consistency/read-colours-1024.jpg",
+    "sha256": "dc7cf960f47362fb272ef8f1691fc49c5fb29b4286a2fcfeb1bf52861d56fadc"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/puzzle-consistency/read-colours-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/puzzle-consistency/read-colours-390.jpg",
+    "sha256": "f7f9aa3bca2acd6a30870bf59c82038cd43d0c491766cab10e55e697a8a2b441"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/puzzle-consistency/read-puzzle-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/puzzle-consistency/read-puzzle-1024.jpg",
+    "sha256": "942e7d5e75ad2a8e067cc3e55deea6fc2b02f91e4e2c6c485f6550d117712bab"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/puzzle-consistency/read-puzzle-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/puzzle-consistency/read-puzzle-390.jpg",
+    "sha256": "b9c2c592131003f0b0453b7164ee39c5197463824f64fbe82057a75fe1e9f114"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/puzzle-consistency/rhyme-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/puzzle-consistency/rhyme-1024.jpg",
+    "sha256": "4b391b79c176e75a15683c461bef12ea609d13162b38790b2dfc058d2a17d8af"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/puzzle-consistency/rhyme-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/puzzle-consistency/rhyme-390.jpg",
+    "sha256": "1b024c28c17bf441cec36e97f3e248e0b64829979c2e1039d8f3d81f4cddfdc7"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/puzzle-consistency/shapes-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/puzzle-consistency/shapes-1024.jpg",
+    "sha256": "ed34589723eb4d9299a8bf22ca24bee0980e63e8b24f0164cf69205db29f0421"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/puzzle-consistency/shapes-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/puzzle-consistency/shapes-390.jpg",
+    "sha256": "58daebfc401bb02108f3640c9f3a6c0a64c4a1001a04f26c35a483691d55e352"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/puzzle-consistency/trace-numbers-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/puzzle-consistency/trace-numbers-1024.jpg",
+    "sha256": "3a1d9ee4c6755d160ea80ce7db1b58af1c2942fe33ba2e057215b4c45e880cb1"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/puzzle-consistency/trace-numbers-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/puzzle-consistency/trace-numbers-390.jpg",
+    "sha256": "6342e724d5da99bb8a774ba73413f1d461be4e41a921b1572100cf72fded3cce"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/puzzle-consistency/word-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/puzzle-consistency/word-1024.jpg",
+    "sha256": "9e265ad4fd0f187b8dcf5f7c195014d18692fc63ae7643fa28bca70290915681"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/puzzle-consistency/word-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/puzzle-consistency/word-390.jpg",
+    "sha256": "d4bfba41e64989954ed749927d1c2a1883729313674de5efab499253b5b348b6"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/puzzle-review/COMPARISON.md",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/puzzle-review/COMPARISON.md",
+    "sha256": "5c2d360264dd0f5a8d4721383df28ea5c502c2081016dad3186f537eb71960a5"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/puzzle-review/add-phone.png",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/puzzle-review/add-phone.png",
+    "sha256": "417ef948e2efbbd0ece0004f895ed76a229b47bb6e1fc20e434aadbde4f78125"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/puzzle-review/add-tablet.png",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/puzzle-review/add-tablet.png",
+    "sha256": "8ad0979a0468c0e6a2b41c0185e340ac43416069b3eab0dec442319b211fa5d3"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/puzzle-review/colours-phone.png",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/puzzle-review/colours-phone.png",
+    "sha256": "c144ea3ece1cbdfb1ba334602f3ef9c6c781e7e98926ac3e42e83e4d52c21be3"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/puzzle-review/digit-phone.png",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/puzzle-review/digit-phone.png",
+    "sha256": "9b4ac529e00dc9edd6b36f13d4dc6884b09cbdc901a62e839c148351a032372c"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/puzzle-review/review-catalogue-tablet.png",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/puzzle-review/review-catalogue-tablet.png",
+    "sha256": "a58faa01a4204d0e33e3bd7020a9a6fe7c615358270790a9d40cbd6d247fa267"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/puzzle-review/trace-phone.png",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/puzzle-review/trace-phone.png",
+    "sha256": "580c67bca850c08c7e8abb628aa746368bf88a6d9a3baf27f66b913ed721d9b0"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/pwa-recovery/README.md",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/pwa-recovery/README.md",
+    "sha256": "764b68592a4112b4ee27644a4ba5956795e87e613531f18844261578a312cb1a"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/pwa-recovery/recovery-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/pwa-recovery/recovery-1024.jpg",
+    "sha256": "6a07cef3c4f02532a20c92dce1fe367d293f3ec3310b9f162f68e4a444ff2b75"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/pwa-recovery/recovery-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/pwa-recovery/recovery-390.jpg",
+    "sha256": "ff81fe7d140ecbd2c7a1d9af89f67506cddfe608d2ed6308433c82d56bb56400"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/pwa-updates/README.md",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/pwa-updates/README.md",
+    "sha256": "f17c4b892b397b0402b436ec090c29eadcf96d4a2346b9a0c15d8a56d1c57ec7"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/pwa-updates/settings-1024.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/pwa-updates/settings-1024.jpg",
+    "sha256": "8859f756894e6ec4bab553039048e311b0793e729bcbb0983ac981ef9c4f9111"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/pwa-updates/settings-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/pwa-updates/settings-390.jpg",
+    "sha256": "ab17af3e2956977f94f1e53951c7bdc06b186021e3a0d3d72d95ccc6629f39a9"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/restored-library/COMPARISON.md",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/restored-library/COMPARISON.md",
+    "sha256": "f11465f89e9666b917f25edbeb93df9825c4836e378232fbfd7a5eac61f8cc14"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/restored-library/atelier-1024.png",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/restored-library/atelier-1024.png",
+    "sha256": "e90e7330393ec3045ebf82b3e1b48eabce09eeb5955acb32615f24b98ca3283a"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/restored-library/atelier-390.png",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/restored-library/atelier-390.png",
+    "sha256": "7b04a65439689dba3b8f8029af1ad104a779e8c95c1486dcf30435a4c8c304c0"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/restored-library/library-1024.png",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/restored-library/library-1024.png",
+    "sha256": "500f65a3e51813b5781627bb57d7b2adcf10d9ecdb35eb9647e978bf2daaaeb4"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/restored-library/library-390.png",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/restored-library/library-390.png",
+    "sha256": "bece68bba5d85f7f1dc71fab6ae9545826cd2a35f99b50b0963ca13a3f5904ef"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/restored-library/reading-390.png",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/restored-library/reading-390.png",
+    "sha256": "e555854ebde7a958a16d7ae103f1ed27e0dac75b520e85e8f460edffcd3851ae"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/restored-library/round-squirrel.png",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/restored-library/round-squirrel.png",
+    "sha256": "d7162d1b86c87d3042b86ec982afac7994709bb39ea5bb488427a4571f6b4619"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/COMPARISON.md",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/COMPARISON.md",
+    "sha256": "00133f9ca7d266e3e6a5b78ea611343979df953c0afb207cdfa32ddb9b7b7145"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/apples-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/apples-1080.jpg",
+    "sha256": "904a330ce2e903a9aec2cced616edc7ec1fb92a4ab250bd1e0c5a7779693f113"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/apples-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/apples-390.jpg",
+    "sha256": "a2ff59c6d1705f95177582759d72bbebfd3133ad7372bcec874dd8529ffd33d6"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/ausmalen-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/ausmalen-1080.jpg",
+    "sha256": "ccbad367b877ccd0a05a0ce3d13dc311618b3a8aefb3f2d3a37a2c968de41e75"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/ausmalen-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/ausmalen-390.jpg",
+    "sha256": "bbd79c8dd40d8f12cf404b4c8a3cbaf8e4f2661d3a59ec05c193e3bdb3ab9e92"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/behind-owl-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/behind-owl-1080.jpg",
+    "sha256": "24400c42ac4b6e82583c05ed798800a9f9422c9d7fbf3492b0482412deaa6078"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/behind-owl-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/behind-owl-390.jpg",
+    "sha256": "f749c955a22d82732f11c0831dbd74fa9f3eaea03810532fc49700bd4a486767"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/behind-owl-before-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/behind-owl-before-1080.jpg",
+    "sha256": "8807b8a9b5f9fe30f9b9d579f65fb0f04918f5649ccb6380c832f8fb042f8838"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/behind-owl-before-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/behind-owl-before-390.jpg",
+    "sha256": "d5bafe4f79c68d865697ea048a189d69bcbdac18f436f74121db9b55ded41811"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/behind-spruce-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/behind-spruce-1080.jpg",
+    "sha256": "27a98cb5911c1c321fdddbc8e49a66d04e098f82fa5baf01868ddd57df6309c5"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/behind-spruce-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/behind-spruce-390.jpg",
+    "sha256": "d9d8150e6f7dfc6088a0ccee48160a08ff329a839ecb9698580c35b4f6e951ab"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/behind-spruce-before-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/behind-spruce-before-1080.jpg",
+    "sha256": "f34f3392926b0b0c38e2d19576fbac01c59de9e997460859bfb597c23b1a76d5"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/behind-spruce-before-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/behind-spruce-before-390.jpg",
+    "sha256": "ff94ee30425dc96e20d66d9c90ceeefde29ec1ccf6f408f5c8c78ebac3d2a616"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/berries-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/berries-1080.jpg",
+    "sha256": "2907bdc73b5d10b5ef4b983ece2f4ba4167ab060e522c2f06c9d7726a5b57e61"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/berries-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/berries-390.jpg",
+    "sha256": "8d8f8e0255542b505e37b8b18f15788e63bff3bceab6c175aa3b5e68e359b9dd"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/biber-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/biber-1080.jpg",
+    "sha256": "2b1b1b977a4c5afd5f9c5013daa160f6b4c0ab32a3d0d350cecaead2e864ac82"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/biber-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/biber-390.jpg",
+    "sha256": "2c898cf7847b35162fa77c45ab087ff669f2565a289561dbd982fba868d4e148"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/bilder-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/bilder-1080.jpg",
+    "sha256": "f52ed0c945ff5210d95001f466deef07610c08f85028302a0726a91de7ea82b2"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/bilder-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/bilder-390.jpg",
+    "sha256": "76865c7614dfc4bf96e27af1c980a422687f3a70ab6e5a40288ab6f74218bd5e"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/bilder-hanging-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/bilder-hanging-1080.jpg",
+    "sha256": "ba355c0a9eadbde4d651b4d1434e10a471e06afd9ad370fc5baa1b1811bff596"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/bilder-hanging-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/bilder-hanging-390.jpg",
+    "sha256": "3dfde6669d2003faf64850b4aa10146e2ad9a036d221911d6bd897a24a2d1e1c"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/cast-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/cast-1080.jpg",
+    "sha256": "e844bf87bab0b4720038664ffdb2f50cd7dd4aea47a7492f8b93762b8b32c6bf"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/cast-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/cast-390.jpg",
+    "sha256": "016fcbc75800bfceb48ae21dafb25ff9d1bca89fa48f3c7bc16adf9334c1d647"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/cast-den-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/cast-den-1080.jpg",
+    "sha256": "ff15b039f3bb8c1a71fcaab571da78119b92e6ad3b7830f03dea8c2d27e187e7"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/cast-den-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/cast-den-390.jpg",
+    "sha256": "657b22e4ed7ab0b7e9ab1251ca3a78365e2b3765bcc647543acdd8aa1a5682d8"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/cast-hedgehog-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/cast-hedgehog-1080.jpg",
+    "sha256": "ef837cfcc92881771928dfe8df1b864dcc1cf0d88b3e0415a16d6c43c21d8322"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/cast-hedgehog-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/cast-hedgehog-390.jpg",
+    "sha256": "99169da548be7ed483a0ff3df2f4c27a7a9553377db59888d0cdc1f232ba3838"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/cast-lookdev-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/cast-lookdev-1080.jpg",
+    "sha256": "a797f9f85b5aad758fcb0276ef6ed99ae1b64cb0d6f49b8632e88663e0c242d5"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/cast-lookdev-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/cast-lookdev-390.jpg",
+    "sha256": "a01904382312a4aaf9d5e5cd8a3545c587c935c531796ddb36e3209f8e87b891"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/cast-map-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/cast-map-1080.jpg",
+    "sha256": "4c7f9183dddc9603cb5deb6e28448dce28a47da3acf50dd8f11ffe667c25d5d7"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/cast-map-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/cast-map-390.jpg",
+    "sha256": "8ae3cc6a188599b8b0a59c6faa4b4701bf7d2b055a23dd4d80cad7fc087b048f"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/cast-menu-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/cast-menu-1080.jpg",
+    "sha256": "5383b300aca0891bec321121ff34f0b311d5d77bd34bdc2f211f7932ca5c2386"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/cast-menu-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/cast-menu-390.jpg",
+    "sha256": "3fa8662b789241d8c75e120f7154c01010f222af3d70401e8240a118e2d8b881"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/cast-models-after.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/cast-models-after.jpg",
+    "sha256": "d2c7f4e80b5e0bd960f6758a505f241e8806f6cff7a903ff54ffa6f4a2e83765"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/cast-models-before.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/cast-models-before.jpg",
+    "sha256": "e2f843eabd662115dfbb80e9cb9f11c04432ff2ab118b784f9df91990698d5a8"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/cast-portraits.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/cast-portraits.jpg",
+    "sha256": "a008ee655170daabe0091f9962252b89096f0433d44a7ae6489c37be29b5d43e"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/cast-squirrel-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/cast-squirrel-1080.jpg",
+    "sha256": "59186988bc8f72d008a13f124c1ff41745648476efb54a7737fa2b17e91723cf"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/cast-squirrel-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/cast-squirrel-390.jpg",
+    "sha256": "27326b7821e0330da959e33d418426d766b4e4ec6134598065552bcd526a8afd"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/celebrate-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/celebrate-1080.jpg",
+    "sha256": "ed5ff56763af6577d24a5c8831e9f30a6198ac9c9f812f933e6c4cd6effae110"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/celebrate-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/celebrate-390.jpg",
+    "sha256": "d4da1af0e7137ec38095690ec591141a4cf70fb6a5865d014c0eae114b0751fb"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/celebrate-learn-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/celebrate-learn-1080.jpg",
+    "sha256": "c9dd15823142962c7d5281010a8f89d5ea0ae23a44006ad6267db4bacdbd9bea"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/celebrate-learn-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/celebrate-learn-390.jpg",
+    "sha256": "9edf52f2bf26cda9757e9fd7863481bcbc1fda69d36faf6803804cb8ee5d570a"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/dam-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/dam-1080.jpg",
+    "sha256": "428cc1781e0ea0395ace8e55b02c7877310895196f446b2abe9bcd42d6bded9d"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/dam-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/dam-390.jpg",
+    "sha256": "a80a35493be912b12226f090f7a4aa5ad4009fd896be69d9bed4ff46f6d62d46"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/den-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/den-1080.jpg",
+    "sha256": "4f3bc5230b734674776dd27d6bb31ddc9af3f02f33a6fe1b671f09266fa4dcd8"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/den-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/den-390.jpg",
+    "sha256": "00f757bb2438296567fff15f123d7ca5a226de4113510ca6cd92af43bd5795a6"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/den-sleep-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/den-sleep-1080.jpg",
+    "sha256": "126b1091a5ed7fcacabb5a965115cb14f7c41b796178afe42e258f266478d92d"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/den-sleep-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/den-sleep-390.jpg",
+    "sha256": "cbeb99600f989d9c7a853e2e4119e8c57a625886ddae864cfbddb70ee693baa5"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/forest-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/forest-1080.jpg",
+    "sha256": "1ae158ef551e708e223b3436488c971d6f019be232b84491eca9d72338598786"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/forest-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/forest-390.jpg",
+    "sha256": "11e0a4d76d1f979a2af4e792fc01d61bd96b1eb4e6d8f0344c326f6282803b1f"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/forest-brook-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/forest-brook-1080.jpg",
+    "sha256": "fd29611bcae063589a185f5a069c9214cd2571f95ce0640f1a60eff435f135ad"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/forest-brook-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/forest-brook-390.jpg",
+    "sha256": "bd98056607b3c72c72fe0ac4dd14a5ab1764fb60e2ef0c3caac5a5139b8c533e"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/forest-log-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/forest-log-1080.jpg",
+    "sha256": "4a996c8b7b4f377c234224f93eab7f096efecfb130d205665e5eaff824f9440e"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/forest-log-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/forest-log-390.jpg",
+    "sha256": "a9772f5fcbce0bbd32b03ed878da66f63f79e87c51579291aa764b65823ddaec"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/letter-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/letter-1080.jpg",
+    "sha256": "7cc8d9ac37c271a42d7d466699220db0b6e9db9b13a75a076d1706e5255411fd"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/letter-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/letter-390.jpg",
+    "sha256": "30a4ebb88f713c05f661d42282a1405ac6af6df5de956f47558afaa95254b487"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/lookdev-brook-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/lookdev-brook-1080.jpg",
+    "sha256": "a8264ff2eae267a63c26881fb84c830ae7f47997cc6c0374358f86b2683b8f26"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/lookdev-close-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/lookdev-close-1080.jpg",
+    "sha256": "13ff7d5ccf558690e6805e93c6343626a96d0e712fed812a3f49d7f93f53f189"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/lookdev-hero-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/lookdev-hero-1080.jpg",
+    "sha256": "f54edafd7b7176f1853ab6d6ee79cdfb1c92a9f0979ace1412f48c707acc8030"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/lookdev-log-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/lookdev-log-1080.jpg",
+    "sha256": "45b3fcb8839793213635a5ea47c312e65fcc1ee9c0747e4de1fc145f7ad4135d"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/map-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/map-1080.jpg",
+    "sha256": "d183af8d187addec8e123655facce08d068e965ea13a4989b2c6c6bc9ce9ec11"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/map-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/map-390.jpg",
+    "sha256": "995bda427cd4e642f0f58ffbfce793c1721eaa37511f9428f28c5ba178bba1cc"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/neighbours-map-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/neighbours-map-1080.jpg",
+    "sha256": "8d2096682cdbdd7ede11012bf7f6d4f715a3285b2b7bc2b45a41b71270f4c6d2"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/neighbours-map-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/neighbours-map-390.jpg",
+    "sha256": "19b6c3471de557e8a2724d5190df674b0d6b16f0ec8c5714fdc54d6f0e8cd861"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/neighbours-menu-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/neighbours-menu-1080.jpg",
+    "sha256": "212a1570ef8ebe6cc92864cf6fd95cc3af8c32dab8cf3af72076bcf2b1c21144"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/neighbours-menu-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/neighbours-menu-390.jpg",
+    "sha256": "d9d472bc5a4f1bcbaa7e4b91dcb47b4708a76b89d44d6a5789ee52d3ce2c6157"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/neighbours-sheet.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/neighbours-sheet.jpg",
+    "sha256": "c543527d6ebb478ba734a0f40a9cb0c9c6792314151d317b64f32179b2d88528"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/number-paths-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/number-paths-1080.jpg",
+    "sha256": "0bef32e428868af471bf942b6cc6bcfe29a328853e878f6156fa57927357cd94"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/number-paths-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/number-paths-390.jpg",
+    "sha256": "83663cb510c136229221eacd4bde7588bb60478cce6670a04c2ad91fb09243bc"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/nuts-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/nuts-1080.jpg",
+    "sha256": "0a9dfae5609060519cc02c54627b85e7656efcfc93ea2020bfd3118898b8f718"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/nuts-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/nuts-390.jpg",
+    "sha256": "4c9f4738920d220e72195834ffb0c3523b4947040390d6a25bf06f4a62e87e27"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/nuts-correct-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/nuts-correct-1080.jpg",
+    "sha256": "808c499f2448cbcebaab51f463b38258a2401a37ca6c462cbf15231a63a7b06f"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/nuts-correct-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/nuts-correct-390.jpg",
+    "sha256": "74560429c3aa7f5445130d2d623a9d5853271d3578e9445f506f290c5b427a37"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/pattern-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/pattern-1080.jpg",
+    "sha256": "d6bcebd35efdc0c8e92ad45924a97afeca7709c546a864c160bb203767e8dac1"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/pattern-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/pattern-390.jpg",
+    "sha256": "e9957525564945d4093678140adb52084cc668aa5b3956caafbf66daf1c4a110"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/rhyme-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/rhyme-1080.jpg",
+    "sha256": "c9e45dd6f482ad89898e2e7e1f519296bbe82510d3653fbd2bbd38308ebae0d7"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/rhyme-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/rhyme-390.jpg",
+    "sha256": "430711d4d54cecb524d2abe267cc4430b4b4f5cb414f0b109cfd9da417174724"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/sentence-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/sentence-1080.jpg",
+    "sha256": "1b72e2bb3c8b67af9a54334a526c2c5537a5eb790638b6d4f5cfb0289bb61d1c"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/sentence-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/sentence-390.jpg",
+    "sha256": "e25c0c70000123fbbe4d5ded6d2bf1ad8d866a43ff88b03950177a489402be34"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/sentence-answer-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/sentence-answer-1080.jpg",
+    "sha256": "202fd59ed0617e1ed8ecca816cee21ea7042bb2d8f3c3836aa055b3e2a0d6532"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/sentence-answer-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/sentence-answer-390.jpg",
+    "sha256": "277640c6e47c7d81797b5d973195b8b5ff467c8a8238bc079a3f329823add3a2"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/settings-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/settings-1080.jpg",
+    "sha256": "15e0e7cd739b44656b2e7d31ec1259574c2fb95b153fc81959e9bd69a8513060"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/settings-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/settings-390.jpg",
+    "sha256": "fbbf4d80123a9f2fa22bb79d7843958336167e14096c725521628659c7a65e25"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/shape-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/shape-1080.jpg",
+    "sha256": "2ec43626771788541d6c7964d645590f29097447d09555b22cc33fdc3aefc3b0"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/shape-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/shape-390.jpg",
+    "sha256": "670407d41a8c15fca531af7f894a221d50cd62fa9b730306c179c56d1dbea2af"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/syllables-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/syllables-1080.jpg",
+    "sha256": "bc2a2eb1be38a1a9df69b5de948fccaa99a69fb58ece48bb9a12030556c73245"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/syllables-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/syllables-390.jpg",
+    "sha256": "e5a5c7531acd0747718ba9aff49fef5a5c7f5e89307edf71ea1f96a5888a1b79"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/toy-colours-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/toy-colours-1080.jpg",
+    "sha256": "3f4e90e6bd3fdce17dff134d8f7ba3f9ee0a2ba819563de7615aba5d8e9f7b65"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/toy-colours-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/toy-colours-390.jpg",
+    "sha256": "39dbbc233b5cc144a6860501827c3985dea24b547f4d013988f6d5b065cf5242"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/toy-shapes-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/toy-shapes-1080.jpg",
+    "sha256": "7fbea63ec516bc4c95b6b2162815291397e4b3a31de4b994fcd5d315966fe09b"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/toy-shapes-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/toy-shapes-390.jpg",
+    "sha256": "692de4042670bed9e493f60723030cfaf366a8433b6eaf5380f8a4bd26aafd25"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/waldspiele-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/waldspiele-1080.jpg",
+    "sha256": "127586370a65b15db4321cfd0702d0862e55beca47f5ab3c3a0b5bbd9705c646"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/waldspiele-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/waldspiele-390.jpg",
+    "sha256": "b43ef7c82f737de5c1d7f1202867d9107c48a627d3f5afaaedcd3513f92ccfe2"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/waldspiele-bird-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/waldspiele-bird-1080.jpg",
+    "sha256": "985beab11889f52de7e3a6b6d34a6aa6ae5ee6bfa88b9e99afe781fd85258b3f"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/waldspiele-bird-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/waldspiele-bird-390.jpg",
+    "sha256": "ac49683c7b24c14cf24fd5a6565d736fe03089fa5a3a78629a8e2dea41b78abb"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/webp-nuts-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/webp-nuts-1080.jpg",
+    "sha256": "08d0b1a2d2f5f958f4213ff1d94bcde276ce49e693b97848703463b170be940a"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/webp-nuts-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/webp-nuts-390.jpg",
+    "sha256": "a0c56c5d390210abe9b8f5207b9f9b2dd9c075cdfd0483d4206a2ec67ac0241f"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/webp-pattern-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/webp-pattern-1080.jpg",
+    "sha256": "58623c0b2b6e2a83032923b0e0c36026e0773f6326282712a485ec7be515b82b"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/webp-pattern-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/webp-pattern-390.jpg",
+    "sha256": "d4b9d043083f621c3a02fa505f8f569769ecbf1defe11b86766b2dc0b07decef"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/webp-waldspiele-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/webp-waldspiele-1080.jpg",
+    "sha256": "6aec4a6eb30dc84151fadc6c2fa69e3b0c0bbe00838582b20b4f96cc36f7bcaa"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/webp-waldspiele-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/webp-waldspiele-390.jpg",
+    "sha256": "31641e3e69850a4ee97f1a47ab8b7b95bf6f80011dd84a04543e4680d5c15afa"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/webp-word-picture-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/webp-word-picture-1080.jpg",
+    "sha256": "57633491556e9a74ca3d649d20d2d479c88bbef582a9c790939ac42d5b64647a"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/webp-word-picture-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/webp-word-picture-390.jpg",
+    "sha256": "558f1d6f0dd9c6e77c6b02a2ab71010b167bb84141bc65686df8739510c493cd"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/webp-words-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/webp-words-1080.jpg",
+    "sha256": "fdbda90bf94c3c1951bf318e0af67c0e409df7a8e7b47f30f8fa3eec7480bf8c"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/webp-words-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/webp-words-390.jpg",
+    "sha256": "a4df6ceab19e78a3cca728f7ff32b7a2621e713eeaa32bdd6a97cef586664593"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/word-picture-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/word-picture-1080.jpg",
+    "sha256": "8405cbe6a91f8447a80d3bbe454734406c49732f1e1cdf3d79ce751e2955fc7c"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/word-picture-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/word-picture-390.jpg",
+    "sha256": "c59ed4fd8ac137242b0dae656e331299085a7e26d1b31a40b8be3aa9c545ac2a"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/words-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/words-1080.jpg",
+    "sha256": "0be1265cd7f8595e42e35f3eb289afa980f0b5f28beabf274916a1abf4d1cadd"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/words-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/words-390.jpg",
+    "sha256": "50194997c27d7108636a9d901ebcce0582e5d7596997decfbed4d2f0c9d42775"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/world10x-region-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/world10x-region-1080.jpg",
+    "sha256": "d8d0bc65dbcd6e71877f7ed77eb429c09ba4d04763793a12e6394294d287a09b"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/world10x-region-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/world10x-region-390.jpg",
+    "sha256": "a8554d5335abe76170cdd7671e342eeb1c51e022726e6fba089788e5499b839a"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/world10x-wild-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/world10x-wild-1080.jpg",
+    "sha256": "ad05ad4375e092e07c2de40dc71b356c5e840dccf171a1c50bcf5076becba0cb"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/world10x-wild-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/world10x-wild-390.jpg",
+    "sha256": "3e8dc64de067995a87046d34c94531253ed465789d0fe4bc18b842daf1431b32"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/writing-1080.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/writing-1080.jpg",
+    "sha256": "8f407ba0ddac574c812e60be454651a41968b7e82c5dc7332dd6dc1362f5fb58"
+  },
+  {
+    "original": "design/forest-friends/visuals/milestones/waldbuch/writing-390.jpg",
+    "archived": "archive/design-history/forest-friends/visuals/milestones/waldbuch/writing-390.jpg",
+    "sha256": "01dfb236da6b48fb7cb8679bfd0d0fa27f207c13ef2d1fb02c0a63755f5d5040"
+  },
+  {
+    "original": "design/forest-friends/visuals/prompts.json",
+    "archived": "archive/design-history/forest-friends/visuals/prompts.json",
+    "sha256": "b32d9edbe95cdb6fc698d3fbdb2856a861f738fd27dd07018023674acc80b341"
+  },
+  {
+    "original": "design/forest-friends/visuals/review-script-v8.md",
+    "archived": "archive/design-history/forest-friends/visuals/review-script-v8.md",
+    "sha256": "3a6c61eddf13621602ea60cd9a5a6f05c6c864684c31a7afe2ae8c30503b7ba7"
+  },
+  {
+    "original": "design/forest-friends/visuals/review-script-v9.md",
+    "archived": "archive/design-history/forest-friends/visuals/review-script-v9.md",
+    "sha256": "be8837049c14cc358dc3cf5d8366038989830b00861f5870ecc69be1baa2d6b0"
+  },
+  {
+    "original": "design/forest-friends/visuals/review-v1.html",
+    "archived": "archive/design-history/forest-friends/visuals/review-v1.html",
+    "sha256": "89dff019cd9557c7fa0dd3aae2a231d83b86b3759d6e2a9b56eb8b752a9d0bf2"
+  },
+  {
+    "original": "design/forest-friends/visuals/review-v10.css",
+    "archived": "archive/design-history/forest-friends/visuals/review-v10.css",
+    "sha256": "4e7531da567b473ebbf9583d2e3144185a5b825de48554e5d9f2ecae25fe78d2"
+  },
+  {
+    "original": "design/forest-friends/visuals/review-v10.html",
+    "archived": "archive/design-history/forest-friends/visuals/review-v10.html",
+    "sha256": "d33f80cb8b53de55d9b552d84184ac9153ac83097a4c672de2c51727de2cd729"
+  },
+  {
+    "original": "design/forest-friends/visuals/review-v10.js",
+    "archived": "archive/design-history/forest-friends/visuals/review-v10.js",
+    "sha256": "d205207a5a1f474f0c0758b2252bc471598b132193b9a3a7c8d796353fbb3cc4"
+  },
+  {
+    "original": "design/forest-friends/visuals/review-v2.html",
+    "archived": "archive/design-history/forest-friends/visuals/review-v2.html",
+    "sha256": "8f618208a3bb9e1c11b7e1f2be0a7d616756a0e20b59fb487c6ef440bcba6ab3"
+  },
+  {
+    "original": "design/forest-friends/visuals/review-v3.html",
+    "archived": "archive/design-history/forest-friends/visuals/review-v3.html",
+    "sha256": "0037a0f1d79dd50e13daa51cd158c9d5c4b2f1d2bb2a52bf2d773cee682ae27a"
+  },
+  {
+    "original": "design/forest-friends/visuals/review-v4.html",
+    "archived": "archive/design-history/forest-friends/visuals/review-v4.html",
+    "sha256": "bea05f9704c5b80f985043527997a091df36bc2215f98de86604cbcb7ebed58e"
+  },
+  {
+    "original": "design/forest-friends/visuals/review-v5.html",
+    "archived": "archive/design-history/forest-friends/visuals/review-v5.html",
+    "sha256": "c1b3f3997f243934de7c2fda0f3995278c869b404322ab121220b76c7b48929e"
+  },
+  {
+    "original": "design/forest-friends/visuals/review-v6.html",
+    "archived": "archive/design-history/forest-friends/visuals/review-v6.html",
+    "sha256": "9f3e3c174f578b59571f30ebd7050323494edec37907063fab94f8136e36ff89"
+  },
+  {
+    "original": "design/forest-friends/visuals/review-v7.html",
+    "archived": "archive/design-history/forest-friends/visuals/review-v7.html",
+    "sha256": "ca84150ce49948b5eb32e446671bc6c497691130b0672dd186c7b99c2efc8880"
+  },
+  {
+    "original": "design/forest-friends/visuals/review-v8.css",
+    "archived": "archive/design-history/forest-friends/visuals/review-v8.css",
+    "sha256": "28c3dea99f829bd9ae419be90bb49e2f50fc865b63d9a4506e5cf98d59538029"
+  },
+  {
+    "original": "design/forest-friends/visuals/review-v8.html",
+    "archived": "archive/design-history/forest-friends/visuals/review-v8.html",
+    "sha256": "ab6cedccfd6b10ab9aedafe218029a27065c9ca0a1dd50496054cf372700bd5d"
+  },
+  {
+    "original": "design/forest-friends/visuals/review-v8.js",
+    "archived": "archive/design-history/forest-friends/visuals/review-v8.js",
+    "sha256": "b389d597718a0982e6d2ccc619a13dec19ba8e0f3f97922d0f4f12a964433b49"
+  },
+  {
+    "original": "design/forest-friends/visuals/review-v9.css",
+    "archived": "archive/design-history/forest-friends/visuals/review-v9.css",
+    "sha256": "545d7ba2b64cf336f2d61f4719df8d490eff11862dfdb6c0b36fe3b0b81a399e"
+  },
+  {
+    "original": "design/forest-friends/visuals/review-v9.html",
+    "archived": "archive/design-history/forest-friends/visuals/review-v9.html",
+    "sha256": "0a0f1195331123b7c02d560286f7ff45394e122a435a2c5f93e3cae96b360ee2"
+  },
+  {
+    "original": "design/forest-friends/visuals/review-v9.js",
+    "archived": "archive/design-history/forest-friends/visuals/review-v9.js",
+    "sha256": "a8a8da1425208353f71ce5dd6c80ff83b2022eb94d90f6b60e63b11f08cf11cb"
+  },
+  {
+    "original": "design/forest-friends/visuals/review.html",
+    "archived": "archive/design-history/forest-friends/visuals/review.html",
+    "sha256": "d33f80cb8b53de55d9b552d84184ac9153ac83097a4c672de2c51727de2cd729"
+  },
+  {
+    "original": "design/forest-friends/visuals/revisions/v10.md",
+    "archived": "archive/design-history/forest-friends/visuals/revisions/v10.md",
+    "sha256": "90709832a3cc683f54b0e990d778d7675ae74ab80f78baf5ff58ed973468f7b5"
+  },
+  {
+    "original": "design/forest-friends/visuals/revisions/v3.md",
+    "archived": "archive/design-history/forest-friends/visuals/revisions/v3.md",
+    "sha256": "6e80397038879cfb25dc215f2929debd63340488516c8e6b67bdfab737c519d1"
+  },
+  {
+    "original": "design/forest-friends/visuals/revisions/v4.md",
+    "archived": "archive/design-history/forest-friends/visuals/revisions/v4.md",
+    "sha256": "260fc697c6148039c3d6ccac5d6304a467f3efb2d1ba7b771a2f64ef5d3e911c"
+  },
+  {
+    "original": "design/forest-friends/visuals/revisions/v5.md",
+    "archived": "archive/design-history/forest-friends/visuals/revisions/v5.md",
+    "sha256": "c28dab9530df12fa5bc9ca91feee36fd3cf36843a0477f6e5f8a6d8e459ed143"
+  },
+  {
+    "original": "design/forest-friends/visuals/revisions/v6.md",
+    "archived": "archive/design-history/forest-friends/visuals/revisions/v6.md",
+    "sha256": "f73b4a87e1703dc69ab3222dd4c94b4a865d4ed1ad84a3ae31abd49e26b02136"
+  },
+  {
+    "original": "design/forest-friends/visuals/revisions/v7.md",
+    "archived": "archive/design-history/forest-friends/visuals/revisions/v7.md",
+    "sha256": "47978b1858b83c0765f2f65e138047bf1960e44464ffa7fcc8c3bc54814320de"
+  },
+  {
+    "original": "design/forest-friends/visuals/revisions/v8.md",
+    "archived": "archive/design-history/forest-friends/visuals/revisions/v8.md",
+    "sha256": "6e02120bf43e1bad7d4804ca0c95dc8d9af5259861004a794e6ddd6ed326b3fc"
+  },
+  {
+    "original": "design/forest-friends/visuals/revisions/v9.md",
+    "archived": "archive/design-history/forest-friends/visuals/revisions/v9.md",
+    "sha256": "707b9138f0da70a261a60b8c1eadd680a38a89eb11af87849d66f0a3eecc313a"
+  },
+  {
+    "original": "design/forest-friends/visuals/shop-goods-v7.webp",
+    "archived": "archive/design-history/forest-friends/visuals/shop-goods-v7.webp",
+    "sha256": "2bd7e9583f44e56b3f0d51a0cab1c3587c3fd6ccc1920271f490013a3abbab8a"
+  },
+  {
+    "original": "design/forest-friends/visuals/shop-v4.webp",
+    "archived": "archive/design-history/forest-friends/visuals/shop-v4.webp",
+    "sha256": "6383f7cb196fdc4047b4ad722a8a869262665bf9b82ee7fc3eefcf22b15aa0ee"
+  },
+  {
+    "original": "design/forest-friends/visuals/shop-v5.webp",
+    "archived": "archive/design-history/forest-friends/visuals/shop-v5.webp",
+    "sha256": "942122357d01b3e7e8f13c3fc57ed2d6dc2b3bc6dc0e79b99a07d11017b20e1b"
+  },
+  {
+    "original": "design/forest-friends/visuals/shop-v7.webp",
+    "archived": "archive/design-history/forest-friends/visuals/shop-v7.webp",
+    "sha256": "ba933a1e70062a73e35eb052cd6b3bcf6fb61489b17efd9c99b380452f18fb79"
+  },
+  {
+    "original": "design/heart-tree/BLUEPRINT.md",
+    "archived": "archive/design-history/heart-tree/BLUEPRINT.md",
+    "sha256": "e35c387eba6974d6265f34197e8d84c4c85b796648fb13472cbc81e8eef254f9"
+  },
+  {
+    "original": "design/heart-tree/README.md",
+    "archived": "archive/design-history/heart-tree/README.md",
+    "sha256": "9285b5f444d9200dea5db5211f453f724eae1ffc3890893710bb550ac56cd892"
+  },
+  {
+    "original": "design/heart-tree/REVIEW.md",
+    "archived": "archive/design-history/heart-tree/REVIEW.md",
+    "sha256": "e3a3eaee7286855e47a0e8262d9171767f95fc111ed48957fc961e1822f56d51"
+  },
+  {
+    "original": "design/visual-overhaul/ASSET-REQUESTS.md",
+    "archived": "archive/design-history/visual-overhaul/ASSET-REQUESTS.md",
+    "sha256": "8d4329a84179941b236aa4bb9f5c14af00571eae98e0391259cdde96d1f4c2c0"
+  },
+  {
+    "original": "design/visual-overhaul/BLUEPRINT.md",
+    "archived": "archive/design-history/visual-overhaul/BLUEPRINT.md",
+    "sha256": "334dcd7ed8ffe79154a1e5e7b98ae42d82ee30582c1c73b7b05f0fae6b5768b5"
+  },
+  {
+    "original": "design/visual-overhaul/PROGRESS.md",
+    "archived": "archive/design-history/visual-overhaul/PROGRESS.md",
+    "sha256": "fb6d214783987e8662d798183166b4838263baeb3148ba8f11d2aebcdaa05a4a"
+  },
+  {
+    "original": "design/visual-overhaul/README.md",
+    "archived": "archive/design-history/visual-overhaul/README.md",
+    "sha256": "814f3cdc3d82abfef6a52b7d0c6b35b505db7e06e3f92e29077693c439488818"
+  },
+  {
+    "original": "design/visual-overhaul/lookdev/cast.html",
+    "archived": "archive/design-history/visual-overhaul/lookdev/cast.html",
+    "sha256": "701d1eee5bc346d4e65051c5db7352c37a1ae2386c9586781234333b3dbe0f1f"
+  },
+  {
+    "original": "design/visual-overhaul/lookdev/characters3d-fox.diff",
+    "archived": "archive/design-history/visual-overhaul/lookdev/characters3d-fox.diff",
+    "sha256": "540485865af786227928741fb4e5fa5f5c4525806633d47d410251c4d908cbc8"
+  },
+  {
+    "original": "design/visual-overhaul/lookdev/characters3d.js",
+    "archived": "archive/design-history/visual-overhaul/lookdev/characters3d.js",
+    "sha256": "7af8b3dd2f5040ee80fe241d8ac0c2509998ba6808c9324d6f58d302c96a29dd"
+  },
+  {
+    "original": "design/visual-overhaul/lookdev/forest.js",
+    "archived": "archive/design-history/visual-overhaul/lookdev/forest.js",
+    "sha256": "911ea9030d475fd883e1d8f53d2bf3d427764ff7679cec3417e489b81ae1e700"
+  },
+  {
+    "original": "design/visual-overhaul/lookdev/index.html",
+    "archived": "archive/design-history/visual-overhaul/lookdev/index.html",
+    "sha256": "aeb5403e713a0eb0b5a7b7cbf2a7349996501a45c76935b621449503c2d10b38"
+  },
+  {
+    "original": "design/visual-overhaul/lookdev/plush.js",
+    "archived": "archive/design-history/visual-overhaul/lookdev/plush.js",
+    "sha256": "d832c8a058c5345a5c9a10a3c87d8b0cd7c1b5a978a5fd46b9eb3c8202089aac"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/a-fox.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/a-fox.webp",
+    "sha256": "c02224fdcc3170bffe843e68494312a5b3958db874acaa1fe28a2c745ef685b2"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/andika-400.woff2",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/andika-400.woff2",
+    "sha256": "50841fc9db96758f504a1776c700a585a774d172ac172e97b77fff5b75deff7b"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/andika-700.woff2",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/andika-700.woff2",
+    "sha256": "6b73917d10eda36aa87b423b05100dd461ea23f88882edabcb8e5001fde80f2b"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/apple.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/apple.webp",
+    "sha256": "e1e6872dfbb6a7cd43415abf36b03390bac52cc4bd37b65974d87256d7f15b1d"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/baloo2.woff2",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/baloo2.woff2",
+    "sha256": "2e9420db49d01d76a7b8a38ef22ec9c45305d9f15fafa370389b7bf467658fc3"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/basket.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/basket.webp",
+    "sha256": "844036a1fd30e484234bbd8c5d134db21fe0a437cf6430fae8c608799c2cb825"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/bean.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/bean.webp",
+    "sha256": "7292382a049aea5dc6c0f997de824ee6391243b72109245c5ff68e4f3b6c0262"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/berry.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/berry.webp",
+    "sha256": "332a465be00bc6374fb903d32d56d707a3d165058b28ffcc119e1a2733cde968"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/boat.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/boat.webp",
+    "sha256": "fc7def3a5446d9456b30d00ed72cd0c8cdbf12783449a7a0fc8110b705bf9cd5"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/book.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/book.webp",
+    "sha256": "693941e150709d907ac5ae53884d27513ab25226ac93865e8db0abb5f233e0ba"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/bus.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/bus.webp",
+    "sha256": "decba4734293d4d949ce06b80b5fc8fcc3e52438c6f35a63f25fa0f402c71f10"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/colouring-friends.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/colouring-friends.webp",
+    "sha256": "485003af055321de6d057690b1527b79e6e8d124f8e1c9dbfcbe34a71c90e471"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/den-v2.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/den-v2.webp",
+    "sha256": "06374f779df1208243ef4019c25b86f330e0591fa051eba3bdf0bbb608d7c206"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/feather.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/feather.webp",
+    "sha256": "f0342f01e453bd5a2042a5e0bd395c72a6b3a756193d03afddaa7226e7d534b5"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/fir.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/fir.webp",
+    "sha256": "147fdc3bd19374aa3e3da88dddd6890af67a033c01185d618d36187252a057d9"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/flower.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/flower.webp",
+    "sha256": "0a18728c40846d038d1efc13400f4fc7f832f033e809bfa40c5103feaedcf62b"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/forest-old.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/forest-old.webp",
+    "sha256": "6ea3212404267c1b7f23b4de71696542cfeeb366c31c88fc8ce4cffd1310a1c6"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/fox-front.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/fox-front.webp",
+    "sha256": "3596c100eca71fca30ca7617121d4730e78ec3beba310dca71385c9e523fb231"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/fox-happy.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/fox-happy.webp",
+    "sha256": "4c71033a12c1e412e6c9b765cec317c5310ef7799d17b49393d5271508517c95"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/fox-run.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/fox-run.webp",
+    "sha256": "0382b47c1699147e3e409d535382daf20885525c9abe470d3c7a7f0382d8245f"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/fox-sleep.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/fox-sleep.webp",
+    "sha256": "81a4c241daea8b21a2e92c0e58961cf0e1b88ee6dd5c7f026fa8bdcf47714765"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/hare-sit.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/hare-sit.webp",
+    "sha256": "1c448f4de0af1517b9460acaee895d00ec0cc63172b13bbc9e8cf81af4724332"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/hat.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/hat.webp",
+    "sha256": "717d9729839e2bcdf75cde87ef5c8ab3f1e48415da5e67996ab7f0072fb2f113"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/i-book.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/i-book.webp",
+    "sha256": "93a71ab4a8ab0ce63e85d7e714e0ed75cbae0cab26e190ee03952ee29a7ebefe"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/i-gear.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/i-gear.webp",
+    "sha256": "65e7a1ec1c6147c44dee4607740a05d4973ec8091421e0ebeb6963010a138061"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/i-letter.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/i-letter.webp",
+    "sha256": "bb1fcf37e02f0cecaa3dfc2a0cb9df26528e0b72a55314deb89355bd9bb5667c"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/i-map.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/i-map.webp",
+    "sha256": "8ece5b7b9fa22cc8a16a6d6e7e2ba082dc8144a098d563633a2e6ef6a7c5ca15"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/ladybird.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/ladybird.webp",
+    "sha256": "7f0790aa563f178502b9bec358ad7791ff62d602af6a4c8aec4dfb6a65677ff9"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/lantern.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/lantern.webp",
+    "sha256": "0d92fce33172c9ca9df1fc9e41825b81aab666449776653e70bd7f8703101fab"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/leaf.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/leaf.webp",
+    "sha256": "02bf1210340d7def432a1090ccb4df6e128cc310353ee3b24460571450c4c438"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/letter.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/letter.webp",
+    "sha256": "f6190c1c7f1929fe9496766633c1d6ac3b9d0b297d864bce8a7ff42f0c0a922d"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/lookdev-brook.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/lookdev-brook.webp",
+    "sha256": "7582a833ce69c8fab8a2e78308c017618122c84215d6dbd81ab0272bd0f13c68"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/lookdev-cast.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/lookdev-cast.webp",
+    "sha256": "b604d2347eff82a0600cfef8ce0cffe7017d75e925f8d57307f1bd3f2d1064bb"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/lookdev-close.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/lookdev-close.webp",
+    "sha256": "e9186c0aa0e0107357138265dbd22c6add0c2a485333082f4f3925d98bedfcf1"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/lookdev-hero.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/lookdev-hero.webp",
+    "sha256": "afa307f47b14c258f9e9edd5f4a714a49176e096baff6d9454f1b3650ee1c101"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/lookdev-log.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/lookdev-log.webp",
+    "sha256": "7ee2e9fb8678f59b7e38bcbda89fcaf125825da93c84d0769403502bd170efb8"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/m-houses.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/m-houses.webp",
+    "sha256": "ce3a7ddcf9fd50366f4e5f4adedb23bd0706b24cfff9f48c6b51d605622fa523"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/mailman-portrait.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/mailman-portrait.webp",
+    "sha256": "d1c76b6d14ec770aa47ab982d00ab14d923eb429722c8a76d70d1984d16bfbf5"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/mouse-run.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/mouse-run.webp",
+    "sha256": "cccafbb3c7634805bb08e22010ccb85be07e06f9f0438ba3a1bd31759d374149"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/mouse-sit.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/mouse-sit.webp",
+    "sha256": "2640b8166306e3885c1dd093a1b05035bc2fdab75ff7d173ccb03f110966430e"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/mouse-sleep.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/mouse-sleep.webp",
+    "sha256": "bceab0685a27b99411e41db977925cacd4cb31e54f18e6d31e67d56b41762e87"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/n-fox.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/n-fox.webp",
+    "sha256": "e7dfcb737eef99b7612615da3dedda459c0d0977f02214e837f6f054245851e0"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/n-palette.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/n-palette.webp",
+    "sha256": "8eb40194b75eb859e230180a4f74df4861c4895cd821bd76b810626ddf26618f"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/n-pencil.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/n-pencil.webp",
+    "sha256": "961664edf32b25573a9127f18c2b7711c7d39ab3bb2f0cee85dadddd5601872e"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/n-pictures.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/n-pictures.webp",
+    "sha256": "51d7b2ccdc925e30c2a78ccf3d4834da81ef58b746a659b11dea5344e477137d"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/nest.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/nest.webp",
+    "sha256": "f10e86216ddf7ac3562d216cfe43e1eedd0342201e1d1347f3bd81f22dd9c044"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/now-03-forest.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/now-03-forest.webp",
+    "sha256": "1206fa86a9771b730699bdbb63174e5cf95507c15620ef99d1bfc3abfa7b378a"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/now-04-sleep.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/now-04-sleep.webp",
+    "sha256": "951d8c432f29abf0276697a128531e984f855fdfd839eb24aa95173b168f7876"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/now-12-models.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/now-12-models.webp",
+    "sha256": "76f60457e04f4a11344fada1109f7213d587a477e5de1cf787b5ba5112878571"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/nut.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/nut.webp",
+    "sha256": "84b6efb306e59a24d2e64e6c02006968aa67f5e3b19c3579278f2e71f4d5ad2d"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/p-beaver.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/p-beaver.webp",
+    "sha256": "7d5f434105773a491d431f9a3945288241040a7070e9b6242cb060b35b60a117"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/p-bluetit.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/p-bluetit.webp",
+    "sha256": "6f45ab901dde67c38743311c8caef99e2beecd168eb66e296769edc504df128e"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/p-fox.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/p-fox.webp",
+    "sha256": "b950f61f73cc8b6384ceb6783cb06c0191e7b7fb34e329a6bf204868f14bde6a"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/p-mouse.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/p-mouse.webp",
+    "sha256": "67f5166651bc8eb53ae8dcb59184deb4b68f86d982a621517d85f243050c8ab8"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/p-owl.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/p-owl.webp",
+    "sha256": "1924a35abc1577d0116a5f69c9c04b78fbb617476bfbf48174810b56e8c3f750"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/p-squirrel.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/p-squirrel.webp",
+    "sha256": "ee2ce0193e9bd594292058030110324b4706e63462c79e58ffcdcbb8ceba1fd3"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/puzzle-clearing.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/puzzle-clearing.webp",
+    "sha256": "2a5f5559730bd6b222fe05b73dbb5f00e097cd016b43c95b4e4f98251d34e3b0"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/rose-w.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/rose-w.webp",
+    "sha256": "7bc92e30d8157dcd3182fae528445d4bbd4e899359b7a89251255e6b48b03399"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/shapes.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/shapes.webp",
+    "sha256": "05315ae3bdaa99b32906514487880538a10e1c6328cae9b1e2ff797484d53dad"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/a/tree.webp",
+    "archived": "archive/design-history/visual-overhaul/mockup/a/tree.webp",
+    "sha256": "b4f00f3f160c2e44ea5baa14ad842b800255c9e5e6ca644b3baa3cd14285c6de"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/board.html",
+    "archived": "archive/design-history/visual-overhaul/mockup/board.html",
+    "sha256": "5c5df9352c5e208b1a769a01a82a0c4aa3762fbe6b9db2e65e538cdd0007a697"
+  },
+  {
+    "original": "design/visual-overhaul/mockup/waldbuch.css",
+    "archived": "archive/design-history/visual-overhaul/mockup/waldbuch.css",
+    "sha256": "29b5660b580de6d02cf7757b2717895d0b2045308ca439ac69fe1c8ee228742c"
+  },
+  {
+    "original": "design/world-10x/PLAN.md",
+    "archived": "archive/design-history/world-10x/PLAN.md",
+    "sha256": "7fd4a279a7ab213068a7834f3edba87117d240fa0f6c46043df49647b05d4bb9"
+  },
+  {
+    "original": "CLAUDE.md",
+    "archived": "archive/design-history/prior-documentation/CLAUDE.md",
+    "sha256": "6718aa1b443e7e370d25710efb198380dd69c4435b61dfda3a204609db00ad34"
+  },
+  {
+    "original": "README.md",
+    "archived": "archive/design-history/prior-documentation/README.md",
+    "sha256": "32d41352065e050bd2cd91534b974146a608502d24b0f5da7f7a74171ed20af2"
+  },
+  {
+    "original": "docs/README.md",
+    "archived": "archive/design-history/prior-documentation/docs/README.md",
+    "sha256": "22dcab1d9a7ff2c47d127ea618c10d66b0c300431e50cf83375e036026a4eb32"
+  },
+  {
+    "original": "docs/DEVELOPMENT.md",
+    "archived": "archive/design-history/prior-documentation/docs/DEVELOPMENT.md",
+    "sha256": "a18402d430c7a9662f2de2546cf99db4c60a4539d667b0c1a33df4cab2ee367e"
+  },
+  {
+    "original": "docs/FOREST-FRIENDS.md",
+    "archived": "archive/design-history/prior-documentation/docs/FOREST-FRIENDS.md",
+    "sha256": "3361d25894724701050e515a50bcb702f9bbd4afdf52b19d2aabed7b15f1d4c6"
+  },
+  {
+    "original": "docs/TYPOGRAPHY.md",
+    "archived": "archive/design-history/prior-documentation/docs/TYPOGRAPHY.md",
+    "sha256": "ecfa145c7848c166689dd419944e1906af763833f0ee2a7b363f8697862ff685"
+  },
+  {
+    "original": "docs/PUZZLE-BLUEPRINT.md",
+    "archived": "archive/design-history/prior-documentation/docs/PUZZLE-BLUEPRINT.md",
+    "sha256": "64378a043a547c714633be0634566e318c7ed0ff261778f49f5348fb2087fba5"
+  },
+  {
+    "original": "archive/README.md",
+    "archived": "archive/design-history/prior-documentation/archive/README.md",
+    "sha256": "39736310923bde6418a08fa9bbe2aa3fb444169916d280848087105dd2c43ae4"
+  },
+  {
+    "original": "docs/GAMEPLAY.md",
+    "archived": "archive/design-history/prior-documentation/docs/GAMEPLAY.md",
+    "sha256": "e23b7290659162b217167a3b13fe62b747665839deb9a59a124e25f57a1ded84"
+  },
+  {
+    "original": "docs/EXPLORATION.md",
+    "archived": "archive/design-history/prior-documentation/docs/EXPLORATION.md",
+    "sha256": "1e8145ee9fc1d1e31a4c9987f52f7023a240b9c85d5f58d2801ee6f025ce93e9"
+  },
+  {
+    "original": "docs/lernideen.html",
+    "archived": "archive/design-history/prior-documentation/docs/lernideen.html",
+    "sha256": "3bfa0faed567b74a9f0439f184b6a4fae6537c220026237909d94e8069e9bb52"
+  },
+  {
+    "original": "js/friends/game.js",
+    "archived": "archive/legacy-game/js/friends/game.js",
+    "sha256": "fe876ffa3a5616ad667f12f2a1536cde2b956f934ab4ea8a938c3918a670825a"
+  },
+  {
+    "original": "js/friends/library.js",
+    "archived": "archive/legacy-game/js/friends/library.js",
+    "sha256": "d733146ae845f248767487e200f182f4cba571d562dd9f40f618313e601f2dd7"
+  },
+  {
+    "original": "tools/portraits/portraits.html",
+    "archived": "archive/legacy-game/tools/portraits/portraits.html",
+    "sha256": "0219bc8ea22cd82311f7c4f9ed21b5392d84e35d31850299c79dfe93d20ec4d8"
+  },
+  {
+    "original": "tools/portraits/render.cjs",
+    "archived": "archive/legacy-game/tools/portraits/render.cjs",
+    "sha256": "4ebd193c206c8029e7d8f076d72491c11f257081685efc7fcdf46c437bc6c81a"
+  },
+  {
+    "original": "tools/portraits/README.md",
+    "archived": "archive/legacy-game/tools/portraits/README.md",
+    "sha256": "767d5e09c0e7aa4dde7191fe991c21bee21739d3ee7ba94ae8d6448dae15fedb"
+  },
+  {
+    "original": "js/forest/activity.js",
+    "archived": "archive/legacy-game/js/forest/activity.js",
+    "sha256": "2047ce368856e82f3ec36ee02da2af38f8b27772a5bcbc11ff222d839b4d7248"
+  },
+  {
+    "original": "js/forest/art.js",
+    "archived": "archive/legacy-game/js/forest/art.js",
+    "sha256": "4220b35144f425d621feb0e061e30d01aa1c30ce1e97b808719ca52dda0cd047"
+  },
+  {
+    "original": "js/forest/characters.js",
+    "archived": "archive/legacy-game/js/forest/characters.js",
+    "sha256": "ebe7e909de8d1963b152885360bf653fcefeb38f22f0353aef40f771048fe80d"
+  },
+  {
+    "original": "js/forest/cinema.js",
+    "archived": "archive/legacy-game/js/forest/cinema.js",
+    "sha256": "d09ce392401ac61bec07a3c280016ca06749db3a496d3f3f2c759ccc8cb5460b"
+  },
+  {
+    "original": "js/forest/exploration.js",
+    "archived": "archive/legacy-game/js/forest/exploration.js",
+    "sha256": "819e6665a54df12ae3ed2d68def0a3b93006e6c0ded95c643a44abf922bb6ec8"
+  },
+  {
+    "original": "js/forest/heart-oak.js",
+    "archived": "archive/legacy-game/js/forest/heart-oak.js",
+    "sha256": "4091f93baa0e32b482870a9b9ab388ba10f911aebf1ce00aa415f56625af2be8"
+  },
+  {
+    "original": "js/forest/landscape.js",
+    "archived": "archive/legacy-game/js/forest/landscape.js",
+    "sha256": "3d30bb01109c4789ab2e3613a6f468c7e5160cb571907ffa49d3d3dd874b1148"
+  },
+  {
+    "original": "js/forest/materials.js",
+    "archived": "archive/legacy-game/js/forest/materials.js",
+    "sha256": "2089e1466e993c9e57c8937db14925111028551f86faf61c2c14a2ac81d9654d"
+  },
+  {
+    "original": "js/forest/memory.js",
+    "archived": "archive/legacy-game/js/forest/memory.js",
+    "sha256": "56867c61897e50e81d211b66ebd9bbd3bcabf911534ecad27a369486869c1c06"
+  },
+  {
+    "original": "js/forest/model.js",
+    "archived": "archive/legacy-game/js/forest/model.js",
+    "sha256": "2c5e200ccc1c01e98782ed2701ef10401f8458d5a2b51f39273799b62ebbaf75"
+  },
+  {
+    "original": "js/forest/navigation.js",
+    "archived": "archive/legacy-game/js/forest/navigation.js",
+    "sha256": "3a05538943b9c90e565df92baa82835ed1fef8aa39e392444050cd833828d216"
+  },
+  {
+    "original": "js/forest/painted.js",
+    "archived": "archive/legacy-game/js/forest/painted.js",
+    "sha256": "02ff62d4e7035df1b34dfb2055636ac37ba18d7bbcf21b8b681e7b491a976d26"
+  },
+  {
+    "original": "js/forest/projects.js",
+    "archived": "archive/legacy-game/js/forest/projects.js",
+    "sha256": "3ddb799d72268551c78d1f3d185096a21c60e66cd857f3a578905f62e5e79fd3"
+  },
+  {
+    "original": "js/forest/scene.js",
+    "archived": "archive/legacy-game/js/forest/scene.js",
+    "sha256": "48c824affc481983a8dd08d9f7ab04bcd961bdd05eb3a6cd4256bbeaeb5911fd"
+  },
+  {
+    "original": "js/forest/speech.js",
+    "archived": "archive/legacy-game/js/forest/speech.js",
+    "sha256": "90edca0ac8739c0caf2023c9b407a23457497560fca36ec1efa94c9afc8c8a98"
+  },
+  {
+    "original": "js/forest/story-actors.js",
+    "archived": "archive/legacy-game/js/forest/story-actors.js",
+    "sha256": "88d63108d8da743eac184039f25a8533ada4e6f19306c8cb983bdae5fdc2bc1a"
+  },
+  {
+    "original": "js/forest/story-director.js",
+    "archived": "archive/legacy-game/js/forest/story-director.js",
+    "sha256": "76c73f454645d990650b4c6684667071cdea16f27e0e20ffac62ee89bb5822c7"
+  },
+  {
+    "original": "js/forest/story.js",
+    "archived": "archive/legacy-game/js/forest/story.js",
+    "sha256": "aa05edb6fa75c60e7af6f796734b3362777d56062e0dbf915caf80733c18d50b"
+  },
+  {
+    "original": "js/forest/trail.js",
+    "archived": "archive/legacy-game/js/forest/trail.js",
+    "sha256": "e81be6ce7a3568648cc8c769403738c6496f0fd6337c7bf96cf7d1efe8103a98"
+  },
+  {
+    "original": "js/forest/woodland.js",
+    "archived": "archive/legacy-game/js/forest/woodland.js",
+    "sha256": "b40737da9a005ec5eca02cc813bc20f82af93defc3d1dec407aa5cc3fded4613"
+  },
+  {
+    "original": "js/core/journey.js",
+    "archived": "archive/legacy-game/js/core/journey.js",
+    "sha256": "be55a66f047a705155ce809249423d009ab1c5c427faf39a432daddd0000a28a"
+  },
+  {
+    "original": "js/ui/play.js",
+    "archived": "archive/legacy-game/js/ui/play.js",
+    "sha256": "fb1a37019b52bb50030500137626687bc5297ed9c0ddb0f410208cf76dad7d32"
+  },
+  {
+    "original": "js/ui/woodland.js",
+    "archived": "archive/legacy-game/js/ui/woodland.js",
+    "sha256": "f2c093559b3cbe946f9789fe2dec992ad5abb96448bf4b64c932c1c6167e9627"
+  },
+  {
+    "original": "js/ui/heart-tree.js",
+    "archived": "archive/legacy-game/js/ui/heart-tree.js",
+    "sha256": "eb141c7b1c0c1c384be8a7edafcb2e1fa7677828a03710d3c9ef291905750cd1"
+  },
+  {
+    "original": "js/ui/memory-board.js",
+    "archived": "archive/legacy-game/js/ui/memory-board.js",
+    "sha256": "4e81665303b8fa9d22cb7397e28dbfd4fef638450ae404ad1f0b8f1403b6f9a3"
+  },
+  {
+    "original": "js/ui/route-board.js",
+    "archived": "archive/legacy-game/js/ui/route-board.js",
+    "sha256": "1dafff851ec89c6f561d6230d43f572b154d6cba34960fbaccd4193bc079bf2d"
+  },
+  {
+    "original": "js/friends/actors.js",
+    "archived": "archive/legacy-game/js/friends/actors.js",
+    "sha256": "08358deb1c65f23efdbd33604b9513a55ddce843ffa70c64f103935259cdd8b2"
+  },
+  {
+    "original": "js/friends/art.js",
+    "archived": "archive/legacy-game/js/friends/art.js",
+    "sha256": "0fa598f4c14ae5c5ea8e5fc46497620a3add83062850ea633ef49e56789055d8"
+  },
+  {
+    "original": "js/screens/learn.js",
+    "archived": "archive/legacy-game/js/screens/learn.js",
+    "sha256": "fbc920149ffd2c77bb63bac85e5b836fabfeeffd8c2fe194a2c1d320983e7089"
+  },
+  {
+    "original": "js/screens/adventure.js",
+    "archived": "archive/legacy-game/js/screens/adventure.js",
+    "sha256": "d4a6726117fc4b6cac29809e4337b855981c3e6ba0273fe500543c1be6f233d8"
+  },
+  {
+    "original": "js/screens/expedition.js",
+    "archived": "archive/legacy-game/js/screens/expedition.js",
+    "sha256": "06a0410327486fffaa2d58452f31f773aa487c9fda30bc80156b13d4a30d6321"
+  },
+  {
+    "original": "js/screens/hub.js",
+    "archived": "archive/legacy-game/js/screens/hub.js",
+    "sha256": "9c3a937588bee97fa5fb255a26adea3355514d5e56361ae821d9b72cb2378940"
+  },
+  {
+    "original": "js/screens/forest.js",
+    "archived": "archive/legacy-game/js/screens/forest.js",
+    "sha256": "eedd697630332058301d90d7e8534c2add1988f88deca4cd0cbe7ecb31e4df64"
+  },
+  {
+    "original": "js/screens/forest-book.js",
+    "archived": "archive/legacy-game/js/screens/forest-book.js",
+    "sha256": "44f91a20d9a91f144351dc0c2a5a660d3f5f9ed8a77164f19d8074937b7c04d1"
+  },
+  {
+    "original": "js/screens/album.js",
+    "archived": "archive/legacy-game/js/screens/album.js",
+    "sha256": "de1a0dd0c19d1ebd3c7d63d5edab9e3c3f9b56b041f019e8021a1ed6d82ca14d"
+  },
+  {
+    "original": "js/screens/dots.js",
+    "archived": "archive/legacy-game/js/screens/dots.js",
+    "sha256": "e6d41436ce222e3bb6ba2a01e0425fdcdb2d75929b03362a06d269ce5730844b"
+  },
+  {
+    "original": "js/screens/read.js",
+    "archived": "archive/legacy-game/js/screens/read.js",
+    "sha256": "34eed88e300889db42efa00c3c9e3fc3b41c369dce4e471d74dd25eed45f3e26"
+  },
+  {
+    "original": "js/learn/learning.js",
+    "archived": "archive/legacy-game/js/learn/learning.js",
+    "sha256": "f651164636305c6bc0a6a0b6e09f049b1bab3ac7a7068eeff8a8b08dbabd65bd"
+  },
+  {
+    "original": "js/learn/adventures.js",
+    "archived": "archive/legacy-game/js/learn/adventures.js",
+    "sha256": "6127068503c7b193f1a14cc6f7205ab43e322cf1df6e9b7f8d9a5db55a59c30b"
+  },
+  {
+    "original": "js/learn/expeditions.js",
+    "archived": "archive/legacy-game/js/learn/expeditions.js",
+    "sha256": "2020986104ce506997e6dbc6ae6f60a86c795224d3f6659e9ebd0c0e26852b02"
+  },
+  {
+    "original": "js/learn/dots.js",
+    "archived": "archive/legacy-game/js/learn/dots.js",
+    "sha256": "00355a296ff064635112a6a3d04f06ae8c24505037df8e7a8819e8fe1a9a18fc"
+  },
+  {
+    "original": "css/dots.css",
+    "archived": "archive/legacy-game/css/dots.css",
+    "sha256": "5d85a96d6998a0f6b4d23b2a46228cc44fadc5477f747c07256b89e409ce782d"
+  },
+  {
+    "original": "css/read.css",
+    "archived": "archive/legacy-game/css/read.css",
+    "sha256": "30e5ec0d60562bf0ece1ff4c4f113f8f6bdda1399ef7cefb832539e24fa2b3f7"
+  },
+  {
+    "original": "css/learning.css",
+    "archived": "archive/legacy-game/css/learning.css",
+    "sha256": "6cbbbf31bb4603f2f471b1092afbaa6f0962bff62027a61cb79f8a5099b5cda2"
+  },
+  {
+    "original": "css/expeditions.css",
+    "archived": "archive/legacy-game/css/expeditions.css",
+    "sha256": "d9c4d9db41ece7044ce52cb716a5805ca8bd8472e79fcfdb66248397d0cb7702"
+  },
+  {
+    "original": "css/forest.css",
+    "archived": "archive/legacy-game/css/forest.css",
+    "sha256": "09e26b981ba5f7b694f5fbc9071f50e81b5ef1e9002a74cb31b9051acc682485"
+  },
+  {
+    "original": "css/woodland.css",
+    "archived": "archive/legacy-game/css/woodland.css",
+    "sha256": "ab813c7206cdee25fe3d62a7cec7605bb0d235dd88193b129a8c9e6ab1acea5a"
+  },
+  {
+    "original": "css/play.css",
+    "archived": "archive/legacy-game/css/play.css",
+    "sha256": "24b1d489b5e1f5465e6924bbcc08a89fb6b8ccb2d7fb15bcc3b2b3b0e8d3a0ad"
+  },
+  {
+    "original": "css/gameplay.css",
+    "archived": "archive/legacy-game/css/gameplay.css",
+    "sha256": "b2154a67c904522af012041c3c139f9d207a73c576798c666002198d4612e9bc"
+  },
+  {
+    "original": "css/learning-gameplay.css",
+    "archived": "archive/legacy-game/css/learning-gameplay.css",
+    "sha256": "5e8686b180abd5950a5a69b91a9b93b82abd418623a017fb1ce9c26fe39e51cf"
+  },
+  {
+    "original": "css/adventure-gameplay.css",
+    "archived": "archive/legacy-game/css/adventure-gameplay.css",
+    "sha256": "a13c49d49df3755b8b2ff32cc7ee647b5842514fa12cb8143ff717d1c46e5d0e"
+  },
+  {
+    "original": "css/forest-gameplay.css",
+    "archived": "archive/legacy-game/css/forest-gameplay.css",
+    "sha256": "c26d2f8e24bf5790356083a97117d1b9a21c5edf34909ce74ee34f7fa1880126"
+  },
+  {
+    "original": "css/story-cinema.css",
+    "archived": "archive/legacy-game/css/story-cinema.css",
+    "sha256": "4454209597cdf64c93c5aff0daa4d357cf4bf1eb6c524ef28e80558ff0768c19"
+  },
+  {
+    "original": "css/forest-exploration.css",
+    "archived": "archive/legacy-game/css/forest-exploration.css",
+    "sha256": "c0228560149626a95bc0673754d20a8fb6a894109b7a6fdbfc8a9dc8279b37c9"
+  },
+  {
+    "original": "js/friends/world/tiles.js",
+    "archived": "archive/legacy-game/js/friends/world/tiles.js",
+    "sha256": "6a2fa14e0bd067fb02d9fd8c653e986ba774d36e6a4230379e165242a8c568eb"
+  },
+  {
+    "original": "js/friends/world/landmarks.js",
+    "archived": "archive/legacy-game/js/friends/world/landmarks.js",
+    "sha256": "0f8b6951d93923daf23127c096518a2c8fd8772b4070f49c90f0b82da94d8286"
+  },
+  {
+    "original": "tests/adventure-gameplay-browser.cjs",
+    "archived": "archive/legacy-game/tests/adventure-gameplay-browser.cjs",
+    "sha256": "50e65d2b420abff2c61ad078c3fdc415cc45c0c255ccd67f97ad164def2e44ee"
+  },
+  {
+    "original": "tests/adventures.test.cjs",
+    "archived": "archive/legacy-game/tests/adventures.test.cjs",
+    "sha256": "905514ae1e219d185438974d00b4734c4ca0cdd782001c1b004b9e6b8b017627"
+  },
+  {
+    "original": "tests/cinema-browser.cjs",
+    "archived": "archive/legacy-game/tests/cinema-browser.cjs",
+    "sha256": "a59e3af0974564234517120053e07d5a4bb2427fffbebc3e14f3c062d72fd24a"
+  },
+  {
+    "original": "tests/cinema-support.cjs",
+    "archived": "archive/legacy-game/tests/cinema-support.cjs",
+    "sha256": "e6247a05a57b1edd6a04a5be63e17de4cfa202594d39876cf3c568fd229b22dc"
+  },
+  {
+    "original": "tests/cinema.test.cjs",
+    "archived": "archive/legacy-game/tests/cinema.test.cjs",
+    "sha256": "ad7a1145708d6a136372016f97a6c97c30c960b41df6a86d4bb6b0402808d15f"
+  },
+  {
+    "original": "tests/expeditions.test.cjs",
+    "archived": "archive/legacy-game/tests/expeditions.test.cjs",
+    "sha256": "c93b7ba855b619cb6726cc72a523bb2d64ad86befde8b1d372becb3074964768"
+  },
+  {
+    "original": "tests/forest-browser.cjs",
+    "archived": "archive/legacy-game/tests/forest-browser.cjs",
+    "sha256": "fe34ea8c2342acaa962f8c43d171a7a0cfb2a4aa92ab0c392ae3c077ab42b0f1"
+  },
+  {
+    "original": "tests/forest.test.cjs",
+    "archived": "archive/legacy-game/tests/forest.test.cjs",
+    "sha256": "658a69110c2faca7ee47824ac86b6b1184c24c48046244db4612fbc14089a7e8"
+  },
+  {
+    "original": "tests/gameplay-browser.cjs",
+    "archived": "archive/legacy-game/tests/gameplay-browser.cjs",
+    "sha256": "4467c88a4753d771914ffa1d0e3a36fc4c71242d438835853d4980a09cfc9130"
+  },
+  {
+    "original": "tests/gameplay-interactions-browser.cjs",
+    "archived": "archive/legacy-game/tests/gameplay-interactions-browser.cjs",
+    "sha256": "28882708eea02b0efaffcde80a0755712a8be1c45903c33fa93ac006eceb9100"
+  },
+  {
+    "original": "tests/gameplay-navigation-browser.cjs",
+    "archived": "archive/legacy-game/tests/gameplay-navigation-browser.cjs",
+    "sha256": "e29e81c7f277db794251447dd731068fb4f69cd4accdaf5be29d37b6d5ce4b8e"
+  },
+  {
+    "original": "tests/journey.test.cjs",
+    "archived": "archive/legacy-game/tests/journey.test.cjs",
+    "sha256": "fff744589d35ee4d4c1d72edbec6d0e587c0475466f4120a64cdf51a11a83239"
+  },
+  {
+    "original": "tests/learning-gameplay-browser.cjs",
+    "archived": "archive/legacy-game/tests/learning-gameplay-browser.cjs",
+    "sha256": "01f018e0189d5cfe2908ee4307eca1caf26435e2c38bd03eb24d12a35d3e3151"
+  },
+  {
+    "original": "tests/learning.test.cjs",
+    "archived": "archive/legacy-game/tests/learning.test.cjs",
+    "sha256": "a23ceb5d8a4030872921397a6107c72c5bb219b0701a11fe87a37c3ad8aa7afe"
+  },
+  {
+    "original": "tests/legacy-mail-completion.test.cjs",
+    "archived": "archive/legacy-game/tests/legacy-mail-completion.test.cjs",
+    "sha256": "e38770d613f73ba5cdbe35cc3d717da48365b2bed45bc713f1d33d275e7a4ef8"
+  },
+  {
+    "original": "tests/play-browser.cjs",
+    "archived": "archive/legacy-game/tests/play-browser.cjs",
+    "sha256": "b7f0aa740883d651aae69531a29b946d68f3840b5db932faf47d842ce7148451"
+  },
+  {
+    "original": "tests/play-content.test.cjs",
+    "archived": "archive/legacy-game/tests/play-content.test.cjs",
+    "sha256": "cb2afd1df9dd344867ed593c0e8c3e391cc450effc0ab6332a36b7833871d1d2"
+  },
+  {
+    "original": "tests/play-layout-browser.cjs",
+    "archived": "archive/legacy-game/tests/play-layout-browser.cjs",
+    "sha256": "9455633abb1e45a424db67ce94b273b1dbe7ea4643a7750f68db6e36ad24003c"
+  },
+  {
+    "original": "tests/story-browser.cjs",
+    "archived": "archive/legacy-game/tests/story-browser.cjs",
+    "sha256": "2bfe5aea30a142b7f59dd74e2dacd635a48472b06568da4f3fe35941bdb09378"
+  },
+  {
+    "original": "tests/story.test.cjs",
+    "archived": "archive/legacy-game/tests/story.test.cjs",
+    "sha256": "04ac0015b8ba543d5c16ec0f037de8fccf6f3297c8e7203b4c334d4ea155911c"
+  },
+  {
+    "original": "tests/browser-smoke.cjs",
+    "archived": "archive/legacy-game/tests/browser-smoke.cjs",
+    "sha256": "743c5452a2b77233c14bf6d7ed3c21aa00e8c6cfeab0e37da6c351d5a3081f29"
+  },
+  {
+    "original": "tests/den-browser.cjs",
+    "archived": "archive/legacy-game/tests/den-browser.cjs",
+    "sha256": "68c06fc4edd373bc23d7735f00465befeb144bf207b9266d1412019903e544d3"
+  },
+  {
+    "original": "tests/friends-animation-browser.cjs",
+    "archived": "archive/legacy-game/tests/friends-animation-browser.cjs",
+    "sha256": "6d72a26f7e0e93ce8929ee9efd3ebbca283de0ff69910124bf1ea3b1fe4c3156"
+  },
+  {
+    "original": "tests/friends-click-browser.cjs",
+    "archived": "archive/legacy-game/tests/friends-click-browser.cjs",
+    "sha256": "3b115cde0a47c5552b003c206aac6bc28182ceedbb4de09222f879ec21c79d1c"
+  },
+  {
+    "original": "tests/handwriting-browser.cjs",
+    "archived": "archive/legacy-game/tests/handwriting-browser.cjs",
+    "sha256": "13cb75ead307bd8a170bb14f7154bf1bf6e08835dde3d7e8bba9635945bc0b8e"
+  },
+  {
+    "original": "tests/input-typography-browser.cjs",
+    "archived": "archive/legacy-game/tests/input-typography-browser.cjs",
+    "sha256": "1a9dd01988571d3a735f6754d67e7dcef89bc79158b3c4164cef4058b09fd37f"
+  },
+  {
+    "original": "tests/memory-browser.cjs",
+    "archived": "archive/legacy-game/tests/memory-browser.cjs",
+    "sha256": "d6b17304bd8800b7b354be6ad4f5cd251a38e633d7de04108e96db6884a190ee"
+  },
+  {
+    "original": "tests/painted-browser.cjs",
+    "archived": "archive/legacy-game/tests/painted-browser.cjs",
+    "sha256": "86e2a6c0323bab03d68f4068849f02ca9e583d69c4a6c2e3af422b1e9203057b"
+  },
+  {
+    "original": "tests/puzzle-navigation-browser.cjs",
+    "archived": "archive/legacy-game/tests/puzzle-navigation-browser.cjs",
+    "sha256": "ab4d7059079ddee7c03ced84b32b67e129f83f3765ec68e2596406bcd6ae5b3d"
+  },
+  {
+    "original": "tests/puzzles-browser.cjs",
+    "archived": "archive/legacy-game/tests/puzzles-browser.cjs",
+    "sha256": "ee069260b785c7ad6d2c2338ce43bf14bc568ae3952216a6a448e7047fa1978a"
+  },
+  {
+    "original": "tests/trail-browser.cjs",
+    "archived": "archive/legacy-game/tests/trail-browser.cjs",
+    "sha256": "b7858a3ff5799bf5e9eab7a177a46df48fa116b6f3b3cc3074976a9afdb85e69"
+  },
+  {
+    "original": "tests/world-browser.cjs",
+    "archived": "archive/legacy-game/tests/world-browser.cjs",
+    "sha256": "9d8d884a28a4b352b1abc3e97850999129001b71645e087ae2a602f5c82e8a4f"
+  },
+  {
+    "original": "tests/world-budget-browser.cjs",
+    "archived": "archive/legacy-game/tests/world-budget-browser.cjs",
+    "sha256": "65e0e07f25dffbe647f0cc645e476e1a1898c59810abcd8f76be80f3e7a8e90e"
+  },
+  {
+    "original": "tests/world-navigation.test.cjs",
+    "archived": "archive/legacy-game/tests/world-navigation.test.cjs",
+    "sha256": "58bcaf42e0fea06289bb3e55de85d403fc2e9b9dbeb211b18edcfb23dfa84eb1"
+  },
+  {
+    "original": "js/friends/painted.js",
+    "archived": "archive/legacy-game/js/friends/painted.js",
+    "sha256": "c712c7166af49e3e8f4abcaa6e79291e33a0639058d65e16e07c79e53c866f6e"
+  },
+  {
+    "original": "assets/forest-friends/bird.webp",
+    "archived": "archive/legacy-game/assets/forest-friends/bird.webp",
+    "sha256": "b0d13dbbf30fdbe5294805dce24d92fc7848ca5531fb4fa272a68f7d0039f328"
+  },
+  {
+    "original": "assets/forest-friends/den.webp",
+    "archived": "archive/legacy-game/assets/forest-friends/den.webp",
+    "sha256": "849b6b2848dea93a132b7ba844f567d3b84d62fedca77568b0adc8ec98d63c95"
+  },
+  {
+    "original": "assets/forest-friends/forest.webp",
+    "archived": "archive/legacy-game/assets/forest-friends/forest.webp",
+    "sha256": "e9083280ca75c55f5ffe4943b98e622d14d3834065d66db4db1800a9ee54c94a"
+  },
+  {
+    "original": "assets/forest-friends/fox-back.webp",
+    "archived": "archive/legacy-game/assets/forest-friends/fox-back.webp",
+    "sha256": "451ad1833088420f37fb2773dd57c7c8cd4ec60521d2975969fe1aaef7211ce8"
+  },
+  {
+    "original": "assets/forest-friends/fox-front.webp",
+    "archived": "archive/legacy-game/assets/forest-friends/fox-front.webp",
+    "sha256": "45f56022bf1d26d995162ca2e6aca65ae435c6c4537e77e0386a76d64a338e86"
+  },
+  {
+    "original": "assets/forest-friends/fox-happy.webp",
+    "archived": "archive/legacy-game/assets/forest-friends/fox-happy.webp",
+    "sha256": "455c330d97289629e2408421fa385716339188377e14cdec583a906404cb4854"
+  },
+  {
+    "original": "assets/forest-friends/fox-side.webp",
+    "archived": "archive/legacy-game/assets/forest-friends/fox-side.webp",
+    "sha256": "85dadaeb1875c98a9c03105015690bc5bab638b3e83a26b0770125bfc2e22f44"
+  },
+  {
+    "original": "assets/forest-friends/interface-icons.webp",
+    "archived": "archive/legacy-game/assets/forest-friends/interface-icons.webp",
+    "sha256": "a1d977dc1f43714f8c98f202d1f691ed1ad223722aaef010fc32b8d4297ec748"
+  },
+  {
+    "original": "assets/forest-friends/mailman-portrait.webp",
+    "archived": "archive/legacy-game/assets/forest-friends/mailman-portrait.webp",
+    "sha256": "1f1b73f4b1ec811634df76517836e0cb9467d0581075780c873d907a07028206"
+  },
+  {
+    "original": "assets/forest-friends/mouse.webp",
+    "archived": "archive/legacy-game/assets/forest-friends/mouse.webp",
+    "sha256": "9b2469fc9f41442c6f7f8b9eee265cc3171712904bc8d0f02345aa809631939d"
+  },
+  {
+    "original": "assets/forest-friends/neighbours.webp",
+    "archived": "archive/legacy-game/assets/forest-friends/neighbours.webp",
+    "sha256": "20e13d99c340098f8552c34a19df15fc6394cc309520fa1af72946d183fbbad4"
+  },
+  {
+    "original": "assets/forest-friends/owl.webp",
+    "archived": "archive/legacy-game/assets/forest-friends/owl.webp",
+    "sha256": "c5393ffa7771b577cd7bc8626746059b6e45ae22af14828fa752e30e6e4740cc"
+  },
+  {
+    "original": "assets/forest-friends/picture-map.webp",
+    "archived": "archive/legacy-game/assets/forest-friends/picture-map.webp",
+    "sha256": "0c60c89d29e3e9d64b09bcf9d67493844e72909a5a5470bd6c4b7cdda1654eb5"
+  },
+  {
+    "original": "assets/forest-friends/postcard-friends.webp",
+    "archived": "archive/legacy-game/assets/forest-friends/postcard-friends.webp",
+    "sha256": "93e29f9962556fa250ef5c98266b0ae1a076cedbc76e86ec1e4559113b0707f9"
+  },
+  {
+    "original": "assets/forest-friends/shop.webp",
+    "archived": "archive/legacy-game/assets/forest-friends/shop.webp",
+    "sha256": "a2a1ae222af44873141e2b90994563bed6a017166bed41b6a24aa5d93663324b"
+  },
+  {
+    "original": "assets/forest-friends/squirrel.webp",
+    "archived": "archive/legacy-game/assets/forest-friends/squirrel.webp",
+    "sha256": "a0eaf9cff743a2c9f9b1a9ff7c49aa2265c7e93b2e5825c88112a26da7902703"
+  },
+  {
+    "original": "assets/woodland/ART-NOTES.md",
+    "archived": "archive/legacy-game/assets/woodland/ART-NOTES.md",
+    "sha256": "6062e0edb0249732698e6b4f679914a7a944a0e88c040fb370aa6f143829db55"
+  },
+  {
+    "original": "assets/woodland/characters-nature.webp",
+    "archived": "archive/legacy-game/assets/woodland/characters-nature.webp",
+    "sha256": "885ff5ea63fc14acae4a50551524c89c279ce36fc6ecddbf53c671564acbacf2"
+  },
+  {
+    "original": "assets/woodland/forest-props.webp",
+    "archived": "archive/legacy-game/assets/woodland/forest-props.webp",
+    "sha256": "d4483e18e8b1e93c30c9ffaee2e49a18a3d37bcac69787c591efc6dbe8749d3b"
+  },
+  {
+    "original": "assets/woodland/ground.webp",
+    "archived": "archive/legacy-game/assets/woodland/ground.webp",
+    "sha256": "2dfdbdd229a305e5e09bfba76360f5c1629847b94272e53f0c28b1310ca820b9"
+  },
+  {
+    "original": "assets/woodland/places.webp",
+    "archived": "archive/legacy-game/assets/woodland/places.webp",
+    "sha256": "07c080a74ae0f70a6dc979b99ecbf731c62a5c42d8b9143d26515136420a6340"
+  },
+  {
+    "original": "tools/forest-friends-paint-assets.py",
+    "archived": "archive/legacy-game/tools/forest-friends-paint-assets.py",
+    "sha256": "cbe97c10b42871b3deae7160346aa39fc9a1eac61a76ed4f1d3e52c6d27988bb"
+  }
+]

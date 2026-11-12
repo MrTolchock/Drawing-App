@@ -1,6 +1,6 @@
 /* Shared builders for the world's tiles (world/big/tiles.js) and landmarks: a typed-array vertex buffer
    that merges small templates, the plant templates, tree trunks, roots, crown cards and instancing. */
-import {THREE} from '../../forest/materials.js';
+import {THREE} from '../../scene/materials.js';
 import {TAU, clamp, lerp, sstep, fbm, rng, tileSeed} from './noise.js';
 
 export const TILE = 16;

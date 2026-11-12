@@ -1,55 +1,35 @@
 # Farbtupf — Waldfreunde
 
-[Play the game](https://mrtolchock.github.io/Drawing-App/) · [Implementation and saves](docs/FOREST-FRIENDS.md) · [Design handoff](design/forest-friends/CLOUD-HANDOFF.md)
+[Play](https://mrtolchock.github.io/Drawing-App/) · [Current design](design/README.md) · [All puzzles and competences](docs/PUZZLE-CATALOGUE.md) · [Development](docs/DEVELOPMENT.md)
 
-A woodland learning game for first-grade practice in Zürich, in Swiss Standard German. Fuchs receives pictured letters, visits the invited friend, solves a puzzle and meets Hase the rabbit mailman for the next invitation.
+A woodland learning game for first-grade practice in Zürich, in Swiss Standard German. Parents choose how many letters their child can complete. Fuchs starts at the den, receives a pictured letter, walks to that friend and solves a puzzle of five different iterations. Hase delivers the next letter. After the last puzzle, Fuchs returns home to sleep and the journey ends.
 
-## The current game
+Only the friend on the current letter offers a puzzle. The 34 puzzles have 1,048 finite iterations, with a common page, sounds, feedback and celebration. Settings contains the adult-only gallery and review workbench: every iteration and each puzzle must be individually signed off for its current revision before child play. New content, difficulty and shared implementation changes require review again. Deployment never approves content.
 
-- Start inside the den with its door closed. A letter slips through the mail lid; clicking opens unreadable handwriting and a clear portrait of the friend to visit.
-- Click/tap to walk through the 3D forest. A directional arrow guides Fuchs to the pictured friend, then to the nearby mailman after a completed puzzle. There are no movement arrows, keyboard walking or jumping.
-- Hase roams as a recognizable mailman with postal clothing and a satchel. He delivers new letters and never presents puzzles.
-- The eleven puzzle friends offer 34 letter-assigned puzzles at one fixed level, with a common forest design based on the character sheet and Silben-Puzzle. The four reading activities are separate entries. Each puzzle draws five iterations from an explicit pool of at least 25, advances automatically after correct answers and ends with a brief woodland celebration. The adult review mode requires sign-off for every iteration and the puzzle checklist before child play. Waldreime is folded into Reimpaare lesen; Zahlenspuren replaces the retired Zahlenwege entry.
-- The table opens Ausmalen directly with six illustrated woodland pages and free colouring only, without stamps. The picture pile beside it opens Meine Bilder. all included tools, colours and pages are free.
-- The sleeping fox keeps the standing fox's proportions. Opened postcards are directly clickable, without a surrounding frame or door button. The current adventure has no shop, coins, prices or purchases.
-- Matching painted toolbar icons and a woodland picture map use the original character artwork's style. Parents choose 1–50 letters in Settings. After the final puzzle, Fuchs must return to the den to sleep; only an adult can start another journey. The timer is removed, and the puzzle gallery/review tools are available only in Settings.
-- Speech is off during ordinary play. Each puzzle has one **Spiel erklären** button; wind, birds, rustling foliage and brook sounds accompany the forest. Golden leaves are removed.
-- Exact interrupted newer puzzles, invitation progress, drawings and sound preferences remain local. Adults can export or delete bounded anonymous gameplay logs.
-- Offline play follows the initial successful download. Speech depends on installed voices; device and child testing follow implementation.
+The den also offers colouring and saved pictures. There is no timer, shop or currency loop. Saves and review decisions stay on the device; review decisions can be exported/imported. The game works offline after a complete initial download.
 
-The original [Heart Tree adventure](https://mrtolchock.github.io/Drawing-App/?screen=forest), [adult puzzle gallery](docs/PUZZLE-REVIEW.md), drawings and progress remain accessible. Earlier currency/inventory fields are preserved as compatibility data; the new letter journey does not spend them.
-
-## Working documents
+## Current documents
 
 | Document | Purpose |
 | --- | --- |
-| [Heart Tree blueprint](design/heart-tree/BLUEPRINT.md) | Retained original adventure and its historical design rules |
-| [Blueprint v2 — Forest friends](design/forest-friends/blueprint-v2.md) | Current letter adventure, curriculum requirements and picture-led visual design |
-| [Cloud conversation handoff](design/forest-friends/CLOUD-HANDOFF.md) | Decisions, current references and next steps for continuing design across devices |
-| [Visual comparison baseline](design/forest-friends/visuals/baseline.md) | Preserved art, versioned mockups and screenshots for evaluating development |
-| [Waldbuch visual overhaul](design/visual-overhaul/README.md) | Visual consistency, mockups and iPad 9 performance plan, ready for implementation |
-| [Design review](design/heart-tree/REVIEW.md) | Assessment of the current game and priorities for the next step |
-| [Puzzle blueprint](docs/PUZZLE-BLUEPRINT.md) | Shared rules for every current puzzle |
-| [All puzzles and competences](docs/PUZZLE-CATALOGUE.md) | 34 puzzles and 1,048 individual iterations |
-| [Letter-limited sessions](docs/LETTER-SESSIONS.md) | Parent letter limits, invitation-only puzzles and sleeping game over |
-| [Adult puzzle review](docs/PUZZLE-REVIEW.md) | Preview, sign off, flag improvements and repeat review after changes |
-| [Gameplay](docs/GAMEPLAY.md) | Story puzzles, library activities, guidance and rewards |
-| [Exploration](docs/EXPLORATION.md) | Movement, camera, map and discovery controls |
-| [Learning and sources](docs/LEARNING.md) | Learning scope, reading expectations and research limits |
-| [Typography and input guide](docs/TYPOGRAPHY.md) | Shared font roles, responsive sizes and touch behaviour |
-| [Development and validation](docs/DEVELOPMENT.md) | Run, test, save compatibility and GitHub Pages deployment |
-| [Archive](archive/README.md) | Preserved previous plans, release notes, references and screenshots |
-
-The Heart Tree blueprint documents the retained original game. Forest friends implementation status is documented in [FOREST-FRIENDS.md](docs/FOREST-FRIENDS.md); Blueprint V2 remains its design target. Update both when the game changes; previous drafts belong in the archive.
+| [Visual style](design/VISUAL-STYLE.md) | Drawn/rendered boundaries, characters, pictures, icons, fonts and surfaces |
+| [Puzzle blueprint](design/PUZZLE-BLUEPRINT.md) | Required page, interaction, five iterations and review process |
+| [Consistency audit](design/STYLE-AUDIT.md) | Findings, corrections and real-game evidence |
+| [Puzzle catalogue](docs/PUZZLE-CATALOGUE.md) | Every puzzle, competence, difficulty and iteration |
+| [Letter sessions](docs/LETTER-SESSIONS.md) | Parent limit, invitations, return home and game over |
+| [Adult review](docs/PUZZLE-REVIEW.md) | Inspect, approve, flag improvements and repeat after changes |
+| [Game implementation](docs/FOREST-FRIENDS.md) | Current modules, persistence and controls |
+| [Learning and sources](docs/LEARNING.md) | Scope, prerequisites and research limits |
+| [Development](docs/DEVELOPMENT.md) | Run, validate, author and publish |
+| [Archive](archive/README.md) | Retired Heart Tree, past plans, screenshots and source history |
 
 ## Run locally
 
-No build step or dependency installation is needed for the app. Serve the repository root:
-
 ```sh
 python3 -m http.server 8000 --bind 127.0.0.1
+node tools/check-design.cjs
+node tools/puzzle-catalogue.cjs --check
+node --test tests/*.test.cjs
 ```
 
-Open `http://127.0.0.1:8000`. Run model and content checks with `node --test tests/*.test.cjs`. Browser-check setup is in [Development](docs/DEVELOPMENT.md).
-
-GitHub Pages serves `main`. Reopen or reload the app after an update downloads. Progress and anonymous gameplay logs stay on each device and origin; there is no account, cloud sync, advertising or automatic log upload.
+No build step is needed. Open `http://127.0.0.1:8000`. GitHub Pages serves `main`. [Development](docs/DEVELOPMENT.md) covers browser checks and release verification. Heart Tree is archived; its former URL opens the current den, and historical save keys are preserved.

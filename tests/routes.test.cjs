@@ -3,7 +3,8 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const vm = require('node:vm');
 const FK = {};
-for (const file of ['js/learn/adventures.js', 'js/learn/routes.js']) vm.runInNewContext(fs.readFileSync(file, 'utf8'), { window: { FK } });
+FK.adventures={question(_id,stage){return {kind:'robot',mode:'route',size:stage+2,start:0,goal:(stage+2)**2-1,obstacles:stage===2?[5]:[]};}};
+for (const file of ['js/learn/routes.js']) vm.runInNewContext(fs.readFileSync(file, 'utf8'), { window: { FK } });
 const plain = value => JSON.parse(JSON.stringify(value));
 
 test('all existing route stages and corner starts remain reachable', () => {

@@ -1,18 +1,7 @@
-# Neighbour portraits
+# Character identity portraits
 
-`assets/forest-friends/neighbours.webp` holds the six big-world neighbours as plush portraits in the same
-3 × 2 layout as `postcard-friends.webp` (512 px cells): Igel, Fisch, Reh / Eisvogel, Frosch, Dachs.
-They are rendered from the baked models, so they match the 3D characters, and then finished to sit next to
-the painted friends in the Waldspiele tabs, on the picture map and on letters:
+`assets/forest-friends/character-portraits.webp` is the only UI identity atlas: all 13 current characters and the fox sleep pose. It uses the same baked GLBs as the world, with one fixed camera, warm lighting and consistent framing. The transparent 4 × 4 atlas has 256 px cells (4 MiB decoded). No separate paint-over treatment.
 
-- `portraits.html?id=…` renders one character at 1536 px with a transparent background, turned three-quarters
-  towards the viewer and lit warm and soft from the front, plus a mask of its glossy parts (eyes, nose, beak, mouth).
-- `render.cjs` paints over each render (a warm shade towards the outline, brushed fur strokes, a fluffy fringe,
-  the glossy parts and the drawn lines (brows, smile, beak, the gaps between spines) kept crisp on top; fish and
-  frog get only a faint felt texture), crops it to the character and
-  scales it into its cell with the framing of the painted friends: up to 448 × 472 px, centred, lowest pixel at
-  500 px. The turn per character is `YAW` in `portraits.html`, the brushwork per character `BRUSH` in `render.cjs`.
+Serve the repository root, then run `node tools/portraits/render.cjs`. Set `PLAYWRIGHT_MODULE` and `CHROMIUM_PATH` to your installed tools when needed. The script fails on an empty render. Re-bake changed models first; the maintained sculpt source is `tools/characters/plush.js`.
 
-To redo them after a bake, serve the repository root and run `node tools/portraits/render.cjs`
-(needs Playwright with Chromium; `FARBTUPF_PORTRAITS_OUT=/some/file.webp` writes a trial sheet elsewhere).
-Bump the app version afterwards so installed games pick up the new sheet.
+See [visual style](../../design/VISUAL-STYLE.md) for the boundary between rendered character identity and drawn learning subjects. The previous mixed portrait pipeline is preserved under `archive/legacy-game/tools/portraits/`.

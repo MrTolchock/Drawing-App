@@ -4,7 +4,7 @@ const test = require('node:test'), assert = require('node:assert/strict'), path 
 const load = file => import(pathToFileURL(path.join(__dirname, '..', file)).href);
 
 test('a steady walk keeps the ground built around Fuchs', async () => {
-  const {createStreamer, NEAR, FAR} = await load('js/friends/world/streamer.js'), {THREE} = await load('js/forest/materials.js'), {TILE} = await load('js/friends/world/tiles.js');
+  const {createStreamer, NEAR, FAR} = await load('js/friends/world/streamer.js'), {THREE} = await load('js/scene/materials.js'), {TILE} = await load('js/friends/world/tiles.js');
   const tiles = []; for (let i = -40; i < 40; i++) for (let j = -8; j < 8; j++) tiles.push([i, j]);
   const built = [];
   const world = {tiles: () => tiles, regions: [], landmarkSteps: () => [],

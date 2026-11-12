@@ -13,7 +13,7 @@
 
 | Contract | Implementation |
 | --- | --- |
-| Drawn pictures | Existing woodland sheets; SVG for geometry and tracing |
+| Picture roles | Drawn woodland subjects; model-rendered host/companions; SVG geometry and tracing |
 | Shared page | Waldbuch paper, host, Andika, five progress leaves |
 | Child access | Only the character on the current letter; parent-controlled journey limit |
 | Guidance | One optional rule explanation; no hints or next-task button |
@@ -27,7 +27,7 @@
 | Stable iteration ID | Content / configuration | Expected answer or solution |
 | --- | --- | --- |
 | `read-word/word-0` | Hase — Hase | "hare-sit" |
-| `read-word/word-1` | Biber — Biber | "friend-beaver" |
+| `read-word/word-1` | Biber — Biber | "beaver" |
 | `read-word/word-2` | Igel — Igel | "hedgehog" |
 | `read-word/word-3` | Feder — Feder | "forest-feather" |
 | `read-word/word-4` | Rose — Rose | "forest-rose" |
@@ -90,9 +90,9 @@ These definitions are the same finite data used by the game and review previews.
       "kind": "reading",
       "prompt": "Welches Bild passt zum Wort?",
       "text": "Biber",
-      "answer": "friend-beaver",
+      "answer": "beaver",
       "choices": [
-        "friend-beaver",
+        "beaver",
         "magnifier",
         "forest-berry"
       ]
@@ -484,7 +484,7 @@ These definitions are the same finite data used by the game and review previews.
       "choices": [
         "bell",
         "cake",
-        "friend-beaver"
+        "beaver"
       ]
     }
   },
@@ -558,7 +558,7 @@ These definitions are the same finite data used by the game and review previews.
       "answer": "rain",
       "choices": [
         "rain",
-        "friend-beaver",
+        "beaver",
         "forest-flower"
       ]
     }

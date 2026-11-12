@@ -1104,7 +1104,7 @@
       root.querySelector('.star-count').hidden=!!woodlandSession;
       root.querySelector('.btn-back').setAttribute('aria-label',woodlandSession?(woodlandOrigin==='forest-book'?'Zurück zu Waldspiele':'Zurück zum Wald'):'Zurück');
       woodlandContext.hidden=true;woodlandEnd.hidden=true;
-      learningStage = params.stage >= 1 && params.stage <= 3 ? params.stage : FK.learning.stage();
+      learningStage = params.stage >= 1 && params.stage <= 3 ? params.stage : 1;
       window.addEventListener('resize', onResize);
       window.addEventListener('orientationchange', onOrient);
       window.addEventListener('keydown', onKey, true);

@@ -1,6 +1,6 @@
 # Source records
 
-Current learning scope is in [Learning](LEARNING.md); the current game is specified by the [blueprint](../design/heart-tree/BLUEPRINT.md).
+Current learning scope is in [Learning](LEARNING.md); the current game is specified by the [blueprint](../design/PUZZLE-BLUEPRINT.md).
 
 The original research is retained as evidence of what was consulted and what was not accessed. It is not an active feature list or a current endorsement of every earlier proposal.
 

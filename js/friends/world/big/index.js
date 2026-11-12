@@ -2,7 +2,7 @@
    the middle. This module puts the pieces together: the terrain functions, the trees (one possible
    tree per 6 m cell, decided by the habitat), colliders, where Fuchs can walk, the path search, and
    the places and characters. Tiles and landmarks are built from it on demand (tiles.js, sites.js). */
-import {THREE} from '../../../forest/materials.js';
+import {THREE} from '../../../scene/materials.js';
 import {rng, tileSeed, sstep} from '../noise.js';
 import {TILE} from '../tiles.js';
 import {createTerrain} from './terrain.js';

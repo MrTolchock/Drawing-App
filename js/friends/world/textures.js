@@ -1,7 +1,7 @@
 /* Shared, procedurally drawn textures and the one material per surface kind (blueprint 6.1, 7A).
    Everything is drawn on canvases at start-up: no downloads, so the forest works offline.
    Materials are created once, shared by every tile and never disposed. */
-import {THREE} from '../../forest/materials.js';
+import {THREE} from '../../scene/materials.js';
 import {TAU, rng, hash, vnoise} from './noise.js';
 import {drawBigCells} from './big/atlas.js';
 

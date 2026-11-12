@@ -5,13 +5,13 @@
 <script type="module">
 /* Development sheet for sculpting the plush cast (never loaded by the game).
    Builds one look-dev character unbaked and shows it from several sides under the soft frontal light
-   of the painted friends sheet (assets/forest-friends/postcard-friends.webp), on the same sage green:
+   of the painted friends sheet (archive/legacy-game/assets/forest-friends/postcard-friends.webp), on the same sage green:
      tools/bake/sculpt.html?id=fox            front, three-quarter, side
      ...&views=0,.45,1.57,3.14&size=500       own turns (radians) and tile size
      ...&zoom=head                            close on the head
    Bake afterwards with node tools/bake-characters.mjs and check tests/characters-preview.html. */
 import * as THREE from '../../vendor/three/three.module.js';
-import {plush} from '../../design/visual-overhaul/lookdev/plush.js';
+import {plush} from '../../tools/characters/plush.js';
 const q = new URLSearchParams(location.search), id = q.get('id') || 'fox', size = +(q.get('size') || 480);
 const views = (q.get('views') || '0,.45,1.45').split(',').map(Number), zoom = q.get('zoom');
 const canvas = document.getElementById('c'), W = size * views.length, H = size;

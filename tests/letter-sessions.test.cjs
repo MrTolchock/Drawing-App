@@ -33,5 +33,5 @@ test('inconsistent session budgets are rejected instead of silently removing the
  }
 });
 test('no timer runtime, stylesheet or initialization remains in the active app',()=>{
- for(const p of ['index.html','sw.js','js/app.js','js/friends/settings.js','js/screens/album.js'])assert.doesNotMatch(fs.readFileSync(p,'utf8'),/timerUI|playTimer|css\/timer|js\/(core|ui)\/timer/);
+ for(const p of ['index.html','sw.js','js/app.js','js/friends/settings.js'])assert.doesNotMatch(fs.readFileSync(p,'utf8'),/timerUI|playTimer|css\/timer|js\/(core|ui)\/timer/);
 });

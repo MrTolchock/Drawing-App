@@ -1,0 +1,7 @@
+{
+  "character": {"source": "assets/forest-friends/character-portraits.webp", "treatment": "same-model-render", "ids": ["fox", "squirrel", "bird", "owl", "beaver", "mouse", "mailman", "hedgehog", "fish", "deer", "kingfisher", "frog", "badger", "fox-sleep"]},
+  "subject": {"directory": "assets/waldatelier", "treatment": "drawn", "forbiddenTokens": ["friend-squirrel", "friend-bluetit", "friend-owl", "friend-beaver", "friend-mouse", "friend-fox"]},
+  "utility": {"source": "js/ui/waldatelier-icons.js", "treatment": "sepia-svg", "minimumTouchTarget": 48},
+  "type": {"learning": "Andika", "body": "Andika", "heading": "Baloo 2"},
+  "puzzle": {"roundLength": 5, "minimumPool": 25, "correctDelayMs": 900, "celebrationMs": 2200}
+}

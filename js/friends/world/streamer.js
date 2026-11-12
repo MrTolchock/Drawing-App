@@ -3,7 +3,7 @@
    the far ring within 40 tiles) as Fuchs moves. Building is time-sliced, tiles ahead of Fuchs are built
    first, freed tiles dispose their geometry and the last 8 freed tiles are kept for quick returns.
    Materials and textures are shared and never disposed. Region landmarks load with their region. */
-import {THREE} from '../../forest/materials.js';
+import {THREE} from '../../scene/materials.js';
 import {templates, TILE} from './tiles.js';
 
 export const NEAR = 40, FAR = 64, SLACK = 2;

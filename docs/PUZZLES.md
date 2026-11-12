@@ -8,7 +8,7 @@ The active Waldfreunde catalogue contains **34 puzzles and 1,048 finite iteratio
 
 ## One shared flow
 
-The existing Waldbuch page, master-cast portrait, Andika scored text, wooden answer cards and five-leaf progress row are shared. Pictures come from the existing drawn woodland library; geometry and handwriting use drawn paths. Every enabled puzzle button clicks, with separate correct/retry sounds and the existing mute preference. One manual **Spiel erklären** button explains the rule without reading an answer. There are no hints, demonstration controls, question-mark help, next-task buttons or question deadlines. Tracing retains numbered starts and directional guides, without an automatic demonstration.
+The existing Waldbuch page, model-rendered identity portrait, Andika scored text, wooden answer cards and five-leaf progress row are shared. Pictures come from the existing drawn woodland library; geometry and handwriting use drawn paths. Every enabled puzzle button clicks, with separate correct/retry sounds and the existing mute preference. One manual **Spiel erklären** button explains the rule without reading an answer. There are no hints, demonstration controls, question-mark help, next-task buttons or question deadlines. Tracing retains numbered starts and directional guides, without an automatic demonstration.
 
 A round selects five distinct iterations, preferring items outside the previous completed round. Selected questions, answer order and partial board work are saved exactly. Correct answers remain visible for 900 ms before automatically advancing. Mistakes leave the board editable. The fifth answer leads to the existing 2.2-second friend celebration with painted leaves and flowers; reduced motion keeps a static wreath. Necessary reset/reinspection controls remain available.
 
@@ -16,12 +16,12 @@ The parent-only gallery/review workbench and forest invitations use the same cat
 
 ## Learning boundaries
 
-The catalogue references the Zürich Zyklus-1 [curriculum matrix](../design/forest-friends/curriculum-matrix.md). These are practice mappings, not claims of full competence attainment. Quantities require numeral familiarity; written questions require previously taught letters and familiar vocabulary. Tracing practises letter/digit forms, not pencil grip or independent handwriting fluency. Picture ordering alone does not prove reading. Memory enrichment has no subject-attainment claim.
+The catalogue references the Zürich Zyklus-1 [curriculum matrix](CURRICULUM.md). These are practice mappings, not claims of full competence attainment. Quantities require numeral familiarity; written questions require previously taught letters and familiar vocabulary. Tracing practises letter/digit forms, not pencil grip or independent handwriting fluency. Picture ordering alone does not prove reading. Memory enrichment has no subject-attainment claim.
 
 Variety comes from different quantities, operand combinations, missing parts, paths, arrangements, word targets and complete pictured stories. Some reviewed tasks have a partly completed board. Reading sentences and colour sentences explicitly include one- and two-sentence tasks; their difficulty boundary is visible for review. Neither seeds nor shuffled answer order count as extra iterations.
 
 ## Continuity and verification
 
-Historical Heart Tree activities, drawings and save identifiers remain available. Original friend snapshots stay in FriendsState. The active catalogue now uses shared five-question snapshots; older seeded sessions are retained in `legacy` when a newly reviewed catalogue starts a fresh round. Adult review records have their own device-local key and export/import format. All new runtime files are precached for offline use.
+Historical Heart Tree code is archived; drawings and save identifiers are preserved. Original friend snapshots stay in FriendsState. The active catalogue now uses shared five-question snapshots; older seeded sessions are retained in `legacy` when a newly reviewed catalogue starts a fresh round. Adult review records have their own device-local key and export/import format. All new runtime files are precached for offline use.
 
 Model tests check the catalogue, solutions, real artwork, routes, distinct five-item selection, exact restoration, review prerequisites, import/export and invalidation. `tests/puzzle-review-browser.cjs` opens and solves all 1,048 iterations through the real renderers, checks all 34 phone/tablet routes, isolated previews, release blocking, persistence and offline review. `tests/puzzle-rounds-browser.cjs` checks full five-task sessions, celebration and return destinations. Automated tests never sign off editorial suitability for the owner.

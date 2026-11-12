@@ -1,5 +1,5 @@
 /* Bake page for tools/bake-characters.mjs (development only, never loaded by the game).
-   Builds each sculpted plush character with the look-dev builders (design/visual-overhaul/lookdev/plush.js),
+   Builds each sculpted plush character with the look-dev builders (tools/characters/plush.js),
    merges its parts into two skinned meshes per level of detail — "fur" (felt, cloth, rough props)
    and "gloss" (eyes, nose, beak: shiny, with the painted eye in a small atlas) — binds every part
    rigidly to its joint bone, simplifies with meshoptimizer to the blueprint budgets (section 6.2) and
@@ -8,7 +8,7 @@
 import * as THREE from 'three';
 import {GLTFExporter} from '/__bake/three/examples/jsm/exporters/GLTFExporter.js';
 import {MeshoptSimplifier} from '/__bake/meshoptimizer/meshopt_simplifier.js';
-import {plush, drawEye} from '/design/visual-overhaul/lookdev/plush.js';
+import {plush, drawEye} from '/tools/characters/plush.js';
 
 const JOINTS = new Set(['body', 'head', 'ear', 'arm', 'leg', 'tail', 'wing']);
 // game id → [look-dev builder, LOD0 triangles, LOD1 triangles, LOD0 detail]

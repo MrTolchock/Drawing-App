@@ -3,7 +3,7 @@
 (function () {
   'use strict';
   const FK=window.FK,R=FK.puzzleRounds,C=window.FriendsContent;
-  const checklist={art:'Alle Bilder gezeichnet, vollständig und eindeutig',page:'Waldbuch, Porträt, Schrift und fünf Fortschrittsblätter',guidance:'Eine Spielerklärung, keine Tipps oder Lösungshilfe',sound:'Klick, Rückmeldung und Stumm-Modus geprüft',flow:'Fünf Aufgaben, automatische Fortsetzung und Feier',input:'Bedienung, Wiederholen und Zurück auf Tablet und Telefon',learning:'Kompetenz, Lösung und Schwierigkeit geprüft'};
+  const checklist={art:'Lernbilder gezeichnet, Figuren als Modellporträts; vollständig und eindeutig',page:'Waldbuch, Porträt, Schrift und fünf Fortschrittsblätter',guidance:'Eine Spielerklärung, keine Tipps oder Lösungshilfe',sound:'Klick, Rückmeldung und Stumm-Modus geprüft',flow:'Fünf Aufgaben, automatische Fortsetzung und Feier',input:'Bedienung, Wiederholen und Zurück auf Tablet und Telefon',learning:'Kompetenz, Lösung und Schwierigkeit geprüft'};
   const meta={
     'friends-squirrel':['MA.1.A.2.a','Mengen zählen','0–20 Nüsse; Vierer- und Fünferstruktur'],
     'friends-bird':['D.2.A.1.b; D.1.A.1.b','Wörter lesen und Reime erkennen','25 konkrete Wortpaare; eingeführte Buchstaben'],

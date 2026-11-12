@@ -2,7 +2,7 @@
 
 The review workbench and complete puzzle gallery are in adult Settings. Children use the [letter-limited journey](LETTER-SESSIONS.md). Open **Einstellungen → Puzzle-Galerie öffnen** and answer the existing adult-gate question. You can also open `?screen=puzzle-review` or the old `?screen=hub` link; both require the adult gate.
 
-Nothing is preapproved. The active Waldfreunde library and forest visits only play puzzles whose entire current pool and puzzle checklist you have signed off. The historical Heart Tree game (`?screen=forest`) remains a separate compatibility experience; this review gate applies to the 34 active Waldfreunde puzzles, not its historical activities.
+Nothing is preapproved. The active Waldfreunde library and forest visits only play puzzles whose entire current pool and puzzle checklist you have signed off. The historical Heart Tree code is archived; its old URL opens the current den. This review gate covers all active Waldfreunde puzzles.
 
 ## Inspect and decide
 

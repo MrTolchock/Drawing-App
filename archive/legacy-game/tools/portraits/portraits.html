@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="de-CH"><head><meta charset="utf-8"><title>Neighbour portraits (development)</title>
+<style>html,body{margin:0;background:transparent}canvas{display:block}</style></head>
+<body><canvas id="c" width="1536" height="1536"></canvas>
+<script type="module">
+/* Renders one plush character large (1536 px, transparent) for a portrait cell of
+   assets/forest-friends/neighbours.webp (see tools/portraits/README.md): ?id=deer.
+   render.cjs paints fur over it, crops it to the character and scales it down into the 512 px cell,
+   so the framing and the brushed fur match the painted friends. Lighting follows the painted
+   sheet: warm, soft and frontal, a gentle fill from the right and a light rim from behind. */
+import {THREE} from '../../js/forest/materials.js';
+import {characters,castReady} from '../../js/friends/characters3d.js';
+await castReady;
+window.FK=window.FK||{reduced:true};
+const q=new URLSearchParams(location.search),id=q.get('id')||'deer',canvas=document.getElementById('c');
+// Three-quarter turn towards the viewer, as in postcard-friends.webp (per character: the fish and the
+// kingfisher are side-on models, so they turn further to show both eyes).
+const YAW={hedgehog:.4,fish:.42,deer:.36,kingfisher:.62,frog:.3,badger:.38},TILT={};
+const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true,preserveDrawingBuffer:true});renderer.setPixelRatio(1);renderer.setClearColor(0,0);
+renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=+(q.get('exposure')||1.12);
+const scene=new THREE.Scene();
+scene.add(new THREE.HemisphereLight('#fff4de','#9c7a52',1.35));
+const key=new THREE.DirectionalLight('#ffe6bd',2.3);key.position.set(-2.5,4,6);scene.add(key);
+const fill=new THREE.DirectionalLight('#fff3e2',.75);fill.position.set(4,1.5,4);scene.add(fill);
+const rim=new THREE.DirectionalLight('#fffaf0',1.2);rim.position.set(2.5,3,-4);scene.add(rim);
+const rig=characters[id](1);rig.group.rotation.set(TILT[id]||0,YAW[id]??.4,0);scene.add(rig.group);rig.update(.016,{reduced:true});
+// Generous frame around the body's origin; the crop happens in render.cjs.
+const camera=new THREE.OrthographicCamera(-1,1,1,-1,.1,50);camera.position.set(0,.5,10);camera.lookAt(0,.5,0);
+renderer.render(scene,camera);window.colour=canvas.toDataURL('image/png');
+// Second pass: a mask of the glossy parts (eyes, nose, beak, mouth), which render.cjs keeps crisp over the painted fur.
+const black=new THREE.MeshBasicMaterial({color:0x000000,toneMapped:false}),white=new THREE.MeshBasicMaterial({color:0xffffff,toneMapped:false});
+rig.group.traverse(o=>{if(o.isMesh)o.material=/plush-fur/.test(o.material.customProgramCacheKey?.()||'')?black:white;});
+renderer.toneMapping=THREE.NoToneMapping;renderer.render(scene,camera);window.mask=canvas.toDataURL('image/png');window.ready=true;
+</script></body></html>

@@ -36,7 +36,6 @@
     if (e.key === 'Escape') {
       if (FK.current() === 'friends') return;
       if (document.querySelector('.modal')) { FK.ui.closeModal(); return; }
-      if (FK.current() === 'forest') { FK.forestScreen?.closeOverlay(); return; }
       if (FK.current() !== 'hub') FK.back();
     }
   });
@@ -44,8 +43,7 @@
   FK.store.persist();
   const entry = new URLSearchParams(location.search).get('screen');
   let started = Promise.resolve();
-  if (entry === 'forest') FK.go(entry);
-  else started = import('./friends/game.js').catch(error => {
+  started = import('./friends/game.js').catch(error => {
     console.error(error);
     document.getElementById('screens').textContent = 'Der Wald konnte nicht geöffnet werden. Bitte lade die Seite neu.';
   });

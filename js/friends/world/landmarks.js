@@ -1,7 +1,7 @@
 /* One-off objects of a region (blueprint 6.1, 6.3), merged by material so the whole set costs a
    handful of draw calls: the home tree with its closed door, round window and lanterns, the arched
    bridge, the fallen-log bridge, the friends' props, and the brook's flowing water. */
-import {THREE} from '../../forest/materials.js';
+import {THREE} from '../../scene/materials.js';
 import {TAU, lerp, sstep, fbm, rng} from './noise.js';
 import {canvasTex} from './textures.js';
 import {trunkGeometry, rootGeometries, crownCards, instanced} from './tiles.js';

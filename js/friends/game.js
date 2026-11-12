@@ -1,5 +1,4 @@
 import {createWorld,places,exitPoints} from './world.js';
-import {picture,shapeNames,shapeScene} from './art.js';
 import {createAudio} from './audio.js';
 const FK=window.FK,h=FK.h,C=window.FriendsContent;
 let root,canvas,world,state,audio,overlay,hotspots,nav,statusBar,nearButton,caption,fader,doorScene,denEnvelope;
@@ -40,25 +39,15 @@ function showLetter(fromMailman){
   say('Ein Brief von '+C.hosts[id].name+'! Schau auf das Bild. Draussen zeigt dir der Pfeil den Weg.');
 }
 function letterPortrait(id){
-  const cells={squirrel:[0,0],bird:[1,0],owl:[2,0],beaver:[0,1],mouse:[1,1]},near={hedgehog:[0,0],fish:[1,0],deer:[2,0],kingfisher:[0,1],frog:[1,1],badger:[2,1]},[x,y]=cells[id]||near[id];
-  return h('span',{class:'ff-letter-friend ff-letter-illustration',role:'img','aria-label':C.hosts[id].name,'data-friend':id,style:{backgroundPosition:(x*50)+'% '+(y*100)+'%',...(near[id]?{backgroundImage:'url(assets/forest-friends/neighbours.webp)'}:{})}});
+ const pic=FK.friendsArt.portrait(id);pic.classList.add('ff-letter-friend');pic.setAttribute('role','img');pic.setAttribute('aria-label',C.hosts[id].name);pic.dataset.friend=id;return pic;
 }
-// Painted pictures where the reviewed art exists: friends from the forest painting and character sheet,
-// nouns from the original Waldatelier sheets. Action poses, nuts, shapes and controls stay drawn.
-const paintedFriends={fox:'fox-front',squirrel:'squirrel',bird:'bird',owl:'owl',mouse:'mouse'};
-const paintedWords={house:'neighbour-houses',stone:'forest-stone',branch:'forest-branch',tree:'tree',book:'book',mouse:'mouse',bird:'bird',owl:'owl',fox:'fox',apple:'apple',leaf:'leaf',feathers:'feather',berries:'blueberries',pencils:'pencil',bed:'bed',bag:'picnic',gallery:'pictures',beaver:'beaver',hat:'hat',rose:'rose',nose:'nose',fish:'fish',ball:'ball',boat:'boat',cow:'cow',hare:'rabbit',tin:'tin',bus:'bus',star:'star',whale:'whale'};
+// Character identity, utility controls and drawn subjects have separate sources.
 function art(name,cls=''){
-  if(FK.puzzles.actions.includes(name))return h('span',{class:'ff-picture ff-painted-picture '+cls},FK.visual.art(name));
-  if(['fox','squirrel','bird','owl','beaver','mouse'].includes(name))return h('span',{class:'ff-picture ff-painted-picture '+cls},FK.friendsArt.portrait(name));
-  if(name.startsWith('friend-'))return h('span',{class:'ff-picture ff-painted-picture '+cls},FK.friendsArt.portrait(name.slice(7)));
-  if(['map','letter','book','gear'].includes(name))return h('span',{class:'ff-picture '+cls},FK.friendsArt.icon(name));
-  if(name==='mailman')return h('span',{class:'ff-picture ff-mailman-picture'},FK.friendsArt.portrait('mailman'),h('i',{html:envelopeSVG}));
-  if(name==='nut'||name==='nuts'){const s=h('span',{class:'ff-picture ff-painted-picture '+cls});s.append(FK.visual.art('forest-nut'));return s;}
-  const oldWord={table:'Tisch',leg:'Bein'}[name];
-  if(oldWord)return h('span',{class:'ff-picture '+cls},FK.play.wordDrawing(oldWord));
-  if(paintedFriends[name]&&(!['mouse','bird'].includes(name)||cls.includes('portrait')||cls.includes('letter-friend')))return h('span',{class:'ff-picture ff-painted-picture '+cls},h('img',{src:'assets/forest-friends/'+paintedFriends[name]+'.webp',alt:'',draggable:'false'}));
-  if(paintedWords[name]&&FK.visual?.has(paintedWords[name])){const s=h('span',{class:'ff-picture ff-painted-picture '+cls});s.append(FK.visual.art(paintedWords[name]));return s;}
-  return h('span',{class:'ff-picture '+cls,html:picture(name)});
+ const id=name.startsWith('friend-')?name.slice(7):name;
+ if(C.hosts[id]||['fox','mailman'].includes(id))return h('span',{class:'ff-picture '+cls},FK.friendsArt.portrait(id));
+ const control={pencils:'pencil',gallery:'gallery',door:'home',bag:'book',skip:'next'}[name]||name;
+ if(FK.icons.has(control))return h('span',{class:'ff-picture '+cls},FK.icons.element(control));
+ return h('span',{class:'ff-picture ff-painted-picture '+cls},FK.visual.art(name));
 }
 function button(name,pic,fn,cls=''){return h('button',{type:'button',class:'ff-button '+cls,'aria-label':name,title:name,onclick:()=>{audio?.unlock();fn();}},art(pic));}
 function say(text){caption.textContent=text;caption.hidden=panel!=='puzzle';}
@@ -114,7 +103,7 @@ function map(){
     if(id==='mailman')continue;
     const b=button(p.name,p.picture,()=>{if(area!=='forest')go('forest');else close();world.route(id);});
     b.replaceChildren(FK.friendsArt.portrait(id==='home'?'fox':id));b.dataset.place=id;
-    b.classList.toggle('ff-map-invited',mail.phase==='to-friend'&&mail.host===id||mail.phase==='return-home'&&id==='home');
+    const invited=mail.phase==='to-friend'&&mail.host===id||mail.phase==='return-home'&&id==='home';b.classList.toggle('ff-map-invited',invited);if(invited)b.append(h('span',{class:'ff-map-invitation'},FK.icons.element('letter')));
     const [x,y]=mapPins[id];b.style.left=(x*100)+'%';b.style.top=(y*100)+'%';board.append(b);
   }
   // On a phone the map is wider than the screen (eleven pins need room) and scrolls sideways, starting at the den.
@@ -129,53 +118,6 @@ function meet(id){
   const game=FK.friendsLibrary.pick(id);if(!game){FK.ui.toast('Dieses Puzzle wartet noch auf die Freigabe von Erwachsenen.');return;}
   if(panel)close();world.pause(true);FK.friendsLibrary.visit(game);
 }
-function taskScene(t,filled=false){
-  const scene=h('div',{class:'ff-task-scene'});
-  if(t.kind==='count'){scene.classList.add('ff-count');for(let i=0;i<t.count;i++)scene.append(art('nut'));if(!t.count)scene.append(h('div',{class:'ff-empty-basket',html:'<svg viewBox="0 0 240 150" aria-label="Leerer Korb" role="img"><path d="M32 45 Q120 2 208 45 L187 129 Q120 149 53 129 Z" fill="#dfbf87" stroke="#866541" stroke-width="5"/><ellipse cx="120" cy="45" rx="88" ry="27" fill="#f8eed6" stroke="#866541" stroke-width="5"/></svg>'}));}
-  else if(t.kind==='shape')scene.innerHTML=shapeScene(t,filled);
-  else{scene.append(h('div',{class:'ff-target',text:t.target}));if(t.kind==='rhyme')scene.append(art(t.targetPicture));}
-  return scene;
-}
-function choice(t,value,isExample=false){const isWord=t.kind==='rhyme';const pic=t.kind==='count'?null:isWord?C.words[value]:value;const b=button(t.kind==='count'?value:isWord?value:t.kind==='shape'?shapeNames[value]:'Bild '+(t.choices.indexOf(value)+1),pic||'check',()=>isExample?exampleChoice(b,t,value):answer(value),'ff-answer');b.dataset.answer=value;
-  if(t.kind==='count')b.replaceChildren(h('span',{class:'ff-numeral',text:value}));
-  if(isWord)b.append(h('span',{class:'ff-word',text:value}));
-  return b;
-}
-function puzzle(){
-  const r=state.get().rounds[host];if(!r)return meet(host);if(r.index===5)return reward();
-  open('puzzle');example=false;const t=r.tasks[r.index],card=shell(host,close);card.classList.add('ff-illustrated-round');card.dataset.host=host;card.dataset.kind=t.kind;card.append(h('h2',{class:'ff-round-title',text:{count:'Nüsse zählen',word:'Wörter und Bilder',rhyme:'Reimpaare lesen',sentence:'Lies und zeig',shape:'Welche Form fehlt?'}[t.kind]}));
-  const tools=h('div',{class:'ff-task-tools'},button('Spiel erklären','speaker',()=>{state.help(host,'instruction');FK.forestVoice.explain(C.hosts[host].instruction);}),button('Beispiel ansehen','demo',showExample),button('Tipp','help',hint));
-  if(state.development)tools.append(button('Aufgabe überspringen (Entwicklung)','skip',()=>answer(t.answer,true)));
-  const progress=h('div',{class:'ff-progress','aria-label':r.index+' von 5 Aufgaben gelöst'},Array.from({length:5},(_,i)=>h('span',{class:i<r.index?'done':''},i<r.index?art('check'):'')));
-  card.append(progress,tools,taskScene(t,r.feedback==='correct'));
-  const choices=h('div',{class:'ff-choices'},t.choices.map(value=>choice(t,value)));card.append(choices,h('div',{class:'ff-feedback','aria-live':'polite'}));
-  if(r.feedback)showFeedback(r.feedback==='correct',r.selection);
-  else say(C.hosts[host].instruction);
-}
-function answer(value,skip=false){if(example)return;tick();if(!state.answer(host,value,activeMs,skip)){saveStatus();return;}activeMs=0;const r=state.get().rounds[host];if(r.index===5){reward();return;}showFeedback(r.feedback==='correct',value);if(r.feedback==='correct')FK.waldbuch?.celebrate(overlay.querySelector('.ff-answer.chosen'));}
-function showFeedback(correct,value){
-  const r=state.get().rounds[host],t=r.tasks[r.index];for(const b of overlay.querySelectorAll('.ff-answer')){b.classList.toggle('chosen',b.dataset.answer===String(value));b.classList.toggle('ff-retry',!correct&&b.dataset.answer===String(value));b.disabled=correct;}
-  const feedback=overlay.querySelector('.ff-feedback');feedback.replaceChildren(art(correct?'check':'undo'));feedback.dataset.correct=String(correct);
-  say(correct?(t.kind==='shape'?('Das '+shapeNames[t.answer]+' passt.'):'Das passt. Danke!'):'Schau noch einmal. Du kannst es ändern.');
-  if(correct){const scene=overlay.querySelector('.ff-task-scene');if(t.kind==='shape')scene.innerHTML=shapeScene(t,true);scheduleAdvance();}
-}
-function scheduleAdvance(){clearTimeout(feedbackTimer);feedbackTimer=setTimeout(()=>{if(document.hidden||panel!=='puzzle'||example)return scheduleAdvance();if(state.advance(host)){activeMs=0;puzzle();}},1400);}
-function hint(){const r=state.get().rounds[host],t=r.tasks[r.index];if(!state.help(host,'hint'))return;
-  if(t.kind==='count'){overlay.querySelector('.ff-task-scene').classList.add('ff-frames');say('Zähle jede Nuss einmal. In jeder vollen Reihe liegen fünf Nüsse.');}
-  else if(t.kind==='shape'){overlay.querySelector('.ff-task-scene').classList.add('ff-trace');say('Schau auf den Rand der Lücke. Welche Form hat den gleichen Rand?');}
-  else{overlay.querySelector('.ff-target').classList.add('ff-letter-help');say('Nimm dir Zeit. Schau jeden Buchstaben an. Du kannst dir das Beispiel ansehen.');}
-}
-function showExample(){
-  const r=state.get().rounds[host];if(!r||r.index===5)return;tick();example=true;state.help(host,'example');clearTimeout(feedbackTimer);const t=C.examples[host];overlay.replaceChildren();const card=shell('demo',()=>{state.seenExample(host);example=false;puzzle();});card.classList.add('ff-illustrated-round');card.dataset.host=host;
-  card.append(h('div',{class:'ff-example-banner',html:picture('demo')}),taskScene(t),h('div',{class:'ff-choices'},t.choices.map(v=>choice(t,v,true))),button('Spiel erklären','speaker',()=>FK.forestVoice.explain(t.explanation)));
-  say(t.explanation+' Mit dem Pfeil geht es zur Aufgabe.');const correct=card.querySelector(`[data-answer="${t.answer}"]`);correct.classList.add('ff-demonstrated');
-}
-function exampleChoice(b,t,value){b.classList.toggle('ff-retry',value!==t.answer);if(value===t.answer){b.classList.add('chosen');say(t.explanation);}else say('Schau noch einmal auf das Beispiel.');}
-function reward(){
-  const completedHost=host;
-  if(!state.acknowledge(completedHost)){saveStatus();open('completion');const card=shell(completedHost);card.append(button('Weiter zum Briefträger','letter',reward));return;}
-  FK.friendsPuzzleCompleted(completedHost);
-}
 function sequence(item,finish=false){
   finalSleep=finish;returnArea=area;
   close();open('animation');root.dataset.area='den';world.setArea('den');world.sequence(item,{hold:finish});overlay.classList.add('ff-animation-overlay');
@@ -185,28 +127,11 @@ function sequence(item,finish=false){
 function showSessionEnd(){
   open('session-end');overlay.classList.remove('ff-animation-overlay');overlay.classList.add('ff-session-end-overlay');
   const count=state.mail().session.completed;
-  overlay.append(h('section',{class:'ff-card ff-session-end',role:'status'},FK.visual.art('fox-sleep'),h('h2',{text:'Gute Nacht, Fuchs!'}),h('p',{text:count+' '+(count===1?'Brief geschafft.':'Briefe geschafft.')+' Deine Briefreise ist zu Ende.'}),button('Einstellungen für Erwachsene','gear',()=>FK.ui.parentGate(settings))));
+  overlay.append(h('section',{class:'ff-card ff-session-end',role:'status'},FK.friendsArt.portrait('fox-sleep'),h('h2',{text:'Gute Nacht, Fuchs!'}),h('p',{text:count+' '+(count===1?'Brief geschafft.':'Briefe geschafft.')+' Deine Briefreise ist zu Ende.'}),button('Einstellungen für Erwachsene','gear',()=>FK.ui.parentGate(settings))));
 }
 function endSequence(skipped=false){
   if(finalSleep){if(state.mail().phase==='sleeping'&&!state.finishLetterSession()){saveStatus();return;}showSessionEnd();return;}
   world.skip();overlay.classList.remove('ff-animation-overlay');if(state.get().animation&&!state.finishAnimation(skipped)){saveStatus();return;}go(returnArea);
-}
-const basic=['#4b3b2d','#c87550','#e2b65d','#73955b','#6d9faf'];
-function drawing(){
-  open('drawing');const s=state.get(),card=shell('pencils');card.classList.add('ff-drawing-card');
-  const tools=h('div',{class:'ff-drawing-tools'});for(const page of ['free',...(s.unlocks.leaf?['leaf']:[])]){const b=button(page==='free'?'Freies Blatt':'Blatt ausmalen',page==='free'?'pencils':'leaf',()=>{if(pendingDrawing&&!state.draw(pendingDrawing.page,pendingDrawing.strokes)){saveStatus();return;}pendingDrawing=null;if(state.selectPage(page))drawing();});b.classList.toggle('chosen',page===s.selectedPage);tools.append(b);}
-  let strokes=pendingDrawing?.page===s.selectedPage?pendingDrawing.strokes:s.drawings[s.selectedPage],colour=basic[0],current=null;
-  const cv=h('canvas',{class:'ff-paper',width:800,height:600,'aria-label':'Zeichenpapier. Mit Finger, Stift oder Maus malen.'});
-  const ctx=cv.getContext('2d');
-  function repaint(){ctx.fillStyle='#fffaf0';ctx.fillRect(0,0,800,600);if(s.selectedPage==='leaf'){ctx.strokeStyle='#7d7858';ctx.lineWidth=4;ctx.beginPath();ctx.moveTo(210,500);ctx.bezierCurveTo(100,200,380,50,600,70);ctx.bezierCurveTo(740,370,410,530,210,500);ctx.stroke();ctx.beginPath();ctx.moveTo(190,535);ctx.lineTo(580,90);ctx.moveTo(310,400);ctx.lineTo(290,250);ctx.moveTo(400,300);ctx.lineTo(565,290);ctx.stroke();}for(const stroke of [...strokes,...(current?[current]:[])]){ctx.strokeStyle=stroke.colour;ctx.lineWidth=7;ctx.lineCap=ctx.lineJoin='round';ctx.beginPath();stroke.points.forEach(([x,y],i)=>i?ctx.lineTo(x*800,y*600):ctx.moveTo(x*800,y*600));if(stroke.points.length===1)ctx.lineTo(stroke.points[0][0]*800+.1,stroke.points[0][1]*600);ctx.stroke();}}
-  const colours=[...basic,...(s.unlocks.pencils?['#a07eaf','#d79cb1','#e9d8b0','#3a6265']:[])];
-  const palette=h('div',{class:'ff-palette','aria-label':'Stiftfarben'});for(const c of colours){const b=h('button',{type:'button','aria-label':'Stiftfarbe '+c,'aria-pressed':String(c===colour),style:{backgroundColor:c},onclick:()=>{colour=c;for(const el of palette.children)el.setAttribute('aria-pressed',String(el===b));}});palette.append(b);}
-  const point=e=>{const r=cv.getBoundingClientRect();return [FK.clamp((e.clientX-r.left)/r.width,0,1),FK.clamp((e.clientY-r.top)/r.height,0,1)];};
-  cv.onpointerdown=e=>{if(current||strokes.length>=2000)return;cv.setPointerCapture(e.pointerId);current={colour,points:[point(e)]};repaint();};
-  cv.onpointermove=e=>{if(!current)return;if(current.points.length<4000)current.points.push(point(e));repaint();};
-  const finish=()=>{if(!current)return;strokes=[...strokes,current];current=null;pendingDrawing={page:s.selectedPage,strokes};if(state.draw(s.selectedPage,strokes))pendingDrawing=null;saveStatus();repaint();};cv.onpointerup=finish;cv.onpointercancel=finish;
-  tools.append(button('Letzten Strich zurücknehmen','undo',()=>{strokes=strokes.slice(0,-1);pendingDrawing={page:s.selectedPage,strokes};if(state.draw(s.selectedPage,strokes))pendingDrawing=null;repaint();}));
-  card.append(tools,cv,palette);repaint();say('Wähle einen Stift und male auf das Papier. Dein Bild bleibt auf diesem Blatt.');
 }
 function settings(){FK.go('settings');}
 FK.screen('friends',{
@@ -246,5 +171,4 @@ FK.friendsStartSession=limit=>{
   if(!state.startLetterSession(limit)){saveStatus();return false;}
   finalSleep=false;world.skip();if(FK.current()!=='friends')FK.go('friends');go('den',true);return true;
 };
-FK.friendsSavedSheets=()=>{FK.go('friends');if(state.mail().phase!=='finished')drawing();};
 FK.go('friends');

@@ -13,7 +13,7 @@
 
 | Contract | Implementation |
 | --- | --- |
-| Drawn pictures | Existing woodland sheets; SVG for geometry and tracing |
+| Picture roles | Drawn woodland subjects; model-rendered host/companions; SVG geometry and tracing |
 | Shared page | Waldbuch paper, host, Andika, five progress leaves |
 | Child access | Only the character on the current letter; parent-controlled journey limit |
 | Guidance | One optional rule explanation; no hints or next-task button |
@@ -138,7 +138,7 @@ These definitions are the same finite data used by the game and review previews.
       "kind": "vowels",
       "prompt": "Welcher Buchstabe fehlt?",
       "word": "Biber",
-      "picture": "friend-beaver",
+      "picture": "beaver",
       "index": 1,
       "answer": "i",
       "choices": [
@@ -155,7 +155,7 @@ These definitions are the same finite data used by the game and review previews.
       "kind": "vowels",
       "prompt": "Welcher Buchstabe fehlt?",
       "word": "Biber",
-      "picture": "friend-beaver",
+      "picture": "beaver",
       "index": 3,
       "answer": "e",
       "choices": [

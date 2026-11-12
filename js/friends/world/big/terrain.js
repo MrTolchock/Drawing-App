@@ -2,7 +2,7 @@
    height with hills, the Rock and its cliff, the swamp basin and the world's rim; streams that
    run downhill and carve their beds; still pools; biomes; trails; crossings; ground colour.
    Nothing here builds meshes, so tiles can be built and rebuilt in any order and always agree. */
-import {THREE} from '../../../forest/materials.js';
+import {THREE} from '../../../scene/materials.js';
 import {TAU, clamp, lerp, sstep, fbm, sampleIndex} from '../noise.js';
 import * as L from './layout.js';
 

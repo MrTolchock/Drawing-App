@@ -1,6 +1,7 @@
 /* Shared, quietly drawn sepia utility icons. Existing symbol IDs stay stable. */
 (function () {
   'use strict';
+  const FK=window.FK;
   const icons = {
     brush:'<path d="M19 25 36 5c3-3 7 0 4 3L25 31" fill="#d6b27b"/><path d="M24 27c-12-6-7 14-18 13 14 8 23-4 18-13Z" fill="#8c9c64"/>',
     bucket:'<path d="M10 17C9 3 35 3 35 17M8 18h30l-4 23H12Z" fill="#ead9b7"/><ellipse cx="23" cy="18" rx="15" ry="4" fill="#8fa57a"/><path d="M40 23c-7 9-5 15-1 15s7-5 1-15Z" fill="#8fa57a"/>',
@@ -35,8 +36,18 @@
     lock:'<path d="M15 22v-9a9 9 0 0 1 18 0v9"/><rect x="9" y="22" width="30" height="22" rx="4" fill="#e4d1a5"/><path d="M24 30v7"/>',
     gear:'<path d="m20 5-1 6-5 3-6-2-4 7 5 4v5l-4 4 4 7 6-2 5 3 1 5h8l1-6 5-3 6 2 4-7-5-4v-5l4-4-4-7-6 2-5-3-1-5Z" fill="#ece2ca"/><circle cx="24" cy="25" r="7" fill="#fff9eb"/>',
   };
-  Object.keys(icons).forEach(id => {
-    const symbol = document.getElementById('i-' + id);
-    if (symbol) symbol.innerHTML = '<g fill="none" stroke="#75593c" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">' + icons[id] + '</g>';
+  icons.map='<path d="m4 10 13-4 14 4 13-4v32l-13 4-14-4-13 4Zm13-4v32m14-28v32" fill="#e2e9cd"/><path d="m8 30 6-10 10 5 12-10" stroke-dasharray="2 4"/>';
+  icons.letter='<rect x="4" y="10" width="40" height="30" rx="4" fill="#fff7e5"/><path d="m5 12 19 15 19-15M5 39l13-15m25 15L30 24"/>';
+  icons.muted='<path d="M6 18h9L26 8v32L15 30H6Z" fill="#ead49c"/><path d="m33 17 11 14m0-14L33 31"/>';
+  icons.speaker=icons.sound;icons.arrow=icons.next;icons.play='<path d="m15 8 25 16-25 16Z" fill="#bdceab"/>';
+  const defs=document.getElementById('utility-icons');
+  Object.entries(icons).forEach(([id,paths])=>{
+    const symbol=document.createElementNS('http://www.w3.org/2000/svg','symbol');
+    symbol.id='i-'+id;symbol.setAttribute('viewBox','0 0 48 48');
+    symbol.innerHTML='<g fill="none" stroke="#75593c" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">'+paths+'</g>';defs.append(symbol);
   });
+  FK.icons={has:name=>!!icons[name],element(name){
+    if(!icons[name])throw new Error('Unknown utility icon: '+name);
+    return FK.h('span',{class:'forest-icon utility-icon','data-icon':name,'data-art-role':'utility','aria-hidden':'true',html:FK.icon(name)});
+  }};
 })();

@@ -41,25 +41,15 @@
 
   FK.go = (name, params, opts) => {
     opts = opts || {};
-    if (name === 'hub') name = 'forest-book';
-    if (name === 'parents' && screens.settings) name = 'settings';
-    if (!screens[name]) throw new Error('unknown screen ' + name);
+    if(['hub','forest-book'].includes(name)){FK.puzzleReview.open();return;}
+    if(name==='forest')name='friends';
+    if(name==='parents')name='settings';
+    if(!screens[name]){name='friends';params={};}
     FK.ui.closeModal();
     const library=FK.friendsLibrary;
     if(library){
-      if(name==='friends'||params?.from==='friends')library.active=true;
-      else if(name==='forest')library.active=false;
-      if(name==='forest-book'&&library.active){FK.puzzleReview.open();return;}
-      if(library.active&&['learn','adventure','expedition','read','trace','dots'].includes(name))params={...params,stage:1,lvl:1,level:1};
-      if(library.active&&FK.puzzleRounds&&!params?.forest){
-        const returnTo=params?.returnTo||(current?.name==='forest-book'?'forest-book':'friends');
-        if(['learn','adventure','expedition','read'].includes(name)){
-          const reading={puzzle:'read-puzzle',wort:'read-word',ballone:'read-leaves',genau:'read-colours'};
-          const game=name==='read'?(reading[params?.game]||'read-puzzle'):params?.game==='rhyme'?'friends-bird':params?.game;
-          if(game){name='puzzle';params={...params,game,returnTo};}
-        }else if(name==='trace')params={...params,returnTo};
-        else if(name==='dots'){name='forest-book';params={};}
-      }
+      library.active=true;
+      if(name==='trace')params={...params,stage:1,lvl:1,level:1,returnTo:params?.returnTo||'friends'};
     }
     const prev = current;
     if (prev && screens[prev.name].def.leave) {
@@ -93,7 +83,7 @@
     const prev = stack.pop();
     if (prev) FK.go(prev.name, prev.params, { isBack: true });
     else if(FK.friendsLibrary?.active)FK.go('friends',{}, {isBack:true});
-    else FK.go(current?.name === 'forest-book' ? (FK.friendsLibrary?.active || current.params?.from === 'friends' ? 'friends' : 'forest') : 'forest-book', {}, { isBack: true });
+    else FK.go('friends',{}, {isBack:true});
   };
   FK.current = () => (current ? current.name : null);
   FK.screenExists = (name) => !!screens[name];
@@ -286,25 +276,8 @@
   /* ---------- mascot «Tupfi» ---------- */
   function mascot(o) {
     o = o || {};
-    if (FK.visual) {
-      const fox = h('div', { class: 'mascot wa-mascot' + (o.cls ? ' ' + o.cls : '') + (o.mood ? ' mood-' + o.mood : ''), 'aria-hidden': 'true' });
-      fox.append(FK.visual.art('friend-fox')); return fox;
-    }
-    const cheer = o.mood === 'cheer';
-    const el = h('div', { class: 'mascot' + (o.mood ? ' mood-' + o.mood : '') + (o.cls ? ' ' + o.cls : ''), 'aria-hidden': 'true' });
-    el.innerHTML =
-      '<svg viewBox="0 0 120 120">' +
-      '<g class="m-body">' +
-      (cheer
-        ? '<path class="m-arm" d="M22 60 C12 50 10 38 14 28" /><path class="m-arm" d="M98 60 C108 50 110 38 106 28" />'
-        : '<path class="m-arm" d="M22 66 C10 60 6 50 9 44" /><path class="m-arm" d="M98 66 C110 60 114 50 111 44" />') +
-      '<path class="m-blob" d="M60 14 C71 14 76 23 85 24 C97 25 108 32 107 46 C106 55 99 57 101 67 C104 79 108 90 97 99 C88 107 77 101 68 107 C59 113 47 114 38 107 C29 100 17 104 12 92 C7 80 17 73 14 63 C12 51 5 42 12 31 C19 20 33 25 40 19 C47 13 50 14 60 14 Z"/>' +
-      '<g class="m-eyes"><ellipse cx="45" cy="54" rx="7" ry="9.5"/><ellipse cx="75" cy="54" rx="7" ry="9.5"/>' +
-      '<circle class="m-shine" cx="47.5" cy="50.5" r="2.8"/><circle class="m-shine" cx="77.5" cy="50.5" r="2.8"/></g>' +
-      '<ellipse class="m-cheek" cx="33" cy="70" rx="7" ry="4.5"/><ellipse class="m-cheek" cx="87" cy="70" rx="7" ry="4.5"/>' +
-      (cheer ? '<path class="m-mouth open" d="M44 72 C48 90 72 90 76 72 Z"/>' : '<path class="m-mouth" d="M46 73 C51 84 69 84 74 73"/>') +
-      '</g></svg>';
-    return el;
+    const fox=h('div',{class:'mascot wa-mascot'+(o.cls?' '+o.cls:''),'aria-hidden':'true'});
+    fox.append(FK.friendsArt.portrait('fox'));return fox;
   }
 
   /* ---------- modal ---------- */

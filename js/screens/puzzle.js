@@ -22,7 +22,7 @@
     return h('span',{class:'puzzle-shape',role:'img','aria-label':R.shapeNames[id]+(rotation?' gedreht':''),html:'<svg viewBox="0 0 100 100"'+(fitted?' preserveAspectRatio="none"':'')+'><g transform="rotate('+rotation+' 50 50)" fill="'+(outline?'none':'#d8b987')+'" stroke="#8d6b45" stroke-width="3" '+(outline?'stroke-dasharray="5 4"':'')+'>'+(fitted?pieces[id]:paths[id])+'</g></svg>'});
   }
   function progress(round) {return h('div',{class:'puzzle-progress','aria-label':round+' von 5 Aufgaben geschafft'},Array.from({length:5},(_,i)=>h('span',{class:i<round?'done':i===round?'current':'','aria-hidden':'true'},FK.visual.art('forest-leaf'))));}
-  function context(owner,round,instruction) {return h('div',{class:'puzzle-context'},FK.friendsLibrary.portrait(owner),h('span',{text:window.FriendsContent.hosts[owner].name+' spielt mit dir'}),h('b',{class:'puzzle-round',text:(round+1)+' / 5'}),button('Spiel erklären',()=>FK.forestVoice.explain(instruction),'puzzle-listen',FK.forestArt.icon('speaker')));}
+  function context(owner,round,instruction) {return h('div',{class:'puzzle-context'},FK.friendsLibrary.portrait(owner),h('span',{text:window.FriendsContent.hosts[owner].name+' spielt mit dir'}),h('b',{class:'puzzle-round',text:(round+1)+' / 5'}),button('Spiel erklären',()=>FK.forestVoice.explain(instruction),'puzzle-listen',FK.icons.element('speaker')));}
   function later(fn,delay=900) {
     clearTimeout(timer);
     timer=setTimeout(()=>{if(!alive)return;if(document.hidden||document.querySelector('.modal')){later(fn,250);return;}fn();},delay);
@@ -219,8 +219,9 @@
     scene.append(picture(q.picture),h('p',{class:'puzzle-read-text'},Array.from(q.word).map((c,i)=>h('span',{class:i===q.index?'puzzle-letter-gap':'',text:i===q.index?'_':FK.text.word(c)}))));q.choices.forEach(v=>option(v,FK.text.word(v),v));
   }
   function renderSurvey(q) {
+    const voters=['fox','mouse','bird','squirrel','beaver','owl','hedgehog','deer','kingfisher','frog','badger'];
     const chart=h('div',{class:'puzzle-survey'});q.fruit.forEach((id,i)=>{
-      chart.append(h('div',{class:'puzzle-survey-row'+(q.task==='count'&&i===q.target?' target':'')},picture(id),h('span',{class:'puzzle-voters'},Array.from({length:q.counts[i]},(_,j)=>FK.friendsLibrary.portrait(['fox','mouse','bird','squirrel','beaver'][j])))));
+      chart.append(h('div',{class:'puzzle-survey-row'+(q.task==='count'&&i===q.target?' target':'')},picture(id),h('span',{class:'puzzle-voters'},Array.from({length:q.counts[i]},(_,j)=>FK.friendsLibrary.portrait(voters[j%voters.length])))));
     });scene.append(h('p',{class:'puzzle-small',text:'Ein Tierbild = eine Stimme.'}),chart);q.choices.forEach(v=>option(v,typeof v==='number'?null:picture(v),typeof v==='number'?String(v):['Apfel','Birne','Beere'][q.fruit.indexOf(v)]));
   }
   function renderSyllables(q) {

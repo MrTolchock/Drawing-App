@@ -3,7 +3,7 @@
    stroke texture, gentle bump and a warm velvet rim) so the models read like the painted plush
    characters. Every rig shares one update(dt,state) with procedural idle, walk and interaction
    poses, and normalises its height to `height`. */
-import {THREE} from '../forest/materials.js';
+import {THREE} from '../scene/materials.js';
 
 const TAU=Math.PI*2,SPHERE=new THREE.SphereGeometry(1,32,22);
 const smooth=(a,b,x)=>THREE.MathUtils.smoothstep(x,a,b);
@@ -258,7 +258,7 @@ float plNoise(vec3 x){vec3 i=floor(x),f=fract(x);f=f*f*(3.-2.*f);
  return mix(mix(mix(plHash(i),plHash(i+vec3(1,0,0)),f.x),mix(plHash(i+vec3(0,1,0)),plHash(i+vec3(1,1,0)),f.x),f.y),
             mix(mix(plHash(i+vec3(0,0,1)),plHash(i+vec3(1,0,1)),f.x),mix(plHash(i+vec3(0,1,1)),plHash(i+vec3(1,1,1)),f.x),f.y),f.z);}`;
 // Plush fur: brushed strokes running down the body in colour and normal (in bind-pose space, so they never swim),
-// soft clumps (both fade out with distance instead of turning into grain), a warm velvet rim and a little self-light. Same shader as design/visual-overhaul/lookdev/plush.js.
+// soft clumps (both fade out with distance instead of turning into grain), a warm velvet rim and a little self-light. Same shader as tools/characters/plush.js.
 function plushFur(source,{fuzz=1,rim=.5}={}){const m=source.clone();m.vertexColors=true;m.roughness=.92;m.metalness=0;
   m.onBeforeCompile=sh=>{sh.vertexShader=sh.vertexShader.replace('#include <common>','#include <common>\nvarying vec3 vPl;').replace('#include <begin_vertex>','#include <begin_vertex>\nvPl=position;');
     sh.fragmentShader=sh.fragmentShader.replace('#include <common>','#include <common>\nvarying vec3 vPl;'+NOISE)

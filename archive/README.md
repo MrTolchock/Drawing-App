@@ -1,15 +1,13 @@
-# Project archive
+# Archive
 
-These files preserve earlier project thinking and implementation history. They are historical references, not the active design or feature inventory. Start with the [current blueprint](../design/heart-tree/BLUEPRINT.md) and [review](../design/heart-tree/REVIEW.md).
+Historical material is preserved here, outside the [current design](../design/README.md) and [current documentation](../docs/README.md). Nothing under this directory is loaded by the game or included in its offline cache.
 
-| Collection | Contents |
+| Folder | Contents |
 | --- | --- |
-| [Documentation before the baseline review](project-baseline/README.md) | The previous project README and release-by-release overview |
-| [Previous Heart Tree design pack](project-baseline/design/heart-tree/README.md) | Earlier blueprint, opening plans, guidance matrices, PDFs and painted-world screenshots |
-| [Earlier implementation and research notes](project-baseline/docs/) | Release notes, previous feature descriptions, research and hosting history |
-| [Earlier flat-game design](project-baseline/design/waldentdeckungen/README.md) | Puzzle design studies and verification records |
-| [Earlier illustration design](project-baseline/design/waldatelier/README.md) | Waldatelier art studies and implementation records |
-| [Previously collected design history](../design/archive/README.md) | Alternatives, storyboards, prototype captures and review sources |
-| [Move and preservation manifest](project-baseline/manifest.json) | Original paths, archive locations and source/destination hashes |
+| [Design history](design-history/README.md) | Retired Heart Tree, Forest friends drafts, competing visual blueprints, frozen references and superseded documentation |
+| [Retired game](legacy-game/README.md) | Heart Tree runtime/screens/styles/tests, older activity engines and previous portrait pipeline |
+| [Project baseline](project-baseline/README.md) | Earlier preserved project documentation |
+| [Retired timer](retired-timer/README.md) | Removed stopwatch/countdown implementation |
+| [Retired free-play tests](retired-free-play-tests/README.md) | Tests for the former unrestricted child gallery |
 
-No game code, saved games or production assets were removed. Previous documentation files and design artifacts were moved here; their prose was retained and local text links repaired where resolvable. The old README and artwork notes were also preserved before rewriting their active counterparts. Binary assets retain their original bytes.
+Archive descriptions can mention features no longer shipped. Follow the active design index for present requirements. Old save records remain on the device; moving source files does not delete player data.
