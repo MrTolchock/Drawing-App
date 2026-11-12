@@ -23,7 +23,7 @@ The catalogue lists all 34 [puzzles and competence assignments](PUZZLE-CATALOGUE
 
 The table opens six drawn colouring pages. Saved older drawings can still resume in their original painting engine; template IDs, localStorage and IndexedDB names remain stable. Archived story records are retained but their former screens are no longer shipped or downloaded. The new journey does not spend historical currencies.
 
-Review decisions are separate device-local records. Do not ship approvals, reset storage or silently carry an old approval to a changed revision. Export/import is revision checked. Tests use isolated fixtures; the owner still inspects every real iteration before children use it.
+Review decisions are shared in GitHub’s `puzzle-review-data` branch, with a separate local cache and offline outbox. Do not ship approvals, reset storage or silently carry an old approval to a changed revision. Only confirmed exact-revision GitHub approvals enter child play. Export/import is revision checked. See [review storage](REVIEW-STORAGE.md). Tests use isolated fixtures; the owner still inspects every real iteration before children use it.
 
 The world supports requested rule speech, quiet button/correct/retry sounds and parent sound preferences. There is no countdown or automatic answer narration. Updates preserve saved data and defer reload during active puzzles/drawing. See [Development](DEVELOPMENT.md) for validation and publishing.
 

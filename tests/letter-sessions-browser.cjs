@@ -1,10 +1,12 @@
 /* Parent budget, actual invitations/answers, character-only access, return home and durable game over. */
 const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'/opt/codex/cua_node/lib/node_modules/playwright'),assert=require('node:assert/strict'),fs=require('node:fs');
+const {installRemote,seedFromPage}=require('./review-repository-support.cjs');
 const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.env.FARBTUPF_SHOTS||'/tmp/letter-sessions';fs.mkdirSync(shots,{recursive:true});
 (async()=>{
  const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||'/usr/bin/chromium',headless:true,args:['--no-sandbox','--disable-dev-shm-usage','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
  try{
   const context=await browser.newContext({viewport:{width:1080,height:810},hasTouch:true,reducedMotion:'reduce'}),page=await context.newPage(),errors=[];page.setDefaultTimeout(60000);page.on('pageerror',e=>errors.push(e.message));
+  const reviewServer=await installRemote(context);
   await context.addInitScript(()=>localStorage.setItem('farbtupf.timer.v1','{"version":1,"mode":"countdown","running":true,"durationMs":1000,"elapsedMs":999}'));
   const ready=()=>page.waitForFunction(()=>!!window.FK?.friends&&!!FK.friendsForest);
   const active=()=>page.locator('.screen:not([hidden])');
@@ -31,7 +33,7 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
   await page.goto(base+'/?software=1');await ready();assert.equal(await page.evaluate(()=>FK.friendsView().area),'den');
   assert.equal(await page.locator('.ff-nav [aria-label="Waldspiele"],.ff-hotspots [data-place="games"],.play-timer-bar').count(),0);
   assert.equal(await page.evaluate(()=>!!FK.playTimer||!!FK.timerUI),false);
-  await page.evaluate(()=>{FK.settings.set('sound',false);for(const id of ['friends-squirrel','friends-bird','friends-mouse','trace']){for(const it of FK.puzzleCatalogue.iterations(id)){FK.puzzleReview.seen(id,it.id);FK.puzzleReview.decide(id,it.id,'approved');}FK.puzzleReview.decide(id,null,'approved');}});
+  await page.evaluate(()=>FK.settings.set('sound',false));await seedFromPage(page,reviewServer,['friends-squirrel','friends-bird','friends-mouse','trace']);
   // Even an approved puzzle cannot start before the letter or from the gallery/router.
   await page.evaluate(()=>FK.go('puzzle',{game:'friends-squirrel',from:'friends'}));assert.equal(await page.evaluate(()=>FK.current()),'friends');assert.equal((await mail()).phase,'den-letter');
   await settings();assert.equal(await active().getByRole('button',{name:/Stoppuhr|Countdown|Uhr starten/}).count(),0);
@@ -46,7 +48,7 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
   await page.evaluate(()=>FK.go('trace',{game:'trace',from:'friends'}));assert.equal(await page.evaluate(()=>FK.current()),'friends');assert.equal(await page.evaluate(()=>FK.puzzleRounds.pending('trace')),false);
   await visit('squirrel');await page.waitForFunction(()=>FK.current()==='puzzle');await solve('friends-squirrel');assert.equal((await mail()).session.completed,1);assert.equal((await mail()).phase,'to-mailman');assert.equal(await page.evaluate(()=>FK.friendsView().mailTarget),'mailman');
   await page.locator('.ff-hotspots [data-place="mailman"]').evaluate(b=>b.click());assert.equal((await mail()).host,'bird');assert.equal((await mail()).phase,'to-friend');await active().getByRole('button',{name:'Zum Freund gehen',exact:true}).click();
-  const saved=await mail();await page.reload();await ready();assert.deepEqual(await mail(),saved);assert.equal(await page.evaluate(()=>FK.friendsView().area),'den');await active().getByRole('button',{name:'Dein Brief',exact:true}).click();await active().getByRole('button',{name:'Zum Freund gehen',exact:true}).click();
+  const saved=await mail();await page.reload();await ready();assert.deepEqual(await mail(),saved);assert.equal(await page.evaluate(()=>FK.friendsView().area),'den');try{await active().getByRole('button',{name:'Dein Brief',exact:true}).click();}catch(error){console.log('RELOAD STATE',await page.evaluate(()=>({screen:FK.current(),mail:FK.friends.mail().phase,navHidden:document.querySelector('.ff-nav')?.hidden,overlayHidden:document.querySelector('.ff-overlay')?.hidden,overlay:document.querySelector('.ff-overlay')?.className,modal:!!document.querySelector('.modal'),updates:FK.updates?.get(),repository:FK.reviewRepository?.state})));await shot('reload-failure');throw error;}await active().getByRole('button',{name:'Zum Freund gehen',exact:true}).click();
   await visit('squirrel');assert.equal(await page.evaluate(()=>FK.current()),'friends');assert.equal((await mail()).session.completed,1);
   await visit('bird');await page.waitForFunction(()=>FK.current()==='puzzle');await solve('friends-bird');assert.equal((await mail()).session.completed,2);assert.equal((await mail()).phase,'return-home');assert.equal(await page.evaluate(()=>FK.friendsView().mailTarget),'home');assert.equal(await page.locator('.ff-hotspots [data-place="mailman"]').count(),0);await shot('return-home');console.log('PASS two invitations, ten answers and final home target');
   assert.equal(await page.evaluate(()=>FK.friends.openLetter()),false);await visit('mouse');assert.equal(await page.evaluate(()=>FK.current()),'friends');

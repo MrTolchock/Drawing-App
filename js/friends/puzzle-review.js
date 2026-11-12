@@ -10,14 +10,19 @@
   // Older backups may contain reviewer/checklist metadata; keep it readable without requiring it.
   function valid(d){return d&&d.version===1&&d.decisions&&typeof d.decisions==='object'&&!Array.isArray(d.decisions)&&d.seen&&typeof d.seen==='object'&&!Array.isArray(d.seen)&&Array.isArray(d.history)&&Object.values(d.seen).every(v=>typeof v==='string')&&[...Object.values(d.decisions),...d.history].every(v=>v&&typeof v.key==='string'&&typeof v.revision==='string'&&statuses.includes(v.status)&&typeof v.note==='string'&&v.note.length<=4000&&(v.reviewer===undefined||typeof v.reviewer==='string'&&v.reviewer.length<=120)&&typeof v.at==='string'&&Number.isFinite(Date.parse(v.at))&&(v.checks===undefined||Array.isArray(v.checks)&&v.checks.every(c=>typeof c==='string')));}
   try{const raw=localStorage.getItem(key);if(raw){const d=JSON.parse(raw);if(valid(d))data=d;else error='Die gespeicherte Prüfung ist ungültig. Bitte eine Sicherung importieren.';}}catch{error='Die Prüfung konnte nicht geladen werden. Bitte eine Sicherung importieren.';}
-  function persist(next){try{localStorage.setItem(key,JSON.stringify(next));data=next;error='';FK.emit?.('puzzle-review-change');return true;}catch{error='Prüfung konnte nicht gespeichert werden. Bitte Speicher freigeben und erneut versuchen.';return false;}}
+  function persist(next,fromRepository=false){try{
+    if(!fromRepository&&FK.reviewRepository)next=FK.reviewRepository.stage(next,data);
+    const changed=C.canonical(next.decisions)!==C.canonical(data.decisions);
+    localStorage.setItem(key,JSON.stringify(next));data=next;error='';FK.emit?.('puzzle-review-change',{source:fromRepository?'github':'local',changed});
+    if(!fromRepository)FK.reviewRepository?.schedule();return true;
+  }catch{error='Prüfung konnte nicht gespeichert werden. Bitte Speicher freigeben und erneut versuchen.';return false;}}
   function item(id,iteration){return iteration?C.iterations(id).find(i=>i.id===iteration):null;}
   function revision(id,iteration){const it=item(id,iteration);return iteration?(it?C.iterationRevision(id,it):null):C.puzzle(id)?C.puzzleRevision(id):null;}
   const recordKey=(id,iteration)=>iteration||'puzzle:'+id;
   function status(id,iteration){const k=recordKey(id,iteration),d=data.decisions[k],r=revision(id,iteration);return {status:d&&d.revision===r?d.status:'pending',stale:!!d&&d.revision!==r,decision:d?clone(d):null,seen:!!r&&data.seen[k]===r};}
   function seen(id,iteration){const r=revision(id,iteration);if(!r)return false;const next=clone(data);next.seen[recordKey(id,iteration)]=r;return persist(next);}
   function progress(id){const items=C.iterations(id),approved=items.filter(i=>status(id,i.id).status==='approved').length,improve=items.filter(i=>status(id,i.id).status==='improve').length;return {total:items.length,approved,improve,pending:items.length-approved-improve};}
-  function ready(id){const p=progress(id);return p.total>=25&&p.approved===p.total&&status(id).status==='approved';}
+  function ready(id){const p=progress(id);return p.total>=25&&p.approved===p.total&&status(id).status==='approved'&&(!FK.reviewRepository||FK.reviewRepository.confirmed(id));}
   function decide(id,iteration,value,note=''){
     const r=revision(id,iteration);if(!r||!statuses.includes(value)){error='Unbekannte Aufgabe oder Entscheidung.';return false;}
     note=String(note).trim().slice(0,4000);
@@ -28,7 +33,7 @@
     const next=clone(data),k=recordKey(id,iteration),old=next.decisions[k];if(old)next.history.push(old);
     next.decisions[k]={key:k,revision:r,status:value,note,at:new Date().toISOString()};return persist(next);
   }
-  function exportData(){return {...clone(data),exportedAt:new Date().toISOString(),catalogue:Object.fromEntries(FK.friendsLibrary.catalogue().map(g=>[g.id,C.puzzleRevision(g.id)]))};}
+  function exportData(){return {version:1,decisions:clone(data.decisions),seen:clone(data.seen),history:clone(data.history),exportedAt:new Date().toISOString(),catalogue:Object.fromEntries(FK.friendsLibrary.catalogue().map(g=>[g.id,C.puzzleRevision(g.id)]))};}
   function importData(raw){
     let d;try{d=typeof raw==='string'?JSON.parse(raw):clone(raw);}catch{error='Keine gültige JSON-Prüfdatei.';return false;}
     if(!valid(d)||Object.entries(d.decisions).some(([k,v])=>k!==v.key)){error='Ungültige Prüfdatei; die gespeicherte Prüfung bleibt erhalten.';return false;}
@@ -50,4 +55,14 @@
   function previewSession(id,iteration){if(!authorized)return null;const it=item(id,iteration);return it?{id,seed:0,round:0,solved:false,work:{},questions:[clone(it.question)],iterationIds:[it.id],review:true}:null;}
   window.addEventListener?.('storage',event=>{if(event.key!==key)return;try{const next=JSON.parse(event.newValue);if(valid(next)){data=next;error='';}else {data=empty();error='Prüfung wurde geändert. Bitte erneut prüfen.';}FK.emit?.('puzzle-review-change');}catch{data=empty();FK.emit?.('puzzle-review-change');}});
   FK.puzzleReview={key,status,seen,progress,ready,decide,exportData,importData,open,preview,previewSession,get authorized(){return authorized;},get error(){return error;}};
+  if(FK.ReviewRepository&&window.fetch&&window.document&&new URLSearchParams(location.search).get('dev')!=='1'){
+    let tokenStorage;try{tokenStorage=window.sessionStorage;}catch{/* A temporary connection still works. */}
+    FK.reviewRepository=FK.ReviewRepository.create({
+      vault:{read:()=>data,write:next=>valid(next)&&persist(next,true)},
+      catalogue:{games:()=>FK.friendsLibrary.catalogue(),iterations:C.iterations,puzzleRevision:C.puzzleRevision,iterationRevision:C.iterationRevision},
+      fetch:window.fetch.bind(window),tokenStorage,onChange:()=>FK.emit?.('review-repository-change')
+    });
+    window.addEventListener('online',()=>FK.reviewRepository.resume());
+    document.addEventListener('visibilitychange',()=>{if(!document.hidden)FK.reviewRepository.resume();});
+  }
 })();

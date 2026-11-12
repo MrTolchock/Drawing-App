@@ -1,6 +1,6 @@
 # Review every puzzle before children play
 
-Open **Einstellungen** through its existing adult calculation, then tap **Puzzle-Galerie öffnen**. The gallery opens directly, without another calculation. A direct review URL still asks once before opening. Reviews stay on this device and origin; nothing is preapproved.
+Open **Einstellungen** through its existing adult calculation, then tap **Puzzle-Galerie öffnen**. The gallery opens directly, without another calculation. A direct review URL still asks once before opening. Published reviews live on GitHub and restore automatically across browsers/installations. Nothing is preapproved.
 
 ## Inspect and decide
 
@@ -14,9 +14,11 @@ Only puzzles whose current iterations **and puzzle** are approved enter child pl
 
 ## Save, restore and revisit
 
+[Connect GitHub once per editing session](REVIEW-STORAGE.md) in Settings to save changes automatically. Other browsers and fresh installations read the shared file without a token. A local-only decision does not release a puzzle for children. Wait for **Auf GitHub gespeichert** before deleting local storage; offline changes remain in the outbox until uploaded.
+
 Use **Prüfung exportieren** regularly. **Prüfung importieren** restores revision-checked decisions and history; invalid files leave existing work intact. Older backups containing reviewer/checklist metadata remain readable, but those fields are neither displayed nor required. New decisions contain no reviewer/checklist fields.
 
-Decisions are stored in `farbtupf.puzzle-review.v1` (a separate development key with `?dev=1`). Another device, browser, branch preview or Home Screen app can have separate storage. There is no account or automatic sync; keep an exported backup.
+The shared file is [reviews.json on puzzle-review-data](https://github.com/MrTolchock/Drawing-App/blob/puzzle-review-data/reviews.json). The offline cache and outbox use `farbtupf.puzzle-review.v1`. The GitHub token is held separately in session storage and is never exported or committed. Development reviews with `?dev=1` stay local and do not publish.
 
 New iterations change puzzle sign-off; changed content, difficulty, instructions or shared rendering/interaction/audio/typography reopen the relevant revisions. Old decisions remain in history or marked stale. Adding content cannot inherit a previous approval. A deployment does not sign off anything.
 
@@ -24,6 +26,6 @@ New iterations change puzzle sign-off; changed content, difficulty, instructions
 
 Work on a branch and push checkpoints. Publish to main when the owner authorizes it. Follow the [visual style](../design/VISUAL-STYLE.md) and [puzzle blueprint](../design/PUZZLE-BLUEPRINT.md), reuse the real renderers and give new iterations stable IDs and explicit solutions/difficulty.
 
-Run `node tools/puzzle-catalogue.cjs` after runtime/content/art changes. Commit its generated catalogue and implementation fingerprint. Run the model, design, review and journey checks described in [Development](DEVELOPMENT.md); review fixtures live only in disposable test contexts. The review browser suite checks all 34 puzzle-level speech requests, one-click decisions, optional notes, backup compatibility, layout, revision gates and isolated previews.
+Run `node tools/puzzle-catalogue.cjs` after runtime/content/art changes. Commit its generated catalogue and implementation fingerprint. Run the model, design, review and journey checks described in [Development](DEVELOPMENT.md); review fixtures live only in disposable test contexts. The review browser suite checks all 34 puzzle-level speech requests, one-click decisions, optional notes, backup compatibility, layout, revision gates and isolated previews. `tests/review-sync-browser.cjs` covers real UI saves and restoration across independent browser storage, plus offline edits and conflict resolution. Tests intercept GitHub requests and never use a real token or publish fixture approvals.
 
 Preserve storage keys and historical snapshots. Bump the app/cache version for changed cached runtime files. No approval data ships with the app. The [catalogue](PUZZLE-CATALOGUE.md) lists every puzzle, competence and exact iteration definition; CI checks its revisions and generated pages.

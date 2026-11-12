@@ -32,7 +32,7 @@ Numeric bounds and reading prerequisites are explicit. Expanding variety must no
 4. Once every iteration is approved, press **Puzzle freigeben**. There is no checklist or required text, and no “approve all iterations” shortcut.
 5. Only fully approved puzzles enter child play. Flagging any iteration or the puzzle immediately removes its release eligibility.
 6. Additions, content/answer changes, difficulty changes and changes to shared presentation/interaction invalidate the relevant sign-offs automatically. Old decisions remain visible as history, never silently apply to new content.
-7. Decisions persist locally on this device/origin. Export/import a revision-checked review file to back up work, move it to another device, or attach it to GitHub. A branch or deployment does not itself approve content. Reviews are adult editorial decisions, not an account/authentication system.
+7. GitHub’s `puzzle-review-data` branch is the shared source of truth, keyed by stable ID and exact revision. Devices restore published decisions automatically and keep an offline cache/outbox. Only confirmed GitHub approvals release puzzles. Authenticate once per editing session in Settings; readers need no token. Conflicting edits require a choice. Export/import remains available for local drafts. A deployment does not approve anything. See [review storage](../docs/REVIEW-STORAGE.md).
 
 ## Maintaining the contract
 

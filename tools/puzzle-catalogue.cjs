@@ -5,7 +5,7 @@ const root=path.resolve(__dirname,'..');
 const runtime=[
  'index.html','js/friends/game.js','js/friends/state.js','js/friends/painted.js','js/friends/interface.js','js/core/util.js','js/core/sound.js','js/ui/ui.js','js/ui/gestures.js','js/ui/waldatelier-icons.js','js/ui/waldbuch.js','js/ui/waldatelier.js','js/core/speech.js',
  'js/learn/glyphs.js','js/friends/library.js','js/friends/puzzles.js','js/friends/puzzle-rounds.js',
- 'js/friends/puzzle-catalogue.js','js/friends/puzzle-review.js','js/screens/puzzle.js','js/screens/trace.js','js/screens/puzzle-review.js',
+ 'js/friends/puzzle-catalogue.js','js/friends/review-repository.js','js/ui/review-connection.js','js/friends/puzzle-review.js','js/screens/puzzle.js','js/screens/trace.js','js/screens/puzzle-review.js',
  ...fs.readdirSync(path.join(root,'css')).filter(n=>n.endsWith('.css')).map(n=>'css/'+n),
  ...['assets/waldatelier','fonts'].flatMap(dir=>fs.readdirSync(path.join(root,dir)).filter(n=>/\.(webp|woff2?)$/.test(n)).map(n=>dir+'/'+n)),
  ...['character-portraits.webp','puzzle-clearing.webp'].map(n=>'assets/forest-friends/'+n)
@@ -15,7 +15,7 @@ const implementation=digest.digest('hex');
 function setup(saved){
  const memory=new Map(saved||[]),settings=new Map(),FK={puzzleImplementation:implementation,shuffle:xs=>xs.slice().reverse(),settings:{get:k=>settings.get(k),set:(k,v)=>settings.set(k,v)}};
  const ctx=vm.createContext({window:{FK,FriendsContent:require('../js/friends/content.js')},URLSearchParams,location:{search:''},localStorage:{getItem:k=>memory.get(k)||null,setItem:(k,v)=>memory.set(k,v)},console});
- for(const f of ['js/learn/glyphs.js','js/learn/routes.js','js/friends/puzzles.js','js/friends/library.js','js/friends/puzzle-rounds.js','js/friends/puzzle-catalogue.js','js/friends/puzzle-review.js'])vm.runInContext(fs.readFileSync(path.join(root,f),'utf8'),ctx,{filename:f});
+ for(const f of ['js/learn/glyphs.js','js/learn/routes.js','js/friends/puzzles.js','js/friends/library.js','js/friends/puzzle-rounds.js','js/friends/puzzle-catalogue.js','js/friends/review-repository.js','js/ui/review-connection.js','js/friends/puzzle-review.js'])vm.runInContext(fs.readFileSync(path.join(root,f),'utf8'),ctx,{filename:f});
  return {FK,memory,ctx};
 }
 function outputs(){
@@ -38,7 +38,7 @@ function outputs(){
   page.push('','## Exact definitions','', 'These definitions are the same finite data used by the game and review previews. Answer order may be shuffled during play. Coordinates/cells are zero based. Construction parts are `[shape, x, y, width, height, rotation]`; holes identify the two parts to insert.','', '```json',JSON.stringify(pool,null,2),'```','');
   files['docs/puzzles/'+g.id+'.md']=page.join('\n');
  }
- lines.push('', 'Existing historical Heart Tree activities remain archived/compatible and are not additional active Waldfreunde puzzles. Original FriendsState task snapshots remain untouched; newly started active puzzles use the shared finite catalogue. Older seeded sessions are retained in the puzzle save’s `legacy` field when the new catalogue starts a fresh round.', '', 'Review decisions stay in `farbtupf.puzzle-review.v1` (separate developer key with `?dev=1`). Export/import backs up decisions and history. No approvals are shipped by default. See [review instructions](PUZZLE-REVIEW.md).', '');
+ lines.push('', 'Existing historical Heart Tree activities remain archived/compatible and are not additional active Waldfreunde puzzles. Original FriendsState task snapshots remain untouched; newly started active puzzles use the shared finite catalogue. Older seeded sessions are retained in the puzzle save’s `legacy` field when the new catalogue starts a fresh round.', '', 'Review decisions are shared through the repository’s `puzzle-review-data` branch, keyed by exact revision. Devices keep an offline cache and unsaved outbox in `farbtupf.puzzle-review.v1`; developer reviews with `?dev=1` stay local. Only confirmed GitHub approvals release puzzles. No approvals are shipped by default. See [review instructions](PUZZLE-REVIEW.md).', '');
  files['docs/PUZZLE-CATALOGUE.md']=lines.join('\n');return files;
 }
 function check(){return Object.entries(outputs()).filter(([f,v])=>!fs.existsSync(path.join(root,f))||fs.readFileSync(path.join(root,f),'utf8')!==v).map(([f])=>f);}

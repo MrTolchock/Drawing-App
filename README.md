@@ -6,7 +6,7 @@ A woodland learning game for first-grade practice in Zürich, in Swiss Standard 
 
 Only the friend on the current letter offers a puzzle. The 34 puzzles have 1,048 finite iterations, with a common page, sounds, feedback and celebration. Settings contains the adult-only gallery and review workbench: every iteration and each puzzle must be individually signed off for its current revision before child play. New content, difficulty and shared implementation changes require review again. Deployment never approves content.
 
-The den also offers colouring and saved pictures. There is no timer, shop or currency loop. Saves and review decisions stay on the device; review decisions can be exported/imported. The game works offline after a complete initial download.
+The den also offers colouring and saved pictures. There is no timer, shop or currency loop. Drawings and gameplay saves stay on the device. Editorial decisions are shared through [GitHub review storage](docs/REVIEW-STORAGE.md), with an offline cache and automatic recovery in other browsers. The game works offline after a complete initial download.
 
 ## Current documents
 

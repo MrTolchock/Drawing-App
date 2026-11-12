@@ -12,10 +12,11 @@
     const d=V.status(id,iteration),note=h('textarea',{'aria-label':'Prüfnotiz (optional)',maxlength:4000,rows:2,placeholder:'Optionale Notiz',text:d.decision?.note||''});
     const form=h('section',{class:'review-decision'});
     const feedback=message();
-    const decide=value=>{if(V.decide(id,iteration,value,note.value)){notice=value==='approved'?'Freigabe gespeichert.':'Entscheidung gespeichert.';refresh();}else feedback.textContent=V.error;};
+    const decide=value=>{if(V.decide(id,iteration,value,note.value)){notice=FK.reviewRepository?'Lokal gesichert. Der GitHub-Status zeigt die gemeinsame Speicherung.':value==='approved'?'Freigabe gespeichert.':'Entscheidung gespeichert.';refresh();}else feedback.textContent=V.error;};
     const approve=btn(iteration?'Iteration freigeben':'Puzzle freigeben',()=>decide('approved'));
     approve.disabled=iteration?!d.seen:V.progress(id).approved!==V.progress(id).total;
     form.append(h('div',{class:'review-actions'},approve,btn('Verbessern',()=>decide('improve')),btn('Wieder öffnen',()=>decide('pending'))),feedback);
+    form.append(FK.reviewConnection.statusLine());
     form.append(h('details',{open:!!d.decision?.note},h('summary',{text:'Notiz hinzufügen (optional)'}),h('label',{},'Prüfnotiz (optional)',note)));
     if(d.decision)form.append(h('small',{text:statusText(d)+' · '+new Date(d.decision.at).toLocaleString('de-CH')}));
     return form;
@@ -29,7 +30,7 @@
     file.addEventListener('change',async()=>{try{if(!file.files[0])return;if(file.files[0].size>5*1024*1024){notice='Die Prüfdatei ist zu gross.';}else if(V.importData(await file.files[0].text()))notice='Prüfung importiert. Geänderte Inhalte bleiben offen.';}catch{notice='Die Datei konnte nicht gelesen werden.';}draw();});
     const controls=h('div',{class:'review-controls'},btn('Alle Puzzles',()=>{selected=null;draw();}),btn('Prüfung exportieren',download),h('label',{},'Prüfung importieren',file),search);
     const total=games.reduce((a,g)=>a+C.iterations(g.id).length,0),ready=games.filter(g=>V.ready(g.id)).length;
-    body.replaceChildren(h('p',{class:'review-intro',text:ready+' / '+games.length+' Puzzles freigegeben · '+total+' einzelne Iterationen. Nur vollständig freigegebene Puzzles sind für Kinder spielbar. Vorschauen verändern keinen Spielstand. Prüfungen bleiben auf diesem Gerät; mit Export sichern.'}),controls,message());
+    body.replaceChildren(h('p',{class:'review-intro',text:ready+' / '+games.length+' Puzzles freigegeben · '+total+' einzelne Iterationen. Nur auf GitHub gespeicherte Freigaben sind für Kinder spielbar. Vorschauen verändern keinen Spielstand.'}),FK.reviewConnection.panel(),controls,message());
     if(!selected){
       const grid=h('div',{class:'review-grid'});
       for(const g of games){const p=C.puzzle(g.id),progress=V.progress(g.id);if(query&&!JSON.stringify(p).toLowerCase().includes(query.toLowerCase()))continue;
@@ -60,6 +61,7 @@
     root.querySelector('.review-preview')?.remove();
     const refresh=()=>attachPreview(root,id,iteration),p=C.puzzle(id),items=C.iterations(id),index=items.findIndex(i=>i.id===iteration);
     const toolbar=h('aside',{class:'review-preview','aria-label':'Erwachsenenvorschau'},h('b',{text:iteration?'Vorschau · '+items[index].label:'Vorschau · Fünfer-Runde (keine Einzelfreigaben)'}),h('small',{text:p.competence+' · '+p.difficulty}),btn('Zur Puzzle-Prüfung',()=>{selected=id;FK.go('puzzle-review');}));
+    toolbar.dataset.reviewGame=id;toolbar.dataset.reviewIteration=iteration||'';
     if(iteration){
       toolbar.append(h('code',{text:iteration}),h('div',{class:'review-actions'},btn('Vorherige Iteration',()=>V.preview(id,items[(index+items.length-1)%items.length].id)),btn('Nächste Iteration',()=>V.preview(id,items[(index+1)%items.length].id))),decisionForm(id,iteration,refresh));
       const solution=h('pre',{text:JSON.stringify(items[index].question,null,2)});toolbar.append(h('details',{},h('summary',{text:'Aufgabe und erwartete Lösung'}),solution));
@@ -67,6 +69,17 @@
     root.append(toolbar);
   }
   V.attachPreview=attachPreview;
+  let queuedRefresh=false;
+  FK.on('puzzle-review-change',event=>{
+    if(event?.source!=='github'||!event.changed||queuedRefresh)return;
+    queuedRefresh=true;requestAnimationFrame(()=>{
+      queuedRefresh=false;
+      // A remote update must not erase an optional note or search that is still being typed.
+      if(document.activeElement?.matches('input,textarea'))return;
+      if(FK.current()==='puzzle-review'&&V.authorized)draw();
+      else {const toolbar=document.querySelector('.screen:not([hidden]) .review-preview');if(toolbar)attachPreview(toolbar.closest('.screen'),toolbar.dataset.reviewGame,toolbar.dataset.reviewIteration||null);}
+    });
+  });
   FK.screen('puzzle-review',{
     build(root){root.classList.add('ff-settings-screen');body=h('div',{class:'review-body scroll'});root.append(FK.ui.topbar({title:'Puzzle-Prüfung',stars:false,onBack:()=>FK.go('settings')}),body);},
     enter(){if(!V.authorized){V.open();return;}draw();},

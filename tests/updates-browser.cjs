@@ -1,6 +1,7 @@
 /* Real old-to-new service workers: recovery, foreground checks, safe reload and saved work. */
 const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'/opt/codex/cua_node/lib/node_modules/playwright');
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),http=require('node:http'),os=require('node:os'),{execFileSync}=require('node:child_process');
+const {installRemote,seedFromPage}=require('./review-repository-support.cjs');
 const root=path.resolve(__dirname,'..');
 const legacyRef=process.env.FARBTUPF_LEGACY_REF||'95b27dc',legacyVersion=process.env.FARBTUPF_LEGACY_VERSION||'9.0.2';
 const legacySW=execFileSync('git',['show',legacyRef+':sw.js'],{cwd:root,encoding:'utf8'});
@@ -24,6 +25,7 @@ const server=http.createServer((req,res)=>{
  try{
  const context=await browser.newContext({viewport:{width:390,height:844},hasTouch:true,reducedMotion:'reduce'}),page=await context.newPage(),errors=[];
  page.on('pageerror',e=>errors.push(e.message));page.setDefaultTimeout(60000);
+ const reviewServer=await installRemote(context);
  let navigations=0;page.on('framenavigated',f=>{if(f===page.mainFrame())navigations++;console.log('DOCUMENT',navigations);});
  await page.goto(base+'/?screen=hub&software=1');await page.evaluate(()=>navigator.serviceWorker.ready);await page.waitForFunction(()=>!!navigator.serviceWorker.controller);
  await page.evaluate(async()=>{FK.settings.set('schrift','normal');FK.progress.finish('trace','A',1);localStorage.setItem('update-save-sentinel','retained');await FK.store.put('update-sentinel',{drawing:'retained'});await (await caches.open('unrelated-app-cache')).put('other.txt',new Response('retained'));});
@@ -49,7 +51,7 @@ const server=http.createServer((req,res)=>{
  const shots=process.env.FARBTUPF_SHOTS||'/tmp/pwa-updates';fs.mkdirSync(shots,{recursive:true});
  for(const width of [390,1024]){await page.setViewportSize({width,height:width===390?844:900});await page.locator('.ff-update-settings').scrollIntoViewIfNeeded();await page.screenshot({path:shots+'/settings-'+width+'.png',animations:'disabled'});}
  // A release arriving during a partially answered puzzle cannot reload it.
- await page.evaluate(()=>{for(const it of FK.puzzleCatalogue.iterations('count')){FK.puzzleReview.seen('count',it.id);FK.puzzleReview.decide('count',it.id,'approved');}FK.puzzleReview.decide('count',null,'approved');FK.friends.openLetter();FK.friendsLibrary.visit(FK.friendsLibrary.catalogue().find(g=>g.id==='count'));});await page.getByRole('button',{name:'Marienkäfer markieren',exact:true}).first().tap();
+ await seedFromPage(page,reviewServer,['count']);await page.evaluate(()=>{FK.friends.openLetter();FK.friendsLibrary.visit(FK.friendsLibrary.catalogue().find(g=>g.id==='count'));});await page.getByRole('button',{name:'Marienkäfer markieren',exact:true}).first().tap();
  const partial=await page.evaluate(()=>FK.puzzleRounds.start('count')),inPuzzle=navigations;
  version='9.0.4';await page.evaluate(()=>window.dispatchEvent(new Event('online')));await page.waitForFunction(()=>FK.updates.get().status==='ready');
  assert.equal(navigations,inPuzzle);assert.equal(await page.evaluate(()=>FK.current()),'puzzle');assert.equal(await page.evaluate(()=>FK.VERSION),'9.0.3');assert.deepEqual(await page.evaluate(()=>FK.puzzleRounds.start('count')),partial);
@@ -71,10 +73,10 @@ const server=http.createServer((req,res)=>{
  await context.setOffline(true);await page.reload();await page.waitForFunction(()=>window.FK?.VERSION==='9.0.5'&&!!FK.current?.());await page.evaluate(()=>FK.go('settings'));await page.getByRole('button',{name:'Nach Updates suchen',exact:true}).tap();assert.match(await page.locator('.ff-update-status').textContent(),/offline/);await saved();assert.ok(await page.evaluate(key=>FK.store.get(key).then(r=>r?.paint instanceof Blob),colourKey));
  assert.deepEqual(errors,[]);console.log('PASS: failed download keeps the working release; offline reload and all saved work survive.');await context.close();
  version='9.0.3';broken=false;
- const first=await browser.newContext({viewport:{width:390,height:844}}),fresh=await first.newPage();let freshLoads=0;fresh.on('framenavigated',f=>{if(f===fresh.mainFrame())freshLoads++;});await fresh.goto(base+'/?screen=hub&software=1');await fresh.waitForFunction(()=>!!navigator.serviceWorker.controller&&window.FK?.updates?.get().status==='current');assert.equal(freshLoads,1,'first install does not reload');await fresh.evaluate(()=>FK.go('settings'));assert.equal(await fresh.getByRole('button',{name:'Nach Updates suchen',exact:true}).isEnabled(),true);await first.close();console.log('PASS: first install finishes with an enabled update control and no reload loop.');
+ const first=await browser.newContext({viewport:{width:390,height:844}}),fresh=await first.newPage();await installRemote(first,reviewServer);let freshLoads=0;fresh.on('framenavigated',f=>{if(f===fresh.mainFrame())freshLoads++;});await fresh.goto(base+'/?screen=hub&software=1');await fresh.waitForFunction(()=>!!navigator.serviceWorker.controller&&window.FK?.updates?.get().status==='current');assert.equal(freshLoads,1,'first install does not reload');await fresh.evaluate(()=>FK.go('settings'));assert.equal(await fresh.getByRole('button',{name:'Nach Updates suchen',exact:true}).isEnabled(),true);await first.close();console.log('PASS: first install finishes with an enabled update control and no reload loop.');
 
  // Recovery must escape even a stale bare sw.js URL and keep all saved data.
- version=legacyVersion;const repairContext=await browser.newContext({viewport:{width:390,height:844}}),repairPage=await repairContext.newPage();repairPage.on('pageerror',e=>errors.push(e.message));await repairPage.goto(base+'/?screen=hub&software=1');await repairPage.evaluate(()=>navigator.serviceWorker.ready);await repairPage.waitForFunction(()=>!!navigator.serviceWorker.controller);await repairPage.evaluate(async()=>{localStorage.setItem('recovery-sentinel','retained');await FK.store.put('recovery-drawing',{retained:true});});
+ version=legacyVersion;const repairContext=await browser.newContext({viewport:{width:390,height:844}}),repairPage=await repairContext.newPage();await installRemote(repairContext,reviewServer);repairPage.on('pageerror',e=>errors.push(e.message));await repairPage.goto(base+'/?screen=hub&software=1');await repairPage.evaluate(()=>navigator.serviceWorker.ready);await repairPage.waitForFunction(()=>!!navigator.serviceWorker.controller);await repairPage.evaluate(async()=>{localStorage.setItem('recovery-sentinel','retained');await FK.store.put('recovery-drawing',{retained:true});});
  version='9.0.4';staleBareWorker=true;await repairPage.evaluate(async()=>{await (await navigator.serviceWorker.getRegistration()).update();});assert.equal(await repairPage.evaluate(()=>FK.VERSION),legacyVersion);
  await repairPage.goto(base+'/update.html');await repairPage.getByRole('link',{name:'Spiel öffnen',exact:true}).waitFor({state:'visible',timeout:60000});assert.match(await repairPage.locator('#status').innerText(),/9\.0\.4/);
  for(const width of [390,1024]){await repairPage.setViewportSize({width,height:width===390?844:900});await repairPage.screenshot({path:shots+'/recovery-'+width+'.png',animations:'disabled'});}

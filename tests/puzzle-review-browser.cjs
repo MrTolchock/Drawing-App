@@ -1,16 +1,18 @@
 /* All finite items in the real renderer, isolated previews and parent release flow. */
 const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'/opt/codex/cua_node/lib/node_modules/playwright');
 const assert=require('node:assert/strict'),fs=require('node:fs');
+const {installRemote}=require('./review-repository-support.cjs');
 const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.env.FARBTUPF_SHOTS||'/tmp/puzzle-review';fs.mkdirSync(shots,{recursive:true});
 (async()=>{
  const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||'/usr/bin/chromium',headless:true,args:['--no-sandbox','--disable-dev-shm-usage','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
  try{
  const context=await browser.newContext({viewport:{width:1080,height:810},hasTouch:true,reducedMotion:'reduce',acceptDownloads:true}),page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));page.setDefaultTimeout(60000);
+ await installRemote(context);
  await page.goto(base+'/?screen=puzzle-review&software=1');await page.waitForFunction(()=>!!window.FK?.friends&&!!document.querySelector('.gate-task'));await page.evaluate(()=>{FK.settings.set('sound',false);});
  const entries=await page.evaluate(()=>FK.friendsLibrary.catalogue());
  // The gallery itself is now behind the adult gate; child access is covered by letter-sessions-browser.cjs.
  const task=await page.locator('.gate-task').textContent(),[a,b]=task.match(/\d+/g).map(Number);await page.getByLabel('Deine Antwort',{exact:true}).fill(String(a*b));await page.locator('.gate-submit').click();
- await page.waitForFunction(()=>FK.current()==='puzzle-review');assert.equal(await page.locator('.review-puzzle').count(),34);
+ await page.waitForFunction(()=>FK.current()==='puzzle-review');await page.evaluate(()=>FK.reviewRepository.connect('test-review-token'));assert.equal(await page.locator('.review-puzzle').count(),34);
  assert.equal(await page.locator('.review-puzzle').evaluateAll(nodes=>nodes.some(n=>n.scrollWidth>n.clientWidth+2)),false,'review card contents fit');
  await page.screenshot({path:shots+'/review-catalogue-tablet.png'});
  // One shared spoken rule is tested on each puzzle overview, never per iteration.
@@ -88,7 +90,7 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
  await preview('add','add/1-1');await solve({kind:'add',answer:2});await page.waitForTimeout(1100);assert.equal(await page.locator('.screen:not([hidden]) .puzzle-round').textContent(),'1 / 5');
  // A real puzzle sign-off: individual decisions are fixtures; one final button, no checklist.
  await page.evaluate(()=>{for(const i of FK.puzzleCatalogue.iterations('add')){FK.puzzleReview.seen('add',i.id);FK.puzzleReview.decide('add',i.id,'approved');}FK.go('puzzle-review');});
- assert.equal(await page.locator('.review-decision input[type="checkbox"],.review-decision fieldset').count(),0);await page.getByRole('button',{name:'Puzzle freigeben',exact:true}).click();assert.equal(await page.evaluate(()=>FK.puzzleReview.ready('add')),true);
+ assert.equal(await page.locator('.review-decision input[type="checkbox"],.review-decision fieldset').count(),0);await page.getByRole('button',{name:'Puzzle freigeben',exact:true}).click();await page.evaluate(()=>FK.reviewRepository.refresh());assert.equal(await page.evaluate(()=>FK.puzzleReview.ready('add')),true);
  await page.evaluate(()=>FK.go('puzzle',{game:'add',reviewRound:true,returnTo:'puzzle-review',from:'friends'}));
  for(let round=0;round<5;round++){const q=await page.evaluate(()=>{const n=document.querySelector('.puzzle-equation').textContent.match(/\d+/g).map(Number);return {kind:'add',answer:n[0]+n[1]};});await solve(q);if(round<4)await page.waitForFunction(n=>document.querySelector('.screen:not([hidden]) .puzzle-round')?.textContent===n+' / 5',round+2);}
  await page.locator('.puzzle-completion').waitFor({state:'visible'});assert.equal(await page.locator('.puzzle-completion .puzzle-progress .done').count(),5);await page.waitForFunction(()=>FK.current()==='puzzle-review');

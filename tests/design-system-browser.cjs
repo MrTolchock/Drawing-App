@@ -1,11 +1,12 @@
 /* Inspect actual current pages against the visual role contract at phone/tablet sizes. */
 const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'/opt/codex/cua_node/lib/node_modules/playwright');
 const assert=require('node:assert/strict'),fs=require('node:fs');
+const {installRemote}=require('./review-repository-support.cjs');
 const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',out=process.env.FARBTUPF_SHOTS||'/tmp/design-system';fs.mkdirSync(out,{recursive:true});
 (async()=>{const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||'/usr/bin/chromium',args:['--use-angle=swiftshader','--enable-unsafe-swiftshader']});
 try{
  const context=await browser.newContext({viewport:{width:1080,height:810},hasTouch:true,reducedMotion:'reduce'}),page=await context.newPage(),errors=[],missing=[];
- page.setDefaultTimeout(60000);page.on('pageerror',e=>errors.push(e.message));page.on('response',r=>{if(r.status()>=400)missing.push(r.url());});
+ await installRemote(context);page.setDefaultTimeout(60000);page.on('pageerror',e=>errors.push(e.message));page.on('response',r=>{if(r.status()>=400)missing.push(r.url());});
  await context.addInitScript(()=>localStorage.setItem('farbtupf.forest.v1','{"archivedFixture":true}'));
  await page.goto(base+'/?screen=forest&software=1');await page.waitForFunction(()=>FK.current()==='friends');
  assert.equal(await page.evaluate(()=>['forest','forest-book','learn','adventure','expedition','read','dots'].some(s=>FK.screenExists(s))),false);

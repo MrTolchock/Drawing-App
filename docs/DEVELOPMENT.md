@@ -11,6 +11,7 @@ node --test tests/*.test.cjs
 node tests/design-system-browser.cjs
 node tests/letter-sessions-browser.cjs
 node tests/puzzle-review-browser.cjs
+node tests/review-sync-browser.cjs
 ```
 
 Browser suites require Playwright and Chromium. Set `PLAYWRIGHT_MODULE`, `CHROMIUM_PATH` and optionally `FARBTUPF_BASE_URL` for your installation. The review suite solves all 1,048 exact iterations and checks 34 phone/tablet layouts; `FARBTUPF_GAMES=add,trace,trace-numbers` limits its content pass during targeted work. Letter sessions checks Settings, real invitations, access restrictions, ten actual answers, mailman, home, sleep, reload/offline and adult restart. The design suite checks asset/font roles and current entry points. Screenshots go to `/tmp` unless an output path is set.
@@ -24,6 +25,10 @@ Read [Visual style](../design/VISUAL-STYLE.md) and [Puzzle blueprint](../design/
 Current character sculpt source: `tools/characters/plush.js`. Bake with `tools/bake/`, then generate all identity portraits with `tools/portraits/render.cjs`. Keep all characters in one pipeline. Learning nouns/actions use the drawn Waldatelier library. Preserve saved template IDs, settings records and historical localStorage/IndexedDB keys.
 
 Work on a branch for reviewable changes, commit and push checkpoints. Merge/push `main` only when the owner authorizes publication. Keep current rules in `design/`; archive superseded documents with a clear index. No runtime reference may load archive material.
+
+## Shared review storage
+
+See [REVIEW-STORAGE.md](REVIEW-STORAGE.md). Code changes stay on a feature branch; editorial records use the separate `puzzle-review-data` branch. Keep that data branch through deployments. Never commit a token or actual editorial approvals in the app bundle. `tests/review-repository.test.cjs` checks conflicts, retry/idempotency, revisions, offline recovery and token isolation; browser suites intercept GitHub with `review-repository-support.cjs`. The production ledger is never used for fixture writes.
 
 ## Publish and installed-app updates
 

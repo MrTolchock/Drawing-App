@@ -4,6 +4,7 @@ Start with [current design](../design/README.md). The [visual style](../design/V
 
 - [All puzzles, competences and iterations](PUZZLE-CATALOGUE.md)
 - [Adult review and sign-off](PUZZLE-REVIEW.md)
+- [Shared GitHub review storage and connection](REVIEW-STORAGE.md)
 - [Parent-controlled letter sessions](LETTER-SESSIONS.md)
 - [Current game implementation](FOREST-FRIENDS.md)
 - [Puzzle implementation overview](PUZZLES.md)

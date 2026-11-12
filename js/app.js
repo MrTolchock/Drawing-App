@@ -41,6 +41,8 @@
   });
 
   FK.store.persist();
+  FK.reviewRepository?.start();
+  setInterval(()=>{if(!document.hidden)FK.reviewRepository?.resume();},60000);
   const entry = new URLSearchParams(location.search).get('screen');
   let started = Promise.resolve();
   started = import('./friends/game.js').catch(error => {

@@ -47,4 +47,4 @@ Competences below are bounded practice references to [Zürich Zyklus 1](CURRICUL
 
 Existing historical Heart Tree activities remain archived/compatible and are not additional active Waldfreunde puzzles. Original FriendsState task snapshots remain untouched; newly started active puzzles use the shared finite catalogue. Older seeded sessions are retained in the puzzle save’s `legacy` field when the new catalogue starts a fresh round.
 
-Review decisions stay in `farbtupf.puzzle-review.v1` (separate developer key with `?dev=1`). Export/import backs up decisions and history. No approvals are shipped by default. See [review instructions](PUZZLE-REVIEW.md).
+Review decisions are shared through the repository’s `puzzle-review-data` branch, keyed by exact revision. Devices keep an offline cache and unsaved outbox in `farbtupf.puzzle-review.v1`; developer reviews with `?dev=1` stay local. Only confirmed GitHub approvals release puzzles. No approvals are shipped by default. See [review instructions](PUZZLE-REVIEW.md).

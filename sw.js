@@ -1,9 +1,11 @@
 /* Farbtupf – Service Worker: keeps the whole app on the device so it runs without internet. */
-const CACHE = 'farbtupf-v9.3.3-simpler-review';
+const CACHE = 'farbtupf-v9.3.4-shared-reviews';
 const SCOPE=self.registration.scope;
 const INDEX=new URL('index.html',SCOPE).href;
 const ACTIVE_MARKER=new URL('.farbtupf-active-cache',SCOPE).href;
 const ASSETS = [
+  './js/friends/review-repository.js',
+  './js/ui/review-connection.js',
   './js/core/updates.js',
   './css/typography.css',
   './js/friends/puzzle-rounds.js',
