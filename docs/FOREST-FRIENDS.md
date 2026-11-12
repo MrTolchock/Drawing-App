@@ -9,7 +9,7 @@ The active game follows [letter sessions](LETTER-SESSIONS.md), [visual style](..
 | `js/friends/game.js` | Den, letter, visits, map, mailman, return home and sleeping end card |
 | `js/friends/state.js` | Durable invitation/session allowance, world position, exports and compatibility records |
 | `js/friends/world/`, `forest3d.js`, `characters3d.js`, `painted.js` | Forest, plush cast, movement and painted den |
-| `js/friends/audio.js`, `soundscape.js` | Forest sound made in the browser: leaves in gusts, brook, waterfall, footsteps by ground, birds, frogs, crickets and a tune with rests. `soundscape.js` decides what plays when (tested over twenty simulated minutes in `tests/soundscape.test.cjs`); `tests/audio-preview.html` plays every sound by itself. There is no constant wind sound |
+| `js/friends/audio.js`, `soundscape.js` | Forest sound made in the browser: leaves in gusts, brook, waterfall, footsteps by ground, birds, frogs and crickets; no music. `soundscape.js` decides what plays when (tested over twenty simulated minutes in `tests/soundscape.test.cjs`); `tests/audio-preview.html` plays every sound by itself. There is no constant wind sound |
 | `js/friends/interface.js` | One model-rendered identity atlas for every UI surface |
 | `js/ui/waldatelier.js`, `waldatelier-icons.js` | Drawn subjects and shared utility icons |
 | `js/friends/library.js` | Explicit active inventory and current-letter access permit |

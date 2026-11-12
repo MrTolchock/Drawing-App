@@ -21,7 +21,7 @@
     enter(){
       const s=state();body.replaceChildren();
       const sounds=h('section',{class:'setting-card'},h('div',{class:'setting-head'},h('b',{text:'Klänge im Wald'}),h('small',{text:'Vögel, Blätter und Bach begleiten das Spiel.'})));
-      for(const [name,label]of [['ambience','Waldgeräusche'],['music','Musik']])sounds.append(toggle(label,s.get().settings[name],input=>{if(!s.setting(name,input.checked))input.checked=s.get().settings[name];FK.emit('friends-audio');}));
+      for(const [name,label]of [['ambience','Waldgeräusche']])sounds.append(toggle(label,s.get().settings[name],input=>{if(!s.setting(name,input.checked))input.checked=s.get().settings[name];FK.emit('friends-audio');}));
       sounds.append(toggle('Spielklänge',FK.settings.get('sound')!==false,input=>FK.settings.set('sound',input.checked)),h('p',{class:'ff-setting-note',text:'Es wird nichts automatisch vorgelesen. In jedem Rätsel erklärt der Lautsprecher das Spiel, wenn du ihn antippst.'}));
       const font=h('section',{class:'setting-card'},h('div',{class:'setting-head'},h('b',{text:'Schrift zum Lesen'})));
       const choices=h('div',{class:'ff-font-choices'});

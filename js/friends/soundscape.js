@@ -12,7 +12,7 @@
      waterfall only near the water.
 
    step(now, env) returns the levels of the four steady layers and the single sounds to start.
-   env: {indoors, moving, speed, ground, trees, meadow, swamp, spruce, brook, falls, fallsPan, music}. */
+   env: {indoors, moving, speed, ground, trees, meadow, swamp, spruce, brook, falls, fallsPan}. */
 
 const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 const sstep = (a, b, x) => { const t = clamp((x - a) / (b - a)); return t * t * (3 - 2 * t); };
@@ -30,7 +30,7 @@ export const SPECIES = {
   cricket: {phrases: [1, 2], gap: [5, 9], rest: 24},
   bee: {phrases: [1, 1], gap: [0, 0], rest: 70},
 };
-const OUTSIDE = {indoors: false, moving: false, speed: 0, ground: 'grass', trees: .8, meadow: 0, swamp: 0, spruce: 0, brook: 0, falls: 0, fallsPan: 0, music: false};
+const OUTSIDE = {indoors: false, moving: false, speed: 0, ground: 'grass', trees: .8, meadow: 0, swamp: 0, spruce: 0, brook: 0, falls: 0, fallsPan: 0};
 /* How likely each voice is at a place. */
 export function voicesAt(env) {
   if (env.indoors) return {blackbird: 2, greatTit: 1, dove: 1};
@@ -38,14 +38,11 @@ export function voicesAt(env) {
   return {blackbird: 3 * f + .5, chaffinch: 3 * f * (1 - env.spruce * .5), greatTit: 2.4 * f + .3, blueTit: 2 * f * (1 - env.spruce * .6) + .2,
     dove: 1.1 * f, cuckoo: .32 * f, woodpecker: .45 * f, frog: 4.5 * env.swamp, cricket: 3 * env.meadow, bee: 1.1 * env.meadow};
 }
-// C major pentatonic, one and a half octaves: the quiet tune wanders along it in small steps
-const SCALE = [261.63, 293.66, 329.63, 392, 440, 523.25, 587.33, 659.25];
-
 export function createDirector({random = Math.random} = {}) {
   const range = (a, b) => a + (b - a) * random(), whole = (a, b) => Math.floor(range(a, b + 1));
   let start = null, last = 0, gust = .2, gustTo = .2, nextGust = 0, breezy = false, nextMood = 0;
   let nextSinger = 0, quietUntil = 0, lastKind = '', nextStep = 0, side = 1, walked = 0, wasMoving = false;
-  let nextNote = 0, phraseLeft = 0, degree = 2, flutter = 1;
+  let flutter = 1;
   const singers = [], sangAt = {};
 
   function chooseKind(now, env) {
@@ -56,7 +53,7 @@ export function createDirector({random = Math.random} = {}) {
 
   function step(now, given) {
     const env = {...OUTSIDE, ...given}, events = [];
-    if (start === null) { start = last = now; nextGust = now; nextMood = now + range(30, 70); nextSinger = now + range(1.2, 3.5); nextNote = now + range(3, 7); }
+    if (start === null) { start = last = now; nextGust = now; nextMood = now + range(30, 70); nextSinger = now + range(1.2, 3.5); }
     const dt = clamp(now - last, 0, .5); last = now;
     const age = now - start, settled = 1 - .32 * sstep(360, 1080, age);      // after six minutes everything eases off, down to two thirds
 
@@ -94,13 +91,6 @@ export function createDirector({random = Math.random} = {}) {
     if (env.brook > .25 && !env.indoors) { let n = dt * (1.5 + 4.5 * env.brook) * env.brook; while (n > 0) { if (random() < n) events.push({type: 'bubble', at: now + random() * Math.max(dt, .05), level: env.brook, pan: range(-.5, .5)}); n--; } }
     if (env.swamp > .4 && random() < dt * .06 * env.swamp) events.push({type: 'plop', at: now + .02, level: settled, pan: range(-.7, .7)});
 
-    // the quiet tune: a few notes, then a long rest
-    if (env.music && now >= nextNote) {
-      if (phraseLeft <= 0) { phraseLeft = whole(3, 6); degree = whole(1, 5); }
-      events.push({type: 'note', f: SCALE[degree], at: now + .05, level: settled});
-      degree = clamp(degree + [-2, -1, -1, 1, 1, 2][whole(0, 5)], 0, SCALE.length - 1);
-      nextNote = now + (--phraseLeft > 0 ? range(1.3, 2.5) : range(16, 34));
-    }
     return {beds, events};
   }
   return {step, get singers() { return singers.length; }};

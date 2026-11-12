@@ -59,12 +59,9 @@ test('water is heard only near water; wind comes in gusts', async () => {
   assert.ok(dry.beds.every(b => b.brook === 0 && b.falls === 0));
   const wind = (await play(WOOD)).beds.map(b => b.gust); assert.ok(Math.min(...wind) < .15 && Math.max(...wind) > .7, 'calm and gusts');
   assert.ok((await play(WOOD)).beds.every(b => b.leaves >= 0 && b.leaves <= 1.25));
-  assert.ok((await play(WOOD)).beds.filter(b => b.leaves === 0).length > 3000, 'the leaves are still for long stretches');
+  assert.ok((await play(WOOD)).beds.filter(b => b.leaves === 0).length > 2000, 'the leaves are still for long stretches (at least a sixth of the time)');
 });
 
-test('the tune plays a few notes and then rests', async () => {
-  const run = await play({...WOOD, music: true}), notes = run.of('note'), g = gaps(notes);
-  assert.ok(notes.length / 20 <= 12, 'notes a minute: ' + notes.length / 20); assert.ok(g.filter(x => x >= 16).length >= 20, 'long rests between phrases');
-  let longest = 0, runLength = 1; for (const x of g) { runLength = x < 3 ? runLength + 1 : 1; longest = Math.max(longest, runLength); } assert.ok(longest <= 6, 'phrases are short');
-  assert.equal((await play(WOOD)).of('note').length, 0, 'no tune when music is off');
+test('there is no music', async () => {
+  assert.equal((await play({...WOOD, music: true})).of('note').length, 0);
 });

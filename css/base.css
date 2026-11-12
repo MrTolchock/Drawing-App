@@ -81,6 +81,13 @@ button { font: inherit; color: inherit; }
 /* ---------- screens ---------- */
 
 #screens { position: fixed; inset: 0; }
+/* Home-screen app on iPad and iPhone. iOS 26 blurs whatever lies under the clock and cannot be told not to,
+   so the game starts below the clock and a plain moss band sits behind it (nothing there to blur).
+   The page is also given the full screen height: iOS sizes "inset: 0" too short and left a strip at the bottom. */
+@media (display-mode: standalone) {
+  body::before { content: ""; position: fixed; z-index: 2147483000; top: 0; left: 0; right: 0; height: calc(env(safe-area-inset-top, 0px) * 1.3); background: #4f6f33; pointer-events: none; }
+  #screens { top: calc(env(safe-area-inset-top, 0px) * 1.3); bottom: auto; height: calc(100vh - env(safe-area-inset-top, 0px) * 1.3); }
+}
 .screen {
   position: absolute;
   inset: 0;
