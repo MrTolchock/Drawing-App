@@ -638,7 +638,9 @@
 
   /* ---------- tracing ---------- */
 
+  let inputMatrix=null;
   function toUnits(cx, cy) {
+    if(inputMatrix){const p=svg.createSVGPoint();p.x=cx;p.y=cy;const q=p.matrixTransform(inputMatrix);return {x:q.x,y:q.y};}
     const r = svgRect;
     return { x: fit.x + (cx - r.left) / fit.s, y: fit.y + (cy - r.top) / fit.s };
   }
@@ -680,6 +682,7 @@
     e.preventDefault();
     try { paperEl.setPointerCapture(e.pointerId); } catch (err) { /* ignore */ }
     svgRect = svg.getBoundingClientRect();
+    inputMatrix=svg.getScreenCTM()?.inverse()||null;
     stopDemo();
     clearTimeout(idleTimer);
     const P = toUnits(e.clientX, e.clientY);
@@ -1041,6 +1044,7 @@
     if (view !== 'play' || !cur) return;
     refit();
     svgRect = svg.getBoundingClientRect();
+    inputMatrix=svg.getScreenCTM()?.inverse()||null;
     render();
   }
   function onOrient() { later(onResize, 250); }
