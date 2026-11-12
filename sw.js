@@ -1,5 +1,5 @@
 /* Farbtupf – Service Worker: keeps the whole app on the device so it runs without internet. */
-const CACHE = 'farbtupf-v9.1.0-puzzle-review';
+const CACHE = 'farbtupf-v9.2.0-letter-sessions';
 const SCOPE=self.registration.scope;
 const INDEX=new URL('index.html',SCOPE).href;
 const ACTIVE_MARKER=new URL('.farbtupf-active-cache',SCOPE).href;
@@ -109,7 +109,6 @@ const ASSETS = [
   './assets/woodland/ground.webp',
   './js/ui/woodland.js',
   './js/forest/painted.js',
-  './css/timer.css',
   './css/play.css',
   './js/ui/play.js',
   './js/core/journey.js',
@@ -166,8 +165,6 @@ const ASSETS = [
   './js/screens/expedition.js',
   './js/core/util.js',
   './js/core/store.js',
-  './js/core/timer.js',
-  './js/ui/timer.js',
   './js/core/sound.js',
   './js/data/colors.js',
   './js/data/stickers.js',

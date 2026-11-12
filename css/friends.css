@@ -495,3 +495,10 @@
 .ff-update-settings>.btn{--lbl:15px;display:inline-flex;width:auto;height:auto;min-width:54px;min-height:54px;padding:10px 16px}
 .ff-update-status{min-height:21px;font:400 14px/1.5 var(--type-body);color:var(--muted);margin:12px 0 0}
 @media(max-width:600px){.ff-nav{right:10px;gap:8px}.ff-nav .ff-button{width:54px;height:54px;min-width:54px;min-height:54px;padding:2px;border-radius:17px}.ff-nav .ff-button .ff-picture,.ff-nav .ff-ui-art{width:46px;height:46px}.ff-map-card{padding:10px 8px 16px;border-radius:24px}.ff-map-storybook .ff-button{width:52px;height:52px;min-width:52px;min-height:52px;padding:3px}.ff-map-invited::after{width:19px;height:19px;right:-4px;bottom:-4px}.ff-settings-body{padding:8px 14px 26px;gap:14px}.ff-settings-body .setting-card{padding:17px}.ff-setting-toggle{font-size:16px}}
+/* Parent-controlled letter sessions; no time-based limit. */
+.ff-letter-settings input{display:block;margin:10px 0;width:120px;min-height:52px;padding:8px 12px;border:1px solid #bda482;border-radius:12px;background:#fffdf6;color:#4b3b2d;font:24px var(--read);user-select:text;-webkit-user-select:text}
+.ff-letter-settings p{font:17px/1.5 var(--read)}
+.ff-letter-settings>.btn{width:auto;height:auto;min-height:52px;padding:12px 18px;max-width:100%;font:700 18px/1.4 var(--read)}
+.ff-letter-settings>.btn .lbl{font:inherit;white-space:normal}
+.ff-session-end{display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px;padding:30px;max-width:620px}
+.ff-session-end>.wa-illustration{width:160px;height:160px}.ff-session-end h2{font:700 32px/1.3 var(--read);margin:0}.ff-session-end p{font:22px/1.5 var(--read);margin:0}

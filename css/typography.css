@@ -29,7 +29,7 @@ button,input,select,textarea { font-family:var(--type-body); }
 }
 .friends-interface .ff-settings-body .setting-head small { font:400 var(--type-size-meta)/1.5 var(--type-body); }
 .friends-interface .ff-setting-toggle { font:700 var(--type-size-label)/1.4 var(--type-body); }
-.friends-interface :is(.ff-font-choices,.play-timer-modes,.play-timer-presets)>button { font:700 var(--type-size-label)/1.35 var(--type-body); }
+.friends-interface :is(.ff-font-choices)>button { font:700 var(--type-size-label)/1.35 var(--type-body); }
 .friends-interface .ff-data-settings>.btn { font:700 15px/1.4 var(--type-body); }
 .friends-interface .ff-settings-version { font:400 var(--type-size-meta)/1.4 var(--type-body); }
 /* Learning screens keep a single family even for their titles and end cards. */

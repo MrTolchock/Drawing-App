@@ -1,6 +1,6 @@
 # Puzzle catalogue and competence map
 
-The active library contains **34 puzzles and 1048 individually reviewable iterations**. Each play is five randomly selected, distinct iterations.
+The active library contains **34 puzzles and 1048 individually reviewable iterations**. Each play is five randomly selected, distinct iterations. Children start puzzles only at the friend on their current letter; the full gallery is in adult Settings. [Parent letter limits](LETTER-SESSIONS.md) end the journey at the den after sleeping.
 
 Generated from the runtime catalogue with `node tools/puzzle-catalogue.cjs`. Every linked puzzle page lists all iteration IDs, content and expected solutions. No generated item is automatically approved.
 

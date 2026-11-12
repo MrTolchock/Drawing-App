@@ -16,8 +16,8 @@ Open `http://127.0.0.1:8000`. Browser scripts require Playwright and Chromium. T
 | `tests/input-typography-browser.cjs` | Parent-gate error/retry and immediate reopen; first-tap activation with finger movement in world, books, settings, puzzles and painting; rapid taps, scrolling, cancellation, overlay dismissal, mouse/keyboard and shared font roles at phone/tablet sizes |
 | `tests/friends-mail-browser.cjs` | Closed-door letter delivery, friend arrow, puzzle completion, nearby mailman, next letter, refresh and offline continuity |
 | `tests/den-browser.cjs` | Fox lying on the mattress, visible shelf books, direct free colouring, new outlines/postcards, back navigation, gallery save/resume and offline restoration at tablet/phone sizes |
-| `tests/interface-browser.cjs` | Matching centred icons, shared settings, timer pause, painted map and actual route, manual-only puzzle explanations, audible ambience/mute/background behaviour, retired leaves and offline saves |
-| `tests/timer-browser.cjs` | Optional stopwatch/countdown in shared settings, visual reminder, foreground timing, paused reload and retained mounted puzzles |
+| `tests/interface-browser.cjs` | Matching centred icons, shared settings, painted map and actual route, manual-only puzzle explanations, audible ambience/mute/background behaviour, retired leaves and offline saves |
+| `tests/letter-sessions-browser.cjs` | Parent-selected letter budget, adult-only gallery, invited characters only, courier, home route, sleeping game over, offline persistence and parent-only restart |
 | `tests/friends-library-browser.cjs` | Restored v2 catalogue, new host assignments, fixed difficulty, return paths, original gear and full atelier persistence |
 | `tests/puzzle-rounds-browser.cjs` | All 33 routes at 1024/390, all 165 tasks with real answers/touch tracing, five-task celebration, retry, menu/world returns, host rotation, persisted work and offline assets |
 | `tests/world-browser.cjs` | Free walking, held touch, discoveries, map, camera, responsive controls and offline positions |
@@ -26,7 +26,7 @@ Open `http://127.0.0.1:8000`. Browser scripts require Playwright and Chromium. T
 | `tests/story-browser.cjs` | Nine repairs, chapter transitions, exact puzzle recovery, practice and offline ending |
 | `tests/painted-browser.cjs` | Solid world picking, shared puzzle pictures and saved questions |
 | `tests/play-browser.cjs` and `tests/play-layout-browser.cjs` | Revised activity interactions and layouts |
-| Other `tests/*browser.cjs` files | Reading, handwriting, tours, timers and individual game families |
+| Other `tests/*browser.cjs` files | Reading, handwriting, tours and individual game families |
 
 For the full story suite on software rendering, set `FARBTUPF_SOFTWARE_RENDERING=1`. It reduces raster resolution and disables shadows, leaving gameplay and state intact. Chromium touch emulation is not physical iPhone/iPad Safari testing. Installed voices and offline speech need device checks.
 
@@ -38,7 +38,7 @@ The default entry is Forest friends. See [implementation, source checks and pers
 
 Retain existing localStorage and IndexedDB identifiers. Story repairs, exact unfinished story questions, chapter acknowledgements, ending cursor, free world position, exploration journal, tour, stars, pictures and settings are separate records. Optional practice and discoveries must not create story contributions. Exactly nine authored projects grow the Heart Tree.
 
-`?screen=hub` remains a compatible entry to the single Waldspiele book. Do not clear storage to demonstrate a new feature. A separate browser profile provides an independent playthrough.
+`?screen=hub` now opens the adult-gated puzzle workbench; the child gallery shortcut is retired. Do not clear storage to demonstrate a new feature. A separate browser profile provides an independent playthrough.
 
 ## Puzzle branches and review
 

@@ -115,7 +115,6 @@
   .screen-forest-book .topbar .btn-parents { width:48px; min-width:48px; height:48px; padding:8px; }
   .screen-forest-book .topbar .btn-back { width:48px; min-width:48px; height:48px; }
   .screen-forest-book .topbar .btn-back .forest-portrait { width:48px; height:48px; }
-  .screen-forest-book .play-timer-launcher { width:48px; height:48px; min-width:48px; min-height:48px; }
   .play-context { padding:6px 8px; gap:6px; }
   .play-context > span:nth-child(2) { font-size:12px; }
   .play-context .forest-portrait { width:44px; height:44px; }

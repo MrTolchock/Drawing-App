@@ -18,17 +18,23 @@
     return originals.concat(games,FK.puzzles.reading.map(g=>({...g,screen:'puzzle'})),
       [['trace','Schreibspuren','pencil'],['trace-numbers','Zahlenspuren','numbers']].map(([id,title,picture])=>({id,screen:'trace',title,picture,host:hosts[id]})));
   }
+  let permit=null;
+  function canPlay(id){const m=FK.friends?.mail();return !!(permit&&permit.game===id&&m?.session?.id===permit.session&&m.index===permit.index&&FK.friends.canPuzzle(permit.host));}
+  function visit(g){if(!g||!FK.friends?.canPuzzle(g.host))return false;const m=FK.friends.mail();permit={game:g.id,host:g.host,index:m.index,session:m.session.id};return launch(g,'friends');}
   function launch(g,returnTo=FK.current()==='forest-book'?'forest-book':'friends'){
+    if(!g||!canPlay(g.id)){if(FK.screenExists?.('friends'))FK.go('friends');return false;}
+    returnTo='friends';
     if(returnTo==='friends'){
       FK.settings.set('friends.rotation.'+g.host,g.id);
       FK.settings.set('friends.active.'+g.host,g.id);
     }
-    FK.go(g.screen,{game:g.id,stage:1,lvl:1,level:1,returnTo});
+    FK.go(g.screen,{game:g.id,stage:1,lvl:1,level:1,returnTo});return true;
   }
   function pick(host){
-    const pool=catalogue().filter(g=>g.host===host),active=FK.settings.get('friends.active.'+host);
+    const pool=catalogue().filter(g=>g.host===host&&(!FK.puzzleReview||FK.puzzleReview.ready(g.id))),active=FK.settings.get('friends.active.'+host);
     const unfinished=pool.find(g=>g.id===active&&FK.puzzleRounds.pending(g.id));
     if(unfinished)return unfinished;
+    if(!pool.length)return null;
     const last=pool.findIndex(g=>g.id===FK.settings.get('friends.rotation.'+host));
     return pool[(last+1)%pool.length];
   }
@@ -55,5 +61,5 @@
   }
   for(const id of Object.keys(rounds))hosts['friends-'+id]=id;
   for(const entry of ['read-puzzle','read-word','read-leaves','read-colours'])hosts[entry]='mouse';
-  FK.friendsLibrary={active:false,hosts,portrait,catalogue,render,launch,pick,complete};
+  FK.friendsLibrary={active:false,hosts,portrait,catalogue,render,launch,visit,canPlay,pick,complete};
 })();

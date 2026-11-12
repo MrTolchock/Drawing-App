@@ -9,15 +9,15 @@ A woodland learning game for first-grade practice in Zürich, in Swiss Standard 
 - Start inside the den with its door closed. A letter slips through the mail lid; clicking opens unreadable handwriting and a clear portrait of the friend to visit.
 - Click/tap to walk through the 3D forest. A directional arrow guides Fuchs to the pictured friend, then to the nearby mailman after a completed puzzle. There are no movement arrows, keyboard walking or jumping.
 - Hase roams as a recognizable mailman with postal clothing and a satchel. He delivers new letters and never presents puzzles.
-- The eleven puzzle friends offer 34 directly selectable puzzles at one fixed level, with a common forest design based on the character sheet and Silben-Puzzle. The four reading activities are separate entries. Each puzzle draws five iterations from an explicit pool of at least 25, advances automatically after correct answers and ends with a brief woodland celebration. The adult review mode requires sign-off for every iteration and the puzzle checklist before child play. Waldreime is folded into Reimpaare lesen; Zahlenspuren replaces the retired Zahlenwege entry.
-- The table opens Ausmalen directly with six illustrated woodland pages and free colouring only, without stamps. The picture pile beside it opens Meine Bilder. Waldspiele → Malatelier offers Ausmalen and Meine Bilder; all included tools, colours and pages are free.
+- The eleven puzzle friends offer 34 letter-assigned puzzles at one fixed level, with a common forest design based on the character sheet and Silben-Puzzle. The four reading activities are separate entries. Each puzzle draws five iterations from an explicit pool of at least 25, advances automatically after correct answers and ends with a brief woodland celebration. The adult review mode requires sign-off for every iteration and the puzzle checklist before child play. Waldreime is folded into Reimpaare lesen; Zahlenspuren replaces the retired Zahlenwege entry.
+- The table opens Ausmalen directly with six illustrated woodland pages and free colouring only, without stamps. The picture pile beside it opens Meine Bilder. all included tools, colours and pages are free.
 - The sleeping fox keeps the standing fox's proportions. Opened postcards are directly clickable, without a surrounding frame or door button. The current adventure has no shop, coins, prices or purchases.
-- Matching painted toolbar icons and a woodland picture map use the original character artwork's style. Settings is shared by the forest and Waldspiele, including the optional timer.
+- Matching painted toolbar icons and a woodland picture map use the original character artwork's style. Parents choose 1–50 letters in Settings. After the final puzzle, Fuchs must return to the den to sleep; only an adult can start another journey. The timer is removed, and the puzzle gallery/review tools are available only in Settings.
 - Speech is off during ordinary play. Each puzzle has one **Spiel erklären** button; wind, birds, rustling foliage and brook sounds accompany the forest. Golden leaves are removed.
 - Exact interrupted newer puzzles, invitation progress, drawings and sound preferences remain local. Adults can export or delete bounded anonymous gameplay logs.
 - Offline play follows the initial successful download. Speech depends on installed voices; device and child testing follow implementation.
 
-The original [Heart Tree adventure](https://mrtolchock.github.io/Drawing-App/?screen=forest), [historical Waldspiele book](https://mrtolchock.github.io/Drawing-App/?screen=hub), drawings and progress remain accessible. Earlier currency/inventory fields are preserved as compatibility data; the new letter journey does not spend them.
+The original [Heart Tree adventure](https://mrtolchock.github.io/Drawing-App/?screen=forest), [adult puzzle gallery](docs/PUZZLE-REVIEW.md), drawings and progress remain accessible. Earlier currency/inventory fields are preserved as compatibility data; the new letter journey does not spend them.
 
 ## Working documents
 
@@ -31,6 +31,7 @@ The original [Heart Tree adventure](https://mrtolchock.github.io/Drawing-App/?sc
 | [Design review](design/heart-tree/REVIEW.md) | Assessment of the current game and priorities for the next step |
 | [Puzzle blueprint](docs/PUZZLE-BLUEPRINT.md) | Shared rules for every current puzzle |
 | [All puzzles and competences](docs/PUZZLE-CATALOGUE.md) | 34 puzzles and 1,048 individual iterations |
+| [Letter-limited sessions](docs/LETTER-SESSIONS.md) | Parent letter limits, invitation-only puzzles and sleeping game over |
 | [Adult puzzle review](docs/PUZZLE-REVIEW.md) | Preview, sign off, flag improvements and repeat review after changes |
 | [Gameplay](docs/GAMEPLAY.md) | Story puzzles, library activities, guidance and rewards |
 | [Exploration](docs/EXPLORATION.md) | Movement, camera, map and discovery controls |

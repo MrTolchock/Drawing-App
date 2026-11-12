@@ -3,16 +3,16 @@ import {picture,shapeNames,shapeScene} from './art.js';
 import {createAudio} from './audio.js';
 const FK=window.FK,h=FK.h,C=window.FriendsContent;
 let root,canvas,world,state,audio,overlay,hotspots,nav,statusBar,nearButton,caption,fader,doorScene,denEnvelope;
-let area='den',panel=null,host=null,example=false,feedbackTimer=null,activeMs=0,lastTick=performance.now(),pendingDrawing=null,returnArea='den';
-const actionPictures={outside:'door',drawing:'pencils',sleep:'fox-sleep',games:'book',gallery:'gallery'};
-const actionNames={outside:'Nach draussen',drawing:'Ausmalen',sleep:'Schlafen',games:'Waldspiele',gallery:'Meine Bilder'};
+let area='den',panel=null,host=null,example=false,feedbackTimer=null,activeMs=0,lastTick=performance.now(),pendingDrawing=null,returnArea='den',finalSleep=false;
+const actionPictures={outside:'door',drawing:'pencils',gallery:'gallery'};
+const actionNames={outside:'Nach draussen',drawing:'Ausmalen',gallery:'Meine Bilder'};
 const envelopeSVG='<svg viewBox="0 0 120 85" aria-hidden="true"><rect x="3" y="5" width="114" height="75" rx="7" fill="#fff6dc" stroke="#967044" stroke-width="3"/><path d="m5 76 40-33m70 33L75 43M5 9l55 43 55-43" fill="none" stroke="#b59466" stroke-width="3"/><circle cx="60" cy="53" r="9" fill="#a9bb85"/><path d="m56 53 3 3 5-7" fill="none" stroke="#547043" stroke-width="2"/></svg>';
 const doorSVG=`<svg viewBox="0 0 1448 1086" preserveAspectRatio="none"><defs><linearGradient id="letter-flap" x2="0" y2="1"><stop stop-color="#cc9743"/><stop offset=".5" stop-color="#e5bd70"/><stop offset="1" stop-color="#ae7633"/></linearGradient></defs><rect class="ff-mail-opening" x="1180" y="280" width="106" height="34" rx="3" fill="#49331f"/><rect class="ff-mail-lid" x="1180" y="280" width="106" height="34" rx="3" fill="url(#letter-flap)" stroke="#d7af64" stroke-width="2"/></svg>`;
 function syncMail(){
   if(!world||!state||!doorScene)return;
   const m=state.mail();root.dataset.mail=m.phase;
   doorScene.hidden=area!=='den';denEnvelope.hidden=area!=='den'||m.phase!=='den-letter'||!!panel;
-  world.mailTarget(area==='forest'?(m.phase==='to-friend'?m.host:m.phase==='to-mailman'?'mailman':null):null);
+  world.mailTarget(area==='forest'?(m.phase==='to-friend'?m.host:m.phase==='to-mailman'?'mailman':['return-home','den-letter'].includes(m.phase)?'home':null):null);
   positionDoor();
 }
 function positionDoor(){
@@ -26,6 +26,8 @@ function positionDoor(){
 }
 function showLetter(fromMailman){
   const before=state.mail();
+  if(!['den-letter','to-friend','to-mailman'].includes(before.phase)){say('Fuchs geht jetzt nach Hause schlafen.');return;}
+  if(before.phase==='den-letter'&&area!=='den')return;
   if(before.phase==='to-mailman'&&!fromMailman){say('Der Briefträger hat deinen nächsten Brief. Folge dem Pfeil zu ihm.');return;}
   if(before.phase!=='to-friend'&&!state.openLetter()){saveStatus();return;}
   open('letter');syncMail();
@@ -65,7 +67,7 @@ function download(name,data){const url=URL.createObjectURL(new Blob([JSON.string
 function tick(){const now=performance.now();if(panel==='puzzle'&&!example&&!document.hidden&&state.round(host)?.feedback!=='correct')activeMs+=Math.min(500,now-lastTick);lastTick=now;}
 setInterval(tick,100);
 function close(){
-  overlay.classList.remove('ff-postcard-overlay');
+  overlay.classList.remove('ff-postcard-overlay','ff-session-end-overlay');
   FK.forestVoice.cancel();
   tick();if(panel==='puzzle'&&host){state.record('task_leave',{host,activeMilliseconds:activeMs});if(activeMs)state.duration(host,activeMs);activeMs=0;}
   clearTimeout(feedbackTimer);feedbackTimer=null;panel=null;example=false;overlay.hidden=true;overlay.replaceChildren();world.pause(false);nav.hidden=false;renderHotspots();caption.hidden=true;syncMail();
@@ -73,22 +75,34 @@ function close(){
 function open(kind){clearTimeout(feedbackTimer);panel=kind;world.pause(true);nav.hidden=true;hotspots.replaceChildren();nearButton.hidden=true;overlay.hidden=false;overlay.replaceChildren();}
 function shell(titlePic,back=close){const card=h('div',{class:'ff-card'});card.append(h('div',{class:'ff-card-top'},button('Zurück','back',back),art(titlePic,'ff-card-portrait')));overlay.append(card);requestAnimationFrame(()=>card.querySelector('button')?.focus());return card;}
 function go(next,restore=false){
+  if(next!=='den'&&['sleeping','finished'].includes(state.mail().phase))return;
   close();if(!restore&&next==='forest'&&area==='den')state.position(exitPoints.den.x,exitPoints.den.z);
   area=next;root.dataset.area=next;if(fader){fader.classList.remove('on');void fader.offsetWidth;fader.classList.add('on');}
   world.setArea(next);audio.setArea(next);state.record('area_transition',{area:next});renderNav();renderHotspots();caption.hidden=true;syncMail();
+  if(next==='den'&&state.mail().phase==='return-home'){if(state.beginSleep())sequence('sleep',true);else saveStatus();return;}
+  if(next==='den'&&state.mail().phase==='sleeping'){sequence('sleep',true);return;}
+  if(state.mail().phase==='finished'){showSessionEnd();return;}
   say(next==='den'?'Dein Zuhause. Schau, ob ein Brief für dich da ist.':state.mail().phase==='to-mailman'?'Der Briefträger ist ganz in deiner Nähe. Folge dem Pfeil.':'Folge dem Pfeil zum Freund auf deinem Brief. Tippe auf den Boden, um zu gehen.');
 }
 function renderNav(){nav.replaceChildren();if(state.development)nav.append(h('strong',{class:'ff-dev',text:'ENTWICKLUNG'}));
-  nav.append(button('Bildkarte','map',map),button('Dein Brief','letter',()=>showLetter(false)),button('Waldspiele','book',()=>games()),button('Einstellungen für Erwachsene','gear',()=>FK.ui.parentGate(settings)));
+  if(!['sleeping','finished'].includes(state.mail().phase)){
+    nav.append(button('Bildkarte','map',map));
+    if(['den-letter','to-friend','to-mailman'].includes(state.mail().phase))nav.append(button('Dein Brief','letter',()=>showLetter(false)));
+  }
+  nav.append(button('Einstellungen für Erwachsene','gear',()=>FK.ui.parentGate(settings)));
 }
-function renderHotspots(){if(panel)return;hotspots.replaceChildren();const ids=area==='forest'?Object.keys(places):['outside','drawing','gallery','sleep','games'];for(const id of ids){const p=places[id];if(id==='mailman'&&state.mail().phase!=='to-mailman')continue;const b=button(area==='forest'?p.name:actionNames[id],area==='forest'?p.picture:actionPictures[id],()=>act(id),'ff-hotspot');b.dataset.place=id;const m=state.mail();b.classList.toggle('ff-invited',area==='forest'&&((m.phase==='to-friend'&&m.host===id)||(m.phase==='to-mailman'&&id==='mailman')));hotspots.append(b);}}
-function act(id){if(panel)return;if(area==='forest'){
+function renderHotspots(){if(panel)return;hotspots.replaceChildren();if(['sleeping','finished'].includes(state.mail().phase))return;
+  const ids=area==='forest'?Object.keys(places):['outside','drawing','gallery'];
+  for(const id of ids){const p=places[id],m=state.mail();if(id==='mailman'&&m.phase!=='to-mailman')continue;
+    const b=button(area==='forest'?p.name:actionNames[id],area==='forest'?p.picture:actionPictures[id],()=>act(id),'ff-hotspot');b.dataset.place=id;
+    b.classList.toggle('ff-invited',area==='forest'&&((m.phase==='to-friend'&&m.host===id)||(m.phase==='to-mailman'&&id==='mailman')||(m.phase==='return-home'&&id==='home')));hotspots.append(b);
+  }
+}
+function act(id){if(panel||['sleeping','finished'].includes(state.mail().phase))return;if(area==='forest'){
   const destination=places[id];if(!destination)return;
   const p=world.position;if(Math.hypot(p.x-destination.x,p.z-destination.z)>3.2){world.route(id);say('Folge Fuchs zu '+(C.hosts[id]?.name||(id==='home'?'deinem Zuhause':'dem Briefträger'))+'.');return;}
-  if(id==='home')go('den');else if(id==='mailman'){if(state.mail().phase==='to-mailman')showLetter(true);else say('Der Briefträger bringt dir nach deinem Besuch einen neuen Brief.');}else if(state.mail().phase==='den-letter')showLetter(false);else meet(id);
-}else if(id==='outside'){if(state.mail().phase==='den-letter')showLetter(false);else go('forest');}else if(id==='games')games();else if(id==='drawing')FK.go('book',{from:'friends'});else if(id==='gallery')FK.go('gallery');else if(id==='sleep')sequence('sleep');}
-// The original Waldspiele and story puzzles open in their own book and return here.
-function games(resident){if(panel)close();state.record('games_open',{resident:resident||'all'});world.pause(true);FK.go('forest-book',{from:'friends',...(resident?{resident}:{})});}
+  if(id==='home')go('den');else if(id==='mailman'){if(state.mail().phase==='to-mailman')showLetter(true);}else meet(id);
+}else if(id==='outside'){if(state.mail().phase==='den-letter')showLetter(false);else go('forest');}else if(id==='drawing')FK.go('book',{from:'friends'});else if(id==='gallery')FK.go('gallery');}
 // The picture map is drawn from the world (tools/map/): a place's pin is where it lies on it.
 const MAP={x0:-168,x1:168,z0:-112,z1:112};   // as world/big/layout.js MAP
 const mapPins=new Proxy({},{get:(_,id)=>{const p=places[id],[x,z]=p.map||[p.x,p.z];return [(x-MAP.x0)/(MAP.x1-MAP.x0),(z-MAP.z0)/(MAP.z1-MAP.z0)];}});
@@ -100,7 +114,7 @@ function map(){
     if(id==='mailman')continue;
     const b=button(p.name,p.picture,()=>{if(area!=='forest')go('forest');else close();world.route(id);});
     b.replaceChildren(FK.friendsArt.portrait(id==='home'?'fox':id));b.dataset.place=id;
-    b.classList.toggle('ff-map-invited',mail.phase==='to-friend'&&mail.host===id);
+    b.classList.toggle('ff-map-invited',mail.phase==='to-friend'&&mail.host===id||mail.phase==='return-home'&&id==='home');
     const [x,y]=mapPins[id];b.style.left=(x*100)+'%';b.style.top=(y*100)+'%';board.append(b);
   }
   // On a phone the map is wider than the screen (eleven pins need room) and scrolls sideways, starting at the den.
@@ -111,9 +125,9 @@ function map(){
   }
 }
 function meet(id){
-  if(panel)close();
-  world.pause(true);
-  FK.friendsLibrary.launch(FK.friendsLibrary.pick(id),'friends');
+  if(!state.canPuzzle(id)){FK.ui.toast(state.mail().phase==='return-home'?'Fuchs geht nach Hause schlafen.':'Dein Brief zeigt dir deinen Freund.');return;}
+  const game=FK.friendsLibrary.pick(id);if(!game){FK.ui.toast('Dieses Puzzle wartet noch auf die Freigabe von Erwachsenen.');return;}
+  if(panel)close();world.pause(true);FK.friendsLibrary.visit(game);
 }
 function taskScene(t,filled=false){
   const scene=h('div',{class:'ff-task-scene'});
@@ -162,12 +176,21 @@ function reward(){
   if(!state.acknowledge(completedHost)){saveStatus();open('completion');const card=shell(completedHost);card.append(button('Weiter zum Briefträger','letter',reward));return;}
   FK.friendsPuzzleCompleted(completedHost);
 }
-function sequence(item){
-  returnArea=area;
-  close();open('animation');root.dataset.area='den';world.setArea('den');world.sequence(item);overlay.classList.add('ff-animation-overlay');overlay.append(button('Animation überspringen','skip',()=>endSequence(true),'ff-skip'));
+function sequence(item,finish=false){
+  finalSleep=finish;returnArea=area;
+  close();open('animation');root.dataset.area='den';world.setArea('den');world.sequence(item,{hold:finish});overlay.classList.add('ff-animation-overlay');
+  if(!finish)overlay.append(button('Animation überspringen','skip',()=>endSequence(true),'ff-skip'));
   say('Gute Nacht, kleiner Fuchs.');
 }
-function endSequence(skipped=false){world.skip();overlay.classList.remove('ff-animation-overlay');if(state.get().animation&&!state.finishAnimation(skipped)){saveStatus();return;}go(returnArea);}
+function showSessionEnd(){
+  open('session-end');overlay.classList.remove('ff-animation-overlay');overlay.classList.add('ff-session-end-overlay');
+  const count=state.mail().session.completed;
+  overlay.append(h('section',{class:'ff-card ff-session-end',role:'status'},FK.visual.art('fox-sleep'),h('h2',{text:'Gute Nacht, Fuchs!'}),h('p',{text:count+' '+(count===1?'Brief geschafft.':'Briefe geschafft.')+' Deine Briefreise ist zu Ende.'}),button('Einstellungen für Erwachsene','gear',()=>FK.ui.parentGate(settings))));
+}
+function endSequence(skipped=false){
+  if(finalSleep){if(state.mail().phase==='sleeping'&&!state.finishLetterSession()){saveStatus();return;}showSessionEnd();return;}
+  world.skip();overlay.classList.remove('ff-animation-overlay');if(state.get().animation&&!state.finishAnimation(skipped)){saveStatus();return;}go(returnArea);
+}
 const basic=['#4b3b2d','#c87550','#e2b65d','#73955b','#6d9faf'];
 function drawing(){
   open('drawing');const s=state.get(),card=shell('pencils');card.classList.add('ff-drawing-card');
@@ -199,15 +222,15 @@ FK.screen('friends',{
     world=createWorld(canvas,{position:()=>state.get().world,onPosition:(x,z,region)=>state.position(x,z,region),onMove:e=>state.record(e.event,e),onNear:()=>{},onAction:act,onAnimationEnd:()=>endSequence(false),onProject:items=>{positionDoor();for(const p of items){const b=hotspots.querySelector(`[data-place="${p.id}"]`);if(b){b.hidden=!p.visible;b.style.left=p.x+'px';b.style.top=p.y+'px';}}}});
     FK.friendsView=()=>world.diagnostics;renderNav();renderHotspots();saveStatus();
     const interrupted=state.get().animation;if(interrupted)state.finishAnimation(true);
-    if(state.mail().phase==='to-mailman'){go('forest',true);world.summonMailman();}
+    if(['return-home','sleeping','finished'].includes(state.mail().phase)){go('den',true);}
     else say(state.mail().phase==='den-letter'?'Oh, ein Brief! Er kommt durch die Briefklappe. Tippe auf den Umschlag.':'Dein Brief wartet auf dich. Er zeigt dir, wen du besuchen kannst.');
     syncMail();
     document.addEventListener('visibilitychange',()=>{tick();if(document.hidden){if(panel==='puzzle'&&activeMs){state.duration(host,activeMs);activeMs=0;}state.record('pause',{reason:'hidden'});}else state.record('resume',{reason:'visible'});});
     window.addEventListener('pagehide',()=>{tick();if(panel==='puzzle'&&activeMs){state.duration(host,activeMs);activeMs=0;}state.record('session_end');});
-    root.addEventListener('keydown',e=>{if(e.key==='Escape'&&panel){e.preventDefault();e.stopPropagation();if(panel==='animation')endSequence(true);else close();}if(e.key==='Tab'&&panel){const list=[...overlay.querySelectorAll('button:not(:disabled),a,input')].filter(el=>!el.hidden);const first=list[0],last=list.at(-1);if(e.shiftKey&&document.activeElement===first){last?.focus();e.preventDefault();}else if(!e.shiftKey&&document.activeElement===last){first?.focus();e.preventDefault();}}});
-    if(state.development){const dock=h('div',{class:'ff-dev-dock'},Object.entries(C.hosts).map(([id,data])=>button(data.name+' direkt öffnen',id,()=>meet(id))));root.append(dock);}
+    root.addEventListener('keydown',e=>{if(e.key==='Escape'&&panel){e.preventDefault();e.stopPropagation();if(panel==='session-end')return;if(panel==='animation')endSequence(true);else close();}if(e.key==='Tab'&&panel){const list=[...overlay.querySelectorAll('button:not(:disabled),a,input')].filter(el=>!el.hidden);const first=list[0],last=list.at(-1);if(e.shiftKey&&document.activeElement===first){last?.focus();e.preventDefault();}else if(!e.shiftKey&&document.activeElement===last){first?.focus();e.preventDefault();}}});
+    if(state.development){const dock=h('div',{class:'ff-dev-dock'},Object.entries(C.hosts).map(([id,data])=>button(data.name+' direkt öffnen',id,()=>act(id))));root.append(dock);}
   },
-  enter(){world?.pause(!!panel);if(state?.mail().phase==='to-mailman')world?.summonMailman();renderHotspots();syncMail();},leave(){world?.pause(true);FK.forestVoice.cancel();}
+  enter(){if(state?.mail().phase==='finished'){if(!finalSleep){world.setArea('den');world.sequence('sleep',{hold:true});finalSleep=true;}showSessionEnd();return;}world?.pause(!!panel);if(state?.mail().phase==='to-mailman')world?.summonMailman();renderHotspots();syncMail();},leave(){world?.pause(true);FK.forestVoice.cancel();}
 });
 // Shared book callbacks return to the paused world before opening a round/saved sheet.
 FK.friendsPuzzleCompleted=id=>{
@@ -215,8 +238,13 @@ FK.friendsPuzzleCompleted=id=>{
   if(matching&&state.mail().phase==='to-friend'&&!state.completeMail(id)){saveStatus();return;}
   if(FK.current()!=='friends')FK.go('friends');
   go(state.mail().phase==='den-letter'?'den':'forest');
+  if(matching&&state.mail().phase==='return-home'){syncMail();say('Alle Briefe geschafft. Folge dem Pfeil nach Hause zum Schlafen.');}
   if(matching&&state.mail().phase==='to-mailman'){world.summonMailman();syncMail();say('Danke fürs Helfen! Der Briefträger wartet mit einem neuen Brief auf dich. Folge dem Pfeil.');}
 };
-FK.friendsStartRound=id=>FK.friendsLibrary.launch(FK.friendsLibrary.catalogue().find(g=>g.id==='friends-'+id));
-FK.friendsSavedSheets=()=>{FK.go('friends');drawing();};
+FK.friendsStartRound=id=>{if(area==='forest')act(id);};
+FK.friendsStartSession=limit=>{
+  if(!state.startLetterSession(limit)){saveStatus();return false;}
+  finalSleep=false;world.skip();if(FK.current()!=='friends')FK.go('friends');go('den',true);return true;
+};
+FK.friendsSavedSheets=()=>{FK.go('friends');if(state.mail().phase!=='finished')drawing();};
 FK.go('friends');

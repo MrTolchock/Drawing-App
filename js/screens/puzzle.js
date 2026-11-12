@@ -237,6 +237,7 @@
   }
   function draw() {
     clearTimeout(timer);locked=false;
+    if(!session.review&&!FK.friendsLibrary.canPlay(game)){FK.go('friends');return;}
     if(!session.review&&!FK.puzzleReview.ready(game)){blocked();return;}
     if(session.round===5){finish();return;}question=R.current(session);
     root.dataset.game=game;root.dataset.host=host;
@@ -289,7 +290,7 @@
       session=null;root.classList.remove('is-review-preview');root.querySelector('.review-preview')?.remove();
       if(params.reviewIteration)session=FK.puzzleReview.previewSession(game,params.reviewIteration);
       else if(params.reviewRound&&FK.puzzleReview.authorized){const items=FK.puzzleCatalogue.select(game,Math.floor(Math.random()*0x100000000));session={id:game,seed:0,round:0,solved:false,work:{},review:true,questions:items.map(i=>i.question),iterationIds:items.map(i=>i.id)};}
-      if(!session){if(!FK.puzzleReview.ready(game)){blocked();return;}session=R.start(game);}
+      if(!session){if(!FK.friendsLibrary.canPlay(game)){FK.go('friends');return;}if(!FK.puzzleReview.ready(game)){blocked();return;}session=R.start(game);}
       draw();
       if(session.review){root.classList.add('is-review-preview');if(params.reviewIteration)FK.puzzleReview.seen(game,params.reviewIteration);FK.puzzleReview.attachPreview(root,game,params.reviewIteration);}
       root.querySelector('.btn-back').setAttribute('aria-label',origin==='forest-book'?'Zurück zu Waldspiele':'Zurück zum Wald');

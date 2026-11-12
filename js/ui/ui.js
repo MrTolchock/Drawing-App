@@ -49,6 +49,7 @@
     if(library){
       if(name==='friends'||params?.from==='friends')library.active=true;
       else if(name==='forest')library.active=false;
+      if(name==='forest-book'&&library.active){FK.puzzleReview.open();return;}
       if(library.active&&['learn','adventure','expedition','read','trace','dots'].includes(name))params={...params,stage:1,lvl:1,level:1};
       if(library.active&&FK.puzzleRounds&&!params?.forest){
         const returnTo=params?.returnTo||(current?.name==='forest-book'?'forest-book':'friends');
@@ -91,6 +92,7 @@
   FK.back = () => {
     const prev = stack.pop();
     if (prev) FK.go(prev.name, prev.params, { isBack: true });
+    else if(FK.friendsLibrary?.active)FK.go('friends',{}, {isBack:true});
     else FK.go(current?.name === 'forest-book' ? (FK.friendsLibrary?.active || current.params?.from === 'friends' ? 'friends' : 'forest') : 'forest-book', {}, { isBack: true });
   };
   FK.current = () => (current ? current.name : null);

@@ -15,6 +15,7 @@ This blueprint builds on the Waldbuch picture-book design, Silben-Puzzle interac
 | Input | Finger, stylus and mouse as appropriate; keyboard-operable buttons, visible focus, readable labels and responsive phone/tablet layout. Wrong answers remain editable; no penalty or countdown. |
 | Sound | A quiet click for every enabled puzzle button, then distinct correct/retry feedback. Respect Spielklänge mute. Speech only when requested. |
 | Progress | Correct answer stays visible for 900 ms, then advances automatically. After five: the existing 2.2-second friend/leaf/flower celebration. Reduced motion uses a static wreath. |
+| Access | Children visit the character on their current letter. Only that character can start a puzzle. The complete gallery/review workbench is in adult Settings. Parents choose the number of letters; the last puzzle leads home to sleep and game over. |
 | Continuity | Back returns to the actual entry point. Child play, parent previews, reviews and historical saves are separate. Previews must not complete invitations, award progress or alter an unfinished child round. |
 
 ## Content and competence

@@ -261,6 +261,7 @@
 
   function woodlandNext() {
     if(!active||!woodlandSession)return;
+    if(!woodlandSession.review&&!FK.friendsLibrary.canPlay(woodlandGame)){FK.go('friends');return;}
     if(document.hidden||document.querySelector('.modal')){later(woodlandNext,250);return;}
     if(woodlandSession.round===5){
       playEl.hidden=true;overEl.hidden=true;woodlandContext.hidden=true;woodlandEnd.hidden=false;
@@ -1090,6 +1091,7 @@
       if(FK.friendsLibrary?.active){
         if(params.reviewIteration)woodlandSession=FK.puzzleReview.previewSession(woodlandGame,params.reviewIteration);
         else if(params.reviewRound&&FK.puzzleReview.authorized){const items=FK.puzzleCatalogue.select(woodlandGame,Math.floor(Math.random()*0x100000000));woodlandSession={id:woodlandGame,seed:0,round:0,solved:false,work:{},review:true,questions:items.map(i=>i.question),iterationIds:items.map(i=>i.id)};}
+        if(!woodlandSession&&!FK.friendsLibrary.canPlay(woodlandGame)){FK.go('friends');return;}
         if(!woodlandSession)woodlandSession=FK.puzzleReview.ready(woodlandGame)?FK.puzzleRounds.start(woodlandGame):{blocked:true};
       }
       if(woodlandSession)root.dataset.game=woodlandGame;else delete root.dataset.game;

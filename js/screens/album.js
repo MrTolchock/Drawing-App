@@ -118,7 +118,6 @@
           FK.sound.tick();
         }));
       body.append(schrift);
-      body.append(FK.timerUI.settings().element);
 
       const reset = FK.ui.btn({ icon: 'trash', label: 'Sterne zurücksetzen', cls: 'btn-wide', onClick: async () => {
         const ok = await FK.ui.confirm('Alle Sterne und Fortschritte löschen? Die Bilder bleiben.', 'Löschen', 'Behalten', { danger: true });

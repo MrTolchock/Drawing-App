@@ -15,6 +15,7 @@
 | --- | --- |
 | Drawn pictures | Existing woodland sheets; SVG for geometry and tracing |
 | Shared page | Waldbuch paper, host, Andika, five progress leaves |
+| Child access | Only the character on the current letter; parent-controlled journey limit |
 | Guidance | One optional rule explanation; no hints or next-task button |
 | Sound | Enabled button clicks, success/retry, mute respected |
 | Round | Five distinct sampled iterations; saved questions/partial work |

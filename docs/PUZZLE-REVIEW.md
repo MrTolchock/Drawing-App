@@ -1,6 +1,6 @@
 # Review every puzzle before children play
 
-The review workbench is part of the app. Open **Einstellungen → Puzzle-Prüfung öffnen** and answer the existing adult-gate question. You can also open `?screen=puzzle-review`; this still requires the adult gate.
+The review workbench and complete puzzle gallery are in adult Settings. Children use the [letter-limited journey](LETTER-SESSIONS.md). Open **Einstellungen → Puzzle-Galerie öffnen** and answer the existing adult-gate question. You can also open `?screen=puzzle-review` or the old `?screen=hub` link; both require the adult gate.
 
 Nothing is preapproved. The active Waldfreunde library and forest visits only play puzzles whose entire current pool and puzzle checklist you have signed off. The historical Heart Tree game (`?screen=forest`) remains a separate compatibility experience; this review gate applies to the 34 active Waldfreunde puzzles, not its historical activities.
 
@@ -30,7 +30,7 @@ Adding an iteration changes the puzzle revision and requires puzzle sign-off aga
 2. Edit the finite definitions in `js/friends/puzzle-catalogue.js`. Give every new iteration a new stable ID. Change the definition of an existing ID only for a correction; its fingerprint changes automatically. Keep difficulty in `meta` accurate.
 3. Reuse the real puzzle or tracing renderer and the shared blueprint. Do not ship a separate approximate review renderer.
 4. Run `node tools/puzzle-catalogue.cjs`. This writes all GitHub catalogue pages and the shared implementation fingerprint. The fingerprint hashes actual shared runtime source and artwork; individual content/difficulty also has its own fingerprint. Generated files must be committed with the implementation.
-5. Run `node --test tests/*.test.cjs`, `node tests/puzzle-review-browser.cjs` and `FARBTUPF_UI_ONLY=1 node tests/puzzle-rounds-browser.cjs`. Browser suites need Playwright and Chromium as described in [Development](DEVELOPMENT.md). Test fixtures create approvals only inside disposable browser contexts; no approvals ship with the app.
+5. Run `node --test tests/*.test.cjs`, `node tests/puzzle-review-browser.cjs` and `node tests/letter-sessions-browser.cjs`. Browser suites need Playwright and Chromium as described in [Development](DEVELOPMENT.md). Test fixtures create approvals only inside disposable browser contexts; no approvals ship with the app.
 6. Bump the app/cache version for runtime changes and keep all new assets in `sw.js`. Push checkpoints to the same feature branch. Owner review is still required in the application after deploying to the intended origin.
 
 `docs/PUZZLE-CATALOGUE.md` and `docs/puzzles/*.md` list every puzzle, every iteration, the competence and its blueprint mapping on GitHub. The catalogue-generation check runs in CI, so content, difficulty or runtime changes cannot silently ship with stale revision data. CI validates the process; it does not grant editorial approval.

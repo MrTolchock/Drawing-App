@@ -4,7 +4,6 @@
   const FK = window.FK;
 
   FK.fx.init();
-  FK.timerUI.init();
 
   // iOS only starts audio from touchend/click, and only shows :active styles when a touchstart listener exists.
   document.addEventListener('touchstart', () => {}, { passive: true });
@@ -45,13 +44,13 @@
   FK.store.persist();
   const entry = new URLSearchParams(location.search).get('screen');
   let started = Promise.resolve();
-  if (entry === 'hub' || entry === 'forest') FK.go(entry);
+  if (entry === 'forest') FK.go(entry);
   else started = import('./friends/game.js').catch(error => {
     console.error(error);
     document.getElementById('screens').textContent = 'Der Wald konnte nicht geöffnet werden. Bitte lade die Seite neu.';
   });
 
-  if(entry==='puzzle-review')started.then(()=>FK.puzzleReview.open());
+  if(entry==='puzzle-review'||entry==='hub')started.then(()=>FK.puzzleReview.open());
 
   if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
     FK.updates.start(started);
