@@ -272,7 +272,7 @@
       });return;
     }
     woodlandEnd.hidden=true;woodlandContext.hidden=false;
-    woodlandContext.replaceChildren(FK.puzzleUI.context('mouse',woodlandSession.round,FK.puzzleRounds.instructions[woodlandGame]),FK.puzzleUI.progress(woodlandSession.round));
+    woodlandContext.replaceChildren(FK.puzzleUI.context('mouse',woodlandSession.round,FK.puzzleRounds.instructions[woodlandGame],{explain:!woodlandSession.review}),FK.puzzleUI.progress(woodlandSession.round));
     const glyph=FK.puzzleRounds.current(woodlandSession).glyph;
     root.dataset.glyph=glyph;
     openGlyph(glyph,'guided');

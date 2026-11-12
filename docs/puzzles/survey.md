@@ -7,7 +7,7 @@
 - Related competence: **MA.3.C.1.a/b** — Eine Bildumfrage auswerten
 - Difficulty: Drei Obstsorten; 1–6 Stimmen; zählen oder eindeutiges Maximum
 - Pool: 30 explicit iterations; a round selects five.
-- Review: every iteration plus the puzzle checklist must be approved for this exact revision. New/changed items or difficulty require review again.
+- Review: every iteration and the puzzle must be approved for this exact revision; names, notes and checklists are not required. New/changed items or difficulty require review again.
 
 ## Mapping to the blueprint
 
@@ -20,7 +20,7 @@
 | Sound | Enabled button clicks, success/retry, mute respected |
 | Round | Five distinct sampled iterations; saved questions/partial work |
 | Ending | 900 ms correct feedback, then 2.2 s celebration; reduced motion |
-| Review | Isolated real-renderer previews, individual decisions, revision gate |
+| Review | Isolated real-renderer previews, one-click decisions, puzzle-level speech, revision gate |
 
 ## Every iteration
 

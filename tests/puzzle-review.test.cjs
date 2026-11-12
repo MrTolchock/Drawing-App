@@ -1,7 +1,7 @@
 const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
 const {setup,check}=require('../tools/puzzle-catalogue.cjs');
 const plain=v=>JSON.parse(JSON.stringify(v));
-function approve(FK,id){const V=FK.puzzleReview,C=FK.puzzleCatalogue;for(const it of C.iterations(id)){assert.ok(V.seen(id,it.id));assert.ok(V.decide(id,it.id,'approved','','AB'));}assert.ok(V.decide(id,null,'approved','','AB',Object.keys(C.checklist)));}
+function approve(FK,id){const V=FK.puzzleReview,C=FK.puzzleCatalogue;for(const it of C.iterations(id)){assert.ok(V.seen(id,it.id));assert.ok(V.decide(id,it.id,'approved'));}assert.ok(V.decide(id,null,'approved'));}
 test('every active puzzle has at least 25 unique finite definitions, competence and real artwork',()=>{
  const {FK,ctx}=setup();FK.STICKERS=[];ctx.MutationObserver=class{observe(){}};ctx.document={body:{}};vm.runInContext(fs.readFileSync('js/ui/waldatelier.js','utf8'),ctx);
  const C=FK.puzzleCatalogue,seen=new Set();let total=0;
@@ -40,17 +40,34 @@ test('five distinct questions are deterministic, restored verbatim and avoid the
   R.complete(g.id);const n=R.start(g.id);assert.ok(n.iterationIds.every(id=>!s.iterationIds.includes(id)),g.id);
  }
 });
-test('no approvals by default; approval requires seeing every iteration, a reviewer and the checklist',()=>{
+test('approval requires inspecting every iteration, without names, notes or checklists',()=>{
  const {FK}=setup(),V=FK.puzzleReview,C=FK.puzzleCatalogue,id='add',it=C.iterations(id)[0];assert.equal(V.ready(id),false);
- assert.equal(V.decide(id,it.id,'approved','','AB'),false);assert.ok(V.seen(id,it.id));assert.equal(V.decide(id,it.id,'approved'),false);assert.ok(V.decide(id,it.id,'approved','','AB'));
- assert.equal(V.decide(id,null,'approved','','AB',Object.keys(C.checklist)),false);approve(FK,id);assert.ok(V.ready(id));
- assert.equal(V.decide(id,it.id,'improve',''),false);assert.ok(V.decide(id,it.id,'improve','Picture needs work','AB'));assert.equal(V.ready(id),false);assert.ok(V.exportData().history.length>0);
+ assert.equal(V.decide(id,it.id,'approved'),false);assert.ok(V.seen(id,it.id));assert.ok(V.decide(id,it.id,'approved'));
+ assert.equal(V.decide(id,null,'approved'),false);approve(FK,id);assert.ok(V.ready(id));
+ assert.ok(V.decide(id,it.id,'improve'));assert.equal(V.status(id,it.id).decision.note,'');assert.equal(V.ready(id),false);
+ assert.ok(V.decide(id,it.id,'approved'));assert.ok(V.decide(id,null,'improve'));assert.equal(V.ready(id),false);
+ assert.ok(V.decide(id,null,'approved'));assert.ok(V.ready(id));assert.ok(V.exportData().history.length>0);
+ const decision=V.status(id,it.id).decision;assert.equal('reviewer' in decision,false);assert.equal('checks' in decision,false);
+});
+test('Settings opens the gallery directly; outside Settings the existing adult gate still applies',()=>{
+ const {FK}=setup(),V=FK.puzzleReview;let current='friends',gates=0,pending;
+ FK.current=()=>current;FK.go=screen=>{current=screen;};FK.ui={parentGate:fn=>{gates++;pending=fn;}};
+ V.open();assert.equal(gates,1);assert.equal(V.authorized,false);assert.equal(V.preview('add','add/1-1'),false);
+ pending();assert.equal(V.authorized,true);assert.equal(current,'puzzle-review');
+ const {FK:next}=setup();next.current=()=> 'settings';next.ui={parentGate:()=>{throw Error('Second calculation');}};next.go=screen=>{current=screen;};next.puzzleReview.open();assert.equal(next.puzzleReview.authorized,true);assert.equal(current,'puzzle-review');
 });
 test('export/import restores review decisions; malformed or incomplete files never erase stored work',()=>{
  const {FK,memory}=setup();approve(FK,'add');const file=FK.puzzleReview.exportData(),other=setup().FK.puzzleReview;
  assert.ok(other.importData(file));assert.ok(other.ready('add'));assert.ok(setup(memory).FK.puzzleReview.ready('add'));
  const before=JSON.stringify(other.exportData().decisions);assert.equal(other.importData('{broken'),false);assert.equal(other.importData({version:1}),false);assert.equal(JSON.stringify(other.exportData().decisions),before);
- const invalid=plain(file),k=Object.keys(invalid.decisions)[0];invalid.decisions[k].reviewer='';assert.equal(other.importData(invalid),false);assert.equal(JSON.stringify(other.exportData().decisions),before);
+ const invalid=plain(file),k=Object.keys(invalid.decisions)[0];delete invalid.seen[k];assert.equal(other.importData(invalid),false);assert.equal(JSON.stringify(other.exportData().decisions),before);
+});
+test('previous backup metadata remains readable; new backups need no reviewer or checklist',()=>{
+ const {FK}=setup();approve(FK,'add');const current=FK.puzzleReview.exportData();
+ for(const d of Object.values(current.decisions)){assert.equal(d.reviewer,undefined);assert.equal(d.checks,undefined);}
+ const legacy=plain(current);for(const d of Object.values(legacy.decisions)){d.reviewer='Earlier owner';d.checks=['sound','flow'];}
+ const restored=setup().FK.puzzleReview;assert.ok(restored.importData(legacy));assert.ok(restored.ready('add'));
+ assert.equal(restored.status('add','add/1-1').decision.reviewer,'Earlier owner');
 });
 test('changed content, difficulty, implementation or new iterations cannot inherit earlier sign-offs',()=>{
  const {FK}=setup(),C=FK.puzzleCatalogue,V=FK.puzzleReview;approve(FK,'add');const file=V.exportData();

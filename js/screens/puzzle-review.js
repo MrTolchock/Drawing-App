@@ -2,26 +2,26 @@
 (function(){
   'use strict';
   const FK=window.FK,h=FK.h,C=FK.puzzleCatalogue,V=FK.puzzleReview;
-  let body,selected=null,filter='all',query='',reviewer='',notice='';
+  let body,selected=null,filter='all',query='',notice='';
   const names={pending:'Offen',approved:'Freigegeben',improve:'Verbessern'};
   const btn=(label,fn)=>FK.ui.btn({label,onClick:fn});
   const statusText=s=>(s.stale?'Geändert · ':'')+names[s.status];
   function download(){const url=URL.createObjectURL(new Blob([JSON.stringify(V.exportData(),null,2)],{type:'application/json'}));h('a',{href:url,download:'farbtupf-puzzle-pruefung.json'}).click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
   function message(){return h('p',{class:'review-notice',role:'status','aria-live':'polite',text:V.error||notice});}
-  function identity(){const input=h('input',{type:'text',maxlength:120,value:reviewer,placeholder:'Name oder Kürzel','aria-label':'Prüferin oder Prüfer'});input.addEventListener('input',()=>{reviewer=input.value;});return h('label',{},'Prüferin oder Prüfer',input);}
   function decisionForm(id,iteration,refresh){
-    const d=V.status(id,iteration),note=h('textarea',{'aria-label':'Prüfnotiz',maxlength:4000,rows:2,placeholder:'Was soll verbessert werden?',text:d.decision?.note||''}),checks=[];
-    const form=h('section',{class:'review-decision'},identity(),h('label',{},'Prüfnotiz',note));
-    if(!iteration){const group=h('fieldset',{},h('legend',{text:'Gemeinsame Prüfliste'}));for(const [key,label]of Object.entries(C.checklist)){const input=h('input',{type:'checkbox','data-check':key});input.checked=!d.stale&&!!d.decision?.checks?.includes(key);checks.push([key,input]);group.append(h('label',{},input,label));}form.append(group);}
+    const d=V.status(id,iteration),note=h('textarea',{'aria-label':'Prüfnotiz (optional)',maxlength:4000,rows:2,placeholder:'Optionale Notiz',text:d.decision?.note||''});
+    const form=h('section',{class:'review-decision'});
     const feedback=message();
-    const decide=value=>{if(V.decide(id,iteration,value,note.value,reviewer,checks.filter(([,i])=>i.checked).map(([k])=>k))){notice=value==='approved'?'Freigabe gespeichert.':'Entscheidung gespeichert.';refresh();}else feedback.textContent=V.error;};
+    const decide=value=>{if(V.decide(id,iteration,value,note.value)){notice=value==='approved'?'Freigabe gespeichert.':'Entscheidung gespeichert.';refresh();}else feedback.textContent=V.error;};
     const approve=btn(iteration?'Iteration freigeben':'Puzzle freigeben',()=>decide('approved'));
     approve.disabled=iteration?!d.seen:V.progress(id).approved!==V.progress(id).total;
     form.append(h('div',{class:'review-actions'},approve,btn('Verbessern',()=>decide('improve')),btn('Wieder öffnen',()=>decide('pending'))),feedback);
-    if(d.decision)form.append(h('small',{text:statusText(d)+' · '+(d.decision.reviewer||'ohne Kürzel')+' · '+new Date(d.decision.at).toLocaleString('de-CH')}));
+    form.append(h('details',{open:!!d.decision?.note},h('summary',{text:'Notiz hinzufügen (optional)'}),h('label',{},'Prüfnotiz (optional)',note)));
+    if(d.decision)form.append(h('small',{text:statusText(d)+' · '+new Date(d.decision.at).toLocaleString('de-CH')}));
     return form;
   }
   function draw(){
+    FK.forestVoice.cancel();
     const games=FK.friendsLibrary.catalogue();
     const search=h('input',{type:'search',value:query,placeholder:'Puzzle oder Aufgaben-ID suchen','aria-label':'Puzzle oder Aufgaben-ID suchen'});
     search.addEventListener('change',()=>{query=search.value;draw();});
@@ -38,7 +38,9 @@
       }body.append(grid);return;
     }
     const p=C.puzzle(selected),progress=V.progress(selected);
-    body.append(h('h2',{text:p.title}),h('p',{text:p.competence+' · '+p.reference}),h('p',{text:'Schwierigkeit: '+p.difficulty}),h('p',{text:progress.approved+' / '+progress.total+' freigegeben · '+progress.improve+' verbessern · '+progress.pending+' offen'}));
+    const speechStatus=h('p',{class:'review-speech-status',role:'status','aria-live':'polite'});
+    const speech=FK.ui.btn({icon:'sound',label:'Spielerklärung anhören',onClick:()=>{speechStatus.textContent=FK.forestVoice.explain(p.instruction)?'Spielerklärung wird vorgelesen.':'Die Sprachausgabe ist auf diesem Gerät nicht verfügbar.';}});
+    body.append(h('h2',{text:p.title}),h('p',{text:p.competence+' · '+p.reference}),h('p',{text:'Schwierigkeit: '+p.difficulty}),h('p',{text:progress.approved+' / '+progress.total+' freigegeben · '+progress.improve+' verbessern · '+progress.pending+' offen'}),h('section',{class:'review-speech'},h('h3',{text:'Spielerklärung'}),h('p',{text:p.instruction}),speech,speechStatus));
     const tabs=h('nav',{class:'review-actions','aria-label':'Aufgaben filtern'});
     for(const [value,label]of Object.entries({all:'Alle Iterationen',pending:'Offen',improve:'Verbessern',approved:'Freigegeben',stale:'Geändert'})){const b=btn(label,()=>{filter=value;draw();});b.setAttribute('aria-pressed',String(value===filter));tabs.append(b);}
     body.append(tabs);
@@ -48,9 +50,9 @@
       const b=btn('Prüfen: '+it.label,()=>V.preview(selected,it.id));b.dataset.iteration=it.id;
       list.append(h('li',{},h('div',{},h('b',{text:it.label}),h('code',{text:it.id}),h('span',{class:'review-status '+s.status,text:statusText(s)}),s.decision?.note?h('small',{text:s.decision.note}):null),b));
     }
-    body.append(list,h('h3',{text:'Puzzle als Ganzes freigeben'}),h('p',{text:'Jede Iteration einzeln ansehen und freigeben. Danach die gemeinsame Bedienung, Bilder, Klänge und Feier prüfen.'}),btn('Fünfer-Runde und Feier prüfen',()=>previewRound(selected)),btn('Feier ansehen',()=>previewCelebration(selected)),decisionForm(selected,null,draw));
+    body.append(list,h('h3',{text:'Puzzle als Ganzes freigeben'}),h('p',{text:'Sobald jede Iteration freigegeben ist, kannst du das Puzzle freigeben. Notizen sind optional.'}),btn('Fünfer-Runde und Feier prüfen',()=>previewRound(selected)),btn('Feier ansehen',()=>previewCelebration(selected)),decisionForm(selected,null,draw));
     const history=V.exportData().history.filter(d=>d.key==='puzzle:'+selected||d.key.startsWith(selected+'/'));
-    if(history.length)body.append(h('details',{},h('summary',{text:'Bisherige Entscheidungen ('+history.length+')'}),history.slice().reverse().map(d=>h('p',{text:d.key+' · '+names[d.status]+' · '+d.reviewer+' · '+d.at+' · '+d.note}))));
+    if(history.length)body.append(h('details',{},h('summary',{text:'Bisherige Entscheidungen ('+history.length+')'}),history.slice().reverse().map(d=>h('p',{text:d.key+' · '+names[d.status]+' · '+d.at+(d.note?' · '+d.note:'')}))));
   }
   function previewRound(id){if(!V.authorized)return;const p=C.puzzle(id);FK.go(p.screen,{game:id,reviewRound:true,returnTo:'puzzle-review',from:'friends'});}
   function previewCelebration(id){const modal=FK.ui.modal({title:'Feier prüfen',body:h('div',{class:'review-celebration'}),actions:[{label:'Schliessen',onClick:()=>FK.ui.closeModal()}]});const target=document.querySelector('.review-celebration');if(target)FK.puzzleUI.completion(target,C.puzzle(id).host,()=>{});}
@@ -68,6 +70,6 @@
   FK.screen('puzzle-review',{
     build(root){root.classList.add('ff-settings-screen');body=h('div',{class:'review-body scroll'});root.append(FK.ui.topbar({title:'Puzzle-Prüfung',stars:false,onBack:()=>FK.go('settings')}),body);},
     enter(){if(!V.authorized){V.open();return;}draw();},
-    leave(){notice='';}
+    leave(){notice='';FK.forestVoice.cancel();}
   });
 })();

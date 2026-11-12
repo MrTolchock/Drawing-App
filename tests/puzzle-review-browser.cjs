@@ -13,11 +13,25 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
  await page.waitForFunction(()=>FK.current()==='puzzle-review');assert.equal(await page.locator('.review-puzzle').count(),34);
  assert.equal(await page.locator('.review-puzzle').evaluateAll(nodes=>nodes.some(n=>n.scrollWidth>n.clientWidth+2)),false,'review card contents fit');
  await page.screenshot({path:shots+'/review-catalogue-tablet.png'});
+ // One shared spoken rule is tested on each puzzle overview, never per iteration.
+ await page.evaluate(()=>{window.reviewSpeechRequests=[];const synth=window.speechSynthesis,speak=synth.speak.bind(synth);synth.speak=utterance=>{reviewSpeechRequests.push({text:utterance.text,lang:utterance.lang});speak(utterance);};});
+ for(const g of entries){
+  await page.getByRole('button',{name:'Alle Puzzles',exact:true}).click();await page.locator('[data-puzzle="'+g.id+'"]').click();
+  assert.equal(await page.getByLabel('Prüferin oder Prüfer',{exact:true}).count(),0);
+  assert.equal(await page.locator('.review-decision input[type="checkbox"],.review-decision fieldset').count(),0);
+  await page.getByRole('button',{name:'Spielerklärung anhören',exact:true}).click();
+  const request=await page.evaluate(()=>reviewSpeechRequests.at(-1)),instruction=await page.evaluate(id=>FK.puzzleCatalogue.puzzle(id).instruction,g.id);
+  assert.equal(request.text,instruction,g.id+' spoken rule');assert.match(request.lang,/^de(?:-|$)/,g.id+' German speech');
+ }
+ assert.equal(await page.evaluate(()=>reviewSpeechRequests.length),34);console.log('PASS one spoken rule on each of 34 puzzle overviews');
+ await page.getByRole('button',{name:'Alle Puzzles',exact:true}).click();
  await page.locator('[data-puzzle="add"]').click();assert.equal(await page.getByRole('button',{name:'Puzzle freigeben',exact:true}).isDisabled(),true);
  await page.locator('[data-iteration="add/1-1"]').click();
- await page.locator('.screen:not([hidden])').getByLabel('Prüferin oder Prüfer',{exact:true}).fill('Owner test');await page.getByRole('button',{name:'Iteration freigeben',exact:true}).click();
+ assert.equal(await page.getByRole('button',{name:'Spiel erklären',exact:true}).count(),0);
+ await page.getByRole('button',{name:'Iteration freigeben',exact:true}).click();
  assert.equal(await page.evaluate(()=>FK.puzzleReview.status('add','add/1-1').status),'approved');
- await page.locator('.screen:not([hidden])').getByLabel('Prüfnotiz',{exact:true}).fill('Bitte Bildgrösse prüfen');await page.getByRole('button',{name:'Verbessern',exact:true}).click();
+ await page.getByRole('button',{name:'Verbessern',exact:true}).click();assert.equal(await page.evaluate(()=>FK.puzzleReview.status('add','add/1-1').decision.note),'');
+ await page.locator('.review-decision summary').click();await page.getByLabel('Prüfnotiz (optional)',{exact:true}).fill('Bitte Bildgrösse prüfen');await page.getByRole('button',{name:'Verbessern',exact:true}).click();
  assert.equal(await page.evaluate(()=>FK.puzzleReview.status('add','add/1-1').status),'improve');
  await page.getByRole('button',{name:'Zur Puzzle-Prüfung',exact:true}).click();
  // Backup through the actual download/upload controls.
@@ -54,7 +68,7 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
   for(const it of pool){
    await preview(g.id,it.id);
    assert.equal(await page.locator('.screen:not([hidden])').evaluate(e=>e.scrollWidth>e.clientWidth+2),false,it.id+' overflow');
-   assert.equal(await page.locator('.screen:not([hidden])').getByRole('button',{name:'Spiel erklären',exact:true}).count(),1,it.id);
+   assert.equal(await page.locator('.screen:not([hidden])').getByRole('button',{name:'Spiel erklären',exact:true}).count(),0,it.id);
    const missing=await page.locator('.screen:not([hidden]) .puzzle-paper .wa-illustration,.screen:not([hidden]) .tr-play .wa-illustration').evaluateAll(nodes=>nodes.filter(n=>getComputedStyle(n).backgroundImage==='none').length);assert.equal(missing,0,it.id+' artwork');
    await solve(it.question);checked++;
   }
@@ -70,16 +84,16 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
  await page.evaluate(()=>{FK.settings.set('sound',false);reviewSoundCounts.clicks=0;reviewSoundCounts.oscillators=0;});await page.getByRole('button',{name:'Klopfen zurücksetzen',exact:true}).click();assert.deepEqual(await page.evaluate(()=>reviewSoundCounts),{clicks:1,oscillators:0});
  // Single-item inspection never advances out from under the reviewer.
  await preview('add','add/1-1');await solve({kind:'add',answer:2});await page.waitForTimeout(1100);assert.equal(await page.locator('.screen:not([hidden]) .puzzle-round').textContent(),'1 / 5');
- // A real puzzle sign-off: individual decisions are test fixtures, final checklist via UI.
- await page.evaluate(()=>{for(const i of FK.puzzleCatalogue.iterations('add')){FK.puzzleReview.seen('add',i.id);FK.puzzleReview.decide('add',i.id,'approved','','Owner test');}FK.go('puzzle-review');});
- for(const box of await page.locator('.review-decision input[type="checkbox"]').all())await box.check();await page.getByRole('button',{name:'Puzzle freigeben',exact:true}).click();assert.equal(await page.evaluate(()=>FK.puzzleReview.ready('add')),true);
+ // A real puzzle sign-off: individual decisions are fixtures; one final button, no checklist.
+ await page.evaluate(()=>{for(const i of FK.puzzleCatalogue.iterations('add')){FK.puzzleReview.seen('add',i.id);FK.puzzleReview.decide('add',i.id,'approved');}FK.go('puzzle-review');});
+ assert.equal(await page.locator('.review-decision input[type="checkbox"],.review-decision fieldset').count(),0);await page.getByRole('button',{name:'Puzzle freigeben',exact:true}).click();assert.equal(await page.evaluate(()=>FK.puzzleReview.ready('add')),true);
  await page.evaluate(()=>FK.go('puzzle',{game:'add',reviewRound:true,returnTo:'puzzle-review',from:'friends'}));
  for(let round=0;round<5;round++){const q=await page.evaluate(()=>{const n=document.querySelector('.puzzle-equation').textContent.match(/\d+/g).map(Number);return {kind:'add',answer:n[0]+n[1]};});await solve(q);if(round<4)await page.waitForFunction(n=>document.querySelector('.screen:not([hidden]) .puzzle-round')?.textContent===n+' / 5',round+2);}
  await page.locator('.puzzle-completion').waitFor({state:'visible'});assert.equal(await page.locator('.puzzle-completion .puzzle-progress .done').count(),5);await page.waitForFunction(()=>FK.current()==='puzzle-review');
  // Flagging removes play eligibility and survives reload; no approval ships by default.
- await page.evaluate(()=>FK.puzzleReview.decide('add','add/1-1','improve','Check image','Owner test'));await page.reload();await page.waitForFunction(()=>!!window.FK?.friends);assert.equal(await page.evaluate(()=>FK.puzzleReview.ready('add')),false);
+ await page.evaluate(()=>FK.puzzleReview.decide('add','add/1-1','improve','Check image'));await page.reload();await page.waitForFunction(()=>!!window.FK?.friends);assert.equal(await page.evaluate(()=>FK.puzzleReview.ready('add')),false);
  // Offline inspection uses the newly cached runtime, without losing review records.
  await page.evaluate(()=>navigator.serviceWorker.ready);await page.waitForFunction(()=>!!navigator.serviceWorker.controller);await context.setOffline(true);await page.reload();await page.waitForFunction(()=>!!window.FK?.friends);assert.equal(await page.evaluate(()=>FK.puzzleReview.status('add','add/1-1').status),'improve');
- assert.deepEqual(errors,[]);console.log('PASS: '+checked+' real iteration previews/solutions, 34 phone/tablet layouts, parent gate, release gate, export/import, isolated saves, five-task celebration, persisted flag and offline review.');
+ assert.equal(await page.evaluate(()=>window.reviewSpeechRequests?.length||0),0,'reload starts without automatic speech');assert.deepEqual(errors,[]);console.log('PASS: '+checked+' real iteration previews/solutions, 34 phone/tablet layouts, parent gate, release gate, export/import, isolated saves, five-task celebration, persisted flag and offline review.');
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

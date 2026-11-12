@@ -11,7 +11,7 @@ This is the required contract for every active and future puzzle. It builds on t
 | Page | Cream stitched Waldbuch paper, woodland clearing, matching wooden answer cards, Andika for scored text, one host portrait and five progress leaves. |
 | Round | A random sample of five distinct iterations from the finite, inspectable pool. Prefer items not in the last completed round. Keep the selected questions and partial work stable on return/reload. |
 | Pool | At least 25 explicit, stable iterations per puzzle. Full upper/lower alphabet including ÄÖÜ; numeral practice includes the complete 0–9 set in three illustrated quantity contexts. Iterations differ in content, configuration or required action, never only answer order or a random seed. |
-| Guidance | One optional “Spiel erklären” control explains the rule without reading a scored answer. No hint, demonstration, question-mark help, timed question or next-task button. Necessary reset and reinspection controls remain available. |
+| Guidance | In child play, one optional “Spiel erklären” control explains the rule without reading a scored answer. No hint, demonstration, question-mark help, timed question or next-task button. Necessary reset and reinspection controls remain available. |
 | Input | Finger, stylus and mouse as appropriate; keyboard-operable buttons, visible focus, readable labels and responsive phone/tablet layout. Wrong answers remain editable; no penalty or countdown. |
 | Sound | A quiet click for every enabled puzzle button, then distinct correct/retry feedback. Respect Spielklänge mute. Speech only when requested. |
 | Progress | Correct answer stays visible for 900 ms, then advances automatically. After five: the existing 2.2-second friend/leaf/flower celebration. Reduced motion uses a static wreath. |
@@ -26,10 +26,10 @@ Numeric bounds and reading prerequisites are explicit. Expanding variety must no
 
 ## Adult review and release gate
 
-1. Open **Einstellungen → Puzzle-Prüfung**, behind the existing adult gate.
-2. Select a puzzle. Inspect its competence, difficulty, rule checklist and every iteration.
-3. Open each iteration in the real puzzle renderer. Check pictures, wording, answer, interaction and difficulty. Mark **Freigeben** or **Verbessern**, with a note for improvements. An unopened iteration cannot be approved.
-4. Sign off the puzzle checklist and the puzzle itself only after every current iteration is approved. There is no “approve all” shortcut.
+1. Unlock **Einstellungen** with its existing adult calculation, then open **Puzzle-Galerie öffnen** directly. There is no second calculation. Direct review URLs retain one adult gate.
+2. Select a puzzle. Inspect its competence and difficulty. Test **Spielerklärung anhören** once on the puzzle overview; iteration previews do not repeat the speech control.
+3. Open each iteration in the real puzzle renderer. Check pictures, wording, answer, interaction and difficulty. Mark **Freigeben** or **Verbessern** with one click; notes are optional and no reviewer name is requested. An unopened iteration cannot be approved.
+4. Once every iteration is approved, press **Puzzle freigeben**. There is no checklist or required text, and no “approve all iterations” shortcut.
 5. Only fully approved puzzles enter child play. Flagging any iteration or the puzzle immediately removes its release eligibility.
 6. Additions, content/answer changes, difficulty changes and changes to shared presentation/interaction invalidate the relevant sign-offs automatically. Old decisions remain visible as history, never silently apply to new content.
 7. Decisions persist locally on this device/origin. Export/import a revision-checked review file to back up work, move it to another device, or attach it to GitHub. A branch or deployment does not itself approve content. Reviews are adult editorial decisions, not an account/authentication system.
@@ -53,7 +53,7 @@ Physical iPad/Safari, sound comfort and child suitability still need the owner's
 └─────────────────────────────────────────────┘
 ```
 
-Use `js/screens/puzzle.js` and `css/puzzle-rounds.css`. Writing uses the existing stroke engine in `js/screens/trace.js` inside the same page shell. The context portrait, five leaves, topbar, guidance, feedback and celebration are shared. Adult preview adds an explicitly labelled review strip; it must not appear in child play.
+Use `js/screens/puzzle.js` and `css/puzzle-rounds.css`. Writing uses the existing stroke engine in `js/screens/trace.js` inside the same page shell. The context portrait, five leaves, topbar, guidance, feedback and celebration are shared. Adult preview adds an explicitly labelled review strip; it must not appear in child play. Its speech test belongs to the puzzle overview; children keep the shared “Spiel erklären” control during normal play.
 
 - Cream stitched paper and quiet woodland background; one main task per page. Cards use the shared wood/cream treatment, soft brown borders and sage selected states. Feedback adds a visible mark and accessible status, never colour alone.
 - Andika 700 for the puzzle title, prompt, scored words and numerals; Andika 400 for explanations and labels. Do not use Baloo for scored text or handwriting.
@@ -66,4 +66,4 @@ Use `js/screens/puzzle.js` and `css/puzzle-rounds.css`. Writing uses the existin
 2. Supply at least 25 substantively different, inspectable iterations; include each expected answer/solution. Use complete natural sets where appropriate (alphabet, digits). Do not create a second page shell or duplicate a retired engine.
 3. Implement the interaction in the shared renderer, including saved partial work, editable retries, requested rule speech, mute, keyboard/touch input and the common finish sequence.
 4. Run `node tools/puzzle-catalogue.cjs`, `node tools/check-design.cjs`, model checks and the relevant browser suites. Review the real phone/tablet layout against [Visual style](VISUAL-STYLE.md).
-5. Open Settings → Puzzle-Prüfung, inspect **every iteration**, mark Freigeben or Verbessern, and sign the puzzle checklist only when all are approved. New assets, interaction or difficulty change the revision and require review again. A deployment does not grant editorial approval.
+5. Open Settings → Puzzle-Prüfung, inspect **every iteration**, mark Freigeben or Verbessern, and press **Puzzle freigeben** when all are approved. New assets, interaction or difficulty change the revision and require review again. A deployment does not grant editorial approval.

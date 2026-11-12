@@ -7,7 +7,7 @@
 - Related competence: **NMG.2.3.a; D.2.B.1.b** — Wachstum und Naturveränderungen erkennen
 - Difficulty: 25 kurze Fragen zu Wetter, Pflanzen und Entwicklung
 - Pool: 25 explicit iterations; a round selects five.
-- Review: every iteration plus the puzzle checklist must be approved for this exact revision. New/changed items or difficulty require review again.
+- Review: every iteration and the puzzle must be approved for this exact revision; names, notes and checklists are not required. New/changed items or difficulty require review again.
 
 ## Mapping to the blueprint
 
@@ -20,7 +20,7 @@
 | Sound | Enabled button clicks, success/retry, mute respected |
 | Round | Five distinct sampled iterations; saved questions/partial work |
 | Ending | 900 ms correct feedback, then 2.2 s celebration; reduced motion |
-| Review | Isolated real-renderer previews, individual decisions, revision gate |
+| Review | Isolated real-renderer previews, one-click decisions, puzzle-level speech, revision gate |
 
 ## Every iteration
 

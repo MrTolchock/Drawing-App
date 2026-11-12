@@ -3,7 +3,6 @@
 (function () {
   'use strict';
   const FK=window.FK,R=FK.puzzleRounds,C=window.FriendsContent;
-  const checklist={art:'Lernbilder gezeichnet, Figuren als Modellporträts; vollständig und eindeutig',page:'Waldbuch, Porträt, Schrift und fünf Fortschrittsblätter',guidance:'Eine Spielerklärung, keine Tipps oder Lösungshilfe',sound:'Klick, Rückmeldung und Stumm-Modus geprüft',flow:'Fünf Aufgaben, automatische Fortsetzung und Feier',input:'Bedienung, Wiederholen und Zurück auf Tablet und Telefon',learning:'Kompetenz, Lösung und Schwierigkeit geprüft'};
   const meta={
     'friends-squirrel':['MA.1.A.2.a','Mengen zählen','0–20 Nüsse; Vierer- und Fünferstruktur'],
     'friends-bird':['D.2.A.1.b; D.1.A.1.b','Wörter lesen und Reime erkennen','25 konkrete Wortpaare; eingeführte Buchstaben'],
@@ -177,7 +176,7 @@
   for(const pool of Object.values(pools))for(const item of pool){delete item.question.id;delete item.question.round;}
   const canonical=v=>Array.isArray(v)?'['+v.map(canonical).join(',')+']':v&&typeof v==='object'?'{'+Object.keys(v).sort().map(k=>JSON.stringify(k)+':'+canonical(v[k])).join(',')+'}':JSON.stringify(v);
   function hash(v){const s=canonical(v);let a=2166136261,b=5381;for(let i=0;i<s.length;i++){a=Math.imul(a^s.charCodeAt(i),16777619);b=Math.imul(b,33)^s.charCodeAt(i);}return (a>>>0).toString(16).padStart(8,'0')+(b>>>0).toString(16).padStart(8,'0');}
-  function puzzle(id){const g=FK.friendsLibrary.catalogue().find(g=>g.id===id),m=meta[id];return g&&m?{...g,hostName:C.hosts[g.host].name,reference:m[0],competence:m[1],difficulty:m[2],instruction:R.instructions[id],checklist}:null;}
+  function puzzle(id){const g=FK.friendsLibrary.catalogue().find(g=>g.id===id),m=meta[id];return g&&m?{...g,hostName:C.hosts[g.host].name,reference:m[0],competence:m[1],difficulty:m[2],instruction:R.instructions[id]}:null;}
   const iterations=id=>clone(pools[id]||[]);
   const implementation=()=>FK.puzzleImplementation||'unbuilt';
   const iterationRevision=(id,item)=>hash({blueprint:1,implementation:implementation(),puzzle:puzzle(id),item});
@@ -191,5 +190,5 @@
     const normalize=q=>{const v=clone(q);if(v.choices)v.choices.sort((a,b)=>canonical(a).localeCompare(canonical(b)));if(v.bugs)v.bugs.sort();if(v.order)v.order.sort();return canonical(v);};
     return s.iterationIds.every((id,i)=>{const it=iterations(s.id).find(it=>it.id===id);return it&&normalize(it.question)===normalize(s.questions[i]);});
   }
-  FK.puzzleCatalogue={matchesSession,meta,checklist,puzzle,iterations,canonical,hash,iterationRevision,puzzleRevision,select};
+  FK.puzzleCatalogue={matchesSession,meta,puzzle,iterations,canonical,hash,iterationRevision,puzzleRevision,select};
 })();

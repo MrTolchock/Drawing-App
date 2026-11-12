@@ -4,7 +4,7 @@ The active Waldfreunde catalogue contains **34 puzzles and 1,048 finite iteratio
 
 - [Shared puzzle blueprint](PUZZLE-BLUEPRINT.md): the contract for pictures, page, sound, guidance, five-task rounds and celebration.
 - [Complete puzzle catalogue](PUZZLE-CATALOGUE.md): every puzzle, competence, difficulty and iteration count, with a page listing every individual definition and solution.
-- [Adult review instructions](PUZZLE-REVIEW.md): inspect, approve or flag every iteration and the puzzle checklist, export/import decisions, and repeat review after changes.
+- [Adult review instructions](PUZZLE-REVIEW.md): inspect, approve or flag every iteration and the puzzle, export/import decisions, and repeat review after changes.
 
 ## One shared flow
 
@@ -12,7 +12,7 @@ The existing Waldbuch page, model-rendered identity portrait, Andika scored text
 
 A round selects five distinct iterations, preferring items outside the previous completed round. Selected questions, answer order and partial board work are saved exactly. Correct answers remain visible for 900 ms before automatically advancing. Mistakes leave the board editable. The fifth answer leads to the existing 2.2-second friend celebration with painted leaves and flowers; reduced motion keeps a static wreath. Necessary reset/reinspection controls remain available.
 
-The parent-only gallery/review workbench and forest invitations use the same catalogue. Children can start a puzzle only by visiting the friend on their current letter. After the parent-chosen number of letters, Fuchs must return to the den to sleep; no further puzzles or letters open until a parent starts the next journey. Back returns to the entry point. See [letter sessions](LETTER-SESSIONS.md). All iterations and the puzzle checklist require explicit adult sign-off before that puzzle enters child play. No approvals ship by default. Editorial previews use the real renderer and separate in-memory sessions.
+The parent-only gallery/review workbench and forest invitations use the same catalogue. Children can start a puzzle only by visiting the friend on their current letter. After the parent-chosen number of letters, Fuchs must return to the den to sleep; no further puzzles or letters open until a parent starts the next journey. Back returns to the entry point. See [letter sessions](LETTER-SESSIONS.md). All iterations and the puzzle require explicit adult sign-off before that puzzle enters child play. No approvals ship by default. Editorial previews use the real renderer and separate in-memory sessions.
 
 ## Learning boundaries
 

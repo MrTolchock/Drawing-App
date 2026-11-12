@@ -22,7 +22,7 @@
     return h('span',{class:'puzzle-shape',role:'img','aria-label':R.shapeNames[id]+(rotation?' gedreht':''),html:'<svg viewBox="0 0 100 100"'+(fitted?' preserveAspectRatio="none"':'')+'><g transform="rotate('+rotation+' 50 50)" fill="'+(outline?'none':'#d8b987')+'" stroke="#8d6b45" stroke-width="3" '+(outline?'stroke-dasharray="5 4"':'')+'>'+(fitted?pieces[id]:paths[id])+'</g></svg>'});
   }
   function progress(round) {return h('div',{class:'puzzle-progress','aria-label':round+' von 5 Aufgaben geschafft'},Array.from({length:5},(_,i)=>h('span',{class:i<round?'done':i===round?'current':'','aria-hidden':'true'},FK.visual.art('forest-leaf'))));}
-  function context(owner,round,instruction) {return h('div',{class:'puzzle-context'},FK.friendsLibrary.portrait(owner),h('span',{text:window.FriendsContent.hosts[owner].name+' spielt mit dir'}),h('b',{class:'puzzle-round',text:(round+1)+' / 5'}),button('Spiel erklären',()=>FK.forestVoice.explain(instruction),'puzzle-listen',FK.icons.element('speaker')));}
+  function context(owner,round,instruction,{explain=true}={}) {return h('div',{class:'puzzle-context'},FK.friendsLibrary.portrait(owner),h('span',{text:window.FriendsContent.hosts[owner].name+' spielt mit dir'}),h('b',{class:'puzzle-round',text:(round+1)+' / 5'}),explain?button('Spiel erklären',()=>FK.forestVoice.explain(instruction),'puzzle-listen',FK.icons.element('speaker')):null);}
   function later(fn,delay=900) {
     clearTimeout(timer);
     timer=setTimeout(()=>{if(!alive)return;if(document.hidden||document.querySelector('.modal')){later(fn,250);return;}fn();},delay);
@@ -242,7 +242,7 @@
     if(!session.review&&!FK.puzzleReview.ready(game)){blocked();return;}
     if(session.round===5){finish();return;}question=R.current(session);
     root.dataset.game=game;root.dataset.host=host;
-    body.replaceChildren(context(host,session.round,R.instructions[game]),progress(session.round),h('h2',{class:'puzzle-prompt',text:question.prompt}));
+    body.replaceChildren(context(host,session.round,R.instructions[game],{explain:!session.review}),progress(session.round),h('h2',{class:'puzzle-prompt',text:question.prompt}));
     scene=h('div',{class:'puzzle-scene'});answerArea=h('div',{class:'puzzle-answers'});status=h('p',{class:'puzzle-status sr-only',role:'status','aria-live':'polite'});body.append(scene,answerArea,status);
     const renderers={nuts:renderCount,count:renderCount,reading:renderReading,rhyme:renderReading,add:renderAdd,pattern:renderPattern,fireflies:renderFireflies,picnic:renderPicnic,double:renderDouble,matrix:renderMatrix,build:renderBuild,syllable:renderSyllable,robot:renderRobot,order:renderOrder,treasure:renderTreasure,neighbours:renderNeighbours,compare:renderCompare,mirror:renderMirror,vowels:renderVowels,survey:renderSurvey,syllables:renderSyllables,colours:renderColours,leaves:renderLeaves};
     renderers[question.kind](question);body.scrollTop=0;

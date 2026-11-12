@@ -36,12 +36,12 @@ try{
      hints:[...root.querySelectorAll('button')].filter(e=>visible(e)&&/^(Tipp|Hinweis|Beispiel|Weiter zur nächsten Aufgabe)/i.test(e.getAttribute('aria-label')||e.textContent)).length,
     };
    });
-   assert.equal(result.overflow,false,g.id+' overflow '+width);assert.equal(result.progress,5,g.id+' progress');assert.match(result.font,/Andika/,g.id+' title font');assert.equal(result.explain,1,g.id+' explain');assert.equal(result.hints,0,g.id+' hint');
+   assert.equal(result.overflow,false,g.id+' overflow '+width);assert.equal(result.progress,5,g.id+' progress');assert.match(result.font,/Andika/,g.id+' title font');assert.equal(result.explain,0,g.id+' speech tested on puzzle overview');assert.equal(result.hints,0,g.id+' hint');
    assert.ok(result.portraits.length,g.id+' host portrait');for(const image of result.portraits)assert.match(image,/character-portraits.webp/,g.id+' mixed portrait');
    for(const subject of result.subjects)assert.match(subject.image,/assets\/waldatelier\//,g.id+' missing/mixed subject '+subject.id);
    report.push({puzzle:g.id,width,checks:'passed',subjects:result.subjects.length});
    if(['add','friends-owl','trace','read-puzzle'].includes(g.id))await page.screenshot({path:out+'/'+g.id+'-'+width+'.png'});
   }
  }
- assert.deepEqual(errors,[]);assert.deepEqual(missing,[]);fs.writeFileSync(out+'/report.json',JSON.stringify(report,null,2)+'\n');console.log('Visual contract passed: 34 puzzles × 2 viewports, font/art roles, five leaves, one explanation, no hints, current routes and preserved legacy storage.');
+ assert.deepEqual(errors,[]);assert.deepEqual(missing,[]);fs.writeFileSync(out+'/report.json',JSON.stringify(report,null,2)+'\n');console.log('Visual contract passed: 34 puzzles × 2 viewports, font/art roles, five leaves, speech on puzzle overview, no hints, current routes and preserved legacy storage.');
 }finally{await browser.close();}})().catch(e=>{console.error(e);process.exitCode=1;});

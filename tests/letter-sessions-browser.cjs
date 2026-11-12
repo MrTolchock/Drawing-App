@@ -14,6 +14,7 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
   const mail=()=>page.evaluate(()=>FK.friends.mail());
   const visit=async id=>{await page.evaluate(async id=>{const {places}=await import('./js/friends/world.js'),p=places[id];FK.friendsForest.teleport(p.x,p.z);document.querySelector('.ff-hotspots [data-place="'+id+'"]').click();},id);};
   const solve=async(id,trace=false)=>{
+   assert.equal(await active().getByRole('button',{name:'Spiel erklären',exact:true}).count(),1,'child puzzle keeps its explanation');
    for(let n=0;n<5;n++){
     if(trace){
      await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
@@ -30,13 +31,13 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
   await page.goto(base+'/?software=1');await ready();assert.equal(await page.evaluate(()=>FK.friendsView().area),'den');
   assert.equal(await page.locator('.ff-nav [aria-label="Waldspiele"],.ff-hotspots [data-place="games"],.play-timer-bar').count(),0);
   assert.equal(await page.evaluate(()=>!!FK.playTimer||!!FK.timerUI),false);
-  await page.evaluate(()=>{FK.settings.set('sound',false);for(const id of ['friends-squirrel','friends-bird','friends-mouse','trace']){for(const it of FK.puzzleCatalogue.iterations(id)){FK.puzzleReview.seen(id,it.id);FK.puzzleReview.decide(id,it.id,'approved','','Fixture');}FK.puzzleReview.decide(id,null,'approved','','Fixture',Object.keys(FK.puzzleCatalogue.checklist));}});
+  await page.evaluate(()=>{FK.settings.set('sound',false);for(const id of ['friends-squirrel','friends-bird','friends-mouse','trace']){for(const it of FK.puzzleCatalogue.iterations(id)){FK.puzzleReview.seen(id,it.id);FK.puzzleReview.decide(id,it.id,'approved');}FK.puzzleReview.decide(id,null,'approved');}});
   // Even an approved puzzle cannot start before the letter or from the gallery/router.
   await page.evaluate(()=>FK.go('puzzle',{game:'friends-squirrel',from:'friends'}));assert.equal(await page.evaluate(()=>FK.current()),'friends');assert.equal((await mail()).phase,'den-letter');
   await settings();assert.equal(await active().getByRole('button',{name:/Stoppuhr|Countdown|Uhr starten/}).count(),0);
   await page.getByLabel('Anzahl Briefe',{exact:true}).fill('2');await page.getByLabel('Anzahl Briefe',{exact:true}).press('Tab');assert.equal((await mail()).session.limit,2);await shot('settings-tablet');
   await page.setViewportSize({width:390,height:844});assert.equal(await active().evaluate(e=>e.scrollWidth>e.clientWidth+2),false);await shot('settings-phone');await page.setViewportSize({width:1080,height:810});
-  await page.getByRole('button',{name:'Puzzle-Galerie öffnen',exact:true}).click();await gate();await page.waitForFunction(()=>FK.current()==='puzzle-review');assert.equal(await page.locator('.review-puzzle').count(),34);
+  await page.getByRole('button',{name:'Puzzle-Galerie öffnen',exact:true}).click();assert.equal(await page.locator('.gate-task').count(),0);await page.waitForFunction(()=>FK.current()==='puzzle-review');assert.equal(await page.locator('.review-puzzle').count(),34);
   const beforeReview=await mail();await page.evaluate(()=>FK.puzzleReview.preview('friends-mouse',FK.puzzleCatalogue.iterations('friends-mouse')[0].id));assert.equal(await active().locator('.review-preview').count(),1);assert.deepEqual(await mail(),beforeReview);
   await active().getByRole('button',{name:'Zur Puzzle-Prüfung',exact:true}).click();await active().locator('.btn-back').click();await page.waitForFunction(()=>FK.current()==='settings');
   await page.getByRole('button',{name:'Neue Briefreise starten',exact:true}).click();await page.waitForFunction(()=>FK.current()==='friends');assert.equal(await page.evaluate(()=>FK.friendsView().area),'den');assert.equal((await mail()).session.limit,2);await shot('den-start');console.log('PASS parent settings and adult-only gallery');

@@ -4,7 +4,7 @@ The active library contains **34 puzzles and 1048 individually reviewable iterat
 
 Generated from the runtime catalogue with `node tools/puzzle-catalogue.cjs`. Every linked puzzle page lists all iteration IDs, content and expected solutions. No generated item is automatically approved.
 
-All rows implement the [shared blueprint](PUZZLE-BLUEPRINT.md): drawn subjects, model-rendered character identity, Waldbuch paper/progress, no hint button, manual rule explanation, button clicks and mute, 900 ms auto-advance and a five-task celebration, editable retries, responsive controls. Exact revisions and the adult checklist enforce review of these shared rules for **each** puzzle. Geometry and handwriting use drawn paths; other pictures use the existing illustration sheets. Human look/feel approval remains pending until the owner signs off.
+All rows implement the [shared blueprint](PUZZLE-BLUEPRINT.md): drawn subjects, model-rendered character identity, Waldbuch paper/progress, no hint button, manual rule explanation, button clicks and mute, 900 ms auto-advance and a five-task celebration, editable retries, responsive controls. Exact revisions and individual iteration/puzzle decisions enforce review of these shared rules for **each** puzzle. Speech is tested once on the puzzle overview; reviewer names, required notes and checklists are absent. Geometry and handwriting use drawn paths; other pictures use the existing illustration sheets. Human look/feel approval remains pending until the owner signs off.
 
 Competences below are bounded practice references to [Zürich Zyklus 1](CURRICULUM.md), not claims of mastery. Reading-based nature questions also require sentence understanding. Temporal picture sequencing and memory do not establish decoding.
 
