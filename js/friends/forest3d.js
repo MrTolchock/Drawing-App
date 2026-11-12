@@ -96,7 +96,8 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     if (!characters[id]) continue;
     const rig = noCast(characters[id](f.h)), [x, z] = f.at, y = groundY(x, z) + f.y;
     rig.group.position.set(x, y, z); rig.group.rotation.y = f.yaw; scene.add(rig.group);
-    friends[id] = {...f, rig, x, z, y, shadow: f.y === 0 ? contact(f.h * .42) : null};
+    friends[id] = {...f, rig, x, z, y, hx: x, hz: z, shadow: f.y === 0 ? contact(f.h * .42) : null,
+      roam: f.y === 0 && !f.onWater ? (id === 'deer' ? 3.4 : id === 'hedgehog' || id === 'badger' ? 1.8 : 1.3) : 0, wait: 2 + R() * 6, to: null, moving: false};
     if (friends[id].shadow) friends[id].shadow.position.set(x, y + .03, z);
   }
   const foxRig = noCast(characters.fox(FOX_H)), fox = foxRig.group, foxShadow = contact(.42), pos = new THREE.Vector3(forestPlaces.home.x, 0, forestPlaces.home.z), vel = new THREE.Vector2();
@@ -111,7 +112,22 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   let guideTarget = null, guidePoints = [], guideFrom = new THREE.Vector3(Infinity, 0, Infinity), guideEnd = new THREE.Vector3(Infinity, 0, Infinity), guideNext = 0;
   const ring = new THREE.Mesh(new THREE.RingGeometry(.4, .52, 32), new THREE.MeshBasicMaterial({color: '#fff3c4', transparent: true, opacity: .85, depthWrite: false, toneMapped: false}));
   ring.rotation.x = -Math.PI / 2; ring.visible = false; ring.renderOrder = 1; scene.add(ring);
-  const pins = Object.entries(WORLD.pins).map(([id, [x, y, z]]) => ({id, point: new THREE.Vector3(x, y + groundY(x, z), z)}));
+  const pins = Object.entries(WORLD.pins).map(([id, [x, y, z]]) => ({id, point: new THREE.Vector3(x, y + groundY(x, z), z), x, z, up: y}));
+  /* The friends who live on the ground stroll a little round their home spot (the Reh further than the others):
+     a few slow steps, a pause, a few more. They stand still and turn to Fuchs when he comes close. */
+  function stroll(f, id, dt) {
+    const dF = Math.hypot(pos.x - f.x, pos.z - f.z), turn = (to, k) => { const g = f.rig.group, d = Math.atan2(Math.sin(to - g.rotation.y), Math.cos(to - g.rotation.y)); g.rotation.y += d * Math.min(1, dt * k); };
+    f.moving = false;
+    if (dF < 4.2) { f.to = null; f.wait = Math.max(f.wait, 2.5); turn(Math.atan2(pos.x - f.x, pos.z - f.z), 4); return; }
+    if (!f.to) { if ((f.wait -= dt) > 0) return;
+      for (let k = 0; k < 6 && !f.to; k++) { const a = Math.random() * Math.PI * 2, r = f.roam * (.35 + .65 * Math.random()), x = f.hx + Math.sin(a) * r, z = f.hz + Math.cos(a) * r; if (walkable(x, z) && !WORLD.terrain.onCrossing(x, z) && WORLD.terrain.pathAt(x, z).d > .9) f.to = [x, z]; }
+      if (!f.to) { f.wait = 2; return; } }
+    const dx = f.to[0] - f.x, dz = f.to[1] - f.z, d = Math.hypot(dx, dz), sp = id === 'deer' ? .8 : .5;
+    if (d < .08) { f.to = null; f.wait = 3 + Math.random() * 9; return; }
+    turn(Math.atan2(dx, dz), 5); const s = Math.min(d, sp * dt); f.x += dx / d * s; f.z += dz / d * s; f.y = groundY(f.x, f.z); f.moving = true;
+    f.rig.group.position.set(f.x, f.y, f.z); if (f.shadow) f.shadow.position.set(f.x, f.y + .03, f.z);
+    const pin = pins.find(p => p.id === id); if (pin) pin.point.set(pin.x + f.x - f.hx, pin.up + groundY(pin.x + f.x - f.hx, pin.z + f.z - f.hz), pin.z + f.z - f.hz);
+  }
 
   /* ---------- movement, routes and camera ---------- */
   let destination = null, path = [], arrival = null, near = null, lastSample = 0, lastPuff = 0, narrow = false, width = 1, height = 1, speedScale = 1, stuck = 0, replans = 0;
@@ -200,7 +216,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     let animated = 1;
     for (const o of others) { const show = o.d < NEAR, anim = show && animated < MAX_ANIMATED; if (anim) animated++;
       if (o.id === 'mailman') { courier.visible = courierShadow.visible = show; courierRig.lod(o.d < 8 ? 0 : 1); updateMailman(dt, reduced, anim); }
-      else { o.f.rig.group.visible = show; if (o.f.shadow) o.f.shadow.visible = show; o.f.rig.lod(o.d < 8 ? 0 : 1); if (anim) o.f.rig.update(dt, {action: near === o.id ? (o.id === 'bird' || o.id === 'owl' ? 'wave' : 'hop') : '', reduced}); } }
+      else { o.f.rig.group.visible = show; if (o.f.shadow) o.f.shadow.visible = show; o.f.rig.lod(o.d < 8 ? 0 : 1); if (anim && o.f.roam && !reduced) stroll(o.f, o.id, dt); if (anim) o.f.rig.update(dt, {moving: o.f.moving, speed: .9, action: near === o.id ? (o.id === 'bird' || o.id === 'owl' ? 'wave' : 'hop') : '', reduced}); } }
     animatedCount = animated;
     if (moving && !reduced && time - lastPuff > .17) { lastPuff = time; const p = puffs.find(q => q.life <= 0); if (p) { p.life = .55; p.s.visible = true; p.s.position.set(pos.x + (R() - .5) * .3, base + .12, pos.z + .15); } }
     for (const p of puffs) if (p.life > 0) { p.life -= dt; const k = 1 - p.life / .55; size(p.s, .25 + k * .45); p.s.material.opacity = .5 * (1 - k); p.s.position.y += dt * .25; if (p.life <= 0) p.s.visible = false; }

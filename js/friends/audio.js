@@ -1,8 +1,7 @@
 /* Offline woodland sound, made in the browser (no recordings, nothing is fetched):
-   four steady layers (wind, leaves, brook, waterfall) that follow the weather and the place, and single
+   three steady layers (leaves in the gusts, brook, waterfall; no constant wind, which sounded like noise) that follow the weather and the place, and single
    sounds on top: footsteps for each kind of ground, blackbird, chaffinch, great tit, blue tit, wood pigeon,
-   cuckoo and woodpecker, frogs at the swamp, crickets and bees in the meadow, bubbles in the brook, and a
-   quiet tune with long rests. js/friends/soundscape.js decides what plays when; this file only makes the sounds.
+   cuckoo and woodpecker, frogs at the swamp, crickets and bees in the meadow, and bubbles in the brook. There is no music. js/friends/soundscape.js decides what plays when; this file only makes the sounds.
    Audio starts only after a gesture. There is no automatic speech or remote audio request.
    tests/audio-preview.html plays every sound by itself for listening. */
 import {createDirector} from './soundscape.js';
@@ -89,33 +88,27 @@ export const details = {
   bubble(ctx, out, noise, t, level) { const f = r(480, 1500), dur = r(.035, .09); tone(ctx, out, {t, dur, f, f1: f * r(1.4, 2.1), gain: r(.008, .026) * level, attack: .006}); },
   plop(ctx, out, noise, t, level) { const f = r(260, 420); tone(ctx, out, {t, dur: .09, f, f1: f * 2.2, gain: .05 * level, attack: .006}); hiss(ctx, out, noise, {t: t + .02, dur: .08, gain: .02 * level, type: 'lowpass', f: 1200, f1: 500}); },
 };
-// A note of the quiet tune: soft, long, with a shimmer an octave up.
-export function tuneNote(ctx, out, f, t, level = 1) { const o = ctx.createOscillator(), o2 = ctx.createOscillator(), g = ctx.createGain(), g2 = ctx.createGain(); o.frequency.value = f; o2.frequency.value = f * 2.003; g2.gain.value = .18;
-  g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(.16 * level, t + .12); g.gain.exponentialRampToValueAtTime(.0001, t + 3.6); o.connect(g); o2.connect(g2); g2.connect(g); g.connect(out); o.start(t); o2.start(t); o.stop(t + 3.7); o2.stop(t + 3.7); o.onended = done(o, o2, g, g2); }
-
 /* ---------- the game's sound ---------- */
 export function createAudio(settings, environment = () => null) {
-  let ctx, music, ambience, room, analyser, timer, area = 'den', speaking = false, birdCalls = 0, steps = 0, noise, beds = null, director;
+  let ctx, ambience, room, analyser, timer, area = 'den', speaking = false, birdCalls = 0, steps = 0, noise, beds = null, director;
   const sources = [];
   function gain(node, value) { node.gain.cancelScheduledValues(ctx.currentTime); if (document.hidden) node.gain.setValueAtTime(0, ctx.currentTime); else node.gain.setTargetAtTime(value, ctx.currentTime, .3); }
   function update() { if (!ctx || ctx.state === 'closed') return; const s = settings(), audible = !document.hidden;
-    gain(music, s.music && audible ? (speaking ? .014 : .035) : 0); gain(ambience, s.ambience && audible ? (area === 'forest' ? 1.4 : .6) * (speaking ? .3 : 1) : 0);
+    gain(ambience, s.ambience && audible ? (area === 'forest' ? 1.4 : .6) * (speaking ? .3 : 1) : 0);
     room.frequency.setTargetAtTime(area === 'forest' ? 16000 : 750, ctx.currentTime, .35); }                // in the den the wood is heard through the wall
   const loop = (buffer, rate) => { const s = ctx.createBufferSource(); s.buffer = buffer; s.loop = true; s.playbackRate.value = rate; s.start(0, Math.random() * buffer.duration); sources.push(s); return s; };
   const filter = (type, frequency, q = .5) => { const f = ctx.createBiquadFilter(); f.type = type; f.frequency.value = frequency; f.Q.value = q; return f; };
   const level = (value = 0) => { const g = ctx.createGain(); g.gain.value = value; return g; };
   const chain = (...nodes) => { for (let i = 0; i < nodes.length - 1; i++) nodes[i].connect(nodes[i + 1]); return nodes; };
   function buildBeds(brown, white) {
-    const wind = {tone: filter('lowpass', 480, .3), out: level()}; chain(loop(brown, 1), wind.tone, wind.out, room);
     const leaves = {tone: filter('bandpass', 3400, .5), out: level()}; chain(loop(white, .87), filter('highpass', 1500, .4), leaves.tone, leaves.out, room);
     const brook = {bands: [[700, 2.2, 1], [1750, 1.6, .7], [2900, 1.2, .35]].map(([f, q, g]) => ({f, node: filter('bandpass', f, q), g: level(g)})), out: level()}, water = loop(white, 1.19);
     for (const b of brook.bands) chain(water, b.node, b.g, brook.out); brook.out.connect(room);
     const falls = {out: level(), pan: ctx.createStereoPanner?.()}; chain(loop(white, .71), filter('lowpass', 2600, .3), falls.out); chain(loop(brown, 1.31), filter('lowpass', 520, .3), level(1.6), falls.out); if (falls.pan) chain(falls.out, falls.pan, room); else falls.out.connect(room);
-    return {wind, leaves, brook, falls};
+    return {leaves, brook, falls};
   }
   function setBeds(b) { const t = ctx.currentTime, to = (param, value, tc = .5) => param.setTargetAtTime(value, t, tc);
-    to(beds.wind.out.gain, .26 * b.wind, 1.2); to(beds.wind.tone.frequency, 380 + 460 * b.gust, 1.2);
-    to(beds.leaves.out.gain, .2 * b.leaves, .22); to(beds.leaves.tone.frequency, 2500 + 1900 * b.bright, 1.5);
+    to(beds.leaves.out.gain, .11 * b.leaves, .22); to(beds.leaves.tone.frequency, 2500 + 1900 * b.bright, 1.5);
     to(beds.brook.out.gain, .5 * b.brook ** 1.5, .5); for (const band of beds.brook.bands) to(band.node.frequency, band.f * r(.84, 1.18), .12);   // the bands wander: babbling
     to(beds.falls.out.gain, .17 * b.falls ** 1.7, .6); if (beds.falls.pan) to(beds.falls.pan.pan, b.fallsPan * .7, .6);
   }
@@ -124,14 +117,13 @@ export function createAudio(settings, environment = () => null) {
     setTimeout(() => { g.disconnect(); lp.disconnect(); p?.disconnect(); }, (lasts + 1) * 1000); return g; }
   function play(e) { const t = Math.max(e.at, ctx.currentTime + .01);
     if (e.type === 'call') { const out = level(e.level), end = voices[e.kind](ctx, out, t, noise); out.connect(place(e.pan, e.far, end - ctx.currentTime)); setTimeout(() => out.disconnect(), (end - ctx.currentTime + 1) * 1000); birdCalls++; }
-    else if (e.type === 'step') { footstep(ctx, place(e.side * .07, 0, .4), noise, e.ground, t, e.level); steps++; }
-    else if (e.type === 'note') tuneNote(ctx, music, e.f, t, e.level);
+    else if (e.type === 'step') { footstep(ctx, place(e.side * .07, 0, .4), noise, e.ground, t, e.level * .42); steps++; /* steps stay well under the birds and the water */ }
     else details[e.type]?.(ctx, place(e.pan || 0, .2, .5), noise, t, e.level);
   }
   function tick() {
     if (!ctx || document.hidden || ctx.state !== 'running') return; const s = settings();
-    const here = environment() || {}, {beds: b, events} = director.step(ctx.currentTime, {...here, indoors: area !== 'forest', music: s.music});
-    if (!s.ambience) { for (const e of events) if (e.type === 'note') play(e); return; }
+    const here = environment() || {}, {beds: b, events} = director.step(ctx.currentTime, {...here, indoors: area !== 'forest'});
+    if (!s.ambience) return;
     setBeds(b); for (const e of events) play(e);
   }
   function unlock() {
@@ -140,7 +132,7 @@ export function createAudio(settings, environment = () => null) {
     try {
       ctx = new Audio(); const master = ctx.createGain(), limiter = ctx.createDynamicsCompressor(); master.gain.value = .55; limiter.threshold.value = -14; limiter.ratio.value = 6; limiter.attack.value = .004; limiter.release.value = .25;
       analyser = ctx.createAnalyser(); analyser.fftSize = 1024; chain(master, limiter, analyser, ctx.destination);
-      music = ctx.createGain(); ambience = ctx.createGain(); music.gain.value = ambience.gain.value = 0; music.connect(master); ambience.connect(master);
+      ambience = ctx.createGain(); ambience.gain.value = 0; ambience.connect(master);
       room = filter('lowpass', 750, .3); room.connect(ambience);
       noise = makeNoise(ctx, 'white', 5); beds = buildBeds(makeNoise(ctx, 'brown', 7), noise); director = createDirector();
       timer = setInterval(tick, 100); update(); ctx.resume().catch(() => {});
@@ -152,7 +144,7 @@ export function createAudio(settings, environment = () => null) {
   const offSettings = window.FK.on('friends-audio', () => { unlock(); update(); }), offSpeech = window.FK.on('speech', event => { speaking = event.active; update(); });
   return {unlock, update, setArea(value) { area = value; update(); },
     get diagnostics() { const data = new Float32Array(analyser?.fftSize || 0); analyser?.getFloatTimeDomainData(data);
-      return {state: ctx?.state || 'locked', area, layers: beds ? Object.keys(beds).length : 0, birdCalls, steps, ambience: settings().ambience, music: settings().music, rms: data.length ? Math.sqrt(data.reduce((n, v) => n + v * v, 0) / data.length) : 0}; },
+      return {state: ctx?.state || 'locked', area, layers: beds ? Object.keys(beds).length : 0, birdCalls, steps, audible: !!ambience && ambience.gain.value > .01, ambience: settings().ambience, rms: data.length ? Math.sqrt(data.reduce((n, v) => n + v * v, 0) / data.length) : 0}; },
     dispose() { clearInterval(timer); offSettings(); offSpeech(); document.removeEventListener('pointerdown', unlock); document.removeEventListener('keydown', key); document.removeEventListener('visibilitychange', visibility); sources.forEach(s => s.stop()); ctx?.close(); }
   };
 }

@@ -9,6 +9,7 @@ The active game follows [letter sessions](LETTER-SESSIONS.md), [visual style](..
 | `js/friends/game.js` | Den, letter, visits, map, mailman, return home and sleeping end card |
 | `js/friends/state.js` | Durable invitation/session allowance, world position, exports and compatibility records |
 | `js/friends/world/`, `forest3d.js`, `characters3d.js`, `painted.js` | Forest, plush cast, movement and painted den |
+| `js/friends/audio.js`, `soundscape.js` | Forest sound made in the browser: leaves in gusts, brook, waterfall, footsteps by ground, birds, frogs and crickets; no music. `soundscape.js` decides what plays when (tested over twenty simulated minutes in `tests/soundscape.test.cjs`); `tests/audio-preview.html` plays every sound by itself. There is no constant wind sound |
 | `js/friends/interface.js` | One model-rendered identity atlas for every UI surface |
 | `js/ui/waldatelier.js`, `waldatelier-icons.js` | Drawn subjects and shared utility icons |
 | `js/friends/library.js` | Explicit active inventory and current-letter access permit |
@@ -25,3 +26,5 @@ The table opens six drawn colouring pages. Saved older drawings can still resume
 Review decisions are separate device-local records. Do not ship approvals, reset storage or silently carry an old approval to a changed revision. Export/import is revision checked. Tests use isolated fixtures; the owner still inspects every real iteration before children use it.
 
 The world supports requested rule speech, quiet button/correct/retry sounds and parent sound preferences. There is no countdown or automatic answer narration. Updates preserve saved data and defer reload during active puzzles/drawing. See [Development](DEVELOPMENT.md) for validation and publishing.
+
+The friends who live on the ground (Eichhörnchen, Biber, Igel, Dachs, and the Reh a little further) stroll a few slow steps round their home spot with pauses, keep off trails and crossings, stand and turn to Fuchs when he comes close, and stay put with reduced motion; their map pin follows them. Trees between the camera and Fuchs turn translucent in a narrow, soft-edged column (`js/friends/world/textures.js`).
