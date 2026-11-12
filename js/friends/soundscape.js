@@ -3,8 +3,9 @@
 
    Rules it follows, so that twenty minutes of play stay pleasant:
    - nothing repeats on a fixed beat: every gap, pitch and place is drawn afresh;
-   - birds sing a few phrases from one spot and then fall silent; at most two sing at once, and now and
-     then the wood is quiet for half a minute;
+   - nearby birds sing a few phrases from one spot and then fall silent; at most two sing at once, and now
+     and then they pause for half a minute. Behind them a soft chorus of birds further off never stops for
+     long, because there is no wind or other steady sound and the wood would otherwise seem switched off;
    - rare voices (cuckoo, woodpecker, dove) stay rare;
    - the wind comes in gusts with calm stretches between them;
    - footsteps grow softer during a long walk, and after some minutes everything settles a little;
@@ -42,7 +43,7 @@ export function createDirector({random = Math.random} = {}) {
   const range = (a, b) => a + (b - a) * random(), whole = (a, b) => Math.floor(range(a, b + 1));
   let start = null, last = 0, gust = .2, gustTo = .2, nextGust = 0, breezy = false, nextMood = 0;
   let nextSinger = 0, quietUntil = 0, lastKind = '', nextStep = 0, side = 1, walked = 0, wasMoving = false;
-  let flutter = 1;
+  let flutter = 1, nextFar = 0;
   const singers = [], sangAt = {};
 
   function chooseKind(now, env) {
@@ -69,12 +70,17 @@ export function createDirector({random = Math.random} = {}) {
     if (now >= nextSinger && now >= quietUntil && singers.length < 2) {
       const kind = chooseKind(now, env);
       if (kind) { const sp = SPECIES[kind]; singers.push({kind, left: whole(...sp.phrases), next: now, pan: range(-.85, .85), far: sp.far ? range(.7, 1) : range(.15, .95)}); lastKind = kind; sangAt[kind] = now; }
-      nextSinger = now + range(10, 26) / lively;
+      nextSinger = now + range(5, 14) / lively;
       if (random() < .14) quietUntil = now + range(22, 42);
     }
     for (let i = singers.length - 1; i >= 0; i--) { const s = singers[i]; if (now < s.next) continue;
       events.push({type: 'call', kind: s.kind, at: now + .05, pan: s.pan, far: s.far, level: settled}); sangAt[s.kind] = now;
       if (--s.left <= 0) singers.splice(i, 1); else s.next = now + range(...SPECIES[s.kind].gap); }
+
+    // the chorus: birds further off, soft and often, so the wood is never empty (there is no wind or other steady sound)
+    if (now >= nextFar) { const w = voicesAt(env), kinds = Object.keys(w).filter(k => w[k] > .3 && !SPECIES[k].far && k !== 'dove' && k !== 'bee');
+      if (kinds.length) events.push({type: 'call', chorus: true, kind: kinds[Math.floor(random() * kinds.length)], at: now + .05, pan: range(-1, 1), far: range(.8, 1), level: .6 * settled});
+      nextFar = now + range(1.6, 5) / lively * (now < quietUntil ? 2 : 1); }
 
     // footsteps, in time with the walk, softer on a long walk
     if (env.moving && !env.indoors) {

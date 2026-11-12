@@ -113,11 +113,11 @@ export function createAudio(settings, environment = () => null) {
     to(beds.falls.out.gain, .17 * b.falls ** 1.7, .6); if (beds.falls.pan) to(beds.falls.pan.pan, b.fallsPan * .7, .6);
   }
   // A place in the wood for one voice: further away is quieter and duller.
-  function place(pan, far, lasts) { const g = level(.75 * (1 - .68 * far)), lp = filter('lowpass', 9500 - 6000 * far, .3), p = ctx.createStereoPanner?.(); if (p) { p.pan.value = pan; chain(g, lp, p, room); } else chain(g, lp, room);
+  function place(pan, far, lasts) { const g = level(1.1 * (1 - .68 * far)), lp = filter('lowpass', 9500 - 6000 * far, .3), p = ctx.createStereoPanner?.(); if (p) { p.pan.value = pan; chain(g, lp, p, room); } else chain(g, lp, room);
     setTimeout(() => { g.disconnect(); lp.disconnect(); p?.disconnect(); }, (lasts + 1) * 1000); return g; }
   function play(e) { const t = Math.max(e.at, ctx.currentTime + .01);
     if (e.type === 'call') { const out = level(e.level), end = voices[e.kind](ctx, out, t, noise); out.connect(place(e.pan, e.far, end - ctx.currentTime)); setTimeout(() => out.disconnect(), (end - ctx.currentTime + 1) * 1000); birdCalls++; }
-    else if (e.type === 'step') { footstep(ctx, place(e.side * .07, 0, .4), noise, e.ground, t, e.level * .42); steps++; /* steps stay well under the birds and the water */ }
+    else if (e.type === 'step') { footstep(ctx, place(e.side * .07, 0, .4), noise, e.ground, t, e.level * .3); steps++; /* steps stay well under the birds and the water */ }
     else details[e.type]?.(ctx, place(e.pan || 0, .2, .5), noise, t, e.level);
   }
   function tick() {
