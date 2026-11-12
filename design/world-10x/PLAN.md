@@ -89,3 +89,10 @@ positions logged): watch for it.
 - Beaver dam rebuilt (mud wall, thatched face, crest poles, seep), pond water ends at the dam, lodge to match,
   stumps, felled trunks and a pole stack at Biber's (`STUMPS`, `FELLED`, `POLES` in `layout.js`).
 - Open: the longest build slice is 12.3 ms (limit 12 ms); `FK.perf.stats.slowestStep` names the step kind.
+
+## Done on 12 November 2026
+- Dachs: sculpted like Fuchs (`badger` in `lookdev/plush.js`), baked (89 KB), eleventh letter friend. He lives in a
+  sett under an old oak in the spruce slope north-west (`SETT`, site `sett`, spur trail from the
+  Eichhörnchen–Reh path, two glades for the view). Puzzles: "Naturrätsel" (16 questions on growing, weather
+  and seasons; Natur, NAT-03). Lehrplan reference NMG.2.3.a is proposed, not yet confirmed by the owner.
+- Portrait in the free sixth cell of `neighbours.webp`; picture map redrawn.

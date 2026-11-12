@@ -13,6 +13,8 @@
     deer: { name: 'Reh', picture: 'friend-deer', resource: 'berries', category: 'Natur', code: 'NAT-02', reference: 'NMG.2.1.a', instruction: 'Lies die Frage. Tippe auf das passende Bild.' },
     kingfisher: { name: 'Eisvogel', picture: 'friend-kingfisher', resource: 'feathers', category: 'Mathematik', code: 'NUM-03', reference: 'MA.1.A.2.a', instruction: 'Wie viele sind es? Zähle jedes Bild einmal.' },
     frog: { name: 'Frosch', picture: 'friend-frog', resource: 'seeds', category: 'Lesen', code: 'READ-03', reference: 'D.2.A.1.b', instruction: 'Lies das Wort. Welches Tier ist es?' },
+    // Dachs (Natur): how plants and animals grow, weather, day and evening.
+    badger: { name: 'Dachs', picture: 'friend-badger', resource: 'seeds', category: 'Natur', code: 'NAT-03', reference: 'NMG.2.3.a', instruction: 'Lies die Frage. Tippe auf das passende Bild.' },
   };
   const words = { Maus:'mouse', Haus:'house', Hose:'trousers', Hut:'hat', Rose:'rose', Nase:'nose', Fisch:'fish', Tisch:'table', Ball:'ball', Baum:'tree', Boot:'boat', Kuh:'cow', Schuh:'shoe', Bein:'leg', Stein:'stone', Buch:'book', Tuch:'cloth', Hase:'hare', Dose:'tin', Bus:'bus', Nuss:'nut', Stern:'star', Turm:'tower', Wurm:'worm', Topf:'pot', Kopf:'head', Hand:'hand', Sand:'sand', Schal:'scarf', Wal:'whale', Seil:'rope', Pfeil:'arrow', Tasse:'cup', Kasse:'till', Bank:'bench', Schrank:'wardrobe', Kern:'seeds' };
   const version = 'friends-2';
@@ -50,6 +52,12 @@
     ['Was frisst das Eichhörnchen?', 'forest-nut', 'fish', 'egg'], ['Wo klettert das Eichhörnchen?', 'tree', 'water', 'egg'], ['Wo holt die Biene Nektar?', 'flower', 'fish', 'nest'], ['Was wächst am Baum?', 'apple', 'carrot', 'egg'],
     ['Wer lebt im Wasser?', 'fish', 'cow', 'bee'], ['Wer wohnt im Nest?', 'bird', 'pig', 'snail'], ['Wer frisst Blätter?', 'caterpillar', 'fish', 'spider'], ['Wer baut ein Netz?', 'spider', 'cow', 'fish'],
     ['Was wächst unter den Bäumen?', 'forest-mushroom', 'fish', 'egg'], ['Was leuchtet in der Nacht?', 'moon', 'sun', 'flower'], ['Was scheint am Tag?', 'sun', 'moon', 'egg'], ['Wer frisst Gras?', 'cow', 'spider', 'fish']]);
+  // Natur with Dachs: growing, weather and the seasons (no question of Igel's or Reh's again).
+  pools.badger = riddle('badger', [['Was fällt aus der Wolke?', 'rain', 'sun', 'leaf'], ['Woraus fällt der Regen?', 'cloud', 'moon', 'flower'], ['Was wächst aus der Bohne?', 'seedling', 'chick', 'snowman'],
+    ['Was baut man aus Schnee?', 'snowman', 'boat', 'nest'], ['Wer schlüpft aus dem Ei?', 'chick', 'fish', 'bee'], ['Was fällt im Herbst vom Baum?', 'leaf', 'egg', 'moon'], ['Was trinken die Pflanzen?', 'water', 'honey', 'cheese'],
+    ['Was machen die Bienen?', 'honey', 'cheese', 'egg'], ['Woraus kommt der Schmetterling?', 'cocoon', 'nest', 'bucket'], ['Was wird aus der Raupe?', 'butterfly', 'bee', 'bird'], ['Was siehst du am Abend?', 'sunset', 'rain', 'snowman'],
+    ['Womit gräbt man in der Erde?', 'spade', 'spoon', 'fork'], ['Wer gräbt Gänge in der Erde?', 'vocab-worm', 'bird', 'fish'], ['Welche Blume schaut zur Sonne?', 'sunflower', 'forest-rose', 'fir'],
+    ['Welcher Baum hat Nadeln?', 'fir', 'tree', 'sunflower'], ['Wer hat Streifen im Gesicht?', 'badger', 'pig', 'sheep']]);
   // Lesen: animal words, none of them in Maus' list.
   const animals = [['Frosch', 'frog'], ['Igel', 'hedgehog'], ['Biene', 'bee'], ['Schnecke', 'snail'], ['Hund', 'dog'], ['Katze', 'cat'], ['Spinne', 'spider'], ['Raupe', 'caterpillar'], ['Bär', 'bear'], ['Schaf', 'sheep'],
     ['Schwein', 'pig'], ['Ei', 'egg'], ['Nest', 'nest'], ['Ameise', 'ant'], ['Käfer', 'ladybird'], ['Schildkröte', 'tortoise'], ['Pilz', 'forest-mushroom']];
@@ -65,6 +73,7 @@
     deer:task('deer','example',{kind:'word',target:'Wer lebt im Meer?',answer:'whale',choices:['whale','cow','bee'],explanation:'Der Wal lebt im Meer. Dieses Bild passt.'}),
     kingfisher:task('kingfisher','example',{...counting(2,{item:'forest-feather'}),explanation:'Jede Feder zählt einmal. Es sind zwei.'}),
     frog:task('frog','example',{kind:'word',target:'Löwe',answer:'lion',choices:['lion','dog','bee'],explanation:'Das Wort heisst Löwe. Dieses Bild passt.'}),
+    badger:task('badger','example',{kind:'word',target:'Wer legt Eier ins Nest?',answer:'bird',choices:['bird','dog','fish'],explanation:'Der Vogel legt Eier ins Nest. Dieses Bild passt.'}),
   };
   const shop={leaf:{name:'Blatt-Malvorlage',picture:'leaf',resource:'seeds',price:2,permanent:true},pencils:{name:'Buntstifte',picture:'pencils',resource:'logs',price:2,permanent:true},apple:{name:'Apfel',picture:'apple',resource:'nuts',price:1},bath:{name:'Schaumbad',picture:'bath',resource:'feathers',price:2}};
   const api={version,hosts,pools,examples,shop,words};

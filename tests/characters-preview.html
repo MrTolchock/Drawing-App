@@ -11,7 +11,7 @@ window.FK=window.FK||{reduced:true};
 const canvas=document.getElementById('c'),renderer=new THREE.WebGLRenderer({canvas,antialias:true});renderer.setPixelRatio(1);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;
 const scene=new THREE.Scene();scene.background=new THREE.Color('#efe4cc');scene.add(new THREE.HemisphereLight('#ffe9c2','#6b5636',1.3));const sun=new THREE.DirectionalLight('#ffd9a0',2.4);sun.position.set(-3,6,5);scene.add(sun);
 const only=new URLSearchParams(location.search).get('only'),ids=only?only.split(','):['fox','squirrel','bird','owl','mouse','beaver','mailman'],rigs=[],mid=(ids.length-1)/2;   // ?only=deer,frog,… shows other characters
-const cast=[];ids.forEach((id,i)=>{for(const [row,yaw] of [[0,0],[1,.7]]){const r=characters[id](id==='bird'||id==='kingfisher'?.8:id==='frog'||id==='hedgehog'||id==='fish'?1:1.4);r.group.rotation.y=yaw;scene.add(r.group);rigs.push(r);cast.push({r,i,row});}});
+const cast=[];ids.forEach((id,i)=>{for(const [row,yaw] of [[0,0],[1,.7]]){const r=characters[id](id==='bird'||id==='kingfisher'?.8:id==='frog'||id==='hedgehog'||id==='fish'?1:id==='badger'?1.2:1.4);r.group.rotation.y=yaw;scene.add(r.group);rigs.push(r);cast.push({r,i,row});}});
 const camera=new THREE.PerspectiveCamera(30,1,.1,200),sleeping=new URLSearchParams(location.search).has('sleep');
 let sleeper=null;if(sleeping){sleeper=characters.fox(1.4);sleeper.group.rotation.y=.3;scene.add(sleeper.group);sleeper.sleep=true;rigs.push(sleeper);}
 // Landscape: front row above three-quarter row. Portrait: one character per row, front left and three-quarter right.

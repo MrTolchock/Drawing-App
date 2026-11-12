@@ -14,7 +14,7 @@ const JOINTS = new Set(['body', 'head', 'ear', 'arm', 'leg', 'tail', 'wing']);
 // game id → [look-dev builder, LOD0 triangles, LOD1 triangles, LOD0 detail]
 export const CAST = {fox: ['fox', 20000, 4000, 1], squirrel: ['squirrel', 12000, 4000, .9], bird: ['bluetit', 9000, 3000, .9], owl: ['owl', 12000, 4000, .9],
   mouse: ['mouse', 11000, 3500, .9], beaver: ['beaver', 12000, 4000, .9], mailman: ['hare', 12000, 4000, .9],
-  deer: ['deer', 12000, 4000, .9], frog: ['frog', 9000, 3000, .9], hedgehog: ['hedgehog', 14000, 4500, .9], fish: ['fish', 8000, 3000, .9], kingfisher: ['kingfisher', 9000, 3000, .9]};
+  deer: ['deer', 12000, 4000, .9], frog: ['frog', 9000, 3000, .9], hedgehog: ['hedgehog', 14000, 4500, .9], fish: ['fish', 8000, 3000, .9], kingfisher: ['kingfisher', 9000, 3000, .9], badger: ['badger', 13000, 4000, .9]};
 
 /* The painted eye (left half) next to plain white (right half); kept here as the reference for characters3d.js. */
 export function eyeAtlas() {

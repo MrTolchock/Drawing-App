@@ -1,5 +1,5 @@
 /* Farbtupf – Service Worker: keeps the whole app on the device so it runs without internet. */
-const CACHE = 'farbtupf-v9.0.8-recovery';
+const CACHE = 'farbtupf-v9.0.9-recovery';
 const SCOPE=self.registration.scope;
 const INDEX=new URL('index.html',SCOPE).href;
 const ACTIVE_MARKER=new URL('.farbtupf-active-cache',SCOPE).href;
@@ -64,6 +64,7 @@ const ASSETS = [
   './assets/characters/hedgehog.glb',
   './assets/characters/fish.glb',
   './assets/characters/kingfisher.glb',
+  './assets/characters/badger.glb',
   './vendor/three/addons/GLTFLoader.js',
   './vendor/three/addons/BufferGeometryUtils.js',
   './vendor/three/addons/SkeletonUtils.js',

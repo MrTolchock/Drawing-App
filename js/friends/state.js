@@ -10,7 +10,7 @@
     const uid=()=>now().toString(36)+'-'+random().toString(36).slice(2,12);
     const sessionId=uid();
     // The first five keep their order, so a letter cycle that is under way goes on as before.
-    const mailHosts=['squirrel','bird','owl','beaver','mouse','hedgehog','fish','deer','kingfisher','frog'];
+    const mailHosts=['squirrel','bird','owl','beaver','mouse','hedgehog','fish','deer','kingfisher','frog','badger'];
     const firstMail=()=>({phase:'den-letter',host:mailHosts[0],index:0,completed:0});
     const prepare=s=>{s.mail=s.mail||firstMail();s.unlocks.leaf=true;s.unlocks.pencils=true;return s;};
     function finishMail(s,host){if(s.mail.phase!=='to-friend'||s.mail.host!==host)return false;s.mail.phase='to-mailman';s.mail.completed++;return true;}

@@ -22,13 +22,13 @@ Not needed: the celebration uses existing `forest-objects` leaf, flower, feather
 
 ## A4 · Optional: painted neighbour portraits `neighbours.webp`
 
-Interim: `tools/portraits/` renders the five neighbours from their plush models and paints fur over them (app 9.0.5). Painted art would match the first five friends fully.
+The owner chose the painted sheet as the reference for the whole cast (12 November 2026): the six neighbours get painted portraits, and their 3D models are brought closer to those. Interim: `tools/portraits/` renders the six neighbours from their plush models and paints fur over them (app 9.0.5; Dachs since 9.0.9).
 
 **Reference to attach:** `assets/forest-friends/postcard-friends.webp` (style, scale and framing) and `assets/forest-friends/neighbours.webp` (the characters' shapes and colours, so the portraits still match the 3D plush cast).
 
 **Prompt**
 
-> Production art for Farbtupf, a first-grade children's app. Match the attached friends sheet exactly in medium and finish: soft plush storybook characters with brushed fur, big glossy brown eyes with two catchlights, gentle smile, warm soft frontal light, no outline, fully transparent background. A 3 × 2 grid of equal square cells; each character standing, centred, three-quarter view, filling about 90 % of its cell height, nothing touching the cell edges, no shadows, no text. Use the second attached sheet for each character's shape and colours: (1) Igel, a round hedgehog with soft tan spines, cream face and pink ears, (2) Fisch, a round plush fish, teal back, white belly, orange fins, small round mouth, (3) Reh, a young roe deer standing upright, big ears, cream chest, dark hooves, (4) Eisvogel, a round kingfisher, turquoise cap and wings, orange body, white throat, short black beak, (5) Frosch, a sitting green frog with a pale belly and a wide smile, (6) empty.
+> Production art for Farbtupf, a first-grade children's app. Match the attached friends sheet exactly in medium and finish: soft plush storybook characters with brushed fur, big glossy brown eyes with two catchlights, gentle smile, warm soft frontal light, no outline, fully transparent background. A 3 × 2 grid of equal square cells; each character standing, centred, three-quarter view, filling about 90 % of its cell height, nothing touching the cell edges, no shadows, no text. Use the second attached sheet for each character's shape and colours: (1) Igel, a round hedgehog with soft tan spines, cream face and pink ears, (2) Fisch, a round plush fish, teal back, white belly, orange fins, small round mouth, (3) Reh, a young roe deer standing upright, big ears, cream chest, dark hooves, (4) Eisvogel, a round kingfisher, turquoise cap and wings, orange body, white throat, short black beak, (5) Frosch, a sitting green frog with a pale belly and a wide smile, (6) Dachs, a stocky badger standing upright, grey coat, black chest, arms and legs, white face with two black stripes from the nose over the eyes to the small white-tipped ears, big dark nose.
 
 Save as `assets/forest-friends/neighbours.webp`, 1536 × 1024, WebP quality 86 with alpha; cells and code stay as they are.
 

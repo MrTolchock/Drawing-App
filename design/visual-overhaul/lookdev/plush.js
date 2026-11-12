@@ -390,4 +390,45 @@ export function kingfisher({detail = 1} = {}) {
   return {group};
 }
 
-export const plush = {fox, squirrel, owl, hare, mouse, beaver, bluetit, deer, frog, hedgehog, fish, kingfisher};
+/* ---------- Dachs ---------- */
+// Built like Fuchs (the reference for the cast): stocky and low, grey coat, dark chest, arms and legs,
+// a long white face with the two black stripes that run from the nose over the eyes to the small,
+// white-rimmed ears, a big dark nose, brows and a smile.
+export function badger({detail = 1} = {}) {
+  const cell = .0105 / detail, fur = furMaterial(), group = new THREE.Group(), root = new THREE.Group(); group.add(root);
+  const GR = C('#8d8983'), GRd = C('#6c6863'), GRl = C('#b3aea6'), WH = C('#f7f1e4'), BK = C('#2b2523'), IN = C('#e9c9b4');
+  const body = part(root, 'body', [0, 0, 0], [
+    E([0, .3, 0], [.2, .2, .17]), E([0, .22, .02], [.21, .16, .175], {k: .06}), E([0, .16, -.01], [.19, .1, .16], {k: .06}), E([0, .45, .01], [.12, .09, .1], {k: .07}),
+  ], p => { const chest = inside(E([0, .25, .15], [.13, .2, .1]), p, .035), back = sstep(.02, -.12, p[2]) * sstep(.2, .42, p[1]); return mixC([0, GR], [sstep(.45, .15, p[1]) * .3, GRd], [back * .35, GRl], [chest, BK]); }, {cell, mat: fur});
+  // distance from (x, y) to the segment a–b, with the place along it (front view: the mask is painted flat on the face)
+  const seg2 = (x, y, ax, ay, bx, by) => { const dx = bx - ax, dy = by - ay, t = clamp(((x - ax) * dx + (y - ay) * dy) / (dx * dx + dy * dy), 0, 1); return [Math.hypot(x - ax - dx * t, y - ay - dy * t), t]; };
+  const head = part(body, 'head', [0, .47, .02], [
+    E([0, .16, 0], [.235, .18, .2]), E([0, .225, .01], [.19, .115, .16], {k: .06}),
+    E([.14, .09, .05], [.11, .085, .11], {k: .07}), E([-.14, .09, .05], [.11, .085, .11], {k: .07}),
+    T([0, .105, .12], [0, .078, .3], .105, .05, {k: .08}), E([0, .05, .13], [.12, .06, .1], {k: .05}),
+  ], p => {
+    // the mask: a black stripe on each side from beside the nose, widening over the eye, up to the ear
+    const ax = Math.abs(p[0]), [d1, t1] = seg2(ax, p[1], .036, .085, .096, .178), [d2, t2] = seg2(ax, p[1], .096, .178, .178, .31);
+    const stripe = Math.max(1 - sstep(.02 + t1 * .036, .034 + t1 * .04, d1), 1 - sstep(.056 + t2 * .012, .074 + t2 * .012, d2)) * sstep(-.14, -.06, p[2]);
+    const brow = inside(E([.094, .262, .16], [.04, .01, .03], {rot: [0, 0, -.1]}), [ax, p[1], p[2]], .006), backHead = sstep(0, -.12, p[2]) * sstep(.1, .2, p[1]);
+    return mixC([0, WH], [backHead, GR], [stripe, BK], [brow * .5, GRd]);
+  }, {cell, mat: fur});
+  const eyes = [-1, 1].map(s => { const e = eye(.058); e.position.set(s * .096, .178, .168); e.rotation.y = s * .36; head.add(e); return e; });
+  const nose = new THREE.Mesh(new THREE.SphereGeometry(1, 20, 14), glossy('#1d1210', .2)); nose.scale.set(.043, .034, .03); nose.position.set(0, .088, .348); head.add(nose);
+  const mouth = new THREE.Mesh(new THREE.TorusGeometry(.03, .0055, 6, 16, Math.PI * .9), glossy('#3a1c0e', .6)); mouth.position.set(0, .046, .272); mouth.rotation.set(-.45, 0, Math.PI + .14); head.add(mouth);
+  const ears = [-1, 1].map(s => {
+    const j = part(head, 'ear', [s * .168, .285, -.03], [E([0, .035, 0], [.06, .058, .03], {k: .03})], p => mixC([0, BK], [sstep(.045, .072, p[1] + Math.abs(p[0]) * .25), WH]), {cell: cell * .8, mat: fur});
+    j.rotation.z = s * -.42; j.rotation.x = -.1; return j;
+  });
+  const arms = [-1, 1].map(s => part(body, 'arm', [s * .185, .38, .04], [...chain([[0, 0, 0], [s * .02, -.09, .025], [s * .03, -.15, .05]], [.056, .05, .047]), E([s * .032, -.17, .058], [.052, .046, .052], {k: .03})],
+    p => mixC([0, GRd], [sstep(.03, -.03, p[1]), BK]), {cell, mat: fur}));
+  arms.forEach((a, i) => a.rotation.z = (i ? -1 : 1) * .14);
+  const legs = [-1, 1].map(s => part(body, 'leg', [s * .105, .17, 0], [E([0, -.02, 0], [.088, .09, .095]), T([0, -.05, .01], [0, -.12, .02], .064, .058), E([0, -.142, .042], [.066, .036, .09], {k: .03})],
+    p => mixC([0, GRd], [sstep(.03, -.05, p[1]), BK]), {cell, mat: fur}));
+  const tail = part(body, 'tail', [0, .16, -.15], chain([[0, 0, 0], [0, -.01, -.08], [0, .02, -.16]], [.06, .07, .035], {k: .05}),
+    p => mixC([0, GR], [sstep(-.08, -.17, p[2]), WH]), {cell, mat: fur});
+  group.traverse(o => { if (o.isMesh) o.castShadow = true; });
+  return {group, parts: {body, head, eyes, ears, arms, legs, tail}};
+}
+
+export const plush = {fox, squirrel, owl, hare, mouse, beaver, bluetit, deer, frog, hedgehog, fish, kingfisher, badger};

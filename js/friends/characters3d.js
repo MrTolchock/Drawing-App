@@ -250,8 +250,8 @@ import {GLTFLoader} from '../../vendor/three/addons/GLTFLoader.js';
 import {clone as cloneSkinned} from '../../vendor/three/addons/SkeletonUtils.js';
 import {MeshoptDecoder} from '../../vendor/meshoptimizer/meshopt_decoder.js';
 
-// The last five are the big world's neighbours: they exist only as baked models.
-const CAST=['fox','squirrel','bird','owl','mouse','beaver','mailman','deer','frog','hedgehog','fish','kingfisher'],baked={};
+// The last six are the big world's neighbours: they exist only as baked models.
+const CAST=['fox','squirrel','bird','owl','mouse','beaver','mailman','deer','frog','hedgehog','fish','kingfisher','badger'],baked={};
 const NOISE=`
 float plHash(vec3 p){p=fract(p*.3183099+.1);p*=17.;return fract(p.x*p.y*p.z*(p.x+p.y+p.z));}
 float plNoise(vec3 x){vec3 i=floor(x),f=fract(x);f=f*f*(3.-2.*f);

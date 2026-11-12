@@ -177,6 +177,38 @@ export function siteSteps(site, look, world, group, out) {
       [[-.16, 0], [0, 0], [.16, 0], [-.08, .135], [.08, .135], [0, .27]].forEach(([o, up]) => { const l = 1.25 + R() * .3, j = (R() - .5) * .16; stick(px + sz * o - sx * (l / 2 + j), py + .07 + up, pz - sx * o - sz * (l / 2 + j), sx, 0, sz, l, .075, .8 + R() * .3, true, 6); });
     }, () => mesh(mud, M.rock, 'dam mud', false), () => mesh(logs, M.log, 'dam and lodge'), () => mesh(pale, M.wood, 'gnawed wood'));
   }
+  if (site.id === 'sett') {
+    /* The badger's sett in the wooded slope: a mound of earth under the old oak, the main entrance a dark
+       hole between two roots, a smaller hole at the side, fresh sandy spoil fanned out in front of it,
+       a heap of dry grass that he airs as bedding, a few stones. Entrances face the path (and the camera). */
+    const earth = new Buffer(), roots = new Buffer(), straw = new Buffer(), [cx, cz, yaw] = L.SETT, fx = Math.sin(yaw), fz = Math.cos(yaw), sx = fz, sz = -fx, g0 = T.ground(cx, cz);
+    const Q = new THREE.Quaternion(), UP = new THREE.Vector3(0, 1, 0), V = new THREE.Vector3();
+    const at = (f, side) => [cx + fx * f + sx * side, cz + fz * f + sz * side];
+    const limb = (buf, x, y, z, dx, dy, dz, l, r0, r1, c) => { Q.setFromUnitVectors(UP, V.set(dx, dy, dz).normalize()); add(buf, new THREE.CylinderGeometry(r1, r0, l, 7, 1).translate(0, l / 2, 0).applyQuaternion(Q).translate(x, y, z), ...c); };
+    steps.push(() => { // the mound, moss on its top, the two holes with their rims
+      add(earth, new THREE.SphereGeometry(1, 18, 10, 0, TAU, 0, Math.PI / 2).scale(2.35, 1.6, 2.05).rotateY(yaw).translate(cx, g0 - .3, cz), .2, .145, .095);
+      for (let k = 0; k < 7; k++) { const a = R() * TAU, d = R() * 1.3, x = cx + Math.cos(a) * d, z = cz + Math.sin(a) * d * .8 - .3, v = .8 + R() * .3; add(earth, new THREE.SphereGeometry(1, 8, 5).scale(.5 + R() * .35, .09, .4 + R() * .3).rotateY(R() * 3).translate(x, g0 - .3 + 1.58 * Math.sqrt(Math.max(.05, 1 - (d / 2.2) ** 2)), z), .2 * v, .34 * v, .11 * v); }
+      for (const [f, side, w, h] of [[1.78, 0, .62, .6], [1.05, -1.75, .4, .4]]) { const [x, z] = at(f, side), y = T.ground(x, z) + h * .62, turn = yaw + (side ? -1.0 : 0);
+        add(earth, new THREE.SphereGeometry(1, 14, 10).scale(w, h, .5).rotateY(turn).translate(x - Math.sin(turn) * .12, y, z - Math.cos(turn) * .12), .05, .038, .03);
+        add(earth, new THREE.TorusGeometry(1, .3, 8, 18, Math.PI * 1.15).rotateZ(-Math.PI * .075).scale(w * 1.12, h * 1.18, .55).rotateY(turn).translate(x, y - .02, z), .26, .19, .125); }
+    });
+    steps.push(() => { // roots of the oak that grip the mound and frame the main entrance
+      const brown = [.5, .4, .32];
+      for (const [side, lean] of [[-.78, .28], [.82, -.24], [-1.5, .5], [1.6, -.5]]) { const [x, z] = at(1.25 + Math.abs(side) * .12, side * .2), top = g0 + 1.25 - Math.abs(side) * .12;
+        limb(roots, cx + sx * side * .15 - fx * .2, top, cz + sz * side * .15 - fz * .2, fx * .9 + sx * side * .55, -.38, fz * .9 + sz * side * .55, 1.5, .17, .11, brown);
+        const [bx, bz] = at(1.75 + Math.abs(side) * .1, side * 1.0); limb(roots, bx - fx * .25 - sx * side * .2, top - .52, bz - fz * .25 - sz * side * .2, fx * .4 + sx * lean * -1, -1, fz * .4 + sz * lean * -1, .95, .11, .06, brown); void x; void z; }
+    });
+    steps.push(() => { // fresh spoil in front of the hole, clods and stones, the bedding heap with loose stalks
+      const [ax, az] = at(3.05, .15), ay = T.ground(ax, az);
+      add(earth, new THREE.SphereGeometry(1, 14, 6).scale(1.3, .15, .9).rotateY(yaw).translate(ax, ay + .01, az), .4, .31, .2);
+      for (let k = 0; k < 5; k++) { const [x, z] = at(2.5 + R() * 1.1, (R() - .5) * 1.6), v = .34 + R() * .1; add(earth, new THREE.SphereGeometry(1, 8, 5).scale(.3 + R() * .25, .1 + R() * .06, .25 + R() * .2).rotateY(R() * 3).translate(x, T.ground(x, z) + .04, z), v, v * .78, v * .52); }
+      for (let k = 0; k < 9; k++) { const [x, z] = at(2.3 + R() * 1.6, (R() - .5) * 2.6), r = .05 + R() * .08, v = .36 + R() * .16; add(earth, new THREE.SphereGeometry(r, 6, 4).scale(1, .7, 1).translate(x, T.ground(x, z) + r * .4, z), v, v * .82, v * .6); }
+      const t = templates(); for (const [f, side, sc] of [[2.2, 2.3, .42], [1.2, 2.75, .3], [2.6, -2.4, .34]]) { const [x, z] = at(f, side), v = .82 + R() * .15; earth.add(t.rock, {x, y: T.ground(x, z) - sc * .3, z, ry: R() * TAU, sx: sc, sy: sc * .7, sz: sc * .9, c: new THREE.Color(v, v, v * .97)}); }
+      const [hx, hz] = at(2.25, 1.55), hy = T.ground(hx, hz);
+      add(straw, new THREE.SphereGeometry(1, 12, 7).scale(.55, .26, .45).rotateY(yaw + .5).translate(hx, hy + .1, hz), 1.5, 1.6, 1.25);
+      for (let k = 0; k < 16; k++) { const a = R() * TAU, d = R() * .5; limb(straw, hx + Math.cos(a) * d, hy + .12 + R() * .12, hz + Math.sin(a) * d, Math.cos(a + R() - .5), .35 + R() * .5, Math.sin(a + R() - .5), .3 + R() * .35, .012, .006, [1.55, 1.7, 1.3]); }
+    }, () => mesh(earth, M.rock, 'sett earth'), () => mesh(roots, M.log, 'sett roots'), () => mesh(straw, M.wood, 'sett bedding', false));
+  }
   if (site.id === 'friends') steps.push(() => { // the friends' props: the mouse's stump, the squirrel's acorns
     const wood = new Buffer(), bits = new Buffer(), [mx, mz] = L.FRIENDS.mouse.at, my = T.ground(mx, mz);
     add(wood, new THREE.CylinderGeometry(.75, .9, .62, 18, 1).translate(mx, my + .31, mz), 1.25, 1, .78);

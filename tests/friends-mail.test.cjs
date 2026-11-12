@@ -8,7 +8,7 @@ function finishRound(state,host){assert.ok(state.start(host));for(let i=0;i<5;i+
 test('mail begins in the den, survives refresh and cycles through all friends without repeats',()=>{
  const {state,storage}=fixture();assert.deepEqual(state.mail(),{phase:'den-letter',host:'squirrel',index:0,completed:0});
  assert.equal(state.completeMail('squirrel'),false);assert.ok(state.openLetter());assert.equal(state.openLetter(),false);
- for(const [index,host]of ['squirrel','bird','owl','beaver','mouse','hedgehog','fish','deer','kingfisher','frog','squirrel'].entries()){
+ for(const [index,host]of ['squirrel','bird','owl','beaver','mouse','hedgehog','fish','deer','kingfisher','frog','badger','squirrel'].entries()){
   assert.equal(state.mail().host,host);assert.equal(state.mail().index,index);assert.equal(state.mail().phase,'to-friend');
   assert.deepEqual(create({storage,content}).mail(),state.mail());
   assert.equal(state.completeMail(host==='mouse'?'owl':'mouse'),false);assert.ok(state.completeMail(host));assert.equal(state.completeMail(host),false);assert.equal(state.mail().completed,index+1);assert.equal(state.mail().phase,'to-mailman');

@@ -7,7 +7,7 @@
 // FARBTUPF_PORTRAITS_OUT writes the sheet somewhere else for a look.
 const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
 const path=require('path'),fs=require('fs');
-const BASE=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000', ORDER=['hedgehog','fish','deer','kingfisher','frog'];
+const BASE=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000', ORDER=['hedgehog','fish','deer','kingfisher','frog','badger'];
 const OUT=process.env.FARBTUPF_PORTRAITS_OUT||path.join(__dirname,'../../assets/forest-friends/neighbours.webp');
 // Largest width and height a character may take in its cell, and where its lowest pixel sits.
 const FIT={w:448,h:472,bottom:500};
@@ -17,6 +17,7 @@ const BRUSH={
   hedgehog:{len:24,width:3.6,vary:.15,alpha:.5,fringe:10,shade:.24},
   deer:{len:24,width:3.6,vary:.12,alpha:.45,fringe:11,shade:.24},
   kingfisher:{len:20,width:4,vary:.1,alpha:.42,fringe:8,shade:.22},
+  badger:{len:24,width:3.6,vary:.12,alpha:.45,fringe:10,shade:.22},
   frog:{len:14,width:4,vary:.06,alpha:.28,fringe:4,shade:.2},
   fish:{len:12,width:4,vary:.05,alpha:.2,fringe:2.5,shade:.18},
 };

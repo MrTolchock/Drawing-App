@@ -50,6 +50,7 @@
 [data-host=deer]{--accent:#a8743f;--wb-item:66.667% 0%}
 [data-host=kingfisher]{--accent:#1c8fb0;--wb-item:66.667% 0%}
 [data-host=frog]{--accent:#5f9a32;--wb-item:66.667% 0%}
+[data-host=badger]{--accent:#6f6a66;--wb-item:66.667% 0%}
 
 /* ==========================================================================
    Puzzle shell: every puzzle is a page of Fuchs' book lying in a clearing.
@@ -315,6 +316,7 @@
   .friends-interface .ff-illustrated-round[data-kind][data-host=deer] .ff-card-top::after{content:"Reh"}
   .friends-interface .ff-illustrated-round[data-kind][data-host=kingfisher] .ff-card-top::after{content:"Eisvogel"}
   .friends-interface .ff-illustrated-round[data-kind][data-host=frog] .ff-card-top::after{content:"Frosch"}
+  .friends-interface .ff-illustrated-round[data-kind][data-host=badger] .ff-card-top::after{content:"Dachs"}
 }
 
 /* ==========================================================================

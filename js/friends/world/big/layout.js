@@ -31,7 +31,7 @@ export const DAM = {a: [24.9, -13.3], b: [31.3, -6.9], width: 1.7};
 export const HILLS = [[-10, -90, 30, 5], [-62, -82, 34, 6.5], [30, -94, 24, 4], [90, 62, 36, 5.5], [104, 4, 22, 3.2], [40, 96, 26, 3.6], [-104, 70, 30, 4.5], [-108, -52, 26, 4]];
 
 /* Clearings without trees [x, z, radius]. */
-export const GLADES = [[1, -3, 15], [52, 44, 11], [-30, -61, 6.5], [86, -6, 7], [-57, 53, 7], [-32, 10, 6], [61, -50, 10], [33, -15, 15], [13, 22, 4]];
+export const GLADES = [[1, -3, 15], [52, 44, 11], [-30, -61, 6.5], [86, -6, 7], [-57, 53, 7], [-32, 10, 6], [61, -50, 10], [33, -15, 15], [13, 22, 4], [-51, -54.5, 6], [-49.5, -47, 8]];
 
 /* Trails: polylines through the points, drawn as wandering earth paths. */
 export const TRAILS = [
@@ -51,6 +51,7 @@ export const TRAILS = [
   {id: 'squirrel-meadow', pts: [[-29.5, -59], [-46, -46], [-58, -32], [-66, -18], [-72, -6]], w: .75},
   {id: 'glade-south', pts: [[51, 42.5], [44, 58], [30, 68], [14, 72], [3, 67], [.2, 64.4]], w: .75},
   {id: 'swamp-east', pts: [[-5.6, 60.6], [-9.5, 61], [-11.5, 63]], w: .7},
+  {id: 'badger', pts: [[-46, -46], [-48.4, -49.4], [-50, -52.6]], w: .7},
   {id: 'owl-falls', pts: [[84.5, -4.5], [80, -22], [71, -35], [62.5, -41], [58.6, -42.6]], w: .75},
 ];
 
@@ -82,6 +83,7 @@ export const PLACES = {
   deer: {x: -78.6, z: -11, picture: 'friend-deer', name: 'Zu Reh'},
   kingfisher: {x: 11.2, z: 21.5, picture: 'friend-kingfisher', name: 'Zu Eisvogel'},
   frog: {x: -27.4, z: 83.2, picture: 'friend-frog', name: 'Zu Frosch'},
+  badger: {x: -50, z: -52.6, picture: 'friend-badger', name: 'Zu Dachs'},
 };
 /** The picture map (assets/forest-friends/world-map.webp, tools/map/) shows this part of the world. */
 export const MAP = {x0: -168, x1: 168, z0: -112, z1: 112};
@@ -93,13 +95,14 @@ export const FRIENDS = {
   mouse: {at: [-33.4, 11.2], y: .62, yaw: .7, h: 1.1},
   beaver: {at: [24.6, -17.2], y: 0, yaw: -.5, h: 1.2},
 };
-/* The new neighbours (no puzzles yet): they greet Fuchs when he comes by. */
+/* The neighbours of the big world (they write letters and have puzzles like the first five). */
 export const NEIGHBOURS = {
   deer: {at: [-80.5, -12.5], y: 0, yaw: 1.0, h: 1.75},
   frog: {at: [-23.4, 80.2], y: .06, yaw: .9, h: .8, onWater: true},
   hedgehog: {at: [53.6, 45.4], y: 0, yaw: -.7, h: .85},
   fish: {at: [62.6, -49.2], y: .02, yaw: -.6, h: .8, onWater: true},
   kingfisher: {at: [12.9, 22.85], y: 1.6, yaw: -1.2, h: .6},
+  badger: {at: [-51.7, -54.7], y: 0, yaw: .7, h: 1.2},
 };
 /* Authored trees [x, z, size, options]: the friends' trees and a few giants. */
 export const TREES = [
@@ -108,11 +111,12 @@ export const TREES = [
   [-83, -15, 1.35, {kind: 'oak'}],
   [-33.6, -62.8, 1.3, {kind: 'oak'}],
   [11.4, 22.6, .7, {kind: 'willow', branch: [1.5, 1.52, .45]}],
+  [-54.6, -60.4, 1.45, {kind: 'oak'}],   // the old oak above the badger's sett
 ];
 /* Big rocks [x, z, size, height] (colliders). */
 export const ROCKS = [[-5.2, -4.2, 1.05, 1.6], [-2, 9, .65, .9], [9.6, 1.2, .6, .8], [57.6, -54.4, 1.5, 1.7], [66.4, -47.6, 1.2, 1.3], [-70, 8, .9, 1], [50.5, 48.4, .8, .9]];
-/* Further colliders [x, z, radius]: the den tree, the stump, the lodge, the beaver's stack of poles. */
-export const SOLIDS = [[0, -8, 3.05], [-33.4, 11.2, .95], [37.5, -18.6, 2.3], [20.8, -16.9, .6]];
+/* Further colliders [x, z, radius]: the den tree, the stump, the lodge, the beaver's stack of poles, the badger's sett. */
+export const SOLIDS = [[0, -8, 3.05], [-33.4, 11.2, .95], [37.5, -18.6, 2.3], [20.8, -16.9, .6], [-53.4, -58.3, 2.1]];
 
 /* What Biber felled for his dam: gnawed stumps [x, z, radius] and trunks lying beside some of them
    [x, z, radius, yaw, length] (colliders; built with the pond site). */
@@ -121,6 +125,9 @@ export const FELLED = [[18.6, -19.92, .2, -2, 3], [16.98, -15.69, .16, -1.3, 2.4
 /* His stack of cut poles [x, z, yaw]. */
 export const POLES = [20.8, -16.9, .9];
 
+/* The badger's sett: the mound's centre and the way its main entrance faces [x, z, yaw]. */
+export const SETT = [-53.4, -58.3, .35];
+
 /* Landmark sites: objects built when Fuchs comes near (centre and radius decide when). */
 export const SITES = [
   {id: 'home', x: 0, z: -6, r: 16},
@@ -128,6 +135,7 @@ export const SITES = [
   {id: 'pond', x: 33, z: -15, r: 20},
   {id: 'swamp', x: -19, z: 76, r: 26},
   {id: 'meadow', x: -72, z: -4, r: 30},
+  {id: 'sett', x: -52, z: -56, r: 26},
   {id: 'crossings', x: 10, z: 30, r: 60},
   {id: 'friends', x: 0, z: 0, r: 200},
 ];

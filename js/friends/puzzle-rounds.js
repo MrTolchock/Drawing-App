@@ -3,9 +3,10 @@
 (function () {
   'use strict';
   const FK=window.FK;
-  const base={squirrel:'Nüsse zählen',bird:'Reimpaare lesen',owl:'Lies und zeig',beaver:'Welche Form fehlt?',mouse:'Wörter und Bilder',hedgehog:'Tierrätsel',fish:'Fische zählen',deer:'Wer wohnt wo?',kingfisher:'Am Bach zählen',frog:'Tierwörter lesen'};
+  const base={squirrel:'Nüsse zählen',bird:'Reimpaare lesen',owl:'Lies und zeig',beaver:'Welche Form fehlt?',mouse:'Wörter und Bilder',hedgehog:'Tierrätsel',fish:'Fische zählen',deer:'Wer wohnt wo?',kingfisher:'Am Bach zählen',frog:'Tierwörter lesen',badger:'Naturrätsel'};
   const instructions={
     'friends-squirrel':'Zähle die Nüsse. Du kannst sie zum Zählen markieren. Tippe auf die passende Zahl.',
+    'friends-badger':'Lies die Frage. Tippe auf das passende Bild.',
     'friends-fish':'Zähle die Fische. Du kannst sie zum Zählen markieren. Tippe auf die passende Zahl.',
     'friends-kingfisher':'Zähle die Bilder. Du kannst sie zum Zählen markieren. Tippe auf die passende Zahl.',
     'friends-hedgehog':'Lies die Frage. Tippe auf das Tier, das gemeint ist.',

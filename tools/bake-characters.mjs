@@ -43,7 +43,7 @@ try {
   await page.goto(base + '/tools/bake/bake.html');
   await page.waitForFunction(() => window.bakeReady, null, {timeout: 60000});
   await mkdir(OUT, {recursive: true});
-  const ids = only.length ? only : ['fox', 'squirrel', 'bird', 'owl', 'mouse', 'beaver', 'mailman', 'deer', 'frog', 'hedgehog', 'fish', 'kingfisher'];
+  const ids = only.length ? only : ['fox', 'squirrel', 'bird', 'owl', 'mouse', 'beaver', 'mailman', 'deer', 'frog', 'hedgehog', 'fish', 'kingfisher', 'badger'];
   let total = 0;
   for (const id of ids) {
     const t0 = Date.now();

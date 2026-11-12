@@ -38,7 +38,7 @@ function showLetter(fromMailman){
   say('Ein Brief von '+C.hosts[id].name+'! Schau auf das Bild. Draussen zeigt dir der Pfeil den Weg.');
 }
 function letterPortrait(id){
-  const cells={squirrel:[0,0],bird:[1,0],owl:[2,0],beaver:[0,1],mouse:[1,1]},near={hedgehog:[0,0],fish:[1,0],deer:[2,0],kingfisher:[0,1],frog:[1,1]},[x,y]=cells[id]||near[id];
+  const cells={squirrel:[0,0],bird:[1,0],owl:[2,0],beaver:[0,1],mouse:[1,1]},near={hedgehog:[0,0],fish:[1,0],deer:[2,0],kingfisher:[0,1],frog:[1,1],badger:[2,1]},[x,y]=cells[id]||near[id];
   return h('span',{class:'ff-letter-friend ff-letter-illustration',role:'img','aria-label':C.hosts[id].name,'data-friend':id,style:{backgroundPosition:(x*50)+'% '+(y*100)+'%',...(near[id]?{backgroundImage:'url(assets/forest-friends/neighbours.webp)'}:{})}});
 }
 // Painted pictures where the reviewed art exists: friends from the forest painting and character sheet,
