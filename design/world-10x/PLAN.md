@@ -105,3 +105,5 @@ positions logged): watch for it.
   waistcoat, satchel and letters as on his portrait.
 - `neighbours.webp` rendered again from the new models (`tools/portraits/`); painted portraits stay optional (A4).
 - Screenshots and notes: `design/forest-friends/visuals/milestones/waldbuch/COMPARISON.md`, app 9.0.10.
+- Open, unchanged by this step: the longest build slice measured 13.6–26.8 ms here on 12 November (limit 12 ms), on app 9.0.9
+  and 9.0.10 alike; `FK.perf.stats.slowestStep` names the step. Draw calls, triangles and tiles are within budget.

@@ -201,4 +201,6 @@ The owner asked for all characters to look their best and to fit each other wher
 
 Sizes: 13 character files, 1.07 MB together (as before); triangles unchanged (Fuchs 20 k, friends 8–14 k near, 3–4.5 k far); still two draw calls per character. `neighbours.webp` 151 KB (175 KB before).
 
+**Validation.** `node --test tests/*.test.cjs` (177 pass); `friends-mail-browser.cjs`, `friends-animation-browser.cjs`, `interface-browser.cjs` and `den-browser.cjs` pass. `world-budget-browser.cjs`: drawing is within budget (90 draw calls of 150, 185 k triangles of 350 k, 18 near and 36 far tiles, 5 animated characters) and the 95th-percentile build slice is 3.25–4.25 ms, but the longest single build slice is over its 12 ms limit on this machine today, with and without this change (app 9.0.9: 13.6, 23.8 and 16.4 ms in three runs; app 9.0.10: 15.8, 25.1, 26.8, 16.1 and 19.4 ms in five). That slice is a forest tile or landmark step of the streamer; the characters are not built in slices. It stays on the open list in `design/world-10x/PLAN.md`.
+
 Not done here: fully painted portraits for the six neighbours (asset request A4, with an updated prompt) would still match the first six friends more closely than a painted-over render. Whiskers are left out of the 3D models (they would flicker at forest distance).
