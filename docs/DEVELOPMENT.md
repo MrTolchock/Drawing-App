@@ -18,6 +18,7 @@ Open `http://127.0.0.1:8000`. Browser scripts require Playwright and Chromium. T
 | `tests/den-browser.cjs` | Fox lying on the mattress, visible shelf books, direct free colouring, new outlines/postcards, back navigation, gallery save/resume and offline restoration at tablet/phone sizes |
 | `tests/interface-browser.cjs` | Matching centred icons, shared settings, painted map and actual route, manual-only puzzle explanations, audible ambience/mute/background behaviour, retired leaves and offline saves |
 | `tests/letter-sessions-browser.cjs` | Parent-selected letter budget, adult-only gallery, invited characters only, courier, home route, sleeping game over, offline persistence and parent-only restart |
+| `tests/soundscape.test.cjs` (unit) and `tests/audio-preview.html` (listening page) | Twenty simulated minutes of forest sound: phrases a minute, quiet stretches, rare voices, voices by place, footsteps in time with the walk and softer on a long walk; the page plays every sound and place by itself |
 | `tests/friends-library-browser.cjs` | Restored v2 catalogue, new host assignments, fixed difficulty, return paths, original gear and full atelier persistence |
 | `tests/puzzle-rounds-browser.cjs` | All 33 routes at 1024/390, all 165 tasks with real answers/touch tracing, five-task celebration, retry, menu/world returns, host rotation, persisted work and offline assets |
 | `tests/world-browser.cjs` | Free walking, held touch, discoveries, map, camera, responsive controls and offline positions |

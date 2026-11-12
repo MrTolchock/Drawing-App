@@ -25,11 +25,17 @@ function leafShape(g, len, wid, base, mid, light) {
 /* ---------- shader patches ---------- */
 // Foliage cards keep the upward normal on both faces (three.js would flip and darken back faces).
 const FOLIAGE = ['#include <normal_fragment_begin>', 'float faceDirection = 1.0;\nvec3 normal = normalize( vNormal );\nvec3 nonPerturbedNormal = normal;'];
-// Leaves and trunks between the camera and Fuchs dissolve (ordered dither), so they never hide the play
-// area; anything right at the lens clears too. `foxView` is Fuchs' position in view space.
+// Leaves and trunks that stand between the camera and Fuchs turn translucent so he is never hidden: a narrow
+// column around him (about 1 m wide, reaching up a trunk), fading out softly over another metre and a half,
+// and never clearing completely, so a ghost of the tree stays. The fade is a fine screen-door pattern
+// (interleaved gradient noise), which costs no blending or sorting. Anything right at the lens clears too.
+// `foxView` is Fuchs' position in view space.
 export const foxView = {value: new THREE.Vector3(0, 0, -16)};
-const NEAR_COMMON = '#include <common>\nuniform vec3 ffFox;\nfloat ffBayer2(vec2 a){a=floor(a);return fract(dot(a,vec2(.5,a.y*.75)));}\nfloat ffBayer4(vec2 a){return ffBayer2(.5*a)*.25+ffBayer2(a);}';
-const NEAR_CLIP = '#include <clipping_planes_fragment>\n vec3 ffP=-vViewPosition;float ffLine=smoothstep(.962,.973,dot(normalize(ffP),normalize(ffFox)))*smoothstep(ffFox.z+.8,ffFox.z+1.8,ffP.z);\n float nearFade=max(ffLine,clamp((6.0-vViewPosition.z)/1.2,0.0,1.0));if(nearFade>0.0&&ffBayer4(gl_FragCoord.xy)+.03<nearFade)discard;';
+const NEAR_COMMON = '#include <common>\nuniform vec3 ffFox;\nfloat ffNoise(vec2 p){return fract(52.9829189*fract(dot(floor(p),vec2(.06711056,.00583715))));}';
+const NEAR_CLIP = `#include <clipping_planes_fragment>
+ vec3 ffP=-vViewPosition;vec2 ffD=ffP.xy*(ffFox.z/min(ffP.z,-.2))-ffFox.xy;ffD.y*=ffD.y>0.?.45:1.;
+ float ffLine=(1.-smoothstep(.95,2.5,length(ffD)))*smoothstep(ffFox.z+.6,ffFox.z+2.4,ffP.z)*.92;
+ float nearFade=max(ffLine,clamp((6.5-vViewPosition.z)/2.4,0.,1.));if(nearFade>0.&&ffNoise(gl_FragCoord.xy)<nearFade)discard;`;
 function patch(material, {foliage = false, near = false}, key) {
   material.onBeforeCompile = sh => {
     if (near) { sh.uniforms.ffFox = foxView; sh.fragmentShader = sh.fragmentShader.replace('#include <common>', NEAR_COMMON).replace('#include <clipping_planes_fragment>', NEAR_CLIP); }

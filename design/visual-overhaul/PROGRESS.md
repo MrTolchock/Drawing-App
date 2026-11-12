@@ -90,3 +90,15 @@ Claude Code keeps this file current: tick items as they land on `main`, add the 
 - Canvas drawing keeps at most six atlases (`FK.visual.load`, least recently used dropped); CSS backgrounds are left to the browser, which loads them with the screen that shows them.
 - Updates now wait and apply at the next start in the den (section 7B); `navigator.storage.persist()` was already in place.
 - **Next: phase 6** (owner): iPad 9, home-screen app, `?perf=1` in the normal game and on the `?world=10x` route; record fps, render scale and memory here and in `COMPARISON.md`.
+
+**Cast in the painted style** (12 November 2026, app 9.0.10, on `main`; owner's step 5 after the world ×10 work):
+- The owner chose the painted friends sheet as the reference for every character. All thirteen plush models were resculpted towards it in `lookdev/plush.js` and baked again; details and screenshots in `COMPARISON.md`.
+- Deviation from blueprint 6.2 ("brows painted, not modelled"): brows and the smile are thin modelled strokes lying on the head, because painted vertex colours that fine do not survive simplification to 12 k triangles.
+- Deviation from the 6.2 colour list: Hase is a warmer orange-brown (`#c98450`) with brown paws, as on his painted portrait; creams are a little warmer throughout.
+- The Waldkauz has no ear tufts (as painted, and as the real bird); his wings are bound to the `arm` joints so he waves with a wing.
+- New development sheet `tools/bake/sculpt.html`; `tests/characters-preview.html?action=wave` shows an action.
+
+**Fuchs behind trees and Waldgeräusche** (12 November 2026, app 9.0.11, on `main`; owner's requests):
+- Trees in front of Fuchs turn translucent in a narrow, soft-edged column and keep a ghost, instead of being cut away in a circle (`js/friends/world/textures.js`).
+- Forest sound rebuilt: footsteps by ground, seven birds, frogs, crickets, wind in gusts, brook and waterfall by distance, a tune with long rests; rules against wear over twenty minutes are tested (`tests/soundscape.test.cjs`). How it sounds is for the owner to judge on the iPad (`tests/audio-preview.html`).
+- Sound plays into gameplay nowhere; saves and settings are unchanged (**Waldgeräusche** and **Musik** stay on by default, **Spielklänge** off).

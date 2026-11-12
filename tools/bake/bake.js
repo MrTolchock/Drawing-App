@@ -8,7 +8,7 @@
 import * as THREE from 'three';
 import {GLTFExporter} from '/__bake/three/examples/jsm/exporters/GLTFExporter.js';
 import {MeshoptSimplifier} from '/__bake/meshoptimizer/meshopt_simplifier.js';
-import {plush} from '/design/visual-overhaul/lookdev/plush.js';
+import {plush, drawEye} from '/design/visual-overhaul/lookdev/plush.js';
 
 const JOINTS = new Set(['body', 'head', 'ear', 'arm', 'leg', 'tail', 'wing']);
 // game id → [look-dev builder, LOD0 triangles, LOD1 triangles, LOD0 detail]
@@ -18,13 +18,8 @@ export const CAST = {fox: ['fox', 20000, 4000, 1], squirrel: ['squirrel', 12000,
 
 /* The painted eye (left half) next to plain white (right half); kept here as the reference for characters3d.js. */
 export function eyeAtlas() {
-  const c = document.createElement('canvas'); c.width = 512; c.height = 256; const g = c.getContext('2d'), TAU = Math.PI * 2;
-  g.fillStyle = '#ffffff'; g.fillRect(256, 0, 256, 256);
-  g.fillStyle = '#1c0f07'; g.fillRect(0, 0, 256, 256);
-  const ir = g.createRadialGradient(128, 150, 10, 128, 140, 100); ir.addColorStop(0, '#2a1508'); ir.addColorStop(.45, '#5a3016'); ir.addColorStop(.8, '#9a5a28'); ir.addColorStop(1, '#3a1d0c');
-  g.fillStyle = ir; g.beginPath(); g.arc(128, 132, 96, 0, TAU); g.fill();
-  g.fillStyle = '#120804'; g.beginPath(); g.arc(128, 128, 52, 0, TAU); g.fill();
-  g.fillStyle = '#fff'; g.beginPath(); g.ellipse(96, 92, 30, 24, -.5, 0, TAU); g.fill(); g.beginPath(); g.arc(160, 168, 11, 0, TAU); g.fill();
+  const c = document.createElement('canvas'); c.width = 512; c.height = 256; const g = c.getContext('2d');
+  g.fillStyle = '#ffffff'; g.fillRect(256, 0, 256, 256); drawEye(g);
   const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.name = 'eye-atlas'; return t;
 }
 

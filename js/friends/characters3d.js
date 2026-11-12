@@ -257,23 +257,27 @@ float plHash(vec3 p){p=fract(p*.3183099+.1);p*=17.;return fract(p.x*p.y*p.z*(p.x
 float plNoise(vec3 x){vec3 i=floor(x),f=fract(x);f=f*f*(3.-2.*f);
  return mix(mix(mix(plHash(i),plHash(i+vec3(1,0,0)),f.x),mix(plHash(i+vec3(0,1,0)),plHash(i+vec3(1,1,0)),f.x),f.y),
             mix(mix(plHash(i+vec3(0,0,1)),plHash(i+vec3(1,0,1)),f.x),mix(plHash(i+vec3(0,1,1)),plHash(i+vec3(1,1,1)),f.x),f.y),f.z);}`;
-// Plush fur: fine fuzz in colour and normal (in bind-pose space, so it never swims), a warm velvet rim and a little self-light.
+// Plush fur: brushed strokes running down the body in colour and normal (in bind-pose space, so they never swim),
+// soft clumps (both fade out with distance instead of turning into grain), a warm velvet rim and a little self-light. Same shader as design/visual-overhaul/lookdev/plush.js.
 function plushFur(source,{fuzz=1,rim=.5}={}){const m=source.clone();m.vertexColors=true;m.roughness=.92;m.metalness=0;
   m.onBeforeCompile=sh=>{sh.vertexShader=sh.vertexShader.replace('#include <common>','#include <common>\nvarying vec3 vPl;').replace('#include <begin_vertex>','#include <begin_vertex>\nvPl=position;');
     sh.fragmentShader=sh.fragmentShader.replace('#include <common>','#include <common>\nvarying vec3 vPl;'+NOISE)
-      .replace('#include <color_fragment>',`#include <color_fragment>\n float fz=plNoise(vPl*300.)*.5+plNoise(vPl*110.+7.)*.5; diffuseColor.rgb*=mix(1.,.9+.16*fz,${fuzz.toFixed(2)});`)
-      .replace('#include <normal_fragment_maps>',`#include <normal_fragment_maps>\n vec3 fzN=vec3(plNoise(vPl*260.),plNoise(vPl*260.+3.1),plNoise(vPl*260.+5.7))-.5; normal=normalize(normal+fzN*${(.4*fuzz).toFixed(2)});`)
+      .replace('#include <color_fragment>',`#include <color_fragment>\n float plFw=length(fwidth(vPl)),plFine=clamp(1.4-plFw*300.,0.,1.),plCoarse=clamp(1.4-plFw*90.,0.,1.);\n float fz=mix(.5,plNoise(vPl*vec3(330.,62.,330.)),plFine)*.6+mix(.5,plNoise(vPl*95.+7.),plCoarse)*.4; diffuseColor.rgb*=mix(1.,.87+.24*fz,${fuzz.toFixed(2)});`)
+      .replace('#include <normal_fragment_maps>',`#include <normal_fragment_maps>\n vec3 fzN=vec3(plNoise(vPl*vec3(280.,70.,280.)),plNoise(vPl*vec3(280.,70.,280.)+3.1),plNoise(vPl*vec3(280.,70.,280.)+5.7))-.5; normal=normalize(normal+fzN*plFine*${(.34*fuzz).toFixed(2)});`)
       .replace('#include <opaque_fragment>',`float plRim=pow(1.-clamp(dot(normal,normalize(vViewPosition)),0.,1.),2.4);\n outgoingLight+=diffuseColor.rgb*vec3(1.,.9,.78)*plRim*${rim.toFixed(2)}+diffuseColor.rgb*.07;\n #include <opaque_fragment>`);};
   m.customProgramCacheKey=()=>'plush-fur-'+fuzz+'-'+rim;return m;}
-// The painted eye (left half: dark lid, warm iris lighter below, big pupil, two catchlights) next to plain
-// white (right half) for noses and beaks, which take their colour from the vertices. Drawn once, shared.
+// The painted eye, as on the friends sheet (left half: cream eyeball shaded round its rim, thick dark upper lid,
+// big warm-brown iris lighter at the bottom, large pupil, two catchlights) next to plain white (right half) for
+// noses, teeth and buttons, which take their colour from the vertices. Drawn once, shared.
 let eyeAtlas=null;
 function eyes(){if(eyeAtlas)return eyeAtlas;const c=document.createElement('canvas');c.width=512;c.height=256;const g=c.getContext('2d');
-  g.fillStyle='#ffffff';g.fillRect(256,0,256,256);g.fillStyle='#1c0f07';g.fillRect(0,0,256,256);
-  const ir=g.createRadialGradient(128,150,10,128,140,100);ir.addColorStop(0,'#2a1508');ir.addColorStop(.45,'#5a3016');ir.addColorStop(.8,'#9a5a28');ir.addColorStop(1,'#3a1d0c');
-  g.fillStyle=ir;g.beginPath();g.arc(128,132,96,0,TAU);g.fill();g.fillStyle='#120804';g.beginPath();g.arc(128,128,52,0,TAU);g.fill();
-  g.fillStyle='#fff';g.beginPath();g.ellipse(96,92,30,24,-.5,0,TAU);g.fill();g.beginPath();g.arc(160,168,11,0,TAU);g.fill();
-  eyeAtlas=new THREE.CanvasTexture(c);eyeAtlas.colorSpace=THREE.SRGBColorSpace;eyeAtlas.flipY=false;return eyeAtlas;}
+  g.fillStyle='#ffffff';g.fillRect(256,0,256,256);g.fillStyle='#2a1810';g.fillRect(0,0,256,256);
+  const ball=g.createRadialGradient(128,128,60,128,128,124);ball.addColorStop(0,'#fbf3e4');ball.addColorStop(.7,'#f4e6cf');ball.addColorStop(1,'#c9ac86');g.fillStyle=ball;g.beginPath();g.arc(128,128,121,0,TAU);g.fill();
+  const ir=g.createRadialGradient(128,168,8,128,138,84);ir.addColorStop(0,'#a5642e');ir.addColorStop(.55,'#6f3d1b');ir.addColorStop(.9,'#43220f');ir.addColorStop(1,'#2c160a');g.fillStyle=ir;g.beginPath();g.arc(128,138,84,0,TAU);g.fill();
+  g.fillStyle='#150b06';g.beginPath();g.arc(128,136,50,0,TAU);g.fill();
+  g.save();g.beginPath();g.rect(0,0,256,256);g.arc(128,163,134,0,TAU,true);g.clip('evenodd');g.fillStyle='#2a1810';g.fillRect(0,0,256,256);g.restore();
+  g.fillStyle='#fff';g.beginPath();g.ellipse(158,104,19,17,.4,0,TAU);g.fill();g.globalAlpha=.9;g.beginPath();g.arc(102,170,8,0,TAU);g.fill();g.globalAlpha=1;
+  eyeAtlas=new THREE.CanvasTexture(c);eyeAtlas.colorSpace=THREE.SRGBColorSpace;return eyeAtlas;}   // flipY stays on: the baked eye UVs run bottom to top
 const loader=new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
 export const castReady=Promise.all(CAST.map(id=>loader.loadAsync(new URL('../../assets/characters/'+id+'.glb',import.meta.url).href).then(g=>{baked[id]=g.scene;}).catch(()=>{/* keep the procedural model */}))).then(()=>CAST.filter(id=>baked[id]));
 

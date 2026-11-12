@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="de-CH"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Waldgeräusche zum Anhören</title>
+<style>body{font:17px/1.4 system-ui,sans-serif;margin:0;padding:18px;background:#f3e6c9;color:#3a2a18}h1{font-size:24px;margin:0 0 4px}h2{font-size:18px;margin:22px 0 8px}
+button{font:inherit;padding:12px 16px;margin:4px;border-radius:14px;border:2px solid #b89a6a;background:#fff8e8;min-height:48px}button[aria-pressed=true]{background:#5f7d31;color:#fff;border-color:#4a6326}
+p{margin:4px 0 10px;max-width:60ch}output{display:block;margin-top:14px;font-variant-numeric:tabular-nums}</style></head>
+<body>
+<h1>Waldgeräusche zum Anhören</h1>
+<p>Entwicklungsseite: spielt jeden Klang des Waldes einzeln und ganze Orte, so wie im Spiel (gleicher Code: <code>js/friends/audio.js</code>, <code>soundscape.js</code>). Erst einen Ort wählen, dann zuhören.</p>
+<h2>Ort</h2><div id="scenes"></div>
+<p><button id="walk" aria-pressed="false">Fuchs läuft</button> Boden: <span id="grounds"></span></p>
+<h2>Einzelne Stimmen</h2><div id="voices"></div>
+<h2>Schritte und Kleines</h2><div id="steps"></div>
+<output id="out"></output>
+<script type="module">
+window.FK = {on: () => () => {}, forestVoice: {cancel() {}}};
+const {createAudio, voices, footstep, details, makeNoise} = await import('../js/friends/audio.js');
+const SCENES = {Wald: {trees: .9, spruce: .1}, Fichtenwald: {trees: 1, spruce: 1}, Wiese: {trees: .05, meadow: 1}, Sumpf: {trees: .3, swamp: 1}, 'Am Bach': {trees: .7, brook: .9}, Wasserfall: {trees: .4, falls: .9, brook: .5, fallsPan: .3}, 'Im Bau': null};
+const NAMES = {blackbird: 'Amsel', chaffinch: 'Buchfink', greatTit: 'Kohlmeise', blueTit: 'Blaumeise', dove: 'Ringeltaube', cuckoo: 'Kuckuck', woodpecker: 'Specht', frog: 'Frosch', cricket: 'Grille', bee: 'Biene'};
+const GROUNDS = {grass: 'Gras', needles: 'Nadeln', earth: 'Weg', meadow: 'Wiese', wood: 'Steg', sticks: 'Damm', rock: 'Fels', wet: 'Sumpf'};
+const $ = id => document.getElementById(id), q = new URLSearchParams(location.search);
+let scene = q.get('scene') || 'Wald', walking = q.has('walk'), ground = q.get('ground') || 'grass', settings = {ambience: true, music: q.has('music')};
+const audio = createAudio(() => settings, () => ({...SCENES[scene], moving: walking, speed: 2.6, ground})); window.audio = audio;
+const button = (parent, label, fn, pressed) => { const b = document.createElement('button'); b.textContent = label; if (pressed !== undefined) b.setAttribute('aria-pressed', pressed); b.onclick = () => fn(b); parent.append(b); return b; };
+function showScene() { audio.unlock(); audio.setArea(SCENES[scene] ? 'forest' : 'den'); for (const b of $('scenes').children) b.setAttribute('aria-pressed', b.textContent === scene); for (const b of $('grounds').children) b.setAttribute('aria-pressed', b.dataset.g === ground); }
+for (const name of Object.keys(SCENES)) button($('scenes'), name, () => { scene = name; showScene(); }, false);
+button($('scenes'), 'Melodie', b => { settings = {...settings, music: !settings.music}; b.setAttribute('aria-pressed', settings.music); audio.update(); }, settings.music);
+button($('scenes'), 'Stille', b => { settings = {...settings, ambience: !settings.ambience}; b.setAttribute('aria-pressed', !settings.ambience); audio.update(); }, false);
+$('walk').onclick = () => { walking = !walking; $('walk').setAttribute('aria-pressed', walking); };
+for (const [g, label] of Object.entries(GROUNDS)) button($('grounds'), label, () => { ground = g; showScene(); }, g === ground).dataset.g = g;
+// single sounds on their own context, as loud as a near voice in the game
+let ctx, noise, bus; function own() { if (!ctx) { ctx = new AudioContext(); noise = makeNoise(ctx, 'white', 5); bus = ctx.createGain(); bus.gain.value = .55 * .72 * .8; bus.connect(ctx.destination); } ctx.resume(); return ctx.currentTime + .05; }
+for (const [kind, label] of Object.entries(NAMES)) button($('voices'), label, () => { const t = own(); voices[kind](ctx, bus, t, noise); });
+for (const [g, label] of Object.entries(GROUNDS)) button($('steps'), '6 Schritte: ' + label, () => { const t = own(); for (let i = 0; i < 6; i++) footstep(ctx, bus, noise, g, t + i * .38, .8); });
+for (const [kind, label] of [['twig', 'Zweig knackt'], ['bubble', 'Blasen im Bach'], ['plop', 'Plop im Sumpf']]) button($('steps'), label, () => { const t = own(); for (let i = 0; i < (kind === 'bubble' ? 14 : 1); i++) details[kind](ctx, bus, noise, t + i * .12, 1); });
+if (q.has('scene')) showScene();
+setInterval(() => { const d = audio.diagnostics; $('out').textContent = `Ton: ${d.state} · Ort: ${scene} · Pegel ${(20 * Math.log10(d.rms || 1e-9)).toFixed(1)} dB · Vogelrufe ${d.birdCalls} · Schritte ${d.steps}`; }, 500);
+window.ready = true;
+</script></body></html>

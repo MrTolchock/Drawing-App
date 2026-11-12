@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Character sculpt sheet (development)</title>
+<style>html,body{margin:0;background:#788c6e}canvas{display:block}</style></head>
+<body><canvas id="c"></canvas>
+<script type="module">
+/* Development sheet for sculpting the plush cast (never loaded by the game).
+   Builds one look-dev character unbaked and shows it from several sides under the soft frontal light
+   of the painted friends sheet (assets/forest-friends/postcard-friends.webp), on the same sage green:
+     tools/bake/sculpt.html?id=fox            front, three-quarter, side
+     ...&views=0,.45,1.57,3.14&size=500       own turns (radians) and tile size
+     ...&zoom=head                            close on the head
+   Bake afterwards with node tools/bake-characters.mjs and check tests/characters-preview.html. */
+import * as THREE from '../../vendor/three/three.module.js';
+import {plush} from '../../design/visual-overhaul/lookdev/plush.js';
+const q = new URLSearchParams(location.search), id = q.get('id') || 'fox', size = +(q.get('size') || 480);
+const views = (q.get('views') || '0,.45,1.45').split(',').map(Number), zoom = q.get('zoom');
+const canvas = document.getElementById('c'), W = size * views.length, H = size;
+const renderer = new THREE.WebGLRenderer({canvas, antialias: true, preserveDrawingBuffer: true}); renderer.setPixelRatio(1); renderer.setSize(W, H, false); canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+renderer.outputColorSpace = THREE.SRGBColorSpace; renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = +(q.get('exposure') || 1.12); renderer.setClearColor('#788c6e'); renderer.setScissorTest(true);
+const scene = new THREE.Scene();
+scene.add(new THREE.HemisphereLight('#fff4de', '#9c7a52', 1.35));
+const key = new THREE.DirectionalLight('#ffe6bd', 2.3); key.position.set(-2.5, 4, 6); scene.add(key);
+const fill = new THREE.DirectionalLight('#fff3e2', .75); fill.position.set(4, 1.5, 4); scene.add(fill);
+const rim = new THREE.DirectionalLight('#fffaf0', 1.2); rim.position.set(2.5, 3, -4); scene.add(rim);
+const t0 = performance.now(), c = plush[id]({detail: +(q.get('detail') || .9)}); scene.add(c.group);
+c.group.updateMatrixWorld(true); const box = new THREE.Box3().setFromObject(c.group), h = box.max.y - box.min.y;
+let tris = 0; c.group.traverse(o => { if (o.isMesh) tris += (o.geometry.index ? o.geometry.index.count : o.geometry.attributes.position.count) / 3; });
+const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, .1, 50);
+// frame: whole character, or the upper part of it
+const half = zoom === 'head' ? h * .3 : Math.max(h, (box.max.x - box.min.x), (box.max.z - box.min.z)) * .56, cy = zoom === 'head' ? box.max.y - h * .3 : (box.max.y + box.min.y) / 2;
+camera.left = -half; camera.right = half; camera.top = half; camera.bottom = -half; camera.updateProjectionMatrix();
+views.forEach((yaw, i) => { c.group.rotation.y = yaw; renderer.setViewport(i * size, 0, size, size); renderer.setScissor(i * size, 0, size, size); camera.position.set(0, cy + half * .25, 10); camera.lookAt(0, cy, 0); renderer.render(scene, camera); });
+console.log(JSON.stringify({id, buildMs: Math.round(performance.now() - t0), tris: Math.round(tris), height: +h.toFixed(3)})); window.ready = true;
+</script></body></html>

@@ -15,7 +15,7 @@ window.FK=window.FK||{reduced:true};
 const q=new URLSearchParams(location.search),id=q.get('id')||'deer',canvas=document.getElementById('c');
 // Three-quarter turn towards the viewer, as in postcard-friends.webp (per character: the fish and the
 // kingfisher are side-on models, so they turn further to show both eyes).
-const YAW={hedgehog:.38,fish:.3,deer:.32,kingfisher:.26,frog:.22,badger:.36},TILT={};
+const YAW={hedgehog:.4,fish:.42,deer:.36,kingfisher:.62,frog:.3,badger:.38},TILT={};
 const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true,preserveDrawingBuffer:true});renderer.setPixelRatio(1);renderer.setClearColor(0,0);
 renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=+(q.get('exposure')||1.12);
 const scene=new THREE.Scene();

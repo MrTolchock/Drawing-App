@@ -96,3 +96,14 @@ positions logged): watch for it.
   Eichhörnchen–Reh path, two glades for the view). Puzzles: "Naturrätsel" (16 questions on growing, weather
   and seasons; Natur, NAT-03). Lehrplan reference NMG.2.3.a is proposed, not yet confirmed by the owner.
 - Portrait in the free sixth cell of `neighbours.webp`; picture map redrawn.
+
+## Done on 12 November 2026 — the whole cast follows the painted sheet (owner's step 5, option B)
+- All thirteen characters resculpted in `lookdev/plush.js` towards `postcard-friends.webp` and baked again (1.07 MB,
+  same triangle budgets). One face kit for everyone: cream eyes with a dark upper lid, brows, button nose, "w" smile.
+- Fur shader brushed instead of grainy, fading with distance; the eye drawing was upside down in the game before.
+- Igel now sits upright under a hood of spines; Waldkauz has a head that turns and wings that wave; Hase has his cap,
+  waistcoat, satchel and letters as on his portrait.
+- `neighbours.webp` rendered again from the new models (`tools/portraits/`); painted portraits stay optional (A4).
+- Screenshots and notes: `design/forest-friends/visuals/milestones/waldbuch/COMPARISON.md`, app 9.0.10.
+- Open, unchanged by this step: the longest build slice measured 13.6–26.8 ms here on 12 November (limit 12 ms), on app 9.0.9
+  and 9.0.10 alike; `FK.perf.stats.slowestStep` names the step. Draw calls, triangles and tiles are within budget.
