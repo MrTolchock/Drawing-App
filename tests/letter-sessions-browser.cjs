@@ -8,7 +8,7 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
   const context=await browser.newContext({viewport:{width:1080,height:810},hasTouch:true,reducedMotion:'reduce'}),page=await context.newPage(),errors=[];page.setDefaultTimeout(60000);page.on('pageerror',e=>errors.push(e.message));
   const reviewServer=await installRemote(context);
   await context.addInitScript(()=>localStorage.setItem('farbtupf.timer.v1','{"version":1,"mode":"countdown","running":true,"durationMs":1000,"elapsedMs":999}'));
-  const ready=()=>page.waitForFunction(()=>!!window.FK?.friends&&!!FK.friendsForest);
+  const ready=()=>page.waitForFunction(()=>!!window.FK?.friends&&!!FK.friendsForest&&FK.current()==='friends');
   const active=()=>page.locator('.screen:not([hidden])');
   const gate=async()=>{await page.locator('.gate-task').waitFor();const [a,b]=(await page.locator('.gate-task').textContent()).match(/\d+/g).map(Number);await page.getByLabel('Deine Antwort',{exact:true}).fill(String(a*b));await page.locator('.gate-submit').click();};
   const settings=async()=>{await active().getByRole('button',{name:'Einstellungen für Erwachsene',exact:true}).first().click();await gate();await page.waitForFunction(()=>FK.current()==='settings');};

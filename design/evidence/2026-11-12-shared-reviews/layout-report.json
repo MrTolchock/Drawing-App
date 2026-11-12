@@ -1,0 +1,410 @@
+[
+  {
+    "puzzle": "friends-squirrel",
+    "width": 1080,
+    "checks": "passed",
+    "subjects": 5
+  },
+  {
+    "puzzle": "friends-bird",
+    "width": 1080,
+    "checks": "passed",
+    "subjects": 8
+  },
+  {
+    "puzzle": "friends-owl",
+    "width": 1080,
+    "checks": "passed",
+    "subjects": 7
+  },
+  {
+    "puzzle": "friends-beaver",
+    "width": 1080,
+    "checks": "passed",
+    "subjects": 5
+  },
+  {
+    "puzzle": "friends-mouse",
+    "width": 1080,
+    "checks": "passed",
+    "subjects": 8
+  },
+  {
+    "puzzle": "friends-hedgehog",
+    "width": 1080,
+    "checks": "passed",
+    "subjects": 8
+  },
+  {
+    "puzzle": "friends-fish",
+    "width": 1080,
+    "checks": "passed",
+    "subjects": 5
+  },
+  {
+    "puzzle": "friends-deer",
+    "width": 1080,
+    "checks": "passed",
+    "subjects": 8
+  },
+  {
+    "puzzle": "friends-kingfisher",
+    "width": 1080,
+    "checks": "passed",
+    "subjects": 7
+  },
+  {
+    "puzzle": "friends-frog",
+    "width": 1080,
+    "checks": "passed",
+    "subjects": 8
+  },
+  {
+    "puzzle": "friends-badger",
+    "width": 1080,
+    "checks": "passed",
+    "subjects": 8
+  },
+  {
+    "puzzle": "count",
+    "width": 1080,
+    "checks": "passed",
+    "subjects": 15
+  },
+  {
+    "puzzle": "add",
+    "width": 1080,
+    "checks": "passed",
+    "subjects": 7
+  },
+  {
+    "puzzle": "pattern",
+    "width": 1080,
+    "checks": "passed",
+    "subjects": 14
+  },
+  {
+    "puzzle": "nature",
+    "width": 1080,
+    "checks": "passed",
+    "subjects": 8
+  },
+  {
+    "puzzle": "rocket",
+    "width": 1080,
+    "checks": "passed",
+    "subjects": 6
+  },
+  {
+    "puzzle": "picnic",
+    "width": 1080,
+    "checks": "passed",
+    "subjects": 8
+  },
+  {
+    "puzzle": "double",
+    "width": 1080,
+    "checks": "passed",
+    "subjects": 7
+  },
+  {
+    "puzzle": "shapes",
+    "width": 1080,
+    "checks": "passed",
+    "subjects": 5
+  },
+  {
+    "puzzle": "syllable",
+    "width": 1080,
+    "checks": "passed",
+    "subjects": 7
+  },
+  {
+    "puzzle": "robot",
+    "width": 1080,
+    "checks": "passed",
+    "subjects": 9
+  },
+  {
+    "puzzle": "sequence",
+    "width": 1080,
+    "checks": "passed",
+    "subjects": 8
+  },
+  {
+    "puzzle": "treasure",
+    "width": 1080,
+    "checks": "passed",
+    "subjects": 9
+  },
+  {
+    "puzzle": "neighbours",
+    "width": 1080,
+    "checks": "passed",
+    "subjects": 5
+  },
+  {
+    "puzzle": "compare",
+    "width": 1080,
+    "checks": "passed",
+    "subjects": 7
+  },
+  {
+    "puzzle": "mirror",
+    "width": 1080,
+    "checks": "passed",
+    "subjects": 8
+  },
+  {
+    "puzzle": "vowels",
+    "width": 1080,
+    "checks": "passed",
+    "subjects": 6
+  },
+  {
+    "puzzle": "survey",
+    "width": 1080,
+    "checks": "passed",
+    "subjects": 8
+  },
+  {
+    "puzzle": "read-puzzle",
+    "width": 1080,
+    "checks": "passed",
+    "subjects": 6
+  },
+  {
+    "puzzle": "read-word",
+    "width": 1080,
+    "checks": "passed",
+    "subjects": 8
+  },
+  {
+    "puzzle": "read-leaves",
+    "width": 1080,
+    "checks": "passed",
+    "subjects": 9
+  },
+  {
+    "puzzle": "read-colours",
+    "width": 1080,
+    "checks": "passed",
+    "subjects": 8
+  },
+  {
+    "puzzle": "trace",
+    "width": 1080,
+    "checks": "passed",
+    "subjects": 5
+  },
+  {
+    "puzzle": "trace-numbers",
+    "width": 1080,
+    "checks": "passed",
+    "subjects": 5
+  },
+  {
+    "puzzle": "friends-squirrel",
+    "width": 390,
+    "checks": "passed",
+    "subjects": 5
+  },
+  {
+    "puzzle": "friends-bird",
+    "width": 390,
+    "checks": "passed",
+    "subjects": 8
+  },
+  {
+    "puzzle": "friends-owl",
+    "width": 390,
+    "checks": "passed",
+    "subjects": 7
+  },
+  {
+    "puzzle": "friends-beaver",
+    "width": 390,
+    "checks": "passed",
+    "subjects": 5
+  },
+  {
+    "puzzle": "friends-mouse",
+    "width": 390,
+    "checks": "passed",
+    "subjects": 8
+  },
+  {
+    "puzzle": "friends-hedgehog",
+    "width": 390,
+    "checks": "passed",
+    "subjects": 8
+  },
+  {
+    "puzzle": "friends-fish",
+    "width": 390,
+    "checks": "passed",
+    "subjects": 5
+  },
+  {
+    "puzzle": "friends-deer",
+    "width": 390,
+    "checks": "passed",
+    "subjects": 8
+  },
+  {
+    "puzzle": "friends-kingfisher",
+    "width": 390,
+    "checks": "passed",
+    "subjects": 7
+  },
+  {
+    "puzzle": "friends-frog",
+    "width": 390,
+    "checks": "passed",
+    "subjects": 8
+  },
+  {
+    "puzzle": "friends-badger",
+    "width": 390,
+    "checks": "passed",
+    "subjects": 8
+  },
+  {
+    "puzzle": "count",
+    "width": 390,
+    "checks": "passed",
+    "subjects": 15
+  },
+  {
+    "puzzle": "add",
+    "width": 390,
+    "checks": "passed",
+    "subjects": 7
+  },
+  {
+    "puzzle": "pattern",
+    "width": 390,
+    "checks": "passed",
+    "subjects": 14
+  },
+  {
+    "puzzle": "nature",
+    "width": 390,
+    "checks": "passed",
+    "subjects": 8
+  },
+  {
+    "puzzle": "rocket",
+    "width": 390,
+    "checks": "passed",
+    "subjects": 6
+  },
+  {
+    "puzzle": "picnic",
+    "width": 390,
+    "checks": "passed",
+    "subjects": 8
+  },
+  {
+    "puzzle": "double",
+    "width": 390,
+    "checks": "passed",
+    "subjects": 7
+  },
+  {
+    "puzzle": "shapes",
+    "width": 390,
+    "checks": "passed",
+    "subjects": 5
+  },
+  {
+    "puzzle": "syllable",
+    "width": 390,
+    "checks": "passed",
+    "subjects": 7
+  },
+  {
+    "puzzle": "robot",
+    "width": 390,
+    "checks": "passed",
+    "subjects": 9
+  },
+  {
+    "puzzle": "sequence",
+    "width": 390,
+    "checks": "passed",
+    "subjects": 8
+  },
+  {
+    "puzzle": "treasure",
+    "width": 390,
+    "checks": "passed",
+    "subjects": 9
+  },
+  {
+    "puzzle": "neighbours",
+    "width": 390,
+    "checks": "passed",
+    "subjects": 5
+  },
+  {
+    "puzzle": "compare",
+    "width": 390,
+    "checks": "passed",
+    "subjects": 7
+  },
+  {
+    "puzzle": "mirror",
+    "width": 390,
+    "checks": "passed",
+    "subjects": 8
+  },
+  {
+    "puzzle": "vowels",
+    "width": 390,
+    "checks": "passed",
+    "subjects": 6
+  },
+  {
+    "puzzle": "survey",
+    "width": 390,
+    "checks": "passed",
+    "subjects": 8
+  },
+  {
+    "puzzle": "read-puzzle",
+    "width": 390,
+    "checks": "passed",
+    "subjects": 6
+  },
+  {
+    "puzzle": "read-word",
+    "width": 390,
+    "checks": "passed",
+    "subjects": 8
+  },
+  {
+    "puzzle": "read-leaves",
+    "width": 390,
+    "checks": "passed",
+    "subjects": 9
+  },
+  {
+    "puzzle": "read-colours",
+    "width": 390,
+    "checks": "passed",
+    "subjects": 8
+  },
+  {
+    "puzzle": "trace",
+    "width": 390,
+    "checks": "passed",
+    "subjects": 5
+  },
+  {
+    "puzzle": "trace-numbers",
+    "width": 390,
+    "checks": "passed",
+    "subjects": 5
+  }
+]

@@ -9,7 +9,7 @@ The repository is public, so review statuses and optional notes are public. Only
 1. Unlock **Einstellungen** with the existing adult calculation. Open **Prüfung auf GitHub → GitHub zum Speichern verbinden**. There is no additional gallery calculation.
 2. Use the link to create a **fine-grained GitHub personal access token**. Select only **MrTolchock/Drawing-App** and grant repository **Contents: Read and write**. Choose an expiry that suits your reviewing session.
 3. Paste the token into **GitHub-Zugriffstoken** in the app and press **Mit GitHub verbinden**. Do not put the token in chat, repository files, notes or exports. The app checks the owner's GitHub account.
-4. Approve or flag iterations as before, without required text. Changes are saved automatically after a short pause. **Auf GitHub gespeichert** confirms shared storage. **Nur lokal gesichert** or a pending count means the upload has not finished.
+4. Approve or flag iterations as before, without required text. Changes are saved automatically after a short pause; quick decisions are batched to respect GitHub’s limits. **Auf GitHub gespeichert** confirms shared storage. **Nur lokal gesichert** or a pending count means the upload has not finished.
 
 The token stays in this browser tab's session storage; a refresh retains that connection. **GitHub trennen** removes it. Closing the session, a different browser or a reinstall can require connecting again **to edit**. Reading/playing needs no token: every browser loads published approvals automatically.
 
@@ -26,6 +26,8 @@ GitHub Pages is a static host, so it cannot authenticate repository writes itsel
 ## Format and maintenance
 
 The ledger has `format: farbtupf-review-ledger`, `version: 1`, an `entries` object and `history`. Each entry is indexed by **stable key + @ + exact revision**. A key is an iteration ID or `puzzle:<id>`. Each entry contains `key`, `revision`, `status`, `note`, `at`, `seen` and an optional operation ID. Approved iterations require inspection evidence. Puzzle release also requires every current iteration to be approved.
+
+Legacy approval records without matching inspection evidence are retained with their original status in `legacyStatus`, but remain pending until reviewed.
 
 Different revisions coexist: an older app cannot replace the newer revision's sign-off. Content/difficulty/presentation changes still reopen their relevant current reviews. Do not clear the data branch when deploying code or merge it into the game branch. Empty initial data ships no approvals.
 

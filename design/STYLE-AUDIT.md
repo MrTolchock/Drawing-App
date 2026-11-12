@@ -68,3 +68,16 @@ The branch also preserves main's 9.3.2 audio and iPad fixes. These screenshots s
 | Individual iteration decision | [View](evidence/2026-11-12-review-workflow/iteration-signoff-1080.png) | [View](evidence/2026-11-12-review-workflow/iteration-signoff-390.png) |
 
 Review validation passed all 34 puzzle-level German speech requests, approval/improvement without text, optional notes, final sign-off without a checklist, backup import/export, 124 representative real iterations (addition, all letter forms and all digit contexts), all 34 phone/tablet preview routes, isolated saves, celebration and offline review. Model checks cover older metadata and reject approvals without a matching inspected revision. After including main's audio/iPad fixes, the review, letter-session and soundscape model suites passed; all 34 × 2 preview layouts and the complete parent-limited journey passed again. [Integrated layout report](evidence/2026-11-12-review-workflow/report.json).
+
+
+## Shared review storage — feature branch 9.3.8
+
+The owner's review decisions now use [GitHub review storage](../docs/REVIEW-STORAGE.md): a separate [data branch](https://github.com/MrTolchock/Drawing-App/tree/puzzle-review-data), automatic restoration, a local offline cache/outbox, exact-revision keys and explicit conflict choices. Only confirmed GitHub approvals release puzzles. Ordinary readers need no token; the owner connects once per editing session. Tokens are not stored in review files or exports. No child saves or drawings are uploaded.
+
+The real public data endpoint was checked for browser access and initially contains no approvals. Storage tests use an intercepted GitHub API rather than real credentials or fixture writes to production. They cover fresh browser storage, refresh/reinstall recovery, offline edits, lost responses, concurrent-file retries, conflicting decisions, revision separation, legacy evidence, token expiry/isolation, batching/rate limits and large-file reads.
+
+- [Fresh browser with restored review data, phone](evidence/2026-11-12-shared-reviews/fresh-browser-phone.png)
+- [Shared review controls, tablet](evidence/2026-11-12-shared-reviews/synced-review-tablet.png)
+- [All 34 × 2 integrated preview layouts](evidence/2026-11-12-shared-reviews/layout-report.json)
+
+The cross-browser UI, 15 repository model cases, review/revision models, all 34 phone/tablet layouts, 124 representative real iteration previews, all 34 puzzle-level speech controls and the complete letter journey passed. The journey was also run alone after a concurrent-browser run exhausted its native-click timeout; it then passed reload, both letters, sleep/game over, offline lock and adult restart. The branch preserves main's latest iPad/forest-audio changes through 9.3.7. Existing fixed reference files and archive hashes remain unchanged.

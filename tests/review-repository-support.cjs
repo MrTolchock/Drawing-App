@@ -15,6 +15,7 @@ function remoteServer(initial=empty()){
   if(url.startsWith('https://api.github.com/repos/MrTolchock/Drawing-App/contents/reviews.json')){
    if(options.method!=='PUT')return response({sha:'sha-'+revision,content:server.omitContent?'':Buffer.from(JSON.stringify(ledger)).toString('base64')});
    if(server.beforePut){const callback=server.beforePut;server.beforePut=null;await callback(server);}
+   if(server.rateLimit)return response({message:'You have exceeded a secondary rate limit'},403);
    if(server.failWrite)return response({message:'Unavailable'},503);
    const payload=JSON.parse(options.body);if(payload.branch!=='puzzle-review-data')throw Error('Attempted to write game code');
    if(payload.sha!=='sha-'+revision)return response({message:'Conflict'},409);

@@ -2,10 +2,10 @@ const {test}=require('node:test'),assert=require('node:assert/strict');
 const R=require('../js/friends/review-repository.js'),{remoteServer}=require('./review-repository-support.cjs');
 const clone=v=>JSON.parse(JSON.stringify(v));
 const catalogue={games:()=>[{id:'add'}],iterations:()=>Array.from({length:25},(_,i)=>({id:'add/'+i})),puzzleRevision:()=> 'puzzle-r1',iterationRevision:(_id,it)=>'r-'+it.id};
-function client(server,saved){
+function client(server,saved,options={}){
  let data=saved?clone(saved):{version:1,decisions:{},seen:{},history:[]};const session=new Map();let index=0;
  const vault={read:()=>data,write:next=>{data=clone(next);return true;}};
- const repo=R.create({vault,catalogue,fetch:server.fetch,tokenStorage:{getItem:k=>session.get(k),setItem:(k,v)=>session.set(k,v),removeItem:k=>session.delete(k)},newId:()=> 'operation-'+Math.random()+'-'+(++index),debounce:60000});
+ const repo=R.create({vault,catalogue,fetch:server.fetch,tokenStorage:{getItem:k=>session.get(k),setItem:(k,v)=>session.set(k,v),removeItem:k=>session.delete(k)},newId:()=> 'operation-'+Math.random()+'-'+(++index),debounce:60000,...options});
  function decide(key,status,revision='r-'+key,note=''){
   const previous=clone(data),next=clone(data);next.seen[key]=revision;next.decisions[key]={key,revision,status,note,at:new Date().toISOString()};data=repo.stage(next,previous);
  }
@@ -22,6 +22,11 @@ test('offline outbox survives restart and cannot masquerade as a published appro
  const server=remoteServer(),a=client(server);await a.repo.start();server.offline=true;a.decide('add/1','approved');assert.equal(await a.repo.refresh(),false);assert.equal(a.repo.state.pending,1);
  const b=client(server,a.data);assert.equal(await b.repo.start(),false);assert.equal(b.repo.state.pending,1);assert.equal(b.data.decisions['add/1'].status,'approved');
  server.offline=false;await b.repo.connect('test-review-token');assert.equal(b.repo.state.phase,'saved');assert.equal(server.ledger.entries['add/1@r-add/1'].status,'approved');a.repo.stop();b.repo.stop();
+});
+test('legacy decisions without inspection proof are preserved without publishing an unverified approval',async()=>{
+ const server=remoteServer(),old={version:1,decisions:{'add/0':{key:'add/0',revision:'older-revision',status:'approved',note:'Original review note',at:new Date().toISOString()}},seen:{},history:[]},a=client(server,old);
+ await a.repo.start();assert.equal(a.repo.state.pending,1);await a.repo.connect('test-review-token');const entry=server.ledger.entries['add/0@older-revision'];
+ assert.equal(entry.status,'pending');assert.equal(entry.legacyStatus,'approved');assert.equal(entry.note,'Original review note');assert.equal(a.repo.confirmed('add'),false);a.repo.stop();
 });
 test('independent browsers merge different items without losing either decision',async()=>{
  const server=remoteServer(),a=client(server),b=client(server);await a.repo.start();await b.repo.start();
@@ -62,6 +67,15 @@ test('an expired editing token does not stop public review restoration',async()=
  const server=remoteServer(),a=client(server);await a.repo.start();a.decide('add/0','approved');await a.repo.connect('test-review-token');
  const ledger=server.ledger;ledger.entries['add/0@r-add/0']={...ledger.entries['add/0@r-add/0'],status:'improve',operation:'other-device'};server.ledger=ledger;server.denyAuth=true;
  await a.repo.refresh();assert.equal(a.data.decisions['add/0'].status,'improve');assert.equal(a.repo.state.connected,false);assert.equal(a.session.size,0);assert.equal(a.repo.state.phase,'saved');a.repo.stop();
+});
+test('automatic saves batch quick decisions without making a commit for every tap',async()=>{
+ const server=remoteServer(),a=client(server,null,{debounce:1,minWriteGap:80});await a.repo.start();await a.repo.connect('test-review-token');a.decide('add/0','approved');await a.repo.refresh();
+ a.decide('add/1','improve');a.repo.schedule();a.decide('add/2','approved');a.repo.schedule();await new Promise(resolve=>setTimeout(resolve,10));assert.equal(server.writes.length,1);
+ await new Promise(resolve=>setTimeout(resolve,110));assert.equal(server.writes.length,2);assert.equal(Object.keys(server.ledger.entries).length,3);assert.equal(a.repo.state.pending,0);a.repo.stop();
+});
+test('a GitHub rate limit retains the editing connection and every queued decision',async()=>{
+ const server=remoteServer(),a=client(server);await a.repo.start();await a.repo.connect('test-review-token');server.rateLimit=true;a.decide('add/0','improve');await a.repo.refresh();
+ assert.equal(a.repo.state.connected,true);assert.equal(a.repo.state.pending,1);assert.match(a.repo.state.message,/Pause/);server.rateLimit=false;await a.repo.refresh();assert.equal(a.repo.state.pending,0);a.repo.stop();
 });
 test('only confirmed current-revision decisions release a complete puzzle',async()=>{
  const server=remoteServer(),a=client(server);await a.repo.start();for(const item of catalogue.iterations())a.decide(item.id,'approved');a.decide('puzzle:add','approved','puzzle-r1');assert.equal(a.repo.confirmed('add'),false);

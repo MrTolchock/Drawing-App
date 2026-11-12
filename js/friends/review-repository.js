@@ -18,6 +18,7 @@
       ['pending','approved','improve'].includes(entry.status)&&typeof entry.note==='string'&&entry.note.length<=4000&&
       typeof entry.at==='string'&&Number.isFinite(Date.parse(entry.at))&&typeof entry.seen==='boolean'&&
       (entry.operation===undefined||typeof entry.operation==='string'&&entry.operation.length<=150)&&
+      (entry.legacyStatus===undefined||entry.legacyStatus==='approved'&&entry.status==='pending'&&!entry.seen)&&
       (entry.status!=='approved'||entry.key.startsWith('puzzle:')||entry.seen);
   }
   function validate(ledger){
@@ -37,10 +38,10 @@
     }
     return {ledger:next,conflicts,accepted};
   }
-  function create({vault,catalogue,fetch:request,tokenStorage,config=CONFIG,onChange=()=>{},now=()=>new Date().toISOString(),newId=()=>globalThis.crypto?.randomUUID?.()||Date.now().toString(36)+'-'+Math.random().toString(36).slice(2),debounce=1000}){
+  function create({vault,catalogue,fetch:request,tokenStorage,config=CONFIG,onChange=()=>{},now=()=>new Date().toISOString(),newId=()=>globalThis.crypto?.randomUUID?.()||Date.now().toString(36)+'-'+Math.random().toString(36).slice(2),debounce=1000,minWriteGap=10000}){
     const tokenKey='farbtupf.github-review-session.v1',baseURL='https://api.github.com/repos/'+config.owner+'/'+config.repo;
     const fileURL=baseURL+'/contents/'+config.path,rawURL='https://raw.githubusercontent.com/'+config.owner+'/'+config.repo+'/'+config.branch+'/'+config.path;
-    let token='',busy=null,timer=null,stopped=false,lastPull=0,observed=null;
+    let token='',busy=null,timer=null,stopped=false,lastPull=0,lastWrite=0,observed=null;
     let state={phase:'idle',message:'Prüfung wird von GitHub geladen.',pending:0,conflicts:{},connected:false,lastSyncedAt:null};
     try{token=tokenStorage?.getItem(tokenKey)||'';}catch{/* Reading and offline play do not need a token. */}
     const read=()=>vault.read();
@@ -48,12 +49,16 @@
     function publish(phase,message,extra={}){
       const m=meta(read());state={...state,...extra,phase,message,pending:Object.keys(m.pending).length,connected:!!token,lastSyncedAt:m.lastSyncedAt};onChange(clone(state));return state;
     }
-    function entryFor(decision,data){return {key:decision.key,revision:decision.revision,status:decision.status,note:decision.note,at:decision.at,seen:decision.key.startsWith('puzzle:')||data.seen[decision.key]===decision.revision,operation:newId()};}
+    function entryFor(decision,data){
+      const entry={key:decision.key,revision:decision.revision,status:decision.status,note:decision.note,at:decision.at,seen:decision.key.startsWith('puzzle:')||data.seen[decision.key]===decision.revision,operation:newId()};
+      if(entry.status==='approved'&&!entry.seen){entry.status='pending';entry.legacyStatus='approved';}
+      return entry;
+    }
     function stage(next,previous){
       next=clone(next);next.repository=clone(meta(previous));
       for(const [key,decision]of Object.entries(next.decisions))if(!same(decision,previous.decisions[key])){
         const entry=entryFor(decision,next),id=address(entry),old=next.repository.pending[id];
-        // An old record without inspection evidence stays local and must be reviewed again.
+        // Older approvals without matching inspection evidence retain their original status as metadata.
         if(validEntry(entry))next.repository.pending[id]={base:old?old.base:next.repository.base[id]||null,entry,ancestors:old?[...(old.ancestors||[]),old.entry.operation].filter(Boolean).slice(-1000):[]};
       }
       return next;
@@ -97,6 +102,8 @@
     function forgetToken(){token='';try{tokenStorage?.removeItem(tokenKey);}catch{}}
     async function json(response){
       if(!response.ok){
+        const detail=await response.json().catch(()=>({}));
+        if(response.status===429||response.status===403&&(/rate limit/i.test(detail.message||'')||response.headers?.get('x-ratelimit-remaining')==='0'))throw Error('GitHub benötigt eine Pause. Änderungen bleiben lokal gesichert und werden später übertragen.');
         if(response.status===401||response.status===403){const error=Error('GitHub-Verbindung prüfen: Zugriff fehlt oder ist abgelaufen. Änderungen bleiben lokal gesichert.');error.status=response.status;throw error;}
         if(response.status===404)throw Error('Die GitHub-Prüfdatei wurde nicht gefunden. Änderungen bleiben lokal gesichert.');
         throw Error('GitHub ist gerade nicht erreichbar ('+response.status+'). Änderungen bleiben lokal gesichert.');
@@ -128,10 +135,11 @@
             const pending=clone(meta(read()).pending),result=merge(remote.ledger,pending);
             if(!write||!token||!Object.keys(meta(read()).pending).length)break;
             if(same(result.ledger,remote.ledger))break;
+            lastWrite=Date.now();
             const response=await request(fileURL,{method:'PUT',headers:{...headers(true),'Content-Type':'application/json'},credentials:'omit',body:JSON.stringify({message:'Update puzzle review decisions',branch:config.branch,sha:remote.sha,content:encode(result.ledger)})});
             if(response.status===409||response.status===422){if(attempt===2)throw Error('GitHub wurde gleichzeitig geändert. Bitte nochmals synchronisieren.');continue;}
             await json(response);apply(result.ledger);
-            if(!Object.keys(meta(read()).pending).length)break;
+            break; // Any edit made during this request already has its own durable, throttled schedule.
           }
           const m=meta(read()),count=Object.keys(m.pending).length,conflicts=state.conflicts;
           if(Object.keys(conflicts).length)publish('conflict','Änderungen auf einem anderen Gerät gefunden. Bitte die Entscheidung auswählen.',{conflicts});
@@ -147,7 +155,7 @@
       const count=Object.keys(meta(read()).pending).length;
       if(!count)return;
       publish('pending',token?'Lokal gesichert. Speichern auf GitHub folgt.':'Nur lokal gesichert. Zum Speichern auf GitHub verbinden.');
-      if(token)timer=setTimeout(()=>run(true),debounce);
+      if(token)timer=setTimeout(()=>run(true),Math.max(debounce,minWriteGap-(Date.now()-lastWrite)));
     }
     async function connect(value){
       const candidate=String(value).trim();if(!candidate||candidate.length>500){publish('error','Bitte einen gültigen GitHub-Zugriffstoken eingeben.');return false;}
