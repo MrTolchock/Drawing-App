@@ -2,7 +2,7 @@
    for a site's steps once). The den tree, the arched bridge and the log come from world/landmarks.js;
    stepping stones, the swamp's boardwalk, the waterfall, the beaver's dam, lodge and felled trees and the
    friends' props are built here. */
-import {THREE} from '../../../forest/materials.js';
+import {THREE} from '../../../scene/materials.js';
 import {rng} from '../noise.js';
 import {TAU, lerp, sstep} from '../noise.js';
 import {Buffer, templates} from '../tiles.js';

@@ -6,7 +6,7 @@ function fixture(){const map=new Map(),storage={getItem:k=>map.get(k)??null,setI
 function finishRound(state,host){assert.ok(state.start(host));for(let i=0;i<5;i++){const r=state.round(host);assert.ok(state.answer(host,r.tasks[r.index].answer));if(i<4)assert.ok(state.advance(host));}}
 
 test('mail begins in the den, survives refresh and cycles through all friends without repeats',()=>{
- const {state,storage}=fixture();assert.deepEqual(state.mail(),{phase:'den-letter',host:'squirrel',index:0,completed:0});
+ const {state,storage}=fixture();assert.deepEqual({...state.mail(),session:undefined},{phase:'den-letter',host:'squirrel',index:0,completed:0,session:undefined});assert.ok(state.startLetterSession(50));
  assert.equal(state.completeMail('squirrel'),false);assert.ok(state.openLetter());assert.equal(state.openLetter(),false);
  for(const [index,host]of ['squirrel','bird','owl','beaver','mouse','hedgehog','fish','deer','kingfisher','frog','badger','squirrel'].entries()){
   assert.equal(state.mail().host,host);assert.equal(state.mail().index,index);assert.equal(state.mail().phase,'to-friend');
@@ -17,7 +17,7 @@ test('mail begins in the den, survives refresh and cycles through all friends wi
 });
 test('a save from the five-friend cycle stays valid and goes on to the next friend',()=>{
  const {state,storage}=fixture();state.openLetter();const old=state.get();old.mail={phase:'to-mailman',host:'owl',index:7,completed:7};storage.setItem(state.key,JSON.stringify(old));
- const restored=create({storage,content});assert.deepEqual(restored.mail(),{phase:'to-mailman',host:'owl',index:7,completed:7});
+ const restored=create({storage,content});assert.deepEqual({...restored.mail(),session:undefined},{phase:'to-mailman',host:'owl',index:7,completed:7,session:undefined});
  assert.ok(restored.openLetter());assert.equal(restored.mail().host,'beaver');assert.equal(restored.mail().index,8);
 });
 

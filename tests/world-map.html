@@ -5,7 +5,7 @@
 <script type="module">
 /* Development view: the big world from above, drawn from the terrain functions (height shading, water,
    trails, crossings, friends). ?s=4 sets pixels per metre; ?nav=1 shades where Fuchs cannot walk. */
-import {THREE} from '../js/forest/materials.js';
+import {THREE} from '../js/scene/materials.js';
 import {createTerrain} from '../js/friends/world/big/terrain.js';
 import * as L from '../js/friends/world/big/layout.js';
 const q = new URLSearchParams(location.search), S = +(q.get('s') || 3), T = createTerrain(), E = L.EXTENT;

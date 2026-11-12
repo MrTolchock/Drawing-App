@@ -162,12 +162,7 @@
   }
   .friends-interface :is(.screen-learn,.screen-adventure,.screen-expedition,.screen-read) .play-context{justify-content:flex-end}
 
-  /* Writing and number paths have no host element: draw the host on the scene. */
-  .friends-interface :is(.screen-trace,.screen-dots)[data-host]::after{
-    content:"";position:absolute;z-index:4;left:max(6px,env(safe-area-inset-left));bottom:max(30px,env(safe-area-inset-bottom));
-    width:min(230px,calc(var(--wb-gutter) + 26px));aspect-ratio:1;pointer-events:none;
-    background:url(../assets/forest-friends/postcard-friends.webp) var(--wb-host-cell)/300% 200% no-repeat;
-  }
+
 }
 
 /* ---------- Progress twig: five of the host's items ---------- */
@@ -552,7 +547,7 @@
 .friends-interface .screen-gallery .gallery-grid:empty::before{top:30px;left:50%}
 /* Empty: a happy Fuchs under the empty peg; the sentence stays for screen readers. */
 .friends-interface .screen-gallery .empty{display:block;margin:0 auto;padding:0;background:none;border:0;box-shadow:none}
-.friends-interface .screen-gallery .empty::before{content:"";display:block;width:min(240px,55vw);aspect-ratio:1;margin:0 auto;background:url('../assets/forest-friends/fox-happy.webp') center/contain no-repeat}
+.friends-interface .screen-gallery .empty::before{content:"";display:block;width:min(240px,55vw);aspect-ratio:1;margin:0 auto;background:url('../assets/forest-friends/character-portraits.webp') 0 0/400% 400% no-repeat}
 .friends-interface .screen-gallery .empty .empty-ic{display:none}
 .friends-interface .screen-gallery .empty p{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
 @media (max-width:600px){
@@ -583,16 +578,14 @@
 .friends-interface .ff-setting-toggle input:checked{border-color:var(--wb-moss-deep);background:radial-gradient(circle at 53px 50%,#fff 0 15px,transparent 16px),var(--wb-moss);box-shadow:inset 0 -3px 0 var(--wb-moss-deep)}
 .friends-interface .ff-setting-toggle input:focus-visible{outline:4px solid var(--wb-focus);outline-offset:4px}
 .friends-interface .ff-setting-note{font:15px/1.6 var(--wb-read);color:var(--wb-ink-soft)}
-.friends-interface :is(.ff-font-choices,.play-timer-modes,.play-timer-presets){align-self:flex-start;width:max-content;max-width:100%;display:inline-flex;flex-wrap:wrap;justify-content:flex-start;gap:4px;padding:4px;border-radius:16px;background:var(--wb-paper-inset)}
-.friends-interface .ff-settings-body :is(.play-timer-modes,.play-timer-presets){margin-top:10px}
-.friends-interface :is(.ff-font-choices,.play-timer-modes,.play-timer-presets)>button{
+.friends-interface :is(.ff-font-choices){align-self:flex-start;width:max-content;max-width:100%;display:inline-flex;flex-wrap:wrap;justify-content:flex-start;gap:4px;padding:4px;border-radius:16px;background:var(--wb-paper-inset)}
+.friends-interface :is(.ff-font-choices)>button{
   width:auto;height:auto;min-height:48px;padding:10px 18px;border:0;border-radius:12px;background:transparent;box-shadow:none;
   font:700 17px var(--type-body);color:var(--wb-ink-soft);transform:none;
 }
-.friends-interface :is(.ff-font-choices,.play-timer-modes,.play-timer-presets)>button :is(.lbl,span){font:inherit;margin:0;color:inherit}
-.friends-interface :is(.ff-font-choices,.play-timer-modes,.play-timer-presets)>button[aria-pressed=true]{background:#fffdf6;color:var(--wb-ink);box-shadow:0 3px 0 #d6b680}
-.friends-interface :is(.ff-font-choices,.play-timer-modes,.play-timer-presets)>button:focus-visible{outline:4px solid var(--wb-focus);outline-offset:2px}
-.friends-interface .play-timer-settings{align-items:flex-start}
+.friends-interface :is(.ff-font-choices)>button :is(.lbl,span){font:inherit;margin:0;color:inherit}
+.friends-interface :is(.ff-font-choices)>button[aria-pressed=true]{background:#fffdf6;color:var(--wb-ink);box-shadow:0 3px 0 #d6b680}
+.friends-interface :is(.ff-font-choices)>button:focus-visible{outline:4px solid var(--wb-focus);outline-offset:2px}
 .friends-interface :is(.ff-data-settings,.ff-update-settings)>.btn{display:inline-block;width:auto;min-width:48px;margin:10px 10px 0 0;min-height:48px;padding:10px 16px;border:2px solid #e3cc9f;border-radius:var(--wb-r-s);background:#fffdf6;box-shadow:0 4px 0 #d6b680;font:700 15px var(--type-body);color:var(--wb-ink)}
 .friends-interface .ff-update-settings>.btn{--lbl:15px;min-height:54px;height:auto}
 .friends-interface .ff-update-status{min-height:21px;margin:12px 0 0;font:400 14px/1.5 var(--type-body);color:var(--wb-ink-soft)}

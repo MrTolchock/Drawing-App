@@ -11,17 +11,25 @@
     const sessionId=uid();
     // The first five keep their order, so a letter cycle that is under way goes on as before.
     const mailHosts=['squirrel','bird','owl','beaver','mouse','hedgehog','fish','deer','kingfisher','frog','badger'];
-    const firstMail=()=>({phase:'den-letter',host:mailHosts[0],index:0,completed:0});
-    const prepare=s=>{s.mail=s.mail||firstMail();s.unlocks.leaf=true;s.unlocks.pencils=true;return s;};
-    function finishMail(s,host){if(s.mail.phase!=='to-friend'||s.mail.host!==host)return false;s.mail.phase='to-mailman';s.mail.completed++;return true;}
-    const fresh=()=>({schema:SCHEMA,revision:0,contentVersion:content.version,wallet:{nuts:0,seeds:0,feathers:0,logs:0,berries:0},inventory:{apple:0,bath:0},unlocks:{leaf:true,pencils:true},rounds:{},previous:{},completed:{},seenExamples:{},selectedPage:'free',drawings:{free:[],leaf:[]},settings:{music:true,ambience:true,speech:false},world:{x:0,z:5},collected:{},animation:null,transactions:[],legacyPreserved:true,mail:firstMail()});
+    const letterLimit=n=>Number.isInteger(n)&&n>=1&&n<=50;
+    const session=(limit=3)=>({id:uid(),limit,completed:0});
+    const firstMail=()=>({phase:'den-letter',host:mailHosts[0],index:0,completed:0,session:session()});
+    const prepare=s=>{s.settings.letterLimit=letterLimit(s.settings.letterLimit)?s.settings.letterLimit:3;s.mail=s.mail||firstMail();if(!s.mail.session){s.mail.session=session(s.settings.letterLimit);if(s.mail.phase==='to-mailman')s.mail.session.completed=1;if(s.mail.session.completed>=s.mail.session.limit)s.mail.phase='return-home';}s.unlocks.leaf=true;s.unlocks.pencils=true;return s;};
+    function finishMail(s,host){if(s.mail.phase!=='to-friend'||s.mail.host!==host||s.mail.session.completed>=s.mail.session.limit)return false;s.mail.completed++;s.mail.session.completed++;s.mail.phase=s.mail.session.completed>=s.mail.session.limit?'return-home':'to-mailman';return true;}
+    const fresh=()=>({schema:SCHEMA,revision:0,contentVersion:content.version,wallet:{nuts:0,seeds:0,feathers:0,logs:0,berries:0},inventory:{apple:0,bath:0},unlocks:{leaf:true,pencils:true},rounds:{},previous:{},completed:{},seenExamples:{},selectedPage:'free',drawings:{free:[],leaf:[]},settings:{music:true,ambience:true,speech:false,letterLimit:3},world:{x:0,z:5},collected:{},animation:null,transactions:[],legacyPreserved:true,mail:firstMail()});
     function valid(s){
       const quantity=n=>Number.isSafeInteger(n)&&n>=0;
       const object=o=>o&&typeof o==='object'&&!Array.isArray(o);
       const point=p=>Array.isArray(p)&&p.length===2&&p.every(n=>Number.isFinite(n)&&n>=0&&n<=1);
       const strokes=a=>Array.isArray(a)&&a.length<=2000&&a.every(stroke=>/^#[0-9a-f]{3,8}$/i.test(stroke?.colour)&&Array.isArray(stroke.points)&&stroke.points.length>0&&stroke.points.length<=4000&&stroke.points.every(point));
       if(s?.schema!==SCHEMA||!quantity(s.revision))return false;
-      if(s.mail!==undefined&&(!object(s.mail)||!['den-letter','to-friend','to-mailman'].includes(s.mail.phase)||!quantity(s.mail.index)||!quantity(s.mail.completed)||!mailHosts.includes(s.mail.host)))return false;
+      if(s.mail!==undefined&&(!object(s.mail)||!['den-letter','to-friend','to-mailman','return-home','sleeping','finished'].includes(s.mail.phase)||!quantity(s.mail.index)||!quantity(s.mail.completed)||!mailHosts.includes(s.mail.host)))return false;
+      if(s.mail&&['return-home','sleeping','finished'].includes(s.mail.phase)&&s.mail.session===undefined)return false;
+      if(s.mail?.session!==undefined){const m=s.mail,j=m.session;if(!object(j)||typeof j.id!=='string'||!letterLimit(j.limit)||!quantity(j.completed)||j.completed>j.limit)return false;
+        if(['return-home','sleeping','finished'].includes(m.phase)!==(j.completed===j.limit))return false;
+        if(m.phase==='den-letter'&&j.completed!==0)return false;
+      }
+      if(s.settings?.letterLimit!==undefined&&!letterLimit(s.settings.letterLimit))return false;
       if(!['nuts','seeds','feathers','logs','berries'].every(k=>quantity(s.wallet?.[k])))return false;
       if(!['apple','bath'].every(k=>quantity(s.inventory?.[k]))||!['leaf','pencils'].every(k=>typeof s.unlocks?.[k]==='boolean'))return false;
       if(!object(s.rounds)||!Object.entries(s.rounds).every(([host,r])=>content.hosts[host]&&r&&r.host===host&&typeof r.id==='string'&&r.tasks?.length===5&&r.tasks.every(t=>typeof t.id==='string'&&Array.isArray(t.choices)&&t.choices.includes(t.answer)&&t.choices.every(v=>typeof v==='string')&&['count','shape','sentence','word','rhyme'].includes(t.kind))&&Number.isInteger(r.index)&&r.index>=0&&r.index<=5&&Array.isArray(r.attempts)&&Array.isArray(r.support)&&Number.isFinite(r.activeMilliseconds)&&r.activeMilliseconds>=0&&typeof r.rewarded==='boolean'&&(r.index===5)===r.rewarded))return false;
@@ -90,7 +98,15 @@
     }
     const api={key,get:()=>clone(state),round:host=>clone(state.rounds[host]||null),audioSettings:()=>({...state.settings}),get error(){return error;},get blocked(){return blocked;},development,record,start,answer,
       mail:()=>clone(state.mail),
-      openLetter(){return commit(s=>{if(!['den-letter','to-mailman'].includes(s.mail.phase))return false;if(s.mail.phase==='to-mailman'){s.mail.index++;s.mail.host=mailHosts[(mailHosts.indexOf(s.mail.host)+1)%mailHosts.length];}s.mail.phase='to-friend';},'letter_opened');},
+      openLetter(){return commit(s=>{if(!['den-letter','to-mailman'].includes(s.mail.phase)||s.mail.session.completed>=s.mail.session.limit)return false;if(s.mail.phase==='to-mailman'){s.mail.index++;s.mail.host=mailHosts[(mailHosts.indexOf(s.mail.host)+1)%mailHosts.length];}s.mail.phase='to-friend';},'letter_opened');},
+      canPuzzle(host){return state.mail.phase==='to-friend'&&state.mail.host===host&&state.mail.session.completed<state.mail.session.limit;},
+      setLetterLimit(limit){if(!letterLimit(limit))return false;return commit(s=>{s.settings.letterLimit=limit;if(s.mail.phase==='den-letter')s.mail.session.limit=limit;},'letter_limit',{limit});},
+      startLetterSession(limit=state.settings.letterLimit){if(!letterLimit(limit))return false;return commit(s=>{
+        if(['to-mailman','return-home','sleeping','finished'].includes(s.mail.phase)){s.mail.index++;s.mail.host=mailHosts[(mailHosts.indexOf(s.mail.host)+1)%mailHosts.length];}
+        s.settings.letterLimit=limit;s.mail.phase='den-letter';s.mail.session=session(limit);
+      },'letter_session_started',{limit});},
+      beginSleep(){return commit(s=>{if(s.mail.phase!=='return-home')return false;s.mail.phase='sleeping';},'letter_session_sleep');},
+      finishLetterSession(){return commit(s=>{if(s.mail.phase!=='sleeping')return false;s.mail.phase='finished';},'letter_session_finished');},
       completeMail(host){return commit(s=>finishMail(s,host),'mail_puzzle_completed',{host});},
       retrySave(){
         if(readFailed){

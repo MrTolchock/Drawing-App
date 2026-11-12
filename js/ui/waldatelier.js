@@ -19,13 +19,11 @@
     'forest-actions':['mouse-sit','mouse-run','mouse-sleep','bird-fly','bird-sit','fish-swim','hare-run','hare-sit','fox-sleep','fox-run','cat-sleep','cat-sit','dog-run','dog-sleep','duck-swim','duck-fly'],
     'puzzle-vocabulary':['vocab-house','vocab-table','vocab-shoe','vocab-leg','vocab-stone','vocab-cloth','vocab-tower','vocab-worm','vocab-pot','vocab-head','vocab-hand','vocab-sand','vocab-scarf','vocab-rope','vocab-arrow','vocab-cup','vocab-till','vocab-bench','vocab-wardrobe','vocab-seed'],
     'puzzle-flowers':['puzzle-flower-rot','puzzle-flower-gelb','puzzle-flower-blau','puzzle-flower-rosa','puzzle-flower-weiss','puzzle-flower-lila'],
-    // The master cast (postcard sheet). The friends always come from here, never from a crayon sheet.
-    postcard:['friend-squirrel','friend-bluetit','friend-owl','friend-beaver','friend-mouse','friend-fox'],
   };
-  const grid = { menu:[3,2], postcard:[3,2], 'puzzle-vocabulary':[4,5], 'puzzle-flowers':[3,2] };
-  const source = sheet => sheet === 'postcard' ? 'assets/forest-friends/postcard-friends.webp' : 'assets/waldatelier/' + sheet + '.webp';
-  // Crayon versions of the cast are retired: their subjects and emoji show the master cast.
-  const cast = { fox:'friend-fox', 'fox-animal':'friend-fox', beaver:'friend-beaver', mouse:'mouse-sit', rabbit:'hare-sit' };
+  const grid = { menu:[3,2], 'puzzle-vocabulary':[4,5], 'puzzle-flowers':[3,2] };
+  const source = sheet => 'assets/waldatelier/' + sheet + '.webp';
+  // Learning subjects are drawn illustrations; character identity uses friendsArt.
+  const cast = {fox:'fox-animal',mouse:'mouse-sit',rabbit:'hare-sit'};
   const subjects = {};
   Object.keys(sheets).forEach(sheet => sheets[sheet].forEach((id,index) => {
     subjects[id] = { sheet, index, columns:(grid[sheet]||[4])[0], rows:(grid[sheet]||[4,4])[1] };
@@ -104,7 +102,7 @@
   function art(id, cls, label) {
     const resolved=resolve(id),themed=FK.friendsLibrary?.active?FK.puzzles?.pictures[resolved]:null;
     const rec = subjects[themed||resolved];
-    const el = document.createElement('span'); el.className = 'wa-illustration ' + (cls || '');
+    const el = document.createElement('span'); el.className = 'wa-illustration ' + (cls || ''); el.dataset.artRole='subject'; el.dataset.subject=themed||resolved||String(id);
     if (label) { el.setAttribute('role', 'img'); el.setAttribute('aria-label', label); } else el.setAttribute('aria-hidden', 'true');
     if (rec) {
       el.style.backgroundImage = 'url("' + source(rec.sheet) + '")';

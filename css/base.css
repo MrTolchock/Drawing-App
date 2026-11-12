@@ -1,18 +1,15 @@
-/* Farbtupf – Grundlagen: Farben, Schriften, Knöpfe, Karten, Dialoge.
-   Look: a toy-like sticker world on a polka-dot craft table. Thick ink outlines, hard "sticker" shadows,
-   bright crayon colours. Baloo 2 for section headings, Andika for controls, prose and all learning text.
-   Roles and sizes: docs/TYPOGRAPHY.md and css/typography.css. One deliberate bright look, no dark variant. */
+/* Shared cream-paper controls and bundled fonts. See design/VISUAL-STYLE.md. */
 
 @font-face { font-family: "Baloo 2"; src: url("../fonts/baloo2.woff2") format("woff2"); font-weight: 400 800; font-display: swap; }
 @font-face { font-family: "Andika"; src: url("../fonts/andika-400.woff2") format("woff2"); font-weight: 400; font-display: swap; }
 @font-face { font-family: "Andika"; src: url("../fonts/andika-700.woff2") format("woff2"); font-weight: 700; font-display: swap; }
 
 :root {
-  --table: #6c7cf5;
-  --table-dot: #7f8ef8;
-  --table-deep: #5664e0;
-  --ink: #23203d;
-  --sticker: #ffffff;
+  --table: #f3edda;
+  --table-dot: #e9dfc8;
+  --table-deep: #d6c5a4;
+  --ink: #4b3b2d;
+  --sticker: #fffaf0;
   --sun: #ffc93c;
   --sun-deep: #f5ae00;
   --box: #ef4b3f;
@@ -23,10 +20,10 @@
   --lilac: #c7a6ff;
   --apricot: #ffb366;
   --leaf: #3fd16b;
-  --muted: #5d5a80;
+  --muted: #78664f;
   --wood: #f3c891;
   --cur: #e5322d;
-  --paper: #ffffff;
+  --paper: #fffaf0;
 
   --type-body: "Andika", system-ui, -apple-system, sans-serif;
   --type-heading: "Baloo 2", ui-rounded, system-ui, sans-serif;

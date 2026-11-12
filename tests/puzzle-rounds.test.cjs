@@ -2,7 +2,7 @@ const {test}=require('node:test'),assert=require('node:assert/strict'),fs=requir
 function setup(saved){
  const memory=new Map(saved||[]),settings=new Map(),FK={shuffle:xs=>xs.slice().reverse(),settings:{get:k=>settings.get(k),set:(k,v)=>settings.set(k,v)}};
  const ctx=vm.createContext({window:{FK,FriendsContent:require('../js/friends/content.js')},URLSearchParams,location:{search:''},localStorage:{getItem:k=>memory.get(k)||null,setItem:(k,v)=>memory.set(k,v)}});
- for(const path of ['js/learn/glyphs.js','js/learn/learning.js','js/learn/adventures.js','js/learn/expeditions.js','js/learn/routes.js','js/friends/puzzles.js','js/friends/library.js','js/friends/puzzle-rounds.js'])vm.runInContext(fs.readFileSync(path,'utf8'),ctx);
+ for(const path of ['js/learn/glyphs.js','js/learn/routes.js','js/friends/puzzles.js','js/friends/library.js','js/friends/puzzle-rounds.js'])vm.runInContext(fs.readFileSync(path,'utf8'),ctx);
  return {FK,memory};
 }
 test('all 34 active puzzles have one route, one instruction and five tasks; retired games are absent',()=>{

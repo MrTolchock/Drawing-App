@@ -16,6 +16,6 @@ Creative missions are not in the active game. Rechenfreunde's related sums belon
 
 Ordinary game rules should be understood through pictures, reversible manipulation, spoken guidance and separate examples. Reading tasks intentionally require reading. Vokalversteck practises written letters in pictured words; the picture alone does not remove that reading requirement. Speech depends on installed German device voices, including offline availability. No recorded narration is bundled.
 
-[Gameplay](GAMEPLAY.md) describes current interactions. The [parent guide](lernideen.html) explains learning and source limits in German. [Research records](RESEARCH.md) preserve the original source work; their old feature inventories do not define the current app.
+[The puzzle blueprint](../design/PUZZLE-BLUEPRINT.md) describes current interactions and review requirements. [Research records](RESEARCH.md) preserve the original source work; their old feature inventories do not define the current app.
 
 Physical device checks and observation with children remain necessary to evaluate comprehension, accessibility and learning suitability. Automated content and browser checks cover correctness and interaction behaviour, not pedagogical efficacy.

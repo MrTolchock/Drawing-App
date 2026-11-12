@@ -2,7 +2,7 @@
    with the painted fox composited by a fixed perspective "lens" matched to each painting's floor.
    The forest is the explorable 3D world in forest3d.js, with the same painted characters.
    Interior coordinates are authored on a 1024×768 view of each painting (assets/forest-friends). */
-import {THREE} from '../forest/materials.js';
+import {THREE} from '../scene/materials.js';
 import {createForest} from './forest3d.js';
 import {characters} from './characters3d.js';
 import {createPerf} from './perf.js';
@@ -29,13 +29,10 @@ export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,o
   const fill=document.createElement('div');fill.className='ff-painted-fill';fill.setAttribute('aria-hidden','true');canvas.before(fill);
   const night=document.createElement('div');night.className='ff-painted-night';night.setAttribute('aria-hidden','true');canvas.after(night);
   const scene=new THREE.Scene(),camera=lens.clone();
-  const loader=new THREE.TextureLoader();
-  function texture(name){const t=loader.load(ART+name+'.webp',()=>{t.userData.ready=true;});t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=4;return t;}
   function drawn(w,h,draw){const c=document.createElement('canvas');c.width=w;c.height=h;draw(c.getContext('2d'),w,h);const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;t.userData.ready=true;return t;}
   function sprite(map,order=2,anchor=0){const s=new THREE.Sprite(new THREE.SpriteMaterial({map,transparent:true,toneMapped:false,depthWrite:false}));s.center.set(.5,anchor);s.renderOrder=order;s.userData.on=true;scene.add(s);return s;}
   function size(s,h,flip=1){const img=s.material.map.image,a=img&&img.width?img.width/img.height:.7;s.scale.set(h*a*flip,h,1);}
   const soft=drawn(64,64,(g)=>{const r=g.createRadialGradient(32,32,0,32,32,32);r.addColorStop(0,'rgba(48,26,10,.6)');r.addColorStop(1,'rgba(48,26,10,0)');g.fillStyle=r;g.fillRect(0,0,64,64);});
-  const looks={front:texture('fox-front'),side:texture('fox-side'),back:texture('fox-back'),happy:texture('fox-happy')};
   const foxShadow=new THREE.Mesh(new THREE.CircleGeometry(1,24),new THREE.MeshBasicMaterial({map:soft,transparent:true,depthWrite:false,toneMapped:false}));foxShadow.rotation.x=-Math.PI/2;foxShadow.renderOrder=1;scene.add(foxShadow);
   const denH=heightAt(ground(denSpot.u,denSpot.v),denFrac),sleepH=heightAt(ground(bedSpot.u,bedSpot.v),.22);
   // The den's 3D fox, lit like the painting (warm daylight from the door, soft fill from the window).
@@ -68,7 +65,7 @@ export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,o
   const bubbles=Array.from({length:9},()=>sprite(bubbleTex,4,.5)),zs=Array.from({length:3},()=>sprite(zTex,4,.5));
   const props=[...bubbles,...zs];props.forEach(p=>p.userData.on=false);
   let area='den',paused=false,last=performance.now(),time=0,raf,anim=null,keys=new Set(),stick={x:0,z:0},width=0,height=0;
-  const forest=createForest({renderer,looks,texture,software,onPosition,onAction,onMove,onNear,perf});window.FK.friendsForest=forest;window.__r=renderer;
+  const forest=createForest({renderer,software,onPosition,onAction,onMove,onNear,perf});window.FK.friendsForest=forest;window.__r=renderer;
   const crop={x:0,y:0};
   const pinList={den:[]};for(const [name,list]of Object.entries(pins))for(const [id,p]of Object.entries(list))pinList[name].push({id,point:pinPoint(p.u,p.v)});
   function layout(){
@@ -135,7 +132,7 @@ export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,o
       night.classList.add('on');
       zs.forEach((z,i)=>{const k=reduced?.5:((t*.35+i*.33)%1);z.userData.on=true;z.position.copy(anim.zBase).addScaledVector(up,h*k*.3).addScaledVector(side,h*k*.12);size(z,h*(.1+i*.03));z.material.opacity=1-k;});
     }
-    if(t>=5){anim=null;finishProps();foxPos.copy(spots[0]);fox.position.copy(foxPos);onAnimationEnd();}
+    if(t>=5&&!anim.finished){if(anim.hold)anim.finished=true;else{anim=null;finishProps();foxPos.copy(spots[0]);fox.position.copy(foxPos);}onAnimationEnd();}
   }
   function potter(dt){const reduced=window.FK.reduced;let moving=false,speed=0;
     if(idle.greet>0){idle.greet-=dt;foxRig.update(dt,{action:'wave',reduced});return;}
@@ -166,7 +163,7 @@ export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,o
   setArea('den');raf=requestAnimationFrame(frame);
   return {setArea(next){setArea(next);},get soundscape(){return area==='forest'&&!paused?forest.soundscape:null;},route(id){if(area==='forest')forest.route(id);},mailTarget(id){forest.mailTarget(id);},summonMailman(){forest.summonMailman();},get mailman(){return forest.mailman;},pause(value){paused=value;if(value){blur();if(area==='forest')onPosition(forest.position.x,forest.position.z,forest.region);}},
     steer(x,z){stick={x,z};if(!x&&!z&&area==='forest')onPosition(forest.position.x,forest.position.z,forest.region);},
-    sequence(item){anim={item,elapsed:0};idle.target=null;fox.rotation.set(0,.35,0);foxPos.copy(item==='sleep'?ground(bedSpot.u,bedSpot.v):spots[0]);fox.position.copy(foxPos);if(item==='sleep'){fox.scale.setScalar(sleepH/denH);fox.rotation.set(-.12,.2,0);foxRig.update(0,{action:'sleep',reduced:window.FK.reduced});fitSleepingFox();}},
+    sequence(item,{hold=false}={}){anim={item,elapsed:0,hold};idle.target=null;fox.rotation.set(0,.35,0);foxPos.copy(item==='sleep'?ground(bedSpot.u,bedSpot.v):spots[0]);fox.position.copy(foxPos);if(item==='sleep'){fox.scale.setScalar(sleepH/denH);fox.rotation.set(-.12,.2,0);foxRig.update(0,{action:'sleep',reduced:window.FK.reduced});fitSleepingFox();}},
     skip(){anim=null;finishProps();foxPos.copy(spots[0]);fox.position.copy(foxPos);},
     get diagnostics(){const p=area==='forest'?forest.position:{x:foxPos.x,z:foxPos.z};return {area,paused,time,animation:anim?.item||null,foxBounds:area==='den'?projectedBounds():null,sleepBounds:anim?.item==='sleep'?projectedBounds():null,keys:[...keys],destination:area==='forest'?forest.destination?.toArray():undefined,position:p,mailTarget:forest.guideTarget,mailman:forest.mailman,painted:true};},get area(){return area;},get position(){return area==='forest'?forest.position:{x:foxPos.x,z:foxPos.z};},
     dispose(){cancelAnimationFrame(raf);observer.disconnect();perf.dispose();canvas.removeEventListener('webglcontextlost',contextLost);canvas.removeEventListener('webglcontextrestored',contextRestored);canvas.removeEventListener('pointerup',pick);document.removeEventListener('visibilitychange',visibility);document.removeEventListener('keydown',keydown);document.removeEventListener('keyup',keyup);window.removeEventListener('blur',blur);fill.remove();night.remove();renderer.dispose();},

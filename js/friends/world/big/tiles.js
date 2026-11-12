@@ -3,7 +3,7 @@
    Near tile: terrain, one merged plant mesh, rocks, trunks, instanced leaf cards, "stand" (birch
    trunks, spruce boughs and snags, which take their colours from the plant atlas) and water.
    Far tile: a single mesh on the plant atlas (coarse ground, tree cards, flat water). */
-import {THREE} from '../../../forest/materials.js';
+import {THREE} from '../../../scene/materials.js';
 import {TAU, clamp, lerp, sstep, fbm, rng, tileSeed} from '../noise.js';
 import {TILE, Buffer, quads, templates, trunkGeometry, rootGeometries, crownCards, instanced} from '../tiles.js';
 import {ATLAS} from './atlas.js';

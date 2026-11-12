@@ -2,7 +2,7 @@
    (hills, the Rock and its waterfall, brook, beaver pond, meadow, swamp, trails), streamed in 16 m tiles
    round Fuchs, with the cast, guidance fireflies, haze per area and a hazy backdrop of distant hills.
    Building is time-sliced while the child is in the den; nothing is downloaded. */
-import {THREE} from '../forest/materials.js';
+import {THREE} from '../scene/materials.js';
 import {characters} from './characters3d.js';
 import {createWorld} from './world/index.js';
 import {createLook, foxView, canvasTex} from './world/textures.js';

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /* Bake the sculpted plush cast into assets/characters/<id>.glb (blueprint 6.2).
-   Development tool, run by hand after changing design/visual-overhaul/lookdev/plush.js
+   Development tool, run by hand after changing tools/characters/plush.js
    (tools/bake/sculpt.html?id=fox shows one unbaked character from three sides while sculpting):
 
      cd tools && npm install          # three (exporter), meshoptimizer, gltfpack — dev only

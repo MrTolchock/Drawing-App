@@ -1,13 +1,14 @@
 # Current documentation
 
-- [Design blueprint](../design/heart-tree/BLUEPRINT.md)
-- [Review and next priorities](../design/heart-tree/REVIEW.md)
-- [Gameplay](GAMEPLAY.md)
-- [Exploration](EXPLORATION.md)
-- [Learning](LEARNING.md) and [source records](RESEARCH.md)
-- [Parent guide](lernideen.html)
-- [Play-time clock](TIMER.md)
-- [Typography and input guide](TYPOGRAPHY.md)
-- [Development, saving and deployment](DEVELOPMENT.md)
+Start with [current design](../design/README.md). The [visual style](../design/VISUAL-STYLE.md) defines every art and typography role; the [puzzle blueprint](../design/PUZZLE-BLUEPRINT.md) defines every puzzle.
 
-[Historical documents](../archive/README.md) are kept outside the active documentation.
+- [All puzzles, competences and iterations](PUZZLE-CATALOGUE.md)
+- [Adult review and sign-off](PUZZLE-REVIEW.md)
+- [Parent-controlled letter sessions](LETTER-SESSIONS.md)
+- [Current game implementation](FOREST-FRIENDS.md)
+- [Puzzle implementation overview](PUZZLES.md)
+- [Learning scope](LEARNING.md), [curriculum references](CURRICULUM.md) and [research sources](RESEARCH.md)
+- [Typography roles](TYPOGRAPHY.md)
+- [Development and deployment](DEVELOPMENT.md)
+
+[Historical documents and retired code](../archive/README.md) are preserved separately and do not define the current game.

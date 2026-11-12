@@ -1,0 +1,70 @@
+const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
+const {setup,check}=require('../tools/puzzle-catalogue.cjs');
+const plain=v=>JSON.parse(JSON.stringify(v));
+function approve(FK,id){const V=FK.puzzleReview,C=FK.puzzleCatalogue;for(const it of C.iterations(id)){assert.ok(V.seen(id,it.id));assert.ok(V.decide(id,it.id,'approved','','AB'));}assert.ok(V.decide(id,null,'approved','','AB',Object.keys(C.checklist)));}
+test('every active puzzle has at least 25 unique finite definitions, competence and real artwork',()=>{
+ const {FK,ctx}=setup();FK.STICKERS=[];ctx.MutationObserver=class{observe(){}};ctx.document={body:{}};vm.runInContext(fs.readFileSync('js/ui/waldatelier.js','utf8'),ctx);
+ const C=FK.puzzleCatalogue,seen=new Set();let total=0;
+ const art=id=>{if(id.startsWith('scene:'))return id.slice(6).split('+').forEach(art);const aliases={house:'vocab-house',table:'vocab-table',shoe:'vocab-shoe',leg:'vocab-leg',stone:'vocab-stone',cloth:'vocab-cloth',tower:'vocab-tower',worm:'vocab-worm',pot:'vocab-pot',head:'vocab-head',hand:'vocab-hand',sand:'vocab-sand',scarf:'vocab-scarf',rope:'vocab-rope',arrow:'vocab-arrow',cup:'vocab-cup',till:'vocab-till',bench:'vocab-bench',wardrobe:'vocab-wardrobe',seeds:'vocab-seed',hare:'hare-sit',nut:'forest-nut'};assert.ok(FK.visual.supports(aliases[id]||id),'missing art: '+id);};
+ for(const g of FK.friendsLibrary.catalogue()){
+  const p=C.puzzle(g.id),pool=C.iterations(g.id);assert.ok(p.reference&&p.competence&&p.difficulty&&p.instruction,g.id);assert.ok(pool.length>=25,g.id);total+=pool.length;
+  assert.equal(new Set(pool.map(it=>C.canonical(it.question))).size,pool.length,g.id+' duplicate content');
+  for(const it of pool){assert.ok(!seen.has(it.id));seen.add(it.id);const q=it.question;
+   if(q.choices){assert.equal(new Set(q.choices.map(v=>JSON.stringify(v))).size,q.choices.length,it.id);if(q.answer!==undefined&&!Array.isArray(q.answer))assert.ok(q.choices.some(v=>Array.isArray(v)?v[0]===q.answer:v===q.answer),it.id);}
+   if(q.kind==='reading')q.choices.forEach(art);if(q.kind==='rhyme'){art(q.picture);q.choices.forEach(w=>art(FK.puzzleRounds.wordArt[w]));}
+   if(q.picture)art(q.picture);if(q.item)art(q.item);if(q.quantity)art(q.quantity.item);if(q.bugs)q.bugs.forEach(art);if(q.sequence)q.sequence.forEach(art);if(q.objects)q.objects.forEach(art);if(q.fruit)q.fruit.forEach(art);if(q.items)q.items.forEach(([id])=>art(id));
+   if(q.kind==='trace')assert.ok(FK.glyphs.data[q.glyph]);
+   if(q.kind==='count')assert.equal(q.bugs.filter(v=>v==='ladybird').length,q.answer);
+   if(q.kind==='add')assert.ok(q.a+q.b===q.answer&&q.answer<=10);
+   if(q.kind==='fireflies')assert.equal(q.filled+q.answer,q.total);
+   if(q.kind==='picnic')assert.ok(q.each*q.friends===q.total&&q.total<=20);
+   if(q.kind==='double')assert.equal(q.n*2,q.answer);
+   if(q.kind==='vowels'){assert.equal(q.word[q.index],q.answer);assert.ok(!/(au|ei|ie|eu|äu)/i.test(q.word.slice(Math.max(0,q.index-1),q.index+2)),it.id);}
+   if(q.kind==='matrix')assert.equal(q.matrix[q.gap],q.answer);
+   if(q.kind==='robot')assert.ok(FK.routes.validQuestion(q),it.id);
+   if(q.kind==='mirror')assert.deepEqual(plain(q.answer),Array.from(q.left,i=>Math.floor(i/3)*3+2-i%3).sort((a,b)=>a-b));
+   if(q.kind==='survey'&&q.task==='most'){const max=Math.max(...q.counts);assert.equal(q.counts.filter(n=>n===max).length,1);assert.equal(q.answer,q.fruit[q.counts.indexOf(max)]);}
+  }
+ }
+ assert.equal(total,1048);
+});
+test('five distinct questions are deterministic, restored verbatim and avoid the previous round',()=>{
+ const {FK,memory}=setup(),C=FK.puzzleCatalogue,R=FK.puzzleRounds;
+ for(const g of FK.friendsLibrary.catalogue()){
+  for(let seed=0;seed<50;seed++){
+   const a=C.select(g.id,seed);assert.equal(new Set(a.map(it=>it.id)).size,5);assert.equal(JSON.stringify(a),JSON.stringify(C.select(g.id,seed)));
+   const next=C.select(g.id,seed+1,a.map(i=>i.id));assert.ok(next.every(i=>!a.some(j=>j.id===i.id)),g.id);
+   if(g.id==='trace'){assert.equal(new Set(a.map(i=>i.question.glyph)).size,5);assert.ok(a.every(i=>seed%2?i.question.glyph===i.question.glyph.toUpperCase():i.question.glyph===i.question.glyph.toLowerCase()));}
+  }
+  const s=R.start(g.id);s.work={example:[1,2]};s.round=2;s.solved=true;assert.ok(R.save(s));assert.equal(JSON.stringify(setup(memory).FK.puzzleRounds.start(g.id)),JSON.stringify(s));assert.ok(C.matchesSession(s));
+  R.complete(g.id);const n=R.start(g.id);assert.ok(n.iterationIds.every(id=>!s.iterationIds.includes(id)),g.id);
+ }
+});
+test('no approvals by default; approval requires seeing every iteration, a reviewer and the checklist',()=>{
+ const {FK}=setup(),V=FK.puzzleReview,C=FK.puzzleCatalogue,id='add',it=C.iterations(id)[0];assert.equal(V.ready(id),false);
+ assert.equal(V.decide(id,it.id,'approved','','AB'),false);assert.ok(V.seen(id,it.id));assert.equal(V.decide(id,it.id,'approved'),false);assert.ok(V.decide(id,it.id,'approved','','AB'));
+ assert.equal(V.decide(id,null,'approved','','AB',Object.keys(C.checklist)),false);approve(FK,id);assert.ok(V.ready(id));
+ assert.equal(V.decide(id,it.id,'improve',''),false);assert.ok(V.decide(id,it.id,'improve','Picture needs work','AB'));assert.equal(V.ready(id),false);assert.ok(V.exportData().history.length>0);
+});
+test('export/import restores review decisions; malformed or incomplete files never erase stored work',()=>{
+ const {FK,memory}=setup();approve(FK,'add');const file=FK.puzzleReview.exportData(),other=setup().FK.puzzleReview;
+ assert.ok(other.importData(file));assert.ok(other.ready('add'));assert.ok(setup(memory).FK.puzzleReview.ready('add'));
+ const before=JSON.stringify(other.exportData().decisions);assert.equal(other.importData('{broken'),false);assert.equal(other.importData({version:1}),false);assert.equal(JSON.stringify(other.exportData().decisions),before);
+ const invalid=plain(file),k=Object.keys(invalid.decisions)[0];invalid.decisions[k].reviewer='';assert.equal(other.importData(invalid),false);assert.equal(JSON.stringify(other.exportData().decisions),before);
+});
+test('changed content, difficulty, implementation or new iterations cannot inherit earlier sign-offs',()=>{
+ const {FK}=setup(),C=FK.puzzleCatalogue,V=FK.puzzleReview;approve(FK,'add');const file=V.exportData();
+ FK.puzzleImplementation='changed-renderer';assert.equal(V.ready('add'),false);assert.ok(V.status('add').stale);assert.ok(V.status('add',C.iterations('add')[0].id).stale);
+ const fresh=setup().FK;fresh.puzzleCatalogue.meta.add[2]='Different difficulty';assert.ok(fresh.puzzleReview.importData(file));assert.equal(fresh.puzzleReview.ready('add'),false);assert.equal(fresh.puzzleReview.progress('add').approved,0);
+ const {FK:again,ctx}=setup();approve(again,'add');const oldRevision=again.puzzleCatalogue.puzzleRevision('add');const source=fs.readFileSync('js/friends/puzzle-catalogue.js','utf8').replace('b<=9-a','b<=10-a');vm.runInContext(source,ctx);assert.notEqual(again.puzzleCatalogue.puzzleRevision('add'),oldRevision);vm.runInContext(fs.readFileSync('js/friends/puzzle-review.js','utf8'),ctx);assert.equal(again.puzzleReview.ready('add'),false);assert.equal(again.puzzleReview.status('add','add/1-1').status,'approved');assert.equal(again.puzzleReview.status('add','add/1-9').status,'pending');
+});
+test('legacy and corrupt round snapshots are retained separately, never substituted into the reviewed pool',()=>{
+ const old={id:'count',seed:12,round:3,solved:false,work:{marks:[0,1]}};const {FK,memory}=setup([['farbtupf.puzzles.v1',JSON.stringify({version:1,sessions:{count:old}})]]);
+ const s=FK.puzzleRounds.start('count');assert.equal(s.round,0);assert.ok(s.questions);assert.deepEqual(JSON.parse(memory.get('farbtupf.puzzles.v1')).legacy.count,old);
+ s.questions[0].answer='corrupt';assert.ok(FK.puzzleRounds.save(s));const next=FK.puzzleRounds.start('count');assert.ok(FK.puzzleCatalogue.matchesSession(next));
+ assert.equal(FK.puzzleRounds.save({...next,review:true}),false);
+});
+test('storage failure never reports an approval as saved',()=>{
+ const {FK,ctx}=setup(),V=FK.puzzleReview,it=FK.puzzleCatalogue.iterations('add')[0];ctx.localStorage.setItem=()=>{throw Error('quota');};assert.equal(V.seen('add',it.id),false);assert.equal(V.status('add',it.id).seen,false);assert.match(V.error,/gespeichert/);
+});
+test('generated GitHub pages and revision reflect the exact runtime',()=>assert.deepEqual(check(),[]));
