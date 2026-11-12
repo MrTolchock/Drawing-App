@@ -81,12 +81,19 @@ button { font: inherit; color: inherit; }
 /* ---------- screens ---------- */
 
 #screens { position: fixed; inset: 0; }
-/* Home-screen app on iPad and iPhone. iOS 26 blurs whatever lies under the clock and cannot be told not to,
-   so the game starts below the clock and a plain moss band sits behind it (nothing there to blur).
-   The page is also given the full screen height: iOS sizes "inset: 0" too short and left a strip at the bottom. */
+/* Home-screen app on iPad and iPhone (iOS 26 and later).
+   iOS keeps an opaque bar behind the clock, above the page; the bar takes the page's background colour (seen on
+   the owner's iPad), so that is moss green here. There is no strip of the page's own under the bar, at the
+   owner's wish, so the clock sits in the middle of the bar. If iOS blurs the top edge of the game again, give
+   --band a minimum of 6px (an opaque fixed strip along the top edge is said to stop that).
+   An icon added before "black-translucent" was dropped still draws the page under the clock: there the band
+   covers the clock's area, and the page is made taller by that area, because iOS sizes it too short by it. */
+#status-band { display: none; }
 @media (display-mode: standalone) {
-  body::before { content: ""; position: fixed; z-index: 2147483000; top: 0; left: 0; right: 0; height: calc(env(safe-area-inset-top, 0px) * 1.3); background: #4f6f33; pointer-events: none; }
-  #screens { top: calc(env(safe-area-inset-top, 0px) * 1.3); bottom: auto; height: calc(100vh - env(safe-area-inset-top, 0px) * 1.3); }
+  html { background-color: #58744a; }
+  :root { --band: env(safe-area-inset-top, 0px); }   /* 0 for a current icon: no strip, the clock sits in the middle of its bar */
+  #status-band { display: block; position: fixed; z-index: 2147483000; top: 0; left: 0; right: 0; height: var(--band); background: #58744a; }
+  #screens { top: var(--band); bottom: auto; height: calc(100% + env(safe-area-inset-top, 0px) - var(--band)); }
 }
 .screen {
   position: absolute;

@@ -7,7 +7,7 @@ function seeded(seed) { return () => (seed = (seed * 16807) % 2147483647) / 2147
 async function play(env, minutes = 20, seed = 7) {
   const {createDirector} = await load('js/friends/soundscape.js'), d = createDirector({random: seeded(seed)}), events = [], beds = []; let most = 0;
   for (let i = 0; i <= minutes * 600; i++) { const now = 100 + i / 10, out = d.step(now, typeof env === 'function' ? env(i / 10) : env); beds.push(out.beds); most = Math.max(most, d.singers); for (const e of out.events) events.push({...e, now: i / 10}); }
-  return {events, beds, most, of: type => events.filter(e => e.type === type)};
+  return {events, beds, most, of: type => events.filter(e => type === 'chorus' ? e.chorus : e.type === type && !e.chorus)};
 }
 const WOOD = {trees: .9, meadow: 0, swamp: 0, spruce: .2, brook: 0, falls: 0};
 const gaps = list => list.slice(1).map((e, i) => e.now - list[i].now);
@@ -16,10 +16,13 @@ test('birds: a few phrases a minute, never more than two singers, with quiet str
   for (const seed of [7, 99, 2024]) {
     const run = await play(WOOD, 20, seed), calls = run.of('call'), g = gaps(calls);
     const perMinute = m => calls.filter(c => c.now >= m * 60 && c.now < (m + 1) * 60).length;
-    for (let m = 0; m < 20; m++) assert.ok(perMinute(m) <= 16, `minute ${m}: ${perMinute(m)} phrases`);
-    assert.ok(calls.length / 20 >= 3 && calls.length / 20 <= 11, `phrases a minute: ${calls.length / 20}`);
+    for (let m = 0; m < 20; m++) assert.ok(perMinute(m) <= 22, `minute ${m}: ${perMinute(m)} phrases`);
+    // the soft chorus further off keeps the wood alive: never more than 16 s without any voice at all
+    const all = [...calls, ...run.of('chorus')].sort((a, b) => a.now - b.now); assert.ok(Math.max(...gaps(all)) <= 16, 'never empty for long: ' + Math.max(...gaps(all)));
+    assert.ok(run.of('chorus').every(c => c.far >= .8 && c.level <= .6), 'the chorus stays far and soft');
+    assert.ok(calls.length / 20 >= 5 && calls.length / 20 <= 16, `phrases a minute: ${calls.length / 20}`);
     assert.ok(run.most <= 2, 'at most two singers at once');
-    assert.ok(Math.max(...g) >= 20, 'there are quiet stretches'); assert.ok(Math.max(...g) <= 100, 'but the wood never falls silent for long');
+    assert.ok(Math.max(...g) >= 20, 'nearby birds pause now and then');
     const mean = g.reduce((a, b) => a + b, 0) / g.length, spread = Math.sqrt(g.reduce((a, b) => a + (b - mean) ** 2, 0) / g.length);
     assert.ok(spread > 2.5, 'the pauses vary');
     // the first five minutes are livelier than the last five
