@@ -82,17 +82,16 @@ button { font: inherit; color: inherit; }
 
 #screens { position: fixed; inset: 0; }
 /* Home-screen app on iPad and iPhone (iOS 26 and later).
-   iOS blurs the top edge of the page unless an opaque, fixed strip lies along it; with such a strip the clock's
-   bar is opaque and its edge is clean. So a moss-green strip sits at the very top and the game starts below it.
-   The strip is kept thin so the clock sits close to the middle of the bar. An icon added before this change still draws the page under the clock ("black-translucent",
-   read by iOS when the icon is added): there the strip covers the clock's area, and the page is made taller by
-   that area, because iOS sizes it too short by exactly that much (the free strip at the bottom). */
+   iOS keeps an opaque bar behind the clock, above the page; the bar takes the page's background colour (seen on
+   the owner's iPad), so that is moss green here. There is no strip of the page's own under the bar, at the
+   owner's wish, so the clock sits in the middle of the bar. If iOS blurs the top edge of the game again, give
+   --band a minimum of 6px (an opaque fixed strip along the top edge is said to stop that).
+   An icon added before "black-translucent" was dropped still draws the page under the clock: there the band
+   covers the clock's area, and the page is made taller by that area, because iOS sizes it too short by it. */
 #status-band { display: none; }
 @media (display-mode: standalone) {
-  /* Seen on the iPad: the clock's bar takes the page's own background colour (a 5 px strip is too thin for
-     iOS to take the colour from it), so the page background is the bar colour here and the strip matches it. */
   html { background-color: #58744a; }
-  :root { --band: max(5px, env(safe-area-inset-top, 0px)); }
+  :root { --band: env(safe-area-inset-top, 0px); }   /* 0 for a current icon: no strip, the clock sits in the middle of its bar */
   #status-band { display: block; position: fixed; z-index: 2147483000; top: 0; left: 0; right: 0; height: var(--band); background: #58744a; }
   #screens { top: var(--band); bottom: auto; height: calc(100% + env(safe-area-inset-top, 0px) - var(--band)); }
 }
