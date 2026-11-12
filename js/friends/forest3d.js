@@ -106,8 +106,13 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   courier.name = 'rabbit-mailman'; scene.add(courier); let courierGoal = null, courierWait = 2;
 
   /* ---------- guidance: fireflies from Fuchs toward the invited friend ---------- */
-  const fireflies = new THREE.Points(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(new Array(21).fill(0), 3)),
-    new THREE.PointsMaterial({size: .5, map: glow, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, toneMapped: false, color: '#fff2b0'}));
+  // A string of fireflies along the way: the near ones large and bright, the far ones small, each with a bright
+  // heart and a soft halo, swaying on its own, and a wave of light that runs along them towards the friend.
+  const FLIES = 13, flyTex = canvasTex(64, 64, (g) => { const r = g.createRadialGradient(32, 32, 0, 32, 32, 32); r.addColorStop(0, 'rgba(255,255,245,1)'); r.addColorStop(.16, 'rgba(255,250,205,.98)'); r.addColorStop(.34, 'rgba(255,226,120,.6)'); r.addColorStop(.62, 'rgba(226,236,120,.22)'); r.addColorStop(1, 'rgba(200,230,110,0)'); g.fillStyle = r; g.fillRect(0, 0, 64, 64); });
+  const fireflies = new THREE.Points(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(new Array(FLIES * 3).fill(0), 3)).setAttribute('aK', new THREE.Float32BufferAttribute(Array.from({length: FLIES}, (_, k) => k / (FLIES - 1)), 1)),
+    new THREE.ShaderMaterial({transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, toneMapped: false, uniforms: {uMap: {value: flyTex}, uTime: {value: 0}, uScale: {value: 600}, opacity: {value: 1}},
+      vertexShader: 'attribute float aK;uniform float uTime,uScale;varying float vGlow;void main(){vec4 mv=modelViewMatrix*vec4(position,1.);float wave=pow(max(0.,sin(aK*7.5-uTime*2.6)),3.),twinkle=.85+.15*sin(uTime*5.+aK*41.);vGlow=(.62+.38*wave)*twinkle*(1.-.35*aK);gl_PointSize=(1.05-.5*aK)*(1.+.4*wave)*uScale/-mv.z;gl_Position=projectionMatrix*mv;}',
+      fragmentShader: 'uniform sampler2D uMap;uniform float opacity;varying float vGlow;void main(){vec4 c=texture2D(uMap,gl_PointCoord);gl_FragColor=vec4(c.rgb*c.a*vGlow*opacity*1.5,1.);}'}));
   fireflies.name = 'letter-fireflies'; fireflies.visible = false; fireflies.frustumCulled = false; fireflies.renderOrder = 6; scene.add(fireflies);
   let guideTarget = null, guidePoints = [], guideFrom = new THREE.Vector3(Infinity, 0, Infinity), guideEnd = new THREE.Vector3(Infinity, 0, Infinity), guideNext = 0;
   const ring = new THREE.Mesh(new THREE.RingGeometry(.4, .52, 32), new THREE.MeshBasicMaterial({color: '#fff3c4', transparent: true, opacity: .85, depthWrite: false, toneMapped: false}));
@@ -164,15 +169,15 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     const endpoint = nearestWalkable(place);
     if (time > guideNext && (guideFrom.distanceTo(pos) > 3 || guideEnd.distanceTo(endpoint) > 1.2 || !guidePoints.length)) { guidePoints = plan(endpoint) || [endpoint]; guideFrom.copy(pos); guideEnd.copy(endpoint); guideNext = time + 1; }
     while (guidePoints.length > 1 && guidePoints[0].distanceTo(pos) < 1.9) guidePoints.shift();
-    // seven fireflies spaced along the route ahead of Fuchs, gently bobbing
+    // fireflies spaced along the route ahead of Fuchs
     const line = [pos.clone().setY(0), ...guidePoints], p = fireflies.geometry.attributes.position, reduced = window.FK.reduced;
     let seg = 0, along = 0, target = 1.1;
-    for (let k = 0; k < 7; k++, target += .85) {
+    for (let k = 0; k < FLIES; k++, target += .8) {
       while (seg < line.length - 1 && along + line[seg].distanceTo(line[seg + 1]) < target) { along += line[seg].distanceTo(line[seg + 1]); seg++; }
-      const a = line[Math.min(seg, line.length - 1)], b = line[Math.min(seg + 1, line.length - 1)], l = a.distanceTo(b) || 1, u = Math.min(1, (target - along) / l), x = a.x + (b.x - a.x) * u + Math.sin(k * 1.9 + (reduced ? 0 : time * .8)) * .25, z = a.z + (b.z - a.z) * u;
-      p.setXYZ(k, x, groundY(x, z) + .55 + Math.sin(k * 2.3 + (reduced ? 0 : time * 2.2)) * .16, z);
+      const a = line[Math.min(seg, line.length - 1)], b = line[Math.min(seg + 1, line.length - 1)], l = a.distanceTo(b) || 1, u = Math.min(1, (target - along) / l), t = reduced ? 0 : time, x = a.x + (b.x - a.x) * u + Math.sin(k * 1.9 + t * .9) * .22 + Math.sin(k * 5.1 + t * 2.3) * .06, z = a.z + (b.z - a.z) * u + Math.cos(k * 2.7 + t * .7) * .14;
+      p.setXYZ(k, x, groundY(x, z) + .5 + k * .012 + Math.sin(k * 2.3 + t * 1.9) * .15, z);
     }
-    p.needsUpdate = true; fireflies.material.opacity = reduced ? .9 : .75 + Math.sin(time * 3) * .2;
+    p.needsUpdate = true; const u = fireflies.material.uniforms; u.uTime.value = reduced ? 0 : time; u.opacity.value = 1; u.uScale.value = height / (2 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)));
   }
   /* What the place sounds like where Fuchs stands (for js/friends/audio.js): the ground under his feet, how close
      the brook and the waterfall are, and how much wood, meadow and swamp is around. */
