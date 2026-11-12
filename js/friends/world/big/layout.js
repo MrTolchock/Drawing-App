@@ -31,7 +31,7 @@ export const DAM = {a: [24.9, -13.3], b: [31.3, -6.9], width: 1.7};
 export const HILLS = [[-10, -90, 30, 5], [-62, -82, 34, 6.5], [30, -94, 24, 4], [90, 62, 36, 5.5], [104, 4, 22, 3.2], [40, 96, 26, 3.6], [-104, 70, 30, 4.5], [-108, -52, 26, 4]];
 
 /* Clearings without trees [x, z, radius]. */
-export const GLADES = [[1, -3, 15], [52, 44, 11], [-30, -61, 6.5], [86, -6, 7], [-57, 53, 7], [-32, 10, 6], [61, -50, 10], [33, -15, 15], [13, 22, 4], [-51, -54.5, 6], [-49.5, -47, 8]];
+export const GLADES = [[1, -3, 15], [52, 44, 11], [-30, -61, 6.5], [86, -6, 7], [-57, 53, 7], [-32, 10, 6], [61, -50, 10], [33, -15, 15], [13, 22, 4], [-51, -54.5, 6], [-49.5, -47, 8], [-9, -31, 1.9], [52, 12.5, 3.2], [-17, 10, 3.2], [-70, 22, 4.6]];
 
 /* Trails: polylines through the points, drawn as wandering earth paths. */
 export const TRAILS = [
@@ -117,7 +117,7 @@ export const TREES = [
 /* Big rocks [x, z, size, height] (colliders). */
 export const ROCKS = [[-5.2, -4.2, 1.05, 1.6], [-2, 9, .65, .9], [9.6, 1.2, .6, .8], [57.6, -54.4, 1.5, 1.7], [66.4, -47.6, 1.2, 1.3], [-70, 8, .9, 1], [50.5, 48.4, .8, .9]];
 /* Further colliders [x, z, radius]: the den tree, the stump, the lodge, the beaver's stack of poles, the badger's sett. */
-export const SOLIDS = [[0, -8, 3.05], [-33.4, 11.2, .95], [37.5, -18.6, 2.3], [20.8, -16.9, .6], [-53.4, -58.3, 2.1]];
+export const SOLIDS = [[0, -8, 3.05], [-33.4, 11.2, .95], [37.5, -18.6, 2.3], [20.8, -16.9, .6], [-53.4, -58.3, 2.1], [50.75, 13.18, 0.82], [51.58, 12.73, 0.82], [52.42, 12.27, 0.82], [53.25, 11.82, 0.82], [-67.61, 22.74, 0.5], [-69.45, 24.44, 0.5], [-71.83, 23.7, 0.5], [-72.39, 21.26, 0.5], [-70.55, 19.56, 0.5], [-68.17, 20.3, 0.5], [-17, 10, 0.42], [-22, 31.5, 0.75], [-34, 36, 0.75], [38, 29, 0.75]];
 
 /* What Biber felled for his dam: gnawed stumps [x, z, radius] and trunks lying beside some of them
    [x, z, radius, yaw, length] (colliders; built with the pond site). */
@@ -129,6 +129,17 @@ export const POLES = [20.8, -16.9, .9];
 /* The badger's sett: the mound's centre and the way its main entrance faces [x, z, yaw]. */
 export const SETT = [-53.4, -58.3, .35];
 
+/* Small things to discover beside the paths (built by wonders.js): kind, place, turn, and how near Fuchs must be. */
+export const WONDERS = [
+  {id: 'wonder-0', kind: 'ring', x: -9, z: -31, yaw: 0, r: 24},
+  {id: 'wonder-1', kind: 'log', x: 52, z: 12.5, yaw: 0.5, r: 24},
+  {id: 'wonder-2', kind: 'stones', x: -70, z: 22, yaw: 0, r: 24},
+  {id: 'wonder-3', kind: 'blossom', x: -17, z: 10, yaw: 0, r: 24},
+  {id: 'wonder-4', kind: 'berries', x: -22, z: 31.5, yaw: 0.3, r: 24, berry: 'red'},
+  {id: 'wonder-5', kind: 'berries', x: -34, z: 36, yaw: 1.2, r: 24, berry: 'blue'},
+  {id: 'wonder-6', kind: 'berries', x: 38, z: 29, yaw: 2, r: 24, berry: 'red'},
+];
+
 /* Landmark sites: objects built when Fuchs comes near (centre and radius decide when). */
 export const SITES = [
   {id: 'home', x: 0, z: -6, r: 16},
@@ -139,4 +150,5 @@ export const SITES = [
   {id: 'sett', x: -52, z: -56, r: 26},
   {id: 'crossings', x: 10, z: 30, r: 60},
   {id: 'friends', x: 0, z: 0, r: 200},
+  ...WONDERS,
 ];

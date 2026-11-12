@@ -9,11 +9,13 @@ import {Buffer, templates} from '../tiles.js';
 import {canvasTex} from '../textures.js';
 import {waterMaterial} from './tiles.js';
 import {landmarkSteps} from '../landmarks.js';
+import {wonderSteps} from './wonders.js';
 
 /** Give a geometry one colour (the materials multiply their texture by it). */
 function tinted(g, r, gr, b) { const c = new Float32Array(g.attributes.position.count * 3); for (let k = 0; k < c.length; k += 3) { c[k] = r; c[k + 1] = gr; c[k + 2] = b; } g.setAttribute('color', new THREE.BufferAttribute(c, 3)); return g; }
 
 export function siteSteps(site, look, world, group, out) {
+  if (site.kind) return wonderSteps(site, look, world, group);
   const T = world.terrain, L = world.layout, M = look.M, R = rng(site.x * 31 + site.z);
   // the home builders expect a region: give them the parts they read
   const asRegion = landmarks => ({seed: 20261109, origin: [0, 0], ground: T.ground, deck: T.deck, home: L.DEN, crossings: T.crossings, landmarks, brook: null});
