@@ -70,6 +70,7 @@ export const CROSSINGS = [
 const pin = (x, y) => ({pu: x / 1024, pv: y / 768});
 /* Places Fuchs can be sent to (the five puzzle friends, home and the mailman). The map pins stay
    where the painted picture map shows them until the map is redrawn. */
+// `map` moves a place's pin on the picture map where two pins would overlap.
 export const PLACES = {
   home: {x: 0, z: -3.3, picture: 'door', name: 'Nach Hause', ...pin(392, 262)},
   mailman: {x: 3.2, z: -.8, picture: 'mailman', name: 'Zum Briefträger', ...pin(570, 390)},
@@ -83,7 +84,7 @@ export const PLACES = {
   deer: {x: -78.6, z: -11, picture: 'friend-deer', name: 'Zu Reh'},
   kingfisher: {x: 11.2, z: 21.5, picture: 'friend-kingfisher', name: 'Zu Eisvogel'},
   frog: {x: -27.4, z: 83.2, picture: 'friend-frog', name: 'Zu Frosch'},
-  badger: {x: -50, z: -52.6, picture: 'friend-badger', name: 'Zu Dachs'},
+  badger: {x: -50, z: -52.6, picture: 'friend-badger', name: 'Zu Dachs', map: [-56, -50]},   // `map`: the pin sits a little west, clear of Eichhörnchen's
 };
 /** The picture map (assets/forest-friends/world-map.webp, tools/map/) shows this part of the world. */
 export const MAP = {x0: -168, x1: 168, z0: -112, z1: 112};

@@ -91,7 +91,7 @@ function act(id){if(panel)return;if(area==='forest'){
 function games(resident){if(panel)close();state.record('games_open',{resident:resident||'all'});world.pause(true);FK.go('forest-book',{from:'friends',...(resident?{resident}:{})});}
 // The picture map is drawn from the world (tools/map/): a place's pin is where it lies on it.
 const MAP={x0:-168,x1:168,z0:-112,z1:112};   // as world/big/layout.js MAP
-const mapPins=new Proxy({},{get:(_,id)=>{const p=places[id];return [(p.x-MAP.x0)/(MAP.x1-MAP.x0),(p.z-MAP.z0)/(MAP.z1-MAP.z0)];}});
+const mapPins=new Proxy({},{get:(_,id)=>{const p=places[id],[x,z]=p.map||[p.x,p.z];return [(x-MAP.x0)/(MAP.x1-MAP.x0),(z-MAP.z0)/(MAP.z1-MAP.z0)];}});
 function map(){
   if(state.mail().phase==='den-letter'){showLetter(false);return;}
   open('map');const card=shell('map');card.classList.add('ff-map-card');
