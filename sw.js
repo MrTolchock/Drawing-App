@@ -1,5 +1,5 @@
 /* Farbtupf – Service Worker: keeps the whole app on the device so it runs without internet. */
-const CACHE = 'farbtupf-v9.0.10-recovery';
+const CACHE = 'farbtupf-v9.0.11-recovery';
 const SCOPE=self.registration.scope;
 const INDEX=new URL('index.html',SCOPE).href;
 const ACTIVE_MARKER=new URL('.farbtupf-active-cache',SCOPE).href;
@@ -83,6 +83,7 @@ const ASSETS = [
   './assets/forest-friends/fox-happy.webp',
   './assets/forest-friends/owl.webp',
   './js/friends/audio.js',
+  './js/friends/soundscape.js',
   './js/friends/game.js',
   './',
   './index.html',

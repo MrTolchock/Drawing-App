@@ -164,7 +164,7 @@ export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,o
     onProject((pinList[area]||[]).map(p=>({id:p.id,...project(p.point)})));
   }
   setArea('den');raf=requestAnimationFrame(frame);
-  return {setArea(next){setArea(next);},route(id){if(area==='forest')forest.route(id);},mailTarget(id){forest.mailTarget(id);},summonMailman(){forest.summonMailman();},get mailman(){return forest.mailman;},pause(value){paused=value;if(value){blur();if(area==='forest')onPosition(forest.position.x,forest.position.z,forest.region);}},
+  return {setArea(next){setArea(next);},get soundscape(){return area==='forest'&&!paused?forest.soundscape:null;},route(id){if(area==='forest')forest.route(id);},mailTarget(id){forest.mailTarget(id);},summonMailman(){forest.summonMailman();},get mailman(){return forest.mailman;},pause(value){paused=value;if(value){blur();if(area==='forest')onPosition(forest.position.x,forest.position.z,forest.region);}},
     steer(x,z){stick={x,z};if(!x&&!z&&area==='forest')onPosition(forest.position.x,forest.position.z,forest.region);},
     sequence(item){anim={item,elapsed:0};idle.target=null;fox.rotation.set(0,.35,0);foxPos.copy(item==='sleep'?ground(bedSpot.u,bedSpot.v):spots[0]);fox.position.copy(foxPos);if(item==='sleep'){fox.scale.setScalar(sleepH/denH);fox.rotation.set(-.12,.2,0);foxRig.update(0,{action:'sleep',reduced:window.FK.reduced});fitSleepingFox();}},
     skip(){anim=null;finishProps();foxPos.copy(spots[0]);fox.position.copy(foxPos);},

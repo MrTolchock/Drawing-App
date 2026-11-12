@@ -97,3 +97,8 @@ Claude Code keeps this file current: tick items as they land on `main`, add the 
 - Deviation from the 6.2 colour list: Hase is a warmer orange-brown (`#c98450`) with brown paws, as on his painted portrait; creams are a little warmer throughout.
 - The Waldkauz has no ear tufts (as painted, and as the real bird); his wings are bound to the `arm` joints so he waves with a wing.
 - New development sheet `tools/bake/sculpt.html`; `tests/characters-preview.html?action=wave` shows an action.
+
+**Fuchs behind trees and Waldgeräusche** (12 November 2026, app 9.0.11, on `main`; owner's requests):
+- Trees in front of Fuchs turn translucent in a narrow, soft-edged column and keep a ghost, instead of being cut away in a circle (`js/friends/world/textures.js`).
+- Forest sound rebuilt: footsteps by ground, seven birds, frogs, crickets, wind in gusts, brook and waterfall by distance, a tune with long rests; rules against wear over twenty minutes are tested (`tests/soundscape.test.cjs`). How it sounds is for the owner to judge on the iPad (`tests/audio-preview.html`).
+- Sound plays into gameplay nowhere; saves and settings are unchanged (**Waldgeräusche** and **Musik** stay on by default, **Spielklänge** off).

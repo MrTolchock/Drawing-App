@@ -204,3 +204,34 @@ Sizes: 13 character files, 1.07 MB together (as before); triangles unchanged (Fu
 **Validation.** `node --test tests/*.test.cjs` (177 pass); `friends-mail-browser.cjs`, `friends-animation-browser.cjs`, `interface-browser.cjs` and `den-browser.cjs` pass. `world-budget-browser.cjs`: drawing is within budget (90 draw calls of 150, 185 k triangles of 350 k, 18 near and 36 far tiles, 5 animated characters) and the 95th-percentile build slice is 3.25–4.25 ms, but the longest single build slice is over its 12 ms limit on this machine today, with and without this change (app 9.0.9: 13.6, 23.8 and 16.4 ms in three runs; app 9.0.10: 15.8, 25.1, 26.8, 16.1 and 19.4 ms in five). That slice is a forest tile or landmark step of the streamer; the characters are not built in slices. It stays on the open list in `design/world-10x/PLAN.md`.
 
 Not done here: fully painted portraits for the six neighbours (asset request A4, with an updated prompt) would still match the first six friends more closely than a painted-over render. Whiskers are left out of the 3D models (they would flicker at forest distance).
+
+## Fuchs behind trees, and the forest's sound · app 9.0.11
+
+Build: app/cache 9.0.11 (`farbtupf-v9.0.11-recovery`), 12 November 2026. Chromium (SwiftShader), 1080 × 810 and 390 × 844 at device scale 2, reduced motion, `?dev=1`.
+
+**Seeing Fuchs behind trees.** Until now a hard-edged circle about 4 m across cleared every trunk and leaf between the camera and Fuchs completely: trunks ended in mid-air and the owl's tree vanished down to its roots.
+
+| Evidence | What changed |
+| --- | --- |
+| Behind the owl's tree, before: [tablet](behind-owl-before-1080.jpg), [phone](behind-owl-before-390.jpg); after: [tablet](behind-owl-1080.jpg), [phone](behind-owl-390.jpg) | The tree stays whole. Only a narrow column around Fuchs (about 1 m to each side, reaching up the trunk) turns translucent; it fades out softly over another metre and a half and never clears completely, so a ghost of the trunk remains. |
+| In the spruce wood, before: [tablet](behind-spruce-before-1080.jpg), [phone](behind-spruce-before-390.jpg); after: [tablet](behind-spruce-1080.jpg), [phone](behind-spruce-390.jpg) | The same for a trunk and the branches above it. |
+
+It is still a screen-door fade (no blending, no sorting, same draw calls), with a finer pattern than before; one shader patch in `js/friends/world/textures.js`. Leaves right at the lens fade over a longer distance instead of popping.
+
+**Waldgeräusche.** The old sound was four layers of noise and one kind of chirp every three to eight seconds, plus an eight-note tune that repeated without end. New (`js/friends/audio.js`, `js/friends/soundscape.js`), all made in the browser, nothing recorded:
+
+| Sound | How it behaves |
+| --- | --- |
+| Footsteps | In time with the walk, left and right, each a little different; own sounds for grass, spruce needles, trail, meadow, boardwalk and bridge, the beaver dam, rock and swamp. They grow softer after a few seconds of walking and are fresh again after a rest. |
+| Birds | Blackbird, chaffinch, great tit, blue tit and wood pigeon; cuckoo and woodpecker far away and rarely. A bird sings one to four phrases from one place, then stops. At most two sing at once; now and then the wood is quiet for half a minute. |
+| The place | Frogs and plops at the swamp, crickets and a bee in the meadow, fewer leaf sounds in the open. The brook babbles with bubbles within about 14 m, the waterfall is heard from about 45 m and comes from its side. In the den the wood is heard muffled through the wall. |
+| Wind and leaves | Gusts and calm stretches of irregular length; the leaves follow the gusts. |
+| Tune (**Musik**) | Three to six notes that wander along a five-note scale, then 16 to 34 seconds of rest, instead of an endless loop. |
+
+For twenty minutes of play: nothing runs on a fixed beat, rare voices stay rare, and after six minutes everything eases off gradually to about two thirds. `tests/soundscape.test.cjs` plays twenty minutes through with three different random seeds and checks this (3 to 11 phrases a minute, never more than 16 in one minute, quiet stretches of at least 20 s, never silent for more than 100 s, at most 7 cuckoo and 14 woodpecker phrases, the last five minutes no livelier than the first five).
+
+Measured at the output in the real game (median level, same machine; before → after): den −40.5 → −44.6 dB, forest standing −32.5 → −37.3 dB, walking −31.4 → −37.7 dB, by the brook −31.5 → −33.3 dB, by the waterfall −31.5 → −29.4 dB. The steady layers are quieter than before and the single sounds stand out more. Every single sound was also rendered by itself: none clips, footsteps peak about 4 to 10 dB below a near blackbird, and their energy sits between 300 Hz and 3 kHz so the iPad's small loudspeakers carry them.
+
+**Not verified here: how it sounds.** Levels, timing and variety are measured; whether it is pleasant has to be judged by ear on the iPad. `tests/audio-preview.html` plays every voice, every kind of step and every place by itself for that.
+
+**Validation.** `node --test tests/*.test.cjs` (182 pass, five new); `interface-browser.cjs` (four steady layers, birds, mute, silent when hidden) and `friends-mail-browser.cjs` pass.

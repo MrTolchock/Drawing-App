@@ -158,6 +158,17 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     }
     p.needsUpdate = true; fireflies.material.opacity = reduced ? .9 : .75 + Math.sin(time * 3) * .2;
   }
+  /* What the place sounds like where Fuchs stands (for js/friends/audio.js): the ground under his feet, how close
+     the brook and the waterfall are, and how much wood, meadow and swamp is around. */
+  const sound = {at: -1, moving: false, speed: 0, ground: 'grass', trees: 1, meadow: 0, swamp: 0, spruce: 0, brook: 0, falls: 0, fallsPan: 0}, soundBiome = {};
+  function listen() {
+    const T = WORLD.terrain, b = T.biome(pos.x, pos.z, soundBiome), c = T.onCrossing(pos.x, pos.z), pa = T.pathAt(pos.x, pos.z);
+    sound.ground = c ? (c.c.kind === 'dam' ? 'sticks' : 'wood') : b.rock > .6 ? 'rock' : b.swamp > .5 ? 'wet' : pa.d < pa.w / 2 + .15 ? 'earth' : b.meadow > .5 ? 'meadow' : b.spruce > .5 ? 'needles' : 'grass';
+    sound.trees = (1 - b.meadow) * (1 - b.swamp * .6) * (1 - b.rock * .7); sound.meadow = b.meadow; sound.swamp = b.swamp; sound.spruce = b.spruce;
+    let near = Infinity; for (const s of T.streams) for (let i = 0; i <= s.N; i += 6) { const q = s.samples[i], d = (q.x - pos.x) ** 2 + (q.z - pos.z) ** 2; if (d < near) near = d; }
+    sound.brook = THREE.MathUtils.clamp(1 - (Math.sqrt(near) - 1.2) / 13, 0, 1);
+    const fx = T.falls.base[0] - pos.x, fz = T.falls.base[1] - pos.z; sound.falls = THREE.MathUtils.clamp(1 - (Math.hypot(fx, fz) - 5) / 42, 0, 1); sound.fallsPan = THREE.MathUtils.clamp(fx / 22, -1, 1);
+  }
   function update(dt, time, {keys, stick}) {
     const reduced = window.FK.reduced;
     let dx = Number(keys.has('ArrowRight') || keys.has('d')) - Number(keys.has('ArrowLeft') || keys.has('a')) + stick.x, dz = Number(keys.has('ArrowDown') || keys.has('s')) - Number(keys.has('ArrowUp') || keys.has('w')) + stick.z;
@@ -169,6 +180,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
       if (!path.length && d < .1) { destination = null; ring.visible = false; vel.set(0, 0); onPosition(pos.x, pos.z, WORLD.regionAt(pos.x, pos.z)?.id); const reached = arrival; arrival = null; if (reached) onAction(reached); }
       else { const sp = speedMax * (path.length ? 1 : Math.min(1, .25 + d / 1.2)); want.set(ddx / d * sp, ddz / d * sp); } }
     vel.lerp(want, 1 - Math.exp(-dt * (want.lengthSq() ? 9 : 12))); const speed = vel.length(), moving = speed > .15;
+    sound.moving = moving; sound.speed = speed; if (time - sound.at > .15 || time < sound.at) { sound.at = time; listen(); }
     if (speed > .02) { let nx = pos.x + vel.x * dt, nz = pos.z + vel.y * dt;
       // the last step lands on the target instead of overshooting it (long frames, fast walking)
       if (destination && !path.length && !manual && Math.hypot(destination.x - pos.x, destination.z - pos.z) <= speed * dt) { nx = destination.x; nz = destination.z; } if (walkable(nx, nz)) { pos.x = nx; pos.z = nz; } else if (walkable(nx, pos.z)) { pos.x = nx; vel.y *= .5; } else if (walkable(pos.x, nz)) { pos.z = nz; vel.x *= .5; } else vel.multiplyScalar(.5);
@@ -223,6 +235,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     resize(w, h) { width = w; height = h; narrow = w < 600; camera.aspect = w / Math.max(1, h); camera.fov = narrow ? 54 : 42; camera.updateProjectionMatrix(); const vh = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * 1.02; vignette.scale.set(vh * camera.aspect, vh, 1); snapCamera(); },
     update, route(id) { const p = forestPlaces[id]; if (id === 'mailman') { courierGoal = null; courierWait = 20; } if (p) walkTo(new THREE.Vector3(p.x, 0, p.z), id); },
     walkTo(x, z) { walkTo(new THREE.Vector3(x, 0, z)); },
+    get soundscape() { return sound; },
     /** Development: put Fuchs somewhere at once. */
     teleport(x, z) { const p = nearestWalkable(new THREE.Vector3(x, 0, z)); pos.set(p.x, 0, p.z); vel.set(0, 0); destination = null; path = []; ring.visible = false; streamer.focus(pos.x, pos.z); streamer.complete(); aimSun(pos.x, pos.z); snapCamera(); },
     mailTarget(id) { guideTarget = forestPlaces[id] ? id : null; guidePoints = []; guideNext = 0; if (id === 'mailman' && mailPos.distanceTo(pos) > 6.5) summonMailman(); }, summonMailman,
