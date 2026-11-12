@@ -81,6 +81,6 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
  await page.evaluate(()=>FK.puzzleReview.decide('add','add/1-1','improve','Check image','Owner test'));await page.reload();await page.waitForFunction(()=>!!window.FK?.puzzleReview);assert.equal(await page.evaluate(()=>FK.puzzleReview.ready('add')),false);
  // Offline inspection uses the newly cached runtime, without losing review records.
  await page.evaluate(()=>navigator.serviceWorker.ready);await page.waitForFunction(()=>!!navigator.serviceWorker.controller);await context.setOffline(true);await page.reload();await page.waitForFunction(()=>!!window.FK?.puzzleReview);assert.equal(await page.evaluate(()=>FK.puzzleReview.status('add','add/1-1').status),'improve');
- assert.deepEqual(errors,[]);console.log('PASS: 1048 real iteration previews/solutions, 34 phone/tablet layouts, parent gate, release gate, export/import, isolated saves, five-task celebration, persisted flag and offline review.');
+ assert.deepEqual(errors,[]);console.log('PASS: '+checked+' real iteration previews/solutions, 34 phone/tablet layouts, parent gate, release gate, export/import, isolated saves, five-task celebration, persisted flag and offline review.');
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});
