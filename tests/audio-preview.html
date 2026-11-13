@@ -18,11 +18,12 @@ const SCENES = {Wald: {trees: .9, spruce: .1}, Fichtenwald: {trees: 1, spruce: 1
 const NAMES = {blackbird: 'Amsel', chaffinch: 'Buchfink', greatTit: 'Kohlmeise', blueTit: 'Blaumeise', dove: 'Ringeltaube', cuckoo: 'Kuckuck', woodpecker: 'Specht', frog: 'Frosch', cricket: 'Grille', bee: 'Biene'};
 const GROUNDS = {grass: 'Gras', needles: 'Nadeln', earth: 'Weg', meadow: 'Wiese', wood: 'Steg', sticks: 'Damm', rock: 'Fels', wet: 'Sumpf', snow: 'Schnee'};
 const $ = id => document.getElementById(id), q = new URLSearchParams(location.search);
-let scene = q.get('scene') || 'Wald', walking = q.has('walk'), ground = q.get('ground') || 'grass', settings = {ambience: true};
-const audio = createAudio(() => settings, () => ({...SCENES[scene], moving: walking, speed: 2.6, ground})); window.audio = audio;
+let scene = q.get('scene') || 'Wald', raining = q.has('rain') ? 1 : 0, walking = q.has('walk'), ground = q.get('ground') || 'grass', settings = {ambience: true};
+const audio = createAudio(() => settings, () => ({...SCENES[scene], moving: walking, speed: 2.6, ground, rain: raining})); window.audio = audio;
 const button = (parent, label, fn, pressed) => { const b = document.createElement('button'); b.textContent = label; if (pressed !== undefined) b.setAttribute('aria-pressed', pressed); b.onclick = () => fn(b); parent.append(b); return b; };
 function showScene() { audio.unlock(); audio.setArea(SCENES[scene] ? 'forest' : 'den'); for (const b of $('scenes').children) b.setAttribute('aria-pressed', b.textContent === scene); for (const b of $('grounds').children) b.setAttribute('aria-pressed', b.dataset.g === ground); }
 for (const name of Object.keys(SCENES)) button($('scenes'), name, () => { scene = name; showScene(); }, false);
+button($('scenes'), 'Regen', b => { raining = raining ? 0 : 1; b.setAttribute('aria-pressed', !!raining); }, !!raining);
 button($('scenes'), 'Stille', b => { settings = {...settings, ambience: !settings.ambience}; b.setAttribute('aria-pressed', !settings.ambience); audio.update(); }, false);
 $('walk').onclick = () => { walking = !walking; $('walk').setAttribute('aria-pressed', walking); };
 for (const [g, label] of Object.entries(GROUNDS)) button($('grounds'), label, () => { ground = g; showScene(); }, g === ground).dataset.g = g;

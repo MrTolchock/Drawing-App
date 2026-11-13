@@ -106,9 +106,12 @@ export function createAudio(settings, environment = () => null) {
     const brook = {bands: [[700, 2.2, 1], [1750, 1.6, .7], [2900, 1.2, .35]].map(([f, q, g]) => ({f, node: filter('bandpass', f, q), g: level(g)})), out: level()}, water = loop(white, 1.19);
     for (const b of brook.bands) chain(water, b.node, b.g, brook.out); brook.out.connect(room);
     const falls = {out: level(), pan: ctx.createStereoPanner?.()}; chain(loop(white, .71), filter('lowpass', 2600, .3), falls.out); chain(loop(brown, 1.31), filter('lowpass', 520, .3), level(1.6), falls.out); if (falls.pan) chain(falls.out, falls.pan, room); else falls.out.connect(room);
-    return {leaves, brook, falls};
+    // rain: a very soft, warm hush underneath (no bright noise), the patter itself is single drops (rainDrops)
+    const rain = {out: level(), pans: [-.7, 0, .7].map(v => { const p = ctx.createStereoPanner?.(), g = level(1); if (p) { p.pan.value = v; chain(g, p, room); } else g.connect(room); return g; })};
+    chain(loop(white, .63), filter('lowpass', 1100, .3), filter('highpass', 280, .3), rain.out, room);
+    return {leaves, brook, falls, rain};
   }
-  function setBeds(b) { const t = ctx.currentTime, to = (param, value, tc = .5) => param.setTargetAtTime(value, t, tc);
+  function setBeds(b) { const t = ctx.currentTime, to = (param, value, tc = .5) => param.setTargetAtTime(value, t, tc); to(beds.rain.out.gain, .055 * rainNow ** 1.4, 1.5);
     to(beds.leaves.out.gain, .11 * b.leaves, .22); to(beds.leaves.tone.frequency, 2500 + 1900 * b.bright, 1.5);
     to(beds.brook.out.gain, .5 * b.brook ** 1.5, .5); for (const band of beds.brook.bands) to(band.node.frequency, band.f * r(.84, 1.18), .12);   // the bands wander: babbling
     to(beds.falls.out.gain, .17 * b.falls ** 1.7, .6); if (beds.falls.pan) to(beds.falls.pan.pan, b.fallsPan * .7, .6);
@@ -121,11 +124,20 @@ export function createAudio(settings, environment = () => null) {
     else if (e.type === 'step') { footstep(ctx, place(e.side * .07, 0, .4), noise, e.ground, t, e.level * .3); steps++; /* steps stay well under the birds and the water */ }
     else details[e.type]?.(ctx, place(e.pan || 0, .2, .5), noise, t, e.level);
   }
+  /* The patter: single drops on leaves (short, bright, each a little different), now and then a heavier drip
+     from a branch. Up to about thirty a second in a full shower, scattered left, centre and right. */
+  let rainNow = 0;
+  function rainDrops(rain, span) {
+    if (rain < .02) return; const t0 = ctx.currentTime + .02;
+    for (let n = Math.floor(rain * 30 * span + Math.random()); n > 0; n--) { const t = t0 + Math.random() * span, bus = beds.rain.pans[Math.floor(Math.random() * 3)], v = (.25 + .75 * Math.random()) * rain;
+      if (Math.random() < .07) { const f = r(700, 1300); tone(ctx, bus, {t, dur: .06, f, f1: f * r(1.5, 2.2), gain: .03 * v, attack: .004}); }
+      else hiss(ctx, bus, noise, {t, dur: r(.008, .02), gain: .07 * v, f: r(2200, 6500), q: r(1.5, 4), attack: .001}); }
+  }
   function tick() {
     if (!ctx || document.hidden || ctx.state !== 'running') return; const s = settings();
     const here = environment() || {}, {beds: b, events} = director.step(ctx.currentTime, {...here, indoors: area !== 'forest'});
-    if (!s.ambience) return;
-    setBeds(b); for (const e of events) play(e);
+    rainNow = here.rain || 0; if (!s.ambience) return;
+    setBeds(b); for (const e of events) play(e); rainDrops(rainNow, .1);
   }
   function unlock() {
     if (ctx) { if (ctx.state === 'suspended') ctx.resume().catch(() => {}); return; }

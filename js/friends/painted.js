@@ -4,6 +4,7 @@
    Interior coordinates are authored on a 1024×768 view of each painting (assets/forest-friends). */
 import {THREE} from '../scene/materials.js';
 import {createForest} from './forest3d.js';
+import {createWeather} from './weather.js';
 import {characters} from './characters3d.js';
 import {createPerf} from './perf.js';
 
@@ -65,7 +66,8 @@ export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,o
   const bubbles=Array.from({length:9},()=>sprite(bubbleTex,4,.5)),zs=Array.from({length:3},()=>sprite(zTex,4,.5));
   const props=[...bubbles,...zs];props.forEach(p=>p.userData.on=false);
   let area='den',paused=false,last=performance.now(),time=0,raf,anim=null,keys=new Set(),stick={x:0,z:0},width=0,height=0;
-  const forest=createForest({renderer,software,onPosition,onAction,onMove,onNear,perf});window.FK.friendsForest=forest;window.__r=renderer;
+  const weather=createWeather();   // runs in the den too (heard through the walls), pauses with the game
+  const forest=createForest({renderer,software,onPosition,onAction,onMove,onNear,perf,weather});window.FK.friendsForest=forest;window.__r=renderer;
   const crop={x:0,y:0};
   const pinList={den:[]};for(const [name,list]of Object.entries(pins))for(const [id,p]of Object.entries(list))pinList[name].push({id,point:pinPoint(p.u,p.v)});
   function layout(){
@@ -146,7 +148,7 @@ export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,o
     perf.frame(elapsed*1000,now,!document.hidden&&!lost&&(!paused||!!anim));
     if(document.hidden||lost)return;
     // Blueprint 7B: the den shows at once; the forest is built in slices while the child is inside.
-    if(area!=='forest'&&forest.pending)forest.build(8);if(paused&&!anim)return;time+=dt;
+    if(area!=='forest'&&forest.pending)forest.build(8);if(paused&&!anim)return;time+=dt;weather.step(dt);
     layout();
     if(area==='forest'&&!anim){forest.update(dt,time,{keys,stick});renderer.render(forest.scene,forest.camera);perf.rendered(forest.budget?.()||{});onProject(forest.pins());return;}
     // P5: an idle den (no walk, greeting or animation) is drawn every second frame.
@@ -161,7 +163,7 @@ export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,o
     onProject((pinList[area]||[]).map(p=>({id:p.id,...project(p.point)})));
   }
   setArea('den');raf=requestAnimationFrame(frame);
-  return {setArea(next){setArea(next);},get soundscape(){return area==='forest'&&!paused?forest.soundscape:null;},route(id){if(area==='forest')forest.route(id);},mailTarget(id){forest.mailTarget(id);},summonMailman(){forest.summonMailman();},get mailman(){return forest.mailman;},pause(value){paused=value;if(value){blur();if(area==='forest')onPosition(forest.position.x,forest.position.z,forest.region);}},
+  return {setArea(next){setArea(next);},get soundscape(){if(paused)return null;const w=weather.state;return {...(area==='forest'?forest.soundscape:{}),rain:w.rain,fresh:w.fresh};},route(id){if(area==='forest')forest.route(id);},mailTarget(id){forest.mailTarget(id);},summonMailman(){forest.summonMailman();},get mailman(){return forest.mailman;},pause(value){paused=value;if(value){blur();if(area==='forest')onPosition(forest.position.x,forest.position.z,forest.region);}},
     steer(x,z){stick={x,z};if(!x&&!z&&area==='forest')onPosition(forest.position.x,forest.position.z,forest.region);},
     sequence(item,{hold=false}={}){anim={item,elapsed:0,hold};idle.target=null;fox.rotation.set(0,.35,0);foxPos.copy(item==='sleep'?ground(bedSpot.u,bedSpot.v):spots[0]);fox.position.copy(foxPos);if(item==='sleep'){fox.scale.setScalar(sleepH/denH);fox.rotation.set(-.12,.2,0);foxRig.update(0,{action:'sleep',reduced:window.FK.reduced});fitSleepingFox();}},
     skip(){anim=null;finishProps();foxPos.copy(spots[0]);fox.position.copy(foxPos);},

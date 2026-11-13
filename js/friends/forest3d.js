@@ -9,6 +9,8 @@ import {createLook, foxView, canvasTex} from './world/textures.js';
 import {createStreamer, NEAR} from './world/streamer.js';
 import {TAU, rng, lerp} from './world/noise.js';
 import {createLife} from './world/life.js';
+import {createRain} from './world/rain.js';
+import {createWeather} from './weather.js';
 
 const WORLD = createWorld();
 const FOX_H = 1.6, SPEED = 3.6, MAX_ANIMATED = 6;
@@ -17,20 +19,21 @@ export const forestExits = {den: forestPlaces.home};
 export const walkable = (x, z) => WORLD.walkable(x, z);
 const groundY = (x, z) => WORLD.groundY(x, z);
 
-export function createForest({renderer, software, onPosition, onAction, onMove, onNear, perf}) {
+export function createForest({renderer, software, onPosition, onAction, onMove, onNear, perf, weather = createWeather()}) {
   const R = rng(97), scene = new THREE.Scene(), camera = new THREE.PerspectiveCamera(42, 1, .1, 160);
   scene.background = WORLD.fog.color; scene.fog = new THREE.Fog(WORLD.fog.color, WORLD.fog.near, WORLD.fog.far);
   const sunDir = WORLD.sunDir;
   // Sky: warm haze at the horizon, pale mint above, a soft glow around the low sun.
+  const skyU = {top: {value: new THREE.Color('#a9d3c6')}, horizon: {value: new THREE.Color('#f3e3b2')}, sun: {value: sunDir}, glow: {value: 1}}, SKY = {top: skyU.top.value.clone(), horizon: skyU.horizon.value.clone()};
   { const sky = new THREE.Mesh(new THREE.SphereGeometry(150, 32, 16), new THREE.ShaderMaterial({side: THREE.BackSide, depthWrite: false, fog: false,
-      uniforms: {top: {value: new THREE.Color('#a9d3c6')}, horizon: {value: new THREE.Color('#f3e3b2')}, sun: {value: sunDir}},
+      uniforms: skyU,
       vertexShader: 'varying vec3 vD;void main(){vD=normalize(position);gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',
-      fragmentShader: 'uniform vec3 top,horizon,sun;varying vec3 vD;void main(){float h=clamp(vD.y,0.,1.);vec3 c=mix(horizon,top,pow(h,.55));float g=pow(max(dot(vD,sun),0.),24.);c+=vec3(1.,.86,.55)*g*.6;gl_FragColor=vec4(c,1.);\n#include <tonemapping_fragment>\n#include <colorspace_fragment>\n}'}));
+      fragmentShader: 'uniform vec3 top,horizon,sun;uniform float glow;varying vec3 vD;void main(){float h=clamp(vD.y,0.,1.);vec3 c=mix(horizon,top,pow(h,.55));float g=pow(max(dot(vD,sun),0.),24.);c+=vec3(1.,.86,.55)*g*.6*glow;gl_FragColor=vec4(c,1.);\n#include <tonemapping_fragment>\n#include <colorspace_fragment>\n}'}));
     sky.renderOrder = -10; sky.frustumCulled = false; sky.name = 'sky'; camera.add(sky); }
   // A painted horizon band hides the edge of the world beyond the haze.
   const horizon = new THREE.Mesh(new THREE.CylinderGeometry(84, 84, 30, 48, 1, true), new THREE.MeshBasicMaterial({color: WORLD.fog.color, side: THREE.BackSide, fog: false, depthWrite: false, transparent: true, opacity: .92}));
   horizon.position.y = 4; horizon.renderOrder = -9; horizon.name = 'horizon'; scene.add(horizon);
-  scene.add(new THREE.HemisphereLight('#e4f0ff', '#8a7444', 1.35));
+  const hemi = new THREE.HemisphereLight('#e4f0ff', '#8a7444', 1.35); scene.add(hemi);
   const sun = new THREE.DirectionalLight('#ffe0ab', 2.6); scene.add(sun, sun.target);
   const shadowAt = new THREE.Vector3(Infinity, 0, 0);
   function aimSun(x, z) { sun.target.position.set(x, WORLD.ground(x, z), z); sun.position.copy(sunDir).multiplyScalar(40).add(sun.target.position); sun.target.updateMatrixWorld(); shadowAt.set(x, 0, z); renderer.shadowMap.needsUpdate = true; }
@@ -64,10 +67,21 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   }
   const MOODS = {wood: ['#e8dcae', 24, 72], meadow: ['#f1e8bd', 30, 78], swamp: ['#c5d2ae', 11, 50], rock: ['#e0e6d6', 26, 78], spruce: ['#d3d8b2', 18, 62]}, moodC = new THREE.Color(), moodT = new THREE.Color();
   /** Lean the haze toward the area Fuchs is in (the water and the backdrop share the colour object). */
+  /* ---------- weather (js/friends/weather.js): a shower dims and greys the light, the ground darkens and dries again ---------- */
+  const RAINY = new THREE.Color('#9fa9a6'), GREY_TOP = new THREE.Color('#9aa6a8'), GREY_HORIZON = new THREE.Color('#c3c6bd'), HEMI_SKY = new THREE.Color('#e4f0ff'), HEMI_RAIN = new THREE.Color('#c9d0d6');
+  const rain = createRain({scene, groundY: (x, z) => { const s = WORLD.terrain.site(x, z), st = WORLD.terrain.streamAt(x, z); let y = groundY(x, z); if (s.still === s.still) y = Math.max(y, s.still); if (st.stream && st.d < st.w / 2) y = Math.max(y, st.level); return y; }, random: R});
+  function updateWeather(dt, time, reduced) {
+    const w = weather.state, r = w.rain, f = w.fresh;
+    sun.intensity = 2.6 * (1 - .75 * r) + .25 * f; fill.intensity = .55 * (1 - .25 * r); hemi.intensity = 1.35 * (1 - .2 * r); hemi.color.copy(HEMI_SKY).lerp(HEMI_RAIN, r);
+    skyU.top.value.copy(SKY.top).lerp(GREY_TOP, r * .85); skyU.horizon.value.copy(SKY.horizon).lerp(GREY_HORIZON, r * .8); skyU.glow.value = 1 - r * .9 + f * .3;
+    if (look.M.ground) look.M.ground.color.setScalar(1 - .2 * w.wet);
+    rain.update(dt, time, pos, {rain: r, snow: sound.snow || 0, reduced, height, fov: camera.fov});
+  }
   function updateMood(dt, x, z) {
     const b = WORLD.terrain.biome(x, z, mood.bm), w = {meadow: b.meadow, swamp: b.swamp, rock: b.rock * .8, spruce: b.spruce}; let rest = 1, near = 0, far = 0; moodT.setRGB(0, 0, 0);
     for (const k in w) { const v = Math.min(rest, w[k]); rest -= v; moodC.set(MOODS[k][0]); moodT.r += moodC.r * v; moodT.g += moodC.g * v; moodT.b += moodC.b * v; near += MOODS[k][1] * v; far += MOODS[k][2] * v; }
     moodC.set(MOODS.wood[0]); moodT.r += moodC.r * rest; moodT.g += moodC.g * rest; moodT.b += moodC.b * rest; near += MOODS.wood[1] * rest; far += MOODS.wood[2] * rest;
+    const rain = weather.state.rain; if (rain > 0) { moodT.lerp(RAINY, rain * .6); near *= 1 - .4 * rain; far *= 1 - .28 * rain; }
     const k = 1 - Math.exp(-dt * .9); WORLD.fog.color.lerp(moodT, k); mood.near += (near - mood.near) * k; mood.far += (far - mood.far) * k; scene.fog.near = mood.near; scene.fog.far = mood.far;
     if (look.M.water) { look.M.water.uniforms.fogNear.value = mood.near; look.M.water.uniforms.fogFar.value = mood.far; }
   }
@@ -228,9 +242,9 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     animatedCount = animated;
     if (moving && !reduced && time - lastPuff > .17) { lastPuff = time; const p = puffs.find(q => q.life <= 0); if (p) { p.life = .55; p.s.visible = true; p.s.position.set(pos.x + (R() - .5) * .3, base + .12, pos.z + .15); } }
     for (const p of puffs) if (p.life > 0) { p.life -= dt; const k = 1 - p.life / .55; size(p.s, .25 + k * .45); p.s.material.opacity = .5 * (1 - k); p.s.position.y += dt * .25; if (p.life <= 0) p.s.visible = false; }
-    life.update(dt, time, pos, {reduced, snow: sound.snow || 0, trees: sound.trees, meadow: sound.meadow, height, fov: camera.fov});
+    life.update(dt, time, pos, {reduced, rain: weather.state.rain, snow: sound.snow || 0, trees: sound.trees, meadow: sound.meadow, height, fov: camera.fov});
     const halos = streamer.landmarks.home?.halos; if (halos) halos.material.opacity = reduced ? .55 : .5 + Math.sin(time * 7) * .06;
-    shaftMat.opacity = reduced ? .15 : .14 + Math.sin(time * .35) * .04;
+    shaftMat.opacity = (reduced ? .15 : .14 + Math.sin(time * .35) * .04) * (1 - weather.state.rain) * (1 + .4 * weather.state.fresh); updateWeather(dt, time, reduced);
     if (!reduced) { if (look.M.water) look.M.water.uniforms.uTime.value += dt; motes.position.set(pos.x, Math.sin(time * .35) * .3, pos.z); motes.rotation.y = time * .01; } else motes.position.set(pos.x, 0, pos.z);
     if (ring.visible) ring.material.opacity = .55 + Math.sin(time * 4) * .25;
     updateGuide(time);
@@ -258,6 +272,8 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     update, route(id) { const p = forestPlaces[id]; if (id === 'mailman') { courierGoal = null; courierWait = 20; } if (p) walkTo(new THREE.Vector3(p.x, 0, p.z), id); },
     walkTo(x, z) { walkTo(new THREE.Vector3(x, 0, z)); },
     get soundscape() { return sound; },
+    /** Development: the weather now, or start (true) / stop (false) a shower at once. */
+    weather(on) { return on === undefined ? weather.state : weather.force(on); },
     /** Development: put Fuchs somewhere at once. */
     teleport(x, z) { const p = nearestWalkable(new THREE.Vector3(x, 0, z)); pos.set(p.x, 0, p.z); vel.set(0, 0); destination = null; path = []; ring.visible = false; streamer.focus(pos.x, pos.z); streamer.complete(); aimSun(pos.x, pos.z); snapCamera(); },
     mailTarget(id) { guideTarget = forestPlaces[id] ? id : null; guidePoints = []; guideNext = 0; if (id === 'mailman' && mailPos.distanceTo(pos) > 9) summonMailman(); }, summonMailman,

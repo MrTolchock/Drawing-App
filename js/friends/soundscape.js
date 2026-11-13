@@ -13,7 +13,7 @@
      waterfall only near the water.
 
    step(now, env) returns the levels of the four steady layers and the single sounds to start.
-   env: {indoors, moving, speed, ground, trees, meadow, swamp, spruce, brook, falls, fallsPan}. */
+   env: {indoors, moving, speed, ground, trees, meadow, swamp, spruce, brook, falls, fallsPan, rain, fresh}. */
 
 const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 const sstep = (a, b, x) => { const t = clamp((x - a) / (b - a)); return t * t * (3 - 2 * t); };
@@ -66,7 +66,7 @@ export function createDirector({random = Math.random} = {}) {
     const beds = {wind: .3 + .7 * gust, leaves: cover * sstep(.3, 1, gust) * flutter, bright: clamp(.5 + .5 * env.meadow - .35 * env.spruce), brook: env.brook, falls: env.falls, fallsPan: env.fallsPan, gust};
 
     // birds and other voices
-    const lively = settled * (env.indoors ? .4 : 1);
+    const wetQuiet = 1 - .85 * (env.rain || 0), lively = Math.max(.05, settled * (env.indoors ? .4 : 1) * wetQuiet * (1 + .7 * (env.fresh || 0)));   // quiet in the rain, a burst of song after it
     if (now >= nextSinger && now >= quietUntil && singers.length < 2) {
       const kind = chooseKind(now, env);
       if (kind) { const sp = SPECIES[kind]; singers.push({kind, left: whole(...sp.phrases), next: now, pan: range(-.85, .85), far: sp.far ? range(.7, 1) : range(.15, .95)}); lastKind = kind; sangAt[kind] = now; }
@@ -78,7 +78,7 @@ export function createDirector({random = Math.random} = {}) {
       if (--s.left <= 0) singers.splice(i, 1); else s.next = now + range(...SPECIES[s.kind].gap); }
 
     // the chorus: birds further off, soft and often, so the wood is never empty (there is no wind or other steady sound)
-    if (now >= nextFar) { const w = voicesAt(env), kinds = Object.keys(w).filter(k => w[k] > .3 && !SPECIES[k].far && k !== 'dove' && k !== 'bee');
+    if (now >= nextFar && (env.rain || 0) < .5) { const w = voicesAt(env), kinds = Object.keys(w).filter(k => w[k] > .3 && !SPECIES[k].far && k !== 'dove' && k !== 'bee');
       if (kinds.length) events.push({type: 'call', chorus: true, kind: kinds[Math.floor(random() * kinds.length)], at: now + .05, pan: range(-1, 1), far: range(.8, 1), level: .6 * settled});
       nextFar = now + range(1.6, 5) / lively * (now < quietUntil ? 2 : 1); }
 

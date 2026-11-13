@@ -120,13 +120,14 @@ export function createLife({scene, canvasTex, groundY, walkable, terrain, random
       quad.forEach((q, i) => { v3.set(q[0] * f[2], q[1] * 22, 0).applyMatrix4(turn); beamPos.set([v3.x + f[0], v3.y + y, v3.z + f[1]], b * 18 + i * 3); }); }
     beams.geometry.attributes.position.needsUpdate = true; }
 
-  function update(dt, time, pos, {reduced = false, snow = 0, trees = 1, meadow = 0, height = 800, fov = 42} = {}) {
+  function update(dt, time, pos, {reduced = false, rain = 0, snow = 0, trees = 1, meadow = 0, height = 800, fov = 42} = {}) {
     const gy = groundY(pos.x, pos.z);
     if (last) { const dx = pos.x - last.x, dz = pos.z - last.z; if (dx * dx + dz * dz > 1e-5) heading = Math.atan2(dx, dz); } last = {x: pos.x, z: pos.z};
     // leaves
     const u = leaves.material.uniforms; if (!reduced) u.uTime.value = time; u.uCentre.value.set(pos.x, gy, pos.z); u.uSnow.value = snow > .5 ? 1 : 0; u.uAmount.value += (Math.min(1, Math.max(trees * 1.1, snow)) - u.uAmount.value) * Math.min(1, dt * .5);   // on the peak the leaves are snowflakes u.uScale.value = height / (2 * Math.tan(THREE.MathUtils.degToRad(fov / 2)));
     // butterflies: any that Fuchs has left behind settle somewhere new near him
-    for (const b of butterflies) {
+    const shelter = rain > .25;   // in the rain the butterflies, dragonflies and little birds take shelter
+    for (const b of butterflies) { if (shelter) { b.s.visible = false; b.placed = false; continue; }
       if (!b.placed || Math.hypot(b.hx - pos.x, b.hz - pos.z) > 24) { const p = spotNear(pos, heading, b.placed ? 12 : 3, b.placed ? 18 : 12, () => true); b.hx = b.x = p[0]; b.hz = b.z = p[1]; b.placed = true; fit(b.s); }
       const t = time * .55 + b.phase, d = Math.hypot(b.x - pos.x, b.z - pos.z); if (d < 2.2) b.flee = 1.2; b.flee = Math.max(0, b.flee - dt);
       if (!reduced) { const tx = b.hx + Math.sin(t) * 2.4 + (b.flee ? (b.x - pos.x) / (d || 1) * 3 : 0), tz = b.hz + Math.cos(t * 1.3) * 1.8 + (b.flee ? (b.z - pos.z) / (d || 1) * 3 : 0), k = Math.min(1, dt * (b.flee ? 2.5 : .8)); b.x += (tx - b.x) * k; b.z += (tz - b.z) * k; }
@@ -136,7 +137,7 @@ export function createLife({scene, canvasTex, groundY, walkable, terrain, random
     // dragonflies: hover, dart, hover, near the closest water
     if (time > nextWater) { water = nearestWater(pos); nextWater = time + 1; }
     for (const d of dragons) {
-      if (!water) { d.s.visible = d.on = false; continue; }
+      if (!water || shelter) { d.s.visible = d.on = false; continue; }
       if (!d.on || Math.hypot(d.x - water[0], d.z - water[2]) > 9) { d.x = d.tx = water[0] + r(-1.5, 1.5); d.z = d.tz = water[2] + r(-1.5, 1.5); d.y = d.ty = water[1] + r(.35, .9); d.on = true; fit(d.s); }
       if (!reduced) { if ((d.wait -= dt) < 0) { d.wait = r(.5, 1.8); d.tx = water[0] + r(-2.6, 2.6); d.tz = water[2] + r(-2.6, 2.6); d.ty = Math.max(water[1], groundY(d.tx, d.tz)) + r(.3, 1); d.s.material.rotation = d.tx < d.x ? Math.PI : 0; }
         const k = Math.min(1, dt * 7); d.x += (d.tx - d.x) * k; d.y += (d.ty - d.y) * k; d.z += (d.tz - d.z) * k; }
@@ -145,7 +146,7 @@ export function createLife({scene, canvasTex, groundY, walkable, terrain, random
     if (flames) { flames.visible = Math.hypot(fires[0][0] - pos.x, fires[0][1] - pos.z) < 40; if (!reduced) flames.material.uniforms.uTime.value = time; flames.material.uniforms.uScale.value = height / (2 * Math.tan(THREE.MathUtils.degToRad(fov / 2))); }
     if (smoke) { smoke.visible = Math.hypot(fires[0][0] - pos.x, fires[0][1] - pos.z) < 40; if (!reduced) smoke.material.uniforms.uTime.value = time; smoke.material.uniforms.uScale.value = height / (2 * Math.tan(THREE.MathUtils.degToRad(fov / 2))); }
     // little birds: a few hop about together ahead of Fuchs and fly off when he is close
-    if (!flockAt && !reduced && birds.every(b => b.state === 'wait' && b.t <= 0)) { flockAt = spotNear(pos, heading, 9, 15, (x, z) => walkable(x, z) && !terrain.onCrossing(x, z)); if (flockAt) for (const b of birds) { b.state = 'ground'; b.x = flockAt[0] + r(-.9, .9); b.z = flockAt[1] + r(-.9, .9); b.y = groundY(b.x, b.z) + .1; b.t = r(.3, 1.5); b.s.material.map = birdTex[0]; fit(b.s); } }
+    if (!flockAt && !reduced && !shelter && birds.every(b => b.state === 'wait' && b.t <= 0)) { flockAt = spotNear(pos, heading, 9, 15, (x, z) => walkable(x, z) && !terrain.onCrossing(x, z)); if (flockAt) for (const b of birds) { b.state = 'ground'; b.x = flockAt[0] + r(-.9, .9); b.z = flockAt[1] + r(-.9, .9); b.y = groundY(b.x, b.z) + .1; b.t = r(.3, 1.5); b.s.material.map = birdTex[0]; fit(b.s); } }
     for (const b of birds) {
       b.t -= dt; const d = Math.hypot(b.x - pos.x, b.z - pos.z);
       if (b.state === 'ground') { const base = groundY(b.x, b.z) + .1;
