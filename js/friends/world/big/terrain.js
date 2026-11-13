@@ -26,13 +26,20 @@ export function createTerrain() {
     const dx = (x - R.x) / R.rx, dz = (z - R.z) / R.rz, th = Math.atan2(dz, dx);
     out.d = (1 + .09 * Math.sin(3 * th + 1.2) + .05 * Math.sin(7 * th + .5) - Math.hypot(dx, dz)) * R.rz; out.th = th; return out;
   }
+  /** How far up the peak a spot is: 0 at its foot and beyond, 1 on the top (a pointed cone with a rounded tip). */
+  const PK = L.PEAK;
+  function peak(x, z) { const d = Math.hypot(x - PK.x, z - PK.z); if (d >= PK.r) return 0; const t = 1 - d / PK.r; return .5 * t * t + .5 * t * t * (3 - 2 * t); }
+  /** Snow: 1 where it lies thick, 0 below the snow line (which wanders a little). */
+  function snow(x, z) { const p = peak(x, z); return p <= 0 ? 0 : sstep(.1, .2, p + (fbm(x * .35 + 11, z * .35 + 4) - .5) * .09 + (fbm(x * 1.4, z * 1.4 + 9) - .5) * .03); }
   const RAMP = 3.22;                                   // the west flank, where a trail climbs to the plateau
   function rockHeight(x, z) {
-    rock(x, z); if (rk.d < -14) return 0;
+    rock(x, z); const pk = peak(x, z) * PK.top; if (rk.d < -14) return pk;
     const cliff = sstep(1.25, .85, angle(rk.th, R.fall)), ramp = sstep(.75, .35, angle(rk.th, RAMP));
-    const body = sstep(0, lerp(lerp(7, 3.4, cliff), 25, ramp), rk.d);
+    // under the peak the plateau counts as fully risen: near the Rock's centre its outline wobbles quickly and
+    // would leave little ridges on the mountain's flank that are too steep to climb
+    const body = lerp(sstep(0, lerp(lerp(7, 3.4, cliff), 25, ramp), rk.d), 1, sstep(2.2, 4.8, pk));
     const scree = sstep(-14, 0, rk.d) * 1.6 * (1 - ramp * .7);
-    return scree + body * R.top + body * ((fbm(x * .09 + 3, z * .09) - .5) * 1.6 + (fbm(x * .3, z * .3 + 8) - .5) * .5);
+    return scree + body * R.top + body * ((fbm(x * .09 + 3, z * .09) - .5) * 1.6 + (fbm(x * .3, z * .3 + 8) - .5) * .5) + pk;
   }
   const meadow = (x, z) => sstep(1.05, .72, Math.hypot((x + 72) / 41, (z + 4) / 37) + (fbm(x * .045 + 11, z * .045 + 3) - .5) * .45);
   const swampMask = (x, z) => sstep(1, .6, Math.hypot((x - S.x) / S.rx, (z - S.z) / S.rz) + (fbm(x * .05 + 20, z * .05) - .5) * .35);
@@ -41,7 +48,7 @@ export function createTerrain() {
   /** How much of each habitat a spot has (0…1 each); the rest is beech wood. */
   function biome(x, z, out = {}) {
     rock(x, z);
-    out.rock = sstep(-10, 0, rk.d); out.meadow = meadow(x, z); out.swamp = swampMask(x, z); out.glade = glade(x, z);
+    out.rock = sstep(-10, 0, rk.d); out.snow = snow(x, z); out.meadow = meadow(x, z); out.swamp = swampMask(x, z); out.glade = glade(x, z);
     out.spruce = sstep(-34, -54, z + (fbm(x * .03 + 7, z * .03 + 2) - .5) * 34) * (1 - out.rock) * (1 - out.meadow);
     out.birch = Math.max(blob(x, z, -58, 54, 30, 5), blob(x, z, -36, -26, 13, 9) * .8, blob(x, z, 60, 44, 20, 3) * .6) * (1 - out.swamp) * (1 - out.meadow * .7);
     return out;
@@ -172,7 +179,8 @@ export function createTerrain() {
   /* ---------- ground colour ---------- */
   const grassA = C('#5f8f2f'), grassB = C('#86ad45'), sunny = C('#a9b856'), mossC = C('#4c7a2a'), edgeC = C('#9b8a4a'), dirt = C('#b77a49'), dirtL = C('#cf9a66'),
     wetC = C('#6a5237'), sand = C('#bba57f'), bed = C('#7c6c50'), meadowA = C('#8db546'), meadowB = C('#b9c95c'), needle = C('#77683c'), birchC = C('#9db84c'),
-    bog = C('#4d6b33'), mud = C('#54452c'), stoneA = C('#8f8b7e'), stoneB = C('#a9a493'), stoneD = C('#6f6b60'), bm = {};
+    bog = C('#4d6b33'), mud = C('#54452c'), stoneA = C('#8f8b7e'), stoneB = C('#a9a493'), stoneD = C('#6f6b60'), bm = {},
+    snowC = new THREE.Color(1.5, 1.56, 1.66), snowShade = new THREE.Color(1.12, 1.24, 1.5), snowPath = new THREE.Color(1.05, 1.03, 1);
   /** Painted ground colour (without the rock that shows on steep ground: see `cliff`). */
   function colour(x, z, out) {
     const s = site(x, z), n = fbm(x * .18, z * .18), n2 = fbm(x * .9 + 4, z * .9), b = biome(x, z, bm);
@@ -188,11 +196,14 @@ export function createTerrain() {
     if (pe < 0) { out.copy(dirt).lerp(dirtL, n2 * .7); if (b.rock > .5) out.lerp(stoneB, .5); }
     if (s.sd < 8) { const be = s.sd - s.sw / 2; if (be < 1.1) out.lerp(wetC, sstep(1.1, .25, be + (n2 - .5) * .3)); if (be < .35) out.lerp(sand, sstep(.35, .05, be) * (.5 + .5 * n2)); if (be < 0) out.copy(bed).lerp(sand, n2 * .5); }
     if (s.still === s.still && b.swamp < .5) { const above = s.h - s.still; if (above < .45) out.lerp(wetC, sstep(.45, .1, above + (n2 - .5) * .2)); if (above < .12) out.lerp(sand, sstep(.12, 0, above) * (.4 + .6 * n2)); if (above < -.05) out.copy(bed).lerp(stoneD, sstep(-.1, -.9, above) * .6); }
+    // snow on the peak: bluish in the hollows, a trodden grey-white on the path
+    if (b.snow > 0) { out.lerp(scratchC.copy(snowC).lerp(snowShade, sstep(.45, .7, fbm(x * .22 + 6, z * .22)) * .6), b.snow); if (pe < 0) out.lerp(snowPath, b.snow * .85); }
     return out;
   }
   /** Rock shows through where the ground is steep; `up` is the normal's y. */
   function cliff(x, z, up, out) {
-    const k = sstep(.9, .66, up + (fbm(x * .7, z * .7) - .5) * .12); if (k <= 0) return out;
+    let k = sstep(.9, .66, up + (fbm(x * .7, z * .7) - .5) * .12); if (k <= 0) return out;
+    const sn = snow(x, z); if (sn > 0) k *= 1 - sn * sstep(.5, .72, up);                // snow stays on all but the steepest rock
     const y = ground(x, z), band = .5 + .5 * Math.sin(y * 2.4 + fbm(x * .25, z * .25) * 5);
     return out.lerp(scratchC.copy(stoneA).lerp(stoneB, band * .7).lerp(stoneD, sstep(.6, .9, fbm(x * 1.3 + 2, z * 1.3)) * .5), k);
   }
@@ -236,6 +247,6 @@ export function createTerrain() {
   /** Water too deep to walk in (streams and pools), unless a crossing carries Fuchs over it. */
   function wet(x, z) { const s = site(x, z); return s.sd - s.sw / 2 < .42 || (s.still === s.still && s.still - s.h > .07); }
 
-  return {extent: E, edge, rock, biome, raw, site, ground, slope, colour, cliff, stillDepth, stillLevel, streamAt, pathAt, streams, pools, poolE, swamp: S, swampMask, trails, plaza,
+  return {extent: E, edge, rock, peak, snow, biome, raw, site, ground, slope, colour, cliff, stillDepth, stillLevel, streamAt, pathAt, streams, pools, poolE, swamp: S, swampMask, trails, plaza,
     crossings, onCrossing, deck, groundY, wet, falls, dam, TAU};
 }

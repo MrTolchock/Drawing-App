@@ -33,7 +33,7 @@ export function createBigWorld() {
     t = null;
     if (x > E.x0 + 1 && x < E.x1 - 1 && z > E.z0 + 1 && z < E.z1 - 1) {
       const b = T.biome(x, z, bm), rim = sstep(12, 4, T.edge(x, z));
-      let p = .36 + .26 * b.spruce + .14 * b.birch; p *= (1 - .97 * b.meadow) * (1 - .78 * b.swamp) * (1 - .88 * b.rock); p = Math.max(p, rim * .72); if (b.glade > .3) p = 0;
+      let p = .36 + .26 * b.spruce + .14 * b.birch; p *= (1 - .97 * b.meadow) * (1 - .78 * b.swamp) * (1 - .88 * b.rock); p = Math.max(p, rim * .72); if (b.glade > .3 || T.peak(x, z) > .06) p = 0;   // no trees on the peak
       if (pick < p && !keepClear.some(([kx, kz, kr]) => Math.hypot(x - kx, z - kz) < kr)) {
         const st = T.streamAt(x, z), nearWater = st.d < st.w / 2 + 2.5 || T.stillDepth(x, z) > -.3, pa = T.pathAt(x, z);
         if (!nearWater && pa.d > pa.w / 2 + 1.9 && T.slope(x, z) < .8 && !T.onCrossing(x, z)) {

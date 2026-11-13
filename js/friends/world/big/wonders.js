@@ -1,6 +1,7 @@
 /* Small things to discover beside the paths of the big world: a ring of toadstools, a hollow log, a circle of
    old stones, apple trees, berry bushes, a stone well, lanterns at the den, a stump laid as a table, signposts,
-   a toadstool house, and a picnic place with a fire place (its smoke rises in world/life.js). Each is its own little site (layout.js WONDERS), built in one
+   a toadstool house, a picnic place with a fire place (its smoke rises in world/life.js), and on the peak a
+   summit cross with a snowman. Each is its own little site (layout.js WONDERS), built in one
    short step when Fuchs comes near, from a few hundred triangles on the shared rock, log, bark and soft
    materials; the solid ones have colliders (layout.js SOLIDS) and a small clearing (GLADES). */
 import {THREE} from '../../../scene/materials.js';
@@ -176,6 +177,24 @@ export function wonderSteps(site, look, world, group) {
       for (let k = 0; k < 30; k++) { const c = list[(k * 7) % list.length], dx = c.x - x0, dz = c.z - z0, d = Math.hypot(dx, dz) || 1, red = k % 4 ? [1.3, .13, .08] : [1.35, .62, .12];
         add('soft', new THREE.SphereGeometry(r(.09, .12), 9, 7).scale(1, .92, 1), red, c.x + dx / d * .32, c.y - .28, c.z + dz / d * .32); add('soft', new THREE.CylinderGeometry(.008, .008, .09, 4), [.4, .3, .18], c.x + dx / d * .32, c.y - .14, c.z + dz / d * .32); }
       for (let k = 0; k < 7; k++) { const a = r(0, TAU), d = r(.8, 2.4), x = x0 + Math.cos(a) * d, z = z0 + Math.sin(a) * d; add('rock', new THREE.SphereGeometry(.1, 8, 6), k % 3 ? [1.3, .13, .08] : [1.35, .62, .12], x, ground(x, z) + .08, z); } },
+    // the top of the peak: a timber summit cross held by a cairn, with a tin box for the summit book, and a
+    // snowman someone built a little below it
+    summit() { const timber = [.92, .7, .5], greys = [[.7, .69, .66], [.6, .6, .59], [.78, .76, .72]], cx = x0 + .6, cz = z0 - .6, cy = ground(cx, cz);
+      add('wood', new THREE.BoxGeometry(.17, 2.9, .17), timber, cx, cy + 1.45, cz); add('wood', new THREE.BoxGeometry(1.5, .17, .17), timber, cx, cy + 2.2, cz);
+      for (const sd of [-1, 1]) add('wood', new THREE.BoxGeometry(.06, .06, .9).rotateY(Math.PI / 2).rotateZ(sd * .78), [.6, .45, .32], cx + sd * .3, cy + 1.9, cz + .09);
+      add('rock', new THREE.BoxGeometry(.26, .2, .1), [.5, .52, .56], cx, cy + 1.15, cz + .13); add('rock', new THREE.BoxGeometry(.28, .03, .12).rotateX(.3), [.38, .4, .44], cx, cy + 1.26, cz + .135);
+      for (let k = 0; k < 16; k++) { const a = r(0, TAU), d = Math.sqrt(R()) * .62, h = (1 - d / .62) * .5; add('rock', lump(R, r(.13, .22), 1, .16).scale(1.2, .75, 1), greys[k % 3], cx + Math.cos(a) * d, cy + .08 + h * R(), cz + Math.sin(a) * d); }
+      for (let k = 0; k < 5; k++) add('rock', new THREE.SphereGeometry(r(.1, .18), 8, 5).scale(1.3, .45, 1.1), [1.5, 1.56, 1.66], cx + r(-.5, .5), cy + r(.3, .55), cz + r(-.5, .5));   // snow lying on the cairn
+      add('rock', new THREE.BoxGeometry(1.56, .05, .2), [1.5, 1.56, 1.66], cx, cy + 2.3, cz); add('rock', new THREE.BoxGeometry(.2, .05, .2), [1.5, 1.56, 1.66], cx, cy + 2.92, cz);       // and on the cross
+      const [sx, sz] = site.snowman, sy = ground(sx, sz), white = [1.5, 1.56, 1.66], coal = [.1, .1, .11];
+      add('rock', new THREE.SphereGeometry(.42, 16, 12).scale(1, .92, 1), white, sx, sy + .34, sz); add('rock', new THREE.SphereGeometry(.31, 16, 12), white, sx, sy + .92, sz); add('rock', new THREE.SphereGeometry(.22, 14, 10), white, sx, sy + 1.36, sz);
+      add('rock', new THREE.ConeGeometry(.04, .2, 8).rotateX(Math.PI / 2), [1.5, .6, .12], sx, sy + 1.36, sz + .3);
+      for (const e of [-1, 1]) add('rock', new THREE.SphereGeometry(.028, 6, 5), coal, sx + e * .08, sy + 1.43, sz + .2);
+      for (let k = -2; k <= 2; k++) add('rock', new THREE.SphereGeometry(.018, 5, 4), coal, sx + k * .04, sy + 1.29 - Math.abs(k) * -.012, sz + .205 - Math.abs(k) * .006);
+      for (let k = 0; k < 3; k++) add('rock', new THREE.SphereGeometry(.03, 6, 5), coal, sx, sy + .82 + k * .13, sz + .3 - (k === 1 ? 0 : .02));
+      for (const e of [-1, 1]) { add('wood', new THREE.CylinderGeometry(.014, .02, .55, 5).rotateZ(e * -1.05), [.5, .36, .24], sx + e * .5, sy + 1.03, sz); add('wood', new THREE.CylinderGeometry(.01, .012, .16, 4).rotateZ(e * -.2), [.5, .36, .24], sx + e * .66, sy + 1.2, sz); }
+      add('rock', new THREE.CylinderGeometry(.26, .26, .03, 14), [.16, .15, .17], sx, sy + 1.55, sz); add('rock', new THREE.CylinderGeometry(.16, .17, .26, 14), [.16, .15, .17], sx, sy + 1.69, sz); add('rock', new THREE.CylinderGeometry(.172, .172, .05, 14), [1.2, .2, .16], sx, sy + 1.6, sz);
+      add('rock', new THREE.TorusGeometry(.2, .05, 6, 14).rotateX(Math.PI / 2), [1.25, .22, .18], sx, sy + 1.17, sz); add('rock', new THREE.BoxGeometry(.09, .34, .04).rotateZ(.2), [1.25, .22, .18], sx + .14, sy + 1.02, sz + .2); },
     sign() { add('wood', new THREE.CylinderGeometry(.06, .085, 1.9, 7), [.85, .66, .5], x0, y0 + .95, z0);
       site.arms.forEach((a, k) => { const sh = new THREE.Shape(); sh.moveTo(0, -.1); sh.lineTo(.62, -.1); sh.lineTo(.8, 0); sh.lineTo(.62, .1); sh.lineTo(0, .1); sh.closePath();
         add('wood', new THREE.ExtrudeGeometry(sh, {depth: .045, bevelEnabled: false}).translate(.02, 0, -.022).rotateY(-a), [1.25, 1, .72], x0, y0 + 1.68 - k * .27, z0); });

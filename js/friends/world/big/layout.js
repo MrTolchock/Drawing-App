@@ -9,6 +9,9 @@ export const DEN = {x: 0, z: -8};
 /* The Rock: an elliptical massif with a plateau. `fall` is the direction (from its centre) in
    which the waterfall drops. */
 export const ROCK = {x: 84, z: -80, rx: 36, rz: 30, top: 11.5, fall: 2.135};
+/* The peak that rises out of the Rock's plateau north of the summit trail: its top, how high it stands above the
+   plateau and how wide its foot is. Snow lies on it from about two metres up. Gentle enough to walk to the top. */
+export const PEAK = {x: 80, z: -95, top: 13, r: 27};
 
 /* Still water. `plunge` and `pond` are carved bowls; the swamp is a basin whose hollows fill. */
 export const POOLS = [
@@ -40,6 +43,7 @@ export const TRAILS = [
   {id: 'east', pts: [[1.5, -2.6], [6, -2.8], [10.9, -3]], w: .9},
   {id: 'beaver', pts: [[15.1, -3], [18.6, -5], [21.5, -8.2], [22.6, -12], [23.2, -15.5]], w: .85},
   {id: 'falls', pts: [[23.2, -15.5], [24.5, -22], [29.5, -29], [37, -34.5], [44.5, -41], [51, -46.5], [55, -50]], w: .8},
+  {id: 'peak', pts: [[75, -77], [78.6, -79.6], [80.2, -83.6], [81.6, -87.6], [80.9, -91.4], [80.2, -94.2]], w: .6},
   {id: 'summit', pts: [[51, -46.5], [47, -56], [43.5, -67], [42.5, -77], [47, -82.5], [56, -83], [66, -81], [75, -77], [76, -68], [72.5, -62.5]], w: .75},
   {id: 'north', pts: [[-1.2, -4.4], [-5, -8], [-9, -14], [-12, -25], [-18, -38], [-25, -50], [-29.5, -59]], w: .9},
   {id: 'west', pts: [[-.6, -1.6], [-8, .8], [-18, 4.6], [-28, 8.6], [-31.5, 9.6]], w: .9},
@@ -119,7 +123,7 @@ export const TREES = [
 /* Big rocks [x, z, size, height] (colliders). */
 export const ROCKS = [[-5.2, -4.2, 1.05, 1.6], [-2, 9, .65, .9], [9.6, 1.2, .6, .8], [57.6, -54.4, 1.5, 1.7], [66.4, -47.6, 1.2, 1.3], [-70, 8, .9, 1], [50.5, 48.4, .8, .9]];
 /* Further colliders [x, z, radius]: the den tree, the stump, the lodge, the beaver's stack of poles, the badger's sett. */
-export const SOLIDS = [[0, -8, 3.05], [-33.4, 11.2, .95], [37.5, -18.6, 2.3], [20.8, -16.9, .6], [-53.4, -58.3, 2.1], [50.75, 13.18, 0.82], [51.58, 12.73, 0.82], [52.42, 12.27, 0.82], [53.25, 11.82, 0.82], [-67.61, 22.74, 0.5], [-69.45, 24.44, 0.5], [-71.83, 23.7, 0.5], [-72.39, 21.26, 0.5], [-70.55, 19.56, 0.5], [-68.17, 20.3, 0.5], [-17, 10, 0.42], [-22, 31.5, 0.75], [-34, 36, 0.75], [38, 29, 0.75], [6.2, 9.5, 1], [5, -1.4, .15], [-5, 1.8, .15], [3.6, 6, .15], [27, 17.5, 1], [-8.6, 41.3, .95], [-7.4, 41.7, .95], [-4.6, 42.3, .85], [-2.9, 41.2, .45], [31.4, 12, .16], [-30.5, 12.3, .16], [-12.5, -33.5, .85], [2.5, 30.5, .42], [41, 22, .42]];
+export const SOLIDS = [[0, -8, 3.05], [-33.4, 11.2, .95], [37.5, -18.6, 2.3], [20.8, -16.9, .6], [-53.4, -58.3, 2.1], [50.75, 13.18, 0.82], [51.58, 12.73, 0.82], [52.42, 12.27, 0.82], [53.25, 11.82, 0.82], [-67.61, 22.74, 0.5], [-69.45, 24.44, 0.5], [-71.83, 23.7, 0.5], [-72.39, 21.26, 0.5], [-70.55, 19.56, 0.5], [-68.17, 20.3, 0.5], [-17, 10, 0.42], [-22, 31.5, 0.75], [-34, 36, 0.75], [38, 29, 0.75], [6.2, 9.5, 1], [5, -1.4, .15], [-5, 1.8, .15], [3.6, 6, .15], [27, 17.5, 1], [-8.6, 41.3, .95], [-7.4, 41.7, .95], [-4.6, 42.3, .85], [-2.9, 41.2, .45], [31.4, 12, .16], [-30.5, 12.3, .16], [-12.5, -33.5, .85], [2.5, 30.5, .42], [41, 22, .42], [80.6, -95.6, .3], [84.6, -91.6, .5]];
 
 /* What Biber felled for his dam: gnawed stumps [x, z, radius] and trunks lying beside some of them
    [x, z, radius, yaw, length] (colliders; built with the pond site). */
@@ -146,6 +150,7 @@ export const WONDERS = [
   {id: 'wonder-10', kind: 'picnic', x: -8, z: 41.5, yaw: .25, r: 26, fire: [-4.6, 42.3]},
   {id: 'wonder-11', kind: 'sign', x: 31.4, z: 12, r: 22, arms: [-.35, 2.5, .95]},
   {id: 'wonder-12', kind: 'sign', x: -30.5, z: 12.3, r: 22, arms: [3.0, -.3, 2.1]},
+  {id: 'wonder-16', kind: 'summit', x: 80, z: -95, r: 34, snowman: [84.6, -91.6]},
   {id: 'wonder-13', kind: 'fairyhouse', x: -12.5, z: -33.5, yaw: -.5, r: 24},
   {id: 'wonder-14', kind: 'apple', x: 2.5, z: 30.5, r: 24},
   {id: 'wonder-15', kind: 'apple', x: 41, z: 22, r: 24},

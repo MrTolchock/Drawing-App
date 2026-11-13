@@ -16,7 +16,7 @@ window.FK = {on: () => () => {}, forestVoice: {cancel() {}}};
 const {createAudio, voices, footstep, details, makeNoise} = await import('../js/friends/audio.js');
 const SCENES = {Wald: {trees: .9, spruce: .1}, Fichtenwald: {trees: 1, spruce: 1}, Wiese: {trees: .05, meadow: 1}, Sumpf: {trees: .3, swamp: 1}, 'Am Bach': {trees: .7, brook: .9}, Wasserfall: {trees: .4, falls: .9, brook: .5, fallsPan: .3}, 'Im Bau': null};
 const NAMES = {blackbird: 'Amsel', chaffinch: 'Buchfink', greatTit: 'Kohlmeise', blueTit: 'Blaumeise', dove: 'Ringeltaube', cuckoo: 'Kuckuck', woodpecker: 'Specht', frog: 'Frosch', cricket: 'Grille', bee: 'Biene'};
-const GROUNDS = {grass: 'Gras', needles: 'Nadeln', earth: 'Weg', meadow: 'Wiese', wood: 'Steg', sticks: 'Damm', rock: 'Fels', wet: 'Sumpf'};
+const GROUNDS = {grass: 'Gras', needles: 'Nadeln', earth: 'Weg', meadow: 'Wiese', wood: 'Steg', sticks: 'Damm', rock: 'Fels', wet: 'Sumpf', snow: 'Schnee'};
 const $ = id => document.getElementById(id), q = new URLSearchParams(location.search);
 let scene = q.get('scene') || 'Wald', walking = q.has('walk'), ground = q.get('ground') || 'grass', settings = {ambience: true};
 const audio = createAudio(() => settings, () => ({...SCENES[scene], moving: walking, speed: 2.6, ground})); window.audio = audio;

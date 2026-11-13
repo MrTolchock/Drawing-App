@@ -79,6 +79,7 @@ export function footstep(ctx, out, noise, ground, t, level = 1) {
   else if (ground === 'earth') { hiss(ctx, out, noise, {t, dur: .06, gain: .17 * v, type: 'lowpass', f: 1300 * w}); hiss(ctx, out, noise, {t: t + .01, dur: .02, gain: .05 * v, f: 3200, q: 1}); thump(180, .035); }
   else if (ground === 'rock') { hiss(ctx, out, noise, {t, dur: .03, gain: .28 * v, f: 2100 * w, q: 2}); thump(240, .015, .03); }
   else if (ground === 'wet') { hiss(ctx, out, noise, {t, dur: .12, gain: .2 * v, type: 'lowpass', f: 1250 * w, f1: 450, attack: .012}); tone(ctx, out, {t: t + .05, dur: .05, f: 420 * w, f1: 760 * w, gain: .02 * v, attack: .006}); }
+  else if (ground === 'snow') { hiss(ctx, out, noise, {t, dur: .11, gain: .2 * v, type: 'lowpass', f: 2100 * w, f1: 900, attack: .012}); hiss(ctx, out, noise, {t: t + .035, dur: .05, gain: .09 * v, f: 3400 * w, q: 1.2, attack: .008}); }   // a soft crunch
   else if (ground === 'meadow') { hiss(ctx, out, noise, {t, dur: .12, gain: .17 * v, f: 3100 * w, q: .6, attack: .02}); thump(190, .012); }
   else if (ground === 'needles') { hiss(ctx, out, noise, {t, dur: .085, gain: .2 * v, f: 1400 * w, q: .7, attack: .008}); thump(185, .02); }
   else { hiss(ctx, out, noise, {t, dur: .075, gain: .2 * v, f: 2400 * w, q: .8, attack: .006}); thump(195, .016); }   // grass

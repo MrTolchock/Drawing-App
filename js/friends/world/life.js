@@ -18,15 +18,15 @@ export function createLife({scene, canvasTex, groundY, walkable, terrain, random
   const LEAVES = 46, leafTex = canvasTex(64, 64, g => { g.translate(32, 32); g.rotate(-.6); g.fillStyle = '#fff'; g.beginPath(); g.moveTo(0, -27); g.bezierCurveTo(21, -15, 19, 14, 0, 27); g.bezierCurveTo(-19, 14, -21, -15, 0, -27); g.fill(); g.strokeStyle = 'rgba(0,0,0,.28)'; g.lineWidth = 2.2; g.beginPath(); g.moveTo(0, -24); g.lineTo(0, 25); g.stroke(); });
   const seeds = new Float32Array(LEAVES * 4); for (let i = 0; i < seeds.length; i++) seeds[i] = random();
   const leaves = new THREE.Points(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(new Float32Array(LEAVES * 3), 3)).setAttribute('aSeed', new THREE.BufferAttribute(seeds, 4)),
-    new THREE.ShaderMaterial({uniforms: {uMap: {value: leafTex}, uTime: {value: 0}, uScale: {value: 600}, uCentre: {value: new THREE.Vector3()}, uAmount: {value: 0}},
-      vertexShader: `attribute vec4 aSeed;uniform float uTime,uScale,uAmount;uniform vec3 uCentre;varying float vShow,vTurn,vTint;
+    new THREE.ShaderMaterial({uniforms: {uMap: {value: leafTex}, uTime: {value: 0}, uScale: {value: 600}, uCentre: {value: new THREE.Vector3()}, uAmount: {value: 0}, uSnow: {value: 0}},
+      vertexShader: `attribute vec4 aSeed;uniform float uTime,uScale,uAmount,uSnow;uniform vec3 uCentre;varying float vShow,vTurn,vTint;
         void main(){const float H=8.5,S=30.;vec3 p;p.xz=uCentre.xz+mod(aSeed.xz*S-uCentre.xz+S*.5,S)-S*.5;
           float fall=mod(aSeed.y*H+uTime*(.5+.45*aSeed.w),H);p.y=uCentre.y+H-fall;
           p.x+=sin(uTime*(.8+aSeed.w)+aSeed.x*40.)*.7*(.25+fall/H);p.z+=cos(uTime*.65+aSeed.z*40.)*.45;
           vShow=smoothstep(0.,.8,fall)*smoothstep(H,H-.5,fall)*step(fract(aSeed.w*7.13),uAmount);vTurn=uTime*(1.2+2.2*aSeed.w)+aSeed.x*6.28;vTint=aSeed.z;
-          vec4 mv=modelViewMatrix*vec4(p,1.);gl_PointSize=min(.34*uScale/-mv.z,44.);gl_Position=projectionMatrix*mv;}`,
-      fragmentShader: `uniform sampler2D uMap;varying float vShow,vTurn,vTint;
-        void main(){if(vShow<.5)discard;vec2 c=gl_PointCoord-.5;float s=sin(vTurn),k=cos(vTurn);c=vec2(c.x*k-c.y*s,c.x*s+c.y*k);c.y/=max(.3,abs(cos(vTurn*.6)));vec2 uv=c+.5;
+          vec4 mv=modelViewMatrix*vec4(p,1.);gl_PointSize=min(.34*uScale/-mv.z,44.)*mix(1.,.36,step(.5,uSnow));gl_Position=projectionMatrix*mv;}`,
+      fragmentShader: `uniform sampler2D uMap;uniform float uSnow;varying float vShow,vTurn,vTint;
+        void main(){if(vShow<.5)discard;if(uSnow>.5){if(length(gl_PointCoord-.5)>.42)discard;gl_FragColor=vec4(1.);return;}vec2 c=gl_PointCoord-.5;float s=sin(vTurn),k=cos(vTurn);c=vec2(c.x*k-c.y*s,c.x*s+c.y*k);c.y/=max(.3,abs(cos(vTurn*.6)));vec2 uv=c+.5;
           if(uv.x<0.||uv.x>1.||uv.y<0.||uv.y>1.)discard;vec4 t=texture2D(uMap,uv);if(t.a<.5)discard;
           vec3 col=vTint<.45?mix(vec3(.2,.42,.07),vec3(.36,.56,.1),vTint*2.2):vTint<.8?vec3(.72,.56,.08):vec3(.66,.3,.06);
           gl_FragColor=vec4(col*t.rgb*(.82+.3*abs(cos(vTurn*.6))),1.);
@@ -120,11 +120,11 @@ export function createLife({scene, canvasTex, groundY, walkable, terrain, random
       quad.forEach((q, i) => { v3.set(q[0] * f[2], q[1] * 22, 0).applyMatrix4(turn); beamPos.set([v3.x + f[0], v3.y + y, v3.z + f[1]], b * 18 + i * 3); }); }
     beams.geometry.attributes.position.needsUpdate = true; }
 
-  function update(dt, time, pos, {reduced = false, trees = 1, meadow = 0, height = 800, fov = 42} = {}) {
+  function update(dt, time, pos, {reduced = false, snow = 0, trees = 1, meadow = 0, height = 800, fov = 42} = {}) {
     const gy = groundY(pos.x, pos.z);
     if (last) { const dx = pos.x - last.x, dz = pos.z - last.z; if (dx * dx + dz * dz > 1e-5) heading = Math.atan2(dx, dz); } last = {x: pos.x, z: pos.z};
     // leaves
-    const u = leaves.material.uniforms; if (!reduced) u.uTime.value = time; u.uCentre.value.set(pos.x, gy, pos.z); u.uAmount.value += (Math.min(1, trees * 1.1) - u.uAmount.value) * Math.min(1, dt * .5); u.uScale.value = height / (2 * Math.tan(THREE.MathUtils.degToRad(fov / 2)));
+    const u = leaves.material.uniforms; if (!reduced) u.uTime.value = time; u.uCentre.value.set(pos.x, gy, pos.z); u.uSnow.value = snow > .5 ? 1 : 0; u.uAmount.value += (Math.min(1, Math.max(trees * 1.1, snow)) - u.uAmount.value) * Math.min(1, dt * .5);   // on the peak the leaves are snowflakes u.uScale.value = height / (2 * Math.tan(THREE.MathUtils.degToRad(fov / 2)));
     // butterflies: any that Fuchs has left behind settle somewhere new near him
     for (const b of butterflies) {
       if (!b.placed || Math.hypot(b.hx - pos.x, b.hz - pos.z) > 24) { const p = spotNear(pos, heading, b.placed ? 12 : 3, b.placed ? 18 : 12, () => true); b.hx = b.x = p[0]; b.hz = b.z = p[1]; b.placed = true; fit(b.s); }

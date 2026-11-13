@@ -161,3 +161,5 @@ World dressing only; no puzzle, letter, save or identity art changed.
 | Things to discover (`world/big/wonders.js`) | Built from the world's own rock, log, wood and bark materials with vertex colour; tall ones use the soft material so they turn translucent in front of Fuchs like trees |
 
 Measured in Chromium (software rendering) standing at each new site: at most 106 draw calls (limit 150) and 188 k triangles (limit 350 k). The former budget walk test is archived with the legacy game, so a full walk was not repeated; the frame rate on the iPad is for the owner to check with `?perf=1`.
+
+**13 November 2026 (release 9.3.28).** The Rock's plateau gains a snow-capped peak (terrain, not a model), a summit cross with cairn and a snowman built from the world's materials, and the picture map is redrawn from the world with `tools/map/render.cjs`. Snow uses a cool white that turns slightly blue in hollows; ground cover is kept off it.

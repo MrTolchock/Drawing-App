@@ -138,7 +138,7 @@ export function* buildBigTile(world, look, i, j, ring) {
   yield 'grass';
   for (let k = 0, n = Math.round(area * 3.2); k < n; k++) {
     if (k % 40 === 39) yield 'grass';
-    const [x, z] = spot(), s = T.site(x, z), h = s.h; if (!dry(s, -.1 + (R() - .5) * .3)) continue;
+    const [x, z] = spot(), s = T.site(x, z), h = s.h; if (!dry(s, -.1 + (R() - .5) * .3) || T.snow(x, z) > R() * .3) continue;   // no grass on the snow
     T.biome(x, z, bm); if (R() < bm.spruce * .62 + bm.rock * .8 + bm.swamp * .35) continue;
     if (world.blocked(x, z, -.2) || T.onCrossing(x, z)) continue;
     const v = .82 + R() * .3, warm = fbm(x * .05 + 9, z * .05), tall = R() < bm.meadow * .7;
@@ -153,7 +153,7 @@ export function* buildBigTile(world, look, i, j, ring) {
       const [cellUv, tpl, size, lift] = kinds[kind], per = mix.meadow ? 1.7 : .3;
       for (let k = 0, n = Math.round(area * per); k < n; k++) {
         if (k % 40 === 39) yield 'flowers';
-        const [x, z] = spot(), drift = fbm(x * .16 + kind * 7.1, z * .16 - kind * 3.3), s0 = T.site(x, z); if (!dry(s0, .2)) continue; const h = s0.h;
+        const [x, z] = spot(), drift = fbm(x * .16 + kind * 7.1, z * .16 - kind * 3.3), s0 = T.site(x, z); if (!dry(s0, .2) || T.snow(x, z) > .05) continue; const h = s0.h;
         T.biome(x, z, bm); const md = bm.meadow;
         if (drift < lerp(.58, .47, md) || R() > (meadowOnly ? md : lerp(.3 / per, 1, md)) || R() < bm.spruce * .8 + bm.rock * .7 + bm.swamp * .8) continue;
         if (world.blocked(x, z, 0) || T.onCrossing(x, z)) continue;
@@ -164,26 +164,26 @@ export function* buildBigTile(world, look, i, j, ring) {
   }
   yield 'ferns';
   for (let k = 0, n = Math.round(area * (.3 + .35 * mix.spruce)); k < n; k++) {
-    const [x, z] = spot(), s0 = T.site(x, z); if (!dry(s0, .5)) continue; const h = s0.h, nearWater = s0.sd - s0.sw / 2 < 1.6;
+    const [x, z] = spot(), s0 = T.site(x, z); if (!dry(s0, .5) || T.snow(x, z) > .05) continue; const h = s0.h, nearWater = s0.sd - s0.sw / 2 < 1.6;
     T.biome(x, z, bm); if (R() < bm.meadow * .95 + bm.rock * .6) continue;
     if (!(treeGap(x, z) < 3.2 || nearWater || fbm(x * .2, z * .2) > .64) || world.blocked(x, z, .1) || T.onCrossing(x, z)) continue;
     const l = .62 + R() * .12 - bm.spruce * .06, c = tone.setHSL(.25 + bm.spruce * .03, .35, l), sc = .7 + R() * .6;
     foliage.add(t.fern, {x, y: h, z, ry: R() * TAU, sx: sc, sy: sc, sz: sc, cell: ATLAS.fern, up: true, c});
   }
   for (let k = 0, n = Math.round(area * .1); k < n; k++) { // clover off the trails, fallen leaves on them
-    const [x, z] = spot(), s0 = T.site(x, z), onPath = s0.pd < s0.pw / 2 + .1; if (s0.sd - s0.sw / 2 < .4 || s0.still - s0.h > -.05) continue; const h = s0.h;
+    const [x, z] = spot(), s0 = T.site(x, z), onPath = s0.pd < s0.pw / 2 + .1; if (s0.sd - s0.sw / 2 < .4 || s0.still - s0.h > -.05 || T.snow(x, z) > .05) continue; const h = s0.h;
     if (world.blocked(x, z, 0) || T.onCrossing(x, z) || (!onPath && R() < .25)) continue;
     const sc = onPath ? .55 + R() * .5 : .9 + R() * 1.2;
     foliage.add(t.flat, {x, y: h + (onPath ? .035 : .03), z, ry: R() * TAU, sx: sc, sy: 1, sz: sc, cell: onPath ? ATLAS.litter : ATLAS.clover, up: true});
   }
   yield 'shrubs';
   if (mix.rock || mix.meadow) for (let k = 0, n = Math.round(area * .45); k < n; k++) { // heather on the Rock's skirts and here and there in the meadow
-    const [x, z] = spot(); T.biome(x, z, bm); if (R() > bm.rock * .8 + bm.meadow * .05) continue;
+    const [x, z] = spot(); T.biome(x, z, bm); if (R() > bm.rock * .8 + bm.meadow * .05 || bm.snow > .05) continue;
     const s0 = T.site(x, z); if (!dry(s0, .3) || world.blocked(x, z, 0)) continue; const sc = .8 + R() * .7;
     foliage.add(bt.heather, {x, y: s0.h - .03, z, ry: R() * TAU, sx: sc, sy: sc, sz: sc, cell: ATLAS.heather, up: true});
   }
   for (let k = 0, n = Math.round(area * .014); k < n; k++) { // brambles at the wood's edge
-    const [x, z] = spot(); T.biome(x, z, bm); if (bm.swamp > .3 || bm.rock > .5 || bm.glade > .5 || bm.meadow > .8) continue;
+    const [x, z] = spot(); T.biome(x, z, bm); if (bm.swamp > .3 || bm.rock > .5 || bm.glade > .5 || bm.meadow > .8 || bm.snow > .05) continue;
     const s0 = T.site(x, z); if (!dry(s0, 1.4) || s0.sd - s0.sw / 2 < 1.5 || treeGap(x, z) < 1 || world.blocked(x, z, .4) || T.onCrossing(x, z)) continue; const sc = .8 + R() * .5, v = .85 + R() * .2;
     foliage.add(bt.bush, {x, y: s0.h - .05, z, ry: R() * TAU, sx: sc, sy: sc, sz: sc, cell: ATLAS.bush, up: true, c: tone.setRGB(v, v, v)});
   }
@@ -193,7 +193,7 @@ export function* buildBigTile(world, look, i, j, ring) {
       const p = s.samples[k]; if (!inTile(p.x, p.z)) continue;
       if (k % 32 === 0) yield 'brook';
       const Rs = rng(tileSeed(SEED + 2, k, s.N)), tt = k / s.N, w = s.width(k) / 2, q = s.samples[Math.min(s.N, k + 1)], o = s.samples[Math.max(0, k - 1)], dx = q.x - o.x, dz = q.z - o.z, l = Math.hypot(dx, dz) || 1;
-      if (fbm(tt * 30 + s.N, 2) > .55) for (const side of [-1, 1]) { if (Rs() < .45) continue; const off = w + .05 + Rs() * .4, x = p.x - dz / l * off * side, z = p.z + dx / l * off * side; if (T.pathAt(x, z).d < 1.2 || T.onCrossing(x, z) || T.stillDepth(x, z) > .05) continue; const sc = .8 + Rs() * .5; foliage.add(t.reeds, {x, y: T.ground(x, z) - .05, z, ry: Rs() * TAU, sx: sc, sy: sc, sz: sc, cell: ATLAS.reeds, up: true}); }
+      if (fbm(tt * 30 + s.N, 2) > .55 && T.snow(p.x, p.z) < .05) for (const side of [-1, 1]) { if (Rs() < .45) continue; const off = w + .05 + Rs() * .4, x = p.x - dz / l * off * side, z = p.z + dx / l * off * side; if (T.pathAt(x, z).d < 1.2 || T.onCrossing(x, z) || T.stillDepth(x, z) > .05) continue; const sc = .8 + Rs() * .5; foliage.add(t.reeds, {x, y: T.ground(x, z) - .05, z, ry: Rs() * TAU, sx: sc, sy: sc, sz: sc, cell: ATLAS.reeds, up: true}); }
       if (k % 8 === 0 && fbm(tt * 22, 7 + s.N) > .5) { const side = Rs() < .5 ? -1 : 1, off = w + (Rs() - .3) * .6, x = p.x - dz / l * off * side, z = p.z + dx / l * off * side; if (T.pathAt(x, z).d > 1 && !T.onCrossing(x, z)) { const sc = .22 + Rs() * .4; rocks.add(t.rock, {x, y: T.ground(x, z) + .02, z, ry: Rs() * TAU, sx: sc, sy: sc, sz: sc}); } }
       { const off = (Rs() * 2 - 1) * w * .9, x = p.x - dz / l * off, z = p.z + dx / l * off, v = .7 + Rs() * .5, sc = .05 + Rs() * .08; rocks.add(t.pebble, {x, y: T.ground(x, z) + .02, z, ry: Rs() * TAU, sx: sc, sy: sc, sz: sc, c: tone.setRGB(v, v * .95, v * .85)}); }
     }

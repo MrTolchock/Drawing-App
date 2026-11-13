@@ -7,7 +7,7 @@ import {characters} from './characters3d.js';
 import {createWorld} from './world/index.js';
 import {createLook, foxView, canvasTex} from './world/textures.js';
 import {createStreamer, NEAR} from './world/streamer.js';
-import {TAU, rng} from './world/noise.js';
+import {TAU, rng, lerp} from './world/noise.js';
 import {createLife} from './world/life.js';
 
 const WORLD = createWorld();
@@ -53,7 +53,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     const T = WORLD.terrain, E = WORLD.extent, G = 8, M = 40, nx = (E.x1 - E.x0 + 2 * M) / G, nz = (E.z1 - E.z0 + 2 * M) / G, pos = [], col = [], idx = [], bm = {};
     for (let j = 0; j <= nz; j++) for (let i = 0; i <= nx; i++) {
       const x = E.x0 - M + i * G, z = E.z0 - M + j * G, b = T.biome(x, z, bm), wood = (1 - b.meadow) * (1 - b.swamp) * (1 - b.rock) * (1 - b.glade), h = T.ground(x, z) + wood * (b.spruce > .5 ? 9 : 7);
-      const shade = .93 - wood * .07 + b.rock * .02 + Math.min(.05, h * .004) + ((i * 7 + j * 13) % 5) * .004; pos.push(x, h, z); col.push(shade * .97, shade, shade * (1 + b.rock * .04 - wood * .03));
+      const shade = .93 - wood * .07 + b.rock * .02 + Math.min(.05, h * .004) + ((i * 7 + j * 13) % 5) * .004; const sn = b.snow; pos.push(x, h, z); col.push(lerp(shade * .97, 1.16, sn), lerp(shade, 1.17, sn), lerp(shade * (1 + b.rock * .04 - wood * .03), 1.32, sn));
     }
     for (let j = 0; j < nz; j++) for (let i = 0; i < nx; i++) { const a = j * (nx + 1) + i, b = a + 1, c = a + nx + 1, d = c + 1; idx.push(a, c, b, b, c, d); }   // north first: the camera looks north
     const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setAttribute('color', new THREE.Float32BufferAttribute(col, 3)); g.setIndex(idx);
@@ -187,8 +187,8 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   const sound = {at: -1, moving: false, speed: 0, ground: 'grass', trees: 1, meadow: 0, swamp: 0, spruce: 0, brook: 0, falls: 0, fallsPan: 0}, soundBiome = {};
   function listen() {
     const T = WORLD.terrain, b = T.biome(pos.x, pos.z, soundBiome), c = T.onCrossing(pos.x, pos.z), pa = T.pathAt(pos.x, pos.z);
-    sound.ground = c ? (c.c.kind === 'dam' ? 'sticks' : 'wood') : b.rock > .6 ? 'rock' : b.swamp > .5 ? 'wet' : pa.d < pa.w / 2 + .15 ? 'earth' : b.meadow > .5 ? 'meadow' : b.spruce > .5 ? 'needles' : 'grass';
-    sound.trees = (1 - b.meadow) * (1 - b.swamp * .6) * (1 - b.rock * .7); sound.meadow = b.meadow; sound.swamp = b.swamp; sound.spruce = b.spruce;
+    sound.ground = c ? (c.c.kind === 'dam' ? 'sticks' : 'wood') : b.snow > .5 ? 'snow' : b.rock > .6 ? 'rock' : b.swamp > .5 ? 'wet' : pa.d < pa.w / 2 + .15 ? 'earth' : b.meadow > .5 ? 'meadow' : b.spruce > .5 ? 'needles' : 'grass';
+    sound.trees = (1 - b.meadow) * (1 - b.swamp * .6) * (1 - b.rock * .7) * (1 - b.snow); sound.snow = b.snow; sound.meadow = b.meadow; sound.swamp = b.swamp; sound.spruce = b.spruce;
     let near = Infinity; for (const s of T.streams) for (let i = 0; i <= s.N; i += 6) { const q = s.samples[i], d = (q.x - pos.x) ** 2 + (q.z - pos.z) ** 2; if (d < near) near = d; }
     sound.brook = THREE.MathUtils.clamp(1 - (Math.sqrt(near) - 1.2) / 13, 0, 1);
     const fx = T.falls.base[0] - pos.x, fz = T.falls.base[1] - pos.z; sound.falls = THREE.MathUtils.clamp(1 - (Math.hypot(fx, fz) - 5) / 42, 0, 1); sound.fallsPan = THREE.MathUtils.clamp(fx / 22, -1, 1);
@@ -228,7 +228,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     animatedCount = animated;
     if (moving && !reduced && time - lastPuff > .17) { lastPuff = time; const p = puffs.find(q => q.life <= 0); if (p) { p.life = .55; p.s.visible = true; p.s.position.set(pos.x + (R() - .5) * .3, base + .12, pos.z + .15); } }
     for (const p of puffs) if (p.life > 0) { p.life -= dt; const k = 1 - p.life / .55; size(p.s, .25 + k * .45); p.s.material.opacity = .5 * (1 - k); p.s.position.y += dt * .25; if (p.life <= 0) p.s.visible = false; }
-    life.update(dt, time, pos, {reduced, trees: sound.trees, meadow: sound.meadow, height, fov: camera.fov});
+    life.update(dt, time, pos, {reduced, snow: sound.snow || 0, trees: sound.trees, meadow: sound.meadow, height, fov: camera.fov});
     const halos = streamer.landmarks.home?.halos; if (halos) halos.material.opacity = reduced ? .55 : .5 + Math.sin(time * 7) * .06;
     shaftMat.opacity = reduced ? .15 : .14 + Math.sin(time * .35) * .04;
     if (!reduced) { if (look.M.water) look.M.water.uniforms.uTime.value += dt; motes.position.set(pos.x, Math.sin(time * .35) * .3, pos.z); motes.rotation.y = time * .01; } else motes.position.set(pos.x, 0, pos.z);
