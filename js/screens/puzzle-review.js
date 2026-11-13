@@ -71,7 +71,7 @@
   function finishPreview(session){
     const all=V.progress(session.id);
     if(!session.reviewResults.includes('improve')&&all.approved===all.total&&!V.finishSession(session)){saveFailure(()=>finishPreview(session));return;}
-    notice=all.approved===all.total?'Alle Iterationen geprüft. Puzzle-Freigabe lokal gespeichert; GitHub synchronisiert automatisch.':(all.total-all.approved)+' Iterationen bleiben zur Verbesserung oder Prüfung offen.';
+    notice=all.approved===all.total?'Alle Iterationen geprüft. Puzzle-Freigabe lokal gespeichert. '+(FK.reviewRepository?'Bitte den GitHub-Speicherstatus oben beachten.':''):(all.total-all.approved)+' Iterationen bleiben zur Verbesserung oder Prüfung offen.';
     returnToGallery(session.id);
   }
   V.attachPreview=attachPreview;V.saveFailure=saveFailure;V.finishPreview=finishPreview;

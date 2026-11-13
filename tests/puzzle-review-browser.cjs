@@ -53,6 +53,11 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
   }
   if(q.kind==='picnic'){for(let i=0;i<q.friends;i++)for(let n=(q.plates?.[i]||0);n<q.each;n++)await activate(page.locator('.puzzle-plate').nth(i));}
   else if(q.kind==='double'){while(await page.locator('.puzzle-partner:not(.filled)').count())await activate(page.locator('.puzzle-partner:not(.filled)').first());await answer(q.answer);}
+  else if(q.kind==='syllable'){
+   for(let n=0;n<q.answer;n++)await activate(page.getByRole('button',{name:'Eine Silbe klopfen',exact:true}));
+   assert.equal(await page.locator('.puzzle-claps>span').count(),q.answer,'visible syllable tally');assert.equal(await page.locator('.puzzle-claps').textContent(),'●'.repeat(q.answer));
+   await activate(page.getByRole('button',{name:'Klopfen zurücksetzen',exact:true}));assert.equal(await page.locator('.puzzle-claps>span').count(),0);await answer(q.answer);
+  }
   else if(q.kind==='build'){for(const target of q.holes){const p=q.parts[target];await activate(page.locator('.puzzle-answer[data-shape="'+p[0]+'"][data-rotation="'+p[5]+'"]'));}}
   else if(q.kind==='robot'){
    const route=await page.evaluate(q=>{const queue=[[q.start]],seen=new Set([q.start]);for(const path of queue){const p=path.at(-1);if(p===q.goal)return path.slice(1);for(const [dx,dy]of [[0,-1],[-1,0],[0,1],[1,0]]){const x=p%q.size+dx,y=Math.floor(p/q.size)+dy,n=y*q.size+x;if(x<0||x>=q.size||y<0||y>=q.size||q.obstacles.includes(n)||seen.has(n))continue;seen.add(n);queue.push([...path,n]);}}},q);

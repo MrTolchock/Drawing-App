@@ -151,7 +151,7 @@
     });
   }
   function renderSyllable(q) {
-    const tally=h('div',{class:'puzzle-claps','aria-live':'polite'}),refresh=()=>tally.replaceChildren(Array.from({length:Number(work().claps)||0},()=>h('span',{text:'●'})));
+    const tally=h('div',{class:'puzzle-claps','aria-live':'polite'}),refresh=()=>tally.replaceChildren(...Array.from({length:Number(work().claps)||0},()=>h('span',{text:'●'})));
     const drum=button('Eine Silbe klopfen',()=>{if(locked)return;work().claps=((Number(work().claps)||0)+1)%6;persist();refresh();},'puzzle-drum',h('span',{},picture('forest-leaf'),h('b',{text:'Klopfen'})));
     scene.append(picture(q.picture),h('p',{class:'puzzle-read-text',text:FK.text.word(q.word)}),h('div',{class:'puzzle-clap-controls'},button('Klopfen zurücksetzen',()=>{if(locked)return;work().claps=0;persist();refresh();},'puzzle-reset','↺'),drum),tally);refresh();numeric();
   }

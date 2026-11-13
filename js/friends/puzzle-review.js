@@ -64,7 +64,7 @@
   }
   function currentReview(session){
     const id=session?.iterationIds?.[session.round];
-    if(!authorized||!session.review||!id||session.reviewRevision!==C.puzzleRevision(session.id)||session.reviewRevisions[session.round]!==revision(session.id,id)){
+    if(!authorized||!session?.review||!id||session.reviewRevision!==C.puzzleRevision(session.id)||session.reviewRevisions[session.round]!==revision(session.id,id)){
       error='Diese Aufgabe wurde geändert. Bitte die Prüfung neu öffnen.';return null;
     }return id;
   }
