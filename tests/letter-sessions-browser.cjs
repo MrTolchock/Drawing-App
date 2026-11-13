@@ -16,7 +16,7 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
   const mail=()=>page.evaluate(()=>FK.friends.mail());
   const visit=async id=>{await page.evaluate(async id=>{const {places}=await import('./js/friends/world.js'),p=places[id];FK.friendsForest.teleport(p.x,p.z);document.querySelector('.ff-hotspots [data-place="'+id+'"]').click();},id);};
   const solve=async(id,trace=false)=>{
-   assert.equal(await active().getByRole('button',{name:'Spiel erklären',exact:true}).count(),1,'child puzzle keeps its explanation');
+   assert.equal(await active().getByRole('button',{name:'Spiel erklären',exact:true}).count(),1,'child puzzle keeps its explanation');assert.equal(await active().locator('.review-reject').count(),0,'review controls are absent from child play');
    for(let n=0;n<5;n++){
     if(trace){
      await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
@@ -40,7 +40,7 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
   await page.getByLabel('Anzahl Briefe',{exact:true}).fill('2');await page.getByLabel('Anzahl Briefe',{exact:true}).press('Tab');assert.equal((await mail()).session.limit,2);await shot('settings-tablet');
   await page.setViewportSize({width:390,height:844});assert.equal(await active().evaluate(e=>e.scrollWidth>e.clientWidth+2),false);await shot('settings-phone');await page.setViewportSize({width:1080,height:810});
   await page.getByRole('button',{name:'Puzzle-Galerie öffnen',exact:true}).click();assert.equal(await page.locator('.gate-task').count(),0);await page.waitForFunction(()=>FK.current()==='puzzle-review');assert.equal(await page.locator('.review-puzzle').count(),34);
-  const beforeReview=await mail();await page.evaluate(()=>FK.puzzleReview.preview('friends-mouse',FK.puzzleCatalogue.iterations('friends-mouse')[0].id));assert.equal(await active().locator('.review-preview').count(),1);assert.deepEqual(await mail(),beforeReview);
+  const beforeReview=await mail();await page.evaluate(()=>FK.puzzleReview.preview('friends-mouse',FK.puzzleCatalogue.iterations('friends-mouse')[0].id));assert.equal(await active().locator('.review-preview,.review-decision').count(),0);assert.equal(await active().getByRole('button',{name:'Iteration ablehnen',exact:true}).count(),1);assert.deepEqual(await mail(),beforeReview);
   await active().getByRole('button',{name:'Zur Puzzle-Prüfung',exact:true}).click();await active().locator('.btn-back').click();await page.waitForFunction(()=>FK.current()==='settings');
   await page.getByRole('button',{name:'Neue Briefreise starten',exact:true}).click();await page.waitForFunction(()=>FK.current()==='friends');assert.equal(await page.evaluate(()=>FK.friendsView().area),'den');assert.equal((await mail()).session.limit,2);await shot('den-start');console.log('PASS parent settings and adult-only gallery');
   await active().getByRole('button',{name:'Brief öffnen',exact:true}).click();assert.equal((await mail()).host,'squirrel');await active().getByRole('button',{name:'Zum Freund gehen',exact:true}).click();assert.equal(await page.evaluate(()=>FK.friendsView().mailTarget),'squirrel');

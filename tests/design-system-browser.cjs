@@ -19,6 +19,12 @@ try{
  const [a,b]=(await page.locator('.gate-task').textContent()).match(/\d+/g).map(Number);await page.getByLabel('Deine Antwort',{exact:true}).fill(String(a*b));await page.locator('.gate-submit').click();await page.waitForFunction(()=>FK.current()==='puzzle-review');
  await page.evaluate(()=>document.fonts.ready);
  const games=await page.evaluate(()=>FK.friendsLibrary.catalogue()),report=[];
+ // Layout-only fixture: render the same exact task as child play, without a real invitation or editorial release.
+ // Access gates and confirmed GitHub release are exercised by the journey/storage suites.
+ await page.evaluate(()=>{FK.friendsLibrary.canPlay=()=>true;FK.puzzleReview.ready=()=>true;});
+ const geometry=()=>page.locator('.screen:not([hidden])').evaluate(root=>Object.fromEntries(['.topbar','.puzzle-paper','.puzzle-context','.puzzle-scene','.puzzle-answers','.tr-play','.tr-paper'].map(selector=>{
+  const el=root.querySelector(selector),r=el?.getBoundingClientRect();return [selector,r&&{width:r.width,height:r.height,y:r.y}];
+ })));
  for(const width of [1080,390]){
   await page.setViewportSize({width,height:width===390?844:810});
   for(const g of games){
@@ -42,6 +48,15 @@ try{
    for(const subject of result.subjects)assert.match(subject.image,/assets\/waldatelier\//,g.id+' missing/mixed subject '+subject.id);
    report.push({puzzle:g.id,width,checks:'passed',subjects:result.subjects.length});
    if(['add','friends-owl','trace','read-puzzle'].includes(g.id))await page.screenshot({path:out+'/'+g.id+'-'+width+'.png'});
+   assert.equal(await active.locator('.review-preview,.review-decision').count(),0,g.id+' no sign-off footer');
+   const review=await geometry();
+   await page.evaluate(g=>{const it=FK.puzzleCatalogue.iterations(g.id)[0];FK.puzzleRounds.start=()=>({id:g.id,seed:0,round:0,solved:false,work:{},questions:Array.from({length:5},()=>structuredClone(it.question)),iterationIds:Array(5).fill(it.id)});FK.go(g.screen,{game:g.id});},g);
+   if(g.screen==='trace')await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
+   const child=await geometry();
+   // Answers may wrap differently after production answer shuffling; the screen and paper geometry must match.
+   for(const selector of ['.topbar','.puzzle-paper','.puzzle-context','.tr-play','.tr-paper'])if(review[selector]){
+    for(const dimension of ['width','height','y'])assert.ok(Math.abs(review[selector][dimension]-child[selector][dimension])<1,g.id+' '+width+' '+selector+' '+dimension+': '+JSON.stringify({review:review[selector],child:child[selector]}));
+   }
   }
  }
  assert.deepEqual(errors,[]);assert.deepEqual(missing,[]);fs.writeFileSync(out+'/report.json',JSON.stringify(report,null,2)+'\n');console.log('Visual contract passed: 34 puzzles × 2 viewports, font/art roles, five leaves, speech on puzzle overview, no hints, current routes and preserved legacy storage.');

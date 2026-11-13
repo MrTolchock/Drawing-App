@@ -1,5 +1,5 @@
 /* Editorial decisions belong to exact revisions, independently of child saves.
-   This is a local adult workflow, not an identity/authentication service. */
+   The local outbox synchronizes with the separate GitHub review ledger. */
 (function () {
   'use strict';
   const FK=window.FK,C=FK.puzzleCatalogue;
@@ -52,9 +52,35 @@
     if(FK.current?.()==='settings')enter();else FK.ui.parentGate(enter);
   }
   function preview(id,iteration){if(!authorized)return false;const g=C.puzzle(id),it=item(id,iteration);if(!g||!it)return false;FK.go(g.screen,{game:id,reviewIteration:iteration,returnTo:'puzzle-review',from:'friends'});return true;}
-  function previewSession(id,iteration){if(!authorized)return null;const it=item(id,iteration);return it?{id,seed:0,round:0,solved:false,work:{},questions:[clone(it.question)],iterationIds:[it.id],review:true}:null;}
+  function start(id){if(!authorized||!C.puzzle(id))return false;FK.go(C.puzzle(id).screen,{game:id,reviewQueue:true,returnTo:'puzzle-review',from:'friends'});return true;}
+  function previewSession(id,iteration){
+    if(!authorized||!C.puzzle(id))return null;
+    const first=iteration?item(id,iteration):null;if(iteration&&!first)return null;
+    // Snapshot once: a rejected item is visited once, then stays open for the next run.
+    const items=C.iterations(id).filter(it=>it.id!==iteration&&status(id,it.id).status!=='approved');
+    if(first)items.unshift(first); // Explicit reinspection of an approved item is allowed.
+    return {id,seed:0,round:0,solved:false,work:{},questions:C.prepare(items,Math.floor(Math.random()*0x100000000)).map(it=>it.question),iterationIds:items.map(it=>it.id),review:true,
+      reviewRevision:C.puzzleRevision(id),reviewRevisions:items.map(it=>C.iterationRevision(id,it)),reviewResults:[]};
+  }
+  function currentReview(session){
+    const id=session?.iterationIds?.[session.round];
+    if(!authorized||!session.review||!id||session.reviewRevision!==C.puzzleRevision(session.id)||session.reviewRevisions[session.round]!==revision(session.id,id)){
+      error='Diese Aufgabe wurde geändert. Bitte die Prüfung neu öffnen.';return null;
+    }return id;
+  }
+  function visit(session){const id=currentReview(session);return !!id&&(status(session.id,id).seen||seen(session.id,id));}
+  function sessionDecision(session,value,note=''){
+    const id=currentReview(session);if(!id||!['approved','improve'].includes(value)||session.reviewResults[session.round])return false;
+    if(!decide(session.id,id,value,note))return false;
+    session.reviewResults[session.round]=value;return true;
+  }
+  function finishSession(session){
+    if(!authorized||!session?.review||session.round!==session.questions.length||session.reviewRevision!==C.puzzleRevision(session.id)||session.reviewResults.filter(Boolean).length!==session.questions.length)return false;
+    if(session.reviewResults.includes('improve')||progress(session.id).approved!==progress(session.id).total)return false;
+    return decide(session.id,null,'approved');
+  }
   window.addEventListener?.('storage',event=>{if(event.key!==key)return;try{const next=JSON.parse(event.newValue);if(valid(next)){data=next;error='';}else {data=empty();error='Prüfung wurde geändert. Bitte erneut prüfen.';}FK.emit?.('puzzle-review-change');}catch{data=empty();FK.emit?.('puzzle-review-change');}});
-  FK.puzzleReview={key,status,seen,progress,ready,decide,exportData,importData,open,preview,previewSession,get authorized(){return authorized;},get error(){return error;}};
+  FK.puzzleReview={key,status,seen,progress,ready,decide,exportData,importData,open,preview,start,previewSession,visit,sessionDecision,finishSession,get authorized(){return authorized;},get error(){return error;}};
   if(FK.ReviewRepository&&window.fetch&&window.document&&new URLSearchParams(location.search).get('dev')!=='1'){
     let tokenStorage;try{tokenStorage=window.sessionStorage;}catch{/* A temporary connection still works. */}
     FK.reviewRepository=FK.ReviewRepository.create({

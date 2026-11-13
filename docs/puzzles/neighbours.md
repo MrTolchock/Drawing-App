@@ -7,7 +7,7 @@
 - Related competence: **MA.1.A.2.a/b** — Zahlennachbarn bestimmen
 - Difficulty: Mitte 1–18; Mengenrahmen bis 20; ein Nachbar kann vorgegeben sein
 - Pool: 36 explicit iterations; a round selects five.
-- Review: every iteration and the puzzle must be approved for this exact revision; names, notes and checklists are not required. New/changed items or difficulty require review again.
+- Review: solve every unconfirmed iteration to approve it; × rejects with an optional note. The final celebration approves the puzzle only when all iterations passed. Exact revisions gate release; changes require review again.
 
 ## Mapping to the blueprint
 
@@ -20,7 +20,7 @@
 | Sound | Enabled button clicks, success/retry, mute respected |
 | Round | Five distinct sampled iterations; saved questions/partial work |
 | Ending | 900 ms correct feedback, then 2.2 s celebration; reduced motion |
-| Review | Isolated real-renderer previews, one-click decisions, puzzle-level speech, revision gate |
+| Review | Production-sized open-item queue; solve to approve, × to reject, final celebration; puzzle-level speech and revision gate |
 
 ## Every iteration
 

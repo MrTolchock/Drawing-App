@@ -263,19 +263,21 @@
     if(!active||!woodlandSession)return;
     if(!woodlandSession.review&&!FK.friendsLibrary.canPlay(woodlandGame)){FK.go('friends');return;}
     if(document.hidden||document.querySelector('.modal')){later(woodlandNext,250);return;}
-    if(woodlandSession.round===5){
+    if(woodlandSession.round===woodlandSession.questions.length){
+      root.querySelector('.review-reject')?.remove();delete root.dataset.reviewIteration;
       playEl.hidden=true;overEl.hidden=true;woodlandContext.hidden=true;woodlandEnd.hidden=false;
       if(!woodlandSession.review&&woodlandOrigin==='friends'&&FK.friends.mail().host==='mouse'&&FK.friends.mail().phase==='to-friend'&&!FK.friends.completeMail('mouse'))return;
       if(!woodlandSession.review){FK.puzzleRounds.complete(woodlandGame);FK.friendsLibrary.complete('mouse',woodlandGame);}
       cancelWoodland=FK.puzzleUI.completion(woodlandEnd,'mouse',()=>{
-        if(woodlandSession.review)FK.go('puzzle-review');else if(woodlandOrigin==='forest-book')FK.go('forest-book');else FK.friendsPuzzleCompleted('mouse');
-      });return;
+        if(woodlandSession.review)FK.puzzleReview.finishPreview(woodlandSession);else if(woodlandOrigin==='forest-book')FK.go('forest-book');else FK.friendsPuzzleCompleted('mouse');
+      },{total:woodlandSession.questions.length,review:!!woodlandSession.review});return;
     }
     woodlandEnd.hidden=true;woodlandContext.hidden=false;
-    woodlandContext.replaceChildren(FK.puzzleUI.context('mouse',woodlandSession.round,FK.puzzleRounds.instructions[woodlandGame],{explain:!woodlandSession.review}),FK.puzzleUI.progress(woodlandSession.round));
+    woodlandContext.replaceChildren(FK.puzzleUI.context('mouse',woodlandSession.round,FK.puzzleRounds.instructions[woodlandGame],{explain:!woodlandSession.review,total:woodlandSession.questions.length}),FK.puzzleUI.progress(woodlandSession.round,woodlandSession.questions.length));
     const glyph=FK.puzzleRounds.current(woodlandSession).glyph;
     root.dataset.glyph=glyph;
     openGlyph(glyph,'guided');
+    if(woodlandSession.review)FK.puzzleReview.attachPreview(root,woodlandSession,()=>{stopActivity();woodlandSession.round++;woodlandSession.work={};woodlandNext();},stopActivity);
   }
 
   function later(fn, ms) {
@@ -863,6 +865,8 @@
 
   function finishGlyph() {
     phase = 'done';
+    if(woodlandSession?.review&&!FK.puzzleReview.sessionDecision(woodlandSession,'approved')){FK.puzzleReview.saveFailure(finishGlyph);return;}
+    if(woodlandSession?.review){woodlandSession.solved=true;root.querySelector('.review-reject')?.setAttribute('disabled','');}
     const my = token;
     FK.sound.scribbleStop();
     stopDemo();
@@ -886,9 +890,8 @@
       if (my !== token) return;
       const id = mode === 'frei' ? cur.g + ':frei' : cur.g;
       if(FK.friendsLibrary?.active){
-        if(woodlandSession.review&&woodlandSession.questions.length===1)return;
         if(!woodlandSession.review)FK.progress.finish('trace',id,0);
-        woodlandSession.round++;woodlandSession.work={};if(!woodlandSession.review)FK.puzzleRounds.save(woodlandSession);
+        woodlandSession.round++;woodlandSession.solved=false;woodlandSession.work={};if(!woodlandSession.review)FK.puzzleRounds.save(woodlandSession);
         woodlandNext();
         return;
       }
@@ -1091,10 +1094,9 @@
       active = true;root.scrollTop=0;
       woodlandSession=null;
       woodlandGame=params.game==='trace-numbers'?'trace-numbers':'trace';woodlandOrigin=['forest-book','puzzle-review'].includes(params.returnTo)?params.returnTo:'friends';
-      root.classList.remove('is-review-preview');root.querySelector('.review-preview')?.remove();
+      root.querySelector('.review-reject')?.remove();delete root.dataset.reviewIteration;
       if(FK.friendsLibrary?.active){
-        if(params.reviewIteration)woodlandSession=FK.puzzleReview.previewSession(woodlandGame,params.reviewIteration);
-        else if(params.reviewRound&&FK.puzzleReview.authorized){const items=FK.puzzleCatalogue.select(woodlandGame,Math.floor(Math.random()*0x100000000));woodlandSession={id:woodlandGame,seed:0,round:0,solved:false,work:{},review:true,questions:items.map(i=>i.question),iterationIds:items.map(i=>i.id)};}
+        if(params.reviewIteration||params.reviewQueue||params.reviewRound)woodlandSession=FK.puzzleReview.previewSession(woodlandGame,params.reviewIteration);
         if(!woodlandSession&&!FK.friendsLibrary.canPlay(woodlandGame)){FK.go('friends');return;}
         if(!woodlandSession)woodlandSession=FK.puzzleReview.ready(woodlandGame)?FK.puzzleRounds.start(woodlandGame):{blocked:true};
       }
@@ -1102,7 +1104,7 @@
       root.querySelector('.title').textContent=woodlandSession?FK.puzzleRounds.title(woodlandGame):'Schreiben';
       root.querySelector('.topbar .play-listen').hidden=!!woodlandSession;
       root.querySelector('.star-count').hidden=!!woodlandSession;
-      root.querySelector('.btn-back').setAttribute('aria-label',woodlandSession?(woodlandOrigin==='forest-book'?'Zurück zu Waldspiele':'Zurück zum Wald'):'Zurück');
+      root.querySelector('.btn-back').setAttribute('aria-label',woodlandSession?.review?'Zur Puzzle-Prüfung':woodlandSession?(woodlandOrigin==='forest-book'?'Zurück zu Waldspiele':'Zurück zum Wald'):'Zurück');
       woodlandContext.hidden=true;woodlandEnd.hidden=true;
       learningStage = params.stage >= 1 && params.stage <= 3 ? params.stage : 1;
       window.addEventListener('resize', onResize);
@@ -1112,8 +1114,7 @@
       if (ro) ro.observe(paperEl);
       if(woodlandSession){
         if(woodlandSession.blocked){overEl.hidden=true;playEl.hidden=true;woodlandEnd.hidden=false;woodlandEnd.replaceChildren(h('p',{class:'puzzle-review-blocked',text:'Dieses Puzzle wartet auf Freigabe. Eine erwachsene Person prüft zuerst alle Aufgaben.'}));return;}
-        root.classList.toggle('is-review-preview',!!woodlandSession.review);woodlandNext();
-        if(woodlandSession.review){root.classList.add('is-review-preview');if(params.reviewIteration)FK.puzzleReview.seen(woodlandGame,params.reviewIteration);FK.puzzleReview.attachPreview(root,woodlandGame,params.reviewIteration);}
+        woodlandNext();
         return;
       }
       if (params.set && setById(params.set)) setId = params.set;

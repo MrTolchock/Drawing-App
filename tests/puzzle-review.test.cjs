@@ -84,4 +84,33 @@ test('legacy and corrupt round snapshots are retained separately, never substitu
 test('storage failure never reports an approval as saved',()=>{
  const {FK,ctx}=setup(),V=FK.puzzleReview,it=FK.puzzleCatalogue.iterations('add')[0];ctx.localStorage.setItem=()=>{throw Error('quota');};assert.equal(V.seen('add',it.id),false);assert.equal(V.status('add',it.id).seen,false);assert.match(V.error,/gespeichert/);
 });
+function owner(FK){FK.current=()=> 'settings';FK.go=()=>{};FK.puzzleReview.open();return FK.puzzleReview;}
+test('review snapshots every unconfirmed item once, including rejected and stale items',()=>{
+ const {FK}=setup(),V=owner(FK),pool=FK.puzzleCatalogue.iterations('add');
+ assert.ok(V.seen('add',pool[0].id));assert.ok(V.decide('add',pool[0].id,'approved'));
+ assert.ok(V.decide('add',pool[1].id,'improve','Check picture'));
+ const s=V.previewSession('add');assert.equal(s.questions.length,pool.length-1);assert.ok(s.questions.length>5);assert.equal(s.iterationIds.includes(pool[0].id),false);assert.ok(s.iterationIds.includes(pool[1].id));
+ assert.ok(V.visit(s));assert.ok(V.sessionDecision(s,'improve'));assert.equal(V.sessionDecision(s,'approved'),false);s.round++;
+ assert.equal(s.questions.length,pool.length-1,'rejection is not re-added to the active run');
+ const next=V.previewSession('add');assert.ok(next.iterationIds.includes(pool[1].id));
+ FK.puzzleImplementation='new-interaction';assert.equal(V.previewSession('add').questions.length,pool.length);
+});
+test('correct review completion approves only visited items and the puzzle after the entire queue',()=>{
+ const {FK,memory}=setup(),V=owner(FK),s=V.previewSession('add');
+ assert.equal(V.sessionDecision(s,'approved'),false);assert.equal(V.finishSession(s),false);
+ for(;s.round<s.questions.length;s.round++){assert.ok(V.visit(s));assert.ok(V.sessionDecision(s,'approved'));}
+ assert.equal(V.status('add').status,'pending');assert.ok(V.finishSession(s));assert.ok(V.ready('add'));
+ assert.ok(setup(memory).FK.puzzleReview.ready('add'));assert.equal(memory.has('farbtupf.puzzles.v1'),false,'review does not create a child round');
+ assert.equal(V.previewSession('add').questions.length,0);assert.ok(V.finishSession(V.previewSession('add')),'an interrupted final celebration can be completed');
+ const inspect=V.previewSession('add',s.iterationIds[0]);assert.equal(inspect.questions.length,1,'explicit reinspection remains possible');
+});
+test('rejection, a failed save, an unvisited queue or changed revision never grants release',()=>{
+ const {FK,ctx}=setup(),V=owner(FK),s=V.previewSession('add');assert.ok(V.visit(s));
+ const write=ctx.localStorage.setItem;ctx.localStorage.setItem=()=>{throw Error('full');};assert.equal(V.sessionDecision(s,'approved'),false);assert.equal(s.reviewResults.length,0);
+ ctx.localStorage.setItem=write;assert.ok(V.sessionDecision(s,'improve',''));s.round++;
+ for(;s.round<s.questions.length;s.round++){assert.ok(V.visit(s));assert.ok(V.sessionDecision(s,'approved'));}
+ assert.equal(V.finishSession(s),false);assert.equal(V.ready('add'),false);
+ const next=V.previewSession('add');assert.equal(next.questions.length,1);assert.ok(V.visit(next));FK.puzzleImplementation='changed';assert.equal(V.sessionDecision(next,'approved'),false);assert.match(V.error,/geändert/);
+ const skipped=V.previewSession('add');skipped.round=skipped.questions.length;assert.equal(V.finishSession(skipped),false);
+});
 test('generated GitHub pages and revision reflect the exact runtime',()=>assert.deepEqual(check(),[]));

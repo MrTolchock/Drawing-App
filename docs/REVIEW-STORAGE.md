@@ -9,7 +9,7 @@ The repository is public, so review statuses and optional notes are public. Only
 1. Unlock **Einstellungen** with the existing adult calculation. Open **Prüfung auf GitHub → GitHub zum Speichern verbinden**. There is no additional gallery calculation.
 2. Use the link to create a **fine-grained GitHub personal access token**. Select only **MrTolchock/Drawing-App** and grant repository **Contents: Read and write**. Choose an expiry that suits your reviewing session.
 3. Paste the token into **GitHub-Zugriffstoken** in the app and press **Mit GitHub verbinden**. Do not put the token in chat, repository files, notes or exports. The app checks the owner's GitHub account.
-4. Approve or flag iterations as before, without required text. Changes are saved automatically after a short pause; quick decisions are batched to respect GitHub’s limits. **Auf GitHub gespeichert** confirms shared storage. **Nur lokal gesichert** or a pending count means the upload has not finished.
+4. Solve review tasks to approve them; use × to flag an iteration, with an optional comment. Completing the whole queue and celebration approves the puzzle only if every current iteration passed. Changes are saved automatically after a short pause; quick decisions are batched to respect GitHub’s limits. **Auf GitHub gespeichert** confirms shared storage. **Nur lokal gesichert** or a pending count means the upload has not finished.
 
 The token stays in this browser tab's session storage; a refresh retains that connection. **GitHub trennen** removes it. Closing the session, a different browser or a reinstall can require connecting again **to edit**. Reading/playing needs no token: every browser loads published approvals automatically.
 
