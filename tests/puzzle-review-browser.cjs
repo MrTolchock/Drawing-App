@@ -8,7 +8,10 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
  try{
  const context=await browser.newContext({viewport:{width:1080,height:810},hasTouch:true,reducedMotion:'reduce',acceptDownloads:true}),page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));page.setDefaultTimeout(60000);
  await installRemote(context);
- await page.goto(base+'/?screen=puzzle-review&software=1');await page.waitForFunction(()=>!!window.FK?.friends&&!!document.querySelector('.gate-task'));await page.evaluate(()=>{FK.settings.set('sound',false);});
+ // Exercise the actual puzzle/trace UI without building the unrelated 3D forest.
+ // The full world, invitations and child-save isolation are covered by letter-sessions-browser.cjs.
+ await context.route('**/js/friends/game.js',r=>r.fulfill({contentType:'application/javascript',body:'// Isolated adult puzzle review.'}));
+ await page.goto(base+'/?screen=puzzle-review&software=1');await page.waitForFunction(()=>!!window.FK?.puzzleReview&&!!document.querySelector('.gate-task'));await page.evaluate(()=>{FK.settings.set('sound',false);});
  const entries=await page.evaluate(()=>FK.friendsLibrary.catalogue());
  // The gallery itself is now behind the adult gate; child access is covered by letter-sessions-browser.cjs.
  const task=await page.locator('.gate-task').textContent(),[a,b]=task.match(/\d+/g).map(Number);await page.getByLabel('Deine Antwort',{exact:true}).fill(String(a*b));await page.locator('.gate-submit').click();
@@ -164,8 +167,8 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
  await active().locator('.puzzle-completion').waitFor();await page.waitForFunction(()=>FK.current()==='puzzle-review');assert.equal(await page.evaluate(()=>FK.puzzleReview.status('trace').status),'pending');
  await page.evaluate(()=>FK.puzzleReview.start('trace'));assert.equal(await active().locator('.puzzle-round').textContent(),'1 / 1');await solve(writing[2].question);await active().locator('.puzzle-completion').waitFor();await page.waitForFunction(()=>FK.current()==='puzzle-review');assert.equal(await page.evaluate(()=>FK.puzzleReview.status('trace').status),'approved');assert.deepEqual(await snapshot(),childBeforeWriting,'writing review leaves child saves unchanged');
  // Flagging survives refresh and offline use; a fresh review resumes only unconfirmed items.
- await page.evaluate(id=>FK.puzzleReview.decide('add',id,'improve','Check image'),reopen);await page.reload();await page.waitForFunction(()=>!!window.FK?.friends);assert.equal(await page.evaluate(()=>FK.puzzleReview.ready('add')),false);
- await page.evaluate(()=>navigator.serviceWorker.ready);await page.waitForFunction(()=>!!navigator.serviceWorker.controller);await context.setOffline(true);await page.reload();await page.waitForFunction(()=>!!window.FK?.friends);assert.equal(await page.evaluate(id=>FK.puzzleReview.status('add',id).status,reopen),'improve');assert.equal(await page.evaluate(()=>window.reviewSpeechRequests?.length||0),0);
+ await page.evaluate(id=>FK.puzzleReview.decide('add',id,'improve','Check image'),reopen);await page.reload();await page.waitForFunction(()=>!!window.FK?.puzzleReview);assert.equal(await page.evaluate(()=>FK.puzzleReview.ready('add')),false);
+ await page.evaluate(()=>navigator.serviceWorker.ready);await page.waitForFunction(()=>!!navigator.serviceWorker.controller);await context.setOffline(true);await page.reload();await page.waitForFunction(()=>!!window.FK?.puzzleReview);assert.equal(await page.evaluate(id=>FK.puzzleReview.status('add',id).status,reopen),'improve');assert.equal(await page.evaluate(()=>window.reviewSpeechRequests?.length||0),0);
  assert.deepEqual(errors,[]);console.log('PASS '+checked+' finite solutions, native input for all puzzles, whole-pool review, retries, optional rejection, celebration, isolated saves, export/import, persistence and offline review.');
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});
