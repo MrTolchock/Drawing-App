@@ -5,7 +5,7 @@
   const clone=x=>JSON.parse(JSON.stringify(x));
   const SCHEMA=1;
   const Logging=typeof module!=='undefined'?require('./play-log.js'):root.PlayLog;
-  function create({storage,content,development=false,namespace='',now=()=>Date.now(),random=Math.random,onStatus=()=>{},appVersion=()=>root.FK?.VERSION||'unknown',logContext=()=>({})}){
+  function create({storage,content,development=false,namespace='',now=()=>Date.now(),random=Math.random,onStatus=()=>{},appVersion=()=>root.FK?.VERSION||'unknown',logContext=()=>({}),loggingEnabled=()=>!root.FK?.playLog?.development()}){
     const key='farbtupf.friends.'+(namespace?namespace+'.':development?'development.':'')+'v1', backup=key+'.backup', logKey=key+'.log';
     let state,blocked=false,readFailed=false,expected=null,error='';
     const uid=()=>now().toString(36)+'-'+random().toString(36).slice(2,12);
@@ -49,7 +49,7 @@
     }
     function decode(raw){try{const s=JSON.parse(raw);return valid(s)?s:null;}catch{return null;}}
     function status(message=''){error=message;onStatus({saved:!error,error,blocked});}
-    const log=Logging.createRecorder({storage,key:logKey,now,metadata:()=>({sessionId,development,appVersion:typeof appVersion==='function'?appVersion():appVersion,saveVersion:SCHEMA,contentVersion:content.version,...(state?{journeyId:state.mail?.session?.id,letterIndex:state.mail?.index,mailPhase:state.mail?.phase,invitedHost:state.mail?.host}:{}),...logContext()})});
+    const log=Logging.createRecorder({storage,key:logKey,now,enabled:loggingEnabled,metadata:()=>({sessionId,development,appVersion:typeof appVersion==='function'?appVersion():appVersion,saveVersion:SCHEMA,contentVersion:content.version,...(state?{journeyId:state.mail?.session?.id,letterIndex:state.mail?.index,mailPhase:state.mail?.phase,invitedHost:state.mail?.host}:{}),...logContext()})});
     function record(event,details={}){return log.record(event,details);}
     try{
       expected=storage.getItem(key);state=decode(expected);

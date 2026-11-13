@@ -17,7 +17,7 @@ This is the required contract for every active and future puzzle. It builds on t
 | Progress | Correct answer stays visible for 900 ms, then advances automatically. After five: the existing 2.2-second friend/leaf/flower celebration. Reduced motion uses a static wreath. |
 | Access | Children visit the character on their current letter. Only that character can start a puzzle. The complete gallery/review workbench is in adult Settings. Parents choose the number of letters; the last puzzle leads home to sleep and game over. |
 | Continuity | Back returns to the actual entry point. Child play, parent previews, reviews and historical saves are separate. Previews must not complete invitations, award progress or alter an unfinished child round. |
-| Observations | Child play uses the shared [local gameplay log](../docs/PLAY-LOG.md): exact iteration/revision, selections/configuration, explicit outcomes, active task time and relevant input/reset events. Review previews are excluded; no network upload or raw handwriting paths. |
+| Observations | Child play uses the shared [local gameplay log](../docs/PLAY-LOG.md): exact iteration/revision, selections/configuration, explicit outcomes, active task time and relevant input/reset events. Review previews and developer-mode activity are excluded; no network upload or raw handwriting paths. |
 
 ## Content and competence
 

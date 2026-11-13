@@ -34,7 +34,8 @@
       const begin=FK.ui.btn({label:'Neue Briefreise starten',onClick:async()=>{const value=Number(count.value);if(!Number.isInteger(value)||value<1||value>50){count.reportValidity();return;}if(!FK.friendsStartSession)await import('./game.js');if(!FK.friendsStartSession(value))showSession();}});
       const letters=h('section',{class:'setting-card ff-letter-settings'},h('div',{class:'setting-head'},h('b',{text:'Briefe pro Spielrunde'}),h('small',{text:'Ein Brief ist ein Puzzle mit fünf Aufgaben. Danach geht Fuchs in seinen Bau schlafen.'})),h('label',{},'Anzahl Briefe (1–50)',count),h('p',{text:'Die Auswahl gilt für die nächste Briefreise. Eine begonnene Reise behält ihr Limit. Eine neue Reise beginnt immer im Bau; nach dem Schlafen können nur Erwachsene neu starten.'}),sessionStatus,begin);showSession();
       const logStatus=h('p',{class:'ff-log-status',role:'status','aria-live':'polite'});
-      const showLog=()=>{const log=s.logStatus;logStatus.textContent=log.error||(log.events+' Ereignisse auf diesem Gerät.'+(log.truncated?' Ältere Einträge wurden gekürzt.':''));};
+      const showLog=()=>{const log=s.logStatus;logStatus.textContent=(log.enabled?'':'Entwicklermodus aktiv: Spielprotokoll pausiert. ')+(log.error||(log.events+' Ereignisse auf diesem Gerät.'+(log.truncated?' Ältere Einträge wurden gekürzt.':'')));};
+      const developer=h('section',{class:'setting-card ff-developer-settings'},h('div',{class:'setting-head'},h('b',{text:'Zum Testen'})),toggle('Entwicklermodus',FK.playLog.development(),input=>{FK.playLog.setDevelopment(input.checked);showLog();}),h('p',{class:'ff-setting-note',text:'Zum Ausprobieren ohne Einträge im Spielprotokoll. Auch Antworten, Bearbeitungszeiten und Wege werden nicht aufgezeichnet. Die Auswahl bleibt auf diesem Gerät erhalten.'}));
       const records=h('section',{class:'setting-card ff-data-settings'},h('div',{class:'setting-head'},h('b',{text:'Lokales Spielprotokoll'})),h('p',{text:'Aufgaben, Antworten, Versuche, aktive Bearbeitungszeiten und Wege im Spiel helfen bei der Verbesserung von Ablauf und Schwierigkeit. Keine Namen, Bilder oder Tonaufnahmen. Es wird nichts automatisch hochgeladen.'}),h('p',{class:'ff-setting-note',text:'Der JSON-Export enthält Aufgabenbeschreibungen und Zusammenfassungen für eine KI-Auswertung. Aufbewahrung: bis zu 7 Tage und 10 000 Ereignisse; bei vollem Speicher werden ältere Einträge gekürzt.'}),logStatus,
         FK.ui.btn({label:'Protokoll für KI exportieren',onClick:()=>{download('waldfreunde-spielprotokoll-'+new Date().toISOString().slice(0,10)+'.json',s.exportLog());showLog();}}),
         FK.ui.btn({label:'Protokoll löschen',onClick:async()=>{if(await FK.ui.confirm('Lokales Spielprotokoll löschen?','Protokoll löschen','Behalten',{danger:true})){s.clearLog();showLog();}}}),
@@ -43,7 +44,7 @@
       updateStatus=h('p',{class:'ff-update-status',role:'status','aria-live':'polite'});
       const updates=h('section',{class:'setting-card ff-update-settings'},h('div',{class:'setting-head'},h('b',{text:'App-Version'})),h('p',{class:'ff-settings-version',text:'Farbtupf '+FK.VERSION}),updateButton,updateStatus);
       const review=h('section',{class:'setting-card ff-puzzle-review-settings'},h('b',{text:'Puzzle-Galerie und Prüfung'}),h('p',{text:'Alle Puzzles ansehen. Jede Aufgabe vor dem Spielen prüfen und freigeben. Kinder puzzeln nur beim Freund auf ihrem Brief.'}),FK.ui.btn({label:'Puzzle-Galerie öffnen',onClick:()=>FK.puzzleReview.open()}));
-      body.append(letters,sounds,font,review,FK.reviewConnection.panel(),records,updates);showUpdate();
+      body.append(letters,sounds,font,review,FK.reviewConnection.panel(),developer,records,updates);showUpdate();
     },
     leave(){}
   });

@@ -1,6 +1,6 @@
 # Development and deployment
 
-Serve the repository root with `python3 -m http.server 8000 --bind 127.0.0.1`. There is no application build step. `?software=1` lowers rendering cost for automated checks; `?dev=1` uses separate development saves. Never clear real device storage for a demonstration.
+Serve the repository root with `python3 -m http.server 8000 --bind 127.0.0.1`. There is no application build step. **Einstellungen → Zum Testen → Entwicklermodus** pauses usage logging until switched off, including after refresh. `?software=1` lowers rendering cost for automated checks; the older `?dev=1` route also suppresses logging and uses separate development saves/reviews. See [play-log modes](PLAY-LOG.md). Never clear real device storage for a demonstration.
 
 ## Required checks
 
@@ -19,7 +19,7 @@ Browser suites require Playwright and Chromium. Set `PLAYWRIGHT_MODULE`, `CHROMI
 
 `node tools/check-design.cjs` verifies current links, runtime/offline dependencies, picture roles and archived file hashes. The original 14 fixed visual references remain intact; run `python3 archive/design-history/forest-friends/visuals/check-baseline.py`. Archived browser/model tests document their retired engines and are excluded from current CI.
 
-The [local play-log](PLAY-LOG.md) suite exercises exact answers/definitions, input method, dialog-time exclusion, interrupted/reloaded rounds, robot controls, handwriting outcomes, review exclusion, the real Settings JSON download and isolated deletion at phone/tablet widths. Letter sessions additionally verifies all fifteen outcomes, three celebrations and offline log retention through actual child journeys. These suites use disposable browser storage and intercepted review APIs.
+The [local play-log](PLAY-LOG.md) suite exercises exact answers/definitions, input method, dialog-time exclusion, interrupted/reloaded rounds, robot controls, handwriting outcomes, review exclusion, the real Settings JSON download and isolated deletion at phone/tablet widths. It also verifies developer-mode on/off and reload, zero test events/definitions, the navigation marker, subsequent normal recording, separate resumed run IDs and the legacy URL exit. Letter sessions additionally verifies all fifteen outcomes, three celebrations and offline log retention through actual child journeys. These suites use disposable browser storage and intercepted review APIs.
 
 ## Authoring
 

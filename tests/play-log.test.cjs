@@ -39,3 +39,18 @@ test('construction/tracing do not produce misleading first-try scores',()=>{
  f.log.record('puzzle_attempt',{puzzleId:'trace',puzzleRevision:'p1',runId:'r',visitId:'v',taskKey:'trace/A@a',correct:true,activeMs:2300});
  assert.equal(f.log.exportData().summary.iterations[0].firstTryRate,null);assert.equal(f.log.exportData().summary.iterations[0].medianActiveMs,2300);
 });
+test('disabled recording adds no events or definitions and resumes without erasing usage history',()=>{
+ const f=fixture();let enabled=true;f.log=createRecorder({...f.options,enabled:()=>enabled});f.log.record('session_start');const before=f.log.exportData();enabled=false;
+ assert.equal(f.log.record('iteration_presented',{taskKey:'dev-task',definition:{question:'test'}}),false);assert.equal(f.log.record('puzzle_attempt',{correct:true}),false);assert.equal(f.log.record('movement_sample',{x:1,z:2}),false);
+ const paused=f.log.exportData();assert.deepEqual(paused.events,before.events);assert.deepEqual(paused.definitions,before.definitions);assert.equal(paused.recording.enabled,false);assert.equal(f.log.status().enabled,false);
+ enabled=true;f.log.record('session_start');assert.equal(f.log.exportData().events.length,before.events.length+1);assert.equal(f.log.status().enabled,true);
+ const dev=createRecorder({...f.options,metadata:()=>({development:true})});assert.equal(dev.record('development_skip'),false);assert.equal(dev.exportData().events.length,before.events.length+1,'existing observations survive, but development never appends');
+});
+test('disabled state logging excludes startup, movement and outcomes while saves still work',()=>{
+ const f=fixture(),{create}=require('../js/friends/state.js'),content=require('../js/friends/content.js');let enabled=false;
+ const options={storage:f.storage,content,loggingEnabled:()=>enabled},state=create(options);assert.equal(state.exportLog().events.length,0);assert.ok(state.openLetter());assert.ok(state.position(3,4));assert.equal(state.record('puzzle_attempt',{correct:true}),false);assert.equal(state.exportLog().events.length,0);
+ const restored=create(options);assert.equal(restored.mail().phase,'to-friend');assert.deepEqual(restored.get().world,{x:3,z:4});assert.equal(restored.exportLog().events.length,0);enabled=true;assert.ok(restored.position(4,5));assert.equal(restored.exportLog().events.length,1);
+});
+test('a task tested before normal recording has no invented first-try result',()=>{
+ const f=fixture(),s={id:'add',round:0,work:{},solved:false,logTested:true,questions:[{}],iterationIds:['add/1-1']},{run}=visit(f,s);run.show({});run.answer(2,true);run.stop();assert.equal(f.log.exportData().summary.iterations[0].firstTryRate,null);assert.equal(f.log.exportData().events.find(e=>e.event==='iteration_presented').resumed,true);
+});

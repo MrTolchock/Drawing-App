@@ -72,7 +72,7 @@ function go(next,restore=false){
   if(state.mail().phase==='finished'){showSessionEnd();return;}
   say(next==='den'?'Dein Zuhause. Schau, ob ein Brief für dich da ist.':state.mail().phase==='to-mailman'?'Der Briefträger ist ganz in deiner Nähe. Folge dem Pfeil.':'Folge dem Pfeil zum Freund auf deinem Brief. Tippe auf den Boden, um zu gehen.');
 }
-function renderNav(){nav.replaceChildren();if(state.development)nav.append(h('strong',{class:'ff-dev',text:'ENTWICKLUNG'}));
+function renderNav(){nav.replaceChildren();if(state.development||FK.playLog.development())nav.append(h('strong',{class:'ff-dev',text:'ENTWICKLUNG'}));
   if(!['sleeping','finished'].includes(state.mail().phase)){
     nav.append(button('Bildkarte','map',map));
     if(['den-letter','to-friend','to-mailman'].includes(state.mail().phase))nav.append(button('Dein Brief','letter',()=>showLetter(false)));
@@ -142,6 +142,7 @@ FK.screen('friends',{
     let storage;try{storage=window.localStorage;}catch{storage={getItem(){throw new Error('storage blocked');},setItem(){throw new Error('storage blocked');},removeItem(){}};}
     state=window.FriendsState.create({storage,content:C,development:new URLSearchParams(location.search).get('dev')==='1',onStatus:()=>queueMicrotask(saveStatus),appVersion:()=>FK.VERSION,logContext:()=>({screen:FK.current(),viewport:{width:innerWidth,height:innerHeight},textCase:FK.settings.get('schrift')||'gross'})});
     FK.friends=state;
+    FK.on('settings',event=>{if(event.key==='developerMode')renderNav();});
     audio=createAudio(()=>state.audioSettings(),()=>world?.soundscape);FK.friendsAudio=audio;
     world=createWorld(canvas,{position:()=>state.get().world,onPosition:(x,z,region)=>state.position(x,z,region),onMove:e=>state.record(e.event,e),onNear:()=>{},onAction:act,onAnimationEnd:()=>endSequence(false),onProject:items=>{positionDoor();for(const p of items){const b=hotspots.querySelector(`[data-place="${p.id}"]`);if(b){b.hidden=!p.visible;b.style.left=p.x+'px';b.style.top=p.y+'px';}}}});
     FK.friendsView=()=>world.diagnostics;renderNav();renderHotspots();saveStatus();

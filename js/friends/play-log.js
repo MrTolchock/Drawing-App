@@ -4,7 +4,7 @@
   const copy=value=>JSON.parse(JSON.stringify(value));
   const DAY=86400000,MAX_EVENTS=10000,MAX_CHARS=750000;
   const important=new Set(['session_start','session_end','letter_opened','letter_session_started','letter_session_finished','mail_puzzle_completed','puzzle_started','puzzle_resumed','iteration_presented','puzzle_attempt','iteration_interrupted','puzzle_completed','puzzle_visit_ended','pause','answer_submitted','development_skip']);
-  function createRecorder({storage,key,now=()=>Date.now(),metadata=()=>({}),schedule=fn=>{const t=setTimeout(fn,800);t.unref?.();return t;},cancel=clearTimeout}){
+  function createRecorder({storage,key,now=()=>Date.now(),metadata=()=>({}),enabled=()=>true,schedule=fn=>{const t=setTimeout(fn,800);t.unref?.();return t;},cancel=clearTimeout}){
     let events=[],definitions={},truncated=false,dropped=0,sequence=0,timer=null,error='',dirty=false;
     const valid=e=>e&&typeof e.event==='string'&&Number.isFinite(e.timestamp);
     try{const old=JSON.parse(storage.getItem(key));events=Array.isArray(old?.events)?old.events.filter(valid):[];definitions=old?.definitions&&typeof old.definitions==='object'?old.definitions:{};truncated=!!old?.truncated;dropped=Number.isSafeInteger(old?.dropped)?old.dropped:0;sequence=Math.max(0,...events.map(e=>Number.isSafeInteger(e.sequence)?e.sequence:0));}catch{/* Recording can still work in memory. */}
@@ -27,7 +27,8 @@
     }
     function record(event,details={}){
       try{
-        const data=copy(details),meta=metadata();
+        const meta=metadata();if(!enabled()||meta.development)return false;
+        const data=copy(details);
         if(data.definition&&data.taskKey){definitions[data.taskKey]=data.definition;delete data.definition;}
         const timestamp=now();events.push({...data,...meta,event,timestamp,sequence:++sequence,eventId:meta.sessionId?meta.sessionId+':'+sequence:undefined});dirty=true;trim();
         if(important.has(event))flush();else if(timer===null)timer=schedule(()=>{timer=null;flush();});
@@ -36,6 +37,7 @@
     }
     function exportData(){flush();trim();const rows=copy(events),defs=copy(referenced(events));return {
       format:'farbtupf-play-log',schema:2,exportedAt:new Date(now()).toISOString(),...metadata(),
+      recording:{enabled:enabled()&&!metadata().development},
       retention:{days:7,maxEvents:MAX_EVENTS,maxStorageCharacters:MAX_CHARS,truncated,droppedEvents:dropped},
       storage:{localOnly:true,persisted:!dirty&&!error,error:error||null},
       retainedFrom:rows[0]?.timestamp??null,retainedTo:rows.at(-1)?.timestamp??null,
@@ -46,7 +48,7 @@
       definitions:defs,summary:summarize(rows,defs),events:rows
     };}
     function clear(){try{storage.removeItem(key);}catch{error='Das lokale Protokoll konnte nicht gelöscht werden.';return false;}if(timer!==null)cancel(timer);timer=null;events=[];definitions={};truncated=false;dropped=0;dirty=false;error='';return true;}
-    return {record,flush,exportData,clear,status:()=>({events:events.length,error,persisted:!dirty&&!error,truncated,droppedEvents:dropped})};
+    return {record,flush,exportData,clear,status:()=>({enabled:enabled()&&!metadata().development,events:events.length,error,persisted:!dirty&&!error,truncated,droppedEvents:dropped})};
   }
   const median=values=>{if(!values.length)return null;const a=values.slice().sort((x,y)=>x-y),i=Math.floor(a.length/2);return Math.round(a.length%2?a[i]:(a[i-1]+a[i])/2);};
   function summarize(events,definitions){
@@ -80,7 +82,7 @@
       unfinishedVisits:rows.filter(e=>e.event==='puzzle_visit_ended'&&!e.completed).length};
   }
   function createVisit({session,puzzle,record,definition,now=()=>performance.now(),id=()=>crypto.randomUUID(),paused=[]}){
-    const resumed=!!session.logRunId||session.round>0||session.solved||Object.keys(session.work).length>0;
+    const resumed=!!session.logTested||!!session.logRunId||session.round>0||session.solved||Object.keys(session.work).length>0;
     session.logRunId=session.logRunId||id();const runId=session.logRunId,visitId=id(),firstRound=session.round,reasons=new Set(paused);
     let last=now(),elapsed=0,current=null,closed=false,completed=false;
     const clock=()=>{const t=now();if(!reasons.size)elapsed+=Math.max(0,t-last);last=t;return Math.round(elapsed);};
@@ -106,27 +108,38 @@
   }
   const api={createRecorder,createVisit,summarize};
   if(typeof module!=='undefined')module.exports=api;else{
-    root.PlayLog=api;const FK=root.FK;let active=null;
+    root.PlayLog=api;const FK=root.FK;let active=null,activeSession=null;
     const safe=fn=>{try{return fn();}catch{/* Diagnostics must not change game behaviour. */}};
     const record=(event,data)=>FK.friends?.record(event,data);
     const uuid=()=>root.crypto?.randomUUID?.()||Date.now().toString(36)+'-'+Math.random().toString(36).slice(2);
+    const development=()=>FK.settings.get('developerMode')===true||new URLSearchParams(location.search).get('dev')==='1';
+    function markTested(session){delete session.logRunId;session.logTested=true;FK.puzzleRounds.save(session);}
     FK.playLog={
+      development,
+      setDevelopment(value){
+        FK.friends?.flushLog();FK.settings.set('developerMode',!!value);
+        if(!value&&new URLSearchParams(location.search).get('dev')==='1'){const url=new URL(location.href);url.searchParams.delete('dev');location.assign(url.href);}
+      },
       begin(session){safe(()=>{
-        active?.stop();active=null;if(!session||session.review||session.blocked)return;
+        active?.stop();active=null;activeSession=null;if(!session||session.review||session.blocked)return;
+        if(development()){markTested(session);return;}
+        if(session.logTested)delete session.logRunId;
+        activeSession=session;
         const C=FK.puzzleCatalogue,puzzle=C.puzzle(session.id);
         active=createVisit({session,puzzle:{...puzzle,revision:C.puzzleRevision(session.id)},record,id:uuid,paused:[...(document.hidden?['background']:[]),...(document.querySelector('.modal')?['dialog']:[])],definition:iterationId=>{
           const it=C.iterations(session.id).find(i=>i.id===iterationId);
           return {puzzleId:session.id,iterationId,revision:C.iterationRevision(session.id,it),puzzleRevision:C.puzzleRevision(session.id),title:puzzle.title,competence:puzzle.competence,reference:puzzle.reference,difficulty:puzzle.difficulty,instruction:puzzle.instruction,question:it.question,...(it.question.kind==='trace'?{authoredStrokes:FK.glyphs.data[it.question.glyph].strokes}:{})};
-        }});FK.puzzleRounds.save(session);
+        }});delete session.logTested;FK.puzzleRounds.save(session);
       });},
       show:question=>safe(()=>active?.show(question)),answer:(value,correct,feedback)=>safe(()=>active?.answer(value,correct,feedback,{inputMethod:FK.play?.inputMethod?.()||'unknown'})),
       button(label,node){safe(()=>{const r=node?.getBoundingClientRect();active?.action(label==='Spiel erklären'?'instruction_requested':'puzzle_action',{control:label,action:/zurücksetzen|neu ordnen/i.test(label)?'reset':/nochmals anschauen/i.test(label)?'reinspect':'button',selection:node?{answer:node.dataset.answer,shape:node.dataset.shape,rotation:node.dataset.rotation,cell:node.dataset.cell,part:node.dataset.part,pressedBefore:node.getAttribute('aria-pressed')}:undefined,inputMethod:FK.play?.inputMethod?.()||'unknown',targetSize:r?{width:Math.round(r.width),height:Math.round(r.height)}:undefined});});},
       issue:(reason,node,inputMethod)=>safe(()=>{if(node?.closest('.screen-puzzle,.screen-trace')&&!node.closest('.topbar'))active?.action('input_issue',{reason,control:node.getAttribute('aria-label')||null,inputMethod});}),
       trace:(event,data)=>safe(()=>active?.action(event,{inputMethod:FK.play?.inputMethod?.()||'unknown',...data})),
       finish:()=>safe(()=>active?.finish()),celebration:()=>safe(()=>active?.celebration()),
-      stop(reason){safe(()=>active?.stop(reason));active=null;},
+      stop(reason){safe(()=>active?.stop(reason));active=null;activeSession=null;},
       pause:(reason,on)=>safe(()=>active?.pause(reason,on))
     };
+    FK.on('settings',event=>{if(event.key==='developerMode'&&development()){safe(()=>{if(activeSession)markTested(activeSession);});FK.playLog.stop('developer_mode');}});
     document.addEventListener('visibilitychange',()=>{FK.playLog.pause('background',document.hidden);if(document.hidden)FK.friends?.flushLog();});
     root.addEventListener('pagehide',event=>{if(event.persisted)FK.playLog.pause('page_cache',true);else FK.playLog.stop('pagehide');FK.friends?.flushLog();});
     root.addEventListener('pageshow',event=>{if(event.persisted)FK.playLog.pause('page_cache',false);});

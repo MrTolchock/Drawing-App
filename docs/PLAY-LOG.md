@@ -12,7 +12,15 @@ There is no manual **Spielstand sichern** control. The small automatic journey s
 - Flow: letters, friend visits, unavailable/wrong friends, map use, virtual-forest movement destinations, route failures, courier distance, home/sleep, app pauses and interrupted/resumed tasks.
 - App/content versions, current journey and coarse viewport/text-case context help separate content changes and input/layout problems.
 
-Owner review previews never produce child puzzle observations. Development play is marked and excluded from outcome summaries. Old log records remain readable but records without an attributable run/task do not enter new puzzle statistics. No child name, age, account, physical location, image or sound recording is collected.
+Owner review previews never produce child puzzle observations. Developer mode adds no usage events or task definitions. Old log records remain readable but records without an attributable run/task do not enter new puzzle statistics; historical development records remain excluded from summaries. No child name, age, account, physical location, image or sound recording is collected.
+
+## Developer mode
+
+Open the adult menu **Einstellungen → Zum Testen → Entwicklermodus**. On pauses every new usage observation, including startup, letters, movement, answers, timing and input events. Existing usage history is retained and remains exportable. The checkbox and a paused-log status show the selected mode; **ENTWICKLUNG** appears in forest navigation. The setting survives refresh in the same browser. Off resumes recording for subsequent play.
+
+This menu toggle controls recording. Letter limits, unfinished gameplay and review requirements continue normally. A puzzle entered during testing is detached from its earlier usage run. If resumed after switching off, it gets a new run and its already-tested current iteration has no invented fresh first-try rate. Testing time and answers are never merged into the earlier child's visit.
+
+The older `?dev=1` route still uses its isolated save/review namespaces and now records no new events either. Switching its checkbox off removes the URL flag and reloads the normal profile. No saved journey or editorial decision is deleted by changing modes.
 
 ## Export format
 
@@ -26,6 +34,7 @@ Owner review previews never produce child puzzle observations. Development play 
 | `summary.iterations` | Observed/completed runs, explicit wrong checks, median active time and eligible choice-question first-try rates |
 | `summary.flow` | Journey/letter, map, wrong-friend, route and storage counts |
 | `retention` / `storage` | Data coverage, truncation and whether observations reached local storage |
+| `recording.enabled` | Whether new observations are currently enabled; false in developer mode |
 | `analysisGuide` | Scope, timing definitions, questions and interpretation limits for an AI reader |
 
 The canonical question is stored once. An `iteration_presented` event includes its actual shuffled choices/order and any restored partial work. `puzzle_attempt.selected` is the selected value for choice tasks, or the current configuration/control for a multi-action task. World coordinates describe the fictional forest, not a real location.
@@ -52,4 +61,4 @@ Records are bounded to **7 days, 10,000 events and 750,000 storage characters** 
 
 ## Validation
 
-`tests/play-log.test.cjs` covers durable exports, version/definition fidelity, active-time exclusions, interrupted visits, retention/size, legacy migration, meaningful summary rates and storage failure isolation. Browser checks cover real answers, writing, review exclusion, local refresh/offline retention and the actual Settings download.
+`tests/play-log.test.cjs` covers durable exports, version/definition fidelity, active-time exclusions, interrupted visits, retention/size, legacy migration, meaningful summary rates, disabled recording and storage failure isolation. Browser checks cover real answers, writing, review exclusion, local refresh/offline retention, the actual Settings download and developer mode's durable on/off, zero test events/definitions, separate resumed runs and legacy URL exit.
