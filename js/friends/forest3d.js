@@ -8,6 +8,7 @@ import {createWorld} from './world/index.js';
 import {createLook, foxView, canvasTex} from './world/textures.js';
 import {createStreamer, NEAR} from './world/streamer.js';
 import {TAU, rng} from './world/noise.js';
+import {createLife} from './world/life.js';
 
 const WORLD = createWorld();
 const FOX_H = 1.6, SPEED = 3.6, MAX_ANIMATED = 6;
@@ -78,10 +79,9 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   const shaftTex = canvasTex(64, 256, (g, w, h) => { const gr = g.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, 'rgba(255,236,180,0)'); gr.addColorStop(.25, 'rgba(255,236,180,.8)'); gr.addColorStop(1, 'rgba(255,236,180,0)'); g.fillStyle = gr; g.fillRect(0, 0, w, h); const hg = g.createLinearGradient(0, 0, w, 0); hg.addColorStop(0, 'rgba(0,0,0,1)'); hg.addColorStop(.5, 'rgba(0,0,0,0)'); hg.addColorStop(1, 'rgba(0,0,0,1)'); g.globalCompositeOperation = 'destination-out'; g.fillStyle = hg; g.fillRect(0, 0, w, h); });
   const shaftMat = new THREE.MeshBasicMaterial({map: shaftTex, transparent: true, opacity: .16, depthWrite: false, blending: THREE.AdditiveBlending, side: THREE.DoubleSide, fog: false, toneMapped: false});
   { const g = []; for (const [x, z, w] of [[-4, -14, 2.6], [3, -18, 3.4], [10, -12, 2.4], [-11, -9, 2.2], [6, -26, 4]]) g.push(new THREE.PlaneGeometry(w, 22).rotateZ(.48).rotateY(.5).translate(x, 9, z)); const m = new THREE.Mesh(mergePlain(g), shaftMat); m.name = 'light shafts'; m.renderOrder = 4; scene.add(m); }
-  const butterflyTex = ['#f29a3a', '#7fb6e8', '#f5d24a'].map(c => canvasTex(64, 48, (g) => { g.fillStyle = c; for (const s of [-1, 1]) { g.beginPath(); g.ellipse(32 + s * 14, 16, 13, 12, s * .3, 0, TAU); g.fill(); g.beginPath(); g.ellipse(32 + s * 11, 33, 9, 8, -s * .3, 0, TAU); g.fill(); } g.fillStyle = 'rgba(255,255,255,.6)'; for (const s of [-1, 1]) { g.beginPath(); g.arc(32 + s * 16, 13, 3, 0, TAU); g.fill(); } g.fillStyle = '#4a3424'; g.fillRect(30, 8, 4, 32); }));
   function sprite(map, h, order = 2, anchor = 0) { const s = new THREE.Sprite(new THREE.SpriteMaterial({map, transparent: true, toneMapped: false, depthWrite: false, alphaTest: .02})); s.center.set(.5, anchor); s.renderOrder = order; s.userData.h = h; scene.add(s); return s; }
   function size(s, h = s.userData.h) { const img = s.material.map.image, a = img && img.width ? img.width / img.height : 1; s.scale.set(h * a, h, 1); }
-  const butterflies = Array.from({length: 5}, (_, i) => { const s = sprite(butterflyTex[i % 3], .32, 4, .5), h = [[-6, 4], [3, 7], [-9, -7], [9, -1], [-2, -11]][i]; return {s, hx: h[0], hz: h[1], x: h[0], z: h[1], y: 1, phase: R() * TAU, flee: 0}; });
+  const life = createLife({scene, canvasTex, groundY, walkable, terrain: WORLD.terrain, random: R, hives: WORLD.layout.WONDERS.filter(w => w.kind === 'hive').map(w => [w.x, w.z]), shaftMat});   // falling leaves, butterflies, dragonflies, little birds
   const puffs = Array.from({length: 8}, () => { const s = sprite(dustTex, .4, 1, .5); s.visible = false; return {s, life: 0}; });
   const motes = new THREE.Points(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(Array.from({length: 240}, (_, i) => i % 3 === 1 ? .4 + R() * 5 : (R() * 2 - 1) * 15 + (i % 3 === 0 ? 1 : -5)), 3)), new THREE.PointsMaterial({size: .08, map: glow, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, opacity: .8}));
   motes.name = 'pollen'; scene.add(motes);
@@ -106,8 +106,13 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   courier.name = 'rabbit-mailman'; scene.add(courier); let courierGoal = null, courierWait = 2;
 
   /* ---------- guidance: fireflies from Fuchs toward the invited friend ---------- */
-  const fireflies = new THREE.Points(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(new Array(21).fill(0), 3)),
-    new THREE.PointsMaterial({size: .5, map: glow, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, toneMapped: false, color: '#fff2b0'}));
+  // A string of fireflies along the way: the near ones large and bright, the far ones small, each with a bright
+  // heart and a soft halo, swaying on its own, and a wave of light that runs along them towards the friend.
+  const FLIES = 13, flyTex = canvasTex(64, 64, (g) => { const r = g.createRadialGradient(32, 32, 0, 32, 32, 32); r.addColorStop(0, 'rgba(255,255,245,1)'); r.addColorStop(.16, 'rgba(255,250,205,.98)'); r.addColorStop(.34, 'rgba(255,226,120,.6)'); r.addColorStop(.62, 'rgba(226,236,120,.22)'); r.addColorStop(1, 'rgba(200,230,110,0)'); g.fillStyle = r; g.fillRect(0, 0, 64, 64); });
+  const fireflies = new THREE.Points(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(new Array(FLIES * 3).fill(0), 3)).setAttribute('aK', new THREE.Float32BufferAttribute(Array.from({length: FLIES}, (_, k) => k / (FLIES - 1)), 1)),
+    new THREE.ShaderMaterial({transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, toneMapped: false, uniforms: {uMap: {value: flyTex}, uTime: {value: 0}, uScale: {value: 600}, opacity: {value: 1}},
+      vertexShader: 'attribute float aK;uniform float uTime,uScale;varying float vGlow;void main(){vec4 mv=modelViewMatrix*vec4(position,1.);float wave=pow(max(0.,sin(aK*7.5-uTime*2.6)),3.),twinkle=.85+.15*sin(uTime*5.+aK*41.);vGlow=(.62+.38*wave)*twinkle*(1.-.35*aK);gl_PointSize=(1.05-.5*aK)*(1.+.4*wave)*uScale/-mv.z;gl_Position=projectionMatrix*mv;}',
+      fragmentShader: 'uniform sampler2D uMap;uniform float opacity;varying float vGlow;void main(){vec4 c=texture2D(uMap,gl_PointCoord);gl_FragColor=vec4(c.rgb*c.a*vGlow*opacity*1.5,1.);}'}));
   fireflies.name = 'letter-fireflies'; fireflies.visible = false; fireflies.frustumCulled = false; fireflies.renderOrder = 6; scene.add(fireflies);
   let guideTarget = null, guidePoints = [], guideFrom = new THREE.Vector3(Infinity, 0, Infinity), guideEnd = new THREE.Vector3(Infinity, 0, Infinity), guideNext = 0;
   const ring = new THREE.Mesh(new THREE.RingGeometry(.4, .52, 32), new THREE.MeshBasicMaterial({color: '#fff3c4', transparent: true, opacity: .85, depthWrite: false, toneMapped: false}));
@@ -164,15 +169,15 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     const endpoint = nearestWalkable(place);
     if (time > guideNext && (guideFrom.distanceTo(pos) > 3 || guideEnd.distanceTo(endpoint) > 1.2 || !guidePoints.length)) { guidePoints = plan(endpoint) || [endpoint]; guideFrom.copy(pos); guideEnd.copy(endpoint); guideNext = time + 1; }
     while (guidePoints.length > 1 && guidePoints[0].distanceTo(pos) < 1.9) guidePoints.shift();
-    // seven fireflies spaced along the route ahead of Fuchs, gently bobbing
+    // fireflies spaced along the route ahead of Fuchs
     const line = [pos.clone().setY(0), ...guidePoints], p = fireflies.geometry.attributes.position, reduced = window.FK.reduced;
     let seg = 0, along = 0, target = 1.1;
-    for (let k = 0; k < 7; k++, target += .85) {
+    for (let k = 0; k < FLIES; k++, target += .8) {
       while (seg < line.length - 1 && along + line[seg].distanceTo(line[seg + 1]) < target) { along += line[seg].distanceTo(line[seg + 1]); seg++; }
-      const a = line[Math.min(seg, line.length - 1)], b = line[Math.min(seg + 1, line.length - 1)], l = a.distanceTo(b) || 1, u = Math.min(1, (target - along) / l), x = a.x + (b.x - a.x) * u + Math.sin(k * 1.9 + (reduced ? 0 : time * .8)) * .25, z = a.z + (b.z - a.z) * u;
-      p.setXYZ(k, x, groundY(x, z) + .55 + Math.sin(k * 2.3 + (reduced ? 0 : time * 2.2)) * .16, z);
+      const a = line[Math.min(seg, line.length - 1)], b = line[Math.min(seg + 1, line.length - 1)], l = a.distanceTo(b) || 1, u = Math.min(1, (target - along) / l), t = reduced ? 0 : time, x = a.x + (b.x - a.x) * u + Math.sin(k * 1.9 + t * .9) * .22 + Math.sin(k * 5.1 + t * 2.3) * .06, z = a.z + (b.z - a.z) * u + Math.cos(k * 2.7 + t * .7) * .14;
+      p.setXYZ(k, x, groundY(x, z) + .5 + k * .012 + Math.sin(k * 2.3 + t * 1.9) * .15, z);
     }
-    p.needsUpdate = true; fireflies.material.opacity = reduced ? .9 : .75 + Math.sin(time * 3) * .2;
+    p.needsUpdate = true; const u = fireflies.material.uniforms; u.uTime.value = reduced ? 0 : time; u.opacity.value = 1; u.uScale.value = height / (2 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)));
   }
   /* What the place sounds like where Fuchs stands (for js/friends/audio.js): the ground under his feet, how close
      the brook and the waterfall are, and how much wood, meadow and swamp is around. */
@@ -220,9 +225,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     animatedCount = animated;
     if (moving && !reduced && time - lastPuff > .17) { lastPuff = time; const p = puffs.find(q => q.life <= 0); if (p) { p.life = .55; p.s.visible = true; p.s.position.set(pos.x + (R() - .5) * .3, base + .12, pos.z + .15); } }
     for (const p of puffs) if (p.life > 0) { p.life -= dt; const k = 1 - p.life / .55; size(p.s, .25 + k * .45); p.s.material.opacity = .5 * (1 - k); p.s.position.y += dt * .25; if (p.life <= 0) p.s.visible = false; }
-    for (const b of butterflies) { const t = time * .55 + b.phase, d = Math.hypot(b.x - pos.x, b.z - pos.z); if (d < 2.2) b.flee = 1.2; b.flee = Math.max(0, b.flee - dt);
-      const tx = b.hx + Math.sin(t) * 2.2 + (b.flee ? (b.x - pos.x) / (d || 1) * 3 : 0), tz = b.hz + Math.cos(t * 1.3) * 1.6 + (b.flee ? (b.z - pos.z) / (d || 1) * 3 : 0); b.x += (tx - b.x) * Math.min(1, dt * (b.flee ? 2.5 : .8)); b.z += (tz - b.z) * Math.min(1, dt * (b.flee ? 2.5 : .8)); b.y = groundY(b.x, b.z) + 1 + Math.sin(t * 2.3) * .35 + (b.flee ? .8 : 0);
-      b.s.position.set(b.x, b.y, b.z); const flap = reduced ? 1 : .25 + Math.abs(Math.cos(time * 14 + b.phase)) * .75; b.s.scale.set(.42 * flap, .32, 1); }
+    life.update(dt, time, pos, {reduced, trees: sound.trees, meadow: sound.meadow, height, fov: camera.fov});
     const halos = streamer.landmarks.home?.halos; if (halos) halos.material.opacity = reduced ? .55 : .5 + Math.sin(time * 7) * .06;
     shaftMat.opacity = reduced ? .15 : .14 + Math.sin(time * .35) * .04;
     if (!reduced) { if (look.M.water) look.M.water.uniforms.uTime.value += dt; motes.position.set(pos.x, Math.sin(time * .35) * .3, pos.z); motes.rotation.y = time * .01; } else motes.position.set(pos.x, 0, pos.z);
@@ -263,6 +266,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     },
     stop() { destination = null; path = []; arrival = null; ring.visible = false; vel.set(0, 0); },
     restored() { renderer.shadowMap.needsUpdate = true; },
+    get life() { return life.counts; },
     budget() { const c = streamer.counts, g = streamer.gaps(); return {liveTiles: c.near, farTiles: c.far, animated: animatedCount, holes: g.holes, plain: g.plain, jobs: c.jobs, slowestStep: streamer.slowest.kind, slowestStepMs: streamer.slowest.ms}; },
     set speed(k) { speedScale = k; },
     pins() { return [...pins, {id: 'mailman', point: new THREE.Vector3(mailPos.x, groundY(mailPos.x, mailPos.z) + 2.2, mailPos.z)}].map(p => { const q = p.point.clone().project(camera); return {id: p.id, x: (q.x * .5 + .5) * width, y: (-q.y * .5 + .5) * height, visible: q.z < 1 && Math.abs(q.x) < 1.02 && q.y > -1.02 && q.y < 1.12 && p.point.distanceTo(pos) < NEAR}; }); },

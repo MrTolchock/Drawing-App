@@ -81,3 +81,16 @@ The real public data endpoint was checked for browser access and initially conta
 - [All 34 × 2 integrated preview layouts](evidence/2026-11-12-shared-reviews/layout-report.json)
 
 The cross-browser UI, 15 repository model cases, review/revision models, all 34 phone/tablet layouts, 124 representative real iteration previews, all 34 puzzle-level speech controls and the complete letter journey passed. The journey was also run alone after a concurrent-browser run exhausted its native-click timeout; it then passed reload, both letters, sleep/game over, offline lock and adult restart. The branch preserves main's latest iPad/forest-audio changes through 9.3.7. Existing fixed reference files and archive hashes remain unchanged.
+
+## Additions on 12–13 November 2026 (releases 9.3.7 to 9.3.14)
+
+World dressing only; no puzzle, letter, save or identity art changed.
+
+| Addition | How it follows the visual style |
+| --- | --- |
+| Guiding lights as a tapering string of fireflies | Same warm glow family as the pollen motes; one draw call |
+| Falling leaves, butterflies, dragonflies, little birds, bees, ducks, a jumping fish, paper boats (`world/life.js`) | Small flat cut-outs drawn in code in the world's palette, as the butterflies already were; no character identities and no scored learning subjects among them |
+| Rainbow at the waterfall, sunbeams through the wood | Additive light like the den's existing shafts |
+| Things to discover (`world/big/wonders.js`) | Built from the world's own rock, log, wood and bark materials with vertex colour; tall ones use the soft material so they turn translucent in front of Fuchs like trees |
+
+Measured in Chromium (software rendering) standing at each new site: at most 106 draw calls (limit 150) and 188 k triangles (limit 350 k). The former budget walk test is archived with the legacy game, so a full walk was not repeated; the frame rate on the iPad is for the owner to check with `?perf=1`.

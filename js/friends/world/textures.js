@@ -101,6 +101,7 @@ export function createLook({software = false, big = false} = {}) {
       M.ground = new THREE.MeshLambertMaterial({vertexColors: true, map: T.grain});
       M.plants = patch(new THREE.MeshLambertMaterial({map: T.plants, alphaTest: .5, side: THREE.DoubleSide, vertexColors: true}), {foliage: true}, 'wb-plants');
       M.rock = new THREE.MeshLambertMaterial({vertexColors: true, map: T.grain});
+      M.soft = patch(new THREE.MeshLambertMaterial({vertexColors: true, map: T.grain}), {near: true}, 'wb-soft');   // coloured things tall enough to hide Fuchs: they turn translucent like the trees
       M.bark = patch(new THREE.MeshLambertMaterial({map: T.bark, vertexColors: true}), {near: true}, 'wb-bark');
       M.leaves = patch(new THREE.MeshLambertMaterial({map: T.leaf, alphaTest: .5, side: THREE.DoubleSide}), {foliage: true, near: true}, 'wb-leaves');
       M.wood = new THREE.MeshLambertMaterial({map: T.wood, vertexColors: true});

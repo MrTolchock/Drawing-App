@@ -1,5 +1,5 @@
 /* Farbtupf – Service Worker: keeps the whole app on the device so it runs without internet. */
-const CACHE = 'farbtupf-v9.3.8-shared-reviews';
+const CACHE = 'farbtupf-v9.3.15-shared-reviews';
 const SCOPE=self.registration.scope;
 const INDEX=new URL('index.html',SCOPE).href;
 const ACTIVE_MARKER=new URL('.farbtupf-active-cache',SCOPE).href;
@@ -43,6 +43,8 @@ const ASSETS = [
   './js/friends/world/noise.js',
   './js/friends/world/textures.js',
   './js/friends/world/streamer.js',
+  './js/friends/world/life.js',
+  './js/friends/world/big/wonders.js',
   './js/friends/world/tiles.js',
   './js/friends/world/landmarks.js',
   './js/friends/world/big/layout.js',
