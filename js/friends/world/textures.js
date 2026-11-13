@@ -36,7 +36,7 @@ const NEAR_CLIP = `#include <clipping_planes_fragment>
  vec3 ffP=-vViewPosition;vec2 ffD=ffP.xy*(ffFox.z/min(ffP.z,-.2))-ffFox.xy;ffD.y*=ffD.y>0.?.45:1.;
  float ffLine=(1.-smoothstep(.95,2.5,length(ffD)))*smoothstep(ffFox.z+.6,ffFox.z+2.4,ffP.z)*.92;
  float nearFade=max(ffLine,clamp((6.5-vViewPosition.z)/2.4,0.,1.));if(nearFade>0.&&ffNoise(gl_FragCoord.xy)<nearFade)discard;`;
-function patch(material, {foliage = false, near = false}, key) {
+export function patch(material, {foliage = false, near = false}, key) {
   material.onBeforeCompile = sh => {
     if (near) { sh.uniforms.ffFox = foxView; sh.fragmentShader = sh.fragmentShader.replace('#include <common>', NEAR_COMMON).replace('#include <clipping_planes_fragment>', NEAR_CLIP); }
     if (foliage) sh.fragmentShader = sh.fragmentShader.replace(...FOLIAGE);
