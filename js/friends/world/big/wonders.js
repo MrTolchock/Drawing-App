@@ -1,6 +1,6 @@
 /* Small things to discover beside the paths of the big world: a ring of toadstools, a hollow log, a circle of
-   old stones, a tree in blossom, berry bushes, a stone well, lanterns at the den, a stump laid as a table,
-   a beehive (its bees fly in world/life.js), signposts, a toadstool house and an apple tree. Each is its own little site (layout.js WONDERS), built in one
+   old stones, apple trees, berry bushes, a stone well, lanterns at the den, a stump laid as a table, signposts,
+   a toadstool house, and a picnic place with a fire place (its smoke rises in world/life.js). Each is its own little site (layout.js WONDERS), built in one
    short step when Fuchs comes near, from a few hundred triangles on the shared rock, log, bark and soft
    materials; the solid ones have colliders (layout.js SOLIDS) and a small clearing (GLADES). */
 import {THREE} from '../../../scene/materials.js';
@@ -42,28 +42,37 @@ export function wonderSteps(site, look, world, group) {
   const kinds = {
     ring() { const n = 9; for (let k = 0; k < n; k++) { const a = k / n * TAU + r(-.12, .12), d = 1.35 + r(-.1, .1); toadstool(x0 + Math.cos(a) * d, z0 + Math.sin(a) * d, r(.75, 1.35)); }
       for (let k = 0; k < 3; k++) toadstool(x0 + r(-.3, .3), z0 + r(-.3, .3), r(.45, .6), [.78, .56, .3]); },
-    log() { const len = 3.4, turn = g => g.rotateZ(Math.PI / 2).rotateY(yaw), y = y0 + .68;
-      add('log', turn(new THREE.CylinderGeometry(.76, .8, len, 16, 1, true)), [1.05, .9, .76], x0, y, z0);
-      const inner = turn(new THREE.CylinderGeometry(.66, .7, len, 16, 1, true).scale(-1, 1, 1)); inner.computeVertexNormals(); add('log', inner, [.34, .25, .18], x0, y, z0);
-      for (const s of [-1, 1]) add('log', new THREE.RingGeometry(.67, .79, 18).rotateY(s * Math.PI / 2).rotateY(yaw), [1.5, 1.25, .9], x0 + Math.cos(yaw) * s * len / 2, y, z0 - Math.sin(yaw) * s * len / 2);
-      for (let k = 0; k < 4; k++) { const t = r(-.38, .38) * len; add('soft', lump(R, r(.3, .46), 1, .2).scale(1.5, .32, 1), [.3, .5, .16], x0 + Math.cos(yaw) * t, y + .72, z0 - Math.sin(yaw) * t); }
-      for (let k = 0; k < 3; k++) { const t = r(-.4, .4) * len, side = k % 2 ? 1 : -1; toadstool(x0 + Math.cos(yaw) * t + Math.sin(yaw) * side * .95, z0 - Math.sin(yaw) * t + Math.cos(yaw) * side * .95, r(.6, .9), [.86, .62, .28]); } },
+    // an old hollow trunk lying in the grass: furrowed bark with moss along the top, one end broken off in
+    // splinters and one sawn clean with its rings showing, stubs of branches, moss cushions, toadstools, a snail
+    log() { const len = 3.6, lay = g => g.rotateZ(Math.PI / 2).rotateY(yaw), y = y0 + .7, along = t => [x0 + Math.cos(yaw) * t, z0 - Math.sin(yaw) * t];
+      const shell = new THREE.CylinderGeometry(.8, .86, len, 28, 12, true), p = shell.attributes.position, col = new Float32Array(p.count * 3), c = new THREE.Color();
+      for (let i = 0; i < p.count; i++) { const px = p.getX(i), py = p.getY(i), pz = p.getZ(i), a = Math.atan2(pz, px), rad = Math.hypot(px, pz), end = py / (len / 2);
+        const furrow = 1 + .05 * Math.sin(a * 9 + py * 1.3) + .03 * Math.sin(a * 17 - py * 2.1) + .04 * Math.sin(py * 3 + a * 2);
+        const jag = end < -.98 ? (.12 + .2 * Math.abs(Math.sin(a * 3.5 + 1)) + .1 * Math.sin(a * 11)) : 0;                        // the broken end: splinters of different length
+        p.setXYZ(i, Math.cos(a) * rad * furrow, py - jag, Math.sin(a) * rad * furrow);
+        // after it is laid down, the trunk's +x side is up: moss there, darker bark underneath
+        const up = Math.cos(a), moss = Math.max(0, Math.min(1, (up - .35) * 2.2 + .25 * Math.sin(py * 4 + a * 5))); c.setRGB(1, .86, .72).lerp(new THREE.Color(.5, .72, .3), moss * .85).multiplyScalar(.82 + .18 * up + .1 * Math.sin(a * 9 + py * 1.3));
+        col[i * 3] = c.r; col[i * 3 + 1] = c.g; col[i * 3 + 2] = c.b; }
+      shell.computeVertexNormals(); shell.setAttribute('color', new THREE.BufferAttribute(col, 3)); lay(shell).translate(x0, y, z0); buf('bark').addGeometry(shell); shell.dispose();
+      const inner = lay(new THREE.CylinderGeometry(.68, .72, len - .1, 20, 1, true).scale(-1, 1, 1)); inner.computeVertexNormals(); add('log', inner, [.3, .22, .16], x0, y, z0);
+      { const [x, z] = along(len / 2); add('log', new THREE.RingGeometry(.7, .86, 28, 3).rotateY(Math.PI / 2).rotateY(yaw), [1.55, 1.3, .95], x, y, z); add('log', new THREE.RingGeometry(.74, .78, 28).rotateY(Math.PI / 2).rotateY(yaw), [1.1, .85, .6], x + Math.cos(yaw) * .004, y, z - Math.sin(yaw) * .004); }
+      for (const [t, a, l] of [[.7, .9, .5], [-.5, -1.1, .42], [1.2, 2.2, .3]]) { const [x, z] = along(t), g = new THREE.CylinderGeometry(.09, .13, l, 8).translate(0, l / 2 + .72, 0).rotateZ(a * .5).rotateX(a * .6).rotateY(yaw); add('bark', g, [1, .84, .7], x, y - .1, z); }
+      for (let k = 0; k < 7; k++) { const [x, z] = along(r(-.42, .42) * len); add('soft', lump(R, r(.2, .34), 1, .22).scale(1.5, .3, 1.1), k % 2 ? [.3, .52, .16] : [.38, .6, .2], x + r(-.2, .2), y + .78, z + r(-.2, .2)); }
+      for (let k = 0; k < 5; k++) { const t = r(-.45, .45) * len, side = k % 2 ? 1 : -1, [x, z] = along(t); toadstool(x + Math.sin(yaw) * side * r(.95, 1.2), z + Math.cos(yaw) * side * r(.95, 1.2), r(.55, .95), k % 2 ? [.86, .62, .28] : [.8, .5, .22]); }
+      { const [x, z] = along(-.3); add('rock', new THREE.SphereGeometry(.075, 10, 8).scale(1, 1, .7), [.75, .55, .32], x, y + .93, z); add('rock', new THREE.TorusGeometry(.04, .018, 5, 10), [.5, .34, .2], x, y + .93, z + .055); add('rock', new THREE.SphereGeometry(.04, 8, 6).scale(2.4, .7, 1), [.78, .72, .6], x + .06, y + .86, z); } },
     stones() { const n = 6; for (let k = 0; k < n; k++) { const a = k / n * TAU + .3, d = 2.5, h = r(.55, .85), x = x0 + Math.cos(a) * d, z = z0 + Math.sin(a) * d;
         add('rock', lump(R, .5, 1, .14).scale(1.05, h * 2, .7).rotateY(-a + r(-.3, .3)).rotateZ(r(-.08, .08)), [.66, .65, .62], x, ground(x, z) + h * .75, z);
         add('rock', lump(R, .3, 1, .2).scale(1.25, .3, .95), [.34, .52, .2], x, ground(x, z) + h * 1.72, z); }
       add('rock', lump(R, .7, 1, .12).scale(1.2, .28, 1), [.6, .6, .57], x0, y0 + .12, z0); },
-    // a cherry in bloom: young green leaves and clouds of pale pink blossom, petals in the grass
-    blossom() { const {crownY, card} = tree({cards: 34, crown: 1.9, shade: c => new THREE.Color(c * 1.1, c * 1.25, c * .8)});
-      M.blossom = M.blossom || patch(new THREE.MeshLambertMaterial({alphaTest: .5, side: THREE.DoubleSide, map: canvasTex(256, 256, g => { const q = rng(7);
-        for (let k = 0; k < 15; k++) { const x = 34 + q() * 188, y = 34 + q() * 188, s2 = 20 + q() * 13; g.save(); g.translate(x, y); g.rotate(q() * 6); for (let p2 = 0; p2 < 5; p2++) { g.rotate(TAU / 5); g.fillStyle = ['#ffd3e2', '#ffbcd4', '#fff0f4'][k % 3]; g.beginPath(); g.ellipse(0, -s2 * .52, s2 * .34, s2 * .5, 0, 0, TAU); g.fill(); } g.fillStyle = '#e8739a'; g.beginPath(); g.arc(0, 0, s2 * .17, 0, TAU); g.fill(); g.fillStyle = '#ffe9a8'; g.beginPath(); g.arc(0, 0, s2 * .08, 0, TAU); g.fill(); g.restore(); } })}), {foliage: true, near: true}, 'wb-blossom');
-      const bloom = crownCards(x0, crownY + .2, z0, 2.15, 90, R, world.sunDir, [1.0, .7], .85); for (const c of bloom) c.c = .86 + c.c * .3;
-      const m = instanced(card, M.blossom, bloom, {cast: false, receive: false, name: 'blossom'}); if (m) { m.userData.shared = true; group.add(m); }
-      const pinks = [[1.3, .62, .8], [1.36, .8, .9], [1.4, 1.1, 1.15]];
-      for (let k = 0; k < 60; k++) { const a = r(0, TAU), d = Math.sqrt(R()) * 3.4, x = x0 + Math.cos(a) * d, z = z0 + Math.sin(a) * d; add('rock', new THREE.CircleGeometry(r(.035, .06), 5).rotateX(-Math.PI / 2).rotateY(r(0, 3)), pinks[k % 3], x, ground(x, z) + .03, z); } },
-    berries() { const berry = site.berry === 'blue' ? [.24, .3, .78] : [.86, .12, .14];
-      for (let k = 0; k < 3; k++) { const a = k * 2.1 + yaw, d = k ? .42 : 0, x = x0 + Math.cos(a) * d, z = z0 + Math.sin(a) * d, s = r(.48, .64), y = ground(x, z) + s * .62;
-        add('rock', lump(R, s, 1, .2).scale(1, .82, 1), k % 2 ? [.24, .44, .14] : [.3, .52, .17], x, y, z);
-        for (let j = 0; j < 9; j++) { const u = r(0, TAU), v = r(.15, 1.25), q = s * 1.02; add('rock', new THREE.SphereGeometry(r(.045, .06), 7, 5), berry, x + Math.sin(v) * Math.cos(u) * q, y + Math.cos(v) * q * .82, z + Math.sin(v) * Math.sin(u) * q); } } },
+    berries() { const berry = site.berry === 'blue' ? [.26, .32, .95] : [1.25, .12, .12], dark = site.berry === 'blue' ? [.16, .2, .6] : [.8, .08, .1], cards = [];
+      const domes = [[0, 0, .78], [.75, .25, .6], [-.6, .45, .55], [.15, -.7, .5]];
+      for (const [dx, dz, s2] of domes) { const a = yaw, x = x0 + Math.cos(a) * dx - Math.sin(a) * dz, z = z0 + Math.sin(a) * dx + Math.cos(a) * dz, y = ground(x, z);
+        for (let k = 0; k < 5; k++) { const b = k * 1.3 + s2 * 5; add('bark', new THREE.CylinderGeometry(.012, .028, s2 * .9, 5).translate(0, s2 * .45, 0).rotateZ(.5).rotateY(b), [.8, .62, .46], x, y, z); }
+        const dome = crownCards(x, y + s2 * .55, z, s2 * .82, Math.round(26 * s2 + 8), R, world.sunDir, [.42, .3], .8); for (const c of dome) { c.c = new THREE.Color(c.c * .95, c.c * 1.08, c.c * .8); cards.push(c); }
+        for (let k = 0; k < Math.round(16 * s2); k++) { const c = dome[(k * 5) % dome.length], ox = c.x - x, oz = c.z - z, d = Math.hypot(ox, oz) || 1, bx = c.x + ox / d * .07, by = c.y + r(-.06, .1), bz = c.z + oz / d * .07;
+          for (let j = 0; j < 3; j++) add('rock', new THREE.SphereGeometry(r(.035, .05), 7, 5), j ? berry : dark, bx + r(-.05, .05), by + r(-.05, .05), bz + r(-.05, .05)); } }
+      const card = new THREE.PlaneGeometry(1, 1), n = card.attributes.normal; for (let i = 0; i < n.count; i++) n.setXYZ(i, 0, 1, 0);
+      const m = instanced(card, M.leaves, cards, {cast: M.shadows, receive: false, depth: M.leafDepth, name: 'berry bush leaves'}); if (m) group.add(m); },
   };
   Object.assign(kinds, {
     // the well: a wall of single stones in three courses with a rim of cap stones, moss and paving round it,
@@ -116,9 +125,40 @@ export function wonderSteps(site, look, world, group) {
       add('rock', new THREE.CylinderGeometry(.11, .11, .17, 10), [1.5, .95, .2], x0 + .28, y0 + .65, z0 - .12); add('rock', new THREE.CylinderGeometry(.12, .12, .03, 10), [.9, .7, .5], x0 + .28, y0 + .75, z0 - .12);
       add('rock', new THREE.CylinderGeometry(.17, .18, .1, 12), [1.3, 1.15, .9], x0 - .2, y0 + .62, z0 + .1); add('rock', new THREE.SphereGeometry(.04, 7, 5), [.9, .12, .14], x0 - .2, y0 + .7, z0 + .1);
       for (let k = 0; k < 3; k++) { const a = k * 2.1 + .5; add('rock', new THREE.SphereGeometry(.07, 9, 5, 0, TAU, Math.PI / 2, Math.PI / 2), [.62, .42, .24], x0 + Math.cos(a) * .42, y0 + .64, z0 + Math.sin(a) * .42); } },
-    hive() { add('log', new THREE.CylinderGeometry(.46, .54, .5, 14), [1.25, 1, .78], x0, y0 + .25, z0);
-      for (let k = 0; k < 6; k++) add('rock', new THREE.TorusGeometry(.37 - k * .052, .085, 7, 16).rotateX(Math.PI / 2), k % 2 ? [1.3, .98, .38] : [1.2, .88, .3], x0, y0 + .58 + k * .125, z0);
-      add('rock', new THREE.SphereGeometry(.1, 8, 6), [1.25, .93, .34], x0, y0 + 1.3, z0); add('rock', new THREE.SphereGeometry(.07, 8, 6).scale(1, 1, .5), [.2, .13, .08], x0, y0 + .62, z0 + .43); },
+    // a picnic place as in many Swiss woods: a heavy timber table with fixed benches, and a fire place with a
+    // ring of stones, a swivelling grill on an iron post with two sausages on it, log seats and a pile of firewood
+    picnic() { const wood = [1.18, .95, .7], woodDark = [.95, .74, .54], iron = [.2, .2, .22], put = (name, g, colour, lx, ly, lz) => add(name, g.translate(lx, ly, lz).rotateY(yaw), colour, x0, y0, z0);
+      for (let k = -1; k <= 1; k++) put('wood', new THREE.BoxGeometry(2.3, .07, .27), k ? wood : [1.25, 1.02, .76], 0, .78, k * .285);
+      for (const sd of [-1, 1]) { for (let k = 0; k < 2; k++) put('wood', new THREE.BoxGeometry(2.3, .06, .17), k ? wood : woodDark, 0, .46, sd * (.78 + k * .185));
+        for (const end of [-1, 1]) { put('wood', new THREE.BoxGeometry(.1, .9, .1).rotateX(sd * -.42), woodDark, end * .85, .4, sd * .34); put('wood', new THREE.BoxGeometry(.1, .09, .5), woodDark, end * .85, .4, sd * .72); } }
+      for (const end of [-1, 1]) { put('wood', new THREE.BoxGeometry(.1, .09, .86), woodDark, end * .85, .72, 0); put('wood', new THREE.BoxGeometry(.1, .09, 1.9), woodDark, end * .85, .4, 0); }
+      put('wood', new THREE.BoxGeometry(1.7, .08, .08), woodDark, 0, .4, 0);
+      // on the table: a loaf, a cup and an apple
+      put('rock', new THREE.SphereGeometry(.13, 10, 7).scale(1.5, .7, 1), [1.05, .7, .38], -.45, .88, .05); put('rock', new THREE.CylinderGeometry(.055, .045, .1, 9), [.85, .2, .16], .2, .865, -.12); put('rock', new THREE.SphereGeometry(.06, 8, 6), [1.25, .14, .1], .5, .875, .1);
+      // the fire place
+      const [fx, fz] = site.fire, fy = ground(fx, fz), greys = [[.7, .68, .64], [.6, .6, .58], [.76, .72, .66]];
+      for (let k = 0; k < 11; k++) { const a = k / 11 * TAU + r(-.08, .08); add('rock', lump(R, r(.15, .2), 1, .14).scale(1.25, .85, 1).rotateY(-a), greys[k % 3], fx + Math.cos(a) * .66, fy + .1, fz + Math.sin(a) * .66); }
+      // a bed of ash and glowing embers, and split logs leaning together over it: bark outside, pale wood where
+      // they were split, charred black where they stand in the fire (the flames themselves burn in world/life.js)
+      add('rock', new THREE.CircleGeometry(.58, 16).rotateX(-Math.PI / 2), [.3, .29, .28], fx, fy + .04, fz);
+      for (let k = 0; k < 16; k++) { const a = r(0, TAU), d = Math.sqrt(R()) * .5; add('rock', lump(R, r(.03, .06), 0, .3).scale(1, .5, 1), k % 3 ? [.12, .11, .11] : [.62, .6, .58], fx + Math.cos(a) * d, fy + .06, fz + Math.sin(a) * d); }
+      for (let k = 0; k < 14; k++) { const a = r(0, TAU), d = Math.sqrt(R()) * .3; add('rock', lump(R, r(.035, .065), 0, .3).scale(1, .6, 1), k % 2 ? [5, 1.7, .25] : [3.4, .7, .12], fx + Math.cos(a) * d, fy + r(.06, .13), fz + Math.sin(a) * d); }   // embers
+      const split = (len, rad, bark) => { const g = new THREE.CylinderGeometry(rad * .85, rad, len, 9, 6, false, 0, Math.PI * 1.25), q = g.attributes.position, nrm = g.attributes.normal, col = new Float32Array(q.count * 3), c = new THREE.Color();
+        for (let i = 0; i < q.count; i++) { const t = q.getY(i) / len + .5, outside = Math.hypot(nrm.getX(i), nrm.getZ(i)) > .5; c.setRGB(...(outside ? bark : [1.35, 1.08, .74])).multiplyScalar(.85 + .3 * R()); c.lerp(new THREE.Color(.07, .06, .06), Math.max(0, Math.min(1, 1.15 - t * 2.6))); if (t < .12) c.lerp(new THREE.Color(2.6, .7, .1), .45); col[i * 3] = c.r; col[i * 3 + 1] = c.g; col[i * 3 + 2] = c.b; }
+        g.setAttribute('color', new THREE.BufferAttribute(col, 3)); return g; };
+      const lean = (g, len, tilt, a, base) => { g.translate(0, len / 2, 0).rotateZ(tilt).rotateY(-a).translate(fx + Math.cos(a) * base, fy + .05, fz + Math.sin(a) * base); buf('log').addGeometry(g); g.dispose(); };
+      for (let k = 0; k < 7; k++) { const a = k / 7 * TAU + r(-.12, .12), len = r(.7, .86); lean(split(len, r(.06, .08), k % 2 ? [.62, .42, .27] : [.5, .34, .22]).rotateY(r(0, TAU)), len, r(.5, .6), a, r(.36, .42)); }
+      for (let k = 0; k < 5; k++) { const a = k * 1.3 + .4, len = r(.4, .52); lean(split(len, .028, [.55, .4, .26]), len, r(.62, .8), a, r(.2, .26)); }   // kindling inside
+      for (const [a, d] of [[.6, .78], [3.4, .8]]) { const g = split(.6, .07, [.6, .41, .27]).rotateZ(Math.PI / 2).rotateY(a + 1.2).translate(fx + Math.cos(a) * d * .55, fy + .1, fz + Math.sin(a) * d * .55); buf('log').addGeometry(g); g.dispose(); }   // two lying in the ring, ready to go on
+      const glow = canvasTex(64, 64, g => { const q = g.createRadialGradient(32, 32, 0, 32, 32, 32); q.addColorStop(0, 'rgba(255,190,90,.75)'); q.addColorStop(.4, 'rgba(255,130,50,.3)'); q.addColorStop(1, 'rgba(255,110,40,0)'); g.fillStyle = q; g.fillRect(0, 0, 64, 64); });
+      const ember = new THREE.Points(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute([fx, fy + .22, fz], 3)), new THREE.PointsMaterial({map: glow, size: 1.7, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, toneMapped: false})); ember.name = 'fire glow'; ember.renderOrder = 5; group.add(ember);
+      // swivel grill: post, arm, round grate with bars, two sausages
+      add('rock', new THREE.CylinderGeometry(.03, .035, 1.25, 7), iron, fx + .82, fy + .62, fz); add('rock', new THREE.CylinderGeometry(.018, .018, .86, 6).rotateZ(Math.PI / 2), iron, fx + .4, fy + .62, fz);
+      add('rock', new THREE.TorusGeometry(.36, .018, 5, 20).rotateX(Math.PI / 2), iron, fx, fy + .62, fz); for (let k = -3; k <= 3; k++) { const w = Math.sqrt(Math.max(0, .36 * .36 - (k * .09) ** 2)) * 2; add('rock', new THREE.CylinderGeometry(.008, .008, w, 4).rotateX(Math.PI / 2), iron, fx + k * .09, fy + .62, fz); }
+      for (const dz of [-.1, .1]) { add('rock', new THREE.CapsuleGeometry(.035, .2, 4, 8).rotateZ(Math.PI / 2), [1.05, .36, .2], fx + r(-.05, .05), fy + .665, fz + dz); }
+      // two log seats and the firewood
+      for (const a of [2.3, 3.9]) { const x = fx + Math.cos(a) * 1.45, z = fz + Math.sin(a) * 1.45; add('log', new THREE.CylinderGeometry(.26, .3, .42, 12), [1.25, 1, .78], x, ground(x, z) + .21, z); }
+      { const wx = fx + 1.7, wz = fz - 1.1, wy = ground(wx, wz); for (let row = 0; row < 3; row++) for (let k = 0; k < 4 - row; k++) add('log', new THREE.CylinderGeometry(.085, .085, .7, 8).rotateX(Math.PI / 2), (k + row) % 2 ? [1.2, .95, .72] : [1.05, .82, .6], wx + (k - (3 - row) / 2) * .18, wy + .09 + row * .155, wz); } },
     // a toadstool big enough to live in: door, round window with a light, chimney, stepping stones
     fairyhouse() { add('rock', new THREE.CylinderGeometry(.56, .72, 1.3, 14), [1.2, 1.1, .94], x0, y0 + .65, z0);
       add('soft', new THREE.SphereGeometry(1.3, 18, 9, 0, TAU, 0, Math.PI / 2).scale(1, .72, 1), [.9, .15, .11], x0, y0 + 1.22, z0);

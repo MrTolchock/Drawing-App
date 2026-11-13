@@ -1,8 +1,8 @@
 # Visual consistency audit
 
-Latest audit: 13 November 2026, feature branch 9.3.22. The dated entries below record earlier releases. This checks the active game against [Visual style](VISUAL-STYLE.md) and [Puzzle blueprint](PUZZLE-BLUEPRINT.md). It records implementation evidence; it does not grant editorial approval.
+Latest audit: 13 November 2026, feature branch 9.3.25. The dated entries below record earlier releases. This checks the active game against [Visual style](VISUAL-STYLE.md) and [Puzzle blueprint](PUZZLE-BLUEPRINT.md). It records implementation evidence; it does not grant editorial approval.
 
-## Local gameplay observations — feature branch 9.3.22
+## Local gameplay observations — feature branch 9.3.25
 
 Settings now offers **Lokales Spielprotokoll**, with full-width export/delete buttons using Andika and the existing cream/sage settings card. Both controls retain at least 52 px height and wrap labels on phones. The manual **Spielstand sichern** control is removed. The automatic invitation/allowance/unfinished-round state remains independent of the log; there is no successful-save banner in the child interface.
 
@@ -15,6 +15,8 @@ The [AI-readable local export](../docs/PLAY-LOG.md) records exact task/revision 
 - The complete real journey passed fifteen outcomes, three completed puzzles/celebrations, offline log retention, parent allowance, short reachable courier approaches at all eleven hosts and home/sleep/game over. The 610 archived originals and fourteen frozen visual references remain intact.
 
 Logging is part of the shared puzzle blueprint for future additions. It does not grant editorial approval or change the existing GitHub review ledger.
+
+The 124 addition/writing iteration regression also passed native touch/mouse for all 34 puzzles at both sizes, rapid/keyboard/drag/cancel input, sound/mute, whole-pool review, optional rejection, save retry, celebrations and offline review. Main's landscape work through 9.3.24 is integrated; the combined branch is 9.3.25.
 
 ## Letter variety and quiet menus — feature branch 9.3.21
 
