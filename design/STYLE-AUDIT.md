@@ -18,6 +18,8 @@ Logging is part of the shared puzzle blueprint for future additions. It does not
 
 The 124 addition/writing iteration regression also passed native touch/mouse for all 34 puzzles at both sizes, rapid/keyboard/drag/cancel input, sound/mute, whole-pool review, optional rejection, save retry, celebrations and offline review. Main's landscape work through 9.3.24 is integrated; the combined branch is 9.3.25.
 
+All twelve model suites and the full local-log browser check passed again on the integrated 9.3.25 branch. Installed-app tests from 9.3.24 passed partial-puzzle preservation, dialog protection, retained local/IndexedDB data, failed-download/offline recovery, first install and the independent recovery page. The update fixture now waits for startup and its initial update check to finish before simulating a separate resume. The screenshots above were refreshed on 9.3.25. GitHub's Puzzle contract check passed for the integrated runtime.
+
 ## Letter variety and quiet menus — feature branch 9.3.21
 
 - The courier waits outside the 3.2 m interaction radius, normally 5.4–7.2 m from Fuchs, with reachable alternatives around bends. He stays at that spot while delivering a letter. Tapping him starts a short walk before the next invitation opens.
