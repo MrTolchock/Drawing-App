@@ -52,12 +52,19 @@ export function wonderSteps(site, look, world, group) {
         add('rock', lump(R, .5, 1, .14).scale(1.05, h * 2, .7).rotateY(-a + r(-.3, .3)).rotateZ(r(-.08, .08)), [.66, .65, .62], x, ground(x, z) + h * .75, z);
         add('rock', lump(R, .3, 1, .2).scale(1.25, .3, .95), [.34, .52, .2], x, ground(x, z) + h * 1.72, z); }
       add('rock', lump(R, .7, 1, .12).scale(1.2, .28, 1), [.6, .6, .57], x0, y0 + .12, z0); },
-    // a cherry in bloom: young green leaves and clouds of pale pink blossom, petals in the grass
-    blossom() { const {crownY, card} = tree({cards: 34, crown: 1.9, shade: c => new THREE.Color(c * 1.1, c * 1.25, c * .8)});
-      M.blossom = M.blossom || patch(new THREE.MeshLambertMaterial({alphaTest: .5, side: THREE.DoubleSide, map: canvasTex(256, 256, g => { const q = rng(7);
-        for (let k = 0; k < 15; k++) { const x = 34 + q() * 188, y = 34 + q() * 188, s2 = 20 + q() * 13; g.save(); g.translate(x, y); g.rotate(q() * 6); for (let p2 = 0; p2 < 5; p2++) { g.rotate(TAU / 5); g.fillStyle = ['#ffd3e2', '#ffbcd4', '#fff0f4'][k % 3]; g.beginPath(); g.ellipse(0, -s2 * .52, s2 * .34, s2 * .5, 0, 0, TAU); g.fill(); } g.fillStyle = '#e8739a'; g.beginPath(); g.arc(0, 0, s2 * .17, 0, TAU); g.fill(); g.fillStyle = '#ffe9a8'; g.beginPath(); g.arc(0, 0, s2 * .08, 0, TAU); g.fill(); g.restore(); } })}), {foliage: true, near: true}, 'wb-blossom');
-      const bloom = crownCards(x0, crownY + .2, z0, 2.15, 90, R, world.sunDir, [1.0, .7], .85); for (const c of bloom) c.c = .86 + c.c * .3;
-      const m = instanced(card, M.blossom, bloom, {cast: false, receive: false, name: 'blossom'}); if (m) { m.userData.shared = true; group.add(m); }
+    // a cherry in bloom: young green leaves and a rounded cloud of pale pink blossom, petals in the grass
+    blossom() { const {crownY, card} = tree({cards: 30, crown: 1.75, shade: c => new THREE.Color(c * 1.1, c * 1.25, c * .8)});
+      // each blossom card carries a dense spray of small flowers, so the crown's outline is soft, not single petals
+      const sprays = M.blossomTex || (M.blossomTex = canvasTex(256, 256, g => { const q = rng(7);
+        for (let k = 0; k < 46; k++) { const a = q() * TAU, d = Math.sqrt(q()) * 96, x = 128 + Math.cos(a) * d, y = 128 + Math.sin(a) * d * .8, s2 = 13 + q() * 8; g.save(); g.translate(x, y); g.rotate(q() * 6);
+          for (let p2 = 0; p2 < 5; p2++) { g.rotate(TAU / 5); g.fillStyle = ['#ffd3e2', '#ffc2d8', '#fff0f4', '#ffdbe8'][k % 4]; g.beginPath(); g.ellipse(0, -s2 * .5, s2 * .36, s2 * .52, 0, 0, TAU); g.fill(); }
+          g.fillStyle = '#e8739a'; g.beginPath(); g.arc(0, 0, s2 * .17, 0, TAU); g.fill(); g.fillStyle = '#ffe9a8'; g.beginPath(); g.arc(0, 0, s2 * .08, 0, TAU); g.fill(); g.restore(); } }));
+      // the blossom glows a little by itself, so the side away from the sun is soft pink, not dark
+      M.blossom = M.blossom || patch(new THREE.MeshLambertMaterial({alphaTest: .5, side: THREE.DoubleSide, map: sprays, emissive: new THREE.Color(.42, .34, .37), emissiveMap: sprays}), {foliage: true, near: true}, 'wb-blossom');
+      // two layers: a fuller inner one and a fine outer one, cards lying close to the crown's round surface
+      const bloom = [], aim = new THREE.Object3D(); for (const [radius, n, size] of [[1.75, 70, [1.25, .5]], [2.15, 130, [.85, .35]]]) for (const c of crownCards(x0, crownY + .2, z0, radius, n, R, world.sunDir, size, .9)) { const dx = c.x - x0, dy = c.y - crownY - .2, dz = c.z - z0;
+        aim.lookAt(dx + r(-.25, .25), dy + r(-.25, .25), dz + r(-.25, .25)); aim.rotateZ(r(0, TAU)); c.rx = aim.rotation.x; c.ry = aim.rotation.y; c.rz = aim.rotation.z; c.c = .9 + c.c * .26; bloom.push(c); }
+      const m = instanced(new THREE.PlaneGeometry(1, 1), M.blossom, bloom, {cast: false, receive: false, name: 'blossom'}); if (m) group.add(m);
       const pinks = [[1.3, .62, .8], [1.36, .8, .9], [1.4, 1.1, 1.15]];
       for (let k = 0; k < 60; k++) { const a = r(0, TAU), d = Math.sqrt(R()) * 3.4, x = x0 + Math.cos(a) * d, z = z0 + Math.sin(a) * d; add('rock', new THREE.CircleGeometry(r(.035, .06), 5).rotateX(-Math.PI / 2).rotateY(r(0, 3)), pinks[k % 3], x, ground(x, z) + .03, z); } },
     berries() { const berry = site.berry === 'blue' ? [.24, .3, .78] : [.86, .12, .14];
