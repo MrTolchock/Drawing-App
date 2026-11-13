@@ -1,4 +1,4 @@
-# Waldfreunde implementation
+# Waldpost implementation
 
 The active game follows [letter sessions](LETTER-SESSIONS.md), [visual style](../design/VISUAL-STYLE.md) and the [puzzle blueprint](../design/PUZZLE-BLUEPRINT.md). Historical Heart Tree screens and engines live in `archive/legacy-game/`; `?screen=forest` opens the current den. The old gallery URL opens the adult gate.
 

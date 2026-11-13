@@ -45,6 +45,6 @@ Competences below are bounded practice references to [Zürich Zyklus 1](CURRICUL
 | [Schreibspuren](puzzles/trace.md) | Maus | D.4.A.1.c — Buchstabenformen nachfahren | A–Z und ÄÖÜ, gross und klein; 58 Formen; keine Handschriftbeurteilung | 58 |
 | [Zahlenspuren](puzzles/trace-numbers.md) | Maus | D.4.A.1.c (Graphomotorik) — Ziffernformen nachfahren | 0–9; je drei gezeichnete Mengenbezüge; 30 Aufgaben | 30 |
 
-Existing historical Heart Tree activities remain archived/compatible and are not additional active Waldfreunde puzzles. Original FriendsState task snapshots remain untouched; newly started active puzzles use the shared finite catalogue. Older seeded sessions are retained in the puzzle save’s `legacy` field when the new catalogue starts a fresh round.
+Existing historical Heart Tree activities remain archived/compatible and are not additional active Waldpost puzzles. Original FriendsState task snapshots remain untouched; newly started active puzzles use the shared finite catalogue. Older seeded sessions are retained in the puzzle save’s `legacy` field when the new catalogue starts a fresh round.
 
 Review decisions are shared through the repository’s `puzzle-review-data` branch, keyed by exact revision. Devices keep an offline cache and unsaved outbox in `farbtupf.puzzle-review.v1`; developer reviews with `?dev=1` stay local. Only confirmed GitHub approvals release puzzles. No approvals are shipped by default. See [review instructions](PUZZLE-REVIEW.md).

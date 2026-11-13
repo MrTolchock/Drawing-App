@@ -1,6 +1,14 @@
 # Visual consistency audit
 
-Latest audit: 13 November 2026, feature branch 9.3.26. The dated entries below record earlier releases. This checks the active game against [Visual style](VISUAL-STYLE.md) and [Puzzle blueprint](PUZZLE-BLUEPRINT.md). It records implementation evidence; it does not grant editorial approval.
+Latest audit: 13 November 2026, Waldpost 9.3.27. The dated entries below record earlier releases. This checks the active game against [Visual style](VISUAL-STYLE.md) and [Puzzle blueprint](PUZZLE-BLUEPRINT.md). It records implementation evidence; it does not grant editorial approval.
+
+## Waldpost name — 9.3.27
+
+The game is now **Waldpost** in the browser title, Apple home-screen metadata, manifest name/short name, Settings version label, recovery page, icon accessible name, export filenames and current documentation. The usage export adds `appName: "Waldpost"`. Existing storage keys, JSON format identifiers, app ID/start URL/scope, cache prefix and updater messages retain their compatible identifiers. The icon's embedded artwork is byte-identical.
+
+The rename uses the existing fonts, settings card and recovery page. [Actual phone Settings](evidence/2026-11-13-waldpost/settings-phone.png); [browser metadata/export report](evidence/2026-11-13-waldpost/branding-report.json). The browser check verified both export filenames, the developer toggle, the new name and version, complete offline installation and the recovery page without writing review decisions. It isolated the branding UI from another forest build; the separate installed-app suite exercised the full world and upgrades from current main's 9.3.24.
+
+All twelve model suites, generated catalogue/fingerprint, design/archive checks and fourteen fixed visual references passed. Installed-app checks passed old-to-new activation, unfinished-puzzle retention, dialog protection, failed download/offline recovery, first install and recovery-page activation. This release includes the preceding local usage log and developer-mode work and preserves main's landscape changes. Editorial approvals remain separate.
 
 ## Developer-mode logging switch — feature branch 9.3.26
 

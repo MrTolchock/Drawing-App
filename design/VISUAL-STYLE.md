@@ -1,4 +1,4 @@
-# Visual style — Farbtupf / Waldfreunde
+# Visual style — Waldpost
 
 This is the single visual specification for the active game. The direction is a warm woodland picture book: plush characters, drawn learning illustrations, cream paper, quiet sepia controls, sage/ochre accents and readable school text. Apply the same rules to all existing and new screens. The [puzzle blueprint](PUZZLE-BLUEPRINT.md) adds interaction rules.
 

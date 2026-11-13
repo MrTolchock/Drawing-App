@@ -3,7 +3,8 @@
   'use strict';
   const FK = (window.FK = window.FK || {});
 
-  FK.VERSION = '9.3.26';
+  FK.APP_NAME = 'Waldpost';
+  FK.VERSION = '9.3.27';
   FK.TAU = Math.PI * 2;
   FK.$ = (sel, root) => (root || document).querySelector(sel);
   FK.$$ = (sel, root) => Array.prototype.slice.call((root || document).querySelectorAll(sel));

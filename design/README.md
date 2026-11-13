@@ -1,4 +1,4 @@
-# Current design
+# Waldpost — current design
 
 These documents define the game shipped from `main`. There is one current visual specification and one current puzzle specification.
 

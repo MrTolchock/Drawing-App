@@ -1,4 +1,4 @@
-# Farbtupf — Waldfreunde
+# Waldpost
 
 [Play](https://mrtolchock.github.io/Drawing-App/) · [Current design](design/README.md) · [All puzzles and competences](docs/PUZZLE-CATALOGUE.md) · [Development](docs/DEVELOPMENT.md)
 

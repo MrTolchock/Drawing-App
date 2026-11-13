@@ -1,0 +1,57 @@
+{
+  "title": "Waldpost",
+  "apple": "Waldpost",
+  "manifest": {
+    "name": "Waldpost",
+    "short_name": "Waldpost",
+    "description": "Waldpost – Spielend zählen, lesen, schreiben und entdecken in der 1. Klasse – auch ohne Internet.",
+    "lang": "de-CH",
+    "dir": "ltr",
+    "id": "./",
+    "start_url": "./",
+    "scope": "./",
+    "display": "standalone",
+    "orientation": "any",
+    "background_color": "#f7f2e7",
+    "theme_color": "#58744a",
+    "categories": [
+      "kids",
+      "education",
+      "entertainment"
+    ],
+    "icons": [
+      {
+        "src": "icons/icon-192.png",
+        "sizes": "192x192",
+        "type": "image/png",
+        "purpose": "any"
+      },
+      {
+        "src": "icons/icon-512.png",
+        "sizes": "512x512",
+        "type": "image/png",
+        "purpose": "any"
+      },
+      {
+        "src": "icons/icon-maskable-512.png",
+        "sizes": "512x512",
+        "type": "image/png",
+        "purpose": "maskable"
+      },
+      {
+        "src": "icons/icon.svg",
+        "sizes": "any",
+        "type": "image/svg+xml",
+        "purpose": "any"
+      }
+    ]
+  },
+  "version": "Waldpost 9.3.27",
+  "appName": "Waldpost",
+  "logFilename": "waldpost-spielprotokoll-2026-11-13.json",
+  "reviewFilename": "waldpost-puzzle-pruefung.json",
+  "recoveryTitle": "Waldpost aktualisieren",
+  "legacyFormat": "farbtupf-play-log",
+  "reviewWrites": 0,
+  "errors": []
+}

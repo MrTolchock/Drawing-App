@@ -1,6 +1,6 @@
 # Current woodland puzzles
 
-The active Waldfreunde catalogue contains **34 puzzles and 1,048 finite iterations**. Every puzzle has at least 25 iterations. Schreibspuren covers A–Z and ÄÖÜ in upper and lower case (58 forms). Zahlenspuren covers all ten digits with three illustrated quantity contexts (30 iterations).
+The active Waldpost catalogue contains **34 puzzles and 1,048 finite iterations**. Every puzzle has at least 25 iterations. Schreibspuren covers A–Z and ÄÖÜ in upper and lower case (58 forms). Zahlenspuren covers all ten digits with three illustrated quantity contexts (30 iterations).
 
 - [Shared puzzle blueprint](PUZZLE-BLUEPRINT.md): the contract for pictures, page, sound, guidance, five-task rounds and celebration.
 - [Complete puzzle catalogue](PUZZLE-CATALOGUE.md): every puzzle, competence, difficulty and iteration count, with a page listing every individual definition and solution.

@@ -1,6 +1,6 @@
 # Learning scope
 
-Farbtupf supports practice for first-grade children in Zürich. It complements teaching; it is not a complete curriculum or a certified assessment. Interface language is Swiss Standard German.
+Waldpost supports practice for first-grade children in Zürich. It complements teaching; it is not a complete curriculum or a certified assessment. Interface language is Swiss Standard German.
 
 The open stages **Entdecken**, **Üben** and **Knobeln** describe app difficulty. They are not official school trimesters. Story rounds use the introductory stage and five tasks. Practice can use any available stage. Retries and requested help have no penalty.
 

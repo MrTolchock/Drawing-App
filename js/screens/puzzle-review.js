@@ -6,7 +6,7 @@
   const names={pending:'Offen',approved:'Freigegeben',improve:'Verbessern'};
   const btn=(label,fn)=>FK.ui.btn({label,onClick:fn});
   const statusText=s=>(s.stale?'Geändert · ':'')+names[s.status];
-  function download(){const url=URL.createObjectURL(new Blob([JSON.stringify(V.exportData(),null,2)],{type:'application/json'}));h('a',{href:url,download:'farbtupf-puzzle-pruefung.json'}).click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+  function download(){const url=URL.createObjectURL(new Blob([JSON.stringify(V.exportData(),null,2)],{type:'application/json'}));h('a',{href:url,download:'waldpost-puzzle-pruefung.json'}).click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
   function message(){return h('p',{class:'review-notice',role:'status','aria-live':'polite',text:V.error||notice});}
   function draw(){
     FK.forestVoice.cancel();

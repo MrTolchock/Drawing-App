@@ -24,7 +24,7 @@ The older `?dev=1` route still uses its isolated save/review namespaces and now 
 
 ## Export format
 
-`format: "farbtupf-play-log"`, `schema: 2` contains:
+The download is named `waldpost-spielprotokoll-YYYY-MM-DD.json` and identifies `appName: "Waldpost"`. Its existing `format: "farbtupf-play-log"`, `schema: 2` identifier stays compatible with older exports. It contains:
 
 | Field | Purpose |
 | --- | --- |
@@ -47,7 +47,7 @@ First-try rates are offered only for choice questions whose beginning was observ
 
 Attach the downloaded JSON to an AI conversation. For example:
 
-> Analyze this Waldfreunde play log for friction in the journey, unclear iterations, input problems and difficulty. Cite puzzle/iteration IDs and revisions for each finding, with sample counts and event evidence. Separate observed facts from hypotheses, account for truncated or unfinished visits, and prioritize concrete changes for adult review. Do not infer a child's ability from one run or automatically approve content.
+> Analyze this Waldpost play log for friction in the journey, unclear iterations, input problems and difficulty. Cite puzzle/iteration IDs and revisions for each finding, with sample counts and event evidence. Separate observed facts from hypotheses, account for truncated or unfinished visits, and prioritize concrete changes for adult review. Do not infer a child's ability from one run or automatically approve content.
 
 The export includes the question definitions and interpretation guide, so the AI can read it without access to this browser's storage. Sharing the file is a manual action under the parent's control.
 

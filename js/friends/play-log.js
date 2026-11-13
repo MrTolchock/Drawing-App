@@ -36,7 +36,7 @@
       }catch{error='Ein Ereignis konnte nicht protokolliert werden.';return false;}
     }
     function exportData(){flush();trim();const rows=copy(events),defs=copy(referenced(events));return {
-      format:'farbtupf-play-log',schema:2,exportedAt:new Date(now()).toISOString(),...metadata(),
+      format:'farbtupf-play-log',schema:2,appName:root.FK?.APP_NAME||'Waldpost',exportedAt:new Date(now()).toISOString(),...metadata(),
       recording:{enabled:enabled()&&!metadata().development},
       retention:{days:7,maxEvents:MAX_EVENTS,maxStorageCharacters:MAX_CHARS,truncated,droppedEvents:dropped},
       storage:{localOnly:true,persisted:!dirty&&!error,error:error||null},
