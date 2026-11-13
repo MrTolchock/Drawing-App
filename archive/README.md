@@ -7,6 +7,7 @@ Historical material is preserved here, outside the [current design](../design/RE
 | [Design history](design-history/README.md) | Retired Heart Tree, Forest friends drafts, competing visual blueprints, frozen references and superseded documentation |
 | [Retired game](legacy-game/README.md) | Heart Tree runtime/screens/styles/tests, older activity engines and previous portrait pipeline |
 | [Project baseline](project-baseline/README.md) | Earlier preserved project documentation |
+| [Retired drawing](retired-drawing/README.md) | Removed drawing book/editors and saved-picture gallery |
 | [Retired timer](retired-timer/README.md) | Removed stopwatch/countdown implementation |
 | [Retired free-play tests](retired-free-play-tests/README.md) | Tests for the former unrestricted child gallery |
 

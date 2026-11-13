@@ -3028,5 +3028,25 @@
     "original": "tools/forest-friends-paint-assets.py",
     "archived": "archive/legacy-game/tools/forest-friends-paint-assets.py",
     "sha256": "cbe97c10b42871b3deae7160346aa39fc9a1eac61a76ed4f1d3e52c6d27988bb"
+  },
+  {
+    "original": "js/screens/book.js",
+    "archived": "archive/retired-drawing/book.js",
+    "sha256": "68cf9c6b228f4a3f9699c80dce18c9733088d040e2a1e9fc6056980df99268f8"
+  },
+  {
+    "original": "js/screens/color.js",
+    "archived": "archive/retired-drawing/color.js",
+    "sha256": "5c5e920b928a44074de4f73ac4897d2e4e14f8d16b4a1b36ed1237a4e9118fda"
+  },
+  {
+    "original": "js/screens/free.js",
+    "archived": "archive/retired-drawing/free.js",
+    "sha256": "723fa2d6fc194af864fe0458161856632d8768135db00862f512c9c8ba7f2175"
+  },
+  {
+    "original": "js/screens/gallery.js",
+    "archived": "archive/retired-drawing/gallery.js",
+    "sha256": "75952389d3ab5beab7b72cc19ba2182639326a57d94f4c99846f5a5c62631182"
   }
 ]
