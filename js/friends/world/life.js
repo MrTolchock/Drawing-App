@@ -59,11 +59,20 @@ export function createLife({scene, canvasTex, groundY, walkable, terrain, random
 
   /* ---------- the beaver pond: two ducks swimming their rounds, and now and then a fish jumps ---------- */
   const pond = terrain.pools.find(q => q.id === 'pond'), pc = Math.cos(pond.rot), ps = Math.sin(pond.rot), onPond = (u, v) => [pond.x + u * pc - v * ps, pond.z + u * ps + v * pc];
-  const duckTex = [['#7a5a3c', '#2f6b4a'], ['#9a7a56', '#8a6a48']].map(([body, head]) => canvasTex(96, 64, g => { g.fillStyle = body; g.beginPath(); g.ellipse(42, 42, 32, 15, 0, 0, TAU); g.fill(); g.beginPath(); g.moveTo(10, 40); g.lineTo(0, 28); g.lineTo(22, 34); g.fill();
-    g.fillStyle = '#e9dcc4'; g.beginPath(); g.ellipse(46, 46, 22, 9, 0, 0, TAU); g.fill(); g.fillStyle = 'rgba(255,255,255,.85)'; g.fillRect(60, 30, 5, 5); g.fillStyle = head; g.beginPath(); g.arc(72, 22, 12, 0, TAU); g.fill(); g.fillRect(64, 26, 12, 12);
-    g.fillStyle = '#e8a12e'; g.beginPath(); g.moveTo(82, 19); g.lineTo(96, 23); g.lineTo(82, 28); g.fill(); g.fillStyle = '#14100c'; g.beginPath(); g.arc(75, 19, 2.2, 0, TAU); g.fill(); }));
+  // Ducks are little models (a drake and a hen), built once from a dozen rounded shapes with painted colours.
+  function duckModel(c) { const parts = [], add = (g, hex) => { g = g.toNonIndexed(); const col = new THREE.Color(hex), n = g.attributes.position.count, a = new Float32Array(n * 3); for (let i = 0; i < n; i++) a.set([col.r, col.g, col.b], i * 3); g.setAttribute('color', new THREE.BufferAttribute(a, 3)); parts.push(g); };
+    const ball = (r2, sx, sy, sz, x, y, z, hex, rx = 0) => add(new THREE.SphereGeometry(r2, 14, 10).scale(sx, sy, sz).rotateX(rx).translate(x, y, z), hex);
+    ball(.16, .88, .72, 1.4, 0, .05, 0, c.body); ball(.125, .85, .8, .85, 0, .06, .15, c.breast); ball(.075, .75, .5, 1.5, 0, .13, -.24, c.tail, .45);
+    for (const s of [-1, 1]) ball(.13, .38, .58, 1.15, s * .11, .1, -.03, c.wing, -.08);
+    add(new THREE.CylinderGeometry(.045, .055, .14, 10).rotateX(.25).translate(0, .18, .16), c.head); if (c.ring) add(new THREE.TorusGeometry(.052, .014, 6, 14).rotateX(Math.PI / 2 + .25).translate(0, .14, .15), c.ring);
+    ball(.078, 1, .95, 1.05, 0, .265, .19, c.head); ball(.05, .9, .42, 1.5, 0, .25, .275, c.beak);
+    for (const s of [-1, 1]) ball(.013, 1, 1, 1, s * .052, .285, .225, '#14100c');
+    const g = new THREE.BufferGeometry(); for (const name of ['position', 'normal', 'color']) { const n = parts.reduce((t, q) => t + q.attributes[name].array.length, 0), a = new Float32Array(n); let o = 0; for (const q of parts) { a.set(q.attributes[name].array, o); o += q.attributes[name].array.length; } g.setAttribute(name, new THREE.BufferAttribute(a, 3)); }
+    parts.forEach(q => q.dispose()); return g; }
+  const duckMat = new THREE.MeshLambertMaterial({vertexColors: true});
+  const duckLooks = [{body: '#b9b1a4', breast: '#7d4c32', tail: '#2c2722', wing: '#8f8272', head: '#2f6f4c', ring: '#f3f0e8', beak: '#e9ab2e'}, {body: '#a98562', breast: '#b9946f', tail: '#6e5238', wing: '#8a6a48', head: '#9c7854', ring: null, beak: '#d98d2a'}];
   const solid = s => { Object.assign(s.material, {transparent: false, alphaTest: .5, depthWrite: true}); return s; };   // a cut-out that the blended water, drawn later, cannot cover
-  const ducks = duckTex.map((map, i) => ({s: solid(sprite(map, .6, 3)), a: i * 2.4, k: i ? .34 : .5, speed: i ? .075 : .06}));
+  const ducks = duckLooks.map((look, i) => { const m = new THREE.Mesh(duckModel(look), duckMat); m.name = 'duck'; m.scale.setScalar(i ? 1.45 : 1.6); m.visible = false; scene.add(m); return {m, a: i * 2.4, k: i ? .34 : .5, speed: i ? .075 : .06}; });
   const fishTex = canvasTex(64, 32, g => { g.fillStyle = '#4aa0b4'; g.beginPath(); g.ellipse(34, 16, 20, 10, 0, 0, TAU); g.fill(); g.beginPath(); g.moveTo(16, 16); g.lineTo(2, 5); g.lineTo(2, 27); g.fill(); g.fillStyle = '#e8f0e4'; g.beginPath(); g.ellipse(36, 20, 15, 5, 0, 0, TAU); g.fill(); g.fillStyle = '#14100c'; g.beginPath(); g.arc(47, 13, 2, 0, TAU); g.fill(); });
   const fish = {s: solid(sprite(fishTex, .2, 4)), t: -1, next: 4, from: [0, 0], to: [0, 0]};
   const ringTex = canvasTex(64, 64, g => { g.strokeStyle = 'rgba(255,255,255,.9)'; g.lineWidth = 4; g.beginPath(); g.arc(32, 32, 26, 0, TAU); g.stroke(); g.strokeStyle = 'rgba(255,255,255,.45)'; g.lineWidth = 2; g.beginPath(); g.arc(32, 32, 17, 0, TAU); g.stroke(); });
@@ -124,9 +133,10 @@ export function createLife({scene, canvasTex, groundY, walkable, terrain, random
         for (let k = 0; k < BEES; k++) { const a = t * (1.1 + k * .23) + k * 2.1, q = .35 + .5 * (.5 + .5 * Math.sin(t * .7 + k * 1.3)); p.setXYZ(k, hive[0] + Math.cos(a) * q, hy + Math.sin(t * 1.9 + k) * .28 + (k % 3) * .12, hive[1] + Math.sin(a * 1.13) * q); } p.needsUpdate = true; } }
     // the pond: ducks swim their rounds; a fish jumps now and then (only when Fuchs is near enough to see it)
     { const nearPond = Math.hypot(pos.x - pond.x, pos.z - pond.z) < 38;
-      for (const d of ducks) { d.s.visible = nearPond; if (!nearPond) continue; if (!reduced) d.a += dt * d.speed;
-        const [x, z] = onPond(Math.cos(d.a) * pond.rx * d.k, Math.sin(d.a) * pond.rz * d.k), [x2] = onPond(Math.cos(d.a + .05) * pond.rx * d.k, Math.sin(d.a + .05) * pond.rz * d.k), h = d.s.userData.h;
-        d.s.position.set(x, pond.level + .2 + (reduced ? 0 : Math.sin(time * 2 + d.a * 9) * .012), z); d.s.scale.set(h * 1.5 * (x2 < x ? -1 : 1), h, 1); }
+      for (const d of ducks) { d.m.visible = nearPond; if (!nearPond) continue; if (!reduced) d.a += dt * d.speed;
+        const [x, z] = onPond(Math.cos(d.a) * pond.rx * d.k, Math.sin(d.a) * pond.rz * d.k), [x2, z2] = onPond(Math.cos(d.a + .05) * pond.rx * d.k, Math.sin(d.a + .05) * pond.rz * d.k), t = reduced ? 0 : time;
+        // they paddle along, bob a little, and now and then dip their heads
+        const dip = Math.max(0, Math.sin(t * .31 + d.a * 3) - .94) * 14; d.m.position.set(x, pond.level + .03 + Math.sin(t * 2 + d.a * 9) * .012, z); d.m.rotation.set(dip, Math.atan2(x2 - x, z2 - z), Math.sin(t * 2.6 + d.a * 5) * .05, 'YXZ'); }
       if (nearPond && !reduced && fish.t < 0 && (fish.next -= dt) < 0) { const a = r(0, TAU), k = r(.1, .45); fish.from = onPond(Math.cos(a) * pond.rx * k, Math.sin(a) * pond.rz * k); const b = r(0, TAU); fish.to = [fish.from[0] + Math.cos(b) * .9, fish.from[1] + Math.sin(b) * .9]; fish.t = 0; fish.next = r(5, 12); splash(0, ...fish.from); fit(fish.s); }
       if (fish.t >= 0) { fish.t += dt / .8; const u = fish.t, x = fish.from[0] + (fish.to[0] - fish.from[0]) * u, z = fish.from[1] + (fish.to[1] - fish.from[1]) * u, right = fish.to[0] >= fish.from[0] ? 1 : -1;
         fish.s.visible = u < 1; fish.s.position.set(x, pond.level + Math.sin(u * Math.PI) * .6, z); fish.s.scale.set(.4 * right, .2, 1); fish.s.material.rotation = right * Math.cos(u * Math.PI) * 1.1;

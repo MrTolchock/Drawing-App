@@ -50,16 +50,32 @@ export function wonderSteps(site, look, world, group) {
         for (let j = 0; j < 9; j++) { const u = r(0, TAU), v = r(.15, 1.25), q = s * 1.02; add('rock', new THREE.SphereGeometry(r(.045, .06), 7, 5), berry, x + Math.sin(v) * Math.cos(u) * q, y + Math.cos(v) * q * .82, z + Math.sin(v) * Math.sin(u) * q); } } },
   };
   Object.assign(kinds, {
+    // the well: a wall of single stones in three courses with a rim of cap stones, moss and paving round it,
+    // a timber frame with braces, a shingled roof, a windlass with rope and crank, and a hooped bucket
     well() { const rot = g => g.rotateY(yaw), off = (dx, dz) => [x0 + Math.cos(yaw) * dx + Math.sin(yaw) * dz, z0 - Math.sin(yaw) * dx + Math.cos(yaw) * dz];
-      add('rock', new THREE.CylinderGeometry(.84, .9, .72, 14, 1, true), [.72, .7, .66], x0, y0 + .36, z0);
-      const inner = new THREE.CylinderGeometry(.7, .7, .72, 14, 1, true).scale(-1, 1, 1); inner.computeVertexNormals(); add('rock', inner, [.3, .3, .3], x0, y0 + .36, z0);
-      add('rock', new THREE.TorusGeometry(.77, .11, 6, 16).rotateX(Math.PI / 2), [.8, .78, .73], x0, y0 + .72, z0);
-      for (let k = 0; k < 9; k++) { const a = k / 9 * TAU; add('rock', lump(R, .13, 0, .2).scale(1.3, .8, 1), [.6, .6, .57], x0 + Math.cos(a) * .9, y0 + r(.12, .5), z0 + Math.sin(a) * .9); }
-      add('rock', new THREE.CircleGeometry(.7, 14).rotateX(-Math.PI / 2), [.1, .3, .46], x0, y0 + .46, z0);
-      for (const sd of [-1, 1]) { const [x, z] = off(sd * .86, 0); add('wood', new THREE.BoxGeometry(.13, 1.75, .13), [1.05, .85, .68], x, y0 + .87, z); }
-      add('wood', rot(new THREE.CylinderGeometry(.05, .05, 1.8, 8).rotateZ(Math.PI / 2)), [.9, .72, .56], x0, y0 + 1.5, z0);
-      for (const sd of [-1, 1]) { const [x, z] = off(0, sd * .36); add('wood', rot(new THREE.BoxGeometry(2.1, .07, .86).rotateX(sd * .62)), [1.05, .5, .36], x, y0 + 1.98, z); }
-      add('wood', new THREE.CylinderGeometry(.012, .012, .55, 5), [.7, .6, .45], x0, y0 + 1.22, z0); add('wood', new THREE.CylinderGeometry(.15, .12, .22, 9), [1.1, .85, .6], x0, y0 + .9, z0); },
+      const greys = [[.74, .72, .68], [.66, .65, .62], [.8, .76, .7], [.6, .6, .58]], timber = [1.02, .8, .6], dark = [.7, .52, .38];
+      for (let row = 0; row < 3; row++) for (let k = 0; k < 12; k++) { const a = (k + row * .5) / 12 * TAU, s2 = r(.9, 1.1); add('rock', lump(R, .15, 1, .12).scale(1.55 * s2, .78, 1.05).rotateY(-a + Math.PI / 2), greys[(k + row) % 4], x0 + Math.cos(a) * .84, y0 + .12 + row * .215, z0 + Math.sin(a) * .84); }
+      for (let k = 0; k < 12; k++) { const a = (k + .25) / 12 * TAU; add('rock', lump(R, .15, 1, .1).scale(1.7, .42, 1.35).rotateY(-a + Math.PI / 2), greys[(k * 3) % 4], x0 + Math.cos(a) * .85, y0 + .76, z0 + Math.sin(a) * .85); }
+      const inner = new THREE.CylinderGeometry(.74, .74, .8, 16, 1, true).scale(-1, 1, 1); inner.computeVertexNormals(); add('rock', inner, [.26, .26, .27], x0, y0 + .4, z0);
+      add('rock', new THREE.CylinderGeometry(.8, .84, .7, 16, 1, true), [.5, .5, .48], x0, y0 + .35, z0);
+      add('rock', new THREE.CircleGeometry(.74, 16).rotateX(-Math.PI / 2), [.1, .32, .48], x0, y0 + .5, z0); add('rock', new THREE.RingGeometry(.3, .36, 14).rotateX(-Math.PI / 2), [.4, .62, .74], x0 + .12, y0 + .505, z0 - .1);
+      for (let k = 0; k < 6; k++) { const a = r(0, TAU); add('rock', lump(R, r(.09, .15), 1, .25).scale(1.3, .4, 1), [.3, .5, .17], x0 + Math.cos(a) * .9, y0 + r(.3, .82), z0 + Math.sin(a) * .9); }
+      for (let k = 0; k < 11; k++) { const a = k / 11 * TAU + r(-.1, .1), d = r(1.2, 1.5), x = x0 + Math.cos(a) * d, z = z0 + Math.sin(a) * d; add('rock', lump(R, r(.17, .25), 0, .15).scale(1, .16, .85).rotateY(r(0, 3)), greys[k % 4], x, ground(x, z) + .02, z); }
+      for (const sd of [-1, 1]) { const [x, z] = off(sd * .98, 0); add('wood', new THREE.CylinderGeometry(.065, .08, 2.0, 8), timber, x, y0 + 1, z);
+        for (const fb of [-1, 1]) { const [bx, bz] = off(sd * .98, fb * .2); add('wood', rot(new THREE.CylinderGeometry(.035, .035, .62, 6).rotateX(fb * -.7)), dark, bx, y0 + 1.72, bz); } }
+      add('wood', rot(new THREE.CylinderGeometry(.075, .075, 2.3, 10).rotateZ(Math.PI / 2)), dark, x0, y0 + 1.42, z0);                       // windlass
+      for (let k = -2; k <= 2; k++) { const [x, z] = off(k * .05, 0); add('rock', rot(new THREE.TorusGeometry(.09, .022, 5, 12).rotateY(Math.PI / 2)), [1.05, .9, .62], x, y0 + 1.42, z); }
+      { const [x, z] = off(1.2, 0), [x2, z2] = off(1.2, .16), [x3, z3] = off(1.3, .16); add('wood', rot(new THREE.CylinderGeometry(.022, .022, .34, 6).rotateX(Math.PI / 2)), [.5, .42, .36], x, y0 + 1.42, z + 0); add('wood', new THREE.CylinderGeometry(.03, .03, .2, 6).rotateZ(Math.PI / 2).rotateY(yaw), timber, (x2 + x3) / 2, y0 + 1.42, (z2 + z3) / 2); }
+      // shingled roof: four overlapping rows a side, a ridge beam and a little knob
+      for (const sd of [-1, 1]) for (let row = 0; row < 4; row++) { const [x, z] = off(0, sd * (.13 + row * .19)); add('wood', rot(new THREE.BoxGeometry(2.45, .05, .3).rotateX(sd * .72)), row % 2 ? [1.1, .46, .32] : [.94, .38, .27], x, y0 + 2.52 - row * .165, z); }
+      add('wood', rot(new THREE.CylinderGeometry(.05, .05, 2.5, 6).rotateZ(Math.PI / 2)), dark, x0, y0 + 2.6, z0);
+      for (const sd of [-1, 1]) { const [x, z] = off(sd * .98, 0); add('wood', rot(new THREE.BoxGeometry(.06, .06, 1.3)), dark, x, y0 + 2.0, z); }
+      // rope and bucket, hanging a little to one side
+      { const [x, z] = off(.12, 0); add('rock', new THREE.CylinderGeometry(.014, .014, .42, 5), [1.05, .9, .62], x, y0 + 1.2, z);
+        add('wood', new THREE.CylinderGeometry(.17, .13, .26, 12), [1.15, .9, .64], x, y0 + .88, z); for (const h of [.8, .95]) add('rock', new THREE.TorusGeometry(h > .9 ? .163 : .143, .014, 5, 14).rotateX(Math.PI / 2), [.34, .32, .32], x, y0 + h, z);
+        add('rock', rot(new THREE.TorusGeometry(.15, .012, 5, 12, Math.PI)), [.34, .32, .32], x, y0 + 1.0, z); add('rock', new THREE.CircleGeometry(.15, 12).rotateX(-Math.PI / 2), [.12, .34, .5], x, y0 + .97, z); }
+      // flowers at its foot
+      for (let k = 0; k < 9; k++) { const a = r(0, TAU), d = r(1.0, 1.15), x = x0 + Math.cos(a) * d, z = z0 + Math.sin(a) * d, y = ground(x, z); add('rock', new THREE.CylinderGeometry(.008, .008, .16, 4), [.3, .55, .18], x, y + .08, z); add('rock', new THREE.SphereGeometry(.035, 6, 5), [[1.3, 1.05, .25], [.5, .55, 1.3], [1.3, 1.25, 1.2]][k % 3], x, y + .17, z); } },
     lanterns() { const lights = [];
       for (const [x, z, a] of site.posts) { const y = ground(x, z), lx = x + Math.cos(a) * .32, lz = z + Math.sin(a) * .32;
         add('wood', new THREE.CylinderGeometry(.05, .075, 1.75, 7), [.72, .55, .42], x, y + .87, z); add('wood', new THREE.BoxGeometry(.5, .06, .06).rotateY(-a), [.72, .55, .42], x + Math.cos(a) * .18, y + 1.72, z + Math.sin(a) * .18);
