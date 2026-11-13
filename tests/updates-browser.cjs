@@ -57,12 +57,15 @@ const server=http.createServer((req,res)=>{
  assert.equal(navigations,inPuzzle);assert.equal(await page.evaluate(()=>FK.current()),'puzzle');assert.equal(await page.evaluate(()=>FK.VERSION),'9.0.3');assert.deepEqual(await page.evaluate(()=>FK.puzzleRounds.start('count')),partial);
  await page.evaluate(()=>FK.go('settings'));await page.waitForFunction(()=>window.FK?.VERSION==='9.0.4'&&!!FK.current?.());await saved();assert.deepEqual(await page.evaluate(()=>FK.puzzleRounds.start('count')),partial);
  console.log('PASS: update found after startup; puzzle stays untouched until the menu, then one reload preserves partial answers.');
+ // A freshly reloaded world must finish its startup check before a separate resume check is triggered.
+ await page.waitForFunction(()=>!!FK.friends&&FK.updates.get().status==='current');
  // Removed drawing routes stay closed, while existing IndexedDB drawings survive upgrades.
  assert.equal(await page.evaluate(()=>['book','color','free','gallery'].some(FK.screenExists)),false);
  const colourKey='retired-colour-fixture';await page.evaluate(async key=>{await FK.store.put(key,{paint:new Blob(['legacy drawing'],{type:'image/png'})});FK.go('settings');FK.ui.modal({title:'Offene Notiz',body:FK.h('textarea',{'aria-label':'Notiz',text:'Entwurf behalten'})});Object.defineProperty(document,'hidden',{configurable:true,get:()=>!!window.hiddenForUpdateTest});window.hiddenForUpdateTest=false;},colourKey);
  const noteNav=navigations;version='9.0.5';await page.evaluate(()=>{const now=Date.now;Date.now=()=>now()+61000;document.dispatchEvent(new Event('visibilitychange'));});await page.waitForFunction(()=>FK.updates.get().status==='ready');assert.equal(navigations,noteNav);assert.equal(await page.getByLabel('Notiz',{exact:true}).inputValue(),'Entwurf behalten');
  await page.evaluate(()=>FK.ui.closeModal());await page.waitForFunction(()=>window.FK?.VERSION==='9.0.5'&&!!FK.current?.());await saved();assert.ok(await page.evaluate(key=>FK.store.get(key).then(r=>r?.paint instanceof Blob),colourKey));
  console.log('PASS: foreground update waits for an open parent dialog; retired drawings survive without drawing routes.');
+ await page.waitForFunction(()=>!!FK.friends&&FK.updates.get().status==='current');
  await page.evaluate(()=>FK.go('settings'));version='9.0.6';broken=true;await page.getByRole('button',{name:'Nach Updates suchen',exact:true}).tap();await page.waitForFunction(()=>FK.updates.get().status==='error');assert.equal(await page.evaluate(()=>FK.VERSION),'9.0.5');
  await context.setOffline(true);await page.reload();await page.waitForFunction(()=>window.FK?.VERSION==='9.0.5'&&!!FK.current?.());await page.evaluate(()=>FK.go('settings'));await page.getByRole('button',{name:'Nach Updates suchen',exact:true}).tap();assert.match(await page.locator('.ff-update-status').textContent(),/offline/);await saved();assert.ok(await page.evaluate(key=>FK.store.get(key).then(r=>r?.paint instanceof Blob),colourKey));
  assert.deepEqual(errors,[]);console.log('PASS: failed download keeps the working release; offline reload and all saved work survive.');await context.close();

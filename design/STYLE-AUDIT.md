@@ -1,6 +1,20 @@
 # Visual consistency audit
 
-Latest audit: 13 November 2026, feature branch 9.3.21. The dated entries below record earlier releases. This checks the active game against [Visual style](VISUAL-STYLE.md) and [Puzzle blueprint](PUZZLE-BLUEPRINT.md). It records implementation evidence; it does not grant editorial approval.
+Latest audit: 13 November 2026, feature branch 9.3.22. The dated entries below record earlier releases. This checks the active game against [Visual style](VISUAL-STYLE.md) and [Puzzle blueprint](PUZZLE-BLUEPRINT.md). It records implementation evidence; it does not grant editorial approval.
+
+## Local gameplay observations — feature branch 9.3.22
+
+Settings now offers **Lokales Spielprotokoll**, with full-width export/delete buttons using Andika and the existing cream/sage settings card. Both controls retain at least 52 px height and wrap labels on phones. The manual **Spielstand sichern** control is removed. The automatic invitation/allowance/unfinished-round state remains independent of the log; there is no successful-save banner in the child interface.
+
+The [AI-readable local export](../docs/PLAY-LOG.md) records exact task/revision definitions, actual selections and explicit outcomes, rule/reset/input events, foreground task times and flow observations. It excludes adult puzzle previews and raw handwriting paths. Hidden/dialog/feedback/celebration time is excluded; a page-cache suspension pauses and resumes its existing visit. Choice-question first-try summaries require an observed beginning; construction/tracing have no misleading first-try score. There is no automatic upload or difficulty change.
+
+- [Actual Settings card, tablet](evidence/2026-11-13-local-play-log/local-log-1080.png) and [phone](evidence/2026-11-13-local-play-log/local-log-390.png).
+- [All 34 puzzles × 2 viewport layout checks](evidence/2026-11-13-local-play-log/layout-report.json), including child/review geometry, font/art roles, writing, five leaves and no hint/footer checks.
+- All twelve model suites passed; the recorder/revision suites passed again after idle-expiry and page-cache fixes. Tests cover exact definitions, timings, interrupted visits, compatible old logs, storage/size bounds and failure isolation.
+- The real browser export passed exact wrong/correct answers, dialog/page-cache time exclusion, same-run reload, robot controls/reset, writing outcomes, review exclusion, actual JSON download and delete/cancel isolation. The exported fixture stays in `/tmp`; no child observation data is committed to GitHub.
+- The complete real journey passed fifteen outcomes, three completed puzzles/celebrations, offline log retention, parent allowance, short reachable courier approaches at all eleven hosts and home/sleep/game over. The 610 archived originals and fourteen frozen visual references remain intact.
+
+Logging is part of the shared puzzle blueprint for future additions. It does not grant editorial approval or change the existing GitHub review ledger.
 
 ## Letter variety and quiet menus — feature branch 9.3.21
 

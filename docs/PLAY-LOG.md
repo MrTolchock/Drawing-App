@@ -34,6 +34,14 @@ Active milliseconds use the monotonic foreground clock within a visit, excluding
 
 First-try rates are offered only for choice questions whose beginning was observed. Construction/tracing completion does not imply a flawless first attempt; examine its actions and stroke issues. Use sample counts, exact revisions and input context before recommending changes. Logs support improvements to flow/content and fixed difficulty; they do not diagnose a child or automatically change difficulty. Any proposed puzzle/content/difficulty changes still follow the [adult review process](PUZZLE-REVIEW.md).
 
+## Using the export
+
+Attach the downloaded JSON to an AI conversation. For example:
+
+> Analyze this Waldfreunde play log for friction in the journey, unclear iterations, input problems and difficulty. Cite puzzle/iteration IDs and revisions for each finding, with sample counts and event evidence. Separate observed facts from hypotheses, account for truncated or unfinished visits, and prioritize concrete changes for adult review. Do not infer a child's ability from one run or automatically approve content.
+
+The export includes the question definitions and interpretation guide, so the AI can read it without access to this browser's storage. Sharing the file is a manual action under the parent's control.
+
 ## Persistence and limits
 
 The existing device-local key `farbtupf.friends.v1.log` is upgraded compatibly. Development/alternate-world namespaces remain separate. The log survives refresh/offline use in that browser. A different browser or deleting site data starts with a different local log; only an exported file remains after deleting local data.
