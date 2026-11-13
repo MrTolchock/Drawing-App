@@ -1,19 +1,20 @@
 # Visual consistency audit
 
-Latest audit: 13 November 2026, feature branch 9.3.19. The dated entries below record earlier releases. This checks the active game against [Visual style](VISUAL-STYLE.md) and [Puzzle blueprint](PUZZLE-BLUEPRINT.md). It records implementation evidence; it does not grant editorial approval.
+Latest audit: 13 November 2026, feature branch 9.3.20. The dated entries below record earlier releases. This checks the active game against [Visual style](VISUAL-STYLE.md) and [Puzzle blueprint](PUZZLE-BLUEPRINT.md). It records implementation evidence; it does not grant editorial approval.
 
-## Gameplay review — feature branch 9.3.19
+## Gameplay review — feature branch 9.3.20
 
 Review now uses the production puzzle/trace viewport, with no sign-off footer or fixed-height review override. The rejection × uses the same control component and slot as the child's speech button, preserving the context row height. The overview retains competence, difficulty, iteration status and the single puzzle-level speech test.
 
 Correct completion saves an exact-revision iteration approval and uses the normal 900 ms feedback/advance. Handwriting requires every stroke. A queue contains every unconfirmed iteration of the selected puzzle, including stale and improvement items, once per run. Rejections accept an optional comment and stay open for the next pass. The normal 2.2-second celebration ends the queue; only a fully approved current pool gains puzzle approval after the celebration. Refresh/reopening retains saved decisions and rebuilds the remaining queue. No separate sign-off form remains.
 
-Bug fixes enlarge the small picnic return controls and phone mirror cells to at least 48 px. The rejection dialog pauses handwriting input, correct transitions lock out duplicate decisions, and failed saves stay visible with a retry. Review never completes invitations or writes a child's puzzle round. GitHub sharing, the offline outbox and conflict handling remain in place; no editorial approvals are shipped.
+Bug fixes enlarge the small picnic return controls and phone mirror cells to at least 48 px. Syllable taps now render the actual tally dots: the previous array passed to `replaceChildren` became object text. Every one of the 35 syllable iterations now checks its tally and reset. Digit-writing quantity contexts were hidden by the legacy mystery-panel CSS, making three variants look identical; they now show a static drawn quantity row in both child play and review, including labelled empty baskets for zero. The review control is attached before fitting handwriting geometry. The rejection dialog pauses handwriting input, correct transitions lock out duplicate decisions, and failed saves stay visible with a retry. Review never completes invitations or writes a child's puzzle round. GitHub sharing, the offline outbox and conflict handling remain in place; no editorial approvals are shipped.
 
 | Production-sized review | Tablet | Phone |
 | --- | --- | --- |
 | Addition | [View](evidence/2026-11-13-gameplay-review/add-1080.png) | [View](evidence/2026-11-13-gameplay-review/add-390.png) |
 | Writing | [View](evidence/2026-11-13-gameplay-review/trace-1080.png) | [View](evidence/2026-11-13-gameplay-review/trace-390.png) |
+| Digit quantity context | [View](evidence/2026-11-13-gameplay-review/trace-numbers-1080.png) | [View](evidence/2026-11-13-gameplay-review/trace-numbers-390.png) |
 
 The layout audit compares review and child-play paper/context/writing dimensions for all **34 puzzles × 2 viewports** (1080 × 810 and 390 × 844), in addition to fonts, art roles, five leaves and no hint/footer checks. [Per-page report](evidence/2026-11-13-gameplay-review/report.json). All model suites passed, including new whole-pool, rejection, failed-save and changed-revision cases. Browser fixtures intercept GitHub and use disposable storage; these checks do not grant editorial approval.
 

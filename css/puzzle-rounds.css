@@ -114,3 +114,7 @@
 @media(prefers-reduced-motion:reduce){.screen-trace *,.screen-puzzle *,.puzzle-completion *{animation:none!important;transition:none!important}}
 
 .puzzle-listen .utility-icon{width:28px;height:28px}
+/* Digit variants show their drawn quantity in both child play and adult review. */
+.puzzle-trace-quantity{display:flex;justify-content:center;align-items:center;gap:14px;margin-top:10px;padding-top:10px;border-top:1px solid #e5d8be;font:16px/1.4 var(--read)}
+.puzzle-trace-objects{display:grid;grid-template-columns:repeat(5,32px);gap:3px}.puzzle-trace-objects>.puzzle-picture{width:32px;height:32px}
+.puzzle-trace-quantity[data-count="0"] .puzzle-trace-objects{display:block}.puzzle-trace-quantity[data-count="0"] .puzzle-picture{width:64px;height:48px}

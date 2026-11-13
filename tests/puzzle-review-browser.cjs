@@ -37,9 +37,23 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
  const touch=await context.newCDPSession(page);
  const activate=async locator=>{if(nativeInput==='mouse')await locator.click();else if(nativeInput)await locator.tap();else await locator.evaluate(b=>b.click());};
  const answer=async value=>activate(page.locator('.screen:not([hidden]) .puzzle-paper [data-answer='+JSON.stringify(String(value))+']'));
+ const verifyCompletion=async(inspected,writing=false)=>{
+  const result=await page.evaluate(inspected=>{const root=document.querySelector('.screen:not([hidden])'),decision=FK.puzzleReview.status(inspected.game,inspected.iteration).decision;return {status:decision?.status,at:decision?.at,current:root.dataset.reviewIteration,correct:!!root.querySelector('.is-correct'),pending:root.querySelectorAll('.tr-pip:not(.is-done)').length};},inspected);
+  assert.equal(result.status,'approved',inspected.iteration+' completed: '+JSON.stringify(result));
+  // Correct feedback advances after 900 ms, even when browser inspection is delayed.
+  if(result.current===inspected.iteration){if(writing)assert.equal(result.pending,0,'all stroke pips completed');else assert.equal(result.correct,true,'correct feedback is visible');}
+ };
 
  const solve=async q=>{
+  const inspected=await active().evaluate(root=>({game:root.dataset.game,iteration:root.dataset.reviewIteration}));
   if(q.kind==='trace'){
+   if(q.quantity){
+    const quantity=active().locator('.puzzle-trace-quantity');await quantity.waitFor({state:'visible'});
+    assert.equal(await quantity.getAttribute('data-count'),String(q.quantity.count));assert.equal(await quantity.getAttribute('data-item'),q.quantity.item);
+    assert.equal(await quantity.locator('.puzzle-picture').count(),q.quantity.count||1,'every quantity object is visible');
+    assert.equal(await quantity.locator('.puzzle-picture').evaluateAll(nodes=>nodes.every(e=>e.getBoundingClientRect().height>0)),true);
+    if(q.quantity.count)assert.equal(await quantity.locator('.wa-illustration[data-subject="'+q.quantity.item+'"]').count(),q.quantity.count);
+   }
    await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
    const paths=await page.locator('.tr-track path').evaluateAll(paths=>paths.map(path=>{const len=path.getTotalLength(),m=path.getScreenCTM(),steps=Math.max(1,Math.ceil(len));return Array.from({length:steps+1},(_,i)=>{const p=path.getPointAtLength(len*i/steps).matrixTransform(m);return{x:p.x,y:p.y};});}));
    for(const points of paths){
@@ -49,7 +63,7 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
     }else await page.evaluate(points=>{const paper=document.querySelector('.screen-trace .tr-paper'),send=(type,p)=>paper.dispatchEvent(new PointerEvent(type,{bubbles:true,cancelable:true,pointerId:73,pointerType:'touch',isPrimary:true,button:0,buttons:type==='pointerup'?0:1,clientX:p.x,clientY:p.y}));send('pointerdown',points[0]);for(const p of points.slice(1))send('pointermove',p);send('pointerup',points.at(-1));},points);
     await page.evaluate(()=>new Promise(requestAnimationFrame));
    }
-   assert.equal(await page.locator('.screen-trace .tr-pip:not(.is-done)').count(),0,'all strokes completed for '+q.glyph);return;
+   await verifyCompletion(inspected,true);return;
   }
   if(q.kind==='picnic'){for(let i=0;i<q.friends;i++)for(let n=(q.plates?.[i]||0);n<q.each;n++)await activate(page.locator('.puzzle-plate').nth(i));}
   else if(q.kind==='double'){while(await page.locator('.puzzle-partner:not(.filled)').count())await activate(page.locator('.puzzle-partner:not(.filled)').first());await answer(q.answer);}
@@ -68,7 +82,7 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
   else if(q.kind==='mirror'){for(const n of q.answer)await activate(page.locator('.puzzle-mirror-grid button[data-cell="'+n+'"]'));}
   else if(q.kind==='syllables'){for(const part of q.parts)await activate(page.locator('.puzzle-syllable-chip:not(:disabled)[data-part="'+part+'"]').first());}
   else await answer(q.answer);
-  assert.equal(await page.locator('.screen:not([hidden]) .is-correct').count()>0,true,q.kind+' solved');
+  await verifyCompletion(inspected);
  };
 
  await page.getByRole('button',{name:'Alle Puzzles',exact:true}).click();await page.locator('[data-puzzle="add"]').click();
@@ -126,15 +140,29 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
   const id=await currentId();assert.equal(await active().locator('.puzzle-round').textContent(),(n+1)+' / '+total);await solve(addPool.find(it=>it.id===id).question);
   if(n<total-1)await page.waitForFunction(id=>document.querySelector('.screen:not([hidden])').dataset.reviewIteration!==id,id);
  }
- await page.locator('.puzzle-completion').waitFor({state:'visible'});assert.equal(await page.evaluate(()=>FK.puzzleReview.status('add').status),'pending','puzzle waits for celebration');assert.equal(await page.locator('.puzzle-completion .done').count(),5);await page.waitForFunction(()=>FK.current()==='puzzle-review');await page.evaluate(()=>FK.reviewRepository.refresh());assert.equal(await page.evaluate(()=>FK.puzzleReview.ready('add')),true);
+ await active().locator('.puzzle-completion').waitFor({state:'visible'});assert.equal(await page.evaluate(()=>FK.puzzleReview.status('add').status),'pending','puzzle waits for celebration');assert.equal(await active().locator('.puzzle-completion .done').count(),5);await page.waitForFunction(()=>FK.current()==='puzzle-review');await page.evaluate(()=>FK.reviewRepository.refresh());assert.equal(await page.evaluate(()=>FK.puzzleReview.ready('add')),true);
  // A rejection is not repeated forever; only that item remains for the next run.
  await page.evaluate(ids=>{for(const id of ids)FK.puzzleReview.decide('add',id,'pending');FK.puzzleReview.start('add');},addPool.slice(0,2).map(i=>i.id));
- const reopen=await currentId();await reject('One more look');assert.equal(await active().locator('.puzzle-round').textContent(),'2 / 2');const last=await currentId();await solve(addPool.find(i=>i.id===last).question);await page.locator('.puzzle-completion').waitFor({state:'visible'});await page.waitForFunction(()=>FK.current()==='puzzle-review');assert.equal(await page.evaluate(()=>FK.puzzleReview.ready('add')),false);
+ const reopen=await currentId();await reject('One more look');assert.equal(await active().locator('.puzzle-round').textContent(),'2 / 2');const last=await currentId();await solve(addPool.find(i=>i.id===last).question);await active().locator('.puzzle-completion').waitFor({state:'visible'});await page.waitForFunction(()=>FK.current()==='puzzle-review');assert.equal(await page.evaluate(()=>FK.puzzleReview.ready('add')),false);
  await page.evaluate(()=>FK.puzzleReview.start('add'));assert.equal(await currentId(),reopen);assert.equal(await active().locator('.puzzle-round').textContent(),'1 / 1');
  // Storage failure must keep the item open and offer a retry, rather than silently approve.
  await page.evaluate(()=>{window.reviewWrite=Storage.prototype.setItem;Storage.prototype.setItem=function(k,v){if(k===FK.puzzleReview.key)throw Error('quota');return reviewWrite.call(this,k,v);};});
- await answer(addPool.find(i=>i.id===reopen).question.answer);await page.getByRole('dialog',{name:'Prüfung nicht gespeichert',exact:true}).waitFor();assert.equal(await page.evaluate(id=>FK.puzzleReview.status('add',id).status,reopen),'improve');await page.evaluate(()=>Storage.prototype.setItem=reviewWrite);await page.getByRole('button',{name:'Erneut versuchen',exact:true}).click();await page.locator('.puzzle-completion').waitFor({state:'visible'});await page.waitForFunction(()=>FK.current()==='puzzle-review');
+ await answer(addPool.find(i=>i.id===reopen).question.answer);await page.getByRole('dialog',{name:'Prüfung nicht gespeichert',exact:true}).waitFor();assert.equal(await page.evaluate(id=>FK.puzzleReview.status('add',id).status,reopen),'improve');await page.evaluate(()=>Storage.prototype.setItem=reviewWrite);await page.getByRole('button',{name:'Erneut versuchen',exact:true}).click();await active().locator('.puzzle-completion').waitFor({state:'visible'});await page.waitForFunction(()=>FK.current()==='puzzle-review');
  await page.evaluate(()=>FK.reviewRepository.refresh());assert.equal(await page.evaluate(()=>FK.puzzleReview.ready('add')),true);
+ // Writing uses the same open-item queue beyond five, including rejection and its next pass.
+ const childBeforeWriting=await snapshot();nativeInput=false;
+ const writing=await page.evaluate(()=>{
+  const pool=FK.puzzleCatalogue.iterations('trace');
+  for(const it of pool)if(FK.puzzleReview.status('trace',it.id).status!=='approved'){FK.puzzleReview.seen('trace',it.id);FK.puzzleReview.decide('trace',it.id,'approved');}
+  const open=pool.slice(0,7);for(const it of open)FK.puzzleReview.decide('trace',it.id,'pending');FK.puzzleReview.decide('trace',null,'pending');FK.puzzleReview.start('trace');return open;
+ });
+ for(let n=0;n<writing.length;n++){
+  assert.equal(await active().locator('.puzzle-round').textContent(),(n+1)+' / 7');const id=await currentId();
+  if(n===2){await reject('Schreibspur prüfen');assert.equal(await page.evaluate(id=>FK.puzzleReview.status('trace',id).status,id),'improve');}
+  else {await solve(writing[n].question);if(n<writing.length-1)await page.waitForFunction(id=>document.querySelector('.screen-trace').dataset.reviewIteration!==id,id);}
+ }
+ await active().locator('.puzzle-completion').waitFor();await page.waitForFunction(()=>FK.current()==='puzzle-review');assert.equal(await page.evaluate(()=>FK.puzzleReview.status('trace').status),'pending');
+ await page.evaluate(()=>FK.puzzleReview.start('trace'));assert.equal(await active().locator('.puzzle-round').textContent(),'1 / 1');await solve(writing[2].question);await active().locator('.puzzle-completion').waitFor();await page.waitForFunction(()=>FK.current()==='puzzle-review');assert.equal(await page.evaluate(()=>FK.puzzleReview.status('trace').status),'approved');assert.deepEqual(await snapshot(),childBeforeWriting,'writing review leaves child saves unchanged');
  // Flagging survives refresh and offline use; a fresh review resumes only unconfirmed items.
  await page.evaluate(id=>FK.puzzleReview.decide('add',id,'improve','Check image'),reopen);await page.reload();await page.waitForFunction(()=>!!window.FK?.friends);assert.equal(await page.evaluate(()=>FK.puzzleReview.ready('add')),false);
  await page.evaluate(()=>navigator.serviceWorker.ready);await page.waitForFunction(()=>!!navigator.serviceWorker.controller);await context.setOffline(true);await page.reload();await page.waitForFunction(()=>!!window.FK?.friends);assert.equal(await page.evaluate(id=>FK.puzzleReview.status('add',id).status,reopen),'improve');assert.equal(await page.evaluate(()=>window.reviewSpeechRequests?.length||0),0);

@@ -13,7 +13,7 @@ test('every active puzzle has at least 25 unique finite definitions, competence 
    if(q.choices){assert.equal(new Set(q.choices.map(v=>JSON.stringify(v))).size,q.choices.length,it.id);if(q.answer!==undefined&&!Array.isArray(q.answer))assert.ok(q.choices.some(v=>Array.isArray(v)?v[0]===q.answer:v===q.answer),it.id);}
    if(q.kind==='reading')q.choices.forEach(art);if(q.kind==='rhyme'){art(q.picture);q.choices.forEach(w=>art(FK.puzzleRounds.wordArt[w]));}
    if(q.picture)art(q.picture);if(q.item)art(q.item);if(q.quantity)art(q.quantity.item);if(q.bugs)q.bugs.forEach(art);if(q.sequence)q.sequence.forEach(art);if(q.objects)q.objects.forEach(art);if(q.fruit)q.fruit.forEach(art);if(q.items)q.items.forEach(([id])=>art(id));
-   if(q.kind==='trace')assert.ok(FK.glyphs.data[q.glyph]);
+   if(q.kind==='trace'){assert.ok(FK.glyphs.data[q.glyph]);if(q.quantity)assert.equal(q.quantity.count,Number(q.glyph),'pictured quantity matches the digit');}
    if(q.kind==='count')assert.equal(q.bugs.filter(v=>v==='ladybird').length,q.answer);
    if(q.kind==='add')assert.ok(q.a+q.b===q.answer&&q.answer<=10);
    if(q.kind==='fireflies')assert.equal(q.filled+q.answer,q.total);

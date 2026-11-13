@@ -45,9 +45,10 @@ try{
    });
    assert.equal(result.overflow,false,g.id+' overflow '+width);assert.equal(result.progress,5,g.id+' progress');assert.match(result.font,/Andika/,g.id+' title font');assert.equal(result.explain,0,g.id+' speech tested on puzzle overview');assert.equal(result.hints,0,g.id+' hint');
    assert.ok(result.portraits.length,g.id+' host portrait');for(const image of result.portraits)assert.match(image,/character-portraits.webp/,g.id+' mixed portrait');
+   if(g.id==='trace-numbers')assert.equal(await active.locator('.puzzle-trace-quantity').isVisible(),true,'digit quantity context is visible');
    for(const subject of result.subjects)assert.match(subject.image,/assets\/waldatelier\//,g.id+' missing/mixed subject '+subject.id);
    report.push({puzzle:g.id,width,checks:'passed',subjects:result.subjects.length});
-   if(['add','friends-owl','trace','read-puzzle'].includes(g.id))await page.screenshot({path:out+'/'+g.id+'-'+width+'.png'});
+   if(['add','friends-owl','trace','trace-numbers','read-puzzle'].includes(g.id))await page.screenshot({path:out+'/'+g.id+'-'+width+'.png'});
    assert.equal(await active.locator('.review-preview,.review-decision').count(),0,g.id+' no sign-off footer');
    const review=await geometry();
    await page.evaluate(g=>{const it=FK.puzzleCatalogue.iterations(g.id)[0];FK.puzzleRounds.start=()=>({id:g.id,seed:0,round:0,solved:false,work:{},questions:Array.from({length:5},()=>structuredClone(it.question)),iterationIds:Array(5).fill(it.id)});FK.go(g.screen,{game:g.id});},g);

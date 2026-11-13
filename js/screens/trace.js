@@ -274,10 +274,15 @@
     }
     woodlandEnd.hidden=true;woodlandContext.hidden=false;
     woodlandContext.replaceChildren(FK.puzzleUI.context('mouse',woodlandSession.round,FK.puzzleRounds.instructions[woodlandGame],{explain:!woodlandSession.review,total:woodlandSession.questions.length}),FK.puzzleUI.progress(woodlandSession.round,woodlandSession.questions.length));
-    const glyph=FK.puzzleRounds.current(woodlandSession).glyph;
+    const question=FK.puzzleRounds.current(woodlandSession),glyph=question.glyph;
+    if(question.quantity){
+      const {count,item}=question.quantity,nouns={'forest-nut':['Nuss','Nüsse'],'forest-apple':['Apfel','Äpfel'],'forest-feather':['Feder','Federn']},label=count+' '+nouns[item][count===1?0:1];
+      woodlandContext.append(h('div',{class:'puzzle-trace-quantity',role:'group','aria-label':label,'data-count':count,'data-item':item},
+        h('b',{text:label}),h('div',{class:'puzzle-trace-objects','aria-hidden':'true'},count?Array.from({length:count},()=>FK.puzzleUI.picture(item)):FK.puzzleUI.picture('empty-basket'))));
+    }
     root.dataset.glyph=glyph;
-    openGlyph(glyph,'guided');
     if(woodlandSession.review)FK.puzzleReview.attachPreview(root,woodlandSession,()=>{stopActivity();woodlandSession.round++;woodlandSession.work={};woodlandNext();},stopActivity);
+    openGlyph(glyph,'guided');
   }
 
   function later(fn, ms) {
