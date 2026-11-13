@@ -58,6 +58,18 @@ export function createLife({scene, canvasTex, groundY, walkable, terrain, random
     new THREE.ShaderMaterial({transparent: true, depthWrite: false, uniforms: {uMap: {value: smokeTex}, uTime: {value: 0}, uScale: {value: 600}, uFire: {value: new THREE.Vector3(fires[0][0], groundY(fires[0][0], fires[0][1]) + .35, fires[0][1])}},
       vertexShader: 'attribute float aSeed;uniform float uTime,uScale;uniform vec3 uFire;varying float vAge;void main(){vAge=fract(aSeed+uTime*.085);vec3 p=uFire+vec3(sin(aSeed*40.+vAge*3.)*.22*vAge+vAge*vAge*.5,vAge*2.9,cos(aSeed*23.+vAge*2.)*.2*vAge);vec4 mv=modelViewMatrix*vec4(p,1.);gl_PointSize=(.28+vAge*.95)*uScale/-mv.z;gl_Position=projectionMatrix*mv;}',
       fragmentShader: 'uniform sampler2D uMap;varying float vAge;void main(){float a=texture2D(uMap,gl_PointCoord).a*smoothstep(0.,.12,vAge)*(1.-vAge)*.34;gl_FragColor=vec4(vec3(.93,.92,.9),a);}'})) : null;
+  // the flames: tongues that lick and flicker over the logs, and sparks that fly up and go out
+  const FLAMES = 9, SPARKS = 10, flameTex = canvasTex(64, 64, g => { const q = g.createRadialGradient(32, 46, 2, 32, 40, 30); q.addColorStop(0, 'rgba(255,250,215,1)'); q.addColorStop(.3, 'rgba(255,214,90,.95)'); q.addColorStop(.62, 'rgba(255,128,36,.7)'); q.addColorStop(1, 'rgba(210,50,20,0)');
+    g.fillStyle = q; g.beginPath(); g.moveTo(32, 1); g.bezierCurveTo(40, 18, 58, 30, 54, 46); g.bezierCurveTo(52, 60, 12, 60, 10, 46); g.bezierCurveTo(6, 30, 24, 18, 32, 1); g.fill(); });
+  const flames = fires.length ? new THREE.Points(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(new Float32Array((FLAMES + SPARKS) * 3), 3)).setAttribute('aSeed', new THREE.Float32BufferAttribute(Array.from({length: FLAMES + SPARKS}, () => random()), 1)).setAttribute('aSpark', new THREE.Float32BufferAttribute(Array.from({length: FLAMES + SPARKS}, (_, k) => k < FLAMES ? 0 : 1), 1)),
+    new THREE.ShaderMaterial({transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, uniforms: {uMap: {value: flameTex}, uTime: {value: 0}, uScale: {value: 600}, uFire: {value: new THREE.Vector3(fires[0][0], groundY(fires[0][0], fires[0][1]), fires[0][1])}},
+      vertexShader: `attribute float aSeed,aSpark;uniform float uTime,uScale;uniform vec3 uFire;varying float vGlow;
+        void main(){float t=uTime*(1.5+aSeed)+aSeed*20.;vec3 p;float size;
+          if(aSpark<.5){float tall=.5+.5*sin(t*3.1+sin(t*1.7)*2.);p=uFire+vec3(sin(aSeed*31.)*.16+sin(t*2.3)*.03,.24+aSeed*.26+tall*.16,cos(aSeed*17.)*.16+cos(t*1.9)*.03);size=.4+aSeed*.24+tall*.24;vGlow=.7+.3*sin(t*7.+aSeed*9.);}
+          else{float age=fract(aSeed+uTime*(.35+aSeed*.3));p=uFire+vec3(sin(aSeed*50.+age*4.)*.3*age,.35+age*1.7,cos(aSeed*30.+age*3.)*.3*age);size=.05;vGlow=(1.-age)*1.6;}
+          vec4 mv=modelViewMatrix*vec4(p,1.);gl_PointSize=size*uScale/-mv.z;gl_Position=projectionMatrix*mv;}`,
+      fragmentShader: 'uniform sampler2D uMap;varying float vGlow;void main(){vec4 c=texture2D(uMap,vec2(gl_PointCoord.x,1.-gl_PointCoord.y));gl_FragColor=vec4(c.rgb*c.a*vGlow,1.);}'})) : null;
+  if (flames) { flames.name = 'flames'; flames.frustumCulled = false; flames.renderOrder = 7; flames.visible = false; scene.add(flames); }
   if (smoke) { smoke.name = 'smoke'; smoke.frustumCulled = false; smoke.renderOrder = 6; smoke.visible = false; scene.add(smoke); }
 
   /* ---------- the beaver pond: two ducks swimming their rounds, and now and then a fish jumps ---------- */
@@ -130,6 +142,7 @@ export function createLife({scene, canvasTex, groundY, walkable, terrain, random
         const k = Math.min(1, dt * 7); d.x += (d.tx - d.x) * k; d.y += (d.ty - d.y) * k; d.z += (d.tz - d.z) * k; }
       d.s.visible = true; d.s.position.set(d.x, d.y + (reduced ? 0 : Math.sin(time * 9 + d.tx) * .02), d.z);
     }
+    if (flames) { flames.visible = Math.hypot(fires[0][0] - pos.x, fires[0][1] - pos.z) < 40; if (!reduced) flames.material.uniforms.uTime.value = time; flames.material.uniforms.uScale.value = height / (2 * Math.tan(THREE.MathUtils.degToRad(fov / 2))); }
     if (smoke) { smoke.visible = Math.hypot(fires[0][0] - pos.x, fires[0][1] - pos.z) < 40; if (!reduced) smoke.material.uniforms.uTime.value = time; smoke.material.uniforms.uScale.value = height / (2 * Math.tan(THREE.MathUtils.degToRad(fov / 2))); }
     // little birds: a few hop about together ahead of Fuchs and fly off when he is close
     if (!flockAt && !reduced && birds.every(b => b.state === 'wait' && b.t <= 0)) { flockAt = spotNear(pos, heading, 9, 15, (x, z) => walkable(x, z) && !terrain.onCrossing(x, z)); if (flockAt) for (const b of birds) { b.state = 'ground'; b.x = flockAt[0] + r(-.9, .9); b.z = flockAt[1] + r(-.9, .9); b.y = groundY(b.x, b.z) + .1; b.t = r(.3, 1.5); b.s.material.map = birdTex[0]; fit(b.s); } }

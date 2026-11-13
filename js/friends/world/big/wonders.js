@@ -138,9 +138,18 @@ export function wonderSteps(site, look, world, group) {
       // the fire place
       const [fx, fz] = site.fire, fy = ground(fx, fz), greys = [[.7, .68, .64], [.6, .6, .58], [.76, .72, .66]];
       for (let k = 0; k < 11; k++) { const a = k / 11 * TAU + r(-.08, .08); add('rock', lump(R, r(.15, .2), 1, .14).scale(1.25, .85, 1).rotateY(-a), greys[k % 3], fx + Math.cos(a) * .66, fy + .1, fz + Math.sin(a) * .66); }
-      add('rock', new THREE.CircleGeometry(.6, 14).rotateX(-Math.PI / 2), [.16, .14, .13], fx, fy + .04, fz);
-      for (let k = 0; k < 5; k++) { const a = k * 1.26; add('log', new THREE.CylinderGeometry(.045, .055, .62, 7).translate(0, .31, 0).rotateZ(.62).rotateY(a), k % 2 ? [.5, .34, .22] : [.26, .2, .17], fx + Math.cos(a) * .02, fy + .04, fz + Math.sin(a) * .02); }
-      for (let k = 0; k < 7; k++) add('rock', new THREE.SphereGeometry(r(.035, .06), 6, 5), [4.2, 1.5, .3], fx + r(-.22, .22), fy + r(.07, .16), fz + r(-.22, .22));   // embers
+      // a bed of ash and glowing embers, and split logs leaning together over it: bark outside, pale wood where
+      // they were split, charred black where they stand in the fire (the flames themselves burn in world/life.js)
+      add('rock', new THREE.CircleGeometry(.58, 16).rotateX(-Math.PI / 2), [.3, .29, .28], fx, fy + .04, fz);
+      for (let k = 0; k < 16; k++) { const a = r(0, TAU), d = Math.sqrt(R()) * .5; add('rock', lump(R, r(.03, .06), 0, .3).scale(1, .5, 1), k % 3 ? [.12, .11, .11] : [.62, .6, .58], fx + Math.cos(a) * d, fy + .06, fz + Math.sin(a) * d); }
+      for (let k = 0; k < 14; k++) { const a = r(0, TAU), d = Math.sqrt(R()) * .3; add('rock', lump(R, r(.035, .065), 0, .3).scale(1, .6, 1), k % 2 ? [5, 1.7, .25] : [3.4, .7, .12], fx + Math.cos(a) * d, fy + r(.06, .13), fz + Math.sin(a) * d); }   // embers
+      const split = (len, rad, bark) => { const g = new THREE.CylinderGeometry(rad * .85, rad, len, 9, 6, false, 0, Math.PI * 1.25), q = g.attributes.position, nrm = g.attributes.normal, col = new Float32Array(q.count * 3), c = new THREE.Color();
+        for (let i = 0; i < q.count; i++) { const t = q.getY(i) / len + .5, outside = Math.hypot(nrm.getX(i), nrm.getZ(i)) > .5; c.setRGB(...(outside ? bark : [1.35, 1.08, .74])).multiplyScalar(.85 + .3 * R()); c.lerp(new THREE.Color(.07, .06, .06), Math.max(0, Math.min(1, 1.15 - t * 2.6))); if (t < .12) c.lerp(new THREE.Color(2.6, .7, .1), .45); col[i * 3] = c.r; col[i * 3 + 1] = c.g; col[i * 3 + 2] = c.b; }
+        g.setAttribute('color', new THREE.BufferAttribute(col, 3)); return g; };
+      const lean = (g, len, tilt, a, base) => { g.translate(0, len / 2, 0).rotateZ(tilt).rotateY(-a).translate(fx + Math.cos(a) * base, fy + .05, fz + Math.sin(a) * base); buf('log').addGeometry(g); g.dispose(); };
+      for (let k = 0; k < 7; k++) { const a = k / 7 * TAU + r(-.12, .12), len = r(.7, .86); lean(split(len, r(.06, .08), k % 2 ? [.62, .42, .27] : [.5, .34, .22]).rotateY(r(0, TAU)), len, r(.5, .6), a, r(.36, .42)); }
+      for (let k = 0; k < 5; k++) { const a = k * 1.3 + .4, len = r(.4, .52); lean(split(len, .028, [.55, .4, .26]), len, r(.62, .8), a, r(.2, .26)); }   // kindling inside
+      for (const [a, d] of [[.6, .78], [3.4, .8]]) { const g = split(.6, .07, [.6, .41, .27]).rotateZ(Math.PI / 2).rotateY(a + 1.2).translate(fx + Math.cos(a) * d * .55, fy + .1, fz + Math.sin(a) * d * .55); buf('log').addGeometry(g); g.dispose(); }   // two lying in the ring, ready to go on
       const glow = canvasTex(64, 64, g => { const q = g.createRadialGradient(32, 32, 0, 32, 32, 32); q.addColorStop(0, 'rgba(255,190,90,.75)'); q.addColorStop(.4, 'rgba(255,130,50,.3)'); q.addColorStop(1, 'rgba(255,110,40,0)'); g.fillStyle = q; g.fillRect(0, 0, 64, 64); });
       const ember = new THREE.Points(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute([fx, fy + .22, fz], 3)), new THREE.PointsMaterial({map: glow, size: 1.7, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, toneMapped: false})); ember.name = 'fire glow'; ember.renderOrder = 5; group.add(ember);
       // swivel grill: post, arm, round grate with bars, two sausages
