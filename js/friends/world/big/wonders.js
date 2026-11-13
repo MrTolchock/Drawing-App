@@ -82,10 +82,19 @@ export function wonderSteps(site, look, world, group) {
       add('wood', rot(new THREE.CylinderGeometry(.075, .075, 2.3, 10).rotateZ(Math.PI / 2)), dark, x0, y0 + 1.42, z0);                       // windlass
       for (let k = -2; k <= 2; k++) { const [x, z] = off(k * .05, 0); add('rock', rot(new THREE.TorusGeometry(.09, .022, 5, 12).rotateY(Math.PI / 2)), [1.05, .9, .62], x, y0 + 1.42, z); }
       { const [x, z] = off(1.2, 0), [x2, z2] = off(1.2, .16), [x3, z3] = off(1.3, .16); add('wood', rot(new THREE.CylinderGeometry(.022, .022, .34, 6).rotateX(Math.PI / 2)), [.5, .42, .36], x, y0 + 1.42, z + 0); add('wood', new THREE.CylinderGeometry(.03, .03, .2, 6).rotateZ(Math.PI / 2).rotateY(yaw), timber, (x2 + x3) / 2, y0 + 1.42, (z2 + z3) / 2); }
-      // shingled roof: four overlapping rows a side, a ridge beam and a little knob
-      for (const sd of [-1, 1]) for (let row = 0; row < 4; row++) { const [x, z] = off(0, sd * (.13 + row * .19)); add('wood', rot(new THREE.BoxGeometry(2.45, .05, .3).rotateX(sd * .72)), row % 2 ? [1.1, .46, .32] : [.94, .38, .27], x, y0 + 2.52 - row * .165, z); }
-      add('wood', rot(new THREE.CylinderGeometry(.05, .05, 2.5, 6).rotateZ(Math.PI / 2)), dark, x0, y0 + 2.6, z0);
-      for (const sd of [-1, 1]) { const [x, z] = off(sd * .98, 0); add('wood', rot(new THREE.BoxGeometry(.06, .06, 1.3)), dark, x, y0 + 2.0, z); }
+      // the roof: rows of single shingles in mixed reds over dark boards, a ridge cap with knobs, timber gables
+      // with trim boards, and a little moss
+      { const TH = .7, cs = Math.cos(TH), sn = Math.sin(TH), ridge = 2.66, put = (name, g, colour, lx, ly, lz) => add(name, rot(g.translate(lx, ly, lz)), colour, x0, y0, z0);
+        const reds = [[1.05, .44, .3], [.9, .36, .26], [1.16, .52, .35], [.8, .32, .24], [1, .4, .27]];
+        for (const sd of [-1, 1]) { put('wood', new THREE.BoxGeometry(2.42, .03, 1.16).rotateX(sd * TH), [.42, .3, .24], 0, ridge - .03 - .56 * sn, sd * .56 * cs);
+          for (let row = 0; row < 6; row++) { const s2 = .1 + row * .19, n = 9; for (let k = 0; k < n + (row % 2); k++) { const lx = (k - (n - 1 + (row % 2)) / 2) * .285, w = row % 2 && (k === 0 || k === n) ? .14 : .275;
+            put('wood', new THREE.BoxGeometry(w, .034, .27).rotateX(sd * TH + sd * .06).rotateZ(r(-.012, .012)), reds[Math.floor(R() * reds.length)], row % 2 && k === 0 ? lx + .07 : row % 2 && k === n ? lx - .07 : lx, ridge + .035 - s2 * sn + r(-.004, .004), sd * s2 * cs); } }
+          // trim boards along the gable edges, front and back
+          for (const end of [-1, 1]) put('wood', new THREE.BoxGeometry(.06, .11, 1.3).rotateX(sd * TH), [1.2, 1, .8], end * 1.3, ridge - .04 - .58 * sn, sd * .58 * cs); }
+        put('wood', new THREE.CylinderGeometry(.065, .065, 2.7, 8).rotateZ(Math.PI / 2), [.62, .26, .2], 0, ridge + .075, 0); for (const end of [-1, 1]) put('rock', new THREE.SphereGeometry(.085, 9, 7), [.62, .26, .2], end * 1.37, ridge + .075, 0);
+        for (const end of [-1, 1]) { const tri = new THREE.Shape(); tri.moveTo(-.86, 0); tri.lineTo(.86, 0); tri.lineTo(0, .86 * sn / cs); tri.closePath(); put('wood', new THREE.ExtrudeGeometry(tri, {depth: .04, bevelEnabled: false}).translate(0, 0, -.02).rotateY(Math.PI / 2), [1.1, .86, .64], end * 1.02, ridge - .78, 0);
+          put('rock', new THREE.CylinderGeometry(.1, .1, .05, 12).rotateZ(Math.PI / 2), [.3, .22, .18], end * 1.03, ridge - .42, 0); put('wood', new THREE.BoxGeometry(.07, .07, 1.74), dark, end * 1.02, ridge - .8, 0); }
+        for (let k = 0; k < 3; k++) put('rock', lump(R, r(.12, .2), 1, .25).scale(1.3, .3, 1).rotateX(TH), [.32, .52, .18], r(-.9, .9), ridge + .05 - r(.5, .9) * sn, r(.5, .9) * cs); }
       // rope and bucket, hanging a little to one side
       { const [x, z] = off(.12, 0); add('rock', new THREE.CylinderGeometry(.014, .014, .42, 5), [1.05, .9, .62], x, y0 + 1.2, z);
         add('wood', new THREE.CylinderGeometry(.17, .13, .26, 12), [1.15, .9, .64], x, y0 + .88, z); for (const h of [.8, .95]) add('rock', new THREE.TorusGeometry(h > .9 ? .163 : .143, .014, 5, 14).rotateX(Math.PI / 2), [.34, .32, .32], x, y0 + h, z);
