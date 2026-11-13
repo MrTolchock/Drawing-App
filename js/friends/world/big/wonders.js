@@ -1,6 +1,6 @@
 /* Small things to discover beside the paths of the big world: a ring of toadstools, a hollow log, a circle of
    old stones, a tree in blossom, berry bushes, a stone well, lanterns at the den, a stump laid as a table,
-   a beehive (its bees fly in world/life.js) and signposts. Each is its own little site (layout.js WONDERS), built in one
+   a beehive (its bees fly in world/life.js), signposts, a toadstool house and an apple tree. Each is its own little site (layout.js WONDERS), built in one
    short step when Fuchs comes near, from a few hundred triangles on the shared rock, log, bark and soft
    materials; the solid ones have colliders (layout.js SOLIDS) and a small clearing (GLADES). */
 import {THREE} from '../../../scene/materials.js';
@@ -78,6 +78,25 @@ export function wonderSteps(site, look, world, group) {
     hive() { add('log', new THREE.CylinderGeometry(.46, .54, .5, 14), [1.25, 1, .78], x0, y0 + .25, z0);
       for (let k = 0; k < 6; k++) add('rock', new THREE.TorusGeometry(.37 - k * .052, .085, 7, 16).rotateX(Math.PI / 2), k % 2 ? [1.3, .98, .38] : [1.2, .88, .3], x0, y0 + .58 + k * .125, z0);
       add('rock', new THREE.SphereGeometry(.1, 8, 6), [1.25, .93, .34], x0, y0 + 1.3, z0); add('rock', new THREE.SphereGeometry(.07, 8, 6).scale(1, 1, .5), [.2, .13, .08], x0, y0 + .62, z0 + .43); },
+    // a toadstool big enough to live in: door, round window with a light, chimney, stepping stones
+    fairyhouse() { add('rock', new THREE.CylinderGeometry(.56, .72, 1.3, 14), [1.2, 1.1, .94], x0, y0 + .65, z0);
+      add('soft', new THREE.SphereGeometry(1.3, 18, 9, 0, TAU, 0, Math.PI / 2).scale(1, .72, 1), [.9, .15, .11], x0, y0 + 1.22, z0);
+      add('rock', new THREE.CircleGeometry(1.28, 18).rotateX(Math.PI / 2), [1.1, .95, .8], x0, y0 + 1.23, z0);
+      for (let k = 0; k < 11; k++) { const a = k * 2.4, q = k ? r(.3, 1.05) : 0; add('soft', new THREE.SphereGeometry(r(.09, .16), 8, 5).scale(1, .5, 1), [1.25, 1.2, 1.1], x0 + Math.cos(a) * q, y0 + 1.22 + Math.sqrt(Math.max(0, 1.69 - q * q)) * .72, z0 + Math.sin(a) * q); }
+      const front = (dx, y, out = .6) => [x0 + Math.sin(yaw) * out + Math.cos(yaw) * dx, y0 + y, z0 + Math.cos(yaw) * out - Math.sin(yaw) * dx];
+      add('wood', new THREE.BoxGeometry(.34, .5, .08).rotateY(yaw), [.95, .6, .36], ...front(0, .27, .66)); add('wood', new THREE.CylinderGeometry(.17, .17, .08, 12, 1, false, 0, Math.PI).rotateZ(Math.PI / 2).rotateY(Math.PI / 2).rotateY(yaw), [.95, .6, .36], ...front(0, .52, .66));
+      add('rock', new THREE.SphereGeometry(.03, 6, 5), [1.6, 1.2, .4], ...front(.1, .3, .72));
+      add('rock', new THREE.CylinderGeometry(.15, .15, .06, 12).rotateX(Math.PI / 2).rotateY(yaw), [3.2, 2.5, 1.1], ...front(.36, .88, .5)); add('wood', new THREE.TorusGeometry(.15, .03, 5, 12).rotateY(yaw), [.95, .6, .36], ...front(.36, .88, .53));
+      add('rock', new THREE.CylinderGeometry(.09, .11, .5, 8), [.62, .6, .58], x0 - .5, y0 + 2.05, z0 - .2); add('rock', new THREE.CylinderGeometry(.12, .12, .07, 8), [.5, .48, .46], x0 - .5, y0 + 2.32, z0 - .2);
+      for (let k = 1; k <= 3; k++) { const [x, , z] = front(r(-.12, .12), 0, .75 + k * .5); add('rock', lump(R, .2, 0, .15).scale(1, .22, .85), [.68, .66, .62], x, ground(x, z) + .03, z); }
+      for (let k = 0; k < 4; k++) { const a = yaw + 1.2 + k * .9; toadstool(x0 + Math.sin(a) * 1.25, z0 + Math.cos(a) * 1.25, r(.5, .8)); } },
+    // an apple tree: round green crown, red apples in it and a few in the grass
+    apple() { add('bark', new THREE.CylinderGeometry(.2, .34, 2.2, 10), [1.1, .95, .85], x0, y0 + 1.1, z0);
+      for (let k = 0; k < 3; k++) add('bark', new THREE.CylinderGeometry(.07, .12, 1.3, 7).translate(0, .65, 0).rotateZ(.8).rotateY(k * 2.1 + .3), [1.1, .95, .85], x0, y0 + 1.9, z0);
+      const greens = [[.32, .56, .16], [.4, .66, .2], [.26, .48, .14]], centres = [];
+      for (let k = 0; k < 20; k++) { const a = k * 2.4, d = k ? r(.4, 1.5) : 0, c = [x0 + Math.cos(a) * d, y0 + 2.8 + r(0, 1.3) - d * .28, z0 + Math.sin(a) * d, r(.45, .75)]; centres.push(c); add('soft', new THREE.SphereGeometry(c[3], 10, 7).scale(1, .86, 1), greens[k % 3], c[0], c[1], c[2]); }
+      for (let k = 0; k < 30; k++) { const c = centres[k % centres.length], u = r(0, TAU), v = r(.5, 2.2); add('soft', new THREE.SphereGeometry(.115, 8, 6), [1.25, .12, .08], c[0] + Math.sin(v) * Math.cos(u) * c[3], c[1] + Math.cos(v) * c[3] * .86, c[2] + Math.sin(v) * Math.sin(u) * c[3]); }
+      for (let k = 0; k < 5; k++) { const a = r(0, TAU), d = r(.7, 2.2), x = x0 + Math.cos(a) * d, z = z0 + Math.sin(a) * d; add('rock', new THREE.SphereGeometry(.085, 8, 6), k % 2 ? [1.05, .13, .1] : [1.1, .5, .12], x, ground(x, z) + .07, z); } },
     sign() { add('wood', new THREE.CylinderGeometry(.06, .085, 1.9, 7), [.85, .66, .5], x0, y0 + .95, z0);
       site.arms.forEach((a, k) => { const sh = new THREE.Shape(); sh.moveTo(0, -.1); sh.lineTo(.62, -.1); sh.lineTo(.8, 0); sh.lineTo(.62, .1); sh.lineTo(0, .1); sh.closePath();
         add('wood', new THREE.ExtrudeGeometry(sh, {depth: .045, bevelEnabled: false}).translate(.02, 0, -.022).rotateY(-a), [1.25, 1, .72], x0, y0 + 1.68 - k * .27, z0); });

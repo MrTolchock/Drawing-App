@@ -70,6 +70,11 @@ export function createLife({scene, canvasTex, groundY, walkable, terrain, random
   const rings = [0, 1].map(() => { const m = new THREE.Mesh(new THREE.PlaneGeometry(1, 1).rotateX(-Math.PI / 2), new THREE.MeshBasicMaterial({map: ringTex, transparent: true, depthWrite: false, toneMapped: false, opacity: 0})); m.visible = false; m.renderOrder = 9; scene.add(m); return {m, t: -1}; });
   const splash = (k, x, z) => { rings[k].t = 0; rings[k].m.position.set(x, pond.level + .03, z); };
 
+  /* ---------- paper boats drifting down the brook, from the den's bridge to the swamp, again and again ---------- */
+  const brook = terrain.streams.find(q => q.id === 'brook'), boatTex = canvasTex(64, 48, g => { g.fillStyle = '#fbf6ea'; g.beginPath(); g.moveTo(4, 26); g.lineTo(60, 26); g.lineTo(48, 42); g.lineTo(16, 42); g.fill(); g.beginPath(); g.moveTo(32, 4); g.lineTo(46, 26); g.lineTo(18, 26); g.fill();
+    g.strokeStyle = 'rgba(120,100,80,.55)'; g.lineWidth = 1.6; g.beginPath(); g.moveTo(32, 4); g.lineTo(32, 26); g.moveTo(4, 26); g.lineTo(60, 26); g.stroke(); g.fillStyle = '#d9543a'; g.beginPath(); g.moveTo(32, 4); g.lineTo(42, 9); g.lineTo(32, 13); g.fill(); });
+  const boats = brook ? [0, .34, .67].map(at => ({s: solid(sprite(boatTex, .34, 3)), at})) : [];
+
   /* ---------- a rainbow in the waterfall's mist ---------- */
   const bowTex = canvasTex(256, 128, g => { const cols = ['255,80,70', '255,160,60', '255,235,90', '110,220,110', '90,170,255', '150,110,240']; cols.forEach((c, i) => { g.strokeStyle = `rgba(${c},.9)`; g.lineWidth = 7; g.beginPath(); g.arc(128, 150, 118 - i * 6.5, Math.PI, TAU); g.stroke(); });
     const fade = g.createLinearGradient(0, 0, 0, 128); fade.addColorStop(0, 'rgba(0,0,0,0)'); fade.addColorStop(.55, 'rgba(0,0,0,0)'); fade.addColorStop(1, 'rgba(0,0,0,1)'); g.globalCompositeOperation = 'destination-out'; g.fillStyle = fade; g.fillRect(0, 0, 256, 128); });
@@ -127,6 +132,10 @@ export function createLife({scene, canvasTex, groundY, walkable, terrain, random
         fish.s.visible = u < 1; fish.s.position.set(x, pond.level + Math.sin(u * Math.PI) * .6, z); fish.s.scale.set(.4 * right, .2, 1); fish.s.material.rotation = right * Math.cos(u * Math.PI) * 1.1;
         if (u >= 1) { fish.t = -1; splash(1, ...fish.to); } }
       for (const g of rings) { if (g.t < 0) { g.m.visible = false; continue; } g.t += dt / 1.3; g.m.visible = true; g.m.scale.setScalar(.3 + g.t * 1.3); g.m.material.opacity = Math.max(0, .75 * (1 - g.t)); if (g.t >= 1) g.t = -1; } }
+    // paper boats: half a metre a second down the brook, skipped where they are far from Fuchs
+    for (const b of boats) { if (!reduced) b.at = (b.at + dt * .5 / brook.len) % 1; const f = 30 + b.at * (brook.N - 60), i = Math.floor(f), q = brook.samples[i], q2 = brook.samples[i + 1], u = f - i, x = q.x + (q2.x - q.x) * u, z = q.z + (q2.z - q.z) * u;
+      b.s.visible = Math.hypot(x - pos.x, z - pos.z) < 34; if (!b.s.visible) continue; const h = b.s.userData.h, y = brook.level[i] + (brook.level[i + 1] - brook.level[i]) * u;
+      b.s.position.set(x, y + .14 + (reduced ? 0 : Math.sin(time * 3 + b.at * 90) * .015), z); b.s.scale.set(h * 64 / 48, h, 1); b.s.material.rotation = reduced ? 0 : Math.sin(time * 1.7 + b.at * 50) * .09; }
     bow.material.opacity = reduced ? .28 : .26 + Math.sin(time * .6) * .06;
     if (beams) placeBeams(pos);
     // little birds: a few hop about together ahead of Fuchs and fly off when he is close
