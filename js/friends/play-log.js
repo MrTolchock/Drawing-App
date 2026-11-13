@@ -8,7 +8,7 @@
     let events=[],definitions={},truncated=false,dropped=0,sequence=0,timer=null,error='',dirty=false;
     const valid=e=>e&&typeof e.event==='string'&&Number.isFinite(e.timestamp);
     try{const old=JSON.parse(storage.getItem(key));events=Array.isArray(old?.events)?old.events.filter(valid):[];definitions=old?.definitions&&typeof old.definitions==='object'?old.definitions:{};truncated=!!old?.truncated;dropped=Number.isSafeInteger(old?.dropped)?old.dropped:0;sequence=Math.max(0,...events.map(e=>Number.isSafeInteger(e.sequence)?e.sequence:0));}catch{/* Recording can still work in memory. */}
-    function trim(){const kept=events.filter(e=>e.timestamp>=now()-7*DAY).slice(-MAX_EVENTS);if(kept.length<events.length){truncated=true;dropped+=events.length-kept.length;events=kept;}}
+    function trim(){const kept=events.filter(e=>e.timestamp>=now()-7*DAY).slice(-MAX_EVENTS);if(kept.length<events.length){truncated=true;dropped+=events.length-kept.length;events=kept;dirty=true;}}
     const referenced=rows=>{const keys=new Set(rows.map(e=>e.taskKey).filter(Boolean));return Object.fromEntries(Object.entries(definitions).filter(([key])=>keys.has(key)));};
     function flush(){
       if(timer!==null){cancel(timer);timer=null;}trim();if(!dirty)return !error;
@@ -128,7 +128,8 @@
       pause:(reason,on)=>safe(()=>active?.pause(reason,on))
     };
     document.addEventListener('visibilitychange',()=>{FK.playLog.pause('background',document.hidden);if(document.hidden)FK.friends?.flushLog();});
-    root.addEventListener('pagehide',()=>{FK.playLog.stop('pagehide');FK.friends?.flushLog();});
+    root.addEventListener('pagehide',event=>{if(event.persisted)FK.playLog.pause('page_cache',true);else FK.playLog.stop('pagehide');FK.friends?.flushLog();});
+    root.addEventListener('pageshow',event=>{if(event.persisted)FK.playLog.pause('page_cache',false);});
     FK.on('modal-opened',()=>FK.playLog.pause('dialog',true));FK.on('modal-closed',()=>FK.playLog.pause('dialog',false));
   }
 })(typeof window!=='undefined'?window:globalThis);

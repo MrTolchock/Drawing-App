@@ -22,7 +22,7 @@ test('feedback is excluded and repeated redraws do not restart or duplicate an i
  assert.equal(data.events.filter(e=>e.event==='iteration_presented').length,2);assert.equal(data.events.find(e=>e.event==='puzzle_completed').visitActiveMs,2500);assert.deepEqual(data.summary.iterations.map(i=>i.medianActiveMs),[1000,1500]);
 });
 test('retention bounds time, event count and storage size and removes unused definitions',()=>{
- const f=fixture();f.log.record('iteration_presented',{taskKey:'old',definition:{question:'old'}});f.advance(8*86400000);f.log.record('new');
+ const f=fixture();f.log.record('iteration_presented',{taskKey:'old',definition:{question:'old'}});f.advance(8*86400000);f.log.flush();assert.equal(JSON.parse(f.map.get('log')).events.length,0,'idle records also expire durably without another event');f.log.record('new');
  for(let i=0;i<11000;i++)f.log.record('sample',{value:'x'.repeat(80),i});const data=f.log.exportData();assert.ok(data.events.length>0&&data.events.length<=10000);assert.ok(f.map.get('log').length<=750000);assert.equal(data.retention.truncated,true);assert.ok(data.retention.droppedEvents>0);assert.equal(data.definitions.old,undefined);assert.ok(data.events.every(e=>e.timestamp===f.now()));
 });
 test('failed log storage retains an export and never blocks gameplay state transactions',()=>{
