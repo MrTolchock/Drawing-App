@@ -3,7 +3,7 @@
 const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),crypto=require('node:crypto');
 const root=path.resolve(__dirname,'..');
 const runtime=[
- 'index.html','js/friends/game.js','js/friends/state.js','js/friends/painted.js','js/friends/interface.js','js/core/util.js','js/core/sound.js','js/ui/ui.js','js/ui/gestures.js','js/ui/waldatelier-icons.js','js/ui/waldbuch.js','js/ui/waldatelier.js','js/core/speech.js',
+ 'index.html','js/friends/play-log.js','js/friends/game.js','js/friends/state.js','js/friends/painted.js','js/friends/interface.js','js/core/util.js','js/core/sound.js','js/ui/ui.js','js/ui/gestures.js','js/ui/waldatelier-icons.js','js/ui/waldbuch.js','js/ui/waldatelier.js','js/core/speech.js',
  'js/learn/glyphs.js','js/friends/library.js','js/friends/puzzles.js','js/friends/puzzle-rounds.js',
  'js/friends/puzzle-catalogue.js','js/friends/review-repository.js','js/ui/review-connection.js','js/friends/puzzle-review.js','js/screens/puzzle.js','js/screens/trace.js','js/screens/puzzle-review.js',
  ...fs.readdirSync(path.join(root,'css')).filter(n=>n.endsWith('.css')).map(n=>'css/'+n),

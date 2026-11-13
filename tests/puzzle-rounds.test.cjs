@@ -53,3 +53,8 @@ test('corrupt sessions are ignored without clearing historical saves',()=>{
  const {FK,memory}=setup([[key,JSON.stringify({version:1,sessions:{count:{id:'count',seed:-1,round:999,solved:false,work:{}}}})],['farbtupf.friends.v1',old]]);
  assert.equal(FK.puzzleRounds.start('count').round,0);assert.equal(memory.get('farbtupf.friends.v1'),old);
 });
+test('puzzle snapshot write failure is reported for diagnostics',()=>{
+ const {FK,memory}=setup(),session=FK.puzzleRounds.start('add'),write=memory.set.bind(memory),issues=[];
+ FK.friends={record:(event,data)=>issues.push({event,...data})};memory.set=(key,value)=>{if(key==='farbtupf.puzzles.v1')throw Error('quota');return write(key,value);};
+ assert.equal(FK.puzzleRounds.save(session),false);assert.deepEqual(issues,[{event:'storage_error',scope:'puzzle_round',puzzleId:'add'}]);
+});

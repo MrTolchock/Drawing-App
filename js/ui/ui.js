@@ -332,6 +332,7 @@
     // a compatibility click after the paint canvas has handled a gesture.
     FK.play?.bindTouch(wrap);
     modalEl = wrap;
+    FK.emit('modal-opened');
     requestAnimationFrame(()=>rowFocus());
     function rowFocus(){if(modalEl===wrap)(wrap.querySelector('input,.modal-actions button')||close).focus();}
     return { close: closeModal, el: card };

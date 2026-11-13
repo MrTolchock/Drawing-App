@@ -486,7 +486,8 @@
 .ff-font-choices .btn[aria-pressed=true]{background:#e7edcf;border-color:#8b9e62}
 .ff-data-settings summary{font:700 17px var(--read);cursor:pointer;min-height:40px;align-content:center}
 .ff-data-settings p{font:14px/1.6 var(--read);color:#796a53}
-.ff-data-settings>.btn{display:block;min-height:48px;margin-top:10px;padding:10px 14px;border:1px solid #d4c3a4;border-radius:12px;background:#fff8e7;font:15px var(--read)}
+.ff-data-settings>.btn{display:flex;flex-direction:row;justify-content:flex-start;width:100%;max-width:100%;height:auto;min-height:52px;margin-top:10px;padding:10px 14px;border:1px solid #d4c3a4;border-radius:12px;background:#fff8e7;font:17px/1.4 var(--read)}
+.ff-data-settings>.btn .lbl{white-space:normal;font:inherit;margin:0;text-align:left}
 .ff-settings-version{text-align:center;color:#96856c;font:13px var(--read);margin:0}
 .ff-update-settings>.btn{--lbl:15px;display:inline-flex;width:auto;height:auto;min-width:54px;min-height:54px;padding:10px 16px}
 .ff-update-status{min-height:21px;font:400 14px/1.5 var(--type-body);color:var(--muted);margin:12px 0 0}

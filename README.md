@@ -17,6 +17,7 @@ The table and picture pile remain part of the den painting; drawing and saved-pi
 | [Consistency audit](design/STYLE-AUDIT.md) | Findings, corrections and real-game evidence |
 | [Puzzle catalogue](docs/PUZZLE-CATALOGUE.md) | Every puzzle, competence, difficulty and iteration |
 | [Letter sessions](docs/LETTER-SESSIONS.md) | Parent limit, invitations, return home and game over |
+| [Local gameplay log](docs/PLAY-LOG.md) | Device-local observations and JSON export for improving flow, puzzles and difficulty |
 | [Adult review](docs/PUZZLE-REVIEW.md) | Inspect, approve, flag improvements and repeat after changes |
 | [Game implementation](docs/FOREST-FRIENDS.md) | Current modules, persistence and controls |
 | [Learning and sources](docs/LEARNING.md) | Scope, prerequisites and research limits |

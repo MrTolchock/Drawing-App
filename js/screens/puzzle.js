@@ -15,7 +15,7 @@
     if(!FK.visual.has(value)&&FK.visual.supports(value))return h('span',{class:'puzzle-picture',text:value,role:label?'img':null,'aria-label':label||null});
     return h('span',{class:'puzzle-picture'},FK.visual.art(value,'',label));
   }
-  function button(label,fn,cls='',children=null) {return h('button',{type:'button',class:'puzzle-button '+cls,'aria-label':label,onclick:()=>{FK.sound.tick();fn();}},children===null?label:children);}
+  function button(label,fn,cls='',children=null) {return h('button',{type:'button',class:'puzzle-button '+cls,'aria-label':label,onclick:event=>{FK.sound.tick();FK.playLog?.button(label,event.currentTarget);fn();}},children===null?label:children);}
   function shape(id,rotation=0,outline=false,fitted=false) {
     const paths={circle:'<circle cx="50" cy="50" r="34"/>',square:'<rect x="16" y="16" width="68" height="68" rx="2"/>',rectangle:'<rect x="26" y="9" width="48" height="82" rx="2"/>',triangle:'<path d="M50 10 90 85H10Z"/>'};
     const pieces={circle:'<circle cx="50" cy="50" r="48"/>',square:'<rect x="2" y="2" width="96" height="96" rx="2"/>',rectangle:'<rect x="2" y="2" width="96" height="96" rx="2"/>',triangle:'<path d="M50 2 98 98H2Z"/>'};
@@ -30,10 +30,10 @@
   function announcement(text) {status.textContent=text;}
   function persist() {if(!session.review)R.save(session);}
   function work() {return session.work;}
-  function fail(node,text='Schau noch einmal. Du kannst es ändern.') {
+  function fail(node,text='Schau noch einmal. Du kannst es ändern.',selected) {
     if(locked)return;
     node?.classList.add('is-retry');announcement(text);FK.sound.undo();
-    if(!session.review)FK.friends?.record('puzzle_attempt',{game,host,round:session.round,correct:false});
+    if(!session.review)FK.playLog?.answer(selected===undefined?{control:node?.getAttribute('aria-label'),answer:node?.dataset.answer,shape:node?.dataset.shape,rotation:node?.dataset.rotation,cell:node?.dataset.cell,part:node?.dataset.part,work:session.work}:selected,false,text);
   }
   function solved(node,value=question.answer) {
     if(locked)return;
@@ -45,12 +45,12 @@
     body.querySelectorAll('button:not(.puzzle-listen)').forEach(b=>b.disabled=true);
     FK.sound.right();announcement('Das passt!');
     FK.waldbuch?.celebrate(node||scene);
-    if(!session.review)FK.friends?.record('puzzle_attempt',{game,host,round:session.round,correct:true});
+    if(!session.review)FK.playLog?.answer(value===undefined?{work:session.work}:value,true);
     later(advance);
   }
   function choose(value,node) {
     if(locked)return;
-    if(value===question.answer)solved(node,value);else fail(node);
+    if(value===question.answer)solved(node,value);else fail(node,undefined,value);
   }
   function option(value,visual,label) {
     let node;node=button(label??String(value),()=>choose(value,node),'puzzle-answer',visual??String(value));
@@ -244,6 +244,7 @@
     if(!session.review&&!FK.puzzleReview.ready(game)){blocked();return;}
     if(session.round===session.questions.length){finish();return;}question=R.current(session);
     root.dataset.game=game;root.dataset.host=host;
+    if(!session.review)FK.playLog?.show(question);
     body.replaceChildren(context(host,session.round,R.instructions[game],{explain:!session.review,total:session.questions.length}),progress(session.round,session.questions.length),h('h2',{class:'puzzle-prompt',text:question.prompt}));
     scene=h('div',{class:'puzzle-scene'});answerArea=h('div',{class:'puzzle-answers'});status=h('p',{class:'puzzle-status sr-only',role:'status','aria-live':'polite'});body.append(scene,answerArea,status);
     const renderers={nuts:renderCount,count:renderCount,reading:renderReading,rhyme:renderReading,add:renderAdd,pattern:renderPattern,fireflies:renderFireflies,picnic:renderPicnic,double:renderDouble,matrix:renderMatrix,build:renderBuild,syllable:renderSyllable,robot:renderRobot,order:renderOrder,treasure:renderTreasure,neighbours:renderNeighbours,compare:renderCompare,mirror:renderMirror,vowels:renderVowels,survey:renderSurvey,syllables:renderSyllables,colours:renderColours,leaves:renderLeaves};
@@ -261,14 +262,16 @@
     if(origin==='friends'&&FK.friends?.mail().host===host&&FK.friends.mail().phase==='to-friend'&&!FK.friends.completeMail(host)){
       announcement(FK.friends.error||'Bitte nochmals versuchen.');return;
     }
+    FK.playLog?.finish();
     R.complete(game);
     FK.progress.finish('puzzle',game+':1',0);
     FK.friendsLibrary.complete(host,game);
     FK.puzzleUI.completion(body,host,()=>{
+      FK.playLog?.celebration();
       if(origin==='forest-book')FK.go('forest-book');else FK.friendsPuzzleCompleted(host);
     });
   }
-  function blocked(){body.replaceChildren(h('section',{class:'puzzle-review-blocked'},FK.friendsLibrary.portrait(host),h('h2',{text:'Dieses Puzzle wartet auf Freigabe.'}),h('p',{text:'Eine erwachsene Person prüft zuerst alle Aufgaben.'})));}
+  function blocked(){FK.playLog?.stop('review_required');body.replaceChildren(h('section',{class:'puzzle-review-blocked'},FK.friendsLibrary.portrait(host),h('h2',{text:'Dieses Puzzle wartet auf Freigabe.'}),h('p',{text:'Eine erwachsene Person prüft zuerst alle Aufgaben.'})));}
   function completion(container,owner,done,{total=5,review=false}={}) {
     const card=h('section',{class:'puzzle-completion',role:'status'},
       h('div',{class:'puzzle-completion-wreath'},Array.from({length:8},(_,i)=>h('span',{style:{'--i':i}},FK.visual.art(i%3?'forest-leaf':'forest-flower'))),FK.friendsLibrary.portrait(owner)),
@@ -294,9 +297,9 @@
       session=null;root.querySelector('.review-reject')?.remove();delete root.dataset.reviewIteration;
       if(params.reviewIteration||params.reviewQueue||params.reviewRound)session=FK.puzzleReview.previewSession(game,params.reviewIteration);
       if(!session){if(!FK.friendsLibrary.canPlay(game)){FK.go('friends');return;}if(!FK.puzzleReview.ready(game)){blocked();return;}session=R.start(game);}
-      draw();
+      FK.playLog?.begin(session);draw();
       root.querySelector('.btn-back').setAttribute('aria-label',session.review?'Zur Puzzle-Prüfung':origin==='forest-book'?'Zurück zu Waldspiele':'Zurück zum Wald');
     },
-    leave(){alive=false;clearTimeout(timer);cancelCompletion();FK.forestVoice.cancel();locked=true;}
+    leave(){FK.playLog?.stop();alive=false;clearTimeout(timer);cancelCompletion();FK.forestVoice.cancel();locked=true;}
   });
 })();

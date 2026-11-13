@@ -267,14 +267,15 @@
       root.querySelector('.review-reject')?.remove();delete root.dataset.reviewIteration;
       playEl.hidden=true;overEl.hidden=true;woodlandContext.hidden=true;woodlandEnd.hidden=false;
       if(!woodlandSession.review&&woodlandOrigin==='friends'&&FK.friends.mail().host==='mouse'&&FK.friends.mail().phase==='to-friend'&&!FK.friends.completeMail('mouse'))return;
-      if(!woodlandSession.review){FK.puzzleRounds.complete(woodlandGame);FK.friendsLibrary.complete('mouse',woodlandGame);}
+      if(!woodlandSession.review){FK.playLog?.finish();FK.puzzleRounds.complete(woodlandGame);FK.friendsLibrary.complete('mouse',woodlandGame);}
       cancelWoodland=FK.puzzleUI.completion(woodlandEnd,'mouse',()=>{
-        if(woodlandSession.review)FK.puzzleReview.finishPreview(woodlandSession);else if(woodlandOrigin==='forest-book')FK.go('forest-book');else FK.friendsPuzzleCompleted('mouse');
+        if(woodlandSession.review)FK.puzzleReview.finishPreview(woodlandSession);else if(woodlandOrigin==='forest-book')FK.go('forest-book');else {FK.playLog?.celebration();FK.friendsPuzzleCompleted('mouse');}
       },{total:woodlandSession.questions.length,review:!!woodlandSession.review});return;
     }
     woodlandEnd.hidden=true;woodlandContext.hidden=false;
     woodlandContext.replaceChildren(FK.puzzleUI.context('mouse',woodlandSession.round,FK.puzzleRounds.instructions[woodlandGame],{explain:!woodlandSession.review,total:woodlandSession.questions.length}),FK.puzzleUI.progress(woodlandSession.round,woodlandSession.questions.length));
     const question=FK.puzzleRounds.current(woodlandSession),glyph=question.glyph;
+    if(!woodlandSession.review)FK.playLog?.show(question);
     if(question.quantity){
       const {count,item}=question.quantity,nouns={'forest-nut':['Nuss','Nüsse'],'forest-apple':['Apfel','Äpfel'],'forest-feather':['Feder','Federn']},label=count+' '+nouns[item][count===1?0:1];
       woodlandContext.append(h('div',{class:'puzzle-trace-quantity',role:'group','aria-label':label,'data-count':count,'data-item':item},
@@ -694,6 +695,7 @@
     clearTimeout(idleTimer);
     const P = toUnits(e.clientX, e.clientY);
     ptr = { id: e.pointerId, pen: e.pointerType === 'pen', x: P.x, y: P.y, cx: e.clientX, cy: e.clientY, t: performance.now(), ref: P, motion: null, spark: 0, speed: 0, fresh: true };
+    if(woodlandSession&&!woodlandSession.review)FK.playLog?.trace('stroke_started',{strokeIndex:si,inputMethod:e.pointerType||'unknown'});
     phase = 'seek';
     seek(P, e.clientX, e.clientY);
     if (ptr) ptr.fresh = false;
@@ -790,6 +792,7 @@
   }
 
   function pause() {
+    if(woodlandSession&&!woodlandSession.review)FK.playLog?.trace('trace_issue',{reason:'off_path',strokeIndex:si,progress:Math.round(prog/cur.strokes[si].len*100)/100});
     phase = 'pause';
     FK.sound.scribbleSpeed(0);
     const now = performance.now();
@@ -809,6 +812,7 @@
 
   // Touched somewhere else: show gently where to begin.
   function miss() {
+    if(woodlandSession&&!woodlandSession.review)FK.playLog?.trace('trace_issue',{reason:'missed_start',strokeIndex:si});
     misses++;
     FK.sound.undo();
     wobbleHead();
@@ -828,6 +832,7 @@
   function onUp(e) {
     if (!ptr || (e && e.pointerId !== ptr.id)) return;
     const id = ptr.id;
+    if(woodlandSession&&!woodlandSession.review&&phase!=='done'&&prog>0)FK.playLog?.trace('stroke_released',{strokeIndex:si,progress:Math.round(prog/cur.strokes[si].len*100)/100,inputMethod:ptr.pen?'pen':'pointer'});
     ptr = null;
     try { if (paperEl.hasPointerCapture && paperEl.hasPointerCapture(id)) paperEl.releasePointerCapture(id); } catch (err) { /* ignore */ }
     FK.sound.scribbleStop();
@@ -840,6 +845,7 @@
     const st = cur.strokes[si];
     const i = si;
     done[i] = true;
+    if(woodlandSession&&!woodlandSession.review)FK.playLog?.trace('stroke_completed',{strokeIndex:i,strokesTotal:cur.strokes.length});
     prog = st.len;
     els[i].p.setAttribute('d', st.d);
     els[i].po.setAttribute('d', st.d);
@@ -870,6 +876,7 @@
 
   function finishGlyph() {
     phase = 'done';
+    if(woodlandSession&&!woodlandSession.review)FK.playLog?.answer(cur.g,true);
     if(woodlandSession?.review&&!FK.puzzleReview.sessionDecision(woodlandSession,'approved')){FK.puzzleReview.saveFailure(finishGlyph);return;}
     if(woodlandSession?.review){woodlandSession.solved=true;root.querySelector('.review-reject')?.setAttribute('disabled','');}
     const my = token;
@@ -1072,7 +1079,7 @@
   FK.screen('trace', {
     build(r) {
       root = r;
-      FK.on('puzzle-review-change',()=>{if(active&&woodlandSession&&!woodlandSession.review&&!woodlandSession.blocked&&!FK.puzzleReview.ready(woodlandGame)){stopActivity();playEl.hidden=true;woodlandContext.hidden=true;woodlandEnd.hidden=false;woodlandEnd.replaceChildren(h('p',{class:'puzzle-review-blocked',text:'Dieses Puzzle wartet auf erneute Freigabe.'}));}});
+      FK.on('puzzle-review-change',()=>{if(active&&woodlandSession&&!woodlandSession.review&&!woodlandSession.blocked&&!FK.puzzleReview.ready(woodlandGame)){FK.playLog?.stop('review_required');stopActivity();playEl.hidden=true;woodlandContext.hidden=true;woodlandEnd.hidden=false;woodlandEnd.replaceChildren(h('p',{class:'puzzle-review-blocked',text:'Dieses Puzzle wartet auf erneute Freigabe.'}));}});
       const bar = FK.ui.topbar({
         title: 'Schreiben',
         onBack: () => { if(woodlandSession)FK.go(woodlandOrigin);else if (view === 'play') showOver(); else FK.back(); },
@@ -1119,7 +1126,7 @@
       if (ro) ro.observe(paperEl);
       if(woodlandSession){
         if(woodlandSession.blocked){overEl.hidden=true;playEl.hidden=true;woodlandEnd.hidden=false;woodlandEnd.replaceChildren(h('p',{class:'puzzle-review-blocked',text:'Dieses Puzzle wartet auf Freigabe. Eine erwachsene Person prüft zuerst alle Aufgaben.'}));return;}
-        woodlandNext();
+        FK.playLog?.begin(woodlandSession);woodlandNext();
         return;
       }
       if (params.set && setById(params.set)) setId = params.set;
@@ -1128,7 +1135,7 @@
       else showOver();
     },
     leave() {
-      cancelWoodland();
+      FK.playLog?.stop();cancelWoodland();
       FK.forestVoice.cancel();
       active = false;
       token++;

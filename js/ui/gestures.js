@@ -8,11 +8,11 @@ const FK=window.FK,h=FK.h;
   // One shared button gesture for the whole app, including the world, books,
   // settings and popovers. Suppress only the compatibility click of that gesture.
   const presses=new Map(), consumed=new Set();
-  let compatibility=null,lastDown=null;
+  let compatibility=null,lastDown=null,inputMethod='unknown';
   const buttonAt=target=>target?.closest?.('button');
   function suppressCompatibility(event){compatibility={id:event.pointerId,type:event.pointerType,x:event.clientX,y:event.clientY};}
   document.addEventListener('pointerdown',event=>{
-    compatibility=null;consumed.delete(event.pointerId);lastDown=event;
+    compatibility=null;consumed.delete(event.pointerId);lastDown=event;inputMethod=event.pointerType||'unknown';
     if(event.pointerType!=='touch')return;
     if(!event.isPrimary){presses.forEach(p=>p.moved=true);return;}
     presses.set(event.pointerId,{button:buttonAt(event.target),x:event.clientX,y:event.clientY,moved:false});
@@ -21,7 +21,7 @@ const FK=window.FK,h=FK.h;
     const press=presses.get(event.pointerId);
     if(press&&Math.hypot(event.clientX-press.x,event.clientY-press.y)>14)press.moved=true;
   },true);
-  document.addEventListener('pointercancel',event=>{presses.delete(event.pointerId);consumed.delete(event.pointerId);},true);
+  document.addEventListener('pointercancel',event=>{const press=presses.get(event.pointerId);if(press?.button)FK.playLog?.issue('pointer_cancelled',press.button,event.pointerType);presses.delete(event.pointerId);consumed.delete(event.pointerId);},true);
   document.addEventListener('pointerup',event=>{
     const press=presses.get(event.pointerId);presses.delete(event.pointerId);
     if(consumed.delete(event.pointerId)||event.fkPlayHandled){suppressCompatibility(event);return;}
@@ -30,6 +30,7 @@ const FK=window.FK,h=FK.h;
     // Hit-test the stable button, rather than a picture/text node that an atlas
     // or a counter may replace between down and up. Scrolling is never a tap.
     if(press.moved||!button.isConnected||button.disabled||buttonAt(document.elementFromPoint(event.clientX,event.clientY))!==button){
+      FK.playLog?.issue(press.moved?'drag_or_scroll':!button.isConnected?'control_replaced':button.disabled?'disabled':'released_outside',button,event.pointerType);
       suppressCompatibility(event);return;
     }
     suppressCompatibility(event);
@@ -50,6 +51,7 @@ const FK=window.FK,h=FK.h;
   function consumeGesture(event=lastDown){if(event)consumed.add(event.pointerId);}
   // Kept for existing activities; the document delegate already includes them.
   function bindTouch(root){return root;}
+  document.addEventListener('keydown',()=>{inputMethod='keyboard';},true);
 
-FK.play={listen,consumeGesture,bindTouch};
+FK.play={listen,consumeGesture,bindTouch,inputMethod:()=>inputMethod};
 })();

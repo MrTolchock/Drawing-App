@@ -3,10 +3,11 @@
 (function(root){
   'use strict';
   const clone=x=>JSON.parse(JSON.stringify(x));
-  const SCHEMA=1, RETENTION=7*86400000, LIMIT=10000;
-  function create({storage,content,development=false,namespace='',now=()=>Date.now(),random=Math.random,onStatus=()=>{}}){
+  const SCHEMA=1;
+  const Logging=typeof module!=='undefined'?require('./play-log.js'):root.PlayLog;
+  function create({storage,content,development=false,namespace='',now=()=>Date.now(),random=Math.random,onStatus=()=>{},appVersion=()=>root.FK?.VERSION||'unknown',logContext=()=>({})}){
     const key='farbtupf.friends.'+(namespace?namespace+'.':development?'development.':'')+'v1', backup=key+'.backup', logKey=key+'.log';
-    let state,blocked=false,readFailed=false,expected=null,error='',events=[],truncated=false;
+    let state,blocked=false,readFailed=false,expected=null,error='';
     const uid=()=>now().toString(36)+'-'+random().toString(36).slice(2,12);
     const sessionId=uid();
     // An invitation stays stable; future friends come from a saved shuffled bag.
@@ -48,13 +49,8 @@
     }
     function decode(raw){try{const s=JSON.parse(raw);return valid(s)?s:null;}catch{return null;}}
     function status(message=''){error=message;onStatus({saved:!error,error,blocked});}
-    function record(event,details={}){
-      const timestamp=now();events.push({event,timestamp,sessionId,development,appVersion:'8.3.0',saveVersion:SCHEMA,contentVersion:content.version,...clone(details)});
-      const kept=events.filter(e=>e.timestamp>=timestamp-RETENTION).slice(-LIMIT);truncated=truncated||kept.length<events.length;events=kept;
-      // Logs are independent: log storage failure must never undo saved gameplay.
-      try{storage.setItem(logKey,JSON.stringify({events,truncated}));}catch{truncated=true;}
-    }
-    try{const l=JSON.parse(storage.getItem(logKey));events=Array.isArray(l?.events)?l.events.filter(e=>e&&typeof e.event==='string'&&Number.isFinite(e.timestamp)).slice(-LIMIT):[];truncated=!!l?.truncated;}catch{}
+    const log=Logging.createRecorder({storage,key:logKey,now,metadata:()=>({sessionId,development,appVersion:typeof appVersion==='function'?appVersion():appVersion,saveVersion:SCHEMA,contentVersion:content.version,...(state?{journeyId:state.mail?.session?.id,letterIndex:state.mail?.index,mailPhase:state.mail?.phase,invitedHost:state.mail?.host}:{}),...logContext()})});
+    function record(event,details={}){return log.record(event,details);}
     try{
       expected=storage.getItem(key);state=decode(expected);
       if(!state&&expected!==null){
@@ -76,7 +72,7 @@
         if(decode(expected))storage.setItem(backup,expected);
         const raw=JSON.stringify(next);storage.setItem(key,raw);expected=raw;state=next;status();
         if(event)record(event,details);return true;
-      }catch{status('Dein Spielstand konnte nicht gespeichert werden.');return false;}
+      }catch{status('Dein Spielstand konnte nicht gespeichert werden.');record('storage_error',{scope:'journey_state',operation:event});return false;}
     }
     record('session_start',{loaded:expected!==null});
     if(expected===null&&!blocked)commit(()=>{},'save_created');
@@ -139,8 +135,10 @@
       position(x,z,region){return commit(s=>{s.world=region&&region!=='home'?{region,x,z}:{x,z};},'movement_sample',{area:'forest',x,z,...(region&&region!=='home'?{region}:{})});},
       selectPage(page){return commit(s=>{if(!['free','leaf'].includes(page))return false;s.selectedPage=page;},'drawing_page',{page});},
       draw(page,strokes){return commit(s=>{if(!['free','leaf'].includes(page))return false;s.drawings[page]=clone(strokes);},'drawing_saved',{page,strokes:strokes.length});},
-      exportLog(){const timestamp=now(),retained=events.filter(e=>e.timestamp>=timestamp-RETENTION).slice(-LIMIT);return {schema:1,appVersion:'8.3.0',contentVersion:content.version,development,retention:{days:7,maxEvents:LIMIT,truncated:truncated||retained.length<events.length},retainedFrom:retained[0]?.timestamp||null,retainedTo:retained.at(-1)?.timestamp||null,events:clone(retained)};},
-      clearLog(){events=[];truncated=false;try{storage.removeItem(logKey);}catch{}},
+      exportLog:()=>log.exportData(),
+      flushLog:()=>log.flush(),
+      get logStatus(){return log.status();},
+      clearLog:()=>log.clear(),
       exportSave:()=>({schema:SCHEMA,save:clone(state),original:blocked?expected:undefined}),
     };return api;
   }

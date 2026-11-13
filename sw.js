@@ -1,5 +1,5 @@
 /* Farbtupf – Service Worker: keeps the whole app on the device so it runs without internet. */
-const CACHE = 'farbtupf-v9.3.21-mixed-letters';
+const CACHE = 'farbtupf-v9.3.22-local-play-log';
 const SCOPE=self.registration.scope;
 const INDEX=new URL('index.html',SCOPE).href;
 const ACTIVE_MARKER=new URL('.farbtupf-active-cache',SCOPE).href;
@@ -36,6 +36,7 @@ const ASSETS = [
   './js/friends/content.js',
   './js/friends/library.js',
   './js/friends/state.js',
+  './js/friends/play-log.js',
   './js/friends/world.js',
   './js/friends/painted.js',
   './js/friends/perf.js',

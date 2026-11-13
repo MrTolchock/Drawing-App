@@ -162,7 +162,7 @@
   const key='farbtupf.puzzles.'+(new URLSearchParams(location.search).get('dev')==='1'?'development.':'')+'v1';
   let sessions={},previous={},legacy={};try{const saved=JSON.parse(localStorage.getItem(key));if(saved&&saved.version===1){sessions=saved.sessions||{};previous=saved.previous||{};legacy=saved.legacy||{};}}catch{}
   const valid=(s,id)=>s&&s.id===id&&Number.isInteger(s.seed)&&s.seed>=0&&s.seed<=0xffffffff&&Number.isInteger(s.round)&&s.round>=0&&s.round<=5&&typeof s.solved==='boolean'&&s.work&&typeof s.work==='object'&&!Array.isArray(s.work);
-  function save(session){if(session.review||!valid(session,session.id)||!instructions[session.id])return false;sessions[session.id]=JSON.parse(JSON.stringify(session));try{localStorage.setItem(key,JSON.stringify({version:1,sessions,previous,legacy}));}catch{}return true;}
+  function save(session){if(session.review||!valid(session,session.id)||!instructions[session.id])return false;sessions[session.id]=JSON.parse(JSON.stringify(session));try{localStorage.setItem(key,JSON.stringify({version:1,sessions,previous,legacy}));}catch{FK.friends?.record('storage_error',{scope:'puzzle_round',puzzleId:session.id});return false;}return true;}
   function start(id){
     const old=sessions[id],catalogue=FK.puzzleCatalogue;
     if(valid(old,id)&&(!catalogue||old.questions&&old.catalogueRevision===catalogue.puzzleRevision(id)&&catalogue.matchesSession(old)))return JSON.parse(JSON.stringify(old));

@@ -22,4 +22,6 @@ Friends come from a persisted shuffled bag: each friend appears once before the 
 
 The session allowance and end phases are part of the existing transactional FriendsState save. A failed write cannot spend a letter, grant a fresh allowance or claim a completed session. Review approvals remain a separate requirement for every playable puzzle.
 
+This journey state persists automatically; there is no manual game-save export. Settings offers a separate [local gameplay log](PLAY-LOG.md) with exact iterations, attempts, active task times and flow observations, downloadable as JSON for AI analysis. Clearing the log leaves the journey, allowance, unfinished tasks and review decisions intact.
+
 Validation: `node --test tests/*.test.cjs` and `node tests/letter-sessions-browser.cjs`. The browser suite covers real parent controls, gallery access, invited/non-invited character clicks, whole five-task rounds, the courier, a home route, sleep/game over, reload/offline persistence and the parent-only restart at phone/tablet sizes.

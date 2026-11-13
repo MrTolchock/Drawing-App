@@ -17,6 +17,7 @@ This is the required contract for every active and future puzzle. It builds on t
 | Progress | Correct answer stays visible for 900 ms, then advances automatically. After five: the existing 2.2-second friend/leaf/flower celebration. Reduced motion uses a static wreath. |
 | Access | Children visit the character on their current letter. Only that character can start a puzzle. The complete gallery/review workbench is in adult Settings. Parents choose the number of letters; the last puzzle leads home to sleep and game over. |
 | Continuity | Back returns to the actual entry point. Child play, parent previews, reviews and historical saves are separate. Previews must not complete invitations, award progress or alter an unfinished child round. |
+| Observations | Child play uses the shared [local gameplay log](../docs/PLAY-LOG.md): exact iteration/revision, selections/configuration, explicit outcomes, active task time and relevant input/reset events. Review previews are excluded; no network upload or raw handwriting paths. |
 
 ## Content and competence
 
@@ -64,6 +65,6 @@ Use `js/screens/puzzle.js` and `css/puzzle-rounds.css`. Writing uses the existin
 
 1. Choose a stable ID, host, competence, prerequisites and explicit fixed difficulty. Add its inventory entry to `js/friends/library.js` and finite definitions to `js/friends/puzzle-catalogue.js`.
 2. Supply at least 25 substantively different, inspectable iterations; include each expected answer/solution. Use complete natural sets where appropriate (alphabet, digits). Do not create a second page shell or duplicate a retired engine.
-3. Implement the interaction in the shared renderer, including saved partial work, editable retries, requested rule speech, mute, keyboard/touch input and the common finish sequence.
+3. Implement the interaction in the shared renderer, including saved partial work, editable retries, requested rule speech, mute, keyboard/touch input and the common finish sequence. Retain shared play-log hooks; log relevant actions for any new interaction and classify construction/tracing separately from choice questions in its summaries.
 4. Run `node tools/puzzle-catalogue.cjs`, `node tools/check-design.cjs`, model checks and the relevant browser suites. Review the real phone/tablet layout against [Visual style](VISUAL-STYLE.md).
 5. Open Settings → Puzzle-Prüfung, play through **every unconfirmed iteration**, solve to approve or use × to request improvement, and complete the celebration. New assets, interaction or difficulty change the revision and require review again. A deployment does not grant editorial approval.
