@@ -1,13 +1,13 @@
 /* Small moving life around Fuchs, wherever he is in the big world (it all travels with him, so it costs the
    same everywhere): leaves falling under the trees, butterflies, dragonflies over the water and little birds
-   on the ground that fly up when he comes close, bees round the hive, ducks and a jumping fish on the beaver
+   on the ground that fly up when he comes close, smoke from the picnic fire, ducks and a jumping fish on the beaver
    pond, a rainbow in the waterfall's mist and sunbeams slanting through the trees. Everything is drawn from small pictures made here; about
    a dozen draw calls together. With reduced motion the leaves hang still and the animals stay put. */
 import {THREE} from '../../scene/materials.js';
 
 const TAU = Math.PI * 2;
 
-export function createLife({scene, canvasTex, groundY, walkable, terrain, random, hives = [], shaftMat = null}) {
+export function createLife({scene, canvasTex, groundY, walkable, terrain, random, fires = [], shaftMat = null}) {
   const r = (a, b) => a + (b - a) * random();
   function sprite(map, h, order = 4) { const s = new THREE.Sprite(new THREE.SpriteMaterial({map, transparent: true, toneMapped: false, depthWrite: false, alphaTest: .02})); s.center.set(.5, .5); s.renderOrder = order; s.visible = false; s.userData.h = h; scene.add(s); return s; }
   const fit = (s, k = 1) => { const img = s.material.map.image; s.scale.set(s.userData.h * img.width / img.height * k, s.userData.h, 1); };
@@ -52,10 +52,13 @@ export function createLife({scene, canvasTex, groundY, walkable, terrain, random
   const birds = [0, 1, 2].map(i => ({s: sprite(birdTex[0], .2, 3), state: 'wait', t: 1 + i * 1.5, x: 0, y: 0, z: 0, vx: 0, vy: 0, vz: 0, hop: 0, face: 1}));
   let flockAt = null, heading = 0, last = null;
 
-  /* ---------- bees round the hive ---------- */
-  const BEES = 7, beeTex = canvasTex(32, 32, g => { g.fillStyle = 'rgba(235,245,255,.7)'; g.beginPath(); g.ellipse(11, 9, 8, 5, -.5, 0, TAU); g.fill(); g.beginPath(); g.ellipse(21, 9, 8, 5, .5, 0, TAU); g.fill(); g.fillStyle = '#f2b824'; g.beginPath(); g.ellipse(16, 18, 9, 7, 0, 0, TAU); g.fill(); g.fillStyle = '#3a2a1a'; g.fillRect(12, 12, 3, 12); g.fillRect(18, 12, 3, 12); });
-  const bees = new THREE.Points(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(new Float32Array(BEES * 3), 3)), new THREE.PointsMaterial({map: beeTex, size: .13, transparent: true, alphaTest: .3, toneMapped: false}));
-  bees.name = 'bees'; bees.frustumCulled = false; bees.visible = false; scene.add(bees);
+  /* ---------- smoke rising from the picnic place's fire ---------- */
+  const SMOKE = 9, smokeTex = canvasTex(64, 64, g => { const q = g.createRadialGradient(32, 32, 0, 32, 32, 32); q.addColorStop(0, 'rgba(255,255,255,.9)'); q.addColorStop(.5, 'rgba(255,255,255,.45)'); q.addColorStop(1, 'rgba(255,255,255,0)'); g.fillStyle = q; g.fillRect(0, 0, 64, 64); });
+  const smoke = fires.length ? new THREE.Points(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(new Float32Array(SMOKE * 3), 3)).setAttribute('aSeed', new THREE.Float32BufferAttribute(Array.from({length: SMOKE}, (_, k) => (k + random() * .6) / SMOKE), 1)),
+    new THREE.ShaderMaterial({transparent: true, depthWrite: false, uniforms: {uMap: {value: smokeTex}, uTime: {value: 0}, uScale: {value: 600}, uFire: {value: new THREE.Vector3(fires[0][0], groundY(fires[0][0], fires[0][1]) + .35, fires[0][1])}},
+      vertexShader: 'attribute float aSeed;uniform float uTime,uScale;uniform vec3 uFire;varying float vAge;void main(){vAge=fract(aSeed+uTime*.085);vec3 p=uFire+vec3(sin(aSeed*40.+vAge*3.)*.22*vAge+vAge*vAge*.5,vAge*2.9,cos(aSeed*23.+vAge*2.)*.2*vAge);vec4 mv=modelViewMatrix*vec4(p,1.);gl_PointSize=(.28+vAge*.95)*uScale/-mv.z;gl_Position=projectionMatrix*mv;}',
+      fragmentShader: 'uniform sampler2D uMap;varying float vAge;void main(){float a=texture2D(uMap,gl_PointCoord).a*smoothstep(0.,.12,vAge)*(1.-vAge)*.34;gl_FragColor=vec4(vec3(.93,.92,.9),a);}'})) : null;
+  if (smoke) { smoke.name = 'smoke'; smoke.frustumCulled = false; smoke.renderOrder = 6; smoke.visible = false; scene.add(smoke); }
 
   /* ---------- the beaver pond: two ducks swimming their rounds, and now and then a fish jumps ---------- */
   const pond = terrain.pools.find(q => q.id === 'pond'), pc = Math.cos(pond.rot), ps = Math.sin(pond.rot), onPond = (u, v) => [pond.x + u * pc - v * ps, pond.z + u * ps + v * pc];
@@ -127,27 +130,7 @@ export function createLife({scene, canvasTex, groundY, walkable, terrain, random
         const k = Math.min(1, dt * 7); d.x += (d.tx - d.x) * k; d.y += (d.ty - d.y) * k; d.z += (d.tz - d.z) * k; }
       d.s.visible = true; d.s.position.set(d.x, d.y + (reduced ? 0 : Math.sin(time * 9 + d.tx) * .02), d.z);
     }
-    // bees circle the nearest hive when Fuchs is in its neighbourhood
-    { const hive = hives.find(h => Math.hypot(h[0] - pos.x, h[1] - pos.z) < 30); bees.visible = !!hive;
-      if (hive) { const p = bees.geometry.attributes.position, hy = groundY(hive[0], hive[1]) + .95, t = reduced ? 0 : time;
-        for (let k = 0; k < BEES; k++) { const a = t * (1.1 + k * .23) + k * 2.1, q = .35 + .5 * (.5 + .5 * Math.sin(t * .7 + k * 1.3)); p.setXYZ(k, hive[0] + Math.cos(a) * q, hy + Math.sin(t * 1.9 + k) * .28 + (k % 3) * .12, hive[1] + Math.sin(a * 1.13) * q); } p.needsUpdate = true; } }
-    // the pond: ducks swim their rounds; a fish jumps now and then (only when Fuchs is near enough to see it)
-    { const nearPond = Math.hypot(pos.x - pond.x, pos.z - pond.z) < 38;
-      for (const d of ducks) { d.m.visible = nearPond; if (!nearPond) continue; if (!reduced) d.a += dt * d.speed;
-        const [x, z] = onPond(Math.cos(d.a) * pond.rx * d.k, Math.sin(d.a) * pond.rz * d.k), [x2, z2] = onPond(Math.cos(d.a + .05) * pond.rx * d.k, Math.sin(d.a + .05) * pond.rz * d.k), t = reduced ? 0 : time;
-        // they paddle along, bob a little, and now and then dip their heads
-        const dip = Math.max(0, Math.sin(t * .31 + d.a * 3) - .94) * 14; d.m.position.set(x, pond.level + .03 + Math.sin(t * 2 + d.a * 9) * .012, z); d.m.rotation.set(dip, Math.atan2(x2 - x, z2 - z), Math.sin(t * 2.6 + d.a * 5) * .05, 'YXZ'); }
-      if (nearPond && !reduced && fish.t < 0 && (fish.next -= dt) < 0) { const a = r(0, TAU), k = r(.1, .45); fish.from = onPond(Math.cos(a) * pond.rx * k, Math.sin(a) * pond.rz * k); const b = r(0, TAU); fish.to = [fish.from[0] + Math.cos(b) * .9, fish.from[1] + Math.sin(b) * .9]; fish.t = 0; fish.next = r(5, 12); splash(0, ...fish.from); fit(fish.s); }
-      if (fish.t >= 0) { fish.t += dt / .8; const u = fish.t, x = fish.from[0] + (fish.to[0] - fish.from[0]) * u, z = fish.from[1] + (fish.to[1] - fish.from[1]) * u, right = fish.to[0] >= fish.from[0] ? 1 : -1;
-        fish.s.visible = u < 1; fish.s.position.set(x, pond.level + Math.sin(u * Math.PI) * .6, z); fish.s.scale.set(.4 * right, .2, 1); fish.s.material.rotation = right * Math.cos(u * Math.PI) * 1.1;
-        if (u >= 1) { fish.t = -1; splash(1, ...fish.to); } }
-      for (const g of rings) { if (g.t < 0) { g.m.visible = false; continue; } g.t += dt / 1.3; g.m.visible = true; g.m.scale.setScalar(.3 + g.t * 1.3); g.m.material.opacity = Math.max(0, .75 * (1 - g.t)); if (g.t >= 1) g.t = -1; } }
-    // paper boats: half a metre a second down the brook, skipped where they are far from Fuchs
-    for (const b of boats) { if (!reduced) b.at = (b.at + dt * .5 / brook.len) % 1; const f = 30 + b.at * (brook.N - 60), i = Math.floor(f), q = brook.samples[i], q2 = brook.samples[i + 1], u = f - i, x = q.x + (q2.x - q.x) * u, z = q.z + (q2.z - q.z) * u;
-      b.s.visible = Math.hypot(x - pos.x, z - pos.z) < 34; if (!b.s.visible) continue; const h = b.s.userData.h, y = brook.level[i] + (brook.level[i + 1] - brook.level[i]) * u;
-      b.s.position.set(x, y + .14 + (reduced ? 0 : Math.sin(time * 3 + b.at * 90) * .015), z); b.s.scale.set(h * 64 / 48, h, 1); b.s.material.rotation = reduced ? 0 : Math.sin(time * 1.7 + b.at * 50) * .09; }
-    bow.material.opacity = reduced ? .28 : .26 + Math.sin(time * .6) * .06;
-    if (beams) placeBeams(pos);
+    if (smoke) { smoke.visible = Math.hypot(fires[0][0] - pos.x, fires[0][1] - pos.z) < 40; if (!reduced) smoke.material.uniforms.uTime.value = time; smoke.material.uniforms.uScale.value = height / (2 * Math.tan(THREE.MathUtils.degToRad(fov / 2))); }
     // little birds: a few hop about together ahead of Fuchs and fly off when he is close
     if (!flockAt && !reduced && birds.every(b => b.state === 'wait' && b.t <= 0)) { flockAt = spotNear(pos, heading, 9, 15, (x, z) => walkable(x, z) && !terrain.onCrossing(x, z)); if (flockAt) for (const b of birds) { b.state = 'ground'; b.x = flockAt[0] + r(-.9, .9); b.z = flockAt[1] + r(-.9, .9); b.y = groundY(b.x, b.z) + .1; b.t = r(.3, 1.5); b.s.material.map = birdTex[0]; fit(b.s); } }
     for (const b of birds) {
