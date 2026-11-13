@@ -252,8 +252,11 @@ function portrait(id){const pic=FK.friendsArt.portrait(id);pic.classList.add('fo
     if(!g||!canPlay(g.id)){if(FK.screenExists?.('friends'))FK.go('friends');return false;}
     returnTo='friends';
     if(returnTo==='friends'){
+      const queue=FK.settings.get('friends.queue.'+g.host);
+      if(Array.isArray(queue))FK.settings.set('friends.queue.'+g.host,queue.filter(id=>id!==g.id));
       FK.settings.set('friends.rotation.'+g.host,g.id);
       FK.settings.set('friends.active.'+g.host,g.id);
+      FK.settings.set('friends.lastPuzzle',g.id);
     }
     FK.go(g.screen,{game:g.id,stage:1,lvl:1,level:1,returnTo});return true;
   }
@@ -262,8 +265,16 @@ function portrait(id){const pic=FK.friendsArt.portrait(id);pic.classList.add('fo
     const unfinished=pool.find(g=>g.id===active&&FK.puzzleRounds.pending(g.id));
     if(unfinished)return unfinished;
     if(!pool.length)return null;
-    const last=pool.findIndex(g=>g.id===FK.settings.get('friends.rotation.'+host));
-    return pool[(last+1)%pool.length];
+    const saved=FK.settings.get('friends.queue.'+host),ids=new Set(pool.map(g=>g.id));
+    let queue=Array.isArray(saved)?[...new Set(saved.filter(id=>ids.has(id)))]:[];
+    if(!queue.length)queue=FK.shuffle(pool.map(g=>g.id));
+    const last=FK.settings.get('friends.rotation.'+host),kind=id=>FK.puzzleCatalogue?.iterations(id)[0]?.question.kind||FK.puzzleRounds.question(id,0,0).kind;
+    const previous=FK.settings.get('friends.lastPuzzle'),previousKind=previous&&games.some(g=>g.id===previous)?kind(previous):null;
+    // Prefer another interaction when this friend's remaining bag offers one.
+    let next=queue.findIndex(id=>id!==last&&(!previousKind||kind(id)!==previousKind));
+    if(next<0)next=queue.findIndex(id=>id!==last);if(next>0)queue.unshift(...queue.splice(next,1));
+    FK.settings.set('friends.queue.'+host,queue);
+    return pool.find(g=>g.id===queue[0]);
   }
   function complete(host,game){if(!game||FK.settings.get('friends.active.'+host)===game)FK.settings.set('friends.active.'+host,null);}
 FK.friendsLibrary={active:false,hosts,portrait,catalogue,launch,visit,canPlay,pick,complete};

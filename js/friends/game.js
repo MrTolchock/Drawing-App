@@ -3,8 +3,8 @@ import {createAudio} from './audio.js';
 const FK=window.FK,h=FK.h,C=window.FriendsContent;
 let root,canvas,world,state,audio,overlay,hotspots,nav,statusBar,nearButton,caption,fader,doorScene,denEnvelope;
 let area='den',panel=null,host=null,example=false,feedbackTimer=null,activeMs=0,lastTick=performance.now(),pendingDrawing=null,returnArea='den',finalSleep=false;
-const actionPictures={outside:'door',drawing:'pencils',gallery:'gallery'};
-const actionNames={outside:'Nach draussen',drawing:'Ausmalen',gallery:'Meine Bilder'};
+const actionPictures={outside:'door'};
+const actionNames={outside:'Nach draussen'};
 const envelopeSVG='<svg viewBox="0 0 120 85" aria-hidden="true"><rect x="3" y="5" width="114" height="75" rx="7" fill="#fff6dc" stroke="#967044" stroke-width="3"/><path d="m5 76 40-33m70 33L75 43M5 9l55 43 55-43" fill="none" stroke="#b59466" stroke-width="3"/><circle cx="60" cy="53" r="9" fill="#a9bb85"/><path d="m56 53 3 3 5-7" fill="none" stroke="#547043" stroke-width="2"/></svg>';
 const doorSVG=`<svg viewBox="0 0 1448 1086" preserveAspectRatio="none"><defs><linearGradient id="letter-flap" x2="0" y2="1"><stop stop-color="#cc9743"/><stop offset=".5" stop-color="#e5bd70"/><stop offset="1" stop-color="#ae7633"/></linearGradient></defs><rect class="ff-mail-opening" x="1180" y="280" width="106" height="34" rx="3" fill="#49331f"/><rect class="ff-mail-lid" x="1180" y="280" width="106" height="34" rx="3" fill="url(#letter-flap)" stroke="#d7af64" stroke-width="2"/></svg>`;
 function syncMail(){
@@ -81,7 +81,7 @@ function renderNav(){nav.replaceChildren();if(state.development)nav.append(h('st
   nav.append(button('Einstellungen für Erwachsene','gear',()=>FK.ui.parentGate(settings)));
 }
 function renderHotspots(){if(panel)return;hotspots.replaceChildren();if(['sleeping','finished'].includes(state.mail().phase))return;
-  const ids=area==='forest'?Object.keys(places):['outside','drawing','gallery'];
+  const ids=area==='forest'?Object.keys(places):['outside'];
   for(const id of ids){const p=places[id],m=state.mail();if(id==='mailman'&&m.phase!=='to-mailman')continue;
     const b=button(area==='forest'?p.name:actionNames[id],area==='forest'?p.picture:actionPictures[id],()=>act(id),'ff-hotspot');b.dataset.place=id;
     b.classList.toggle('ff-invited',area==='forest'&&((m.phase==='to-friend'&&m.host===id)||(m.phase==='to-mailman'&&id==='mailman')||(m.phase==='return-home'&&id==='home')));hotspots.append(b);
@@ -91,7 +91,7 @@ function act(id){if(panel||['sleeping','finished'].includes(state.mail().phase))
   const destination=places[id];if(!destination)return;
   const p=world.position;if(Math.hypot(p.x-destination.x,p.z-destination.z)>3.2){world.route(id);say('Folge Fuchs zu '+(C.hosts[id]?.name||(id==='home'?'deinem Zuhause':'dem Briefträger'))+'.');return;}
   if(id==='home')go('den');else if(id==='mailman'){if(state.mail().phase==='to-mailman')showLetter(true);}else meet(id);
-}else if(id==='outside'){if(state.mail().phase==='den-letter')showLetter(false);else go('forest');}else if(id==='drawing')FK.go('book',{from:'friends'});else if(id==='gallery')FK.go('gallery');}
+}else if(id==='outside'){if(state.mail().phase==='den-letter')showLetter(false);else go('forest');}}
 // The picture map is drawn from the world (tools/map/): a place's pin is where it lies on it.
 const MAP={x0:-168,x1:168,z0:-112,z1:112};   // as world/big/layout.js MAP
 const mapPins=new Proxy({},{get:(_,id)=>{const p=places[id],[x,z]=p.map||[p.x,p.z];return [(x-MAP.x0)/(MAP.x1-MAP.x0),(z-MAP.z0)/(MAP.z1-MAP.z0)];}});

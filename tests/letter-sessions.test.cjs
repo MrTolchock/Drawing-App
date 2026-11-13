@@ -15,13 +15,13 @@ test('each parent-chosen limit counts whole puzzles and ends with home, sleep an
  }
 });
 test('limit changes apply before the first letter or to the next journey, without resetting an active allowance',()=>{
- const {state:s,storage}=fixture();assert.ok(s.setLetterLimit(5));assert.equal(s.mail().session.limit,5);s.openLetter();s.completeMail('squirrel');assert.ok(s.setLetterLimit(1));assert.equal(s.get().settings.letterLimit,1);assert.equal(s.mail().session.limit,5);assert.equal(s.mail().session.completed,1);
+ const {state:s,storage}=fixture();assert.ok(s.setLetterLimit(5));assert.equal(s.mail().session.limit,5);s.openLetter();s.completeMail(s.mail().host);assert.ok(s.setLetterLimit(1));assert.equal(s.get().settings.letterLimit,1);assert.equal(s.mail().session.limit,5);assert.equal(s.mail().session.completed,1);
  for(const n of [0,-1,1.5,51,'3',NaN])assert.equal(s.setLetterLimit(n),false);
  const r=create({storage,content});assert.equal(r.mail().session.completed,1);assert.equal(r.mail().session.limit,5);assert.ok(r.startLetterSession());assert.equal(r.mail().session.limit,1);assert.equal(r.mail().phase,'den-letter');
 });
 test('failed completion does not spend a letter; failed sleep and restart preserve their durable phases',()=>{
- const {state:s,storage}=fixture();s.startLetterSession(1);s.openLetter();const set=storage.setItem;storage.setItem=(key,v)=>{if(key===s.key)throw Error('quota');set(key,v);};assert.equal(s.completeMail('squirrel'),false);assert.equal(s.mail().session.completed,0);assert.equal(s.mail().phase,'to-friend');
- storage.setItem=set;assert.ok(s.completeMail('squirrel'));storage.setItem=(key,v)=>{if(key===s.key)throw Error('quota');set(key,v);};assert.equal(s.beginSleep(),false);assert.equal(s.mail().phase,'return-home');assert.equal(s.startLetterSession(3),false);assert.equal(s.mail().session.limit,1);
+ const {state:s,storage}=fixture();s.startLetterSession(1);s.openLetter();const set=storage.setItem;storage.setItem=(key,v)=>{if(key===s.key)throw Error('quota');set(key,v);};assert.equal(s.completeMail(s.mail().host),false);assert.equal(s.mail().session.completed,0);assert.equal(s.mail().phase,'to-friend');
+ storage.setItem=set;assert.ok(s.completeMail(s.mail().host));storage.setItem=(key,v)=>{if(key===s.key)throw Error('quota');set(key,v);};assert.equal(s.beginSleep(),false);assert.equal(s.mail().phase,'return-home');assert.equal(s.startLetterSession(3),false);assert.equal(s.mail().session.limit,1);
 });
 test('old mail and dormant timer preferences survive without granting an unlimited session',()=>{
  const {state:s,storage,map}=fixture(),old=s.get();delete old.mail.session;delete old.settings.letterLimit;old.mail.phase='to-mailman';old.mail.completed=17;old.legacyField={keep:true};storage.setItem(s.key,JSON.stringify(old));storage.setItem('farbtupf.timer.v1','{"version":1,"mode":"countdown","running":true}');

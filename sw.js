@@ -1,5 +1,5 @@
 /* Farbtupf – Service Worker: keeps the whole app on the device so it runs without internet. */
-const CACHE = 'farbtupf-v9.3.20-gameplay-review';
+const CACHE = 'farbtupf-v9.3.21-mixed-letters';
 const SCOPE=self.registration.scope;
 const INDEX=new URL('index.html',SCOPE).href;
 const ACTIVE_MARKER=new URL('.farbtupf-active-cache',SCOPE).href;
@@ -122,10 +122,6 @@ const ASSETS = [
   './js/ui/fx.js',
   './js/ui/ui.js',
   './js/ui/pencils.js',
-  './js/screens/book.js',
-  './js/screens/color.js',
-  './js/screens/free.js',
-  './js/screens/gallery.js',
   './js/screens/trace.js',
   './js/app.js',
   './fonts/andika-400.woff2',

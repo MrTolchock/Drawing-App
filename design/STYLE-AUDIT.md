@@ -1,6 +1,17 @@
 # Visual consistency audit
 
-Latest audit: 13 November 2026, feature branch 9.3.20. The dated entries below record earlier releases. This checks the active game against [Visual style](VISUAL-STYLE.md) and [Puzzle blueprint](PUZZLE-BLUEPRINT.md). It records implementation evidence; it does not grant editorial approval.
+Latest audit: 13 November 2026, feature branch 9.3.21. The dated entries below record earlier releases. This checks the active game against [Visual style](VISUAL-STYLE.md) and [Puzzle blueprint](PUZZLE-BLUEPRINT.md). It records implementation evidence; it does not grant editorial approval.
+
+## Letter variety and quiet menus — feature branch 9.3.21
+
+- The courier waits outside the 3.2 m interaction radius, normally 5.4–7.2 m from Fuchs, with reachable alternatives around bends. He stays at that spot while delivering a letter. Tapping him starts a short walk before the next invitation opens.
+- Friends and each friend's approved puzzle types use saved shuffled bags. New journeys avoid the previous recipient, bags avoid immediate repetitions and puzzle selection prefers a different interaction when possible. Reloads keep the active letter, bag order and unfinished puzzle. Legacy mail recipients and save data are retained.
+- Menu, navigation and review controls are silent, including opening dialogs. Puzzle task/answer clicks, correct/retry feedback, handwriting sounds and celebration remain controlled by Spielklänge.
+- Drawing and saved-picture screens no longer register or enter the offline bundle. Their den hotspots and projection pins are removed. The den painting itself is unchanged: table, pencils and picture pile remain visible. Existing local drawing records are retained.
+
+[Den with table/picture pile and no drawing icons](evidence/2026-11-13-letter-variety/den-no-drawing-controls.png).
+
+The model suites passed shuffled-cycle coverage across all eleven friends, varied starts across 40 deterministic seeds, restart/reload stability, shuffled puzzle bags, interaction variety and unfinished-round restoration. The real journey browser check passed short reachable courier approaches at all eleven friend locations, actual walking before opening the next letter, silent parent menus, retired drawing routes, randomized invitations, ten answers, home/sleep/game over, offline reopening and a writing invitation.
 
 ## Gameplay review — feature branch 9.3.20
 

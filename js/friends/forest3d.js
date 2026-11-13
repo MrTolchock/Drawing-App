@@ -152,12 +152,15 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   function placeCamera(k) { const off = narrow ? [0, 10, 14.4] : [0, 9, 14]; camera.position.lerp(new THREE.Vector3(focus.x + off[0], focus.y + off[1], focus.z + off[2]), k); camera.position.y = Math.max(camera.position.y, WORLD.ground(camera.position.x, camera.position.z) + 3.5); camera.lookAt(focus.x, focus.y + 1.4, focus.z - 3.2); camera.updateMatrixWorld(); foxView.value.set(pos.x, groundY(pos.x, pos.z) + .9, pos.z).applyMatrix4(camera.matrixWorldInverse); fill.position.copy(camera.position).add(new THREE.Vector3(0, 4, 0)); fill.target.position.copy(focus); fill.target.updateMatrixWorld(); horizon.position.x = camera.position.x; horizon.position.z = camera.position.z - 20; }
   function publishMailPosition() { const p = forestPlaces.mailman; p.x = mailPos.x; p.z = mailPos.z; p.pu = THREE.MathUtils.clamp(.5 + mailPos.x * .023, .07, .93); p.pv = THREE.MathUtils.clamp(.49 + mailPos.z * .025, .1, .9); }
   function summonMailman() {
-    let chosen = null; for (const radius of [2.2, 2.7, 3.2, 3.8]) { for (let i = 0; i < 16; i++) { const a = -.5 + i / 16 * TAU, candidate = new THREE.Vector3(pos.x + Math.cos(a) * radius, 0, pos.z + Math.sin(a) * radius); if (walkable(candidate.x, candidate.z) && clear(pos, candidate, true)) { chosen = candidate; break; } } if (chosen) break; }
-    mailPos.copy(chosen || nearestWalkable(new THREE.Vector3(pos.x + 2.5, 0, pos.z))); courierGoal = null; courierWait = 5; publishMailPosition(); courier.position.set(mailPos.x, groundY(mailPos.x, mailPos.z), mailPos.z); guidePoints = []; guideNext = 0;
+    let chosen = null; for (const radius of [5.4, 6, 6.6, 7.2]) { for (let i = 0; i < 32; i++) { const a = -.5 + i / 32 * TAU, candidate = new THREE.Vector3(pos.x + Math.cos(a) * radius, 0, pos.z + Math.sin(a) * radius); if (walkable(candidate.x, candidate.z) && clear(pos, candidate, true)) { chosen = candidate; break; } } if (chosen) break; }
+    // A bend or a narrow crossing may need a routed approach instead of a straight one.
+    if (!chosen) for (const radius of [5.4, 6.6, 8]) { for (let i = 0; i < 16; i++) { const a = i / 16 * TAU, candidate = nearestWalkable(new THREE.Vector3(pos.x + Math.cos(a) * radius, 0, pos.z + Math.sin(a) * radius)), distance = candidate.distanceTo(pos); if (distance >= 4.5 && distance <= 9 && plan(candidate)) { chosen = candidate; break; } } if (chosen) break; }
+    if (chosen) mailPos.copy(chosen);
+    courierGoal = null; courierWait = 20; publishMailPosition(); courier.position.set(mailPos.x, groundY(mailPos.x, mailPos.z), mailPos.z); guidePoints = []; guideNext = 0;
   }
   function updateMailman(dt, reduced, animate) {
     courierWait = Math.max(0, courierWait - dt); const distance = mailPos.distanceTo(pos), greeting = guideTarget === 'mailman' && distance < 3.1;
-    if (greeting) { courierGoal = null; courierWait = Math.max(courierWait, 1.2); }
+    if (guideTarget === 'mailman') { courierGoal = null; courierWait = Math.max(courierWait, 1.2); }
     if (!courierGoal && !courierWait) { for (let i = 0; i < 16; i++) { const a = R() * TAU, r = 2 + R() * 3, target = new THREE.Vector3(mailPos.x + Math.cos(a) * r, 0, mailPos.z + Math.sin(a) * r); if (walkable(target.x, target.z) && clear(mailPos, target)) { courierGoal = target; break; } } courierWait = 2 + R() * 4; }
     let moving = false; if (courierGoal) { const d = courierGoal.distanceTo(mailPos); if (d < .12) { courierGoal = null; courierWait = 2 + R() * 4; } else { const direction = courierGoal.clone().sub(mailPos).normalize(); mailPos.addScaledVector(direction, Math.min(d, dt * .75)); const yaw = Math.atan2(direction.x, direction.z), diff = Math.atan2(Math.sin(yaw - courier.rotation.y), Math.cos(yaw - courier.rotation.y)); courier.rotation.y += diff * Math.min(1, dt * 7); moving = true; } }
     if (greeting) { const yaw = Math.atan2(pos.x - mailPos.x, pos.z - mailPos.z), diff = Math.atan2(Math.sin(yaw - courier.rotation.y), Math.cos(yaw - courier.rotation.y)); courier.rotation.y += diff * Math.min(1, dt * 5); }
@@ -257,7 +260,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     get soundscape() { return sound; },
     /** Development: put Fuchs somewhere at once. */
     teleport(x, z) { const p = nearestWalkable(new THREE.Vector3(x, 0, z)); pos.set(p.x, 0, p.z); vel.set(0, 0); destination = null; path = []; ring.visible = false; streamer.focus(pos.x, pos.z); streamer.complete(); aimSun(pos.x, pos.z); snapCamera(); },
-    mailTarget(id) { guideTarget = forestPlaces[id] ? id : null; guidePoints = []; guideNext = 0; if (id === 'mailman' && mailPos.distanceTo(pos) > 6.5) summonMailman(); }, summonMailman,
+    mailTarget(id) { guideTarget = forestPlaces[id] ? id : null; guidePoints = []; guideNext = 0; if (id === 'mailman' && mailPos.distanceTo(pos) > 9) summonMailman(); }, summonMailman,
     pick(x, y) {
       raycaster.setFromCamera(new THREE.Vector2(x, y), camera);
       if (raycaster.intersectObject(courier, true).length) { courierGoal = null; courierWait = 20; if (mailPos.distanceTo(pos) < 3.2) onAction('mailman'); else walkTo(mailPos.clone(), 'mailman'); return; }

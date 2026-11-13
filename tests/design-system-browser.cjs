@@ -9,7 +9,7 @@ try{
  await installRemote(context);page.setDefaultTimeout(60000);page.on('pageerror',e=>errors.push(e.message));page.on('response',r=>{if(r.status()>=400)missing.push(r.url());});
  await context.addInitScript(()=>localStorage.setItem('farbtupf.forest.v1','{"archivedFixture":true}'));
  await page.goto(base+'/?screen=forest&software=1');await page.waitForFunction(()=>FK.current()==='friends');
- assert.equal(await page.evaluate(()=>['forest','forest-book','learn','adventure','expedition','read','dots'].some(s=>FK.screenExists(s))),false);
+ assert.equal(await page.evaluate(()=>['forest','forest-book','learn','adventure','expedition','read','dots','book','color','free','gallery'].some(s=>FK.screenExists(s))),false);
  assert.equal(await page.evaluate(()=>localStorage.getItem('farbtupf.forest.v1')),'{"archivedFixture":true}');
  const duplicateIds=await page.locator('symbol[id]').evaluateAll(nodes=>nodes.map(n=>n.id).filter((id,i,all)=>all.indexOf(id)!==i));assert.deepEqual(duplicateIds,[]);
  await page.getByRole('button',{name:'Brief öffnen',exact:true}).click();

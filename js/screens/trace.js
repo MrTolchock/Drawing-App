@@ -411,7 +411,7 @@
         class: 'tr-tile' + (isDone(g) ? ' is-done' : '') + (g === firstOpen ? ' is-next' : '') + (g === lastGlyph[setId] ? ' is-last' : ''),
         'aria-label': g,
         style: { '--tilt': ((i % 3) - 1) * 1.2 + 'deg' },
-        onclick: () => { FK.sound.tick(); openGlyph(g, 'guided'); },
+        onclick: () => openGlyph(g, 'guided'),
         html: tileSvg(g),
       });
       // stars only once earned (as in the Malbuch): a faded empty star looked like a smudge

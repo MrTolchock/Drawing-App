@@ -11,13 +11,13 @@ This is the single visual specification for the active game. The direction is a 
 | Character identity on letters, map, puzzle context, companions, votes, celebration and game-over | Transparent render of the **same current model**, same lighting/framing for the entire cast. Sleeping fox is a pose of that model | `assets/forest-friends/character-portraits.webp`, `FK.friendsArt.portrait(id)`; generated with `tools/portraits/` |
 | Learning subjects: animals, objects, quantities and pictured verbs | Drawn crayon/pencil illustrations, soft textured edges, transparent background, consistent woodland palette | `assets/waldatelier/*.webp`, `FK.visual.art(subject)`; `forest-actions` for actions and `puzzle-vocabulary` for nouns |
 | Exact geometry, shape constructions, mirror grids, routes, handwriting paths | SVG/canvas paths where precision is the task. Use the same paper, ink, colour palette and rounded stroke language | Shared puzzle renderer, `js/learn/glyphs.js`, trace engine |
-| Utility controls: back, explain, settings, map, letter, reset, painting tools | One sepia SVG family, rounded line ends, 48-unit viewBox, 2.2-unit strokes, restrained fills | `js/ui/waldatelier-icons.js`, `FK.icons.element(name)` or `FK.icon(name)` |
+| Utility controls: back, explain, settings, map, letter and reset | One sepia SVG family, rounded line ends, 48-unit viewBox, 2.2-unit strokes, restrained fills | `js/ui/waldatelier-icons.js`, `FK.icons.element(name)` or `FK.icon(name)` |
 | Puzzle surroundings and map | Painted woodland backdrop; the picture map reflects the actual world layout, with rendered identity pins | `puzzle-clearing.webp`, `world-map.webp`, `tools/map/` |
-| Colouring pages and saved drawings | Drawn outlines / child-created marks. Preserve older saved picture IDs and painting modes for resuming work | `colouring-friends.webp`, `js/art/`, `js/paint/` |
+| Retired colouring pages and saved drawings | Inactive historical artwork/data; preserve saved IDs and local drawing records. The den table and paper pile remain in the background without drawing icons | `colouring-friends.webp`, `js/art/`, `js/paint/` |
 
 A vocabulary fox is a drawn animal; a letter from Fuchs shows the model portrait. Do not replace a subject with a character portrait because they name the same animal. Do not use painted postcard portraits alongside model renders. No photographic/stock assets, platform emoji, CSS-drawn substitute animals or a new illustration style for one puzzle. Emoji may remain internal legacy content tokens, but are resolved to our art before display. A missing illustration is a content defect, not permission to fall back to an emoji.
 
-The distinction between the 3D world and drawn learning pages is intentional. Within each role, use one treatment. Existing colouring artwork is allowed to be line art because children supply its colour.
+The distinction between the 3D world and drawn learning pages is intentional. Within each role, use one treatment. Historical colouring artwork remains as legacy assets/data; drawing is no longer an active activity.
 
 ## Typography
 

@@ -52,7 +52,6 @@
     const iteration=session.iterationIds[session.round];root.dataset.reviewIteration=iteration||'';
     if(!iteration)return;
     const reject=h('button',{type:'button',class:'puzzle-button puzzle-listen review-reject','aria-label':'Iteration ablehnen',onclick:()=>{
-      FK.sound.tick();
       if(session.solved)return;
       onPause();
       const note=h('textarea',{'aria-label':'Kommentar (optional)',maxlength:4000,rows:4,placeholder:'Was soll verbessert werden?',text:V.status(session.id,iteration).decision?.note||''});

@@ -9,7 +9,7 @@
   function safe(){
     if(!booted||document.hidden||document.querySelector('.modal'))return false;
     const screen=FK.current();
-    if(['settings','forest-book','book','gallery','album'].includes(screen))return true;
+    if(['settings'].includes(screen))return true;
     return screen==='friends'&&FK.friendsView?.().area==='den'&&!document.querySelector('.screen-friends .ff-overlay:not([hidden])');
   }
   async function apply(){

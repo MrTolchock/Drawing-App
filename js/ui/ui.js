@@ -95,7 +95,7 @@
       type: 'button',
       class: 'btn' + (o.cls ? ' ' + o.cls : ''),
       'aria-label': o.title || o.label || null,
-      onclick: o.onClick ? (e) => { FK.sound.tick(); o.onClick(e); } : null,
+      onclick: o.onClick || null,
     });
     if (o.icon) b.insertAdjacentHTML('beforeend', FK.icon(o.icon));
     if (o.emoji) b.append(h('span', { class: 'ic emoji', 'aria-hidden': 'true', text: o.emoji }));
@@ -109,7 +109,7 @@
     const el = h(o.onClick ? 'button' : 'div', { class: 'star-count', 'aria-label': 'Sterne' });
     if (o.onClick) {
       el.type = 'button';
-      el.addEventListener('click', () => { FK.sound.tick(); o.onClick(); });
+      el.addEventListener('click', o.onClick);
     }
     el.innerHTML = FK.icon('star', 'ic star-ic') + '<b></b>';
     const val = el.querySelector('b');
@@ -334,7 +334,6 @@
     modalEl = wrap;
     requestAnimationFrame(()=>rowFocus());
     function rowFocus(){if(modalEl===wrap)(wrap.querySelector('input,.modal-actions button')||close).focus();}
-    FK.sound.open();
     return { close: closeModal, el: card };
   }
 
