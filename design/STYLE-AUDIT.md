@@ -1,6 +1,14 @@
 # Visual consistency audit
 
-Latest audit: 13 November 2026, feature branch 9.3.25. The dated entries below record earlier releases. This checks the active game against [Visual style](VISUAL-STYLE.md) and [Puzzle blueprint](PUZZLE-BLUEPRINT.md). It records implementation evidence; it does not grant editorial approval.
+Latest audit: 13 November 2026, feature branch 9.3.26. The dated entries below record earlier releases. This checks the active game against [Visual style](VISUAL-STYLE.md) and [Puzzle blueprint](PUZZLE-BLUEPRINT.md). It records implementation evidence; it does not grant editorial approval.
+
+## Developer-mode logging switch — feature branch 9.3.26
+
+**Einstellungen → Zum Testen → Entwicklermodus** uses the existing Andika settings card and checkbox control. The selection persists in the browser, the log card announces that recording is paused, and forest navigation uses the existing **ENTWICKLUNG** marker. [Actual tablet](evidence/2026-11-13-developer-mode/developer-mode-1080.png) and [phone](evidence/2026-11-13-developer-mode/developer-mode-390.png) views.
+
+While enabled, the shared recorder adds no events or definitions, including startup, answers, timing and forest movement. Existing usage history stays available for export. Switching off resumes observations. Puzzles entered during testing detach from the earlier usage run; a resumed tested iteration has no fabricated first-try result. Gameplay state, parent limits and review requirements keep their normal behaviour. The older isolated `?dev=1` route is also silent and its menu switch can return to the normal URL.
+
+All twelve model suites passed. The expanded real-browser play-log suite passed zero test events/definitions, retained history and actual export, full on/off reloads, the visible navigation marker, correct normal recording after testing, separate resumed run IDs, unknown first-try status for tested work, and legacy URL exit. The last URL/preference assertion omits another forest build after prior complete normal-world reloads. Phone/tablet checks passed overflow and 48 px minimum label targets. Screenshots use disposable fixture data; usage-log exports remain local. Catalogue, design/archive checks and GitHub CI passed for the runtime. Puzzle art, layout and interaction continue to use the preceding shared audit.
 
 ## Local gameplay observations — feature branch 9.3.25
 
