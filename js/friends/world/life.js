@@ -1,12 +1,13 @@
 /* Small moving life around Fuchs, wherever he is in the big world (it all travels with him, so it costs the
    same everywhere): leaves falling under the trees, butterflies, dragonflies over the water and little birds
-   on the ground that fly up when he comes close. Everything is drawn from small pictures made here; about
+   on the ground that fly up when he comes close, bees round the hive, ducks and a jumping fish on the beaver
+   pond, a rainbow in the waterfall's mist and sunbeams slanting through the trees. Everything is drawn from small pictures made here; about
    a dozen draw calls together. With reduced motion the leaves hang still and the animals stay put. */
 import {THREE} from '../../scene/materials.js';
 
 const TAU = Math.PI * 2;
 
-export function createLife({scene, canvasTex, groundY, walkable, terrain, random, hives = []}) {
+export function createLife({scene, canvasTex, groundY, walkable, terrain, random, hives = [], shaftMat = null}) {
   const r = (a, b) => a + (b - a) * random();
   function sprite(map, h, order = 4) { const s = new THREE.Sprite(new THREE.SpriteMaterial({map, transparent: true, toneMapped: false, depthWrite: false, alphaTest: .02})); s.center.set(.5, .5); s.renderOrder = order; s.visible = false; s.userData.h = h; scene.add(s); return s; }
   const fit = (s, k = 1) => { const img = s.material.map.image; s.scale.set(s.userData.h * img.width / img.height * k, s.userData.h, 1); };
@@ -56,6 +57,40 @@ export function createLife({scene, canvasTex, groundY, walkable, terrain, random
   const bees = new THREE.Points(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(new Float32Array(BEES * 3), 3)), new THREE.PointsMaterial({map: beeTex, size: .13, transparent: true, alphaTest: .3, toneMapped: false}));
   bees.name = 'bees'; bees.frustumCulled = false; bees.visible = false; scene.add(bees);
 
+  /* ---------- the beaver pond: two ducks swimming their rounds, and now and then a fish jumps ---------- */
+  const pond = terrain.pools.find(q => q.id === 'pond'), pc = Math.cos(pond.rot), ps = Math.sin(pond.rot), onPond = (u, v) => [pond.x + u * pc - v * ps, pond.z + u * ps + v * pc];
+  const duckTex = [['#7a5a3c', '#2f6b4a'], ['#9a7a56', '#8a6a48']].map(([body, head]) => canvasTex(96, 64, g => { g.fillStyle = body; g.beginPath(); g.ellipse(42, 42, 32, 15, 0, 0, TAU); g.fill(); g.beginPath(); g.moveTo(10, 40); g.lineTo(0, 28); g.lineTo(22, 34); g.fill();
+    g.fillStyle = '#e9dcc4'; g.beginPath(); g.ellipse(46, 46, 22, 9, 0, 0, TAU); g.fill(); g.fillStyle = 'rgba(255,255,255,.85)'; g.fillRect(60, 30, 5, 5); g.fillStyle = head; g.beginPath(); g.arc(72, 22, 12, 0, TAU); g.fill(); g.fillRect(64, 26, 12, 12);
+    g.fillStyle = '#e8a12e'; g.beginPath(); g.moveTo(82, 19); g.lineTo(96, 23); g.lineTo(82, 28); g.fill(); g.fillStyle = '#14100c'; g.beginPath(); g.arc(75, 19, 2.2, 0, TAU); g.fill(); }));
+  const solid = s => { Object.assign(s.material, {transparent: false, alphaTest: .5, depthWrite: true}); return s; };   // a cut-out that the blended water, drawn later, cannot cover
+  const ducks = duckTex.map((map, i) => ({s: solid(sprite(map, .6, 3)), a: i * 2.4, k: i ? .34 : .5, speed: i ? .075 : .06}));
+  const fishTex = canvasTex(64, 32, g => { g.fillStyle = '#4aa0b4'; g.beginPath(); g.ellipse(34, 16, 20, 10, 0, 0, TAU); g.fill(); g.beginPath(); g.moveTo(16, 16); g.lineTo(2, 5); g.lineTo(2, 27); g.fill(); g.fillStyle = '#e8f0e4'; g.beginPath(); g.ellipse(36, 20, 15, 5, 0, 0, TAU); g.fill(); g.fillStyle = '#14100c'; g.beginPath(); g.arc(47, 13, 2, 0, TAU); g.fill(); });
+  const fish = {s: solid(sprite(fishTex, .2, 4)), t: -1, next: 4, from: [0, 0], to: [0, 0]};
+  const ringTex = canvasTex(64, 64, g => { g.strokeStyle = 'rgba(255,255,255,.9)'; g.lineWidth = 4; g.beginPath(); g.arc(32, 32, 26, 0, TAU); g.stroke(); g.strokeStyle = 'rgba(255,255,255,.45)'; g.lineWidth = 2; g.beginPath(); g.arc(32, 32, 17, 0, TAU); g.stroke(); });
+  const rings = [0, 1].map(() => { const m = new THREE.Mesh(new THREE.PlaneGeometry(1, 1).rotateX(-Math.PI / 2), new THREE.MeshBasicMaterial({map: ringTex, transparent: true, depthWrite: false, toneMapped: false, opacity: 0})); m.visible = false; m.renderOrder = 9; scene.add(m); return {m, t: -1}; });
+  const splash = (k, x, z) => { rings[k].t = 0; rings[k].m.position.set(x, pond.level + .03, z); };
+
+  /* ---------- a rainbow in the waterfall's mist ---------- */
+  const bowTex = canvasTex(256, 128, g => { const cols = ['255,80,70', '255,160,60', '255,235,90', '110,220,110', '90,170,255', '150,110,240']; cols.forEach((c, i) => { g.strokeStyle = `rgba(${c},.9)`; g.lineWidth = 7; g.beginPath(); g.arc(128, 150, 118 - i * 6.5, Math.PI, TAU); g.stroke(); });
+    const fade = g.createLinearGradient(0, 0, 0, 128); fade.addColorStop(0, 'rgba(0,0,0,0)'); fade.addColorStop(.55, 'rgba(0,0,0,0)'); fade.addColorStop(1, 'rgba(0,0,0,1)'); g.globalCompositeOperation = 'destination-out'; g.fillStyle = fade; g.fillRect(0, 0, 256, 128); });
+  const bow = new THREE.Mesh(new THREE.PlaneGeometry(11, 5.5), new THREE.MeshBasicMaterial({map: bowTex, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, toneMapped: false, fog: false, opacity: .3}));
+  bow.name = 'rainbow'; bow.renderOrder = 5; bow.position.set(terrain.falls.base[0] - 1.5, terrain.falls.level + 3.1, terrain.falls.base[1] + 1.5); scene.add(bow);
+
+  /* ---------- sunbeams through the trees, wherever Fuchs walks in the wood ---------- */
+  const BEAMS = 6, beamPos = new Float32Array(BEAMS * 18), beamUv = new Float32Array(BEAMS * 12), quad = [[-.5, -.5, 0, 0], [.5, -.5, 1, 0], [.5, .5, 1, 1], [-.5, -.5, 0, 0], [.5, .5, 1, 1], [-.5, .5, 0, 1]];
+  for (let b = 0; b < BEAMS; b++) quad.forEach((q, i) => { beamUv[b * 12 + i * 2] = q[2]; beamUv[b * 12 + i * 2 + 1] = q[3]; });
+  const beams = shaftMat ? new THREE.Mesh(new THREE.BufferGeometry().setAttribute('position', new THREE.BufferAttribute(beamPos, 3)).setAttribute('uv', new THREE.BufferAttribute(beamUv, 2)), shaftMat) : null;
+  if (beams) { beams.name = 'sunbeams'; beams.frustumCulled = false; beams.renderOrder = 4; scene.add(beams); }
+  let beamCell = null; const bm = {}, hash = (i, j) => { const v = Math.sin(i * 127.1 + j * 311.7) * 43758.5453; return v - Math.floor(v); }, turn = new THREE.Matrix4(), v3 = new THREE.Vector3();
+  function placeBeams(pos) { const C = 15, ci = Math.round(pos.x / C), cj = Math.round(pos.z / C), key = ci + ',' + cj; if (key === beamCell) return; beamCell = key;
+    const found = []; for (let i = ci - 2; i <= ci + 2; i++) for (let j = cj - 2; j <= cj + 2; j++) { if (hash(i, j) > .5) continue; const x = (i + hash(j, i) - .5) * C, z = (j + hash(i + 7, j) - .5) * C; if (Math.hypot(x, z + 12) < 34) continue;   // the den has its own
+      const b = terrain.biome(x, z, bm); if (b.meadow > .3 || b.swamp > .3 || b.rock > .3) continue; found.push([x, z, 2.2 + hash(i, j + 3) * 2.2, Math.hypot(x - pos.x, z - pos.z)]); }
+    found.sort((a, b) => a[3] - b[3]);
+    for (let b = 0; b < BEAMS; b++) { const f = found[b]; if (!f) { beamPos.fill(0, b * 18, b * 18 + 18); continue; }
+      turn.makeRotationY(.5).multiply(new THREE.Matrix4().makeRotationZ(.48)); const y = groundY(f[0], f[1]) + 9;
+      quad.forEach((q, i) => { v3.set(q[0] * f[2], q[1] * 22, 0).applyMatrix4(turn); beamPos.set([v3.x + f[0], v3.y + y, v3.z + f[1]], b * 18 + i * 3); }); }
+    beams.geometry.attributes.position.needsUpdate = true; }
+
   function update(dt, time, pos, {reduced = false, trees = 1, meadow = 0, height = 800, fov = 42} = {}) {
     const gy = groundY(pos.x, pos.z);
     if (last) { const dx = pos.x - last.x, dz = pos.z - last.z; if (dx * dx + dz * dz > 1e-5) heading = Math.atan2(dx, dz); } last = {x: pos.x, z: pos.z};
@@ -82,6 +117,18 @@ export function createLife({scene, canvasTex, groundY, walkable, terrain, random
     { const hive = hives.find(h => Math.hypot(h[0] - pos.x, h[1] - pos.z) < 30); bees.visible = !!hive;
       if (hive) { const p = bees.geometry.attributes.position, hy = groundY(hive[0], hive[1]) + .95, t = reduced ? 0 : time;
         for (let k = 0; k < BEES; k++) { const a = t * (1.1 + k * .23) + k * 2.1, q = .35 + .5 * (.5 + .5 * Math.sin(t * .7 + k * 1.3)); p.setXYZ(k, hive[0] + Math.cos(a) * q, hy + Math.sin(t * 1.9 + k) * .28 + (k % 3) * .12, hive[1] + Math.sin(a * 1.13) * q); } p.needsUpdate = true; } }
+    // the pond: ducks swim their rounds; a fish jumps now and then (only when Fuchs is near enough to see it)
+    { const nearPond = Math.hypot(pos.x - pond.x, pos.z - pond.z) < 38;
+      for (const d of ducks) { d.s.visible = nearPond; if (!nearPond) continue; if (!reduced) d.a += dt * d.speed;
+        const [x, z] = onPond(Math.cos(d.a) * pond.rx * d.k, Math.sin(d.a) * pond.rz * d.k), [x2] = onPond(Math.cos(d.a + .05) * pond.rx * d.k, Math.sin(d.a + .05) * pond.rz * d.k), h = d.s.userData.h;
+        d.s.position.set(x, pond.level + .2 + (reduced ? 0 : Math.sin(time * 2 + d.a * 9) * .012), z); d.s.scale.set(h * 1.5 * (x2 < x ? -1 : 1), h, 1); }
+      if (nearPond && !reduced && fish.t < 0 && (fish.next -= dt) < 0) { const a = r(0, TAU), k = r(.1, .45); fish.from = onPond(Math.cos(a) * pond.rx * k, Math.sin(a) * pond.rz * k); const b = r(0, TAU); fish.to = [fish.from[0] + Math.cos(b) * .9, fish.from[1] + Math.sin(b) * .9]; fish.t = 0; fish.next = r(5, 12); splash(0, ...fish.from); fit(fish.s); }
+      if (fish.t >= 0) { fish.t += dt / .8; const u = fish.t, x = fish.from[0] + (fish.to[0] - fish.from[0]) * u, z = fish.from[1] + (fish.to[1] - fish.from[1]) * u, right = fish.to[0] >= fish.from[0] ? 1 : -1;
+        fish.s.visible = u < 1; fish.s.position.set(x, pond.level + Math.sin(u * Math.PI) * .6, z); fish.s.scale.set(.4 * right, .2, 1); fish.s.material.rotation = right * Math.cos(u * Math.PI) * 1.1;
+        if (u >= 1) { fish.t = -1; splash(1, ...fish.to); } }
+      for (const g of rings) { if (g.t < 0) { g.m.visible = false; continue; } g.t += dt / 1.3; g.m.visible = true; g.m.scale.setScalar(.3 + g.t * 1.3); g.m.material.opacity = Math.max(0, .75 * (1 - g.t)); if (g.t >= 1) g.t = -1; } }
+    bow.material.opacity = reduced ? .28 : .26 + Math.sin(time * .6) * .06;
+    if (beams) placeBeams(pos);
     // little birds: a few hop about together ahead of Fuchs and fly off when he is close
     if (!flockAt && !reduced && birds.every(b => b.state === 'wait' && b.t <= 0)) { flockAt = spotNear(pos, heading, 9, 15, (x, z) => walkable(x, z) && !terrain.onCrossing(x, z)); if (flockAt) for (const b of birds) { b.state = 'ground'; b.x = flockAt[0] + r(-.9, .9); b.z = flockAt[1] + r(-.9, .9); b.y = groundY(b.x, b.z) + .1; b.t = r(.3, 1.5); b.s.material.map = birdTex[0]; fit(b.s); } }
     for (const b of birds) {
