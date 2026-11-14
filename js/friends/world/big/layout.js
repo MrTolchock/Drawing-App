@@ -86,7 +86,7 @@ export const PLACES = {
   beaver: {x: 23.2, z: -15.5, picture: 'beaver', name: 'Zu Biber', ...pin(792, 352)},
   mouse: {x: -31.5, z: 9.6, picture: 'mouse', name: 'Zu Maus', ...pin(852, 532)},
   hedgehog: {x: 51.6, z: 43.8, picture: 'friend-hedgehog', name: 'Zu Igel'},
-  fish: {x: 59.5, z: -43.1, picture: 'friend-fish', name: 'Zu Fisch'},
+  fish: {x: 57.6, z: -42.8, picture: 'friend-fish', name: 'Zu Fisch'},
   deer: {x: -78.6, z: -11, picture: 'friend-deer', name: 'Zu Reh'},
   kingfisher: {x: 11.2, z: 21.5, picture: 'friend-kingfisher', name: 'Zu Eisvogel'},
   frog: {x: -27.4, z: 83.2, picture: 'friend-frog', name: 'Zu Frosch'},
@@ -107,7 +107,7 @@ export const NEIGHBOURS = {
   deer: {at: [-80.5, -12.5], y: 0, yaw: 1.0, h: 1.75},
   frog: {at: [-23.4, 80.2], y: .06, yaw: .9, h: .8, onWater: true},
   hedgehog: {at: [53.6, 45.4], y: 0, yaw: -.7, h: .85},
-  fish: {at: [62.6, -49.2], y: .02, yaw: -.6, h: .8, onWater: true},
+  fish: {at: [57.6, -47.4], y: .02, yaw: .4, h: .8, onWater: true, swim: [1.3, 1]},   // the west side of the plunge pool, clear of the trees; swims a ring there
   kingfisher: {at: [12.9, 22.85], y: 1.6, yaw: -1.2, h: .6},
   badger: {at: [-51.7, -54.7], y: 0, yaw: .7, h: 1.2},
 };

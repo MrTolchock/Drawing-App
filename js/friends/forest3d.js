@@ -70,13 +70,13 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   /** Lean the haze toward the area Fuchs is in (the water and the backdrop share the colour object). */
   /* ---------- weather (js/friends/weather.js): a shower dims and greys the light, the ground darkens and dries again ---------- */
   const RAINY = new THREE.Color('#9fa9a6'), GREY_TOP = new THREE.Color('#9aa6a8'), GREY_HORIZON = new THREE.Color('#c3c6bd'), HEMI_SKY = new THREE.Color('#e4f0ff'), HEMI_RAIN = new THREE.Color('#c9d0d6');
-  const rain = createRain({scene, groundY: (x, z) => { const s = WORLD.terrain.site(x, z), st = WORLD.terrain.streamAt(x, z); let y = groundY(x, z); if (s.still === s.still) y = Math.max(y, s.still); if (st.stream && st.d < st.w / 2) y = Math.max(y, st.level); return y; }, random: R});
+  const rain = createRain({scene, groundY: (x, z) => { const s = WORLD.terrain.site(x, z), st = WORLD.terrain.streamAt(x, z); let y = groundY(x, z); if (s.still === s.still) y = Math.max(y, s.still); if (st.stream && st.d < st.w / 2) y = Math.max(y, st.level); return y; }, isWater: (x, z) => { const s = WORLD.terrain.site(x, z), st = WORLD.terrain.streamAt(x, z); return (s.still === s.still && s.still > s.h + .02) || (!!st.stream && st.d < st.w / 2); }, random: R});
   function updateWeather(dt, time, reduced) {
     const w = weather.state, r = w.rain, f = w.fresh;
     sun.intensity = 2.6 * (1 - .75 * r) + .25 * f; fill.intensity = .55 * (1 - .25 * r); hemi.intensity = 1.35 * (1 - .2 * r); hemi.color.copy(HEMI_SKY).lerp(HEMI_RAIN, r);
     skyU.top.value.copy(SKY.top).lerp(GREY_TOP, r * .85); skyU.horizon.value.copy(SKY.horizon).lerp(GREY_HORIZON, r * .8); skyU.glow.value = 1 - r * .9 + f * .3;
     if (look.M.ground) look.M.ground.color.setScalar(1 - .2 * w.wet);
-    rain.update(dt, time, pos, {rain: r, snow: sound.snow || 0, reduced, height, fov: camera.fov});
+    rain.update(dt, time, pos, {rain: r, snow: sound.snow || 0, reduced, height, width, pixelRatio: renderer.getPixelRatio(), fov: camera.fov});
   }
   function updateMood(dt, x, z) {
     const b = WORLD.terrain.biome(x, z, mood.bm), w = {meadow: b.meadow, swamp: b.swamp, rock: b.rock * .8, spruce: b.spruce}; let rest = 1, near = 0, far = 0; moodT.setRGB(0, 0, 0);
@@ -150,6 +150,15 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     const pin = pins.find(p => p.id === id); if (pin) pin.point.set(pin.x + f.x - f.hx, pin.up + groundY(pin.x + f.x - f.hx, pin.z + f.z - f.hz), pin.z + f.z - f.hz);
   }
 
+  /* Fisch swims slow rounds near his home spot (`swim` in layout.js: the ring's half-widths), bobbing a little;
+     he slows down and turns to Fuchs when he comes close. */
+  function swim(f, id, dt, time) {
+    const dF = Math.hypot(pos.x - f.x, pos.z - f.z), near = dF < 4.2 || !!f.show; f.sv = (f.sv ?? 1) + ((near ? 0 : 1) - (f.sv ?? 1)) * Math.min(1, dt * 1.5);
+    f.sa = (f.sa ?? 0) + dt * .28 * f.sv; const [rx, rz] = f.swim, x = f.hx + Math.sin(f.sa) * rx, z = f.hz + (Math.cos(f.sa) - 1) * rz * .5 + Math.sin(f.sa * 2) * rz * .35;
+    const vx = x - f.x, vz = z - f.z; f.x = x; f.z = z; const g = f.rig.group, yaw = near || Math.hypot(vx, vz) < 1e-5 ? Math.atan2(pos.x - f.x, pos.z - f.z) : Math.atan2(vx, vz), d = Math.atan2(Math.sin(yaw - g.rotation.y), Math.cos(yaw - g.rotation.y));
+    if (!f.show) g.rotation.y += d * Math.min(1, dt * 3); g.position.set(f.x, f.y + Math.sin(time * 1.8 + f.hx) * .025, f.z); f.moving = f.sv > .3;
+    const pin = pins.find(p => p.id === id); if (pin) pin.point.set(pin.x + f.x - f.hx, pin.point.y, pin.z + f.z - f.hz);
+  }
   /* A friend greets Fuchs when he comes close: the birds wave, the others give a hop or two, and then they stand
      and look at him (no endless jumping on the spot). */
   /* A visit without a letter for this friend (game.js meet): they turn to Fuchs and show a little trick, then turn
@@ -285,7 +294,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     let animated = 1;
     for (const o of others) { const show = o.d < NEAR, anim = show && animated < MAX_ANIMATED; if (anim) animated++;
       if (o.id === 'mailman') { courier.visible = courierShadow.visible = show; courierRig.lod(o.d < 8 ? 0 : 1); updateMailman(dt, reduced, anim); }
-      else { o.f.rig.group.visible = show; if (o.f.shadow) o.f.shadow.visible = show; o.f.rig.lod(o.d < 8 ? 0 : 1); if (anim && o.f.roam && !reduced) stroll(o.f, o.id, dt); if (anim) { const st = o.f.show ? perform(o.f, o.id, dt, time) : {action: greeting(o.f, o.id, o.d, time)}; o.f.rig.update(dt, {moving: o.f.moving && !o.f.show, speed: o.id === 'squirrel' ? 1.6 : o.id === 'deer' ? .75 : .9, reduced, ...(typeof st === 'string' ? {action: st} : st)}); } } }
+      else { o.f.rig.group.visible = show; if (o.f.shadow) o.f.shadow.visible = show; o.f.rig.lod(o.d < 8 ? 0 : 1); if (anim && o.f.roam && !reduced) stroll(o.f, o.id, dt); if (anim && o.f.swim && !reduced) swim(o.f, o.id, dt, time); if (anim) { const st = o.f.show ? perform(o.f, o.id, dt, time) : {action: greeting(o.f, o.id, o.d, time)}; o.f.rig.update(dt, {moving: o.f.moving && !o.f.show, speed: o.id === 'squirrel' ? 1.6 : o.id === 'deer' ? .75 : .9, reduced, ...(typeof st === 'string' ? {action: st} : st)}); } } }
     animatedCount = animated;
     if (moving && !reduced && time - lastPuff > .17) { lastPuff = time; const p = puffs.find(q => q.life <= 0); if (p) { p.life = .55; p.s.visible = true; p.s.position.set(pos.x + (R() - .5) * .3, base + .12, pos.z + .15); } }
     for (const p of puffs) if (p.life > 0) { p.life -= dt; const k = 1 - p.life / .55; size(p.s, .25 + k * .45); p.s.material.opacity = .5 * (1 - k); p.s.position.y += dt * .25; if (p.life <= 0) p.s.visible = false; }

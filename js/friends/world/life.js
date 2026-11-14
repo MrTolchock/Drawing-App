@@ -41,7 +41,7 @@ export function createLife({scene, canvasTex, groundY, walkable, terrain, random
 
   /* ---------- dragonflies over brook and pond ---------- */
   const dragonTex = ['#3aa7c9', '#5fb04a', '#d9603a'].map(c => canvasTex(96, 48, g => { g.fillStyle = 'rgba(235,248,255,.62)'; for (const [x, y, a] of [[30, 14, -.25], [30, 34, .25], [58, 13, .2], [58, 35, -.2]]) { g.beginPath(); g.ellipse(x, y, 22, 6.5, a, 0, TAU); g.fill(); } g.strokeStyle = c; g.lineCap = 'round'; g.lineWidth = 5; g.beginPath(); g.moveTo(8, 24); g.lineTo(70, 24); g.stroke(); g.fillStyle = c; g.beginPath(); g.arc(76, 24, 7.5, 0, TAU); g.fill(); g.fillStyle = '#1d2a33'; g.beginPath(); g.arc(80, 21, 2.6, 0, TAU); g.fill(); }));
-  const dragons = dragonTex.map((map, i) => ({s: sprite(map, .15), x: 0, y: 0, z: 0, tx: 0, ty: 0, tz: 0, wait: i * .7, on: false}));
+  const dragons = dragonTex.map((map, i) => ({s: sprite(map, .15), x: 0, y: 0, z: 0, fx: 0, fy: 0, fz: 0, tx: 0, ty: 0, tz: 0, t: 1, dur: 1, wait: i * .7, face: 1, flip: 1, on: false}));
   let water = null, nextWater = 0;
   function nearestWater(pos) { let best = 144, at = null; for (const s of terrain.streams) for (let i = 0; i <= s.N; i += 5) { const q = s.samples[i], d = (q.x - pos.x) ** 2 + (q.z - pos.z) ** 2; if (d < best) { best = d; at = [q.x, s.level[i], q.z]; } } return at; }
 
@@ -135,14 +135,22 @@ export function createLife({scene, canvasTex, groundY, walkable, terrain, random
       b.y = groundY(b.x, b.z) + 1 + Math.sin(t * 2.3) * .35 + (b.flee ? .8 : 0) - meadow * .2;
       b.s.visible = true; b.s.position.set(b.x, b.y, b.z); const flap = reduced ? 1 : .25 + Math.abs(Math.cos(time * 14 + b.phase)) * .75; b.s.scale.set(.4 * flap, .3, 1);
     }
-    // dragonflies: hover, dart, hover, near the closest water
+    // dragonflies over the closest water: hover with a gentle drift, then glide along a soft curve to a new spot
+    // (eased start and stop, no jumping back and forth); they turn round only before a glide, quickly but smoothly
     if (time > nextWater) { water = nearestWater(pos); nextWater = time + 1; }
     for (const d of dragons) {
       if (!water || shelter) { d.s.visible = d.on = false; continue; }
-      if (!d.on || Math.hypot(d.x - water[0], d.z - water[2]) > 9) { d.x = d.tx = water[0] + r(-1.5, 1.5); d.z = d.tz = water[2] + r(-1.5, 1.5); d.y = d.ty = water[1] + r(.35, .9); d.on = true; fit(d.s); }
-      if (!reduced) { if ((d.wait -= dt) < 0) { d.wait = r(.5, 1.8); d.tx = water[0] + r(-2.6, 2.6); d.tz = water[2] + r(-2.6, 2.6); d.ty = Math.max(water[1], groundY(d.tx, d.tz)) + r(.3, 1); d.s.material.rotation = d.tx < d.x ? Math.PI : 0; }
-        const k = Math.min(1, dt * 7); d.x += (d.tx - d.x) * k; d.y += (d.ty - d.y) * k; d.z += (d.tz - d.z) * k; }
-      d.s.visible = true; d.s.position.set(d.x, d.y + (reduced ? 0 : Math.sin(time * 9 + d.tx) * .02), d.z);
+      if (!d.on || Math.hypot(d.x - water[0], d.z - water[2]) > 9) { d.x = d.fx = d.tx = water[0] + r(-1.5, 1.5); d.z = d.fz = d.tz = water[2] + r(-1.5, 1.5); d.y = d.fy = d.ty = water[1] + r(.35, .9); d.t = 1; d.on = true; fit(d.s); }
+      if (!reduced) {
+        if (d.t >= 1 && (d.wait -= dt) < 0) { d.fx = d.x; d.fy = d.y; d.fz = d.z; const a = r(0, TAU), far = r(.9, 2.4);
+          d.tx = THREE.MathUtils.clamp(d.x + Math.sin(a) * far, water[0] - 2.8, water[0] + 2.8); d.tz = THREE.MathUtils.clamp(d.z + Math.cos(a) * far, water[2] - 2.8, water[2] + 2.8); d.ty = Math.max(water[1], groundY(d.tx, d.tz)) + r(.35, .95);
+          d.t = 0; d.dur = .55 + Math.hypot(d.tx - d.x, d.tz - d.z) * .28; d.bend = r(-.6, .6); d.wait = r(1.2, 3.2); if (Math.abs(d.tx - d.x) > .25) d.face = d.tx < d.x ? -1 : 1; }
+        if (d.t < 1) { d.t = Math.min(1, d.t + dt / d.dur); const e = d.t * d.t * (3 - 2 * d.t), side = Math.sin(d.t * Math.PI) * d.bend, ox = d.tz - d.fz, oz = -(d.tx - d.fx);
+          d.x = d.fx + (d.tx - d.fx) * e + ox * side * .3; d.y = d.fy + (d.ty - d.fy) * e; d.z = d.fz + (d.tz - d.fz) * e + oz * side * .3; }
+        d.flip += (d.face - d.flip) * Math.min(1, dt * 9); }
+      const hover = reduced ? 0 : 1 - Math.sin(Math.min(1, d.t) * Math.PI);
+      d.s.visible = true; d.s.position.set(d.x + hover * Math.sin(time * 1.3 + d.wait * 9) * .05, d.y + hover * Math.sin(time * 2.1 + d.tx) * .04, d.z + hover * Math.cos(time * 1.1 + d.tz) * .04);
+      const h = d.s.userData.h, img = d.s.material.map.image; d.s.material.rotation = 0; d.s.scale.set(h * img.width / img.height * (Math.abs(d.flip) < .15 ? .15 * Math.sign(d.flip || 1) : d.flip), h, 1);
     }
     if (flames) { flames.visible = Math.hypot(fires[0][0] - pos.x, fires[0][1] - pos.z) < 40; if (!reduced) flames.material.uniforms.uTime.value = time; flames.material.uniforms.uScale.value = height / (2 * Math.tan(THREE.MathUtils.degToRad(fov / 2))); }
     if (smoke) { smoke.visible = Math.hypot(fires[0][0] - pos.x, fires[0][1] - pos.z) < 40; if (!reduced) smoke.material.uniforms.uTime.value = time; smoke.material.uniforms.uScale.value = height / (2 * Math.tan(THREE.MathUtils.degToRad(fov / 2))); }

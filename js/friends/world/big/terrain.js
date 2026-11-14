@@ -63,7 +63,7 @@ export function createTerrain() {
     h += rockHeight(x, z);
     const ed = edge(x, z); h += sstep(10, -8, ed) * 7 + sstep(24, 6, ed) * 1.2;      // the wooded rim rises
     const sw = swampMask(x, z);
-    if (sw > 0) h = lerp(h, S.level + (fbm(x * .085 + 5, z * .085 + 9) - .4) * 1.9 + (fbm(x * .4, z * .4) - .5) * .14, sw);
+    if (sw > 0) h = lerp(h, S.level + (fbm(x * .085 + 5, z * .085 + 9) - .49) * 1.9 + (fbm(x * .4, z * .4) - .5) * .14, sw);
     return h;
   }
 
