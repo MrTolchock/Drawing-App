@@ -730,6 +730,15 @@
       "at": "2026-11-14T15:28:13.318Z",
       "seen": true,
       "operation": "9fa9a81a-196f-4df3-aec4-f0c35ccf19dd"
+    },
+    "friends-owl/sentence-0@6ff3d2a3faa122e7": {
+      "key": "friends-owl/sentence-0",
+      "revision": "6ff3d2a3faa122e7",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-14T15:33:30.818Z",
+      "seen": true,
+      "operation": "e48c1ff7-683b-4c29-9d49-62715b38ecb8"
     }
   },
   "history": []
