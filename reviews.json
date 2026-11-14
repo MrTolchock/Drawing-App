@@ -1954,6 +1954,24 @@
       "at": "2026-11-14T15:57:06.341Z",
       "seen": true,
       "operation": "194a6b71-a977-4919-8e7a-79b23722002e"
+    },
+    "friends-mouse/word-24@c2d94a0a2cc796a0": {
+      "key": "friends-mouse/word-24",
+      "revision": "c2d94a0a2cc796a0",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-14T15:57:08.657Z",
+      "seen": true,
+      "operation": "8988e04b-e39c-4b11-a215-039563abe33b"
+    },
+    "puzzle:friends-mouse@37783fc281351f22": {
+      "key": "puzzle:friends-mouse",
+      "revision": "37783fc281351f22",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-14T15:57:11.785Z",
+      "seen": true,
+      "operation": "8628efb8-8818-41a5-b17f-406a9cb9d8e5"
     }
   },
   "history": [
