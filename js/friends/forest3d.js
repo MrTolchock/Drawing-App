@@ -170,6 +170,26 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     return time - f.metAt < (id === 'deer' ? 0 : 1) ? (id === 'squirrel' ? 'greet' : 'hop') : 'look';
   }
 
+  /* Fuchs at the things to discover: when he stops close to one he faces it and reacts once (until he has walked
+     away again): he sniffs a berry bush, warms his paws at the picnic fire, leans over the well and hears his call
+     come back, pokes his head into the hollow log, looks up into an apple tree. Walking on ends it at once. */
+  const REACT = {berries: ['sniff', 2.4, 2.3, 'sniff'], picnic: ['warm', 3.8, 2.8, 'crackle'], well: ['lean', 3.6, 2.2, 'echo'], log: ['poke', 3.2, 1.8, 'knock'], apple: ['lookup', 2.4, 2.6, null]};
+  const spots = WORLD.layout.WONDERS.flatMap(w => { const k = REACT[w.kind]; if (!k) return []; const base = {kind: w.kind, trick: k[0], dur: k[1], reach: k[2], cue: k[3], done: false};
+    if (w.kind === 'picnic') return [{...base, x: w.fire[0], z: w.fire[1]}];
+    if (w.kind === 'log') return [1.8, -1.8].map(t => ({...base, x: w.x + Math.cos(w.yaw) * t, z: w.z - Math.sin(w.yaw) * t}));
+    return [{...base, x: w.x, z: w.z}]; });
+  let reaction = null, standing = 0;
+  function react(dt, moving) {
+    if (moving || destination) { reaction = null; standing = 0; } else standing += dt;
+    for (const sp of spots) if (sp.done && Math.hypot(sp.x - pos.x, sp.z - pos.z) > sp.reach + 3) sp.done = false;
+    if (!reaction && standing > .35) { const sp = spots.find(q => !q.done && Math.hypot(q.x - pos.x, q.z - pos.z) < q.reach); if (sp) { sp.done = true; reaction = {sp, t: 0, cued: false}; onMove({event: 'wonder_reaction', kind: sp.kind, area: 'forest'}); } }
+    if (!reaction) return null;
+    const r = reaction; r.t += dt; if (r.t >= r.sp.dur) { reaction = null; return null; }
+    const yaw = Math.atan2(r.sp.x - pos.x, r.sp.z - pos.z), d = Math.atan2(Math.sin(yaw - fox.rotation.y), Math.cos(yaw - fox.rotation.y)); fox.rotation.y += d * Math.min(1, dt * 6);
+    if (r.sp.cue && !r.cued && r.t > r.sp.dur * (r.sp.cue === 'echo' ? .38 : r.sp.cue === 'knock' ? .3 : .15)) { r.cued = true; sound.cues.push({type: r.sp.cue}); if (sound.cues.length > 4) sound.cues.shift(); }
+    return {action: 'trick', trick: r.sp.trick, u: r.t / r.sp.dur};
+  }
+
   /* ---------- movement, routes and camera ---------- */
   let destination = null, path = [], arrival = null, near = null, lastSample = 0, lastPuff = 0, narrow = false, width = 1, height = 1, speedScale = 1, stuck = 0, replans = 0;
   const stuckAt = new THREE.Vector2();
@@ -220,7 +240,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   }
   /* What the place sounds like where Fuchs stands (for js/friends/audio.js): the ground under his feet, how close
      the brook and the waterfall are, and how much wood, meadow and swamp is around. */
-  const sound = {at: -1, moving: false, speed: 0, ground: 'grass', trees: 1, meadow: 0, swamp: 0, spruce: 0, brook: 0, falls: 0, fallsPan: 0}, soundBiome = {};
+  const sound = {cues: [], at: -1, moving: false, speed: 0, ground: 'grass', trees: 1, meadow: 0, swamp: 0, spruce: 0, brook: 0, falls: 0, fallsPan: 0}, soundBiome = {};
   function listen() {
     const T = WORLD.terrain, b = T.biome(pos.x, pos.z, soundBiome), c = T.onCrossing(pos.x, pos.z), pa = T.pathAt(pos.x, pos.z);
     sound.ground = c ? (c.c.kind === 'dam' ? 'sticks' : 'wood') : b.snow > .5 ? 'snow' : b.rock > .6 ? 'rock' : b.swamp > .5 ? 'wet' : pa.d < pa.w / 2 + .15 ? 'earth' : b.meadow > .5 ? 'meadow' : b.spruce > .5 ? 'needles' : 'grass';
@@ -253,7 +273,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
       if (speed > .2) { const target = Math.atan2(vel.x, vel.y); let diff = target - fox.rotation.y; diff = Math.atan2(Math.sin(diff), Math.cos(diff)); fox.rotation.y += diff * (1 - Math.exp(-dt * 12)); } }
     if (moving && time - lastSample > 1) { lastSample = time; onPosition(pos.x, pos.z, WORLD.regionAt(pos.x, pos.z)?.id); }
     let closest = null, best = 3.2; for (const [id, p] of Object.entries(forestPlaces)) { const d = Math.hypot(p.x - pos.x, p.z - pos.z); if (d < best) { closest = id; best = d; } } if (closest !== near) { near = closest; onNear(near); }
-    const base = groundY(pos.x, pos.z); fox.position.set(pos.x, base, pos.z); foxRig.update(dt, {moving, speed, reduced});
+    const base = groundY(pos.x, pos.z), doing = react(dt, moving); fox.position.set(pos.x, base, pos.z); foxRig.update(dt, {moving, speed, reduced, ...(doing || {})});
     foxShadow.position.set(pos.x, base + .04, pos.z);
     // Only characters in the near ring are drawn; at most six are animated (Fuchs always).
     const others = [...Object.entries(friends).map(([id, f]) => ({id, f, d: Math.hypot(f.x - pos.x, f.z - pos.z)})), {id: 'mailman', d: mailPos.distanceTo(pos)}].sort((a, b) => a.d - b.d);

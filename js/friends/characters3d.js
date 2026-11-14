@@ -341,6 +341,13 @@ const TRICKS={
   flutter(p,u,t){const e=bell(u);p.root.position.y=e*(.12+Math.sin(t*9)*.03);(p.wings||[]).forEach((w,i)=>{w.rotation.z=(i?-1:1)*(.4+Math.sin(t*34)*.7)*e;});p.arms.forEach((a,i)=>{a.rotation.x+=-1.6*e+Math.sin(t*34)*.5*e;});},
   curl(p,u){const e=bell(u,.18,.72);if(p.body){p.body.rotation.x+=e*1.05;p.body.scale.multiplyScalar(1).y*=1-e*.12;}if(p.head)p.head.rotation.x+=e*.6;p.legs.forEach(l=>{l.rotation.x=-1.3*e;});p.arms.forEach(a=>{a.rotation.x=-.9*e;});p.root.position.y=e*.04;},
   leap(p,u){const j=Math.min(1,Math.max(0,(u-.25)/.5)),crouch=bell(u,.1,.25)*(u<.3?1:0);p.root.position.y=Math.sin(j*Math.PI)*.42;if(p.body)p.body.rotation.x+=Math.sin(j*Math.PI)*-.15+crouch*.2;p.legs.forEach(l=>{l.rotation.x=j>0&&j<1?-.9:-.4*crouch;});p.arms.forEach(a=>{a.rotation.x=j>0&&j<1?-1.4:0;});},
+  // Fuchs at the things to discover (forest3d.js): sniffing a berry bush, warming his paws at the fire, leaning over
+  // the well to listen, poking his head into the hollow log, looking up into an apple tree.
+  sniff(p,u,t){const e=bell(u,.15,.8),wag=ease((u-.7)/.1);if(p.body)p.body.rotation.x+=e*.3;if(p.head)p.head.rotation.x+=e*(.38+Math.sin(t*23)*.07)+Math.sin(t*2.5)*.05*e;if(p.tail)p.tail.rotation.y+=Math.sin(t*13)*.45*wag*(1-ease((u-.95)/.05));},
+  warm(p,u,t){const e=bell(u,.12,.88);p.arms.forEach((a,i)=>{a.rotation.x=-1.3*e+Math.sin(t*6+i*Math.PI)*.1*e;a.rotation.z=(i?1:-1)*.22*e+Math.sin(t*6.5+i*Math.PI)*.1*e;});if(p.body)p.body.rotation.z+=Math.sin(t*1.6)*.05*e;if(p.head)p.head.rotation.z+=Math.sin(t*1.6)*.06*e;for(const y of p.eyes)y.scale.y*=1-.42*e;},
+  lean(p,u,t){const e=bell(u,.15,.85),listen=bell((u-.35)/.5,.2,.8);if(p.body)p.body.rotation.x+=e*.62;if(p.head){p.head.rotation.x+=e*.32;p.head.rotation.z+=listen*.28;}p.arms.forEach(a=>{a.rotation.x=-.95*e;});(p.ears||[]).forEach((r,i)=>{r.rotation.z+=listen*(i?-.18:.18)*Math.sin(t*2);});},
+  poke(p,u,t){const e=bell(u,.18,.72),shake=bell((u-.74)/.24,.2,.8);if(p.body)p.body.rotation.x+=e*.78;if(p.head){p.head.rotation.x+=e*.25;p.head.rotation.y+=Math.sin(t*26)*.32*shake;}p.arms.forEach(a=>{a.rotation.x=-.6*e;});},
+  lookup(p,u){const e=bell(u,.2,.8);if(p.head)p.head.rotation.x-=e*.55;if(p.body)p.body.rotation.x-=e*.08;},
   jump(p,u){const j=Math.min(1,Math.max(0,(u-.2)/.55));p.root.position.y=Math.sin(j*Math.PI)*.55;p.root.rotation.x=(j-.5)*2.2*(j>0&&j<1?1:0);if(p.tail)p.tail.rotation.y+=Math.sin(u*40)*.4;},
 };
 function pointPose(p,e){const a=p.legs.length?p.arms[1]:null;if(a){a.rotation.x=-1.5*e;a.rotation.z=-.15*e;}if(p.head)p.head.rotation.x-=.08*e;}

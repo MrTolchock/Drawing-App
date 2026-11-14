@@ -85,6 +85,13 @@ export function footstep(ctx, out, noise, ground, t, level = 1) {
   else { hiss(ctx, out, noise, {t, dur: .075, gain: .2 * v, f: 2400 * w, q: .8, attack: .006}); thump(195, .016); }   // grass
 }
 export const details = {
+  // one-off sounds for what Fuchs does at the things to discover (forest3d.js `react`)
+  sniff(ctx, out, noise, t, level = 1) { for (let k = 0; k < 4; k++) hiss(ctx, out, noise, {t: t + k * r(.11, .15), dur: r(.05, .08), gain: .05 * level, f: r(3200, 4200), q: 1.2, attack: .008}); },
+  knock(ctx, out, noise, t, level = 1) { for (let k = 0; k < 2; k++) { const f = r(150, 175); tone(ctx, out, {t: t + k * .2, dur: .22, f, f1: f * .82, gain: .16 * level, attack: .002, harm: .45}); hiss(ctx, out, noise, {t: t + k * .2, dur: .03, gain: .05 * level, type: 'lowpass', f: 900}); } },
+  crackle(ctx, out, noise, t, level = 1) { for (let k = 0; k < 14; k++) hiss(ctx, out, noise, {t: t + Math.random() * 2.6, dur: r(.006, .02), gain: r(.04, .12) * level, f: r(1500, 5200), q: r(.8, 2.5), attack: .001}); },
+  // a little call down the well that comes back three times, each softer and duller
+  echo(ctx, out, noise, t, level = 1) { const call = (at, g, bright) => { tone(ctx, out, {t: at, dur: .2, f: 620 * bright, f1: 760 * bright, gain: g, attack: .02, harm: .3}); tone(ctx, out, {t: at + .22, dur: .28, f: 760 * bright, f1: 560 * bright, gain: g, attack: .02, harm: .3}); };
+    call(t, .07 * level, 1); for (let k = 1; k <= 3; k++) call(t + k * .55, .07 * level * Math.pow(.42, k), 1 - k * .03); },
   twig(ctx, out, noise, t, level) { for (let k = 0; k < 2 + (Math.random() < .5); k++) hiss(ctx, out, noise, {t: t + k * r(.025, .05), dur: .016, gain: .2 * level * r(.6, 1), f: 2600, q: .7, attack: .001}); },
   bubble(ctx, out, noise, t, level) { const f = r(480, 1500), dur = r(.035, .09); tone(ctx, out, {t, dur, f, f1: f * r(1.4, 2.1), gain: r(.008, .026) * level, attack: .006}); },
   plop(ctx, out, noise, t, level) { const f = r(260, 420); tone(ctx, out, {t, dur: .09, f, f1: f * 2.2, gain: .05 * level, attack: .006}); hiss(ctx, out, noise, {t: t + .02, dur: .08, gain: .02 * level, type: 'lowpass', f: 1200, f1: 500}); },
@@ -138,6 +145,7 @@ export function createAudio(settings, environment = () => null) {
     const here = environment() || {}, {beds: b, events} = director.step(ctx.currentTime, {...here, indoors: area !== 'forest'});
     rainNow = here.rain || 0; if (!s.ambience) return;
     setBeds(b); for (const e of events) play(e); rainDrops(rainNow, .1);
+    if (here.cues?.length) for (const c of here.cues.splice(0)) details[c.type]?.(ctx, place(c.pan || 0, 0, 3.5), noise, ctx.currentTime + .02, c.level ?? 1);
   }
   function unlock() {
     if (ctx) { if (ctx.state === 'suspended') ctx.resume().catch(() => {}); return; }
