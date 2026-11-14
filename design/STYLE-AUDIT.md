@@ -249,3 +249,5 @@ The mailman (same model) also walks his own round on the paths near the den betw
 **9.3.59.** Distance: the band that hides the world's edge is painted with layers seen above the trees, a far row of snowy Alpine peaks, hazy blue-green hills and the wooded edge, each melting further into the area's haze (and following the time of day and weather through the haze colour).
 
 **9.3.60.** The picture map is redrawn from the world with `tools/map/render.cjs`: the lower, gentler Rock, the larger open water in the swamp and the cave (its rock roof and a dark arched mouth on the cave trail).
+
+**9.3.61.** Characters in the forest stand on the lowest ground under their feet, so they no longer float on slopes; friends squint happily at the end of a trick and while greeting Fuchs; at dusk the plush fur catches a warm orange rim light. Same models and materials (a uniform in the plush fur shader, 0 outside the forest).

@@ -259,12 +259,14 @@ float plNoise(vec3 x){vec3 i=floor(x),f=fract(x);f=f*f*(3.-2.*f);
             mix(mix(plHash(i+vec3(0,0,1)),plHash(i+vec3(1,0,1)),f.x),mix(plHash(i+vec3(0,1,1)),plHash(i+vec3(1,1,1)),f.x),f.y),f.z);}`;
 // Plush fur: brushed strokes running down the body in colour and normal (in bind-pose space, so they never swim),
 // soft clumps (both fade out with distance instead of turning into grain), a warm velvet rim and a little self-light. Same shader as tools/characters/plush.js.
+// A warm low light on the fur at dusk (forest3d.js sets it from the time of day; 0 elsewhere).
+export const plushDusk={value:0};
 function plushFur(source,{fuzz=1,rim=.5}={}){const m=source.clone();m.vertexColors=true;m.roughness=.92;m.metalness=0;
-  m.onBeforeCompile=sh=>{sh.vertexShader=sh.vertexShader.replace('#include <common>','#include <common>\nvarying vec3 vPl;').replace('#include <begin_vertex>','#include <begin_vertex>\nvPl=position;');
-    sh.fragmentShader=sh.fragmentShader.replace('#include <common>','#include <common>\nvarying vec3 vPl;'+NOISE)
+  m.onBeforeCompile=sh=>{sh.uniforms.plDusk=plushDusk;sh.vertexShader=sh.vertexShader.replace('#include <common>','#include <common>\nvarying vec3 vPl;').replace('#include <begin_vertex>','#include <begin_vertex>\nvPl=position;');
+    sh.fragmentShader=sh.fragmentShader.replace('#include <common>','#include <common>\nvarying vec3 vPl;uniform float plDusk;'+NOISE)
       .replace('#include <color_fragment>',`#include <color_fragment>\n float plFw=length(fwidth(vPl)),plFine=clamp(1.4-plFw*300.,0.,1.),plCoarse=clamp(1.4-plFw*90.,0.,1.);\n float fz=mix(.5,plNoise(vPl*vec3(330.,62.,330.)),plFine)*.6+mix(.5,plNoise(vPl*95.+7.),plCoarse)*.4; diffuseColor.rgb*=mix(1.,.87+.24*fz,${fuzz.toFixed(2)});`)
       .replace('#include <normal_fragment_maps>',`#include <normal_fragment_maps>\n vec3 fzN=vec3(plNoise(vPl*vec3(280.,70.,280.)),plNoise(vPl*vec3(280.,70.,280.)+3.1),plNoise(vPl*vec3(280.,70.,280.)+5.7))-.5; normal=normalize(normal+fzN*plFine*${(.34*fuzz).toFixed(2)});`)
-      .replace('#include <opaque_fragment>',`float plRim=pow(1.-clamp(dot(normal,normalize(vViewPosition)),0.,1.),2.4);\n outgoingLight+=diffuseColor.rgb*vec3(1.,.9,.78)*plRim*${rim.toFixed(2)}+diffuseColor.rgb*.07;\n #include <opaque_fragment>`);};
+      .replace('#include <opaque_fragment>',`float plRim=pow(1.-clamp(dot(normal,normalize(vViewPosition)),0.,1.),2.4);\n outgoingLight+=diffuseColor.rgb*vec3(1.,.9,.78)*plRim*${rim.toFixed(2)}+diffuseColor.rgb*.07+vec3(1.,.58,.28)*plRim*plRim*plDusk*.55;\n #include <opaque_fragment>`);};
   m.customProgramCacheKey=()=>'plush-fur-'+fuzz+'-'+rim;return m;}
 // The painted eye, as on the friends sheet (left half: cream eyeball shaded round its rim, thick dark upper lid,
 // big warm-brown iris lighter at the bottom, large pupil, two catchlights) next to plain white (right half) for
@@ -380,6 +382,8 @@ function plushModel(id,height){
     const showing=state.action==='trick'||state.action==='point',own=manner&&!state.reduced&&!showing,shared=(own&&(state.action==='greet'||state.action==='look'))||showing?{...state,action:''}:state;
     animate(dt,shared);if(state.action==='sleep'&&id==='fox')plushSleep(parts);if(own)manner(dt,state);
     if(state.action==='trick'&&!state.reduced&&TRICKS[state.trick]){clock+=dt;TRICKS[state.trick](parts,state.u||0,clock);}
+    // a happy squint at the end of a trick and while greeting Fuchs
+    {const happy=state.action==='trick'&&id!=='fox'?THREE.MathUtils.smoothstep(state.u||0,.72,.85)*(1-THREE.MathUtils.smoothstep(state.u||0,.96,1)):(state.action==='greet'||state.action==='hop')?1:0;if(happy&&!state.reduced)for(const e of parts.eyes)e.scale.y=Math.min(e.scale.y,1-.45*happy);}
     if(state.action==='point')pointPose(parts,state.reduced?1:Math.min(1,state.u??1));
   }
   return {root,parts,update,lod,meshes,paw:parts.arms[1]||parts.body};

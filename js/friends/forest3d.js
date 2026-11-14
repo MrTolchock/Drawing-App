@@ -3,7 +3,7 @@
    round Fuchs, with the cast, guidance fireflies, haze per area and a hazy backdrop of distant hills.
    Building is time-sliced while the child is in the den; nothing is downloaded. */
 import {THREE} from '../scene/materials.js';
-import {characters, TRICK_OF} from './characters3d.js';
+import {characters, TRICK_OF, plushDusk} from './characters3d.js';
 import {createWorld} from './world/index.js';
 import {createLook, foxView, bendAt, windAt, canvasTex} from './world/textures.js';
 import {createStreamer, NEAR} from './world/streamer.js';
@@ -20,6 +20,8 @@ export const forestPlaces = WORLD.places;
 export const forestExits = {den: forestPlaces.home};
 export const walkable = (x, z) => WORLD.walkable(x, z);
 const groundY = (x, z) => WORLD.groundY(x, z);
+// where a character's feet rest: the lowest ground under them, so they never float on a slope
+const feetY = (x, z, r = .2) => Math.min(groundY(x, z), groundY(x + r, z), groundY(x - r, z), groundY(x, z + r), groundY(x, z - r));
 
 export function createForest({renderer, software, onPosition, onAction, onMove, onNear, perf, weather = createWeather()}) {
   const R = rng(97), scene = new THREE.Scene(), camera = new THREE.PerspectiveCamera(42, 1, .1, 160);
@@ -156,7 +158,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   // The puzzle friends and, in the big world, the new neighbours (those whose models exist already).
   for (const [id, f] of Object.entries({...WORLD.friends, ...WORLD.neighbours})) {
     if (!characters[id]) continue;
-    const rig = noCast(characters[id](f.h)), [x, z] = f.at, y = groundY(x, z) + f.y;
+    const rig = noCast(characters[id](f.h)), [x, z] = f.at, y = (f.y === 0 ? feetY(x, z, f.h * .15) : groundY(x, z)) + f.y;
     rig.group.position.set(x, y, z); rig.group.rotation.y = f.yaw; scene.add(rig.group);
     friends[id] = {...f, rig, x, z, y, hx: x, hz: z, shadow: f.y === 0 ? contact(f.h * .42) : null,
       roam: f.y === 0 && !f.onWater ? (id === 'deer' ? 3.4 : id === 'hedgehog' || id === 'badger' ? 1.8 : 1.3) : 0, wait: 2 + R() * 6, to: null, moving: false};
@@ -193,7 +195,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
       if (!f.to) { f.wait = 2; return; } }
     const dx = f.to[0] - f.x, dz = f.to[1] - f.z, d = Math.hypot(dx, dz), sp = id === 'deer' ? .7 : id === 'squirrel' ? (f.startled > 0 ? 2.6 : 1.45) : .5;   // the squirrel dashes, then stops to look
     if (d < .08) { f.to = null; f.wait = id === 'squirrel' ? .6 + Math.random() * 3.5 : 3 + Math.random() * 9; return; }
-    turn(Math.atan2(dx, dz), id === 'squirrel' ? 12 : id === 'deer' ? 2.6 : 5); const s = Math.min(d, sp * dt); f.x += dx / d * s; f.z += dz / d * s; f.y = groundY(f.x, f.z); f.moving = true;
+    turn(Math.atan2(dx, dz), id === 'squirrel' ? 12 : id === 'deer' ? 2.6 : 5); const s = Math.min(d, sp * dt); f.x += dx / d * s; f.z += dz / d * s; f.y = feetY(f.x, f.z, f.h * .15); f.moving = true;
     f.rig.group.position.set(f.x, f.y, f.z); if (f.shadow) f.shadow.position.set(f.x, f.y + .03, f.z);
     const pin = pins.find(p => p.id === id); if (pin) pin.point.set(pin.x + f.x - f.hx, pin.up + groundY(pin.x + f.x - f.hx, pin.z + f.z - f.hz), pin.z + f.z - f.hz);
   }
@@ -319,7 +321,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
       if (courierPath.length) courierGoal = courierPath.shift(); }
     let moving = false; if (courierGoal) { const d = courierGoal.distanceTo(mailPos); if (d < .12) { courierGoal = null; courierWait = courierPath.length ? 0 : 3 + R() * 4; } else { const direction = courierGoal.clone().sub(mailPos).normalize(); mailPos.addScaledVector(direction, Math.min(d, dt * .85)); const yaw = Math.atan2(direction.x, direction.z), diff = Math.atan2(Math.sin(yaw - courier.rotation.y), Math.cos(yaw - courier.rotation.y)); courier.rotation.y += diff * Math.min(1, dt * 7); moving = true; } }
     if (greeting) { const yaw = Math.atan2(pos.x - mailPos.x, pos.z - mailPos.z), diff = Math.atan2(Math.sin(yaw - courier.rotation.y), Math.cos(yaw - courier.rotation.y)); courier.rotation.y += diff * Math.min(1, dt * 5); }
-    const y = groundY(mailPos.x, mailPos.z); courier.position.set(mailPos.x, y, mailPos.z); courierShadow.position.set(mailPos.x, y + .04, mailPos.z);
+    const y = feetY(mailPos.x, mailPos.z, .22); courier.position.set(mailPos.x, y, mailPos.z); courierShadow.position.set(mailPos.x, y + .04, mailPos.z);
     if (animate) courierRig.update(dt, {moving, speed: .75, action: greeting ? 'wave' : '', reduced}); publishMailPosition();
   }
   function updateGuide(time) {
@@ -382,7 +384,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
       if (speed > .2) { const target = Math.atan2(vel.x, vel.y); let diff = target - fox.rotation.y; diff = Math.atan2(Math.sin(diff), Math.cos(diff)); fox.rotation.y += diff * (1 - Math.exp(-dt * 12)); } }
     if (moving && time - lastSample > 1) { lastSample = time; onPosition(pos.x, pos.z, WORLD.regionAt(pos.x, pos.z)?.id); }
     let closest = null, best = 3.2; for (const [id, p] of Object.entries(forestPlaces)) { const d = Math.hypot(p.x - pos.x, p.z - pos.z); if (d < best) { closest = id; best = d; } } if (closest !== near) { near = closest; onNear(near); }
-    const base = groundY(pos.x, pos.z), doing = react(dt, moving) || moods(dt, time, moving, base, reduced); fox.position.set(pos.x, base + hopY(dt, time, moving, reduced), pos.z); foxRig.update(dt, {moving, speed, reduced, ...(doing || {})});
+    const base = feetY(pos.x, pos.z, .2), doing = react(dt, moving) || moods(dt, time, moving, base, reduced); fox.position.set(pos.x, base + hopY(dt, time, moving, reduced), pos.z); foxRig.update(dt, {moving, speed, reduced, ...(doing || {})});
     foxShadow.position.set(pos.x, base + .04, pos.z);
     { const g = sound.ground, soft = g === 'earth' || g === 'grass' || g === 'meadow' || g === 'needles', where = g === 'snow' ? 'snow' : g === 'wet' || (sound.bank && soft) ? 'mud' : soft && weather.state.wet > .25 ? 'wet' : null;
       prints.update(dt, pos, fox.rotation.y, moving ? where : null, reduced); }
@@ -402,7 +404,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     for (const p of puffs) if (p.life > 0) { p.life -= dt; const k = 1 - p.life / .55; size(p.s, .25 + k * .45); p.s.material.opacity = .5 * (1 - k); p.s.position.y += dt * .25; if (p.life <= 0) p.s.visible = false; }
     life.update(dt, time, pos, {reduced, rain: Math.max(weather.state.rain, dusk() > .7 ? .3 : 0), snow: sound.snow || 0, trees: sound.trees, meadow: sound.meadow, height, fov: camera.fov});
     const halos = streamer.landmarks.home?.halos; if (halos) halos.material.opacity = reduced ? .55 : .5 + Math.sin(time * 7) * .06;
-    updateWeather(dt, time, reduced); shaftMat.opacity = (reduced ? .15 : .14 + Math.sin(time * .35) * .04) * (1 - weather.state.rain) * (1 + .4 * weather.state.fresh) * (1 - .75 * dusk());
+    plushDusk.value = dusk() * (1 - weather.state.rain); updateWeather(dt, time, reduced); shaftMat.opacity = (reduced ? .15 : .14 + Math.sin(time * .35) * .04) * (1 - weather.state.rain) * (1 + .4 * weather.state.fresh) * (1 - .75 * dusk());
     ambience.update(dt, time, pos, {dusk: dusk(), morning: morning(), weather: weather.state, trees: sound.trees, meadow: sound.meadow, swamp: sound.swamp, reduced, height, fov: camera.fov});
     if (!reduced) { if (look.M.water) look.M.water.uniforms.uTime.value += dt; motes.position.set(pos.x, Math.sin(time * .35) * .3, pos.z); motes.rotation.y = time * .01; } else motes.position.set(pos.x, 0, pos.z);
     if (ring.visible) ring.material.opacity = .55 + Math.sin(time * 4) * .25;
