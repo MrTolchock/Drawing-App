@@ -23,7 +23,7 @@ The active game follows [letter sessions](LETTER-SESSIONS.md), [visual style](..
 | `js/friends/puzzle-catalogue.js`, `puzzle-rounds.js` | Finite content, revisions, random distinct five-task selection and exact snapshots |
 | `js/screens/puzzle.js`, `trace.js` | Shared puzzle page and writing stroke engine |
 | `js/friends/puzzle-review.js`, `js/screens/puzzle-review.js` | Individual editorial decisions, previews, revision gate and backup |
-| `js/friends/settings.js` | Adult gate, letter count, gallery, sounds, reading case, exports and updates |
+| `js/friends/settings.js` | Adult gate, letter count (slider 1–10), gallery, sounds, play-log export and updates. Children always read upper and lower case |
 | `js/scene/materials.js`, `js/core/speech.js`, `js/ui/gestures.js` | Current shared scene, requested speech and touch utilities |
 
 The catalogue lists all 34 [puzzles and competence assignments](PUZZLE-CATALOGUE.md). An interrupted puzzle resumes before the host rotates. Correct answers advance automatically; only completing all five consumes a letter. Non-invited friends, direct routes and the mailman cannot grant extra puzzles; a non-invited friend shows a small trick and points the way to the friend on the letter (`TRICKS` in `characters3d.js`, `visit` in `forest3d.js`).

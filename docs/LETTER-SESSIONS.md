@@ -1,6 +1,6 @@
 # Letter-limited play sessions
 
-Open **Einstellungen → Briefe pro Spielrunde** through the adult gate. Choose **1–50 letters** (default 3). One letter is one puzzle containing five iterations. There is no clock, countdown or time limit.
+Open **Einstellungen → Briefe pro Spielrunde** through the adult gate. Choose **1–10 letters** with the slider (default 3; a journey saved earlier with more letters keeps its limit until it is changed). One letter is one puzzle containing five iterations. There is no clock, countdown or time limit.
 
 Before the first letter is opened, changing the number updates that new journey. Once a journey has started, its limit stays fixed; a changed selection is saved for the next one. **Neue Briefreise starten** is the parent-only way to begin a fresh journey, including after game over. It starts in the den with an arriving letter. Existing drawing records, puzzle reviews and interrupted puzzle work remain saved.
 

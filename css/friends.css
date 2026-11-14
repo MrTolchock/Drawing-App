@@ -516,3 +516,7 @@
 .utility-icon{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;flex:none}
 .utility-icon>.ic{width:100%;height:100%;fill:none}
 .ff-session-end>.ff-character-portrait{width:180px;height:180px}
+/* Letters per journey: a slider from 1 to 10 with the chosen number beside it. */
+.ff-letter-range{display:block}.ff-letter-slider-row{display:flex;align-items:center;gap:10px;margin-top:8px}
+.ff-letter-slider{flex:1;min-width:0;height:48px;accent-color:#6f8a43;cursor:pointer}
+.ff-letter-count{min-width:2.4em;padding:4px 8px;border:2px solid #c9b48a;border-radius:12px;background:#fffaf0;text-align:center;font-weight:700;font-size:20px;color:#4b3b2d}

@@ -1,8 +1,8 @@
 /* Requested narration with the device's own German voice. Quality comes from choosing well: an enhanced, premium
    or natural voice is preferred (Swiss German first, then German), robotic engines are avoided, offline voices win
    when there is no network. The voice keeps its own pitch (only small differences between speakers, since stronger
-   pitch shifts sound tinny), speaks at an easy pace and reads sentence by sentence, which sounds more natural and
-   avoids browsers that cut long speech off. */
+   pitch shifts sound tinny) and speaks at an easy pace; long texts are read in groups of sentences, which avoids
+   browsers that cut long speech off. */
 (function () {
   'use strict';
   const FK = window.FK;
@@ -27,11 +27,14 @@
   }
   if (synth && 'onvoiceschanged' in synth) synth.addEventListener?.('voiceschanged', () => { chosen = null; });
   window.addEventListener('online', () => { chosen = null; }); window.addEventListener('offline', () => { chosen = null; });
-  // tidy text so the voice phrases it well: no dashes or symbols read aloud, every sentence ends
+  // A short text (every puzzle rule) is read as one utterance, exactly as written. A long one is tidied (no dashes or
+  // symbols read aloud) and read in groups of whole sentences, which some browsers would otherwise cut off.
   function sentences(text) {
-    const clean = String(text).replace(/\s+/g, ' ').replace(/\s[–—-]\s/g, ', ').replace(/[*_~#]/g, '').trim();
-    const parts = clean.match(/[^.!?…]+[.!?…]+["“”«»']?|[^.!?…]+$/g) || [clean];
-    return parts.map(p => p.trim()).filter(Boolean).map(p => /[.!?…]["“”«»']?$/.test(p) ? p : p + '.');
+    const raw = String(text).trim(); if (raw.length <= 220) return [raw];
+    const clean = raw.replace(/\s+/g, ' ').replace(/\s[–—-]\s/g, ', ').replace(/[*_~#]/g, '');
+    const parts = (clean.match(/[^.!?…]+[.!?…]+["“”«»']?|[^.!?…]+$/g) || [clean]).map(p => p.trim()).filter(Boolean).map(p => /[.!?…]["“”«»']?$/.test(p) ? p : p + '.');
+    const groups = []; for (const p of parts) { if (groups.length && (groups[groups.length - 1] + ' ' + p).length <= 200) groups[groups.length - 1] += ' ' + p; else groups.push(p); }
+    return groups;
   }
   function stop() { queue = []; if (synth) synth.cancel(); current = null; }
   function cancel() { stop(); FK.emit('speech', {active: false}); }

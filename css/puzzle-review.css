@@ -36,3 +36,5 @@
 .setting-buttons{display:flex;flex-wrap:wrap;gap:12px}
 .setting-buttons .btn{width:auto;min-width:var(--btn-w);height:auto;min-height:56px;padding:10px 20px}
 .setting-buttons .btn .lbl{white-space:normal}
+/* Start the review, or confirm every iteration of the puzzle at once. */
+.review-start{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:12px 0}

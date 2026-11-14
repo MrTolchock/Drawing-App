@@ -4,7 +4,7 @@ The active Waldpost catalogue contains **34 puzzles and 1,048 finite iterations*
 
 - [Shared puzzle blueprint](PUZZLE-BLUEPRINT.md): the contract for pictures, page, sound, guidance, five-task rounds and celebration.
 - [Complete puzzle catalogue](PUZZLE-CATALOGUE.md): every puzzle, competence, difficulty and iteration count, with a page listing every individual definition and solution.
-- [Adult review instructions](PUZZLE-REVIEW.md): inspect, approve or flag every iteration and the puzzle, export/import decisions, and repeat review after changes.
+- [Adult review instructions](PUZZLE-REVIEW.md): inspect, approve or flag every iteration and the puzzle (or confirm all at once), and repeat review after changes.
 
 ## One shared flow
 
