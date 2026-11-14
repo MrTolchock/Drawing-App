@@ -65,7 +65,7 @@ export function createLife({scene, canvasTex, groundY, walkable, terrain, random
     new THREE.ShaderMaterial({transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, uniforms: {uMap: {value: flameTex}, uTime: {value: 0}, uScale: {value: 600}, uFire: {value: new THREE.Vector3(fires[0][0], groundY(fires[0][0], fires[0][1]), fires[0][1])}},
       vertexShader: `attribute float aSeed,aSpark;uniform float uTime,uScale;uniform vec3 uFire;varying float vGlow;
         void main(){float t=uTime*(1.5+aSeed)+aSeed*20.;vec3 p;float size;
-          if(aSpark<.5){float tall=.5+.5*sin(t*3.1+sin(t*1.7)*2.);p=uFire+vec3(sin(aSeed*31.)*.16+sin(t*2.3)*.03,.24+aSeed*.26+tall*.16,cos(aSeed*17.)*.16+cos(t*1.9)*.03);size=.4+aSeed*.24+tall*.24;vGlow=.7+.3*sin(t*7.+aSeed*9.);}
+          if(aSpark<.5){float tall=.5+.5*sin(t*3.1+sin(t*1.7)*2.);p=uFire+vec3(sin(aSeed*31.)*.13+sin(t*2.3)*.03,.18+aSeed*.14+tall*.08,cos(aSeed*17.)*.13+cos(t*1.9)*.03);size=.3+aSeed*.14+tall*.16;vGlow=.7+.3*sin(t*7.+aSeed*9.);}
           else{float age=fract(aSeed+uTime*(.35+aSeed*.3));p=uFire+vec3(sin(aSeed*50.+age*4.)*.3*age,.35+age*1.7,cos(aSeed*30.+age*3.)*.3*age);size=.05;vGlow=(1.-age)*1.6;}
           vec4 mv=modelViewMatrix*vec4(p,1.);gl_PointSize=size*uScale/-mv.z;gl_Position=projectionMatrix*mv;}`,
       fragmentShader: 'uniform sampler2D uMap;varying float vGlow;void main(){vec4 c=texture2D(uMap,vec2(gl_PointCoord.x,1.-gl_PointCoord.y));gl_FragColor=vec4(c.rgb*c.a*vGlow,1.);}'})) : null;
