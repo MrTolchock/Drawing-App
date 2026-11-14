@@ -348,6 +348,10 @@ const TRICKS={
   lean(p,u,t){const e=bell(u,.15,.85),listen=bell((u-.35)/.5,.2,.8);if(p.body)p.body.rotation.x+=e*.62;if(p.head){p.head.rotation.x+=e*.32;p.head.rotation.z+=listen*.28;}p.arms.forEach(a=>{a.rotation.x=-.95*e;});(p.ears||[]).forEach((r,i)=>{r.rotation.z+=listen*(i?-.18:.18)*Math.sin(t*2);});},
   poke(p,u,t){const e=bell(u,.18,.72),shake=bell((u-.74)/.24,.2,.8);if(p.body)p.body.rotation.x+=e*.78;if(p.head){p.head.rotation.x+=e*.25;p.head.rotation.y+=Math.sin(t*26)*.32*shake;}p.arms.forEach(a=>{a.rotation.x=-.6*e;});},
   lookup(p,u){const e=bell(u,.2,.8);if(p.head)p.head.rotation.x-=e*.55;if(p.body)p.body.rotation.x-=e*.08;},
+  // Fuchs shaking himself dry after rain or wading: a quick shiver from head to tail
+  shake(p,u,t){const e=bell(u,.1,.78),w=Math.sin(t*38);if(p.body)p.body.rotation.z+=w*.3*e;if(p.head){p.head.rotation.z+=Math.sin(t*38+1.2)*.42*e;p.head.rotation.y+=Math.sin(t*19)*.2*e;}if(p.tail)p.tail.rotation.y+=Math.sin(t*38+2.4)*.7*e;(p.ears||[]).forEach((r,i)=>{r.rotation.z+=Math.sin(t*40+i*2)*.35*e;});for(const y of p.eyes)y.scale.y*=1-.75*e;},
+  // sliding down the snow: leaning back, hind paws together in front, arms out for balance
+  slide(p){if(p.body)p.body.rotation.x-=.16;p.legs.forEach(l=>{l.rotation.x=-.55;});p.arms.forEach((a,i)=>{a.rotation.x=-1.05;a.rotation.z=(i?-1:1)*.55;});if(p.tail)p.tail.rotation.x-=.2;},
   jump(p,u){const j=Math.min(1,Math.max(0,(u-.2)/.55));p.root.position.y=Math.sin(j*Math.PI)*.55;p.root.rotation.x=(j-.5)*2.2*(j>0&&j<1?1:0);if(p.tail)p.tail.rotation.y+=Math.sin(u*40)*.4;},
 };
 function pointPose(p,e){const a=p.legs.length?p.arms[1]:null;if(a){a.rotation.x=-1.5*e;a.rotation.z=-.15*e;}if(p.head)p.head.rotation.x-=.08*e;}

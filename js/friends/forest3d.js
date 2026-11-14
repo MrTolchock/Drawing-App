@@ -195,7 +195,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     const g = f.rig.group, d = Math.atan2(Math.sin(yaw - g.rotation.y), Math.cos(yaw - g.rotation.y)); g.rotation.y += d * Math.min(1, dt * 5);
     return state;
   }
-  function puff(x, y, z, n) { for (let k = 0; k < n; k++) { const p = puffs.find(q => q.life <= 0); if (!p) return; p.life = .55 + k * .08; p.s.visible = true; p.s.position.set(x + (R() - .5) * .5, y + .1, z + (R() - .5) * .5); } }
+  function puff(x, y, z, n) { for (let k = 0; k < n; k++) { const p = puffs.find(q => q.life <= 0); if (!p) return; p.life = .55 + k * .08; p.s.visible = true; p.s.material.color.set('#ffffff'); p.s.position.set(x + (R() - .5) * .5, y + .1, z + (R() - .5) * .5); } }
   function greeting(f, id, d, time) {
     if (d > 4.2) { f.metAt = null; return ''; }
     if (f.metAt == null) f.metAt = time;
@@ -221,6 +221,26 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     const yaw = Math.atan2(r.sp.x - pos.x, r.sp.z - pos.z), d = Math.atan2(Math.sin(yaw - fox.rotation.y), Math.cos(yaw - fox.rotation.y)); fox.rotation.y += d * Math.min(1, dt * 6);
     if (r.sp.cue && !r.cued && r.t > r.sp.dur * (r.sp.cue === 'echo' ? .38 : r.sp.cue === 'knock' ? .3 : .15)) { r.cued = true; sound.cues.push({type: r.sp.cue}); if (sound.cues.length > 4) sound.cues.shift(); }
     return {action: 'trick', trick: r.sp.trick, u: r.t / r.sp.dur};
+  }
+
+  /* Fuchs' own manners: a little hop onto the log bridge and from stone to stone, white splashes while he wades, a
+     sliding pose on the snow, and when he has been rained on or has waded he shakes himself dry once he stands still. */
+  let gaitK = 1, sliding = false, hop = -1, lastCross = null, lastHop = 0, soaked = 0, shaking = -1, stillFor = 0, lastSplash = 0;
+  function hopY(dt, time, moving, reduced) {
+    const kind = sound.crossing, onStones = kind === 'stones' || kind === 'log';
+    if (!reduced && moving && onStones && hop < 0 && (kind !== lastCross || (kind === 'stones' && time - lastHop > .5))) { hop = 0; lastHop = time; }
+    lastCross = kind; if (hop < 0) return 0; hop += dt / .32; if (hop >= 1) { hop = -1; return 0; } return Math.sin(hop * Math.PI) * .22;
+  }
+  function moods(dt, time, moving, base, reduced) {
+    if (weather.state.rain > .3 || sound.wade) soaked = Math.min(1, soaked + dt * .25);
+    stillFor = moving ? 0 : stillFor + dt;
+    if (sound.wade && moving && !reduced && time - lastSplash > .22) { lastSplash = time; const p = puffs.find(q => q.life <= 0); if (p) { p.life = .5; p.s.visible = true; p.s.material.color.set('#e8f2ff'); p.s.position.set(pos.x + (R() - .5) * .4, base + .08, pos.z + (R() - .5) * .3); } }
+    if (shaking < 0 && soaked > .5 && !sound.wade && weather.state.rain < .05 && stillFor > .5 && !reduced) { shaking = 0; soaked = 0; }
+    if (shaking >= 0) { if (moving) { shaking = -1; return null; } shaking += dt / 1.3;
+      if (shaking > .25 && shaking < .7 && R() < dt * 14) { const p = puffs.find(q => q.life <= 0); if (p) { p.life = .45; p.s.visible = true; p.s.material.color.set('#eef6ff'); p.s.position.set(pos.x + (R() - .5) * .9, base + .4 + R() * .5, pos.z + (R() - .5) * .9); } }
+      if (shaking >= 1) { shaking = -1; return null; } return {action: 'trick', trick: 'shake', u: shaking}; }
+    if (sliding && moving) return {action: 'trick', trick: 'slide', u: .5};
+    return null;
   }
 
   /* ---------- movement, routes and camera ---------- */
@@ -287,7 +307,8 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   function listen() {
     const T = WORLD.terrain, b = T.biome(pos.x, pos.z, soundBiome), c = T.onCrossing(pos.x, pos.z), pa = T.pathAt(pos.x, pos.z);
     sound.ground = c ? (c.c.kind === 'dam' ? 'sticks' : 'wood') : b.snow > .5 ? 'snow' : b.rock > .6 ? 'rock' : b.swamp > .5 ? 'wet' : pa.d < pa.w / 2 + .15 ? 'earth' : b.meadow > .5 ? 'meadow' : b.spruce > .5 ? 'needles' : 'grass';
-    { const st = T.site(pos.x, pos.z); sound.bank = (st.sd - st.sw / 2 < 1.1) || (st.still === st.still && b.swamp < .5 && st.h - st.still < .4); }
+    sound.crossing = c ? c.c.kind : null;
+    { const st = T.site(pos.x, pos.z); sound.wade = st.still === st.still && st.still - st.h > .005 && !c; sound.bank = (st.sd - st.sw / 2 < 1.1) || (st.still === st.still && b.swamp < .5 && st.h - st.still < .4); }
     sound.trees = (1 - b.meadow) * (1 - b.swamp * .6) * (1 - b.rock * .7) * (1 - b.snow); sound.snow = b.snow; sound.rock = b.rock; sound.meadow = b.meadow; sound.swamp = b.swamp; sound.spruce = b.spruce;
     let near = Infinity; for (const s of T.streams) for (let i = 0; i <= s.N; i += 6) { const q = s.samples[i], d = (q.x - pos.x) ** 2 + (q.z - pos.z) ** 2; if (d < near) near = d; }
     sound.brook = THREE.MathUtils.clamp(1 - (Math.sqrt(near) - 1.2) / 13, 0, 1);
@@ -296,14 +317,20 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   function update(dt, time, {keys, stick}) {
     const reduced = window.FK.reduced;
     let dx = Number(keys.has('ArrowRight') || keys.has('d')) - Number(keys.has('ArrowLeft') || keys.has('a')) + stick.x, dz = Number(keys.has('ArrowDown') || keys.has('s')) - Number(keys.has('ArrowUp') || keys.has('w')) + stick.z;
-    const manual = Math.hypot(dx, dz) > 0, want = new THREE.Vector2(), speedMax = SPEED * speedScale;
+    const manual = Math.hypot(dx, dz) > 0, want = new THREE.Vector2();
+    /* Fuchs moves with the ground: a little quicker on open earth paths, slower wading or on rock and boards, and on
+       the snow he slides down the slope, faster and leaning back. */
+    { const g = sound.ground, h = fox.rotation.y, down = WORLD.ground(pos.x + Math.sin(h) * .6, pos.z + Math.cos(h) * .6) - WORLD.ground(pos.x, pos.z); sliding = g === 'snow' && down < -.12 && vel.length() > .8;
+      const k = sound.wade ? .66 : sliding ? 1.35 : g === 'snow' ? .92 : g === 'earth' ? 1.14 + .08 * (sound.meadow || 0) : g === 'wet' ? .82 : g === 'rock' ? .9 : g === 'wood' || g === 'sticks' ? .88 : 1;
+      gaitK += (k - gaitK) * Math.min(1, dt * 2.5); }
+    const speedMax = SPEED * speedScale * gaitK;
     if (manual) { destination = null; path = []; arrival = null; ring.visible = false; want.set(dx, dz).normalize().multiplyScalar(speedMax * Math.min(1, Math.hypot(dx, dz))); }
     else if (destination) { let ddx = destination.x - pos.x, ddz = destination.z - pos.z, d = Math.hypot(ddx, ddz);
       // a waypoint counts as reached within one frame's travel too (long frames must not circle it)
       while (path.length && d < Math.max(.55, vel.length() * dt)) { destination = path.shift(); ddx = destination.x - pos.x; ddz = destination.z - pos.z; d = Math.hypot(ddx, ddz); }
       if (!path.length && d < .1) { destination = null; ring.visible = false; vel.set(0, 0); onPosition(pos.x, pos.z, WORLD.regionAt(pos.x, pos.z)?.id); const reached = arrival; arrival = null; if (reached) onAction(reached); }
       else { const sp = speedMax * (path.length ? 1 : Math.min(1, .25 + d / 1.2)); want.set(ddx / d * sp, ddz / d * sp); } }
-    vel.lerp(want, 1 - Math.exp(-dt * (want.lengthSq() ? 9 : 12))); const speed = vel.length(), moving = speed > .15;
+    vel.lerp(want, 1 - Math.exp(-dt * (sliding ? 3 : want.lengthSq() ? 9 : 12))); const speed = vel.length(), moving = speed > .15;   // on snow he glides on a little
     sound.moving = moving; sound.speed = speed; if (time - sound.at > .15 || time < sound.at) { sound.at = time; listen(); }
     if (speed > .02) { let nx = pos.x + vel.x * dt, nz = pos.z + vel.y * dt;
       // the last step lands on the target instead of overshooting it (long frames, fast walking)
@@ -317,7 +344,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
       if (speed > .2) { const target = Math.atan2(vel.x, vel.y); let diff = target - fox.rotation.y; diff = Math.atan2(Math.sin(diff), Math.cos(diff)); fox.rotation.y += diff * (1 - Math.exp(-dt * 12)); } }
     if (moving && time - lastSample > 1) { lastSample = time; onPosition(pos.x, pos.z, WORLD.regionAt(pos.x, pos.z)?.id); }
     let closest = null, best = 3.2; for (const [id, p] of Object.entries(forestPlaces)) { const d = Math.hypot(p.x - pos.x, p.z - pos.z); if (d < best) { closest = id; best = d; } } if (closest !== near) { near = closest; onNear(near); }
-    const base = groundY(pos.x, pos.z), doing = react(dt, moving); fox.position.set(pos.x, base, pos.z); foxRig.update(dt, {moving, speed, reduced, ...(doing || {})});
+    const base = groundY(pos.x, pos.z), doing = react(dt, moving) || moods(dt, time, moving, base, reduced); fox.position.set(pos.x, base + hopY(dt, time, moving, reduced), pos.z); foxRig.update(dt, {moving, speed, reduced, ...(doing || {})});
     foxShadow.position.set(pos.x, base + .04, pos.z);
     { const g = sound.ground, soft = g === 'earth' || g === 'grass' || g === 'meadow' || g === 'needles', where = g === 'snow' ? 'snow' : g === 'wet' || (sound.bank && soft) ? 'mud' : soft && weather.state.wet > .25 ? 'wet' : null;
       prints.update(dt, pos, fox.rotation.y, moving ? where : null, reduced); }
@@ -328,7 +355,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
       if (o.id === 'mailman') { courier.visible = courierShadow.visible = show; courierRig.lod(o.d < 8 ? 0 : 1); updateMailman(dt, reduced, anim); }
       else { o.f.rig.group.visible = show; if (o.f.shadow) o.f.shadow.visible = show; o.f.rig.lod(o.d < 8 ? 0 : 1); if (anim && o.f.roam && !reduced) stroll(o.f, o.id, dt); if (anim && o.f.swim && !reduced) swim(o.f, o.id, dt, time); if (anim) { const st = o.f.show ? perform(o.f, o.id, dt, time) : {action: greeting(o.f, o.id, o.d, time)}; o.f.rig.update(dt, {moving: o.f.moving && !o.f.show, speed: o.id === 'squirrel' ? 1.6 : o.id === 'deer' ? .75 : .9, reduced, ...(typeof st === 'string' ? {action: st} : st)}); } } }
     animatedCount = animated;
-    if (moving && !reduced && time - lastPuff > .17) { lastPuff = time; const p = puffs.find(q => q.life <= 0); if (p) { p.life = .55; p.s.visible = true; p.s.position.set(pos.x + (R() - .5) * .3, base + .12, pos.z + .15); } }
+    if (moving && !reduced && !sound.wade && time - lastPuff > .17) { lastPuff = time; const p = puffs.find(q => q.life <= 0); if (p) { p.life = .55; p.s.visible = true; p.s.material.color.set('#ffffff'); p.s.position.set(pos.x + (R() - .5) * .3, base + .12, pos.z + .15); } }
     for (const p of puffs) if (p.life > 0) { p.life -= dt; const k = 1 - p.life / .55; size(p.s, .25 + k * .45); p.s.material.opacity = .5 * (1 - k); p.s.position.y += dt * .25; if (p.life <= 0) p.s.visible = false; }
     life.update(dt, time, pos, {reduced, rain: Math.max(weather.state.rain, dusk() > .7 ? .3 : 0), snow: sound.snow || 0, trees: sound.trees, meadow: sound.meadow, height, fov: camera.fov});
     const halos = streamer.landmarks.home?.halos; if (halos) halos.material.opacity = reduced ? .55 : .5 + Math.sin(time * 7) * .06;
