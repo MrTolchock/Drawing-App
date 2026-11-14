@@ -31,6 +31,15 @@ const FOLIAGE = ['#include <normal_fragment_begin>', 'float faceDirection = 1.0;
 // (interleaved gradient noise), which costs no blending or sorting. Anything right at the lens clears too.
 // `foxView` is Fuchs' position in view space.
 export const foxView = {value: new THREE.Vector3(0, 0, -16)};
+/** Where grass and flowers bend aside: up to four [x, z, radius, strength] (Fuchs and the friends nearest him). */
+export const bendAt = {value: [0, 1, 2, 3].map(() => new THREE.Vector4(1e4, 1e4, 1, 0))};
+// The top of each plant card (its height within the atlas cell) leans away from whoever stands in it and dips a little.
+const BEND = `#include <begin_vertex>
+#ifdef USE_MAP
+{ vec3 ffW = (modelMatrix * vec4(transformed, 1.)).xyz; float ffK = fract(MAP_UV.y * 4.); ffK *= ffK;
+  for (int i = 0; i < 4; i++) { vec4 b = ffBend[i]; vec2 d = ffW.xz - b.xy; float l = length(d), p = b.w * (1. - smoothstep(b.z * .3, b.z, l)) * ffK;
+    if (l > .001) { transformed.xz += d / l * p * .32; transformed.y -= p * .16; } } }
+#endif`;
 const NEAR_COMMON = '#include <common>\nuniform vec3 ffFox;\nfloat ffNoise(vec2 p){return fract(52.9829189*fract(dot(floor(p),vec2(.06711056,.00583715))));}';
 const NEAR_CLIP = `#include <clipping_planes_fragment>
  vec3 ffP=-vViewPosition;vec2 ffD=ffP.xy*(ffFox.z/min(ffP.z,-.2))-ffFox.xy;ffD.y*=ffD.y>0.?.45:1.;
@@ -39,7 +48,7 @@ const NEAR_CLIP = `#include <clipping_planes_fragment>
 export function patch(material, {foliage = false, near = false}, key) {
   material.onBeforeCompile = sh => {
     if (near) { sh.uniforms.ffFox = foxView; sh.fragmentShader = sh.fragmentShader.replace('#include <common>', NEAR_COMMON).replace('#include <clipping_planes_fragment>', NEAR_CLIP); }
-    if (foliage) sh.fragmentShader = sh.fragmentShader.replace(...FOLIAGE);
+    if (foliage) { sh.fragmentShader = sh.fragmentShader.replace(...FOLIAGE); sh.uniforms.ffBend = bendAt; sh.vertexShader = sh.vertexShader.replace('#include <common>', '#include <common>\nuniform vec4 ffBend[4];').replace('#include <begin_vertex>', BEND); }
   };
   material.customProgramCacheKey = () => key;
   return material;
