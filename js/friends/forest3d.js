@@ -5,7 +5,7 @@
 import {THREE} from '../scene/materials.js';
 import {characters, TRICK_OF} from './characters3d.js';
 import {createWorld} from './world/index.js';
-import {createLook, foxView, bendAt, canvasTex} from './world/textures.js';
+import {createLook, foxView, bendAt, windAt, canvasTex} from './world/textures.js';
 import {createStreamer, NEAR} from './world/streamer.js';
 import {TAU, rng, lerp} from './world/noise.js';
 import {createLife} from './world/life.js';
@@ -379,6 +379,9 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
       if (o.id === 'mailman') { courier.visible = courierShadow.visible = show; courierRig.lod(o.d < 8 ? 0 : 1); updateMailman(dt, reduced, anim); }
       else { o.f.rig.group.visible = show; if (o.f.shadow) o.f.shadow.visible = show; o.f.rig.lod(o.d < 8 ? 0 : 1); if (anim && o.f.roam && !reduced) stroll(o.f, o.id, dt); if (anim && o.f.swim && !reduced) swim(o.f, o.id, dt, time); if (anim) { const st = o.f.show ? perform(o.f, o.id, dt, time) : {action: greeting(o.f, o.id, o.d, time)}; o.f.rig.update(dt, {moving: o.f.moving && !o.f.show, speed: o.id === 'squirrel' ? 1.6 : o.id === 'deer' ? .75 : .9, reduced, ...(typeof st === 'string' ? {action: st} : st)}); } } }
     animatedCount = animated;
+    // the wind in the plants and leaves: slow gusts and calm spells, more in the rain and high up; still with reduced motion
+    { const g = .5 + .5 * Math.sin(time * .13) * Math.sin(time * .071 + 1.3), up = Math.max(sound.snow || 0, (sound.rock || 0) * .6, sound.meadow * .4);
+      windAt.value.set(time, reduced ? 0 : (.35 + .65 * g * g) * (1 + .8 * weather.state.rain + .6 * up)); }
     // the grass bends aside round Fuchs and the three friends nearest him
     { const b = bendAt.value; b[0].set(pos.x, pos.z, .75, 1); let k = 1; for (const o of others) { if (k > 3) break; if (o.id === 'mailman') { if (o.d < 14) b[k++].set(mailPos.x, mailPos.z, .7, .9); continue; } if (o.d < 14 && !o.f.onWater && !o.f.y) b[k++].set(o.f.x, o.f.z, o.f.h * .55, .9); } for (; k < 4; k++) b[k].set(1e4, 1e4, 1, 0); }
     if (moving && !reduced && !sound.wade && time - lastPuff > .17) { lastPuff = time; const p = puffs.find(q => q.life <= 0); if (p) { p.life = .55; p.s.visible = true; p.s.material.color.set('#ffffff'); p.s.position.set(pos.x + (R() - .5) * .3, base + .12, pos.z + .15); } }

@@ -33,10 +33,21 @@ const FOLIAGE = ['#include <normal_fragment_begin>', 'float faceDirection = 1.0;
 export const foxView = {value: new THREE.Vector3(0, 0, -16)};
 /** Where grass and flowers bend aside: up to four [x, z, radius, strength] (Fuchs and the friends nearest him). */
 export const bendAt = {value: [0, 1, 2, 3].map(() => new THREE.Vector4(1e4, 1e4, 1, 0))};
+/** The wind in the plants and leaves: [time, strength 0…1] (forest3d.js: slow gusts, more in rain and up high). */
+export const windAt = {value: new THREE.Vector2(0, 0)};
 // The top of each plant card (its height within the atlas cell) leans away from whoever stands in it and dips a little.
 const BEND = `#include <begin_vertex>
 #ifdef USE_MAP
-{ vec3 ffW = (modelMatrix * vec4(transformed, 1.)).xyz; float ffK = fract(MAP_UV.y * 4.); ffK *= ffK;
+{
+#ifdef USE_INSTANCING
+  vec3 ffW = (modelMatrix * instanceMatrix * vec4(transformed, 1.)).xyz;
+#else
+  vec3 ffW = (modelMatrix * vec4(transformed, 1.)).xyz;
+#endif
+  float ffK = fract(MAP_UV.y * 4.); ffK *= ffK;
+  // the wind: a slow sway that travels across the ground in waves, and a quicker flutter on top
+  float ffPh = ffWind.x * 1.6 + ffW.x * .32 + ffW.z * .24, ffAmp = ffWind.y * (.05 + .04 * sin(ffWind.x * .37 + ffW.x * .06 + ffW.z * .05));
+  transformed.x += (sin(ffPh) * .8 + sin(ffPh * 2.7 + ffW.z) * .2) * ffAmp * ffK; transformed.z += cos(ffPh * .8 + ffW.x * .5) * ffAmp * .45 * ffK;
   for (int i = 0; i < 4; i++) { vec4 b = ffBend[i]; vec2 d = ffW.xz - b.xy; float l = length(d), p = b.w * (1. - smoothstep(b.z * .3, b.z, l)) * ffK;
     if (l > .001) { transformed.xz += d / l * p * .32; transformed.y -= p * .16; } } }
 #endif`;
@@ -48,7 +59,7 @@ const NEAR_CLIP = `#include <clipping_planes_fragment>
 export function patch(material, {foliage = false, near = false}, key) {
   material.onBeforeCompile = sh => {
     if (near) { sh.uniforms.ffFox = foxView; sh.fragmentShader = sh.fragmentShader.replace('#include <common>', NEAR_COMMON).replace('#include <clipping_planes_fragment>', NEAR_CLIP); }
-    if (foliage) { sh.fragmentShader = sh.fragmentShader.replace(...FOLIAGE); sh.uniforms.ffBend = bendAt; sh.vertexShader = sh.vertexShader.replace('#include <common>', '#include <common>\nuniform vec4 ffBend[4];').replace('#include <begin_vertex>', BEND); }
+    if (foliage) { sh.fragmentShader = sh.fragmentShader.replace(...FOLIAGE); sh.uniforms.ffBend = bendAt; sh.uniforms.ffWind = windAt; sh.vertexShader = sh.vertexShader.replace('#include <common>', '#include <common>\nuniform vec4 ffBend[4];\nuniform vec2 ffWind;').replace('#include <begin_vertex>', BEND); }
   };
   material.customProgramCacheKey = () => key;
   return material;
