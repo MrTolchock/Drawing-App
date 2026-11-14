@@ -2134,6 +2134,15 @@
       "at": "2026-11-14T16:00:18.873Z",
       "seen": true,
       "operation": "1ac5c8f3-70f2-4c81-90b2-7a3fb3429c94"
+    },
+    "friends-squirrel/count-0@64238d0c4c77cafe": {
+      "key": "friends-squirrel/count-0",
+      "revision": "64238d0c4c77cafe",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-14T16:14:03.414Z",
+      "seen": true,
+      "operation": "db2be583-6675-4d5e-9601-f30b695ebb15"
     }
   },
   "history": [
