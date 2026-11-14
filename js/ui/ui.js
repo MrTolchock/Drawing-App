@@ -308,7 +308,7 @@
     if (o.actions && o.actions.length) {
       const row = h('div', { class: 'modal-actions' });
       o.actions.forEach((a) => row.append(btn({
-        icon: a.icon, label: a.label, cls: 'btn-big ' + (a.cls || ''),
+        icon: a.icon, label: a.label, cls: 'btn-big ' + (a.icon || a.emoji ? '' : 'btn-text ') + (a.cls || ''),
         onClick: () => {
           if (a.keepOpen !== true) {
             // onClose is only for a modal dismissed without choosing an action (X, backdrop, Escape)

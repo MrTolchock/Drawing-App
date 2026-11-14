@@ -71,6 +71,9 @@
   function visit(session){const id=currentReview(session);return !!id&&(status(session.id,id).seen||seen(session.id,id));}
   function sessionDecision(session,value,note=''){
     const id=currentReview(session);if(!id||!['approved','improve'].includes(value)||session.reviewResults[session.round])return false;
+    // The answer was given to the task on screen, so it has been seen: record that together with the decision.
+    // (The seen mark set when the task appeared can be lost, e.g. when another tab replaces the local record.)
+    if(!status(session.id,id).seen&&!seen(session.id,id))return false;
     if(!decide(session.id,id,value,note))return false;
     session.reviewResults[session.round]=value;return true;
   }

@@ -95,9 +95,11 @@ test('review snapshots every unconfirmed item once, including rejected and stale
  const next=V.previewSession('add');assert.ok(next.iterationIds.includes(pool[1].id));
  FK.puzzleImplementation='new-interaction';assert.equal(V.previewSession('add').questions.length,pool.length);
 });
-test('correct review completion approves only visited items and the puzzle after the entire queue',()=>{
+test('correct review completion approves only seen (shown or answered) items and the puzzle after the entire queue',()=>{
  const {FK,memory}=setup(),V=owner(FK),s=V.previewSession('add');
- assert.equal(V.sessionDecision(s,'approved'),false);assert.equal(V.finishSession(s),false);
+ assert.equal(V.finishSession(s),false);
+ // answering the task on screen counts as having seen it, even if the mark from showing it was lost
+ assert.equal(V.status('add',s.iterationIds[0]).seen,false);assert.ok(V.sessionDecision(s,'approved'));assert.equal(V.status('add',s.iterationIds[0]).seen,true);s.round++;
  for(;s.round<s.questions.length;s.round++){assert.ok(V.visit(s));assert.ok(V.sessionDecision(s,'approved'));}
  assert.equal(V.status('add').status,'pending');assert.ok(V.finishSession(s));assert.ok(V.ready('add'));
  assert.ok(setup(memory).FK.puzzleReview.ready('add'));assert.equal(memory.has('farbtupf.puzzles.v1'),false,'review does not create a child round');
