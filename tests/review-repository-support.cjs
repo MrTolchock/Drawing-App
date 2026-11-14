@@ -7,12 +7,17 @@ function remoteServer(initial=empty()){
   server.requests.push({url,method:options.method||'GET',headers:options.headers||{},body:options.body});
   if(server.offline)throw new TypeError('offline');
   const response=(value,status=200)=>new Response(JSON.stringify(value),{status,headers:{'Content-Type':'application/json','Access-Control-Allow-Origin':'*'}});
-  if(url.startsWith('https://raw.githubusercontent.com/MrTolchock/Drawing-App/puzzle-review-data/reviews.json'))return response(ledger);
+  if(url.startsWith('https://raw.githubusercontent.com/MrTolchock/Drawing-App/puzzle-review-data/reviews.json'))return server.missing?response({message:'Not Found'},404):response(ledger);
   if(server.denyAuth||options.headers?.Authorization!=='Bearer test-review-token')return response({message:'Bad credentials'},401);
   if(url==='https://api.github.com/user')return response({login:server.user});
+  // a repository without the data branch yet: the app may create it as its own history holding only reviews.json
+  if(url.endsWith('/git/trees')&&options.method==='POST'){const body=JSON.parse(options.body);if(body.tree.length!==1||body.tree[0].path!=='reviews.json'||body.base_tree)throw Error('The data branch must hold only reviews.json');server.created={tree:JSON.parse(body.tree[0].content)};return response({sha:'tree-1'},201);}
+  if(url.endsWith('/git/commits')&&options.method==='POST'){const body=JSON.parse(options.body);if(body.parents.length)throw Error('The data branch must not share history with the game');return response({sha:'commit-1'},201);}
+  if(url.endsWith('/git/refs')&&options.method==='POST'){const body=JSON.parse(options.body);if(body.ref!=='refs/heads/puzzle-review-data')throw Error('Attempted to create another branch');ledger=validate(server.created.tree);revision++;blobs.set('sha-'+revision,clone(ledger));server.missing=false;return response({ref:body.ref},201);}
   if(url==='https://api.github.com/repos/MrTolchock/Drawing-App')return response({permissions:{push:true}});
   if(url.startsWith('https://api.github.com/repos/MrTolchock/Drawing-App/git/blobs/'))return response({content:Buffer.from(JSON.stringify(blobs.get(url.split('/').at(-1)))).toString('base64')});
   if(url.startsWith('https://api.github.com/repos/MrTolchock/Drawing-App/contents/reviews.json')){
+   if(options.method!=='PUT'&&server.missing)return response({message:'Not Found'},404);
    if(options.method!=='PUT')return response({sha:'sha-'+revision,content:server.omitContent?'':Buffer.from(JSON.stringify(ledger)).toString('base64')});
    if(server.beforePut){const callback=server.beforePut;server.beforePut=null;await callback(server);}
    if(server.rateLimit)return response({message:'You have exceeded a secondary rate limit'},403);
@@ -30,7 +35,7 @@ function remoteServer(initial=empty()){
 async function installRemote(context,server=remoteServer()){
  let offline=false;const setOffline=context.setOffline.bind(context);context.setOffline=async value=>{offline=value;await setOffline(value);};
  const handle=async route=>{
-  const request=route.request(),headers={'Access-Control-Allow-Origin':'*','Access-Control-Allow-Headers':'Authorization,Content-Type,X-GitHub-Api-Version,Accept','Access-Control-Allow-Methods':'GET,PUT,OPTIONS'};
+  const request=route.request(),headers={'Access-Control-Allow-Origin':'*','Access-Control-Allow-Headers':'Authorization,Content-Type,X-GitHub-Api-Version,Accept','Access-Control-Allow-Methods':'GET,PUT,POST,OPTIONS'};
   if(offline||server.offline){await route.abort('internetdisconnected');return;}
   if(request.method()==='OPTIONS'){await route.fulfill({status:204,headers});return;}
   const response=await server.fetch(request.url(),{method:request.method(),body:request.postData(),headers:Object.fromEntries(Object.entries(request.headers()).map(([k,v])=>[k==='authorization'?'Authorization':k,v]))});

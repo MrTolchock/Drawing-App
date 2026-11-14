@@ -109,9 +109,24 @@
         throw Error('GitHub ist gerade nicht erreichbar ('+response.status+'). Änderungen bleiben lokal gesichert.');
       }return response.json();
     }
+    // The data branch holds only reviews.json. When it does not exist yet, the first connected sync creates it
+    // as its own history (no game code), with an empty ledger: Contents read/write is enough for this.
+    async function createDataFile(){
+      const post=(path,body)=>request(baseURL+path,{method:'POST',headers:{...headers(true),'Content-Type':'application/json'},credentials:'omit',body:JSON.stringify(body)});
+      const tree=await json(await post('/git/trees',{tree:[{path:config.path,mode:'100644',type:'blob',content:JSON.stringify(empty(),null,2)+'\n'}]}));
+      const commit=await json(await post('/git/commits',{message:'Start the shared puzzle review file',tree:tree.sha,parents:[]}));
+      const ref=await post('/git/refs',{ref:'refs/heads/'+config.branch,sha:commit.sha});
+      if(ref.status===422){   // the branch exists without the file: add the file to it
+        const put=await request(fileURL,{method:'PUT',headers:{...headers(true),'Content-Type':'application/json'},credentials:'omit',body:JSON.stringify({message:'Start the shared puzzle review file',branch:config.branch,content:encode(empty())})});
+        if(put.status!==422)await json(put);
+      }else await json(ref);
+    }
     async function load(auth=false){
-      if(!auth){const response=await request(rawURL+'?check='+Date.now(),{cache:'no-store',credentials:'omit'});return {ledger:validate(await json(response))};}
-      const file=await json(await request(fileURL+'?ref='+encodeURIComponent(config.branch),{headers:headers(true),cache:'no-store',credentials:'omit'}));
+      // Without a connection a missing file only means that nothing has been reviewed and shared yet.
+      if(!auth){const response=await request(rawURL+'?check='+Date.now(),{cache:'no-store',credentials:'omit'});if(response.status===404)return {ledger:empty()};return {ledger:validate(await json(response))};}
+      let found=await request(fileURL+'?ref='+encodeURIComponent(config.branch),{headers:headers(true),cache:'no-store',credentials:'omit'});
+      if(found.status===404){await createDataFile();found=await request(fileURL+'?ref='+encodeURIComponent(config.branch),{headers:headers(true),cache:'no-store',credentials:'omit'});}
+      const file=await json(found);
       // Larger files omit inline content. Read their immutable blob, never a moving branch with an older SHA.
       const blob=file.content?file:await json(await request(baseURL+'/git/blobs/'+file.sha,{headers:headers(true),cache:'no-store',credentials:'omit'}));
       const binary=globalThis.atob?globalThis.atob(blob.content.replace(/\s/g,'')):Buffer.from(blob.content,'base64').toString('binary');

@@ -86,3 +86,10 @@ test('malformed or uninspected remote approvals preserve the last working cache'
  const server=remoteServer(),a=client(server);await a.repo.start();a.decide('add/0','approved');await a.repo.connect('test-review-token');const before=a.data.decisions;
  const ledger=server.ledger;ledger.entries['add/0@r-add/0'].seen=false;server.ledger=ledger;assert.equal(await a.repo.refresh(),false);assert.deepEqual(a.data.decisions,before);a.repo.stop();
 });
+
+test('the first connected sync creates the missing data branch with only reviews.json, then saves to it',async()=>{
+ const server=remoteServer();server.missing=true;const a=client(server);
+ await a.repo.start();assert.notEqual(a.repo.state.phase,'error','reading without a connection treats a missing file as nothing shared yet');
+ a.decide('add/0','approved');assert.ok(await a.repo.connect('test-review-token'));
+ assert.equal(server.missing,false);assert.equal(server.ledger.entries['add/0@r-add/0'].status,'approved');assert.equal(a.repo.state.pending,0);a.repo.stop();
+});
