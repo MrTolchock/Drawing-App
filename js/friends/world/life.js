@@ -94,6 +94,17 @@ export function createLife({scene, canvasTex, groundY, walkable, terrain, random
   const rings = [0, 1].map(() => { const m = new THREE.Mesh(new THREE.PlaneGeometry(1, 1).rotateX(-Math.PI / 2), new THREE.MeshBasicMaterial({map: ringTex, transparent: true, depthWrite: false, toneMapped: false, opacity: 0})); m.visible = false; m.renderOrder = 9; scene.add(m); return {m, t: -1}; });
   const splash = (k, x, z) => { rings[k].t = 0; rings[k].m.position.set(x, pond.level + .03, z); };   // the ring travels out and rocks a duck it passes (below)
 
+  /* ---------- small creatures on the ground: snails, ladybirds and little frogs near the water ---------- */
+  // Drawn small, from the side; they live a few metres from Fuchs, move in their own way (the snail creeps, the
+  // ladybird scurries and stops, the frog hops) and move off when he steps close. They hide in the rain and at dusk.
+  const snailTex = canvasTex(64, 40, g => { g.fillStyle = '#c9b48a'; g.beginPath(); g.moveTo(4, 34); g.quadraticCurveTo(30, 30, 60, 34); g.quadraticCurveTo(62, 26, 54, 24); g.lineTo(10, 30); g.fill(); g.strokeStyle = '#a89470'; g.lineWidth = 2; g.beginPath(); g.moveTo(56, 25); g.lineTo(60, 14); g.moveTo(52, 25); g.lineTo(53, 15); g.stroke();
+    const sh = g.createRadialGradient(26, 18, 2, 26, 20, 16); sh.addColorStop(0, '#e2a65a'); sh.addColorStop(1, '#8a5530'); g.fillStyle = sh; g.beginPath(); g.arc(26, 20, 14, 0, TAU); g.fill(); g.strokeStyle = '#5e3a20'; g.lineWidth = 2; g.beginPath(); for (let k = 0; k < 40; k++) { const a = k * .38, rr = 12 - k * .28; g.lineTo(26 + Math.cos(a) * rr, 20 + Math.sin(a) * rr); } g.stroke(); });
+  const bugTex = canvasTex(40, 32, g => { g.fillStyle = '#1e1a16'; g.beginPath(); g.arc(30, 18, 5, 0, TAU); g.fill(); g.fillStyle = '#d33a2a'; g.beginPath(); g.ellipse(18, 18, 13, 10, 0, 0, TAU); g.fill(); g.strokeStyle = '#1e1a16'; g.lineWidth = 1.5; g.beginPath(); g.moveTo(18, 8); g.lineTo(18, 28); g.stroke(); g.fillStyle = '#1e1a16'; for (const [x, y] of [[12, 13], [24, 14], [13, 23], [23, 23]]) { g.beginPath(); g.arc(x, y, 2.4, 0, TAU); g.fill(); } g.fillStyle = 'rgba(255,255,255,.5)'; g.beginPath(); g.arc(14, 12, 2, 0, TAU); g.fill(); });
+  const frogTex = canvasTex(56, 44, g => { g.fillStyle = '#4f8a34'; g.beginPath(); g.ellipse(26, 28, 18, 12, -.15, 0, TAU); g.fill(); g.beginPath(); g.ellipse(14, 34, 10, 6, .4, 0, TAU); g.fill(); g.fillStyle = '#7fb24a'; g.beginPath(); g.ellipse(30, 32, 12, 6, -.1, 0, TAU); g.fill();
+    g.fillStyle = '#4f8a34'; g.beginPath(); g.arc(38, 17, 6, 0, TAU); g.fill(); g.fillStyle = '#f4f0d0'; g.beginPath(); g.arc(39, 15, 3.4, 0, TAU); g.fill(); g.fillStyle = '#14100c'; g.beginPath(); g.arc(40, 15, 1.8, 0, TAU); g.fill(); g.strokeStyle = '#2f5a24'; g.lineWidth = 1.5; g.beginPath(); g.arc(44, 26, 5, .2, 1.4); g.stroke(); });
+  const critters = [['snail', snailTex, .26], ['snail', snailTex, .23], ['bug', bugTex, .15], ['bug', bugTex, .14], ['frog', frogTex, .3], ['frog', frogTex, .27]].map(([kind, map, h]) => ({kind, s: solid(sprite(map, h, 3)), on: false, x: 0, z: 0, y: 0, vx: 0, vz: 0, t: 0, hop: -1, face: 1}));
+  const nearWet = (x, z) => { const s0 = terrain.site(x, z); return (s0.sd - s0.sw / 2 < 2.5 && s0.sd - s0.sw / 2 > .4) || (s0.still === s0.still && s0.h - s0.still > .05 && s0.h - s0.still < .5); };
+
   /* ---------- a rainbow in the waterfall's mist ---------- */
   const bowTex = canvasTex(256, 128, g => { const cols = ['255,80,70', '255,160,60', '255,235,90', '110,220,110', '90,170,255', '150,110,240']; cols.forEach((c, i) => { g.strokeStyle = `rgba(${c},.9)`; g.lineWidth = 7; g.beginPath(); g.arc(128, 150, 118 - i * 6.5, Math.PI, TAU); g.stroke(); });
     const fade = g.createLinearGradient(0, 0, 0, 128); fade.addColorStop(0, 'rgba(0,0,0,0)'); fade.addColorStop(.55, 'rgba(0,0,0,0)'); fade.addColorStop(1, 'rgba(0,0,0,1)'); g.globalCompositeOperation = 'destination-out'; g.fillStyle = fade; g.fillRect(0, 0, 256, 128); });
@@ -166,6 +177,22 @@ export function createLife({scene, canvasTex, groundY, walkable, terrain, random
       for (const g of rings) { if (g.t < 0) { g.m.visible = false; continue; } g.t += dt / 1.3; g.m.visible = true; g.m.scale.setScalar(.3 + g.t * 2.6); g.m.material.opacity = Math.max(0, .75 * (1 - g.t)); if (g.t >= 1) g.t = -1; } }
     bow.material.opacity = reduced ? .28 : .26 + Math.sin(time * .6) * .06;
     if (beams) placeBeams(pos);
+    // small creatures: placed a few metres from Fuchs, moving in their own way; they hide in the rain and at dusk
+    for (const c of critters) {
+      if (shelter || reduced && !c.on) { c.s.visible = c.on = false; continue; }
+      if (!c.on || Math.hypot(c.x - pos.x, c.z - pos.z) > 16) { const p = spotNear(pos, (random() - .5) * 2.2, 2.5, 6.5, (x, z) => walkable(x, z) && !terrain.onCrossing(x, z) && (c.kind === 'frog' ? nearWet(x, z) : terrain.biome(x, z, bm).meadow < .8 && bm.snow < .1));
+        if (!p) { c.s.visible = c.on = false; continue; } c.x = p[0]; c.z = p[1]; c.on = true; c.t = r(.5, 3); c.hop = -1; fit(c.s); }
+      const d = Math.hypot(c.x - pos.x, c.z - pos.z), away = Math.atan2(c.x - pos.x, c.z - pos.z), base = groundY(c.x, c.z);
+      if (!reduced) { c.t -= dt;
+        if (c.kind === 'snail') { if (c.t < 0) { const a = r(0, TAU); c.vx = Math.sin(a) * .035; c.vz = Math.cos(a) * .035; c.t = r(4, 9); } }
+        else if (c.kind === 'bug') { if (d < 1.4) { c.vx = Math.sin(away) * .5; c.vz = Math.cos(away) * .5; c.t = .6; } else if (c.t < 0) { const go = random() < .55, a = r(0, TAU); c.vx = go ? Math.sin(a) * .22 : 0; c.vz = go ? Math.cos(a) * .22 : 0; c.t = r(.4, 1.6); } }
+        else if (c.hop < 0 && (d < 2.2 || c.t < 0)) { const a = d < 2.2 ? away + r(-.5, .5) : r(0, TAU), l = d < 2.2 ? r(.7, 1.1) : r(.3, .6); c.hop = 0; c.vx = Math.sin(a) * l / .45; c.vz = Math.cos(a) * l / .45; c.t = r(2, 5); }
+        let nx = c.x + c.vx * dt, nz = c.z + c.vz * dt;
+        if (c.kind === 'frog') { if (c.hop >= 0) { c.hop += dt / .45; if (c.hop >= 1) c.hop = -1; } else { nx = c.x; nz = c.z; } }
+        if (walkable(nx, nz)) { c.x = nx; c.z = nz; } else { c.vx = -c.vx; c.vz = -c.vz; }
+        if (Math.abs(c.vx) > .01) c.face = c.vx < 0 ? -1 : 1; }
+      c.y = base + c.s.userData.h * .45 + (c.kind === 'frog' && c.hop >= 0 ? Math.sin(c.hop * Math.PI) * .22 : 0);
+      c.s.visible = true; c.s.position.set(c.x, c.y, c.z); const h = c.s.userData.h, img = c.s.material.map.image; c.s.scale.set(h * img.width / img.height * c.face, h, 1); }
     // little birds: a few hop about together ahead of Fuchs and fly off when he is close
     if (!flockAt && !reduced && !shelter && birds.every(b => b.state === 'wait' && b.t <= 0)) { flockAt = spotNear(pos, heading, 9, 15, (x, z) => walkable(x, z) && !terrain.onCrossing(x, z)); if (flockAt) for (const b of birds) { b.told = birds.indexOf(b) > 0; b.state = 'ground'; b.x = flockAt[0] + r(-.9, .9); b.z = flockAt[1] + r(-.9, .9); b.y = groundY(b.x, b.z) + .1; b.t = r(.3, 1.5); b.s.material.map = birdTex[0]; fit(b.s); } }
     for (const b of birds) {

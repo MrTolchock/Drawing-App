@@ -45,3 +45,5 @@ Small touches: grass bends round Fuchs and the friends; Fuchs is quicker on path
 The cave (`CAVE` in `layout.js`, `cave` in `terrain.js`, the `cave` site in `sites.js`): a flat cut into the Rock's south flank, closed by a rock shell whose outer face follows the hillside; inside stalactites, glowing crystals, mushrooms, glow-worms and a pool, with drips and echoes (`soundscape.js`). Fuchs walks in along a short trail from the owl's path.
 
 Speech uses the device's German voices; adults can pick one in Settings (**Stimme zum Vorlesen**, with **Probe hören**) and download a Premium/Erweitert voice on the iPad for a more natural sound (`js/core/speech.js`).
+
+Graphics touches: wind sways the plants and leaves; ground detail (`world/big/decals.js`) puts roots, moss, needles, pebbles, twigs and worn patches on the woodland floor; painted ridges (Alps, hills, wooded edge) fill the horizon; characters stand on the lowest ground under their feet, squint happily after tricks and catch a warm rim light at dusk; snails, ladybirds and little frogs live on the ground near Fuchs; the world's buttons are painted wooden medallions (`js/friends/hud-art.js`).

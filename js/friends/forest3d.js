@@ -149,7 +149,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   const puffs = Array.from({length: 8}, () => { const s = sprite(dustTex, .4, 1, .5); s.visible = false; return {s, life: 0}; });
   const motes = new THREE.Points(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(Array.from({length: 240}, (_, i) => i % 3 === 1 ? .4 + R() * 5 : (R() * 2 - 1) * 15 + (i % 3 === 0 ? 1 : -5)), 3)), new THREE.PointsMaterial({size: .08, map: glow, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, opacity: .8}));
   motes.name = 'pollen'; scene.add(motes);
-  const vignette = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), new THREE.MeshBasicMaterial({map: canvasTex(256, 256, (g) => { const r = g.createRadialGradient(128, 118, 70, 128, 128, 184); r.addColorStop(0, 'rgba(80,46,16,0)'); r.addColorStop(.58, 'rgba(59,36,15,.06)'); r.addColorStop(1, 'rgba(42,23,8,.36)'); g.fillStyle = r; g.fillRect(0, 0, 256, 256); }), transparent: true, depthTest: false, depthWrite: false, fog: false, toneMapped: false}));
+  const vignette = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), new THREE.MeshBasicMaterial({map: canvasTex(256, 256, (g) => { const r = g.createRadialGradient(128, 118, 70, 128, 128, 184); r.addColorStop(0, 'rgba(255,214,150,.07)'); r.addColorStop(.45, 'rgba(180,120,60,.05)'); r.addColorStop(.62, 'rgba(59,36,15,.07)'); r.addColorStop(1, 'rgba(42,23,8,.36)'); g.fillStyle = r; g.fillRect(0, 0, 256, 256); }), transparent: true, depthTest: false, depthWrite: false, fog: false, toneMapped: false}));
   vignette.position.z = -1; vignette.renderOrder = 30; vignette.frustumCulled = false; camera.add(vignette); scene.add(camera);
 
   /* ---------- characters ---------- */
