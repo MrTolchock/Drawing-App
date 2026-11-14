@@ -262,6 +262,15 @@
       "at": "2026-11-14T15:12:34.697Z",
       "seen": true,
       "operation": "a614fb51-cc36-4e58-a521-3b1ba907a8fa"
+    },
+    "friends-squirrel/count-0@cfd53f15456eb303": {
+      "key": "friends-squirrel/count-0",
+      "revision": "cfd53f15456eb303",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-14T15:24:26.600Z",
+      "seen": true,
+      "operation": "900f5c7c-0115-4044-80a9-9cba679cd1ec"
     }
   },
   "history": []
