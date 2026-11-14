@@ -3556,6 +3556,240 @@
       "at": "2026-11-14T21:05:24.070Z",
       "seen": true,
       "operation": "dd152ff2-c004-49a4-8887-d73ee041a92b"
+    },
+    "friends-mouse/word-0@1c92488e8f9685a6": {
+      "key": "friends-mouse/word-0",
+      "revision": "1c92488e8f9685a6",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:44.503Z",
+      "seen": true,
+      "operation": "9c60530b-4325-471c-aaf0-da2239516614"
+    },
+    "friends-mouse/word-1@39f86044fbc0fe5e": {
+      "key": "friends-mouse/word-1",
+      "revision": "39f86044fbc0fe5e",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:44.503Z",
+      "seen": true,
+      "operation": "be49f4e7-ef22-4822-b019-4c36a5e11577"
+    },
+    "friends-mouse/word-2@573fdb0e7cd68540": {
+      "key": "friends-mouse/word-2",
+      "revision": "573fdb0e7cd68540",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:44.503Z",
+      "seen": true,
+      "operation": "d2f1bb43-752b-4804-88df-35d6ca4ccf92"
+    },
+    "friends-mouse/word-3@6ae820b0aa0a2d3c": {
+      "key": "friends-mouse/word-3",
+      "revision": "6ae820b0aa0a2d3c",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:44.503Z",
+      "seen": true,
+      "operation": "6f5d562e-9748-462a-8b10-506d1ca73ae2"
+    },
+    "friends-mouse/word-4@a46cea949596caac": {
+      "key": "friends-mouse/word-4",
+      "revision": "a46cea949596caac",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:44.503Z",
+      "seen": true,
+      "operation": "5034b160-7a91-4ae3-b8ee-d9dc237aa1bf"
+    },
+    "friends-mouse/word-5@67fab575c82a4657": {
+      "key": "friends-mouse/word-5",
+      "revision": "67fab575c82a4657",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:44.503Z",
+      "seen": true,
+      "operation": "17c446ed-da40-4279-81fb-d8280a34887d"
+    },
+    "friends-mouse/word-6@7af3731f97898a67": {
+      "key": "friends-mouse/word-6",
+      "revision": "7af3731f97898a67",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:44.503Z",
+      "seen": true,
+      "operation": "95d6c554-d6a1-442e-a2b1-64f1e338c470"
+    },
+    "friends-mouse/word-7@709bb04ba18786fb": {
+      "key": "friends-mouse/word-7",
+      "revision": "709bb04ba18786fb",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:44.503Z",
+      "seen": true,
+      "operation": "68f7d18d-6713-4f70-a3b7-ec333f3e00a3"
+    },
+    "friends-mouse/word-8@09bc279de1b1071d": {
+      "key": "friends-mouse/word-8",
+      "revision": "09bc279de1b1071d",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:44.503Z",
+      "seen": true,
+      "operation": "ad08587c-c7a4-4b32-b28a-a498149ff778"
+    },
+    "friends-mouse/word-9@22c60a9a9fbfda2e": {
+      "key": "friends-mouse/word-9",
+      "revision": "22c60a9a9fbfda2e",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:44.503Z",
+      "seen": true,
+      "operation": "513ecbbb-d1da-430a-a64d-da75a4c4acf2"
+    },
+    "friends-mouse/word-10@1014680b5ee8a3e7": {
+      "key": "friends-mouse/word-10",
+      "revision": "1014680b5ee8a3e7",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:44.503Z",
+      "seen": true,
+      "operation": "53e4fd6b-25f1-4b42-be9e-58034a1bb672"
+    },
+    "friends-mouse/word-11@cbff28d034fa0f1c": {
+      "key": "friends-mouse/word-11",
+      "revision": "cbff28d034fa0f1c",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:44.503Z",
+      "seen": true,
+      "operation": "0a97bb8a-997c-479d-8277-fca296e4cafa"
+    },
+    "friends-mouse/word-12@824a3ed146aff8a7": {
+      "key": "friends-mouse/word-12",
+      "revision": "824a3ed146aff8a7",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:44.503Z",
+      "seen": true,
+      "operation": "33a22c9b-f403-4b35-b690-f1f7b50d691c"
+    },
+    "friends-mouse/word-13@96135047abea3a1b": {
+      "key": "friends-mouse/word-13",
+      "revision": "96135047abea3a1b",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:44.503Z",
+      "seen": true,
+      "operation": "3979e865-65fd-4108-9de5-5cb9147151f5"
+    },
+    "friends-mouse/word-14@7e3071b36ad1337b": {
+      "key": "friends-mouse/word-14",
+      "revision": "7e3071b36ad1337b",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:44.503Z",
+      "seen": true,
+      "operation": "0f9179cd-75b0-4a6f-a62e-ccd50de5d8e4"
+    },
+    "friends-mouse/word-15@8a53ba0699e4da02": {
+      "key": "friends-mouse/word-15",
+      "revision": "8a53ba0699e4da02",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:44.503Z",
+      "seen": true,
+      "operation": "e30b7a35-acc7-4c2a-a885-7aa266639f31"
+    },
+    "friends-mouse/word-16@f0a5f281420a6a35": {
+      "key": "friends-mouse/word-16",
+      "revision": "f0a5f281420a6a35",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:44.503Z",
+      "seen": true,
+      "operation": "138f5927-d3b6-425e-b296-d5991cd35feb"
+    },
+    "friends-mouse/word-17@bc49df97c52f5f53": {
+      "key": "friends-mouse/word-17",
+      "revision": "bc49df97c52f5f53",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:44.503Z",
+      "seen": true,
+      "operation": "ef7f94bc-0ae9-41f3-a8ef-761978d74fe2"
+    },
+    "friends-mouse/word-18@28eead17daae9bd9": {
+      "key": "friends-mouse/word-18",
+      "revision": "28eead17daae9bd9",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:44.503Z",
+      "seen": true,
+      "operation": "f6eb78e9-9a33-4be0-bf44-2ad62331b2b7"
+    },
+    "friends-mouse/word-19@f4e3b415689a1bd5": {
+      "key": "friends-mouse/word-19",
+      "revision": "f4e3b415689a1bd5",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:44.503Z",
+      "seen": true,
+      "operation": "f4035e3b-cc48-409c-854e-390b673e727c"
+    },
+    "friends-mouse/word-20@85bd0c6bcff246c9": {
+      "key": "friends-mouse/word-20",
+      "revision": "85bd0c6bcff246c9",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:44.503Z",
+      "seen": true,
+      "operation": "38fc603f-1f79-4376-be99-4c6f3a9ea04d"
+    },
+    "friends-mouse/word-21@715177f9179d9bc9": {
+      "key": "friends-mouse/word-21",
+      "revision": "715177f9179d9bc9",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:44.503Z",
+      "seen": true,
+      "operation": "156ff11b-66ac-4173-8f3c-df42a5de23fa"
+    },
+    "friends-mouse/word-22@7f6cc8323b3f1ac8": {
+      "key": "friends-mouse/word-22",
+      "revision": "7f6cc8323b3f1ac8",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:44.503Z",
+      "seen": true,
+      "operation": "465a3559-7d28-4997-b553-cc8b8fa278de"
+    },
+    "friends-mouse/word-23@340dbf2da4ee32bb": {
+      "key": "friends-mouse/word-23",
+      "revision": "340dbf2da4ee32bb",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:44.503Z",
+      "seen": true,
+      "operation": "6eae4329-850e-483c-a140-251ea96e67a9"
+    },
+    "friends-mouse/word-24@ac9defb5f8e7490f": {
+      "key": "friends-mouse/word-24",
+      "revision": "ac9defb5f8e7490f",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:44.503Z",
+      "seen": true,
+      "operation": "fb0f1071-773f-436e-8b3a-e5fbe0f00ac7"
+    },
+    "puzzle:friends-mouse@2dcb8f079b35646d": {
+      "key": "puzzle:friends-mouse",
+      "revision": "2dcb8f079b35646d",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:44.503Z",
+      "seen": true,
+      "operation": "800ef1ff-c627-4b1d-8754-1b81c234210f"
     }
   },
   "history": [
