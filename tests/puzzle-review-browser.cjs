@@ -115,6 +115,11 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
    assert.equal(await active().evaluate(e=>e.scrollWidth>e.clientWidth+2),false,it.id+' overflow');
    assert.equal(await active().locator('.review-preview,.review-decision').count(),0,it.id+' no footer');
    const missing=await active().locator('.puzzle-paper .wa-illustration,.tr-play .wa-illustration').evaluateAll(nodes=>nodes.filter(n=>getComputedStyle(n).backgroundImage==='none').length);assert.equal(missing,0,it.id+' artwork');
+   if(it.question.kind==='matrix'){
+    const rows=active().getByRole('row');assert.equal(await rows.count(),3,it.id+' three separate rows');
+    for(let row=0;row<3;row++)assert.equal(await rows.nth(row).getByRole('cell').count(),3,it.id+' three cells per row');
+    assert.equal(await rows.evaluateAll(nodes=>nodes.every(row=>{const r=row.getBoundingClientRect();return [...row.querySelectorAll('.puzzle-shape')].every(shape=>{const s=shape.getBoundingClientRect();return s.top>=r.top&&s.bottom<=r.bottom&&s.left>=r.left&&s.right<=r.right;});})),true,it.id+' shapes stay inside their row');
+   }
    await solve(it.question);assert.equal(await page.evaluate(({id,it})=>FK.puzzleReview.status(id,it).status,{id:g.id,it:it.id}),'approved',it.id+' auto approval');checked++;
   }console.log('PASS every iteration:',g.id,pool.length);
  }

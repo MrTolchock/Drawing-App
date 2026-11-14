@@ -5,7 +5,7 @@
 - Stable puzzle ID: `friends-owl`
 - Host: owl
 - Related competence: **D.2.A.1.b; D.2.B.1.b** — Kurze Sätze verstehen
-- Difficulty: Ein bis zwei kurze Sätze mit vertrauten Tierverben
+- Difficulty: Ein bis zwei kurze Sätze über ein Tier; vertraute Tierverben
 - Pool: 25 explicit iterations; a round selects five.
 - Review: solve every unconfirmed iteration to approve it; × rejects with an optional note. The final celebration approves the puzzle only when all iterations passed. Exact revisions gate release; changes require review again.
 
@@ -30,7 +30,7 @@
 | `friends-owl/sentence-1` | Die Maus rennt. — Die Maus rennt. | "mouse-run" |
 | `friends-owl/sentence-2` | Der Vogel fliegt. — Der Vogel fliegt. | "bird-fly" |
 | `friends-owl/sentence-3` | Der Vogel sitzt. — Der Vogel sitzt. | "bird-sit" |
-| `friends-owl/sentence-4` | Der Fisch schwimmt. — Der Fisch schwimmt. | "fish-swim" |
+| `friends-owl/sentence-4` | Die Maus schläft. — Die Maus schläft. | "mouse-sleep" |
 | `friends-owl/sentence-5` | Der Hase rennt. — Der Hase rennt. | "hare-run" |
 | `friends-owl/sentence-6` | Der Hase sitzt. — Der Hase sitzt. | "hare-sit" |
 | `friends-owl/sentence-7` | Der Fuchs schläft. — Der Fuchs schläft. | "fox-sleep" |
@@ -41,16 +41,16 @@
 | `friends-owl/sentence-12` | Der Hund schläft. — Der Hund schläft. | "dog-sleep" |
 | `friends-owl/sentence-13` | Die Ente schwimmt. — Die Ente schwimmt. | "duck-swim" |
 | `friends-owl/sentence-14` | Die Ente fliegt. — Die Ente fliegt. | "duck-fly" |
-| `friends-owl/pair-0` | Die Maus sitzt. Der Vogel fliegt. — Die Maus sitzt. Der Vogel fliegt. | "scene:mouse-sit+bird-fly" |
-| `friends-owl/pair-1` | Der Hase rennt. Der Fuchs schläft. — Der Hase rennt. Der Fuchs schläft. | "scene:hare-run+fox-sleep" |
-| `friends-owl/pair-2` | Die Katze sitzt. Der Hund rennt. — Die Katze sitzt. Der Hund rennt. | "scene:cat-sit+dog-run" |
-| `friends-owl/pair-3` | Die Ente fliegt. Die Maus schläft. — Die Ente fliegt. Die Maus schläft. | "scene:duck-fly+mouse-sleep" |
-| `friends-owl/pair-4` | Der Fisch schwimmt. Der Vogel sitzt. — Der Fisch schwimmt. Der Vogel sitzt. | "scene:fish-swim+bird-sit" |
-| `friends-owl/pair-5` | Der Vogel fliegt. Der Hund schläft. — Der Vogel fliegt. Der Hund schläft. | "scene:bird-fly+dog-sleep" |
-| `friends-owl/pair-6` | Der Fuchs rennt. Die Katze schläft. — Der Fuchs rennt. Die Katze schläft. | "scene:fox-run+cat-sleep" |
-| `friends-owl/pair-7` | Die Ente schwimmt. Der Hase sitzt. — Die Ente schwimmt. Der Hase sitzt. | "scene:duck-swim+hare-sit" |
-| `friends-owl/pair-8` | Die Maus rennt. Die Katze sitzt. — Die Maus rennt. Die Katze sitzt. | "scene:mouse-run+cat-sit" |
-| `friends-owl/pair-9` | Der Hund rennt. Der Vogel sitzt. — Der Hund rennt. Der Vogel sitzt. | "scene:dog-run+bird-sit" |
+| `friends-owl/pair-0` | Das ist eine Maus. Sie sitzt. — Das ist eine Maus. Sie sitzt. | "mouse-sit" |
+| `friends-owl/pair-1` | Das ist ein Hase. Er rennt. — Das ist ein Hase. Er rennt. | "hare-run" |
+| `friends-owl/pair-2` | Das ist eine Katze. Sie sitzt. — Das ist eine Katze. Sie sitzt. | "cat-sit" |
+| `friends-owl/pair-3` | Das ist eine Ente. Sie fliegt. — Das ist eine Ente. Sie fliegt. | "duck-fly" |
+| `friends-owl/pair-4` | Das ist ein Vogel. Er sitzt. — Das ist ein Vogel. Er sitzt. | "bird-sit" |
+| `friends-owl/pair-5` | Das ist ein Hund. Er schläft. — Das ist ein Hund. Er schläft. | "dog-sleep" |
+| `friends-owl/pair-6` | Das ist ein Fuchs. Er rennt. — Das ist ein Fuchs. Er rennt. | "fox-run" |
+| `friends-owl/pair-7` | Das ist ein Hase. Er sitzt. — Das ist ein Hase. Er sitzt. | "hare-sit" |
+| `friends-owl/pair-8` | Das ist eine Maus. Sie rennt. — Das ist eine Maus. Sie rennt. | "mouse-run" |
+| `friends-owl/pair-9` | Das ist eine Katze. Sie schläft. — Das ist eine Katze. Sie schläft. | "cat-sleep" |
 
 ## Exact definitions
 
@@ -116,14 +116,15 @@ These definitions are the same finite data used by the game and review previews.
   },
   {
     "id": "friends-owl/sentence-4",
-    "label": "Der Fisch schwimmt.",
+    "label": "Die Maus schläft.",
     "question": {
       "kind": "reading",
       "prompt": "Welches Bild passt zum Satz?",
-      "text": "Der Fisch schwimmt.",
-      "answer": "fish-swim",
+      "text": "Die Maus schläft.",
+      "answer": "mouse-sleep",
       "choices": [
-        "fish-swim",
+        "mouse-sleep",
+        "mouse-sit",
         "mouse-run"
       ]
     }
@@ -270,151 +271,151 @@ These definitions are the same finite data used by the game and review previews.
   },
   {
     "id": "friends-owl/pair-0",
-    "label": "Die Maus sitzt. Der Vogel fliegt.",
+    "label": "Das ist eine Maus. Sie sitzt.",
     "question": {
       "kind": "reading",
       "prompt": "Welches Bild passt zu beiden Sätzen?",
-      "text": "Die Maus sitzt. Der Vogel fliegt.",
-      "answer": "scene:mouse-sit+bird-fly",
+      "text": "Das ist eine Maus. Sie sitzt.",
+      "answer": "mouse-sit",
       "choices": [
-        "scene:mouse-sit+bird-fly",
-        "scene:mouse-run+bird-fly",
-        "scene:mouse-sit+bird-sit"
+        "mouse-sit",
+        "mouse-run",
+        "bird-sit"
       ]
     }
   },
   {
     "id": "friends-owl/pair-1",
-    "label": "Der Hase rennt. Der Fuchs schläft.",
+    "label": "Das ist ein Hase. Er rennt.",
     "question": {
       "kind": "reading",
       "prompt": "Welches Bild passt zu beiden Sätzen?",
-      "text": "Der Hase rennt. Der Fuchs schläft.",
-      "answer": "scene:hare-run+fox-sleep",
+      "text": "Das ist ein Hase. Er rennt.",
+      "answer": "hare-run",
       "choices": [
-        "scene:hare-run+fox-sleep",
-        "scene:hare-sit+fox-sleep",
-        "scene:hare-run+fox-run"
+        "hare-run",
+        "hare-sit",
+        "fox-run"
       ]
     }
   },
   {
     "id": "friends-owl/pair-2",
-    "label": "Die Katze sitzt. Der Hund rennt.",
+    "label": "Das ist eine Katze. Sie sitzt.",
     "question": {
       "kind": "reading",
       "prompt": "Welches Bild passt zu beiden Sätzen?",
-      "text": "Die Katze sitzt. Der Hund rennt.",
-      "answer": "scene:cat-sit+dog-run",
+      "text": "Das ist eine Katze. Sie sitzt.",
+      "answer": "cat-sit",
       "choices": [
-        "scene:cat-sit+dog-run",
-        "scene:cat-sleep+dog-run",
-        "scene:cat-sit+dog-sleep"
+        "cat-sit",
+        "cat-sleep",
+        "mouse-sit"
       ]
     }
   },
   {
     "id": "friends-owl/pair-3",
-    "label": "Die Ente fliegt. Die Maus schläft.",
+    "label": "Das ist eine Ente. Sie fliegt.",
     "question": {
       "kind": "reading",
       "prompt": "Welches Bild passt zu beiden Sätzen?",
-      "text": "Die Ente fliegt. Die Maus schläft.",
-      "answer": "scene:duck-fly+mouse-sleep",
+      "text": "Das ist eine Ente. Sie fliegt.",
+      "answer": "duck-fly",
       "choices": [
-        "scene:duck-fly+mouse-sleep",
-        "scene:duck-swim+mouse-sleep",
-        "scene:duck-fly+mouse-run"
+        "duck-fly",
+        "duck-swim",
+        "bird-fly"
       ]
     }
   },
   {
     "id": "friends-owl/pair-4",
-    "label": "Der Fisch schwimmt. Der Vogel sitzt.",
+    "label": "Das ist ein Vogel. Er sitzt.",
     "question": {
       "kind": "reading",
       "prompt": "Welches Bild passt zu beiden Sätzen?",
-      "text": "Der Fisch schwimmt. Der Vogel sitzt.",
-      "answer": "scene:fish-swim+bird-sit",
+      "text": "Das ist ein Vogel. Er sitzt.",
+      "answer": "bird-sit",
       "choices": [
-        "scene:fish-swim+bird-sit",
-        "scene:duck-swim+bird-sit",
-        "scene:fish-swim+bird-fly"
+        "bird-sit",
+        "bird-fly",
+        "hare-sit"
       ]
     }
   },
   {
     "id": "friends-owl/pair-5",
-    "label": "Der Vogel fliegt. Der Hund schläft.",
+    "label": "Das ist ein Hund. Er schläft.",
     "question": {
       "kind": "reading",
       "prompt": "Welches Bild passt zu beiden Sätzen?",
-      "text": "Der Vogel fliegt. Der Hund schläft.",
-      "answer": "scene:bird-fly+dog-sleep",
+      "text": "Das ist ein Hund. Er schläft.",
+      "answer": "dog-sleep",
       "choices": [
-        "scene:bird-fly+dog-sleep",
-        "scene:bird-sit+dog-sleep",
-        "scene:bird-fly+dog-run"
+        "dog-sleep",
+        "dog-run",
+        "fox-sleep"
       ]
     }
   },
   {
     "id": "friends-owl/pair-6",
-    "label": "Der Fuchs rennt. Die Katze schläft.",
+    "label": "Das ist ein Fuchs. Er rennt.",
     "question": {
       "kind": "reading",
       "prompt": "Welches Bild passt zu beiden Sätzen?",
-      "text": "Der Fuchs rennt. Die Katze schläft.",
-      "answer": "scene:fox-run+cat-sleep",
+      "text": "Das ist ein Fuchs. Er rennt.",
+      "answer": "fox-run",
       "choices": [
-        "scene:fox-run+cat-sleep",
-        "scene:fox-sleep+cat-sleep",
-        "scene:fox-run+cat-sit"
+        "fox-run",
+        "fox-sleep",
+        "hare-run"
       ]
     }
   },
   {
     "id": "friends-owl/pair-7",
-    "label": "Die Ente schwimmt. Der Hase sitzt.",
+    "label": "Das ist ein Hase. Er sitzt.",
     "question": {
       "kind": "reading",
       "prompt": "Welches Bild passt zu beiden Sätzen?",
-      "text": "Die Ente schwimmt. Der Hase sitzt.",
-      "answer": "scene:duck-swim+hare-sit",
+      "text": "Das ist ein Hase. Er sitzt.",
+      "answer": "hare-sit",
       "choices": [
-        "scene:duck-swim+hare-sit",
-        "scene:duck-fly+hare-sit",
-        "scene:duck-swim+hare-run"
+        "hare-sit",
+        "hare-run",
+        "cat-sit"
       ]
     }
   },
   {
     "id": "friends-owl/pair-8",
-    "label": "Die Maus rennt. Die Katze sitzt.",
+    "label": "Das ist eine Maus. Sie rennt.",
     "question": {
       "kind": "reading",
       "prompt": "Welches Bild passt zu beiden Sätzen?",
-      "text": "Die Maus rennt. Die Katze sitzt.",
-      "answer": "scene:mouse-run+cat-sit",
+      "text": "Das ist eine Maus. Sie rennt.",
+      "answer": "mouse-run",
       "choices": [
-        "scene:mouse-run+cat-sit",
-        "scene:mouse-sit+cat-sit",
-        "scene:mouse-run+cat-sleep"
+        "mouse-run",
+        "mouse-sit",
+        "dog-run"
       ]
     }
   },
   {
     "id": "friends-owl/pair-9",
-    "label": "Der Hund rennt. Der Vogel sitzt.",
+    "label": "Das ist eine Katze. Sie schläft.",
     "question": {
       "kind": "reading",
       "prompt": "Welches Bild passt zu beiden Sätzen?",
-      "text": "Der Hund rennt. Der Vogel sitzt.",
-      "answer": "scene:dog-run+bird-sit",
+      "text": "Das ist eine Katze. Sie schläft.",
+      "answer": "cat-sleep",
       "choices": [
-        "scene:dog-run+bird-sit",
-        "scene:dog-sleep+bird-sit",
-        "scene:dog-run+bird-fly"
+        "cat-sleep",
+        "cat-sit",
+        "mouse-sleep"
       ]
     }
   }

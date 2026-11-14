@@ -1,0 +1,40 @@
+{
+  "source": "Read-only snapshot of puzzle-review-data/reviews.json",
+  "widths": [
+    {
+      "width": 1080,
+      "height": 810,
+      "matrices": 25,
+      "rowsPerMatrix": 3,
+      "cellsPerRow": 3,
+      "minimumRowGap": 13,
+      "overflow": false,
+      "singleAnimalChoices": true,
+      "answersAccepted": true,
+      "shapesStayInsideRows": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "matrices": 25,
+      "rowsPerMatrix": 3,
+      "cellsPerRow": 3,
+      "minimumRowGap": 13,
+      "overflow": false,
+      "singleAnimalChoices": true,
+      "answersAccepted": true,
+      "shapesStayInsideRows": true
+    }
+  ],
+  "errors": [],
+  "reviewReopening": {
+    "sourceFileSha": "3a41f96c7ba51aaac50da119df7d554774f8b712",
+    "commentsPreserved": 5,
+    "oldApprovalsPending": 68,
+    "improvedPuzzleIds": [
+      "friends-owl",
+      "friends-beaver"
+    ],
+    "productionLedgerWrites": 0
+  }
+}

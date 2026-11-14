@@ -6,8 +6,8 @@
   const meta={
     'friends-squirrel':['MA.1.A.2.a','Mengen zählen','0–20 Nüsse; Vierer- und Fünferstruktur'],
     'friends-bird':['D.2.A.1.b; D.1.A.1.b','Wörter lesen und Reime erkennen','25 konkrete Wortpaare; eingeführte Buchstaben'],
-    'friends-owl':['D.2.A.1.b; D.2.B.1.b','Kurze Sätze verstehen','Ein bis zwei kurze Sätze mit vertrauten Tierverben'],
-    'friends-beaver':['MA.2.A.1.a','Formen in einer Matrix erkennen','3 × 3; Kreis, Dreieck, Quadrat, Rechteck'],
+    'friends-owl':['D.2.A.1.b; D.2.B.1.b','Kurze Sätze verstehen','Ein bis zwei kurze Sätze über ein Tier; vertraute Tierverben'],
+    'friends-beaver':['MA.2.A.1.a','Formen in einer Matrix erkennen','Drei Reihen mit je drei Formen: Kreis, Dreieck, Quadrat'],
     'friends-mouse':['D.2.A.1.b','Wörter mit Bildern verbinden','25 vertraute Nomen; eingeführte Buchstaben'],
     'friends-hedgehog':['NMG.2.4.a; D.2.B.1.b','Tiermerkmale erkennen und Fragen lesen','25 kurze Tierfragen; drei Bildantworten'],
     'friends-fish':['MA.1.A.2.a','Fische zählen','0–20; Vierer- und Fünferstruktur'],
@@ -53,12 +53,32 @@
   reading.forEach((text,i)=>add('friends-mouse','word-'+i,text,{kind:'reading',prompt:'Welches Bild passt zum Wort?',text,answer:wordArt[text],choices:[wordArt[text],wordArt[reading[(i+3)%reading.length]],wordArt[reading[(i+7)%reading.length]]]}));
   const rhymes=C.pools.bird.map(t=>[t.target,t.answer,t.choices.find(c=>c!==t.answer)]).concat([['Maus','Haus','Hut'],['Fisch','Tisch','Ball'],['Stein','Bein','Boot'],['Schuh','Kuh','Baum'],['Nase','Hase','Ball'],['Dose','Rose','Hut'],['Tuch','Buch','Ball'],['Wurm','Turm','Boot'],['Kopf','Topf','Baum'],['Sand','Hand','Kuh']]);
   rhymes.forEach(([text,answer,wrong],i)=>add('friends-bird','rhyme-'+i,text+' – '+answer,{kind:'rhyme',prompt:'Welches Wort reimt sich?',text,picture:wordArt[text],answer,choices:[answer,wrong]}));
-  C.pools.owl.forEach((t,i)=>add('friends-owl','sentence-'+i,t.target,{kind:'reading',prompt:'Welches Bild passt zum Satz?',text:t.target,answer:t.answer,choices:t.choices}));
-  const pairs=[['Die Maus sitzt.','mouse-sit','Der Vogel fliegt.','bird-fly','mouse-run','bird-sit'],['Der Hase rennt.','hare-run','Der Fuchs schläft.','fox-sleep','hare-sit','fox-run'],['Die Katze sitzt.','cat-sit','Der Hund rennt.','dog-run','cat-sleep','dog-sleep'],['Die Ente fliegt.','duck-fly','Die Maus schläft.','mouse-sleep','duck-swim','mouse-run'],['Der Fisch schwimmt.','fish-swim','Der Vogel sitzt.','bird-sit','duck-swim','bird-fly'],['Der Vogel fliegt.','bird-fly','Der Hund schläft.','dog-sleep','bird-sit','dog-run'],['Der Fuchs rennt.','fox-run','Die Katze schläft.','cat-sleep','fox-sleep','cat-sit'],['Die Ente schwimmt.','duck-swim','Der Hase sitzt.','hare-sit','duck-fly','hare-run'],['Die Maus rennt.','mouse-run','Die Katze sitzt.','cat-sit','mouse-sit','cat-sleep'],['Der Hund rennt.','dog-run','Der Vogel sitzt.','bird-sit','dog-sleep','bird-fly']];
-  pairs.forEach(([a,ap,b,bp,aw,bw],i)=>{const answer='scene:'+ap+'+'+bp;add('friends-owl','pair-'+i,a+' '+b,{kind:'reading',prompt:'Welches Bild passt zu beiden Sätzen?',text:a+' '+b,answer,choices:[answer,'scene:'+aw+'+'+bp,'scene:'+ap+'+'+bw]});});
-  const shapes=['circle','triangle','square','rectangle'];let matrixN=0;
-  for(let omit=0;omit<4;omit++)for(let shift=0;shift<3;shift++)for(let gap=0;gap<3&&matrixN<25;gap++){
-    const line=shapes.filter((_,i)=>i!==omit),matrix=Array.from({length:9},(_,i)=>line[(i%3+Math.floor(i/3)+shift)%3]),hole=6+gap;
+  C.pools.owl.forEach((t,i)=>{
+    // Like the other short sentences, compare actions of the same animal.
+    // The fish has no alternative action drawing; use the sleeping mouse instead.
+    const q=i===4?{target:'Die Maus schläft.',answer:'mouse-sleep',choices:['mouse-sleep','mouse-sit','mouse-run']}:t;
+    add('friends-owl','sentence-'+i,q.target,{kind:'reading',prompt:'Welches Bild passt zum Satz?',text:q.target,answer:q.answer,choices:q.choices});
+  });
+  // Keep the saved pair IDs, but both sentences now describe one animal.
+  // Every answer card shows a single animal; distractors test its identity and action.
+  const pairs=[
+    ['Das ist eine Maus. Sie sitzt.','mouse-sit','mouse-run','bird-sit'],
+    ['Das ist ein Hase. Er rennt.','hare-run','hare-sit','fox-run'],
+    ['Das ist eine Katze. Sie sitzt.','cat-sit','cat-sleep','mouse-sit'],
+    ['Das ist eine Ente. Sie fliegt.','duck-fly','duck-swim','bird-fly'],
+    ['Das ist ein Vogel. Er sitzt.','bird-sit','bird-fly','hare-sit'],
+    ['Das ist ein Hund. Er schläft.','dog-sleep','dog-run','fox-sleep'],
+    ['Das ist ein Fuchs. Er rennt.','fox-run','fox-sleep','hare-run'],
+    ['Das ist ein Hase. Er sitzt.','hare-sit','hare-run','cat-sit'],
+    ['Das ist eine Maus. Sie rennt.','mouse-run','mouse-sit','dog-run'],
+    ['Das ist eine Katze. Sie schläft.','cat-sleep','cat-sit','mouse-sleep']
+  ];
+  pairs.forEach(([text,answer,...wrong],i)=>add('friends-owl','pair-'+i,text,{kind:'reading',prompt:'Welches Bild passt zu beiden Sätzen?',text,answer,choices:[answer,...wrong]}));
+  // Always include the triangle; never ask children to distinguish a square
+  // from a rectangle here. Different row orders/gaps retain 25 distinct tasks.
+  const shapes=['circle','triangle','square'],shapeOrders=[[0,1,2],[0,2,1],[1,0,2],[1,2,0],[2,0,1],[2,1,0]];let matrixN=0;
+  for(const order of shapeOrders)for(const shift of [1,2])for(let gap=0;gap<3&&matrixN<25;gap++){
+    const line=order.map(i=>shapes[i]),matrix=Array.from({length:9},(_,i)=>line[(i%3+Math.floor(i/3)*shift)%3]),hole=6+gap;
     add('friends-beaver','matrix-'+matrixN++,'Formenreihe '+matrixN,{kind:'matrix',prompt:'In jeder Reihe dieselben drei Formen. Welche fehlt?',matrix,gap:hole,answer:matrix[hole],choices:line});
   }
   const extra={

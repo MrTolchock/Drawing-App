@@ -12,8 +12,8 @@ Competences below are bounded practice references to [Zürich Zyklus 1](CURRICUL
 | --- | --- | --- | --- | ---: |
 | [Nüsse zählen](puzzles/friends-squirrel.md) | Eichhörnchen | MA.1.A.2.a — Mengen zählen | 0–20 Nüsse; Vierer- und Fünferstruktur | 25 |
 | [Reimpaare lesen](puzzles/friends-bird.md) | Blaumeise | D.2.A.1.b; D.1.A.1.b — Wörter lesen und Reime erkennen | 25 konkrete Wortpaare; eingeführte Buchstaben | 25 |
-| [Lies und zeig](puzzles/friends-owl.md) | Waldkauz | D.2.A.1.b; D.2.B.1.b — Kurze Sätze verstehen | Ein bis zwei kurze Sätze mit vertrauten Tierverben | 25 |
-| [Welche Form fehlt?](puzzles/friends-beaver.md) | Biber | MA.2.A.1.a — Formen in einer Matrix erkennen | 3 × 3; Kreis, Dreieck, Quadrat, Rechteck | 25 |
+| [Lies und zeig](puzzles/friends-owl.md) | Waldkauz | D.2.A.1.b; D.2.B.1.b — Kurze Sätze verstehen | Ein bis zwei kurze Sätze über ein Tier; vertraute Tierverben | 25 |
+| [Welche Form fehlt?](puzzles/friends-beaver.md) | Biber | MA.2.A.1.a — Formen in einer Matrix erkennen | Drei Reihen mit je drei Formen: Kreis, Dreieck, Quadrat | 25 |
 | [Wörter und Bilder](puzzles/friends-mouse.md) | Maus | D.2.A.1.b — Wörter mit Bildern verbinden | 25 vertraute Nomen; eingeführte Buchstaben | 25 |
 | [Tierrätsel](puzzles/friends-hedgehog.md) | Igel | NMG.2.4.a; D.2.B.1.b — Tiermerkmale erkennen und Fragen lesen | 25 kurze Tierfragen; drei Bildantworten | 25 |
 | [Fische zählen](puzzles/friends-fish.md) | Fisch | MA.1.A.2.a — Fische zählen | 0–20; Vierer- und Fünferstruktur | 25 |

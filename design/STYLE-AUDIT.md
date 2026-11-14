@@ -165,3 +165,19 @@ Measured in Chromium (software rendering) standing at each new site: at most 106
 **13 November 2026 (release 9.3.28).** The Rock's plateau gains a snow-capped peak (terrain, not a model), a summit cross with cairn and a snowman built from the world's materials, and the picture map is redrawn from the world with `tools/map/render.cjs`. Snow uses a cool white that turns slightly blue in hollows; ground cover is kept off it.
 
 **13 November 2026 (release 9.3.29).** Weather: occasional showers grey the sky and haze, dim the sun (softer shadows) and darken the ground while it is wet; rain is drawn as thin pale streaks with small splash rings, snow on the peak as round flakes. No new pictures or identity art.
+
+## Review comments — 14 November 2026 (9.3.34)
+
+Addressed all five nonempty comments in the [shared review ledger](https://github.com/MrTolchock/Drawing-App/blob/puzzle-review-data/reviews.json), read at file SHA `3a41f96c7ba51aaac50da119df7d554774f8b712`:
+
+| Reviewed item / comment | Revision |
+| --- | --- |
+| `friends-owl/sentence-4`: “Does not fit principle of rest” | Replace the lone fish/mouse comparison with the sleeping mouse and other mouse actions, matching the other short sentence tasks. |
+| `friends-owl/sentence-12`: “Dog looks like three ears” | Redraw the sleeping dog with a smooth crown and exactly two floppy ears. Replace only its existing atlas cell; all other cells retain exactly the same decoded pixels. |
+| `friends-owl/pair-0`: “Does not fit to others, just one animal at a time” | Revise all ten two-sentence tasks to describe one animal. Each answer picture contains one animal; distractors compare its action or identity. Preserve the saved iteration IDs and the 25-item pool. |
+| `friends-beaver/matrix-3`: “For all make more clear that there are three rows. Now looks like block of 9” | Group every matrix into three outlined horizontal rows with generous spacing and three cells each, including accessible table/row/cell semantics. |
+| `friends-beaver/matrix-20`: “Also better use triangle instead of quadrat and rectangle” | Every matrix now contains circle, triangle and square. Remove the square/rectangle comparison, retaining 25 distinct row-order/missing-position configurations. |
+
+The page, exact geometry palette and drawn learning art follow the existing visual specification. [Phone/tablet evidence and layout results](evidence/2026-11-14-review-feedback/report.json) cover all 25 matrices at both widths, single-animal answer cards, the revised dog and native touch answers.
+
+Regenerating the existing shared implementation fingerprint reopens prior sign-offs as **Geändert · Offen**, including unrelated approvals covered by that fingerprint. A read-only snapshot of the real ledger confirms all five comments remain available and all 68 latest approved records reopen; neither improved puzzle is released for child play. Historical decisions remain on the separate data branch. No production review writes or automatic editorial approvals were made.

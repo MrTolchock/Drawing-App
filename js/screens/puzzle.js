@@ -124,7 +124,15 @@
     scene.append(pairs);numeric();gate();
   }
   function renderMatrix(q) {
-    const matrix=h('div',{class:'puzzle-matrix'});q.matrix.forEach((id,i)=>matrix.append(h('span',{class:i===q.gap?'gap':''},i===q.gap?'?':shape(id))));
+    const matrix=h('div',{class:'puzzle-matrix',role:'table','aria-label':'Drei Reihen mit je drei Formen'});
+    for(let row=0;row<3;row++){
+      const line=h('div',{class:'puzzle-matrix-row',role:'row','aria-label':'Reihe '+(row+1)});
+      for(let col=0;col<3;col++){
+        const i=row*3+col;
+        line.append(h('span',{class:i===q.gap?'gap':'',role:'cell','aria-label':i===q.gap?'Fehlende Form':R.shapeNames[q.matrix[i]]},i===q.gap?'?':shape(q.matrix[i])));
+      }
+      matrix.append(line);
+    }
     scene.append(matrix);q.choices.forEach(id=>option(id,shape(id),R.shapeNames[id]));
   }
   function renderBuild(q) {

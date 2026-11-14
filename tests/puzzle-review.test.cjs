@@ -28,6 +28,25 @@ test('every active puzzle has at least 25 unique finite definitions, competence 
  }
  assert.equal(total,1048);
 });
+test('owl reading compares single animals and beaver rows use three distinct shapes',()=>{
+ const C=setup().FK.puzzleCatalogue,owl=C.iterations('friends-owl'),beaver=C.iterations('friends-beaver');
+ assert.equal(owl.length,25);assert.equal(beaver.length,25);
+ for(const it of owl){
+  const q=it.question;
+  assert.ok(q.choices.every(id=>!id.startsWith('scene:')),it.id+' has one animal per picture');
+  assert.ok(q.choices.includes(q.answer));
+  if(it.id.includes('/sentence-'))assert.ok(q.choices.every(id=>id.split('-')[0]===q.answer.split('-')[0]),it.id+' compares actions of the same animal');
+  else assert.match(q.text,/^Das ist (eine? \w+)\. (Sie|Er) (sitzt|rennt|schläft|fliegt)\.$/);
+ }
+ assert.equal(owl.find(it=>it.id==='friends-owl/sentence-4').question.answer,'mouse-sleep');
+ assert.equal(new Set(beaver.map(it=>C.canonical(it.question))).size,25);
+ for(const it of beaver){
+  const q=it.question;
+  assert.deepEqual([...q.choices].sort(),['circle','square','triangle']);
+  for(let row=0;row<3;row++)assert.deepEqual([...q.matrix.slice(row*3,row*3+3)].sort(),['circle','square','triangle'],it.id+' row '+row);
+  assert.equal(q.matrix[q.gap],q.answer);
+ }
+});
 test('five distinct questions are deterministic, restored verbatim and avoid the previous round',()=>{
  const {FK,memory}=setup(),C=FK.puzzleCatalogue,R=FK.puzzleRounds;
  for(const g of FK.friendsLibrary.catalogue()){

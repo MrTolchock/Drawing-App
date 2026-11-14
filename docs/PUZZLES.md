@@ -18,7 +18,7 @@ The parent-only gallery/review workbench and forest invitations use the same cat
 
 The catalogue references the Zürich Zyklus-1 [curriculum matrix](CURRICULUM.md). These are practice mappings, not claims of full competence attainment. Quantities require numeral familiarity; written questions require previously taught letters and familiar vocabulary. Tracing practises letter/digit forms, not pencil grip or independent handwriting fluency. Picture ordering alone does not prove reading. Memory enrichment has no subject-attainment claim.
 
-Variety comes from different quantities, operand combinations, missing parts, paths, arrangements, word targets and complete pictured stories. Some reviewed tasks have a partly completed board. Reading sentences and colour sentences explicitly include one- and two-sentence tasks; their difficulty boundary is visible for review. Neither seeds nor shuffled answer order count as extra iterations.
+Variety comes from different quantities, operand combinations, missing parts, paths, arrangements, word targets and complete pictured stories. Some reviewed tasks have a partly completed board. Reading sentences use one or two short sentences about a single animal, with one animal per answer picture; colour sentences also include one- and two-sentence tasks. Their difficulty boundary is visible for review. The shape matrix groups its three rows separately and always uses circle, triangle and square. Neither seeds nor shuffled answer order count as extra iterations.
 
 ## Continuity and verification
 
