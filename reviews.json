@@ -865,6 +865,15 @@
       "at": "2026-11-14T15:34:49.163Z",
       "seen": true,
       "operation": "5afa725a-3030-4c82-89c9-29260b990c33"
+    },
+    "friends-owl/pair-0@c4919cd96bf2707d": {
+      "key": "friends-owl/pair-0",
+      "revision": "c4919cd96bf2707d",
+      "status": "improve",
+      "note": "Does not fit to others, just one animal at a time",
+      "at": "2026-11-14T15:35:27.490Z",
+      "seen": true,
+      "operation": "c73cb701-f69c-49e1-89b7-73cee5bee2d6"
     }
   },
   "history": []
