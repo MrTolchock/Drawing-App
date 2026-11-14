@@ -964,6 +964,24 @@
       "at": "2026-11-14T15:36:39.502Z",
       "seen": true,
       "operation": "6f8ec79e-392f-49c7-9390-06703ffc8ac5"
+    },
+    "friends-beaver/matrix-1@e40f644e8cc42ac6": {
+      "key": "friends-beaver/matrix-1",
+      "revision": "e40f644e8cc42ac6",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-14T15:36:42.733Z",
+      "seen": true,
+      "operation": "a4254c2b-1b87-4881-b000-0fea5d2837c4"
+    },
+    "friends-beaver/matrix-2@61e038b4e965d5c4": {
+      "key": "friends-beaver/matrix-2",
+      "revision": "61e038b4e965d5c4",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-14T15:36:48.035Z",
+      "seen": true,
+      "operation": "d7d6070f-1466-435e-99d7-2902cc395007"
     }
   },
   "history": [
