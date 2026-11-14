@@ -85,7 +85,7 @@
     });
   });
   FK.screen('puzzle-review',{
-    build(root){root.classList.add('ff-settings-screen');body=h('div',{class:'review-body scroll'});root.append(FK.ui.topbar({title:'Puzzle-Prüfung',stars:false,onBack:()=>FK.go('settings')}),body);},
+    build(root){root.classList.add('ff-settings-screen');body=h('div',{class:'review-body scroll'});root.append(FK.ui.topbar({title:'Puzzle-Prüfung',stars:false,onBack:()=>FK.go('settings',{},{isBack:true})}),body);},
     enter(){if(!V.authorized){V.open();return;}draw();},
     leave(){notice='';FK.forestVoice.cancel();}
   });

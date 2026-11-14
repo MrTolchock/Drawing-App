@@ -57,8 +57,10 @@
       if(saving?.then){pendingSaves.add(saving);saving.then(()=>pendingSaves.delete(saving),()=>pendingSaves.delete(saving));}
     }
     if (prev && !opts.replace && !opts.isBack) stack.push(prev);
-    // Forest and games book are root entries; discard stale return screens there.
-    if (name === 'forest-book' || name === 'forest' || name === 'friends') stack.length = 0;
+    // Forest, games book and settings are root entries; discard stale return screens there. Settings must be one:
+    // its back button returns to the game, and the puzzle review returns to settings, so a remembered review
+    // screen behind settings would send the two back and forth and the game could not be reached again.
+    if (name === 'forest-book' || name === 'forest' || name === 'friends' || name === 'settings') stack.length = 0;
     while (stack.length && stack[stack.length - 1].name === name) stack.pop();
     const root = rootFor(name);
     // Waldbuch: the friend who set the puzzle colours its page (ribbon, tag, twig items).

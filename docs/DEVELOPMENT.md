@@ -10,6 +10,7 @@ node tools/check-design.cjs
 node --test tests/*.test.cjs
 node tests/design-system-browser.cjs
 node tests/letter-sessions-browser.cjs
+node tests/navigation-browser.cjs   # back buttons from settings, puzzle review and its puzzles lead out to the game
 node tests/play-log-browser.cjs
 node tests/puzzle-review-browser.cjs
 node tests/review-sync-browser.cjs
