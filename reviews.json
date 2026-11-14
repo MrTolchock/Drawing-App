@@ -2570,11 +2570,11 @@
     "friends-owl/sentence-4@31385848781db4b4": {
       "key": "friends-owl/sentence-4",
       "revision": "31385848781db4b4",
-      "status": "approved",
-      "note": "",
-      "at": "2026-11-14T16:21:01.794Z",
+      "status": "improve",
+      "note": "Why three pictures now, stick to two in whole game",
+      "at": "2026-11-14T16:21:51.456Z",
       "seen": true,
-      "operation": "98d09025-a06f-430e-b438-42dd24f49b93"
+      "operation": "3f7ee070-3cbe-430a-891b-de080ac657c1"
     },
     "friends-owl/sentence-5@02cd3a739a7a26a3": {
       "key": "friends-owl/sentence-5",
@@ -2604,6 +2604,15 @@
       "at": "2026-11-14T15:33:42.049Z",
       "seen": true,
       "operation": "02e4ad7b-c0d9-4121-8cda-501b89ab82ae"
+    },
+    {
+      "key": "friends-owl/sentence-4",
+      "revision": "31385848781db4b4",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-14T16:21:01.794Z",
+      "seen": true,
+      "operation": "98d09025-a06f-430e-b438-42dd24f49b93"
     }
   ]
 }
