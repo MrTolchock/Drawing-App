@@ -10,6 +10,7 @@ import {createStreamer, NEAR} from './world/streamer.js';
 import {TAU, rng, lerp} from './world/noise.js';
 import {createLife} from './world/life.js';
 import {createRain} from './world/rain.js';
+import {createFootprints} from './world/footprints.js';
 import {createWeather} from './weather.js';
 
 const WORLD = createWorld();
@@ -96,6 +97,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   function sprite(map, h, order = 2, anchor = 0) { const s = new THREE.Sprite(new THREE.SpriteMaterial({map, transparent: true, toneMapped: false, depthWrite: false, alphaTest: .02})); s.center.set(.5, anchor); s.renderOrder = order; s.userData.h = h; scene.add(s); return s; }
   function size(s, h = s.userData.h) { const img = s.material.map.image, a = img && img.width ? img.width / img.height : 1; s.scale.set(h * a, h, 1); }
   const life = createLife({scene, canvasTex, groundY, walkable, terrain: WORLD.terrain, random: R, fires: WORLD.layout.WONDERS.filter(w => w.fire).map(w => w.fire), shaftMat});   // falling leaves, butterflies, dragonflies, little birds
+  const prints = createFootprints({scene, canvasTex, ground: (x, z) => WORLD.ground(x, z)});
   const puffs = Array.from({length: 8}, () => { const s = sprite(dustTex, .4, 1, .5); s.visible = false; return {s, life: 0}; });
   const motes = new THREE.Points(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(Array.from({length: 240}, (_, i) => i % 3 === 1 ? .4 + R() * 5 : (R() * 2 - 1) * 15 + (i % 3 === 0 ? 1 : -5)), 3)), new THREE.PointsMaterial({size: .08, map: glow, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, opacity: .8}));
   motes.name = 'pollen'; scene.add(motes);
@@ -244,6 +246,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   function listen() {
     const T = WORLD.terrain, b = T.biome(pos.x, pos.z, soundBiome), c = T.onCrossing(pos.x, pos.z), pa = T.pathAt(pos.x, pos.z);
     sound.ground = c ? (c.c.kind === 'dam' ? 'sticks' : 'wood') : b.snow > .5 ? 'snow' : b.rock > .6 ? 'rock' : b.swamp > .5 ? 'wet' : pa.d < pa.w / 2 + .15 ? 'earth' : b.meadow > .5 ? 'meadow' : b.spruce > .5 ? 'needles' : 'grass';
+    { const st = T.site(pos.x, pos.z); sound.bank = (st.sd - st.sw / 2 < 1.1) || (st.still === st.still && b.swamp < .5 && st.h - st.still < .4); }
     sound.trees = (1 - b.meadow) * (1 - b.swamp * .6) * (1 - b.rock * .7) * (1 - b.snow); sound.snow = b.snow; sound.meadow = b.meadow; sound.swamp = b.swamp; sound.spruce = b.spruce;
     let near = Infinity; for (const s of T.streams) for (let i = 0; i <= s.N; i += 6) { const q = s.samples[i], d = (q.x - pos.x) ** 2 + (q.z - pos.z) ** 2; if (d < near) near = d; }
     sound.brook = THREE.MathUtils.clamp(1 - (Math.sqrt(near) - 1.2) / 13, 0, 1);
@@ -275,6 +278,8 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     let closest = null, best = 3.2; for (const [id, p] of Object.entries(forestPlaces)) { const d = Math.hypot(p.x - pos.x, p.z - pos.z); if (d < best) { closest = id; best = d; } } if (closest !== near) { near = closest; onNear(near); }
     const base = groundY(pos.x, pos.z), doing = react(dt, moving); fox.position.set(pos.x, base, pos.z); foxRig.update(dt, {moving, speed, reduced, ...(doing || {})});
     foxShadow.position.set(pos.x, base + .04, pos.z);
+    { const g = sound.ground, soft = g === 'earth' || g === 'grass' || g === 'meadow' || g === 'needles', where = g === 'snow' ? 'snow' : g === 'wet' || (sound.bank && soft) ? 'mud' : soft && weather.state.wet > .25 ? 'wet' : null;
+      prints.update(dt, pos, fox.rotation.y, moving ? where : null, reduced); }
     // Only characters in the near ring are drawn; at most six are animated (Fuchs always).
     const others = [...Object.entries(friends).map(([id, f]) => ({id, f, d: Math.hypot(f.x - pos.x, f.z - pos.z)})), {id: 'mailman', d: mailPos.distanceTo(pos)}].sort((a, b) => a.d - b.d);
     let animated = 1;
@@ -330,6 +335,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     stop() { destination = null; path = []; arrival = null; ring.visible = false; vel.set(0, 0); },
     restored() { renderer.shadowMap.needsUpdate = true; },
     get life() { return life.counts; },
+    get prints() { return prints.count; },
     budget() { const c = streamer.counts, g = streamer.gaps(); return {liveTiles: c.near, farTiles: c.far, animated: animatedCount, holes: g.holes, plain: g.plain, jobs: c.jobs, slowestStep: streamer.slowest.kind, slowestStepMs: streamer.slowest.ms}; },
     set speed(k) { speedScale = k; },
     pins() { return [...pins, {id: 'mailman', point: new THREE.Vector3(mailPos.x, groundY(mailPos.x, mailPos.z) + 2.2, mailPos.z)}].map(p => { const q = p.point.clone().project(camera); return {id: p.id, x: (q.x * .5 + .5) * width, y: (-q.y * .5 + .5) * height, visible: q.z < 1 && Math.abs(q.x) < 1.02 && q.y > -1.02 && q.y < 1.12 && p.point.distanceTo(pos) < NEAR}; }); },
