@@ -36,5 +36,20 @@
     "changedPuzzlesReleased": false,
     "carriedOver": false,
     "productionLedgerWrites": 0
+  },
+  "offline": {
+    "version": "9.3.37",
+    "reloadPassed": true,
+    "newAtlasesDecode": true,
+    "files": [
+      {
+        "path": "assets/waldatelier/forest-wildlife.webp",
+        "sha256": "f152dfbc074a80d29d6fc91a1d7cbef62a3bec70b253d94bbaae60f50a1de1e8"
+      },
+      {
+        "path": "assets/waldatelier/rhyme-vocabulary.webp",
+        "sha256": "7017fb46ace669eb61fe475135e09f2feb1d87932d4248c7933f48653af943b3"
+      }
+    ]
   }
 }
