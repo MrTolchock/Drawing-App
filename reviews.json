@@ -770,11 +770,11 @@
     "friends-owl/sentence-4@e3ca0e3ddeaddb03": {
       "key": "friends-owl/sentence-4",
       "revision": "e3ca0e3ddeaddb03",
-      "status": "approved",
-      "note": "",
-      "at": "2026-11-14T15:33:42.049Z",
+      "status": "improve",
+      "note": "Does not fit principle of rest",
+      "at": "2026-11-14T15:36:08.903Z",
       "seen": true,
-      "operation": "02e4ad7b-c0d9-4121-8cda-501b89ab82ae"
+      "operation": "44f8e1b5-c5e6-4491-8c3a-6beba9b9b54b"
     },
     "friends-owl/sentence-5@0a13579e80b553fa": {
       "key": "friends-owl/sentence-5",
@@ -957,5 +957,15 @@
       "operation": "82f59740-c717-4a99-b800-5eb6cc272bc5"
     }
   },
-  "history": []
+  "history": [
+    {
+      "key": "friends-owl/sentence-4",
+      "revision": "e3ca0e3ddeaddb03",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-14T15:33:42.049Z",
+      "seen": true,
+      "operation": "02e4ad7b-c0d9-4121-8cda-501b89ab82ae"
+    }
+  ]
 }
