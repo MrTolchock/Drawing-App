@@ -1972,6 +1972,15 @@
       "at": "2026-11-14T15:57:11.785Z",
       "seen": true,
       "operation": "8628efb8-8818-41a5-b17f-406a9cb9d8e5"
+    },
+    "friends-hedgehog/riddle-0@86794cbd325b3a9b": {
+      "key": "friends-hedgehog/riddle-0",
+      "revision": "86794cbd325b3a9b",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-14T15:58:18.002Z",
+      "seen": true,
+      "operation": "e08be679-72f9-4e41-9888-633df2bf59fc"
     }
   },
   "history": [
