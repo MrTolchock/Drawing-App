@@ -23,3 +23,16 @@
 
 .review-connection{padding:16px;border:1px solid #d8c5a1;border-radius:16px;background:#fffdf7;margin:16px 0;overflow-wrap:anywhere}.review-connection h3{margin-top:0}.review-connection label{display:block;margin:12px 0}.review-connection input{display:block;width:100%;min-height:48px;max-width:100%;padding:10px;border:1px solid #a18b68;border-radius:10px;background:#fffaf0;font:18px/1.4 var(--read)}.review-connection details{margin:12px 0}.review-connection summary{cursor:pointer;min-height:48px;padding:12px 0}.review-connection a{color:#49613a;overflow-wrap:anywhere}.review-save-state{font:16px/1.5 var(--read);overflow-wrap:anywhere}.review-save-state[data-sync=error],.review-save-state[data-sync=conflict],.review-connection[data-sync=error]>[role=status],.review-connection[data-sync=conflict]>[role=status]{color:#7b3d23}.review-conflicts>section{padding:12px;margin-top:12px;border:1px solid #bb9e78;border-radius:12px}.review-conflicts .btn{margin:6px}
 .ff-settings-body .review-connection .btn{width:auto;height:auto;min-height:52px;max-width:100%;padding:12px 16px;font:700 17px/1.4 var(--read);white-space:normal}.ff-settings-body .review-connection .lbl{font:inherit;white-space:normal}
+/* Puzzle-Galerie: friend tabs on top, signed-off puzzles below */
+.gallery-friends{display:flex;flex-wrap:wrap;gap:10px;margin:6px 0 16px}
+.gallery-friend{display:flex;flex-direction:column;align-items:center;gap:4px;min-width:84px;min-height:96px;padding:8px 10px;border-radius:18px;border:2px solid #c9b48c;background:#fffaf0;font:inherit;color:inherit;position:relative}
+.gallery-friend[aria-pressed=true]{border-color:#5f7d31;background:#eef4dd;box-shadow:0 0 0 3px #5f7d3144}
+.gallery-friend:disabled{opacity:.45}
+.gallery-friend :is(.forest-portrait,.ff-picture,.ff-ui-art,img,svg){width:52px;height:52px}
+.gallery-friend small{font-size:15px;font-weight:700}
+.gallery-count{position:absolute;top:4px;right:6px;min-width:22px;height:22px;border-radius:11px;background:#5f7d31;color:#fff;font-size:13px;font-weight:700;line-height:22px;text-align:center}
+.gallery-play{margin-top:4px;padding:4px 12px;border-radius:12px;background:#5f7d31;color:#fff;font-weight:700}
+.gallery-empty{font-size:18px;margin:16px 0}
+.setting-buttons{display:flex;flex-wrap:wrap;gap:12px}
+.setting-buttons .btn{width:auto;min-width:var(--btn-w);height:auto;min-height:56px;padding:10px 20px}
+.setting-buttons .btn .lbl{white-space:normal}

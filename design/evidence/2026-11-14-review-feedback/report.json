@@ -35,6 +35,9 @@
       "friends-owl",
       "friends-beaver"
     ],
-    "productionLedgerWrites": 0
-  }
+    "productionLedgerWrites": 0,
+    "carriedOver": false
+  },
+  "release": "9.3.36",
+  "implementation": "143300cd21706eb165b93f88161c862e0cb6ceea2d5bd7f72a3304c4e62552f5"
 }

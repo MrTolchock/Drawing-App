@@ -43,7 +43,7 @@
       updateButton=FK.ui.btn({label:'Nach Updates suchen',onClick:()=>FK.updates.check()});
       updateStatus=h('p',{class:'ff-update-status',role:'status','aria-live':'polite'});
       const updates=h('section',{class:'setting-card ff-update-settings'},h('div',{class:'setting-head'},h('b',{text:'App-Version'})),h('p',{class:'ff-settings-version',text:FK.APP_NAME+' '+FK.VERSION}),updateButton,updateStatus);
-      const review=h('section',{class:'setting-card ff-puzzle-review-settings'},h('b',{text:'Puzzle-Galerie und Prüfung'}),h('p',{text:'Alle Puzzles ansehen. Jede Aufgabe vor dem Spielen prüfen und freigeben. Kinder puzzeln nur beim Freund auf ihrem Brief.'}),FK.ui.btn({label:'Puzzle-Galerie öffnen',onClick:()=>FK.puzzleReview.open()}));
+      const review=h('section',{class:'setting-card ff-puzzle-review-settings'},h('b',{text:'Puzzle-Galerie und Puzzle-Prüfung'}),h('p',{text:'Galerie: freigegebene Puzzles nach Freund ansehen und eine Runde mit fünf Aufgaben spielen. Prüfung: jede Aufgabe vor dem Spielen prüfen und freigeben. Kinder puzzeln nur beim Freund auf ihrem Brief.'}),h('div',{class:'setting-buttons'},FK.ui.btn({label:'Puzzle-Galerie öffnen',onClick:()=>FK.puzzleReview.openGallery()}),FK.ui.btn({label:'Puzzle-Prüfung öffnen',onClick:()=>FK.puzzleReview.open()})));
       body.append(letters,sounds,font,review,FK.reviewConnection.panel(),developer,records,updates);showUpdate();
     },
     leave(){}

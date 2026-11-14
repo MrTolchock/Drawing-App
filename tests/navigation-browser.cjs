@@ -15,8 +15,8 @@ const BASE=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000';
   for(let round=0;round<2;round++){
    await settings();
    // into the review and back, twice, then into a puzzle preview from the review and back
-   for(let k=0;k<2;k++){await page.getByRole('button',{name:'Puzzle-Galerie öffnen',exact:true}).click();await page.waitForFunction(()=>FK.current()==='puzzle-review');await back();assert.equal(await current(),'settings','review back → settings');}
-   await page.getByRole('button',{name:'Puzzle-Galerie öffnen',exact:true}).click();await page.waitForFunction(()=>FK.current()==='puzzle-review');
+   for(let k=0;k<2;k++){await page.getByRole('button',{name:'Puzzle-Prüfung öffnen',exact:true}).click();await page.waitForFunction(()=>FK.current()==='puzzle-review');await back();assert.equal(await current(),'settings','review back → settings');}
+   await page.getByRole('button',{name:'Puzzle-Prüfung öffnen',exact:true}).click();await page.waitForFunction(()=>FK.current()==='puzzle-review');
    const id=await page.evaluate(()=>Object.keys(FK.puzzleCatalogue.meta)[0]),it=await page.evaluate(id=>FK.puzzleCatalogue.iterations(id)[0].id,id);
    assert.ok(await page.evaluate(([id,it])=>FK.puzzleReview.preview(id,it),[id,it]),'preview opens');await page.waitForTimeout(400);assert.notEqual(await current(),'puzzle-review');
    await back();assert.equal(await current(),'puzzle-review','puzzle back → review');

@@ -166,7 +166,7 @@ Measured in Chromium (software rendering) standing at each new site: at most 106
 
 **13 November 2026 (release 9.3.29).** Weather: occasional showers grey the sky and haze, dim the sun (softer shadows) and darken the ground while it is wet; rain is drawn as thin pale streaks with small splash rings, snow on the peak as round flakes. No new pictures or identity art.
 
-## Review comments — 14 November 2026 (9.3.34)
+## Review comments — 14 November 2026 (9.3.36)
 
 Addressed all five nonempty comments in the [shared review ledger](https://github.com/MrTolchock/Drawing-App/blob/puzzle-review-data/reviews.json), read at file SHA `3a41f96c7ba51aaac50da119df7d554774f8b712`:
 
@@ -180,4 +180,4 @@ Addressed all five nonempty comments in the [shared review ledger](https://githu
 
 The page, exact geometry palette and drawn learning art follow the existing visual specification. [Phone/tablet evidence and layout results](evidence/2026-11-14-review-feedback/report.json) cover all 25 matrices at both widths, single-animal answer cards, the revised dog and native touch answers.
 
-Regenerating the existing shared implementation fingerprint reopens prior sign-offs as **Geändert · Offen**, including unrelated approvals covered by that fingerprint. A read-only snapshot of the real ledger confirms all five comments remain available and all 68 latest approved records reopen; neither improved puzzle is released for child play. Historical decisions remain on the separate data branch. No production review writes or automatic editorial approvals were made.
+Regenerating the shared puzzle implementation fingerprint reopens prior sign-offs as **Geändert · Offen**, including unrelated approvals covered by that fingerprint. The 9.3.35 gallery and release-independent revision handling are retained; the former-implementation carry-over list is cleared because this release changes actual puzzle content, art and rendering. A read-only snapshot of the real ledger confirms all five comments remain available and all 68 latest approved records reopen; neither improved puzzle is released for child play. Historical decisions remain on the separate data branch. No production review writes or automatic editorial approvals were made.

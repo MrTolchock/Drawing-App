@@ -29,7 +29,7 @@ The ledger has `format: farbtupf-review-ledger`, `version: 1`, an `entries` obje
 
 Legacy approval records without matching inspection evidence are retained with their original status in `legacyStatus`, but remain pending until reviewed.
 
-Different revisions coexist: an older app cannot replace the newer revision's sign-off. Content/difficulty/presentation changes still reopen their relevant current reviews. Do not clear the data branch when deploying code or merge it into the game branch. Empty initial data ships no approvals.
+Different revisions coexist: an older app cannot replace the newer revision's sign-off. A revision covers only what decides how a puzzle looks and plays (its content, the puzzle screens and their styles, pictures and fonts; list in `tools/puzzle-catalogue.cjs`), so releases that do not touch the puzzles keep every review. Reviews made on earlier releases whose puzzles are unchanged are listed there (`FORMER`) and carried over to the current revision on start and after each sync, then uploaded like any other change; empty that list whenever a puzzle's look or behaviour changes. Content/difficulty/presentation changes still reopen their relevant current reviews. Do not clear the data branch when deploying code or merge it into the game branch. Empty initial data ships no approvals.
 
 Authenticated updates use the GitHub Contents API with the current file SHA, reread/retry concurrent changes, and retain an idempotent outbox across interrupted responses. Large-file reads use immutable Git blobs. Credentials go only to `api.github.com` in the Authorization header, never to public raw-file reads or commit content. The app reads the public ledger at startup, on resume/reconnection and during periodic foreground checks.
 

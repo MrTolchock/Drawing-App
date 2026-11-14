@@ -1,6 +1,6 @@
 # Review every puzzle before children play
 
-Open **Einstellungen** through its existing adult calculation, then tap **Puzzle-Galerie öffnen**. The gallery opens directly, without another calculation. A direct review URL still asks once before opening. Published reviews live on GitHub and restore automatically across browsers/installations. Nothing is preapproved.
+Open **Einstellungen** through its existing adult calculation, then tap **Puzzle-Prüfung öffnen**. The review opens directly, without another calculation. **Puzzle-Galerie öffnen** is separate: it lists only puzzles signed off for children, with a tab per friend on top, and a card plays a normal round of five tasks (never saved as the child's round, never completing a letter, not observed by the usage log; `js/screens/puzzle-gallery.js`). A direct review URL still asks once before opening. Published reviews live on GitHub and restore automatically across browsers/installations. Nothing is preapproved.
 
 ## Inspect and decide
 
