@@ -3061,6 +3061,33 @@
       "at": "2026-11-14T16:28:53.415Z",
       "seen": true,
       "operation": "045bf65d-688a-4f33-af87-18e4033e22a6"
+    },
+    "friends-mouse/word-23@07f68ec0b4c68a4a": {
+      "key": "friends-mouse/word-23",
+      "revision": "07f68ec0b4c68a4a",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-14T16:28:57.632Z",
+      "seen": true,
+      "operation": "83e6b3ea-7331-450e-bb60-4a2b629d1bda"
+    },
+    "friends-mouse/word-24@2cda24aeaff0901e": {
+      "key": "friends-mouse/word-24",
+      "revision": "2cda24aeaff0901e",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-14T16:28:59.881Z",
+      "seen": true,
+      "operation": "b4922bf8-751f-4d3f-89d8-3d3577148532"
+    },
+    "puzzle:friends-mouse@ffb7b53e5b18899c": {
+      "key": "puzzle:friends-mouse",
+      "revision": "ffb7b53e5b18899c",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-14T16:29:03.009Z",
+      "seen": true,
+      "operation": "9bb15663-44b5-41d0-9633-d393b0843ca4"
     }
   },
   "history": [
