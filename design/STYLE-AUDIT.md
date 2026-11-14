@@ -245,3 +245,5 @@ The mailman (same model) also walks his own round on the paths near the den betw
 **9.3.57.** Wind: grass, flowers, ferns and tree leaves sway in slow waves that travel across the ground, with gusts and calm spells, more in the rain, in the meadow and high on the Rock; still with reduced motion. Same plant and leaf materials (vertex shader only).
 
 **9.3.58.** Ground detail near Fuchs (`world/big/decals.js`): small drawn things lying flat on the woodland floor, painted in code in the world's palette on one atlas: root flares at the foot of every tree, moss cushions and lichen near trunks, spruce needles with cones, pebbles and twigs along the path edges, trodden patches on the paths and fallen beech leaves. Near tiles only, one extra draw call per tile.
+
+**9.3.59.** Distance: the band that hides the world's edge is painted with layers seen above the trees, a far row of snowy Alpine peaks, hazy blue-green hills and the wooded edge, each melting further into the area's haze (and following the time of day and weather through the haze colour).

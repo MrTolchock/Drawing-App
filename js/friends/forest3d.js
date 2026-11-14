@@ -33,7 +33,21 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
       fragmentShader: 'uniform vec3 top,horizon,sun;uniform float glow;varying vec3 vD;void main(){float h=clamp(vD.y,0.,1.);vec3 c=mix(horizon,top,pow(h,.55));float g=pow(max(dot(vD,sun),0.),24.);c+=vec3(1.,.86,.55)*g*.6*glow;gl_FragColor=vec4(c,1.);\n#include <tonemapping_fragment>\n#include <colorspace_fragment>\n}'}));
     sky.renderOrder = -10; sky.frustumCulled = false; sky.name = 'sky'; camera.add(sky); }
   // A painted horizon band hides the edge of the world beyond the haze.
-  const horizon = new THREE.Mesh(new THREE.CylinderGeometry(84, 84, 30, 48, 1, true), new THREE.MeshBasicMaterial({color: WORLD.fog.color, side: THREE.BackSide, fog: false, depthWrite: false, transparent: true, opacity: .92}));
+  // Layers of distance painted round the world, seen in the strip above the trees: a far row of snowy Alpine peaks,
+  // hazy blue-green hills and the wooded edge, each melting further into the area's haze. The band is plain haze
+  // below the ridges, so it still hides the edge of the world.
+  const ridgeTex = canvasTex(2048, 256, (g, w, h) => {
+    const ridge = (base, amp, fq, seed, sharp) => x => { let y = 0; for (let k = 1; k <= 5; k++) { const f = fq * k, s = Math.sin(x / w * TAU * f + seed * k * 1.7); y += (sharp ? 1 - Math.abs(s) : .5 + .5 * s) * amp / k; } return base - y; };
+    const fillRidge = (fn, colour, snow) => { g.beginPath(); g.moveTo(0, h); for (let x = 0; x <= w; x += 4) g.lineTo(x, fn(x)); g.lineTo(w, h); g.closePath(); g.fillStyle = colour; g.fill();
+      if (snow) { g.save(); g.clip(); g.fillStyle = 'rgba(250,252,255,.95)'; g.beginPath(); g.moveTo(0, 0); for (let x = 0; x <= w; x += 4) g.lineTo(x, Math.min(snow + 10 * Math.sin(x * .05) + 6 * Math.sin(x * .17), h)); g.lineTo(w, 0); g.closePath(); g.fill(); g.restore(); } };
+    fillRidge(ridge(150, 95, 3, .4, true), '#a3b3c6', 92);          // the Alps far away, snow on their tops
+    fillRidge(ridge(178, 44, 5, 2.1, false), '#94ab9a', 0);         // the hills of the Mittelland
+    fillRidge(ridge(206, 22, 11, 4.3, false), '#7b9466', 0);        // the wooded edge, close
+    g.fillStyle = '#7b9466'; g.fillRect(0, 214, w, h - 214); });
+  const horizon = new THREE.Mesh(new THREE.CylinderGeometry(84, 84, 30, 64, 1, true), new THREE.ShaderMaterial({side: THREE.BackSide, fog: false, depthWrite: false, transparent: true,
+    uniforms: {uMap: {value: ridgeTex}, uHaze: {value: WORLD.fog.color}},
+    vertexShader: 'varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',
+    fragmentShader: 'uniform sampler2D uMap;uniform vec3 uHaze;varying vec2 vUv;void main(){vec4 t=texture2D(uMap,vUv);float far=1.-smoothstep(.0,.55,1.-vUv.y);vec3 c=mix(t.rgb,uHaze,.26+.24*far);gl_FragColor=vec4(mix(uHaze,c,t.a),max(t.a,step(vUv.y,.62))*.95);\n#include <tonemapping_fragment>\n#include <colorspace_fragment>\n}'}));
   horizon.position.y = 4; horizon.renderOrder = -9; horizon.name = 'horizon'; scene.add(horizon);
   const hemi = new THREE.HemisphereLight('#e4f0ff', '#8a7444', 1.35); scene.add(hemi);
   const sun = new THREE.DirectionalLight('#ffe0ab', 2.6); scene.add(sun, sun.target);
@@ -288,7 +302,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     if (shot) { shot.t += dt; if (shot.t > shot.dur + .6) shot = null; }
   }
   const shotK = () => { if (!shot) return 0; const u = shot.t / shot.dur, e = x => x <= 0 ? 0 : x >= 1 ? 1 : x * x * (3 - 2 * x); return e(u / .35) * (1 - e((shot.t - shot.dur) / .6)); };
-  function placeCamera(k) { const base = narrow ? [0, 10, 14.4] : [0, 9, 14], e = shotK(), z = zoomUser * zoomAuto * lerp(1, .58, e), off = [0, base[1] * z * lerp(1, .82, e), base[2] * z]; camera.position.lerp(new THREE.Vector3(focus.x + off[0], focus.y + off[1], focus.z + off[2]), k); camera.position.y = Math.max(camera.position.y, WORLD.ground(camera.position.x, camera.position.z) + 3.5); camera.lookAt(focus.x, focus.y + 1.4, focus.z - 3.2); camera.updateMatrixWorld(); foxView.value.set(pos.x, groundY(pos.x, pos.z) + .9, pos.z).applyMatrix4(camera.matrixWorldInverse); fill.position.copy(camera.position).add(new THREE.Vector3(0, 4, 0)); fill.target.position.copy(focus); fill.target.updateMatrixWorld(); horizon.position.x = camera.position.x; horizon.position.z = camera.position.z - 20; }
+  function placeCamera(k) { const base = narrow ? [0, 10, 14.4] : [0, 9, 14], e = shotK(), z = zoomUser * zoomAuto * lerp(1, .58, e), off = [0, base[1] * z * lerp(1, .82, e), base[2] * z]; camera.position.lerp(new THREE.Vector3(focus.x + off[0], focus.y + off[1], focus.z + off[2]), k); camera.position.y = Math.max(camera.position.y, WORLD.ground(camera.position.x, camera.position.z) + 3.5); camera.lookAt(focus.x, focus.y + 1.4, focus.z - 3.2); camera.updateMatrixWorld(); foxView.value.set(pos.x, groundY(pos.x, pos.z) + .9, pos.z).applyMatrix4(camera.matrixWorldInverse); fill.position.copy(camera.position).add(new THREE.Vector3(0, 4, 0)); fill.target.position.copy(focus); fill.target.updateMatrixWorld(); horizon.position.set(camera.position.x, camera.position.y - 4, camera.position.z - 20); }
   function publishMailPosition() { const p = forestPlaces.mailman; p.x = mailPos.x; p.z = mailPos.z; p.pu = THREE.MathUtils.clamp(.5 + mailPos.x * .023, .07, .93); p.pv = THREE.MathUtils.clamp(.49 + mailPos.z * .025, .1, .9); }
   function summonMailman() {
     let chosen = null; for (const radius of [5.4, 6, 6.6, 7.2]) { for (let i = 0; i < 32; i++) { const a = -.5 + i / 32 * TAU, candidate = new THREE.Vector3(pos.x + Math.cos(a) * radius, 0, pos.z + Math.sin(a) * radius); if (walkable(candidate.x, candidate.z) && clear(pos, candidate, true)) { chosen = candidate; break; } } if (chosen) break; }
