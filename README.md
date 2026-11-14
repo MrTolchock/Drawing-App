@@ -13,6 +13,7 @@ The table and picture pile remain part of the den painting; drawing and saved-pi
 | Document | Purpose |
 | --- | --- |
 | [Visual style](design/VISUAL-STYLE.md) | Drawn/rendered boundaries, characters, pictures, icons, fonts and surfaces |
+| [Making drawn pictures](design/illustrations/README.md) | Image-generation prompts, style references, editable source sheets and atlas preparation for Claude and other assistants |
 | [Puzzle blueprint](design/PUZZLE-BLUEPRINT.md) | Required page, interaction, five iterations and review process |
 | [Consistency audit](design/STYLE-AUDIT.md) | Findings, corrections and real-game evidence |
 | [Puzzle catalogue](docs/PUZZLE-CATALOGUE.md) | Every puzzle, competence, difficulty and iteration |

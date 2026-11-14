@@ -1,0 +1,40 @@
+{
+  "format": "waldpost-illustration-atlas",
+  "version": 1,
+  "source": "sources/forest-wildlife-padded.png",
+  "output": "../../assets/waldatelier/forest-wildlife.webp",
+  "columns": 4,
+  "rows": 4,
+  "cellPixels": 320,
+  "subjectPixels": 256,
+  "alphaThresholdPercent": 15,
+  "provenance": {
+    "date": "2026-11-14",
+    "tool": "ChatGPT hosted image-generation tool",
+    "transparent_background": true,
+    "reference": "../../assets/waldatelier/forest-actions.webp",
+    "generationPrompt": "prompts/forest-wildlife-generation.txt",
+    "paddingPrompt": "prompts/forest-wildlife-padding.txt",
+    "sourceSha256": "6747767174eea7a29e1a57bbda20f027c8d33f4419c1bec9e8470ceae5c7ecb6",
+    "imageMagick": "7.1.1-43 Q16",
+    "sRGBProfileSha256": "2a92d4bae450b76d8b0aa42193df974d75f62738ecebf74f01c5e75b12a95796"
+  },
+  "subjects": [
+    {"id":"squirrel-sit","label":"Eichhörnchen sitzt"},
+    {"id":"squirrel-run","label":"Eichhörnchen rennt"},
+    {"id":"hedgehog-walk","label":"Igel läuft"},
+    {"id":"hedgehog-sleep","label":"Igel schläft"},
+    {"id":"badger-walk","label":"Dachs läuft"},
+    {"id":"badger-sleep","label":"Dachs schläft"},
+    {"id":"roe-stand","label":"Reh steht"},
+    {"id":"roe-run","label":"Reh rennt"},
+    {"id":"frog-sit","label":"Frosch sitzt"},
+    {"id":"frog-jump","label":"Frosch springt"},
+    {"id":"forest-woodpecker","label":"Buntspecht"},
+    {"id":"forest-bat","label":"Fledermaus"},
+    {"id":"forest-owl","label":"Waldkauz"},
+    {"id":"forest-robin","label":"Rotkehlchen"},
+    {"id":"forest-lynx","label":"Luchs"},
+    {"id":"forest-marten","label":"Baummarder"}
+  ]
+}
