@@ -2854,6 +2854,24 @@
       "at": "2026-11-14T16:27:10.135Z",
       "seen": true,
       "operation": "4c0c73f1-91ed-41ca-a880-c03fe6df86a0"
+    },
+    "friends-mouse/word-0@74da50a3f9af78d7": {
+      "key": "friends-mouse/word-0",
+      "revision": "74da50a3f9af78d7",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-14T16:27:32.357Z",
+      "seen": true,
+      "operation": "fad37743-b153-41a7-bdf8-09db3407f541"
+    },
+    "friends-mouse/word-1@f65cfcb92d6d5aaf": {
+      "key": "friends-mouse/word-1",
+      "revision": "f65cfcb92d6d5aaf",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-14T16:27:34.172Z",
+      "seen": true,
+      "operation": "c39a7f24-f26f-493a-b2a8-d07874445406"
     }
   },
   "history": [
