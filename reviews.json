@@ -2098,6 +2098,33 @@
       "at": "2026-11-14T15:58:52.600Z",
       "seen": true,
       "operation": "a1608d52-d6cf-4f59-a42f-8267b208f1c8"
+    },
+    "friends-hedgehog/riddle-14@dae2e36f201d4989": {
+      "key": "friends-hedgehog/riddle-14",
+      "revision": "dae2e36f201d4989",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-14T15:58:55.464Z",
+      "seen": true,
+      "operation": "10bdf042-8fac-43e9-b966-852c588ba118"
+    },
+    "friends-hedgehog/riddle-15@16b94b4c4dc40eca": {
+      "key": "friends-hedgehog/riddle-15",
+      "revision": "16b94b4c4dc40eca",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-14T15:58:58.766Z",
+      "seen": true,
+      "operation": "9a14c882-5c90-4094-8192-cc3d7632043c"
+    },
+    "friends-hedgehog/riddle-16@145a05ae8208a586": {
+      "key": "friends-hedgehog/riddle-16",
+      "revision": "145a05ae8208a586",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-14T15:59:01.165Z",
+      "seen": true,
+      "operation": "e0008de6-1b75-43cd-9f0b-2bbc89ed6bc5"
     }
   },
   "history": [
