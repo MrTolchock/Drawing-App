@@ -116,3 +116,13 @@ test('rejection, a failed save, an unvisited queue or changed revision never gra
  const skipped=V.previewSession('add');skipped.round=skipped.questions.length;assert.equal(V.finishSession(skipped),false);
 });
 test('generated GitHub pages and revision reflect the exact runtime',()=>assert.deepEqual(check(),[]));
+test('reviews from an earlier release with unchanged puzzles carry over; unknown revisions stay reopened',()=>{
+ const {FK,memory}=setup(),C=FK.puzzleCatalogue,id='friends-squirrel',items=C.iterations(id),former=FK.puzzleFormerImplementations[0];
+ assert.ok(former,'there is an earlier release to carry over from');
+ const now=FK.puzzleImplementation;FK.puzzleImplementation=former;approve(FK,id);FK.puzzleImplementation=now;   // signed off on the earlier release
+ const V=FK.puzzleReview;assert.equal(V.status(id,items[0].id).status,'pending','reopened before the carry-over');assert.equal(V.status(id,items[0].id).stale,true);
+ const key=memory.keys().next().value,raw=JSON.parse(memory.get(key));raw.decisions[items[1].id].revision='0000000000000000';memory.set(key,JSON.stringify(raw));   // a revision of unknown origin
+ const {FK:FK2}=setup(memory),V2=FK2.puzzleReview;assert.ok(V2.carryOver());
+ assert.equal(V2.status(id,items[0].id).status,'approved');assert.equal(V2.status(id,items[0].id).seen,true);assert.equal(V2.status(id).status,'approved','the puzzle sign-off too');
+ assert.equal(V2.status(id,items[1].id).status,'pending','an unknown revision is not carried over');assert.equal(V2.carryOver(),false,'nothing left to carry over');
+});

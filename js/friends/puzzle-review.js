@@ -33,6 +33,19 @@
     const next=clone(data),k=recordKey(id,iteration),old=next.decisions[k];if(old)next.history.push(old);
     next.decisions[k]={key:k,revision:r,status:value,note,at:new Date().toISOString()};return persist(next);
   }
+  /* Reviews made on an earlier release whose puzzles are unchanged (FK.puzzleFormerImplementations) move to the
+     current revision, with their seen marks; they then upload with the next sync like any other change. */
+  function carryOver(){
+    const next=clone(data);let moved=0;
+    const formerOf=k=>{if(k.startsWith('puzzle:')){const id=k.slice(7);return C.puzzle(id)?[C.puzzleRevision(id),C.formerPuzzleRevisions(id)]:null;}
+      const id=k.split('/')[0],it=item(id,k);return it?[C.iterationRevision(id,it),C.formerIterationRevisions(id,it)]:null;};
+    for(const k of new Set([...Object.keys(data.decisions),...Object.keys(data.seen)])){
+      const r=formerOf(k);if(!r)continue;const [now,old]=r,d=data.decisions[k];
+      if(d&&d.revision!==now&&old.includes(d.revision)){next.decisions[k]={...d,revision:now,at:new Date().toISOString()};moved++;}
+      if(data.seen[k]&&data.seen[k]!==now&&old.includes(data.seen[k])){next.seen[k]=now;moved++;}
+    }
+    return moved?persist(next):false;
+  }
   function exportData(){return {version:1,decisions:clone(data.decisions),seen:clone(data.seen),history:clone(data.history),exportedAt:new Date().toISOString(),catalogue:Object.fromEntries(FK.friendsLibrary.catalogue().map(g=>[g.id,C.puzzleRevision(g.id)]))};}
   function importData(raw){
     let d;try{d=typeof raw==='string'?JSON.parse(raw):clone(raw);}catch{error='Keine gültige JSON-Prüfdatei.';return false;}
@@ -92,7 +105,7 @@
     return decide(session.id,null,'approved');
   }
   window.addEventListener?.('storage',event=>{if(event.key!==key)return;try{const next=JSON.parse(event.newValue);if(valid(next)){data=next;error='';}else {data=empty();error='Prüfung wurde geändert. Bitte erneut prüfen.';}FK.emit?.('puzzle-review-change');}catch{data=empty();FK.emit?.('puzzle-review-change');}});
-  FK.puzzleReview={key,status,seen,progress,ready,decide,exportData,importData,open,openGallery,gallerySession,play,preview,start,previewSession,visit,sessionDecision,finishSession,get authorized(){return authorized;},get error(){return error;}};
+  FK.puzzleReview={carryOver,key,status,seen,progress,ready,decide,exportData,importData,open,openGallery,gallerySession,play,preview,start,previewSession,visit,sessionDecision,finishSession,get authorized(){return authorized;},get error(){return error;}};
   if(FK.ReviewRepository&&window.fetch&&window.document&&new URLSearchParams(location.search).get('dev')!=='1'){
     let tokenStorage;try{tokenStorage=window.sessionStorage;}catch{/* A temporary connection still works. */}
     FK.reviewRepository=FK.ReviewRepository.create({
@@ -103,4 +116,6 @@
     window.addEventListener('online',()=>FK.reviewRepository.resume());
     document.addEventListener('visibilitychange',()=>{if(!document.hidden)FK.reviewRepository.resume();});
   }
+  // carry reviews from unchanged earlier releases over on start and whenever GitHub delivers older records
+  if(typeof setTimeout==='function'){setTimeout(carryOver,0);FK.on?.('puzzle-review-change',e=>{if(e?.source==='github')setTimeout(carryOver,0);});}
 })();
