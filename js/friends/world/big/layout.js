@@ -8,10 +8,10 @@ export const DEN = {x: 0, z: -8};
 
 /* The Rock: an elliptical massif with a plateau. `fall` is the direction (from its centre) in
    which the waterfall drops. */
-export const ROCK = {x: 84, z: -80, rx: 36, rz: 30, top: 11.5, fall: 2.135};
+export const ROCK = {x: 84, z: -80, rx: 36, rz: 30, top: 9, fall: 2.135};
 /* The peak that rises out of the Rock's plateau north of the summit trail: its top, how high it stands above the
    plateau and how wide its foot is. Snow lies on it from about two metres up. Gentle enough to walk to the top. */
-export const PEAK = {x: 80, z: -95, top: 13, r: 27};
+export const PEAK = {x: 80, z: -95, top: 10.5, r: 27};
 
 /* Still water. `plunge` and `pond` are carved bowls; the swamp is a basin whose hollows fill. */
 export const POOLS = [

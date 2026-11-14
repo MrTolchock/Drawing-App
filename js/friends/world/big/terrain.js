@@ -34,10 +34,13 @@ export function createTerrain() {
   const RAMP = 3.22;                                   // the west flank, where a trail climbs to the plateau
   function rockHeight(x, z) {
     rock(x, z); const pk = peak(x, z) * PK.top; if (rk.d < -14) return pk;
-    const cliff = sstep(1.25, .85, angle(rk.th, R.fall)), ramp = sstep(.75, .35, angle(rk.th, RAMP));
+    // Only where the waterfall drops is the Rock a true cliff; elsewhere its sides rise over some fourteen metres of
+    // ground (a few more or less from place to place), steeper at the foot and rounding off at the top, so they
+    // read as a wooded hillside, not a wall. The west flank, where the trail climbs, is gentler still.
+    const cliff = sstep(.62, .32, angle(rk.th, R.fall)), ramp = sstep(.75, .35, angle(rk.th, RAMP)), wide = 14 + (fbm(x * .05 + 31, z * .05 + 7) - .5) * 8;
     // under the peak the plateau counts as fully risen: near the Rock's centre its outline wobbles quickly and
     // would leave little ridges on the mountain's flank that are too steep to climb
-    const body = lerp(sstep(0, lerp(lerp(7, 3.4, cliff), 25, ramp), rk.d), 1, sstep(2.2, 4.8, pk));
+    const body = lerp(sstep(0, lerp(lerp(wide, 4, cliff), 25, ramp), rk.d), 1, sstep(2.2, 4.8, pk));
     const scree = sstep(-14, 0, rk.d) * 1.6 * (1 - ramp * .7);
     return scree + body * R.top + body * ((fbm(x * .09 + 3, z * .09) - .5) * 1.6 + (fbm(x * .3, z * .3 + 8) - .5) * .5) + pk;
   }
