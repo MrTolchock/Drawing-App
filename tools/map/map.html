@@ -42,6 +42,11 @@ for (const t of trees) { const [px, pz] = P(t.x, t.z), r = (t.kind === 'spruce' 
 // the den tree, the dam and the boardwalk as small drawings
 { const [x, z] = P(0, -8); g.fillStyle = '#6a4426'; g.beginPath(); g.arc(x, z, 3.6 * S, 0, 7); g.fill(); g.fillStyle = '#3f7a2c'; g.beginPath(); g.arc(x, z - 1.2 * S, 6 * S, 0, 7); g.fill(); g.fillStyle = '#5f9a3a'; g.beginPath(); g.arc(x - 1.5 * S, z - 2.6 * S, 3.4 * S, 0, 7); g.fill(); }
 g.lineCap = 'round'; for (const cr of T.crossings) { const [ax, az] = P(...cr.a), [bx, bz] = P(...cr.b); g.strokeStyle = cr.kind === 'dam' ? '#7a5634' : cr.kind === 'stones' ? '#a39c8c' : '#a8753f'; g.lineWidth = Math.max(3, cr.width * S); g.beginPath(); g.moveTo(ax, az); g.lineTo(bx, bz); g.stroke(); }
+// the cave in the Rock: its rock roof over the cut, and the dark arched mouth facing the trail
+{ const C = world.layout.CAVE, [x0, z0] = P(C.x - C.w - 1, C.z - C.depth - .5), [x1, z1] = P(C.x + C.w + 1, C.z - C.open + .3);
+  g.fillStyle = '#9d978b'; g.beginPath(); g.roundRect(x0, z0, x1 - x0, z1 - z0, 2 * S); g.fill();
+  const [mx, mz] = P(C.x, C.z - C.open); g.fillStyle = '#d6cfbf'; g.beginPath(); g.ellipse(mx, mz, (C.w + .9) * S, 2.6 * S, 0, Math.PI, 0); g.fill();
+  g.fillStyle = '#2f2721'; g.beginPath(); g.ellipse(mx, mz, C.w * S, 2 * S, 0, Math.PI, 0); g.fill(); g.fillStyle = '#7fe3f0'; g.beginPath(); g.arc(mx + .8 * S, mz - .8 * S, .45 * S, 0, 7); g.fill(); }
 // a warm vignette
 const v = g.createRadialGradient(W / 2, H / 2, H * .35, W / 2, H / 2, W * .62); v.addColorStop(0, 'rgba(90,60,20,0)'); v.addColorStop(1, 'rgba(90,60,20,.28)'); g.fillStyle = v; g.fillRect(0, 0, W, H);
 window.mapReady = true;
