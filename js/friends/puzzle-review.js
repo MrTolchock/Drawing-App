@@ -51,6 +51,15 @@
     const enter=()=>{authorized=true;FK.go('puzzle-review',{from:'friends'});};
     if(FK.current?.()==='settings')enter();else FK.ui.parentGate(enter);
   }
+  /* Puzzle-Galerie (adults, from settings): only signed-off puzzles; a round of five tasks drawn like a child's
+     round, but never saved as the child's round, never completing a letter and never observed by the usage log. */
+  function openGallery(){const enter=()=>{authorized=true;FK.go('puzzle-gallery');};if(FK.current?.()==='settings')enter();else FK.ui.parentGate(enter);}
+  function gallerySession(id){
+    if(!authorized||!C.puzzle(id)||!ready(id))return null;
+    const seed=Math.floor(Math.random()*0x100000000),items=C.select(id,seed,[]);
+    return {id,seed,round:0,solved:false,work:{},questions:items.map(i=>i.question),iterationIds:items.map(i=>i.id),catalogueRevision:C.puzzleRevision(id),gallery:true};
+  }
+  function play(id){if(!gallerySession(id))return false;FK.go(C.puzzle(id).screen,{game:id,gallery:true,returnTo:'puzzle-gallery',from:'friends'});return true;}
   function preview(id,iteration){if(!authorized)return false;const g=C.puzzle(id),it=item(id,iteration);if(!g||!it)return false;FK.go(g.screen,{game:id,reviewIteration:iteration,returnTo:'puzzle-review',from:'friends'});return true;}
   function start(id){if(!authorized||!C.puzzle(id))return false;FK.go(C.puzzle(id).screen,{game:id,reviewQueue:true,returnTo:'puzzle-review',from:'friends'});return true;}
   function previewSession(id,iteration){
@@ -83,7 +92,7 @@
     return decide(session.id,null,'approved');
   }
   window.addEventListener?.('storage',event=>{if(event.key!==key)return;try{const next=JSON.parse(event.newValue);if(valid(next)){data=next;error='';}else {data=empty();error='Prüfung wurde geändert. Bitte erneut prüfen.';}FK.emit?.('puzzle-review-change');}catch{data=empty();FK.emit?.('puzzle-review-change');}});
-  FK.puzzleReview={key,status,seen,progress,ready,decide,exportData,importData,open,preview,start,previewSession,visit,sessionDecision,finishSession,get authorized(){return authorized;},get error(){return error;}};
+  FK.puzzleReview={key,status,seen,progress,ready,decide,exportData,importData,open,openGallery,gallerySession,play,preview,start,previewSession,visit,sessionDecision,finishSession,get authorized(){return authorized;},get error(){return error;}};
   if(FK.ReviewRepository&&window.fetch&&window.document&&new URLSearchParams(location.search).get('dev')!=='1'){
     let tokenStorage;try{tokenStorage=window.sessionStorage;}catch{/* A temporary connection still works. */}
     FK.reviewRepository=FK.ReviewRepository.create({

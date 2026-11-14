@@ -1,5 +1,5 @@
 /* Farbtupf – Service Worker: keeps the whole app on the device so it runs without internet. */
-const CACHE = 'farbtupf-v9.3.33-waldpost';
+const CACHE = 'farbtupf-v9.3.34-waldpost';
 const SCOPE=self.registration.scope;
 const INDEX=new URL('index.html',SCOPE).href;
 const ACTIVE_MARKER=new URL('.farbtupf-active-cache',SCOPE).href;
@@ -13,6 +13,7 @@ const ASSETS = [
   './js/friends/puzzle-catalogue.js',
   './js/friends/puzzle-review.js',
   './js/screens/puzzle-review.js',
+  './js/screens/puzzle-gallery.js',
   './css/puzzle-review.css',
   './js/screens/puzzle.js',
   './css/puzzle-rounds.css',

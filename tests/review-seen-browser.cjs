@@ -6,7 +6,7 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');const asse
 await page.goto(BASE+'/?software=1&dev=1');await page.waitForFunction(()=>window.FK?.friends&&FK.current()==='friends',null,{timeout:120000});
 const gate=async()=>{const n=(await page.locator('.gate-task').innerText()).match(/\d+/g).map(Number);await page.locator('.gate-input').fill(String(n[0]*n[1]));await page.getByRole('button',{name:'Öffnen',exact:true}).click();};
 await page.getByRole('button',{name:'Einstellungen für Erwachsene',exact:true}).first().click();await gate();await page.waitForFunction(()=>FK.current()==='settings');
-await page.getByRole('button',{name:'Puzzle-Galerie öffnen',exact:true}).click();await page.waitForFunction(()=>FK.current()==='puzzle-review');
+await page.getByRole('button',{name:'Puzzle-Prüfung öffnen',exact:true}).click();await page.waitForFunction(()=>FK.current()==='puzzle-review');
 await page.evaluate(()=>FK.puzzleReview.start('friends-squirrel'));await page.waitForTimeout(600);
 const it=await page.evaluate(()=>document.querySelector('.screen:not([hidden])').dataset.reviewIteration);
 // another tab writes the record without this task's seen mark

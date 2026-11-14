@@ -121,7 +121,7 @@
         if(!value&&new URLSearchParams(location.search).get('dev')==='1'){const url=new URL(location.href);url.searchParams.delete('dev');location.assign(url.href);}
       },
       begin(session){safe(()=>{
-        active?.stop();active=null;activeSession=null;if(!session||session.review||session.blocked)return;
+        active?.stop();active=null;activeSession=null;if(!session||session.review||session.gallery||session.blocked)return;   // reviews and adult gallery rounds are not observed
         if(development()){markTested(session);return;}
         if(session.logTested)delete session.logRunId;
         activeSession=session;

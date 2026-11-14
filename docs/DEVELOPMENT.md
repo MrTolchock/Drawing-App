@@ -11,6 +11,7 @@ node --test tests/*.test.cjs
 node tests/design-system-browser.cjs
 node tests/letter-sessions-browser.cjs
 node tests/navigation-browser.cjs   # back buttons from settings, puzzle review and its puzzles lead out to the game
+node tests/puzzle-gallery-browser.cjs   # gallery: only signed-off puzzles, friend filter, five-task round without saving
 node tests/review-seen-browser.cjs   # an answered review task is approved even if its seen mark was lost; dialog buttons fit
 node tests/play-log-browser.cjs
 node tests/puzzle-review-browser.cjs
