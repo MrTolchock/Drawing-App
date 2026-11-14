@@ -181,3 +181,9 @@ Addressed all five nonempty comments in the [shared review ledger](https://githu
 The page, exact geometry palette and drawn learning art follow the existing visual specification. [Phone/tablet evidence and layout results](evidence/2026-11-14-review-feedback/report.json) cover all 25 matrices at both widths, single-animal answer cards, the revised dog and native touch answers.
 
 Regenerating the shared puzzle implementation fingerprint reopens prior sign-offs as **Geändert · Offen**, including unrelated approvals covered by that fingerprint. The 9.3.35 gallery and release-independent revision handling are retained; the former-implementation carry-over list is cleared because this release changes actual puzzle content, art and rendering. A read-only snapshot of the real ledger confirms all five comments remain available and all 68 latest approved records reopen; neither improved puzzle is released for child play. Historical decisions remain on the separate data branch. No production review writes or automatic editorial approvals were made.
+
+## Forest polish — 14 November 2026 (from 9.3.37)
+
+World-only changes (no puzzle pages, identity art or learning pictures touched; the puzzle implementation fingerprint is unchanged unless noted).
+
+**9.3.37.** The squirrel bounds in short dashes and stops to glance round, flicks its tail and nibbles; the deer walks without bobbing, grazes with flicking ears and lifts its head to look at Fuchs. Friends greet Fuchs with a brief hop and then stand and look at him instead of hopping without end. The pond's ducks, jumping fish with ripples, the paper boats on the brook and the sunbeams in the wood move again (their update was lost in 9.3.23). Same plush models and materials; poses only.

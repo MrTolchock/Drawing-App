@@ -289,6 +289,46 @@ function plushSleep(p){
   if(p.tail)p.tail.rotation.set(-1.6,1.5,0);
   p.arms.forEach((a,i)=>a.rotation.set(-2.5,0,i?-.15:.15));p.legs.forEach((l,i)=>l.rotation.set(.35,0,i?-.3:.3));
 }
+/* How a few friends move in their own way, layered over the shared animator (forest only; reduced motion keeps
+   the shared, calmer poses). The squirrel bounds in short dashes with both hind legs together, snaps its head
+   round, flicks its tail and nibbles; the deer walks smoothly without bobbing, grazes now and then with flicking
+   ears, and lifts its head to look at Fuchs. `greet` is a short welcome: a hop or two, then they stand and look. */
+const MANNERS={
+  squirrel(p){let hp=0,air=0,look=0,lookTo=0,lookT=.5,flick=0,flickT=1.5,nib=0,nibT=5+Math.random()*6,greet=0,was='';
+    return (dt,{moving,action})=>{
+      if(action==='greet'&&was!=='greet')greet=.95;was=action;greet=Math.max(0,greet-dt);
+      flickT-=dt;if(flickT<0){flick=.35;flickT=1.2+Math.random()*3;}flick=Math.max(0,flick-dt);
+      const tailUp=flick>0?Math.sin(flick/.35*Math.PI)*.45:0;
+      if(moving||greet>0){hp+=dt*(moving?8.6:9.4);const k=Math.abs(Math.sin(hp));air=moving?k*.085:k*.07*Math.min(1,greet/.3);
+        p.root.position.y=air;if(p.body){p.body.rotation.x=moving?.22-Math.cos(hp*2)*.08:0;p.body.position.y=p.bodyY;}
+        for(const l of p.legs)l.rotation.x=moving?-.5+Math.cos(hp*2)*.55:-.3*k;   // both hind legs push off together
+        for(const a of p.arms)a.rotation.x=moving?-.7-Math.cos(hp*2)*.4:-.5;
+        if(p.tail)p.tail.rotation.x+=(moving?-.25+Math.sin(hp*2)*.18:0)+tailUp;nib=0;return;}
+      p.root.position.y=0;
+      // alert: quick glances in a new direction, then stillness
+      lookT-=dt;if(lookT<0){lookTo=action==='look'?(Math.random()-.5)*.3:(Math.random()-.5)*1.3;lookT=.5+Math.random()*1.8;}
+      look+=(lookTo-look)*Math.min(1,dt*16);if(p.head){p.head.rotation.y=look;p.head.rotation.z*=.4;}
+      if(p.tail)p.tail.rotation.x+=tailUp;
+      nibT-=dt;if(nibT<0&&!nib){nib=2.6;nibT=6+Math.random()*8;}if(nib>0){nib=Math.max(0,nib-dt);for(const a of p.arms){a.rotation.x=-2.05;a.rotation.z*=.3;}if(p.head)p.head.rotation.x=.18+Math.sin(nib*24)*.05;}
+    };},
+  deer(p){let graze=0,grazeT=3+Math.random()*5,down=0,flick=0,flickT=1,fe=0,ph=0;
+    return (dt,{moving,speed,action})=>{
+      const alert=action==='look'||action==='greet';
+      if(moving){ph+=dt*Math.max(3.2,speed*3.4);const s=Math.sin(ph);
+        if(p.body){p.body.position.y=p.bodyY+Math.abs(s)*.008;p.body.rotation.z=s*.018;p.body.rotation.x=.04;}
+        for(const [i,l]of p.legs.entries())l.rotation.x=(i?-s:s)*.42;for(const [i,a]of p.arms.entries())a.rotation.x=(i?s:-s)*.25;
+        if(p.head){p.head.rotation.x=-.04+Math.cos(ph*2)*.035;p.head.rotation.z=0;}graze=0;}
+      else if(!alert){grazeT-=dt;if(grazeT<0&&!graze){graze=3+Math.random()*4;grazeT=5+Math.random()*7;}}
+      if(alert)graze=0;if(graze>0)graze=Math.max(0,graze-dt);
+      down+=((graze>.5?1:0)-down)*Math.min(1,dt*2.2);
+      if(!moving&&p.body){p.body.rotation.x+=down*.36;}
+      if(!moving&&p.head){p.head.rotation.x+=down*(.62+Math.sin(graze*9)*.04)-(alert?.08:0);if(alert)p.head.rotation.y*=.3;}
+      
+      flickT-=dt;if(flickT<0){flick=.22;fe=Math.random()<.5?0:1;flickT=(alert?.7:1.5)+Math.random()*2.5;}flick=Math.max(0,flick-dt);
+      for(const [i,e]of p.ears.entries())e.rotation.z+=(i===fe&&flick>0?Math.sin(flick/.22*Math.PI)*(i?-.35:.35):0)+(alert?(i?-.12:.12):0);
+      p.root.position.y=0;
+    };},
+};
 function plushModel(id,height){
   const model=cloneSkinned(baked[id]),bones={},meshes=[];
   // Characters stay out of the static shadow map (it is not redrawn as they move); each has a soft contact shadow.
@@ -305,12 +345,13 @@ function plushModel(id,height){
   model.updateMatrixWorld(true);const box=new THREE.Box3();for(const m of meshes)if(m.visible){m.skeleton.update();m.computeBoundingBox();box.union(m.boundingBox.clone().applyMatrix4(m.matrixWorld));}
   root.scale.setScalar(height/((box.max.y-box.min.y)||1));
   const rest=new Map();model.traverse(o=>{if(o.isBone)rest.set(o,{p:o.position.clone(),q:o.quaternion.clone()});});
-  const animate=animator(parts);
+  const animate=animator(parts),manner=MANNERS[id]?.(parts);
   function update(dt,state={}){
     for(const [b,r]of rest){if(b===parts.body||b===parts.head||b===parts.tail||parts.arms.includes(b)||parts.legs.includes(b)){b.position.copy(r.p);}}
     if(parts.body)parts.body.rotation.set(0,0,0);
     if(parts.tail)parts.tail.rotation.setFromQuaternion(rest.get(parts.tail).q);
-    animate(dt,state);if(state.action==='sleep'&&id==='fox')plushSleep(parts);
+    const own=manner&&!state.reduced,shared=own&&(state.action==='greet'||state.action==='look')?{...state,action:''}:state;
+    animate(dt,shared);if(state.action==='sleep'&&id==='fox')plushSleep(parts);if(own)manner(dt,state);
   }
   return {root,parts,update,lod,meshes,paw:parts.arms[1]||parts.body};
 }
