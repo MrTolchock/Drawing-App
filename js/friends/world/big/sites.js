@@ -182,14 +182,25 @@ export function siteSteps(site, look, world, group, out) {
   if (site.id === 'sett') {
     /* The badger's sett in the wooded slope: a mound of earth under the old oak, the main entrance a dark
        hole between two roots, a smaller hole at the side, fresh sandy spoil fanned out in front of it,
-       a heap of dry grass that he airs as bedding, a few stones. Entrances face the path (and the camera). */
+       a heap of dry grass that he airs as bedding, a few stones. Entrances face the path (and the camera). The mound itself
+       is shaped like the ground around it (see `hill`), not a dome. */
     const earth = new Buffer(), roots = new Buffer(), straw = new Buffer(), [cx, cz, yaw] = L.SETT, fx = Math.sin(yaw), fz = Math.cos(yaw), sx = fz, sz = -fx, g0 = T.ground(cx, cz);
     const Q = new THREE.Quaternion(), UP = new THREE.Vector3(0, 1, 0), V = new THREE.Vector3();
     const at = (f, side) => [cx + fx * f + sx * side, cz + fz * f + sz * side];
     const limb = (buf, x, y, z, dx, dy, dz, l, r0, r1, c) => { Q.setFromUnitVectors(UP, V.set(dx, dy, dz).normalize()); add(buf, new THREE.CylinderGeometry(r1, r0, l, 7, 1).translate(0, l / 2, 0).applyQuaternion(Q).translate(x, y, z), ...c); };
-    steps.push(() => { // the mound, moss on its top, the two holes with their rims
-      add(earth, new THREE.SphereGeometry(1, 18, 10, 0, TAU, 0, Math.PI / 2).scale(2.35, 1.6, 2.05).rotateY(yaw).translate(cx, g0 - .3, cz), .2, .145, .095);
-      for (let k = 0; k < 7; k++) { const a = R() * TAU, d = R() * 1.3, x = cx + Math.cos(a) * d, z = cz + Math.sin(a) * d * .8 - .3, v = .8 + R() * .3; add(earth, new THREE.SphereGeometry(1, 8, 5).scale(.5 + R() * .35, .09, .4 + R() * .3).rotateY(R() * 3).translate(x, g0 - .3 + 1.58 * Math.sqrt(Math.max(.05, 1 - (d / 2.2) ** 2)), z), .2 * v, .34 * v, .11 * v); }
+    // The mound grows out of the woodland floor: a soft, uneven hillock whose rim takes the ground's own colour, grass
+    // and moss on its back, bare dug earth on the front where the badger comes and goes.
+    const hill = (() => { const RINGS = 16, SEG = 44, RAD = 3.3, H = 1.18, pos = [], col = [], idx = [], c = new THREE.Color(), moss = new THREE.Color('#5a7f30'), grass = new THREE.Color('#6f9238'), soil = new THREE.Color('#7b5636'), dark = new THREE.Color('#5a3d26');
+      const height = (rn, a) => { const bump = Math.pow(Math.cos(Math.min(1, rn) * Math.PI / 2), 1.5), wob = .1 * Math.sin(a * 3 + 1.3) + .07 * Math.sin(a * 5 + .4) + .05 * Math.sin(a * 9); return H * bump * (1 + wob * (1 - rn)); };
+      for (let i = 0; i <= RINGS; i++) for (let j = 0; j < SEG; j++) { const rn = i / RINGS, a = j / SEG * TAU, side = Math.cos(a), fwd = Math.sin(a), lx = side * RAD * 1.12 * rn, lf = fwd * RAD * rn,
+          x = cx + sx * lx + fx * lf, z = cz + sz * lx + fz * lf, y = T.ground(x, z) + height(rn, a) - (i === RINGS ? .04 : 0); pos.push(x, y, z);
+          T.colour(x, z, c); const top = 1 - THREE.MathUtils.smoothstep(rn, .55, .95), front = THREE.MathUtils.smoothstep(fwd, .15, .65) * THREE.MathUtils.smoothstep(rn, .25, .5) * (1 - THREE.MathUtils.smoothstep(rn, .88, 1));
+          c.lerp(grass, top * .7).lerp(moss, top * .45 * (.5 + .5 * Math.sin(a * 4 + rn * 9))).lerp(soil, front * .9).lerp(dark, front * .35 * (.5 + .5 * Math.sin(a * 7 + rn * 13))); col.push(c.r, c.g, c.b); }
+      for (let i = 0; i < RINGS; i++) for (let j = 0; j < SEG; j++) { const a = i * SEG + j, b = i * SEG + (j + 1) % SEG, d = a + SEG, e = b + SEG; idx.push(a, b, d, b, e, d); }
+      const top = pos.length / 3; pos.push(cx, T.ground(cx, cz) + height(0, 0), cz); T.colour(cx, cz, c); c.lerp(grass, .7); col.push(c.r, c.g, c.b); for (let j = 0; j < SEG; j++) idx.push(top, (j + 1) % SEG, j);
+      const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setAttribute('color', new THREE.Float32BufferAttribute(col, 3)); g.setIndex(idx); g.computeVertexNormals(); return g; })();
+    steps.push(() => { // the mound, then the two holes with their rims of trodden earth
+      { const m = new THREE.Mesh(hill, M.ground); m.name = 'sett mound'; m.receiveShadow = M.shadows; group.add(m); }
       for (const [f, side, w, h] of [[1.78, 0, .62, .6], [1.05, -1.75, .4, .4]]) { const [x, z] = at(f, side), y = T.ground(x, z) + h * .62, turn = yaw + (side ? -1.0 : 0);
         add(earth, new THREE.SphereGeometry(1, 14, 10).scale(w, h, .5).rotateY(turn).translate(x - Math.sin(turn) * .12, y, z - Math.cos(turn) * .12), .05, .038, .03);
         add(earth, new THREE.TorusGeometry(1, .3, 8, 18, Math.PI * 1.15).rotateZ(-Math.PI * .075).scale(w * 1.12, h * 1.18, .55).rotateY(turn).translate(x, y - .02, z), .26, .19, .125); }
@@ -202,8 +213,8 @@ export function siteSteps(site, look, world, group, out) {
     });
     steps.push(() => { // fresh spoil in front of the hole, clods and stones, the bedding heap with loose stalks
       const [ax, az] = at(3.05, .15), ay = T.ground(ax, az);
-      add(earth, new THREE.SphereGeometry(1, 14, 6).scale(1.3, .15, .9).rotateY(yaw).translate(ax, ay + .01, az), .4, .31, .2);
-      for (let k = 0; k < 5; k++) { const [x, z] = at(2.5 + R() * 1.1, (R() - .5) * 1.6), v = .34 + R() * .1; add(earth, new THREE.SphereGeometry(1, 8, 5).scale(.3 + R() * .25, .1 + R() * .06, .25 + R() * .2).rotateY(R() * 3).translate(x, T.ground(x, z) + .04, z), v, v * .78, v * .52); }
+      add(earth, new THREE.SphereGeometry(1, 14, 6).scale(1.3, .15, .9).rotateY(yaw).translate(ax, ay + .01, az), .72, .5, .3);
+      for (let k = 0; k < 5; k++) { const [x, z] = at(2.5 + R() * 1.1, (R() - .5) * 1.6), v = .55 + R() * .12; add(earth, new THREE.SphereGeometry(1, 8, 5).scale(.3 + R() * .25, .1 + R() * .06, .25 + R() * .2).rotateY(R() * 3).translate(x, T.ground(x, z) + .04, z), v, v * .78, v * .52); }
       for (let k = 0; k < 9; k++) { const [x, z] = at(2.3 + R() * 1.6, (R() - .5) * 2.6), r = .05 + R() * .08, v = .36 + R() * .16; add(earth, new THREE.SphereGeometry(r, 6, 4).scale(1, .7, 1).translate(x, T.ground(x, z) + r * .4, z), v, v * .82, v * .6); }
       const t = templates(); for (const [f, side, sc] of [[2.2, 2.3, .42], [1.2, 2.75, .3], [2.6, -2.4, .34]]) { const [x, z] = at(f, side), v = .82 + R() * .15; earth.add(t.rock, {x, y: T.ground(x, z) - sc * .3, z, ry: R() * TAU, sx: sc, sy: sc * .7, sz: sc * .9, c: new THREE.Color(v, v, v * .97)}); }
       const [hx, hz] = at(2.25, 1.55), hy = T.ground(hx, hz);
