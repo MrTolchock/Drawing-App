@@ -2539,6 +2539,33 @@
       "at": "2026-11-14T16:20:48.560Z",
       "seen": true,
       "operation": "94fa767d-9e1d-475d-998f-108410e00efd"
+    },
+    "friends-owl/sentence-1@fedde53ebd969c58": {
+      "key": "friends-owl/sentence-1",
+      "revision": "fedde53ebd969c58",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-14T16:20:50.641Z",
+      "seen": true,
+      "operation": "d4a85dad-2987-4e70-b3bb-e1b9ce687875"
+    },
+    "friends-owl/sentence-2@5443e44957c192c7": {
+      "key": "friends-owl/sentence-2",
+      "revision": "5443e44957c192c7",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-14T16:20:52.877Z",
+      "seen": true,
+      "operation": "030563fa-4aa3-4ffe-9967-76596203a470"
+    },
+    "friends-owl/sentence-3@406199df7792de3b": {
+      "key": "friends-owl/sentence-3",
+      "revision": "406199df7792de3b",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-14T16:20:54.949Z",
+      "seen": true,
+      "operation": "f5b1e83b-dbeb-44d8-a55e-29b5d5b27e7a"
     }
   },
   "history": [
