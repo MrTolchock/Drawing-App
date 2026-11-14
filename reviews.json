@@ -829,6 +829,15 @@
       "at": "2026-11-14T15:33:56.136Z",
       "seen": true,
       "operation": "7bb19205-55ea-485d-941d-1b0717941307"
+    },
+    "friends-owl/sentence-11@1075cc3ada3fd31c": {
+      "key": "friends-owl/sentence-11",
+      "revision": "1075cc3ada3fd31c",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-14T15:33:59.031Z",
+      "seen": true,
+      "operation": "27ed4e4a-5b75-4ff1-b517-33a8a329e09d"
     }
   },
   "history": []
