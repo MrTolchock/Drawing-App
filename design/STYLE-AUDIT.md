@@ -213,3 +213,5 @@ World-only changes (no puzzle pages, identity art or learning pictures touched; 
 **9.3.49.** Grass, flowers and ferns bend aside round Fuchs, the mailman and the three friends nearest him (the tops of the plant cards lean away and dip a little; same plant atlas and material). Atlas coordinates of plant cards sit a hair inside their cells so the shader can tell a card's top from its foot; there is no visible change to the pictures.
 
 **9.3.50.** Small chains of cause and effect: the fish often jumps near a duck and its spreading ripple rocks her as it passes; little birds flying up startle the squirrel close by, who dashes off a few steps, and make the deer lift its head and listen for a while.
+
+The mailman (same model) also walks his own round on the paths near the den between letters, pausing at each stop, and whistles once from where he is when a new letter is ready. Walking into a big open area (meadow, Rock, peak, swamp) for the first time in a while, the haze stands close for a moment and lifts over a few seconds (not with reduced motion).
