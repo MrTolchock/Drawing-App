@@ -39,7 +39,7 @@ export const SPECIES = {
   cricket: {phrases: [1, 2], gap: [5, 9], rest: 24},
   bee: {phrases: [1, 1], gap: [0, 0], rest: 70},
 };
-const OUTSIDE = {indoors: false, moving: false, speed: 0, ground: 'grass', trees: .8, meadow: 0, swamp: 0, spruce: 0, brook: 0, falls: 0, fallsPan: 0, rock: 0, snow: 0};
+const OUTSIDE = {indoors: false, moving: false, speed: 0, ground: 'grass', trees: .8, meadow: 0, swamp: 0, spruce: 0, brook: 0, falls: 0, fallsPan: 0, rock: 0, snow: 0, cave: 0};
 /* How likely each voice is at a place. */
 export function voicesAt(env) {
   if (env.indoors) return {blackbird: 2, robin: 1.5, greatTit: 1, dove: 1};
@@ -53,7 +53,7 @@ export function createDirector({random = Math.random} = {}) {
   const range = (a, b) => a + (b - a) * random(), whole = (a, b) => Math.floor(range(a, b + 1));
   let start = null, last = 0, gust = .2, gustTo = .2, nextGust = 0, breezy = false, nextMood = 0;
   let nextSinger = 0, quietUntil = 0, lastKind = '', nextStep = 0, side = 1, walked = 0, wasMoving = false;
-  let flutter = 1, nextFar = 0, nextKnock = 0, nextGustSound = 0;
+  let flutter = 1, nextFar = 0, nextKnock = 0, nextGustSound = 0, nextDrip = 0;
   const singers = [], sangAt = {};
 
   function chooseKind(now, env) {
@@ -76,7 +76,7 @@ export function createDirector({random = Math.random} = {}) {
     const beds = {wind: .3 + .7 * gust, leaves: cover * sstep(.3, 1, gust) * flutter, bright: clamp(.5 + .5 * env.meadow - .35 * env.spruce), brook: env.brook, falls: env.falls, fallsPan: env.fallsPan, gust};
 
     // birds and other voices
-    const wetQuiet = 1 - .85 * (env.rain || 0), lively = Math.max(.05, settled * (env.indoors ? .4 : 1) * wetQuiet * (1 + .7 * (env.fresh || 0)));   // quiet in the rain, a burst of song after it
+    const wetQuiet = (1 - .85 * (env.rain || 0)) * (1 - .8 * (env.cave || 0)), lively = Math.max(.05, settled * (env.indoors ? .4 : 1) * wetQuiet * (1 + .7 * (env.fresh || 0)));   // quiet in the rain, a burst of song after it
     if (now >= nextSinger && now >= quietUntil && singers.length < 2) {
       const kind = chooseKind(now, env);
       if (kind) { const sp = SPECIES[kind]; singers.push({kind, left: whole(...sp.phrases), next: now, pan: range(-.85, .85), far: sp.far ? range(.7, 1) : range(.15, .95)}); lastKind = kind; sangAt[kind] = now; }
@@ -87,6 +87,8 @@ export function createDirector({random = Math.random} = {}) {
       events.push({type: 'call', kind: s.kind, at: now + .05, pan: s.pan, far: s.far, level: settled}); sangAt[s.kind] = now;
       if (--s.left <= 0) singers.splice(i, 1); else s.next = now + range(...SPECIES[s.kind].gap); }
 
+    // in the cave: water drips here and there, and every drip rings back from the rock
+    if (!env.indoors && (env.cave || 0) > .3 && now >= nextDrip) { events.push({type: 'drip', at: now + .05, pan: range(-.7, .7), far: range(.1, .6), level: env.cave, lasts: 2.5}); nextDrip = now + range(.7, 2.6); }
     // by the Rock the cliff throws a song back a moment later, softer and duller
     if (!env.indoors && env.rock > .25) for (const e of events) if (e.type === 'call' && !e.chorus) { e.echo = .4 * Math.min(1, env.rock * 1.4); e.echoDelay = range(.32, .5); }
     // a hollow knock now and then in the old wood (rare, never on a beat)
@@ -105,7 +107,7 @@ export function createDirector({random = Math.random} = {}) {
       if (!wasMoving) nextStep = now + .04; walked = Math.min(14, walked + dt);
       if (now >= nextStep) { const every = Math.PI / Math.max(4, env.speed * 3.2); side = -side; if (nextStep < now - .3) nextStep = now;
         // steps are planned a moment ahead, so they fall between two looks at the clock and keep their own rhythm
-        events.push({type: 'step', ground: env.ground, at: nextStep + .12, side, level: (1 - .45 * sstep(4, 14, walked)) * settled});
+        events.push({type: 'step', ground: env.ground, at: nextStep + .12, side, level: (1 - .45 * sstep(4, 14, walked)) * settled * (1 + .3 * (env.cave || 0)), cave: env.cave || 0});
         if ((env.ground === 'grass' || env.ground === 'needles') && random() < .012) events.push({type: 'twig', at: now + .03, level: settled});
         nextStep += every * range(.93, 1.07); }
     } else walked = Math.max(0, walked - dt * 3);

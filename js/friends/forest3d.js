@@ -70,7 +70,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   const MOODS = {wood: ['#e8dcae', 24, 72], meadow: ['#f1e8bd', 30, 78], swamp: ['#c5d2ae', 11, 50], rock: ['#e0e6d6', 26, 78], spruce: ['#d3d8b2', 18, 62]}, moodC = new THREE.Color(), moodT = new THREE.Color();
   /** Lean the haze toward the area Fuchs is in (the water and the backdrop share the colour object). */
   /* ---------- weather (js/friends/weather.js): a shower dims and greys the light, the ground darkens and dries again ---------- */
-  const RAINY = new THREE.Color('#9fa9a6'), GREY_TOP = new THREE.Color('#9aa6a8'), GREY_HORIZON = new THREE.Color('#c3c6bd'), HEMI_SKY = new THREE.Color('#e4f0ff'), HEMI_RAIN = new THREE.Color('#c9d0d6');
+  const CAVE_DUSK = new THREE.Color('#57524e'), RAINY = new THREE.Color('#9fa9a6'), GREY_TOP = new THREE.Color('#9aa6a8'), GREY_HORIZON = new THREE.Color('#c3c6bd'), HEMI_SKY = new THREE.Color('#e4f0ff'), HEMI_RAIN = new THREE.Color('#c9d0d6');
   const rain = createRain({scene, groundY: (x, z) => { const s = WORLD.terrain.site(x, z), st = WORLD.terrain.streamAt(x, z); let y = groundY(x, z); if (s.still === s.still) y = Math.max(y, s.still); if (st.stream && st.d < st.w / 2) y = Math.max(y, st.level); return y; }, isWater: (x, z) => { const s = WORLD.terrain.site(x, z), st = WORLD.terrain.streamAt(x, z); return (s.still === s.still && s.still > s.h + .02) || (!!st.stream && st.d < st.w / 2); }, random: R});
   /* ---------- time of day: it follows the letter journey (game.js) ----------
      0 morning for the first letter, about .5 a golden afternoon in the middle, 1 dusk on the walk home. The light
@@ -111,7 +111,8 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     const b = WORLD.terrain.biome(x, z, mood.bm), w = {meadow: b.meadow, swamp: b.swamp, rock: b.rock * .8, spruce: b.spruce}; let rest = 1, near = 0, far = 0; moodT.setRGB(0, 0, 0);
     for (const k in w) { const v = Math.min(rest, w[k]); rest -= v; moodC.set(MOODS[k][0]); moodT.r += moodC.r * v; moodT.g += moodC.g * v; moodT.b += moodC.b * v; near += MOODS[k][1] * v; far += MOODS[k][2] * v; }
     moodC.set(MOODS.wood[0]); moodT.r += moodC.r * rest; moodT.g += moodC.g * rest; moodT.b += moodC.b * rest; near += MOODS.wood[1] * rest; far += MOODS.wood[2] * rest;
-    moodT.multiply(todBase.fog); const rain = weather.state.rain; if (rain > 0) { moodT.lerp(RAINY, rain * .6); near *= 1 - .4 * rain; far *= 1 - .28 * rain; }
+    moodT.multiply(todBase.fog); if (sound.cave > 0) { moodT.lerp(CAVE_DUSK, sound.cave * .55); near *= 1 - .45 * sound.cave; far *= 1 - .35 * sound.cave; }   // dim in the cave
+    const rain = weather.state.rain; if (rain > 0) { moodT.lerp(RAINY, rain * .6); near *= 1 - .4 * rain; far *= 1 - .28 * rain; }
     const k = 1 - Math.exp(-dt * .9); WORLD.fog.color.lerp(moodT, k); mood.near += (near - mood.near) * k; mood.far += (far - mood.far) * k;
     const lift = reveal * reveal * (3 - 2 * reveal); scene.fog.near = mood.near * lerp(.4, 1, lift); scene.fog.far = mood.far * lerp(.6, 1, lift);
     if (look.M.water) { look.M.water.uniforms.fogNear.value = scene.fog.near; look.M.water.uniforms.fogFar.value = scene.fog.far; }
@@ -278,10 +279,12 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   /* How far the camera stands: the child's pinch (a narrow range), the place (further back where the view is wide:
      the meadow, the Rock and its peak, open water; closer in the dense wood) and a short close shot of Fuchs with the
      invited friend before a puzzle opens. */
-  let zoomUser = 1, zoomAuto = 1, shot = null;
+  let zoomUser = 1, zoomAuto = 1, shot = null, inCave = false;
   function framing(dt) {
     const open = Math.max(sound.meadow || 0, Math.min(1, (sound.rock || 0) * 1.2), sound.snow || 0, sound.swamp * .6 || 0, 1 - Math.min(1, (sound.trees ?? 1) * 1.15), (sound.falls || 0) * .7);
-    zoomAuto += (lerp(.9, 1.2, open) - zoomAuto) * Math.min(1, dt * .6);
+    zoomAuto += (lerp(lerp(.9, 1.2, open), .8, sound.cave || 0) - zoomAuto) * Math.min(1, dt * .6);   // closer in the cave
+    // stepping into the cave Fuchs calls out, and the cave answers
+    if ((sound.cave || 0) > .5 && !inCave) { inCave = true; sound.cues.push({type: 'echo', level: 1.2}); } else if ((sound.cave || 0) < .1) inCave = false;
     if (shot) { shot.t += dt; if (shot.t > shot.dur + .6) shot = null; }
   }
   const shotK = () => { if (!shot) return 0; const u = shot.t / shot.dur, e = x => x <= 0 ? 0 : x >= 1 ? 1 : x * x * (3 - 2 * x); return e(u / .35) * (1 - e((shot.t - shot.dur) / .6)); };
@@ -325,10 +328,10 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   const sound = {cues: [], at: -1, moving: false, speed: 0, ground: 'grass', trees: 1, meadow: 0, swamp: 0, spruce: 0, brook: 0, falls: 0, fallsPan: 0}, soundBiome = {};
   function listen() {
     const T = WORLD.terrain, b = T.biome(pos.x, pos.z, soundBiome), c = T.onCrossing(pos.x, pos.z), pa = T.pathAt(pos.x, pos.z);
-    sound.ground = c ? (c.c.kind === 'dam' ? 'sticks' : 'wood') : b.snow > .5 ? 'snow' : b.rock > .6 ? 'rock' : b.swamp > .5 ? 'wet' : pa.d < pa.w / 2 + .15 ? 'earth' : b.meadow > .5 ? 'meadow' : b.spruce > .5 ? 'needles' : 'grass';
+    sound.ground = c ? (c.c.kind === 'dam' ? 'sticks' : 'wood') : b.snow > .5 ? 'snow' : b.rock > .6 || b.cave > .5 ? 'rock' : b.swamp > .5 ? 'wet' : pa.d < pa.w / 2 + .15 ? 'earth' : b.meadow > .5 ? 'meadow' : b.spruce > .5 ? 'needles' : 'grass';
     sound.crossing = c ? c.c.kind : null;
     { const st = T.site(pos.x, pos.z); sound.wade = st.still === st.still && st.still - st.h > .005 && !c; sound.bank = (st.sd - st.sw / 2 < 1.1) || (st.still === st.still && b.swamp < .5 && st.h - st.still < .4); }
-    sound.trees = (1 - b.meadow) * (1 - b.swamp * .6) * (1 - b.rock * .7) * (1 - b.snow); sound.snow = b.snow; sound.rock = b.rock; sound.meadow = b.meadow; sound.swamp = b.swamp; sound.spruce = b.spruce;
+    sound.trees = (1 - b.meadow) * (1 - b.swamp * .6) * (1 - b.rock * .7) * (1 - b.snow); sound.snow = b.snow; sound.rock = b.rock; sound.cave = b.caveRoof || 0; sound.meadow = b.meadow; sound.swamp = b.swamp; sound.spruce = b.spruce;
     let near = Infinity; for (const s of T.streams) for (let i = 0; i <= s.N; i += 6) { const q = s.samples[i], d = (q.x - pos.x) ** 2 + (q.z - pos.z) ** 2; if (d < near) near = d; }
     sound.brook = THREE.MathUtils.clamp(1 - (Math.sqrt(near) - 1.2) / 13, 0, 1);
     const fx = T.falls.base[0] - pos.x, fz = T.falls.base[1] - pos.z; sound.falls = THREE.MathUtils.clamp(1 - (Math.hypot(fx, fz) - 5) / 42, 0, 1); sound.fallsPan = THREE.MathUtils.clamp(fx / 22, -1, 1);

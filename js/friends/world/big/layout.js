@@ -13,6 +13,13 @@ export const ROCK = {x: 84, z: -80, rx: 36, rz: 30, top: 9, fall: 2.135};
    plateau and how wide its foot is. Snow lies on it from about two metres up. Gentle enough to walk to the top. */
 export const PEAK = {x: 80, z: -95, top: 10.5, r: 27};
 
+/* A cave in the Rock's south flank, east of the waterfall: a flat-floored cut runs north into the hillside from its
+   foot at (x, z), `w` the half-width; after `open` metres a rock roof covers it (the mouth), and the chamber ends at
+   `depth`. The roof follows the hillside, so from outside it is one slope with a dark mouth in it. */
+export const CAVE = {x: 88, z: -54, w: 2.4, open: 4.8, depth: 13,
+  // inside, as [across, in] from the foot: crystal clusters [u, v, r], pale mushrooms, stalagmites [u, v, height], the pool [u, v, r]
+  crystals: [[1.75, 11.6, .5], [-1.85, 8.4, .45], [.3, 12.4, .45]], mushrooms: [[1.9, 7.2], [-1.8, 6.4], [1.6, 9.6]], mites: [[2, 6.1, .55], [-2.05, 11.5, .7]], pool: [-1.2, 10.6, .8]};
+
 /* Still water. `plunge` and `pond` are carved bowls; the swamp is a basin whose hollows fill. */
 export const POOLS = [
   {id: 'plunge', x: 61.6, z: -50.2, rx: 5.6, rz: 4.6, rot: .6, level: 1.5, depth: 1.2},
@@ -59,6 +66,7 @@ export const TRAILS = [
   {id: 'swamp-east', pts: [[-5.6, 60.6], [-9.5, 61], [-11.5, 63]], w: .7},
   {id: 'badger', pts: [[-46, -46], [-48.4, -49.4], [-50, -52.6]], w: .7},
   {id: 'owl-falls', pts: [[84.5, -4.5], [80, -22], [71, -35], [62.5, -41], [58.6, -42.6]], w: .75},
+  {id: 'cave', pts: [[80, -22], [83.5, -33], [87, -44], [88, -53.5]], w: .7},
 ];
 
 /* Ways across water. `at` is snapped to the named stream; boardwalk planks are given end to end. */
@@ -125,6 +133,9 @@ export const ROCKS = [[-5.2, -4.2, 1.05, 1.6], [-2, 9, .65, .9], [9.6, 1.2, .6, 
 /* Further colliders [x, z, radius]: the den tree, the stump, the lodge, the beaver's stack of poles, the badger's sett. */
 export const SOLIDS = [[0, -8, 3.05], [-33.4, 11.2, .95], [37.5, -18.6, 2.3], [20.8, -16.9, .6], [-53.4, -58.3, 2.6], [50.75, 13.18, 0.82], [51.58, 12.73, 0.82], [52.42, 12.27, 0.82], [53.25, 11.82, 0.82], [-67.61, 22.74, 0.5], [-69.45, 24.44, 0.5], [-71.83, 23.7, 0.5], [-72.39, 21.26, 0.5], [-70.55, 19.56, 0.5], [-68.17, 20.3, 0.5], [-17, 10, 0.42], [-22, 31.5, 0.75], [-34, 36, 0.75], [38, 29, 0.75], [6.2, 9.5, 1], [5, -1.4, .15], [-5, 1.8, .15], [3.6, 6, .15], [27, 17.5, 1], [-8.6, 41.3, .95], [-7.4, 41.7, .95], [-4.6, 42.3, .85], [-2.9, 41.2, .45], [31.4, 12, .16], [-30.5, 12.3, .16], [-12.5, -33.5, .85], [2.5, 30.5, .42], [41, 22, .42], [80.6, -95.6, .3], [84.6, -91.6, .5]];
 
+/* The cave's crystals, stalagmites and pool are in the way too. */
+SOLIDS.push(...CAVE.crystals.map(([u, v, r]) => [CAVE.x + u, CAVE.z - v, r * .8]), ...CAVE.mites.map(([u, v]) => [CAVE.x + u, CAVE.z - v, .3]), [CAVE.x + CAVE.pool[0], CAVE.z - CAVE.pool[1], CAVE.pool[2] * .85]);
+
 /* What Biber felled for his dam: gnawed stumps [x, z, radius] and trunks lying beside some of them
    [x, z, radius, yaw, length] (colliders; built with the pond site). */
 export const STUMPS = [[20.6, -19, .3], [18.8, -16.2, .24], [20.9, -22.4, .34], [29.6, -25.2, .26], [16.6, -22.4, .3], [19.6, -13.9, .22], [16.2, -17.6, .28], [21, -25.6, .26]];
@@ -164,6 +175,7 @@ export const SITES = [
   {id: 'swamp', x: -19, z: 76, r: 26},
   {id: 'meadow', x: -72, z: -4, r: 30},
   {id: 'sett', x: -52, z: -56, r: 26},
+  {id: 'cave', x: 88, z: -60, r: 24},
   {id: 'crossings', x: 10, z: 30, r: 60},
   {id: 'friends', x: 0, z: 0, r: 200},
   ...WONDERS,

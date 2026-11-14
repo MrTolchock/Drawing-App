@@ -134,7 +134,7 @@ export function* buildBigTile(world, look, i, j, ring) {
   const spot = () => [x0 + R() * TILE, z0 + R() * TILE];
   const treeGap = (x, z) => { let m = Infinity; for (const tr of trees) m = Math.min(m, Math.hypot(tr.x - x, tr.z - z) - tr.r); return m; };
   // a spot plants can grow on: not in water, not on a trail, not inside a collider or on a crossing
-  const dry = (s, pathPad = -.1) => s.sd - s.sw / 2 > .3 && !(s.still - s.h > -.03) && s.pd > s.pw / 2 + pathPad;
+  const dry = (s, pathPad = -.1) => s.sd - s.sw / 2 > .3 && !(s.still - s.h > -.03) && s.pd > s.pw / 2 + pathPad && T.cave(s.x, s.z).k < .05;   // nothing grows in the cave's cut
   yield 'grass';
   for (let k = 0, n = Math.round(area * 3.2); k < n; k++) {
     if (k % 40 === 39) yield 'grass';
@@ -171,7 +171,7 @@ export function* buildBigTile(world, look, i, j, ring) {
     foliage.add(t.fern, {x, y: h, z, ry: R() * TAU, sx: sc, sy: sc, sz: sc, cell: ATLAS.fern, up: true, c});
   }
   for (let k = 0, n = Math.round(area * .1); k < n; k++) { // clover off the trails, fallen leaves on them
-    const [x, z] = spot(), s0 = T.site(x, z), onPath = s0.pd < s0.pw / 2 + .1; if (s0.sd - s0.sw / 2 < .4 || s0.still - s0.h > -.05 || T.snow(x, z) > .05) continue; const h = s0.h;
+    const [x, z] = spot(), s0 = T.site(x, z), onPath = s0.pd < s0.pw / 2 + .1; if (s0.sd - s0.sw / 2 < .4 || s0.still - s0.h > -.05 || T.snow(x, z) > .05 || T.cave(x, z).k > .05) continue; const h = s0.h;
     if (world.blocked(x, z, 0) || T.onCrossing(x, z) || (!onPath && R() < .25)) continue;
     const sc = onPath ? .55 + R() * .5 : .9 + R() * 1.2;
     foliage.add(t.flat, {x, y: h + (onPath ? .035 : .03), z, ry: R() * TAU, sx: sc, sy: 1, sz: sc, cell: onPath ? ATLAS.litter : ATLAS.clover, up: true});

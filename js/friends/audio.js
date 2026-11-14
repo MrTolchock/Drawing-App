@@ -131,6 +131,8 @@ export const details = {
     f.frequency.setValueAtTime(380, t); f.frequency.linearRampToValueAtTime(r(800, 1100), t + dur * .45); f.frequency.linearRampToValueAtTime(420, t + dur);
     g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(.16 * level, t + dur * .4); g.gain.linearRampToValueAtTime(.05 * level, t + dur * .7); g.gain.linearRampToValueAtTime(0, t + dur);
     s.connect(f); f.connect(g); g.connect(out); s.start(t, Math.random() * Math.max(.1, noise.duration - dur - .3), dur + .1); s.onended = done(s, f, g); },
+  // a drop falling into the cave's pool, and the rock giving it back twice
+  drip(ctx, out, noise, t, level = 1) { const f = r(1300, 2300); for (let k = 0; k < 3; k++) { const g = .045 * level * Math.pow(.38, k); syllable(ctx, out, {t: t + k * .23, dur: .07, path: [[0, f * .82], [.5, f * 1.15], [1, f * 1.3]], gain: g}); } },
   // the mailman's whistle when a new letter is ready: a short note and a long rising one, a little off-key
   whistle(ctx, out, noise, t, level = 1) { const f = r(1650, 1800); syllable(ctx, out, {t, dur: .16, path: [[0, f * .9], [.6, f * 1.05], [1, f]], gain: .08 * level, vib: .004}); syllable(ctx, out, {t: t + .24, dur: .5, path: [[0, f], [.35, f * 1.33], [1, f * 1.38]], gain: .085 * level, vib: .01}); },
   // one-off sounds for what Fuchs does at the things to discover (forest3d.js `react`)
@@ -178,7 +180,8 @@ export function createAudio(settings, environment = () => null) {
     if (e.type === 'call') { const out = level(e.level), end = voices[e.kind](ctx, out, t, noise); out.connect(place(e.pan, e.far, end - ctx.currentTime)); setTimeout(() => out.disconnect(), (end - ctx.currentTime + 2) * 1000); birdCalls++;
       // by the Rock: the same phrase comes back off the cliff, later, softer, duller and from the other side
       if (e.echo) { const d = ctx.createDelay(1), lp = filter('lowpass', 2400, .4), g = level(e.echo); d.delayTime.value = e.echoDelay || .4; chain(out, d, lp, g, place(-e.pan * .6, 1, end - ctx.currentTime + 1)); setTimeout(() => { d.disconnect(); lp.disconnect(); g.disconnect(); }, (end - ctx.currentTime + 2) * 1000); } }
-    else if (e.type === 'step') { footstep(ctx, place(e.side * .07, 0, .4), noise, e.ground, t, e.level * .3); steps++; /* steps stay well under the birds and the water */ }
+    else if (e.type === 'step') { footstep(ctx, place(e.side * .07, 0, .4), noise, e.ground, t, e.level * .3); steps++; /* steps stay well under the birds and the water */
+      if (e.cave > .3) footstep(ctx, place(-e.side * .3, .8, .8), noise, e.ground, t + .16, e.level * .11 * e.cave); }   // in the cave each step rings back
     else details[e.type]?.(ctx, place(e.pan || 0, e.far ?? .2, e.lasts || 1.5), noise, t, e.level);
   }
   /* The patter: single drops on leaves (short, bright, each a little different), now and then a heavier drip

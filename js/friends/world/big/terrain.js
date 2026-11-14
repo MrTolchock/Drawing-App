@@ -51,14 +51,31 @@ export function createTerrain() {
   /** How much of each habitat a spot has (0…1 each); the rest is beech wood. */
   function biome(x, z, out = {}) {
     rock(x, z);
-    out.rock = sstep(-10, 0, rk.d); out.snow = snow(x, z); out.meadow = meadow(x, z); out.swamp = swampMask(x, z); out.glade = glade(x, z);
+    out.rock = sstep(-10, 0, rk.d); out.snow = snow(x, z); cave(x, z); out.cave = cv.k; out.caveRoof = cv.roof; out.meadow = meadow(x, z); out.swamp = swampMask(x, z); out.glade = glade(x, z);
     out.spruce = sstep(-34, -54, z + (fbm(x * .03 + 7, z * .03 + 2) - .5) * 34) * (1 - out.rock) * (1 - out.meadow);
     out.birch = Math.max(blob(x, z, -58, 54, 30, 5), blob(x, z, -36, -26, 13, 9) * .8, blob(x, z, 60, 44, 20, 3) * .6) * (1 - out.swamp) * (1 - out.meadow * .7);
     return out;
   }
 
+  /* The cave's cut (layout CAVE): in local terms `u` across it and `v` from its foot into the hill (north). `k` is 1
+     on its flat floor and falls off over a short, steep wall; `roof` is 1 under the rock roof (past the mouth). */
+  const CV = L.CAVE, cv = {k: 0, u: 0, v: 0, roof: 0};
+  function cave(x, z, out = cv) {
+    out.u = x - CV.x; out.v = CV.z - z; out.k = 0; out.roof = 0;
+    if (Math.abs(out.u) > CV.w + 1.2 || out.v < -1.5 || out.v > CV.depth + 1) return out;
+    const end = CV.depth - .6 * (out.u / CV.w) ** 2;   // the back wall curves round
+    out.k = sstep(CV.w + .9, CV.w, Math.abs(out.u)) * sstep(-1.2, .3, out.v) * sstep(end + .6, end - .4, out.v);
+    out.roof = out.k * sstep(CV.open - .2, CV.open + .2, out.v); return out;
+  }
+  let caveFloor = null;
   /** Height before any water is carved. */
   function raw(x, z) {
+    let h = rawHill(x, z); cave(x, z);
+    if (cv.k > 0) { if (caveFloor === null) caveFloor = rawHill(CV.x, CV.z) - .15; const f = caveFloor + (fbm(x * 1.3 + 5, z * 1.3) - .5) * .06 + Math.max(0, cv.v - CV.depth + 2) * .05; if (h > f) h = lerp(h, f, cv.k); }
+    return h;
+  }
+  /** The hillside without the cave (the roof's outer surface follows it). */
+  function rawHill(x, z) {
     const md = meadow(x, z), roll = (fbm(x * .035 + 3, z * .035 + 7) - .5) * 2.4 + (fbm(x * .11 + 1, z * .11) - .5) * .5;
     let h = x * .012 - z * .014 + roll * (1 - .55 * md) + md * .6;
     for (const [cx, cz, r, top] of L.HILLS) { const q = ((x - cx) ** 2 + (z - cz) ** 2) / (r * r); if (q < 6) h += top * Math.exp(-q); }
@@ -183,7 +200,7 @@ export function createTerrain() {
   const grassA = C('#5f8f2f'), grassB = C('#86ad45'), sunny = C('#a9b856'), mossC = C('#4c7a2a'), edgeC = C('#9b8a4a'), dirt = C('#b77a49'), dirtL = C('#cf9a66'),
     wetC = C('#6a5237'), sand = C('#bba57f'), bed = C('#7c6c50'), meadowA = C('#8db546'), meadowB = C('#b9c95c'), needle = C('#77683c'), birchC = C('#9db84c'),
     bog = C('#4d6b33'), mud = C('#54452c'), stoneA = C('#8f8b7e'), stoneB = C('#a9a493'), stoneD = C('#6f6b60'), bm = {},
-    snowC = new THREE.Color(1.5, 1.56, 1.66), snowShade = new THREE.Color(1.12, 1.24, 1.5), snowPath = new THREE.Color(1.05, 1.03, 1);
+    caveC = C('#6a5b49'), snowC = new THREE.Color(1.5, 1.56, 1.66), snowShade = new THREE.Color(1.12, 1.24, 1.5), snowPath = new THREE.Color(1.05, 1.03, 1);
   /** Painted ground colour (without the rock that shows on steep ground: see `cliff`). */
   function colour(x, z, out) {
     const s = site(x, z), n = fbm(x * .18, z * .18), n2 = fbm(x * .9 + 4, z * .9), b = biome(x, z, bm);
@@ -199,6 +216,8 @@ export function createTerrain() {
     if (pe < 0) { out.copy(dirt).lerp(dirtL, n2 * .7); if (b.rock > .5) out.lerp(stoneB, .5); }
     if (s.sd < 8) { const be = s.sd - s.sw / 2; if (be < 1.1) out.lerp(wetC, sstep(1.1, .25, be + (n2 - .5) * .3)); if (be < .35) out.lerp(sand, sstep(.35, .05, be) * (.5 + .5 * n2)); if (be < 0) out.copy(bed).lerp(sand, n2 * .5); }
     if (s.still === s.still && b.swamp < .5) { const above = s.h - s.still; if (above < .45) out.lerp(wetC, sstep(.45, .1, above + (n2 - .5) * .2)); if (above < .12) out.lerp(sand, sstep(.12, 0, above) * (.4 + .6 * n2)); if (above < -.05) out.copy(bed).lerp(stoneD, sstep(-.1, -.9, above) * .6); }
+    // the cave's floor: dark, stony earth, darker further in
+    if (b.cave > 0) out.lerp(scratchC.copy(caveC).lerp(stoneD, n2 * .5).multiplyScalar(1 - .35 * b.caveRoof), b.cave * .9);
     // snow on the peak: bluish in the hollows, a trodden grey-white on the path
     if (b.snow > 0) { out.lerp(scratchC.copy(snowC).lerp(snowShade, sstep(.45, .7, fbm(x * .22 + 6, z * .22)) * .6), b.snow); if (pe < 0) out.lerp(snowPath, b.snow * .85); }
     return out;
@@ -250,6 +269,6 @@ export function createTerrain() {
   /** Water too deep to walk in (streams and pools), unless a crossing carries Fuchs over it. */
   function wet(x, z) { const s = site(x, z); return s.sd - s.sw / 2 < .42 || (s.still === s.still && s.still - s.h > .07); }
 
-  return {extent: E, edge, rock, peak, snow, biome, raw, site, ground, slope, colour, cliff, stillDepth, stillLevel, streamAt, pathAt, streams, pools, poolE, swamp: S, swampMask, trails, plaza,
+  return {extent: E, edge, rock, peak, snow, cave, rawHill, biome, raw, site, ground, slope, colour, cliff, stillDepth, stillLevel, streamAt, pathAt, streams, pools, poolE, swamp: S, swampMask, trails, plaza,
     crossings, onCrossing, deck, groundY, wet, falls, dam, TAU};
 }
