@@ -838,6 +838,15 @@
       "at": "2026-11-14T15:33:59.031Z",
       "seen": true,
       "operation": "27ed4e4a-5b75-4ff1-b517-33a8a329e09d"
+    },
+    "friends-owl/sentence-12@3c2e53e55f7bae19": {
+      "key": "friends-owl/sentence-12",
+      "revision": "3c2e53e55f7bae19",
+      "status": "improve",
+      "note": "Dog looks like three ears",
+      "at": "2026-11-14T15:34:43.843Z",
+      "seen": true,
+      "operation": "e0bd57d1-842a-4d37-bba8-b45b6dee8836"
     }
   },
   "history": []
