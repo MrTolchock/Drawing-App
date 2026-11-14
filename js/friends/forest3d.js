@@ -256,7 +256,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     const T = WORLD.terrain, b = T.biome(pos.x, pos.z, soundBiome), c = T.onCrossing(pos.x, pos.z), pa = T.pathAt(pos.x, pos.z);
     sound.ground = c ? (c.c.kind === 'dam' ? 'sticks' : 'wood') : b.snow > .5 ? 'snow' : b.rock > .6 ? 'rock' : b.swamp > .5 ? 'wet' : pa.d < pa.w / 2 + .15 ? 'earth' : b.meadow > .5 ? 'meadow' : b.spruce > .5 ? 'needles' : 'grass';
     { const st = T.site(pos.x, pos.z); sound.bank = (st.sd - st.sw / 2 < 1.1) || (st.still === st.still && b.swamp < .5 && st.h - st.still < .4); }
-    sound.trees = (1 - b.meadow) * (1 - b.swamp * .6) * (1 - b.rock * .7) * (1 - b.snow); sound.snow = b.snow; sound.meadow = b.meadow; sound.swamp = b.swamp; sound.spruce = b.spruce;
+    sound.trees = (1 - b.meadow) * (1 - b.swamp * .6) * (1 - b.rock * .7) * (1 - b.snow); sound.snow = b.snow; sound.rock = b.rock; sound.meadow = b.meadow; sound.swamp = b.swamp; sound.spruce = b.spruce;
     let near = Infinity; for (const s of T.streams) for (let i = 0; i <= s.N; i += 6) { const q = s.samples[i], d = (q.x - pos.x) ** 2 + (q.z - pos.z) ** 2; if (d < near) near = d; }
     sound.brook = THREE.MathUtils.clamp(1 - (Math.sqrt(near) - 1.2) / 13, 0, 1);
     const fx = T.falls.base[0] - pos.x, fz = T.falls.base[1] - pos.z; sound.falls = THREE.MathUtils.clamp(1 - (Math.hypot(fx, fz) - 5) / 42, 0, 1); sound.fallsPan = THREE.MathUtils.clamp(fx / 22, -1, 1);

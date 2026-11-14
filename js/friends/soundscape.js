@@ -27,23 +27,33 @@ export const SPECIES = {
   dove: {phrases: [1, 2], gap: [7, 11], rest: 50},
   cuckoo: {phrases: [1, 1], gap: [0, 0], rest: 170, far: true},
   woodpecker: {phrases: [1, 2], gap: [6, 10], rest: 100, far: true},
+  robin: {phrases: [2, 4], gap: [3, 6], rest: 14},
+  wren: {phrases: [1, 3], gap: [4, 8], rest: 20},
+  blackcap: {phrases: [1, 3], gap: [4, 7.5], rest: 18},
+  thrush: {phrases: [1, 2], gap: [3, 6], rest: 24},
+  nuthatch: {phrases: [1, 2], gap: [5, 9], rest: 30},
+  coalTit: {phrases: [2, 3], gap: [3, 6], rest: 16},
+  goldcrest: {phrases: [1, 3], gap: [4, 7], rest: 18},
+  jay: {phrases: [1, 1], gap: [0, 0], rest: 140, far: true},
   frog: {phrases: [1, 3], gap: [3, 7], rest: 22},
   cricket: {phrases: [1, 2], gap: [5, 9], rest: 24},
   bee: {phrases: [1, 1], gap: [0, 0], rest: 70},
 };
-const OUTSIDE = {indoors: false, moving: false, speed: 0, ground: 'grass', trees: .8, meadow: 0, swamp: 0, spruce: 0, brook: 0, falls: 0, fallsPan: 0};
+const OUTSIDE = {indoors: false, moving: false, speed: 0, ground: 'grass', trees: .8, meadow: 0, swamp: 0, spruce: 0, brook: 0, falls: 0, fallsPan: 0, rock: 0, snow: 0};
 /* How likely each voice is at a place. */
 export function voicesAt(env) {
-  if (env.indoors) return {blackbird: 2, greatTit: 1, dove: 1};
-  const f = env.trees;
-  return {blackbird: 3 * f + .5, chaffinch: 3 * f * (1 - env.spruce * .5), greatTit: 2.4 * f + .3, blueTit: 2 * f * (1 - env.spruce * .6) + .2,
-    dove: 1.1 * f, cuckoo: .32 * f, woodpecker: .45 * f, frog: 4.5 * env.swamp, cricket: 3 * env.meadow, bee: 1.1 * env.meadow};
+  if (env.indoors) return {blackbird: 2, robin: 1.5, greatTit: 1, dove: 1};
+  // the birds of a Swiss mixed wood, by how common they are: chaffinch first; coal tit and goldcrest in the spruce
+  const f = env.trees, sp = env.spruce || 0, broad = 1 - sp * .6, snowy = 1 - (env.snow || 0);
+  return {chaffinch: 3.2 * f * (1 - sp * .3), blackbird: 2.6 * f + .4, robin: 2.4 * f + .2, wren: 1.9 * f, blackcap: 2 * f * broad, greatTit: 2 * f + .3, blueTit: 1.4 * f * broad + .1,
+    thrush: 1.3 * f, nuthatch: 1.1 * f * broad, coalTit: 3 * sp * f, goldcrest: 2.4 * sp * f,
+    dove: .9 * f, cuckoo: .3 * f, woodpecker: .45 * f, jay: .25 * f, frog: 4.5 * env.swamp, cricket: 3 * env.meadow * snowy, bee: 1.1 * env.meadow * snowy};
 }
 export function createDirector({random = Math.random} = {}) {
   const range = (a, b) => a + (b - a) * random(), whole = (a, b) => Math.floor(range(a, b + 1));
   let start = null, last = 0, gust = .2, gustTo = .2, nextGust = 0, breezy = false, nextMood = 0;
   let nextSinger = 0, quietUntil = 0, lastKind = '', nextStep = 0, side = 1, walked = 0, wasMoving = false;
-  let flutter = 1, nextFar = 0;
+  let flutter = 1, nextFar = 0, nextKnock = 0, nextGustSound = 0;
   const singers = [], sangAt = {};
 
   function chooseKind(now, env) {
@@ -76,6 +86,14 @@ export function createDirector({random = Math.random} = {}) {
     for (let i = singers.length - 1; i >= 0; i--) { const s = singers[i]; if (now < s.next) continue;
       events.push({type: 'call', kind: s.kind, at: now + .05, pan: s.pan, far: s.far, level: settled}); sangAt[s.kind] = now;
       if (--s.left <= 0) singers.splice(i, 1); else s.next = now + range(...SPECIES[s.kind].gap); }
+
+    // by the Rock the cliff throws a song back a moment later, softer and duller
+    if (!env.indoors && env.rock > .25) for (const e of events) if (e.type === 'call' && !e.chorus) { e.echo = .4 * Math.min(1, env.rock * 1.4); e.echoDelay = range(.32, .5); }
+    // a hollow knock now and then in the old wood (rare, never on a beat)
+    if (!env.indoors && now >= nextKnock) { if (env.trees > .7 && (env.rain || 0) < .3 && nextKnock) events.push({type: 'hollow', at: now + .05, pan: range(-.8, .8), far: range(.4, .8), level: .8 * settled, lasts: 2.5}); nextKnock = now + range(35, 80); }
+    // high on the peak: a gust of wind comes and goes (there is no steady wind sound)
+    if (!env.indoors && (env.snow || 0) > .4 && now >= nextGustSound) { if (nextGustSound) events.push({type: 'gust', at: now + .05, pan: range(-.6, .6), far: 0, level: .9, lasts: 5}); nextGustSound = now + range(7, 16); }
+    if ((env.snow || 0) <= .4 && nextGustSound > now + 3) nextGustSound = now + range(1.5, 4);
 
     // the chorus: birds further off, soft and often, so the wood is never empty (there is no wind or other steady sound)
     if (now >= nextFar && (env.rain || 0) < .5) { const w = voicesAt(env), kinds = Object.keys(w).filter(k => w[k] > .3 && !SPECIES[k].far && k !== 'dove' && k !== 'bee');

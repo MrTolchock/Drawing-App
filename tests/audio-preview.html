@@ -15,7 +15,7 @@ p{margin:4px 0 10px;max-width:60ch}output{display:block;margin-top:14px;font-var
 window.FK = {on: () => () => {}, forestVoice: {cancel() {}}};
 const {createAudio, voices, footstep, details, makeNoise} = await import('../js/friends/audio.js');
 const SCENES = {Wald: {trees: .9, spruce: .1}, Fichtenwald: {trees: 1, spruce: 1}, Wiese: {trees: .05, meadow: 1}, Sumpf: {trees: .3, swamp: 1}, 'Am Bach': {trees: .7, brook: .9}, Wasserfall: {trees: .4, falls: .9, brook: .5, fallsPan: .3}, 'Im Bau': null};
-const NAMES = {blackbird: 'Amsel', chaffinch: 'Buchfink', greatTit: 'Kohlmeise', blueTit: 'Blaumeise', dove: 'Ringeltaube', cuckoo: 'Kuckuck', woodpecker: 'Specht', frog: 'Frosch', cricket: 'Grille', bee: 'Biene'};
+const NAMES = {blackbird: 'Amsel', chaffinch: 'Buchfink', robin: 'Rotkehlchen', wren: 'Zaunkönig', blackcap: 'Mönchsgrasmücke', thrush: 'Singdrossel', nuthatch: 'Kleiber', coalTit: 'Tannenmeise', goldcrest: 'Wintergoldhähnchen', jay: 'Eichelhäher', greatTit: 'Kohlmeise', blueTit: 'Blaumeise', dove: 'Ringeltaube', cuckoo: 'Kuckuck', woodpecker: 'Specht', frog: 'Frosch', cricket: 'Grille', bee: 'Biene'};
 const GROUNDS = {grass: 'Gras', needles: 'Nadeln', earth: 'Weg', meadow: 'Wiese', wood: 'Steg', sticks: 'Damm', rock: 'Fels', wet: 'Sumpf', snow: 'Schnee'};
 const $ = id => document.getElementById(id), q = new URLSearchParams(location.search);
 let scene = q.get('scene') || 'Wald', raining = q.has('rain') ? 1 : 0, walking = q.has('walk'), ground = q.get('ground') || 'grass', settings = {ambience: true};
@@ -31,7 +31,7 @@ for (const [g, label] of Object.entries(GROUNDS)) button($('grounds'), label, ()
 let ctx, noise, bus; function own() { if (!ctx) { ctx = new AudioContext(); noise = makeNoise(ctx, 'white', 5); bus = ctx.createGain(); bus.gain.value = .55 * .72 * .8; bus.connect(ctx.destination); } ctx.resume(); return ctx.currentTime + .05; }
 for (const [kind, label] of Object.entries(NAMES)) button($('voices'), label, () => { const t = own(); voices[kind](ctx, bus, t, noise); });
 for (const [g, label] of Object.entries(GROUNDS)) button($('steps'), '6 Schritte: ' + label, () => { const t = own(); for (let i = 0; i < 6; i++) footstep(ctx, bus, noise, g, t + i * .38, .8); });
-for (const [kind, label] of [['twig', 'Zweig knackt'], ['bubble', 'Blasen im Bach'], ['plop', 'Plop im Sumpf']]) button($('steps'), label, () => { const t = own(); for (let i = 0; i < (kind === 'bubble' ? 14 : 1); i++) details[kind](ctx, bus, noise, t + i * .12, 1); });
+for (const [kind, label] of [['twig', 'Zweig knackt'], ['bubble', 'Blasen im Bach'], ['plop', 'Plop im Sumpf'], ['hollow', 'Klopfen im alten Wald'], ['gust', 'Windstoss auf dem Gipfel'], ['echo', 'Echo im Brunnen'], ['knock', 'Kopf im hohlen Stamm'], ['sniff', 'Schnuppern'], ['crackle', 'Feuer knistert']]) button($('steps'), label, () => { const t = own(); for (let i = 0; i < (kind === 'bubble' ? 14 : 1); i++) details[kind](ctx, bus, noise, t + i * .12, 1); });
 if (q.has('scene')) showScene();
 setInterval(() => { const d = audio.diagnostics; $('out').textContent = `Ton: ${d.state} · Ort: ${scene} · Pegel ${(20 * Math.log10(d.rms || 1e-9)).toFixed(1)} dB · Vogelrufe ${d.birdCalls} · Schritte ${d.steps}`; }, 500);
 window.ready = true;

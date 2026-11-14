@@ -39,7 +39,7 @@ test('the place decides the voices', async () => {
   assert.ok(!kinds(wood).has('frog') && !kinds(wood).has('cricket') && !kinds(wood).has('bee'));
   assert.ok(kinds(swamp).has('frog')); assert.ok(kinds(meadow).has('cricket'));
   assert.ok(!kinds(meadow).has('woodpecker') || meadow.of('call').filter(c => c.kind === 'woodpecker').length <= 2);
-  assert.deepEqual([...kinds(den)].filter(k => !['blackbird', 'greatTit', 'dove'].includes(k)), [], 'only a few voices reach the den');
+  assert.deepEqual([...kinds(den)].filter(k => !['blackbird', 'robin', 'greatTit', 'dove'].includes(k)), [], 'only a few voices reach the den');
   assert.ok(den.of('call').length < wood.of('call').length * .7, 'the den is quieter'); assert.equal(den.of('step').length, 0);
   assert.ok(swamp.of('plop').length > 0 && wood.of('plop').length === 0);
 });
