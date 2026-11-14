@@ -2521,6 +2521,24 @@
       "at": "2026-11-14T16:18:58.689Z",
       "seen": true,
       "operation": "ccbe1500-2db6-4980-91a8-c8bd8eb0a8f0"
+    },
+    "friends-owl/sentence-14@a6f1f1b6068529da": {
+      "key": "friends-owl/sentence-14",
+      "revision": "a6f1f1b6068529da",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-14T16:20:46.210Z",
+      "seen": true,
+      "operation": "cb62b10b-354e-4801-a5e6-826119b59378"
+    },
+    "friends-owl/sentence-0@1bc3fd7cc428af1e": {
+      "key": "friends-owl/sentence-0",
+      "revision": "1bc3fd7cc428af1e",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-14T16:20:48.560Z",
+      "seen": true,
+      "operation": "94fa767d-9e1d-475d-998f-108410e00efd"
     }
   },
   "history": [
