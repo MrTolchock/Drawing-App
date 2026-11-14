@@ -181,3 +181,17 @@ Addressed all five nonempty comments in the [shared review ledger](https://githu
 The page, exact geometry palette and drawn learning art follow the existing visual specification. [Phone/tablet evidence and layout results](evidence/2026-11-14-review-feedback/report.json) cover all 25 matrices at both widths, single-animal answer cards, the revised dog and native touch answers.
 
 Regenerating the shared puzzle implementation fingerprint reopens prior sign-offs as **Geändert · Offen**, including unrelated approvals covered by that fingerprint. The 9.3.35 gallery and release-independent revision handling are retained; the former-implementation carry-over list is cleared because this release changes actual puzzle content, art and rendering. A read-only snapshot of the real ledger confirms all five comments remain available and all 68 latest approved records reopen; neither improved puzzle is released for child play. Historical decisions remain on the separate data branch. No production review writes or automatic editorial approvals were made.
+
+## Review comments — second pass, 14 November 2026 (9.3.37)
+
+Read the latest **Verbessern** records from the [shared review ledger](https://github.com/MrTolchock/Drawing-App/blob/puzzle-review-data/reviews.json), file SHA `d192e6ce4d1e0db6c626e10a753af7088b9d0b2f`. Current-revision comments take precedence; older unresolved comments are checked against the current content as well.
+
+| Comment | Result |
+| --- | --- |
+| `friends-bird/rhyme-16`: reversed pairs such as Tisch/Fisch and Fisch/Tisch must count once | Keep the 16 distinct existing pairs and replace all nine reversed duplicates with new pairs. The new pairs are Nuss/Bus, Boot/Brot, Biene/Schiene, Schnecke/Decke, Sonne/Tonne, Kanne/Tanne, Mund/Hund, Dach/Bach and Ziege/Fliege. New noun illustrations support the added vocabulary; the pool remains 25. |
+| `friends-owl/sentence-4`: keep two pictures throughout | Restore exactly two pictures for the sleeping mouse and assert that count for all 25 owl tasks. |
+| `friends-owl/pair-2`: always one sentence and two pictures; add variety by drawing more animals | Replace all ten two-sentence tasks with ten single sentences using new drawings of a squirrel, hedgehog, badger, roe deer and frog, each in two actions. Every owl task compares two actions of the same animal with the same prompt. Saved iteration IDs are retained. |
+| `friends-hedgehog/riddle-17`: use Swiss forest animals rather than elephants and similar animals | Replace the entire 25-item riddle pool with local woodland, woodland-edge and brook wildlife. Every distractor also uses that set. New drawings add a woodpecker, bat, tawny owl, robin, lynx and pine marten. No zoo or farm animals remain in this puzzle. |
+| Older `friends-owl/sentence-12` and `pair-0` comments | Retain the corrected two-eared sleeping dog and single-animal pictures from 9.3.36. The new one-sentence/two-picture rule also addresses the older consistency request. |
+
+The two companion atlases use the existing drawn learning-illustration style and transparent cells, with no model portraits substituting for scored animals. Both are registered for offline caching. [Phone/tablet evidence and review-reopening checks](evidence/2026-11-14-review-feedback-2/report.json) cover all 75 revised iterations. Review comments and historical decisions stay in the ledger; changed revisions reopen for owner review and are never automatically approved.

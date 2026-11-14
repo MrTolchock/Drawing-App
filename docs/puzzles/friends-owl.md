@@ -5,7 +5,7 @@
 - Stable puzzle ID: `friends-owl`
 - Host: owl
 - Related competence: **D.2.A.1.b; D.2.B.1.b** — Kurze Sätze verstehen
-- Difficulty: Ein bis zwei kurze Sätze über ein Tier; vertraute Tierverben
+- Difficulty: Ein kurzer Satz über ein Tier; immer zwei Bildantworten
 - Pool: 25 explicit iterations; a round selects five.
 - Review: solve every unconfirmed iteration to approve it; × rejects with an optional note. The final celebration approves the puzzle only when all iterations passed. Exact revisions gate release; changes require review again.
 
@@ -41,16 +41,16 @@
 | `friends-owl/sentence-12` | Der Hund schläft. — Der Hund schläft. | "dog-sleep" |
 | `friends-owl/sentence-13` | Die Ente schwimmt. — Die Ente schwimmt. | "duck-swim" |
 | `friends-owl/sentence-14` | Die Ente fliegt. — Die Ente fliegt. | "duck-fly" |
-| `friends-owl/pair-0` | Das ist eine Maus. Sie sitzt. — Das ist eine Maus. Sie sitzt. | "mouse-sit" |
-| `friends-owl/pair-1` | Das ist ein Hase. Er rennt. — Das ist ein Hase. Er rennt. | "hare-run" |
-| `friends-owl/pair-2` | Das ist eine Katze. Sie sitzt. — Das ist eine Katze. Sie sitzt. | "cat-sit" |
-| `friends-owl/pair-3` | Das ist eine Ente. Sie fliegt. — Das ist eine Ente. Sie fliegt. | "duck-fly" |
-| `friends-owl/pair-4` | Das ist ein Vogel. Er sitzt. — Das ist ein Vogel. Er sitzt. | "bird-sit" |
-| `friends-owl/pair-5` | Das ist ein Hund. Er schläft. — Das ist ein Hund. Er schläft. | "dog-sleep" |
-| `friends-owl/pair-6` | Das ist ein Fuchs. Er rennt. — Das ist ein Fuchs. Er rennt. | "fox-run" |
-| `friends-owl/pair-7` | Das ist ein Hase. Er sitzt. — Das ist ein Hase. Er sitzt. | "hare-sit" |
-| `friends-owl/pair-8` | Das ist eine Maus. Sie rennt. — Das ist eine Maus. Sie rennt. | "mouse-run" |
-| `friends-owl/pair-9` | Das ist eine Katze. Sie schläft. — Das ist eine Katze. Sie schläft. | "cat-sleep" |
+| `friends-owl/pair-0` | Das Eichhörnchen sitzt. — Das Eichhörnchen sitzt. | "squirrel-sit" |
+| `friends-owl/pair-1` | Das Eichhörnchen rennt. — Das Eichhörnchen rennt. | "squirrel-run" |
+| `friends-owl/pair-2` | Der Igel läuft. — Der Igel läuft. | "hedgehog-walk" |
+| `friends-owl/pair-3` | Der Igel schläft. — Der Igel schläft. | "hedgehog-sleep" |
+| `friends-owl/pair-4` | Der Dachs läuft. — Der Dachs läuft. | "badger-walk" |
+| `friends-owl/pair-5` | Der Dachs schläft. — Der Dachs schläft. | "badger-sleep" |
+| `friends-owl/pair-6` | Das Reh steht. — Das Reh steht. | "roe-stand" |
+| `friends-owl/pair-7` | Das Reh rennt. — Das Reh rennt. | "roe-run" |
+| `friends-owl/pair-8` | Der Frosch sitzt. — Der Frosch sitzt. | "frog-sit" |
+| `friends-owl/pair-9` | Der Frosch springt. — Der Frosch springt. | "frog-jump" |
 
 ## Exact definitions
 
@@ -124,7 +124,6 @@ These definitions are the same finite data used by the game and review previews.
       "answer": "mouse-sleep",
       "choices": [
         "mouse-sleep",
-        "mouse-sit",
         "mouse-run"
       ]
     }
@@ -271,151 +270,141 @@ These definitions are the same finite data used by the game and review previews.
   },
   {
     "id": "friends-owl/pair-0",
-    "label": "Das ist eine Maus. Sie sitzt.",
+    "label": "Das Eichhörnchen sitzt.",
     "question": {
       "kind": "reading",
-      "prompt": "Welches Bild passt zu beiden Sätzen?",
-      "text": "Das ist eine Maus. Sie sitzt.",
-      "answer": "mouse-sit",
+      "prompt": "Welches Bild passt zum Satz?",
+      "text": "Das Eichhörnchen sitzt.",
+      "answer": "squirrel-sit",
       "choices": [
-        "mouse-sit",
-        "mouse-run",
-        "bird-sit"
+        "squirrel-sit",
+        "squirrel-run"
       ]
     }
   },
   {
     "id": "friends-owl/pair-1",
-    "label": "Das ist ein Hase. Er rennt.",
+    "label": "Das Eichhörnchen rennt.",
     "question": {
       "kind": "reading",
-      "prompt": "Welches Bild passt zu beiden Sätzen?",
-      "text": "Das ist ein Hase. Er rennt.",
-      "answer": "hare-run",
+      "prompt": "Welches Bild passt zum Satz?",
+      "text": "Das Eichhörnchen rennt.",
+      "answer": "squirrel-run",
       "choices": [
-        "hare-run",
-        "hare-sit",
-        "fox-run"
+        "squirrel-run",
+        "squirrel-sit"
       ]
     }
   },
   {
     "id": "friends-owl/pair-2",
-    "label": "Das ist eine Katze. Sie sitzt.",
+    "label": "Der Igel läuft.",
     "question": {
       "kind": "reading",
-      "prompt": "Welches Bild passt zu beiden Sätzen?",
-      "text": "Das ist eine Katze. Sie sitzt.",
-      "answer": "cat-sit",
+      "prompt": "Welches Bild passt zum Satz?",
+      "text": "Der Igel läuft.",
+      "answer": "hedgehog-walk",
       "choices": [
-        "cat-sit",
-        "cat-sleep",
-        "mouse-sit"
+        "hedgehog-walk",
+        "hedgehog-sleep"
       ]
     }
   },
   {
     "id": "friends-owl/pair-3",
-    "label": "Das ist eine Ente. Sie fliegt.",
+    "label": "Der Igel schläft.",
     "question": {
       "kind": "reading",
-      "prompt": "Welches Bild passt zu beiden Sätzen?",
-      "text": "Das ist eine Ente. Sie fliegt.",
-      "answer": "duck-fly",
+      "prompt": "Welches Bild passt zum Satz?",
+      "text": "Der Igel schläft.",
+      "answer": "hedgehog-sleep",
       "choices": [
-        "duck-fly",
-        "duck-swim",
-        "bird-fly"
+        "hedgehog-sleep",
+        "hedgehog-walk"
       ]
     }
   },
   {
     "id": "friends-owl/pair-4",
-    "label": "Das ist ein Vogel. Er sitzt.",
+    "label": "Der Dachs läuft.",
     "question": {
       "kind": "reading",
-      "prompt": "Welches Bild passt zu beiden Sätzen?",
-      "text": "Das ist ein Vogel. Er sitzt.",
-      "answer": "bird-sit",
+      "prompt": "Welches Bild passt zum Satz?",
+      "text": "Der Dachs läuft.",
+      "answer": "badger-walk",
       "choices": [
-        "bird-sit",
-        "bird-fly",
-        "hare-sit"
+        "badger-walk",
+        "badger-sleep"
       ]
     }
   },
   {
     "id": "friends-owl/pair-5",
-    "label": "Das ist ein Hund. Er schläft.",
+    "label": "Der Dachs schläft.",
     "question": {
       "kind": "reading",
-      "prompt": "Welches Bild passt zu beiden Sätzen?",
-      "text": "Das ist ein Hund. Er schläft.",
-      "answer": "dog-sleep",
+      "prompt": "Welches Bild passt zum Satz?",
+      "text": "Der Dachs schläft.",
+      "answer": "badger-sleep",
       "choices": [
-        "dog-sleep",
-        "dog-run",
-        "fox-sleep"
+        "badger-sleep",
+        "badger-walk"
       ]
     }
   },
   {
     "id": "friends-owl/pair-6",
-    "label": "Das ist ein Fuchs. Er rennt.",
+    "label": "Das Reh steht.",
     "question": {
       "kind": "reading",
-      "prompt": "Welches Bild passt zu beiden Sätzen?",
-      "text": "Das ist ein Fuchs. Er rennt.",
-      "answer": "fox-run",
+      "prompt": "Welches Bild passt zum Satz?",
+      "text": "Das Reh steht.",
+      "answer": "roe-stand",
       "choices": [
-        "fox-run",
-        "fox-sleep",
-        "hare-run"
+        "roe-stand",
+        "roe-run"
       ]
     }
   },
   {
     "id": "friends-owl/pair-7",
-    "label": "Das ist ein Hase. Er sitzt.",
+    "label": "Das Reh rennt.",
     "question": {
       "kind": "reading",
-      "prompt": "Welches Bild passt zu beiden Sätzen?",
-      "text": "Das ist ein Hase. Er sitzt.",
-      "answer": "hare-sit",
+      "prompt": "Welches Bild passt zum Satz?",
+      "text": "Das Reh rennt.",
+      "answer": "roe-run",
       "choices": [
-        "hare-sit",
-        "hare-run",
-        "cat-sit"
+        "roe-run",
+        "roe-stand"
       ]
     }
   },
   {
     "id": "friends-owl/pair-8",
-    "label": "Das ist eine Maus. Sie rennt.",
+    "label": "Der Frosch sitzt.",
     "question": {
       "kind": "reading",
-      "prompt": "Welches Bild passt zu beiden Sätzen?",
-      "text": "Das ist eine Maus. Sie rennt.",
-      "answer": "mouse-run",
+      "prompt": "Welches Bild passt zum Satz?",
+      "text": "Der Frosch sitzt.",
+      "answer": "frog-sit",
       "choices": [
-        "mouse-run",
-        "mouse-sit",
-        "dog-run"
+        "frog-sit",
+        "frog-jump"
       ]
     }
   },
   {
     "id": "friends-owl/pair-9",
-    "label": "Das ist eine Katze. Sie schläft.",
+    "label": "Der Frosch springt.",
     "question": {
       "kind": "reading",
-      "prompt": "Welches Bild passt zu beiden Sätzen?",
-      "text": "Das ist eine Katze. Sie schläft.",
-      "answer": "cat-sleep",
+      "prompt": "Welches Bild passt zum Satz?",
+      "text": "Der Frosch springt.",
+      "answer": "frog-jump",
       "choices": [
-        "cat-sleep",
-        "cat-sit",
-        "mouse-sleep"
+        "frog-jump",
+        "frog-sit"
       ]
     }
   }

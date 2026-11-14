@@ -1,0 +1,40 @@
+{
+  "release": "9.3.37",
+  "sourceFileSha": "d192e6ce4d1e0db6c626e10a753af7088b9d0b2f",
+  "viewports": [
+    {
+      "width": 1080,
+      "height": 810,
+      "iterations": 75,
+      "oneSentenceAndTwoPicturesForEveryOwl": true,
+      "threePicturesForEveryForestRiddle": true,
+      "overflow": false,
+      "allPicturesVisible": true,
+      "nativeTouchPassed": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "iterations": 75,
+      "oneSentenceAndTwoPicturesForEveryOwl": true,
+      "threePicturesForEveryForestRiddle": true,
+      "overflow": false,
+      "allPicturesVisible": true,
+      "nativeTouchPassed": true
+    }
+  ],
+  "errors": [],
+  "productionLedgerWrites": 0,
+  "reviewReopening": {
+    "puzzles": [
+      "friends-bird",
+      "friends-owl",
+      "friends-hedgehog"
+    ],
+    "commentsPreserved": 6,
+    "oldApprovedRecordsReopened": 133,
+    "changedPuzzlesReleased": false,
+    "carriedOver": false,
+    "productionLedgerWrites": 0
+  }
+}

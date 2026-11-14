@@ -17,6 +17,8 @@
     menu: ['squirrel','blue-tit','berry-cluster','neighbour-houses','hand-mirror','magic-wand'],
     'forest-objects':['forest-nut','forest-apple','forest-berry','forest-leaf','forest-feather','forest-fir','forest-mushroom','forest-flower','forest-honey','forest-rose','forest-stone','forest-branch','forest-lantern','forest-shapes','forest-post','forest-basket'],
     'forest-actions':['mouse-sit','mouse-run','mouse-sleep','bird-fly','bird-sit','fish-swim','hare-run','hare-sit','fox-sleep','fox-run','cat-sleep','cat-sit','dog-run','dog-sleep','duck-swim','duck-fly'],
+    'forest-wildlife':['squirrel-sit','squirrel-run','hedgehog-walk','hedgehog-sleep','badger-walk','badger-sleep','roe-stand','roe-run','frog-sit','frog-jump','forest-woodpecker','forest-bat','forest-owl','forest-robin','forest-lynx','forest-marten'],
+    'rhyme-vocabulary':['rhyme-bread','rhyme-rail','rhyme-blanket','rhyme-bin','rhyme-jug','rhyme-mouth','rhyme-roof','rhyme-brook','rhyme-goat','rhyme-fly'],
     'puzzle-vocabulary':['vocab-house','vocab-table','vocab-shoe','vocab-leg','vocab-stone','vocab-cloth','vocab-tower','vocab-worm','vocab-pot','vocab-head','vocab-hand','vocab-sand','vocab-scarf','vocab-rope','vocab-arrow','vocab-cup','vocab-till','vocab-bench','vocab-wardrobe','vocab-seed'],
     'puzzle-flowers':['puzzle-flower-rot','puzzle-flower-gelb','puzzle-flower-blau','puzzle-flower-rosa','puzzle-flower-weiss','puzzle-flower-lila'],
   };

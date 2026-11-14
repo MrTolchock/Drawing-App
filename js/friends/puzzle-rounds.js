@@ -41,7 +41,9 @@
     'trace-numbers':'Fahre fünf Zahlen nach. Beginne am grünen Punkt und folge den Pfeilen.'
   };
   const title=id=>id.startsWith('friends-')?base[id.slice(8)]:id==='trace-numbers'?'Zahlenspuren':FK.puzzles.names[id];
-  const wordArt={...window.FriendsContent.words,Haus:'vocab-house',Tisch:'vocab-table',Schuh:'vocab-shoe',Bein:'vocab-leg',Stein:'vocab-stone',Tuch:'vocab-cloth',Turm:'vocab-tower',Wurm:'vocab-worm',Topf:'vocab-pot',Kopf:'vocab-head',Hand:'vocab-hand',Sand:'vocab-sand',Schal:'vocab-scarf',Seil:'vocab-rope',Pfeil:'vocab-arrow',Tasse:'vocab-cup',Kasse:'vocab-till',Bank:'vocab-bench',Schrank:'vocab-wardrobe',Kern:'vocab-seed',Ast:'forest-branch'};
+  const wordArt={...window.FriendsContent.words,Haus:'vocab-house',Tisch:'vocab-table',Schuh:'vocab-shoe',Bein:'vocab-leg',Stein:'vocab-stone',Tuch:'vocab-cloth',Turm:'vocab-tower',Wurm:'vocab-worm',Topf:'vocab-pot',Kopf:'vocab-head',Hand:'vocab-hand',Sand:'vocab-sand',Schal:'vocab-scarf',Seil:'vocab-rope',Pfeil:'vocab-arrow',Tasse:'vocab-cup',Kasse:'vocab-till',Bank:'vocab-bench',Schrank:'vocab-wardrobe',Kern:'vocab-seed',Ast:'forest-branch',
+    Bus:'bus',Biene:'bee',Schnecke:'snail',Sonne:'sun',Tanne:'forest-fir',Hund:'dog',
+    Brot:'rhyme-bread',Schiene:'rhyme-rail',Decke:'rhyme-blanket',Tonne:'rhyme-bin',Kanne:'rhyme-jug',Mund:'rhyme-mouth',Dach:'rhyme-roof',Bach:'rhyme-brook',Ziege:'rhyme-goat',Fliege:'rhyme-fly'};
   const words=[['Ha-se','hare-sit'],['Bi-ber','beaver'],['I-gel','hedgehog'],['Fe-der','forest-feather'],['Ro-se','forest-rose'],['Lu-pe','magnifier'],['Blu-me','forest-flower'],['Tan-ne','forest-fir'],['Ap-fel','forest-apple'],['Rau-pe','caterpillar'],['Bee-re','forest-berry'],['Bie-ne','bee'],['Maus','mouse-sit'],['Baum','tree'],['Pilz','forest-mushroom'],['Nuss','forest-nut'],['Fisch','fish-swim'],['Nest','nest'],['Blatt','forest-leaf'],['Son-ne','sun'],['Schmet-ter-ling','butterfly'],['A-mei-se','ant']];
   const shapes=['circle','triangle','square','rectangle'];
   const shapeNames={circle:'Kreis',triangle:'Dreieck',square:'Quadrat',rectangle:'Rechteck'};

@@ -115,6 +115,11 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
    assert.equal(await active().evaluate(e=>e.scrollWidth>e.clientWidth+2),false,it.id+' overflow');
    assert.equal(await active().locator('.review-preview,.review-decision').count(),0,it.id+' no footer');
    const missing=await active().locator('.puzzle-paper .wa-illustration,.tr-play .wa-illustration').evaluateAll(nodes=>nodes.filter(n=>getComputedStyle(n).backgroundImage==='none').length);assert.equal(missing,0,it.id+' artwork');
+   if(g.id==='friends-owl'){
+    assert.match(it.question.text,/^[^.?!]+\.$/,it.id+' one sentence');
+    assert.equal(await active().locator('.puzzle-answer').count(),2,it.id+' two pictures');
+    assert.equal(await active().locator('.puzzle-picture-composite').count(),0,it.id+' one animal per picture');
+   }
    if(it.question.kind==='matrix'){
     const rows=active().getByRole('row');assert.equal(await rows.count(),3,it.id+' three separate rows');
     for(let row=0;row<3;row++)assert.equal(await rows.nth(row).getByRole('cell').count(),3,it.id+' three cells per row');
@@ -137,7 +142,8 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
  // Repeated taps activate once each; drags and cancelled gestures must not become answers.
  const drum=page.getByRole('button',{name:'Eine Silbe klopfen',exact:true});
  for(let n=0;n<10;n++)await drum.tap();assert.equal(await page.locator('.puzzle-claps>span').count(),4,'ten taps, no duplicate compatibility clicks');
- await drum.focus();await page.keyboard.press('Space');await page.keyboard.press('Enter');assert.equal(await page.locator('.puzzle-claps>span').count(),0,'keyboard activates once');
+ await drum.focus();await page.keyboard.press('Space');await page.waitForFunction(()=>document.querySelectorAll('.puzzle-claps>span').length===5);assert.equal(await page.locator('.puzzle-claps>span').count(),5,'Space activates once');
+ await page.keyboard.press('Enter');await page.waitForFunction(()=>document.querySelectorAll('.puzzle-claps>span').length===0);assert.equal(await page.locator('.puzzle-claps>span').count(),0,'Enter activates once');
  await drum.scrollIntoViewIfNeeded();const hit=await drum.boundingBox(),center={x:hit.x+hit.width/2,y:hit.y+hit.height/2,id:1};
  await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[center]});await touch.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{...center,y:center.y-35}]});await touch.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});assert.equal(await page.locator('.puzzle-claps>span').count(),0,'drag is not a tap');
  await drum.scrollIntoViewIfNeeded();const fresh=await drum.boundingBox();await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:fresh.x+fresh.width/2,y:fresh.y+fresh.height/2,id:1}]});await touch.send('Input.dispatchTouchEvent',{type:'touchCancel',touchPoints:[]});assert.equal(await page.locator('.puzzle-claps>span').count(),0,'cancel is not a tap');await drum.tap();assert.equal(await page.locator('.puzzle-claps>span').count(),1,'fresh tap after cancel works');

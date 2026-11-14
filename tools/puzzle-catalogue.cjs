@@ -16,7 +16,7 @@ const runtime=[
 const digest=crypto.createHash('sha256');for(const f of runtime){digest.update(f+'\0');const bytes=fs.readFileSync(path.join(root,f));digest.update(f==='js/friends/puzzle-catalogue.js'?bytes.toString().slice(bytes.toString().indexOf('  const canonical=')):bytes);}
 const implementation=digest.digest('hex');
 // Earlier implementations may carry reviews over only when their puzzles look and play exactly like these.
-// 9.3.36 changes the owl content/art and the shared matrix renderer: reopen reviews rather than carrying them over.
+// 9.3.37 changes rhyme pairs, owl tasks, forest riddles and their art: reopen reviews rather than carrying them over.
 // Keep empty whenever a change alters what a child sees or does in a puzzle.
 const FORMER=[];
 function setup(saved){

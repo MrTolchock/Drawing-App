@@ -5,7 +5,7 @@
 - Stable puzzle ID: `friends-hedgehog`
 - Host: hedgehog
 - Related competence: **NMG.2.4.a; D.2.B.1.b** — Tiermerkmale erkennen und Fragen lesen
-- Difficulty: 25 kurze Tierfragen; drei Bildantworten
+- Difficulty: 25 kurze Fragen zu Schweizer Waldtieren; drei Bildantworten
 - Pool: 25 explicit iterations; a round selects five.
 - Review: solve every unconfirmed iteration to approve it; × rejects with an optional note. The final celebration approves the puzzle only when all iterations passed. Exact revisions gate release; changes require review again.
 
@@ -26,31 +26,31 @@
 
 | Stable iteration ID | Content / configuration | Expected answer or solution |
 | --- | --- | --- |
-| `friends-hedgehog/riddle-0` | Wer hat Stacheln? — Wer hat Stacheln? | "hedgehog" |
-| `friends-hedgehog/riddle-1` | Wer hat Flossen? — Wer hat Flossen? | "fish" |
-| `friends-hedgehog/riddle-2` | Wer quakt? — Wer quakt? | "frog" |
-| `friends-hedgehog/riddle-3` | Wer summt? — Wer summt? | "bee" |
-| `friends-hedgehog/riddle-4` | Wer bellt? — Wer bellt? | "dog" |
-| `friends-hedgehog/riddle-5` | Wer miaut? — Wer miaut? | "cat" |
-| `friends-hedgehog/riddle-6` | Wer muht? — Wer muht? | "cow" |
-| `friends-hedgehog/riddle-7` | Wer hat acht Beine? — Wer hat acht Beine? | "spider" |
-| `friends-hedgehog/riddle-8` | Wer trägt sein Haus? — Wer trägt sein Haus? | "snail" |
-| `friends-hedgehog/riddle-9` | Wer hat einen Panzer? — Wer hat einen Panzer? | "tortoise" |
-| `friends-hedgehog/riddle-10` | Wer hat lange Ohren? — Wer hat lange Ohren? | "rabbit" |
-| `friends-hedgehog/riddle-11` | Wer hat bunte Flügel? — Wer hat bunte Flügel? | "butterfly" |
-| `friends-hedgehog/riddle-12` | Wer hat Federn? — Wer hat Federn? | "bird" |
-| `friends-hedgehog/riddle-13` | Wer hat Punkte auf dem Rücken? — Wer hat Punkte auf dem Rücken? | "ladybird" |
-| `friends-hedgehog/riddle-14` | Wer hat Wolle? — Wer hat Wolle? | "sheep" |
-| `friends-hedgehog/riddle-15` | Wer frisst Nüsse? — Wer frisst Nüsse? | "squirrel" |
-| `friends-hedgehog/riddle-16` | Wer hat einen Rüssel? — Wer hat einen Rüssel? | "elephant" |
-| `friends-hedgehog/riddle-17` | Wer hat einen sehr langen Hals? — Wer hat einen sehr langen Hals? | "giraffe" |
-| `friends-hedgehog/riddle-18` | Wer hat eine Mähne? — Wer hat eine Mähne? | "lion" |
-| `friends-hedgehog/riddle-19` | Wer hat schwarze und weisse Streifen? — Wer hat schwarze und weisse Streifen? | "zebra" |
-| `friends-hedgehog/riddle-20` | Wer trägt einen Höcker? — Wer trägt einen Höcker? | "camel" |
-| `friends-hedgehog/riddle-21` | Wer hat orangefarbenes Fell mit schwarzen Streifen? — Wer hat orangefarbenes Fell mit schwarzen Streifen? | "tiger" |
-| `friends-hedgehog/riddle-22` | Welcher Vogel kann nicht fliegen, aber gut schwimmen? — Welcher Vogel kann nicht fliegen, aber gut schwimmen? | "penguin" |
-| `friends-hedgehog/riddle-23` | Wer hat schwarze und weisse Streifen im Gesicht? — Wer hat schwarze und weisse Streifen im Gesicht? | "badger" |
-| `friends-hedgehog/riddle-24` | Wer baut einen Damm? — Wer baut einen Damm? | "beaver" |
+| `friends-hedgehog/riddle-0` | Wer trägt Stacheln auf dem Rücken? — Wer trägt Stacheln auf dem Rücken? | "hedgehog" |
+| `friends-hedgehog/riddle-1` | Welcher kleine Vogel hat eine blaue Kappe? — Welcher kleine Vogel hat eine blaue Kappe? | "bird-sit" |
+| `friends-hedgehog/riddle-2` | Wer schwimmt mit Flossen im Bach? — Wer schwimmt mit Flossen im Bach? | "fish-swim" |
+| `friends-hedgehog/riddle-3` | Wer sammelt Nektar und macht Honig? — Wer sammelt Nektar und macht Honig? | "bee" |
+| `friends-hedgehog/riddle-4` | Wer trägt sein Haus auf dem Rücken? — Wer trägt sein Haus auf dem Rücken? | "snail" |
+| `friends-hedgehog/riddle-5` | Wer hat acht Beine und baut ein Netz? — Wer hat acht Beine und baut ein Netz? | "spider" |
+| `friends-hedgehog/riddle-6` | Wer war eine Raupe und hat nun bunte Flügel? — Wer war eine Raupe und hat nun bunte Flügel? | "butterfly" |
+| `friends-hedgehog/riddle-7` | Wer frisst Blätter und wird ein Schmetterling? — Wer frisst Blätter und wird ein Schmetterling? | "caterpillar" |
+| `friends-hedgehog/riddle-8` | Welcher kleine rote Käfer hat schwarze Punkte? — Welcher kleine rote Käfer hat schwarze Punkte? | "ladybird" |
+| `friends-hedgehog/riddle-9` | Wer hat lange Ohren und kräftige Hinterbeine? — Wer hat lange Ohren und kräftige Hinterbeine? | "hare-sit" |
+| `friends-hedgehog/riddle-10` | Wer hat einen buschigen Schwanz und sammelt Nüsse? — Wer hat einen buschigen Schwanz und sammelt Nüsse? | "squirrel-sit" |
+| `friends-hedgehog/riddle-11` | Wer hat schwarze und weisse Streifen im Gesicht? — Wer hat schwarze und weisse Streifen im Gesicht? | "badger-walk" |
+| `friends-hedgehog/riddle-12` | Wer hat einen breiten, flachen Schwanz? — Wer hat einen breiten, flachen Schwanz? | "beaver" |
+| `friends-hedgehog/riddle-13` | Wer hüpft am Teich und quakt? — Wer hüpft am Teich und quakt? | "frog-sit" |
+| `friends-hedgehog/riddle-14` | Wer lebt mit vielen anderen in einem Ameisenhaufen? — Wer lebt mit vielen anderen in einem Ameisenhaufen? | "ant" |
+| `friends-hedgehog/riddle-15` | Wer hat einen langen, dünnen Schwanz? — Wer hat einen langen, dünnen Schwanz? | "mouse-sit" |
+| `friends-hedgehog/riddle-16` | Wer hat rotes Fell und eine weisse Schwanzspitze? — Wer hat rotes Fell und eine weisse Schwanzspitze? | "fox-run" |
+| `friends-hedgehog/riddle-17` | Wer hat schlanke Beine und ein kleines Geweih? — Wer hat schlanke Beine und ein kleines Geweih? | "roe-stand" |
+| `friends-hedgehog/riddle-18` | Wer klopft mit seinem Schnabel an Baumstämme? — Wer klopft mit seinem Schnabel an Baumstämme? | "forest-woodpecker" |
+| `friends-hedgehog/riddle-19` | Wer hängt beim Schlafen mit dem Kopf nach unten? — Wer hängt beim Schlafen mit dem Kopf nach unten? | "forest-bat" |
+| `friends-hedgehog/riddle-20` | Welcher Vogel jagt in der Nacht? — Welcher Vogel jagt in der Nacht? | "forest-owl" |
+| `friends-hedgehog/riddle-21` | Welcher kleine Vogel hat eine orangerote Brust? — Welcher kleine Vogel hat eine orangerote Brust? | "forest-robin" |
+| `friends-hedgehog/riddle-22` | Welche Waldkatze hat Pinsel an den Ohren? — Welche Waldkatze hat Pinsel an den Ohren? | "forest-lynx" |
+| `friends-hedgehog/riddle-23` | Wer hat braunes Fell und einen gelben Kehlfleck? — Wer hat braunes Fell und einen gelben Kehlfleck? | "forest-marten" |
+| `friends-hedgehog/riddle-24` | Wer lebt in der Erde und hat keine Beine? — Wer lebt in der Erde und hat keine Beine? | "vocab-worm" |
 
 ## Exact definitions
 
@@ -60,376 +60,376 @@ These definitions are the same finite data used by the game and review previews.
 [
   {
     "id": "friends-hedgehog/riddle-0",
-    "label": "Wer hat Stacheln?",
+    "label": "Wer trägt Stacheln auf dem Rücken?",
     "question": {
       "kind": "reading",
       "prompt": "Welches Bild passt zur Frage?",
-      "text": "Wer hat Stacheln?",
+      "text": "Wer trägt Stacheln auf dem Rücken?",
       "answer": "hedgehog",
       "choices": [
         "hedgehog",
-        "fish",
-        "frog"
+        "mouse-sit",
+        "frog-sit"
       ]
     }
   },
   {
     "id": "friends-hedgehog/riddle-1",
-    "label": "Wer hat Flossen?",
+    "label": "Welcher kleine Vogel hat eine blaue Kappe?",
     "question": {
       "kind": "reading",
       "prompt": "Welches Bild passt zur Frage?",
-      "text": "Wer hat Flossen?",
-      "answer": "fish",
+      "text": "Welcher kleine Vogel hat eine blaue Kappe?",
+      "answer": "bird-sit",
       "choices": [
-        "fish",
-        "dog",
-        "bee"
+        "bird-sit",
+        "forest-robin",
+        "forest-woodpecker"
       ]
     }
   },
   {
     "id": "friends-hedgehog/riddle-2",
-    "label": "Wer quakt?",
+    "label": "Wer schwimmt mit Flossen im Bach?",
     "question": {
       "kind": "reading",
       "prompt": "Welches Bild passt zur Frage?",
-      "text": "Wer quakt?",
-      "answer": "frog",
+      "text": "Wer schwimmt mit Flossen im Bach?",
+      "answer": "fish-swim",
       "choices": [
-        "frog",
-        "cat",
-        "bird"
+        "fish-swim",
+        "beaver",
+        "snail"
       ]
     }
   },
   {
     "id": "friends-hedgehog/riddle-3",
-    "label": "Wer summt?",
+    "label": "Wer sammelt Nektar und macht Honig?",
     "question": {
       "kind": "reading",
       "prompt": "Welches Bild passt zur Frage?",
-      "text": "Wer summt?",
+      "text": "Wer sammelt Nektar und macht Honig?",
       "answer": "bee",
       "choices": [
         "bee",
-        "cow",
-        "snail"
+        "spider",
+        "ant"
       ]
     }
   },
   {
     "id": "friends-hedgehog/riddle-4",
-    "label": "Wer bellt?",
+    "label": "Wer trägt sein Haus auf dem Rücken?",
     "question": {
       "kind": "reading",
       "prompt": "Welches Bild passt zur Frage?",
-      "text": "Wer bellt?",
-      "answer": "dog",
+      "text": "Wer trägt sein Haus auf dem Rücken?",
+      "answer": "snail",
       "choices": [
-        "dog",
-        "frog",
-        "butterfly"
+        "snail",
+        "caterpillar",
+        "vocab-worm"
       ]
     }
   },
   {
     "id": "friends-hedgehog/riddle-5",
-    "label": "Wer miaut?",
+    "label": "Wer hat acht Beine und baut ein Netz?",
     "question": {
       "kind": "reading",
       "prompt": "Welches Bild passt zur Frage?",
-      "text": "Wer miaut?",
-      "answer": "cat",
+      "text": "Wer hat acht Beine und baut ein Netz?",
+      "answer": "spider",
       "choices": [
-        "cat",
-        "fish",
-        "pig"
+        "spider",
+        "ant",
+        "ladybird"
       ]
     }
   },
   {
     "id": "friends-hedgehog/riddle-6",
-    "label": "Wer muht?",
+    "label": "Wer war eine Raupe und hat nun bunte Flügel?",
     "question": {
       "kind": "reading",
       "prompt": "Welches Bild passt zur Frage?",
-      "text": "Wer muht?",
-      "answer": "cow",
+      "text": "Wer war eine Raupe und hat nun bunte Flügel?",
+      "answer": "butterfly",
       "choices": [
-        "cow",
+        "butterfly",
         "bee",
-        "spider"
+        "bird-sit"
       ]
     }
   },
   {
     "id": "friends-hedgehog/riddle-7",
-    "label": "Wer hat acht Beine?",
+    "label": "Wer frisst Blätter und wird ein Schmetterling?",
     "question": {
       "kind": "reading",
       "prompt": "Welches Bild passt zur Frage?",
-      "text": "Wer hat acht Beine?",
-      "answer": "spider",
+      "text": "Wer frisst Blätter und wird ein Schmetterling?",
+      "answer": "caterpillar",
       "choices": [
-        "spider",
-        "bird",
-        "fish"
+        "caterpillar",
+        "vocab-worm",
+        "snail"
       ]
     }
   },
   {
     "id": "friends-hedgehog/riddle-8",
-    "label": "Wer trägt sein Haus?",
+    "label": "Welcher kleine rote Käfer hat schwarze Punkte?",
     "question": {
       "kind": "reading",
       "prompt": "Welches Bild passt zur Frage?",
-      "text": "Wer trägt sein Haus?",
-      "answer": "snail",
+      "text": "Welcher kleine rote Käfer hat schwarze Punkte?",
+      "answer": "ladybird",
       "choices": [
-        "snail",
-        "dog",
-        "sheep"
+        "ladybird",
+        "ant",
+        "bee"
       ]
     }
   },
   {
     "id": "friends-hedgehog/riddle-9",
-    "label": "Wer hat einen Panzer?",
+    "label": "Wer hat lange Ohren und kräftige Hinterbeine?",
     "question": {
       "kind": "reading",
       "prompt": "Welches Bild passt zur Frage?",
-      "text": "Wer hat einen Panzer?",
-      "answer": "tortoise",
+      "text": "Wer hat lange Ohren und kräftige Hinterbeine?",
+      "answer": "hare-sit",
       "choices": [
-        "tortoise",
-        "rabbit",
-        "bee"
+        "hare-sit",
+        "hedgehog",
+        "mouse-sit"
       ]
     }
   },
   {
     "id": "friends-hedgehog/riddle-10",
-    "label": "Wer hat lange Ohren?",
+    "label": "Wer hat einen buschigen Schwanz und sammelt Nüsse?",
     "question": {
       "kind": "reading",
       "prompt": "Welches Bild passt zur Frage?",
-      "text": "Wer hat lange Ohren?",
-      "answer": "rabbit",
+      "text": "Wer hat einen buschigen Schwanz und sammelt Nüsse?",
+      "answer": "squirrel-sit",
       "choices": [
-        "rabbit",
-        "fish",
-        "snail"
+        "squirrel-sit",
+        "beaver",
+        "frog-sit"
       ]
     }
   },
   {
     "id": "friends-hedgehog/riddle-11",
-    "label": "Wer hat bunte Flügel?",
-    "question": {
-      "kind": "reading",
-      "prompt": "Welches Bild passt zur Frage?",
-      "text": "Wer hat bunte Flügel?",
-      "answer": "butterfly",
-      "choices": [
-        "butterfly",
-        "pig",
-        "frog"
-      ]
-    }
-  },
-  {
-    "id": "friends-hedgehog/riddle-12",
-    "label": "Wer hat Federn?",
-    "question": {
-      "kind": "reading",
-      "prompt": "Welches Bild passt zur Frage?",
-      "text": "Wer hat Federn?",
-      "answer": "bird",
-      "choices": [
-        "bird",
-        "cow",
-        "spider"
-      ]
-    }
-  },
-  {
-    "id": "friends-hedgehog/riddle-13",
-    "label": "Wer hat Punkte auf dem Rücken?",
-    "question": {
-      "kind": "reading",
-      "prompt": "Welches Bild passt zur Frage?",
-      "text": "Wer hat Punkte auf dem Rücken?",
-      "answer": "ladybird",
-      "choices": [
-        "ladybird",
-        "sheep",
-        "dog"
-      ]
-    }
-  },
-  {
-    "id": "friends-hedgehog/riddle-14",
-    "label": "Wer hat Wolle?",
-    "question": {
-      "kind": "reading",
-      "prompt": "Welches Bild passt zur Frage?",
-      "text": "Wer hat Wolle?",
-      "answer": "sheep",
-      "choices": [
-        "sheep",
-        "fish",
-        "ant"
-      ]
-    }
-  },
-  {
-    "id": "friends-hedgehog/riddle-15",
-    "label": "Wer frisst Nüsse?",
-    "question": {
-      "kind": "reading",
-      "prompt": "Welches Bild passt zur Frage?",
-      "text": "Wer frisst Nüsse?",
-      "answer": "squirrel",
-      "choices": [
-        "squirrel",
-        "spider",
-        "fish"
-      ]
-    }
-  },
-  {
-    "id": "friends-hedgehog/riddle-16",
-    "label": "Wer hat einen Rüssel?",
-    "question": {
-      "kind": "reading",
-      "prompt": "Welches Bild passt zur Frage?",
-      "text": "Wer hat einen Rüssel?",
-      "answer": "elephant",
-      "choices": [
-        "elephant",
-        "cat",
-        "fish"
-      ]
-    }
-  },
-  {
-    "id": "friends-hedgehog/riddle-17",
-    "label": "Wer hat einen sehr langen Hals?",
-    "question": {
-      "kind": "reading",
-      "prompt": "Welches Bild passt zur Frage?",
-      "text": "Wer hat einen sehr langen Hals?",
-      "answer": "giraffe",
-      "choices": [
-        "giraffe",
-        "pig",
-        "frog"
-      ]
-    }
-  },
-  {
-    "id": "friends-hedgehog/riddle-18",
-    "label": "Wer hat eine Mähne?",
-    "question": {
-      "kind": "reading",
-      "prompt": "Welches Bild passt zur Frage?",
-      "text": "Wer hat eine Mähne?",
-      "answer": "lion",
-      "choices": [
-        "lion",
-        "sheep",
-        "snail"
-      ]
-    }
-  },
-  {
-    "id": "friends-hedgehog/riddle-19",
-    "label": "Wer hat schwarze und weisse Streifen?",
-    "question": {
-      "kind": "reading",
-      "prompt": "Welches Bild passt zur Frage?",
-      "text": "Wer hat schwarze und weisse Streifen?",
-      "answer": "zebra",
-      "choices": [
-        "zebra",
-        "dog",
-        "bee"
-      ]
-    }
-  },
-  {
-    "id": "friends-hedgehog/riddle-20",
-    "label": "Wer trägt einen Höcker?",
-    "question": {
-      "kind": "reading",
-      "prompt": "Welches Bild passt zur Frage?",
-      "text": "Wer trägt einen Höcker?",
-      "answer": "camel",
-      "choices": [
-        "camel",
-        "cat",
-        "spider"
-      ]
-    }
-  },
-  {
-    "id": "friends-hedgehog/riddle-21",
-    "label": "Wer hat orangefarbenes Fell mit schwarzen Streifen?",
-    "question": {
-      "kind": "reading",
-      "prompt": "Welches Bild passt zur Frage?",
-      "text": "Wer hat orangefarbenes Fell mit schwarzen Streifen?",
-      "answer": "tiger",
-      "choices": [
-        "tiger",
-        "cow",
-        "snail"
-      ]
-    }
-  },
-  {
-    "id": "friends-hedgehog/riddle-22",
-    "label": "Welcher Vogel kann nicht fliegen, aber gut schwimmen?",
-    "question": {
-      "kind": "reading",
-      "prompt": "Welches Bild passt zur Frage?",
-      "text": "Welcher Vogel kann nicht fliegen, aber gut schwimmen?",
-      "answer": "penguin",
-      "choices": [
-        "penguin",
-        "bird",
-        "butterfly"
-      ]
-    }
-  },
-  {
-    "id": "friends-hedgehog/riddle-23",
     "label": "Wer hat schwarze und weisse Streifen im Gesicht?",
     "question": {
       "kind": "reading",
       "prompt": "Welches Bild passt zur Frage?",
       "text": "Wer hat schwarze und weisse Streifen im Gesicht?",
-      "answer": "badger",
+      "answer": "badger-walk",
       "choices": [
-        "badger",
-        "pig",
-        "fish"
+        "badger-walk",
+        "fox-run",
+        "squirrel-sit"
+      ]
+    }
+  },
+  {
+    "id": "friends-hedgehog/riddle-12",
+    "label": "Wer hat einen breiten, flachen Schwanz?",
+    "question": {
+      "kind": "reading",
+      "prompt": "Welches Bild passt zur Frage?",
+      "text": "Wer hat einen breiten, flachen Schwanz?",
+      "answer": "beaver",
+      "choices": [
+        "beaver",
+        "mouse-sit",
+        "hare-sit"
+      ]
+    }
+  },
+  {
+    "id": "friends-hedgehog/riddle-13",
+    "label": "Wer hüpft am Teich und quakt?",
+    "question": {
+      "kind": "reading",
+      "prompt": "Welches Bild passt zur Frage?",
+      "text": "Wer hüpft am Teich und quakt?",
+      "answer": "frog-sit",
+      "choices": [
+        "frog-sit",
+        "mouse-sit",
+        "ant"
+      ]
+    }
+  },
+  {
+    "id": "friends-hedgehog/riddle-14",
+    "label": "Wer lebt mit vielen anderen in einem Ameisenhaufen?",
+    "question": {
+      "kind": "reading",
+      "prompt": "Welches Bild passt zur Frage?",
+      "text": "Wer lebt mit vielen anderen in einem Ameisenhaufen?",
+      "answer": "ant",
+      "choices": [
+        "ant",
+        "spider",
+        "ladybird"
+      ]
+    }
+  },
+  {
+    "id": "friends-hedgehog/riddle-15",
+    "label": "Wer hat einen langen, dünnen Schwanz?",
+    "question": {
+      "kind": "reading",
+      "prompt": "Welches Bild passt zur Frage?",
+      "text": "Wer hat einen langen, dünnen Schwanz?",
+      "answer": "mouse-sit",
+      "choices": [
+        "mouse-sit",
+        "hare-sit",
+        "badger-walk"
+      ]
+    }
+  },
+  {
+    "id": "friends-hedgehog/riddle-16",
+    "label": "Wer hat rotes Fell und eine weisse Schwanzspitze?",
+    "question": {
+      "kind": "reading",
+      "prompt": "Welches Bild passt zur Frage?",
+      "text": "Wer hat rotes Fell und eine weisse Schwanzspitze?",
+      "answer": "fox-run",
+      "choices": [
+        "fox-run",
+        "badger-walk",
+        "roe-stand"
+      ]
+    }
+  },
+  {
+    "id": "friends-hedgehog/riddle-17",
+    "label": "Wer hat schlanke Beine und ein kleines Geweih?",
+    "question": {
+      "kind": "reading",
+      "prompt": "Welches Bild passt zur Frage?",
+      "text": "Wer hat schlanke Beine und ein kleines Geweih?",
+      "answer": "roe-stand",
+      "choices": [
+        "roe-stand",
+        "hare-sit",
+        "fox-run"
+      ]
+    }
+  },
+  {
+    "id": "friends-hedgehog/riddle-18",
+    "label": "Wer klopft mit seinem Schnabel an Baumstämme?",
+    "question": {
+      "kind": "reading",
+      "prompt": "Welches Bild passt zur Frage?",
+      "text": "Wer klopft mit seinem Schnabel an Baumstämme?",
+      "answer": "forest-woodpecker",
+      "choices": [
+        "forest-woodpecker",
+        "forest-robin",
+        "bird-sit"
+      ]
+    }
+  },
+  {
+    "id": "friends-hedgehog/riddle-19",
+    "label": "Wer hängt beim Schlafen mit dem Kopf nach unten?",
+    "question": {
+      "kind": "reading",
+      "prompt": "Welches Bild passt zur Frage?",
+      "text": "Wer hängt beim Schlafen mit dem Kopf nach unten?",
+      "answer": "forest-bat",
+      "choices": [
+        "forest-bat",
+        "forest-owl",
+        "squirrel-sit"
+      ]
+    }
+  },
+  {
+    "id": "friends-hedgehog/riddle-20",
+    "label": "Welcher Vogel jagt in der Nacht?",
+    "question": {
+      "kind": "reading",
+      "prompt": "Welches Bild passt zur Frage?",
+      "text": "Welcher Vogel jagt in der Nacht?",
+      "answer": "forest-owl",
+      "choices": [
+        "forest-owl",
+        "forest-robin",
+        "forest-woodpecker"
+      ]
+    }
+  },
+  {
+    "id": "friends-hedgehog/riddle-21",
+    "label": "Welcher kleine Vogel hat eine orangerote Brust?",
+    "question": {
+      "kind": "reading",
+      "prompt": "Welches Bild passt zur Frage?",
+      "text": "Welcher kleine Vogel hat eine orangerote Brust?",
+      "answer": "forest-robin",
+      "choices": [
+        "forest-robin",
+        "bird-sit",
+        "forest-woodpecker"
+      ]
+    }
+  },
+  {
+    "id": "friends-hedgehog/riddle-22",
+    "label": "Welche Waldkatze hat Pinsel an den Ohren?",
+    "question": {
+      "kind": "reading",
+      "prompt": "Welches Bild passt zur Frage?",
+      "text": "Welche Waldkatze hat Pinsel an den Ohren?",
+      "answer": "forest-lynx",
+      "choices": [
+        "forest-lynx",
+        "fox-run",
+        "badger-walk"
+      ]
+    }
+  },
+  {
+    "id": "friends-hedgehog/riddle-23",
+    "label": "Wer hat braunes Fell und einen gelben Kehlfleck?",
+    "question": {
+      "kind": "reading",
+      "prompt": "Welches Bild passt zur Frage?",
+      "text": "Wer hat braunes Fell und einen gelben Kehlfleck?",
+      "answer": "forest-marten",
+      "choices": [
+        "forest-marten",
+        "fox-run",
+        "forest-lynx"
       ]
     }
   },
   {
     "id": "friends-hedgehog/riddle-24",
-    "label": "Wer baut einen Damm?",
+    "label": "Wer lebt in der Erde und hat keine Beine?",
     "question": {
       "kind": "reading",
       "prompt": "Welches Bild passt zur Frage?",
-      "text": "Wer baut einen Damm?",
-      "answer": "beaver",
+      "text": "Wer lebt in der Erde und hat keine Beine?",
+      "answer": "vocab-worm",
       "choices": [
-        "beaver",
-        "cat",
-        "ant"
+        "vocab-worm",
+        "ant",
+        "caterpillar"
       ]
     }
   }
