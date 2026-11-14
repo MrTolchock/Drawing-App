@@ -43,3 +43,5 @@ The camera stands further back where the view is wide (meadow, Rock, peak, open 
 Small touches: grass bends round Fuchs and the friends; Fuchs is quicker on paths, wades, slides on snow, hops onto the log bridge and stepping stones and shakes himself dry; the fish's ripple rocks a duck, birds flying up startle the squirrel and the deer; the mailman walks his own round and whistles when a new letter is ready; the haze lifts as Fuchs walks into the meadow, the Rock, the peak or the swamp.
 
 The cave (`CAVE` in `layout.js`, `cave` in `terrain.js`, the `cave` site in `sites.js`): a flat cut into the Rock's south flank, closed by a rock shell whose outer face follows the hillside; inside stalactites, glowing crystals, mushrooms, glow-worms and a pool, with drips and echoes (`soundscape.js`). Fuchs walks in along a short trail from the owl's path.
+
+Speech uses the device's German voices; adults can pick one in Settings (**Stimme zum Vorlesen**, with **Probe hören**) and download a Premium/Erweitert voice on the iPad for a more natural sound (`js/core/speech.js`).

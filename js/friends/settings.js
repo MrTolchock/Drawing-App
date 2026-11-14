@@ -23,6 +23,14 @@
       const sounds=h('section',{class:'setting-card'},h('div',{class:'setting-head'},h('b',{text:'Klänge im Wald'}),h('small',{text:'Vögel, Blätter und Bach begleiten das Spiel.'})));
       for(const [name,label]of [['ambience','Waldgeräusche']])sounds.append(toggle(label,s.get().settings[name],input=>{if(!s.setting(name,input.checked))input.checked=s.get().settings[name];FK.emit('friends-audio');}));
       sounds.append(toggle('Spielklänge',FK.settings.get('sound')!==false,input=>FK.settings.set('sound',input.checked)),h('p',{class:'ff-setting-note',text:'Es wird nichts automatisch vorgelesen. In jedem Rätsel erklärt der Lautsprecher das Spiel, wenn du ihn antippst.'}));
+      // the voice that reads the rules: the best German voice on this device, or one an adult picks
+      const pick=h('select',{'aria-label':'Stimme zum Vorlesen',class:'ff-voice-select'}),voiceNote=h('p',{class:'ff-setting-note ff-voice-status',role:'status','aria-live':'polite'});
+      const fillVoices=()=>{const list=FK.forestVoice.voices(),want=FK.settings.get('stimme')||'';pick.replaceChildren(h('option',{value:'',text:'Automatisch (beste Stimme)'}),...list.map(v=>h('option',{value:v.name,text:v.name+' · '+v.lang+(v.quality==='hoch'?' · hohe Qualität':v.quality==='einfach'?' · einfach':'')})));pick.value=list.some(v=>v.name===want)?want:'';
+        voiceNote.textContent=list.length?'Jetzt: '+(FK.forestVoice.voiceName||'–'):'Auf diesem Gerät ist keine deutsche Stimme verfügbar.';};
+      pick.addEventListener('change',()=>{FK.settings.set('stimme',pick.value||null);fillVoices();});
+      fillVoices();FK.on('voices',()=>{if(pick.isConnected)fillVoices();});
+      sounds.append(h('label',{class:'ff-voice-choice'},h('span',{text:'Stimme zum Vorlesen'}),pick),FK.ui.btn({label:'Probe hören',icon:'sound',onClick:()=>{if(!FK.forestVoice.sample())voiceNote.textContent='Die Sprachausgabe ist auf diesem Gerät nicht verfügbar.';}}),voiceNote,
+        h('p',{class:'ff-setting-note',text:'Natürlicher klingt eine Stimme mit «Premium» oder «Erweitert». Auf dem iPad: Einstellungen → Bedienungshilfen → Gesprochene Inhalte → Stimmen → Deutsch, dort eine solche Stimme laden; danach erscheint sie hier.'}));
       // Letters per journey: a slider from 1 to 10 (a journey saved with more keeps its own limit until changed).
       const count=h('input',{type:'range',min:1,max:10,step:1,value:Math.min(10,s.get().settings.letterLimit),'aria-label':'Anzahl Briefe',class:'ff-letter-slider'}),countValue=h('output',{class:'ff-letter-count','aria-hidden':'true',text:String(count.value)});
       const sessionStatus=h('p',{class:'ff-letter-session-status',role:'status','aria-live':'polite'});
