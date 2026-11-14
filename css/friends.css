@@ -484,8 +484,8 @@
 @keyframes ff-here{0%{scale:.6;opacity:1}100%{scale:2.2;opacity:0}}
 @media(prefers-reduced-motion:reduce){.ff-map-here-pulse{animation:none}}
 .ff-map-scroll .ff-map-here-pin{left:-22px;width:44px;height:44px}
-.ff-map-storybook .ff-map-home .utility-icon{width:44px;height:44px;position:absolute;inset:0;margin:auto}
-.ff-map-scroll .ff-map-storybook .ff-map-home .utility-icon{width:36px;height:36px}
+.ff-map-storybook .ff-map-home .ff-hud-art{width:50px;height:50px;position:absolute;inset:0;margin:auto}
+.ff-map-scroll .ff-map-storybook .ff-map-home .ff-hud-art{width:42px;height:42px}
 .ff-settings-screen{background:#f7f1e5;color:#4e422f}
 .ff-settings-body{width:min(750px,100%);margin:0 auto;padding:8px 22px 36px;display:flex;flex-direction:column;gap:18px}
 .ff-settings-body .setting-card{padding:22px;background:#fffbf2;border:1px solid #d9c6a3;border-radius:22px;box-shadow:0 4px 14px #6c512a0c}
@@ -520,3 +520,11 @@
 .ff-letter-range{display:block}.ff-letter-slider-row{display:flex;align-items:center;gap:10px;margin-top:8px}
 .ff-letter-slider{flex:1;min-width:0;height:48px;accent-color:#6f8a43;cursor:pointer}
 .ff-letter-count{min-width:2.4em;padding:4px 8px;border:2px solid #c9b48a;border-radius:12px;background:#fffaf0;text-align:center;font-weight:700;font-size:20px;color:#4b3b2d}
+/* The world's own painted button pictures (js/friends/hud-art.js) and their wooden medallions. */
+.ff-hud-art{display:inline-flex;width:100%;height:100%}.ff-hud-art>svg{width:100%;height:100%;display:block}
+.friends-interface .ff-game .ff-nav{background:none;border:0;box-shadow:none;padding:0;gap:12px}
+.friends-interface .ff-game .ff-nav .ff-button{border-radius:50%;background:radial-gradient(circle at 50% 42%,#fffaf0 0 56%,#f6e8c8 57% 66%,var(--wb-timber,#a8703f) 67% 76%,var(--wb-timber-deep,#74482a) 77%);border:0;box-shadow:0 4px 0 #5e3a20,0 7px 14px #3a2a1440}
+.friends-interface .ff-game .ff-nav .ff-button:not(:disabled):active{transform:translateY(3px);box-shadow:0 1px 0 #5e3a20,0 3px 8px #3a2a1440}
+.friends-interface .ff-game .ff-nav .ff-button .ff-hud-picture{width:42px;height:42px}
+.friends-interface .ff-game .ff-nav .ff-dev{align-self:center}
+@media(max-width:600px){.friends-interface .ff-game .ff-nav{gap:7px}.friends-interface .ff-game .ff-nav .ff-button .ff-hud-picture{width:36px;height:36px}}

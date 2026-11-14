@@ -1,5 +1,5 @@
 /* Farbtupf – Service Worker: keeps the whole app on the device so it runs without internet. */
-const CACHE = 'farbtupf-v9.3.54-waldpost';
+const CACHE = 'farbtupf-v9.3.55-waldpost';
 const SCOPE=self.registration.scope;
 const INDEX=new URL('index.html',SCOPE).href;
 const ACTIVE_MARKER=new URL('.farbtupf-active-cache',SCOPE).href;
@@ -30,6 +30,7 @@ const ASSETS = [
   './assets/waldatelier/rhyme-vocabulary.webp',
   './assets/waldatelier/menu.webp',
   './js/friends/interface.js',
+  './js/friends/hud-art.js',
   './js/friends/settings.js',
   './assets/forest-friends/world-map.webp',
   './js/art/den-pages.js',

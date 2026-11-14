@@ -47,6 +47,7 @@ function letterPortrait(id){
 function art(name,cls=''){
  const id=name.startsWith('friend-')?name.slice(7):name;
  if(C.hosts[id]||['fox','mailman'].includes(id))return h('span',{class:'ff-picture '+cls},FK.friendsArt.portrait(id));
+ if(FK.hudArt?.has(name))return h('span',{class:'ff-picture ff-hud-picture '+cls},FK.hudArt.element(name));   // the world's own painted buttons
  const control={pencils:'pencil',gallery:'gallery',door:'home',bag:'book',skip:'next'}[name]||name;
  if(FK.icons.has(control))return h('span',{class:'ff-picture '+cls},FK.icons.element(control));
  return h('span',{class:'ff-picture ff-painted-picture '+cls},FK.visual.art(name));
@@ -103,7 +104,7 @@ function map(){
   for(const [id,p]of Object.entries(places)){
     if(id==='mailman')continue;
     const b=button(p.name,p.picture,()=>{if(area!=='forest')go('forest');else close();world.route(id);});
-    b.replaceChildren(id==='home'?FK.icons.element('home'):FK.friendsArt.portrait(id));b.dataset.place=id;if(id==='home')b.classList.add('ff-map-home');
+    b.replaceChildren(id==='home'?FK.hudArt.element('den'):FK.friendsArt.portrait(id));b.dataset.place=id;if(id==='home')b.classList.add('ff-map-home');
     const invited=mail.phase==='to-friend'&&mail.host===id||mail.phase==='return-home'&&id==='home';b.classList.toggle('ff-map-invited',invited);if(invited)b.append(h('span',{class:'ff-map-invitation'},FK.icons.element('letter')));
     const [x,y]=mapPins[id];b.style.left=(x*100)+'%';b.style.top=(y*100)+'%';board.append(b);
   }

@@ -86,7 +86,7 @@ const pin = (x, y) => ({pu: x / 1024, pv: y / 768});
    where the painted picture map shows them until the map is redrawn. */
 // `map` moves a place's pin on the picture map where two pins would overlap.
 export const PLACES = {
-  home: {x: 0, z: -3.3, picture: 'door', name: 'Nach Hause', ...pin(392, 262)},
+  home: {x: 0, z: -3.3, picture: 'den', name: 'Nach Hause', ...pin(392, 262)},
   mailman: {x: 3.2, z: -.8, picture: 'mailman', name: 'Zum Briefträger', ...pin(570, 390)},
   squirrel: {x: -29.5, z: -59, picture: 'squirrel', name: 'Zu Eichhörnchen', ...pin(86, 134)},
   bird: {x: -55.5, z: 52.2, picture: 'bird', name: 'Zu Blaumeise', ...pin(98, 390)},
