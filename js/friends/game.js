@@ -1,7 +1,7 @@
 import {createWorld,places,exitPoints} from './world.js';
 import {createAudio} from './audio.js';
 const FK=window.FK,h=FK.h,C=window.FriendsContent;
-let root,canvas,world,state,audio,overlay,hotspots,nav,statusBar,nearButton,caption,fader,doorScene,denEnvelope;
+let root,canvas,world,state,audio,overlay,hotspots,nav,statusBar,nearButton,caption,fader,doorScene,denEnvelope,framing=false;
 let area='den',panel=null,host=null,example=false,feedbackTimer=null,activeMs=0,lastTick=performance.now(),returnArea='den',finalSleep=false;
 const actionPictures={outside:'door'};
 const actionNames={outside:'Nach draussen'};
@@ -125,7 +125,9 @@ function meet(id){
     world.visit?.(id,toward);
     FK.ui.toast(m.phase==='return-home'?name+' winkt. Fuchs geht nach Hause schlafen.':m.phase==='to-friend'?name+' zeigt dir den Weg zu '+(C.hosts[m.host]?.name||'deinem Freund')+'.':m.phase==='to-mailman'?name+' zeigt dir den Weg zum Briefträger.':'Dein Brief zeigt dir deinen Freund.');return;}
   const game=FK.friendsLibrary.pick(id);if(!game){state.record('friend_unavailable',{host:id,reason:'not_reviewed'});FK.ui.toast('Dieses Puzzle wartet noch auf die Freigabe von Erwachsenen.');return;}
-  state.record('friend_visited',{host:id,puzzleId:game.id});if(panel)close();world.pause(true);FK.friendsLibrary.visit(game);
+  // a short close shot of the two friends, then the puzzle opens
+  if(framing)return;const wait=world.frame?.(id)||0;framing=true;
+  setTimeout(()=>{framing=false;if(!state.canPuzzle(id)||panel==='puzzle')return;state.record('friend_visited',{host:id,puzzleId:game.id});if(panel)close();world.pause(true);FK.friendsLibrary.visit(game);},wait*1000);
 }
 function sequence(item,finish=false){
   finalSleep=finish;returnArea=area;

@@ -238,7 +238,17 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   // On the hills the camera follows the full height of the ground and never sinks into a slope.
   const lift = 1;
   function snapCamera() { focus.set(pos.x, groundY(pos.x, pos.z) * lift, pos.z); placeCamera(1); }
-  function placeCamera(k) { const off = narrow ? [0, 10, 14.4] : [0, 9, 14]; camera.position.lerp(new THREE.Vector3(focus.x + off[0], focus.y + off[1], focus.z + off[2]), k); camera.position.y = Math.max(camera.position.y, WORLD.ground(camera.position.x, camera.position.z) + 3.5); camera.lookAt(focus.x, focus.y + 1.4, focus.z - 3.2); camera.updateMatrixWorld(); foxView.value.set(pos.x, groundY(pos.x, pos.z) + .9, pos.z).applyMatrix4(camera.matrixWorldInverse); fill.position.copy(camera.position).add(new THREE.Vector3(0, 4, 0)); fill.target.position.copy(focus); fill.target.updateMatrixWorld(); horizon.position.x = camera.position.x; horizon.position.z = camera.position.z - 20; }
+  /* How far the camera stands: the child's pinch (a narrow range), the place (further back where the view is wide:
+     the meadow, the Rock and its peak, open water; closer in the dense wood) and a short close shot of Fuchs with the
+     invited friend before a puzzle opens. */
+  let zoomUser = 1, zoomAuto = 1, shot = null;
+  function framing(dt) {
+    const open = Math.max(sound.meadow || 0, Math.min(1, (sound.rock || 0) * 1.2), sound.snow || 0, sound.swamp * .6 || 0, 1 - Math.min(1, (sound.trees ?? 1) * 1.15), (sound.falls || 0) * .7);
+    zoomAuto += (lerp(.9, 1.2, open) - zoomAuto) * Math.min(1, dt * .6);
+    if (shot) { shot.t += dt; if (shot.t > shot.dur + .6) shot = null; }
+  }
+  const shotK = () => { if (!shot) return 0; const u = shot.t / shot.dur, e = x => x <= 0 ? 0 : x >= 1 ? 1 : x * x * (3 - 2 * x); return e(u / .35) * (1 - e((shot.t - shot.dur) / .6)); };
+  function placeCamera(k) { const base = narrow ? [0, 10, 14.4] : [0, 9, 14], e = shotK(), z = zoomUser * zoomAuto * lerp(1, .58, e), off = [0, base[1] * z * lerp(1, .82, e), base[2] * z]; camera.position.lerp(new THREE.Vector3(focus.x + off[0], focus.y + off[1], focus.z + off[2]), k); camera.position.y = Math.max(camera.position.y, WORLD.ground(camera.position.x, camera.position.z) + 3.5); camera.lookAt(focus.x, focus.y + 1.4, focus.z - 3.2); camera.updateMatrixWorld(); foxView.value.set(pos.x, groundY(pos.x, pos.z) + .9, pos.z).applyMatrix4(camera.matrixWorldInverse); fill.position.copy(camera.position).add(new THREE.Vector3(0, 4, 0)); fill.target.position.copy(focus); fill.target.updateMatrixWorld(); horizon.position.x = camera.position.x; horizon.position.z = camera.position.z - 20; }
   function publishMailPosition() { const p = forestPlaces.mailman; p.x = mailPos.x; p.z = mailPos.z; p.pu = THREE.MathUtils.clamp(.5 + mailPos.x * .023, .07, .93); p.pv = THREE.MathUtils.clamp(.49 + mailPos.z * .025, .1, .9); }
   function summonMailman() {
     let chosen = null; for (const radius of [5.4, 6, 6.6, 7.2]) { for (let i = 0; i < 32; i++) { const a = -.5 + i / 32 * TAU, candidate = new THREE.Vector3(pos.x + Math.cos(a) * radius, 0, pos.z + Math.sin(a) * radius); if (walkable(candidate.x, candidate.z) && clear(pos, candidate, true)) { chosen = candidate; break; } } if (chosen) break; }
@@ -328,7 +338,9 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     if (ring.visible) ring.material.opacity = .55 + Math.sin(time * 4) * .25;
     updateGuide(time);
     { updateMood(dt, pos.x, pos.z); backdrop.material.uniforms.uFox.value.copy(pos); const sw = streamer.landmarks.swamp; if (sw?.glow) sw.glow.material.opacity = reduced ? .8 : .55 + .4 * Math.sin(time * 1.7); if (sw?.mist && !reduced) sw.mist.position.x = Math.sin(time * .12) * 1.5; }
-    focus.lerp(new THREE.Vector3(pos.x + vel.x * .35, base * lift, pos.z + vel.y * .35), reduced ? 1 : 1 - Math.exp(-dt * 2.6)); placeCamera(1);
+    framing(dt); const sf = shot && friends[shot.id], e = shotK(), aim = new THREE.Vector3(pos.x + vel.x * .35, base * lift, pos.z + vel.y * .35);
+    if (sf) aim.lerp(new THREE.Vector3((pos.x + sf.x) / 2, (base + groundY(sf.x, sf.z)) / 2, (pos.z + sf.z) / 2 + 1), e);
+    focus.lerp(aim, reduced ? 1 : 1 - Math.exp(-dt * 2.6)); placeCamera(1);
     // stream tiles around Fuchs and ahead of him (≤ 4 ms per frame; 8 ms while ground near him is missing or plain,
     // which shows more than a slower frame); move the static shadow with him
     // (when frames are already long, a tenth of the frame: the wait for new ground matters more than the slice)
@@ -350,6 +362,9 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     resize(w, h) { width = w; height = h; narrow = w < 600; camera.aspect = w / Math.max(1, h); camera.fov = narrow ? 54 : 42; camera.updateProjectionMatrix(); const vh = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * 1.02; vignette.scale.set(vh * camera.aspect, vh, 1); snapCamera(); },
     update, route(id) { const p = forestPlaces[id]; if (id === 'mailman') { courierGoal = null; courierWait = 20; } if (p) walkTo(new THREE.Vector3(p.x, 0, p.z), id); },
     walkTo(x, z) { walkTo(new THREE.Vector3(x, 0, z)); },
+    /** A short close shot of Fuchs and the invited friend before the puzzle opens; returns its length (s), 0 with reduced motion. */
+    frame(id) { const f = friends[id]; if (!f || window.FK.reduced) return 0; shot = {id, t: 0, dur: 1.5}; const yaw = Math.atan2(f.x - pos.x, f.z - pos.z); fox.rotation.y = yaw; f.metAt = null; return 1.3; },
+    get zoom() { return zoomUser; }, set zoom(v) { zoomUser = THREE.MathUtils.clamp(v, .78, 1.28); },
     /** A friend who is not on the letter shows a trick and points toward `toward` (a place id) or just waves. */
     visit(id, toward) { const f = friends[id]; if (!f) return; const p = toward && forestPlaces[toward]; f.show = {t: 0, toward: p ? [p.x, p.z] : null, puffed: false}; },
     get soundscape() { return sound; },
