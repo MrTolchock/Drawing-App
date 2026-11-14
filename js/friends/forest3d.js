@@ -3,7 +3,7 @@
    round Fuchs, with the cast, guidance fireflies, haze per area and a hazy backdrop of distant hills.
    Building is time-sliced while the child is in the den; nothing is downloaded. */
 import {THREE} from '../scene/materials.js';
-import {characters} from './characters3d.js';
+import {characters, TRICK_OF} from './characters3d.js';
 import {createWorld} from './world/index.js';
 import {createLook, foxView, canvasTex} from './world/textures.js';
 import {createStreamer, NEAR} from './world/streamer.js';
@@ -136,7 +136,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
      a few slow steps, a pause, a few more. They stand still and turn to Fuchs when he comes close. */
   function stroll(f, id, dt) {
     const dF = Math.hypot(pos.x - f.x, pos.z - f.z), turn = (to, k) => { const g = f.rig.group, d = Math.atan2(Math.sin(to - g.rotation.y), Math.cos(to - g.rotation.y)); g.rotation.y += d * Math.min(1, dt * k); };
-    f.moving = false;
+    f.moving = false; if (f.show) return;
     if (dF < 4.2) { f.to = null; f.wait = Math.max(f.wait, 2.5); turn(Math.atan2(pos.x - f.x, pos.z - f.z), 4); return; }
     if (!f.to) { if ((f.wait -= dt) > 0) return;
       for (let k = 0; k < 6 && !f.to; k++) { const a = Math.random() * Math.PI * 2, r = f.roam * (.35 + .65 * Math.random()), x = f.hx + Math.sin(a) * r, z = f.hz + Math.cos(a) * r; if (walkable(x, z) && !WORLD.terrain.onCrossing(x, z) && WORLD.terrain.pathAt(x, z).d > .9) f.to = [x, z]; }
@@ -150,6 +150,19 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
 
   /* A friend greets Fuchs when he comes close: the birds wave, the others give a hop or two, and then they stand
      and look at him (no endless jumping on the spot). */
+  /* A visit without a letter for this friend (game.js meet): they turn to Fuchs and show a little trick, then turn
+     and point the way to the friend the letter is for (or to the mailman, or home), and turn back to Fuchs. */
+  const TRICK_TIME = 2.6, POINT_TIME = 2.6;
+  function perform(f, id, dt, time) {
+    const s = f.show; s.t += dt; let yaw = Math.atan2(pos.x - f.x, pos.z - f.z), state;
+    if (s.t < TRICK_TIME) { state = {action: 'trick', trick: TRICK_OF[id], u: s.t / TRICK_TIME};
+      if (!s.puffed && id !== 'owl' && state.u > (TRICK_OF[id] === 'slap' ? .5 : .35)) { s.puffed = true; puff(f.x, f.y, f.z, TRICK_OF[id] === 'dig' ? 4 : 3); } }
+    else if (s.toward && s.t < TRICK_TIME + POINT_TIME) { yaw = Math.atan2(s.toward[0] - f.x, s.toward[1] - f.z); state = {action: 'point', u: (s.t - TRICK_TIME) / .5}; }
+    else { f.show = null; return greeting(f, id, 0, time); }
+    const g = f.rig.group, d = Math.atan2(Math.sin(yaw - g.rotation.y), Math.cos(yaw - g.rotation.y)); g.rotation.y += d * Math.min(1, dt * 5);
+    return state;
+  }
+  function puff(x, y, z, n) { for (let k = 0; k < n; k++) { const p = puffs.find(q => q.life <= 0); if (!p) return; p.life = .55 + k * .08; p.s.visible = true; p.s.position.set(x + (R() - .5) * .5, y + .1, z + (R() - .5) * .5); } }
   function greeting(f, id, d, time) {
     if (d > 4.2) { f.metAt = null; return ''; }
     if (f.metAt == null) f.metAt = time;
@@ -247,7 +260,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     let animated = 1;
     for (const o of others) { const show = o.d < NEAR, anim = show && animated < MAX_ANIMATED; if (anim) animated++;
       if (o.id === 'mailman') { courier.visible = courierShadow.visible = show; courierRig.lod(o.d < 8 ? 0 : 1); updateMailman(dt, reduced, anim); }
-      else { o.f.rig.group.visible = show; if (o.f.shadow) o.f.shadow.visible = show; o.f.rig.lod(o.d < 8 ? 0 : 1); if (anim && o.f.roam && !reduced) stroll(o.f, o.id, dt); if (anim) o.f.rig.update(dt, {moving: o.f.moving, speed: o.id === 'squirrel' ? 1.6 : o.id === 'deer' ? .75 : .9, action: greeting(o.f, o.id, o.d, time), reduced}); } }
+      else { o.f.rig.group.visible = show; if (o.f.shadow) o.f.shadow.visible = show; o.f.rig.lod(o.d < 8 ? 0 : 1); if (anim && o.f.roam && !reduced) stroll(o.f, o.id, dt); if (anim) { const st = o.f.show ? perform(o.f, o.id, dt, time) : {action: greeting(o.f, o.id, o.d, time)}; o.f.rig.update(dt, {moving: o.f.moving && !o.f.show, speed: o.id === 'squirrel' ? 1.6 : o.id === 'deer' ? .75 : .9, reduced, ...(typeof st === 'string' ? {action: st} : st)}); } } }
     animatedCount = animated;
     if (moving && !reduced && time - lastPuff > .17) { lastPuff = time; const p = puffs.find(q => q.life <= 0); if (p) { p.life = .55; p.s.visible = true; p.s.position.set(pos.x + (R() - .5) * .3, base + .12, pos.z + .15); } }
     for (const p of puffs) if (p.life > 0) { p.life -= dt; const k = 1 - p.life / .55; size(p.s, .25 + k * .45); p.s.material.opacity = .5 * (1 - k); p.s.position.y += dt * .25; if (p.life <= 0) p.s.visible = false; }
@@ -280,6 +293,8 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     resize(w, h) { width = w; height = h; narrow = w < 600; camera.aspect = w / Math.max(1, h); camera.fov = narrow ? 54 : 42; camera.updateProjectionMatrix(); const vh = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * 1.02; vignette.scale.set(vh * camera.aspect, vh, 1); snapCamera(); },
     update, route(id) { const p = forestPlaces[id]; if (id === 'mailman') { courierGoal = null; courierWait = 20; } if (p) walkTo(new THREE.Vector3(p.x, 0, p.z), id); },
     walkTo(x, z) { walkTo(new THREE.Vector3(x, 0, z)); },
+    /** A friend who is not on the letter shows a trick and points toward `toward` (a place id) or just waves. */
+    visit(id, toward) { const f = friends[id]; if (!f) return; const p = toward && forestPlaces[toward]; f.show = {t: 0, toward: p ? [p.x, p.z] : null, puffed: false}; },
     get soundscape() { return sound; },
     /** Development: the weather now, or start (true) / stop (false) a shower at once. */
     weather(on) { return on === undefined ? weather.state : weather.force(on); },

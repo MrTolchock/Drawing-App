@@ -117,7 +117,11 @@ function map(){
   }
 }
 function meet(id){
-  if(!state.canPuzzle(id)){state.record('friend_unavailable',{host:id,reason:state.mail().phase==='to-friend'?'wrong_letter':state.mail().phase==='return-home'?'return_home':'needs_letter'});FK.ui.toast(state.mail().phase==='return-home'?'Fuchs geht nach Hause schlafen.':'Dein Brief zeigt dir deinen Freund.');return;}
+  if(!state.canPuzzle(id)){const m=state.mail(),toward=m.phase==='to-friend'?m.host:m.phase==='to-mailman'?'mailman':m.phase==='return-home'?'home':null,name=C.hosts[id]?.name||'';
+    state.record('friend_unavailable',{host:id,reason:m.phase==='to-friend'?'wrong_letter':m.phase==='return-home'?'return_home':'needs_letter'});
+    // A visit still shows something: the friend does a little trick and points the way.
+    world.visit?.(id,toward);
+    FK.ui.toast(m.phase==='return-home'?name+' winkt. Fuchs geht nach Hause schlafen.':m.phase==='to-friend'?name+' zeigt dir den Weg zu '+(C.hosts[m.host]?.name||'deinem Freund')+'.':m.phase==='to-mailman'?name+' zeigt dir den Weg zum Briefträger.':'Dein Brief zeigt dir deinen Freund.');return;}
   const game=FK.friendsLibrary.pick(id);if(!game){state.record('friend_unavailable',{host:id,reason:'not_reviewed'});FK.ui.toast('Dieses Puzzle wartet noch auf die Freigabe von Erwachsenen.');return;}
   state.record('friend_visited',{host:id,puzzleId:game.id});if(panel)close();world.pause(true);FK.friendsLibrary.visit(game);
 }

@@ -24,7 +24,7 @@ The active game follows [letter sessions](LETTER-SESSIONS.md), [visual style](..
 | `js/friends/settings.js` | Adult gate, letter count, gallery, sounds, reading case, exports and updates |
 | `js/scene/materials.js`, `js/core/speech.js`, `js/ui/gestures.js` | Current shared scene, requested speech and touch utilities |
 
-The catalogue lists all 34 [puzzles and competence assignments](PUZZLE-CATALOGUE.md). An interrupted puzzle resumes before the host rotates. Correct answers advance automatically; only completing all five consumes a letter. Non-invited friends, direct routes and the mailman cannot grant extra puzzles.
+The catalogue lists all 34 [puzzles and competence assignments](PUZZLE-CATALOGUE.md). An interrupted puzzle resumes before the host rotates. Correct answers advance automatically; only completing all five consumes a letter. Non-invited friends, direct routes and the mailman cannot grant extra puzzles; a non-invited friend shows a small trick and points the way to the friend on the letter (`TRICKS` in `characters3d.js`, `visit` in `forest3d.js`).
 
 The den table and picture pile remain scenery. Drawing/saved-picture controls and routes are retired; historical template IDs, localStorage and IndexedDB records remain intact. Archived story records are retained but their former screens are no longer shipped or downloaded. The new journey does not spend historical currencies.
 

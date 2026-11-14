@@ -329,6 +329,22 @@ const MANNERS={
       p.root.position.y=0;
     };},
 };
+/* Little tricks a friend shows when Fuchs visits without a letter for them (forest3d.js `visit`), played over
+   `u` = 0…1, and the pose that points the way (`point`: the friend's group is turned toward the place). */
+const ease=u=>u<=0?0:u>=1?1:u*u*(3-2*u),bell=(u,a=.12,b=.88)=>ease(u/a)*(1-ease((u-b)/(1-b)));
+const TRICKS={
+  dig(p,u,t){const e=bell(u,.15,.75),up=ease((u-.75)/.2)*(1-ease((u-.95)/.05));if(p.body)p.body.rotation.x+=e*.85;if(p.head)p.head.rotation.x+=e*.35;
+    p.arms.forEach((a,i)=>{a.rotation.x=-1.1*e+Math.sin(t*19+i*Math.PI)*.55*e+(-2.2*up);});if(p.tail)p.tail.rotation.x+=up*.4;},
+  slap(p,u){const lift=ease(u/.45)*(1-ease((u-.5)/.06)),bang=u>.5?Math.exp(-(u-.5)*14):0;if(p.tail)p.tail.rotation.x+=-1.1*lift+.25*bang;if(p.body)p.body.rotation.x+=.18*lift-.06*bang;p.root.position.y=bang*.05;},
+  headturn(p,u){const a=Math.sin(Math.min(1,u/.9)*Math.PI*2)*2.4*bell(u,.08,.92);if(p.head){p.head.rotation.y=a;p.head.rotation.z=Math.sin(u*Math.PI*4)*.12;}},
+  spin(p,u){const k=ease((u-.1)/.7);p.root.rotation.y=k*Math.PI*2;p.root.position.y=Math.sin(Math.min(1,Math.max(0,(u-.1)/.7))*Math.PI)*.12;p.arms.forEach((a,i)=>{a.rotation.x=-2.3*bell(u);a.rotation.z=(i?-1:1)*.5*bell(u);});},
+  flutter(p,u,t){const e=bell(u);p.root.position.y=e*(.12+Math.sin(t*9)*.03);(p.wings||[]).forEach((w,i)=>{w.rotation.z=(i?-1:1)*(.4+Math.sin(t*34)*.7)*e;});p.arms.forEach((a,i)=>{a.rotation.x+=-1.6*e+Math.sin(t*34)*.5*e;});},
+  curl(p,u){const e=bell(u,.18,.72);if(p.body){p.body.rotation.x+=e*1.05;p.body.scale.multiplyScalar(1).y*=1-e*.12;}if(p.head)p.head.rotation.x+=e*.6;p.legs.forEach(l=>{l.rotation.x=-1.3*e;});p.arms.forEach(a=>{a.rotation.x=-.9*e;});p.root.position.y=e*.04;},
+  leap(p,u){const j=Math.min(1,Math.max(0,(u-.25)/.5)),crouch=bell(u,.1,.25)*(u<.3?1:0);p.root.position.y=Math.sin(j*Math.PI)*.42;if(p.body)p.body.rotation.x+=Math.sin(j*Math.PI)*-.15+crouch*.2;p.legs.forEach(l=>{l.rotation.x=j>0&&j<1?-.9:-.4*crouch;});p.arms.forEach(a=>{a.rotation.x=j>0&&j<1?-1.4:0;});},
+  jump(p,u){const j=Math.min(1,Math.max(0,(u-.2)/.55));p.root.position.y=Math.sin(j*Math.PI)*.55;p.root.rotation.x=(j-.5)*2.2*(j>0&&j<1?1:0);if(p.tail)p.tail.rotation.y+=Math.sin(u*40)*.4;},
+};
+function pointPose(p,e){const a=p.legs.length?p.arms[1]:null;if(a){a.rotation.x=-1.5*e;a.rotation.z=-.15*e;}if(p.head)p.head.rotation.x-=.08*e;}
+export const TRICK_OF={squirrel:'dig',badger:'dig',beaver:'slap',owl:'headturn',mouse:'spin',bird:'flutter',kingfisher:'flutter',hedgehog:'curl',deer:'leap',frog:'leap',fish:'jump'};
 function plushModel(id,height){
   const model=cloneSkinned(baked[id]),bones={},meshes=[];
   // Characters stay out of the static shadow map (it is not redrawn as they move); each has a soft contact shadow.
@@ -345,13 +361,15 @@ function plushModel(id,height){
   model.updateMatrixWorld(true);const box=new THREE.Box3();for(const m of meshes)if(m.visible){m.skeleton.update();m.computeBoundingBox();box.union(m.boundingBox.clone().applyMatrix4(m.matrixWorld));}
   root.scale.setScalar(height/((box.max.y-box.min.y)||1));
   const rest=new Map();model.traverse(o=>{if(o.isBone)rest.set(o,{p:o.position.clone(),q:o.quaternion.clone()});});
-  const animate=animator(parts),manner=MANNERS[id]?.(parts);
+  const animate=animator(parts),manner=MANNERS[id]?.(parts);let clock=0;
   function update(dt,state={}){
     for(const [b,r]of rest){if(b===parts.body||b===parts.head||b===parts.tail||parts.arms.includes(b)||parts.legs.includes(b)){b.position.copy(r.p);}}
-    if(parts.body)parts.body.rotation.set(0,0,0);
+    if(parts.body){parts.body.rotation.set(0,0,0);parts.body.scale.set(1,1,1);}parts.root.rotation.set(0,0,0);
     if(parts.tail)parts.tail.rotation.setFromQuaternion(rest.get(parts.tail).q);
-    const own=manner&&!state.reduced,shared=own&&(state.action==='greet'||state.action==='look')?{...state,action:''}:state;
+    const showing=state.action==='trick'||state.action==='point',own=manner&&!state.reduced&&!showing,shared=(own&&(state.action==='greet'||state.action==='look'))||showing?{...state,action:''}:state;
     animate(dt,shared);if(state.action==='sleep'&&id==='fox')plushSleep(parts);if(own)manner(dt,state);
+    if(state.action==='trick'&&!state.reduced&&TRICKS[state.trick]){clock+=dt;TRICKS[state.trick](parts,state.u||0,clock);}
+    if(state.action==='point')pointPose(parts,state.reduced?1:Math.min(1,state.u??1));
   }
   return {root,parts,update,lod,meshes,paw:parts.arms[1]||parts.body};
 }
