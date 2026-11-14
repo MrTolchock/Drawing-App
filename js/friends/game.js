@@ -101,12 +101,16 @@ function map(){
   for(const [id,p]of Object.entries(places)){
     if(id==='mailman')continue;
     const b=button(p.name,p.picture,()=>{if(area!=='forest')go('forest');else close();world.route(id);});
-    b.replaceChildren(FK.friendsArt.portrait(id==='home'?'fox':id));b.dataset.place=id;
+    b.replaceChildren(id==='home'?FK.icons.element('home'):FK.friendsArt.portrait(id));b.dataset.place=id;if(id==='home')b.classList.add('ff-map-home');
     const invited=mail.phase==='to-friend'&&mail.host===id||mail.phase==='return-home'&&id==='home';b.classList.toggle('ff-map-invited',invited);if(invited)b.append(h('span',{class:'ff-map-invitation'},FK.icons.element('letter')));
     const [x,y]=mapPins[id];b.style.left=(x*100)+'%';b.style.top=(y*100)+'%';board.append(b);
   }
-  // On a phone the map is wider than the screen (eleven pins need room) and scrolls sideways, starting at the den.
-  const scroller=h('div',{class:'ff-map-scroll'},board);card.append(scroller);requestAnimationFrame(()=>{scroller.scrollLeft=(scroller.scrollWidth-scroller.clientWidth)/2;});
+  // Where Fuchs is now: his portrait on a pin with a soft pulse on the spot (in the den: at home).
+  const here=area==='forest'?world.position:places.home,hx=(here.x-MAP.x0)/(MAP.x1-MAP.x0),hy=(here.z-MAP.z0)/(MAP.z1-MAP.z0);
+  const me=h('div',{class:'ff-map-here',role:'img','aria-label':'Hier ist Fuchs'},h('span',{class:'ff-map-here-pulse'}),h('span',{class:'ff-map-here-pin'},FK.friendsArt.portrait('fox')));
+  me.style.left=(hx*100)+'%';me.style.top=(hy*100)+'%';board.append(me);
+  // On a phone the map is wider than the screen (eleven pins need room) and scrolls sideways, centred on Fuchs.
+  const scroller=h('div',{class:'ff-map-scroll'},board);card.append(scroller);requestAnimationFrame(()=>{scroller.scrollLeft=Math.max(0,Math.min(scroller.scrollWidth-scroller.clientWidth,hx*scroller.scrollWidth-scroller.clientWidth/2));});
   if(mail.phase==='to-mailman'){
     const b=button('Zum Briefträger','mailman',()=>{if(area!=='forest')go('forest');else close();world.route('mailman');},'ff-map-courier');
     b.replaceChildren(FK.friendsArt.portrait('mailman'),h('span',{text:'Zum Briefträger'}));b.dataset.place='mailman';card.append(b);

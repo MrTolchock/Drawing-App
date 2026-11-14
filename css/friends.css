@@ -476,6 +476,16 @@
  .ff-map-invitation{position:absolute;right:-6px;bottom:-5px;width:28px;height:28px;padding:2px;background:#fff6db;border:1px solid #a5b16c;border-radius:50%}.ff-map-invitation>.utility-icon{width:100%;height:100%}
 .ff-map-courier{margin:14px auto 0;gap:12px;padding:7px 20px;font:700 17px var(--read)}
 .ff-map-courier .ff-map-friend{width:48px;height:66px}
+/* Fuchs' own pin: where he is now (not a button). A sage teardrop with his portrait, its tip on the spot, and a slow pulse there. */
+.ff-map-here{position:absolute;width:0;height:0;z-index:3;pointer-events:none}
+.ff-map-here-pin{position:absolute;left:-26px;bottom:12px;width:52px;height:52px;border-radius:50% 50% 50% 0;rotate:-45deg;background:#fffaf0;border:3px solid #5f7a3a;box-shadow:0 4px 10px #3b2c1a40;overflow:hidden;display:block}
+.ff-map-here-pin>*{rotate:45deg;position:absolute;inset:3px;width:auto;height:auto}
+.ff-map-here-pulse{position:absolute;left:-14px;top:-7px;width:28px;height:14px;border-radius:50%;background:#5f7a3a55;border:2px solid #5f7a3a;animation:ff-here 1.8s ease-out infinite}
+@keyframes ff-here{0%{scale:.6;opacity:1}100%{scale:2.2;opacity:0}}
+@media(prefers-reduced-motion:reduce){.ff-map-here-pulse{animation:none}}
+.ff-map-scroll .ff-map-here-pin{left:-22px;width:44px;height:44px}
+.ff-map-storybook .ff-map-home .utility-icon{width:44px;height:44px;position:absolute;inset:0;margin:auto}
+.ff-map-scroll .ff-map-storybook .ff-map-home .utility-icon{width:36px;height:36px}
 .ff-settings-screen{background:#f7f1e5;color:#4e422f}
 .ff-settings-body{width:min(750px,100%);margin:0 auto;padding:8px 22px 36px;display:flex;flex-direction:column;gap:18px}
 .ff-settings-body .setting-card{padding:22px;background:#fffbf2;border:1px solid #d9c6a3;border-radius:22px;box-shadow:0 4px 14px #6c512a0c}

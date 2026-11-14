@@ -187,3 +187,5 @@ Regenerating the shared puzzle implementation fingerprint reopens prior sign-off
 World-only changes (no puzzle pages, identity art or learning pictures touched; the puzzle implementation fingerprint is unchanged unless noted).
 
 **9.3.37.** The squirrel bounds in short dashes and stops to glance round, flicks its tail and nibbles; the deer walks without bobbing, grazes with flicking ears and lifts its head to look at Fuchs. Friends greet Fuchs with a brief hop and then stand and look at him instead of hopping without end. The pond's ducks, jumping fish with ripples, the paper boats on the brook and the sunbeams in the wood move again (their update was lost in 9.3.23). Same plush models and materials; poses only.
+
+**9.3.38.** The picture map shows where Fuchs is: his model portrait in a sage teardrop pin (not a button), its tip on his spot with a slow pulse (static with reduced motion); in the den it stands at home. The home pin now uses the shared `home` utility icon instead of a second fox portrait, so the two cannot be confused. On a phone the map opens scrolled to Fuchs.
