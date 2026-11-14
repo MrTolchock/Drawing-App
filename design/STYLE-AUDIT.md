@@ -215,3 +215,5 @@ World-only changes (no puzzle pages, identity art or learning pictures touched; 
 **9.3.50.** Small chains of cause and effect: the fish often jumps near a duck and its spreading ripple rocks her as it passes; little birds flying up startle the squirrel close by, who dashes off a few steps, and make the deer lift its head and listen for a while.
 
 The mailman (same model) also walks his own round on the paths near the den between letters, pausing at each stop, and whistles once from where he is when a new letter is ready. Walking into a big open area (meadow, Rock, peak, swamp) for the first time in a while, the haze stands close for a moment and lifts over a few seconds (not with reduced motion).
+
+**9.3.51.** Speech (requested only, unchanged rules): the best German voice on the device is chosen (enhanced, premium or natural voices first, Swiss German before German, robotic engines avoided, offline voices when there is no network); characters keep the voice's own pitch with only small differences, at an easier pace; text is read sentence by sentence with dashes as pauses. Real voices differ by device: the owner should listen on the iPad.
