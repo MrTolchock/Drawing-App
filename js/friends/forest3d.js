@@ -459,8 +459,6 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     get life() { return life.counts; },
     get prints() { return prints.count; },
     get ambience() { return {...ambience.counts, timeOfDay: tod}; },
-    /** Development: a rainbow after the current or last shower. */
-    rainbow(on = true) { ambience.rainbow(on); },
     /** The time of day: 0 morning, .5 afternoon, 1 dusk; it eases there unless `snap`. */
     timeOfDay(v, snap = false) { todTo = THREE.MathUtils.clamp(v, 0, 1); if (snap || !todSet) { tod = todTo; todSet = true; } },
     budget() { const c = streamer.counts, g = streamer.gaps(); return {liveTiles: c.near, farTiles: c.far, animated: animatedCount, holes: g.holes, plain: g.plain, jobs: c.jobs, slowestStep: streamer.slowest.kind, slowestStepMs: streamer.slowest.ms}; },

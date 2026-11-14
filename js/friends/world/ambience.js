@@ -3,7 +3,6 @@
      and the meadow (not in the rain);
    - morning: mist lies low over the swamp, the beaver pond and the plunge pool, and lifts as the day goes on
      (a thinner mist also rises from wet ground after a shower);
-   - after some showers (not all of them) a rainbow stands in the sky for a while;
    - puddles gather in the dips of the paths while it rains and dry up slowly afterwards.
    Everything is drawn from small pictures made here; with reduced motion it holds still. */
 import {THREE} from '../../scene/materials.js';
@@ -41,13 +40,6 @@ export function createAmbience({scene, camera, canvasTex, terrain, groundY, rand
   const mists = mistSpots.slice(0, MISTS).map(([x, z, s], i) => { const m = new THREE.Sprite(new THREE.SpriteMaterial({map: soft, color: '#f4f2ea', transparent: true, depthWrite: false, opacity: 0, fog: true}));
     m.scale.set(s, s * .28, 1); m.position.set(x, (terrain.stillLevel(x, z) === terrain.stillLevel(x, z) ? terrain.stillLevel(x, z) : groundY(x, z)) + .45, z); m.renderOrder = 7; m.visible = false; m.userData = {x, z, phase: i * 1.7}; scene.add(m); return m; });
 
-  /* ---------- a rainbow in the sky after some showers ---------- */
-  const bowTex = canvasTex(512, 256, g => { const cols = ['255,90,80', '255,165,70', '255,236,110', '120,220,120', '100,175,255', '160,120,240']; cols.forEach((c, i) => { g.strokeStyle = `rgba(${c},.85)`; g.lineWidth = 9; g.beginPath(); g.arc(256, 300, 240 - i * 9, Math.PI, TAU); g.stroke(); });
-    g.globalCompositeOperation = 'destination-out'; const fade = g.createLinearGradient(0, 0, 0, 256); fade.addColorStop(0, 'rgba(0,0,0,0)'); fade.addColorStop(.6, 'rgba(0,0,0,0)'); fade.addColorStop(1, 'rgba(0,0,0,1)'); g.fillStyle = fade; g.fillRect(0, 0, 512, 256); });
-  const rainbow = new THREE.Mesh(new THREE.PlaneGeometry(84, 42), new THREE.MeshBasicMaterial({map: bowTex, transparent: true, depthWrite: false, toneMapped: false, fog: false, opacity: 0}));
-  rainbow.name = 'sky rainbow'; rainbow.renderOrder = -7; rainbow.frustumCulled = false; rainbow.visible = false; scene.add(rainbow);
-  let bow = 0, bowFor = -1, lastShowers = -1, wantBow = false;
-
   /* ---------- puddles on the paths ---------- */
   const pudTex = canvasTex(64, 64, g => { g.fillStyle = '#fff'; g.beginPath(); for (let k = 0; k <= 24; k++) { const a = k / 24 * TAU, rr = 24 + 4 * Math.sin(a * 3 + 1) + 3 * Math.sin(a * 5); g.lineTo(32 + Math.cos(a) * rr, 32 + Math.sin(a) * rr * .8); } g.fill(); });
   const pudMat = new THREE.MeshBasicMaterial({map: pudTex, color: '#9fb2bb', transparent: true, depthWrite: false, opacity: 0, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2});
@@ -77,11 +69,6 @@ export function createAmbience({scene, camera, canvasTex, terrain, groundY, rand
     const mistK = Math.max(morning, wet * .45 * (1 - rain * .5));
     for (const m of mists) { const d = Math.hypot(m.userData.x - pos.x, m.userData.z - pos.z); m.visible = mistK > .02 && d < 60; if (!m.visible) continue;
       m.material.opacity = mistK * .85 * THREE.MathUtils.smoothstep(d, 2, 8); if (!reduced) m.position.x = m.userData.x + Math.sin(time * .07 + m.userData.phase) * 1.6; }
-    // a rainbow after some showers: decided once per shower, shown during the fresh, clear spell after it
-    if (lastShowers === -2) lastShowers = weather.showers; else if (weather.showers !== lastShowers) { lastShowers = weather.showers; wantBow = weather.showers > 0 && random() < .55; }
-    const bowTo = wantBow && weather.phase === 'dry' && rain < .05 && weather.fresh > .15 ? 1 : 0; bow += (bowTo - bow) * Math.min(1, dt * .25);
-    rainbow.visible = bow > .01; // it stands far ahead in the haze, seen between the trees (the camera looks down at Fuchs, so not into the open sky)
-    if (rainbow.visible) { camera.getWorldDirection(out); out.y = 0; out.normalize(); rainbow.position.set(camera.position.x + out.x * 58 - 8, camera.position.y - 13.5, camera.position.z + out.z * 58); rainbow.lookAt(camera.position.x, rainbow.position.y, camera.position.z); rainbow.material.opacity = bow * .5 * (1 - dusk * .6); }
     // puddles: gather while it rains, shrink and dry when it stops
     pudLevel = rain > .3 ? Math.min(1, pudLevel + dt / 25) : Math.max(0, pudLevel - dt / 140 * (wet > .2 ? .5 : 1.5));
     if (pudLevel > .1 && time > nextPud) { nextPud = time + .7; const free = puddles.find(p => !p.on); if (free) placePuddle(free, pos); }
@@ -89,5 +76,5 @@ export function createAmbience({scene, camera, canvasTex, terrain, groundY, rand
     pudMat.opacity = .78 * Math.min(1, pudLevel * 1.6); pudShine.opacity = .3 * Math.min(1, pudLevel * 1.6) * (1 - rain * .6) * (1 - dusk * .5);
     for (const p of puddles) if (p.on) p.g.children[0].scale.setScalar(.5 + .5 * Math.min(1, pudLevel * 1.4));
   }
-  return {update, /** Development: show the rainbow after this shower (true) or not. */ rainbow(on = true) { wantBow = on; lastShowers = -2; }, get counts() { return {fireflies: flies.visible, puddles: puddles.filter(p => p.on).length, mist: mists.filter(m => m.visible).length, rainbow: bow}; }};
+  return {update, get counts() { return {fireflies: flies.visible, puddles: puddles.filter(p => p.on).length, mist: mists.filter(m => m.visible).length}; }};
 }

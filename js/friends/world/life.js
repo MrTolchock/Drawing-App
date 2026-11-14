@@ -1,7 +1,7 @@
 /* Small moving life around Fuchs, wherever he is in the big world (it all travels with him, so it costs the
    same everywhere): leaves falling under the trees, butterflies, dragonflies over the water and little birds
    on the ground that fly up when he comes close, smoke from the picnic fire, ducks and a jumping fish on the beaver
-   pond, a rainbow in the waterfall's mist and sunbeams slanting through the trees. Everything is drawn from small pictures made here; about
+   pond and sunbeams slanting through the trees. Everything is drawn from small pictures made here; about
    a dozen draw calls together. With reduced motion the leaves hang still and the animals stay put. */
 import {THREE} from '../../scene/materials.js';
 
@@ -105,12 +105,6 @@ export function createLife({scene, canvasTex, groundY, walkable, terrain, random
   const critters = [['snail', snailTex, .26], ['snail', snailTex, .23], ['bug', bugTex, .15], ['bug', bugTex, .14], ['frog', frogTex, .3], ['frog', frogTex, .27]].map(([kind, map, h]) => ({kind, s: solid(sprite(map, h, 3)), on: false, x: 0, z: 0, y: 0, vx: 0, vz: 0, t: 0, hop: -1, face: 1}));
   const nearWet = (x, z) => { const s0 = terrain.site(x, z); return (s0.sd - s0.sw / 2 < 2.5 && s0.sd - s0.sw / 2 > .4) || (s0.still === s0.still && s0.h - s0.still > .05 && s0.h - s0.still < .5); };
 
-  /* ---------- a rainbow in the waterfall's mist ---------- */
-  const bowTex = canvasTex(256, 128, g => { const cols = ['255,80,70', '255,160,60', '255,235,90', '110,220,110', '90,170,255', '150,110,240']; cols.forEach((c, i) => { g.strokeStyle = `rgba(${c},.9)`; g.lineWidth = 7; g.beginPath(); g.arc(128, 150, 118 - i * 6.5, Math.PI, TAU); g.stroke(); });
-    const fade = g.createLinearGradient(0, 0, 0, 128); fade.addColorStop(0, 'rgba(0,0,0,0)'); fade.addColorStop(.55, 'rgba(0,0,0,0)'); fade.addColorStop(1, 'rgba(0,0,0,1)'); g.globalCompositeOperation = 'destination-out'; g.fillStyle = fade; g.fillRect(0, 0, 256, 128); });
-  const bow = new THREE.Mesh(new THREE.PlaneGeometry(11, 5.5), new THREE.MeshBasicMaterial({map: bowTex, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, toneMapped: false, fog: false, opacity: .3}));
-  bow.name = 'rainbow'; bow.renderOrder = 5; bow.position.set(terrain.falls.base[0] - 1.5, terrain.falls.level + 3.1, terrain.falls.base[1] + 1.5); scene.add(bow);
-
   /* ---------- sunbeams through the trees, wherever Fuchs walks in the wood ---------- */
   const BEAMS = 6, beamPos = new Float32Array(BEAMS * 18), beamUv = new Float32Array(BEAMS * 12), quad = [[-.5, -.5, 0, 0], [.5, -.5, 1, 0], [.5, .5, 1, 1], [-.5, -.5, 0, 0], [.5, .5, 1, 1], [-.5, .5, 0, 1]];
   for (let b = 0; b < BEAMS; b++) quad.forEach((q, i) => { beamUv[b * 12 + i * 2] = q[2]; beamUv[b * 12 + i * 2 + 1] = q[3]; });
@@ -175,7 +169,6 @@ export function createLife({scene, canvasTex, groundY, walkable, terrain, random
         fish.s.visible = u < 1; fish.s.position.set(x, pond.level + Math.sin(u * Math.PI) * .6, z); fish.s.scale.set(.4 * right, .2, 1); fish.s.material.rotation = right * Math.cos(u * Math.PI) * 1.1;
         if (u >= 1) { fish.t = -1; splash(1, ...fish.to); } }
       for (const g of rings) { if (g.t < 0) { g.m.visible = false; continue; } g.t += dt / 1.3; g.m.visible = true; g.m.scale.setScalar(.3 + g.t * 2.6); g.m.material.opacity = Math.max(0, .75 * (1 - g.t)); if (g.t >= 1) g.t = -1; } }
-    bow.material.opacity = reduced ? .28 : .26 + Math.sin(time * .6) * .06;
     if (beams) placeBeams(pos);
     // small creatures: placed a few metres from Fuchs, moving in their own way; they hide in the rain and at dusk
     for (const c of critters) {

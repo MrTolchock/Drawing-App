@@ -253,3 +253,5 @@ The mailman (same model) also walks his own round on the paths near the den betw
 **9.3.61.** Characters in the forest stand on the lowest ground under their feet, so they no longer float on slopes; friends squint happily at the end of a trick and while greeting Fuchs; at dusk the plush fur catches a warm orange rim light. Same models and materials (a uniform in the plush fur shader, 0 outside the forest).
 
 **9.3.62.** Small creatures to find on the ground near Fuchs: snails that creep, ladybirds that scurry and stop, and little frogs near the water that hop away when he comes close; drawn small in code, hidden in the rain and at dusk. A soft warm wash in the middle of the frame (in the existing vignette overlay, no extra pass) brings the forest closer to the den painting's warmth.
+
+**9.3.63.** No more rainbows: the one in the waterfall's mist and the one after showers are removed.
