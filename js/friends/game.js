@@ -12,6 +12,8 @@ function syncMail(){
   const m=state.mail();root.dataset.mail=m.phase;
   doorScene.hidden=area!=='den';denEnvelope.hidden=area!=='den'||m.phase!=='den-letter'||!!panel;
   world.mailTarget(area==='forest'?(m.phase==='to-friend'?m.host:m.phase==='to-mailman'?'mailman':['return-home','den-letter'].includes(m.phase)?'home':null):null);
+  // The day follows the journey: morning for the first letter, golden afternoon in the middle, dusk on the way home.
+  const j=m.session||{limit:1,completed:0};world.timeOfDay?.(['return-home','sleeping','finished'].includes(m.phase)?1:j.limit>1?Math.min(1,j.completed/(j.limit-1))*.55:0);
   positionDoor();
 }
 function positionDoor(){

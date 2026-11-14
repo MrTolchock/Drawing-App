@@ -11,6 +11,7 @@ import {TAU, rng, lerp} from './world/noise.js';
 import {createLife} from './world/life.js';
 import {createRain} from './world/rain.js';
 import {createFootprints} from './world/footprints.js';
+import {createAmbience} from './world/ambience.js';
 import {createWeather} from './weather.js';
 
 const WORLD = createWorld();
@@ -71,10 +72,30 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   /* ---------- weather (js/friends/weather.js): a shower dims and greys the light, the ground darkens and dries again ---------- */
   const RAINY = new THREE.Color('#9fa9a6'), GREY_TOP = new THREE.Color('#9aa6a8'), GREY_HORIZON = new THREE.Color('#c3c6bd'), HEMI_SKY = new THREE.Color('#e4f0ff'), HEMI_RAIN = new THREE.Color('#c9d0d6');
   const rain = createRain({scene, groundY: (x, z) => { const s = WORLD.terrain.site(x, z), st = WORLD.terrain.streamAt(x, z); let y = groundY(x, z); if (s.still === s.still) y = Math.max(y, s.still); if (st.stream && st.d < st.w / 2) y = Math.max(y, st.level); return y; }, isWater: (x, z) => { const s = WORLD.terrain.site(x, z), st = WORLD.terrain.streamAt(x, z); return (s.still === s.still && s.still > s.h + .02) || (!!st.stream && st.d < st.w / 2); }, random: R});
+  /* ---------- time of day: it follows the letter journey (game.js) ----------
+     0 morning for the first letter, about .5 a golden afternoon in the middle, 1 dusk on the walk home. The light
+     eases from one to the next over half a minute; the sun crosses the sky (east, north-west, low in the west). */
+  const TOD = [
+    {sun: '#fff1d8', si: 2.4, fill: .55, sky: '#e0eeff', ground: '#86744a', hi: 1.38, top: '#b3dcd2', hor: '#f1ecd4', fog: [.99, 1.01, 1.03], glow: .8, dir: [.62, .5, -.6]},
+    {sun: '#ffdca4', si: 2.6, fill: .55, sky: '#e4f0ff', ground: '#8a7444', hi: 1.35, top: '#a9d3c6', hor: '#f4e0ac', fog: [1.02, .99, .93], glow: 1.05, dir: [-.55, .62, -.56]},
+    {sun: '#ff9554', si: 1.4, fill: .4, sky: '#b4a8cc', ground: '#5d4b3a', hi: .92, top: '#6e7aa8', hor: '#f4a26a', fog: [.96, .78, .72], glow: 1.6, dir: [-.78, .24, -.58]}];
+  const todBase = {sun: new THREE.Color(), sky: new THREE.Color(), ground: new THREE.Color(), top: new THREE.Color(), hor: new THREE.Color(), fog: new THREE.Color(), dir: new THREE.Vector3(), si: 0, fill: 0, hi: 0, glow: 0}, todA = new THREE.Color(), todB = new THREE.Color();
+  let tod = 0, todTo = 0, todSet = false, sunAt = -1;
+  function blendTod() {
+    const k = Math.min(1.999, tod * 2), i = Math.floor(k), u = k - i, a = TOD[i], b = TOD[i + 1];
+    for (const key of ['sun', 'sky', 'ground', 'top', 'hor']) todBase[key].copy(todA.set(a[key])).lerp(todB.set(b[key]), u);
+    todBase.fog.setRGB(lerp(a.fog[0], b.fog[0], u), lerp(a.fog[1], b.fog[1], u), lerp(a.fog[2], b.fog[2], u));
+    for (const key of ['si', 'fill', 'hi', 'glow']) todBase[key] = lerp(a[key], b[key], u);
+    todBase.dir.set(lerp(a.dir[0], b.dir[0], u), lerp(a.dir[1], b.dir[1], u), lerp(a.dir[2], b.dir[2], u)).normalize();
+  }
+  const dusk = () => THREE.MathUtils.smoothstep(tod, .62, 1), morning = () => 1 - THREE.MathUtils.smoothstep(tod, .05, .38);
   function updateWeather(dt, time, reduced) {
     const w = weather.state, r = w.rain, f = w.fresh;
-    sun.intensity = 2.6 * (1 - .75 * r) + .25 * f; fill.intensity = .55 * (1 - .25 * r); hemi.intensity = 1.35 * (1 - .2 * r); hemi.color.copy(HEMI_SKY).lerp(HEMI_RAIN, r);
-    skyU.top.value.copy(SKY.top).lerp(GREY_TOP, r * .85); skyU.horizon.value.copy(SKY.horizon).lerp(GREY_HORIZON, r * .8); skyU.glow.value = 1 - r * .9 + f * .3;
+    tod += THREE.MathUtils.clamp(todTo - tod, -dt / 30, dt / 30); blendTod();
+    // the sun moves with the day; the (static) shadow map is redrawn only now and then while it does
+    if (sunDir.distanceToSquared(todBase.dir) > 1e-6 && (time - sunAt > .5 || Math.abs(todTo - tod) < 1e-4)) { sunDir.copy(todBase.dir); sunAt = time; shadowAt.x = Infinity; }
+    sun.color.copy(todBase.sun); sun.intensity = todBase.si * (1 - .75 * r) + .25 * f; fill.intensity = todBase.fill * (1 - .25 * r); hemi.intensity = todBase.hi * (1 - .2 * r); hemi.color.copy(todBase.sky).lerp(HEMI_RAIN, r); hemi.groundColor.copy(todBase.ground);
+    skyU.top.value.copy(todBase.top).lerp(GREY_TOP, r * .85); skyU.horizon.value.copy(todBase.hor).lerp(GREY_HORIZON, r * .8); skyU.glow.value = todBase.glow * (1 - r * .9) + f * .3;
     if (look.M.ground) look.M.ground.color.setScalar(1 - .2 * w.wet);
     rain.update(dt, time, pos, {rain: r, snow: sound.snow || 0, reduced, height, width, pixelRatio: renderer.getPixelRatio(), fov: camera.fov});
   }
@@ -82,7 +103,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     const b = WORLD.terrain.biome(x, z, mood.bm), w = {meadow: b.meadow, swamp: b.swamp, rock: b.rock * .8, spruce: b.spruce}; let rest = 1, near = 0, far = 0; moodT.setRGB(0, 0, 0);
     for (const k in w) { const v = Math.min(rest, w[k]); rest -= v; moodC.set(MOODS[k][0]); moodT.r += moodC.r * v; moodT.g += moodC.g * v; moodT.b += moodC.b * v; near += MOODS[k][1] * v; far += MOODS[k][2] * v; }
     moodC.set(MOODS.wood[0]); moodT.r += moodC.r * rest; moodT.g += moodC.g * rest; moodT.b += moodC.b * rest; near += MOODS.wood[1] * rest; far += MOODS.wood[2] * rest;
-    const rain = weather.state.rain; if (rain > 0) { moodT.lerp(RAINY, rain * .6); near *= 1 - .4 * rain; far *= 1 - .28 * rain; }
+    moodT.multiply(todBase.fog); const rain = weather.state.rain; if (rain > 0) { moodT.lerp(RAINY, rain * .6); near *= 1 - .4 * rain; far *= 1 - .28 * rain; }
     const k = 1 - Math.exp(-dt * .9); WORLD.fog.color.lerp(moodT, k); mood.near += (near - mood.near) * k; mood.far += (far - mood.far) * k; scene.fog.near = mood.near; scene.fog.far = mood.far;
     if (look.M.water) { look.M.water.uniforms.fogNear.value = mood.near; look.M.water.uniforms.fogFar.value = mood.far; }
   }
@@ -98,6 +119,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   function size(s, h = s.userData.h) { const img = s.material.map.image, a = img && img.width ? img.width / img.height : 1; s.scale.set(h * a, h, 1); }
   const life = createLife({scene, canvasTex, groundY, walkable, terrain: WORLD.terrain, random: R, fires: WORLD.layout.WONDERS.filter(w => w.fire).map(w => w.fire), shaftMat});   // falling leaves, butterflies, dragonflies, little birds
   const prints = createFootprints({scene, canvasTex, ground: (x, z) => WORLD.ground(x, z)});
+  const ambience = createAmbience({scene, camera, canvasTex, terrain: WORLD.terrain, groundY, random: R});
   const puffs = Array.from({length: 8}, () => { const s = sprite(dustTex, .4, 1, .5); s.visible = false; return {s, life: 0}; });
   const motes = new THREE.Points(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(Array.from({length: 240}, (_, i) => i % 3 === 1 ? .4 + R() * 5 : (R() * 2 - 1) * 15 + (i % 3 === 0 ? 1 : -5)), 3)), new THREE.PointsMaterial({size: .08, map: glow, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, opacity: .8}));
   motes.name = 'pollen'; scene.add(motes);
@@ -298,9 +320,10 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     animatedCount = animated;
     if (moving && !reduced && time - lastPuff > .17) { lastPuff = time; const p = puffs.find(q => q.life <= 0); if (p) { p.life = .55; p.s.visible = true; p.s.position.set(pos.x + (R() - .5) * .3, base + .12, pos.z + .15); } }
     for (const p of puffs) if (p.life > 0) { p.life -= dt; const k = 1 - p.life / .55; size(p.s, .25 + k * .45); p.s.material.opacity = .5 * (1 - k); p.s.position.y += dt * .25; if (p.life <= 0) p.s.visible = false; }
-    life.update(dt, time, pos, {reduced, rain: weather.state.rain, snow: sound.snow || 0, trees: sound.trees, meadow: sound.meadow, height, fov: camera.fov});
+    life.update(dt, time, pos, {reduced, rain: Math.max(weather.state.rain, dusk() > .7 ? .3 : 0), snow: sound.snow || 0, trees: sound.trees, meadow: sound.meadow, height, fov: camera.fov});
     const halos = streamer.landmarks.home?.halos; if (halos) halos.material.opacity = reduced ? .55 : .5 + Math.sin(time * 7) * .06;
-    shaftMat.opacity = (reduced ? .15 : .14 + Math.sin(time * .35) * .04) * (1 - weather.state.rain) * (1 + .4 * weather.state.fresh); updateWeather(dt, time, reduced);
+    updateWeather(dt, time, reduced); shaftMat.opacity = (reduced ? .15 : .14 + Math.sin(time * .35) * .04) * (1 - weather.state.rain) * (1 + .4 * weather.state.fresh) * (1 - .75 * dusk());
+    ambience.update(dt, time, pos, {dusk: dusk(), morning: morning(), weather: weather.state, trees: sound.trees, meadow: sound.meadow, swamp: sound.swamp, reduced, height, fov: camera.fov});
     if (!reduced) { if (look.M.water) look.M.water.uniforms.uTime.value += dt; motes.position.set(pos.x, Math.sin(time * .35) * .3, pos.z); motes.rotation.y = time * .01; } else motes.position.set(pos.x, 0, pos.z);
     if (ring.visible) ring.material.opacity = .55 + Math.sin(time * 4) * .25;
     updateGuide(time);
@@ -345,6 +368,11 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     restored() { renderer.shadowMap.needsUpdate = true; },
     get life() { return life.counts; },
     get prints() { return prints.count; },
+    get ambience() { return {...ambience.counts, timeOfDay: tod}; },
+    /** Development: a rainbow after the current or last shower. */
+    rainbow(on = true) { ambience.rainbow(on); },
+    /** The time of day: 0 morning, .5 afternoon, 1 dusk; it eases there unless `snap`. */
+    timeOfDay(v, snap = false) { todTo = THREE.MathUtils.clamp(v, 0, 1); if (snap || !todSet) { tod = todTo; todSet = true; } },
     budget() { const c = streamer.counts, g = streamer.gaps(); return {liveTiles: c.near, farTiles: c.far, animated: animatedCount, holes: g.holes, plain: g.plain, jobs: c.jobs, slowestStep: streamer.slowest.kind, slowestStepMs: streamer.slowest.ms}; },
     set speed(k) { speedScale = k; },
     pins() { return [...pins, {id: 'mailman', point: new THREE.Vector3(mailPos.x, groundY(mailPos.x, mailPos.z) + 2.2, mailPos.z)}].map(p => { const q = p.point.clone().project(camera); return {id: p.id, x: (q.x * .5 + .5) * width, y: (-q.y * .5 + .5) * height, visible: q.z < 1 && Math.abs(q.x) < 1.02 && q.y > -1.02 && q.y < 1.12 && p.point.distanceTo(pos) < NEAR}; }); },
