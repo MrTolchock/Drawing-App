@@ -7,6 +7,7 @@ import {THREE} from '../../../scene/materials.js';
 import {TAU, clamp, lerp, sstep, fbm, rng, tileSeed} from '../noise.js';
 import {TILE, Buffer, quads, templates, trunkGeometry, rootGeometries, crownCards, instanced} from '../tiles.js';
 import {ATLAS} from './atlas.js';
+import {DECALS} from './decals.js';
 
 const GRID = 32, FAR_GRID = 8, SEED = 77123;
 const C = h => new THREE.Color(h), tone = new THREE.Color(), tone2 = new THREE.Color();
@@ -225,8 +226,26 @@ export function* buildBigTile(world, look, i, j, ring) {
   for (const tree of trees) { if (tree.kind === 'snag') continue; const Rs = rng(tileSeed(SEED + 4, Math.round(tree.x * 7), Math.round(tree.z * 7))); // mushrooms at the foot of trees
     for (let k = 0, n = Math.floor(Rs() * (tree.kind === 'spruce' ? 5 : 4)); k < n; k++) { const a = Rs() * TAU, d = tree.r * 1.4 + .3 + Rs() * .9, x = tree.x + Math.cos(a) * d, z = tree.z + Math.sin(a) * d, sc = .9 + Rs() * 1.2, red = Rs() < .5; if (T.wet(x, z)) continue; const y = T.ground(x, z);
       rocks.add(t.stem, {x, y, z, ry: Rs() * TAU, sx: sc, sy: sc, sz: sc}); rocks.add(t.cap, {x, y, z, ry: Rs() * TAU, sx: sc, sy: sc, sz: sc, c: red ? tone.set('#c8352a') : tone.set('#8a5a2e')}); } }
+  yield 'ground detail';
+  // small things lying flat on the woodland floor (decals.js): roots at the foot of every tree, moss near trunks and
+  // rocks, needles under the spruces, pebbles and twigs at the path edges, worn patches on the paths, fallen leaves
+  const detail = M.decals ? new Buffer() : null;   // near ring only (the far ring returned above)
+  if (detail) {
+    const lay = (x, z, cell, size, c = null, lift = .025) => { const s0 = T.site(x, z); if (T.onCrossing(x, z) || s0.still - s0.h > -.04 || s0.sd - s0.sw / 2 < .2 || T.snow(x, z) > .3 || T.cave(x, z).k > .05) return; const Rs = R();
+      detail.add(t.flat, {x, y: s0.h + lift, z, ry: Rs * TAU, sx: size * (.85 + R() * .3), sy: 1, sz: size * (.85 + R() * .3), cell, up: true, c}); };
+    for (const tree of trees) { if (!inTile(tree.x, tree.z) || tree.kind === 'snag') continue; const big = tree.kind === 'beech' || tree.kind === 'hollow' || tree.kind === 'oak';
+      lay(tree.x, tree.z, DECALS.roots, (big ? 3.1 : 2.1) * Math.max(.8, Math.min(2.2, tree.s || 1)) + tree.r, tone.setRGB(1, 1, 1), .03);
+      for (let m = R() < .7 ? 2 : 1; m > 0; m--) { const a = R() * TAU, d = tree.r + .5 + R() * .9; lay(tree.x + Math.cos(a) * d, tree.z + Math.sin(a) * d, R() < .6 ? DECALS.moss : DECALS.mossDots, 1 + R() * .9); }
+      if (tree.kind === 'beech' && R() < .8) { const a = R() * TAU, d = 1.2 + R() * 2.5; lay(tree.x + Math.cos(a) * d, tree.z + Math.sin(a) * d, DECALS.leaves, 1.2 + R() * .8); } }
+    for (let k = 0, n = Math.round(area * .34); k < n; k++) { const [x, z] = spot(); T.biome(x, z, bm); const pa = T.pathAt(x, z), edge = pa.d - pa.w / 2;
+      if (edge < -.05) { if (R() < .8) lay(x, z, DECALS.worn, 1.1 + R() * .8, null, .02); }
+      else if (edge < .7) lay(x, z, R() < .6 ? DECALS.pebbles : DECALS.twigs, .8 + R() * .6);
+      else if (bm.spruce > .45 && R() < bm.spruce) lay(x, z, DECALS.needles, 1.8 + R() * 1.6);
+      else if (bm.meadow < .4 && bm.swamp < .4 && bm.rock < .5 && R() < .5) lay(x, z, [DECALS.twigs, DECALS.moss, DECALS.leaves, DECALS.mossDots][Math.floor(R() * 4)], 1 + R() * .9); }
+  }
   yield 'foliage mesh';
   meshOf(foliage, M.plants, {name: 'foliage'});
+  if (detail) meshOf(detail, M.decals, {name: 'ground detail', receive: true});
   yield 'rock mesh';
   meshOf(rocks, M.rock, {name: 'rocks'});
   yield 'water';

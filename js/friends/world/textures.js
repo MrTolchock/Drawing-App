@@ -4,6 +4,7 @@
 import {THREE} from '../../scene/materials.js';
 import {TAU, rng, hash, vnoise} from './noise.js';
 import {drawBigCells} from './big/atlas.js';
+import {drawDecals} from './big/decals.js';
 
 export function canvasTex(w, h, draw, {repeat = null, srgb = true} = {}) {
   const c = document.createElement('canvas'); c.width = w; c.height = h; draw(c.getContext('2d'), w, h);
@@ -110,6 +111,7 @@ export function createLook({software = false, big = false} = {}) {
         g.restore(); }
       if (big) drawBigCells(g);
     }); },
+    () => { if (big) T.decals = canvasTex(1024, 512, g => drawDecals(g)); },   // ground detail: roots, moss, needles, pebbles, twigs, worn path, leaves
     () => { T.bark = canvasTex(256, 512, (g, w, h) => { g.fillStyle = '#a2683f'; g.fillRect(0, 0, w, h); const r = rng(13); for (let i = 0; i < 260; i++) { const x = r() * w, y = r() * h, l = 30 + r() * 90; g.strokeStyle = r() < .55 ? 'rgba(60,32,16,.45)' : 'rgba(190,130,80,.35)'; g.lineWidth = 2 + r() * 5; g.beginPath(); g.moveTo(x, y); g.bezierCurveTo(x + 6, y + l * .3, x - 6, y + l * .6, x + 2, y + l); g.stroke(); } }, {repeat: [3, 2]}); },
     () => { T.wood = canvasTex(256, 64, (g, w, h) => { g.fillStyle = '#b07a46'; g.fillRect(0, 0, w, h); const r = rng(21); for (let i = 0; i < 40; i++) { g.strokeStyle = r() < .5 ? 'rgba(90,52,26,.35)' : 'rgba(230,180,120,.3)'; g.lineWidth = 1 + r() * 2; const y = r() * h; g.beginPath(); g.moveTo(0, y); g.bezierCurveTo(w * .3, y + 4, w * .6, y - 4, w, y + 2); g.stroke(); } }, {repeat: [1, 1]}); },
     () => { T.log = canvasTex(512, 128, (g, w, h) => { g.fillStyle = '#9a6740'; g.fillRect(0, 0, w, h); const r = rng(31); for (let i = 0; i < 220; i++) { const y = r() * h, x = r() * w, l = 40 + r() * 160; g.strokeStyle = r() < .55 ? 'rgba(70,40,20,.45)' : 'rgba(200,150,100,.35)'; g.lineWidth = 1.5 + r() * 3; g.beginPath(); g.moveTo(x, y); g.bezierCurveTo(x + l * .3, y + 3, x + l * .6, y - 3, x + l, y + 1); g.stroke(); } }, {repeat: [3, 2]}); },
@@ -121,6 +123,7 @@ export function createLook({software = false, big = false} = {}) {
       M.ground = new THREE.MeshLambertMaterial({vertexColors: true, map: T.grain});
       M.plants = patch(new THREE.MeshLambertMaterial({map: T.plants, alphaTest: .5, side: THREE.DoubleSide, vertexColors: true}), {foliage: true}, 'wb-plants');
       M.rock = new THREE.MeshLambertMaterial({vertexColors: true, map: T.grain});
+      if (T.decals) M.decals = new THREE.MeshLambertMaterial({map: T.decals, vertexColors: true, transparent: true, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -1, polygonOffsetUnits: -2});
       M.soft = patch(new THREE.MeshLambertMaterial({vertexColors: true, map: T.grain}), {near: true}, 'wb-soft');   // coloured things tall enough to hide Fuchs: they turn translucent like the trees
       M.bark = patch(new THREE.MeshLambertMaterial({map: T.bark, vertexColors: true}), {near: true}, 'wb-bark');
       M.leaves = patch(new THREE.MeshLambertMaterial({map: T.leaf, alphaTest: .5, side: THREE.DoubleSide}), {foliage: true, near: true}, 'wb-leaves');

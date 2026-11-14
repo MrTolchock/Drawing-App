@@ -1,5 +1,5 @@
 /* Farbtupf – Service Worker: keeps the whole app on the device so it runs without internet. */
-const CACHE = 'farbtupf-v9.3.57-waldpost';
+const CACHE = 'farbtupf-v9.3.58-waldpost';
 const SCOPE=self.registration.scope;
 const INDEX=new URL('index.html',SCOPE).href;
 const ACTIVE_MARKER=new URL('.farbtupf-active-cache',SCOPE).href;
@@ -61,6 +61,7 @@ const ASSETS = [
   './js/friends/world/big/nav.js',
   './js/friends/world/big/tiles.js',
   './js/friends/world/big/atlas.js',
+  './js/friends/world/big/decals.js',
   './js/friends/world/big/sites.js',
   './assets/characters/fox.glb',
   './assets/characters/squirrel.glb',
