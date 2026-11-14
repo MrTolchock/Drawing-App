@@ -3318,10 +3318,10 @@
       "key": "puzzle:friends-squirrel",
       "revision": "e56a5c6a2315a382",
       "status": "approved",
-      "note": "Alle Iterationen zusammen bestätigt",
-      "at": "2026-11-14T21:05:01.658Z",
+      "note": "",
+      "at": "2026-11-14T21:05:05.976Z",
       "seen": true,
-      "operation": "ee2bcaef-245a-4c22-9f13-46aedc62ec41"
+      "operation": "ccc65c86-81b3-4b1f-9e03-7d5b3361d5cc"
     }
   },
   "history": [
@@ -3342,6 +3342,15 @@
       "at": "2026-11-14T16:21:01.794Z",
       "seen": true,
       "operation": "98d09025-a06f-430e-b438-42dd24f49b93"
+    },
+    {
+      "key": "puzzle:friends-squirrel",
+      "revision": "e56a5c6a2315a382",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:01.658Z",
+      "seen": true,
+      "operation": "ee2bcaef-245a-4c22-9f13-46aedc62ec41"
     }
   ]
 }
