@@ -847,6 +847,24 @@
       "at": "2026-11-14T15:34:43.843Z",
       "seen": true,
       "operation": "e0bd57d1-842a-4d37-bba8-b45b6dee8836"
+    },
+    "friends-owl/sentence-13@91eee3876fca17b7": {
+      "key": "friends-owl/sentence-13",
+      "revision": "91eee3876fca17b7",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-14T15:34:47.111Z",
+      "seen": true,
+      "operation": "acaa382d-72d7-445c-a767-79bd1cb855da"
+    },
+    "friends-owl/sentence-14@5eec7c87fe92c683": {
+      "key": "friends-owl/sentence-14",
+      "revision": "5eec7c87fe92c683",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-14T15:34:49.163Z",
+      "seen": true,
+      "operation": "5afa725a-3030-4c82-89c9-29260b990c33"
     }
   },
   "history": []
