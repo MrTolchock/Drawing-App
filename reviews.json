@@ -775,6 +775,60 @@
       "at": "2026-11-14T15:33:42.049Z",
       "seen": true,
       "operation": "02e4ad7b-c0d9-4121-8cda-501b89ab82ae"
+    },
+    "friends-owl/sentence-5@0a13579e80b553fa": {
+      "key": "friends-owl/sentence-5",
+      "revision": "0a13579e80b553fa",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-14T15:33:44.849Z",
+      "seen": true,
+      "operation": "0b2a77b0-30c8-4237-9621-271981bd4362"
+    },
+    "friends-owl/sentence-6@3d26ecc8e058d09e": {
+      "key": "friends-owl/sentence-6",
+      "revision": "3d26ecc8e058d09e",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-14T15:33:47.232Z",
+      "seen": true,
+      "operation": "d2b037d2-860d-48e1-8cc2-5c2e2b066e14"
+    },
+    "friends-owl/sentence-7@ce59b32e31c49330": {
+      "key": "friends-owl/sentence-7",
+      "revision": "ce59b32e31c49330",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-14T15:33:49.399Z",
+      "seen": true,
+      "operation": "16c0d03d-9141-4ab2-ae9a-4fd4bb13abf7"
+    },
+    "friends-owl/sentence-8@22aed663dec119d9": {
+      "key": "friends-owl/sentence-8",
+      "revision": "22aed663dec119d9",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-14T15:33:52.117Z",
+      "seen": true,
+      "operation": "a7f62f16-8843-446f-b510-8546d14c47f1"
+    },
+    "friends-owl/sentence-9@c95b51225b801d9e": {
+      "key": "friends-owl/sentence-9",
+      "revision": "c95b51225b801d9e",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-14T15:33:54.148Z",
+      "seen": true,
+      "operation": "e784728e-5cd7-4c3d-a8bc-673804512251"
+    },
+    "friends-owl/sentence-10@2b950e057a706227": {
+      "key": "friends-owl/sentence-10",
+      "revision": "2b950e057a706227",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-14T15:33:56.136Z",
+      "seen": true,
+      "operation": "7bb19205-55ea-485d-941d-1b0717941307"
     }
   },
   "history": []
