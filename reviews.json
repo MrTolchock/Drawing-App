@@ -2026,6 +2026,15 @@
       "at": "2026-11-14T15:58:29.835Z",
       "seen": true,
       "operation": "ece953fb-ef60-4c23-9887-0246db7ec112"
+    },
+    "friends-hedgehog/riddle-6@90d580b6013abbee": {
+      "key": "friends-hedgehog/riddle-6",
+      "revision": "90d580b6013abbee",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-14T15:58:31.993Z",
+      "seen": true,
+      "operation": "5a84e3ec-d740-4524-ba0c-80adaef017f0"
     }
   },
   "history": [
