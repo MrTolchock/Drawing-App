@@ -3322,6 +3322,240 @@
       "at": "2026-11-14T21:05:05.976Z",
       "seen": true,
       "operation": "ccc65c86-81b3-4b1f-9e03-7d5b3361d5cc"
+    },
+    "friends-beaver/matrix-0@585c78faa6e31646": {
+      "key": "friends-beaver/matrix-0",
+      "revision": "585c78faa6e31646",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:24.070Z",
+      "seen": true,
+      "operation": "c9f0a9c5-101a-458a-be69-b6d57afba3ef"
+    },
+    "friends-beaver/matrix-1@425fe07caf201b36": {
+      "key": "friends-beaver/matrix-1",
+      "revision": "425fe07caf201b36",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:24.070Z",
+      "seen": true,
+      "operation": "484de5eb-7c0c-4dff-9832-cecb492c2999"
+    },
+    "friends-beaver/matrix-2@80d3acc5a161f3c7": {
+      "key": "friends-beaver/matrix-2",
+      "revision": "80d3acc5a161f3c7",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:24.070Z",
+      "seen": true,
+      "operation": "0931d8d5-06b6-4e39-b892-6e5d6e74082e"
+    },
+    "friends-beaver/matrix-3@900c204942c3a48f": {
+      "key": "friends-beaver/matrix-3",
+      "revision": "900c204942c3a48f",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:24.070Z",
+      "seen": true,
+      "operation": "48484a41-2084-48b5-9bcf-d33e04c8af10"
+    },
+    "friends-beaver/matrix-20@862f882e09c95fa8": {
+      "key": "friends-beaver/matrix-20",
+      "revision": "862f882e09c95fa8",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:24.070Z",
+      "seen": true,
+      "operation": "0dacd76b-21f2-4799-9209-fe89f0b8e8ef"
+    },
+    "friends-beaver/matrix-4@16fabb13b3417967": {
+      "key": "friends-beaver/matrix-4",
+      "revision": "16fabb13b3417967",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:24.070Z",
+      "seen": true,
+      "operation": "f4377399-274f-4a6a-8d7b-2bad8a16f491"
+    },
+    "friends-beaver/matrix-5@da256ff3cebcd599": {
+      "key": "friends-beaver/matrix-5",
+      "revision": "da256ff3cebcd599",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:24.070Z",
+      "seen": true,
+      "operation": "fbbc1bb9-54d2-432a-8f72-9d865cdc4b74"
+    },
+    "friends-beaver/matrix-6@7c983d6103d1fe69": {
+      "key": "friends-beaver/matrix-6",
+      "revision": "7c983d6103d1fe69",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:24.070Z",
+      "seen": true,
+      "operation": "d17176ee-76e9-420e-895b-4987e24d313c"
+    },
+    "friends-beaver/matrix-7@f3e1cab2506c5e9a": {
+      "key": "friends-beaver/matrix-7",
+      "revision": "f3e1cab2506c5e9a",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:24.070Z",
+      "seen": true,
+      "operation": "600dca48-5dd1-4e89-98e7-3581ea2da4ba"
+    },
+    "friends-beaver/matrix-8@2a4d3ec61d40e228": {
+      "key": "friends-beaver/matrix-8",
+      "revision": "2a4d3ec61d40e228",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:24.070Z",
+      "seen": true,
+      "operation": "907b6abf-6585-4df9-b03c-44dcb3c9abc8"
+    },
+    "friends-beaver/matrix-9@ab6e8e93ace2261f": {
+      "key": "friends-beaver/matrix-9",
+      "revision": "ab6e8e93ace2261f",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:24.070Z",
+      "seen": true,
+      "operation": "529209cf-63b8-4f5b-a08c-9e8392198315"
+    },
+    "friends-beaver/matrix-10@79cae012051d16e8": {
+      "key": "friends-beaver/matrix-10",
+      "revision": "79cae012051d16e8",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:24.070Z",
+      "seen": true,
+      "operation": "9d2841b3-c9f4-4154-95d3-29648eca783d"
+    },
+    "friends-beaver/matrix-11@fbf65b7d2fba0239": {
+      "key": "friends-beaver/matrix-11",
+      "revision": "fbf65b7d2fba0239",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:24.070Z",
+      "seen": true,
+      "operation": "5e7667d9-15e8-4a1c-a873-be87a64e621e"
+    },
+    "friends-beaver/matrix-12@75df6810d31da5a6": {
+      "key": "friends-beaver/matrix-12",
+      "revision": "75df6810d31da5a6",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:24.070Z",
+      "seen": true,
+      "operation": "32901f73-966c-4291-87f6-291b316c5dd9"
+    },
+    "friends-beaver/matrix-13@f2656314f998336e": {
+      "key": "friends-beaver/matrix-13",
+      "revision": "f2656314f998336e",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:24.070Z",
+      "seen": true,
+      "operation": "e6c3a1e1-840a-48d8-83f9-770f042526b7"
+    },
+    "friends-beaver/matrix-14@2acab5978983463b": {
+      "key": "friends-beaver/matrix-14",
+      "revision": "2acab5978983463b",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:24.070Z",
+      "seen": true,
+      "operation": "452582de-143a-4976-991a-bccc08acbc61"
+    },
+    "friends-beaver/matrix-15@eee5930d36d13a17": {
+      "key": "friends-beaver/matrix-15",
+      "revision": "eee5930d36d13a17",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:24.070Z",
+      "seen": true,
+      "operation": "fc6102c2-bf1c-41b3-9084-fb2e629345a2"
+    },
+    "friends-beaver/matrix-16@03ea14310fbba647": {
+      "key": "friends-beaver/matrix-16",
+      "revision": "03ea14310fbba647",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:24.070Z",
+      "seen": true,
+      "operation": "d4ec571f-355b-4361-bbd5-37a434b56a58"
+    },
+    "friends-beaver/matrix-17@fe2fb49308074249": {
+      "key": "friends-beaver/matrix-17",
+      "revision": "fe2fb49308074249",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:24.070Z",
+      "seen": true,
+      "operation": "acd26bd7-28ab-427e-986a-8a39296aacfe"
+    },
+    "friends-beaver/matrix-18@0b31396bf34004d5": {
+      "key": "friends-beaver/matrix-18",
+      "revision": "0b31396bf34004d5",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:24.070Z",
+      "seen": true,
+      "operation": "0f18a411-daf0-47b5-a621-eb493f9a8ff8"
+    },
+    "friends-beaver/matrix-19@e898d44d5b04b083": {
+      "key": "friends-beaver/matrix-19",
+      "revision": "e898d44d5b04b083",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:24.070Z",
+      "seen": true,
+      "operation": "fad02d96-ec9c-4326-a263-208f3795335c"
+    },
+    "friends-beaver/matrix-21@2ec3d844d51a8b04": {
+      "key": "friends-beaver/matrix-21",
+      "revision": "2ec3d844d51a8b04",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:24.070Z",
+      "seen": true,
+      "operation": "aaa7c449-7659-46ed-a71c-05a41eef5872"
+    },
+    "friends-beaver/matrix-22@5126c50861a8b3d4": {
+      "key": "friends-beaver/matrix-22",
+      "revision": "5126c50861a8b3d4",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:24.070Z",
+      "seen": true,
+      "operation": "06d6f7c0-bb97-434e-8f65-b1408cc12a9e"
+    },
+    "friends-beaver/matrix-23@f3a4a60369cbab81": {
+      "key": "friends-beaver/matrix-23",
+      "revision": "f3a4a60369cbab81",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:24.070Z",
+      "seen": true,
+      "operation": "04f8b51d-4cb0-4300-8a97-cad0994a34e3"
+    },
+    "friends-beaver/matrix-24@7520526b0141b989": {
+      "key": "friends-beaver/matrix-24",
+      "revision": "7520526b0141b989",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:24.070Z",
+      "seen": true,
+      "operation": "aa2a1062-8de7-4f02-81fd-c07f41648203"
+    },
+    "puzzle:friends-beaver@27a3de24d8bafdea": {
+      "key": "puzzle:friends-beaver",
+      "revision": "27a3de24d8bafdea",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:24.070Z",
+      "seen": true,
+      "operation": "dd152ff2-c004-49a4-8887-d73ee041a92b"
     }
   },
   "history": [
