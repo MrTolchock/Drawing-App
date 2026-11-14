@@ -7,7 +7,7 @@ import {THREE} from '../../scene/materials.js';
 
 const TAU = Math.PI * 2;
 
-export function createLife({scene, canvasTex, groundY, walkable, terrain, random, fires = [], shaftMat = null}) {
+export function createLife({scene, canvasTex, groundY, walkable, terrain, random, fires = [], shaftMat = null, onFlyUp = null}) {
   const r = (a, b) => a + (b - a) * random();
   function sprite(map, h, order = 4) { const s = new THREE.Sprite(new THREE.SpriteMaterial({map, transparent: true, toneMapped: false, depthWrite: false, alphaTest: .02})); s.center.set(.5, .5); s.renderOrder = order; s.visible = false; s.userData.h = h; scene.add(s); return s; }
   const fit = (s, k = 1) => { const img = s.material.map.image; s.scale.set(s.userData.h * img.width / img.height * k, s.userData.h, 1); };
@@ -92,7 +92,7 @@ export function createLife({scene, canvasTex, groundY, walkable, terrain, random
   const fish = {s: solid(sprite(fishTex, .2, 4)), t: -1, next: 4, from: [0, 0], to: [0, 0]};
   const ringTex = canvasTex(64, 64, g => { g.strokeStyle = 'rgba(255,255,255,.9)'; g.lineWidth = 4; g.beginPath(); g.arc(32, 32, 26, 0, TAU); g.stroke(); g.strokeStyle = 'rgba(255,255,255,.45)'; g.lineWidth = 2; g.beginPath(); g.arc(32, 32, 17, 0, TAU); g.stroke(); });
   const rings = [0, 1].map(() => { const m = new THREE.Mesh(new THREE.PlaneGeometry(1, 1).rotateX(-Math.PI / 2), new THREE.MeshBasicMaterial({map: ringTex, transparent: true, depthWrite: false, toneMapped: false, opacity: 0})); m.visible = false; m.renderOrder = 9; scene.add(m); return {m, t: -1}; });
-  const splash = (k, x, z) => { rings[k].t = 0; rings[k].m.position.set(x, pond.level + .03, z); };
+  const splash = (k, x, z) => { rings[k].t = 0; rings[k].m.position.set(x, pond.level + .03, z); };   // the ring travels out and rocks a duck it passes (below)
 
   /* ---------- paper boats drifting down the brook, from the den's bridge to the swamp, again and again ---------- */
   const brook = terrain.streams.find(q => q.id === 'brook'), boatTex = canvasTex(64, 48, g => { g.fillStyle = '#fbf6ea'; g.beginPath(); g.moveTo(4, 26); g.lineTo(60, 26); g.lineTo(48, 42); g.lineTo(16, 42); g.fill(); g.beginPath(); g.moveTo(32, 4); g.lineTo(46, 26); g.lineTo(18, 26); g.fill();
@@ -159,12 +159,16 @@ export function createLife({scene, canvasTex, groundY, walkable, terrain, random
       for (const d of ducks) { d.m.visible = nearPond; if (!nearPond) continue; if (!reduced) d.a += dt * d.speed;
         const [x, z] = onPond(Math.cos(d.a) * pond.rx * d.k, Math.sin(d.a) * pond.rz * d.k), [x2, z2] = onPond(Math.cos(d.a + .05) * pond.rx * d.k, Math.sin(d.a + .05) * pond.rz * d.k), t = reduced ? 0 : time;
         // they paddle along, bob a little, and now and then dip their heads
-        const dip = Math.max(0, Math.sin(t * .31 + d.a * 3) - .94) * 14; d.m.position.set(x, pond.level + .03 + Math.sin(t * 2 + d.a * 9) * .012, z); d.m.rotation.set(dip, Math.atan2(x2 - x, z2 - z), Math.sin(t * 2.6 + d.a * 5) * .05, 'YXZ'); }
-      if (nearPond && !reduced && fish.t < 0 && (fish.next -= dt) < 0) { const a = r(0, TAU), k = r(.1, .45); fish.from = onPond(Math.cos(a) * pond.rx * k, Math.sin(a) * pond.rz * k); const b = r(0, TAU); fish.to = [fish.from[0] + Math.cos(b) * .9, fish.from[1] + Math.sin(b) * .9]; fish.t = 0; fish.next = r(5, 12); splash(0, ...fish.from); fit(fish.s); }
+        // a ripple from the jumping fish rocks the duck as it passes under her
+        for (const g of rings) if (g.t >= 0) { const rr = (.3 + g.t * 2.6) * .5, dd = Math.hypot(x - g.m.position.x, z - g.m.position.z); if (Math.abs(dd - rr) < .35) d.rock = Math.max(d.rock || 0, 1 - g.t); }
+        d.rock = (d.rock || 0) * Math.exp(-dt * 1.4); const rock = reduced ? 0 : d.rock;
+        const dip = Math.max(0, Math.sin(t * .31 + d.a * 3) - .94) * 14; d.m.position.set(x, pond.level + .03 + Math.sin(t * 2 + d.a * 9) * .012 + rock * .045 * Math.sin(time * 7), z); d.m.rotation.set(dip + rock * .18 * Math.sin(time * 6 + 1), Math.atan2(x2 - x, z2 - z), Math.sin(t * 2.6 + d.a * 5) * .05 + rock * .3 * Math.sin(time * 7), 'YXZ'); }
+      // the fish often jumps near a duck, whom its ripple then rocks
+      if (nearPond && !reduced && fish.t < 0 && (fish.next -= dt) < 0) { const a = r(0, TAU), k = r(.1, .45), duck = random() < .5 ? ducks[random() < .5 ? 0 : 1].m.position : null; fish.from = duck ? [duck.x + r(-1.1, 1.1), duck.z + r(-1.1, 1.1)] : onPond(Math.cos(a) * pond.rx * k, Math.sin(a) * pond.rz * k); const b = r(0, TAU); fish.to = [fish.from[0] + Math.cos(b) * .9, fish.from[1] + Math.sin(b) * .9]; fish.t = 0; fish.next = r(5, 12); splash(0, ...fish.from); fit(fish.s); }
       if (fish.t >= 0) { fish.t += dt / .8; const u = fish.t, x = fish.from[0] + (fish.to[0] - fish.from[0]) * u, z = fish.from[1] + (fish.to[1] - fish.from[1]) * u, right = fish.to[0] >= fish.from[0] ? 1 : -1;
         fish.s.visible = u < 1; fish.s.position.set(x, pond.level + Math.sin(u * Math.PI) * .6, z); fish.s.scale.set(.4 * right, .2, 1); fish.s.material.rotation = right * Math.cos(u * Math.PI) * 1.1;
         if (u >= 1) { fish.t = -1; splash(1, ...fish.to); } }
-      for (const g of rings) { if (g.t < 0) { g.m.visible = false; continue; } g.t += dt / 1.3; g.m.visible = true; g.m.scale.setScalar(.3 + g.t * 1.3); g.m.material.opacity = Math.max(0, .75 * (1 - g.t)); if (g.t >= 1) g.t = -1; } }
+      for (const g of rings) { if (g.t < 0) { g.m.visible = false; continue; } g.t += dt / 1.3; g.m.visible = true; g.m.scale.setScalar(.3 + g.t * 2.6); g.m.material.opacity = Math.max(0, .75 * (1 - g.t)); if (g.t >= 1) g.t = -1; } }
     // paper boats: half a metre a second down the brook, skipped where they are far from Fuchs
     for (const b of boats) { if (!reduced) b.at = (b.at + dt * .5 / brook.len) % 1; const f = 30 + b.at * (brook.N - 60), i = Math.floor(f), q = brook.samples[i], q2 = brook.samples[i + 1], u = f - i, x = q.x + (q2.x - q.x) * u, z = q.z + (q2.z - q.z) * u;
       b.s.visible = Math.hypot(x - pos.x, z - pos.z) < 34; if (!b.s.visible) continue; const h = b.s.userData.h, y = brook.level[i] + (brook.level[i + 1] - brook.level[i]) * u;
@@ -172,11 +176,11 @@ export function createLife({scene, canvasTex, groundY, walkable, terrain, random
     bow.material.opacity = reduced ? .28 : .26 + Math.sin(time * .6) * .06;
     if (beams) placeBeams(pos);
     // little birds: a few hop about together ahead of Fuchs and fly off when he is close
-    if (!flockAt && !reduced && !shelter && birds.every(b => b.state === 'wait' && b.t <= 0)) { flockAt = spotNear(pos, heading, 9, 15, (x, z) => walkable(x, z) && !terrain.onCrossing(x, z)); if (flockAt) for (const b of birds) { b.state = 'ground'; b.x = flockAt[0] + r(-.9, .9); b.z = flockAt[1] + r(-.9, .9); b.y = groundY(b.x, b.z) + .1; b.t = r(.3, 1.5); b.s.material.map = birdTex[0]; fit(b.s); } }
+    if (!flockAt && !reduced && !shelter && birds.every(b => b.state === 'wait' && b.t <= 0)) { flockAt = spotNear(pos, heading, 9, 15, (x, z) => walkable(x, z) && !terrain.onCrossing(x, z)); if (flockAt) for (const b of birds) { b.told = birds.indexOf(b) > 0; b.state = 'ground'; b.x = flockAt[0] + r(-.9, .9); b.z = flockAt[1] + r(-.9, .9); b.y = groundY(b.x, b.z) + .1; b.t = r(.3, 1.5); b.s.material.map = birdTex[0]; fit(b.s); } }
     for (const b of birds) {
       b.t -= dt; const d = Math.hypot(b.x - pos.x, b.z - pos.z);
       if (b.state === 'ground') { const base = groundY(b.x, b.z) + .1;
-        if (d < 3.4 || d > 30) { b.state = 'fly'; b.t = 2.6; const a = Math.atan2(b.x - pos.x, b.z - pos.z) + r(-.5, .5); b.vx = Math.sin(a) * r(3, 4.5); b.vz = Math.cos(a) * r(3, 4.5); b.vy = r(2.2, 3.2); b.face = b.vx < 0 ? -1 : 1; if (d > 30) { b.state = 'wait'; b.t = 0; b.s.visible = false; flockAt = null; continue; } }
+        if (d < 3.4 || d > 30) { if (d < 3.4 && !b.told) { b.told = true; onFlyUp?.(b.x, b.z); } b.state = 'fly'; b.t = 2.6; const a = Math.atan2(b.x - pos.x, b.z - pos.z) + r(-.5, .5); b.vx = Math.sin(a) * r(3, 4.5); b.vz = Math.cos(a) * r(3, 4.5); b.vy = r(2.2, 3.2); b.face = b.vx < 0 ? -1 : 1; if (d > 30) { b.state = 'wait'; b.t = 0; b.s.visible = false; flockAt = null; continue; } }
         else { if (b.t < 0) { b.t = r(.6, 2.4); b.hop = .22; const a = r(0, TAU); b.vx = Math.sin(a) * .9; b.vz = Math.cos(a) * .9; b.face = b.vx < 0 ? -1 : 1; }
           if (b.hop > 0) { b.hop -= dt; const nx = b.x + b.vx * dt, nz = b.z + b.vz * dt; if (walkable(nx, nz)) { b.x = nx; b.z = nz; } b.y = base + Math.sin((1 - b.hop / .22) * Math.PI) * .09; } else b.y = base + (Math.sin(time * 5 + b.x * 9) > .86 ? -.025 : 0); }
       } else if (b.state === 'fly') { b.x += b.vx * dt; b.y += b.vy * dt; b.z += b.vz * dt; b.s.material.map = birdTex[Math.floor(time * 11) % 2]; if (b.t < 0) { b.state = 'wait'; b.t = r(5, 11); b.s.visible = false; flockAt = null; } }

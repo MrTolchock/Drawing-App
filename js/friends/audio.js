@@ -131,6 +131,8 @@ export const details = {
     f.frequency.setValueAtTime(380, t); f.frequency.linearRampToValueAtTime(r(800, 1100), t + dur * .45); f.frequency.linearRampToValueAtTime(420, t + dur);
     g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(.16 * level, t + dur * .4); g.gain.linearRampToValueAtTime(.05 * level, t + dur * .7); g.gain.linearRampToValueAtTime(0, t + dur);
     s.connect(f); f.connect(g); g.connect(out); s.start(t, Math.random() * Math.max(.1, noise.duration - dur - .3), dur + .1); s.onended = done(s, f, g); },
+  // the mailman's whistle when a new letter is ready: a short note and a long rising one, a little off-key
+  whistle(ctx, out, noise, t, level = 1) { const f = r(1650, 1800); syllable(ctx, out, {t, dur: .16, path: [[0, f * .9], [.6, f * 1.05], [1, f]], gain: .08 * level, vib: .004}); syllable(ctx, out, {t: t + .24, dur: .5, path: [[0, f], [.35, f * 1.33], [1, f * 1.38]], gain: .085 * level, vib: .01}); },
   // one-off sounds for what Fuchs does at the things to discover (forest3d.js `react`)
   sniff(ctx, out, noise, t, level = 1) { for (let k = 0; k < 4; k++) hiss(ctx, out, noise, {t: t + k * r(.11, .15), dur: r(.05, .08), gain: .1 * level, f: r(3200, 4200), q: 1.2, attack: .008}); },
   knock(ctx, out, noise, t, level = 1) { for (let k = 0; k < 2; k++) { const f = r(150, 175); tone(ctx, out, {t: t + k * .2, dur: .22, f, f1: f * .82, gain: .09 * level, attack: .002, harm: .45}); hiss(ctx, out, noise, {t: t + k * .2, dur: .03, gain: .05 * level, type: 'lowpass', f: 900}); } },

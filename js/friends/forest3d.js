@@ -99,13 +99,22 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     if (look.M.ground) look.M.ground.color.setScalar(1 - .2 * w.wet);
     rain.update(dt, time, pos, {rain: r, snow: sound.snow || 0, reduced, height, width, pixelRatio: renderer.getPixelRatio(), fov: camera.fov});
   }
+  /* A soft reveal: walking into a big open area (the meadow, the Rock, the peak, the swamp) for the first time in a
+     while, the haze stands close for a moment and then lifts, as if it opened up in front of Fuchs. */
+  const seenArea = {}; let areaNow = 'wood', reveal = 1;
+  function revealArea(dt, time) {
+    const a = (sound.snow || 0) > .5 ? 'peak' : (sound.rock || 0) > .6 ? 'rock' : sound.meadow > .6 ? 'meadow' : sound.swamp > .6 ? 'swamp' : 'wood';
+    if (a !== areaNow) { areaNow = a; if (a !== 'wood' && time - (seenArea[a] ?? -1e9) > 150 && !window.FK.reduced) reveal = 0; }
+    if (a !== 'wood') seenArea[a] = time; reveal = Math.min(1, reveal + dt / 4.5);
+  }
   function updateMood(dt, x, z) {
     const b = WORLD.terrain.biome(x, z, mood.bm), w = {meadow: b.meadow, swamp: b.swamp, rock: b.rock * .8, spruce: b.spruce}; let rest = 1, near = 0, far = 0; moodT.setRGB(0, 0, 0);
     for (const k in w) { const v = Math.min(rest, w[k]); rest -= v; moodC.set(MOODS[k][0]); moodT.r += moodC.r * v; moodT.g += moodC.g * v; moodT.b += moodC.b * v; near += MOODS[k][1] * v; far += MOODS[k][2] * v; }
     moodC.set(MOODS.wood[0]); moodT.r += moodC.r * rest; moodT.g += moodC.g * rest; moodT.b += moodC.b * rest; near += MOODS.wood[1] * rest; far += MOODS.wood[2] * rest;
     moodT.multiply(todBase.fog); const rain = weather.state.rain; if (rain > 0) { moodT.lerp(RAINY, rain * .6); near *= 1 - .4 * rain; far *= 1 - .28 * rain; }
-    const k = 1 - Math.exp(-dt * .9); WORLD.fog.color.lerp(moodT, k); mood.near += (near - mood.near) * k; mood.far += (far - mood.far) * k; scene.fog.near = mood.near; scene.fog.far = mood.far;
-    if (look.M.water) { look.M.water.uniforms.fogNear.value = mood.near; look.M.water.uniforms.fogFar.value = mood.far; }
+    const k = 1 - Math.exp(-dt * .9); WORLD.fog.color.lerp(moodT, k); mood.near += (near - mood.near) * k; mood.far += (far - mood.far) * k;
+    const lift = reveal * reveal * (3 - 2 * reveal); scene.fog.near = mood.near * lerp(.4, 1, lift); scene.fog.far = mood.far * lerp(.6, 1, lift);
+    if (look.M.water) { look.M.water.uniforms.fogNear.value = scene.fog.near; look.M.water.uniforms.fogFar.value = scene.fog.far; }
   }
 
   /* ---------- atmosphere: light shafts, pollen motes, butterflies, dust, vignette ---------- */
@@ -117,7 +126,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   { const g = []; for (const [x, z, w] of [[-4, -14, 2.6], [3, -18, 3.4], [10, -12, 2.4], [-11, -9, 2.2], [6, -26, 4]]) g.push(new THREE.PlaneGeometry(w, 22).rotateZ(.48).rotateY(.5).translate(x, 9, z)); const m = new THREE.Mesh(mergePlain(g), shaftMat); m.name = 'light shafts'; m.renderOrder = 4; scene.add(m); }
   function sprite(map, h, order = 2, anchor = 0) { const s = new THREE.Sprite(new THREE.SpriteMaterial({map, transparent: true, toneMapped: false, depthWrite: false, alphaTest: .02})); s.center.set(.5, anchor); s.renderOrder = order; s.userData.h = h; scene.add(s); return s; }
   function size(s, h = s.userData.h) { const img = s.material.map.image, a = img && img.width ? img.width / img.height : 1; s.scale.set(h * a, h, 1); }
-  const life = createLife({scene, canvasTex, groundY, walkable, terrain: WORLD.terrain, random: R, fires: WORLD.layout.WONDERS.filter(w => w.fire).map(w => w.fire), shaftMat});   // falling leaves, butterflies, dragonflies, little birds
+  const life = createLife({scene, canvasTex, groundY, walkable, terrain: WORLD.terrain, random: R, fires: WORLD.layout.WONDERS.filter(w => w.fire).map(w => w.fire), shaftMat, onFlyUp: (x, z) => startle(x, z)});   // falling leaves, butterflies, dragonflies, little birds
   const prints = createFootprints({scene, canvasTex, ground: (x, z) => WORLD.ground(x, z)});
   const ambience = createAmbience({scene, camera, canvasTex, terrain: WORLD.terrain, groundY, random: R});
   const puffs = Array.from({length: 8}, () => { const s = sprite(dustTex, .4, 1, .5); s.visible = false; return {s, life: 0}; });
@@ -141,7 +150,9 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   const foxRig = noCast(characters.fox(FOX_H)), fox = foxRig.group, foxShadow = contact(.42), pos = new THREE.Vector3(forestPlaces.home.x, 0, forestPlaces.home.z), vel = new THREE.Vector2();
   fox.name = 'fox'; scene.add(fox);
   const courierRig = noCast(characters.mailman(1.72)), courier = courierRig.group, mailPos = new THREE.Vector3(forestPlaces.mailman.x, 0, forestPlaces.mailman.z), courierShadow = contact(.48, .85);
-  courier.name = 'rabbit-mailman'; scene.add(courier); let courierGoal = null, courierWait = 2;
+  courier.name = 'rabbit-mailman'; scene.add(courier); let courierGoal = null, courierWait = 2, courierPath = [], round = 0;
+  // the mailman's round: the den, the beaver's trail, the signpost in the glade, the kingfisher's willow, the west path
+  const ROUND = [[21.5, -8.2], [30, 14], [7, 22], [2, 8], [-18, 4.6], [-9, -14], [3.2, -.8]];
 
   /* ---------- guidance: fireflies from Fuchs toward the invited friend ---------- */
   // A string of fireflies along the way: the near ones large and bright, the far ones small, each with a bright
@@ -160,12 +171,12 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
      a few slow steps, a pause, a few more. They stand still and turn to Fuchs when he comes close. */
   function stroll(f, id, dt) {
     const dF = Math.hypot(pos.x - f.x, pos.z - f.z), turn = (to, k) => { const g = f.rig.group, d = Math.atan2(Math.sin(to - g.rotation.y), Math.cos(to - g.rotation.y)); g.rotation.y += d * Math.min(1, dt * k); };
-    f.moving = false; if (f.show) return;
-    if (dF < 4.2) { f.to = null; f.wait = Math.max(f.wait, 2.5); turn(Math.atan2(pos.x - f.x, pos.z - f.z), 4); return; }
+    f.moving = false; if (f.show) return; if (f.startled > 0) f.startled -= dt; if (clock < (f.alertUntil || 0)) { f.to = null; return; }
+    if (dF < 4.2 && !(f.startled > 0)) { f.to = null; f.wait = Math.max(f.wait, 2.5); turn(Math.atan2(pos.x - f.x, pos.z - f.z), 4); return; }
     if (!f.to) { if ((f.wait -= dt) > 0) return;
       for (let k = 0; k < 6 && !f.to; k++) { const a = Math.random() * Math.PI * 2, r = f.roam * (.35 + .65 * Math.random()), x = f.hx + Math.sin(a) * r, z = f.hz + Math.cos(a) * r; if (walkable(x, z) && !WORLD.terrain.onCrossing(x, z) && WORLD.terrain.pathAt(x, z).d > .9) f.to = [x, z]; }
       if (!f.to) { f.wait = 2; return; } }
-    const dx = f.to[0] - f.x, dz = f.to[1] - f.z, d = Math.hypot(dx, dz), sp = id === 'deer' ? .7 : id === 'squirrel' ? 1.45 : .5;   // the squirrel dashes, then stops to look
+    const dx = f.to[0] - f.x, dz = f.to[1] - f.z, d = Math.hypot(dx, dz), sp = id === 'deer' ? .7 : id === 'squirrel' ? (f.startled > 0 ? 2.6 : 1.45) : .5;   // the squirrel dashes, then stops to look
     if (d < .08) { f.to = null; f.wait = id === 'squirrel' ? .6 + Math.random() * 3.5 : 3 + Math.random() * 9; return; }
     turn(Math.atan2(dx, dz), id === 'squirrel' ? 12 : id === 'deer' ? 2.6 : 5); const s = Math.min(d, sp * dt); f.x += dx / d * s; f.z += dz / d * s; f.y = groundY(f.x, f.z); f.moving = true;
     f.rig.group.position.set(f.x, f.y, f.z); if (f.shadow) f.shadow.position.set(f.x, f.y + .03, f.z);
@@ -181,6 +192,11 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     if (!f.show) g.rotation.y += d * Math.min(1, dt * 3); g.position.set(f.x, f.y + Math.sin(time * 1.8 + f.hx) * .025, f.z); f.moving = f.sv > .3;
     const pin = pins.find(p => p.id === id); if (pin) pin.point.set(pin.x + f.x - f.hx, pin.point.y, pin.z + f.z - f.hz);
   }
+  /* Little chains of cause and effect: birds flying up startle a squirrel close by, which dashes off a few steps,
+     and make the deer lift its head and listen for a while. */
+  function startle(x, z) { for (const [id, f] of Object.entries(friends)) { const d = Math.hypot(f.x - x, f.z - z); if (d > 10 || f.show) continue;
+    if (id === 'squirrel') { for (let k = 0; k < 8; k++) { const a = Math.atan2(f.x - x, f.z - z) + (Math.random() - .5) * 1.2, r = 1.2 + Math.random(), tx = f.x + Math.sin(a) * r, tz = f.z + Math.cos(a) * r; if (walkable(tx, tz)) { f.to = [tx, tz]; f.wait = 0; f.startled = 1.6; break; } } }
+    if (id === 'deer') f.alertUntil = clock + 3.5; } }
   /* A friend greets Fuchs when he comes close: the birds wave, the others give a hop or two, and then they stand
      and look at him (no endless jumping on the spot). */
   /* A visit without a letter for this friend (game.js meet): they turn to Fuchs and show a little trick, then turn
@@ -197,6 +213,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   }
   function puff(x, y, z, n) { for (let k = 0; k < n; k++) { const p = puffs.find(q => q.life <= 0); if (!p) return; p.life = .55 + k * .08; p.s.visible = true; p.s.material.color.set('#ffffff'); p.s.position.set(x + (R() - .5) * .5, y + .1, z + (R() - .5) * .5); } }
   function greeting(f, id, d, time) {
+    if (time < (f.alertUntil || 0) && d > 4.2) return 'look';
     if (d > 4.2) { f.metAt = null; return ''; }
     if (f.metAt == null) f.metAt = time;
     if (id === 'bird' || id === 'owl') return near === id ? 'wave' : 'look';
@@ -275,13 +292,15 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     // A bend or a narrow crossing may need a routed approach instead of a straight one.
     if (!chosen) for (const radius of [5.4, 6.6, 8]) { for (let i = 0; i < 16; i++) { const a = i / 16 * TAU, candidate = nearestWalkable(new THREE.Vector3(pos.x + Math.cos(a) * radius, 0, pos.z + Math.sin(a) * radius)), distance = candidate.distanceTo(pos); if (distance >= 4.5 && distance <= 9 && plan(candidate)) { chosen = candidate; break; } } if (chosen) break; }
     if (chosen) mailPos.copy(chosen);
-    courierGoal = null; courierWait = 20; publishMailPosition(); courier.position.set(mailPos.x, groundY(mailPos.x, mailPos.z), mailPos.z); guidePoints = []; guideNext = 0;
+    courierGoal = null; courierPath = []; courierWait = 20; publishMailPosition(); courier.position.set(mailPos.x, groundY(mailPos.x, mailPos.z), mailPos.z); guidePoints = []; guideNext = 0;
   }
   function updateMailman(dt, reduced, animate) {
     courierWait = Math.max(0, courierWait - dt); const distance = mailPos.distanceTo(pos), greeting = guideTarget === 'mailman' && distance < 3.1;
     if (guideTarget === 'mailman') { courierGoal = null; courierWait = Math.max(courierWait, 1.2); }
-    if (!courierGoal && !courierWait) { for (let i = 0; i < 16; i++) { const a = R() * TAU, r = 2 + R() * 3, target = new THREE.Vector3(mailPos.x + Math.cos(a) * r, 0, mailPos.z + Math.sin(a) * r); if (walkable(target.x, target.z) && clear(mailPos, target)) { courierGoal = target; break; } } courierWait = 2 + R() * 4; }
-    let moving = false; if (courierGoal) { const d = courierGoal.distanceTo(mailPos); if (d < .12) { courierGoal = null; courierWait = 2 + R() * 4; } else { const direction = courierGoal.clone().sub(mailPos).normalize(); mailPos.addScaledVector(direction, Math.min(d, dt * .75)); const yaw = Math.atan2(direction.x, direction.z), diff = Math.atan2(Math.sin(yaw - courier.rotation.y), Math.cos(yaw - courier.rotation.y)); courier.rotation.y += diff * Math.min(1, dt * 7); moving = true; } }
+    // his own round on the paths near the den, with a pause at every stop (unless a letter waits for Fuchs)
+    if (!courierGoal && !courierWait) { if (!courierPath.length) { const [x, z] = ROUND[round]; round = (round + 1) % ROUND.length; courierPath = (WORLD.plan(mailPos.x, mailPos.z, x, z) || []).map(([a, b]) => new THREE.Vector3(a, 0, b)); if (!courierPath.length) courierWait = 3; }
+      if (courierPath.length) courierGoal = courierPath.shift(); }
+    let moving = false; if (courierGoal) { const d = courierGoal.distanceTo(mailPos); if (d < .12) { courierGoal = null; courierWait = courierPath.length ? 0 : 3 + R() * 4; } else { const direction = courierGoal.clone().sub(mailPos).normalize(); mailPos.addScaledVector(direction, Math.min(d, dt * .85)); const yaw = Math.atan2(direction.x, direction.z), diff = Math.atan2(Math.sin(yaw - courier.rotation.y), Math.cos(yaw - courier.rotation.y)); courier.rotation.y += diff * Math.min(1, dt * 7); moving = true; } }
     if (greeting) { const yaw = Math.atan2(pos.x - mailPos.x, pos.z - mailPos.z), diff = Math.atan2(Math.sin(yaw - courier.rotation.y), Math.cos(yaw - courier.rotation.y)); courier.rotation.y += diff * Math.min(1, dt * 5); }
     const y = groundY(mailPos.x, mailPos.z); courier.position.set(mailPos.x, y, mailPos.z); courierShadow.position.set(mailPos.x, y + .04, mailPos.z);
     if (animate) courierRig.update(dt, {moving, speed: .75, action: greeting ? 'wave' : '', reduced}); publishMailPosition();
@@ -314,7 +333,9 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     sound.brook = THREE.MathUtils.clamp(1 - (Math.sqrt(near) - 1.2) / 13, 0, 1);
     const fx = T.falls.base[0] - pos.x, fz = T.falls.base[1] - pos.z; sound.falls = THREE.MathUtils.clamp(1 - (Math.hypot(fx, fz) - 5) / 42, 0, 1); sound.fallsPan = THREE.MathUtils.clamp(fx / 22, -1, 1);
   }
+  let clock = 0;
   function update(dt, time, {keys, stick}) {
+    clock = time;
     const reduced = window.FK.reduced;
     let dx = Number(keys.has('ArrowRight') || keys.has('d')) - Number(keys.has('ArrowLeft') || keys.has('a')) + stick.x, dz = Number(keys.has('ArrowDown') || keys.has('s')) - Number(keys.has('ArrowUp') || keys.has('w')) + stick.z;
     const manual = Math.hypot(dx, dz) > 0, want = new THREE.Vector2();
@@ -366,7 +387,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     if (!reduced) { if (look.M.water) look.M.water.uniforms.uTime.value += dt; motes.position.set(pos.x, Math.sin(time * .35) * .3, pos.z); motes.rotation.y = time * .01; } else motes.position.set(pos.x, 0, pos.z);
     if (ring.visible) ring.material.opacity = .55 + Math.sin(time * 4) * .25;
     updateGuide(time);
-    { updateMood(dt, pos.x, pos.z); backdrop.material.uniforms.uFox.value.copy(pos); const sw = streamer.landmarks.swamp; if (sw?.glow) sw.glow.material.opacity = reduced ? .8 : .55 + .4 * Math.sin(time * 1.7); if (sw?.mist && !reduced) sw.mist.position.x = Math.sin(time * .12) * 1.5; }
+    { revealArea(dt, time); updateMood(dt, pos.x, pos.z); backdrop.material.uniforms.uFox.value.copy(pos); const sw = streamer.landmarks.swamp; if (sw?.glow) sw.glow.material.opacity = reduced ? .8 : .55 + .4 * Math.sin(time * 1.7); if (sw?.mist && !reduced) sw.mist.position.x = Math.sin(time * .12) * 1.5; }
     framing(dt); const sf = shot && friends[shot.id], e = shotK(), aim = new THREE.Vector3(pos.x + vel.x * .35, base * lift, pos.z + vel.y * .35);
     if (sf) aim.lerp(new THREE.Vector3((pos.x + sf.x) / 2, (base + groundY(sf.x, sf.z)) / 2, (pos.z + sf.z) / 2 + 1), e);
     focus.lerp(aim, reduced ? 1 : 1 - Math.exp(-dt * 2.6)); placeCamera(1);
@@ -389,7 +410,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
       streamer.focus(pos.x, pos.z); const finishing = streamer.complete(); if (perf) perf.stats.enterBuildMs = finishing; compile(); aimSun(pos.x, pos.z); snapCamera(); renderer.shadowMap.needsUpdate = true;
     },
     resize(w, h) { width = w; height = h; narrow = w < 600; camera.aspect = w / Math.max(1, h); camera.fov = narrow ? 54 : 42; camera.updateProjectionMatrix(); const vh = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * 1.02; vignette.scale.set(vh * camera.aspect, vh, 1); snapCamera(); },
-    update, route(id) { const p = forestPlaces[id]; if (id === 'mailman') { courierGoal = null; courierWait = 20; } if (p) walkTo(new THREE.Vector3(p.x, 0, p.z), id); },
+    update, route(id) { const p = forestPlaces[id]; if (id === 'mailman') { courierGoal = null; courierPath = []; courierWait = 20; } if (p) walkTo(new THREE.Vector3(p.x, 0, p.z), id); },
     walkTo(x, z) { walkTo(new THREE.Vector3(x, 0, z)); },
     /** A short close shot of Fuchs and the invited friend before the puzzle opens; returns its length (s), 0 with reduced motion. */
     frame(id) { const f = friends[id]; if (!f || window.FK.reduced) return 0; shot = {id, t: 0, dur: 1.5}; const yaw = Math.atan2(f.x - pos.x, f.z - pos.z); fox.rotation.y = yaw; f.metAt = null; return 1.3; },
@@ -401,10 +422,13 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     weather(on) { return on === undefined ? weather.state : weather.force(on); },
     /** Development: put Fuchs somewhere at once. */
     teleport(x, z) { const p = nearestWalkable(new THREE.Vector3(x, 0, z)); pos.set(p.x, 0, p.z); vel.set(0, 0); destination = null; path = []; ring.visible = false; streamer.focus(pos.x, pos.z); streamer.complete(); aimSun(pos.x, pos.z); snapCamera(); },
-    mailTarget(id) { guideTarget = forestPlaces[id] ? id : null; guidePoints = []; guideNext = 0; if (id === 'mailman' && mailPos.distanceTo(pos) > 9) summonMailman(); }, summonMailman,
+    mailTarget(id) { const was = guideTarget; guideTarget = forestPlaces[id] ? id : null; guidePoints = []; guideNext = 0;
+      // a new letter is ready: the mailman whistles once from where he is, then comes over
+      if (id === 'mailman' && was !== 'mailman') { sound.cues.push({type: 'whistle', pan: THREE.MathUtils.clamp((mailPos.x - pos.x) / 10, -.9, .9)}); if (sound.cues.length > 4) sound.cues.shift(); }
+      if (id === 'mailman' && mailPos.distanceTo(pos) > 9) summonMailman(); }, summonMailman,
     pick(x, y) {
       raycaster.setFromCamera(new THREE.Vector2(x, y), camera);
-      if (raycaster.intersectObject(courier, true).length) { courierGoal = null; courierWait = 20; if (mailPos.distanceTo(pos) < 3.2) onAction('mailman'); else walkTo(mailPos.clone(), 'mailman'); return; }
+      if (raycaster.intersectObject(courier, true).length) { courierGoal = null; courierPath = []; courierWait = 20; if (mailPos.distanceTo(pos) < 3.2) onAction('mailman'); else walkTo(mailPos.clone(), 'mailman'); return; }
       const hit = raycaster.intersectObjects(streamer.terrain(), false)[0]?.point || raycaster.ray.intersectPlane(floor, new THREE.Vector3());
       if (hit) walkTo(hit);
     },
