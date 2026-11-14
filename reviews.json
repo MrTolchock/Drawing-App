@@ -3786,10 +3786,10 @@
       "key": "puzzle:friends-mouse",
       "revision": "2dcb8f079b35646d",
       "status": "approved",
-      "note": "Alle Iterationen zusammen bestätigt",
-      "at": "2026-11-14T21:05:44.503Z",
+      "note": "",
+      "at": "2026-11-14T21:05:49.535Z",
       "seen": true,
-      "operation": "800ef1ff-c627-4b1d-8754-1b81c234210f"
+      "operation": "6ae7156d-7bb9-4a02-89a5-a10619910d7e"
     }
   },
   "history": [
@@ -3819,6 +3819,15 @@
       "at": "2026-11-14T21:05:01.658Z",
       "seen": true,
       "operation": "ee2bcaef-245a-4c22-9f13-46aedc62ec41"
+    },
+    {
+      "key": "puzzle:friends-mouse",
+      "revision": "2dcb8f079b35646d",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:44.503Z",
+      "seen": true,
+      "operation": "800ef1ff-c627-4b1d-8754-1b81c234210f"
     }
   ]
 }
