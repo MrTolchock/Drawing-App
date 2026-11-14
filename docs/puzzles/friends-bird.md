@@ -5,7 +5,7 @@
 - Stable puzzle ID: `friends-bird`
 - Host: bird
 - Related competence: **D.2.A.1.b; D.1.A.1.b** — Wörter lesen und Reime erkennen
-- Difficulty: 25 konkrete Wortpaare; eingeführte Buchstaben
+- Difficulty: 25 verschiedene Reimpaare ohne vertauschte Doppelungen; eingeführte Buchstaben
 - Pool: 25 explicit iterations; a round selects five.
 - Review: solve every unconfirmed iteration to approve it; × rejects with an optional note. The final celebration approves the puzzle only when all iterations passed. Exact revisions gate release; changes require review again.
 
@@ -42,15 +42,15 @@
 | `friends-bird/rhyme-13` | Bank – Schrank — Bank | "Schrank" |
 | `friends-bird/rhyme-14` | Stern – Kern — Stern | "Kern" |
 | `friends-bird/rhyme-15` | Maus – Haus — Maus | "Haus" |
-| `friends-bird/rhyme-16` | Fisch – Tisch — Fisch | "Tisch" |
-| `friends-bird/rhyme-17` | Stein – Bein — Stein | "Bein" |
-| `friends-bird/rhyme-18` | Schuh – Kuh — Schuh | "Kuh" |
-| `friends-bird/rhyme-19` | Nase – Hase — Nase | "Hase" |
-| `friends-bird/rhyme-20` | Dose – Rose — Dose | "Rose" |
-| `friends-bird/rhyme-21` | Tuch – Buch — Tuch | "Buch" |
-| `friends-bird/rhyme-22` | Wurm – Turm — Wurm | "Turm" |
-| `friends-bird/rhyme-23` | Kopf – Topf — Kopf | "Topf" |
-| `friends-bird/rhyme-24` | Sand – Hand — Sand | "Hand" |
+| `friends-bird/rhyme-16` | Nuss – Bus — Nuss | "Bus" |
+| `friends-bird/rhyme-17` | Boot – Brot — Boot | "Brot" |
+| `friends-bird/rhyme-18` | Biene – Schiene — Biene | "Schiene" |
+| `friends-bird/rhyme-19` | Schnecke – Decke — Schnecke | "Decke" |
+| `friends-bird/rhyme-20` | Sonne – Tonne — Sonne | "Tonne" |
+| `friends-bird/rhyme-21` | Kanne – Tanne — Kanne | "Tanne" |
+| `friends-bird/rhyme-22` | Mund – Hund — Mund | "Hund" |
+| `friends-bird/rhyme-23` | Dach – Bach — Dach | "Bach" |
+| `friends-bird/rhyme-24` | Ziege – Fliege — Ziege | "Fliege" |
 
 ## Exact definitions
 
@@ -300,136 +300,136 @@ These definitions are the same finite data used by the game and review previews.
   },
   {
     "id": "friends-bird/rhyme-16",
-    "label": "Fisch – Tisch",
+    "label": "Nuss – Bus",
     "question": {
       "kind": "rhyme",
       "prompt": "Welches Wort reimt sich?",
-      "text": "Fisch",
-      "picture": "fish",
-      "answer": "Tisch",
+      "text": "Nuss",
+      "picture": "nut",
+      "answer": "Bus",
       "choices": [
-        "Tisch",
-        "Ball"
-      ]
-    }
-  },
-  {
-    "id": "friends-bird/rhyme-17",
-    "label": "Stein – Bein",
-    "question": {
-      "kind": "rhyme",
-      "prompt": "Welches Wort reimt sich?",
-      "text": "Stein",
-      "picture": "vocab-stone",
-      "answer": "Bein",
-      "choices": [
-        "Bein",
-        "Boot"
-      ]
-    }
-  },
-  {
-    "id": "friends-bird/rhyme-18",
-    "label": "Schuh – Kuh",
-    "question": {
-      "kind": "rhyme",
-      "prompt": "Welches Wort reimt sich?",
-      "text": "Schuh",
-      "picture": "vocab-shoe",
-      "answer": "Kuh",
-      "choices": [
-        "Kuh",
+        "Bus",
         "Baum"
       ]
     }
   },
   {
-    "id": "friends-bird/rhyme-19",
-    "label": "Nase – Hase",
+    "id": "friends-bird/rhyme-17",
+    "label": "Boot – Brot",
     "question": {
       "kind": "rhyme",
       "prompt": "Welches Wort reimt sich?",
-      "text": "Nase",
-      "picture": "nose",
-      "answer": "Hase",
+      "text": "Boot",
+      "picture": "boat",
+      "answer": "Brot",
       "choices": [
-        "Hase",
+        "Brot",
+        "Maus"
+      ]
+    }
+  },
+  {
+    "id": "friends-bird/rhyme-18",
+    "label": "Biene – Schiene",
+    "question": {
+      "kind": "rhyme",
+      "prompt": "Welches Wort reimt sich?",
+      "text": "Biene",
+      "picture": "bee",
+      "answer": "Schiene",
+      "choices": [
+        "Schiene",
+        "Rose"
+      ]
+    }
+  },
+  {
+    "id": "friends-bird/rhyme-19",
+    "label": "Schnecke – Decke",
+    "question": {
+      "kind": "rhyme",
+      "prompt": "Welches Wort reimt sich?",
+      "text": "Schnecke",
+      "picture": "snail",
+      "answer": "Decke",
+      "choices": [
+        "Decke",
         "Ball"
       ]
     }
   },
   {
     "id": "friends-bird/rhyme-20",
-    "label": "Dose – Rose",
+    "label": "Sonne – Tonne",
     "question": {
       "kind": "rhyme",
       "prompt": "Welches Wort reimt sich?",
-      "text": "Dose",
-      "picture": "tin",
-      "answer": "Rose",
+      "text": "Sonne",
+      "picture": "sun",
+      "answer": "Tonne",
       "choices": [
-        "Rose",
-        "Hut"
+        "Tonne",
+        "Kuh"
       ]
     }
   },
   {
     "id": "friends-bird/rhyme-21",
-    "label": "Tuch – Buch",
+    "label": "Kanne – Tanne",
     "question": {
       "kind": "rhyme",
       "prompt": "Welches Wort reimt sich?",
-      "text": "Tuch",
-      "picture": "vocab-cloth",
-      "answer": "Buch",
+      "text": "Kanne",
+      "picture": "rhyme-jug",
+      "answer": "Tanne",
       "choices": [
-        "Buch",
-        "Ball"
+        "Tanne",
+        "Hut"
       ]
     }
   },
   {
     "id": "friends-bird/rhyme-22",
-    "label": "Wurm – Turm",
+    "label": "Mund – Hund",
     "question": {
       "kind": "rhyme",
       "prompt": "Welches Wort reimt sich?",
-      "text": "Wurm",
-      "picture": "vocab-worm",
-      "answer": "Turm",
+      "text": "Mund",
+      "picture": "rhyme-mouth",
+      "answer": "Hund",
       "choices": [
-        "Turm",
-        "Boot"
+        "Hund",
+        "Stern"
       ]
     }
   },
   {
     "id": "friends-bird/rhyme-23",
-    "label": "Kopf – Topf",
+    "label": "Dach – Bach",
     "question": {
       "kind": "rhyme",
       "prompt": "Welches Wort reimt sich?",
-      "text": "Kopf",
-      "picture": "vocab-head",
-      "answer": "Topf",
+      "text": "Dach",
+      "picture": "rhyme-roof",
+      "answer": "Bach",
       "choices": [
-        "Topf",
-        "Baum"
+        "Bach",
+        "Schuh"
       ]
     }
   },
   {
     "id": "friends-bird/rhyme-24",
-    "label": "Sand – Hand",
+    "label": "Ziege – Fliege",
     "question": {
       "kind": "rhyme",
       "prompt": "Welches Wort reimt sich?",
-      "text": "Sand",
-      "picture": "vocab-sand",
-      "answer": "Hand",
+      "text": "Ziege",
+      "picture": "rhyme-goat",
+      "answer": "Fliege",
       "choices": [
-        "Hand",
-        "Kuh"
+        "Fliege",
+        "Nase"
       ]
     }
   }

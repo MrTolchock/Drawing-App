@@ -28,16 +28,26 @@ test('every active puzzle has at least 25 unique finite definitions, competence 
  }
  assert.equal(total,1048);
 });
-test('owl reading compares single animals and beaver rows use three distinct shapes',()=>{
+test('rhyme pairs are distinct even when their word order is ignored',()=>{
+ const pool=setup().FK.puzzleCatalogue.iterations('friends-bird'),pairs=pool.map(it=>[it.question.text,it.question.answer].map(w=>w.toLocaleLowerCase('de-CH')).sort().join('/'));
+ assert.equal(pool.length,25);
+ assert.equal(new Set(pairs).size,pool.length,'a reversed pair cannot count as another iteration');
+ assert.equal(pairs.filter(pair=>pair==='fisch/tisch').length,1);
+});
+test('owl reading always uses one sentence and two pictures of the same animal; beaver rows use three distinct shapes',()=>{
  const C=setup().FK.puzzleCatalogue,owl=C.iterations('friends-owl'),beaver=C.iterations('friends-beaver');
  assert.equal(owl.length,25);assert.equal(beaver.length,25);
  for(const it of owl){
   const q=it.question;
+  assert.match(q.text,/^[^.?!]+\.$/,it.id+' has exactly one sentence');
+  assert.equal(q.prompt,'Welches Bild passt zum Satz?',it.id+' uses the same task format');
+  assert.equal(q.choices.length,2,it.id+' has exactly two pictures');
   assert.ok(q.choices.every(id=>!id.startsWith('scene:')),it.id+' has one animal per picture');
   assert.ok(q.choices.includes(q.answer));
-  if(it.id.includes('/sentence-'))assert.ok(q.choices.every(id=>id.split('-')[0]===q.answer.split('-')[0]),it.id+' compares actions of the same animal');
-  else assert.match(q.text,/^Das ist (eine? \w+)\. (Sie|Er) (sitzt|rennt|schläft|fliegt)\.$/);
+  assert.ok(q.choices.every(id=>id.split('-')[0]===q.answer.split('-')[0]),it.id+' compares actions of the same animal');
  }
+ assert.equal(new Set(owl.map(it=>it.question.text)).size,25,'new animals supply genuinely different sentences');
+ assert.equal(new Set(owl.map(it=>it.question.answer)).size,25,'every sentence has its own pictured action');
  assert.equal(owl.find(it=>it.id==='friends-owl/sentence-4').question.answer,'mouse-sleep');
  assert.equal(new Set(beaver.map(it=>C.canonical(it.question))).size,25);
  for(const it of beaver){
@@ -46,6 +56,12 @@ test('owl reading compares single animals and beaver rows use three distinct sha
   for(let row=0;row<3;row++)assert.deepEqual([...q.matrix.slice(row*3,row*3+3)].sort(),['circle','square','triangle'],it.id+' row '+row);
   assert.equal(q.matrix[q.gap],q.answer);
  }
+});
+test('hedgehog riddles and every distractor use Swiss forest wildlife',()=>{
+ const pool=setup().FK.puzzleCatalogue.iterations('friends-hedgehog');
+ const allowed=new Set(['hedgehog','bird-sit','fish-swim','bee','snail','spider','butterfly','caterpillar','ladybird','hare-sit','squirrel-sit','badger-walk','beaver','frog-sit','ant','mouse-sit','fox-run','roe-stand','forest-woodpecker','forest-bat','forest-owl','forest-robin','forest-lynx','forest-marten','vocab-worm']);
+ assert.equal(pool.length,25);assert.equal(new Set(pool.map(it=>it.question.answer)).size,25);
+ for(const it of pool){assert.equal(it.question.choices.length,3);assert.ok(it.question.choices.every(id=>allowed.has(id)),it.id+' contains only local wildlife');}
 });
 test('five distinct questions are deterministic, restored verbatim and avoid the previous round',()=>{
  const {FK,memory}=setup(),C=FK.puzzleCatalogue,R=FK.puzzleRounds;

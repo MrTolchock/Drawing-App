@@ -5,11 +5,11 @@
   const FK=window.FK,R=FK.puzzleRounds,C=window.FriendsContent;
   const meta={
     'friends-squirrel':['MA.1.A.2.a','Mengen zählen','0–20 Nüsse; Vierer- und Fünferstruktur'],
-    'friends-bird':['D.2.A.1.b; D.1.A.1.b','Wörter lesen und Reime erkennen','25 konkrete Wortpaare; eingeführte Buchstaben'],
-    'friends-owl':['D.2.A.1.b; D.2.B.1.b','Kurze Sätze verstehen','Ein bis zwei kurze Sätze über ein Tier; vertraute Tierverben'],
+    'friends-bird':['D.2.A.1.b; D.1.A.1.b','Wörter lesen und Reime erkennen','25 verschiedene Reimpaare ohne vertauschte Doppelungen; eingeführte Buchstaben'],
+    'friends-owl':['D.2.A.1.b; D.2.B.1.b','Kurze Sätze verstehen','Ein kurzer Satz über ein Tier; immer zwei Bildantworten'],
     'friends-beaver':['MA.2.A.1.a','Formen in einer Matrix erkennen','Drei Reihen mit je drei Formen: Kreis, Dreieck, Quadrat'],
     'friends-mouse':['D.2.A.1.b','Wörter mit Bildern verbinden','25 vertraute Nomen; eingeführte Buchstaben'],
-    'friends-hedgehog':['NMG.2.4.a; D.2.B.1.b','Tiermerkmale erkennen und Fragen lesen','25 kurze Tierfragen; drei Bildantworten'],
+    'friends-hedgehog':['NMG.2.4.a; D.2.B.1.b','Tiermerkmale erkennen und Fragen lesen','25 kurze Fragen zu Schweizer Waldtieren; drei Bildantworten'],
     'friends-fish':['MA.1.A.2.a','Fische zählen','0–20; Vierer- und Fünferstruktur'],
     'friends-deer':['NMG.2.1.a; D.2.B.1.b','Lebensräume und Nahrung zuordnen','25 kurze Naturfragen; drei Bildantworten'],
     'friends-kingfisher':['MA.1.A.2.a','Dinge am Bach zählen','2–20; sechs verschiedene Gegenstände'],
@@ -51,29 +51,35 @@
   const wordArt={...R.wordArt,Bus:'bus',Hose:'trousers',Stern:'star',Topf:'vocab-pot'};
   const reading=['Maus','Haus','Hut','Rose','Nase','Fisch','Tisch','Ball','Baum','Boot','Kuh','Schuh','Bein','Stein','Buch','Hase','Dose','Nuss','Hose','Bus','Stern','Turm','Wurm','Tuch','Topf'];
   reading.forEach((text,i)=>add('friends-mouse','word-'+i,text,{kind:'reading',prompt:'Welches Bild passt zum Wort?',text,answer:wordArt[text],choices:[wordArt[text],wordArt[reading[(i+3)%reading.length]],wordArt[reading[(i+7)%reading.length]]]}));
-  const rhymes=C.pools.bird.map(t=>[t.target,t.answer,t.choices.find(c=>c!==t.answer)]).concat([['Maus','Haus','Hut'],['Fisch','Tisch','Ball'],['Stein','Bein','Boot'],['Schuh','Kuh','Baum'],['Nase','Hase','Ball'],['Dose','Rose','Hut'],['Tuch','Buch','Ball'],['Wurm','Turm','Boot'],['Kopf','Topf','Baum'],['Sand','Hand','Kuh']]);
+  // A rhyme pair is unordered: Tisch/Fisch and Fisch/Tisch are the same task.
+  // Keep the original distinct pairs and replace the nine reversed duplicates with new pictured words.
+  const rhymes=C.pools.bird.map(t=>[t.target,t.answer,t.choices.find(c=>c!==t.answer)]).concat([
+    ['Maus','Haus','Hut'],['Nuss','Bus','Baum'],['Boot','Brot','Maus'],['Biene','Schiene','Rose'],
+    ['Schnecke','Decke','Ball'],['Sonne','Tonne','Kuh'],['Kanne','Tanne','Hut'],
+    ['Mund','Hund','Stern'],['Dach','Bach','Schuh'],['Ziege','Fliege','Nase']
+  ]);
   rhymes.forEach(([text,answer,wrong],i)=>add('friends-bird','rhyme-'+i,text+' – '+answer,{kind:'rhyme',prompt:'Welches Wort reimt sich?',text,picture:wordArt[text],answer,choices:[answer,wrong]}));
   C.pools.owl.forEach((t,i)=>{
     // Like the other short sentences, compare actions of the same animal.
     // The fish has no alternative action drawing; use the sleeping mouse instead.
-    const q=i===4?{target:'Die Maus schläft.',answer:'mouse-sleep',choices:['mouse-sleep','mouse-sit','mouse-run']}:t;
+    const q=i===4?{target:'Die Maus schläft.',answer:'mouse-sleep',choices:['mouse-sleep','mouse-run']}:t;
     add('friends-owl','sentence-'+i,q.target,{kind:'reading',prompt:'Welches Bild passt zum Satz?',text:q.target,answer:q.answer,choices:q.choices});
   });
-  // Keep the saved pair IDs, but both sentences now describe one animal.
-  // Every answer card shows a single animal; distractors test its identity and action.
-  const pairs=[
-    ['Das ist eine Maus. Sie sitzt.','mouse-sit','mouse-run','bird-sit'],
-    ['Das ist ein Hase. Er rennt.','hare-run','hare-sit','fox-run'],
-    ['Das ist eine Katze. Sie sitzt.','cat-sit','cat-sleep','mouse-sit'],
-    ['Das ist eine Ente. Sie fliegt.','duck-fly','duck-swim','bird-fly'],
-    ['Das ist ein Vogel. Er sitzt.','bird-sit','bird-fly','hare-sit'],
-    ['Das ist ein Hund. Er schläft.','dog-sleep','dog-run','fox-sleep'],
-    ['Das ist ein Fuchs. Er rennt.','fox-run','fox-sleep','hare-run'],
-    ['Das ist ein Hase. Er sitzt.','hare-sit','hare-run','cat-sit'],
-    ['Das ist eine Maus. Sie rennt.','mouse-run','mouse-sit','dog-run'],
-    ['Das ist eine Katze. Sie schläft.','cat-sleep','cat-sit','mouse-sleep']
+  // Retain the saved IDs while replacing the two-sentence tasks with newly drawn action pairs.
+  // Every task has the same one-sentence / two-picture format and compares actions of one animal.
+  const animalActions=[
+    ['Das Eichhörnchen sitzt.','squirrel-sit','squirrel-run'],
+    ['Das Eichhörnchen rennt.','squirrel-run','squirrel-sit'],
+    ['Der Igel läuft.','hedgehog-walk','hedgehog-sleep'],
+    ['Der Igel schläft.','hedgehog-sleep','hedgehog-walk'],
+    ['Der Dachs läuft.','badger-walk','badger-sleep'],
+    ['Der Dachs schläft.','badger-sleep','badger-walk'],
+    ['Das Reh steht.','roe-stand','roe-run'],
+    ['Das Reh rennt.','roe-run','roe-stand'],
+    ['Der Frosch sitzt.','frog-sit','frog-jump'],
+    ['Der Frosch springt.','frog-jump','frog-sit']
   ];
-  pairs.forEach(([text,answer,...wrong],i)=>add('friends-owl','pair-'+i,text,{kind:'reading',prompt:'Welches Bild passt zu beiden Sätzen?',text,answer,choices:[answer,...wrong]}));
+  animalActions.forEach(([text,answer,wrong],i)=>add('friends-owl','pair-'+i,text,{kind:'reading',prompt:'Welches Bild passt zum Satz?',text,answer,choices:[answer,wrong]}));
   // Always include the triangle; never ask children to distinguish a square
   // from a rectangle here. Different row orders/gaps retain 25 distinct tasks.
   const shapes=['circle','triangle','square'],shapeOrders=[[0,1,2],[0,2,1],[1,0,2],[1,2,0],[2,0,1],[2,1,0]];let matrixN=0;
@@ -82,11 +88,38 @@
     add('friends-beaver','matrix-'+matrixN++,'Formenreihe '+matrixN,{kind:'matrix',prompt:'In jeder Reihe dieselben drei Formen. Welche fehlt?',matrix,gap:hole,answer:matrix[hole],choices:line});
   }
   const extra={
-    hedgehog:[['Wer hat einen Rüssel?','elephant','cat','fish'],['Wer hat einen sehr langen Hals?','giraffe','pig','frog'],['Wer hat eine Mähne?','lion','sheep','snail'],['Wer hat schwarze und weisse Streifen?','zebra','dog','bee'],['Wer trägt einen Höcker?','camel','cat','spider'],['Wer hat orangefarbenes Fell mit schwarzen Streifen?','tiger','cow','snail'],['Welcher Vogel kann nicht fliegen, aber gut schwimmen?','penguin','bird','butterfly'],['Wer hat schwarze und weisse Streifen im Gesicht?','badger','pig','fish'],['Wer baut einen Damm?','beaver','cat','ant']],
     deer:[['Wo sammelt der Schmetterling Nektar?','flower','water','egg'],['Was knabbert der Biber ab?','tree','fish','egg'],['Was pickt der Vogel aus der Erde?','vocab-worm','boat','moon'],['Was frisst die Schnecke?','leaf','fish','egg'],['Wo sucht der Igel kleine Tiere?','leaf','cloud','moon'],['Was stellt die Biene aus Nektar her?','honey','cheese','egg'],['Wo kann der Frosch schwimmen?','water','cloud','tree'],['Was knabbert der Hase auf der Wiese?','leaf','moon','nest'],['Was hängt an einer Weinrebe?','grapes','egg','fish']],
     badger:[['Was braucht eine Pflanze neben Wasser zum Wachsen?','sun','moon','cheese'],['Was wird aus einer Apfelblüte?','apple','egg','snowman'],['Was wächst aus einem Samen in der Erde?','plant','fish','moon'],['Was sammeln wir im Herbst unter der Eiche?','forest-nut','egg','snowman'],['Was sehen wir bei klarem Himmel in der Nacht?','moon','sun','sunflower'],['Was wächst auf der Erdbeerpflanze?','strawberry','carrot','egg'],['Womit giessen wir die Pflanzen?','bucket','fork','hat'],['Was schützt einen Samen in der Erde vor dem Austrocknen?','water','cheese','snowman'],['Was blüht zuerst, bevor die Birne reif wird?','flower','fish','egg']]
   };
-  for(const host of ['hedgehog','deer','badger']){
+  const forestRiddles=[
+    ['Wer trägt Stacheln auf dem Rücken?','hedgehog','mouse-sit','frog-sit'],
+    ['Welcher kleine Vogel hat eine blaue Kappe?','bird-sit','forest-robin','forest-woodpecker'],
+    ['Wer schwimmt mit Flossen im Bach?','fish-swim','beaver','snail'],
+    ['Wer sammelt Nektar und macht Honig?','bee','spider','ant'],
+    ['Wer trägt sein Haus auf dem Rücken?','snail','caterpillar','vocab-worm'],
+    ['Wer hat acht Beine und baut ein Netz?','spider','ant','ladybird'],
+    ['Wer war eine Raupe und hat nun bunte Flügel?','butterfly','bee','bird-sit'],
+    ['Wer frisst Blätter und wird ein Schmetterling?','caterpillar','vocab-worm','snail'],
+    ['Welcher kleine rote Käfer hat schwarze Punkte?','ladybird','ant','bee'],
+    ['Wer hat lange Ohren und kräftige Hinterbeine?','hare-sit','hedgehog','mouse-sit'],
+    ['Wer hat einen buschigen Schwanz und sammelt Nüsse?','squirrel-sit','beaver','frog-sit'],
+    ['Wer hat schwarze und weisse Streifen im Gesicht?','badger-walk','fox-run','squirrel-sit'],
+    ['Wer hat einen breiten, flachen Schwanz?','beaver','mouse-sit','hare-sit'],
+    ['Wer hüpft am Teich und quakt?','frog-sit','mouse-sit','ant'],
+    ['Wer lebt mit vielen anderen in einem Ameisenhaufen?','ant','spider','ladybird'],
+    ['Wer hat einen langen, dünnen Schwanz?','mouse-sit','hare-sit','badger-walk'],
+    ['Wer hat rotes Fell und eine weisse Schwanzspitze?','fox-run','badger-walk','roe-stand'],
+    ['Wer hat schlanke Beine und ein kleines Geweih?','roe-stand','hare-sit','fox-run'],
+    ['Wer klopft mit seinem Schnabel an Baumstämme?','forest-woodpecker','forest-robin','bird-sit'],
+    ['Wer hängt beim Schlafen mit dem Kopf nach unten?','forest-bat','forest-owl','squirrel-sit'],
+    ['Welcher Vogel jagt in der Nacht?','forest-owl','forest-robin','forest-woodpecker'],
+    ['Welcher kleine Vogel hat eine orangerote Brust?','forest-robin','bird-sit','forest-woodpecker'],
+    ['Welche Waldkatze hat Pinsel an den Ohren?','forest-lynx','fox-run','badger-walk'],
+    ['Wer hat braunes Fell und einen gelben Kehlfleck?','forest-marten','fox-run','forest-lynx'],
+    ['Wer lebt in der Erde und hat keine Beine?','vocab-worm','ant','caterpillar']
+  ];
+  forestRiddles.forEach(([text,answer,...wrong],i)=>add('friends-hedgehog','riddle-'+i,text,{kind:'reading',prompt:'Welches Bild passt zur Frage?',text,answer,choices:[answer,...wrong]}));
+  for(const host of ['deer','badger']){
     const list=C.pools[host].map(t=>[t.target,t.answer,...t.choices.filter(c=>c!==t.answer)]).concat(extra[host]);
     list.forEach(([text,answer,...wrong],i)=>add('friends-'+host,'riddle-'+i,text,{kind:'reading',prompt:'Welches Bild passt zur Frage?',text,answer,choices:[answer,...wrong]}));
   }
