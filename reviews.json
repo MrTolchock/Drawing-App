@@ -487,6 +487,15 @@
       "at": "2026-11-14T15:25:14.930Z",
       "seen": true,
       "operation": "96a28b1a-fc3a-46ba-9354-46607d4701f2"
+    },
+    "puzzle:friends-squirrel@a3c7533a3319fa0e": {
+      "key": "puzzle:friends-squirrel",
+      "revision": "a3c7533a3319fa0e",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-14T15:25:18.058Z",
+      "seen": true,
+      "operation": "72c6acfa-7246-4bf0-a44c-e91d2c1fae87"
     }
   },
   "history": []
