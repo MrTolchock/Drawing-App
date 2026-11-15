@@ -4024,6 +4024,24 @@
       "at": "2026-11-15T20:22:21.292Z",
       "seen": true,
       "operation": "5cf7a844-85c5-4633-be42-910f21fb4856"
+    },
+    "friends-fish/count-1@982f37f8d7dfc434": {
+      "key": "friends-fish/count-1",
+      "revision": "982f37f8d7dfc434",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:22:28.308Z",
+      "seen": true,
+      "operation": "48c71032-00f0-44bc-8da6-38048161fdcb"
+    },
+    "friends-fish/count-2@c9e9ac3721cf6f57": {
+      "key": "friends-fish/count-2",
+      "revision": "c9e9ac3721cf6f57",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:22:32.975Z",
+      "seen": true,
+      "operation": "02646225-e4e3-4538-8f2e-fdbbd50e04ce"
     }
   },
   "history": [
