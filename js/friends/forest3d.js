@@ -116,6 +116,8 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     sun.color.copy(todBase.sun); sun.intensity = todBase.si * (1 - .75 * r) + .25 * f; fill.intensity = todBase.fill * (1 - .25 * r); hemi.intensity = todBase.hi * (1 - .2 * r); hemi.color.copy(todBase.sky).lerp(HEMI_RAIN, r); hemi.groundColor.copy(todBase.ground);
     skyU.top.value.copy(todBase.top).lerp(GREY_TOP, r * .85); skyU.horizon.value.copy(todBase.hor).lerp(GREY_HORIZON, r * .8); skyU.glow.value = todBase.glow * (1 - r * .9) + f * .3;
     if (look.M.ground) look.M.ground.color.setScalar(1 - .2 * w.wet);
+    // the water gives back this hour's sky and the dark of the trees, and glitters as much as the sun shines
+    if (look.M.water) { const u = look.M.water.uniforms; u.uSky.value.copy(skyU.horizon.value).lerp(skyU.top.value, .65); u.uTrees.value.set('#3c6a3a').multiplyScalar(todBase.hi / 1.35 * (1 - .3 * w.rain)); u.uSun.value.copy(todBase.sun); u.uGlint.value = (1 - .9 * w.rain) * (.45 + .55 * todBase.si / 2.6) + .3 * f; }
     // under the rock: no sun and little sky on Fuchs, a cool light as from the crystals; the sky itself goes out
     { const ck = caveEase(); if (ck > 0) { sun.intensity *= 1 - .9 * ck; hemi.intensity *= 1 - .58 * ck; fill.intensity *= 1 + .5 * ck; skyU.top.value.multiplyScalar(1 - ck); skyU.horizon.value.multiplyScalar(1 - ck); skyU.glow.value *= 1 - ck; }
       fill.color.copy(FILL).lerp(CAVE_FILL, ck); horizon.visible = ck < .97; r *= 1 - ck;

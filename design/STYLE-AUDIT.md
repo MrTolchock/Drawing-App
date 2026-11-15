@@ -269,3 +269,5 @@ The mailman (same model) also walks his own round on the paths near the den betw
 **9.3.69.** Rock surfaces: the Rock's cliffs and stony ground, the cave's roof and mouth and the boulders carry a shared rock texture laid on from three sides (level bedding lines, cracks) with a soft relief, in place of smooth grey sheets. The ground is shaded a little where trees and big rocks meet it. Ground and rock keep their colours and materials otherwise.
 
 **9.3.70.** Fuchs, the mailman and the friends beside him cast real shadows with their own outline that follow the sun through the day (four small shadow pictures at most, laid on the ground along the sun's rays); the soft blobs under the feet remain as a fainter contact shade.
+
+**9.3.71.** Water: reflections of the sky and of the trees' dark as soft streaks, light on the bed in the shallows, sun glitter that follows the weather and the hour, and a lapping line of foam along the shores of pond, pools and swamp. Same water colours.

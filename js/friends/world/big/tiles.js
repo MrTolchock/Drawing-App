@@ -38,10 +38,13 @@ export function waterMaterial(look, fog) {
   if (look.M.water) return look.M.water;
   return look.M.water = new THREE.ShaderMaterial({
     transparent: true, depthWrite: false, side: THREE.DoubleSide,
-    uniforms: {uTime: {value: 3.7}, uNoise: {value: look.T.noise}, uShallow: {value: C('#7fc3b0')}, uDeep: {value: C('#1d6476')}, uFoam: {value: C('#f6fbf2')}, uSky: {value: C('#e6f1df')}, uSun: {value: C('#fff1c8')}, uSunDir: {value: fog.sunDir}, fogColor: {value: fog.color}, fogNear: {value: fog.near}, fogFar: {value: fog.far}},
+    uniforms: {uTime: {value: 3.7}, uNoise: {value: look.T.noise}, uShallow: {value: C('#7fc3b0')}, uDeep: {value: C('#1d6476')}, uFoam: {value: C('#f6fbf2')}, uSky: {value: C('#e6f1df')}, uTrees: {value: C('#3c6a3a')}, uSun: {value: C('#fff1c8')}, uGlint: {value: 1}, uSunDir: {value: fog.sunDir}, fogColor: {value: fog.color}, fogNear: {value: fog.near}, fogFar: {value: fog.far}},
     vertexShader: 'attribute vec3 wa;varying vec2 vUv;varying vec3 vW,vA;varying float vFog;void main(){vUv=uv;vA=wa;vec4 w=modelMatrix*vec4(position,1.);vW=w.xyz;vec4 mv=viewMatrix*w;vFog=-mv.z;gl_Position=projectionMatrix*mv;}',
     // wa = (1 for a stream / 0 for still water, depth 0…1 of still water, fade at a stream's ends)
-    fragmentShader: `uniform float uTime;uniform sampler2D uNoise;uniform vec3 uShallow,uDeep,uFoam,uSky,uSun,uSunDir,fogColor;uniform float fogNear,fogFar;varying vec2 vUv;varying vec3 vW,vA;varying float vFog;
+    // The water gives back the sky and, in long soft streaks towards the viewer, the dark of the trees (uSky and uTrees
+    // follow the hour and the weather: forest3d.js); light plays on the bed in the shallows; the sun glitters on the
+    // ripples (uGlint: how much sun there is); still water laps at its shore with a thin line of foam.
+    fragmentShader: `uniform float uTime,uGlint;uniform sampler2D uNoise;uniform vec3 uShallow,uDeep,uFoam,uSky,uTrees,uSun,uSunDir,fogColor;uniform float fogNear,fogFar;varying vec2 vUv;varying vec3 vW,vA;varying float vFog;
     void main(){
       float flow=vA.x;float across=mix(1.-smoothstep(0.,.5,vA.y),abs(vUv.x-.5)*2.,flow);float along=vUv.y;
       vec2 still=vW.xz*.09;
@@ -52,13 +55,20 @@ export function waterMaterial(look, fog) {
       float depth=mix(vA.y,1.-across*across,flow);
       vec3 c=mix(uShallow,uDeep,smoothstep(.0,.8,depth)*.92);
       c*=.94+.12*n;
-      float fres=pow(1.-max(dot(N,V),0.),4.);c=mix(c,uSky,fres*mix(.5,.35,flow));
-      vec3 Hh=normalize(uSunDir+V);c+=uSun*smoothstep(.72,.92,n2)*pow(max(dot(N,Hh),0.),260.)*1.4;
+      float ca=texture2D(uNoise,vW.xz*.31+vec2(uTime*.021,-uTime*.017)).r,cb=texture2D(uNoise,vW.xz*.27-vec2(uTime*.019,uTime*.013)+.4).r;
+      c+=uSun*pow(clamp(1.-abs(ca-cb)*6.,0.,1.),6.)*(1.-smoothstep(.0,.5,depth))*.13*uGlint*(1.-.5*flow);
+      float ndv=max(dot(N,V),0.);vec2 rp=vW.xz+N.xz*2.2;float crown=smoothstep(.45,.6,texture2D(uNoise,vec2(rp.x*.043,rp.y*.011+3.3)).r);
+      c=mix(c,mix(uSky,uTrees,crown*.8),clamp(.06+.8*(1.-ndv)*(1.-ndv),0.,.5)*mix(1.,.55,flow));
+      vec3 Hh=normalize(uSunDir+V);c+=uSun*smoothstep(.72,.92,n2)*pow(max(dot(N,Hh),0.),260.)*1.4*uGlint;
+      float s1=texture2D(uNoise,vW.xz*.83+vec2(uTime*.05,uTime*.031)).r,s2=texture2D(uNoise,vW.xz*1.27-vec2(uTime*.043,-uTime*.058)+.7).r;
+      c+=uSun*smoothstep(.435,.485,s1*s2)*smoothstep(.48,.6,n1)*1.1*uGlint;
       float streak=smoothstep(.7,.82,n2)*(.2+.6*depth)*flow;c=mix(c,uFoam,streak*.08);
       float foam=smoothstep(.84,.99,across)*smoothstep(.45,.7,n1+.18*sin(along*2.6+uTime*1.7))*mix(.0,1.,flow);
       c=mix(c,uFoam,foam*.7);
       float alpha=mix(.86,.35,smoothstep(.45,1.,across));alpha=max(alpha,foam*.8);
       alpha*=mix(smoothstep(.0,.16,vA.y),vA.z,flow);
+      float lap=.5+.5*sin(uTime*1.15+n1*6.283+vW.x*.7+vW.z*.5),shore=(1.-smoothstep(.03,.1+.08*lap,vA.y))*smoothstep(.0,.025,vA.y)*smoothstep(.3,.62,n2+.22*lap)*(1.-flow);
+      c=mix(c,uFoam,shore*.8);alpha=max(alpha,shore*.78);
       c=mix(c,fogColor,smoothstep(fogNear,fogFar,vFog));
       gl_FragColor=vec4(c,alpha);
       #include <tonemapping_fragment>
