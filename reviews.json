@@ -6400,6 +6400,15 @@
       "at": "2026-11-15T21:00:55.417Z",
       "seen": true,
       "operation": "09dab4f9-6d67-4729-9bd5-4148d18a5ab5"
+    },
+    "sequence/story-2@cd0daa95bac86709": {
+      "key": "sequence/story-2",
+      "revision": "cd0daa95bac86709",
+      "status": "improve",
+      "note": "Mache drag and drop",
+      "at": "2026-11-15T21:01:14.527Z",
+      "seen": true,
+      "operation": "02f5ec41-22f2-450d-8a5b-2dc6bee12671"
     }
   },
   "history": [
