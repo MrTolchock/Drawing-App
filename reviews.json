@@ -5392,6 +5392,24 @@
       "at": "2026-11-15T20:35:50.771Z",
       "seen": true,
       "operation": "11fb1482-56ef-48cd-8d3e-bcab787268a6"
+    },
+    "count/12-4@3f0200a1f94cf17f": {
+      "key": "count/12-4",
+      "revision": "3f0200a1f94cf17f",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:35:53.583Z",
+      "seen": true,
+      "operation": "335fe51d-730c-4808-a152-f38446bd40c8"
+    },
+    "count/13-2@e797e6175f035c3b": {
+      "key": "count/13-2",
+      "revision": "e797e6175f035c3b",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:35:55.433Z",
+      "seen": true,
+      "operation": "8731e794-9fb4-4789-8ab8-da75fba268d2"
     }
   },
   "history": [
