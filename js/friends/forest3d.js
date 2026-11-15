@@ -15,6 +15,7 @@ import {createAmbience} from './world/ambience.js';
 import {createWeather} from './weather.js';
 import {caveLight} from './world/big/cave.js';
 import {createBats} from './world/big/bats.js';
+import {createCastShadows} from './world/shadows.js';
 
 const WORLD = createWorld();
 const FOX_H = 1.6, SPEED = 3.6, MAX_ANIMATED = 6;
@@ -154,6 +155,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   const life = createLife({scene, canvasTex, groundY, walkable, terrain: WORLD.terrain, random: R, fires: WORLD.layout.WONDERS.filter(w => w.fire).map(w => w.fire), shaftMat, onFlyUp: (x, z) => startle(x, z)});   // falling leaves, butterflies, dragonflies, little birds
   const prints = createFootprints({scene, canvasTex, ground: (x, z) => WORLD.ground(x, z)});
   const ambience = createAmbience({scene, camera, canvasTex, terrain: WORLD.terrain, groundY, random: R});
+  const cast = software ? null : createCastShadows({renderer, scene, sunDir, groundY});   // the shadows of Fuchs and those beside him
   const bats = createBats({scene, world: WORLD, fog: WORLD.fog});   // they hang in the cave's hall and wake when Fuchs comes
   const puffs = Array.from({length: 8}, () => { const s = sprite(dustTex, .4, 1, .5); s.visible = false; return {s, life: 0}; });
   const motes = new THREE.Points(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(Array.from({length: 240}, (_, i) => i % 3 === 1 ? .4 + R() * 5 : (R() * 2 - 1) * 15 + (i % 3 === 0 ? 1 : -5)), 3)), new THREE.PointsMaterial({size: .08, map: glow, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, opacity: .8}));
@@ -162,7 +164,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   vignette.position.z = -1; vignette.renderOrder = 30; vignette.frustumCulled = false; camera.add(vignette); scene.add(camera);
 
   /* ---------- characters ---------- */
-  function contact(r, o = 1) { const m = new THREE.Mesh(new THREE.CircleGeometry(1, 24), new THREE.MeshBasicMaterial({map: softTex, transparent: true, depthWrite: false, opacity: o, toneMapped: false})); m.rotation.x = -Math.PI / 2; m.scale.setScalar(r); m.renderOrder = 1; scene.add(m); return m; }
+  function contact(r, o = software ? 1 : .55) { const m = new THREE.Mesh(new THREE.CircleGeometry(1, 24), new THREE.MeshBasicMaterial({map: softTex, transparent: true, depthWrite: false, opacity: o, toneMapped: false})); m.rotation.x = -Math.PI / 2; m.scale.setScalar(r); m.renderOrder = 1; scene.add(m); return m; }
   const friends = {}, noCast = rig => { const off = () => rig.group.traverse(o => { o.castShadow = false; }); off(); rig.ready.then(off); return rig; };
   // The puzzle friends and, in the big world, the new neighbours (those whose models exist already).
   for (const [id, f] of Object.entries({...WORLD.friends, ...WORLD.neighbours, ...WORLD.extras})) {
@@ -175,7 +177,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   }
   const foxRig = noCast(characters.fox(FOX_H)), fox = foxRig.group, foxShadow = contact(.42), pos = new THREE.Vector3(forestPlaces.home.x, 0, forestPlaces.home.z), vel = new THREE.Vector2();
   fox.name = 'fox'; scene.add(fox);
-  const courierRig = noCast(characters.mailman(1.72)), courier = courierRig.group, mailPos = new THREE.Vector3(forestPlaces.mailman.x, 0, forestPlaces.mailman.z), courierShadow = contact(.48, .85);
+  const courierRig = noCast(characters.mailman(1.72)), courier = courierRig.group, mailPos = new THREE.Vector3(forestPlaces.mailman.x, 0, forestPlaces.mailman.z), courierShadow = contact(.48, software ? .85 : .5);
   courier.name = 'rabbit-mailman'; scene.add(courier); let courierGoal = null, courierWait = 2, courierPath = [], round = 0;
   // the mailman's round: the den, the beaver's trail, the signpost in the glade, the kingfisher's willow, the west path
   const ROUND = [[21.5, -8.2], [30, 14], [7, 22], [2, 8], [-18, 4.6], [-9, -14], [3.2, -.8]];
@@ -409,6 +411,8 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
       if (o.id === 'mailman') { courier.visible = courierShadow.visible = show; courierRig.lod(o.d < 8 ? 0 : 1); updateMailman(dt, reduced, anim); }
       else { o.f.rig.group.visible = show; if (o.f.shadow) o.f.shadow.visible = show; o.f.rig.lod(o.d < 8 ? 0 : 1); if (anim && o.f.roam && !reduced) stroll(o.f, o.id, dt); if (anim && o.f.swim && !reduced) swim(o.f, o.id, dt, time); if (anim) { const st = o.f.show ? perform(o.f, o.id, dt, time) : {action: greeting(o.f, o.id, o.d, time)}; o.f.rig.update(dt, {moving: o.f.moving && !o.f.show, speed: o.id === 'squirrel' ? 1.6 : o.id === 'deer' ? .75 : .9, reduced, ...(typeof st === 'string' ? {action: st} : st)}); } } }
     animatedCount = animated;
+    if (cast) { const who = [{group: fox, x: pos.x, y: fox.position.y, z: pos.z, h: FOX_H}]; for (const o of others) { if (who.length > 3 || o.d > 15) break; if (o.id === 'mailman') who.push({group: courier, x: mailPos.x, y: courier.position.y, z: mailPos.z, h: 1.72}); else if (!o.f.onWater && o.f.y < 1.2) who.push({group: o.f.rig.group, x: o.f.x, y: o.f.rig.group.position.y, z: o.f.z, h: o.f.h}); }
+      cast.update(who, (1 - .85 * weather.state.rain) * (1 - caveK)); }
     // Those without a letter box (the Steinbock): when Fuchs stops beside one, he shows his trick and points the way the letter leads
     for (const id in WORLD.extras) { const f = friends[id]; if (!f) continue; const d = Math.hypot(f.x - pos.x, f.z - pos.z); if (d > 9) f.shown = false;
       if (!f.show && !f.shown && d < 4.4 && !moving) { f.shown = true; const p = forestPlaces[guideTarget]; f.show = {t: 0, toward: p ? [p.x, p.z] : null, puffed: false}; onMove({event: 'wonder_reaction', kind: id, area: 'forest'}); } }
@@ -485,6 +489,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     get life() { return life.counts; },
     get prints() { return prints.count; },
     get ambience() { return {...ambience.counts, timeOfDay: tod}; },
+    get shadows() { return cast ? cast.count : 0; },
     get cave() { return {...bats.counts, inside: caveK}; },
     /** The time of day: 0 morning, .5 afternoon, 1 dusk; it eases there unless `snap`. */
     timeOfDay(v, snap = false) { todTo = THREE.MathUtils.clamp(v, 0, 1); if (snap || !todSet) { tod = todTo; todSet = true; } },

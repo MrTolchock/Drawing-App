@@ -267,3 +267,5 @@ The mailman (same model) also walks his own round on the paths near the den betw
 **9.3.68.** Biber's dam and lodge are rebuilt (`world/big/beaver.js`): bent, tapered sticks in several barks and peeled wood, heavy foot logs, a brushwood mat, crest poles, drift, grass and leafy branches, two spills with foam; the lodge is thatched all round with a crown of sticks, an arched door with a warm light at dusk and a raft. Same materials and textures as before.
 
 **9.3.69.** Rock surfaces: the Rock's cliffs and stony ground, the cave's roof and mouth and the boulders carry a shared rock texture laid on from three sides (level bedding lines, cracks) with a soft relief, in place of smooth grey sheets. The ground is shaded a little where trees and big rocks meet it. Ground and rock keep their colours and materials otherwise.
+
+**9.3.70.** Fuchs, the mailman and the friends beside him cast real shadows with their own outline that follow the sun through the day (four small shadow pictures at most, laid on the ground along the sun's rays); the soft blobs under the feet remain as a fainter contact shade.
