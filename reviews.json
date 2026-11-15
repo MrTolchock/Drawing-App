@@ -5878,6 +5878,15 @@
       "at": "2026-11-15T20:42:05.000Z",
       "seen": true,
       "operation": "5d77868b-f67e-45a7-9f47-ae8fda4ce622"
+    },
+    "nature/clue-11@3b5c56e9eef5581b": {
+      "key": "nature/clue-11",
+      "revision": "3b5c56e9eef5581b",
+      "status": "improve",
+      "note": "Plötzlich vergangenheitsform, bleibe bei präsens",
+      "at": "2026-11-15T20:42:30.714Z",
+      "seen": true,
+      "operation": "5e01b125-7ff1-4818-914c-5cf712526a80"
     }
   },
   "history": [
