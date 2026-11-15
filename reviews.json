@@ -6436,6 +6436,15 @@
       "at": "2026-11-15T21:02:43.084Z",
       "seen": true,
       "operation": "4f8ae7e7-5cc6-4161-859c-447dca7534c0"
+    },
+    "neighbours/1-left@b8e9338194be1dd9": {
+      "key": "neighbours/1-left",
+      "revision": "b8e9338194be1dd9",
+      "status": "improve",
+      "note": "Überschriften mitte davor usw. braucht es nicht. Diese häuschen um zahlen herum sind auch etwas komisch, anders machen",
+      "at": "2026-11-15T21:03:47.060Z",
+      "seen": true,
+      "operation": "8a187ad6-fa61-4f62-9e6d-b24da01260d7"
     }
   },
   "history": [
