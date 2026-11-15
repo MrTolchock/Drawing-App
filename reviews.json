@@ -7093,6 +7093,15 @@
       "at": "2026-11-15T21:09:58.577Z",
       "seen": true,
       "operation": "a630d700-07a2-45fd-be3b-8e4b139d0f41"
+    },
+    "read-puzzle/word-0@112bdfe1d1e48fe5": {
+      "key": "read-puzzle/word-0",
+      "revision": "112bdfe1d1e48fe5",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T21:10:18.794Z",
+      "seen": true,
+      "operation": "d18c1ce9-7a4c-4398-be6d-f6641a68bd33"
     }
   },
   "history": [
