@@ -6382,6 +6382,15 @@
       "at": "2026-11-15T21:00:06.782Z",
       "seen": true,
       "operation": "e5822338-c00e-492a-8725-31a672ed47de"
+    },
+    "sequence/story-0@cdbcc01c13da55e6": {
+      "key": "sequence/story-0",
+      "revision": "cdbcc01c13da55e6",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T21:00:47.633Z",
+      "seen": true,
+      "operation": "4da87eb9-ca70-4076-adca-61c2feaf3176"
     }
   },
   "history": [
