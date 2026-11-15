@@ -4042,6 +4042,213 @@
       "at": "2026-11-15T20:22:32.975Z",
       "seen": true,
       "operation": "02646225-e4e3-4538-8f2e-fdbbd50e04ce"
+    },
+    "friends-fish/count-3@59c99ce2eea5ac72": {
+      "key": "friends-fish/count-3",
+      "revision": "59c99ce2eea5ac72",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:23:27.903Z",
+      "seen": true,
+      "operation": "24073ff9-6ee6-43a6-b0ef-04fc11959e51"
+    },
+    "friends-fish/count-4@33f2e6d165bdc795": {
+      "key": "friends-fish/count-4",
+      "revision": "33f2e6d165bdc795",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:23:29.785Z",
+      "seen": true,
+      "operation": "3d6c12d6-76e2-41e0-9d91-f7a2529d8b09"
+    },
+    "friends-fish/count-5@ff8f8eac78849cb0": {
+      "key": "friends-fish/count-5",
+      "revision": "ff8f8eac78849cb0",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:23:32.119Z",
+      "seen": true,
+      "operation": "76563330-0133-4d1e-b2ca-e830c6560dab"
+    },
+    "friends-fish/count-6@8ef7f48bc27447d3": {
+      "key": "friends-fish/count-6",
+      "revision": "8ef7f48bc27447d3",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:23:35.868Z",
+      "seen": true,
+      "operation": "1c445d9d-fe31-4eb3-b1dc-80ab72dc145f"
+    },
+    "friends-fish/count-7@3ee3d60654baf1fe": {
+      "key": "friends-fish/count-7",
+      "revision": "3ee3d60654baf1fe",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:23:37.719Z",
+      "seen": true,
+      "operation": "0d743ff4-c93e-4209-b768-66cdbeb54b51"
+    },
+    "friends-fish/count-8@4af80a75de283111": {
+      "key": "friends-fish/count-8",
+      "revision": "4af80a75de283111",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:23:39.502Z",
+      "seen": true,
+      "operation": "cc78437a-b0fc-4d70-98ab-baca3a7b14fb"
+    },
+    "friends-fish/count-9@9a5ef00564dca187": {
+      "key": "friends-fish/count-9",
+      "revision": "9a5ef00564dca187",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:23:40.936Z",
+      "seen": true,
+      "operation": "179e41a9-f304-4faf-be30-c95fc501ef7f"
+    },
+    "friends-fish/count-10@6909c2753b050aff": {
+      "key": "friends-fish/count-10",
+      "revision": "6909c2753b050aff",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:23:42.317Z",
+      "seen": true,
+      "operation": "33ac378d-76e2-4aac-ad9b-bfff6a44144a"
+    },
+    "friends-fish/count-11@cefec5b30f24a8c5": {
+      "key": "friends-fish/count-11",
+      "revision": "cefec5b30f24a8c5",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:23:48.050Z",
+      "seen": true,
+      "operation": "9b3de087-45e1-42bc-b9a2-70b2ba5dcff4"
+    },
+    "friends-fish/count-12@b2750ffa03be2c06": {
+      "key": "friends-fish/count-12",
+      "revision": "b2750ffa03be2c06",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:23:49.967Z",
+      "seen": true,
+      "operation": "34b4754f-4726-4f9c-b4d4-1cdb0889d998"
+    },
+    "friends-fish/count-13@b80a359d24bfb5c3": {
+      "key": "friends-fish/count-13",
+      "revision": "b80a359d24bfb5c3",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:23:52.500Z",
+      "seen": true,
+      "operation": "8b2eb4b3-f30f-4ed8-9612-2a26fb50dade"
+    },
+    "friends-fish/count-14@bb28ee84f2d3b204": {
+      "key": "friends-fish/count-14",
+      "revision": "bb28ee84f2d3b204",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:23:54.383Z",
+      "seen": true,
+      "operation": "e487331a-07eb-4138-a09a-aefe4e7a1c95"
+    },
+    "friends-fish/count-15@d92594efe9034ec1": {
+      "key": "friends-fish/count-15",
+      "revision": "d92594efe9034ec1",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:23:56.251Z",
+      "seen": true,
+      "operation": "6cfdd96b-63b6-47ee-9734-46f0ea2b0a1e"
+    },
+    "friends-fish/count-16@1cba810e6a9dd402": {
+      "key": "friends-fish/count-16",
+      "revision": "1cba810e6a9dd402",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:23:58.183Z",
+      "seen": true,
+      "operation": "83c353c4-5bd3-40b8-aafb-6856d62dc7e1"
+    },
+    "friends-fish/count-17@5a68d0591bb8e9cf": {
+      "key": "friends-fish/count-17",
+      "revision": "5a68d0591bb8e9cf",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:23:59.865Z",
+      "seen": true,
+      "operation": "f4527cc0-fa11-46b5-886b-81a1772cc505"
+    },
+    "friends-fish/count-18@23671e28c3b60e00": {
+      "key": "friends-fish/count-18",
+      "revision": "23671e28c3b60e00",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:24:01.834Z",
+      "seen": true,
+      "operation": "de8a5b25-8ff2-45c7-9f85-b10bd405b83e"
+    },
+    "friends-fish/count-19@1183d2ae2471d224": {
+      "key": "friends-fish/count-19",
+      "revision": "1183d2ae2471d224",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:24:03.667Z",
+      "seen": true,
+      "operation": "cd68dd6a-8963-4bd6-b8bc-bdc103cef2ee"
+    },
+    "friends-fish/count-20@c1491258b2022b44": {
+      "key": "friends-fish/count-20",
+      "revision": "c1491258b2022b44",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:24:05.248Z",
+      "seen": true,
+      "operation": "d44c7193-3e5b-460d-ae03-e5ed1cfbeb6d"
+    },
+    "friends-fish/four-4@ddb32a5681bf05dc": {
+      "key": "friends-fish/four-4",
+      "revision": "ddb32a5681bf05dc",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:24:08.098Z",
+      "seen": true,
+      "operation": "f67da694-ff6d-4335-9ad6-93e4bc1d9b5b"
+    },
+    "friends-fish/four-8@a1955522b5443358": {
+      "key": "friends-fish/four-8",
+      "revision": "a1955522b5443358",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:24:10.117Z",
+      "seen": true,
+      "operation": "f480a0de-1e4b-478d-a852-2219e3286772"
+    },
+    "friends-fish/four-12@becccb1b1aeeddaf": {
+      "key": "friends-fish/four-12",
+      "revision": "becccb1b1aeeddaf",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:24:11.884Z",
+      "seen": true,
+      "operation": "6b3c66d7-6b51-46dd-9c41-ed5e0c242217"
+    },
+    "friends-fish/four-16@c82a23f73e30c0ab": {
+      "key": "friends-fish/four-16",
+      "revision": "c82a23f73e30c0ab",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:24:14.481Z",
+      "seen": true,
+      "operation": "15895962-795d-4848-bdb5-afa5c8587065"
+    },
+    "puzzle:friends-fish@9b8dfe879782bdf9": {
+      "key": "puzzle:friends-fish",
+      "revision": "9b8dfe879782bdf9",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:24:17.612Z",
+      "seen": true,
+      "operation": "c789fb04-fa68-49e3-a816-325a195b9cc4"
     }
   },
   "history": [
