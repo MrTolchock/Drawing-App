@@ -6292,6 +6292,15 @@
       "at": "2026-11-15T20:57:27.832Z",
       "seen": true,
       "operation": "90064c1e-3d69-4ba8-8f1e-15433ae27bbd"
+    },
+    "syllable/word-1@8bc9e48eb2d6c050": {
+      "key": "syllable/word-1",
+      "revision": "8bc9e48eb2d6c050",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:57:33.246Z",
+      "seen": true,
+      "operation": "cfe0433f-f1ca-483c-ade8-14e85c2b3d40"
     }
   },
   "history": [
