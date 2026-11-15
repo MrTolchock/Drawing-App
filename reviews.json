@@ -6049,6 +6049,15 @@
       "at": "2026-11-15T20:51:00.485Z",
       "seen": true,
       "operation": "2c0654e7-37aa-4996-ae1c-d0aed335f04b"
+    },
+    "double/2-1@a9ee1d73940a2869": {
+      "key": "double/2-1",
+      "revision": "a9ee1d73940a2869",
+      "status": "improve",
+      "note": "Lösche dieses rästel",
+      "at": "2026-11-15T20:52:47.390Z",
+      "seen": true,
+      "operation": "4b48f5d7-9f87-4c5a-a767-d668048db67a"
     }
   },
   "history": [
