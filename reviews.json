@@ -6409,6 +6409,15 @@
       "at": "2026-11-15T21:01:14.527Z",
       "seen": true,
       "operation": "02f5ec41-22f2-450d-8a5b-2dc6bee12671"
+    },
+    "treasure/0-0@433a86d7977af491": {
+      "key": "treasure/0-0",
+      "revision": "433a86d7977af491",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T21:01:37.261Z",
+      "seen": true,
+      "operation": "a60e2883-63c0-4f96-b8c0-db1119f0859b"
     }
   },
   "history": [
