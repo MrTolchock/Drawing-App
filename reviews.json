@@ -6823,6 +6823,69 @@
       "at": "2026-11-15T21:07:32.326Z",
       "seen": true,
       "operation": "764d9c61-ee0c-4120-a6d8-9c810c061ed4"
+    },
+    "vowels/word-22-3@a07d87d2ae270ae0": {
+      "key": "vowels/word-22-3",
+      "revision": "a07d87d2ae270ae0",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T21:07:34.127Z",
+      "seen": true,
+      "operation": "e9d1c2bc-971d-4b28-b088-25938a66e3e2"
+    },
+    "vowels/word-22-5@584614d453eb57e6": {
+      "key": "vowels/word-22-5",
+      "revision": "584614d453eb57e6",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T21:07:36.310Z",
+      "seen": true,
+      "operation": "ca623073-8fa2-4f72-a914-1ac8b75054c7"
+    },
+    "vowels/word-23-1@fa98ded21fe0cd60": {
+      "key": "vowels/word-23-1",
+      "revision": "fa98ded21fe0cd60",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T21:07:38.243Z",
+      "seen": true,
+      "operation": "4964cea9-0898-4261-83fc-ba132964241a"
+    },
+    "vowels/word-23-3@8f8977e8c341d62e": {
+      "key": "vowels/word-23-3",
+      "revision": "8f8977e8c341d62e",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T21:07:40.428Z",
+      "seen": true,
+      "operation": "db131d44-7f08-4750-8fba-7d6f5febb4ce"
+    },
+    "vowels/word-23-5@cf51b4468a99ac28": {
+      "key": "vowels/word-23-5",
+      "revision": "cf51b4468a99ac28",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T21:07:42.475Z",
+      "seen": true,
+      "operation": "2a76a467-9705-43f9-b297-347d5edff86f"
+    },
+    "vowels/word-24-1@3a69598073f7483a": {
+      "key": "vowels/word-24-1",
+      "revision": "3a69598073f7483a",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T21:07:44.261Z",
+      "seen": true,
+      "operation": "3dba7733-1ab4-4371-9225-2df59c25e00a"
+    },
+    "vowels/word-24-3@e13df132a90a1c38": {
+      "key": "vowels/word-24-3",
+      "revision": "e13df132a90a1c38",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T21:07:46.327Z",
+      "seen": true,
+      "operation": "a1ac4377-535f-4e24-aa34-2876390ac25b"
     }
   },
   "history": [
