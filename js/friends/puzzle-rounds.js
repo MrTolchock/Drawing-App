@@ -167,7 +167,7 @@
   function save(session){if(session.review||session.gallery||!valid(session,session.id)||!instructions[session.id])return false;sessions[session.id]=JSON.parse(JSON.stringify(session));try{localStorage.setItem(key,JSON.stringify({version:1,sessions,previous,legacy}));}catch{FK.friends?.record('storage_error',{scope:'puzzle_round',puzzleId:session.id});return false;}return true;}
   function start(id){
     const old=sessions[id],catalogue=FK.puzzleCatalogue;
-    if(valid(old,id)&&(!catalogue||old.questions&&old.catalogueRevision===catalogue.puzzleRevision(id)&&catalogue.matchesSession(old)))return JSON.parse(JSON.stringify(old));
+    if(valid(old,id)&&(!catalogue||old.questions&&catalogue.acceptsRevision(id,null,old.catalogueRevision)&&catalogue.matchesSession(old)))return JSON.parse(JSON.stringify(old));
     // Keep earlier snapshots verbatim; changed content starts a separately reviewed round.
     if(old)legacy[id]=JSON.parse(JSON.stringify(old));
     const session={id,seed:Math.floor(Math.random()*0x100000000),round:0,solved:false,work:{}};

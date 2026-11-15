@@ -231,13 +231,16 @@
   function hash(v){const s=canonical(v);let a=2166136261,b=5381;for(let i=0;i<s.length;i++){a=Math.imul(a^s.charCodeAt(i),16777619);b=Math.imul(b,33)^s.charCodeAt(i);}return (a>>>0).toString(16).padStart(8,'0')+(b>>>0).toString(16).padStart(8,'0');}
   function puzzle(id){const g=FK.friendsLibrary.catalogue().find(g=>g.id===id),m=meta[id];return g&&m?{...g,hostName:C.hosts[g.host].name,reference:m[0],competence:m[1],difficulty:m[2],instruction:R.instructions[id]}:null;}
   const iterations=id=>clone(pools[id]||[]);
-  const implementation=()=>FK.puzzleImplementation||'unbuilt';
-  const iterationRevision=(id,item)=>hash({blueprint:1,implementation:implementation(),puzzle:puzzle(id),item});
-  const puzzleRevision=id=>hash({blueprint:1,implementation:implementation(),puzzle:puzzle(id),items:iterations(id)});
-  // The same revisions under earlier releases whose puzzles are unchanged (reviews made there carry over).
-  const former=()=>FK.puzzleFormerImplementations||[];
-  const formerIterationRevisions=(id,item)=>former().map(impl=>hash({blueprint:1,implementation:impl,puzzle:puzzle(id),item}));
-  const formerPuzzleRevisions=id=>{const p=puzzle(id),items=iterations(id);return former().map(impl=>hash({blueprint:1,implementation:impl,puzzle:p,items}));};
+  const implementation=id=>(FK.puzzleImplementation||'unbuilt')+(FK.puzzleImplementations?':'+(FK.puzzleImplementations[id]||'unbuilt'):'');
+  const iterationRevision=(id,item)=>hash({blueprint:1,implementation:implementation(id),puzzle:puzzle(id),item});
+  const puzzleRevision=id=>hash({blueprint:1,implementation:implementation(id),puzzle:puzzle(id),items:iterations(id)});
+  // Build-time verification proves these older releases have identical puzzle definitions and presentation.
+  const former=id=>FK.puzzleLegacyImplementations?.[id]||[];
+  const formerIterationRevisions=(id,item)=>former(id).map(impl=>hash({blueprint:1,implementation:impl,puzzle:puzzle(id),item}));
+  const formerPuzzleRevisions=id=>{const p=puzzle(id),items=iterations(id);return former(id).map(impl=>hash({blueprint:1,implementation:impl,puzzle:p,items}));};
+  const iterationRevisions=(id,item)=>[iterationRevision(id,item),...formerIterationRevisions(id,item)];
+  const puzzleRevisions=id=>[puzzleRevision(id),...formerPuzzleRevisions(id)];
+  function acceptsRevision(id,iteration,revision){const it=iteration?iterations(id).find(it=>it.id===iteration):null;return !!revision&&(!iteration||!!it)&&(it?iterationRevisions(id,it):puzzleRevisions(id)).includes(revision);}
   function select(id,seed,previous=[]){const r=R.rng(seed);let pool=R.mix(iterations(id),r);
     if(id==='trace')pool=pool.filter(i=>seed%2?i.question.glyph===i.question.glyph.toLocaleUpperCase('de-CH'):i.question.glyph===i.question.glyph.toLocaleLowerCase('de-CH'));
     pool.sort((a,b)=>Number(previous.includes(a.id))-Number(previous.includes(b.id)));
@@ -249,5 +252,5 @@
     const normalize=q=>{const v=clone(q);if(v.choices)v.choices.sort((a,b)=>canonical(a).localeCompare(canonical(b)));if(v.bugs)v.bugs.sort();if(v.order)v.order.sort();return canonical(v);};
     return s.iterationIds.every((id,i)=>{const it=iterations(s.id).find(it=>it.id===id);return it&&normalize(it.question)===normalize(s.questions[i]);});
   }
-  FK.puzzleCatalogue={matchesSession,meta,puzzle,iterations,canonical,hash,iterationRevision,puzzleRevision,formerIterationRevisions,formerPuzzleRevisions,select,prepare};
+  FK.puzzleCatalogue={matchesSession,meta,puzzle,iterations,canonical,hash,iterationRevision,puzzleRevision,iterationRevisions,puzzleRevisions,acceptsRevision,formerIterationRevisions,formerPuzzleRevisions,select,prepare};
 })();

@@ -70,10 +70,13 @@
     }
     function currentIds(){
       const ids=new Set();for(const game of catalogue.games()){
-        ids.add('puzzle:'+game.id+'@'+catalogue.puzzleRevision(game.id));
-        for(const item of catalogue.iterations(game.id))ids.add(item.id+'@'+catalogue.iterationRevision(game.id,item));
+        for(const revision of revisions(game.id))ids.add('puzzle:'+game.id+'@'+revision);
+        for(const item of catalogue.iterations(game.id))for(const revision of revisions(game.id,item))ids.add(item.id+'@'+revision);
       }return ids;
     }
+    const revisions=(id,item)=>catalogue.revisions?catalogue.revisions(id,item):[item?catalogue.iterationRevision(id,item):catalogue.puzzleRevision(id)];
+    // Equivalent historical revisions share a decision stream. A later rejection must beat an older approval.
+    const later=(entry,old)=>Date.parse(entry.at)>Date.parse(old.at)||Date.parse(entry.at)===Date.parse(old.at)&&({approved:0,pending:1,improve:2}[entry.status]>{approved:0,pending:1,improve:2}[old.status]);
     function apply(ledger){
       validate(ledger);observed=ledger;const data=read(),m=clone(meta(data)),next=clone(data),wanted=currentIds();
       const pending=m.pending;
@@ -82,7 +85,7 @@
       const selected={};
       for(const entry of Object.values(ledger.entries)){
         const old=selected[entry.key],preferred=wanted.has(address(entry));
-        if(!old||preferred&&!wanted.has(address(old))||preferred===wanted.has(address(old))&&entry.at>old.at)selected[entry.key]=entry;
+        if(!old||preferred&&!wanted.has(address(old))||preferred===wanted.has(address(old))&&later(entry,old))selected[entry.key]=entry;
       }
       for(const [key,decision]of Object.entries(data.decisions))if(m.base[key+'@'+decision.revision]&&!selected[key]&&!Object.values(pending).some(change=>change.entry.key===key))delete next.decisions[key];
       // GitHub's current record wins unless this device has an explicit unsaved edit for that revision.
@@ -195,8 +198,11 @@
     function confirmed(id){
       const m=meta(read()),base=observed?.entries||m.base;
       if(!m.checked&&!observed)return false;
-      const okay=(key,revision)=>base[key+'@'+revision]?.status==='approved';
-      return okay('puzzle:'+id,catalogue.puzzleRevision(id))&&catalogue.iterations(id).every(item=>okay(item.id,catalogue.iterationRevision(id,item)));
+      const okay=(key,accepted)=>{
+        let latest;for(const revision of accepted){const entry=base[key+'@'+revision];if(entry&&(!latest||later(entry,latest)))latest=entry;}
+        return latest?.status==='approved'&&(key.startsWith('puzzle:')||latest.seen);
+      };
+      return okay('puzzle:'+id,revisions(id))&&catalogue.iterations(id).every(item=>okay(item.id,revisions(id,item)));
     }
     function refresh(){return run(!!token);}
     function resume(){if(Date.now()-lastPull>60000||Object.keys(meta(read()).pending).length)return refresh();return Promise.resolve(true);}

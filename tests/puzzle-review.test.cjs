@@ -151,13 +151,17 @@ test('rejection, a failed save, an unvisited queue or changed revision never gra
  const skipped=V.previewSession('add');skipped.round=skipped.questions.length;assert.equal(V.finishSession(skipped),false);
 });
 test('generated GitHub pages and revision reflect the exact runtime',()=>assert.deepEqual(check(),[]));
-test('reviews from an earlier release with unchanged puzzles carry over; unknown revisions stay reopened',()=>{
- const {FK,memory}=setup(),C=FK.puzzleCatalogue,id='friends-squirrel',items=C.iterations(id),former='unchanged-test-implementation';
- FK.puzzleFormerImplementations=[former]; // Test compatibility independently of the production carry-over list.
- const now=FK.puzzleImplementation;FK.puzzleImplementation=former;approve(FK,id);FK.puzzleImplementation=now;   // signed off on the earlier release
- const V=FK.puzzleReview;assert.equal(V.status(id,items[0].id).status,'pending','reopened before the carry-over');assert.equal(V.status(id,items[0].id).stale,true);
- const key=memory.keys().next().value,raw=JSON.parse(memory.get(key));raw.decisions[items[1].id].revision='0000000000000000';memory.set(key,JSON.stringify(raw));   // a revision of unknown origin
- const {FK:FK2}=setup(memory),V2=FK2.puzzleReview;FK2.puzzleFormerImplementations=[former];assert.ok(V2.carryOver());
- assert.equal(V2.status(id,items[0].id).status,'approved');assert.equal(V2.status(id,items[0].id).seen,true);assert.equal(V2.status(id).status,'approved','the puzzle sign-off too');
- assert.equal(V2.status(id,items[1].id).status,'pending','an unknown revision is not carried over');assert.equal(V2.carryOver(),false,'nothing left to carry over');
+test('verified unchanged historical reviews remain valid without rewriting decisions or inspection evidence',()=>{
+ const {FK,memory}=setup(),C=FK.puzzleCatalogue,id='friends-squirrel',items=C.iterations(id),now=FK.puzzleImplementation,map=FK.puzzleImplementations;
+ FK.puzzleImplementation=FK.puzzleLegacyImplementations[id][0];delete FK.puzzleImplementations;approve(FK,id);
+ const before=JSON.stringify([...memory]);FK.puzzleImplementation=now;FK.puzzleImplementations=map;
+ assert.equal(FK.puzzleReview.status(id,items[0].id).status,'approved');assert.equal(FK.puzzleReview.status(id,items[0].id).seen,true);assert.ok(FK.puzzleReview.ready(id));
+ assert.equal(JSON.stringify([...memory]),before,'read-only recovery preserves timestamps, notes and history');
+ const key=memory.keys().next().value,raw=JSON.parse(memory.get(key));raw.decisions[items[1].id].revision='0000000000000000';memory.set(key,JSON.stringify(raw));
+ const V=setup(memory).FK.puzzleReview;assert.equal(V.status(id,items[0].id).status,'approved');assert.equal(V.status(id,items[1].id).status,'pending');assert.equal(V.ready(id),false);
+});
+test('verified unchanged partial rounds resume verbatim; changed questions remain archived',()=>{
+ const {FK,memory}=setup(),id='friends-squirrel',s=FK.puzzleRounds.start(id);s.round=2;s.work={marks:[0,2]};s.catalogueRevision=FK.puzzleCatalogue.formerPuzzleRevisions(id)[0];FK.puzzleRounds.save(s);
+ assert.deepEqual(plain(setup(memory).FK.puzzleRounds.start(id)),plain(s));
+ s.questions[0].count=99;FK.puzzleRounds.save(s);const restored=setup(memory),next=restored.FK.puzzleRounds.start(id);assert.equal(next.round,0);assert.equal(JSON.parse(restored.memory.get('farbtupf.puzzles.v1')).legacy[id].questions[0].count,99,'the earlier snapshot is archived');
 });

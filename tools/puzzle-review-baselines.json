@@ -1,0 +1,431 @@
+{
+  "version": 1,
+  "releases": [
+    {
+      "commit": "c15e1ff94244030237ba551e1230ac69fd92e5c2",
+      "implementation": "649e4fd618758dc022dd8a88980dc1b30c0ab0cf8ccad34f97b317cd7801057a",
+      "puzzles": {
+        "friends-squirrel": {
+          "definition": "68d61ccd6fb3577c1257e7ef8e3f52e2c4d749a50c437ba02cea4b05abf31405",
+          "presentation": "9dbe2a43773097d48bd1e53139074568b03db123df23dfbccc77bd68d54599b2"
+        },
+        "friends-bird": {
+          "definition": "0d91a5b32b9df955bde0fd059ef6fd305f46536b9902f0896c3d80e90813177e",
+          "presentation": "51c2a7652ce7a3924b1d5b56792acd842c720d1a47ee31bd854f656be42af8a7"
+        },
+        "friends-owl": {
+          "definition": "0dc6d59e0bf6a1845c9c8759d83bef975eb55dec0e820f6245875effc85a64c9",
+          "presentation": "b41740b157c8022d7ee5ef742824a5108490a5833833ee72170d9f1c3a21fe5b"
+        },
+        "friends-beaver": {
+          "definition": "5fcdb18b7da21cd304469de9e2468d8438299a827800a0ffebf2b38873905e50",
+          "presentation": "643030cef7a0cd998b86b911694ebe479a1f4cc1a9273c617618a406ee164450"
+        },
+        "friends-mouse": {
+          "definition": "54d4a30f06395bc284164fe23de9ce385d03b87a97094a1614a5e5b7cb73b1ca",
+          "presentation": "7d898431175a92f5f3ea0427c6ea960dddd003f195c8834788156c75f1866759"
+        },
+        "friends-hedgehog": {
+          "definition": "785441fc79aa90bd3f75b48e55cdc405719a44aea4a42a359a01c13569739051",
+          "presentation": "7ea3d42fb932981c526ff74c3a1475e6f33a4defefeb9bbf8aa5f85bbc75b41a"
+        },
+        "friends-fish": {
+          "definition": "deb978379702ca16614cca565d10ec5ab116075f7056bb27113feab6e297e3c1",
+          "presentation": "8b1c51003ebdfffbf5e3996413148855800006e222423749bd3afacb7596d801"
+        },
+        "friends-deer": {
+          "definition": "e016f7b87fef54f13baf39ddf83a7d6db8642980746497cea2d7551ec22595c7",
+          "presentation": "1eeae33527bce7fcc8c916b157154f4546ac5fc85d6736ecf089bea583bcd848"
+        },
+        "friends-kingfisher": {
+          "definition": "36c407ce63298906779a5f96c74dd46164016e74a89dd804bc12d9c51439a968",
+          "presentation": "039dde9ff2276b2fbbb86f84e2e687988a3d16fb297ef3ea1cc0bce0b63363c2"
+        },
+        "friends-frog": {
+          "definition": "6c4061a3fa034fa1bd408a04151073dbd9edc5ff2ef0aa2e1aa727eb305af64c",
+          "presentation": "f5b6d99bfa801c70555cf801f06ca728906a31e15e13222c9d0a1fcd75805e76"
+        },
+        "friends-badger": {
+          "definition": "0bac09faeda64a34e9e11a54ebdc90603db6dda9b2358a858879512efed6bd25",
+          "presentation": "f4ad6374c20285e864c437ae4fff02c7999315c8ebc8c83499555ccb0718fadc"
+        },
+        "count": {
+          "definition": "84acc069a7c011d2241fa4b28e30c0ffd36e25858df980bb4d51c66da38ee43b",
+          "presentation": "13c008abe099ace9643b989aeb310ad5d91edb849647843605ba496a74098c15"
+        },
+        "add": {
+          "definition": "d160b8ac8ebe91e085d8dd74e3244f9345fb480f0ceb0b548d8dd8b5df2002f8",
+          "presentation": "bb7ca2c9fd4356effd2052ee7100c1f128d9ac8ca13409fcec1e7fb6b8a32073"
+        },
+        "pattern": {
+          "definition": "7a249f99ab3ad8bd0a4b26ba0cba34defb36349b2e4d07d0c0ad35a1cb1126ed",
+          "presentation": "1ea8617d4ba780fd314e40f439f0df81e2fe4d72dd9a46c1c18b7a989f7b4aa9"
+        },
+        "nature": {
+          "definition": "41eea2624d1905144bddb60b7ab1cb485fe8198ad5948b2f34a59c7133e16557",
+          "presentation": "472c94e89a21e2e4fa273c9ffed781b1fe40c975fe5283fa8079f142c09370b2"
+        },
+        "rocket": {
+          "definition": "cc87f6f48e9ecf14cb5525bfb73b2fc0614cbe138736dfc8b83c8fdcbe4301fa",
+          "presentation": "ed1ea8021ff5d7fb5491d61e26da6aae687211f53988ba08a2864f9b38889964"
+        },
+        "picnic": {
+          "definition": "fee7bb243e89951c6053361494dc1d620d93309708975e990110db3cf1cacab2",
+          "presentation": "e38035280c073641e9940864c41c135589d2c433dbd7be2101c8a742191736b5"
+        },
+        "double": {
+          "definition": "f0eda0529e0a3c59ef88d5733ecf17f07bd4d4c03fd75582b114b151fb9f99b5",
+          "presentation": "8cbfacf2ebfea94c58686d48d7e2900c3c3067a666b2911deebaec7b43879605"
+        },
+        "shapes": {
+          "definition": "00e5eabaa81ff2d4cc7c2150ff4287a9d4383ceb77f61cf7d978bb1638aae55d",
+          "presentation": "c2e5df50a95547d96dab9927fcedac02489007c4245fc4865228b1c8c7205c57"
+        },
+        "syllable": {
+          "definition": "ac3191b2ea678e5c3b2e6aa0fba1011fbc33c0c0b96a1d4dc89326f1695c41f9",
+          "presentation": "30a4d26a36515d5627410da3b69b6cece546e1156e9f6cd13b717133bd2a2085"
+        },
+        "robot": {
+          "definition": "315d2b8de61533fcfc31338bf5b85afe59f9901668521f259acdb31cef9880e2",
+          "presentation": "468ef3eeb15c3c81d9f6214a5086cd42154b3704e783b7250e75529af9157815"
+        },
+        "sequence": {
+          "definition": "ed62f71b64370f108f934b33e03b6cebbe70b015e0c3e4fa1122bd6fd40a2d63",
+          "presentation": "b397af70940ef8fe03f868cc019ce6023e810aaaa191fddeaae302312c5d432f"
+        },
+        "treasure": {
+          "definition": "dd084052134cd223b4616a87890b70a10391d23a0e2ed93e31af080d631970f5",
+          "presentation": "26cdc8b5b19390bce38b81ea6d601902b49d4c044ec1a2fb8521c46b867f875b"
+        },
+        "neighbours": {
+          "definition": "31191a14d8d882aecb952955f5a12c5c0a049252166d7e256d3fde16d1ea31b2",
+          "presentation": "f0c86049c6246d8c9a6f4820b64ee745803c115b5a9e4b2bdcd40fccc3a849a9"
+        },
+        "compare": {
+          "definition": "ebccd0fc9c0ef34ab2767ab4fbeb9d41c2968faec166334f109a6e7fb0d7eeac",
+          "presentation": "b86c386b174e6a472f441158a928b5289d6ab25261c74e89bc18202fe9d6662b"
+        },
+        "mirror": {
+          "definition": "66cba7ed5d1c4a319c2b745061fc381b7ca6ce3539ef3aa61841d224fe008764",
+          "presentation": "1a3e919ee49dff2a1d8fb9d2e96dd18ce8002b1323ca245f39ba31fb1e8d9dcf"
+        },
+        "vowels": {
+          "definition": "fa25f2087bb943f989f7bb33e1ea4f8792679ed9c67d46ba9fe33e6c53de5b2d",
+          "presentation": "909a39d3ec41ef8265f0d9f1e61fa8aaadd711a745bd33763de3ddd36ab12006"
+        },
+        "survey": {
+          "definition": "7201f9a1b76057a4a6c11c8897dadbd044a343e1a3fd245b29bfa6ffff8b8111",
+          "presentation": "256c126cf2256b45a24719394185d6691a6858a652381bbc66f29ad0c9cb2c18"
+        },
+        "read-puzzle": {
+          "definition": "dc5f75034352f773822b1b96ca25a6967596ffc9a7af8d32f9747811141c93cd",
+          "presentation": "10c584144827c94110d4b8ad04fb67b76705c339bcf6774ddcb877ca8627f39e"
+        },
+        "read-word": {
+          "definition": "7e8295aac48d1c51ae17d583e08d3852d480201287b2ca14ab5ff8dcdaaf097d",
+          "presentation": "e4af313e9c4b31101ba46900382f3028ec23c3bac0d8d4379a2c299dce67d8fb"
+        },
+        "read-leaves": {
+          "definition": "14428edc0923528a74ce85bfb23ba72c729e57b0ce371069ad7c37be8486807a",
+          "presentation": "39a3bae27ec39d71ea65e3be1fc9b245455309a53e26aa9b9c79c36f74bb751e"
+        },
+        "read-colours": {
+          "definition": "34276fdabf8c9184ee85d0573c2c79c8890dafd680eaa25caf3c3b1d42b07fc8",
+          "presentation": "7e733446d5ac76ee51c4c27021629fd20cd93d9a2dc66fc6d52607dfdcf44ce7"
+        },
+        "trace": {
+          "definition": "f7baf6bb5787e7dd8cf62b8638fb40a73dc9e703e6f99d8a1a776b1f84141e0f",
+          "presentation": "6e21f3a5472d6317ffee993c7ac2eead9cdfd728ba509fd0ab4849b208a87529"
+        },
+        "trace-numbers": {
+          "definition": "344d2d98eb4a30bc108baf35edf2d39ca17e356c49ef61d9b42b6530f4763216",
+          "presentation": "64903289371f8a6672666dbd866481b512d8ae870a07d008127b6bec950de108"
+        }
+      }
+    },
+    {
+      "commit": "9379fcd1967597cf7209ac6f5b5500802e38eb0a",
+      "implementation": "143300cd21706eb165b93f88161c862e0cb6ceea2d5bd7f72a3304c4e62552f5",
+      "puzzles": {
+        "friends-squirrel": {
+          "definition": "68d61ccd6fb3577c1257e7ef8e3f52e2c4d749a50c437ba02cea4b05abf31405",
+          "presentation": "9dbe2a43773097d48bd1e53139074568b03db123df23dfbccc77bd68d54599b2"
+        },
+        "friends-bird": {
+          "definition": "0d91a5b32b9df955bde0fd059ef6fd305f46536b9902f0896c3d80e90813177e",
+          "presentation": "cf356d23ba5d8c3f86c15e0dacaee2313fab1b85658614a8569392de919ca124"
+        },
+        "friends-owl": {
+          "definition": "fce7200e2cb4d250477f0ccc11524bd63c9378d128bb5f99ff0619c82f54098d",
+          "presentation": "33e00a4c51926d648d48236bc58ecb812284f10bd44e4d60dddb8e7a0710b454"
+        },
+        "friends-beaver": {
+          "definition": "1034dea638e1efc19ec0dacf1c4bccd8c01f0d3c649ddffc1f3c425ee2cb3f64",
+          "presentation": "0b6b4657d1fa09ce4688b2368101f7f50e9a4891ada8907c16eca7abd1d37daa"
+        },
+        "friends-mouse": {
+          "definition": "54d4a30f06395bc284164fe23de9ce385d03b87a97094a1614a5e5b7cb73b1ca",
+          "presentation": "8be461c19a1bfd27022b9cba9dc439149eb40918bb89e08b0c1ee940561e6a1c"
+        },
+        "friends-hedgehog": {
+          "definition": "785441fc79aa90bd3f75b48e55cdc405719a44aea4a42a359a01c13569739051",
+          "presentation": "c1110ebe4c3679c47542aa096cd53e4698cb9a7f7511cc217f823dc7bb0abe5e"
+        },
+        "friends-fish": {
+          "definition": "deb978379702ca16614cca565d10ec5ab116075f7056bb27113feab6e297e3c1",
+          "presentation": "d0d2a7fdb8f315fe22dca073fdc40d8518e8ff4e8ff501d43279c7ad829981a9"
+        },
+        "friends-deer": {
+          "definition": "e016f7b87fef54f13baf39ddf83a7d6db8642980746497cea2d7551ec22595c7",
+          "presentation": "ee3ce159d47fe96084d4e52955c24f5154b5942b32516c1c85c29bbd38acb069"
+        },
+        "friends-kingfisher": {
+          "definition": "36c407ce63298906779a5f96c74dd46164016e74a89dd804bc12d9c51439a968",
+          "presentation": "039dde9ff2276b2fbbb86f84e2e687988a3d16fb297ef3ea1cc0bce0b63363c2"
+        },
+        "friends-frog": {
+          "definition": "6c4061a3fa034fa1bd408a04151073dbd9edc5ff2ef0aa2e1aa727eb305af64c",
+          "presentation": "67b949f01f1cc1767afa893693764da761806367976839089d560b6ae89fd7f9"
+        },
+        "friends-badger": {
+          "definition": "0bac09faeda64a34e9e11a54ebdc90603db6dda9b2358a858879512efed6bd25",
+          "presentation": "e732c86a6f9dc4ae62a69e69b5f2457d1f9850019ab9712d109648dd70425631"
+        },
+        "count": {
+          "definition": "84acc069a7c011d2241fa4b28e30c0ffd36e25858df980bb4d51c66da38ee43b",
+          "presentation": "13c008abe099ace9643b989aeb310ad5d91edb849647843605ba496a74098c15"
+        },
+        "add": {
+          "definition": "d160b8ac8ebe91e085d8dd74e3244f9345fb480f0ceb0b548d8dd8b5df2002f8",
+          "presentation": "bb7ca2c9fd4356effd2052ee7100c1f128d9ac8ca13409fcec1e7fb6b8a32073"
+        },
+        "pattern": {
+          "definition": "7a249f99ab3ad8bd0a4b26ba0cba34defb36349b2e4d07d0c0ad35a1cb1126ed",
+          "presentation": "1ea8617d4ba780fd314e40f439f0df81e2fe4d72dd9a46c1c18b7a989f7b4aa9"
+        },
+        "nature": {
+          "definition": "41eea2624d1905144bddb60b7ab1cb485fe8198ad5948b2f34a59c7133e16557",
+          "presentation": "c9084e57e5b8694cd4ff61950601e9c8a7b45a6d1ab1900b5cf65f368ceb9911"
+        },
+        "rocket": {
+          "definition": "cc87f6f48e9ecf14cb5525bfb73b2fc0614cbe138736dfc8b83c8fdcbe4301fa",
+          "presentation": "ed1ea8021ff5d7fb5491d61e26da6aae687211f53988ba08a2864f9b38889964"
+        },
+        "picnic": {
+          "definition": "fee7bb243e89951c6053361494dc1d620d93309708975e990110db3cf1cacab2",
+          "presentation": "e38035280c073641e9940864c41c135589d2c433dbd7be2101c8a742191736b5"
+        },
+        "double": {
+          "definition": "f0eda0529e0a3c59ef88d5733ecf17f07bd4d4c03fd75582b114b151fb9f99b5",
+          "presentation": "8cbfacf2ebfea94c58686d48d7e2900c3c3067a666b2911deebaec7b43879605"
+        },
+        "shapes": {
+          "definition": "00e5eabaa81ff2d4cc7c2150ff4287a9d4383ceb77f61cf7d978bb1638aae55d",
+          "presentation": "c2e5df50a95547d96dab9927fcedac02489007c4245fc4865228b1c8c7205c57"
+        },
+        "syllable": {
+          "definition": "ac3191b2ea678e5c3b2e6aa0fba1011fbc33c0c0b96a1d4dc89326f1695c41f9",
+          "presentation": "095eb38bcf55c7c97c2d8f0bd9b983e782713f440138f6deccc6dee0caf7045c"
+        },
+        "robot": {
+          "definition": "315d2b8de61533fcfc31338bf5b85afe59f9901668521f259acdb31cef9880e2",
+          "presentation": "468ef3eeb15c3c81d9f6214a5086cd42154b3704e783b7250e75529af9157815"
+        },
+        "sequence": {
+          "definition": "ed62f71b64370f108f934b33e03b6cebbe70b015e0c3e4fa1122bd6fd40a2d63",
+          "presentation": "9c15c13803285ae49e026fe5a9aa28f70bb96d1fdb60c9bc59c70f2493bc7d71"
+        },
+        "treasure": {
+          "definition": "dd084052134cd223b4616a87890b70a10391d23a0e2ed93e31af080d631970f5",
+          "presentation": "26cdc8b5b19390bce38b81ea6d601902b49d4c044ec1a2fb8521c46b867f875b"
+        },
+        "neighbours": {
+          "definition": "31191a14d8d882aecb952955f5a12c5c0a049252166d7e256d3fde16d1ea31b2",
+          "presentation": "f0c86049c6246d8c9a6f4820b64ee745803c115b5a9e4b2bdcd40fccc3a849a9"
+        },
+        "compare": {
+          "definition": "ebccd0fc9c0ef34ab2767ab4fbeb9d41c2968faec166334f109a6e7fb0d7eeac",
+          "presentation": "b86c386b174e6a472f441158a928b5289d6ab25261c74e89bc18202fe9d6662b"
+        },
+        "mirror": {
+          "definition": "66cba7ed5d1c4a319c2b745061fc381b7ca6ce3539ef3aa61841d224fe008764",
+          "presentation": "1a3e919ee49dff2a1d8fb9d2e96dd18ce8002b1323ca245f39ba31fb1e8d9dcf"
+        },
+        "vowels": {
+          "definition": "fa25f2087bb943f989f7bb33e1ea4f8792679ed9c67d46ba9fe33e6c53de5b2d",
+          "presentation": "5a031d69d2e66762a2f7375cd8205694c493b3813734e9ed9e9b8a86fdb11acc"
+        },
+        "survey": {
+          "definition": "7201f9a1b76057a4a6c11c8897dadbd044a343e1a3fd245b29bfa6ffff8b8111",
+          "presentation": "256c126cf2256b45a24719394185d6691a6858a652381bbc66f29ad0c9cb2c18"
+        },
+        "read-puzzle": {
+          "definition": "dc5f75034352f773822b1b96ca25a6967596ffc9a7af8d32f9747811141c93cd",
+          "presentation": "caba13f896aa3fd1e9fa0051e580812ce00c3cf271ae6b1d93b5b8b113fd885b"
+        },
+        "read-word": {
+          "definition": "7e8295aac48d1c51ae17d583e08d3852d480201287b2ca14ab5ff8dcdaaf097d",
+          "presentation": "ae962095d3f2c10a545ef5a69f0cc4fbb7ef5776573d5895b4bf6d4e03539689"
+        },
+        "read-leaves": {
+          "definition": "14428edc0923528a74ce85bfb23ba72c729e57b0ce371069ad7c37be8486807a",
+          "presentation": "39a3bae27ec39d71ea65e3be1fc9b245455309a53e26aa9b9c79c36f74bb751e"
+        },
+        "read-colours": {
+          "definition": "34276fdabf8c9184ee85d0573c2c79c8890dafd680eaa25caf3c3b1d42b07fc8",
+          "presentation": "7e733446d5ac76ee51c4c27021629fd20cd93d9a2dc66fc6d52607dfdcf44ce7"
+        },
+        "trace": {
+          "definition": "f7baf6bb5787e7dd8cf62b8638fb40a73dc9e703e6f99d8a1a776b1f84141e0f",
+          "presentation": "9866bac3f7a3c95a8563707a38e675d3d0b2780bcc117d4932ba5441ca1743c5"
+        },
+        "trace-numbers": {
+          "definition": "344d2d98eb4a30bc108baf35edf2d39ca17e356c49ef61d9b42b6530f4763216",
+          "presentation": "64903289371f8a6672666dbd866481b512d8ae870a07d008127b6bec950de108"
+        }
+      }
+    },
+    {
+      "commit": "719a9079fda37809d130639f9d26d48debe5598d",
+      "implementation": "f35b5380222873105791cffe9112582209063e799519337f0e72cd4fb9ee07fd",
+      "puzzles": {
+        "friends-squirrel": {
+          "definition": "68d61ccd6fb3577c1257e7ef8e3f52e2c4d749a50c437ba02cea4b05abf31405",
+          "presentation": "9dbe2a43773097d48bd1e53139074568b03db123df23dfbccc77bd68d54599b2"
+        },
+        "friends-bird": {
+          "definition": "37a57760052df29598ba181e4c89ae1ff8142620faf57fafdfec3b77d7e106b6",
+          "presentation": "3a24c04257e7cd52725785af52947d4de74fdd947f9b56ded711fb6d16be14bc"
+        },
+        "friends-owl": {
+          "definition": "f473d7244f3cf7454947cf01432e31b80922dff668dfa2a5772e5fdfa3649a52",
+          "presentation": "dbb3c08d9e72576660bfd9d812a22fca2fac9f7abbe36f907bfbf82e8c45584e"
+        },
+        "friends-beaver": {
+          "definition": "1034dea638e1efc19ec0dacf1c4bccd8c01f0d3c649ddffc1f3c425ee2cb3f64",
+          "presentation": "0b6b4657d1fa09ce4688b2368101f7f50e9a4891ada8907c16eca7abd1d37daa"
+        },
+        "friends-mouse": {
+          "definition": "54d4a30f06395bc284164fe23de9ce385d03b87a97094a1614a5e5b7cb73b1ca",
+          "presentation": "8be461c19a1bfd27022b9cba9dc439149eb40918bb89e08b0c1ee940561e6a1c"
+        },
+        "friends-hedgehog": {
+          "definition": "a6db9b25e30754b5c4c33e9eccaf061bc6acce3d38116e9b51a01258bfde7e8d",
+          "presentation": "a3fb27d38a36d169aa83d4cc10b4f140101ac6aa692426be5f50324e8340d010"
+        },
+        "friends-fish": {
+          "definition": "deb978379702ca16614cca565d10ec5ab116075f7056bb27113feab6e297e3c1",
+          "presentation": "d0d2a7fdb8f315fe22dca073fdc40d8518e8ff4e8ff501d43279c7ad829981a9"
+        },
+        "friends-deer": {
+          "definition": "e016f7b87fef54f13baf39ddf83a7d6db8642980746497cea2d7551ec22595c7",
+          "presentation": "5dbbb034e325e0f54fc5d69734cddfc3eb398e204e0d616b2850eb1d7afe5278"
+        },
+        "friends-kingfisher": {
+          "definition": "36c407ce63298906779a5f96c74dd46164016e74a89dd804bc12d9c51439a968",
+          "presentation": "039dde9ff2276b2fbbb86f84e2e687988a3d16fb297ef3ea1cc0bce0b63363c2"
+        },
+        "friends-frog": {
+          "definition": "6c4061a3fa034fa1bd408a04151073dbd9edc5ff2ef0aa2e1aa727eb305af64c",
+          "presentation": "7265f8388085b71f7399835a3072a153e27a0554fd6167775b2f22d0bd16fd11"
+        },
+        "friends-badger": {
+          "definition": "0bac09faeda64a34e9e11a54ebdc90603db6dda9b2358a858879512efed6bd25",
+          "presentation": "e732c86a6f9dc4ae62a69e69b5f2457d1f9850019ab9712d109648dd70425631"
+        },
+        "count": {
+          "definition": "84acc069a7c011d2241fa4b28e30c0ffd36e25858df980bb4d51c66da38ee43b",
+          "presentation": "13c008abe099ace9643b989aeb310ad5d91edb849647843605ba496a74098c15"
+        },
+        "add": {
+          "definition": "d160b8ac8ebe91e085d8dd74e3244f9345fb480f0ceb0b548d8dd8b5df2002f8",
+          "presentation": "bb7ca2c9fd4356effd2052ee7100c1f128d9ac8ca13409fcec1e7fb6b8a32073"
+        },
+        "pattern": {
+          "definition": "7a249f99ab3ad8bd0a4b26ba0cba34defb36349b2e4d07d0c0ad35a1cb1126ed",
+          "presentation": "1ea8617d4ba780fd314e40f439f0df81e2fe4d72dd9a46c1c18b7a989f7b4aa9"
+        },
+        "nature": {
+          "definition": "41eea2624d1905144bddb60b7ab1cb485fe8198ad5948b2f34a59c7133e16557",
+          "presentation": "d377152b2e956818e43b9aee01b5b955d0763d6b58acae820b87d42c1e09043a"
+        },
+        "rocket": {
+          "definition": "cc87f6f48e9ecf14cb5525bfb73b2fc0614cbe138736dfc8b83c8fdcbe4301fa",
+          "presentation": "ed1ea8021ff5d7fb5491d61e26da6aae687211f53988ba08a2864f9b38889964"
+        },
+        "picnic": {
+          "definition": "fee7bb243e89951c6053361494dc1d620d93309708975e990110db3cf1cacab2",
+          "presentation": "e38035280c073641e9940864c41c135589d2c433dbd7be2101c8a742191736b5"
+        },
+        "double": {
+          "definition": "f0eda0529e0a3c59ef88d5733ecf17f07bd4d4c03fd75582b114b151fb9f99b5",
+          "presentation": "8cbfacf2ebfea94c58686d48d7e2900c3c3067a666b2911deebaec7b43879605"
+        },
+        "shapes": {
+          "definition": "00e5eabaa81ff2d4cc7c2150ff4287a9d4383ceb77f61cf7d978bb1638aae55d",
+          "presentation": "c2e5df50a95547d96dab9927fcedac02489007c4245fc4865228b1c8c7205c57"
+        },
+        "syllable": {
+          "definition": "ac3191b2ea678e5c3b2e6aa0fba1011fbc33c0c0b96a1d4dc89326f1695c41f9",
+          "presentation": "095eb38bcf55c7c97c2d8f0bd9b983e782713f440138f6deccc6dee0caf7045c"
+        },
+        "robot": {
+          "definition": "315d2b8de61533fcfc31338bf5b85afe59f9901668521f259acdb31cef9880e2",
+          "presentation": "468ef3eeb15c3c81d9f6214a5086cd42154b3704e783b7250e75529af9157815"
+        },
+        "sequence": {
+          "definition": "ed62f71b64370f108f934b33e03b6cebbe70b015e0c3e4fa1122bd6fd40a2d63",
+          "presentation": "9c15c13803285ae49e026fe5a9aa28f70bb96d1fdb60c9bc59c70f2493bc7d71"
+        },
+        "treasure": {
+          "definition": "dd084052134cd223b4616a87890b70a10391d23a0e2ed93e31af080d631970f5",
+          "presentation": "26cdc8b5b19390bce38b81ea6d601902b49d4c044ec1a2fb8521c46b867f875b"
+        },
+        "neighbours": {
+          "definition": "31191a14d8d882aecb952955f5a12c5c0a049252166d7e256d3fde16d1ea31b2",
+          "presentation": "f0c86049c6246d8c9a6f4820b64ee745803c115b5a9e4b2bdcd40fccc3a849a9"
+        },
+        "compare": {
+          "definition": "ebccd0fc9c0ef34ab2767ab4fbeb9d41c2968faec166334f109a6e7fb0d7eeac",
+          "presentation": "b86c386b174e6a472f441158a928b5289d6ab25261c74e89bc18202fe9d6662b"
+        },
+        "mirror": {
+          "definition": "66cba7ed5d1c4a319c2b745061fc381b7ca6ce3539ef3aa61841d224fe008764",
+          "presentation": "1a3e919ee49dff2a1d8fb9d2e96dd18ce8002b1323ca245f39ba31fb1e8d9dcf"
+        },
+        "vowels": {
+          "definition": "fa25f2087bb943f989f7bb33e1ea4f8792679ed9c67d46ba9fe33e6c53de5b2d",
+          "presentation": "5a031d69d2e66762a2f7375cd8205694c493b3813734e9ed9e9b8a86fdb11acc"
+        },
+        "survey": {
+          "definition": "7201f9a1b76057a4a6c11c8897dadbd044a343e1a3fd245b29bfa6ffff8b8111",
+          "presentation": "256c126cf2256b45a24719394185d6691a6858a652381bbc66f29ad0c9cb2c18"
+        },
+        "read-puzzle": {
+          "definition": "dc5f75034352f773822b1b96ca25a6967596ffc9a7af8d32f9747811141c93cd",
+          "presentation": "caba13f896aa3fd1e9fa0051e580812ce00c3cf271ae6b1d93b5b8b113fd885b"
+        },
+        "read-word": {
+          "definition": "7e8295aac48d1c51ae17d583e08d3852d480201287b2ca14ab5ff8dcdaaf097d",
+          "presentation": "e29c1c28e1d3e816fd87c0f7b65c0611e3f74a01d9d913c8d44d5909aa8fbe7b"
+        },
+        "read-leaves": {
+          "definition": "14428edc0923528a74ce85bfb23ba72c729e57b0ce371069ad7c37be8486807a",
+          "presentation": "39a3bae27ec39d71ea65e3be1fc9b245455309a53e26aa9b9c79c36f74bb751e"
+        },
+        "read-colours": {
+          "definition": "34276fdabf8c9184ee85d0573c2c79c8890dafd680eaa25caf3c3b1d42b07fc8",
+          "presentation": "7e733446d5ac76ee51c4c27021629fd20cd93d9a2dc66fc6d52607dfdcf44ce7"
+        },
+        "trace": {
+          "definition": "f7baf6bb5787e7dd8cf62b8638fb40a73dc9e703e6f99d8a1a776b1f84141e0f",
+          "presentation": "9866bac3f7a3c95a8563707a38e675d3d0b2780bcc117d4932ba5441ca1743c5"
+        },
+        "trace-numbers": {
+          "definition": "344d2d98eb4a30bc108baf35edf2d39ca17e356c49ef61d9b42b6530f4763216",
+          "presentation": "64903289371f8a6672666dbd866481b512d8ae870a07d008127b6bec950de108"
+        }
+      }
+    }
+  ]
+}

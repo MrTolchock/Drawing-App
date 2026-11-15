@@ -93,3 +93,12 @@ test('the first connected sync creates the missing data branch with only reviews
  a.decide('add/0','approved');assert.ok(await a.repo.connect('test-review-token'));
  assert.equal(server.missing,false);assert.equal(server.ledger.entries['add/0@r-add/0'].status,'approved');assert.equal(a.repo.state.pending,0);a.repo.stop();
 });
+test('verified equivalent approvals restore read-only and later decisions across aliases take precedence',async()=>{
+ const aliases={...catalogue,revisions:(id,item)=>[item?'r-'+item.id:'puzzle-r1',item?'legacy-'+item.id:'legacy-puzzle']};
+ const ledger=R.empty(),at='2026-11-14T12:00:00.000Z';
+ for(const key of ['puzzle:add',...catalogue.iterations().map(it=>it.id)]){const revision=key.startsWith('puzzle:')?'legacy-puzzle':'legacy-'+key;ledger.entries[key+'@'+revision]={key,revision,status:'approved',note:'Original decision',at,seen:true};}
+ const server=remoteServer(ledger),a=client(server,null,{catalogue:aliases});await a.repo.start();assert.ok(a.repo.confirmed('add'));assert.equal(a.repo.state.pending,0);assert.equal(a.repo.state.connected,false);assert.equal(server.writes.length,0);assert.deepEqual(server.ledger,ledger);
+ const next=server.ledger;next.entries['add/0@r-add/0']={...next.entries['add/0@legacy-add/0'],revision:'r-add/0',status:'improve',note:'Later rejection',at:'2026-11-14T13:00:00Z'};server.ledger=next;await a.repo.refresh();assert.equal(a.repo.confirmed('add'),false);assert.equal(a.data.decisions['add/0'].status,'improve');
+ // An older app can also flag the same unchanged content. Equal-time rejections win.
+ next.entries['add/0@r-add/0'].status='approved';next.entries['add/0@legacy-add/0']={...next.entries['add/0@legacy-add/0'],status:'improve',at:'2026-11-14T13:00:00.000Z'};server.ledger=next;await a.repo.refresh();assert.equal(a.repo.confirmed('add'),false);assert.equal(a.data.decisions['add/0'].revision,'legacy-add/0');assert.equal(a.repo.state.pending,0);assert.equal(server.writes.length,0);a.repo.stop();
+});
