@@ -6283,6 +6283,15 @@
       "at": "2026-11-15T20:56:04.471Z",
       "seen": true,
       "operation": "5d381886-6df6-495f-a1ae-967fb498efb3"
+    },
+    "syllable/word-0@4a28b2c2539eb44a": {
+      "key": "syllable/word-0",
+      "revision": "4a28b2c2539eb44a",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:57:27.832Z",
+      "seen": true,
+      "operation": "90064c1e-3d69-4ba8-8f1e-15433ae27bbd"
     }
   },
   "history": [
