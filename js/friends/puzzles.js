@@ -4,7 +4,7 @@
   const FK=window.FK;
   const names={count:'Waldkäfer zählen',add:'Äpfel rechnen',pattern:'Waldmuster',nature:'Naturdetektive',
     rocket:'Glühwürmchen sammeln',picnic:'Waldpicknick',double:'Nüsse verdoppeln',shapes:'Waldwerkstatt',
-    rhyme:'Waldreime',syllable:'Silben klopfen',robot:'Waldpost',sequence:'Was kommt zuerst?',
+    rhyme:'Waldreime',syllable:'Silben zählen',robot:'Waldpost',sequence:'Was kommt zuerst?',
     treasure:'Waldschatz',neighbours:'Zahlennachbarn',compare:'Beeren vergleichen',mirror:'Waldspiegel',vowels:'Waldwörter ergänzen',survey:'Waldumfrage',
     'read-puzzle':'Silben-Puzzle','read-word':'Wort und Waldbild','read-leaves':'Silbenblätter','read-colours':'Farben lesen',trace:'Schreibspuren',dots:'Zahlenwege'};
   const reading=[['read-puzzle','puzzle','words'],['read-word','wort','mouse'],['read-leaves','ballone','leaf'],['read-colours','genau','flower']]

@@ -18,7 +18,7 @@ test('only actual image cells affect a puzzle, including shared-atlas changes',a
  const sharp=require('../tools/node_modules/sharp'),file='assets/waldatelier/forest-objects.webp';
  const {data,info}=await sharp(reader.read(file)).ensureAlpha().raw().toBuffer({resolveWithObject:true});
  async function cell(index){const pixels=Buffer.from(data),x=Math.floor((index%4+.5)*info.width/4),y=Math.floor((Math.floor(index/4)+.5)*info.height/4),at=(y*info.width+x)*4;pixels.set([255,0,255,255],at);const bytes=await sharp(pixels,{raw:info}).png().toBuffer();return build({...reader,read:name=>name===file?bytes:reader.read(name)});}
- const lantern=await cell(12);same(base,lantern,'friends-squirrel');different(base,lantern,'rocket');
+ const lantern=await cell(12);same(base,lantern,'friends-squirrel');different(base,lantern,'friends-owl');
  const nut=await cell(0);different(base,nut,'friends-squirrel');
 });
 test('registered but unused artwork does not reopen existing puzzles',()=>{
@@ -27,9 +27,14 @@ test('registered but unused artwork does not reopen existing puzzles',()=>{
  const unusedWord=changed('js/friends/puzzle-rounds.js',s=>s.replace('const wordArt={','const wordArt={Unbenutzt:"vocab-unused",'));
  assert.deepEqual(unusedWord,base);
 });
+test('the actual shared text helper invalidates reading tasks without reopening numeric counting',()=>{
+ const text=changed('js/core/util.js',s=>s.replace("mode() { return 'normal'; }","mode() { return 'gross'; }"));
+ same(base,text,'friends-squirrel');different(base,text,'friends-bird');different(base,text,'read-puzzle');
+});
 test('verified baselines accept unchanged puzzles and exclude altered content',()=>{
  const {FK}=require('../tools/puzzle-catalogue.cjs').setup(),releases=JSON.parse(fs.readFileSync(path.join(__dirname,'../tools/puzzle-review-baselines.json'))).releases;
  const v36=releases.find(r=>r.commit.startsWith('9379fcd')),v37=releases.find(r=>r.commit.startsWith('719a907'));
  assert.ok(FK.puzzleLegacyImplementations['friends-squirrel'].includes(v36.implementation));
- for(const id of ['friends-bird','friends-owl','friends-hedgehog']){assert.equal(FK.puzzleLegacyImplementations[id].includes(v36.implementation),false);assert.ok(FK.puzzleLegacyImplementations[id].includes(v37.implementation));}
+ for(const id of ['friends-bird','friends-owl']){assert.equal(FK.puzzleLegacyImplementations[id].includes(v36.implementation),false);assert.ok(FK.puzzleLegacyImplementations[id].includes(v37.implementation));}
+ for(const id of ['friends-hedgehog','friends-frog','friends-badger','nature','add','rocket','picnic','syllable','robot','sequence','treasure','neighbours','compare','mirror'])assert.equal(FK.puzzleLegacyImplementations[id].length,0,id+' changed for the latest review');
 });

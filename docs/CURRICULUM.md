@@ -1,6 +1,6 @@
 # Curriculum references — current puzzles
 
-All 34 current puzzles are mapped individually in the [generated catalogue](PUZZLE-CATALOGUE.md), with a bounded competence, difficulty, prerequisites and every iteration/solution. That inventory defines the implemented content. The [former planning matrix](../archive/design-history/forest-friends/curriculum-matrix.md) is archived; its five-puzzle milestone and backlog do not describe the current game.
+All 31 current puzzles are mapped individually in the [generated catalogue](PUZZLE-CATALOGUE.md), with a bounded competence, difficulty, prerequisites and every iteration/solution. That inventory defines the implemented content. The [former planning matrix](../archive/design-history/forest-friends/curriculum-matrix.md) is archived; its five-puzzle milestone and backlog do not describe the current game.
 
 | Practice area | Official Zürich Zyklus-1 reference | Limits of the app activity |
 | --- | --- | --- |

@@ -40,6 +40,8 @@ The generator's padded outputs had smaller subjects than intended. The packing s
 
 The manifests list subjects in left-to-right, top-to-bottom order. `forest-wildlife` has sixteen occupied cells. `rhyme-vocabulary` has ten occupied cells followed by six transparent empty cells. These orders must match the arrays in [the illustration registry](../../js/ui/waldatelier.js).
 
+The 2026-11-15 review also requested a fox in the wildlife drawing style. [Its prompt](prompts/forest-fox-generation.txt), [source PNG](sources/forest-fox.png) and [manifest](forest-fox.json) preserve that pass. The references were `forest-wildlife.webp` and `forest-actions.webp`; the prompt explicitly removes the old fox's scarf. For the runtime atlas, `magick forest-fox.png -background none -gravity northwest -extent 200%x200% forest-fox-grid.png` places the source into the first cell of a 2 × 2 transparent grid. The same packing command with `design/illustrations/forest-fox.json` produces 320 px cells; three cells remain empty. This avoids the existing renderer's division by zero for a single-cell atlas.
+
 ## Prompt template for new subjects
 
 Attach one or two drawn reference sheets and adapt this template. Give every cell an explicit subject and action before generation.

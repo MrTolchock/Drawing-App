@@ -26,31 +26,31 @@
 
 | Stable iteration ID | Content / configuration | Expected answer or solution |
 | --- | --- | --- |
-| `sequence/story-0` | Bohne in die Erde → Die Bohne keimt → Eine Pflanze wächst — Was passiert zuerst? Tippe die Bilder der Reihe nach an. | [0,1,2] |
-| `sequence/story-1` | Ein Ei liegt im Nest → Ein Küken schlüpft → Der Vogel ist gross — Was passiert zuerst? Tippe die Bilder der Reihe nach an. | [0,1,2] |
-| `sequence/story-2` | Eine Raupe frisst → Die Raupe verpuppt sich → Ein Schmetterling schlüpft — Was passiert zuerst? Tippe die Bilder der Reihe nach an. | [0,1,2] |
-| `sequence/story-3` | Der Apfelbaum blüht → Ein Apfel wird reif → Wir ernten den Apfel — Was passiert zuerst? Tippe die Bilder der Reihe nach an. | [0,1,2] |
-| `sequence/story-4` | Wir schreiben einen Brief → Wir werfen ihn ein → Der Brief kommt an — Was passiert zuerst? Tippe die Bilder der Reihe nach an. | [0,1,2] |
-| `sequence/story-5` | Wolken sammeln sich → Regen fällt → Die Pflanze bekommt Wasser — Was passiert zuerst? Tippe die Bilder der Reihe nach an. | [0,1,2] |
-| `sequence/story-6` | Eine Nuss liegt im Wald → Das Eichhörnchen findet sie → Es sammelt sie ein — Was passiert zuerst? Tippe die Bilder der Reihe nach an. | [0,1,2] |
-| `sequence/story-7` | Der Tag ist hell → Die Sonne geht unter → Die Nacht kommt — Was passiert zuerst? Tippe die Bilder der Reihe nach an. | [0,1,2] |
-| `sequence/story-8` | Ein Apfel hängt am Baum → Wir pflücken ihn → Nach dem Essen bleiben Kerne — Was passiert zuerst? Tippe die Bilder der Reihe nach an. | [0,1,2] |
-| `sequence/story-9` | Eine junge Pflanze wächst → Eine Blüte öffnet sich → Eine Biene besucht sie — Was passiert zuerst? Tippe die Bilder der Reihe nach an. | [0,1,2] |
-| `sequence/story-10` | Ein Blatt hängt am Ast → Es fällt zu Boden → Der Igel nutzt das Laub — Was passiert zuerst? Tippe die Bilder der Reihe nach an. | [0,1,2] |
-| `sequence/story-11` | Wir nehmen einen Samen → Wir graben ein Loch → Wir giessen den Samen — Was passiert zuerst? Tippe die Bilder der Reihe nach an. | [0,1,2] |
-| `sequence/story-12` | Beeren werden reif → Wir sammeln sie → Wir teilen sie auf — Was passiert zuerst? Tippe die Bilder der Reihe nach an. | [0,1,2] |
-| `sequence/story-13` | Ein Ast liegt am Boden → Ein Vogel holt ihn → Er baut ein Nest — Was passiert zuerst? Tippe die Bilder der Reihe nach an. | [0,1,2] |
-| `sequence/story-14` | Es regnet → Eine Pfütze entsteht → Die Sonne trocknet sie — Was passiert zuerst? Tippe die Bilder der Reihe nach an. | [0,1,2] |
-| `sequence/story-15` | Wir lockern die Erde → Eine Karotte wächst → Wir ernten sie — Was passiert zuerst? Tippe die Bilder der Reihe nach an. | [0,1,2] |
-| `sequence/story-16` | Die Birnenblüte öffnet sich → Eine Birne wächst → Wir legen sie in die Schale — Was passiert zuerst? Tippe die Bilder der Reihe nach an. | [0,1,2] |
-| `sequence/story-17` | Die Kuh gibt Milch → Wir sammeln die Milch → Daraus wird Käse — Was passiert zuerst? Tippe die Bilder der Reihe nach an. | [0,1,2] |
-| `sequence/story-18` | Die Sonnenblume blüht → Ihre Kerne sind reif → Ein Vogel frisst die Kerne — Was passiert zuerst? Tippe die Bilder der Reihe nach an. | [0,1,2] |
-| `sequence/story-19` | Wir nehmen ein Tuch → Wir machen es nass → Wir wischen den Tisch — Was passiert zuerst? Tippe die Bilder der Reihe nach an. | [0,1,2] |
-| `sequence/story-20` | Wir suchen ein Buch aus → Wir lesen es → Danach gehen wir schlafen — Was passiert zuerst? Tippe die Bilder der Reihe nach an. | [0,1,2] |
-| `sequence/story-21` | Wir pflücken einen Apfel → Wir waschen ihn → Wir legen ihn in die Schale — Was passiert zuerst? Tippe die Bilder der Reihe nach an. | [0,1,2] |
-| `sequence/story-22` | Wir nehmen einen Korb mit → Wir finden Pilze → Wir prüfen sie mit Erwachsenen — Was passiert zuerst? Tippe die Bilder der Reihe nach an. | [0,1,2] |
-| `sequence/story-23` | Ein Brief kommt an → Wir öffnen ihn → Wir lesen ihn — Was passiert zuerst? Tippe die Bilder der Reihe nach an. | [0,1,2] |
-| `sequence/story-24` | Wir pflücken eine Blume → Wir stellen sie ins Wasser → Wir stellen sie auf den Tisch — Was passiert zuerst? Tippe die Bilder der Reihe nach an. | [0,1,2] |
+| `sequence/story-0` | Bohne in die Erde → Die Bohne keimt → Eine Pflanze wächst — Ziehe die Bilder in die richtige Reihenfolge. | [0,1,2] |
+| `sequence/story-1` | Ein Ei liegt im Nest → Ein Küken schlüpft → Der Vogel ist gross — Ziehe die Bilder in die richtige Reihenfolge. | [0,1,2] |
+| `sequence/story-2` | Eine Raupe frisst → Die Raupe verpuppt sich → Ein Schmetterling schlüpft — Ziehe die Bilder in die richtige Reihenfolge. | [0,1,2] |
+| `sequence/story-3` | Der Apfelbaum blüht → Ein Apfel wird reif → Wir ernten den Apfel — Ziehe die Bilder in die richtige Reihenfolge. | [0,1,2] |
+| `sequence/story-4` | Wir schreiben einen Brief → Wir werfen ihn ein → Der Brief kommt an — Ziehe die Bilder in die richtige Reihenfolge. | [0,1,2] |
+| `sequence/story-5` | Wolken sammeln sich → Regen fällt → Die Pflanze bekommt Wasser — Ziehe die Bilder in die richtige Reihenfolge. | [0,1,2] |
+| `sequence/story-6` | Eine Nuss liegt im Wald → Das Eichhörnchen findet sie → Es sammelt sie ein — Ziehe die Bilder in die richtige Reihenfolge. | [0,1,2] |
+| `sequence/story-7` | Der Tag ist hell → Die Sonne geht unter → Die Nacht kommt — Ziehe die Bilder in die richtige Reihenfolge. | [0,1,2] |
+| `sequence/story-8` | Ein Apfel hängt am Baum → Wir pflücken ihn → Nach dem Essen bleiben Kerne — Ziehe die Bilder in die richtige Reihenfolge. | [0,1,2] |
+| `sequence/story-9` | Eine junge Pflanze wächst → Eine Blüte öffnet sich → Eine Biene besucht sie — Ziehe die Bilder in die richtige Reihenfolge. | [0,1,2] |
+| `sequence/story-10` | Ein Blatt hängt am Ast → Es fällt zu Boden → Der Igel nutzt das Laub — Ziehe die Bilder in die richtige Reihenfolge. | [0,1,2] |
+| `sequence/story-11` | Wir nehmen einen Samen → Wir graben ein Loch → Wir giessen den Samen — Ziehe die Bilder in die richtige Reihenfolge. | [0,1,2] |
+| `sequence/story-12` | Beeren werden reif → Wir sammeln sie → Wir teilen sie auf — Ziehe die Bilder in die richtige Reihenfolge. | [0,1,2] |
+| `sequence/story-13` | Ein Ast liegt am Boden → Ein Vogel holt ihn → Er baut ein Nest — Ziehe die Bilder in die richtige Reihenfolge. | [0,1,2] |
+| `sequence/story-14` | Es regnet → Eine Pfütze entsteht → Die Sonne trocknet sie — Ziehe die Bilder in die richtige Reihenfolge. | [0,1,2] |
+| `sequence/story-15` | Wir lockern die Erde → Eine Karotte wächst → Wir ernten sie — Ziehe die Bilder in die richtige Reihenfolge. | [0,1,2] |
+| `sequence/story-16` | Die Birnenblüte öffnet sich → Eine Birne wächst → Wir legen sie in die Schale — Ziehe die Bilder in die richtige Reihenfolge. | [0,1,2] |
+| `sequence/story-17` | Die Kuh gibt Milch → Wir sammeln die Milch → Daraus wird Käse — Ziehe die Bilder in die richtige Reihenfolge. | [0,1,2] |
+| `sequence/story-18` | Die Sonnenblume blüht → Ihre Kerne sind reif → Ein Vogel frisst die Kerne — Ziehe die Bilder in die richtige Reihenfolge. | [0,1,2] |
+| `sequence/story-19` | Wir nehmen ein Tuch → Wir machen es nass → Wir wischen den Tisch — Ziehe die Bilder in die richtige Reihenfolge. | [0,1,2] |
+| `sequence/story-20` | Wir suchen ein Buch aus → Wir lesen es → Danach gehen wir schlafen — Ziehe die Bilder in die richtige Reihenfolge. | [0,1,2] |
+| `sequence/story-21` | Wir pflücken einen Apfel → Wir waschen ihn → Wir legen ihn in die Schale — Ziehe die Bilder in die richtige Reihenfolge. | [0,1,2] |
+| `sequence/story-22` | Wir nehmen einen Korb mit → Wir finden Pilze → Wir prüfen sie mit Erwachsenen — Ziehe die Bilder in die richtige Reihenfolge. | [0,1,2] |
+| `sequence/story-23` | Ein Brief kommt an → Wir öffnen ihn → Wir lesen ihn — Ziehe die Bilder in die richtige Reihenfolge. | [0,1,2] |
+| `sequence/story-24` | Wir pflücken eine Blume → Wir stellen sie ins Wasser → Wir stellen sie auf den Tisch — Ziehe die Bilder in die richtige Reihenfolge. | [0,1,2] |
 
 ## Exact definitions
 
@@ -63,7 +63,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Bohne in die Erde → Die Bohne keimt → Eine Pflanze wächst",
     "question": {
       "kind": "order",
-      "prompt": "Was passiert zuerst? Tippe die Bilder der Reihe nach an.",
+      "prompt": "Ziehe die Bilder in die richtige Reihenfolge.",
       "items": [
         [
           "bean",
@@ -95,7 +95,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Ein Ei liegt im Nest → Ein Küken schlüpft → Der Vogel ist gross",
     "question": {
       "kind": "order",
-      "prompt": "Was passiert zuerst? Tippe die Bilder der Reihe nach an.",
+      "prompt": "Ziehe die Bilder in die richtige Reihenfolge.",
       "items": [
         [
           "egg",
@@ -127,7 +127,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Eine Raupe frisst → Die Raupe verpuppt sich → Ein Schmetterling schlüpft",
     "question": {
       "kind": "order",
-      "prompt": "Was passiert zuerst? Tippe die Bilder der Reihe nach an.",
+      "prompt": "Ziehe die Bilder in die richtige Reihenfolge.",
       "items": [
         [
           "caterpillar",
@@ -159,7 +159,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Der Apfelbaum blüht → Ein Apfel wird reif → Wir ernten den Apfel",
     "question": {
       "kind": "order",
-      "prompt": "Was passiert zuerst? Tippe die Bilder der Reihe nach an.",
+      "prompt": "Ziehe die Bilder in die richtige Reihenfolge.",
       "items": [
         [
           "forest-flower",
@@ -191,7 +191,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Wir schreiben einen Brief → Wir werfen ihn ein → Der Brief kommt an",
     "question": {
       "kind": "order",
-      "prompt": "Was passiert zuerst? Tippe die Bilder der Reihe nach an.",
+      "prompt": "Ziehe die Bilder in die richtige Reihenfolge.",
       "items": [
         [
           "pencil",
@@ -223,7 +223,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Wolken sammeln sich → Regen fällt → Die Pflanze bekommt Wasser",
     "question": {
       "kind": "order",
-      "prompt": "Was passiert zuerst? Tippe die Bilder der Reihe nach an.",
+      "prompt": "Ziehe die Bilder in die richtige Reihenfolge.",
       "items": [
         [
           "cloud",
@@ -255,7 +255,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Eine Nuss liegt im Wald → Das Eichhörnchen findet sie → Es sammelt sie ein",
     "question": {
       "kind": "order",
-      "prompt": "Was passiert zuerst? Tippe die Bilder der Reihe nach an.",
+      "prompt": "Ziehe die Bilder in die richtige Reihenfolge.",
       "items": [
         [
           "forest-nut",
@@ -287,7 +287,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Der Tag ist hell → Die Sonne geht unter → Die Nacht kommt",
     "question": {
       "kind": "order",
-      "prompt": "Was passiert zuerst? Tippe die Bilder der Reihe nach an.",
+      "prompt": "Ziehe die Bilder in die richtige Reihenfolge.",
       "items": [
         [
           "sun",
@@ -319,7 +319,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Ein Apfel hängt am Baum → Wir pflücken ihn → Nach dem Essen bleiben Kerne",
     "question": {
       "kind": "order",
-      "prompt": "Was passiert zuerst? Tippe die Bilder der Reihe nach an.",
+      "prompt": "Ziehe die Bilder in die richtige Reihenfolge.",
       "items": [
         [
           "forest-apple",
@@ -351,7 +351,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Eine junge Pflanze wächst → Eine Blüte öffnet sich → Eine Biene besucht sie",
     "question": {
       "kind": "order",
-      "prompt": "Was passiert zuerst? Tippe die Bilder der Reihe nach an.",
+      "prompt": "Ziehe die Bilder in die richtige Reihenfolge.",
       "items": [
         [
           "seedling",
@@ -383,7 +383,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Ein Blatt hängt am Ast → Es fällt zu Boden → Der Igel nutzt das Laub",
     "question": {
       "kind": "order",
-      "prompt": "Was passiert zuerst? Tippe die Bilder der Reihe nach an.",
+      "prompt": "Ziehe die Bilder in die richtige Reihenfolge.",
       "items": [
         [
           "forest-leaf",
@@ -415,7 +415,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Wir nehmen einen Samen → Wir graben ein Loch → Wir giessen den Samen",
     "question": {
       "kind": "order",
-      "prompt": "Was passiert zuerst? Tippe die Bilder der Reihe nach an.",
+      "prompt": "Ziehe die Bilder in die richtige Reihenfolge.",
       "items": [
         [
           "vocab-seed",
@@ -447,7 +447,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Beeren werden reif → Wir sammeln sie → Wir teilen sie auf",
     "question": {
       "kind": "order",
-      "prompt": "Was passiert zuerst? Tippe die Bilder der Reihe nach an.",
+      "prompt": "Ziehe die Bilder in die richtige Reihenfolge.",
       "items": [
         [
           "forest-berry",
@@ -479,7 +479,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Ein Ast liegt am Boden → Ein Vogel holt ihn → Er baut ein Nest",
     "question": {
       "kind": "order",
-      "prompt": "Was passiert zuerst? Tippe die Bilder der Reihe nach an.",
+      "prompt": "Ziehe die Bilder in die richtige Reihenfolge.",
       "items": [
         [
           "forest-branch",
@@ -511,7 +511,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Es regnet → Eine Pfütze entsteht → Die Sonne trocknet sie",
     "question": {
       "kind": "order",
-      "prompt": "Was passiert zuerst? Tippe die Bilder der Reihe nach an.",
+      "prompt": "Ziehe die Bilder in die richtige Reihenfolge.",
       "items": [
         [
           "rain",
@@ -543,7 +543,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Wir lockern die Erde → Eine Karotte wächst → Wir ernten sie",
     "question": {
       "kind": "order",
-      "prompt": "Was passiert zuerst? Tippe die Bilder der Reihe nach an.",
+      "prompt": "Ziehe die Bilder in die richtige Reihenfolge.",
       "items": [
         [
           "spade",
@@ -575,7 +575,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Die Birnenblüte öffnet sich → Eine Birne wächst → Wir legen sie in die Schale",
     "question": {
       "kind": "order",
-      "prompt": "Was passiert zuerst? Tippe die Bilder der Reihe nach an.",
+      "prompt": "Ziehe die Bilder in die richtige Reihenfolge.",
       "items": [
         [
           "flower",
@@ -607,7 +607,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Die Kuh gibt Milch → Wir sammeln die Milch → Daraus wird Käse",
     "question": {
       "kind": "order",
-      "prompt": "Was passiert zuerst? Tippe die Bilder der Reihe nach an.",
+      "prompt": "Ziehe die Bilder in die richtige Reihenfolge.",
       "items": [
         [
           "cow",
@@ -639,7 +639,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Die Sonnenblume blüht → Ihre Kerne sind reif → Ein Vogel frisst die Kerne",
     "question": {
       "kind": "order",
-      "prompt": "Was passiert zuerst? Tippe die Bilder der Reihe nach an.",
+      "prompt": "Ziehe die Bilder in die richtige Reihenfolge.",
       "items": [
         [
           "sunflower",
@@ -671,7 +671,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Wir nehmen ein Tuch → Wir machen es nass → Wir wischen den Tisch",
     "question": {
       "kind": "order",
-      "prompt": "Was passiert zuerst? Tippe die Bilder der Reihe nach an.",
+      "prompt": "Ziehe die Bilder in die richtige Reihenfolge.",
       "items": [
         [
           "vocab-cloth",
@@ -703,7 +703,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Wir suchen ein Buch aus → Wir lesen es → Danach gehen wir schlafen",
     "question": {
       "kind": "order",
-      "prompt": "Was passiert zuerst? Tippe die Bilder der Reihe nach an.",
+      "prompt": "Ziehe die Bilder in die richtige Reihenfolge.",
       "items": [
         [
           "book",
@@ -735,7 +735,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Wir pflücken einen Apfel → Wir waschen ihn → Wir legen ihn in die Schale",
     "question": {
       "kind": "order",
-      "prompt": "Was passiert zuerst? Tippe die Bilder der Reihe nach an.",
+      "prompt": "Ziehe die Bilder in die richtige Reihenfolge.",
       "items": [
         [
           "forest-apple",
@@ -767,7 +767,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Wir nehmen einen Korb mit → Wir finden Pilze → Wir prüfen sie mit Erwachsenen",
     "question": {
       "kind": "order",
-      "prompt": "Was passiert zuerst? Tippe die Bilder der Reihe nach an.",
+      "prompt": "Ziehe die Bilder in die richtige Reihenfolge.",
       "items": [
         [
           "forest-basket",
@@ -799,7 +799,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Ein Brief kommt an → Wir öffnen ihn → Wir lesen ihn",
     "question": {
       "kind": "order",
-      "prompt": "Was passiert zuerst? Tippe die Bilder der Reihe nach an.",
+      "prompt": "Ziehe die Bilder in die richtige Reihenfolge.",
       "items": [
         [
           "letter",
@@ -831,7 +831,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Wir pflücken eine Blume → Wir stellen sie ins Wasser → Wir stellen sie auf den Tisch",
     "question": {
       "kind": "order",
-      "prompt": "Was passiert zuerst? Tippe die Bilder der Reihe nach an.",
+      "prompt": "Ziehe die Bilder in die richtige Reihenfolge.",
       "items": [
         [
           "forest-flower",

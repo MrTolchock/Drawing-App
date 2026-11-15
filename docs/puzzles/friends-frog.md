@@ -5,7 +5,7 @@
 - Stable puzzle ID: `friends-frog`
 - Host: frog
 - Related competence: **D.2.A.1.b** — Tierwörter lesen
-- Difficulty: 25 vertraute Tier- und Naturwörter
+- Difficulty: 25 Tiernamen; ausschliesslich Tierbilder
 - Pool: 25 explicit iterations; a round selects five.
 - Review: solve every unconfirmed iteration to approve it; × rejects with an optional note. The final celebration approves the puzzle only when all iterations passed. Exact revisions gate release; changes require review again.
 
@@ -37,12 +37,12 @@
 | `friends-frog/animal-8` | Bär — Bär | "bear" |
 | `friends-frog/animal-9` | Schaf — Schaf | "sheep" |
 | `friends-frog/animal-10` | Schwein — Schwein | "pig" |
-| `friends-frog/animal-11` | Ei — Ei | "egg" |
-| `friends-frog/animal-12` | Nest — Nest | "nest" |
+| `friends-frog/animal-11` | Fuchs — Fuchs | "forest-fox" |
+| `friends-frog/animal-12` | Ente — Ente | "duck-swim" |
 | `friends-frog/animal-13` | Ameise — Ameise | "ant" |
 | `friends-frog/animal-14` | Käfer — Käfer | "ladybird" |
 | `friends-frog/animal-15` | Schildkröte — Schildkröte | "tortoise" |
-| `friends-frog/animal-16` | Pilz — Pilz | "forest-mushroom" |
+| `friends-frog/animal-16` | Eichhörnchen — Eichhörnchen | "squirrel-sit" |
 | `friends-frog/animal-17` | Zebra — Zebra | "zebra" |
 | `friends-frog/animal-18` | Löwe — Löwe | "lion" |
 | `friends-frog/animal-19` | Pinguin — Pinguin | "penguin" |
@@ -99,7 +99,7 @@ These definitions are the same finite data used by the game and review previews.
       "choices": [
         "bee",
         "spider",
-        "egg"
+        "forest-fox"
       ]
     }
   },
@@ -114,7 +114,7 @@ These definitions are the same finite data used by the game and review previews.
       "choices": [
         "snail",
         "caterpillar",
-        "nest"
+        "duck-swim"
       ]
     }
   },
@@ -173,8 +173,8 @@ These definitions are the same finite data used by the game and review previews.
       "answer": "caterpillar",
       "choices": [
         "caterpillar",
-        "egg",
-        "forest-mushroom"
+        "forest-fox",
+        "squirrel-sit"
       ]
     }
   },
@@ -188,7 +188,7 @@ These definitions are the same finite data used by the game and review previews.
       "answer": "bear",
       "choices": [
         "bear",
-        "nest",
+        "duck-swim",
         "zebra"
       ]
     }
@@ -225,14 +225,14 @@ These definitions are the same finite data used by the game and review previews.
   },
   {
     "id": "friends-frog/animal-11",
-    "label": "Ei",
+    "label": "Fuchs",
     "question": {
       "kind": "reading",
       "prompt": "Welches Tier passt zum Wort?",
-      "text": "Ei",
-      "answer": "egg",
+      "text": "Fuchs",
+      "answer": "forest-fox",
       "choices": [
-        "egg",
+        "forest-fox",
         "tortoise",
         "camel"
       ]
@@ -240,15 +240,15 @@ These definitions are the same finite data used by the game and review previews.
   },
   {
     "id": "friends-frog/animal-12",
-    "label": "Nest",
+    "label": "Ente",
     "question": {
       "kind": "reading",
       "prompt": "Welches Tier passt zum Wort?",
-      "text": "Nest",
-      "answer": "nest",
+      "text": "Ente",
+      "answer": "duck-swim",
       "choices": [
-        "nest",
-        "forest-mushroom",
+        "duck-swim",
+        "squirrel-sit",
         "tiger"
       ]
     }
@@ -300,14 +300,14 @@ These definitions are the same finite data used by the game and review previews.
   },
   {
     "id": "friends-frog/animal-16",
-    "label": "Pilz",
+    "label": "Eichhörnchen",
     "question": {
       "kind": "reading",
       "prompt": "Welches Tier passt zum Wort?",
-      "text": "Pilz",
-      "answer": "forest-mushroom",
+      "text": "Eichhörnchen",
+      "answer": "squirrel-sit",
       "choices": [
-        "forest-mushroom",
+        "squirrel-sit",
         "camel",
         "frog"
       ]

@@ -40,4 +40,4 @@ for(const g of FK.friendsLibrary.catalogue()){
  if(pool.length<rules.puzzle.minimumPool||!p.competence||!p.difficulty)errors.push('Incomplete puzzle contract '+g.id);
 }
 if(!assets.has(rules.character.source))errors.push('Character identity atlas unavailable offline');
-if(errors.length){console.error(errors.join('\n'));process.exitCode=1;}else console.log(`Design checks passed: ${live.length} live sources, ${assets.size} offline files, 34 puzzle mappings, ${records.length} preserved originals and current document links.`);
+if(errors.length){console.error(errors.join('\n'));process.exitCode=1;}else console.log(`Design checks passed: ${live.length} live sources, ${assets.size} offline files, ${FK.friendsLibrary.catalogue().length} puzzle mappings, ${records.length} preserved originals and current document links.`);

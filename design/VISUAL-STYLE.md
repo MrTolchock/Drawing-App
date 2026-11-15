@@ -54,6 +54,6 @@ Use one clear task area, generous cream space and a small portrait/context row. 
 - Change character identity through the current sculpt/bake pipeline: `tools/characters/plush.js` → `tools/bake/` → GLBs → `tools/portraits/` → one portrait atlas. Update all surfaces together.
 - Keep UI icons in the shared symbol source. Do not introduce a one-off painted or Unicode control icon.
 - No runtime imports, styles, assets or offline downloads may come from `archive/` or retired design prototypes.
-- After shared visual changes, regenerate the puzzle implementation fingerprint. Existing editorial sign-offs become stale; adults must inspect the new revisions. Record the result in [Consistency audit](STYLE-AUDIT.md), run the design checks and capture the real game at phone and tablet sizes.
+- After shared visual changes, regenerate the puzzle implementation fingerprint. Sign-offs for affected puzzles become stale; adults must inspect the new revisions. Unrelated puzzles and unused atlas cells retain their sign-offs. Record the result in [Consistency audit](STYLE-AUDIT.md), run the design checks and capture the real game at phone and tablet sizes.
 
 Historical references and fixed mockups are preserved in the [archive](../archive/design-history/README.md); they are not competing specifications. New visual exceptions require an explicit update here, a reason and a real-renderer review before children see them.

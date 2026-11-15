@@ -1,6 +1,12 @@
 # Visual consistency audit
 
-Latest audit: 13 November 2026, Waldpost 9.3.27. The dated entries below record earlier releases. This checks the active game against [Visual style](VISUAL-STYLE.md) and [Puzzle blueprint](PUZZLE-BLUEPRINT.md). It records implementation evidence; it does not grant editorial approval.
+Latest audit: 15 November 2026, Waldpost 9.3.72. The dated entries below record earlier releases. This checks the active game against [Visual style](VISUAL-STYLE.md) and [Puzzle blueprint](PUZZLE-BLUEPRINT.md). It records implementation evidence; it does not grant editorial approval.
+
+## Published approval recovery and review comments — 9.3.72
+
+The [feedback record](REVIEW-FEEDBACK-2026-11-15.md) maps all 26 new comments to the final changes, including complete-puzzle requirements and three removals. The library now has 31 puzzles and 953 iterations. It includes the drawn wildlife fox, simpler hedgehog clues, animal-only word choices, corrected nature wording, direct berry/story placement, cleaner quantity/number controls and visible, matching mirror leaves. Phone/tablet evidence is linked in that record.
+
+Per-puzzle rendering/CSS/picture-cell fingerprints replace the global fingerprint. A fresh reader recovers the squirrel's existing published approval without a token or write; later compatible rejections still block it. Changed puzzles reopen automatically. Review history, local saves and the separate data branch remain intact. The implementation, browser and offline/update checks are recorded with the feedback; none grant new editorial approvals.
 
 ## Waldpost name — 9.3.27
 

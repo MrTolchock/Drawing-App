@@ -7,6 +7,7 @@ There is no manual **Spielstand sichern** control. The small automatic journey s
 ## What the log records
 
 - Real child play: puzzle/run/visit IDs, exact iteration IDs and revisions, actual selected answers, explicit correct/retry outcomes and foreground task times.
+- Berry/story placements also record origin, destination and resulting counts/order, for dragging and keyboard placement. Pointer paths are not recorded. Adult review and gallery previews remain excluded.
 - Rules requested, resets, reinspection and task-button actions, including input method and button size. Cancelled touch gestures are recorded separately from wrong answers.
 - Handwriting: authored target strokes, stroke starts/completions, missed starts, off-path pauses and early releases. No child's finger/stylus path, drawing, image or audio is recorded.
 - Flow: letters, friend visits, unavailable/wrong friends, map use, virtual-forest movement destinations, route failures, courier distance, home/sleep, app pauses and interrupted/resumed tasks.

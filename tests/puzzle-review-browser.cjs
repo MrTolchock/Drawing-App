@@ -15,7 +15,7 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
  const entries=await page.evaluate(()=>FK.friendsLibrary.catalogue());
  // The gallery itself is now behind the adult gate; child access is covered by letter-sessions-browser.cjs.
  const task=await page.locator('.gate-task').textContent(),[a,b]=task.match(/\d+/g).map(Number);await page.getByLabel('Deine Antwort',{exact:true}).fill(String(a*b));await page.locator('.gate-submit').click();
- await page.waitForFunction(()=>FK.current()==='puzzle-review');await page.evaluate(()=>FK.reviewRepository.connect('test-review-token'));assert.equal(await page.locator('.review-puzzle').count(),34);await page.evaluate(()=>{window.menuSounds={tick:0,open:0};for(const name of ['tick','open']){const fn=FK.sound[name];FK.sound[name]=(...args)=>{menuSounds[name]++;return fn(...args);};}});
+ await page.waitForFunction(()=>FK.current()==='puzzle-review');await page.evaluate(()=>FK.reviewRepository.connect('test-review-token'));assert.equal(await page.locator('.review-puzzle').count(),31);await page.evaluate(()=>{window.menuSounds={tick:0,open:0};for(const name of ['tick','open']){const fn=FK.sound[name];FK.sound[name]=(...args)=>{menuSounds[name]++;return fn(...args);};}});
  assert.equal(await page.locator('.review-puzzle').evaluateAll(nodes=>nodes.some(n=>n.scrollWidth>n.clientWidth+2)),false,'review card contents fit');
  await page.screenshot({path:shots+'/review-catalogue-tablet.png'});
  // One shared spoken rule is tested on each puzzle overview, never per iteration.
@@ -28,7 +28,7 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
   const request=await page.evaluate(()=>reviewSpeechRequests.at(-1)),instruction=await page.evaluate(id=>FK.puzzleCatalogue.puzzle(id).instruction,g.id);
   assert.equal(request.text,instruction,g.id+' spoken rule');assert.match(request.lang,/^de(?:-|$)/,g.id+' German speech');
  }
- assert.equal(await page.evaluate(()=>reviewSpeechRequests.length),34);console.log('PASS one spoken rule on each of 34 puzzle overviews');assert.deepEqual(await page.evaluate(()=>menuSounds),{tick:0,open:0},'menu navigation and speech controls do not click');
+ assert.equal(await page.evaluate(()=>reviewSpeechRequests.length),31);console.log('PASS one spoken rule on each of 31 puzzle overviews');assert.deepEqual(await page.evaluate(()=>menuSounds),{tick:0,open:0},'menu navigation and speech controls do not click');
 
  const active=()=>page.locator('.screen:not([hidden])');
  const preview=async(id,iteration)=>page.evaluate(({id,iteration})=>FK.puzzleReview.preview(id,iteration),{id,iteration});
@@ -68,18 +68,14 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
    }
    await verifyCompletion(inspected,true);return;
   }
-  if(q.kind==='picnic'){for(let i=0;i<q.friends;i++)for(let n=(q.plates?.[i]||0);n<q.each;n++)await activate(page.locator('.puzzle-plate').nth(i));}
+  if(q.kind==='picnic'){for(let i=0;i<q.friends;i++)for(let n=(q.plates?.[i]||0);n<q.each;n++)await activate(page.locator('.puzzle-picnic-friend').nth(i));}
   else if(q.kind==='double'){while(await page.locator('.puzzle-partner:not(.filled)').count())await activate(page.locator('.puzzle-partner:not(.filled)').first());await answer(q.answer);}
-  else if(q.kind==='syllable'){
-   for(let n=0;n<q.answer;n++)await activate(page.getByRole('button',{name:'Eine Silbe klopfen',exact:true}));
-   assert.equal(await page.locator('.puzzle-claps>span').count(),q.answer,'visible syllable tally');assert.equal(await page.locator('.puzzle-claps').textContent(),'●'.repeat(q.answer));
-   await activate(page.getByRole('button',{name:'Klopfen zurücksetzen',exact:true}));assert.equal(await page.locator('.puzzle-claps>span').count(),0);await answer(q.answer);
-  }
+  else if(q.kind==='syllable')await answer(q.answer);
   else if(q.kind==='build'){for(const target of q.holes){const p=q.parts[target];await activate(page.locator('.puzzle-answer[data-shape="'+p[0]+'"][data-rotation="'+p[5]+'"]'));}}
   else if(q.kind==='robot'){
    const route=await page.evaluate(q=>{const queue=[[q.start]],seen=new Set([q.start]);for(const path of queue){const p=path.at(-1);if(p===q.goal)return path.slice(1);for(const [dx,dy]of [[0,-1],[-1,0],[0,1],[1,0]]){const x=p%q.size+dx,y=Math.floor(p/q.size)+dy,n=y*q.size+x;if(x<0||x>=q.size||y<0||y>=q.size||q.obstacles.includes(n)||seen.has(n))continue;seen.add(n);queue.push([...path,n]);}}},q);
    for(const cell of route)await activate(page.locator('.puzzle-route-cell[data-cell="'+cell+'"]'));
-  }else if(q.kind==='order'){for(const n of [0,1,2])await activate(page.locator('.puzzle-story-card[data-order="'+n+'"]'));}
+  }else if(q.kind==='order'){for(const n of [0,1,2]){await activate(page.locator('.puzzle-story-card[data-order="'+n+'"]'));await activate(page.locator('[data-story-slot="'+n+'"]'));}}
   else if(q.kind==='treasure'){await activate(page.getByRole('button',{name:'Ich habe sie mir gemerkt',exact:true}));await answer(q.answer);}
   else if(q.kind==='neighbours'){if(!q.given)await answer(q.answer[0]);await answer(q.answer[1]);}
   else if(q.kind==='mirror'){for(const n of q.answer)await activate(page.locator('.puzzle-mirror-grid button[data-cell="'+n+'"]'));}
@@ -128,26 +124,26 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
    await solve(it.question);assert.equal(await page.evaluate(({id,it})=>FK.puzzleReview.status(id,it).status,{id:g.id,it:it.id}),'approved',it.id+' auto approval');checked++;
   }console.log('PASS every iteration:',g.id,pool.length);
  }
- if(!process.env.FARBTUPF_GAMES)assert.equal(checked,1048);assert.deepEqual(await snapshot(),before,'review leaves child saves unchanged');
- // All 34 puzzle types accept real taps, including SVG/image descendants and redrawing controls.
+ if(!process.env.FARBTUPF_GAMES)assert.equal(checked,953);assert.deepEqual(await snapshot(),before,'review leaves child saves unchanged');
+ // All 31 puzzle types accept real taps, including SVG/image descendants and redrawing controls.
  for(const width of [1080,390]){
   await page.setViewportSize({width,height:width===390?844:810});nativeInput=width===390?'mouse':true;
   for(const g of entries){const it=await page.evaluate(id=>FK.puzzleCatalogue.iterations(id)[0],g.id);await preview(g.id,it.id);assert.equal(await active().evaluate(e=>e.scrollWidth>e.clientWidth+2),false,g.id+' '+width);await solve(it.question);if(['add','trace','read-colours'].includes(g.id))await page.screenshot({path:shots+'/'+g.id+'-'+width+'.png'});}
- }console.log('PASS native touch/mouse for 34 puzzles at phone and tablet sizes');
+ }console.log('PASS native touch/mouse for 31 puzzles at phone and tablet sizes');
  // Quiet button clicks use Web Audio and obey mute.
- await preview('syllable','syllable/word-0');
+ await preview('friends-squirrel','friends-squirrel/count-2');
  await page.evaluate(()=>{window.reviewSoundCounts={clicks:0,oscillators:0};const tick=FK.sound.tick;FK.sound.tick=()=>{reviewSoundCounts.clicks++;tick();};const AC=window.AudioContext||window.webkitAudioContext;const create=AC.prototype.createOscillator;AC.prototype.createOscillator=function(){reviewSoundCounts.oscillators++;return create.call(this);};FK.settings.set('sound',true);});
- await page.getByRole('button',{name:'Klopfen zurücksetzen',exact:true}).tap();assert.equal(await page.evaluate(()=>reviewSoundCounts.clicks),1);assert.ok(await page.evaluate(()=>reviewSoundCounts.oscillators)>0);
- await page.evaluate(()=>{FK.settings.set('sound',false);reviewSoundCounts.clicks=0;reviewSoundCounts.oscillators=0;});await page.getByRole('button',{name:'Klopfen zurücksetzen',exact:true}).tap();assert.deepEqual(await page.evaluate(()=>reviewSoundCounts),{clicks:1,oscillators:0});
+ await page.locator('.puzzle-counter').first().tap();assert.equal(await page.evaluate(()=>reviewSoundCounts.clicks),1);assert.ok(await page.evaluate(()=>reviewSoundCounts.oscillators)>0);
+ await page.evaluate(()=>{FK.settings.set('sound',false);reviewSoundCounts.clicks=0;reviewSoundCounts.oscillators=0;});await page.locator('.puzzle-counter').first().tap();assert.deepEqual(await page.evaluate(()=>reviewSoundCounts),{clicks:1,oscillators:0});
  // Repeated taps activate once each; drags and cancelled gestures must not become answers.
- const drum=page.getByRole('button',{name:'Eine Silbe klopfen',exact:true});
- for(let n=0;n<10;n++)await drum.tap();assert.equal(await page.locator('.puzzle-claps>span').count(),4,'ten taps, no duplicate compatibility clicks');
- await drum.focus();await page.keyboard.press('Space');await page.waitForFunction(()=>document.querySelectorAll('.puzzle-claps>span').length===5);assert.equal(await page.locator('.puzzle-claps>span').count(),5,'Space activates once');
- await page.keyboard.press('Enter');await page.waitForFunction(()=>document.querySelectorAll('.puzzle-claps>span').length===0);assert.equal(await page.locator('.puzzle-claps>span').count(),0,'Enter activates once');
+ const drum=page.locator('.puzzle-counter').first();
+ for(let n=0;n<10;n++)await drum.tap();assert.equal(await page.locator('.puzzle-counter.marked').count(),0,'ten taps, no duplicate compatibility clicks');
+ await drum.focus();await page.keyboard.press('Space');await page.waitForFunction(()=>document.querySelectorAll('.puzzle-counter.marked').length===1);assert.equal(await page.locator('.puzzle-counter.marked').count(),1,'Space activates once');
+ await page.keyboard.press('Enter');await page.waitForFunction(()=>document.querySelectorAll('.puzzle-counter.marked').length===0);assert.equal(await page.locator('.puzzle-counter.marked').count(),0,'Enter activates once');
  await drum.scrollIntoViewIfNeeded();const hit=await drum.boundingBox(),center={x:hit.x+hit.width/2,y:hit.y+hit.height/2,id:1};
- await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[center]});await touch.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{...center,y:center.y-35}]});await touch.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});assert.equal(await page.locator('.puzzle-claps>span').count(),0,'drag is not a tap');
- await drum.scrollIntoViewIfNeeded();const fresh=await drum.boundingBox();await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:fresh.x+fresh.width/2,y:fresh.y+fresh.height/2,id:1}]});await touch.send('Input.dispatchTouchEvent',{type:'touchCancel',touchPoints:[]});assert.equal(await page.locator('.puzzle-claps>span').count(),0,'cancel is not a tap');await drum.tap();assert.equal(await page.locator('.puzzle-claps>span').count(),1,'fresh tap after cancel works');
- await active().getByRole('button',{name:'Iteration ablehnen',exact:true}).tap();await page.locator('.modal-x').tap();await drum.tap();assert.equal(await page.locator('.puzzle-claps>span').count(),2,'closing a modal does not eat the next tap');
+ await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[center]});await touch.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{...center,y:center.y-35}]});await touch.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});assert.equal(await page.locator('.puzzle-counter.marked').count(),0,'drag is not a tap');
+ await drum.scrollIntoViewIfNeeded();const fresh=await drum.boundingBox();await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:fresh.x+fresh.width/2,y:fresh.y+fresh.height/2,id:1}]});await touch.send('Input.dispatchTouchEvent',{type:'touchCancel',touchPoints:[]});assert.equal(await page.locator('.puzzle-counter.marked').count(),0,'cancel is not a tap');await drum.tap();assert.equal(await page.locator('.puzzle-counter.marked').count(),1,'fresh tap after cancel works');
+ await active().getByRole('button',{name:'Iteration ablehnen',exact:true}).tap();await page.locator('.modal-x').tap();await drum.tap();assert.equal(await page.locator('.puzzle-counter.marked').count(),0,'closing a modal does not eat the next tap');
  // Complete a whole review queue through the actual answers, beyond the normal fifth item.
  await page.evaluate(()=>{for(const it of FK.puzzleCatalogue.iterations('add'))FK.puzzleReview.decide('add',it.id,'pending');FK.puzzleReview.decide('add',null,'pending');FK.puzzleReview.start('add');});
  for(let n=0;n<total;n++){

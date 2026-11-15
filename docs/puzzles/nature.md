@@ -30,27 +30,27 @@
 | `nature/clue-1` | Ich habe Flossen. Im Wasser schwimme ich. — Ich habe Flossen. Im Wasser schwimme ich. | "fish" |
 | `nature/clue-2` | Ich bin oft grün. Am Teich quake ich. — Ich bin oft grün. Am Teich quake ich. | "frog" |
 | `nature/clue-3` | Ich habe sechs Beine. Aus Nektar mache ich Honig. — Ich habe sechs Beine. Aus Nektar mache ich Honig. | "bee" |
-| `nature/clue-4` | Ich belle. Meine Nase riecht sehr gut. — Ich belle. Meine Nase riecht sehr gut. | "dog" |
+| `nature/clue-4` | Ich belle. Ich kann gut riechen. — Ich belle. Ich kann gut riechen. | "dog" |
 | `nature/clue-5` | Ich miaue. Meine Pfoten sind weich. — Ich miaue. Meine Pfoten sind weich. | "cat" |
 | `nature/clue-6` | Ich bin gross. Meine Milch wird getrunken. — Ich bin gross. Meine Milch wird getrunken. | "cow" |
 | `nature/clue-7` | Ich habe acht Beine. Ich baue ein Netz. — Ich habe acht Beine. Ich baue ein Netz. | "spider" |
 | `nature/clue-8` | Ich krieche langsam. Mein Haus trage ich mit. — Ich krieche langsam. Mein Haus trage ich mit. | "snail" |
 | `nature/clue-9` | Ich habe vier Beine. Mein Panzer schützt mich. — Ich habe vier Beine. Mein Panzer schützt mich. | "tortoise" |
 | `nature/clue-10` | Ich habe lange Ohren. Ich hüpfe über die Wiese. — Ich habe lange Ohren. Ich hüpfe über die Wiese. | "rabbit" |
-| `nature/clue-11` | Ich hatte als Raupe viele Beine. Nun habe ich bunte Flügel. — Ich hatte als Raupe viele Beine. Nun habe ich bunte Flügel. | "butterfly" |
+| `nature/clue-11` | Aus einer Raupe wachse ich heran. Ich habe bunte Flügel. — Aus einer Raupe wachse ich heran. Ich habe bunte Flügel. | "butterfly" |
 | `nature/clue-12` | Ich habe Federn. Mein Nest ist im Baum. — Ich habe Federn. Mein Nest ist im Baum. | "bird" |
 | `nature/clue-13` | Ich bin klein und rot. Mein Rücken hat schwarze Punkte. — Ich bin klein und rot. Mein Rücken hat schwarze Punkte. | "ladybird" |
-| `nature/clue-14` | Ich trage Wolle. Auf der Weide blöke ich. — Ich trage Wolle. Auf der Weide blöke ich. | "sheep" |
+| `nature/clue-14` | Ich habe weiche Wolle. Auf der Weide blöke ich. — Ich habe weiche Wolle. Auf der Weide blöke ich. | "sheep" |
 | `nature/clue-15` | Ich habe einen buschigen Schwanz. Ich sammle Nüsse. — Ich habe einen buschigen Schwanz. Ich sammle Nüsse. | "squirrel" |
 | `nature/clue-16` | Ich bin sehr gross. Mit dem Rüssel trinke ich. — Ich bin sehr gross. Mit dem Rüssel trinke ich. | "elephant" |
-| `nature/clue-17` | Mein Hals ist sehr lang. Ich erreiche hohe Blätter. — Mein Hals ist sehr lang. Ich erreiche hohe Blätter. | "giraffe" |
-| `nature/clue-18` | Ich bin eine grosse Katze. Das Männchen trägt eine Mähne. — Ich bin eine grosse Katze. Das Männchen trägt eine Mähne. | "lion" |
+| `nature/clue-17` | Mein Hals ist sehr lang. Ich erreiche hohe Bäume. — Mein Hals ist sehr lang. Ich erreiche hohe Bäume. | "giraffe" |
+| `nature/clue-18` | Ich bin eine grosse Katze. Ich habe eine Mähne. — Ich bin eine grosse Katze. Ich habe eine Mähne. | "lion" |
 | `nature/clue-19` | Ich sehe einem Pferd ähnlich. Mein Fell ist schwarz-weiss gestreift. — Ich sehe einem Pferd ähnlich. Mein Fell ist schwarz-weiss gestreift. | "zebra" |
-| `nature/clue-20` | Ich kann lange ohne Wasser auskommen. Auf dem Rücken habe ich Höcker. — Ich kann lange ohne Wasser auskommen. Auf dem Rücken habe ich Höcker. | "camel" |
+| `nature/clue-20` | Ich komme lange aus, ohne zu trinken. Auf dem Rücken habe ich Höcker. — Ich komme lange aus, ohne zu trinken. Auf dem Rücken habe ich Höcker. | "camel" |
 | `nature/clue-21` | Ich bin eine grosse Katze. Mein orangefarbenes Fell hat schwarze Streifen. — Ich bin eine grosse Katze. Mein orangefarbenes Fell hat schwarze Streifen. | "tiger" |
 | `nature/clue-22` | Ich bin ein Vogel. Ich kann gut schwimmen, aber nicht fliegen. — Ich bin ein Vogel. Ich kann gut schwimmen, aber nicht fliegen. | "penguin" |
 | `nature/clue-23` | Ich grabe einen Bau in der Erde. Mein Gesicht hat schwarze und weisse Streifen. — Ich grabe einen Bau in der Erde. Mein Gesicht hat schwarze und weisse Streifen. | "badger" |
-| `nature/clue-24` | Meine Zähne fällen Bäume. Mit Ästen baue ich einen Damm. — Meine Zähne fällen Bäume. Mit Ästen baue ich einen Damm. | "beaver" |
+| `nature/clue-24` | Mit meinen Zähnen fälle ich Bäume. Mit Ästen baue ich einen Damm. — Mit meinen Zähnen fälle ich Bäume. Mit Ästen baue ich einen Damm. | "beaver" |
 
 ## Exact definitions
 
@@ -120,11 +120,11 @@ These definitions are the same finite data used by the game and review previews.
   },
   {
     "id": "nature/clue-4",
-    "label": "Ich belle. Meine Nase riecht sehr gut.",
+    "label": "Ich belle. Ich kann gut riechen.",
     "question": {
       "kind": "reading",
       "prompt": "Welches Tier passt?",
-      "text": "Ich belle. Meine Nase riecht sehr gut.",
+      "text": "Ich belle. Ich kann gut riechen.",
       "answer": "dog",
       "choices": [
         "dog",
@@ -225,11 +225,11 @@ These definitions are the same finite data used by the game and review previews.
   },
   {
     "id": "nature/clue-11",
-    "label": "Ich hatte als Raupe viele Beine. Nun habe ich bunte Flügel.",
+    "label": "Aus einer Raupe wachse ich heran. Ich habe bunte Flügel.",
     "question": {
       "kind": "reading",
       "prompt": "Welches Tier passt?",
-      "text": "Ich hatte als Raupe viele Beine. Nun habe ich bunte Flügel.",
+      "text": "Aus einer Raupe wachse ich heran. Ich habe bunte Flügel.",
       "answer": "butterfly",
       "choices": [
         "butterfly",
@@ -270,11 +270,11 @@ These definitions are the same finite data used by the game and review previews.
   },
   {
     "id": "nature/clue-14",
-    "label": "Ich trage Wolle. Auf der Weide blöke ich.",
+    "label": "Ich habe weiche Wolle. Auf der Weide blöke ich.",
     "question": {
       "kind": "reading",
       "prompt": "Welches Tier passt?",
-      "text": "Ich trage Wolle. Auf der Weide blöke ich.",
+      "text": "Ich habe weiche Wolle. Auf der Weide blöke ich.",
       "answer": "sheep",
       "choices": [
         "sheep",
@@ -315,11 +315,11 @@ These definitions are the same finite data used by the game and review previews.
   },
   {
     "id": "nature/clue-17",
-    "label": "Mein Hals ist sehr lang. Ich erreiche hohe Blätter.",
+    "label": "Mein Hals ist sehr lang. Ich erreiche hohe Bäume.",
     "question": {
       "kind": "reading",
       "prompt": "Welches Tier passt?",
-      "text": "Mein Hals ist sehr lang. Ich erreiche hohe Blätter.",
+      "text": "Mein Hals ist sehr lang. Ich erreiche hohe Bäume.",
       "answer": "giraffe",
       "choices": [
         "giraffe",
@@ -330,11 +330,11 @@ These definitions are the same finite data used by the game and review previews.
   },
   {
     "id": "nature/clue-18",
-    "label": "Ich bin eine grosse Katze. Das Männchen trägt eine Mähne.",
+    "label": "Ich bin eine grosse Katze. Ich habe eine Mähne.",
     "question": {
       "kind": "reading",
       "prompt": "Welches Tier passt?",
-      "text": "Ich bin eine grosse Katze. Das Männchen trägt eine Mähne.",
+      "text": "Ich bin eine grosse Katze. Ich habe eine Mähne.",
       "answer": "lion",
       "choices": [
         "lion",
@@ -360,11 +360,11 @@ These definitions are the same finite data used by the game and review previews.
   },
   {
     "id": "nature/clue-20",
-    "label": "Ich kann lange ohne Wasser auskommen. Auf dem Rücken habe ich Höcker.",
+    "label": "Ich komme lange aus, ohne zu trinken. Auf dem Rücken habe ich Höcker.",
     "question": {
       "kind": "reading",
       "prompt": "Welches Tier passt?",
-      "text": "Ich kann lange ohne Wasser auskommen. Auf dem Rücken habe ich Höcker.",
+      "text": "Ich komme lange aus, ohne zu trinken. Auf dem Rücken habe ich Höcker.",
       "answer": "camel",
       "choices": [
         "camel",
@@ -420,11 +420,11 @@ These definitions are the same finite data used by the game and review previews.
   },
   {
     "id": "nature/clue-24",
-    "label": "Meine Zähne fällen Bäume. Mit Ästen baue ich einen Damm.",
+    "label": "Mit meinen Zähnen fälle ich Bäume. Mit Ästen baue ich einen Damm.",
     "question": {
       "kind": "reading",
       "prompt": "Welches Tier passt?",
-      "text": "Meine Zähne fällen Bäume. Mit Ästen baue ich einen Damm.",
+      "text": "Mit meinen Zähnen fälle ich Bäume. Mit Ästen baue ich einen Damm.",
       "answer": "beaver",
       "choices": [
         "beaver",

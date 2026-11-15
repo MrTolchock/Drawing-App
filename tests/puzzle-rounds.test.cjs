@@ -5,10 +5,10 @@ function setup(saved){
  for(const path of ['js/learn/glyphs.js','js/learn/routes.js','js/friends/puzzles.js','js/friends/library.js','js/friends/puzzle-rounds.js','js/friends/puzzle-catalogue.js'])vm.runInContext(fs.readFileSync(path,'utf8'),ctx);
  return {FK,memory};
 }
-test('all 34 active puzzles have one route, one instruction and five tasks; retired games are absent',()=>{
- const {FK}=setup(),entries=FK.friendsLibrary.catalogue();assert.equal(entries.length,34);assert.equal(new Set(entries.map(g=>g.id)).size,34);
+test('all 31 active puzzles have one route, one instruction and five tasks; retired games are absent',()=>{
+ const {FK}=setup(),entries=FK.friendsLibrary.catalogue();assert.equal(entries.length,31);assert.equal(new Set(entries.map(g=>g.id)).size,31);
  for(const g of entries){assert.ok(FK.puzzleRounds.instructions[g.id],g.id);assert.ok(g.host);assert.ok(['puzzle','trace'].includes(g.screen));}
- assert.ok(!entries.some(g=>['rhyme','dots'].includes(g.id)));assert.ok(entries.some(g=>g.id==='trace-numbers'));
+ assert.ok(!entries.some(g=>['rhyme','dots','double','shapes','survey'].includes(g.id)));assert.ok(entries.some(g=>g.id==='trace-numbers'));
 });
 test('generated questions stay deterministic, solvable and distinct in a five-task session',()=>{
  const {FK}=setup(),R=FK.puzzleRounds;

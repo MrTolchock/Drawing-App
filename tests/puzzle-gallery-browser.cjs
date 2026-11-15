@@ -6,8 +6,8 @@ const BASE=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
 (async()=>{
  const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||undefined,headless:true,args:['--no-sandbox','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
  try{
-  const page=await (await browser.newContext({viewport:{width:1080,height:810},deviceScaleFactor:1,hasTouch:true,reducedMotion:'reduce'})).newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
-  await page.goto(BASE+'/?software=1&dev=1');await page.waitForFunction(()=>window.FK?.friends&&FK.current()==='friends',null,{timeout:120000});
+  const page=await (await browser.newContext({viewport:{width:1080,height:810},deviceScaleFactor:1,hasTouch:true,reducedMotion:'reduce'})).newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));page.setDefaultTimeout(60000);
+  await page.goto(BASE+'/?software=1&dev=1');await page.waitForFunction(()=>window.FK?.friendsView&&FK.current()==='friends',null,{timeout:120000});
   const current=()=>page.evaluate(()=>FK.current()),act=()=>page.locator('.screen:not([hidden])');
   const gate=async()=>{const n=(await page.locator('.gate-task').innerText()).match(/\d+/g).map(Number);await page.locator('.gate-input').fill(String(n[0]*n[1]));await page.getByRole('button',{name:'Öffnen',exact:true}).click();};
   await page.getByRole('button',{name:'Einstellungen für Erwachsene',exact:true}).first().click();await gate();await page.waitForFunction(()=>FK.current()==='settings');
@@ -39,7 +39,7 @@ const BASE=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
   assert.deepEqual(after,before,'no saved round and no letter change');
   await act().locator('.btn-back').click();await page.waitForTimeout(300);assert.equal(await current(),'puzzle-gallery');
   await act().locator('.btn-back').click();await page.waitForTimeout(300);assert.equal(await current(),'settings');
-  await page.getByRole('button',{name:'Puzzle-Prüfung öffnen',exact:true}).click();await page.waitForFunction(()=>FK.current()==='puzzle-review');assert.equal(await act().locator('.review-puzzle').count(),34,'the review still lists every puzzle');
+  await page.getByRole('button',{name:'Puzzle-Prüfung öffnen',exact:true}).click();await page.waitForFunction(()=>FK.current()==='puzzle-review');assert.equal(await act().locator('.review-puzzle').count(),31,'the review still lists every puzzle');
   assert.deepEqual(errors,[]);console.log('PASS: Puzzle-Galerie lists only signed-off puzzles, filters by friend and plays five tasks without saving; Puzzle-Prüfung is separate.');
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exit(1);});

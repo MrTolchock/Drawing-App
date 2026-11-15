@@ -1,0 +1,28 @@
+{
+  "date": "2026-11-15",
+  "version": "9.3.72",
+  "reviewFileSha": "d81c6130cc42f9ea5fe8127d37989559d443811e",
+  "reviewFileEntries": 817,
+  "newCommentsHandled": 26,
+  "activePuzzles": 31,
+  "finiteIterationsSolved": 953,
+  "phoneTabletLayouts": 62,
+  "modelChecks": {
+    "fullPass": 111,
+    "finalFocusedPass": 52
+  },
+  "passed": [
+    "catalogue/fingerprint check",
+    "design/archive checks (610 preserved originals; 14 visual baselines)",
+    "all finite renderer solutions",
+    "native touch/mouse for every active puzzle",
+    "targeted dragging/return/swap/cancel/keyboard and saved-work checks",
+    "read-only squirrel approval recovery and later rejection",
+    "GitHub sync, gallery, navigation and seen-evidence UI",
+    "parent letter journey and durable local log",
+    "local play-log placements, export, developer mode and isolated deletion",
+    "installed-app upgrade from 9.3.71, offline/failed-download recovery and retained saves"
+  ],
+  "editorialApprovalsCreated": 0,
+  "productionReviewWrites": 0
+}

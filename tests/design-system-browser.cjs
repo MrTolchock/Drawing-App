@@ -60,5 +60,5 @@ try{
    }
   }
  }
- assert.deepEqual(errors,[]);assert.deepEqual(missing,[]);fs.writeFileSync(out+'/report.json',JSON.stringify(report,null,2)+'\n');console.log('Visual contract passed: 34 puzzles × 2 viewports, font/art roles, five leaves, speech on puzzle overview, no hints, current routes and preserved legacy storage.');
+ assert.deepEqual(errors,[]);assert.deepEqual(missing,[]);fs.writeFileSync(out+'/report.json',JSON.stringify(report,null,2)+'\n');console.log('Visual contract passed: 31 puzzles × 2 viewports, font/art roles, five leaves, speech on puzzle overview, no hints, current routes and preserved legacy storage.');
 }finally{await browser.close();}})().catch(e=>{console.error(e);process.exitCode=1;});

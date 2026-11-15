@@ -5,7 +5,7 @@
 - Stable puzzle ID: `picnic`
 - Host: squirrel
 - Related competence: **MA.1.A.4.a (Übung)** — Eins zu eins gerecht verteilen
-- Difficulty: 2–4 Freunde; 1–10 Beeren je Teller; insgesamt höchstens 20
+- Difficulty: 2–4 Freunde; 1–10 Beeren je Freund; insgesamt höchstens 20
 - Pool: 25 explicit iterations; a round selects five.
 - Review: solve every unconfirmed iteration to approve it; × rejects with an optional note. The final celebration approves the puzzle only when all iterations passed. Exact revisions gate release; changes require review again.
 

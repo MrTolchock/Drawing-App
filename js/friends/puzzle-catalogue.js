@@ -9,20 +9,18 @@
     'friends-owl':['D.2.A.1.b; D.2.B.1.b','Kurze Sätze verstehen','Ein kurzer Satz über ein Tier; immer zwei Bildantworten'],
     'friends-beaver':['MA.2.A.1.a','Formen in einer Matrix erkennen','Drei Reihen mit je drei Formen: Kreis, Dreieck, Quadrat'],
     'friends-mouse':['D.2.A.1.b','Wörter mit Bildern verbinden','25 vertraute Nomen; eingeführte Buchstaben'],
-    'friends-hedgehog':['NMG.2.4.a; D.2.B.1.b','Tiermerkmale erkennen und Fragen lesen','25 kurze Fragen zu Schweizer Waldtieren; drei Bildantworten'],
+    'friends-hedgehog':['NMG.2.4.a; D.2.B.1.b','Tiermerkmale erkennen und Fragen lesen','25 kurze Fragen zu sichtbaren Tiermerkmalen; zwei Bildantworten'],
     'friends-fish':['MA.1.A.2.a','Fische zählen','0–20; Vierer- und Fünferstruktur'],
     'friends-deer':['NMG.2.1.a; D.2.B.1.b','Lebensräume und Nahrung zuordnen','25 kurze Naturfragen; drei Bildantworten'],
     'friends-kingfisher':['MA.1.A.2.a','Dinge am Bach zählen','2–20; sechs verschiedene Gegenstände'],
-    'friends-frog':['D.2.A.1.b','Tierwörter lesen','25 vertraute Tier- und Naturwörter'],
+    'friends-frog':['D.2.A.1.b','Tierwörter lesen','25 Tiernamen; ausschliesslich Tierbilder'],
     'friends-badger':['NMG.2.3.a; D.2.B.1.b','Wachstum und Naturveränderungen erkennen','25 kurze Fragen zu Wetter, Pflanzen und Entwicklung'],
     count:['MA.1.A.2.a','Gezielt Mengen zählen','6–15 Marienkäfer zwischen Bienen und Schnecken'],
     add:['MA.1.A.3.a','Sichtbare Gruppen addieren','Zwei positive Summanden; Summe höchstens 10'],
     pattern:['MA.2.A.2.a','Wiederholungsmuster fortsetzen','AAB, ABB, ABC, ABAC, AABC; zwei sichtbare Einheiten'],
     nature:['D.2.B.1.b; NMG.2.4.a','Naturhinweise lesend verstehen','25 Rätsel; zwei kurze Merkmale'],
     rocket:['MA.1.A.4.b','Mengen ergänzen','Gesamtmenge 5–10; besetzte und freie Plätze'],
-    picnic:['MA.1.A.4.a (Übung)','Eins zu eins gerecht verteilen','2–4 Freunde; 1–10 Beeren je Teller; insgesamt höchstens 20'],
-    double:['MA.1.A.3.a','Gleich grosse Gruppen verdoppeln','2–10 Nüsse; bis 20; teilweise vorhandene Partner ergänzen'],
-    shapes:['MA.2.A.1.a; MA.2.A.2.b (Übung)','Form und Lage mit einer Vorlage vergleichen','Fünf Bilder, je zwei fehlende Teile und sichtbare Vorlage'],
+    picnic:['MA.1.A.4.a (Übung)','Eins zu eins gerecht verteilen','2–4 Freunde; 1–10 Beeren je Freund; insgesamt höchstens 20'],
     syllable:['D.1.A.1.b','Wörter in Silben zerlegen','1–3 Silben; vertraute Bildwörter'],
     robot:['MA.2.A.1.c (Unterstützung)','Benachbarte Schritte im Raum planen','4 × 4; sichtbares Ziel und gesperrte Hecken'],
     sequence:['D.2.B.1.b (beim Lesen)','Zeitliche Abfolgen ordnen','25 Bildgeschichten mit drei beschrifteten Schritten'],
@@ -31,7 +29,6 @@
     compare:['MA.1.A.1.a (Übung)','Mengen vergleichen','1–10 Beeren; mehr oder gleich viele'],
     mirror:['MA.2.A.2.c','Ein Muster spiegeln','3 × 3; drei bis fünf Blätter; senkrechte Spiegelachse'],
     vowels:['D.4.A.1.c (Unterstützung)','Einen Vokal ergänzen','Bildwörter; keine Lücke innerhalb von au/ei/ie/eu/äu'],
-    survey:['MA.3.C.1.a/b','Eine Bildumfrage auswerten','Drei Obstsorten; 1–6 Stimmen; zählen oder eindeutiges Maximum'],
     'read-puzzle':['D.2.A.1.b','Silben zu Wörtern verbinden','28 Bildwörter; zwei bis drei Silben; ein Ablenker'],
     'read-word':['D.2.A.1.b','Waldwörter lesen','Mindestens 25 konkrete Bildwörter'],
     'read-leaves':['D.2.A.1.b (Übung)','Silben visuell unterscheiden','32 Silben: m/l/s/n/r/f/t/p mit a/i/o/u'],
@@ -89,41 +86,41 @@
   }
   const extra={
     deer:[['Wo sammelt der Schmetterling Nektar?','flower','water','egg'],['Was knabbert der Biber ab?','tree','fish','egg'],['Was pickt der Vogel aus der Erde?','vocab-worm','boat','moon'],['Was frisst die Schnecke?','leaf','fish','egg'],['Wo sucht der Igel kleine Tiere?','leaf','cloud','moon'],['Was stellt die Biene aus Nektar her?','honey','cheese','egg'],['Wo kann der Frosch schwimmen?','water','cloud','tree'],['Was knabbert der Hase auf der Wiese?','leaf','moon','nest'],['Was hängt an einer Weinrebe?','grapes','egg','fish']],
-    badger:[['Was braucht eine Pflanze neben Wasser zum Wachsen?','sun','moon','cheese'],['Was wird aus einer Apfelblüte?','apple','egg','snowman'],['Was wächst aus einem Samen in der Erde?','plant','fish','moon'],['Was sammeln wir im Herbst unter der Eiche?','forest-nut','egg','snowman'],['Was sehen wir bei klarem Himmel in der Nacht?','moon','sun','sunflower'],['Was wächst auf der Erdbeerpflanze?','strawberry','carrot','egg'],['Womit giessen wir die Pflanzen?','bucket','fork','hat'],['Was schützt einen Samen in der Erde vor dem Austrocknen?','water','cheese','snowman'],['Was blüht zuerst, bevor die Birne reif wird?','flower','fish','egg']]
+    badger:[['Was braucht eine Pflanze zum Wachsen?','sun','moon','cheese'],['Was wird aus einer Apfelblüte?','apple','egg','snowman'],['Was wächst aus einem Samen in der Erde?','plant','fish','moon'],['Was sammeln wir im Herbst unter der Eiche?','forest-nut','egg','snowman'],['Was sehen wir bei klarem Himmel in der Nacht?','moon','sun','sunflower'],['Was wächst auf der Erdbeerpflanze?','strawberry','carrot','egg'],['Womit giessen wir die Pflanzen?','bucket','fork','hat'],['Was schützt einen Samen in der Erde vor dem Austrocknen?','water','cheese','snowman'],['Was ernten wir vom Birnbaum?','pear','fish','egg']]
   };
   const forestRiddles=[
-    ['Wer trägt Stacheln auf dem Rücken?','hedgehog','mouse-sit','frog-sit'],
-    ['Welcher kleine Vogel hat eine blaue Kappe?','bird-sit','forest-robin','forest-woodpecker'],
-    ['Wer schwimmt mit Flossen im Bach?','fish-swim','beaver','snail'],
-    ['Wer sammelt Nektar und macht Honig?','bee','spider','ant'],
-    ['Wer trägt sein Haus auf dem Rücken?','snail','caterpillar','vocab-worm'],
-    ['Wer hat acht Beine und baut ein Netz?','spider','ant','ladybird'],
-    ['Wer war eine Raupe und hat nun bunte Flügel?','butterfly','bee','bird-sit'],
-    ['Wer frisst Blätter und wird ein Schmetterling?','caterpillar','vocab-worm','snail'],
-    ['Welcher kleine rote Käfer hat schwarze Punkte?','ladybird','ant','bee'],
-    ['Wer hat lange Ohren und kräftige Hinterbeine?','hare-sit','hedgehog','mouse-sit'],
-    ['Wer hat einen buschigen Schwanz und sammelt Nüsse?','squirrel-sit','beaver','frog-sit'],
-    ['Wer hat schwarze und weisse Streifen im Gesicht?','badger-walk','fox-run','squirrel-sit'],
-    ['Wer hat einen breiten, flachen Schwanz?','beaver','mouse-sit','hare-sit'],
-    ['Wer hüpft am Teich und quakt?','frog-sit','mouse-sit','ant'],
-    ['Wer lebt mit vielen anderen in einem Ameisenhaufen?','ant','spider','ladybird'],
-    ['Wer hat einen langen, dünnen Schwanz?','mouse-sit','hare-sit','badger-walk'],
-    ['Wer hat rotes Fell und eine weisse Schwanzspitze?','fox-run','badger-walk','roe-stand'],
-    ['Wer hat schlanke Beine und ein kleines Geweih?','roe-stand','hare-sit','fox-run'],
-    ['Wer klopft mit seinem Schnabel an Baumstämme?','forest-woodpecker','forest-robin','bird-sit'],
-    ['Wer hängt beim Schlafen mit dem Kopf nach unten?','forest-bat','forest-owl','squirrel-sit'],
-    ['Welcher Vogel jagt in der Nacht?','forest-owl','forest-robin','forest-woodpecker'],
-    ['Welcher kleine Vogel hat eine orangerote Brust?','forest-robin','bird-sit','forest-woodpecker'],
-    ['Welche Waldkatze hat Pinsel an den Ohren?','forest-lynx','fox-run','badger-walk'],
-    ['Wer hat braunes Fell und einen gelben Kehlfleck?','forest-marten','fox-run','forest-lynx'],
-    ['Wer lebt in der Erde und hat keine Beine?','vocab-worm','ant','caterpillar']
+    ['Wer hat Stacheln?','hedgehog','mouse-sit'],
+    ['Wer hat eine blaue Kappe?','bird-sit','forest-robin'],
+    ['Wer hat Flossen?','fish-swim','snail'],
+    ['Wer macht Honig?','bee','spider'],
+    ['Wer trägt ein Schneckenhaus?','snail','caterpillar'],
+    ['Wer hat acht Beine?','spider','bird-sit'],
+    ['Wer hat bunte Flügel?','butterfly','vocab-worm'],
+    ['Wer wird ein Schmetterling?','caterpillar','snail'],
+    ['Wer ist rot mit schwarzen Punkten?','ladybird','bee'],
+    ['Wer hat lange Ohren?','hare-sit','hedgehog'],
+    ['Wer sammelt Nüsse?','squirrel-sit','frog-sit'],
+    ['Wer hat Streifen im Gesicht?','badger-walk','forest-fox'],
+    ['Wer hat einen flachen Schwanz?','beaver','hare-sit'],
+    ['Wer quakt?','frog-sit','mouse-sit'],
+    ['Wer lebt im Ameisenhaufen?','ant','spider'],
+    ['Wer hat einen dünnen Schwanz?','mouse-sit','squirrel-sit'],
+    ['Wer hat eine weisse Schwanzspitze?','forest-fox','badger-walk'],
+    ['Wer hat ein kleines Geweih?','roe-stand','hare-sit'],
+    ['Wer klopft am Baum?','forest-woodpecker','frog-sit'],
+    ['Wer schläft mit dem Kopf unten?','forest-bat','squirrel-sit'],
+    ['Wer hat grosse, runde Augen?','forest-owl','vocab-worm'],
+    ['Wer hat eine rote Brust?','forest-robin','bird-sit'],
+    ['Wer hat Pinsel an den Ohren?','forest-lynx','forest-fox'],
+    ['Wer hat einen hellen Fleck am Hals?','forest-marten','vocab-worm'],
+    ['Wer kriecht ohne Beine?','vocab-worm','ant']
   ];
-  forestRiddles.forEach(([text,answer,...wrong],i)=>add('friends-hedgehog','riddle-'+i,text,{kind:'reading',prompt:'Welches Bild passt zur Frage?',text,answer,choices:[answer,...wrong]}));
+  forestRiddles.forEach(([text,answer,wrong],i)=>add('friends-hedgehog','riddle-'+i,text,{kind:'reading',prompt:'Welches Tier passt?',text,answer,choices:[answer,wrong]}));
   for(const host of ['deer','badger']){
     const list=C.pools[host].map(t=>[t.target,t.answer,...t.choices.filter(c=>c!==t.answer)]).concat(extra[host]);
     list.forEach(([text,answer,...wrong],i)=>add('friends-'+host,'riddle-'+i,text,{kind:'reading',prompt:'Welches Bild passt zur Frage?',text,answer,choices:[answer,...wrong]}));
   }
-  const animals=C.pools.frog.map(t=>[t.target,t.answer]).concat([['Zebra','zebra'],['Löwe','lion'],['Pinguin','penguin'],['Kamel','camel'],['Tiger','tiger'],['Elefant','elephant'],['Giraffe','giraffe'],['Dachs','badger']]);
+  const animals=C.pools.frog.map(t=>t.answer==='nest'?['Ente','duck-swim']:t.answer==='egg'?['Fuchs','forest-fox']:['mushroom','forest-mushroom'].includes(t.answer)?['Eichhörnchen','squirrel-sit']:[t.target,t.answer]).concat([['Zebra','zebra'],['Löwe','lion'],['Pinguin','penguin'],['Kamel','camel'],['Tiger','tiger'],['Elefant','elephant'],['Giraffe','giraffe'],['Dachs','badger']]);
   animals.forEach(([text,answer],i)=>add('friends-frog','animal-'+i,text,{kind:'reading',prompt:'Welches Tier passt zum Wort?',text,answer,choices:[answer,animals[(i+4)%animals.length][1],animals[(i+9)%animals.length][1]]}));
   for(let n=6;n<=15;n++)for(let b=2;b<=4;b++)add('count',n+'-'+b,n+' Käfer, '+b+' Bienen',{kind:'count',prompt:'Wie viele rote Marienkäfer sind hier?',count:n,answer:n,choices:numeric(n),bugs:[...Array(n).fill('ladybird'),...Array(b).fill('bee'),...Array(2).fill('snail')]});
   for(let a=1;a<=8;a++)for(let b=1;b<=9-a;b++)add('add',a+'-'+b,a+' + '+b,{kind:'add',prompt:'Wie viele Äpfel sind es zusammen?',a,b,answer:a+b,choices:numeric(a+b)});
@@ -134,27 +131,27 @@
     ['Ich habe Flossen. Im Wasser schwimme ich.','fish','dog','bee'],
     ['Ich bin oft grün. Am Teich quake ich.','frog','cat','bird'],
     ['Ich habe sechs Beine. Aus Nektar mache ich Honig.','bee','cow','snail'],
-    ['Ich belle. Meine Nase riecht sehr gut.','dog','frog','butterfly'],
+    ['Ich belle. Ich kann gut riechen.','dog','frog','butterfly'],
     ['Ich miaue. Meine Pfoten sind weich.','cat','fish','pig'],
     ['Ich bin gross. Meine Milch wird getrunken.','cow','bee','spider'],
     ['Ich habe acht Beine. Ich baue ein Netz.','spider','bird','fish'],
     ['Ich krieche langsam. Mein Haus trage ich mit.','snail','dog','sheep'],
     ['Ich habe vier Beine. Mein Panzer schützt mich.','tortoise','rabbit','bee'],
     ['Ich habe lange Ohren. Ich hüpfe über die Wiese.','rabbit','fish','snail'],
-    ['Ich hatte als Raupe viele Beine. Nun habe ich bunte Flügel.','butterfly','pig','frog'],
+    ['Aus einer Raupe wachse ich heran. Ich habe bunte Flügel.','butterfly','pig','frog'],
     ['Ich habe Federn. Mein Nest ist im Baum.','bird','cow','spider'],
     ['Ich bin klein und rot. Mein Rücken hat schwarze Punkte.','ladybird','sheep','dog'],
-    ['Ich trage Wolle. Auf der Weide blöke ich.','sheep','fish','ant'],
+    ['Ich habe weiche Wolle. Auf der Weide blöke ich.','sheep','fish','ant'],
     ['Ich habe einen buschigen Schwanz. Ich sammle Nüsse.','squirrel','spider','fish'],
     ['Ich bin sehr gross. Mit dem Rüssel trinke ich.','elephant','cat','fish'],
-    ['Mein Hals ist sehr lang. Ich erreiche hohe Blätter.','giraffe','pig','frog'],
-    ['Ich bin eine grosse Katze. Das Männchen trägt eine Mähne.','lion','sheep','snail'],
+    ['Mein Hals ist sehr lang. Ich erreiche hohe Bäume.','giraffe','pig','frog'],
+    ['Ich bin eine grosse Katze. Ich habe eine Mähne.','lion','sheep','snail'],
     ['Ich sehe einem Pferd ähnlich. Mein Fell ist schwarz-weiss gestreift.','zebra','dog','bee'],
-    ['Ich kann lange ohne Wasser auskommen. Auf dem Rücken habe ich Höcker.','camel','cat','spider'],
+    ['Ich komme lange aus, ohne zu trinken. Auf dem Rücken habe ich Höcker.','camel','cat','spider'],
     ['Ich bin eine grosse Katze. Mein orangefarbenes Fell hat schwarze Streifen.','tiger','cow','snail'],
     ['Ich bin ein Vogel. Ich kann gut schwimmen, aber nicht fliegen.','penguin','bird','butterfly'],
     ['Ich grabe einen Bau in der Erde. Mein Gesicht hat schwarze und weisse Streifen.','badger','pig','fish'],
-    ['Meine Zähne fällen Bäume. Mit Ästen baue ich einen Damm.','beaver','cat','ant']
+    ['Mit meinen Zähnen fälle ich Bäume. Mit Ästen baue ich einen Damm.','beaver','cat','ant']
   ];
   natural.forEach(([text,answer,...wrong],i)=>add('nature','clue-'+i,text,{kind:'reading',prompt:'Welches Tier passt?',text,answer,choices:[answer,...wrong]}));
   for(let total=5;total<=10;total++)for(let filled=1;filled<total;filled++)add('rocket',total+'-'+filled,total+' insgesamt, '+filled+' leuchten',{kind:'fireflies',prompt:'Wie viele Glühwürmchen fehlen noch?',total,filled,answer:total-filled,choices:numeric(total-filled,10)});
@@ -163,13 +160,6 @@
   }
   // Twenty-one different distributions plus four partially filled, editable plates.
   for(const [friends,each,plates]of [[2,3,[1,0]],[2,4,[0,2]],[3,2,[1,0,0]],[4,2,[0,1,0,1]]])add('picnic','started-'+friends+'-'+each,'Begonnenes Picknick: '+friends+' × '+each,{kind:'picnic',prompt:'Teile alle Beeren gerecht auf.',friends,each,total:friends*each,plates,answer:each});
-  for(let n=2;n<=10;n++)for(let ready=0;ready<3;ready++){
-    if(ready>=n)continue;add('double',n+'-'+ready,n+' Nüsse, '+ready+' Partner schon da',{kind:'double',prompt:'Noch einmal gleich viele. Wie viele zusammen?',n,partners:Array.from({length:ready},(_,i)=>i),answer:n*2,choices:numeric(n*2)});
-  }
-  for(let layout=0;layout<5;layout++){
-    const q=R.question('shapes',layout,1234);
-    for(let a=0;a<q.parts.length;a++)for(let b=a+1;b<q.parts.length;b++)add('shapes',layout+'-'+a+'-'+b,q.name+': Teile '+(a+1)+' und '+(b+1),{...q,holes:[a,b]});
-  }
   const words=R.words.concat([['Ba-na-ne','banana'],['To-ma-te','tomato'],['Ka-me-ra','camera'],['Na-del','needle'],['Ga-bel','fork'],['Glo-cke','bell'],['Ka-rot-te','carrot'],['Wol-ke','cloud'],['Schau-fel','spade'],['Ku-chen','cake'],['Re-gen','rain'],['Vo-gel','bird-sit'],['Schne-cke','snail']]);
   words.forEach(([w,picture],i)=>{
     const word=w.replaceAll('-',''),parts=w.split('-'),choices=[picture,words[(i+4)%words.length][1],words[(i+9)%words.length][1]];
@@ -209,14 +199,13 @@
     [['letter','Ein Brief kommt an'],['vocab-hand','Wir öffnen ihn'],['reader','Wir lesen ihn']],
     [['forest-flower','Wir pflücken eine Blume'],['water','Wir stellen sie ins Wasser'],['vocab-table','Wir stellen sie auf den Tisch']]
   ];
-  stories.forEach((items,i)=>add('sequence','story-'+i,items.map(v=>v[1]).join(' → '),{kind:'order',prompt:'Was passiert zuerst? Tippe die Bilder der Reihe nach an.',items,order:[2,0,1],answer:[0,1,2]}));
+  stories.forEach((items,i)=>add('sequence','story-'+i,items.map(v=>v[1]).join(' → '),{kind:'order',prompt:'Ziehe die Bilder in die richtige Reihenfolge.',items,order:[2,0,1],answer:[0,1,2]}));
   const treasures=['forest-leaf','forest-feather','forest-mushroom','forest-stone','forest-berry','forest-nut','forest-apple','forest-flower'];
   for(let i=0;i<8;i++)for(let missing=0;missing<4;missing++){const objects=Array.from({length:4},(_,n)=>treasures[(i+n)%8]);add('treasure',i+'-'+missing,'Korb '+(i+1)+', fehlt: '+objects[missing],{kind:'treasure',prompt:'Merke dir die vier Waldschätze.',objects,missing,answer:objects[missing],choices:[objects[missing],...objects.filter((_,n)=>n!==missing).slice(0,2)]});}
   for(let n=1;n<=18;n++)for(const given of [null,'left'])add('neighbours',n+'-'+(given||'both'),'Mitte '+n+(given?' / Vorgänger gegeben':''),{kind:'neighbours',prompt:'Welche Zahlen kommen davor und danach?',n,given,answer:[n-1,n+1],choices:Array.from(new Set([Math.max(0,n-2),n-1,n+1,n+2]))});
   for(let a=1;a<=10;a++)for(const b of [a,Math.max(1,a-1),Math.min(10,a+2)])if(!pools.compare?.some(t=>t.question.a===a&&t.question.b===b))add('compare',a+'-'+b,a+' und '+b,{kind:'compare',prompt:'Wo sind mehr Beeren?',a,b,answer:a===b?'equal':a>b?'left':'right',choices:['left','equal','right']});
   const mirrorMasks=[7,56,448,73,146,292,273,84,15,30,60,120,240,480,31,62,124,248,496,91,182,364,341,170,85,340,325,387,457,199];
   mirrorMasks.forEach((mask,n)=>{const left=Array.from({length:9},(_,i)=>i).filter(i=>mask&(1<<i));add('mirror','grid-'+mask,'Blattmuster '+(n+1),{kind:'mirror',prompt:'Ergänze rechts das Spiegelbild.',width:3,rows:3,left,answer:left.map(i=>Math.floor(i/3)*3+2-i%3).sort((a,b)=>a-b)});});
-  for(let i=0;i<30;i++){const counts=[1+i%3,4+i%3,1+(i*3)%5],target=i%3,task=i%2?'most':'count',max=Math.max(...counts);if(task==='most'&&counts.filter(n=>n===max).length>1)counts[1]=6;const fruit=['forest-apple','pear','forest-berry'];add('survey','survey-'+i,'Umfrage '+(i+1)+' / '+task,{kind:'survey',prompt:task==='most'?'Welches Obst mögen die meisten Freunde?':'Wie viele Freunde wählen '+['den Apfel','die Birne','die Beere'][target]+'?',counts,fruit,target,task,answer:task==='most'?fruit[counts.indexOf(Math.max(...counts))]:counts[target],choices:task==='most'?fruit:numeric(counts[target],6)});}
   for(const c of ['m','l','s','n','r','f','t','p'])for(const v of ['a','i','o','u']){const answer=c+v,other=['a','i','o','u'].filter(x=>x!==v).map(x=>c+x);add('read-leaves',answer,answer,{kind:'leaves',prompt:'Finde dieselbe Silbe auf einem Blatt.',text:answer,answer,choices:[answer,...other]});}
   const colours=['rot','gelb','blau','rosa','weiss'],adjective={rot:'rote',gelb:'gelbe',blau:'blaue',rosa:'rosa',weiss:'weisse'};
   colours.forEach((a,i)=>{
@@ -240,7 +229,7 @@
   const formerPuzzleRevisions=id=>{const p=puzzle(id),items=iterations(id);return former(id).map(impl=>hash({blueprint:1,implementation:impl,puzzle:p,items}));};
   const iterationRevisions=(id,item)=>[iterationRevision(id,item),...formerIterationRevisions(id,item)];
   const puzzleRevisions=id=>[puzzleRevision(id),...formerPuzzleRevisions(id)];
-  function acceptsRevision(id,iteration,revision){const it=iteration?iterations(id).find(it=>it.id===iteration):null;return !!revision&&(!iteration||!!it)&&(it?iterationRevisions(id,it):puzzleRevisions(id)).includes(revision);}
+  function acceptsRevision(id,iteration,revision){const it=iteration?pools[id]?.find(it=>it.id===iteration):null;return !!revision&&(!iteration||!!it)&&(it?iterationRevisions(id,it):puzzleRevisions(id)).includes(revision);}
   function select(id,seed,previous=[]){const r=R.rng(seed);let pool=R.mix(iterations(id),r);
     if(id==='trace')pool=pool.filter(i=>seed%2?i.question.glyph===i.question.glyph.toLocaleUpperCase('de-CH'):i.question.glyph===i.question.glyph.toLocaleLowerCase('de-CH'));
     pool.sort((a,b)=>Number(previous.includes(a.id))-Number(previous.includes(b.id)));

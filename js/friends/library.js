@@ -123,23 +123,9 @@ const games=[
     "screen": "puzzle"
   },
   {
-    "id": "double",
-    "host": "beaver",
-    "title": "Nüsse verdoppeln",
-    "picture": "forest-nut",
-    "screen": "puzzle"
-  },
-  {
-    "id": "shapes",
-    "host": "beaver",
-    "title": "Waldwerkstatt",
-    "picture": "forest-shapes",
-    "screen": "puzzle"
-  },
-  {
     "id": "syllable",
     "host": "bird",
-    "title": "Silben klopfen",
+    "title": "Silben zählen",
     "picture": "forest-branch",
     "screen": "puzzle"
   },
@@ -190,13 +176,6 @@ const games=[
     "host": "mouse",
     "title": "Waldwörter ergänzen",
     "picture": "words",
-    "screen": "puzzle"
-  },
-  {
-    "id": "survey",
-    "host": "owl",
-    "title": "Waldumfrage",
-    "picture": "forest-apple",
     "screen": "puzzle"
   },
   {

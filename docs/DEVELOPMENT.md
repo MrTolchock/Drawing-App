@@ -5,6 +5,7 @@ Serve the repository root with `python3 -m http.server 8000 --bind 127.0.0.1`. T
 ## Required checks
 
 ```sh
+npm ci --prefix tools
 node tools/puzzle-catalogue.cjs
 node tools/check-design.cjs
 node --test tests/*.test.cjs
@@ -16,9 +17,11 @@ node tests/review-seen-browser.cjs   # an answered review task is approved even 
 node tests/play-log-browser.cjs
 node tests/puzzle-review-browser.cjs
 node tests/review-sync-browser.cjs
+node tests/review-compatibility-browser.cjs
+node tests/puzzle-feedback-browser.cjs
 ```
 
-Browser suites require Playwright and Chromium. Set `PLAYWRIGHT_MODULE`, `CHROMIUM_PATH` and optionally `FARBTUPF_BASE_URL` for your installation. The review suite solves all 1,048 exact iterations, exercises native touch/mouse input for every puzzle, and checks whole-pool approval/rejection, gesture cancellation, persistence and offline review. The design suite compares review and child-play paper/writing dimensions for all 34 puzzles at phone/tablet sizes; `FARBTUPF_GAMES=add,trace,trace-numbers` limits its content pass during targeted work. Letter sessions checks Settings, real invitations, access restrictions, ten actual answers, mailman, home, sleep, reload/offline and adult restart. The design suite checks asset/font roles and current entry points. Screenshots go to `/tmp` unless an output path is set.
+Browser suites require Playwright and Chromium. Set `PLAYWRIGHT_MODULE`, `CHROMIUM_PATH` and optionally `FARBTUPF_BASE_URL` for your installation. The review suite solves all 953 exact iterations, exercises native touch/mouse input for every puzzle, and checks whole-pool approval/rejection, gesture cancellation, persistence and offline review. The design suite compares review and child-play paper/writing dimensions for all 31 puzzles at phone/tablet sizes; `FARBTUPF_GAMES=add,trace,trace-numbers` limits its content pass during targeted work. Letter sessions checks Settings, real invitations, access restrictions, ten actual answers, mailman, home, sleep, reload/offline and adult restart. The design suite checks asset/font roles and current entry points. Screenshots go to `/tmp` unless an output path is set.
 
 `node tools/check-design.cjs` verifies current links, runtime/offline dependencies, picture roles and archived file hashes. The original 14 fixed visual references remain intact; run `python3 archive/design-history/forest-friends/visuals/check-baseline.py`. Archived browser/model tests document their retired engines and are excluded from current CI.
 
@@ -26,7 +29,7 @@ The [local play-log](PLAY-LOG.md) suite exercises exact answers/definitions, inp
 
 ## Authoring
 
-Read [Visual style](../design/VISUAL-STYLE.md) and [Puzzle blueprint](../design/PUZZLE-BLUEPRINT.md). Register finite, bounded content in `js/friends/puzzle-catalogue.js` and the inventory in `library.js`. Regenerate catalogue pages and the shared implementation fingerprint after any runtime/art change. Review is required again for every changed content/difficulty/presentation revision; deployment never grants approvals.
+Read [Visual style](../design/VISUAL-STYLE.md) and [Puzzle blueprint](../design/PUZZLE-BLUEPRINT.md). Register finite, bounded content in `js/friends/puzzle-catalogue.js` and the inventory in `library.js`. Regenerate catalogue pages and the per-puzzle implementation fingerprints after any runtime/art change. Review is required again for every changed content/difficulty/presentation revision; deployment never grants approvals.
 
 Current character sculpt source: `tools/characters/plush.js`. Bake with `tools/bake/`, then generate all identity portraits with `tools/portraits/render.cjs`. Keep all characters in one pipeline. Learning nouns/actions use the drawn Waldatelier library. Preserve saved template IDs, settings records and historical localStorage/IndexedDB keys.
 

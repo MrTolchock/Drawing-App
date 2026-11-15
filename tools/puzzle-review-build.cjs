@@ -92,7 +92,8 @@ function build(reader=currentReader()){
  const screen=puzzle.body.find(n=>n.type==='ExpressionStatement'&&n.expression.callee?.object?.name==='FK'&&property(n.expression.callee)==='screen');
  const exportUI=puzzle.body.find(n=>n.type==='ExpressionStatement'&&n.expression.type==='AssignmentExpression'&&property(n.expression.left)==='puzzleUI').expression.right;
  const css=reader.css().map(file=>[file,read(file).toString()]),states=['friends-interface','screen','topbar','title','btn-back','forest-portrait','ff-map-friend','ff-character-portrait','wa-illustration','wa-symbol','ic','sr-only','scroll','done','current','marked','filled','gap','active'];
- const portraitModule=moduleOf(read('js/friends/interface.js').toString()),libraryModule=moduleOf(read('js/friends/library.js').toString());
+ const portraitModule=moduleOf(read('js/friends/interface.js').toString()),libraryModule=moduleOf(read('js/friends/library.js').toString()),util=moduleOf(read('js/core/util.js').toString());
+ const coreHelper=name=>normal(util.body.find(n=>n.type==='ExpressionStatement'&&n.expression.type==='AssignmentExpression'&&n.expression.left.object?.name==='FK'&&property(n.expression.left)===name));
  const effects=puzzle.body.filter(n=>!['FunctionDeclaration','VariableDeclaration'].includes(n.type)&&!(n.type==='ExpressionStatement'&&(n.expression.type==='Literal'||n===screen||n.expression.type==='AssignmentExpression'&&property(n.expression.left)==='puzzleUI'||n.expression.type==='CallExpression'&&n.expression.callee?.object?.name==='Object'&&property(n.expression.callee)==='assign'&&n.expression.arguments[0]?.name==='labels')));
  const all={},atlases=new Map();
  function pictureResource(id){
@@ -120,6 +121,7 @@ function build(reader=currentReader()){
   });
   for(const text of [...refs,...literals].filter(x=>typeof x==='string'))for(const token of [...Object.keys(FK.__visualData.tokens),...Object.keys(FK.__visualData.symbols),...Object.keys(FK.__visualData.aliases)])if(text.includes(token))refs.add(token);
   code=codeFor();
+  let readsText=false;walk(code,node=>{if(node.type==='MemberExpression'&&node.object?.name==='FK'&&property(node)==='text')readsText=true;});
   for(const value of literals)if(FK.friendsContent?.hosts?.[value]||ctx.window.FriendsContent.hosts[value])portraits.add(value);
   const pictures=[...refs].filter(x=>typeof x==='string').sort().flatMap(id=>pictureResource(id)||[]);
   const ids=[],portraitIndices={};for(const id of portraits){const portrait=FK.friendsArt.portrait(id),[x,y]=portrait.attrs.style.backgroundPosition.split(' ').map(parseFloat),index=Math.round(y*3/100)*4+Math.round(x*3/100);ids.push(index);portraitIndices[id]=index;}
@@ -127,10 +129,10 @@ function build(reader=currentReader()){
   const classes=new Set([...states,game.screen==='trace'?'screen-trace':'screen-puzzle']);for(const value of literals)for(const name of value.match(/[a-z][a-z0-9]*(?:-[a-z0-9]+)*/g)||[])classes.add(name);
   const selectedCSS=css.map(([file,text])=>[file,cssFor(text,classes,game)]).filter(([,rules])=>rules.length);
   // Progress/celebration also select an atlas cell through the host CSS variable.
-  let progress='0% 0%';walk(selectedCSS,node=>{if(Array.isArray(node)&&node[0]==='--wb-item')progress=node[1];});
+  let progress='0% 0%';const progressCell=node=>{if(!Array.isArray(node))return;if(node[0]==='--wb-item')progress=node[1];else node.forEach(progressCell);};progressCell(selectedCSS);
   const [px,py]=progress.split(' ').map(parseFloat),progressIndex=Math.round(py*3/100)*4+Math.round(px*3/100),progressKey='assets/waldatelier/forest-objects.webp';
   atlases.set(progressKey,{key:progressKey,columns:4,rows:4,bytes:read(progressKey).toString('base64')});pictures.push({key:progressKey,index:progressIndex,role:'progress'});
-  const extra={};if(kinds.includes('robot'))extra.routes=hash(read('js/learn/routes.js'));if(kinds.includes('trace'))extra.glyphs=hash(read('js/learn/glyphs.js'));if(kinds.includes('fireflies'))extra.firefly=normal(moduleOf(read('js/friends/puzzles.js').toString()).bindings.get('firefly'));
+  const extra={dom:coreHelper('h')};if(readsText)extra.text=coreHelper('text');if(kinds.includes('robot'))extra.routes=hash(read('js/learn/routes.js'));if(kinds.includes('trace'))extra.glyphs=hash(read('js/learn/glyphs.js'));if(kinds.includes('fireflies'))extra.firefly=normal(moduleOf(read('js/friends/puzzles.js').toString()).bindings.get('firefly'));
   const rendering=closure(visual,['art','resolve','lookup','source','decorateText','decorate','glyph'].map(n=>visual.bindings.get(n)),{special:{subjects:null,grid:null,sheets:null,...Object.fromEntries(Object.entries(FK.__visualData).map(([name,table])=>[name,selectData(table)]))}});
   const controls=closure(rounds,['rng','mix','current'].map(n=>rounds.bindings.get(n)),{special:{question:null}}),selection=closure(catalogue,['select','prepare','matchesSession'].map(n=>catalogue.bindings.get(n)),{special:{pools:null,meta:null}});
   const portraitCode={art:closure(portraitModule,[portraitModule.bindings.get('portrait')],{special:{ids:portraitIndices}}),wrapper:closure(libraryModule,[libraryModule.bindings.get('portrait')])};

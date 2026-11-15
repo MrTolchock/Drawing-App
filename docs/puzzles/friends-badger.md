@@ -42,7 +42,7 @@
 | `friends-badger/riddle-13` | Welche Blume schaut zur Sonne? — Welche Blume schaut zur Sonne? | "sunflower" |
 | `friends-badger/riddle-14` | Welcher Baum hat Nadeln? — Welcher Baum hat Nadeln? | "fir" |
 | `friends-badger/riddle-15` | Wer hat Streifen im Gesicht? — Wer hat Streifen im Gesicht? | "badger" |
-| `friends-badger/riddle-16` | Was braucht eine Pflanze neben Wasser zum Wachsen? — Was braucht eine Pflanze neben Wasser zum Wachsen? | "sun" |
+| `friends-badger/riddle-16` | Was braucht eine Pflanze zum Wachsen? — Was braucht eine Pflanze zum Wachsen? | "sun" |
 | `friends-badger/riddle-17` | Was wird aus einer Apfelblüte? — Was wird aus einer Apfelblüte? | "apple" |
 | `friends-badger/riddle-18` | Was wächst aus einem Samen in der Erde? — Was wächst aus einem Samen in der Erde? | "plant" |
 | `friends-badger/riddle-19` | Was sammeln wir im Herbst unter der Eiche? — Was sammeln wir im Herbst unter der Eiche? | "forest-nut" |
@@ -50,7 +50,7 @@
 | `friends-badger/riddle-21` | Was wächst auf der Erdbeerpflanze? — Was wächst auf der Erdbeerpflanze? | "strawberry" |
 | `friends-badger/riddle-22` | Womit giessen wir die Pflanzen? — Womit giessen wir die Pflanzen? | "bucket" |
 | `friends-badger/riddle-23` | Was schützt einen Samen in der Erde vor dem Austrocknen? — Was schützt einen Samen in der Erde vor dem Austrocknen? | "water" |
-| `friends-badger/riddle-24` | Was blüht zuerst, bevor die Birne reif wird? — Was blüht zuerst, bevor die Birne reif wird? | "flower" |
+| `friends-badger/riddle-24` | Was ernten wir vom Birnbaum? — Was ernten wir vom Birnbaum? | "pear" |
 
 ## Exact definitions
 
@@ -300,11 +300,11 @@ These definitions are the same finite data used by the game and review previews.
   },
   {
     "id": "friends-badger/riddle-16",
-    "label": "Was braucht eine Pflanze neben Wasser zum Wachsen?",
+    "label": "Was braucht eine Pflanze zum Wachsen?",
     "question": {
       "kind": "reading",
       "prompt": "Welches Bild passt zur Frage?",
-      "text": "Was braucht eine Pflanze neben Wasser zum Wachsen?",
+      "text": "Was braucht eine Pflanze zum Wachsen?",
       "answer": "sun",
       "choices": [
         "sun",
@@ -420,14 +420,14 @@ These definitions are the same finite data used by the game and review previews.
   },
   {
     "id": "friends-badger/riddle-24",
-    "label": "Was blüht zuerst, bevor die Birne reif wird?",
+    "label": "Was ernten wir vom Birnbaum?",
     "question": {
       "kind": "reading",
       "prompt": "Welches Bild passt zur Frage?",
-      "text": "Was blüht zuerst, bevor die Birne reif wird?",
-      "answer": "flower",
+      "text": "Was ernten wir vom Birnbaum?",
+      "answer": "pear",
       "choices": [
-        "flower",
+        "pear",
         "fish",
         "egg"
       ]

@@ -132,6 +132,7 @@
         }});delete session.logTested;FK.puzzleRounds.save(session);
       });},
       show:question=>safe(()=>active?.show(question)),answer:(value,correct,feedback)=>safe(()=>active?.answer(value,correct,feedback,{inputMethod:FK.play?.inputMethod?.()||'unknown'})),
+      place:(subject,details)=>safe(()=>active?.action('puzzle_action',{action:'place',subject,...details,inputMethod:FK.play?.inputMethod?.()||'unknown'})),
       button(label,node){safe(()=>{const r=node?.getBoundingClientRect();active?.action(label==='Spiel erklären'?'instruction_requested':'puzzle_action',{control:label,action:/zurücksetzen|neu ordnen/i.test(label)?'reset':/nochmals anschauen/i.test(label)?'reinspect':'button',selection:node?{answer:node.dataset.answer,shape:node.dataset.shape,rotation:node.dataset.rotation,cell:node.dataset.cell,part:node.dataset.part,pressedBefore:node.getAttribute('aria-pressed')}:undefined,inputMethod:FK.play?.inputMethod?.()||'unknown',targetSize:r?{width:Math.round(r.width),height:Math.round(r.height)}:undefined});});},
       issue:(reason,node,inputMethod)=>safe(()=>{if(node?.closest('.screen-puzzle,.screen-trace')&&!node.closest('.topbar'))active?.action('input_issue',{reason,control:node.getAttribute('aria-label')||null,inputMethod});}),
       trace:(event,data)=>safe(()=>active?.action(event,{inputMethod:FK.play?.inputMethod?.()||'unknown',...data})),

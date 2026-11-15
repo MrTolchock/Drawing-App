@@ -1,0 +1,30 @@
+{
+  "format": "waldpost-illustration-atlas",
+  "version": 1,
+  "source": "sources/forest-fox-grid.png",
+  "output": "../../assets/waldatelier/forest-fox.webp",
+  "columns": 2,
+  "rows": 2,
+  "cellPixels": 320,
+  "subjectPixels": 256,
+  "alphaThresholdPercent": 15,
+  "provenance": {
+    "date": "2026-11-15",
+    "tool": "ChatGPT hosted image-generation tool",
+    "transparent_background": true,
+    "references": [
+      "../../assets/waldatelier/forest-wildlife.webp",
+      "../../assets/waldatelier/forest-actions.webp"
+    ],
+    "generationPrompt": "prompts/forest-fox-generation.txt",
+    "sourceSha256": "05e872f985b13b4d10e75d2e74d43b676ae056ebbcfff4e89842683be37b44dc",
+    "generatedSource": "sources/forest-fox.png",
+    "generatedSourceSha256": "ebc5f860ee36b9e912eb8a077b54c0a40a50dc7d3359a08f728981aa2f54f4fe"
+  },
+  "subjects": [
+    {
+      "id": "forest-fox",
+      "label": "Fuchs ohne Kleidung"
+    }
+  ]
+}

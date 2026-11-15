@@ -36,5 +36,5 @@ function outputs(){
  files['docs/PUZZLE-CATALOGUE.md']=lines.join('\n');return files;
 }
 function check(){return Object.entries(outputs()).filter(([f,v])=>!fs.existsSync(path.join(root,f))||fs.readFileSync(path.join(root,f),'utf8')!==v).map(([f])=>f);}
-if(require.main===module){if(process.argv.includes('--check')){const stale=check();if(stale.length){console.error('Regenerate puzzle catalogue: '+stale.join(', '));process.exitCode=1;}else console.log('Puzzle catalogue and implementation revision are current.');}else{for(const [f,v]of Object.entries(outputs())){fs.mkdirSync(path.dirname(path.join(root,f)),{recursive:true});fs.writeFileSync(path.join(root,f),v);}console.log('Wrote puzzle implementation revision and 34 GitHub catalogue pages.');}}
+if(require.main===module){if(process.argv.includes('--check')){const stale=check();if(stale.length){console.error('Regenerate puzzle catalogue: '+stale.join(', '));process.exitCode=1;}else console.log('Puzzle catalogue and implementation revision are current.');}else{for(const [f,v]of Object.entries(outputs())){fs.mkdirSync(path.dirname(path.join(root,f)),{recursive:true});fs.writeFileSync(path.join(root,f),v);}console.log('Wrote per-puzzle implementation revisions and GitHub catalogue pages.');}}
 module.exports={setup,check,outputs,implementation:SCHEMA};

@@ -1,4 +1,4 @@
-# Silben klopfen
+# Silben zählen
 
 [All puzzles](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 

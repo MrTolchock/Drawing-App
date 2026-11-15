@@ -6,8 +6,8 @@ const BASE=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000';
 (async()=>{
  const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||undefined,headless:true,args:['--no-sandbox','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
  try{
-  const page=await (await browser.newContext({viewport:{width:1024,height:768},hasTouch:true,reducedMotion:'reduce'})).newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
-  await page.goto(BASE+'/?software=1&dev=1');await page.waitForFunction(()=>window.FK?.friends&&FK.current()==='friends',null,{timeout:120000});
+  const page=await (await browser.newContext({viewport:{width:1024,height:768},hasTouch:true,reducedMotion:'reduce'})).newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));page.setDefaultTimeout(60000);
+  await page.goto(BASE+'/?software=1&dev=1');await page.waitForFunction(()=>window.FK?.friendsView&&FK.current()==='friends',null,{timeout:120000});
   const current=()=>page.evaluate(()=>FK.current());
   const back=async()=>{await page.locator('.screen:not([hidden]) .btn-back').first().click();await page.waitForTimeout(250);};
   const gate=async()=>{const n=(await page.locator('.gate-task').innerText()).match(/\d+/g).map(Number);await page.locator('.gate-input').fill(String(n[0]*n[1]));await page.getByRole('button',{name:'Öffnen',exact:true}).click();};
