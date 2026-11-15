@@ -4825,6 +4825,15 @@
       "at": "2026-11-15T20:29:28.453Z",
       "seen": true,
       "operation": "a5a48fd4-5b1d-484c-938c-fbe00d4f0a51"
+    },
+    "friends-frog/animal-7@8ac07d7c5ef1a6be": {
+      "key": "friends-frog/animal-7",
+      "revision": "8ac07d7c5ef1a6be",
+      "status": "improve",
+      "note": "Pilz ist kein tier",
+      "at": "2026-11-15T20:29:40.833Z",
+      "seen": true,
+      "operation": "8e6ee368-e160-4868-89b1-2d2d012f95bb"
     }
   },
   "history": [
