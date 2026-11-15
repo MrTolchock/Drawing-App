@@ -6301,6 +6301,24 @@
       "at": "2026-11-15T20:57:33.246Z",
       "seen": true,
       "operation": "cfe0433f-f1ca-483c-ade8-14e85c2b3d40"
+    },
+    "syllable/word-2@50dd0af0983cdd26": {
+      "key": "syllable/word-2",
+      "revision": "50dd0af0983cdd26",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:57:44.998Z",
+      "seen": true,
+      "operation": "d5cbe086-08c0-44b8-93f0-acae14a69b14"
+    },
+    "syllable/word-3@006476a0edc18f86": {
+      "key": "syllable/word-3",
+      "revision": "006476a0edc18f86",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:57:50.433Z",
+      "seen": true,
+      "operation": "280e40c0-29a3-49a9-aa69-193363891552"
     }
   },
   "history": [
