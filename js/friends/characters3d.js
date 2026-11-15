@@ -250,8 +250,8 @@ import {GLTFLoader} from '../../vendor/three/addons/GLTFLoader.js';
 import {clone as cloneSkinned} from '../../vendor/three/addons/SkeletonUtils.js';
 import {MeshoptDecoder} from '../../vendor/meshoptimizer/meshopt_decoder.js';
 
-// The last six are the big world's neighbours: they exist only as baked models.
-const CAST=['fox','squirrel','bird','owl','mouse','beaver','mailman','deer','frog','hedgehog','fish','kingfisher','badger'],baked={};
+// The big world's neighbours and the Steinbock on the Rock exist only as baked models.
+const CAST=['fox','squirrel','bird','owl','mouse','beaver','mailman','deer','frog','hedgehog','fish','kingfisher','badger','ibex'],baked={};
 const NOISE=`
 float plHash(vec3 p){p=fract(p*.3183099+.1);p*=17.;return fract(p.x*p.y*p.z*(p.x+p.y+p.z));}
 float plNoise(vec3 x){vec3 i=floor(x),f=fract(x);f=f*f*(3.-2.*f);
@@ -337,6 +337,13 @@ const MANNERS={
       for(const [i,e]of p.ears.entries())e.rotation.z+=(i===fe&&flick>0?Math.sin(flick/.22*Math.PI)*(i?-.35:.35):0)+(alert?(i?-.12:.12):0);
       p.root.position.y=0;
     };},
+  // the Steinbock stands on his crag and looks out over the land, turning his head slowly; now and then he stamps a hoof
+  ibex(p){let look=0,lookTo=.5,lookT=2,stamp=0,stampT=4+Math.random()*5;
+    return (dt,{action})=>{const alert=action==='look'||action==='greet'||action==='hop';
+      lookT-=dt;if(lookT<0){lookTo=(Math.random()-.5)*1.6;lookT=2.5+Math.random()*4;}look+=((alert?0:lookTo)-look)*Math.min(1,dt*1.6);
+      if(p.head){p.head.rotation.y=alert?p.head.rotation.y*.3:look;p.head.rotation.x-=.07;}
+      stampT-=dt;if(stampT<0&&!alert){stamp=.5;stampT=5+Math.random()*7;}if(stamp>0){stamp=Math.max(0,stamp-dt);if(p.legs[1])p.legs[1].rotation.x=-.75*Math.sin(stamp/.5*Math.PI);}
+    };},
 };
 /* Little tricks a friend shows when Fuchs visits without a letter for them (forest3d.js `visit`), played over
    `u` = 0…1, and the pose that points the way (`point`: the friend's group is turned toward the place). */
@@ -361,10 +368,12 @@ const TRICKS={
   shake(p,u,t){const e=bell(u,.1,.78),w=Math.sin(t*38);if(p.body)p.body.rotation.z+=w*.3*e;if(p.head){p.head.rotation.z+=Math.sin(t*38+1.2)*.42*e;p.head.rotation.y+=Math.sin(t*19)*.2*e;}if(p.tail)p.tail.rotation.y+=Math.sin(t*38+2.4)*.7*e;(p.ears||[]).forEach((r,i)=>{r.rotation.z+=Math.sin(t*40+i*2)*.35*e;});for(const y of p.eyes)y.scale.y*=1-.75*e;},
   // sliding down the snow: leaning back, hind paws together in front, arms out for balance
   slide(p){if(p.body)p.body.rotation.x-=.16;p.legs.forEach(l=>{l.rotation.x=-.55;});p.arms.forEach((a,i)=>{a.rotation.x=-1.05;a.rotation.z=(i?-1:1)*.55;});if(p.tail)p.tail.rotation.x-=.2;},
+  // the Steinbock lowers his horns, tosses his head high and jumps on the spot
+  butt(p,u){const down=bell(u,.12,.55),toss=bell((u-.5)/.42,.15,.6),j=Math.min(1,Math.max(0,(u-.56)/.3));if(p.body)p.body.rotation.x+=down*.5-toss*.12;if(p.head)p.head.rotation.x+=down*.8-toss*.5;p.arms.forEach((a,i)=>{a.rotation.x=-.5*down-1.9*toss;a.rotation.z=(i?-1:1)*.3*toss;});p.root.position.y=Math.sin(j*Math.PI)*.2;},
   jump(p,u){const j=Math.min(1,Math.max(0,(u-.2)/.55));p.root.position.y=Math.sin(j*Math.PI)*.55;p.root.rotation.x=(j-.5)*2.2*(j>0&&j<1?1:0);if(p.tail)p.tail.rotation.y+=Math.sin(u*40)*.4;},
 };
 function pointPose(p,e){const a=p.legs.length?p.arms[1]:null;if(a){a.rotation.x=-1.5*e;a.rotation.z=-.15*e;}if(p.head)p.head.rotation.x-=.08*e;}
-export const TRICK_OF={squirrel:'dig',badger:'dig',beaver:'slap',owl:'headturn',mouse:'spin',bird:'flutter',kingfisher:'flutter',hedgehog:'curl',deer:'leap',frog:'leap',fish:'jump'};
+export const TRICK_OF={squirrel:'dig',badger:'dig',beaver:'slap',owl:'headturn',mouse:'spin',bird:'flutter',kingfisher:'flutter',hedgehog:'curl',deer:'leap',frog:'leap',fish:'jump',ibex:'butt'};
 function plushModel(id,height){
   const model=cloneSkinned(baked[id]),bones={},meshes=[];
   // Characters stay out of the static shadow map (it is not redrawn as they move); each has a soft contact shadow.

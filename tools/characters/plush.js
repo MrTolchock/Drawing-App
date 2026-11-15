@@ -553,4 +553,34 @@ export function badger({detail = 1} = {}) {
   return {group, parts: {body, head, eyes: eyes_, ears, arms, legs, tail}};
 }
 
-export const plush = {fox, squirrel, owl, hare, mouse, beaver, bluetit, deer, frog, hedgehog, fish, kingfisher, badger};
+/* ---------- Steinbock: sturdy, grey-brown, with long ribbed horns swept back and a little beard ---------- */
+export function ibex({detail = 1} = {}) {
+  const cell = .0105 / detail, fur = furMaterial(), horn = furMaterial({fuzz: .35, rim: .3}), group = new THREE.Group(), root = new THREE.Group(); group.add(root);
+  const TN = C('#a18a6e'), TNd = C('#6f5a46'), CR = C('#f4e6cc'), DK = C('#463226'), IN = C('#eccab2'), HN = C('#9a8a74'), HNd = C('#5f5142'), HNl = C('#c9bba4');
+  const body = part(root, 'body', [0, 0, 0], [E([0, .33, 0], [.165, .19, .14]), E([0, .25, .02], [.17, .14, .14], {k: .06}), E([0, .2, -.01], [.155, .1, .13], {k: .06}), E([0, .5, .01], [.1, .1, .09], {k: .07}), E([0, .42, .08], [.12, .11, .08], {k: .07})],
+    p => { const belly = inside(E([0, .27, .1], [.1, .17, .08]), p, .03), ruff = inside(E([0, .47, .1], [.11, .075, .07]), p, .03), back = sstep(-.02, -.1, p[2]) * sstep(.2, .34, p[1]), flank = inside(E([0, .2, .0], [.2, .045, .2]), p, .02) * sstep(.05, -.02, p[2] - .06);
+      return mixC([0, TN], [sstep(.5, .2, p[1]) * .2, TNd], [back * .5, TNd], [belly, CR], [ruff * .75, CR], [flank * .55, DK]); }, {cell, mat: fur});
+  const head = part(body, 'head', [0, .56, .01], [E([0, .17, 0], [.2, .195, .19]), E([0, .24, .0], [.17, .13, .15], {k: .06}), E([.09, .1, .06], [.1, .09, .1], {k: .07}), E([-.09, .1, .06], [.1, .09, .1], {k: .07}), E([0, .092, .17], [.1, .085, .13], {rot: [.14, 0, 0], k: .07}),
+      T([0, .03, .15], [0, -.075, .135], .034, .012, {k: .035})],
+    p => { const muzzle = inside(E([0, .07, .24], [.092, .058, .1]), p, .025), chin = inside(E([0, .03, .12], [.15, .06, .13]), p, .03), ring = Math.max(inside(E([.095, .185, .15], [.064, .068, .06]), p, .014), inside(E([-.095, .185, .15], [.064, .068, .06]), p, .014)) * .4, bridge = inside(E([0, .16, .19], [.045, .07, .1]), p, .02), beard = sstep(.018, -.02, p[1]) * sstep(.05, .1, p[2]), crown = inside(E([0, .34, -.02], [.1, .05, .1]), p, .03);
+      return mixC([0, TN], [sstep(.3, .1, p[1]) * .12, TNd], [clamp(Math.max(muzzle, chin) - bridge * .8, 0, 1), CR], [ring, CR], [bridge * .45, TNd], [crown * .5, TNd], [beard, DK]); }, {cell, mat: fur});
+  const eyes_ = eyes(head, .096, .185, .06, {yaw: .26});
+  brows(head, .1, .27, .075, fur, {r: .0115, tilt: .016});
+  nose(head, .118, [.04, .03, .026], '#35211a');
+  smile(head, .072, .05, fur, {top: .098, r: .0048, drop: .017, lift: .011});
+  // horns: thick at the root, swept up and far back, with knobs along the front like growth rings
+  const horns = [-1, 1].map(s => { const P = [[0, 0, 0], [s * .025, .14, -.035], [s * .05, .27, -.12], [s * .07, .35, -.25], [s * .08, .365, -.38], [s * .075, .33, -.47]], rad = [.05, .046, .04, .032, .022, .011], knobs = [];
+    for (let i = 0; i < P.length - 1; i++) for (const t of [.25, .75]) { const a = P[i], b = P[i + 1], q = [0, 1, 2].map(k => a[k] + (b[k] - a[k]) * t), r = rad[i] + (rad[i + 1] - rad[i]) * t, d = [b[1] - a[1], -(b[2] - a[2])], l = Math.hypot(...d) || 1;   // forwards-up across the horn
+        knobs.push(E([q[0], q[1] + d[1] / l * r * .55, q[2] + d[0] / l * r * .55], [r * 1.02, r * .52, r * .62], {rot: [Math.atan2(b[2] - a[2], b[1] - a[1]), 0, 0], k: .012})); }
+    return part(head, 'horn', [s * .075, .325, -.02], [...chain(P, rad, {k: .03}), ...knobs],
+      p => { const along = clamp(Math.hypot(p[1], p[2]) / .6, 0, 1), ring = .5 + .5 * Math.sin(Math.hypot(p[1], p[2] * 1.15) * 70); return mixC([0, HN], [ring * .55, HNd], [sstep(.75, 1, along) * .5, HNl], [sstep(.05, 0, p[1]) * .6, HNd]); }, {cell: cell * .75, mat: horn}); });
+  const ears = [-1, 1].map(s => { const j = part(head, 'ear', [s * .165, .25, -.04], [E([0, .1, 0], [.06, .115, .028], {k: .02}), T([0, 0, 0], [0, .05, 0], .04, .046, {flat: 2, k: .03})],
+    p => mixC([0, TN], [p[2] > .003 ? inside(E([0, .1, .02], [.036, .085, .03]), p, .012) : 0, IN], [sstep(.18, .21, p[1]) * .6, TNd]), {cell: cell * .85, mat: fur}); j.rotation.z = s * -1.25; j.rotation.x = -.1; j.rotation.y = s * -.2; return j; });
+  const arms = [-1, 1].map(s => part(body, 'arm', [s * .155, .43, .03], [...chain([[0, 0, 0], [s * .012, -.12, .02], [s * .018, -.21, .035]], [.05, .042, .04]), E([s * .02, -.238, .042], [.043, .038, .046], {k: .03})], p => mixC([0, TN], [sstep(-.11, -.16, p[1]) * .6, TNd], [sstep(-.19, -.212, p[1]), DK]), {cell, mat: fur}));
+  const legs = [-1, 1].map(s => part(body, 'leg', [s * .088, .2, 0], [E([0, -.02, 0], [.08, .092, .086]), T([0, -.06, .01], [0, -.165, .012], .054, .046), E([0, -.18, .03], [.054, .034, .068], {k: .03})], p => mixC([0, TN], [sstep(-.07, -.12, p[1]) * .6, TNd], [sstep(-.14, -.162, p[1]), DK]), {cell, mat: fur}));
+  const tail = part(body, 'tail', [0, .22, -.13], [E([0, .005, -.03], [.042, .05, .045])], p => mixC([0, TNd], [sstep(-.02, -.06, p[2]), DK]), {cell, mat: fur});
+  group.traverse(o => { if (o.isMesh) o.castShadow = true; });
+  return {group, parts: {body, head, eyes: eyes_, ears, arms, legs, tail, horns}};
+}
+
+export const plush = {fox, squirrel, owl, hare, mouse, beaver, bluetit, deer, frog, hedgehog, fish, kingfisher, badger, ibex};

@@ -165,7 +165,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   function contact(r, o = 1) { const m = new THREE.Mesh(new THREE.CircleGeometry(1, 24), new THREE.MeshBasicMaterial({map: softTex, transparent: true, depthWrite: false, opacity: o, toneMapped: false})); m.rotation.x = -Math.PI / 2; m.scale.setScalar(r); m.renderOrder = 1; scene.add(m); return m; }
   const friends = {}, noCast = rig => { const off = () => rig.group.traverse(o => { o.castShadow = false; }); off(); rig.ready.then(off); return rig; };
   // The puzzle friends and, in the big world, the new neighbours (those whose models exist already).
-  for (const [id, f] of Object.entries({...WORLD.friends, ...WORLD.neighbours})) {
+  for (const [id, f] of Object.entries({...WORLD.friends, ...WORLD.neighbours, ...WORLD.extras})) {
     if (!characters[id]) continue;
     const rig = noCast(characters[id](f.h)), [x, z] = f.at, y = (f.y === 0 ? feetY(x, z, f.h * .15) : groundY(x, z)) + f.y;
     rig.group.position.set(x, y, z); rig.group.rotation.y = f.yaw; scene.add(rig.group);
@@ -409,6 +409,9 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
       if (o.id === 'mailman') { courier.visible = courierShadow.visible = show; courierRig.lod(o.d < 8 ? 0 : 1); updateMailman(dt, reduced, anim); }
       else { o.f.rig.group.visible = show; if (o.f.shadow) o.f.shadow.visible = show; o.f.rig.lod(o.d < 8 ? 0 : 1); if (anim && o.f.roam && !reduced) stroll(o.f, o.id, dt); if (anim && o.f.swim && !reduced) swim(o.f, o.id, dt, time); if (anim) { const st = o.f.show ? perform(o.f, o.id, dt, time) : {action: greeting(o.f, o.id, o.d, time)}; o.f.rig.update(dt, {moving: o.f.moving && !o.f.show, speed: o.id === 'squirrel' ? 1.6 : o.id === 'deer' ? .75 : .9, reduced, ...(typeof st === 'string' ? {action: st} : st)}); } } }
     animatedCount = animated;
+    // Those without a letter box (the Steinbock): when Fuchs stops beside one, he shows his trick and points the way the letter leads
+    for (const id in WORLD.extras) { const f = friends[id]; if (!f) continue; const d = Math.hypot(f.x - pos.x, f.z - pos.z); if (d > 9) f.shown = false;
+      if (!f.show && !f.shown && d < 4.4 && !moving) { f.shown = true; const p = forestPlaces[guideTarget]; f.show = {t: 0, toward: p ? [p.x, p.z] : null, puffed: false}; onMove({event: 'wonder_reaction', kind: id, area: 'forest'}); } }
     // the wind in the plants and leaves: slow gusts and calm spells, more in the rain and high up; still with reduced motion
     { const g = .5 + .5 * Math.sin(time * .13) * Math.sin(time * .071 + 1.3), up = Math.max(sound.snow || 0, (sound.rock || 0) * .6, sound.meadow * .4);
       windAt.value.set(time, reduced ? 0 : (.35 + .65 * g * g) * (1 + .8 * weather.state.rain + .6 * up)); }

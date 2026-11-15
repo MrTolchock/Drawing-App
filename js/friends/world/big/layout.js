@@ -125,6 +125,11 @@ export const NEIGHBOURS = {
   kingfisher: {at: [12.9, 22.85], y: 1.6, yaw: -1.2, h: .6},
   badger: {at: [-51.7, -54.7], y: 0, yaw: .7, h: 1.2},
 };
+/* Who else lives in the land without a letter box: the Steinbock on his crag at the Rock's rim, above the waterfall.
+   Fuchs can visit him: he shows his trick and points the way the letter leads. */
+export const EXTRAS = {
+  ibex: {at: [74.2, -56.3], y: .86, yaw: .25, h: 1.95},
+};
 /* Authored trees [x, z, size, options]: the friends' trees and a few giants. */
 export const TREES = [
   [-59.3, 54.2, .62, {kind: 'birch', branch: [1.7, 2.42, .45]}],
@@ -135,7 +140,7 @@ export const TREES = [
   [-54.6, -60.4, 1.45, {kind: 'oak'}],   // the old oak above the badger's sett
 ];
 /* Big rocks [x, z, size, height] (colliders). */
-export const ROCKS = [[-5.2, -4.2, 1.05, 1.6], [-2, 9, .65, .9], [9.6, 1.2, .6, .8], [57.6, -54.4, 1.5, 1.7], [66.4, -47.6, 1.2, 1.3], [-70, 8, .9, 1], [50.5, 48.4, .8, .9]];
+export const ROCKS = [[74.2, -56.3, 1.45, 1.05], [76, -55.5, .8, .9], [72.6, -55.6, .7, .8], [-5.2, -4.2, 1.05, 1.6], [-2, 9, .65, .9], [9.6, 1.2, .6, .8], [57.6, -54.4, 1.5, 1.7], [66.4, -47.6, 1.2, 1.3], [-70, 8, .9, 1], [50.5, 48.4, .8, .9]];
 /* Further colliders [x, z, radius]: the den tree, the stump, the lodge, the beaver's stack of poles, the badger's sett. */
 export const SOLIDS = [[0, -8, 3.05], [-33.4, 11.2, .95], [37.5, -18.6, 2.3], [20.8, -16.9, .6], [-53.4, -58.3, 2.6], [50.75, 13.18, 0.82], [51.58, 12.73, 0.82], [52.42, 12.27, 0.82], [53.25, 11.82, 0.82], [-67.61, 22.74, 0.5], [-69.45, 24.44, 0.5], [-71.83, 23.7, 0.5], [-72.39, 21.26, 0.5], [-70.55, 19.56, 0.5], [-68.17, 20.3, 0.5], [-17, 10, 0.42], [-22, 31.5, 0.75], [-34, 36, 0.75], [38, 29, 0.75], [6.2, 9.5, 1], [5, -1.4, .15], [-5, 1.8, .15], [3.6, 6, .15], [27, 17.5, 1], [-8.6, 41.3, .95], [-7.4, 41.7, .95], [-4.6, 42.3, .85], [-2.9, 41.2, .45], [31.4, 12, .16], [-30.5, 12.3, .16], [-12.5, -33.5, .85], [2.5, 30.5, .42], [41, 22, .42], [80.6, -95.6, .3], [84.6, -91.6, .5]];
 

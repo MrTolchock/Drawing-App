@@ -22,7 +22,7 @@ export function createBigWorld() {
   const hash = new Map(), HC = 4, hkey = (i, j) => i * 65536 + j;
   for (const s of solids) for (let i = Math.floor((s.x - s.r - 1) / HC); i <= Math.floor((s.x + s.r + 1) / HC); i++) for (let j = Math.floor((s.z - s.r - 1) / HC); j <= Math.floor((s.z + s.r + 1) / HC); j++) (hash.get(hkey(i, j)) || hash.set(hkey(i, j), []).get(hkey(i, j))).push(s);
   // Trees keep away from everything a child should reach or see.
-  const keepClear = [...Object.values(L.PLACES).map(p => [p.x, p.z, 2.4]), ...Object.values({...L.FRIENDS, ...L.NEIGHBOURS}).map(f => [...f.at, 2.2]), ...L.TREES.map(([x, z, s]) => [x, z, 4.5 + s]), ...L.ROCKS.map(([x, z, s]) => [x, z, s + 1.2]),
+  const keepClear = [...Object.values(L.PLACES).map(p => [p.x, p.z, 2.4]), ...Object.values({...L.FRIENDS, ...L.NEIGHBOURS, ...L.EXTRAS}).map(f => [...f.at, 2.2]), ...L.TREES.map(([x, z, s]) => [x, z, 4.5 + s]), ...L.ROCKS.map(([x, z, s]) => [x, z, s + 1.2]),
     ...T.crossings.flatMap(c => [[...c.a, 2.2], [...c.b, 2.2]]), [L.DEN.x, L.DEN.z, 9], [...T.falls.lip, 5]];
 
   /* ---------- trees: at most one per 6 m cell ---------- */
@@ -81,14 +81,14 @@ export function createBigWorld() {
   }
   const places = Object.fromEntries(Object.entries(L.PLACES).map(([id, p]) => [id, {...p}]));
   const stand = f => ({...f, y: f.onWater ? T.stillLevel(...f.at) - T.ground(...f.at) + f.y : f.y});
-  const friends = Object.fromEntries(Object.entries(L.FRIENDS).map(([id, f]) => [id, stand(f)])), neighbours = Object.fromEntries(Object.entries(L.NEIGHBOURS).map(([id, f]) => [id, stand(f)]));
+  const friends = Object.fromEntries(Object.entries(L.FRIENDS).map(([id, f]) => [id, stand(f)])), neighbours = Object.fromEntries(Object.entries(L.NEIGHBOURS).map(([id, f]) => [id, stand(f)])), extras = Object.fromEntries(Object.entries(L.EXTRAS).map(([id, f]) => [id, stand(f)]));
   const pins = Object.fromEntries([['home', [L.DEN.x, 3.75, L.DEN.z + 2.7]], ...Object.entries({...friends, ...neighbours}).map(([id, f]) => [id, [f.at[0], f.y + f.h + .55, f.at[1]]])]);
 
   const world = {
     mode: '10x', big: true, terrain: T, layout: L, sunDir, fog, extent: E,
     // landmark sites take the place of regions for the streamer
     regions: L.SITES.map(s => ({...s, bounds: {x0: s.x - s.r, x1: s.x + s.r, z0: s.z - s.r, z1: s.z + s.r}})),
-    regionAt, ground: T.ground, groundY: T.groundY, walkable, blocked, treesIn, places, friends, neighbours, pins,
+    regionAt, ground: T.ground, groundY: T.groundY, walkable, blocked, treesIn, places, friends, neighbours, extras, pins,
     home: {home: {...L.DEN}, id: 'home'}, nav,
     /** A route between two points as [[x, z], …], or null. */
     plan: (ax, az, bx, bz) => nav.plan(ax, az, bx, bz),
