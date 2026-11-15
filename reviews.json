@@ -6652,6 +6652,15 @@
       "at": "2026-11-15T21:06:54.780Z",
       "seen": true,
       "operation": "3dd77772-c002-45fe-81e0-d7db8ef8a198"
+    },
+    "vowels/word-8-3@0a3b5e71a1fa4d23": {
+      "key": "vowels/word-8-3",
+      "revision": "0a3b5e71a1fa4d23",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T21:06:56.846Z",
+      "seen": true,
+      "operation": "8222029d-2f3a-456b-9d59-e4790315a525"
     }
   },
   "history": [
