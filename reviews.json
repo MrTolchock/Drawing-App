@@ -4015,6 +4015,15 @@
       "at": "2026-11-15T20:20:42.551Z",
       "seen": true,
       "operation": "bcc5e5ef-1299-4cde-a092-a82401434b28"
+    },
+    "friends-fish/count-0@94d65780775ff934": {
+      "key": "friends-fish/count-0",
+      "revision": "94d65780775ff934",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:22:21.292Z",
+      "seen": true,
+      "operation": "5cf7a844-85c5-4633-be42-910f21fb4856"
     }
   },
   "history": [
