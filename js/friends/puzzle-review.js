@@ -60,13 +60,16 @@
     }
     Object.assign(next.seen,d.seen);next.history.push(...d.history);return persist(next);
   }
+  // One adult calculation per visit: coming from Settings, the Puzzle-Galerie or the Prüfung itself (already past the
+  // gate) opens directly; any other way in asks once.
+  const adultHere=()=>authorized&&['settings','puzzle-gallery','puzzle-review'].includes(FK.current?.())||FK.current?.()==='settings';
   function open(){
     const enter=()=>{authorized=true;FK.go('puzzle-review',{from:'friends'});};
-    if(FK.current?.()==='settings')enter();else FK.ui.parentGate(enter);
+    if(adultHere())enter();else FK.ui.parentGate(enter);
   }
   /* Puzzle-Galerie (adults, from settings): only signed-off puzzles; a round of five tasks drawn like a child's
      round, but never saved as the child's round, never completing a letter and never observed by the usage log. */
-  function openGallery(){const enter=()=>{authorized=true;FK.go('puzzle-gallery');};if(FK.current?.()==='settings')enter();else FK.ui.parentGate(enter);}
+  function openGallery(){const enter=()=>{authorized=true;FK.go('puzzle-gallery');};if(adultHere())enter();else FK.ui.parentGate(enter);}
   function gallerySession(id){
     if(!authorized||!C.puzzle(id)||!ready(id))return null;
     const seed=Math.floor(Math.random()*0x100000000),items=C.select(id,seed,[]);

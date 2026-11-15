@@ -257,3 +257,5 @@ The mailman (same model) also walks his own round on the paths near the den betw
 **9.3.63.** No more rainbows: the one in the waterfall's mist and the one after showers are removed.
 
 **9.3.64.** Characters in the forest: the plush fur catches the low sun as a golden rim on the edges that face it, stronger when a friend stands against the light (follows the sun through the day; off in the den, which keeps its painted light), and the painted catchlights in the eyes glow a little so the eyes look wet and alive. Same models; portraits are not re-rendered, so the puzzle fingerprint is unchanged. A tufted fur fringe was tried and rejected (noisy outline, wrapped over held props).
+
+**9.3.65.** The gallery's **Zur Puzzle-Prüfung** no longer asks for a second adult calculation: once past the gate, moving between Settings, the Puzzle-Galerie and the Puzzle-Prüfung opens directly. Other ways in still ask once.

@@ -27,7 +27,7 @@ Numeric bounds and reading prerequisites are explicit. Expanding variety must no
 
 ## Adult review and release gate
 
-1. Unlock **Einstellungen** with its existing adult calculation, then open **Puzzle-Galerie öffnen** directly. There is no second calculation. Direct review URLs retain one adult gate.
+1. Unlock **Einstellungen** with its existing adult calculation, then open **Puzzle-Galerie öffnen** or **Puzzle-Prüfung öffnen** directly; moving between Settings, the gallery and the review (e.g. the gallery's **Zur Puzzle-Prüfung**) asks no second calculation. Direct review URLs retain one adult gate.
 2. Select a puzzle. Inspect its competence and difficulty. Test **Spielerklärung anhören** once on the puzzle overview; iteration previews do not repeat the speech control.
 3. Start **Offene Iterationen prüfen**. Review all unconfirmed iterations once in the normal puzzle viewport, with no footer. Explicitly selecting an iteration places it first. Correct completion saves its exact-revision approval, uses the same 900 ms feedback and advances automatically. Wrong answers do not approve it. Handwriting requires all strokes.
 4. A small **×** replaces rule speech during review and opens an optional comment and **Ablehnen und weiter**. Cancelling makes no decision. Rejected items stay flagged for the next run. After the entire queue, show the normal 2.2-second celebration; completing it approves the puzzle only if every current iteration passed. No name, checklist or required text. **Alle bestätigen** on the puzzle overview lets the adult approve every current iteration and the puzzle together after a confirmation; it is the adult's own decision, recorded like any other. Review never changes child saves or letters.
