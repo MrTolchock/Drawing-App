@@ -4852,6 +4852,15 @@
       "at": "2026-11-15T20:29:49.646Z",
       "seen": true,
       "operation": "4f83cac0-1522-4f94-a9fe-9f488515c86c"
+    },
+    "friends-frog/animal-10@2476c316857fdd86": {
+      "key": "friends-frog/animal-10",
+      "revision": "2476c316857fdd86",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:29:53.141Z",
+      "seen": true,
+      "operation": "23bff0c3-7270-42e2-b67d-28ef71bfa01b"
     }
   },
   "history": [
