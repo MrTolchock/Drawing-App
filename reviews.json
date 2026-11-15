@@ -6391,6 +6391,15 @@
       "at": "2026-11-15T21:00:47.633Z",
       "seen": true,
       "operation": "4da87eb9-ca70-4076-adca-61c2feaf3176"
+    },
+    "sequence/story-1@6b41c74aea2a5722": {
+      "key": "sequence/story-1",
+      "revision": "6b41c74aea2a5722",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T21:00:55.417Z",
+      "seen": true,
+      "operation": "09dab4f9-6d67-4729-9bd5-4148d18a5ab5"
     }
   },
   "history": [
