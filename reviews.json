@@ -4726,6 +4726,42 @@
       "at": "2026-11-15T20:28:21.610Z",
       "seen": true,
       "operation": "f2bead13-c115-4ca7-8737-1481409d4a53"
+    },
+    "friends-kingfisher/forest-mushroom-9@23aa858eb889ceb4": {
+      "key": "friends-kingfisher/forest-mushroom-9",
+      "revision": "23aa858eb889ceb4",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:28:23.542Z",
+      "seen": true,
+      "operation": "55232658-c052-4f2c-a010-19b3d231517d"
+    },
+    "friends-kingfisher/forest-mushroom-14@d82a23f1d31ec157": {
+      "key": "friends-kingfisher/forest-mushroom-14",
+      "revision": "d82a23f1d31ec157",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:28:25.807Z",
+      "seen": true,
+      "operation": "9aaff04d-5b27-4b4e-bfdb-c50e313c444e"
+    },
+    "friends-kingfisher/forest-mushroom-20@1b0f867d0e0dc7d7": {
+      "key": "friends-kingfisher/forest-mushroom-20",
+      "revision": "1b0f867d0e0dc7d7",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:28:27.779Z",
+      "seen": true,
+      "operation": "e5ec1136-cf81-4704-9400-15d53a34d351"
+    },
+    "puzzle:friends-kingfisher@ab370cd2ba611e76": {
+      "key": "puzzle:friends-kingfisher",
+      "revision": "ab370cd2ba611e76",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:28:30.923Z",
+      "seen": true,
+      "operation": "9f94b4fc-9a0e-4785-b2ac-a3cbaafe0c33"
     }
   },
   "history": [
