@@ -4789,6 +4789,15 @@
       "at": "2026-11-15T20:28:59.288Z",
       "seen": true,
       "operation": "7c0689b3-546f-429b-94eb-df5e9815ed86"
+    },
+    "friends-frog/animal-3@5c43b9469f9c1c10": {
+      "key": "friends-frog/animal-3",
+      "revision": "5c43b9469f9c1c10",
+      "status": "improve",
+      "note": "Ei im nest ist kein tier",
+      "at": "2026-11-15T20:29:20.386Z",
+      "seen": true,
+      "operation": "2f170744-de12-497b-9a05-afe2427caa90"
     }
   },
   "history": [
