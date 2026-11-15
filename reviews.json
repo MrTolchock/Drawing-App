@@ -4798,6 +4798,33 @@
       "at": "2026-11-15T20:29:20.386Z",
       "seen": true,
       "operation": "2f170744-de12-497b-9a05-afe2427caa90"
+    },
+    "friends-frog/animal-4@be9c47d56f23357f": {
+      "key": "friends-frog/animal-4",
+      "revision": "be9c47d56f23357f",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:29:23.723Z",
+      "seen": true,
+      "operation": "b003586f-6cd0-40a1-9983-1747998a073b"
+    },
+    "friends-frog/animal-5@10d2bc7f4c0460d7": {
+      "key": "friends-frog/animal-5",
+      "revision": "10d2bc7f4c0460d7",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:29:26.352Z",
+      "seen": true,
+      "operation": "d5f35ea3-2243-4153-aeca-26ae2e4424a3"
+    },
+    "friends-frog/animal-6@dfdb45ad9cef7981": {
+      "key": "friends-frog/animal-6",
+      "revision": "dfdb45ad9cef7981",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:29:28.453Z",
+      "seen": true,
+      "operation": "a5a48fd4-5b1d-484c-938c-fbe00d4f0a51"
     }
   },
   "history": [
