@@ -6031,6 +6031,15 @@
       "at": "2026-11-15T20:47:16.704Z",
       "seen": true,
       "operation": "faeca9e3-4196-44cd-ac47-f40ec44a5a6b"
+    },
+    "picnic/2-1@53662f5e3f71599c": {
+      "key": "picnic/2-1",
+      "revision": "53662f5e3f71599c",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:50:17.940Z",
+      "seen": true,
+      "operation": "55036aef-a346-4699-989a-7578c214e392"
     }
   },
   "history": [
