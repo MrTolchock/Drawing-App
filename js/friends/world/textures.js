@@ -57,8 +57,21 @@ const NEAR_CLIP = `#include <clipping_planes_fragment>
  vec3 ffP=-vViewPosition;vec2 ffD=ffP.xy*(ffFox.z/min(ffP.z,-.2))-ffFox.xy;ffD.y*=ffD.y>0.?.45:1.;
  float ffLine=(1.-smoothstep(.95,2.5,length(ffD)))*smoothstep(ffFox.z+.6,ffFox.z+2.4,ffP.z)*.92;
  float nearFade=max(ffLine,clamp((6.5-vViewPosition.z)/2.4,0.,1.));if(nearFade>0.&&ffNoise(gl_FragCoord.xy)<nearFade)discard;`;
-export function patch(material, {foliage = false, near = false}, key) {
+// Bare rock: where a mesh says so (`rk` per vertex: the Rock's cliffs and stony ground, boulders), the wrapping rock
+// texture is laid on from three sides, so bedding lines run level round a cliff, and is read as relief too.
+const ROCK_VERT = '#include <begin_vertex>\nffRk = rk; ffRw = (modelMatrix * vec4(transformed, 1.)).xyz; ffRn = normal;';
+const ROCK_COLOUR = `#include <color_fragment>
+ float ffRh = 0.;
+ if (ffRk > .01) { vec3 ffB = abs(normalize(ffRn)); ffB *= ffB; ffB *= ffB; ffB /= ffB.x + ffB.y + ffB.z;
+  vec3 ffT = texture2D(ffRock, ffRw.zy * .2).rgb * ffB.x + texture2D(ffRock, ffRw.xz * .2).grb * ffB.y + texture2D(ffRock, ffRw.xy * .2).rgb * ffB.z;
+  ffRh = ffT.r; diffuseColor.rgb *= mix(1., .56 + .78 * ffT.r, ffRk); }`;
+const ROCK_NORMAL = `#include <normal_fragment_maps>
+ if (ffRk > .01) { vec3 ffSx = normalize(dFdx(-vViewPosition)), ffSy = normalize(dFdy(-vViewPosition)), ffR1 = cross(ffSy, normal), ffR2 = cross(normal, ffSx); float ffDet = dot(ffSx, ffR1);
+  normal = normalize(abs(ffDet) * normal - sign(ffDet) * (dFdx(ffRh) * ffR1 + dFdy(ffRh) * ffR2) * 5.5 * ffRk); }`;
+export function patch(material, {foliage = false, near = false, rock = null}, key) {
   material.onBeforeCompile = sh => {
+    if (rock) { sh.uniforms.ffRock = {value: rock}; sh.vertexShader = sh.vertexShader.replace('#include <common>', '#include <common>\nattribute float rk;\nvarying float ffRk;\nvarying vec3 ffRw, ffRn;').replace('#include <begin_vertex>', ROCK_VERT);
+      sh.fragmentShader = sh.fragmentShader.replace('#include <common>', '#include <common>\nuniform sampler2D ffRock;\nvarying float ffRk;\nvarying vec3 ffRw, ffRn;').replace('#include <color_fragment>', ROCK_COLOUR).replace('#include <normal_fragment_maps>', ROCK_NORMAL); }
     if (near) { sh.uniforms.ffFox = foxView; sh.fragmentShader = sh.fragmentShader.replace('#include <common>', NEAR_COMMON).replace('#include <clipping_planes_fragment>', NEAR_CLIP); }
     if (foliage) { sh.fragmentShader = sh.fragmentShader.replace(...FOLIAGE); sh.uniforms.ffBend = bendAt; sh.uniforms.ffWind = windAt; sh.vertexShader = sh.vertexShader.replace('#include <common>', '#include <common>\nuniform vec4 ffBend[4];\nuniform vec2 ffWind;').replace('#include <begin_vertex>', BEND); }
   };
@@ -142,9 +155,9 @@ export function createLook({software = false, big = false} = {}) {
     // Materials: one per surface kind, shared by every tile.
     () => {
       const shadows = !software;
-      M.ground = new THREE.MeshLambertMaterial({vertexColors: true, map: T.grain});
+      M.ground = patch(new THREE.MeshLambertMaterial({vertexColors: true, map: T.grain}), {rock: T.rock}, 'wb-ground');
       M.plants = patch(new THREE.MeshLambertMaterial({map: T.plants, alphaTest: .5, side: THREE.DoubleSide, vertexColors: true}), {foliage: true}, 'wb-plants');
-      M.rock = new THREE.MeshLambertMaterial({vertexColors: true, map: T.grain});
+      M.rock = patch(new THREE.MeshLambertMaterial({vertexColors: true, map: T.grain}), {rock: T.rock}, 'wb-rock');
       if (T.decals) M.decals = new THREE.MeshLambertMaterial({map: T.decals, vertexColors: true, transparent: true, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -1, polygonOffsetUnits: -2});
       M.soft = patch(new THREE.MeshLambertMaterial({vertexColors: true, map: T.grain}), {near: true}, 'wb-soft');   // coloured things tall enough to hide Fuchs: they turn translucent like the trees
       M.bark = patch(new THREE.MeshLambertMaterial({map: T.bark, vertexColors: true}), {near: true}, 'wb-bark');

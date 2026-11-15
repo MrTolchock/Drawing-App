@@ -218,17 +218,17 @@ export function createTerrain() {
     if (b.birch > 0) out.lerp(birchC, b.birch * .45);
     if (b.spruce > 0) out.lerp(needle, b.spruce * (.45 + .4 * n2));
     out.lerp(mossC, sstep(7, 4, Math.hypot(x - L.DEN.x, z - L.DEN.z)) * .7);
-    if (b.rock > 0) out.lerp(stoneA, b.rock * sstep(.35, .6, n2 * .5 + b.rock * .45) * .85);
+    out.stone = 0; if (b.rock > 0) { const k = b.rock * sstep(.35, .6, n2 * .5 + b.rock * .45) * .85; out.lerp(stoneA, k); out.stone = k; }   // `stone`: how much bare rock shows (the rock shader draws its bedding and cracks there)
     if (b.swamp > 0) { const above = s.h - S.level; out.lerp(bog, b.swamp * .85); out.lerp(mud, b.swamp * sstep(.28, .02, above) * .9); }
     const pe = s.pd - s.pw / 2 + (n2 - .5) * .35;
     if (pe < .25) out.lerp(edgeC, sstep(.25, 0, pe) * .6);
-    if (pe < 0) { out.copy(dirt).lerp(dirtL, n2 * .7); if (b.rock > .5) out.lerp(stoneB, .5); }
+    if (pe < 0) { out.copy(dirt).lerp(dirtL, n2 * .7); out.stone = 0; if (b.rock > .5) { out.lerp(stoneB, .5); out.stone = .4; } }
     if (s.sd < 8) { const be = s.sd - s.sw / 2; if (be < 1.1) out.lerp(wetC, sstep(1.1, .25, be + (n2 - .5) * .3)); if (be < .35) out.lerp(sand, sstep(.35, .05, be) * (.5 + .5 * n2)); if (be < 0) out.copy(bed).lerp(sand, n2 * .5); }
     if (s.still === s.still && b.swamp < .5) { const above = s.h - s.still; if (above < .45) out.lerp(wetC, sstep(.45, .1, above + (n2 - .5) * .2)); if (above < .12) out.lerp(sand, sstep(.12, 0, above) * (.4 + .6 * n2)); if (above < -.05) out.copy(bed).lerp(stoneD, sstep(-.1, -.9, above) * .6); }
     // the cave's floor: dark, stony earth, darker further in
-    if (b.cave > 0 && !hillside) out.lerp(scratchC.copy(caveC).lerp(stoneD, n2 * .5).multiplyScalar(1 - .35 * b.caveRoof), b.cave * .9);
+    if (b.cave > 0 && !hillside) { out.stone = Math.max(out.stone, b.cave * .8); } if (b.cave > 0 && !hillside) out.lerp(scratchC.copy(caveC).lerp(stoneD, n2 * .5).multiplyScalar(1 - .35 * b.caveRoof), b.cave * .9);
     // snow on the peak: bluish in the hollows, a trodden grey-white on the path
-    if (b.snow > 0) { out.lerp(scratchC.copy(snowC).lerp(snowShade, sstep(.45, .7, fbm(x * .22 + 6, z * .22)) * .6), b.snow); if (pe < 0) out.lerp(snowPath, b.snow * .85); }
+    if (b.snow > 0) { out.stone *= 1 - b.snow; out.lerp(scratchC.copy(snowC).lerp(snowShade, sstep(.45, .7, fbm(x * .22 + 6, z * .22)) * .6), b.snow); if (pe < 0) out.lerp(snowPath, b.snow * .85); }
     return out;
   }
   /** Rock shows through where the ground is steep; `up` is the normal's y. */
@@ -236,7 +236,7 @@ export function createTerrain() {
     let k = sstep(.9, .66, up + (fbm(x * .7, z * .7) - .5) * .12); if (k <= 0) return out;
     const sn = snow(x, z); if (sn > 0) k *= 1 - sn * sstep(.5, .72, up);                // snow stays on all but the steepest rock
     const y = ground(x, z), band = .5 + .5 * Math.sin(y * 2.4 + fbm(x * .25, z * .25) * 5);
-    return out.lerp(scratchC.copy(stoneA).lerp(stoneB, band * .7).lerp(stoneD, sstep(.6, .9, fbm(x * 1.3 + 2, z * 1.3)) * .5), k);
+    out.stone = Math.max(out.stone || 0, k); return out.lerp(scratchC.copy(stoneA).lerp(stoneB, band * .7).lerp(stoneD, sstep(.6, .9, fbm(x * 1.3 + 2, z * 1.3)) * .5), k);
   }
   const scratchC = new THREE.Color();
 

@@ -109,11 +109,17 @@ export function* buildBigTile(world, look, i, j, ring) {
   /* terrain: heights on the grid plus a one-cell ring, so normals agree across tile edges */
   yield 'terrain';
   {
-    const N = GRID + 1, W = N + 2, step = TILE / GRID, pos = new Float32Array(N * N * 3), nor = new Float32Array(N * N * 3), col = new Float32Array(N * N * 3), uv = new Float32Array(N * N * 2), H = new Float32Array(W * W);
+    const N = GRID + 1, W = N + 2, step = TILE / GRID, pos = new Float32Array(N * N * 3), nor = new Float32Array(N * N * 3), col = new Float32Array(N * N * 3), uv = new Float32Array(N * N * 2), H = new Float32Array(W * W), rk = new Float32Array(N * N);
+    // what stands on the ground here or just over the tile's edge darkens it a little where it meets it
+    const stands = []; for (let di = -1; di <= 1; di++) for (let dj = -1; dj <= 1; dj++) for (const tr of (di || dj ? world.treesIn(i + di, j + dj) : trees)) { if (tr.kind === 'snag') continue; const r = (tr.kind === 'spruce' || tr.kind === 'birch' ? 1.5 : 2.3) + tr.r * 1.6; if (tr.x > x0 - r && tr.x < x0 + TILE + r && tr.z > z0 - r && tr.z < z0 + TILE + r) stands.push([tr.x, tr.z, r, tr.kind === 'birch' ? .2 : .3]); }
+    for (const [x, z, sz] of L.ROCKS) if (x > x0 - 3 && x < x0 + TILE + 3 && z > z0 - 3 && z < z0 + TILE + 3) stands.push([x, z, sz * 1.9, .3]);
+    for (const [x, z, r, k] of [[L.DEN.x, L.DEN.z, 5.2, .32], [L.SETT[0], L.SETT[1], 4.2, .2]]) if (x > x0 - r && x < x0 + TILE + r && z > z0 - r && z < z0 + TILE + r) stands.push([x, z, r, k]);
     for (let r = -1; r <= N; r++) {
       for (let k = -1; k <= N; k++) {
         const x = x0 + k * step, z = z0 + r * step, h = T.ground(x, z); H[(r + 1) * W + k + 1] = h;
-        if (r >= 0 && k >= 0 && r < N && k < N) { const v = r * N + k; pos[v * 3] = x; pos[v * 3 + 1] = h; pos[v * 3 + 2] = z; uv[v * 2] = x / 2; uv[v * 2 + 1] = z / 2; T.colour(x, z, tone); col[v * 3] = tone.r; col[v * 3 + 1] = tone.g; col[v * 3 + 2] = tone.b; }
+        if (r >= 0 && k >= 0 && r < N && k < N) { const v = r * N + k; pos[v * 3] = x; pos[v * 3 + 1] = h; pos[v * 3 + 2] = z; uv[v * 2] = x / 2; uv[v * 2 + 1] = z / 2; T.colour(x, z, tone); rk[v] = tone.stone;
+          let shade = 1; for (const [sx, sz, r, k] of stands) { const d = Math.hypot(sx - x, sz - z); if (d < r) { const q = 1 - d / r; shade *= 1 - k * q * q * (3 - 2 * q); } }
+          col[v * 3] = tone.r * shade; col[v * 3 + 1] = tone.g * shade; col[v * 3 + 2] = tone.b * (shade * .8 + .2); }
       }
       if (r % 2) yield 'terrain';
     }
@@ -121,12 +127,12 @@ export function* buildBigTile(world, look, i, j, ring) {
     for (let r = 0; r < N; r++) for (let k = 0; k < N; k++) {
       const hx = H[(r + 1) * W + k + 2] - H[(r + 1) * W + k], hz = H[(r + 2) * W + k + 1] - H[r * W + k + 1], l = Math.hypot(hx, 2 * step, hz), v = r * N + k, up = 2 * step / l;
       nor[v * 3] = -hx / l; nor[v * 3 + 1] = up; nor[v * 3 + 2] = -hz / l;
-      if (up < .93) { tone.setRGB(col[v * 3], col[v * 3 + 1], col[v * 3 + 2]); T.cliff(pos[v * 3], pos[v * 3 + 2], up, tone); col[v * 3] = tone.r; col[v * 3 + 1] = tone.g; col[v * 3 + 2] = tone.b; }
+      if (up < .93) { tone.setRGB(col[v * 3], col[v * 3 + 1], col[v * 3 + 2]); tone.stone = rk[v]; T.cliff(pos[v * 3], pos[v * 3 + 2], up, tone); rk[v] = tone.stone; col[v * 3] = tone.r; col[v * 3 + 1] = tone.g; col[v * 3 + 2] = tone.b; }
     }
     yield 'terrain mesh';
     const idx = new Uint16Array(GRID * GRID * 6); let q = 0;
     for (let r = 0; r < GRID; r++) for (let k = 0; k < GRID; k++) { const a = r * N + k, b = a + 1, d = a + N, e = d + 1; idx[q++] = a; idx[q++] = d; idx[q++] = b; idx[q++] = b; idx[q++] = d; idx[q++] = e; }
-    const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.BufferAttribute(pos, 3)); g.setAttribute('normal', new THREE.BufferAttribute(nor, 3)); g.setAttribute('color', new THREE.BufferAttribute(col, 3)); g.setAttribute('uv', new THREE.BufferAttribute(uv, 2)); g.setIndex(new THREE.BufferAttribute(idx, 1)); g.computeBoundingSphere();
+    const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.BufferAttribute(pos, 3)); g.setAttribute('normal', new THREE.BufferAttribute(nor, 3)); g.setAttribute('color', new THREE.BufferAttribute(col, 3)); g.setAttribute('uv', new THREE.BufferAttribute(uv, 2)); g.setAttribute('rk', new THREE.BufferAttribute(rk, 1)); g.setIndex(new THREE.BufferAttribute(idx, 1)); g.computeBoundingSphere();
     const terrain = new THREE.Mesh(g, M.ground); terrain.name = 'terrain'; terrain.receiveShadow = M.shadows; terrain.userData.terrain = true; group.add(terrain);
   }
 
@@ -247,7 +253,7 @@ export function* buildBigTile(world, look, i, j, ring) {
   meshOf(foliage, M.plants, {name: 'foliage'});
   if (detail) meshOf(detail, M.decals, {name: 'ground detail', receive: true});
   yield 'rock mesh';
-  meshOf(rocks, M.rock, {name: 'rocks'});
+  stony(meshOf(rocks, M.rock, {name: 'rocks'}));
   yield 'water';
   { const g = waterGeometry(); if (g) { const m = new THREE.Mesh(g, waterMaterial(look, world.fog)); m.name = 'water'; m.renderOrder = 2; group.add(m); } }
   return group;
@@ -381,5 +387,7 @@ export function* buildBigTile(world, look, i, j, ring) {
     meshOf(far, M.plants, {name: 'far', receive: false});
   }
 }
+/** Mark the grey of a mesh as bare stone (the rock shader draws bedding and cracks there; moss, mushrooms and earth stay plain). */
+export function stony(mesh, amount = .85) { if (!mesh) return mesh; const c = mesh.geometry.attributes.color, rk = new Float32Array(c.count); for (let i = 0; i < c.count; i++) { const r = c.getX(i), g = c.getY(i), b = c.getZ(i); rk[i] = amount * (1 - sstep(.05, .15, Math.max(r, g, b) - Math.min(r, g, b))); } mesh.geometry.setAttribute('rk', new THREE.BufferAttribute(rk, 1)); return mesh; }
 let cardGeo = null;
 const leafCardGeometry = () => { if (!cardGeo) { cardGeo = new THREE.PlaneGeometry(1, 1); const n = cardGeo.attributes.normal; for (let i = 0; i < n.count; i++) n.setXYZ(i, 0, 1, 0); } return cardGeo; };

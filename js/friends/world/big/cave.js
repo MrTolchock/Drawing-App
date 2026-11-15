@@ -11,6 +11,7 @@
 import {THREE} from '../../../scene/materials.js';
 import {TAU, clamp, lerp, sstep, fbm, rng} from '../noise.js';
 import {Buffer, templates} from '../tiles.js';
+import {stony} from './tiles.js';
 import {canvasTex} from '../textures.js';
 import {ATLAS} from './atlas.js';
 
@@ -159,8 +160,8 @@ export function caveSteps(site, look, world, group, out) {
     for (const u of us) { const a = archY(u); if (a !== null && arch.length && u === arch[0][0]) colAt(u, null); colAt(u, a); if (a !== null && arch.length && u === arch[arch.length - 1][0]) colAt(u, null); }
     for (let k = 0; k < cols.length - 1; k++) for (let r = 0; r < 4; r++) fi.push(cols[k][r], cols[k + 1][r], cols[k + 1][r + 1], cols[k][r], cols[k + 1][r + 1], cols[k][r + 1]);
     const geo = (p, k, i) => { const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(p, 3)); if (k) g.setAttribute('color', new THREE.Float32BufferAttribute(k, 3)); g.setIndex(i); g.computeVertexNormals(); const uv = new Float32Array(p.length / 3 * 2); for (let n = 0; n < uv.length / 2; n++) { uv[n * 2] = p[n * 3] / 2; uv[n * 2 + 1] = p[n * 3 + 2] / 2; } g.setAttribute('uv', new THREE.BufferAttribute(uv, 2)); return g; };
-    const roof = new THREE.Mesh(geo(tp, tc, ti), M.ground); roof.name = 'cave roof'; roof.castShadow = M.shadows; roof.receiveShadow = M.shadows; group.add(roof); out.roof = roof;
-    const face = new THREE.Mesh(geo(fp, fc, fi), M.rock); face.name = 'cave mouth'; face.castShadow = M.shadows; face.receiveShadow = M.shadows; group.add(face);
+    const roof = stony(new THREE.Mesh(geo(tp, tc, ti), M.ground), 1); roof.name = 'cave roof'; roof.castShadow = M.shadows; roof.receiveShadow = M.shadows; group.add(roof); out.roof = roof;
+    const face = stony(new THREE.Mesh(geo(fp, fc, fi), M.rock), 1); face.name = 'cave mouth'; face.castShadow = M.shadows; face.receiveShadow = M.shadows; group.add(face);
     // night: a lid just under the hillside, a curtain from every wall's top up to it, a skirt round the outside, a floor far below
     const lidY = (x, z) => T.rawHill(x, z) - .3, low = F0 - 4;
     for (const [a, b] of out.wallQuads) { const n = dark.length / 3; for (const v of [a, b]) { const [ox, oz] = outward(pos[v * 3], pos[v * 3 + 2]), x = pos[v * 3] + ox * .7, z = pos[v * 3 + 2] + oz * .7; dark.push(x, pos[v * 3 + 1] - .6, z, x, lidY(x, z), z); } di.push(n, n + 3, n + 2, n, n + 1, n + 3); }
@@ -175,7 +176,7 @@ export function caveSteps(site, look, world, group, out) {
       if (q < .5) plants.add(t.grass, {x, y, z, ry: R() * TAU, sx: sc, sy: sc * .9, sz: sc, cell: ATLAS.grass, up: true, c: c.setRGB(v2, v2, v2 * .86)});
       else if (q < .85) plants.add(t.grass, {x, y: y - .03, z, ry: R() * TAU, sx: sc, sy: sc * 1.6, sz: sc, cell: ATLAS.heather, up: true});
       else { const rs = .1 + R() * .22; rocks.add(t.rock, {x, y, z, ry: R() * TAU, sx: rs, sy: rs * .8, sz: rs}); } }
-    { const g = rocks.geometry(); if (g) { const m = new THREE.Mesh(g, M.rock); m.name = 'cave rocks'; m.castShadow = M.shadows; m.receiveShadow = M.shadows; group.add(m); } }
+    { const g = rocks.geometry(); if (g) { const m = stony(new THREE.Mesh(g, M.rock)); m.name = 'cave rocks'; m.castShadow = M.shadows; m.receiveShadow = M.shadows; group.add(m); } }
     { const g = plants.geometry(); if (g) { const m = new THREE.Mesh(g, M.plants); m.name = 'cave roof plants'; m.receiveShadow = M.shadows; group.add(m); } }
   });
 

@@ -50,4 +50,6 @@ The Steinbock (`EXTRAS` in `layout.js`, `ibex` in `tools/characters/plush.js` an
 
 Speech uses the device's German voices; adults can pick one in Settings (**Stimme zum Vorlesen**, with **Probe hören**) and download a Premium/Erweitert voice on the iPad for a more natural sound (`js/core/speech.js`).
 
+Rock (`rockSteps` and `patch({rock})` in `world/textures.js`, `stone` in `terrain.js`): one wrapping rock texture (bedding lines, cracks, a speckle for glints) is laid from three sides on whatever a mesh marks as bare stone (`rk` per vertex: the Rock's cliffs and stony ground, the cave's roof and mouth, boulders) and read as relief too, so cliffs show level beds instead of smooth grey. The ground is a little darker where trees, big rocks, the den tree and the sett stand on it (baked into the terrain's colours).
+
 Graphics touches: wind sways the plants and leaves; ground detail (`world/big/decals.js`) puts roots, moss, needles, pebbles, twigs and worn patches on the woodland floor; painted ridges (Alps, hills, wooded edge) fill the horizon; characters stand on the lowest ground under their feet, squint happily after tricks and catch a warm rim light at dusk; snails, ladybirds and little frogs live on the ground near Fuchs; the world's buttons are painted wooden medallions (`js/friends/hud-art.js`).
