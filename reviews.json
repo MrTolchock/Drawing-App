@@ -3790,6 +3790,231 @@
       "at": "2026-11-14T21:05:49.535Z",
       "seen": true,
       "operation": "6ae7156d-7bb9-4a02-89a5-a10619910d7e"
+    },
+    "friends-hedgehog/riddle-0@baa62bab2be14975": {
+      "key": "friends-hedgehog/riddle-0",
+      "revision": "baa62bab2be14975",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:17:36.222Z",
+      "seen": true,
+      "operation": "a92864a8-2b0b-435c-b742-9b09bffba6bc"
+    },
+    "friends-hedgehog/riddle-1@e782dfe828348128": {
+      "key": "friends-hedgehog/riddle-1",
+      "revision": "e782dfe828348128",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:17:43.934Z",
+      "seen": true,
+      "operation": "c8d7e6ab-77d8-4641-82ad-00682ec25cfc"
+    },
+    "friends-hedgehog/riddle-2@24c41d0c2cb32934": {
+      "key": "friends-hedgehog/riddle-2",
+      "revision": "24c41d0c2cb32934",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:17:48.319Z",
+      "seen": true,
+      "operation": "2e7b6b95-77c9-4c97-9744-a29e7048132b"
+    },
+    "friends-hedgehog/riddle-3@6143ba4d1de3aac9": {
+      "key": "friends-hedgehog/riddle-3",
+      "revision": "6143ba4d1de3aac9",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:17:51.799Z",
+      "seen": true,
+      "operation": "6db6472d-078f-4844-8593-3852337d04be"
+    },
+    "friends-hedgehog/riddle-4@a903552ae0395e14": {
+      "key": "friends-hedgehog/riddle-4",
+      "revision": "a903552ae0395e14",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:17:55.015Z",
+      "seen": true,
+      "operation": "8d9a2ef8-f350-4a29-a2d5-80dbc5c09d98"
+    },
+    "friends-hedgehog/riddle-5@7dbd4c376adac21b": {
+      "key": "friends-hedgehog/riddle-5",
+      "revision": "7dbd4c376adac21b",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:17:57.800Z",
+      "seen": true,
+      "operation": "bc8470fa-d2f6-405d-9537-91c802c1baaf"
+    },
+    "friends-hedgehog/riddle-6@f820899471c68052": {
+      "key": "friends-hedgehog/riddle-6",
+      "revision": "f820899471c68052",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:18:03.949Z",
+      "seen": true,
+      "operation": "2f0c3880-0873-4857-9d34-9fca0a929ec5"
+    },
+    "friends-hedgehog/riddle-7@0876e8db7dcf61e5": {
+      "key": "friends-hedgehog/riddle-7",
+      "revision": "0876e8db7dcf61e5",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:18:08.715Z",
+      "seen": true,
+      "operation": "5ea8904f-a06a-4490-8337-8a493e76f6f6"
+    },
+    "friends-hedgehog/riddle-8@471c010be51d2dd9": {
+      "key": "friends-hedgehog/riddle-8",
+      "revision": "471c010be51d2dd9",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:18:12.965Z",
+      "seen": true,
+      "operation": "08ad68d9-cbf7-4d68-abde-abc66564f08b"
+    },
+    "friends-hedgehog/riddle-9@b7810dfc8f635928": {
+      "key": "friends-hedgehog/riddle-9",
+      "revision": "b7810dfc8f635928",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:18:17.164Z",
+      "seen": true,
+      "operation": "e4f39543-ae4e-4d67-9c73-cbcc7634e86c"
+    },
+    "friends-hedgehog/riddle-10@0922e6899036f641": {
+      "key": "friends-hedgehog/riddle-10",
+      "revision": "0922e6899036f641",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:18:19.813Z",
+      "seen": true,
+      "operation": "ebd3d57b-6ac7-4103-96b4-9704b3002fc1"
+    },
+    "friends-hedgehog/riddle-11@2534cc697f1053f9": {
+      "key": "friends-hedgehog/riddle-11",
+      "revision": "2534cc697f1053f9",
+      "status": "improve",
+      "note": "Der fuchs hat einen anderen zeichenstil",
+      "at": "2026-11-15T20:18:51.863Z",
+      "seen": true,
+      "operation": "4add9fd3-d4f7-4a5e-abd0-65eb522b2ebd"
+    },
+    "friends-hedgehog/riddle-12@c6d4113ee48815e4": {
+      "key": "friends-hedgehog/riddle-12",
+      "revision": "c6d4113ee48815e4",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:18:56.427Z",
+      "seen": true,
+      "operation": "ac03f983-6fb5-461c-8030-c568a40ab140"
+    },
+    "friends-hedgehog/riddle-13@4dd6102f8d0bb283": {
+      "key": "friends-hedgehog/riddle-13",
+      "revision": "4dd6102f8d0bb283",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:19:07.878Z",
+      "seen": true,
+      "operation": "437b6f60-d6df-48df-bff5-d9ad3bcea025"
+    },
+    "friends-hedgehog/riddle-14@0babdd19d83236c9": {
+      "key": "friends-hedgehog/riddle-14",
+      "revision": "0babdd19d83236c9",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:19:11.741Z",
+      "seen": true,
+      "operation": "b61e2256-210a-40b9-8377-150cef6e2a7f"
+    },
+    "friends-hedgehog/riddle-15@c5e7c6366cab650a": {
+      "key": "friends-hedgehog/riddle-15",
+      "revision": "c5e7c6366cab650a",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:19:16.741Z",
+      "seen": true,
+      "operation": "db06d129-cd3b-4d7b-8d07-b35da77b46a7"
+    },
+    "friends-hedgehog/riddle-16@9a7f72ab6d5865ed": {
+      "key": "friends-hedgehog/riddle-16",
+      "revision": "9a7f72ab6d5865ed",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:19:23.491Z",
+      "seen": true,
+      "operation": "5dae7ca3-f537-4bc2-aabf-77bb11172b6a"
+    },
+    "friends-hedgehog/riddle-17@1266ebbe97f2af96": {
+      "key": "friends-hedgehog/riddle-17",
+      "revision": "1266ebbe97f2af96",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:19:26.607Z",
+      "seen": true,
+      "operation": "df6255fa-f167-4e06-8cab-c9b7cef8b8d5"
+    },
+    "friends-hedgehog/riddle-18@0be40f63b7a52603": {
+      "key": "friends-hedgehog/riddle-18",
+      "revision": "0be40f63b7a52603",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:19:29.374Z",
+      "seen": true,
+      "operation": "2183779a-1df4-44b4-b9fc-18b0ccbe0fbf"
+    },
+    "friends-hedgehog/riddle-19@818647c4f18f3464": {
+      "key": "friends-hedgehog/riddle-19",
+      "revision": "818647c4f18f3464",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:19:32.240Z",
+      "seen": true,
+      "operation": "f9772c9f-bc21-49ad-8ed7-20c332f94644"
+    },
+    "friends-hedgehog/riddle-20@80c9820f48de383b": {
+      "key": "friends-hedgehog/riddle-20",
+      "revision": "80c9820f48de383b",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:19:35.772Z",
+      "seen": true,
+      "operation": "01e76f09-c753-42d9-90ec-ddb1cddf9596"
+    },
+    "friends-hedgehog/riddle-21@6be347eaaa693a68": {
+      "key": "friends-hedgehog/riddle-21",
+      "revision": "6be347eaaa693a68",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:19:39.006Z",
+      "seen": true,
+      "operation": "525abbe4-fa38-4e2c-98d2-e6dff2d475ab"
+    },
+    "friends-hedgehog/riddle-22@5bd77a4e1a31b226": {
+      "key": "friends-hedgehog/riddle-22",
+      "revision": "5bd77a4e1a31b226",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:19:45.323Z",
+      "seen": true,
+      "operation": "253f4672-0bb9-45b0-9252-d7a18717b12e"
+    },
+    "friends-hedgehog/riddle-23@95907c6d701d0a7b": {
+      "key": "friends-hedgehog/riddle-23",
+      "revision": "95907c6d701d0a7b",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:19:52.072Z",
+      "seen": true,
+      "operation": "5035db92-7ac1-4562-9a04-d08c45643cf3"
+    },
+    "friends-hedgehog/riddle-24@f7764530806ab1ce": {
+      "key": "friends-hedgehog/riddle-24",
+      "revision": "f7764530806ab1ce",
+      "status": "improve",
+      "note": "Generell ist dieses puzzle extrem schwer für ein kind in der ersten klasse wenn möglich vereinfachen",
+      "at": "2026-11-15T20:20:42.551Z",
+      "seen": true,
+      "operation": "bcc5e5ef-1299-4cde-a092-a82401434b28"
     }
   },
   "history": [
