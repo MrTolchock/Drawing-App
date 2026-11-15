@@ -6427,6 +6427,15 @@
       "at": "2026-11-15T21:02:10.587Z",
       "seen": true,
       "operation": "14d605b2-fee3-40a7-8abf-7b3dcbf59561"
+    },
+    "neighbours/1-both@8e1391edd7f709c3": {
+      "key": "neighbours/1-both",
+      "revision": "8e1391edd7f709c3",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T21:02:43.084Z",
+      "seen": true,
+      "operation": "4f8ae7e7-5cc6-4161-859c-447dca7534c0"
     }
   },
   "history": [
