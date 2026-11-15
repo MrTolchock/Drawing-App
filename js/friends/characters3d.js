@@ -250,8 +250,8 @@ import {GLTFLoader} from '../../vendor/three/addons/GLTFLoader.js';
 import {clone as cloneSkinned} from '../../vendor/three/addons/SkeletonUtils.js';
 import {MeshoptDecoder} from '../../vendor/meshoptimizer/meshopt_decoder.js';
 
-// The last six are the big world's neighbours: they exist only as baked models.
-const CAST=['fox','squirrel','bird','owl','mouse','beaver','mailman','deer','frog','hedgehog','fish','kingfisher','badger'],baked={};
+// The big world's neighbours and the Steinbock on the Rock exist only as baked models.
+const CAST=['fox','squirrel','bird','owl','mouse','beaver','mailman','deer','frog','hedgehog','fish','kingfisher','badger','ibex'],baked={};
 const NOISE=`
 float plHash(vec3 p){p=fract(p*.3183099+.1);p*=17.;return fract(p.x*p.y*p.z*(p.x+p.y+p.z));}
 float plNoise(vec3 x){vec3 i=floor(x),f=fract(x);f=f*f*(3.-2.*f);
@@ -259,13 +259,22 @@ float plNoise(vec3 x){vec3 i=floor(x),f=fract(x);f=f*f*(3.-2.*f);
             mix(mix(plHash(i+vec3(0,0,1)),plHash(i+vec3(1,0,1)),f.x),mix(plHash(i+vec3(0,1,1)),plHash(i+vec3(1,1,1)),f.x),f.y),f.z);}`;
 // Plush fur: brushed strokes running down the body in colour and normal (in bind-pose space, so they never swim),
 // soft clumps (both fade out with distance instead of turning into grain), a warm velvet rim and a little self-light. Same shader as tools/characters/plush.js.
+// A warm low light on the fur at dusk (forest3d.js sets it from the time of day; 0 elsewhere).
+export const plushDusk={value:0};
+// The sun as the fur sees it (view space, its length the strength; forest3d.js sets it, 0 elsewhere): the fur edges that
+// face the sun, and all edges when a friend stands against the light, glow golden.
+export const plushSun={value:new THREE.Vector3()};
 function plushFur(source,{fuzz=1,rim=.5}={}){const m=source.clone();m.vertexColors=true;m.roughness=.92;m.metalness=0;
-  m.onBeforeCompile=sh=>{sh.vertexShader=sh.vertexShader.replace('#include <common>','#include <common>\nvarying vec3 vPl;').replace('#include <begin_vertex>','#include <begin_vertex>\nvPl=position;');
-    sh.fragmentShader=sh.fragmentShader.replace('#include <common>','#include <common>\nvarying vec3 vPl;'+NOISE)
+  m.onBeforeCompile=sh=>{sh.uniforms.plDusk=plushDusk;sh.uniforms.plSun=plushSun;sh.vertexShader=sh.vertexShader.replace('#include <common>','#include <common>\nvarying vec3 vPl;').replace('#include <begin_vertex>','#include <begin_vertex>\nvPl=position;');
+    sh.fragmentShader=sh.fragmentShader.replace('#include <common>','#include <common>\nvarying vec3 vPl;uniform float plDusk;uniform vec3 plSun;'+NOISE)
       .replace('#include <color_fragment>',`#include <color_fragment>\n float plFw=length(fwidth(vPl)),plFine=clamp(1.4-plFw*300.,0.,1.),plCoarse=clamp(1.4-plFw*90.,0.,1.);\n float fz=mix(.5,plNoise(vPl*vec3(330.,62.,330.)),plFine)*.6+mix(.5,plNoise(vPl*95.+7.),plCoarse)*.4; diffuseColor.rgb*=mix(1.,.87+.24*fz,${fuzz.toFixed(2)});`)
       .replace('#include <normal_fragment_maps>',`#include <normal_fragment_maps>\n vec3 fzN=vec3(plNoise(vPl*vec3(280.,70.,280.)),plNoise(vPl*vec3(280.,70.,280.)+3.1),plNoise(vPl*vec3(280.,70.,280.)+5.7))-.5; normal=normalize(normal+fzN*plFine*${(.34*fuzz).toFixed(2)});`)
-      .replace('#include <opaque_fragment>',`float plRim=pow(1.-clamp(dot(normal,normalize(vViewPosition)),0.,1.),2.4);\n outgoingLight+=diffuseColor.rgb*vec3(1.,.9,.78)*plRim*${rim.toFixed(2)}+diffuseColor.rgb*.07;\n #include <opaque_fragment>`);};
+      .replace('#include <opaque_fragment>',`float plRim=pow(1.-clamp(dot(normal,normalize(vViewPosition)),0.,1.),2.4);\n outgoingLight+=diffuseColor.rgb*vec3(1.,.9,.78)*plRim*${rim.toFixed(2)}+diffuseColor.rgb*.07+vec3(1.,.58,.28)*plRim*plRim*plDusk*.55;\n float plSr=pow(1.-clamp(dot(normal,normalize(vViewPosition)),0.,1.),2.6);\n outgoingLight+=diffuseColor.rgb*vec3(1.,.8,.52)*plSr*(max(0.,dot(normal,plSun))*1.15+max(0.,-plSun.z)*.7);\n #include <opaque_fragment>`);};
   m.customProgramCacheKey=()=>'plush-fur-'+fuzz+'-'+rim;return m;}
+// Eyes: the painted catchlights glow a little, so the eyes look wet and alive in any light.
+function plushGloss(source){const m=Object.assign(source.clone(),{map:eyes(),roughness:.12});
+  m.onBeforeCompile=sh=>{sh.fragmentShader=sh.fragmentShader.replace('#include <opaque_fragment>','#ifdef USE_MAP\n float plC=step(vMapUv.x,.5)*smoothstep(.9,.99,min(diffuseColor.r,min(diffuseColor.g,diffuseColor.b)));\n outgoingLight+=vec3(plC)*.75;\n#endif\n#include <opaque_fragment>');};
+  m.customProgramCacheKey=()=>'plush-gloss';return m;}
 // The painted eye, as on the friends sheet (left half: cream eyeball shaded round its rim, thick dark upper lid,
 // big warm-brown iris lighter at the bottom, large pupil, two catchlights) next to plain white (right half) for
 // noses, teeth and buttons, which take their colour from the vertices. Drawn once, shared.
@@ -289,11 +298,87 @@ function plushSleep(p){
   if(p.tail)p.tail.rotation.set(-1.6,1.5,0);
   p.arms.forEach((a,i)=>a.rotation.set(-2.5,0,i?-.15:.15));p.legs.forEach((l,i)=>l.rotation.set(.35,0,i?-.3:.3));
 }
+/* How a few friends move in their own way, layered over the shared animator (forest only; reduced motion keeps
+   the shared, calmer poses). The squirrel bounds in short dashes with both hind legs together, snaps its head
+   round, flicks its tail and nibbles; the deer walks smoothly without bobbing, grazes now and then with flicking
+   ears, and lifts its head to look at Fuchs. `greet` is a short welcome: a hop or two, then they stand and look. */
+const MANNERS={
+  squirrel(p){let hp=0,air=0,look=0,lookTo=0,lookT=.5,flick=0,flickT=1.5,nib=0,nibT=5+Math.random()*6,greet=0,was='';
+    return (dt,{moving,action})=>{
+      if(action==='greet'&&was!=='greet')greet=.95;was=action;greet=Math.max(0,greet-dt);
+      flickT-=dt;if(flickT<0){flick=.35;flickT=1.2+Math.random()*3;}flick=Math.max(0,flick-dt);
+      const tailUp=flick>0?Math.sin(flick/.35*Math.PI)*.45:0;
+      if(moving||greet>0){hp+=dt*(moving?8.6:9.4);const k=Math.abs(Math.sin(hp));air=moving?k*.085:k*.07*Math.min(1,greet/.3);
+        p.root.position.y=air;if(p.body){p.body.rotation.x=moving?.22-Math.cos(hp*2)*.08:0;p.body.position.y=p.bodyY;}
+        for(const l of p.legs)l.rotation.x=moving?-.5+Math.cos(hp*2)*.55:-.3*k;   // both hind legs push off together
+        for(const a of p.arms)a.rotation.x=moving?-.7-Math.cos(hp*2)*.4:-.5;
+        if(p.tail)p.tail.rotation.x+=(moving?-.25+Math.sin(hp*2)*.18:0)+tailUp;nib=0;return;}
+      p.root.position.y=0;
+      // alert: quick glances in a new direction, then stillness
+      lookT-=dt;if(lookT<0){lookTo=action==='look'?(Math.random()-.5)*.3:(Math.random()-.5)*1.3;lookT=.5+Math.random()*1.8;}
+      look+=(lookTo-look)*Math.min(1,dt*16);if(p.head){p.head.rotation.y=look;p.head.rotation.z*=.4;}
+      if(p.tail)p.tail.rotation.x+=tailUp;
+      nibT-=dt;if(nibT<0&&!nib){nib=2.6;nibT=6+Math.random()*8;}if(nib>0){nib=Math.max(0,nib-dt);for(const a of p.arms){a.rotation.x=-2.05;a.rotation.z*=.3;}if(p.head)p.head.rotation.x=.18+Math.sin(nib*24)*.05;}
+    };},
+  deer(p){let graze=0,grazeT=3+Math.random()*5,down=0,flick=0,flickT=1,fe=0,ph=0;
+    return (dt,{moving,speed,action})=>{
+      const alert=action==='look'||action==='greet';
+      if(moving){ph+=dt*Math.max(3.2,speed*3.4);const s=Math.sin(ph);
+        if(p.body){p.body.position.y=p.bodyY+Math.abs(s)*.008;p.body.rotation.z=s*.018;p.body.rotation.x=.04;}
+        for(const [i,l]of p.legs.entries())l.rotation.x=(i?-s:s)*.42;for(const [i,a]of p.arms.entries())a.rotation.x=(i?s:-s)*.25;
+        if(p.head){p.head.rotation.x=-.04+Math.cos(ph*2)*.035;p.head.rotation.z=0;}graze=0;}
+      else if(!alert){grazeT-=dt;if(grazeT<0&&!graze){graze=3+Math.random()*4;grazeT=5+Math.random()*7;}}
+      if(alert)graze=0;if(graze>0)graze=Math.max(0,graze-dt);
+      down+=((graze>.5?1:0)-down)*Math.min(1,dt*2.2);
+      if(!moving&&p.body){p.body.rotation.x+=down*.36;}
+      if(!moving&&p.head){p.head.rotation.x+=down*(.62+Math.sin(graze*9)*.04)-(alert?.08:0);if(alert)p.head.rotation.y*=.3;}
+      
+      flickT-=dt;if(flickT<0){flick=.22;fe=Math.random()<.5?0:1;flickT=(alert?.7:1.5)+Math.random()*2.5;}flick=Math.max(0,flick-dt);
+      for(const [i,e]of p.ears.entries())e.rotation.z+=(i===fe&&flick>0?Math.sin(flick/.22*Math.PI)*(i?-.35:.35):0)+(alert?(i?-.12:.12):0);
+      p.root.position.y=0;
+    };},
+  // the Steinbock stands on his crag and looks out over the land, turning his head slowly; now and then he stamps a hoof
+  ibex(p){let look=0,lookTo=.5,lookT=2,stamp=0,stampT=4+Math.random()*5;
+    return (dt,{action})=>{const alert=action==='look'||action==='greet'||action==='hop';
+      lookT-=dt;if(lookT<0){lookTo=(Math.random()-.5)*1.6;lookT=2.5+Math.random()*4;}look+=((alert?0:lookTo)-look)*Math.min(1,dt*1.6);
+      if(p.head){p.head.rotation.y=alert?p.head.rotation.y*.3:look;p.head.rotation.x-=.07;}
+      stampT-=dt;if(stampT<0&&!alert){stamp=.5;stampT=5+Math.random()*7;}if(stamp>0){stamp=Math.max(0,stamp-dt);if(p.legs[1])p.legs[1].rotation.x=-.75*Math.sin(stamp/.5*Math.PI);}
+    };},
+};
+/* Little tricks a friend shows when Fuchs visits without a letter for them (forest3d.js `visit`), played over
+   `u` = 0…1, and the pose that points the way (`point`: the friend's group is turned toward the place). */
+const ease=u=>u<=0?0:u>=1?1:u*u*(3-2*u),bell=(u,a=.12,b=.88)=>ease(u/a)*(1-ease((u-b)/(1-b)));
+const TRICKS={
+  dig(p,u,t){const e=bell(u,.15,.75),up=ease((u-.75)/.2)*(1-ease((u-.95)/.05));if(p.body)p.body.rotation.x+=e*.85;if(p.head)p.head.rotation.x+=e*.35;
+    p.arms.forEach((a,i)=>{a.rotation.x=-1.1*e+Math.sin(t*19+i*Math.PI)*.55*e+(-2.2*up);});if(p.tail)p.tail.rotation.x+=up*.4;},
+  slap(p,u){const lift=ease(u/.45)*(1-ease((u-.5)/.06)),bang=u>.5?Math.exp(-(u-.5)*14):0;if(p.tail)p.tail.rotation.x+=-1.1*lift+.25*bang;if(p.body)p.body.rotation.x+=.18*lift-.06*bang;p.root.position.y=bang*.05;},
+  headturn(p,u){const a=Math.sin(Math.min(1,u/.9)*Math.PI*2)*2.4*bell(u,.08,.92);if(p.head){p.head.rotation.y=a;p.head.rotation.z=Math.sin(u*Math.PI*4)*.12;}},
+  spin(p,u){const k=ease((u-.1)/.7);p.root.rotation.y=k*Math.PI*2;p.root.position.y=Math.sin(Math.min(1,Math.max(0,(u-.1)/.7))*Math.PI)*.12;p.arms.forEach((a,i)=>{a.rotation.x=-2.3*bell(u);a.rotation.z=(i?-1:1)*.5*bell(u);});},
+  flutter(p,u,t){const e=bell(u);p.root.position.y=e*(.12+Math.sin(t*9)*.03);(p.wings||[]).forEach((w,i)=>{w.rotation.z=(i?-1:1)*(.4+Math.sin(t*34)*.7)*e;});p.arms.forEach((a,i)=>{a.rotation.x+=-1.6*e+Math.sin(t*34)*.5*e;});},
+  curl(p,u){const e=bell(u,.18,.72);if(p.body){p.body.rotation.x+=e*1.05;p.body.scale.multiplyScalar(1).y*=1-e*.12;}if(p.head)p.head.rotation.x+=e*.6;p.legs.forEach(l=>{l.rotation.x=-1.3*e;});p.arms.forEach(a=>{a.rotation.x=-.9*e;});p.root.position.y=e*.04;},
+  leap(p,u){const j=Math.min(1,Math.max(0,(u-.25)/.5)),crouch=bell(u,.1,.25)*(u<.3?1:0);p.root.position.y=Math.sin(j*Math.PI)*.42;if(p.body)p.body.rotation.x+=Math.sin(j*Math.PI)*-.15+crouch*.2;p.legs.forEach(l=>{l.rotation.x=j>0&&j<1?-.9:-.4*crouch;});p.arms.forEach(a=>{a.rotation.x=j>0&&j<1?-1.4:0;});},
+  // Fuchs at the things to discover (forest3d.js): sniffing a berry bush, warming his paws at the fire, leaning over
+  // the well to listen, poking his head into the hollow log, looking up into an apple tree.
+  sniff(p,u,t){const e=bell(u,.15,.8),wag=ease((u-.7)/.1);if(p.body)p.body.rotation.x+=e*.3;if(p.head)p.head.rotation.x+=e*(.38+Math.sin(t*23)*.07)+Math.sin(t*2.5)*.05*e;if(p.tail)p.tail.rotation.y+=Math.sin(t*13)*.45*wag*(1-ease((u-.95)/.05));},
+  warm(p,u,t){const e=bell(u,.12,.88);p.arms.forEach((a,i)=>{a.rotation.x=-1.3*e+Math.sin(t*6+i*Math.PI)*.1*e;a.rotation.z=(i?1:-1)*.22*e+Math.sin(t*6.5+i*Math.PI)*.1*e;});if(p.body)p.body.rotation.z+=Math.sin(t*1.6)*.05*e;if(p.head)p.head.rotation.z+=Math.sin(t*1.6)*.06*e;for(const y of p.eyes)y.scale.y*=1-.42*e;},
+  lean(p,u,t){const e=bell(u,.15,.85),listen=bell((u-.35)/.5,.2,.8);if(p.body)p.body.rotation.x+=e*.62;if(p.head){p.head.rotation.x+=e*.32;p.head.rotation.z+=listen*.28;}p.arms.forEach(a=>{a.rotation.x=-.95*e;});(p.ears||[]).forEach((r,i)=>{r.rotation.z+=listen*(i?-.18:.18)*Math.sin(t*2);});},
+  poke(p,u,t){const e=bell(u,.18,.72),shake=bell((u-.74)/.24,.2,.8);if(p.body)p.body.rotation.x+=e*.78;if(p.head){p.head.rotation.x+=e*.25;p.head.rotation.y+=Math.sin(t*26)*.32*shake;}p.arms.forEach(a=>{a.rotation.x=-.6*e;});},
+  lookup(p,u){const e=bell(u,.2,.8);if(p.head)p.head.rotation.x-=e*.55;if(p.body)p.body.rotation.x-=e*.08;},
+  // Fuchs shaking himself dry after rain or wading: a quick shiver from head to tail
+  shake(p,u,t){const e=bell(u,.1,.78),w=Math.sin(t*38);if(p.body)p.body.rotation.z+=w*.3*e;if(p.head){p.head.rotation.z+=Math.sin(t*38+1.2)*.42*e;p.head.rotation.y+=Math.sin(t*19)*.2*e;}if(p.tail)p.tail.rotation.y+=Math.sin(t*38+2.4)*.7*e;(p.ears||[]).forEach((r,i)=>{r.rotation.z+=Math.sin(t*40+i*2)*.35*e;});for(const y of p.eyes)y.scale.y*=1-.75*e;},
+  // sliding down the snow: leaning back, hind paws together in front, arms out for balance
+  slide(p){if(p.body)p.body.rotation.x-=.16;p.legs.forEach(l=>{l.rotation.x=-.55;});p.arms.forEach((a,i)=>{a.rotation.x=-1.05;a.rotation.z=(i?-1:1)*.55;});if(p.tail)p.tail.rotation.x-=.2;},
+  // the Steinbock lowers his horns, tosses his head high and jumps on the spot
+  butt(p,u){const down=bell(u,.12,.55),toss=bell((u-.5)/.42,.15,.6),j=Math.min(1,Math.max(0,(u-.56)/.3));if(p.body)p.body.rotation.x+=down*.5-toss*.12;if(p.head)p.head.rotation.x+=down*.8-toss*.5;p.arms.forEach((a,i)=>{a.rotation.x=-.5*down-1.9*toss;a.rotation.z=(i?-1:1)*.3*toss;});p.root.position.y=Math.sin(j*Math.PI)*.2;},
+  jump(p,u){const j=Math.min(1,Math.max(0,(u-.2)/.55));p.root.position.y=Math.sin(j*Math.PI)*.55;p.root.rotation.x=(j-.5)*2.2*(j>0&&j<1?1:0);if(p.tail)p.tail.rotation.y+=Math.sin(u*40)*.4;},
+};
+function pointPose(p,e){const a=p.legs.length?p.arms[1]:null;if(a){a.rotation.x=-1.5*e;a.rotation.z=-.15*e;}if(p.head)p.head.rotation.x-=.08*e;}
+export const TRICK_OF={squirrel:'dig',badger:'dig',beaver:'slap',owl:'headturn',mouse:'spin',bird:'flutter',kingfisher:'flutter',hedgehog:'curl',deer:'leap',frog:'leap',fish:'jump',ibex:'butt'};
 function plushModel(id,height){
   const model=cloneSkinned(baked[id]),bones={},meshes=[];
   // Characters stay out of the static shadow map (it is not redrawn as they move); each has a soft contact shadow.
   model.traverse(o=>{if(o.isBone)bones[o.name]=o;if(o.isSkinnedMesh){meshes.push(o);o.castShadow=false;o.frustumCulled=false;}});
-  const own=new Map();for(const m of meshes){if(!own.has(m.material))own.set(m.material,m.material.name==='fur'?plushFur(m.material):Object.assign(m.material.clone(),{map:eyes(),roughness:.12}));m.material=own.get(m.material);}
+  const own=new Map();for(const m of meshes){if(!own.has(m.material))own.set(m.material,m.material.name==='fur'?plushFur(m.material):plushGloss(m.material));m.material=own.get(m.material);}
   const list=prefix=>Object.keys(bones).filter(n=>n.startsWith(prefix+'_')).sort((a,b)=>+a.split('_')[1]-+b.split('_')[1]).map(n=>bones[n]);
   const root=new THREE.Group();root.add(model);
   const parts={root,body:bones.body,bodyY:bones.body?bones.body.position.y:0,head:bones.head,eyes:list('eye'),ears:list('ear'),arms:list('arm'),legs:list('leg'),tail:bones.tail,tailTip:null,wings:list('wing')};
@@ -305,12 +390,17 @@ function plushModel(id,height){
   model.updateMatrixWorld(true);const box=new THREE.Box3();for(const m of meshes)if(m.visible){m.skeleton.update();m.computeBoundingBox();box.union(m.boundingBox.clone().applyMatrix4(m.matrixWorld));}
   root.scale.setScalar(height/((box.max.y-box.min.y)||1));
   const rest=new Map();model.traverse(o=>{if(o.isBone)rest.set(o,{p:o.position.clone(),q:o.quaternion.clone()});});
-  const animate=animator(parts);
+  const animate=animator(parts),manner=MANNERS[id]?.(parts);let clock=0;
   function update(dt,state={}){
     for(const [b,r]of rest){if(b===parts.body||b===parts.head||b===parts.tail||parts.arms.includes(b)||parts.legs.includes(b)){b.position.copy(r.p);}}
-    if(parts.body)parts.body.rotation.set(0,0,0);
+    if(parts.body){parts.body.rotation.set(0,0,0);parts.body.scale.set(1,1,1);}parts.root.rotation.set(0,0,0);
     if(parts.tail)parts.tail.rotation.setFromQuaternion(rest.get(parts.tail).q);
-    animate(dt,state);if(state.action==='sleep'&&id==='fox')plushSleep(parts);
+    const showing=state.action==='trick'||state.action==='point',own=manner&&!state.reduced&&!showing,shared=(own&&(state.action==='greet'||state.action==='look'))||showing?{...state,action:''}:state;
+    animate(dt,shared);if(state.action==='sleep'&&id==='fox')plushSleep(parts);if(own)manner(dt,state);
+    if(state.action==='trick'&&!state.reduced&&TRICKS[state.trick]){clock+=dt;TRICKS[state.trick](parts,state.u||0,clock);}
+    // a happy squint at the end of a trick and while greeting Fuchs
+    {const happy=state.action==='trick'&&id!=='fox'?THREE.MathUtils.smoothstep(state.u||0,.72,.85)*(1-THREE.MathUtils.smoothstep(state.u||0,.96,1)):(state.action==='greet'||state.action==='hop')?1:0;if(happy&&!state.reduced)for(const e of parts.eyes)e.scale.y=Math.min(e.scale.y,1-.45*happy);}
+    if(state.action==='point')pointPose(parts,state.reduced?1:Math.min(1,state.u??1));
   }
   return {root,parts,update,lod,meshes,paw:parts.arms[1]||parts.body};
 }

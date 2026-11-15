@@ -5,7 +5,7 @@
 import {THREE} from '../scene/materials.js';
 import {createForest} from './forest3d.js';
 import {createWeather} from './weather.js';
-import {characters} from './characters3d.js';
+import {characters, plushDusk, plushSun} from './characters3d.js';
 import {createPerf} from './perf.js';
 
 const ART='assets/forest-friends/',IW=1448,IH=1086,FOV=30,F=.5/Math.tan(THREE.MathUtils.degToRad(FOV/2));
@@ -79,13 +79,21 @@ export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,o
     camera.setViewOffset(fw,fh,crop.x,crop.y,w,h);
     canvas.style.backgroundSize=fw+'px '+fh+'px';canvas.style.backgroundPosition=(-crop.x)+'px '+(-crop.y)+'px';
   }
-  function setArea(next){if(!['den','forest'].includes(next))next='den';area=next;finishProps();onNear(null);
+  function setArea(next){if(!['den','forest'].includes(next))next='den';area=next;finishProps();onNear(null);if(next==='den'){plushDusk.value=0;plushSun.value.set(0,0,0);}   // the den has its own painted light
     if(next==='forest'){canvas.style.backgroundImage='none';fill.hidden=true;forest.enter(position());}
     else{const url='url('+ART+(next==='den'?'den-v2':next)+'.webp)';canvas.style.backgroundImage=url;fill.style.backgroundImage=url;fill.hidden=false;forest.stop();fox.visible=next==='den';foxShadow.visible=next==='den';ambience.forEach(a=>a.visible=next==='den');foxPos.copy(spots[0]);fox.position.copy(foxPos);fox.rotation.y=.35;idle.target=null;idle.wait=5;idle.greet=next==='den'?1.6:0;}
     layout();
   }
   function project(p){const q=p.clone().project(camera);return {x:(q.x*.5+.5)*width,y:(-q.y*.5+.5)*height,visible:q.z<1&&Math.abs(q.x)<1.02&&q.y>-1.02&&q.y<1.12};}
-  function pick(event){if(paused||anim||event.button>0||area!=='forest')return;const rect=canvas.getBoundingClientRect();forest.pick((event.clientX-rect.left)/rect.width*2-1,-(event.clientY-rect.top)/rect.height*2+1);}
+  // Two fingers pinch the view a little closer or further (a narrow range); a pinch is not a tap to walk.
+  const touches=new Map();let pinchFrom=0,zoomFrom=1,pinched=false;
+  const spread=()=>{const [a,b]=[...touches.values()];return Math.hypot(a.x-b.x,a.y-b.y);};
+  function down(event){touches.set(event.pointerId,{x:event.clientX,y:event.clientY});if(touches.size===1)pinched=false;if(touches.size===2){pinchFrom=spread();zoomFrom=forest.zoom;pinched=true;}}
+  function move(event){if(!touches.has(event.pointerId))return;touches.set(event.pointerId,{x:event.clientX,y:event.clientY});if(touches.size===2&&pinchFrom>0&&area==='forest')forest.zoom=zoomFrom*pinchFrom/Math.max(1,spread());}
+  function up(event){touches.delete(event.pointerId);if(touches.size<2)pinchFrom=0;}
+  function wheel(event){if(area!=='forest'||paused)return;event.preventDefault();forest.zoom=forest.zoom*Math.exp(event.deltaY*(event.ctrlKey?.01:.0012));}
+  function pick(event){const wasPinch=pinched;up(event);if(wasPinch){if(!touches.size)pinched=false;return;}if(paused||anim||event.button>0||area!=='forest')return;const rect=canvas.getBoundingClientRect();forest.pick((event.clientX-rect.left)/rect.width*2-1,-(event.clientY-rect.top)/rect.height*2+1);}
+  canvas.addEventListener('pointerdown',down);canvas.addEventListener('pointermove',move);canvas.addEventListener('pointercancel',up);canvas.addEventListener('wheel',wheel,{passive:false});
   canvas.addEventListener('pointerup',pick);
   const visibility=()=>{last=performance.now();keys.clear();stick={x:0,z:0};};document.addEventListener('visibilitychange',visibility);
   // iPadOS may drop the WebGL context while the home-screen app is in the background (blueprint 7B).
@@ -163,11 +171,11 @@ export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,o
     onProject((pinList[area]||[]).map(p=>({id:p.id,...project(p.point)})));
   }
   setArea('den');raf=requestAnimationFrame(frame);
-  return {setArea(next){setArea(next);},get soundscape(){if(paused)return null;const w=weather.state;return {...(area==='forest'?forest.soundscape:{}),rain:w.rain,fresh:w.fresh};},route(id){if(area==='forest')forest.route(id);},mailTarget(id){forest.mailTarget(id);},summonMailman(){forest.summonMailman();},get mailman(){return forest.mailman;},pause(value){paused=value;if(value){blur();if(area==='forest')onPosition(forest.position.x,forest.position.z,forest.region);}},
+  return {setArea(next){setArea(next);},get soundscape(){if(paused)return null;const w=weather.state;return {...(area==='forest'?forest.soundscape:{}),rain:w.rain,fresh:w.fresh};},route(id){if(area==='forest')forest.route(id);},visit(id,toward){if(area==='forest')forest.visit(id,toward);},frame(id){return area==='forest'?forest.frame(id):0;},timeOfDay(v,snap){forest.timeOfDay(v,snap);},mailTarget(id){forest.mailTarget(id);},summonMailman(){forest.summonMailman();},get mailman(){return forest.mailman;},pause(value){paused=value;if(value){blur();if(area==='forest')onPosition(forest.position.x,forest.position.z,forest.region);}},
     steer(x,z){stick={x,z};if(!x&&!z&&area==='forest')onPosition(forest.position.x,forest.position.z,forest.region);},
     sequence(item,{hold=false}={}){anim={item,elapsed:0,hold};idle.target=null;fox.rotation.set(0,.35,0);foxPos.copy(item==='sleep'?ground(bedSpot.u,bedSpot.v):spots[0]);fox.position.copy(foxPos);if(item==='sleep'){fox.scale.setScalar(sleepH/denH);fox.rotation.set(-.12,.2,0);foxRig.update(0,{action:'sleep',reduced:window.FK.reduced});fitSleepingFox();}},
     skip(){anim=null;finishProps();foxPos.copy(spots[0]);fox.position.copy(foxPos);},
     get diagnostics(){const p=area==='forest'?forest.position:{x:foxPos.x,z:foxPos.z};return {area,paused,time,animation:anim?.item||null,foxBounds:area==='den'?projectedBounds():null,sleepBounds:anim?.item==='sleep'?projectedBounds():null,keys:[...keys],destination:area==='forest'?forest.destination?.toArray():undefined,position:p,mailTarget:forest.guideTarget,mailman:forest.mailman,painted:true};},get area(){return area;},get position(){return area==='forest'?forest.position:{x:foxPos.x,z:foxPos.z};},
-    dispose(){cancelAnimationFrame(raf);observer.disconnect();perf.dispose();canvas.removeEventListener('webglcontextlost',contextLost);canvas.removeEventListener('webglcontextrestored',contextRestored);canvas.removeEventListener('pointerup',pick);document.removeEventListener('visibilitychange',visibility);document.removeEventListener('keydown',keydown);document.removeEventListener('keyup',keyup);window.removeEventListener('blur',blur);fill.remove();night.remove();renderer.dispose();},
+    dispose(){cancelAnimationFrame(raf);observer.disconnect();perf.dispose();canvas.removeEventListener('webglcontextlost',contextLost);canvas.removeEventListener('webglcontextrestored',contextRestored);canvas.removeEventListener('pointerdown',down);canvas.removeEventListener('pointermove',move);canvas.removeEventListener('pointercancel',up);canvas.removeEventListener('wheel',wheel);canvas.removeEventListener('pointerup',pick);document.removeEventListener('visibilitychange',visibility);document.removeEventListener('keydown',keydown);document.removeEventListener('keyup',keyup);window.removeEventListener('blur',blur);fill.remove();night.remove();renderer.dispose();},
   };
 }

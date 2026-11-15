@@ -4,6 +4,7 @@
 import {THREE} from '../../scene/materials.js';
 import {TAU, rng, hash, vnoise} from './noise.js';
 import {drawBigCells} from './big/atlas.js';
+import {drawDecals} from './big/decals.js';
 
 export function canvasTex(w, h, draw, {repeat = null, srgb = true} = {}) {
   const c = document.createElement('canvas'); c.width = w; c.height = h; draw(c.getContext('2d'), w, h);
@@ -31,15 +32,48 @@ const FOLIAGE = ['#include <normal_fragment_begin>', 'float faceDirection = 1.0;
 // (interleaved gradient noise), which costs no blending or sorting. Anything right at the lens clears too.
 // `foxView` is Fuchs' position in view space.
 export const foxView = {value: new THREE.Vector3(0, 0, -16)};
+/** Where grass and flowers bend aside: up to four [x, z, radius, strength] (Fuchs and the friends nearest him). */
+export const bendAt = {value: [0, 1, 2, 3].map(() => new THREE.Vector4(1e4, 1e4, 1, 0))};
+/** The wind in the plants and leaves: [time, strength 0…1] (forest3d.js: slow gusts, more in rain and up high). */
+export const windAt = {value: new THREE.Vector2(0, 0)};
+// The top of each plant card (its height within the atlas cell) leans away from whoever stands in it and dips a little.
+const BEND = `#include <begin_vertex>
+#ifdef USE_MAP
+{
+#ifdef USE_INSTANCING
+  vec3 ffW = (modelMatrix * instanceMatrix * vec4(transformed, 1.)).xyz;
+#else
+  vec3 ffW = (modelMatrix * vec4(transformed, 1.)).xyz;
+#endif
+  float ffK = fract(MAP_UV.y * 4.); ffK *= ffK;
+  // the wind: a slow sway that travels across the ground in waves, and a quicker flutter on top
+  float ffPh = ffWind.x * 1.6 + ffW.x * .32 + ffW.z * .24, ffAmp = ffWind.y * (.05 + .04 * sin(ffWind.x * .37 + ffW.x * .06 + ffW.z * .05));
+  transformed.x += (sin(ffPh) * .8 + sin(ffPh * 2.7 + ffW.z) * .2) * ffAmp * ffK; transformed.z += cos(ffPh * .8 + ffW.x * .5) * ffAmp * .45 * ffK;
+  for (int i = 0; i < 4; i++) { vec4 b = ffBend[i]; vec2 d = ffW.xz - b.xy; float l = length(d), p = b.w * (1. - smoothstep(b.z * .3, b.z, l)) * ffK;
+    if (l > .001) { transformed.xz += d / l * p * .32; transformed.y -= p * .16; } } }
+#endif`;
 const NEAR_COMMON = '#include <common>\nuniform vec3 ffFox;\nfloat ffNoise(vec2 p){return fract(52.9829189*fract(dot(floor(p),vec2(.06711056,.00583715))));}';
 const NEAR_CLIP = `#include <clipping_planes_fragment>
  vec3 ffP=-vViewPosition;vec2 ffD=ffP.xy*(ffFox.z/min(ffP.z,-.2))-ffFox.xy;ffD.y*=ffD.y>0.?.45:1.;
  float ffLine=(1.-smoothstep(.95,2.5,length(ffD)))*smoothstep(ffFox.z+.6,ffFox.z+2.4,ffP.z)*.92;
  float nearFade=max(ffLine,clamp((6.5-vViewPosition.z)/2.4,0.,1.));if(nearFade>0.&&ffNoise(gl_FragCoord.xy)<nearFade)discard;`;
-export function patch(material, {foliage = false, near = false}, key) {
+// Bare rock: where a mesh says so (`rk` per vertex: the Rock's cliffs and stony ground, boulders), the wrapping rock
+// texture is laid on from three sides, so bedding lines run level round a cliff, and is read as relief too.
+const ROCK_VERT = '#include <begin_vertex>\nffRk = rk; ffRw = (modelMatrix * vec4(transformed, 1.)).xyz; ffRn = normal;';
+const ROCK_COLOUR = `#include <color_fragment>
+ float ffRh = 0.;
+ if (ffRk > .01) { vec3 ffB = abs(normalize(ffRn)); ffB *= ffB; ffB *= ffB; ffB /= ffB.x + ffB.y + ffB.z;
+  vec3 ffT = texture2D(ffRock, ffRw.zy * .2).rgb * ffB.x + texture2D(ffRock, ffRw.xz * .2).grb * ffB.y + texture2D(ffRock, ffRw.xy * .2).rgb * ffB.z;
+  ffRh = ffT.r; diffuseColor.rgb *= mix(1., .56 + .78 * ffT.r, ffRk); }`;
+const ROCK_NORMAL = `#include <normal_fragment_maps>
+ if (ffRk > .01) { vec3 ffSx = normalize(dFdx(-vViewPosition)), ffSy = normalize(dFdy(-vViewPosition)), ffR1 = cross(ffSy, normal), ffR2 = cross(normal, ffSx); float ffDet = dot(ffSx, ffR1);
+  normal = normalize(abs(ffDet) * normal - sign(ffDet) * (dFdx(ffRh) * ffR1 + dFdy(ffRh) * ffR2) * 5.5 * ffRk); }`;
+export function patch(material, {foliage = false, near = false, rock = null}, key) {
   material.onBeforeCompile = sh => {
+    if (rock) { sh.uniforms.ffRock = {value: rock}; sh.vertexShader = sh.vertexShader.replace('#include <common>', '#include <common>\nattribute float rk;\nvarying float ffRk;\nvarying vec3 ffRw, ffRn;').replace('#include <begin_vertex>', ROCK_VERT);
+      sh.fragmentShader = sh.fragmentShader.replace('#include <common>', '#include <common>\nuniform sampler2D ffRock;\nvarying float ffRk;\nvarying vec3 ffRw, ffRn;').replace('#include <color_fragment>', ROCK_COLOUR).replace('#include <normal_fragment_maps>', ROCK_NORMAL); }
     if (near) { sh.uniforms.ffFox = foxView; sh.fragmentShader = sh.fragmentShader.replace('#include <common>', NEAR_COMMON).replace('#include <clipping_planes_fragment>', NEAR_CLIP); }
-    if (foliage) sh.fragmentShader = sh.fragmentShader.replace(...FOLIAGE);
+    if (foliage) { sh.fragmentShader = sh.fragmentShader.replace(...FOLIAGE); sh.uniforms.ffBend = bendAt; sh.uniforms.ffWind = windAt; sh.vertexShader = sh.vertexShader.replace('#include <common>', '#include <common>\nuniform vec4 ffBend[4];\nuniform vec2 ffWind;').replace('#include <begin_vertex>', BEND); }
   };
   material.customProgramCacheKey = () => key;
   return material;
@@ -55,8 +89,30 @@ export function createLook({software = false, big = false} = {}) {
       if (b === bands - 1) T[name] = canvasTex(size, size, (g2) => g2.putImageData(img, 0, 0), options);
     });
   }
+  /* Rock, drawn once and wrapped: red is the rock's face seen from the side (bedding planes as fine dark lines that
+     wander, cracks, blotches), green the same rock seen from above (cracks and blotches, no bedding), blue a fine
+     speckle for the glints of mica. Lighter is higher: the shaders also read it as relief. Every pattern repeats
+     over the tile, so it can be laid over any size of cliff. */
+  function rockSteps(size) {
+    const c = document.createElement('canvas'); c.width = c.height = size; const g = c.getContext('2d'), img = g.createImageData(size, size), bands = 64, rows = size / bands;
+    const ph = (x, y, p) => hash(((x % p) + p) % p, ((y % p) + p) % p + p * 7.3);
+    const pn = (x, y, p) => { const xi = Math.floor(x), yi = Math.floor(y), xf = x - xi, yf = y - yi, u = xf * xf * (3 - 2 * xf), v = yf * yf * (3 - 2 * yf); return (ph(xi, yi, p) * (1 - u) + ph(xi + 1, yi, p) * u) * (1 - v) + (ph(xi, yi + 1, p) * (1 - u) + ph(xi + 1, yi + 1, p) * u) * v; };
+    const pf = (x, y, p) => pn(x * p, y * p, p) * .5 + pn(x * p * 2 + .5, y * p * 2, p * 2) * .3 + pn(x * p * 4, y * p * 4 + .5, p * 4) * .2;
+    // cracks: where the two nearest of a few scattered points are equally far
+    const crack = (x, y, p) => { const xi = Math.floor(x * p), yi = Math.floor(y * p); let a = 9, b = 9; for (let j = -1; j <= 1; j++) for (let i = -1; i <= 1; i++) { const cx = xi + i, cy = yi + j, d = Math.hypot(cx + ph(cx, cy, p) - x * p, cy + ph(cx + 31, cy + 17, p) - y * p); if (d < a) { b = a; a = d; } else if (d < b) b = d; } return b - a; };
+    return [...Array(bands).keys()].map(k => () => {
+      for (let y = k * rows; y < (k + 1) * rows; y++) for (let x = 0; x < size; x++) { const u = x / size, v = y / size, n = pf(u, v, 6), n2 = pf(u + .37, v + .11, 12), wu = (pf(u + .2, v + .7, 5) - .5) * .09, wv = (pf(u + .6, v + .3, 5) - .5) * .09;
+        const bed = .5 + .5 * Math.sin((v + (pf(u, v, 3) - .5) * .09) * TAU * 11 + n2 * 2.4), line = Math.max(0, (bed - .78) / .22) ** 1.5, ck = crack(u + wu, v + wv, 3), cr = (1 - Math.min(1, ck / .04)) * Math.min(1, Math.max(0, (n2 - .32) * 4)), ck2 = crack(u + .5 - wv, v + .5 + wu, 7), cr2 = (1 - Math.min(1, ck2 / .04)) * Math.min(1, Math.max(0, (n - .4) * 5));
+        const base = .62 + (n - .5) * .5 + (n2 - .5) * .22, i = (y * size + x) * 4;
+        img.data[i] = 255 * Math.min(1, Math.max(0, base - line * .34 * (.4 + n) - cr * cr * .34 - cr2 * cr2 * .14));
+        img.data[i + 1] = 255 * Math.min(1, Math.max(0, base - cr * cr * .3 - cr2 * cr2 * .12));
+        img.data[i + 2] = 255 * hash(x * 1.31, y * 1.77); img.data[i + 3] = 255; }
+      if (k === bands - 1) T.rock = canvasTex(size, size, g2 => g2.putImageData(img, 0, 0), {repeat: [1, 1], srgb: false});
+    });
+  }
   const steps = [
     // Pixel textures are filled in row bands, one band per step.
+    ...rockSteps(big ? 512 : 256),
     ...pixelSteps('grain', 256, (x, y) => .82 + .18 * (vnoise(x / 9, y / 9) * .6 + hash(x, y) * .4), {repeat: [1, 1]}),
     ...pixelSteps('noise', 256, (x, y, w) => { const s = 16 / w; return vnoise(x * s, y * s) * .5 + vnoise(x * s * 2 + 7, y * s * 2) * .3 + vnoise(x * s * 4, y * s * 4 + 3) * .2; }, {repeat: [1, 1], srgb: false}),
     () => { T.leaf = canvasTex(512, 512, (g, w, h) => { const r = rng(5), cols = [['#2f5f1c', '#4f8a2c', '#7fb447'], ['#3b6d22', '#5c9a33', '#94c454'], ['#2a5418', '#467e28', '#6aa63c'], ['#4a7a23', '#77a83e', '#b2d36a']];
@@ -90,6 +146,7 @@ export function createLook({software = false, big = false} = {}) {
         g.restore(); }
       if (big) drawBigCells(g);
     }); },
+    () => { if (big) T.decals = canvasTex(1024, 512, g => drawDecals(g)); },   // ground detail: roots, moss, needles, pebbles, twigs, worn path, leaves
     () => { T.bark = canvasTex(256, 512, (g, w, h) => { g.fillStyle = '#a2683f'; g.fillRect(0, 0, w, h); const r = rng(13); for (let i = 0; i < 260; i++) { const x = r() * w, y = r() * h, l = 30 + r() * 90; g.strokeStyle = r() < .55 ? 'rgba(60,32,16,.45)' : 'rgba(190,130,80,.35)'; g.lineWidth = 2 + r() * 5; g.beginPath(); g.moveTo(x, y); g.bezierCurveTo(x + 6, y + l * .3, x - 6, y + l * .6, x + 2, y + l); g.stroke(); } }, {repeat: [3, 2]}); },
     () => { T.wood = canvasTex(256, 64, (g, w, h) => { g.fillStyle = '#b07a46'; g.fillRect(0, 0, w, h); const r = rng(21); for (let i = 0; i < 40; i++) { g.strokeStyle = r() < .5 ? 'rgba(90,52,26,.35)' : 'rgba(230,180,120,.3)'; g.lineWidth = 1 + r() * 2; const y = r() * h; g.beginPath(); g.moveTo(0, y); g.bezierCurveTo(w * .3, y + 4, w * .6, y - 4, w, y + 2); g.stroke(); } }, {repeat: [1, 1]}); },
     () => { T.log = canvasTex(512, 128, (g, w, h) => { g.fillStyle = '#9a6740'; g.fillRect(0, 0, w, h); const r = rng(31); for (let i = 0; i < 220; i++) { const y = r() * h, x = r() * w, l = 40 + r() * 160; g.strokeStyle = r() < .55 ? 'rgba(70,40,20,.45)' : 'rgba(200,150,100,.35)'; g.lineWidth = 1.5 + r() * 3; g.beginPath(); g.moveTo(x, y); g.bezierCurveTo(x + l * .3, y + 3, x + l * .6, y - 3, x + l, y + 1); g.stroke(); } }, {repeat: [3, 2]}); },
@@ -98,9 +155,10 @@ export function createLook({software = false, big = false} = {}) {
     // Materials: one per surface kind, shared by every tile.
     () => {
       const shadows = !software;
-      M.ground = new THREE.MeshLambertMaterial({vertexColors: true, map: T.grain});
+      M.ground = patch(new THREE.MeshLambertMaterial({vertexColors: true, map: T.grain}), {rock: T.rock}, 'wb-ground');
       M.plants = patch(new THREE.MeshLambertMaterial({map: T.plants, alphaTest: .5, side: THREE.DoubleSide, vertexColors: true}), {foliage: true}, 'wb-plants');
-      M.rock = new THREE.MeshLambertMaterial({vertexColors: true, map: T.grain});
+      M.rock = patch(new THREE.MeshLambertMaterial({vertexColors: true, map: T.grain}), {rock: T.rock}, 'wb-rock');
+      if (T.decals) M.decals = new THREE.MeshLambertMaterial({map: T.decals, vertexColors: true, transparent: true, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -1, polygonOffsetUnits: -2});
       M.soft = patch(new THREE.MeshLambertMaterial({vertexColors: true, map: T.grain}), {near: true}, 'wb-soft');   // coloured things tall enough to hide Fuchs: they turn translucent like the trees
       M.bark = patch(new THREE.MeshLambertMaterial({map: T.bark, vertexColors: true}), {near: true}, 'wb-bark');
       M.leaves = patch(new THREE.MeshLambertMaterial({map: T.leaf, alphaTest: .5, side: THREE.DoubleSide}), {foliage: true, near: true}, 'wb-leaves');

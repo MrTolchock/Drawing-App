@@ -19,8 +19,8 @@ GitHub Pages is a static host, so it cannot authenticate repository writes itsel
 
 - Each device keeps the last verified GitHub snapshot and an outbox of unsaved decisions in `farbtupf.puzzle-review.v1`. Offline review remains possible. Reconnecting retries pending changes when the editing connection is available.
 - Only confirmed GitHub approvals for the current exact revision release a puzzle. Flagging an item locally blocks it on that device immediately, even before upload. Other devices receive the flag when they refresh, resume or perform the periodic online check.
-- Wait for **Auf GitHub gespeichert** before deleting/reinstalling an app with pending edits. Unsaved offline work exists only on that device; export it first if a connection is unavailable.
-- Fresh browser storage restores published records automatically. **Prüfung exportieren/importieren** remains a revision-checked backup for drafts, and older backup metadata is readable. Imported decisions enter the outbox; they do not silently become published approvals.
+- Wait for **Auf GitHub gespeichert** before deleting/reinstalling an app with pending edits. Unsaved offline work exists only on that device; reconnect and let it upload first.
+- Fresh browser storage restores published records automatically. The Puzzle-Prüfung page no longer offers file export/import; GitHub is the backup.
 - Different-item edits merge. If two browsers change the same revision differently, neither silently overwrites the other. **GitHub behalten** discards that local edit; **Meine Änderung speichern** explicitly replaces the current GitHub decision. Equal decisions are deduplicated.
 
 ## Format and maintenance

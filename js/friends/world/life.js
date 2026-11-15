@@ -1,13 +1,13 @@
 /* Small moving life around Fuchs, wherever he is in the big world (it all travels with him, so it costs the
    same everywhere): leaves falling under the trees, butterflies, dragonflies over the water and little birds
    on the ground that fly up when he comes close, smoke from the picnic fire, ducks and a jumping fish on the beaver
-   pond, a rainbow in the waterfall's mist and sunbeams slanting through the trees. Everything is drawn from small pictures made here; about
+   pond and sunbeams slanting through the trees. Everything is drawn from small pictures made here; about
    a dozen draw calls together. With reduced motion the leaves hang still and the animals stay put. */
 import {THREE} from '../../scene/materials.js';
 
 const TAU = Math.PI * 2;
 
-export function createLife({scene, canvasTex, groundY, walkable, terrain, random, fires = [], shaftMat = null}) {
+export function createLife({scene, canvasTex, groundY, walkable, terrain, random, fires = [], shaftMat = null, onFlyUp = null}) {
   const r = (a, b) => a + (b - a) * random();
   function sprite(map, h, order = 4) { const s = new THREE.Sprite(new THREE.SpriteMaterial({map, transparent: true, toneMapped: false, depthWrite: false, alphaTest: .02})); s.center.set(.5, .5); s.renderOrder = order; s.visible = false; s.userData.h = h; scene.add(s); return s; }
   const fit = (s, k = 1) => { const img = s.material.map.image; s.scale.set(s.userData.h * img.width / img.height * k, s.userData.h, 1); };
@@ -41,7 +41,7 @@ export function createLife({scene, canvasTex, groundY, walkable, terrain, random
 
   /* ---------- dragonflies over brook and pond ---------- */
   const dragonTex = ['#3aa7c9', '#5fb04a', '#d9603a'].map(c => canvasTex(96, 48, g => { g.fillStyle = 'rgba(235,248,255,.62)'; for (const [x, y, a] of [[30, 14, -.25], [30, 34, .25], [58, 13, .2], [58, 35, -.2]]) { g.beginPath(); g.ellipse(x, y, 22, 6.5, a, 0, TAU); g.fill(); } g.strokeStyle = c; g.lineCap = 'round'; g.lineWidth = 5; g.beginPath(); g.moveTo(8, 24); g.lineTo(70, 24); g.stroke(); g.fillStyle = c; g.beginPath(); g.arc(76, 24, 7.5, 0, TAU); g.fill(); g.fillStyle = '#1d2a33'; g.beginPath(); g.arc(80, 21, 2.6, 0, TAU); g.fill(); }));
-  const dragons = dragonTex.map((map, i) => ({s: sprite(map, .15), x: 0, y: 0, z: 0, tx: 0, ty: 0, tz: 0, wait: i * .7, on: false}));
+  const dragons = dragonTex.map((map, i) => ({s: sprite(map, .15), x: 0, y: 0, z: 0, fx: 0, fy: 0, fz: 0, tx: 0, ty: 0, tz: 0, t: 1, dur: 1, wait: i * .7, face: 1, flip: 1, on: false}));
   let water = null, nextWater = 0;
   function nearestWater(pos) { let best = 144, at = null; for (const s of terrain.streams) for (let i = 0; i <= s.N; i += 5) { const q = s.samples[i], d = (q.x - pos.x) ** 2 + (q.z - pos.z) ** 2; if (d < best) { best = d; at = [q.x, s.level[i], q.z]; } } return at; }
 
@@ -92,18 +92,18 @@ export function createLife({scene, canvasTex, groundY, walkable, terrain, random
   const fish = {s: solid(sprite(fishTex, .2, 4)), t: -1, next: 4, from: [0, 0], to: [0, 0]};
   const ringTex = canvasTex(64, 64, g => { g.strokeStyle = 'rgba(255,255,255,.9)'; g.lineWidth = 4; g.beginPath(); g.arc(32, 32, 26, 0, TAU); g.stroke(); g.strokeStyle = 'rgba(255,255,255,.45)'; g.lineWidth = 2; g.beginPath(); g.arc(32, 32, 17, 0, TAU); g.stroke(); });
   const rings = [0, 1].map(() => { const m = new THREE.Mesh(new THREE.PlaneGeometry(1, 1).rotateX(-Math.PI / 2), new THREE.MeshBasicMaterial({map: ringTex, transparent: true, depthWrite: false, toneMapped: false, opacity: 0})); m.visible = false; m.renderOrder = 9; scene.add(m); return {m, t: -1}; });
-  const splash = (k, x, z) => { rings[k].t = 0; rings[k].m.position.set(x, pond.level + .03, z); };
+  const splash = (k, x, z) => { rings[k].t = 0; rings[k].m.position.set(x, pond.level + .03, z); };   // the ring travels out and rocks a duck it passes (below)
 
-  /* ---------- paper boats drifting down the brook, from the den's bridge to the swamp, again and again ---------- */
-  const brook = terrain.streams.find(q => q.id === 'brook'), boatTex = canvasTex(64, 48, g => { g.fillStyle = '#fbf6ea'; g.beginPath(); g.moveTo(4, 26); g.lineTo(60, 26); g.lineTo(48, 42); g.lineTo(16, 42); g.fill(); g.beginPath(); g.moveTo(32, 4); g.lineTo(46, 26); g.lineTo(18, 26); g.fill();
-    g.strokeStyle = 'rgba(120,100,80,.55)'; g.lineWidth = 1.6; g.beginPath(); g.moveTo(32, 4); g.lineTo(32, 26); g.moveTo(4, 26); g.lineTo(60, 26); g.stroke(); g.fillStyle = '#d9543a'; g.beginPath(); g.moveTo(32, 4); g.lineTo(42, 9); g.lineTo(32, 13); g.fill(); });
-  const boats = brook ? [0, .34, .67].map(at => ({s: solid(sprite(boatTex, .34, 3)), at})) : [];
-
-  /* ---------- a rainbow in the waterfall's mist ---------- */
-  const bowTex = canvasTex(256, 128, g => { const cols = ['255,80,70', '255,160,60', '255,235,90', '110,220,110', '90,170,255', '150,110,240']; cols.forEach((c, i) => { g.strokeStyle = `rgba(${c},.9)`; g.lineWidth = 7; g.beginPath(); g.arc(128, 150, 118 - i * 6.5, Math.PI, TAU); g.stroke(); });
-    const fade = g.createLinearGradient(0, 0, 0, 128); fade.addColorStop(0, 'rgba(0,0,0,0)'); fade.addColorStop(.55, 'rgba(0,0,0,0)'); fade.addColorStop(1, 'rgba(0,0,0,1)'); g.globalCompositeOperation = 'destination-out'; g.fillStyle = fade; g.fillRect(0, 0, 256, 128); });
-  const bow = new THREE.Mesh(new THREE.PlaneGeometry(11, 5.5), new THREE.MeshBasicMaterial({map: bowTex, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, toneMapped: false, fog: false, opacity: .3}));
-  bow.name = 'rainbow'; bow.renderOrder = 5; bow.position.set(terrain.falls.base[0] - 1.5, terrain.falls.level + 3.1, terrain.falls.base[1] + 1.5); scene.add(bow);
+  /* ---------- small creatures on the ground: snails, ladybirds and little frogs near the water ---------- */
+  // Drawn small, from the side; they live a few metres from Fuchs, move in their own way (the snail creeps, the
+  // ladybird scurries and stops, the frog hops) and move off when he steps close. They hide in the rain and at dusk.
+  const snailTex = canvasTex(64, 40, g => { g.fillStyle = '#c9b48a'; g.beginPath(); g.moveTo(4, 34); g.quadraticCurveTo(30, 30, 60, 34); g.quadraticCurveTo(62, 26, 54, 24); g.lineTo(10, 30); g.fill(); g.strokeStyle = '#a89470'; g.lineWidth = 2; g.beginPath(); g.moveTo(56, 25); g.lineTo(60, 14); g.moveTo(52, 25); g.lineTo(53, 15); g.stroke();
+    const sh = g.createRadialGradient(26, 18, 2, 26, 20, 16); sh.addColorStop(0, '#e2a65a'); sh.addColorStop(1, '#8a5530'); g.fillStyle = sh; g.beginPath(); g.arc(26, 20, 14, 0, TAU); g.fill(); g.strokeStyle = '#5e3a20'; g.lineWidth = 2; g.beginPath(); for (let k = 0; k < 40; k++) { const a = k * .38, rr = 12 - k * .28; g.lineTo(26 + Math.cos(a) * rr, 20 + Math.sin(a) * rr); } g.stroke(); });
+  const bugTex = canvasTex(40, 32, g => { g.fillStyle = '#1e1a16'; g.beginPath(); g.arc(30, 18, 5, 0, TAU); g.fill(); g.fillStyle = '#d33a2a'; g.beginPath(); g.ellipse(18, 18, 13, 10, 0, 0, TAU); g.fill(); g.strokeStyle = '#1e1a16'; g.lineWidth = 1.5; g.beginPath(); g.moveTo(18, 8); g.lineTo(18, 28); g.stroke(); g.fillStyle = '#1e1a16'; for (const [x, y] of [[12, 13], [24, 14], [13, 23], [23, 23]]) { g.beginPath(); g.arc(x, y, 2.4, 0, TAU); g.fill(); } g.fillStyle = 'rgba(255,255,255,.5)'; g.beginPath(); g.arc(14, 12, 2, 0, TAU); g.fill(); });
+  const frogTex = canvasTex(56, 44, g => { g.fillStyle = '#4f8a34'; g.beginPath(); g.ellipse(26, 28, 18, 12, -.15, 0, TAU); g.fill(); g.beginPath(); g.ellipse(14, 34, 10, 6, .4, 0, TAU); g.fill(); g.fillStyle = '#7fb24a'; g.beginPath(); g.ellipse(30, 32, 12, 6, -.1, 0, TAU); g.fill();
+    g.fillStyle = '#4f8a34'; g.beginPath(); g.arc(38, 17, 6, 0, TAU); g.fill(); g.fillStyle = '#f4f0d0'; g.beginPath(); g.arc(39, 15, 3.4, 0, TAU); g.fill(); g.fillStyle = '#14100c'; g.beginPath(); g.arc(40, 15, 1.8, 0, TAU); g.fill(); g.strokeStyle = '#2f5a24'; g.lineWidth = 1.5; g.beginPath(); g.arc(44, 26, 5, .2, 1.4); g.stroke(); });
+  const critters = [['snail', snailTex, .26], ['snail', snailTex, .23], ['bug', bugTex, .15], ['bug', bugTex, .14], ['frog', frogTex, .3], ['frog', frogTex, .27]].map(([kind, map, h]) => ({kind, s: solid(sprite(map, h, 3)), on: false, x: 0, z: 0, y: 0, vx: 0, vz: 0, t: 0, hop: -1, face: 1}));
+  const nearWet = (x, z) => { const s0 = terrain.site(x, z); return (s0.sd - s0.sw / 2 < 2.5 && s0.sd - s0.sw / 2 > .4) || (s0.still === s0.still && s0.h - s0.still > .05 && s0.h - s0.still < .5); };
 
   /* ---------- sunbeams through the trees, wherever Fuchs walks in the wood ---------- */
   const BEAMS = 6, beamPos = new Float32Array(BEAMS * 18), beamUv = new Float32Array(BEAMS * 12), quad = [[-.5, -.5, 0, 0], [.5, -.5, 1, 0], [.5, .5, 1, 1], [-.5, -.5, 0, 0], [.5, .5, 1, 1], [-.5, .5, 0, 1]];
@@ -124,7 +124,8 @@ export function createLife({scene, canvasTex, groundY, walkable, terrain, random
     const gy = groundY(pos.x, pos.z);
     if (last) { const dx = pos.x - last.x, dz = pos.z - last.z; if (dx * dx + dz * dz > 1e-5) heading = Math.atan2(dx, dz); } last = {x: pos.x, z: pos.z};
     // leaves
-    const u = leaves.material.uniforms; if (!reduced) u.uTime.value = time; u.uCentre.value.set(pos.x, gy, pos.z); u.uSnow.value = snow > .5 ? 1 : 0; u.uAmount.value += (Math.min(1, Math.max(trees * 1.1, snow)) - u.uAmount.value) * Math.min(1, dt * .5);   // on the peak the leaves are snowflakes u.uScale.value = height / (2 * Math.tan(THREE.MathUtils.degToRad(fov / 2)));
+    const u = leaves.material.uniforms; if (!reduced) u.uTime.value = time; u.uCentre.value.set(pos.x, gy, pos.z); u.uSnow.value = snow > .5 ? 1 : 0; u.uAmount.value += (Math.min(1, Math.max(trees * 1.1, snow)) - u.uAmount.value) * Math.min(1, dt * .5);   // on the peak the leaves are snowflakes
+    u.uScale.value = height / (2 * Math.tan(THREE.MathUtils.degToRad(fov / 2)));
     // butterflies: any that Fuchs has left behind settle somewhere new near him
     const shelter = rain > .25;   // in the rain the butterflies, dragonflies and little birds take shelter
     for (const b of butterflies) { if (shelter) { b.s.visible = false; b.placed = false; continue; }
@@ -134,23 +135,63 @@ export function createLife({scene, canvasTex, groundY, walkable, terrain, random
       b.y = groundY(b.x, b.z) + 1 + Math.sin(t * 2.3) * .35 + (b.flee ? .8 : 0) - meadow * .2;
       b.s.visible = true; b.s.position.set(b.x, b.y, b.z); const flap = reduced ? 1 : .25 + Math.abs(Math.cos(time * 14 + b.phase)) * .75; b.s.scale.set(.4 * flap, .3, 1);
     }
-    // dragonflies: hover, dart, hover, near the closest water
+    // dragonflies over the closest water: hover with a gentle drift, then glide along a soft curve to a new spot
+    // (eased start and stop, no jumping back and forth); they turn round only before a glide, quickly but smoothly
     if (time > nextWater) { water = nearestWater(pos); nextWater = time + 1; }
     for (const d of dragons) {
       if (!water || shelter) { d.s.visible = d.on = false; continue; }
-      if (!d.on || Math.hypot(d.x - water[0], d.z - water[2]) > 9) { d.x = d.tx = water[0] + r(-1.5, 1.5); d.z = d.tz = water[2] + r(-1.5, 1.5); d.y = d.ty = water[1] + r(.35, .9); d.on = true; fit(d.s); }
-      if (!reduced) { if ((d.wait -= dt) < 0) { d.wait = r(.5, 1.8); d.tx = water[0] + r(-2.6, 2.6); d.tz = water[2] + r(-2.6, 2.6); d.ty = Math.max(water[1], groundY(d.tx, d.tz)) + r(.3, 1); d.s.material.rotation = d.tx < d.x ? Math.PI : 0; }
-        const k = Math.min(1, dt * 7); d.x += (d.tx - d.x) * k; d.y += (d.ty - d.y) * k; d.z += (d.tz - d.z) * k; }
-      d.s.visible = true; d.s.position.set(d.x, d.y + (reduced ? 0 : Math.sin(time * 9 + d.tx) * .02), d.z);
+      if (!d.on || Math.hypot(d.x - water[0], d.z - water[2]) > 9) { d.x = d.fx = d.tx = water[0] + r(-1.5, 1.5); d.z = d.fz = d.tz = water[2] + r(-1.5, 1.5); d.y = d.fy = d.ty = water[1] + r(.35, .9); d.t = 1; d.on = true; fit(d.s); }
+      if (!reduced) {
+        if (d.t >= 1 && (d.wait -= dt) < 0) { d.fx = d.x; d.fy = d.y; d.fz = d.z; const a = r(0, TAU), far = r(.9, 2.4);
+          d.tx = THREE.MathUtils.clamp(d.x + Math.sin(a) * far, water[0] - 2.8, water[0] + 2.8); d.tz = THREE.MathUtils.clamp(d.z + Math.cos(a) * far, water[2] - 2.8, water[2] + 2.8); d.ty = Math.max(water[1], groundY(d.tx, d.tz)) + r(.35, .95);
+          d.t = 0; d.dur = .55 + Math.hypot(d.tx - d.x, d.tz - d.z) * .28; d.bend = r(-.6, .6); d.wait = r(1.2, 3.2); if (Math.abs(d.tx - d.x) > .25) d.face = d.tx < d.x ? -1 : 1; }
+        if (d.t < 1) { d.t = Math.min(1, d.t + dt / d.dur); const e = d.t * d.t * (3 - 2 * d.t), side = Math.sin(d.t * Math.PI) * d.bend, ox = d.tz - d.fz, oz = -(d.tx - d.fx);
+          d.x = d.fx + (d.tx - d.fx) * e + ox * side * .3; d.y = d.fy + (d.ty - d.fy) * e; d.z = d.fz + (d.tz - d.fz) * e + oz * side * .3; }
+        d.flip += (d.face - d.flip) * Math.min(1, dt * 9); }
+      const hover = reduced ? 0 : 1 - Math.sin(Math.min(1, d.t) * Math.PI);
+      d.s.visible = true; d.s.position.set(d.x + hover * Math.sin(time * 1.3 + d.wait * 9) * .05, d.y + hover * Math.sin(time * 2.1 + d.tx) * .04, d.z + hover * Math.cos(time * 1.1 + d.tz) * .04);
+      const h = d.s.userData.h, img = d.s.material.map.image; d.s.material.rotation = 0; d.s.scale.set(h * img.width / img.height * (Math.abs(d.flip) < .15 ? .15 * Math.sign(d.flip || 1) : d.flip), h, 1);
     }
     if (flames) { flames.visible = Math.hypot(fires[0][0] - pos.x, fires[0][1] - pos.z) < 40; if (!reduced) flames.material.uniforms.uTime.value = time; flames.material.uniforms.uScale.value = height / (2 * Math.tan(THREE.MathUtils.degToRad(fov / 2))); }
     if (smoke) { smoke.visible = Math.hypot(fires[0][0] - pos.x, fires[0][1] - pos.z) < 40; if (!reduced) smoke.material.uniforms.uTime.value = time; smoke.material.uniforms.uScale.value = height / (2 * Math.tan(THREE.MathUtils.degToRad(fov / 2))); }
+    // the pond: ducks swim their rounds; a fish jumps now and then (only when Fuchs is near enough to see it)
+    { const nearPond = Math.hypot(pos.x - pond.x, pos.z - pond.z) < 38;
+      for (const d of ducks) { d.m.visible = nearPond; if (!nearPond) continue; if (!reduced) d.a += dt * d.speed;
+        const [x, z] = onPond(Math.cos(d.a) * pond.rx * d.k, Math.sin(d.a) * pond.rz * d.k), [x2, z2] = onPond(Math.cos(d.a + .05) * pond.rx * d.k, Math.sin(d.a + .05) * pond.rz * d.k), t = reduced ? 0 : time;
+        // they paddle along, bob a little, and now and then dip their heads
+        // a ripple from the jumping fish rocks the duck as it passes under her
+        for (const g of rings) if (g.t >= 0) { const rr = (.3 + g.t * 2.6) * .5, dd = Math.hypot(x - g.m.position.x, z - g.m.position.z); if (Math.abs(dd - rr) < .35) d.rock = Math.max(d.rock || 0, 1 - g.t); }
+        d.rock = (d.rock || 0) * Math.exp(-dt * 1.4); const rock = reduced ? 0 : d.rock;
+        const dip = Math.max(0, Math.sin(t * .31 + d.a * 3) - .94) * 14; d.m.position.set(x, pond.level + .03 + Math.sin(t * 2 + d.a * 9) * .012 + rock * .045 * Math.sin(time * 7), z); d.m.rotation.set(dip + rock * .18 * Math.sin(time * 6 + 1), Math.atan2(x2 - x, z2 - z), Math.sin(t * 2.6 + d.a * 5) * .05 + rock * .3 * Math.sin(time * 7), 'YXZ'); }
+      // the fish often jumps near a duck, whom its ripple then rocks
+      if (nearPond && !reduced && fish.t < 0 && (fish.next -= dt) < 0) { const a = r(0, TAU), k = r(.1, .45), duck = random() < .5 ? ducks[random() < .5 ? 0 : 1].m.position : null; fish.from = duck ? [duck.x + r(-1.1, 1.1), duck.z + r(-1.1, 1.1)] : onPond(Math.cos(a) * pond.rx * k, Math.sin(a) * pond.rz * k); const b = r(0, TAU); fish.to = [fish.from[0] + Math.cos(b) * .9, fish.from[1] + Math.sin(b) * .9]; fish.t = 0; fish.next = r(5, 12); splash(0, ...fish.from); fit(fish.s); }
+      if (fish.t >= 0) { fish.t += dt / .8; const u = fish.t, x = fish.from[0] + (fish.to[0] - fish.from[0]) * u, z = fish.from[1] + (fish.to[1] - fish.from[1]) * u, right = fish.to[0] >= fish.from[0] ? 1 : -1;
+        fish.s.visible = u < 1; fish.s.position.set(x, pond.level + Math.sin(u * Math.PI) * .6, z); fish.s.scale.set(.4 * right, .2, 1); fish.s.material.rotation = right * Math.cos(u * Math.PI) * 1.1;
+        if (u >= 1) { fish.t = -1; splash(1, ...fish.to); } }
+      for (const g of rings) { if (g.t < 0) { g.m.visible = false; continue; } g.t += dt / 1.3; g.m.visible = true; g.m.scale.setScalar(.3 + g.t * 2.6); g.m.material.opacity = Math.max(0, .75 * (1 - g.t)); if (g.t >= 1) g.t = -1; } }
+    if (beams) placeBeams(pos);
+    // small creatures: placed a few metres from Fuchs, moving in their own way; they hide in the rain and at dusk
+    for (const c of critters) {
+      if (shelter || reduced && !c.on) { c.s.visible = c.on = false; continue; }
+      if (!c.on || Math.hypot(c.x - pos.x, c.z - pos.z) > 16) { const p = spotNear(pos, (random() - .5) * 2.2, 2.5, 6.5, (x, z) => walkable(x, z) && !terrain.onCrossing(x, z) && (c.kind === 'frog' ? nearWet(x, z) : terrain.biome(x, z, bm).meadow < .8 && bm.snow < .1));
+        if (!p) { c.s.visible = c.on = false; continue; } c.x = p[0]; c.z = p[1]; c.on = true; c.t = r(.5, 3); c.hop = -1; fit(c.s); }
+      const d = Math.hypot(c.x - pos.x, c.z - pos.z), away = Math.atan2(c.x - pos.x, c.z - pos.z), base = groundY(c.x, c.z);
+      if (!reduced) { c.t -= dt;
+        if (c.kind === 'snail') { if (c.t < 0) { const a = r(0, TAU); c.vx = Math.sin(a) * .035; c.vz = Math.cos(a) * .035; c.t = r(4, 9); } }
+        else if (c.kind === 'bug') { if (d < 1.4) { c.vx = Math.sin(away) * .5; c.vz = Math.cos(away) * .5; c.t = .6; } else if (c.t < 0) { const go = random() < .55, a = r(0, TAU); c.vx = go ? Math.sin(a) * .22 : 0; c.vz = go ? Math.cos(a) * .22 : 0; c.t = r(.4, 1.6); } }
+        else if (c.hop < 0 && (d < 2.2 || c.t < 0)) { const a = d < 2.2 ? away + r(-.5, .5) : r(0, TAU), l = d < 2.2 ? r(.7, 1.1) : r(.3, .6); c.hop = 0; c.vx = Math.sin(a) * l / .45; c.vz = Math.cos(a) * l / .45; c.t = r(2, 5); }
+        let nx = c.x + c.vx * dt, nz = c.z + c.vz * dt;
+        if (c.kind === 'frog') { if (c.hop >= 0) { c.hop += dt / .45; if (c.hop >= 1) c.hop = -1; } else { nx = c.x; nz = c.z; } }
+        if (walkable(nx, nz)) { c.x = nx; c.z = nz; } else { c.vx = -c.vx; c.vz = -c.vz; }
+        if (Math.abs(c.vx) > .01) c.face = c.vx < 0 ? -1 : 1; }
+      c.y = base + c.s.userData.h * .45 + (c.kind === 'frog' && c.hop >= 0 ? Math.sin(c.hop * Math.PI) * .22 : 0);
+      c.s.visible = true; c.s.position.set(c.x, c.y, c.z); const h = c.s.userData.h, img = c.s.material.map.image; c.s.scale.set(h * img.width / img.height * c.face, h, 1); }
     // little birds: a few hop about together ahead of Fuchs and fly off when he is close
-    if (!flockAt && !reduced && !shelter && birds.every(b => b.state === 'wait' && b.t <= 0)) { flockAt = spotNear(pos, heading, 9, 15, (x, z) => walkable(x, z) && !terrain.onCrossing(x, z)); if (flockAt) for (const b of birds) { b.state = 'ground'; b.x = flockAt[0] + r(-.9, .9); b.z = flockAt[1] + r(-.9, .9); b.y = groundY(b.x, b.z) + .1; b.t = r(.3, 1.5); b.s.material.map = birdTex[0]; fit(b.s); } }
+    if (!flockAt && !reduced && !shelter && birds.every(b => b.state === 'wait' && b.t <= 0)) { flockAt = spotNear(pos, heading, 9, 15, (x, z) => walkable(x, z) && !terrain.onCrossing(x, z)); if (flockAt) for (const b of birds) { b.told = birds.indexOf(b) > 0; b.state = 'ground'; b.x = flockAt[0] + r(-.9, .9); b.z = flockAt[1] + r(-.9, .9); b.y = groundY(b.x, b.z) + .1; b.t = r(.3, 1.5); b.s.material.map = birdTex[0]; fit(b.s); } }
     for (const b of birds) {
       b.t -= dt; const d = Math.hypot(b.x - pos.x, b.z - pos.z);
       if (b.state === 'ground') { const base = groundY(b.x, b.z) + .1;
-        if (d < 3.4 || d > 30) { b.state = 'fly'; b.t = 2.6; const a = Math.atan2(b.x - pos.x, b.z - pos.z) + r(-.5, .5); b.vx = Math.sin(a) * r(3, 4.5); b.vz = Math.cos(a) * r(3, 4.5); b.vy = r(2.2, 3.2); b.face = b.vx < 0 ? -1 : 1; if (d > 30) { b.state = 'wait'; b.t = 0; b.s.visible = false; flockAt = null; continue; } }
+        if (d < 3.4 || d > 30) { if (d < 3.4 && !b.told) { b.told = true; onFlyUp?.(b.x, b.z); } b.state = 'fly'; b.t = 2.6; const a = Math.atan2(b.x - pos.x, b.z - pos.z) + r(-.5, .5); b.vx = Math.sin(a) * r(3, 4.5); b.vz = Math.cos(a) * r(3, 4.5); b.vy = r(2.2, 3.2); b.face = b.vx < 0 ? -1 : 1; if (d > 30) { b.state = 'wait'; b.t = 0; b.s.visible = false; flockAt = null; continue; } }
         else { if (b.t < 0) { b.t = r(.6, 2.4); b.hop = .22; const a = r(0, TAU); b.vx = Math.sin(a) * .9; b.vz = Math.cos(a) * .9; b.face = b.vx < 0 ? -1 : 1; }
           if (b.hop > 0) { b.hop -= dt; const nx = b.x + b.vx * dt, nz = b.z + b.vz * dt; if (walkable(nx, nz)) { b.x = nx; b.z = nz; } b.y = base + Math.sin((1 - b.hop / .22) * Math.PI) * .09; } else b.y = base + (Math.sin(time * 5 + b.x * 9) > .86 ? -.025 : 0); }
       } else if (b.state === 'fly') { b.x += b.vx * dt; b.y += b.vy * dt; b.z += b.vz * dt; b.s.material.map = birdTex[Math.floor(time * 11) % 2]; if (b.t < 0) { b.state = 'wait'; b.t = r(5, 11); b.s.visible = false; flockAt = null; } }

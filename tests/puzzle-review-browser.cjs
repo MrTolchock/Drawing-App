@@ -105,7 +105,7 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
  await reject();assert.equal(await page.evaluate(id=>FK.puzzleReview.status('add',id).decision.note,second),'');
  const third=await currentId();await reject('Bitte Bildgrösse prüfen');assert.equal(await page.evaluate(id=>FK.puzzleReview.status('add',id).decision.note,third),'Bitte Bildgrösse prüfen');
  await page.screenshot({path:shots+'/review-gameplay-tablet.png'});await back();
- const download=page.waitForEvent('download');await page.getByRole('button',{name:'Prüfung exportieren',exact:true}).click();const backup=await download;await page.getByLabel('Prüfdatei importieren',{exact:true}).setInputFiles(await backup.path());assert.equal(await page.evaluate(id=>FK.puzzleReview.status('add',id).status,third),'improve');
+ assert.equal(await page.getByRole('button',{name:'Prüfung exportieren',exact:true}).count(),0);assert.equal(await page.getByLabel('Prüfdatei importieren',{exact:true}).count(),0);assert.equal(await page.getByRole('searchbox').count(),0);assert.equal(await page.evaluate(id=>FK.puzzleReview.status('add',id).status,third),'improve');
  const before=await snapshot();nativeInput=false;
  let checked=0;
  for(const g of entries.filter(g=>!process.env.FARBTUPF_GAMES||process.env.FARBTUPF_GAMES.split(',').includes(g.id))){
@@ -180,6 +180,6 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
  // Flagging survives refresh and offline use; a fresh review resumes only unconfirmed items.
  await page.evaluate(id=>FK.puzzleReview.decide('add',id,'improve','Check image'),reopen);await page.reload();await page.waitForFunction(()=>!!window.FK?.puzzleReview);assert.equal(await page.evaluate(()=>FK.puzzleReview.ready('add')),false);
  await page.evaluate(()=>navigator.serviceWorker.ready);await page.waitForFunction(()=>!!navigator.serviceWorker.controller);await context.setOffline(true);await page.reload();await page.waitForFunction(()=>!!window.FK?.puzzleReview);assert.equal(await page.evaluate(id=>FK.puzzleReview.status('add',id).status,reopen),'improve');assert.equal(await page.evaluate(()=>window.reviewSpeechRequests?.length||0),0);
- assert.deepEqual(errors,[]);console.log('PASS '+checked+' finite solutions, native input for all puzzles, whole-pool review, retries, optional rejection, celebration, isolated saves, export/import, persistence and offline review.');
+ assert.deepEqual(errors,[]);console.log('PASS '+checked+' finite solutions, native input for all puzzles, whole-pool review, retries, optional rejection, celebration, isolated saves, no export/import or search, persistence and offline review.');
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

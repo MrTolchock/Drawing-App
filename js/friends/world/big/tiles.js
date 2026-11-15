@@ -7,6 +7,7 @@ import {THREE} from '../../../scene/materials.js';
 import {TAU, clamp, lerp, sstep, fbm, rng, tileSeed} from '../noise.js';
 import {TILE, Buffer, quads, templates, trunkGeometry, rootGeometries, crownCards, instanced} from '../tiles.js';
 import {ATLAS} from './atlas.js';
+import {DECALS} from './decals.js';
 
 const GRID = 32, FAR_GRID = 8, SEED = 77123;
 const C = h => new THREE.Color(h), tone = new THREE.Color(), tone2 = new THREE.Color();
@@ -37,10 +38,13 @@ export function waterMaterial(look, fog) {
   if (look.M.water) return look.M.water;
   return look.M.water = new THREE.ShaderMaterial({
     transparent: true, depthWrite: false, side: THREE.DoubleSide,
-    uniforms: {uTime: {value: 3.7}, uNoise: {value: look.T.noise}, uShallow: {value: C('#7fc3b0')}, uDeep: {value: C('#1d6476')}, uFoam: {value: C('#f6fbf2')}, uSky: {value: C('#e6f1df')}, uSun: {value: C('#fff1c8')}, uSunDir: {value: fog.sunDir}, fogColor: {value: fog.color}, fogNear: {value: fog.near}, fogFar: {value: fog.far}},
+    uniforms: {uTime: {value: 3.7}, uNoise: {value: look.T.noise}, uShallow: {value: C('#7fc3b0')}, uDeep: {value: C('#1d6476')}, uFoam: {value: C('#f6fbf2')}, uSky: {value: C('#e6f1df')}, uTrees: {value: C('#3c6a3a')}, uSun: {value: C('#fff1c8')}, uGlint: {value: 1}, uSunDir: {value: fog.sunDir}, fogColor: {value: fog.color}, fogNear: {value: fog.near}, fogFar: {value: fog.far}},
     vertexShader: 'attribute vec3 wa;varying vec2 vUv;varying vec3 vW,vA;varying float vFog;void main(){vUv=uv;vA=wa;vec4 w=modelMatrix*vec4(position,1.);vW=w.xyz;vec4 mv=viewMatrix*w;vFog=-mv.z;gl_Position=projectionMatrix*mv;}',
     // wa = (1 for a stream / 0 for still water, depth 0…1 of still water, fade at a stream's ends)
-    fragmentShader: `uniform float uTime;uniform sampler2D uNoise;uniform vec3 uShallow,uDeep,uFoam,uSky,uSun,uSunDir,fogColor;uniform float fogNear,fogFar;varying vec2 vUv;varying vec3 vW,vA;varying float vFog;
+    // The water gives back the sky and, in long soft streaks towards the viewer, the dark of the trees (uSky and uTrees
+    // follow the hour and the weather: forest3d.js); light plays on the bed in the shallows; the sun glitters on the
+    // ripples (uGlint: how much sun there is); still water laps at its shore with a thin line of foam.
+    fragmentShader: `uniform float uTime,uGlint;uniform sampler2D uNoise;uniform vec3 uShallow,uDeep,uFoam,uSky,uTrees,uSun,uSunDir,fogColor;uniform float fogNear,fogFar;varying vec2 vUv;varying vec3 vW,vA;varying float vFog;
     void main(){
       float flow=vA.x;float across=mix(1.-smoothstep(0.,.5,vA.y),abs(vUv.x-.5)*2.,flow);float along=vUv.y;
       vec2 still=vW.xz*.09;
@@ -51,13 +55,20 @@ export function waterMaterial(look, fog) {
       float depth=mix(vA.y,1.-across*across,flow);
       vec3 c=mix(uShallow,uDeep,smoothstep(.0,.8,depth)*.92);
       c*=.94+.12*n;
-      float fres=pow(1.-max(dot(N,V),0.),4.);c=mix(c,uSky,fres*mix(.5,.35,flow));
-      vec3 Hh=normalize(uSunDir+V);c+=uSun*smoothstep(.72,.92,n2)*pow(max(dot(N,Hh),0.),260.)*1.4;
+      float ca=texture2D(uNoise,vW.xz*.31+vec2(uTime*.021,-uTime*.017)).r,cb=texture2D(uNoise,vW.xz*.27-vec2(uTime*.019,uTime*.013)+.4).r;
+      c+=uSun*pow(clamp(1.-abs(ca-cb)*6.,0.,1.),6.)*(1.-smoothstep(.0,.5,depth))*.13*uGlint*(1.-.5*flow);
+      float ndv=max(dot(N,V),0.);vec2 rp=vW.xz+N.xz*2.2;float crown=smoothstep(.45,.6,texture2D(uNoise,vec2(rp.x*.043,rp.y*.011+3.3)).r);
+      c=mix(c,mix(uSky,uTrees,crown*.8),clamp(.06+.8*(1.-ndv)*(1.-ndv),0.,.5)*mix(1.,.55,flow));
+      vec3 Hh=normalize(uSunDir+V);c+=uSun*smoothstep(.72,.92,n2)*pow(max(dot(N,Hh),0.),260.)*1.4*uGlint;
+      float s1=texture2D(uNoise,vW.xz*.83+vec2(uTime*.05,uTime*.031)).r,s2=texture2D(uNoise,vW.xz*1.27-vec2(uTime*.043,-uTime*.058)+.7).r;
+      c+=uSun*smoothstep(.435,.485,s1*s2)*smoothstep(.48,.6,n1)*1.1*uGlint;
       float streak=smoothstep(.7,.82,n2)*(.2+.6*depth)*flow;c=mix(c,uFoam,streak*.08);
       float foam=smoothstep(.84,.99,across)*smoothstep(.45,.7,n1+.18*sin(along*2.6+uTime*1.7))*mix(.0,1.,flow);
       c=mix(c,uFoam,foam*.7);
       float alpha=mix(.86,.35,smoothstep(.45,1.,across));alpha=max(alpha,foam*.8);
       alpha*=mix(smoothstep(.0,.16,vA.y),vA.z,flow);
+      float lap=.5+.5*sin(uTime*1.15+n1*6.283+vW.x*.7+vW.z*.5),shore=(1.-smoothstep(.03,.1+.08*lap,vA.y))*smoothstep(.0,.025,vA.y)*smoothstep(.3,.62,n2+.22*lap)*(1.-flow);
+      c=mix(c,uFoam,shore*.8);alpha=max(alpha,shore*.78);
       c=mix(c,fogColor,smoothstep(fogNear,fogFar,vFog));
       gl_FragColor=vec4(c,alpha);
       #include <tonemapping_fragment>
@@ -108,11 +119,17 @@ export function* buildBigTile(world, look, i, j, ring) {
   /* terrain: heights on the grid plus a one-cell ring, so normals agree across tile edges */
   yield 'terrain';
   {
-    const N = GRID + 1, W = N + 2, step = TILE / GRID, pos = new Float32Array(N * N * 3), nor = new Float32Array(N * N * 3), col = new Float32Array(N * N * 3), uv = new Float32Array(N * N * 2), H = new Float32Array(W * W);
+    const N = GRID + 1, W = N + 2, step = TILE / GRID, pos = new Float32Array(N * N * 3), nor = new Float32Array(N * N * 3), col = new Float32Array(N * N * 3), uv = new Float32Array(N * N * 2), H = new Float32Array(W * W), rk = new Float32Array(N * N);
+    // what stands on the ground here or just over the tile's edge darkens it a little where it meets it
+    const stands = []; for (let di = -1; di <= 1; di++) for (let dj = -1; dj <= 1; dj++) for (const tr of (di || dj ? world.treesIn(i + di, j + dj) : trees)) { if (tr.kind === 'snag') continue; const r = (tr.kind === 'spruce' || tr.kind === 'birch' ? 1.5 : 2.3) + tr.r * 1.6; if (tr.x > x0 - r && tr.x < x0 + TILE + r && tr.z > z0 - r && tr.z < z0 + TILE + r) stands.push([tr.x, tr.z, r, tr.kind === 'birch' ? .2 : .3]); }
+    for (const [x, z, sz] of L.ROCKS) if (x > x0 - 3 && x < x0 + TILE + 3 && z > z0 - 3 && z < z0 + TILE + 3) stands.push([x, z, sz * 1.9, .3]);
+    for (const [x, z, r, k] of [[L.DEN.x, L.DEN.z, 5.2, .32], [L.SETT[0], L.SETT[1], 4.2, .2]]) if (x > x0 - r && x < x0 + TILE + r && z > z0 - r && z < z0 + TILE + r) stands.push([x, z, r, k]);
     for (let r = -1; r <= N; r++) {
       for (let k = -1; k <= N; k++) {
         const x = x0 + k * step, z = z0 + r * step, h = T.ground(x, z); H[(r + 1) * W + k + 1] = h;
-        if (r >= 0 && k >= 0 && r < N && k < N) { const v = r * N + k; pos[v * 3] = x; pos[v * 3 + 1] = h; pos[v * 3 + 2] = z; uv[v * 2] = x / 2; uv[v * 2 + 1] = z / 2; T.colour(x, z, tone); col[v * 3] = tone.r; col[v * 3 + 1] = tone.g; col[v * 3 + 2] = tone.b; }
+        if (r >= 0 && k >= 0 && r < N && k < N) { const v = r * N + k; pos[v * 3] = x; pos[v * 3 + 1] = h; pos[v * 3 + 2] = z; uv[v * 2] = x / 2; uv[v * 2 + 1] = z / 2; T.colour(x, z, tone); rk[v] = tone.stone;
+          let shade = 1; for (const [sx, sz, r, k] of stands) { const d = Math.hypot(sx - x, sz - z); if (d < r) { const q = 1 - d / r; shade *= 1 - k * q * q * (3 - 2 * q); } }
+          col[v * 3] = tone.r * shade; col[v * 3 + 1] = tone.g * shade; col[v * 3 + 2] = tone.b * (shade * .8 + .2); }
       }
       if (r % 2) yield 'terrain';
     }
@@ -120,12 +137,12 @@ export function* buildBigTile(world, look, i, j, ring) {
     for (let r = 0; r < N; r++) for (let k = 0; k < N; k++) {
       const hx = H[(r + 1) * W + k + 2] - H[(r + 1) * W + k], hz = H[(r + 2) * W + k + 1] - H[r * W + k + 1], l = Math.hypot(hx, 2 * step, hz), v = r * N + k, up = 2 * step / l;
       nor[v * 3] = -hx / l; nor[v * 3 + 1] = up; nor[v * 3 + 2] = -hz / l;
-      if (up < .93) { tone.setRGB(col[v * 3], col[v * 3 + 1], col[v * 3 + 2]); T.cliff(pos[v * 3], pos[v * 3 + 2], up, tone); col[v * 3] = tone.r; col[v * 3 + 1] = tone.g; col[v * 3 + 2] = tone.b; }
+      if (up < .93) { tone.setRGB(col[v * 3], col[v * 3 + 1], col[v * 3 + 2]); tone.stone = rk[v]; T.cliff(pos[v * 3], pos[v * 3 + 2], up, tone); rk[v] = tone.stone; col[v * 3] = tone.r; col[v * 3 + 1] = tone.g; col[v * 3 + 2] = tone.b; }
     }
     yield 'terrain mesh';
     const idx = new Uint16Array(GRID * GRID * 6); let q = 0;
     for (let r = 0; r < GRID; r++) for (let k = 0; k < GRID; k++) { const a = r * N + k, b = a + 1, d = a + N, e = d + 1; idx[q++] = a; idx[q++] = d; idx[q++] = b; idx[q++] = b; idx[q++] = d; idx[q++] = e; }
-    const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.BufferAttribute(pos, 3)); g.setAttribute('normal', new THREE.BufferAttribute(nor, 3)); g.setAttribute('color', new THREE.BufferAttribute(col, 3)); g.setAttribute('uv', new THREE.BufferAttribute(uv, 2)); g.setIndex(new THREE.BufferAttribute(idx, 1)); g.computeBoundingSphere();
+    const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.BufferAttribute(pos, 3)); g.setAttribute('normal', new THREE.BufferAttribute(nor, 3)); g.setAttribute('color', new THREE.BufferAttribute(col, 3)); g.setAttribute('uv', new THREE.BufferAttribute(uv, 2)); g.setAttribute('rk', new THREE.BufferAttribute(rk, 1)); g.setIndex(new THREE.BufferAttribute(idx, 1)); g.computeBoundingSphere();
     const terrain = new THREE.Mesh(g, M.ground); terrain.name = 'terrain'; terrain.receiveShadow = M.shadows; terrain.userData.terrain = true; group.add(terrain);
   }
 
@@ -134,7 +151,7 @@ export function* buildBigTile(world, look, i, j, ring) {
   const spot = () => [x0 + R() * TILE, z0 + R() * TILE];
   const treeGap = (x, z) => { let m = Infinity; for (const tr of trees) m = Math.min(m, Math.hypot(tr.x - x, tr.z - z) - tr.r); return m; };
   // a spot plants can grow on: not in water, not on a trail, not inside a collider or on a crossing
-  const dry = (s, pathPad = -.1) => s.sd - s.sw / 2 > .3 && !(s.still - s.h > -.03) && s.pd > s.pw / 2 + pathPad;
+  const dry = (s, pathPad = -.1) => s.sd - s.sw / 2 > .3 && !(s.still - s.h > -.03) && s.pd > s.pw / 2 + pathPad && T.cave(s.x, s.z).k < .05;   // nothing grows in the cave's cut
   yield 'grass';
   for (let k = 0, n = Math.round(area * 3.2); k < n; k++) {
     if (k % 40 === 39) yield 'grass';
@@ -171,7 +188,7 @@ export function* buildBigTile(world, look, i, j, ring) {
     foliage.add(t.fern, {x, y: h, z, ry: R() * TAU, sx: sc, sy: sc, sz: sc, cell: ATLAS.fern, up: true, c});
   }
   for (let k = 0, n = Math.round(area * .1); k < n; k++) { // clover off the trails, fallen leaves on them
-    const [x, z] = spot(), s0 = T.site(x, z), onPath = s0.pd < s0.pw / 2 + .1; if (s0.sd - s0.sw / 2 < .4 || s0.still - s0.h > -.05 || T.snow(x, z) > .05) continue; const h = s0.h;
+    const [x, z] = spot(), s0 = T.site(x, z), onPath = s0.pd < s0.pw / 2 + .1; if (s0.sd - s0.sw / 2 < .4 || s0.still - s0.h > -.05 || T.snow(x, z) > .05 || T.cave(x, z).k > .05) continue; const h = s0.h;
     if (world.blocked(x, z, 0) || T.onCrossing(x, z) || (!onPath && R() < .25)) continue;
     const sc = onPath ? .55 + R() * .5 : .9 + R() * 1.2;
     foliage.add(t.flat, {x, y: h + (onPath ? .035 : .03), z, ry: R() * TAU, sx: sc, sy: 1, sz: sc, cell: onPath ? ATLAS.litter : ATLAS.clover, up: true});
@@ -225,10 +242,28 @@ export function* buildBigTile(world, look, i, j, ring) {
   for (const tree of trees) { if (tree.kind === 'snag') continue; const Rs = rng(tileSeed(SEED + 4, Math.round(tree.x * 7), Math.round(tree.z * 7))); // mushrooms at the foot of trees
     for (let k = 0, n = Math.floor(Rs() * (tree.kind === 'spruce' ? 5 : 4)); k < n; k++) { const a = Rs() * TAU, d = tree.r * 1.4 + .3 + Rs() * .9, x = tree.x + Math.cos(a) * d, z = tree.z + Math.sin(a) * d, sc = .9 + Rs() * 1.2, red = Rs() < .5; if (T.wet(x, z)) continue; const y = T.ground(x, z);
       rocks.add(t.stem, {x, y, z, ry: Rs() * TAU, sx: sc, sy: sc, sz: sc}); rocks.add(t.cap, {x, y, z, ry: Rs() * TAU, sx: sc, sy: sc, sz: sc, c: red ? tone.set('#c8352a') : tone.set('#8a5a2e')}); } }
+  yield 'ground detail';
+  // small things lying flat on the woodland floor (decals.js): roots at the foot of every tree, moss near trunks and
+  // rocks, needles under the spruces, pebbles and twigs at the path edges, worn patches on the paths, fallen leaves
+  const detail = M.decals ? new Buffer() : null;   // near ring only (the far ring returned above)
+  if (detail) {
+    const lay = (x, z, cell, size, c = null, lift = .025) => { const s0 = T.site(x, z); if (T.onCrossing(x, z) || s0.still - s0.h > -.04 || s0.sd - s0.sw / 2 < .2 || T.snow(x, z) > .3 || T.cave(x, z).k > .05) return; const Rs = R();
+      detail.add(t.flat, {x, y: s0.h + lift, z, ry: Rs * TAU, sx: size * (.85 + R() * .3), sy: 1, sz: size * (.85 + R() * .3), cell, up: true, c}); };
+    for (const tree of trees) { if (!inTile(tree.x, tree.z) || tree.kind === 'snag') continue; const big = tree.kind === 'beech' || tree.kind === 'hollow' || tree.kind === 'oak';
+      lay(tree.x, tree.z, DECALS.roots, (big ? 3.1 : 2.1) * Math.max(.8, Math.min(2.2, tree.s || 1)) + tree.r, tone.setRGB(1, 1, 1), .03);
+      for (let m = R() < .7 ? 2 : 1; m > 0; m--) { const a = R() * TAU, d = tree.r + .5 + R() * .9; lay(tree.x + Math.cos(a) * d, tree.z + Math.sin(a) * d, R() < .6 ? DECALS.moss : DECALS.mossDots, 1 + R() * .9); }
+      if (tree.kind === 'beech' && R() < .8) { const a = R() * TAU, d = 1.2 + R() * 2.5; lay(tree.x + Math.cos(a) * d, tree.z + Math.sin(a) * d, DECALS.leaves, 1.2 + R() * .8); } }
+    for (let k = 0, n = Math.round(area * .34); k < n; k++) { const [x, z] = spot(); T.biome(x, z, bm); const pa = T.pathAt(x, z), edge = pa.d - pa.w / 2;
+      if (edge < -.05) { if (R() < .8) lay(x, z, DECALS.worn, 1.1 + R() * .8, null, .02); }
+      else if (edge < .7) lay(x, z, R() < .6 ? DECALS.pebbles : DECALS.twigs, .8 + R() * .6);
+      else if (bm.spruce > .45 && R() < bm.spruce) lay(x, z, DECALS.needles, 1.8 + R() * 1.6);
+      else if (bm.meadow < .4 && bm.swamp < .4 && bm.rock < .5 && R() < .5) lay(x, z, [DECALS.twigs, DECALS.moss, DECALS.leaves, DECALS.mossDots][Math.floor(R() * 4)], 1 + R() * .9); }
+  }
   yield 'foliage mesh';
   meshOf(foliage, M.plants, {name: 'foliage'});
+  if (detail) meshOf(detail, M.decals, {name: 'ground detail', receive: true});
   yield 'rock mesh';
-  meshOf(rocks, M.rock, {name: 'rocks'});
+  stony(meshOf(rocks, M.rock, {name: 'rocks'}));
   yield 'water';
   { const g = waterGeometry(); if (g) { const m = new THREE.Mesh(g, waterMaterial(look, world.fog)); m.name = 'water'; m.renderOrder = 2; group.add(m); } }
   return group;
@@ -362,5 +397,7 @@ export function* buildBigTile(world, look, i, j, ring) {
     meshOf(far, M.plants, {name: 'far', receive: false});
   }
 }
+/** Mark the grey of a mesh as bare stone (the rock shader draws bedding and cracks there; moss, mushrooms and earth stay plain). */
+export function stony(mesh, amount = .85) { if (!mesh) return mesh; const c = mesh.geometry.attributes.color, rk = new Float32Array(c.count); for (let i = 0; i < c.count; i++) { const r = c.getX(i), g = c.getY(i), b = c.getZ(i); rk[i] = amount * (1 - sstep(.05, .15, Math.max(r, g, b) - Math.min(r, g, b))); } mesh.geometry.setAttribute('rk', new THREE.BufferAttribute(rk, 1)); return mesh; }
 let cardGeo = null;
 const leafCardGeometry = () => { if (!cardGeo) { cardGeo = new THREE.PlaneGeometry(1, 1); const n = cardGeo.attributes.normal; for (let i = 0; i < n.count; i++) n.setXYZ(i, 0, 1, 0); } return cardGeo; };

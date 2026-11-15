@@ -17,7 +17,7 @@ Only puzzles whose current iterations **and puzzle** are approved enter child pl
 
 [Connect GitHub once per editing session](REVIEW-STORAGE.md) in Settings to save changes automatically. Other browsers and fresh installations read the shared file without a token. A local-only decision does not release a puzzle for children. Wait for **Auf GitHub gespeichert** before deleting local storage; offline changes remain in the outbox until uploaded.
 
-Use **Prüfung exportieren** regularly. **Prüfung importieren** restores revision-checked decisions and history; invalid files leave existing work intact. Older backups containing reviewer/checklist metadata remain readable, but those fields are neither displayed nor required. New decisions contain no reviewer/checklist fields.
+There is no file export/import any more: GitHub is the backup. Each puzzle offers **Alle bestätigen** to approve all its current iterations and the puzzle together (after a confirmation), as an alternative to playing each one. Earlier decisions stay in the history. New decisions contain no reviewer/checklist fields.
 
 The shared file is [reviews.json on puzzle-review-data](https://github.com/MrTolchock/Drawing-App/blob/puzzle-review-data/reviews.json). The offline cache and outbox use `farbtupf.puzzle-review.v1`. The GitHub token is held separately in session storage and is never exported or committed. Development reviews with `?dev=1` stay local and do not publish.
 

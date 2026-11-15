@@ -28,7 +28,7 @@ export class Buffer {
       P[v * 3] = x + px * cs + pz * sn; P[v * 3 + 1] = y + py; P[v * 3 + 2] = z - px * sn + pz * cs;
       if (up) { N[v * 3] = 0; N[v * 3 + 1] = 1; N[v * 3 + 2] = 0; } else { const nx = t.nor[i * 3], nz = t.nor[i * 3 + 2]; N[v * 3] = nx * cs + nz * sn; N[v * 3 + 1] = t.nor[i * 3 + 1]; N[v * 3 + 2] = -nx * sn + nz * cs; }
       const u = t.uv ? t.uv[i * 2] : 0, w = t.uv ? t.uv[i * 2 + 1] : 0;
-      if (cell) { U[v * 2] = cell[0] + u * cell[2]; U[v * 2 + 1] = cell[1] + w * cell[3]; } else { U[v * 2] = u; U[v * 2 + 1] = w; }
+      if (cell) { U[v * 2] = cell[0] + u * cell[2]; U[v * 2 + 1] = cell[1] + (.004 + w * .992) * cell[3]; }   // a hair inside the cell: the plant shader reads the card's height from it else { U[v * 2] = u; U[v * 2 + 1] = w; }
       if (K) { K[v * 3] = (t.col ? t.col[i * 3] : 1) * cr; K[v * 3 + 1] = (t.col ? t.col[i * 3 + 1] : 1) * cg; K[v * 3 + 2] = (t.col ? t.col[i * 3 + 2] : 1) * cb; }
     }
     for (let k = 0; k < t.idx.length; k++) this.idx[this.ni++] = base + t.idx[k];

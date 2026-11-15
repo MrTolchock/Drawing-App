@@ -8,10 +8,23 @@ export const DEN = {x: 0, z: -8};
 
 /* The Rock: an elliptical massif with a plateau. `fall` is the direction (from its centre) in
    which the waterfall drops. */
-export const ROCK = {x: 84, z: -80, rx: 36, rz: 30, top: 11.5, fall: 2.135};
+export const ROCK = {x: 84, z: -80, rx: 36, rz: 30, top: 9, fall: 2.135};
 /* The peak that rises out of the Rock's plateau north of the summit trail: its top, how high it stands above the
    plateau and how wide its foot is. Snow lies on it from about two metres up. Gentle enough to walk to the top. */
-export const PEAK = {x: 80, z: -95, top: 13, r: 27};
+export const PEAK = {x: 80, z: -95, top: 10.5, r: 27};
+
+/* A cave in the Rock's south flank, east of the waterfall. The ground is cut flat along `spine`, given as [across,
+   in, half-width] from the foot at (x, z) with `in` running north into the hill: a passage that bends east and opens
+   into a hall with an underground lake. After `open` metres a rock roof covers it (the mouth); by the hall the floor
+   has sunk by `sink`. Inside, as [across, in, …]: crystal clusters [u, v, r, hue], pale mushrooms [u, v], stalagmites
+   [u, v, height], columns from floor to ceiling [u, v, r], the lake [u, v, r] and where the bats hang [u, v, r]. */
+export const CAVE = {x: 88, z: -54, open: 4.8, sink: 1.1,
+  spine: [[0, -1.5, 2.5], [0, 6, 2.3], [.5, 11, 2.1], [2.8, 15.4, 2], [7.2, 18.2, 2.2], [11.6, 19.6, 3.2], [15.2, 20.6, 5.8], [17.2, 23.4, 4.9]],
+  crystals: [[1.86, 7.59, .4, 0], [-.77, 11.94, .42, 1], [5.67, 15.34, .45, 2], [8.91, 21.14, .5, 0], [11.59, 16.82, .55, 1], [19.85, 18.62, .7, 0], [21.2, 24.69, .75, 2], [13.33, 25.61, .6, 1], [16.71, 15.43, .5, 2]],
+  mushrooms: [[-1.95, 6.63], [2.3, 10.13], [.42, 14.9], [4.24, 18.33], [8.62, 16.43], [11.15, 24.21], [18.78, 16.2], [14.54, 26.92]],
+  mites: [[-1.56, 8.73, .6], [2.81, 12.19, .7], [5.98, 19.38, .8], [10.24, 16.78, .65], [12.87, 15.82, .9], [21.14, 21.5, 1.1], [17.69, 27.8, 1]],
+  columns: [[12.8, 23.2, .34], [18.3, 20.6, .3]],
+  pool: [16.3, 23.2, 2.5], roost: [14.6, 19.4, 2.4]};
 
 /* Still water. `plunge` and `pond` are carved bowls; the swamp is a basin whose hollows fill. */
 export const POOLS = [
@@ -59,6 +72,7 @@ export const TRAILS = [
   {id: 'swamp-east', pts: [[-5.6, 60.6], [-9.5, 61], [-11.5, 63]], w: .7},
   {id: 'badger', pts: [[-46, -46], [-48.4, -49.4], [-50, -52.6]], w: .7},
   {id: 'owl-falls', pts: [[84.5, -4.5], [80, -22], [71, -35], [62.5, -41], [58.6, -42.6]], w: .75},
+  {id: 'cave', pts: [[80, -22], [83.5, -33], [87, -44], [88, -53.5]], w: .7},
 ];
 
 /* Ways across water. `at` is snapped to the named stream; boardwalk planks are given end to end. */
@@ -78,7 +92,7 @@ const pin = (x, y) => ({pu: x / 1024, pv: y / 768});
    where the painted picture map shows them until the map is redrawn. */
 // `map` moves a place's pin on the picture map where two pins would overlap.
 export const PLACES = {
-  home: {x: 0, z: -3.3, picture: 'door', name: 'Nach Hause', ...pin(392, 262)},
+  home: {x: 0, z: -3.3, picture: 'den', name: 'Nach Hause', ...pin(392, 262)},
   mailman: {x: 3.2, z: -.8, picture: 'mailman', name: 'Zum Briefträger', ...pin(570, 390)},
   squirrel: {x: -29.5, z: -59, picture: 'squirrel', name: 'Zu Eichhörnchen', ...pin(86, 134)},
   bird: {x: -55.5, z: 52.2, picture: 'bird', name: 'Zu Blaumeise', ...pin(98, 390)},
@@ -86,7 +100,7 @@ export const PLACES = {
   beaver: {x: 23.2, z: -15.5, picture: 'beaver', name: 'Zu Biber', ...pin(792, 352)},
   mouse: {x: -31.5, z: 9.6, picture: 'mouse', name: 'Zu Maus', ...pin(852, 532)},
   hedgehog: {x: 51.6, z: 43.8, picture: 'friend-hedgehog', name: 'Zu Igel'},
-  fish: {x: 59.5, z: -43.1, picture: 'friend-fish', name: 'Zu Fisch'},
+  fish: {x: 57.6, z: -42.8, picture: 'friend-fish', name: 'Zu Fisch'},
   deer: {x: -78.6, z: -11, picture: 'friend-deer', name: 'Zu Reh'},
   kingfisher: {x: 11.2, z: 21.5, picture: 'friend-kingfisher', name: 'Zu Eisvogel'},
   frog: {x: -27.4, z: 83.2, picture: 'friend-frog', name: 'Zu Frosch'},
@@ -107,9 +121,14 @@ export const NEIGHBOURS = {
   deer: {at: [-80.5, -12.5], y: 0, yaw: 1.0, h: 1.75},
   frog: {at: [-23.4, 80.2], y: .06, yaw: .9, h: .8, onWater: true},
   hedgehog: {at: [53.6, 45.4], y: 0, yaw: -.7, h: .85},
-  fish: {at: [62.6, -49.2], y: .02, yaw: -.6, h: .8, onWater: true},
+  fish: {at: [57.6, -47.4], y: .02, yaw: .4, h: .8, onWater: true, swim: [1.3, 1]},   // the west side of the plunge pool, clear of the trees; swims a ring there
   kingfisher: {at: [12.9, 22.85], y: 1.6, yaw: -1.2, h: .6},
   badger: {at: [-51.7, -54.7], y: 0, yaw: .7, h: 1.2},
+};
+/* Who else lives in the land without a letter box: the Steinbock on his crag at the Rock's rim, above the waterfall.
+   Fuchs can visit him: he shows his trick and points the way the letter leads. */
+export const EXTRAS = {
+  ibex: {at: [74.2, -56.3], y: .86, yaw: .25, h: 1.95},
 };
 /* Authored trees [x, z, size, options]: the friends' trees and a few giants. */
 export const TREES = [
@@ -121,9 +140,12 @@ export const TREES = [
   [-54.6, -60.4, 1.45, {kind: 'oak'}],   // the old oak above the badger's sett
 ];
 /* Big rocks [x, z, size, height] (colliders). */
-export const ROCKS = [[-5.2, -4.2, 1.05, 1.6], [-2, 9, .65, .9], [9.6, 1.2, .6, .8], [57.6, -54.4, 1.5, 1.7], [66.4, -47.6, 1.2, 1.3], [-70, 8, .9, 1], [50.5, 48.4, .8, .9]];
+export const ROCKS = [[74.2, -56.3, 1.45, 1.05], [76, -55.5, .8, .9], [72.6, -55.6, .7, .8], [-5.2, -4.2, 1.05, 1.6], [-2, 9, .65, .9], [9.6, 1.2, .6, .8], [57.6, -54.4, 1.5, 1.7], [66.4, -47.6, 1.2, 1.3], [-70, 8, .9, 1], [50.5, 48.4, .8, .9]];
 /* Further colliders [x, z, radius]: the den tree, the stump, the lodge, the beaver's stack of poles, the badger's sett. */
-export const SOLIDS = [[0, -8, 3.05], [-33.4, 11.2, .95], [37.5, -18.6, 2.3], [20.8, -16.9, .6], [-53.4, -58.3, 2.1], [50.75, 13.18, 0.82], [51.58, 12.73, 0.82], [52.42, 12.27, 0.82], [53.25, 11.82, 0.82], [-67.61, 22.74, 0.5], [-69.45, 24.44, 0.5], [-71.83, 23.7, 0.5], [-72.39, 21.26, 0.5], [-70.55, 19.56, 0.5], [-68.17, 20.3, 0.5], [-17, 10, 0.42], [-22, 31.5, 0.75], [-34, 36, 0.75], [38, 29, 0.75], [6.2, 9.5, 1], [5, -1.4, .15], [-5, 1.8, .15], [3.6, 6, .15], [27, 17.5, 1], [-8.6, 41.3, .95], [-7.4, 41.7, .95], [-4.6, 42.3, .85], [-2.9, 41.2, .45], [31.4, 12, .16], [-30.5, 12.3, .16], [-12.5, -33.5, .85], [2.5, 30.5, .42], [41, 22, .42], [80.6, -95.6, .3], [84.6, -91.6, .5]];
+export const SOLIDS = [[0, -8, 3.05], [-33.4, 11.2, .95], [37.5, -18.6, 2.3], [20.8, -16.9, .6], [-53.4, -58.3, 2.6], [50.75, 13.18, 0.82], [51.58, 12.73, 0.82], [52.42, 12.27, 0.82], [53.25, 11.82, 0.82], [-67.61, 22.74, 0.5], [-69.45, 24.44, 0.5], [-71.83, 23.7, 0.5], [-72.39, 21.26, 0.5], [-70.55, 19.56, 0.5], [-68.17, 20.3, 0.5], [-17, 10, 0.42], [-22, 31.5, 0.75], [-34, 36, 0.75], [38, 29, 0.75], [6.2, 9.5, 1], [5, -1.4, .15], [-5, 1.8, .15], [3.6, 6, .15], [27, 17.5, 1], [-8.6, 41.3, .95], [-7.4, 41.7, .95], [-4.6, 42.3, .85], [-2.9, 41.2, .45], [31.4, 12, .16], [-30.5, 12.3, .16], [-12.5, -33.5, .85], [2.5, 30.5, .42], [41, 22, .42], [80.6, -95.6, .3], [84.6, -91.6, .5]];
+
+/* The cave's crystals, stalagmites, columns and lake are in the way too. */
+SOLIDS.push(...CAVE.crystals.map(([u, v, r]) => [CAVE.x + u, CAVE.z - v, r * .8]), ...CAVE.mites.map(([u, v]) => [CAVE.x + u, CAVE.z - v, .3]), ...CAVE.columns.map(([u, v, r]) => [CAVE.x + u, CAVE.z - v, r + .15]), [CAVE.x + CAVE.pool[0], CAVE.z - CAVE.pool[1], CAVE.pool[2] * .9]);
 
 /* What Biber felled for his dam: gnawed stumps [x, z, radius] and trunks lying beside some of them
    [x, z, radius, yaw, length] (colliders; built with the pond site). */
@@ -164,6 +186,7 @@ export const SITES = [
   {id: 'swamp', x: -19, z: 76, r: 26},
   {id: 'meadow', x: -72, z: -4, r: 30},
   {id: 'sett', x: -52, z: -56, r: 26},
+  {id: 'cave', x: 95, z: -66, r: 34},
   {id: 'crossings', x: 10, z: 30, r: 60},
   {id: 'friends', x: 0, z: 0, r: 200},
   ...WONDERS,

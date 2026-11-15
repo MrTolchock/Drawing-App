@@ -1,5 +1,5 @@
 /* Farbtupf – Service Worker: keeps the whole app on the device so it runs without internet. */
-const CACHE = 'farbtupf-v9.3.37-waldpost';
+const CACHE = 'farbtupf-v9.3.71-waldpost';
 const SCOPE=self.registration.scope;
 const INDEX=new URL('index.html',SCOPE).href;
 const ACTIVE_MARKER=new URL('.farbtupf-active-cache',SCOPE).href;
@@ -30,6 +30,7 @@ const ASSETS = [
   './assets/waldatelier/rhyme-vocabulary.webp',
   './assets/waldatelier/menu.webp',
   './js/friends/interface.js',
+  './js/friends/hud-art.js',
   './js/friends/settings.js',
   './assets/forest-friends/world-map.webp',
   './js/art/den-pages.js',
@@ -48,6 +49,9 @@ const ASSETS = [
   './js/friends/world/textures.js',
   './js/friends/world/streamer.js',
   './js/friends/world/life.js',
+  './js/friends/world/footprints.js',
+  './js/friends/world/shadows.js',
+  './js/friends/world/ambience.js',
   './js/friends/world/rain.js',
   './js/friends/world/big/wonders.js',
   './js/friends/world/tiles.js',
@@ -58,7 +62,11 @@ const ASSETS = [
   './js/friends/world/big/nav.js',
   './js/friends/world/big/tiles.js',
   './js/friends/world/big/atlas.js',
+  './js/friends/world/big/decals.js',
   './js/friends/world/big/sites.js',
+  './js/friends/world/big/cave.js',
+  './js/friends/world/big/beaver.js',
+  './js/friends/world/big/bats.js',
   './assets/characters/fox.glb',
   './assets/characters/squirrel.glb',
   './assets/characters/bird.glb',
@@ -72,6 +80,7 @@ const ASSETS = [
   './assets/characters/fish.glb',
   './assets/characters/kingfisher.glb',
   './assets/characters/badger.glb',
+  './assets/characters/ibex.glb',
   './vendor/three/addons/GLTFLoader.js',
   './vendor/three/addons/BufferGeometryUtils.js',
   './vendor/three/addons/SkeletonUtils.js',

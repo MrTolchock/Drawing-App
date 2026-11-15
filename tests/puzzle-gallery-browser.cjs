@@ -14,6 +14,9 @@ const BASE=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
   // nothing signed off yet: the gallery is empty and points to the review
   await page.getByRole('button',{name:'Puzzle-Galerie öffnen',exact:true}).click();await page.waitForFunction(()=>FK.current()==='puzzle-gallery');
   assert.equal(await act().locator('.gallery-puzzle').count(),0);assert.equal(await act().getByRole('button',{name:'Zur Puzzle-Prüfung',exact:true}).count(),1);
+  // the adult is already past the gate: the gallery's way to the review asks no second calculation
+  await act().getByRole('button',{name:'Zur Puzzle-Prüfung',exact:true}).click();await page.waitForFunction(()=>FK.current()==='puzzle-review');assert.equal(await page.locator('.gate-task').count(),0,'no second adult calculation from the gallery');
+  await page.evaluate(()=>FK.go('settings'));await page.waitForFunction(()=>FK.current()==='settings');await page.getByRole('button',{name:'Puzzle-Galerie öffnen',exact:true}).click();await page.waitForFunction(()=>FK.current()==='puzzle-gallery');assert.equal(await page.locator('.gate-task').count(),0);
   // sign off two puzzles of different friends, as a completed review would (local approvals; no GitHub in dev mode)
   const ids=await page.evaluate(()=>{const games=FK.friendsLibrary.catalogue(),pick=[games.find(g=>g.screen==='puzzle'),games.find(g=>g.screen==='puzzle'&&g.host!==games.find(x=>x.screen==='puzzle').host)];
    for(const g of pick){for(const it of FK.puzzleCatalogue.iterations(g.id)){FK.puzzleReview.seen(g.id,it.id);FK.puzzleReview.decide(g.id,it.id,'approved');}FK.puzzleReview.decide(g.id,null,'approved');}

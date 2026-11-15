@@ -2,26 +2,28 @@
 (function(){
   'use strict';
   const FK=window.FK,h=FK.h,C=FK.puzzleCatalogue,V=FK.puzzleReview;
-  let body,selected=null,filter='all',query='',notice='';
+  let body,selected=null,filter='all',notice='';
   const names={pending:'Offen',approved:'Freigegeben',improve:'Verbessern'};
   const btn=(label,fn)=>FK.ui.btn({label,onClick:fn});
   const statusText=s=>(s.stale?'Geändert · ':'')+names[s.status];
-  function download(){const url=URL.createObjectURL(new Blob([JSON.stringify(V.exportData(),null,2)],{type:'application/json'}));h('a',{href:url,download:'waldpost-puzzle-pruefung.json'}).click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+  // Opening the page, a puzzle or the overview always starts at the top.
+  function toTop(){requestAnimationFrame(()=>{if(body)body.scrollTop=0;window.scrollTo?.(0,0);});if(body)body.scrollTop=0;}
+  async function approveAll(id){
+    const p=C.puzzle(id);
+    if(!await FK.ui.confirm('Alle '+V.progress(id).total+' Iterationen von «'+p.title+'» freigeben?','Alle bestätigen','Abbrechen'))return;
+    notice=V.approveAll(id)?'Alle Iterationen von «'+p.title+'» bestätigt. '+(FK.reviewRepository?'Bitte den GitHub-Speicherstatus oben beachten.':''):(V.error||'Bestätigen fehlgeschlagen.');draw();
+  }
   function message(){return h('p',{class:'review-notice',role:'status','aria-live':'polite',text:V.error||notice});}
   function draw(){
     FK.forestVoice.cancel();
     const games=FK.friendsLibrary.catalogue();
-    const search=h('input',{type:'search',value:query,placeholder:'Puzzle oder Aufgaben-ID suchen','aria-label':'Puzzle oder Aufgaben-ID suchen'});
-    search.addEventListener('change',()=>{query=search.value;draw();});
-    const file=h('input',{type:'file',accept:'.json,application/json','aria-label':'Prüfdatei importieren'});
-    file.addEventListener('change',async()=>{try{if(!file.files[0])return;if(file.files[0].size>5*1024*1024){notice='Die Prüfdatei ist zu gross.';}else if(V.importData(await file.files[0].text()))notice='Prüfung importiert. Geänderte Inhalte bleiben offen.';}catch{notice='Die Datei konnte nicht gelesen werden.';}draw();});
-    const controls=h('div',{class:'review-controls'},btn('Alle Puzzles',()=>{selected=null;draw();}),btn('Prüfung exportieren',download),h('label',{},'Prüfung importieren',file),search);
+    const controls=h('div',{class:'review-controls'},btn('Alle Puzzles',()=>{selected=null;draw();toTop();}));
     const total=games.reduce((a,g)=>a+C.iterations(g.id).length,0),ready=games.filter(g=>V.ready(g.id)).length;
     body.replaceChildren(h('p',{class:'review-intro',text:ready+' / '+games.length+' Puzzles freigegeben · '+total+' einzelne Iterationen. Nur auf GitHub gespeicherte Freigaben sind für Kinder spielbar. Vorschauen verändern keinen Spielstand.'}),FK.reviewConnection.panel(),controls,message());
     if(!selected){
       const grid=h('div',{class:'review-grid'});
-      for(const g of games){const p=C.puzzle(g.id),progress=V.progress(g.id);if(query&&!JSON.stringify(p).toLowerCase().includes(query.toLowerCase()))continue;
-        const card=btn(g.title,()=>{selected=g.id;filter='all';draw();});card.classList.add('review-puzzle');card.dataset.puzzle=g.id;
+      for(const g of games){const p=C.puzzle(g.id),progress=V.progress(g.id);
+        const card=btn(g.title,()=>{selected=g.id;filter='all';draw();toTop();});card.classList.add('review-puzzle');card.dataset.puzzle=g.id;
         card.replaceChildren(FK.friendsLibrary.portrait(g.host),h('b',{text:g.title}),h('span',{text:p.competence}),h('small',{text:p.reference}),h('span',{class:'review-status '+V.status(g.id).status,text:V.ready(g.id)?'Für Kinder freigegeben':statusText(V.status(g.id))}),h('small',{text:progress.approved+' / '+progress.total+' Iterationen · '+progress.improve+' verbessern'}));grid.append(card);
       }body.append(grid);return;
     }
@@ -31,10 +33,11 @@
     body.append(h('h2',{text:p.title}),h('p',{text:p.competence+' · '+p.reference}),h('p',{text:'Schwierigkeit: '+p.difficulty}),h('p',{text:progress.approved+' / '+progress.total+' freigegeben · '+progress.improve+' verbessern · '+progress.pending+' offen'}),h('section',{class:'review-speech'},h('h3',{text:'Spielerklärung'}),h('p',{text:p.instruction}),speech,speechStatus));
     const tabs=h('nav',{class:'review-actions','aria-label':'Aufgaben filtern'});
     for(const [value,label]of Object.entries({all:'Alle Iterationen',pending:'Offen',improve:'Verbessern',approved:'Freigegeben',stale:'Geändert'})){const b=btn(label,()=>{filter=value;draw();});b.setAttribute('aria-pressed',String(value===filter));tabs.append(b);}
-    body.append(btn(progress.approved===progress.total?'Prüfung abschliessen und feiern':'Offene Iterationen prüfen ('+(progress.total-progress.approved)+')',()=>V.start(selected)),h('p',{class:'review-flow-help',text:'Richtig lösen gibt die Iteration frei und führt automatisch weiter. × öffnet eine optionale Notiz zum Ablehnen. Alle offenen und zu verbessernden Aufgaben kommen einmal dran; danach feiern wir. Sind alle freigegeben, wird auch das Puzzle freigegeben.'}),tabs);
+    const all=btn('Alle bestätigen',()=>approveAll(selected));all.classList.add('review-approve-all');all.disabled=V.ready(selected)||(progress.approved===progress.total&&V.status(selected).status==='approved');
+    body.append(h('div',{class:'review-start'},btn(progress.approved===progress.total?'Prüfung abschliessen und feiern':'Offene Iterationen prüfen ('+(progress.total-progress.approved)+')',()=>V.start(selected)),all),h('p',{class:'review-flow-help',text:'Richtig lösen gibt die Iteration frei und führt automatisch weiter. × öffnet eine optionale Notiz zum Ablehnen. Alle offenen und zu verbessernden Aufgaben kommen einmal dran; danach feiern wir. Sind alle freigegeben, wird auch das Puzzle freigegeben. «Alle bestätigen» gibt alle Iterationen dieses Puzzles auf einmal frei.'}),tabs);
     const list=h('ol',{class:'review-iterations'});
     for(const it of C.iterations(selected)){
-      const s=V.status(selected,it.id);if(filter!=='all'&&(filter==='stale'?!s.stale:s.status!==filter))continue;if(query&&!JSON.stringify(it).toLowerCase().includes(query.toLowerCase()))continue;
+      const s=V.status(selected,it.id);if(filter!=='all'&&(filter==='stale'?!s.stale:s.status!==filter))continue;
       const b=btn('Prüfen: '+it.label,()=>V.preview(selected,it.id));b.dataset.iteration=it.id;
       list.append(h('li',{},h('div',{},h('b',{text:it.label}),h('code',{text:it.id}),h('span',{class:'review-status '+s.status,text:statusText(s)}),s.decision?.note?h('small',{text:s.decision.note}):null),b));
     }
@@ -79,14 +82,14 @@
     if(event?.source!=='github'||!event.changed||queuedRefresh)return;
     queuedRefresh=true;requestAnimationFrame(()=>{
       queuedRefresh=false;
-      // A remote update must not erase an optional note or search that is still being typed.
+      // A remote update must not erase an optional note that is still being typed.
       if(document.activeElement?.matches('input,textarea'))return;
       if(FK.current()==='puzzle-review'&&V.authorized)draw();
     });
   });
   FK.screen('puzzle-review',{
     build(root){root.classList.add('ff-settings-screen');body=h('div',{class:'review-body scroll'});root.append(FK.ui.topbar({title:'Puzzle-Prüfung',stars:false,onBack:()=>FK.go('settings',{},{isBack:true})}),body);},
-    enter(){if(!V.authorized){V.open();return;}draw();},
+    enter(){if(!V.authorized){V.open();return;}draw();toTop();},
     leave(){notice='';FK.forestVoice.cancel();}
   });
 })();

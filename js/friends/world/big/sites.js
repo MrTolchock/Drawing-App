@@ -1,7 +1,7 @@
 /* Landmark sites of the big world: one-off objects built when Fuchs comes near (the streamer asks
    for a site's steps once). The den tree, the arched bridge and the log come from world/landmarks.js;
-   stepping stones, the swamp's boardwalk, the waterfall, the beaver's dam, lodge and felled trees and the
-   friends' props are built here. */
+   stepping stones, the swamp's boardwalk, the waterfall and the friends' props are built here; the beaver's dam,
+   lodge and felled trees in beaver.js, the cave in cave.js. */
 import {THREE} from '../../../scene/materials.js';
 import {rng} from '../noise.js';
 import {TAU, lerp, sstep} from '../noise.js';
@@ -10,6 +10,8 @@ import {canvasTex} from '../textures.js';
 import {waterMaterial} from './tiles.js';
 import {landmarkSteps} from '../landmarks.js';
 import {wonderSteps} from './wonders.js';
+import {caveSteps} from './cave.js';
+import {beaverSteps} from './beaver.js';
 
 /** Give a geometry one colour (the materials multiply their texture by it). */
 function tinted(g, r, gr, b) { const c = new Float32Array(g.attributes.position.count * 3); for (let k = 0; k < c.length; k += 3) { c[k] = r; c[k + 1] = gr; c[k + 2] = b; } g.setAttribute('color', new THREE.BufferAttribute(c, 3)); return g; }
@@ -92,104 +94,30 @@ export function siteSteps(site, look, world, group, out) {
       rocks.add(t.rock, {x, y: T.ground(x, z) - sc * .3, z, ry: R() * TAU, sx: sc, sy: sc * (.6 + R() * .5), sz: sc * (.8 + R() * .4), c: new THREE.Color(v, v, v * .97)}); }
     mesh(rocks, M.rock, 'fall boulders');
   });
-  if (site.id === 'pond') {
-    /* The beaver's dam, as beavers build it: a low wall of mud and stones across the outlet, its crest laid
-       with long gnawed poles, the downstream face a thick thatch of sticks pushed in butt-first so that they
-       lean against the water's weight, short sticks and mud on the pond side. Water seeps over the middle.
-       Around Biber's place stand the stumps of the trees he felled, some trunks still lying there.
-       Built in small steps. `s` runs across the dam (downstream positive), `t` along it. */
-    const logs = new Buffer(), pale = new Buffer(), mud = new Buffer(), c = T.crossings.find(k => k.kind === 'dam'), D = T.dam;
-    const ax = c.a[0], az = c.a[1], ux = (c.b[0] - ax) / D.len, uz = (c.b[1] - az) / D.len, dnx = -D.n[0], dnz = -D.n[1], H = c.y, len = D.len;
-    const Q = new THREE.Quaternion(), UP = new THREE.Vector3(0, 1, 0), V = new THREE.Vector3();
-    const at = (t, s2) => [ax + ux * len * t + dnx * s2, az + uz * len * t + dnz * s2];
-    // the dam's surface: flat crest, a steep wet side to the pond, a longer slope down to the brook
-    const surface = (t, s2) => { const [x, z] = at(t, s2), y = Math.abs(s2) <= .55 ? H - .02 : s2 < 0 ? H - .02 + (s2 + .55) * .8 : H - .02 - (s2 - .55) * .6; return Math.max(y, T.ground(x, z) + .05); };
-    /** A stick from a point along a direction: tapered, with a gnawed pale point at its far end if `tip`. */
-    const stick = (x, y, z, dx, dy, dz, l, r, v, tip = false, sides = 5) => {
-      Q.setFromUnitVectors(UP, V.set(dx, dy, dz).normalize());
-      add(logs, new THREE.CylinderGeometry(r * .72, r, l, sides, 1).translate(0, l / 2, 0).applyQuaternion(Q).translate(x, y, z), v, v * .88, v * .76);
-      if (tip) add(pale, new THREE.ConeGeometry(r * .74, r * 2.6, sides).translate(0, l + r * 1.25, 0).applyQuaternion(Q).translate(x, y, z), 1.32, 1.5, 1.8);
-    };
-    steps.push(() => { // the wall of mud (where the bank is higher, the wall ends inside it)
-      const S = [-1.7, -1.15, -.55, -.2, .2, .55, 1.05, 1.6, 2.2, 2.9], N = 18, pos = [], uv = [], idx = [];
-      for (let i = 0; i <= N; i++) for (let k = 0; k < S.length; k++) { const t = lerp(-.03, 1.03, i / N), s2 = S[k] + (k && k < S.length - 1 ? (R() - .5) * .16 : 0), [x, z] = at(t, s2), y = surface(t, s2), g0 = T.ground(x, z);
-        pos.push(x, y < g0 + .07 ? g0 - .14 : y + (Math.abs(s2) < .6 ? 0 : (R() - .5) * .07), z); uv.push(t * len * .6, s2 * .6); }
-      for (let i = 0; i < N; i++) for (let k = 0; k < S.length - 1; k++) { const p0 = i * S.length + k, p1 = p0 + S.length; idx.push(p0, p0 + 1, p1, p1, p0 + 1, p1 + 1); }
-      const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2)); g.setIndex(idx); g.computeVertexNormals();
-      if (g.attributes.normal.getY(S.length + 4) < 0) { g.setIndex(idx.map((v, n) => idx[n - n % 3 + [0, 2, 1][n % 3]])); g.computeVertexNormals(); }
-      add(mud, g, .3, .22, .15);
-      for (let k = 0; k < 9; k++) { const t = (k + .2 + R() * .6) / 9, s2 = -.45 - R() * .25, [x, z] = at(t, s2), v = .2 + R() * .06; add(mud, new THREE.SphereGeometry(1, 8, 5).scale(.26 + R() * .2, .08, .2 + R() * .14).rotateY(R() * 3).translate(x, surface(t, s2) + .02, z), v, v * .78, v * .55); }
-    });
-    const face = () => { for (let k = 0; k < 30; k++) { // sticks pushed into the downstream face, butt first, leaning down the slope
-      const t = .03 + R() * .94, s0 = .25 + R() * 2.3, turn = (R() - .5) * (R() < .25 ? 2.6 : 1), cs = Math.cos(turn), sn = Math.sin(turn), hx = dnx * cs - dnz * sn, hz = dnz * cs + dnx * sn;
-      const l = Math.min(.55 + R() * 1.15, (3.4 - s0) / Math.max(.4, cs)), [x, z] = at(t, s0), r = .02 + R() * .028, v = .62 + R() * .5;
-      stick(x, surface(t, s0) + .02 + R() * .11, z, hx, -.6 * cs + (R() - .5) * .2, hz, l, r, v, R() < .35);
-    } };
-    const weave = () => { // long poles along the crest, cross sticks woven into the face, short ones into the pond side, stakes
-      for (let k = 0; k < 7; k++) { const l = 1.5 + R() * 1.4, t = .02 + R() * Math.max(.05, .96 - l / len), s2 = (R() - .5) * 1.0, turn = (R() - .5) * .45, [x, z] = at(t, s2), r = .045 + R() * .03, v = .78 + R() * .34, cs = Math.cos(turn), sn = Math.sin(turn);
-        stick(x, H - r * .5, z, ux * cs - uz * sn, (R() - .5) * .04, uz * cs + ux * sn, l, r, v, true, 6); }
-      for (let k = 0; k < 8; k++) { const l = .9 + R() * 1.1, t = .03 + R() * (.94 - l / len), s2 = .7 + R() * 1.9, [x, z] = at(t, s2), turn = (R() - .5) * .9, cs = Math.cos(turn), sn = Math.sin(turn);
-        stick(x, surface(t, s2) + .07 + R() * .08, z, ux * cs - uz * sn, (R() - .5) * .16, uz * cs + ux * sn, l, .024 + R() * .026, .66 + R() * .45, R() < .5); }
-      for (let k = 0; k < 9; k++) { const t = .04 + R() * .92, turn = (R() - .5) * 1.2, cs = Math.cos(turn), sn = Math.sin(turn), [x, z] = at(t, -.2 - R() * .3);
-        stick(x, H - .04, z, -(dnx * cs - dnz * sn), -.5 - R() * .2, -(dnz * cs + dnx * sn), .6 + R() * .7, .022 + R() * .025, .55 + R() * .3); }
-      for (let k = 0; k < 3; k++) { const t = .05 + R() * .9, s2 = .35 + R() * 1.6, [x, z] = at(t, s2);
-        stick(x, surface(t, s2) - .3, z, -dnx * .4 + (R() - .5) * .4, 1, -dnz * .4 + (R() - .5) * .4, .6 + R() * .35, .028 + R() * .018, .75 + R() * .3, true); }
-    };
-    steps.push(face, weave, face, face, weave, face, face, face, face, face);
-    steps.push(() => { // water seeps over the middle of the crest and runs down between the sticks
-      const pos = [], uv = [], idx = [];
-      for (const [t0, w] of [[.44, .42], [.61, .3]]) { const base = pos.length / 3; let run = 0, prev = null;
-        for (let k = 0; k <= 12; k++) { const s2 = -.5 + k * .29, half = w * (.55 + .45 * Math.sin(k * .9 + t0 * 9)) / len, y = (k < 4 ? Math.max(surface(t0, s2), H - .02) : surface(t0, s2)) + .045; if (prev !== null) run += Math.hypot(.29, y - prev); prev = y;
-          for (const side of [-1, 1]) { const [x, z] = at(t0 + half * side, s2); pos.push(x, y, z); uv.push(side < 0 ? 0 : 1, run * 2.2); }
-          if (k) { const p0 = base + (k - 1) * 2; idx.push(p0, p0 + 2, p0 + 1, p0 + 1, p0 + 2, p0 + 3); } } }
-      const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2)); g.setIndex(idx); g.computeBoundingSphere();
-      const water = waterMaterial(look, world.fog), fog = world.fog;
-      const mat = new THREE.ShaderMaterial({transparent: true, depthWrite: false, side: THREE.DoubleSide,
-        uniforms: {uTime: water.uniforms.uTime, uNoise: {value: look.T.noise}, fogColor: {value: fog.color}, fogNear: {value: fog.near}, fogFar: {value: fog.far}},
-        vertexShader: 'varying vec2 vUv;varying float vFog;void main(){vUv=uv;vec4 mv=modelViewMatrix*vec4(position,1.);vFog=-mv.z;gl_Position=projectionMatrix*mv;}',
-        fragmentShader: `uniform float uTime;uniform sampler2D uNoise;uniform vec3 fogColor;uniform float fogNear,fogFar;varying vec2 vUv;varying float vFog;
-        void main(){float n1=texture2D(uNoise,vec2(vUv.x*.9,vUv.y*.12-uTime*.42)).r,n2=texture2D(uNoise,vec2(vUv.x*2.1+.4,vUv.y*.3-uTime*.7)).r;
-          float streak=smoothstep(.38,.72,n1*.55+n2*.6),edge=smoothstep(0.,.28,vUv.x)*smoothstep(1.,.72,vUv.x);
-          vec3 c=mix(vec3(.5,.78,.82),vec3(1.),streak*.85);float a=edge*(.26+.5*streak)*smoothstep(0.,.5,vUv.y);
-          c=mix(c,fogColor,smoothstep(fogNear,fogFar,vFog)*.85);gl_FragColor=vec4(c,a);
-          #include <tonemapping_fragment>
-          #include <colorspace_fragment>
-        }`});
-      const m = new THREE.Mesh(g, mat); m.name = 'dam seep'; m.renderOrder = 3; group.add(m);
-    });
-    // the lodge: a dome of mud and sticks on its island in the pond, the entrance a dark hole at the waterline
-    const [lx, lz] = [37.5, -18.6], ly = T.stillLevel(lx, lz) || H - .3;
-    steps.push(() => add(mud, new THREE.SphereGeometry(1, 14, 8, 0, TAU, 0, Math.PI / 2).scale(2.1, 1.45, 1.9).translate(lx, ly - .1, lz), .3, .22, .15));
-    const dome = () => { for (let k = 0; k < 24; k++) { const a = R() * TAU, u = R(), rr = lerp(2.3, .5, u), l = 1 + R() * 1.1, x = lx + Math.cos(a) * rr, z = lz + Math.sin(a) * rr * .9, y = ly + 1.38 * Math.sqrt(Math.max(0, 1 - (rr / 2.35) ** 2));
-      const tx = lx - x + (R() - .5) * 1.6, tz = lz - z + (R() - .5) * 1.6, ty = ly + 1.9 - y, tl = Math.hypot(tx, ty, tz);
-      stick(x - tx / tl * l * .5, y - ty / tl * l * .5 + .06, z - tz / tl * l * .5, tx, ty, tz, l, .035 + R() * .04, .7 + R() * .42, R() < .3); } };
-    steps.push(dome, dome, dome, dome, () => add(mud, new THREE.CircleGeometry(.42, 12).rotateY(-.9).translate(lx - 1.75, ly + .32, lz + 1.05), .08, .06, .05));
-    // what he felled: stumps gnawed to a point, wood chips around them, trunks lying where they fell, a stack of cut poles
-    steps.push(() => { for (const [x, z, r] of L.STUMPS) { const y = T.ground(x, z), h = .26 + R() * .22, v = .6 + R() * .12;
-      add(logs, new THREE.CylinderGeometry(r * .93, r * 1.16, h, 10, 1).translate(x, y + h / 2 - .06, z), v, v * .84, v * .7);
-      add(pale, new THREE.ConeGeometry(r * .9, r * 1.35, 10).translate(x + (R() - .5) * r * .2, y + h - .06 + r * .67, z + (R() - .5) * r * .2), 1.3, 1.48, 1.78);
-      for (let k = 0; k < 7; k++) { const a = R() * TAU, d = r + .12 + R() * .6, cx = x + Math.cos(a) * d, cz = z + Math.sin(a) * d; add(pale, new THREE.BoxGeometry(.07 + R() * .06, .016, .04 + R() * .03).rotateY(R() * TAU).translate(cx, T.ground(cx, cz) + .03, cz), 1.3, 1.5, 1.85); } } });
-    steps.push(() => { for (const [x, z, r, yaw, l] of L.FELLED) { const dx = Math.sin(yaw), dz = Math.cos(yaw), x0 = x - dx * l / 2, z0 = z - dz * l / 2, y0 = T.ground(x0, z0) + r * .82, y1 = T.ground(x + dx * l / 2, z + dz * l / 2) + r * .7, v = .62 + R() * .1;
-      Q.setFromUnitVectors(UP, V.set(dx * l, y1 - y0, dz * l).normalize());
-      add(logs, new THREE.CylinderGeometry(r * .8, r, l, 9, 1).translate(0, l / 2, 0).applyQuaternion(Q).translate(x0, y0, z0), v, v * .84, v * .7);
-      add(pale, new THREE.ConeGeometry(r * .97, r * 1.5, 9).rotateX(Math.PI).translate(0, -r * .74, 0).applyQuaternion(Q).translate(x0, y0, z0), 1.3, 1.48, 1.78);
-      add(pale, new THREE.CylinderGeometry(r * .79, r * .79, .03, 9).translate(0, l + .012, 0).applyQuaternion(Q).translate(x0, y0, z0), 1.3, 1.5, 1.85);
-      for (let k = 0; k < 3; k++) { const u = .35 + R() * .55, a = (R() - .5) * 1.6; stick(x0 + dx * l * u, y0 + (y1 - y0) * u + r * .5, z0 + dz * l * u, dx * .5 + Math.cos(yaw) * Math.sin(a), .8, dz * .5 - Math.sin(yaw) * Math.sin(a), .3 + R() * .35, .03 + R() * .02, .7 + R() * .2, true); } }
-      const [px, pz, pyaw] = L.POLES, py = T.ground(px, pz), sx = Math.sin(pyaw), sz = Math.cos(pyaw);   // the stack of poles for the next repair
-      [[-.16, 0], [0, 0], [.16, 0], [-.08, .135], [.08, .135], [0, .27]].forEach(([o, up]) => { const l = 1.25 + R() * .3, j = (R() - .5) * .16; stick(px + sz * o - sx * (l / 2 + j), py + .07 + up, pz - sx * o - sz * (l / 2 + j), sx, 0, sz, l, .075, .8 + R() * .3, true, 6); });
-    }, () => mesh(mud, M.rock, 'dam mud', false), () => mesh(logs, M.log, 'dam and lodge'), () => mesh(pale, M.wood, 'gnawed wood'));
-  }
+  if (site.id === 'pond') steps.push(...beaverSteps(site, look, world, group, out, R));   // Biber's dam, lodge and felled trees: world/big/beaver.js
+  if (site.id === 'cave') steps.push(...caveSteps(site, look, world, group, out));   // the cave in the Rock: world/big/cave.js
   if (site.id === 'sett') {
     /* The badger's sett in the wooded slope: a mound of earth under the old oak, the main entrance a dark
        hole between two roots, a smaller hole at the side, fresh sandy spoil fanned out in front of it,
-       a heap of dry grass that he airs as bedding, a few stones. Entrances face the path (and the camera). */
+       a heap of dry grass that he airs as bedding, a few stones. Entrances face the path (and the camera). The mound itself
+       is shaped like the ground around it (see `hill`), not a dome. */
     const earth = new Buffer(), roots = new Buffer(), straw = new Buffer(), [cx, cz, yaw] = L.SETT, fx = Math.sin(yaw), fz = Math.cos(yaw), sx = fz, sz = -fx, g0 = T.ground(cx, cz);
     const Q = new THREE.Quaternion(), UP = new THREE.Vector3(0, 1, 0), V = new THREE.Vector3();
     const at = (f, side) => [cx + fx * f + sx * side, cz + fz * f + sz * side];
     const limb = (buf, x, y, z, dx, dy, dz, l, r0, r1, c) => { Q.setFromUnitVectors(UP, V.set(dx, dy, dz).normalize()); add(buf, new THREE.CylinderGeometry(r1, r0, l, 7, 1).translate(0, l / 2, 0).applyQuaternion(Q).translate(x, y, z), ...c); };
-    steps.push(() => { // the mound, moss on its top, the two holes with their rims
-      add(earth, new THREE.SphereGeometry(1, 18, 10, 0, TAU, 0, Math.PI / 2).scale(2.35, 1.6, 2.05).rotateY(yaw).translate(cx, g0 - .3, cz), .2, .145, .095);
-      for (let k = 0; k < 7; k++) { const a = R() * TAU, d = R() * 1.3, x = cx + Math.cos(a) * d, z = cz + Math.sin(a) * d * .8 - .3, v = .8 + R() * .3; add(earth, new THREE.SphereGeometry(1, 8, 5).scale(.5 + R() * .35, .09, .4 + R() * .3).rotateY(R() * 3).translate(x, g0 - .3 + 1.58 * Math.sqrt(Math.max(.05, 1 - (d / 2.2) ** 2)), z), .2 * v, .34 * v, .11 * v); }
+    // The mound grows out of the woodland floor: a soft, uneven hillock whose rim takes the ground's own colour, grass
+    // and moss on its back, bare dug earth on the front where the badger comes and goes.
+    const hill = (() => { const RINGS = 16, SEG = 44, RAD = 3.3, H = 1.18, pos = [], col = [], idx = [], c = new THREE.Color(), moss = new THREE.Color('#5a7f30'), grass = new THREE.Color('#6f9238'), soil = new THREE.Color('#7b5636'), dark = new THREE.Color('#5a3d26');
+      const height = (rn, a) => { const bump = Math.pow(Math.cos(Math.min(1, rn) * Math.PI / 2), 1.5), wob = .1 * Math.sin(a * 3 + 1.3) + .07 * Math.sin(a * 5 + .4) + .05 * Math.sin(a * 9); return H * bump * (1 + wob * (1 - rn)); };
+      for (let i = 0; i <= RINGS; i++) for (let j = 0; j < SEG; j++) { const rn = i / RINGS, a = j / SEG * TAU, side = Math.cos(a), fwd = Math.sin(a), lx = side * RAD * 1.12 * rn, lf = fwd * RAD * rn,
+          x = cx + sx * lx + fx * lf, z = cz + sz * lx + fz * lf, y = T.ground(x, z) + height(rn, a) - (i === RINGS ? .04 : 0); pos.push(x, y, z);
+          T.colour(x, z, c); const top = 1 - THREE.MathUtils.smoothstep(rn, .55, .95), front = THREE.MathUtils.smoothstep(fwd, .15, .65) * THREE.MathUtils.smoothstep(rn, .25, .5) * (1 - THREE.MathUtils.smoothstep(rn, .88, 1));
+          c.lerp(grass, top * .7).lerp(moss, top * .45 * (.5 + .5 * Math.sin(a * 4 + rn * 9))).lerp(soil, front * .9).lerp(dark, front * .35 * (.5 + .5 * Math.sin(a * 7 + rn * 13))); col.push(c.r, c.g, c.b); }
+      for (let i = 0; i < RINGS; i++) for (let j = 0; j < SEG; j++) { const a = i * SEG + j, b = i * SEG + (j + 1) % SEG, d = a + SEG, e = b + SEG; idx.push(a, b, d, b, e, d); }
+      const top = pos.length / 3; pos.push(cx, T.ground(cx, cz) + height(0, 0), cz); T.colour(cx, cz, c); c.lerp(grass, .7); col.push(c.r, c.g, c.b); for (let j = 0; j < SEG; j++) idx.push(top, (j + 1) % SEG, j);
+      const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setAttribute('color', new THREE.Float32BufferAttribute(col, 3)); g.setIndex(idx); g.computeVertexNormals(); return g; })();
+    steps.push(() => { // the mound, then the two holes with their rims of trodden earth
+      { const m = new THREE.Mesh(hill, M.ground); m.name = 'sett mound'; m.receiveShadow = M.shadows; group.add(m); }
       for (const [f, side, w, h] of [[1.78, 0, .62, .6], [1.05, -1.75, .4, .4]]) { const [x, z] = at(f, side), y = T.ground(x, z) + h * .62, turn = yaw + (side ? -1.0 : 0);
         add(earth, new THREE.SphereGeometry(1, 14, 10).scale(w, h, .5).rotateY(turn).translate(x - Math.sin(turn) * .12, y, z - Math.cos(turn) * .12), .05, .038, .03);
         add(earth, new THREE.TorusGeometry(1, .3, 8, 18, Math.PI * 1.15).rotateZ(-Math.PI * .075).scale(w * 1.12, h * 1.18, .55).rotateY(turn).translate(x, y - .02, z), .26, .19, .125); }
@@ -202,8 +130,8 @@ export function siteSteps(site, look, world, group, out) {
     });
     steps.push(() => { // fresh spoil in front of the hole, clods and stones, the bedding heap with loose stalks
       const [ax, az] = at(3.05, .15), ay = T.ground(ax, az);
-      add(earth, new THREE.SphereGeometry(1, 14, 6).scale(1.3, .15, .9).rotateY(yaw).translate(ax, ay + .01, az), .4, .31, .2);
-      for (let k = 0; k < 5; k++) { const [x, z] = at(2.5 + R() * 1.1, (R() - .5) * 1.6), v = .34 + R() * .1; add(earth, new THREE.SphereGeometry(1, 8, 5).scale(.3 + R() * .25, .1 + R() * .06, .25 + R() * .2).rotateY(R() * 3).translate(x, T.ground(x, z) + .04, z), v, v * .78, v * .52); }
+      add(earth, new THREE.SphereGeometry(1, 14, 6).scale(1.3, .15, .9).rotateY(yaw).translate(ax, ay + .01, az), .72, .5, .3);
+      for (let k = 0; k < 5; k++) { const [x, z] = at(2.5 + R() * 1.1, (R() - .5) * 1.6), v = .55 + R() * .12; add(earth, new THREE.SphereGeometry(1, 8, 5).scale(.3 + R() * .25, .1 + R() * .06, .25 + R() * .2).rotateY(R() * 3).translate(x, T.ground(x, z) + .04, z), v, v * .78, v * .52); }
       for (let k = 0; k < 9; k++) { const [x, z] = at(2.3 + R() * 1.6, (R() - .5) * 2.6), r = .05 + R() * .08, v = .36 + R() * .16; add(earth, new THREE.SphereGeometry(r, 6, 4).scale(1, .7, 1).translate(x, T.ground(x, z) + r * .4, z), v, v * .82, v * .6); }
       const t = templates(); for (const [f, side, sc] of [[2.2, 2.3, .42], [1.2, 2.75, .3], [2.6, -2.4, .34]]) { const [x, z] = at(f, side), v = .82 + R() * .15; earth.add(t.rock, {x, y: T.ground(x, z) - sc * .3, z, ry: R() * TAU, sx: sc, sy: sc * .7, sz: sc * .9, c: new THREE.Color(v, v, v * .97)}); }
       const [hx, hz] = at(2.25, 1.55), hy = T.ground(hx, hz);

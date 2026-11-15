@@ -4,7 +4,7 @@
   const FK = (window.FK = window.FK || {});
 
   FK.APP_NAME = 'Waldpost';
-  FK.VERSION = '9.3.37';
+  FK.VERSION = '9.3.71';
   FK.TAU = Math.PI * 2;
   FK.$ = (sel, root) => (root || document).querySelector(sel);
   FK.$$ = (sel, root) => Array.prototype.slice.call((root || document).querySelectorAll(sel));
@@ -90,11 +90,11 @@
   }
   FK.color = Object.assign(FK.color || {}, { hexRgb, rgbCss, mix, hsl, hslRgb });
 
-  /* ---------- text: GROSS or normal spelling, set by parents ---------- */
-  // 'gross' → everything children read is in capitals (kindergarten), 'normal' → German spelling,
-  // syllables in lowercase (ma mi mo).
+  /* ---------- text: children read in normal German spelling ---------- */
+  // Upper and lower case as written (syllables in lowercase: ma mi mo). The former parent choice of capitals is
+  // retired; a saved 'schrift' value is kept for compatibility but no longer read.
   FK.text = {
-    mode() { return (FK.settings && FK.settings.get('schrift')) || 'gross'; },
+    mode() { return 'normal'; },
     word(w) { return FK.text.mode() === 'gross' ? w.toLocaleUpperCase('de-CH') : w; },
     syllable(s) { return FK.text.mode() === 'gross' ? s.toLocaleUpperCase('de-CH') : s.toLocaleLowerCase('de-CH'); },
   };

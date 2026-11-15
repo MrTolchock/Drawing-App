@@ -1,7 +1,7 @@
 import {createWorld,places,exitPoints} from './world.js';
 import {createAudio} from './audio.js';
 const FK=window.FK,h=FK.h,C=window.FriendsContent;
-let root,canvas,world,state,audio,overlay,hotspots,nav,statusBar,nearButton,caption,fader,doorScene,denEnvelope;
+let root,canvas,world,state,audio,overlay,hotspots,nav,statusBar,nearButton,caption,fader,doorScene,denEnvelope,framing=false;
 let area='den',panel=null,host=null,example=false,feedbackTimer=null,activeMs=0,lastTick=performance.now(),returnArea='den',finalSleep=false;
 const actionPictures={outside:'door'};
 const actionNames={outside:'Nach draussen'};
@@ -12,6 +12,8 @@ function syncMail(){
   const m=state.mail();root.dataset.mail=m.phase;
   doorScene.hidden=area!=='den';denEnvelope.hidden=area!=='den'||m.phase!=='den-letter'||!!panel;
   world.mailTarget(area==='forest'?(m.phase==='to-friend'?m.host:m.phase==='to-mailman'?'mailman':['return-home','den-letter'].includes(m.phase)?'home':null):null);
+  // The day follows the journey: morning for the first letter, golden afternoon in the middle, dusk on the way home.
+  const j=m.session||{limit:1,completed:0};world.timeOfDay?.(['return-home','sleeping','finished'].includes(m.phase)?1:j.limit>1?Math.min(1,j.completed/(j.limit-1))*.55:0);
   positionDoor();
 }
 function positionDoor(){
@@ -45,6 +47,7 @@ function letterPortrait(id){
 function art(name,cls=''){
  const id=name.startsWith('friend-')?name.slice(7):name;
  if(C.hosts[id]||['fox','mailman'].includes(id))return h('span',{class:'ff-picture '+cls},FK.friendsArt.portrait(id));
+ if(FK.hudArt?.has(name))return h('span',{class:'ff-picture ff-hud-picture '+cls},FK.hudArt.element(name));   // the world's own painted buttons
  const control={pencils:'pencil',gallery:'gallery',door:'home',bag:'book',skip:'next'}[name]||name;
  if(FK.icons.has(control))return h('span',{class:'ff-picture '+cls},FK.icons.element(control));
  return h('span',{class:'ff-picture ff-painted-picture '+cls},FK.visual.art(name));
@@ -101,21 +104,31 @@ function map(){
   for(const [id,p]of Object.entries(places)){
     if(id==='mailman')continue;
     const b=button(p.name,p.picture,()=>{if(area!=='forest')go('forest');else close();world.route(id);});
-    b.replaceChildren(FK.friendsArt.portrait(id==='home'?'fox':id));b.dataset.place=id;
+    b.replaceChildren(id==='home'?FK.hudArt.element('den'):FK.friendsArt.portrait(id));b.dataset.place=id;if(id==='home')b.classList.add('ff-map-home');
     const invited=mail.phase==='to-friend'&&mail.host===id||mail.phase==='return-home'&&id==='home';b.classList.toggle('ff-map-invited',invited);if(invited)b.append(h('span',{class:'ff-map-invitation'},FK.icons.element('letter')));
     const [x,y]=mapPins[id];b.style.left=(x*100)+'%';b.style.top=(y*100)+'%';board.append(b);
   }
-  // On a phone the map is wider than the screen (eleven pins need room) and scrolls sideways, starting at the den.
-  const scroller=h('div',{class:'ff-map-scroll'},board);card.append(scroller);requestAnimationFrame(()=>{scroller.scrollLeft=(scroller.scrollWidth-scroller.clientWidth)/2;});
+  // Where Fuchs is now: his portrait on a pin with a soft pulse on the spot (in the den: at home).
+  const here=area==='forest'?world.position:places.home,hx=(here.x-MAP.x0)/(MAP.x1-MAP.x0),hy=(here.z-MAP.z0)/(MAP.z1-MAP.z0);
+  const me=h('div',{class:'ff-map-here',role:'img','aria-label':'Hier ist Fuchs'},h('span',{class:'ff-map-here-pulse'}),h('span',{class:'ff-map-here-pin'},FK.friendsArt.portrait('fox')));
+  me.style.left=(hx*100)+'%';me.style.top=(hy*100)+'%';board.append(me);
+  // On a phone the map is wider than the screen (eleven pins need room) and scrolls sideways, centred on Fuchs.
+  const scroller=h('div',{class:'ff-map-scroll'},board);card.append(scroller);requestAnimationFrame(()=>{scroller.scrollLeft=Math.max(0,Math.min(scroller.scrollWidth-scroller.clientWidth,hx*scroller.scrollWidth-scroller.clientWidth/2));});
   if(mail.phase==='to-mailman'){
     const b=button('Zum Briefträger','mailman',()=>{if(area!=='forest')go('forest');else close();world.route('mailman');},'ff-map-courier');
     b.replaceChildren(FK.friendsArt.portrait('mailman'),h('span',{text:'Zum Briefträger'}));b.dataset.place='mailman';card.append(b);
   }
 }
 function meet(id){
-  if(!state.canPuzzle(id)){state.record('friend_unavailable',{host:id,reason:state.mail().phase==='to-friend'?'wrong_letter':state.mail().phase==='return-home'?'return_home':'needs_letter'});FK.ui.toast(state.mail().phase==='return-home'?'Fuchs geht nach Hause schlafen.':'Dein Brief zeigt dir deinen Freund.');return;}
+  if(!state.canPuzzle(id)){const m=state.mail(),toward=m.phase==='to-friend'?m.host:m.phase==='to-mailman'?'mailman':m.phase==='return-home'?'home':null,name=C.hosts[id]?.name||'';
+    state.record('friend_unavailable',{host:id,reason:m.phase==='to-friend'?'wrong_letter':m.phase==='return-home'?'return_home':'needs_letter'});
+    // A visit still shows something: the friend does a little trick and points the way.
+    world.visit?.(id,toward);
+    FK.ui.toast(m.phase==='return-home'?name+' winkt. Fuchs geht nach Hause schlafen.':m.phase==='to-friend'?name+' zeigt dir den Weg zu '+(C.hosts[m.host]?.name||'deinem Freund')+'.':m.phase==='to-mailman'?name+' zeigt dir den Weg zum Briefträger.':'Dein Brief zeigt dir deinen Freund.');return;}
   const game=FK.friendsLibrary.pick(id);if(!game){state.record('friend_unavailable',{host:id,reason:'not_reviewed'});FK.ui.toast('Dieses Puzzle wartet noch auf die Freigabe von Erwachsenen.');return;}
-  state.record('friend_visited',{host:id,puzzleId:game.id});if(panel)close();world.pause(true);FK.friendsLibrary.visit(game);
+  // a short close shot of the two friends, then the puzzle opens
+  if(framing)return;const wait=world.frame?.(id)||0;framing=true;
+  setTimeout(()=>{framing=false;if(!state.canPuzzle(id)||panel==='puzzle')return;state.record('friend_visited',{host:id,puzzleId:game.id});if(panel)close();world.pause(true);FK.friendsLibrary.visit(game);},wait*1000);
 }
 function sequence(item,finish=false){
   finalSleep=finish;returnArea=area;
