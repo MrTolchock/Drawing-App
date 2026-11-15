@@ -133,6 +133,9 @@ export const details = {
     s.connect(f); f.connect(g); g.connect(out); s.start(t, Math.random() * Math.max(.1, noise.duration - dur - .3), dur + .1); s.onended = done(s, f, g); },
   // a drop falling into the cave's pool, and the rock giving it back twice
   drip(ctx, out, noise, t, level = 1) { const f = r(1300, 2300); for (let k = 0; k < 3; k++) { const g = .045 * level * Math.pow(.38, k); syllable(ctx, out, {t: t + k * .23, dur: .07, path: [[0, f * .82], [.5, f * 1.15], [1, f * 1.3]], gain: g}); } },
+  // the bats wake in the cave: a flurry of soft wing beats that swells and thins out, and a few thin squeaks
+  bats(ctx, out, noise, t, level = 1) { for (let k = 0; k < 26; k++) { const u = k / 26, at = t + u * 2.6 + r(0, .08); hiss(ctx, out, noise, {t: at, dur: r(.035, .06), gain: .085 * level * Math.sin(Math.PI * Math.min(1, u * 1.25)) ** .7, type: 'bandpass', f: r(700, 1500), q: .8, attack: .01}); }
+    for (let k = 0; k < 5; k++) { const f = r(5200, 6800), at = t + .3 + k * r(.28, .5); syllable(ctx, out, {t: at, dur: .05, path: [[0, f], [.5, f * 1.08], [1, f * .9]], gain: .012 * level}); } },
   // the mailman's whistle when a new letter is ready: a short note and a long rising one, a little off-key
   whistle(ctx, out, noise, t, level = 1) { const f = r(1650, 1800); syllable(ctx, out, {t, dur: .16, path: [[0, f * .9], [.6, f * 1.05], [1, f]], gain: .08 * level, vib: .004}); syllable(ctx, out, {t: t + .24, dur: .5, path: [[0, f], [.35, f * 1.33], [1, f * 1.38]], gain: .085 * level, vib: .01}); },
   // one-off sounds for what Fuchs does at the things to discover (forest3d.js `react`)

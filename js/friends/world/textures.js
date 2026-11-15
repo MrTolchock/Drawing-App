@@ -76,8 +76,30 @@ export function createLook({software = false, big = false} = {}) {
       if (b === bands - 1) T[name] = canvasTex(size, size, (g2) => g2.putImageData(img, 0, 0), options);
     });
   }
+  /* Rock, drawn once and wrapped: red is the rock's face seen from the side (bedding planes as fine dark lines that
+     wander, cracks, blotches), green the same rock seen from above (cracks and blotches, no bedding), blue a fine
+     speckle for the glints of mica. Lighter is higher: the shaders also read it as relief. Every pattern repeats
+     over the tile, so it can be laid over any size of cliff. */
+  function rockSteps(size) {
+    const c = document.createElement('canvas'); c.width = c.height = size; const g = c.getContext('2d'), img = g.createImageData(size, size), bands = 64, rows = size / bands;
+    const ph = (x, y, p) => hash(((x % p) + p) % p, ((y % p) + p) % p + p * 7.3);
+    const pn = (x, y, p) => { const xi = Math.floor(x), yi = Math.floor(y), xf = x - xi, yf = y - yi, u = xf * xf * (3 - 2 * xf), v = yf * yf * (3 - 2 * yf); return (ph(xi, yi, p) * (1 - u) + ph(xi + 1, yi, p) * u) * (1 - v) + (ph(xi, yi + 1, p) * (1 - u) + ph(xi + 1, yi + 1, p) * u) * v; };
+    const pf = (x, y, p) => pn(x * p, y * p, p) * .5 + pn(x * p * 2 + .5, y * p * 2, p * 2) * .3 + pn(x * p * 4, y * p * 4 + .5, p * 4) * .2;
+    // cracks: where the two nearest of a few scattered points are equally far
+    const crack = (x, y, p) => { const xi = Math.floor(x * p), yi = Math.floor(y * p); let a = 9, b = 9; for (let j = -1; j <= 1; j++) for (let i = -1; i <= 1; i++) { const cx = xi + i, cy = yi + j, d = Math.hypot(cx + ph(cx, cy, p) - x * p, cy + ph(cx + 31, cy + 17, p) - y * p); if (d < a) { b = a; a = d; } else if (d < b) b = d; } return b - a; };
+    return [...Array(bands).keys()].map(k => () => {
+      for (let y = k * rows; y < (k + 1) * rows; y++) for (let x = 0; x < size; x++) { const u = x / size, v = y / size, n = pf(u, v, 6), n2 = pf(u + .37, v + .11, 12), wu = (pf(u + .2, v + .7, 5) - .5) * .09, wv = (pf(u + .6, v + .3, 5) - .5) * .09;
+        const bed = .5 + .5 * Math.sin((v + (pf(u, v, 3) - .5) * .09) * TAU * 11 + n2 * 2.4), line = Math.max(0, (bed - .78) / .22) ** 1.5, ck = crack(u + wu, v + wv, 3), cr = (1 - Math.min(1, ck / .04)) * Math.min(1, Math.max(0, (n2 - .32) * 4)), ck2 = crack(u + .5 - wv, v + .5 + wu, 7), cr2 = (1 - Math.min(1, ck2 / .04)) * Math.min(1, Math.max(0, (n - .4) * 5));
+        const base = .62 + (n - .5) * .5 + (n2 - .5) * .22, i = (y * size + x) * 4;
+        img.data[i] = 255 * Math.min(1, Math.max(0, base - line * .34 * (.4 + n) - cr * cr * .34 - cr2 * cr2 * .14));
+        img.data[i + 1] = 255 * Math.min(1, Math.max(0, base - cr * cr * .3 - cr2 * cr2 * .12));
+        img.data[i + 2] = 255 * hash(x * 1.31, y * 1.77); img.data[i + 3] = 255; }
+      if (k === bands - 1) T.rock = canvasTex(size, size, g2 => g2.putImageData(img, 0, 0), {repeat: [1, 1], srgb: false});
+    });
+  }
   const steps = [
     // Pixel textures are filled in row bands, one band per step.
+    ...rockSteps(big ? 512 : 256),
     ...pixelSteps('grain', 256, (x, y) => .82 + .18 * (vnoise(x / 9, y / 9) * .6 + hash(x, y) * .4), {repeat: [1, 1]}),
     ...pixelSteps('noise', 256, (x, y, w) => { const s = 16 / w; return vnoise(x * s, y * s) * .5 + vnoise(x * s * 2 + 7, y * s * 2) * .3 + vnoise(x * s * 4, y * s * 4 + 3) * .2; }, {repeat: [1, 1], srgb: false}),
     () => { T.leaf = canvasTex(512, 512, (g, w, h) => { const r = rng(5), cols = [['#2f5f1c', '#4f8a2c', '#7fb447'], ['#3b6d22', '#5c9a33', '#94c454'], ['#2a5418', '#467e28', '#6aa63c'], ['#4a7a23', '#77a83e', '#b2d36a']];

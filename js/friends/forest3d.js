@@ -13,6 +13,8 @@ import {createRain} from './world/rain.js';
 import {createFootprints} from './world/footprints.js';
 import {createAmbience} from './world/ambience.js';
 import {createWeather} from './weather.js';
+import {caveLight} from './world/big/cave.js';
+import {createBats} from './world/big/bats.js';
 
 const WORLD = createWorld();
 const FOX_H = 1.6, SPEED = 3.6, MAX_ANIMATED = 6;
@@ -67,7 +69,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   function compile() { if (compiled) return; compiled = true; try { (renderer.compileAsync || renderer.compile).call(renderer, scene, camera); } catch (e) { /* compiled on first draw instead */ } }
 
   /* ---------- the big world: hazy hills far away, and each area's own light ---------- */
-  let backdrop = null; const mood = {near: WORLD.fog.near, far: WORLD.fog.far, bm: {}};
+  let backdrop = null; const mood = {near: WORLD.fog.near, far: WORLD.fog.far, bm: {}, colour: WORLD.fog.color.clone()};
   {
     // One coarse mesh of the whole land (tree tops included) in the colour of the haze, drawn behind
     // everything and only beyond the far ring: the Rock and the wooded hills stay on the horizon.
@@ -86,7 +88,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   const MOODS = {wood: ['#e8dcae', 24, 72], meadow: ['#f1e8bd', 30, 78], swamp: ['#c5d2ae', 11, 50], rock: ['#e0e6d6', 26, 78], spruce: ['#d3d8b2', 18, 62]}, moodC = new THREE.Color(), moodT = new THREE.Color();
   /** Lean the haze toward the area Fuchs is in (the water and the backdrop share the colour object). */
   /* ---------- weather (js/friends/weather.js): a shower dims and greys the light, the ground darkens and dries again ---------- */
-  const CAVE_DUSK = new THREE.Color('#57524e'), RAINY = new THREE.Color('#9fa9a6'), GREY_TOP = new THREE.Color('#9aa6a8'), GREY_HORIZON = new THREE.Color('#c3c6bd'), HEMI_SKY = new THREE.Color('#e4f0ff'), HEMI_RAIN = new THREE.Color('#c9d0d6');
+  const CAVE_DARK = new THREE.Color('#040405'), CAVE_FILL = new THREE.Color('#a9dcea'), FILL = new THREE.Color('#fff4e0'), RAINY = new THREE.Color('#9fa9a6'), GREY_TOP = new THREE.Color('#9aa6a8'), GREY_HORIZON = new THREE.Color('#c3c6bd'), HEMI_SKY = new THREE.Color('#e4f0ff'), HEMI_RAIN = new THREE.Color('#c9d0d6');
   const rain = createRain({scene, groundY: (x, z) => { const s = WORLD.terrain.site(x, z), st = WORLD.terrain.streamAt(x, z); let y = groundY(x, z); if (s.still === s.still) y = Math.max(y, s.still); if (st.stream && st.d < st.w / 2) y = Math.max(y, st.level); return y; }, isWater: (x, z) => { const s = WORLD.terrain.site(x, z), st = WORLD.terrain.streamAt(x, z); return (s.still === s.still && s.still > s.h + .02) || (!!st.stream && st.d < st.w / 2); }, random: R});
   /* ---------- time of day: it follows the letter journey (game.js) ----------
      0 morning for the first letter, about .5 a golden afternoon in the middle, 1 dusk on the walk home. The light
@@ -106,13 +108,17 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   }
   const dusk = () => THREE.MathUtils.smoothstep(tod, .62, 1), morning = () => 1 - THREE.MathUtils.smoothstep(tod, .05, .38);
   function updateWeather(dt, time, reduced) {
-    const w = weather.state, r = w.rain, f = w.fresh;
+    const w = weather.state, f = w.fresh; let r = w.rain;
     tod += THREE.MathUtils.clamp(todTo - tod, -dt / 30, dt / 30); blendTod();
     // the sun moves with the day; the (static) shadow map is redrawn only now and then while it does
     if (sunDir.distanceToSquared(todBase.dir) > 1e-6 && (time - sunAt > .5 || Math.abs(todTo - tod) < 1e-4)) { sunDir.copy(todBase.dir); sunAt = time; shadowAt.x = Infinity; }
     sun.color.copy(todBase.sun); sun.intensity = todBase.si * (1 - .75 * r) + .25 * f; fill.intensity = todBase.fill * (1 - .25 * r); hemi.intensity = todBase.hi * (1 - .2 * r); hemi.color.copy(todBase.sky).lerp(HEMI_RAIN, r); hemi.groundColor.copy(todBase.ground);
     skyU.top.value.copy(todBase.top).lerp(GREY_TOP, r * .85); skyU.horizon.value.copy(todBase.hor).lerp(GREY_HORIZON, r * .8); skyU.glow.value = todBase.glow * (1 - r * .9) + f * .3;
     if (look.M.ground) look.M.ground.color.setScalar(1 - .2 * w.wet);
+    // under the rock: no sun and little sky on Fuchs, a cool light as from the crystals; the sky itself goes out
+    { const ck = caveEase(); if (ck > 0) { sun.intensity *= 1 - .9 * ck; hemi.intensity *= 1 - .58 * ck; fill.intensity *= 1 + .5 * ck; skyU.top.value.multiplyScalar(1 - ck); skyU.horizon.value.multiplyScalar(1 - ck); skyU.glow.value *= 1 - ck; }
+      fill.color.copy(FILL).lerp(CAVE_FILL, ck); horizon.visible = ck < .97; r *= 1 - ck;
+      caveLight.time.value = reduced ? 0 : time; caveLight.day.value.copy(todBase.sun).multiplyScalar(todBase.si / 2.6 * (1 - .55 * w.rain)); }
     rain.update(dt, time, pos, {rain: r, snow: sound.snow || 0, reduced, height, width, pixelRatio: renderer.getPixelRatio(), fov: camera.fov});
   }
   /* A soft reveal: walking into a big open area (the meadow, the Rock, the peak, the swamp) for the first time in a
@@ -127,10 +133,12 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     const b = WORLD.terrain.biome(x, z, mood.bm), w = {meadow: b.meadow, swamp: b.swamp, rock: b.rock * .8, spruce: b.spruce}; let rest = 1, near = 0, far = 0; moodT.setRGB(0, 0, 0);
     for (const k in w) { const v = Math.min(rest, w[k]); rest -= v; moodC.set(MOODS[k][0]); moodT.r += moodC.r * v; moodT.g += moodC.g * v; moodT.b += moodC.b * v; near += MOODS[k][1] * v; far += MOODS[k][2] * v; }
     moodC.set(MOODS.wood[0]); moodT.r += moodC.r * rest; moodT.g += moodC.g * rest; moodT.b += moodC.b * rest; near += MOODS.wood[1] * rest; far += MOODS.wood[2] * rest;
-    moodT.multiply(todBase.fog); if (sound.cave > 0) { moodT.lerp(CAVE_DUSK, sound.cave * .55); near *= 1 - .45 * sound.cave; far *= 1 - .35 * sound.cave; }   // dim in the cave
+    moodT.multiply(todBase.fog);
     const rain = weather.state.rain; if (rain > 0) { moodT.lerp(RAINY, rain * .6); near *= 1 - .4 * rain; far *= 1 - .28 * rain; }
-    const k = 1 - Math.exp(-dt * .9); WORLD.fog.color.lerp(moodT, k); mood.near += (near - mood.near) * k; mood.far += (far - mood.far) * k;
-    const lift = reveal * reveal * (3 - 2 * reveal); scene.fog.near = mood.near * lerp(.4, 1, lift); scene.fog.far = mood.far * lerp(.6, 1, lift);
+    const k = 1 - Math.exp(-dt * .9); mood.colour.lerp(moodT, k); mood.near += (near - mood.near) * k; mood.far += (far - mood.far) * k;
+    // in the cave the rock is night: everything beyond its own light fades to black
+    const ck = caveEase(); WORLD.fog.color.copy(mood.colour).lerp(CAVE_DARK, ck);
+    const lift = reveal * reveal * (3 - 2 * reveal); scene.fog.near = lerp(mood.near * lerp(.4, 1, lift), 8, ck); scene.fog.far = lerp(mood.far * lerp(.6, 1, lift), 32, ck);
     if (look.M.water) { look.M.water.uniforms.fogNear.value = scene.fog.near; look.M.water.uniforms.fogFar.value = scene.fog.far; }
   }
 
@@ -146,6 +154,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   const life = createLife({scene, canvasTex, groundY, walkable, terrain: WORLD.terrain, random: R, fires: WORLD.layout.WONDERS.filter(w => w.fire).map(w => w.fire), shaftMat, onFlyUp: (x, z) => startle(x, z)});   // falling leaves, butterflies, dragonflies, little birds
   const prints = createFootprints({scene, canvasTex, ground: (x, z) => WORLD.ground(x, z)});
   const ambience = createAmbience({scene, camera, canvasTex, terrain: WORLD.terrain, groundY, random: R});
+  const bats = createBats({scene, world: WORLD, fog: WORLD.fog});   // they hang in the cave's hall and wake when Fuchs comes
   const puffs = Array.from({length: 8}, () => { const s = sprite(dustTex, .4, 1, .5); s.visible = false; return {s, life: 0}; });
   const motes = new THREE.Points(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(Array.from({length: 240}, (_, i) => i % 3 === 1 ? .4 + R() * 5 : (R() * 2 - 1) * 15 + (i % 3 === 0 ? 1 : -5)), 3)), new THREE.PointsMaterial({size: .08, map: glow, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, opacity: .8}));
   motes.name = 'pollen'; scene.add(motes);
@@ -240,11 +249,12 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   /* Fuchs at the things to discover: when he stops close to one he faces it and reacts once (until he has walked
      away again): he sniffs a berry bush, warms his paws at the picnic fire, leans over the well and hears his call
      come back, pokes his head into the hollow log, looks up into an apple tree. Walking on ends it at once. */
-  const REACT = {berries: ['sniff', 2.4, 2.3, 'sniff'], picnic: ['warm', 3.8, 2.8, 'crackle'], well: ['lean', 3.6, 2.2, 'echo'], log: ['poke', 3.2, 1.8, 'knock'], apple: ['lookup', 2.4, 2.6, null]};
+  const REACT = {lake: ['lean', 3.4, 3.4, 'drip'], berries: ['sniff', 2.4, 2.3, 'sniff'], picnic: ['warm', 3.8, 2.8, 'crackle'], well: ['lean', 3.6, 2.2, 'echo'], log: ['poke', 3.2, 1.8, 'knock'], apple: ['lookup', 2.4, 2.6, null]};
   const spots = WORLD.layout.WONDERS.flatMap(w => { const k = REACT[w.kind]; if (!k) return []; const base = {kind: w.kind, trick: k[0], dur: k[1], reach: k[2], cue: k[3], done: false};
     if (w.kind === 'picnic') return [{...base, x: w.fire[0], z: w.fire[1]}];
     if (w.kind === 'log') return [1.8, -1.8].map(t => ({...base, x: w.x + Math.cos(w.yaw) * t, z: w.z - Math.sin(w.yaw) * t}));
     return [{...base, x: w.x, z: w.z}]; });
+  { const C = WORLD.layout.CAVE, k = REACT.lake; spots.push({kind: 'lake', trick: k[0], dur: k[1], reach: k[2], cue: k[3], done: false, x: C.x + C.pool[0], z: C.z - C.pool[1]}); }   // he leans over the cave's lake, and a drop rings
   let reaction = null, standing = 0;
   function react(dt, moving) {
     if (moving || destination) { reaction = null; standing = 0; } else standing += dt;
@@ -287,15 +297,19 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     if (pos.distanceTo(target) < 10 && clear(pos, target, true)) return [target];
     const route = WORLD.plan(pos.x, pos.z, target.x, target.z); return route && route.map(([x, z]) => new THREE.Vector3(x, 0, z));
   }
-  function nearestWalkable(p) { if (walkable(p.x, p.z)) return new THREE.Vector3(p.x, 0, p.z); for (let r = .3; r < 6; r += .3) for (let i = 0; i < 16; i++) { const a = i / 16 * TAU, x = p.x + Math.cos(a) * r, z = p.z + Math.sin(a) * r; if (walkable(x, z)) return new THREE.Vector3(x, 0, z); } return pos.clone().setY(0); }
+  function nearestWalkable(p, ok = null) { const free = (x, z) => walkable(x, z) && (!ok || ok(x, z)); if (free(p.x, p.z)) return new THREE.Vector3(p.x, 0, p.z); for (let r = .3; r < (ok ? 14 : 6); r += .3) for (let i = 0; i < 16; i++) { const a = i / 16 * TAU, x = p.x + Math.cos(a) * r, z = p.z + Math.sin(a) * r; if (free(x, z)) return new THREE.Vector3(x, 0, z); } return pos.clone().setY(0); }
   function walkTo(target, id = null) { target = nearestWalkable(target); const route = plan(target); if (!route) { onMove({event: 'route_failure', reason: 'blocked', area: 'forest', destination: id}); return; } path = route; destination = path.shift(); arrival = id; stuck = 0; replans = 0; stuckAt.set(pos.x, pos.z); ring.position.set(target.x, groundY(target.x, target.z) + .05, target.z); ring.visible = true; onMove({event: 'movement_destination', destination: id, x: target.x, z: target.z, area: 'forest'}); }
   // On the hills the camera follows the full height of the ground and never sinks into a slope.
   const lift = 1;
-  function snapCamera() { focus.set(pos.x, groundY(pos.x, pos.z) * lift, pos.z); placeCamera(1); }
+  function snapCamera() { caveCamera(-1); focus.set(pos.x, groundY(pos.x, pos.z) * lift, pos.z); placeCamera(1); }
   /* How far the camera stands: the child's pinch (a narrow range), the place (further back where the view is wide:
      the meadow, the Rock and its peak, open water; closer in the dense wood) and a short close shot of Fuchs with the
      invited friend before a puzzle opens. */
-  let zoomUser = 1, zoomAuto = 1, shot = null, inCave = false;
+  let zoomUser = 1, zoomAuto = 1, shot = null, inCave = false, caveK = 0;
+  /* In the cave the camera comes down and stands close behind Fuchs, inside the rock if need be: the cave's walls
+     are drawn from within only, so the view is into the cave as into a diorama. It starts down in the approach, before the roof. */
+  const caveEase = () => caveK * caveK * (3 - 2 * caveK);
+  function caveCamera(dt) { const to = WORLD.terrain.cave(pos.x, pos.z).into; caveK = dt < 0 ? to : caveK + THREE.MathUtils.clamp(to - caveK, -dt * 1.1, dt * 1.6); }
   function framing(dt) {
     const open = Math.max(sound.meadow || 0, Math.min(1, (sound.rock || 0) * 1.2), sound.snow || 0, sound.swamp * .6 || 0, 1 - Math.min(1, (sound.trees ?? 1) * 1.15), (sound.falls || 0) * .7);
     zoomAuto += (lerp(lerp(.9, 1.2, open), .8, sound.cave || 0) - zoomAuto) * Math.min(1, dt * .6);   // closer in the cave
@@ -304,7 +318,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     if (shot) { shot.t += dt; if (shot.t > shot.dur + .6) shot = null; }
   }
   const shotK = () => { if (!shot) return 0; const u = shot.t / shot.dur, e = x => x <= 0 ? 0 : x >= 1 ? 1 : x * x * (3 - 2 * x); return e(u / .35) * (1 - e((shot.t - shot.dur) / .6)); };
-  function placeCamera(k) { const base = narrow ? [0, 10, 14.4] : [0, 9, 14], e = shotK(), z = zoomUser * zoomAuto * lerp(1, .58, e), off = [0, base[1] * z * lerp(1, .82, e), base[2] * z]; camera.position.lerp(new THREE.Vector3(focus.x + off[0], focus.y + off[1], focus.z + off[2]), k); camera.position.y = Math.max(camera.position.y, WORLD.ground(camera.position.x, camera.position.z) + 3.5); camera.lookAt(focus.x, focus.y + 1.4, focus.z - 3.2); camera.updateMatrixWorld(); foxView.value.set(pos.x, groundY(pos.x, pos.z) + .9, pos.z).applyMatrix4(camera.matrixWorldInverse); fill.position.copy(camera.position).add(new THREE.Vector3(0, 4, 0)); fill.target.position.copy(focus); fill.target.updateMatrixWorld(); horizon.position.set(camera.position.x, camera.position.y - 4, camera.position.z - 20); }
+  function placeCamera(k) { const base = narrow ? [0, 10, 14.4] : [0, 9, 14], e = shotK(), z = zoomUser * zoomAuto * lerp(1, .58, e), ck = caveEase(), off = [0, lerp(base[1] * z * lerp(1, .82, e), 2.7 * zoomUser, ck), lerp(base[2] * z, (narrow ? 7.4 : 6.6) * zoomUser, ck)]; camera.position.lerp(new THREE.Vector3(focus.x + off[0], focus.y + off[1], focus.z + off[2]), k); if (ck < .98) camera.position.y = Math.max(camera.position.y, WORLD.ground(camera.position.x, camera.position.z) + lerp(3.5, 1.4, ck)); camera.lookAt(focus.x, focus.y + lerp(1.4, 1.25, ck), focus.z - lerp(3.2, 2.4, ck)); camera.updateMatrixWorld(); foxView.value.set(pos.x, groundY(pos.x, pos.z) + .9, pos.z).applyMatrix4(camera.matrixWorldInverse); fill.position.copy(camera.position).add(new THREE.Vector3(0, 4, 0)); fill.target.position.copy(focus); fill.target.updateMatrixWorld(); horizon.position.set(camera.position.x, camera.position.y - 4, camera.position.z - 20); }
   function publishMailPosition() { const p = forestPlaces.mailman; p.x = mailPos.x; p.z = mailPos.z; p.pu = THREE.MathUtils.clamp(.5 + mailPos.x * .023, .07, .93); p.pv = THREE.MathUtils.clamp(.49 + mailPos.z * .025, .1, .9); }
   function summonMailman() {
     let chosen = null; for (const radius of [5.4, 6, 6.6, 7.2]) { for (let i = 0; i < 32; i++) { const a = -.5 + i / 32 * TAU, candidate = new THREE.Vector3(pos.x + Math.cos(a) * radius, 0, pos.z + Math.sin(a) * radius); if (walkable(candidate.x, candidate.z) && clear(pos, candidate, true)) { chosen = candidate; break; } } if (chosen) break; }
@@ -402,15 +416,17 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     { const b = bendAt.value; b[0].set(pos.x, pos.z, .75, 1); let k = 1; for (const o of others) { if (k > 3) break; if (o.id === 'mailman') { if (o.d < 14) b[k++].set(mailPos.x, mailPos.z, .7, .9); continue; } if (o.d < 14 && !o.f.onWater && !o.f.y) b[k++].set(o.f.x, o.f.z, o.f.h * .55, .9); } for (; k < 4; k++) b[k].set(1e4, 1e4, 1, 0); }
     if (moving && !reduced && !sound.wade && time - lastPuff > .17) { lastPuff = time; const p = puffs.find(q => q.life <= 0); if (p) { p.life = .55; p.s.visible = true; p.s.material.color.set('#ffffff'); p.s.position.set(pos.x + (R() - .5) * .3, base + .12, pos.z + .15); } }
     for (const p of puffs) if (p.life > 0) { p.life -= dt; const k = 1 - p.life / .55; size(p.s, .25 + k * .45); p.s.material.opacity = .5 * (1 - k); p.s.position.y += dt * .25; if (p.life <= 0) p.s.visible = false; }
-    life.update(dt, time, pos, {reduced, rain: Math.max(weather.state.rain, dusk() > .7 ? .3 : 0), snow: sound.snow || 0, trees: sound.trees, meadow: sound.meadow, height, fov: camera.fov});
+    life.update(dt, time, pos, {reduced, rain: Math.max(weather.state.rain, dusk() > .7 ? .3 : 0, caveK), snow: sound.snow || 0, trees: sound.trees * (1 - caveK), meadow: sound.meadow, height, fov: camera.fov});
     const halos = streamer.landmarks.home?.halos; if (halos) halos.material.opacity = reduced ? .55 : .5 + Math.sin(time * 7) * .06;
-    plushDusk.value = dusk() * (1 - weather.state.rain); plushSun.value.copy(sunDir).transformDirection(camera.matrixWorldInverse).multiplyScalar((1 - .85 * weather.state.rain) * (1 + .3 * dusk())); updateWeather(dt, time, reduced); shaftMat.opacity = (reduced ? .15 : .14 + Math.sin(time * .35) * .04) * (1 - weather.state.rain) * (1 + .4 * weather.state.fresh) * (1 - .75 * dusk());
-    ambience.update(dt, time, pos, {dusk: dusk(), morning: morning(), weather: weather.state, trees: sound.trees, meadow: sound.meadow, swamp: sound.swamp, reduced, height, fov: camera.fov});
+    plushDusk.value = dusk() * (1 - weather.state.rain); plushSun.value.copy(sunDir).transformDirection(camera.matrixWorldInverse).multiplyScalar((1 - .85 * weather.state.rain) * (1 + .3 * dusk())); updateWeather(dt, time, reduced); shaftMat.opacity = (reduced ? .15 : .14 + Math.sin(time * .35) * .04) * (1 - weather.state.rain) * (1 + .4 * weather.state.fresh) * (1 - .75 * dusk()) * (1 - caveK); motes.visible = caveK < .5;
+    { const cv = streamer.landmarks.cave; if (cv?.halos) cv.halos.material.opacity = reduced ? .42 : .4 + .07 * Math.sin(time * 1.3); if (cv?.worms) cv.worms.material.opacity = reduced ? .9 : .78 + .2 * Math.sin(time * .9); }
+    ambience.update(dt, time, pos, {dusk: dusk() * (1 - caveK), morning: morning() * (1 - caveK), weather: weather.state, trees: sound.trees, meadow: sound.meadow, swamp: sound.swamp, reduced, height, fov: camera.fov});
+    if (bats.update(dt, time, pos, {caveK, dusk: dusk() * (1 - weather.state.rain), reduced})) { sound.cues.push({type: 'bats'}); if (sound.cues.length > 4) sound.cues.shift(); onMove({event: 'wonder_reaction', kind: 'bats', area: 'forest'}); }
     if (!reduced) { if (look.M.water) look.M.water.uniforms.uTime.value += dt; motes.position.set(pos.x, Math.sin(time * .35) * .3, pos.z); motes.rotation.y = time * .01; } else motes.position.set(pos.x, 0, pos.z);
     if (ring.visible) ring.material.opacity = .55 + Math.sin(time * 4) * .25;
     updateGuide(time);
     { revealArea(dt, time); updateMood(dt, pos.x, pos.z); backdrop.material.uniforms.uFox.value.copy(pos); const sw = streamer.landmarks.swamp; if (sw?.glow) sw.glow.material.opacity = reduced ? .8 : .55 + .4 * Math.sin(time * 1.7); if (sw?.mist && !reduced) sw.mist.position.x = Math.sin(time * .12) * 1.5; }
-    framing(dt); const sf = shot && friends[shot.id], e = shotK(), aim = new THREE.Vector3(pos.x + vel.x * .35, base * lift, pos.z + vel.y * .35);
+    framing(dt); caveCamera(dt); const sf = shot && friends[shot.id], e = shotK(), aim = new THREE.Vector3(pos.x + vel.x * .35, base * lift, pos.z + vel.y * .35);
     if (sf) aim.lerp(new THREE.Vector3((pos.x + sf.x) / 2, (base + groundY(sf.x, sf.z)) / 2, (pos.z + sf.z) / 2 + 1), e);
     focus.lerp(aim, reduced ? 1 : 1 - Math.exp(-dt * 2.6)); placeCamera(1);
     // stream tiles around Fuchs and ahead of him (≤ 4 ms per frame; 8 ms while ground near him is missing or plain,
@@ -451,7 +467,13 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     pick(x, y) {
       raycaster.setFromCamera(new THREE.Vector2(x, y), camera);
       if (raycaster.intersectObject(courier, true).length) { courierGoal = null; courierPath = []; courierWait = 20; if (mailPos.distanceTo(pos) < 3.2) onAction('mailman'); else walkTo(mailPos.clone(), 'mailman'); return; }
+      // In the cave a tap means a spot on its floor (the terrain behind the walls is the hillside's); outside, a tap
+      // on the hill over the cave means the hill, not the cave floor underneath it.
+      const T = WORLD.terrain, under = (x, z) => T.cave(x, z).roof > .5;
+      if (caveK > .5) { const p = raycaster.ray.intersectPlane(new THREE.Plane(new THREE.Vector3(0, 1, 0), -groundY(pos.x, pos.z)), new THREE.Vector3()); if (p) walkTo(nearestWalkable(p, (x, z) => T.cave(x, z).k > .5)); return; }
+      const roof = streamer.landmarks.cave?.roof, onRoof = roof && raycaster.intersectObject(roof, false)[0]?.point;
       const hit = raycaster.intersectObjects(streamer.terrain(), false)[0]?.point || raycaster.ray.intersectPlane(floor, new THREE.Vector3());
+      if (onRoof && hit && under(hit.x, hit.z) && onRoof.distanceTo(raycaster.ray.origin) < hit.distanceTo(raycaster.ray.origin)) { walkTo(nearestWalkable(onRoof, (x, z) => !under(x, z))); return; }
       if (hit) walkTo(hit);
     },
     stop() { destination = null; path = []; arrival = null; ring.visible = false; vel.set(0, 0); },
@@ -459,6 +481,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     get life() { return life.counts; },
     get prints() { return prints.count; },
     get ambience() { return {...ambience.counts, timeOfDay: tod}; },
+    get cave() { return {...bats.counts, inside: caveK}; },
     /** The time of day: 0 morning, .5 afternoon, 1 dusk; it eases there unless `snap`. */
     timeOfDay(v, snap = false) { todTo = THREE.MathUtils.clamp(v, 0, 1); if (snap || !todSet) { tod = todTo; todSet = true; } },
     budget() { const c = streamer.counts, g = streamer.gaps(); return {liveTiles: c.near, farTiles: c.far, animated: animatedCount, holes: g.holes, plain: g.plain, jobs: c.jobs, slowestStep: streamer.slowest.kind, slowestStepMs: streamer.slowest.ms}; },

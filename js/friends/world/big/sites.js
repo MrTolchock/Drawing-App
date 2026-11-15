@@ -10,6 +10,7 @@ import {canvasTex} from '../textures.js';
 import {waterMaterial} from './tiles.js';
 import {landmarkSteps} from '../landmarks.js';
 import {wonderSteps} from './wonders.js';
+import {caveSteps} from './cave.js';
 
 /** Give a geometry one colour (the materials multiply their texture by it). */
 function tinted(g, r, gr, b) { const c = new Float32Array(g.attributes.position.count * 3); for (let k = 0; k < c.length; k += 3) { c[k] = r; c[k + 1] = gr; c[k + 2] = b; } g.setAttribute('color', new THREE.BufferAttribute(c, 3)); return g; }
@@ -179,58 +180,7 @@ export function siteSteps(site, look, world, group, out) {
       [[-.16, 0], [0, 0], [.16, 0], [-.08, .135], [.08, .135], [0, .27]].forEach(([o, up]) => { const l = 1.25 + R() * .3, j = (R() - .5) * .16; stick(px + sz * o - sx * (l / 2 + j), py + .07 + up, pz - sx * o - sz * (l / 2 + j), sx, 0, sz, l, .075, .8 + R() * .3, true, 6); });
     }, () => mesh(mud, M.rock, 'dam mud', false), () => mesh(logs, M.log, 'dam and lodge'), () => mesh(pale, M.wood, 'gnawed wood'));
   }
-  if (site.id === 'cave') {
-    /* The cave in the Rock (layout CAVE, terrain `cave`): the ground is cut flat into the hillside; here a rock shell
-       closes it over. Its outer face follows the hillside, so from outside it is one slope with a dark arched mouth in
-       it; inside it is a low vault that comes down to the floor at the sides and the back. In the dusk inside:
-       stalactites, a few stalagmites, glowing crystals, pale mushrooms, glow-worms on the ceiling and a still pool. */
-    const C = L.CAVE, at = (u, v) => [C.x + u, C.z - v], floorY = (u, v) => T.ground(...at(u, v));
-    const rockBuf = new Buffer(), glowBuf = new Buffer(), F = T.ground(C.x, C.z + 0);
-    steps.push(() => { // the shell: outer hillside, inner vault, and the arched mouth between them
-      const NU = 22, NV = 24, U0 = -C.w - 1.5, U1 = C.w + 1.5, V0 = C.open - .25, V1 = C.depth + 1.4, top = [], bot = [], col = [], pos = [], idx = [], c = new THREE.Color(), up = new THREE.Vector3();
-      const vault = (u, v) => { const a = Math.min(1, Math.abs(u) / C.w), side = sstep(C.w - .1, C.w + .9, Math.abs(u)), back = sstep(C.depth - 2.2, C.depth + .3, v);
-        const crown = 2.15 + .95 * Math.cos(a * Math.PI / 2) - .45 * sstep(C.depth - 4, C.depth, v) + .12 * Math.sin(u * 2.3 + v * 1.7) + .08 * Math.sin(v * 3.1);
-        return F + crown * (1 - Math.max(side, back)) - .05; };
-      for (let j = 0; j <= NV; j++) for (let i = 0; i <= NU; i++) { const u = lerp(U0, U1, i / NU), v = lerp(V0, V1, j / NV), [x, z] = at(u, v), h = T.rawHill(x, z) + .07;
-        top.push(pos.length / 3); pos.push(x, h, z);
-        const e = .4, hx = T.rawHill(x + e, z) - T.rawHill(x - e, z), hz = T.rawHill(x, z + e) - T.rawHill(x, z - e); up.set(-hx / (2 * e), 1, -hz / (2 * e)).normalize();
-        T.colour(x, z, c); T.cliff(x, z, up.y, c); col.push(c.r, c.g, c.b); }
-      for (let j = 0; j <= NV; j++) for (let i = 0; i <= NU; i++) { const u = lerp(U0, U1, i / NU), v = lerp(V0, V1, j / NV), [x, z] = at(u, v), h = Math.min(vault(u, v), T.rawHill(x, z) - .25);
-        bot.push(pos.length / 3); pos.push(x, h, z); const deep = sstep(C.open, C.depth, v), n = .5 + .5 * Math.sin(u * 5.1 + v * 3.7) * Math.sin(v * 2.3 - u);
-        c.setRGB(.5, .47, .43).lerp(new THREE.Color(.36, .33, .3), n * .6).multiplyScalar(1 - .35 * deep); col.push(c.r, c.g, c.b); }
-      const T_ = (j, i) => top[j * (NU + 1) + i], B_ = (j, i) => bot[j * (NU + 1) + i];
-      for (let j = 0; j < NV; j++) for (let i = 0; i < NU; i++) { idx.push(T_(j, i), T_(j, i + 1), T_(j + 1, i), T_(j, i + 1), T_(j + 1, i + 1), T_(j + 1, i)); idx.push(B_(j, i), B_(j + 1, i), B_(j, i + 1), B_(j, i + 1), B_(j + 1, i), B_(j + 1, i + 1)); }
-      for (let i = 0; i < NU; i++) { idx.push(T_(0, i), B_(0, i), T_(0, i + 1), T_(0, i + 1), B_(0, i), B_(0, i + 1)); idx.push(T_(NV, i), T_(NV, i + 1), B_(NV, i), T_(NV, i + 1), B_(NV, i + 1), B_(NV, i)); }
-      for (let j = 0; j < NV; j++) { idx.push(T_(j, 0), T_(j + 1, 0), B_(j, 0), T_(j + 1, 0), B_(j + 1, 0), B_(j, 0)); idx.push(T_(j, NU), B_(j, NU), T_(j + 1, NU), T_(j + 1, NU), B_(j, NU), B_(j + 1, NU)); }
-      const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setAttribute('color', new THREE.Float32BufferAttribute(col, 3)); g.setIndex(idx); g.computeVertexNormals();
-      const m = new THREE.Mesh(g, M.soft); m.name = 'cave roof'; m.castShadow = M.shadows; m.receiveShadow = M.shadows; group.add(m);
-      // boulders framing the mouth
-      const t = templates(); for (const [u, v, sc] of [[-C.w - .55, C.open - .5, .75], [C.w + .5, C.open - .35, .85], [-C.w - .1, C.open - 1.6, .45], [C.w + .2, C.open - 1.9, .5], [-.9, C.open - .2, .32]]) { const [x, z] = at(u, v), w = .78 + R() * .12; rockBuf.add(t.rock, {x, y: T.ground(x, z) - sc * .25, z, ry: R() * TAU, sx: sc * 1.2, sy: sc, sz: sc, c: new THREE.Color(w, w * .97, w * .92)}); }
-    });
-    steps.push(() => { // stalactites, stalagmites, crystals, mushrooms, the pool
-      const stone = [.78, .74, .68];
-      for (let k = 0; k < 26; k++) { const u = (R() * 2 - 1) * (C.w - .5), v = C.open + .8 + R() * (C.depth - C.open - 2.2), [x, z] = at(u, v), ceil = F + 2.15 + .95 * Math.cos(Math.min(1, Math.abs(u) / C.w) * Math.PI / 2) - .45 * sstep(C.depth - 4, C.depth, v), l = .2 + R() * .55;
-        add(rockBuf, new THREE.ConeGeometry(.05 + R() * .07, l, 6).rotateX(Math.PI).translate(x, ceil - l / 2 + .02, z), ...stone); }
-      for (const [u, v, l] of C.mites) { const [x, z] = at(u, v); add(rockBuf, new THREE.ConeGeometry(.16, l, 7).translate(x, T.ground(x, z) + l / 2 - .02, z), ...stone); add(rockBuf, new THREE.ConeGeometry(.09, l * .6, 6).translate(x + .18, T.ground(x, z) + l * .3, z + .1), ...stone); }
-      const hue = [[.45, 1.3, 1.6], [.9, .6, 1.6], [.5, 1.5, 1.3]];
-      for (const [u, v, r] of C.crystals) { const [x, z] = at(u, v), y = T.ground(x, z), h = hue[Math.floor(R() * 3)];
-        for (let k = 0; k < 7; k++) { const l = .25 + R() * .45, a = R() * TAU, d = R() * r * .6; const g = new THREE.CylinderGeometry(0, .06 + R() * .04, l, 6).translate(0, l / 2, 0).rotateZ((R() - .5) * .8).rotateX((R() - .5) * .8).translate(x + Math.cos(a) * d, y - .02, z + Math.sin(a) * d); add(glowBuf, g, ...h.map(q => q * (.75 + R() * .3))); } }
-      for (const [u, v] of C.mushrooms) for (let k = 0; k < 4; k++) { const [x0, z0] = at(u, v), x = x0 + (R() - .5) * .5, z = z0 + (R() - .5) * .5, y = T.ground(x, z), s = .5 + R() * .6;
-        add(glowBuf, new THREE.CylinderGeometry(.02 * s, .025 * s, .12 * s, 5).translate(x, y + .06 * s, z), 1.2, 1.25, 1); add(glowBuf, new THREE.SphereGeometry(.07 * s, 8, 5, 0, TAU, 0, Math.PI / 2).scale(1, .6, 1).translate(x, y + .11 * s, z), 1.1, 1.5, .9); }
-      { const [x, z] = at(...C.pool), y = T.ground(x, z) + .03, g = new THREE.CircleGeometry(C.pool[2], 24).rotateX(-Math.PI / 2).scale(1, 1, .75).translate(x, y, z);
-        const m = new THREE.Mesh(g, new THREE.MeshBasicMaterial({color: '#18383f', transparent: true, opacity: .85, depthWrite: false})); m.name = 'cave pool'; m.renderOrder = 1; group.add(m);
-        const rim = new THREE.RingGeometry(C.pool[2] * .96, C.pool[2] * 1.12, 24).rotateX(-Math.PI / 2).scale(1, 1, .75).translate(x, y + .005, z); add(rockBuf, rim, .55, .52, .48); }
-    });
-    steps.push(() => { // the glow: soft halos round the crystals and the mushrooms, glow-worms on the ceiling
-      const halo = canvasTex(64, 64, g => { const q = g.createRadialGradient(32, 32, 0, 32, 32, 32); q.addColorStop(0, 'rgba(255,255,255,.75)'); q.addColorStop(.35, 'rgba(255,255,255,.25)'); q.addColorStop(1, 'rgba(255,255,255,0)'); g.fillStyle = q; g.fillRect(0, 0, 64, 64); });
-      const hp = [], hc = []; for (const [u, v] of [...C.crystals, ...C.mushrooms]) { const [x, z] = at(u, v); hp.push(x, T.ground(x, z) + .35, z); hc.push(.45, .85, 1); }
-      const halos = new THREE.Points(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(hp, 3)).setAttribute('color', new THREE.Float32BufferAttribute(hc, 3)), new THREE.PointsMaterial({map: halo, size: 1.6, vertexColors: true, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, toneMapped: false, opacity: .5}));
-      halos.name = 'cave glow'; halos.renderOrder = 5; group.add(halos);
-      const wp = []; for (let k = 0; k < 70; k++) { const u = (R() * 2 - 1) * (C.w - .3), v = C.open + .6 + R() * (C.depth - C.open - 1.4), [x, z] = at(u, v); wp.push(x, F + 2.1 + .9 * Math.cos(Math.min(1, Math.abs(u) / C.w) * Math.PI / 2) - .45 * sstep(C.depth - 4, C.depth, v) - .06, z); }
-      const worms = new THREE.Points(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(wp, 3)), new THREE.PointsMaterial({map: halo, size: .16, color: '#9ff2ff', transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, toneMapped: false}));
-      worms.name = 'glow-worms'; worms.renderOrder = 5; group.add(worms);
-    }, () => mesh(rockBuf, M.rock, 'cave rocks'), () => { const g = glowBuf.geometry(); if (!g) return; const m = new THREE.Mesh(g, new THREE.MeshBasicMaterial({vertexColors: true, toneMapped: false})); m.name = 'cave crystals'; group.add(m); });
-  }
+  if (site.id === 'cave') steps.push(...caveSteps(site, look, world, group, out));   // the cave in the Rock: world/big/cave.js
   if (site.id === 'sett') {
     /* The badger's sett in the wooded slope: a mound of earth under the old oak, the main entrance a dark
        hole between two roots, a smaller hole at the side, fresh sandy spoil fanned out in front of it,
