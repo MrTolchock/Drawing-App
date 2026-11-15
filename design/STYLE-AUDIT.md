@@ -255,3 +255,5 @@ The mailman (same model) also walks his own round on the paths near the den betw
 **9.3.62.** Small creatures to find on the ground near Fuchs: snails that creep, ladybirds that scurry and stop, and little frogs near the water that hop away when he comes close; drawn small in code, hidden in the rain and at dusk. A soft warm wash in the middle of the frame (in the existing vignette overlay, no extra pass) brings the forest closer to the den painting's warmth.
 
 **9.3.63.** No more rainbows: the one in the waterfall's mist and the one after showers are removed.
+
+**9.3.64.** Characters in the forest: the plush fur catches the low sun as a golden rim on the edges that face it, stronger when a friend stands against the light (follows the sun through the day; off in the den, which keeps its painted light), and the painted catchlights in the eyes glow a little so the eyes look wet and alive. Same models; portraits are not re-rendered, so the puzzle fingerprint is unchanged. A tufted fur fringe was tried and rejected (noisy outline, wrapped over held props).

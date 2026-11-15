@@ -5,7 +5,7 @@
 import {THREE} from '../scene/materials.js';
 import {createForest} from './forest3d.js';
 import {createWeather} from './weather.js';
-import {characters} from './characters3d.js';
+import {characters, plushDusk, plushSun} from './characters3d.js';
 import {createPerf} from './perf.js';
 
 const ART='assets/forest-friends/',IW=1448,IH=1086,FOV=30,F=.5/Math.tan(THREE.MathUtils.degToRad(FOV/2));
@@ -79,7 +79,7 @@ export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,o
     camera.setViewOffset(fw,fh,crop.x,crop.y,w,h);
     canvas.style.backgroundSize=fw+'px '+fh+'px';canvas.style.backgroundPosition=(-crop.x)+'px '+(-crop.y)+'px';
   }
-  function setArea(next){if(!['den','forest'].includes(next))next='den';area=next;finishProps();onNear(null);
+  function setArea(next){if(!['den','forest'].includes(next))next='den';area=next;finishProps();onNear(null);if(next==='den'){plushDusk.value=0;plushSun.value.set(0,0,0);}   // the den has its own painted light
     if(next==='forest'){canvas.style.backgroundImage='none';fill.hidden=true;forest.enter(position());}
     else{const url='url('+ART+(next==='den'?'den-v2':next)+'.webp)';canvas.style.backgroundImage=url;fill.style.backgroundImage=url;fill.hidden=false;forest.stop();fox.visible=next==='den';foxShadow.visible=next==='den';ambience.forEach(a=>a.visible=next==='den');foxPos.copy(spots[0]);fox.position.copy(foxPos);fox.rotation.y=.35;idle.target=null;idle.wait=5;idle.greet=next==='den'?1.6:0;}
     layout();

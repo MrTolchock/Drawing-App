@@ -3,7 +3,7 @@
    round Fuchs, with the cast, guidance fireflies, haze per area and a hazy backdrop of distant hills.
    Building is time-sliced while the child is in the den; nothing is downloaded. */
 import {THREE} from '../scene/materials.js';
-import {characters, TRICK_OF, plushDusk} from './characters3d.js';
+import {characters, TRICK_OF, plushDusk, plushSun} from './characters3d.js';
 import {createWorld} from './world/index.js';
 import {createLook, foxView, bendAt, windAt, canvasTex} from './world/textures.js';
 import {createStreamer, NEAR} from './world/streamer.js';
@@ -404,7 +404,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     for (const p of puffs) if (p.life > 0) { p.life -= dt; const k = 1 - p.life / .55; size(p.s, .25 + k * .45); p.s.material.opacity = .5 * (1 - k); p.s.position.y += dt * .25; if (p.life <= 0) p.s.visible = false; }
     life.update(dt, time, pos, {reduced, rain: Math.max(weather.state.rain, dusk() > .7 ? .3 : 0), snow: sound.snow || 0, trees: sound.trees, meadow: sound.meadow, height, fov: camera.fov});
     const halos = streamer.landmarks.home?.halos; if (halos) halos.material.opacity = reduced ? .55 : .5 + Math.sin(time * 7) * .06;
-    plushDusk.value = dusk() * (1 - weather.state.rain); updateWeather(dt, time, reduced); shaftMat.opacity = (reduced ? .15 : .14 + Math.sin(time * .35) * .04) * (1 - weather.state.rain) * (1 + .4 * weather.state.fresh) * (1 - .75 * dusk());
+    plushDusk.value = dusk() * (1 - weather.state.rain); plushSun.value.copy(sunDir).transformDirection(camera.matrixWorldInverse).multiplyScalar((1 - .85 * weather.state.rain) * (1 + .3 * dusk())); updateWeather(dt, time, reduced); shaftMat.opacity = (reduced ? .15 : .14 + Math.sin(time * .35) * .04) * (1 - weather.state.rain) * (1 + .4 * weather.state.fresh) * (1 - .75 * dusk());
     ambience.update(dt, time, pos, {dusk: dusk(), morning: morning(), weather: weather.state, trees: sound.trees, meadow: sound.meadow, swamp: sound.swamp, reduced, height, fov: camera.fov});
     if (!reduced) { if (look.M.water) look.M.water.uniforms.uTime.value += dt; motes.position.set(pos.x, Math.sin(time * .35) * .3, pos.z); motes.rotation.y = time * .01; } else motes.position.set(pos.x, 0, pos.z);
     if (ring.visible) ring.material.opacity = .55 + Math.sin(time * 4) * .25;

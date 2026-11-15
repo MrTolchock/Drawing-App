@@ -261,13 +261,20 @@ float plNoise(vec3 x){vec3 i=floor(x),f=fract(x);f=f*f*(3.-2.*f);
 // soft clumps (both fade out with distance instead of turning into grain), a warm velvet rim and a little self-light. Same shader as tools/characters/plush.js.
 // A warm low light on the fur at dusk (forest3d.js sets it from the time of day; 0 elsewhere).
 export const plushDusk={value:0};
+// The sun as the fur sees it (view space, its length the strength; forest3d.js sets it, 0 elsewhere): the fur edges that
+// face the sun, and all edges when a friend stands against the light, glow golden.
+export const plushSun={value:new THREE.Vector3()};
 function plushFur(source,{fuzz=1,rim=.5}={}){const m=source.clone();m.vertexColors=true;m.roughness=.92;m.metalness=0;
-  m.onBeforeCompile=sh=>{sh.uniforms.plDusk=plushDusk;sh.vertexShader=sh.vertexShader.replace('#include <common>','#include <common>\nvarying vec3 vPl;').replace('#include <begin_vertex>','#include <begin_vertex>\nvPl=position;');
-    sh.fragmentShader=sh.fragmentShader.replace('#include <common>','#include <common>\nvarying vec3 vPl;uniform float plDusk;'+NOISE)
+  m.onBeforeCompile=sh=>{sh.uniforms.plDusk=plushDusk;sh.uniforms.plSun=plushSun;sh.vertexShader=sh.vertexShader.replace('#include <common>','#include <common>\nvarying vec3 vPl;').replace('#include <begin_vertex>','#include <begin_vertex>\nvPl=position;');
+    sh.fragmentShader=sh.fragmentShader.replace('#include <common>','#include <common>\nvarying vec3 vPl;uniform float plDusk;uniform vec3 plSun;'+NOISE)
       .replace('#include <color_fragment>',`#include <color_fragment>\n float plFw=length(fwidth(vPl)),plFine=clamp(1.4-plFw*300.,0.,1.),plCoarse=clamp(1.4-plFw*90.,0.,1.);\n float fz=mix(.5,plNoise(vPl*vec3(330.,62.,330.)),plFine)*.6+mix(.5,plNoise(vPl*95.+7.),plCoarse)*.4; diffuseColor.rgb*=mix(1.,.87+.24*fz,${fuzz.toFixed(2)});`)
       .replace('#include <normal_fragment_maps>',`#include <normal_fragment_maps>\n vec3 fzN=vec3(plNoise(vPl*vec3(280.,70.,280.)),plNoise(vPl*vec3(280.,70.,280.)+3.1),plNoise(vPl*vec3(280.,70.,280.)+5.7))-.5; normal=normalize(normal+fzN*plFine*${(.34*fuzz).toFixed(2)});`)
-      .replace('#include <opaque_fragment>',`float plRim=pow(1.-clamp(dot(normal,normalize(vViewPosition)),0.,1.),2.4);\n outgoingLight+=diffuseColor.rgb*vec3(1.,.9,.78)*plRim*${rim.toFixed(2)}+diffuseColor.rgb*.07+vec3(1.,.58,.28)*plRim*plRim*plDusk*.55;\n #include <opaque_fragment>`);};
+      .replace('#include <opaque_fragment>',`float plRim=pow(1.-clamp(dot(normal,normalize(vViewPosition)),0.,1.),2.4);\n outgoingLight+=diffuseColor.rgb*vec3(1.,.9,.78)*plRim*${rim.toFixed(2)}+diffuseColor.rgb*.07+vec3(1.,.58,.28)*plRim*plRim*plDusk*.55;\n float plSr=pow(1.-clamp(dot(normal,normalize(vViewPosition)),0.,1.),2.6);\n outgoingLight+=diffuseColor.rgb*vec3(1.,.8,.52)*plSr*(max(0.,dot(normal,plSun))*1.15+max(0.,-plSun.z)*.7);\n #include <opaque_fragment>`);};
   m.customProgramCacheKey=()=>'plush-fur-'+fuzz+'-'+rim;return m;}
+// Eyes: the painted catchlights glow a little, so the eyes look wet and alive in any light.
+function plushGloss(source){const m=Object.assign(source.clone(),{map:eyes(),roughness:.12});
+  m.onBeforeCompile=sh=>{sh.fragmentShader=sh.fragmentShader.replace('#include <opaque_fragment>','#ifdef USE_MAP\n float plC=step(vMapUv.x,.5)*smoothstep(.9,.99,min(diffuseColor.r,min(diffuseColor.g,diffuseColor.b)));\n outgoingLight+=vec3(plC)*.75;\n#endif\n#include <opaque_fragment>');};
+  m.customProgramCacheKey=()=>'plush-gloss';return m;}
 // The painted eye, as on the friends sheet (left half: cream eyeball shaded round its rim, thick dark upper lid,
 // big warm-brown iris lighter at the bottom, large pupil, two catchlights) next to plain white (right half) for
 // noses, teeth and buttons, which take their colour from the vertices. Drawn once, shared.
@@ -362,7 +369,7 @@ function plushModel(id,height){
   const model=cloneSkinned(baked[id]),bones={},meshes=[];
   // Characters stay out of the static shadow map (it is not redrawn as they move); each has a soft contact shadow.
   model.traverse(o=>{if(o.isBone)bones[o.name]=o;if(o.isSkinnedMesh){meshes.push(o);o.castShadow=false;o.frustumCulled=false;}});
-  const own=new Map();for(const m of meshes){if(!own.has(m.material))own.set(m.material,m.material.name==='fur'?plushFur(m.material):Object.assign(m.material.clone(),{map:eyes(),roughness:.12}));m.material=own.get(m.material);}
+  const own=new Map();for(const m of meshes){if(!own.has(m.material))own.set(m.material,m.material.name==='fur'?plushFur(m.material):plushGloss(m.material));m.material=own.get(m.material);}
   const list=prefix=>Object.keys(bones).filter(n=>n.startsWith(prefix+'_')).sort((a,b)=>+a.split('_')[1]-+b.split('_')[1]).map(n=>bones[n]);
   const root=new THREE.Group();root.add(model);
   const parts={root,body:bones.body,bodyY:bones.body?bones.body.position.y:0,head:bones.head,eyes:list('eye'),ears:list('ear'),arms:list('arm'),legs:list('leg'),tail:bones.tail,tailTip:null,wings:list('wing')};
