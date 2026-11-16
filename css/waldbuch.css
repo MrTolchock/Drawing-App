@@ -369,7 +369,8 @@
 .friends-interface :is(.screen-forest-book,.den-colouring-book,.screen-gallery,.ff-settings-screen) .btn-back:active,
 .friends-interface .ff-map-card .ff-card-top>.ff-button:first-child:not(:disabled):active{transform:translateY(4px);translate:none;box-shadow:0 2px 0 var(--wb-timber-deep),var(--wb-lift)}
 .friends-interface :is(.den-colouring-book,.screen-gallery,.ff-settings-screen) .btn-back .ic{width:36px;height:36px;filter:brightness(0) invert(.96)}
-.friends-interface .ff-map-card .ff-card-top>.ff-button:first-child .ff-picture{width:34px;height:34px;filter:brightness(0) invert(.95) sepia(.3)}
+.friends-interface .ff-map-card .ff-card-top>.ff-button:first-child{background:var(--wb-paper)}
+.friends-interface .ff-map-card .ff-card-top>.ff-button:first-child .ff-picture{width:42px;height:42px}
 /* Waldspiele keeps Fuchs as its back button: his portrait sits in the wooden ring. */
 .friends-interface .screen-forest-book .btn-back>*{width:54px;height:54px;border-radius:50%;background-color:var(--wb-paper)}
 .friends-interface :is(.screen-forest-book,.screen-trace,.screen-dots) .topbar .btn-round:not(.btn-back){
@@ -396,31 +397,15 @@
 .friends-interface .ff-overlay{background:radial-gradient(ellipse at 50% 48%,#3a24127a,#2a180bcc)}
 .friends-interface .ff-overlay.ff-postcard-overlay{background:radial-gradient(ellipse at 50% 48%,#3a24127a,#2a180bcc)}
 
-/* ---------- Letter: a landscape postcard with stamp and postmark (4.2) ---------- */
+/* ---------- Drawn letter: one paper asset, with the current sender's model portrait ---------- */
 .friends-interface .ff-postcard-overlay .ff-letter-paper{
-  display:grid;grid-template-columns:auto 1fr;grid-template-rows:1fr auto;align-items:center;column-gap:18px;
-  width:min(640px,92vw);min-height:380px;padding:34px 40px 30px;border:0;border-radius:18px;transform:none;rotate:-3deg;
-  background:var(--wb-paper);box-shadow:0 0 0 2px #e6d2aa,0 18px 44px #1e100e66;outline:2px solid #e6d2aa;outline-offset:-16px;
+  position:relative;display:block;width:min(720px,92vw,106.66dvh);height:auto;aspect-ratio:4/3;min-width:0;min-height:0;max-height:none;margin:0;padding:0;
+  border:0;border-radius:0;transform:none;rotate:-2deg;outline:none;box-shadow:none;
+  background:transparent url('../assets/interface/letter-paper.webp') center/100% 100% no-repeat;
 }
-.friends-interface .ff-postcard-overlay .ff-letter-paper .ff-letter-illustration{grid-row:1/3;width:250px;height:250px;margin:0}
-.friends-interface .ff-postcard-overlay .ff-letter-scribbles{grid-column:2;align-self:end;height:84px;margin:0;opacity:.8}
-.friends-interface .ff-postcard-overlay .ff-letter-stamp{
-  right:34px;top:30px;width:76px;height:88px;padding:6px;rotate:4deg;border:3px dashed var(--accent,var(--wb-fox));background:var(--wb-paper-inset);
-}
-.friends-interface .ff-postcard-overlay .ff-letter-stamp>*{display:none}
-.friends-interface .ff-postcard-overlay .ff-letter-stamp::before{content:"";position:absolute;inset:10px;background:url(../assets/waldatelier/forest-objects.webp) var(--wb-item)/400% 400% no-repeat}
-.friends-interface .ff-postcard-overlay .ff-letter-stamp::after{
-  content:"";position:absolute;left:-74px;top:14px;width:96px;height:60px;pointer-events:none;
-  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 60'%3E%3Ccircle cx='28' cy='30' r='22' fill='none' stroke='%23b9a17c' stroke-width='2.5'/%3E%3Cpath d='M46 22q8-6 16 0t16 0 16 0M46 38q8-6 16 0t16 0 16 0' fill='none' stroke='%23b9a17c' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E") center/contain no-repeat;
-}
-.friends-interface .ff-postcard-overlay .ff-letter-paper:focus-visible{outline:4px solid var(--wb-focus);outline-offset:8px}
-@media (max-width:600px){
-  .friends-interface .ff-postcard-overlay .ff-letter-paper{grid-template-columns:1fr;grid-template-rows:auto auto;justify-items:center;min-height:0;padding:30px 20px 20px;outline-offset:-10px}
-  .friends-interface .ff-postcard-overlay .ff-letter-paper .ff-letter-illustration{grid-row:auto;width:200px;height:200px}
-  .friends-interface .ff-postcard-overlay .ff-letter-scribbles{grid-column:1;width:100%;height:70px}
-  .friends-interface .ff-postcard-overlay .ff-letter-stamp{right:16px;top:16px;width:54px;height:64px}
-  .friends-interface .ff-postcard-overlay .ff-letter-stamp::after{left:-60px;top:6px;width:72px;height:46px}
-}
+.friends-interface .ff-postcard-overlay .ff-letter-paper>.ff-letter-friend{position:absolute;left:9%;top:23%;width:42%;height:56%;margin:0;pointer-events:none}
+.friends-interface .ff-postcard-overlay .ff-letter-paper:focus-visible{outline:4px solid var(--wb-focus);outline-offset:8px;border-radius:20px}
+
 
 /* ---------- Map: a page of the book; destinations as glowing rings (4.10) ---------- */
 .friends-interface .ff-map-card{

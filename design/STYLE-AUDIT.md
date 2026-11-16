@@ -1,6 +1,23 @@
 # Visual consistency audit
 
-Latest audit: 15 November 2026, Waldpost 9.3.72. The dated entries below record earlier releases. This checks the active game against [Visual style](VISUAL-STYLE.md) and [Puzzle blueprint](PUZZLE-BLUEPRINT.md). It records implementation evidence; it does not grant editorial approval.
+Latest audit: 16 November 2026, Waldpost 9.3.75. The dated entries below record earlier releases. This checks the active game against [Visual style](VISUAL-STYLE.md) and [Puzzle blueprint](PUZZLE-BLUEPRINT.md). It records implementation evidence; it does not grant editorial approval.
+
+## Drawn navigation, letter and shared image library — 9.3.75
+
+Settings, map, envelope, den/home, door and back now use one drawn pencil/gouache atlas: honey wood, cream parchment, sage leaves and red wax. Their accessible button names and adult gate remain intact. The navigation pictures render as squares inside the existing 48 px or larger targets; the back picture keeps its drawn colours. Puzzle utility controls retain the shared quiet SVG family.
+
+The letter uses newly illustrated cream paper with real transparent edges, a leaf stamp and postmark. The current sender's model portrait is added separately in the clear left half; there is no generated substitute character. The complete letter fits tablet, phone and short landscape screens, and keyboard focus remains visible.
+
+- [Phone navigation](evidence/2026-11-16-artwork/navigation-390.png) and [tablet den](evidence/2026-11-16-artwork/navigation-1080.png).
+- Illustrated letter: [phone](evidence/2026-11-16-artwork/letter-390.png), [tablet](evidence/2026-11-16-artwork/letter-1080.png) and [landscape](evidence/2026-11-16-artwork/letter-844.png).
+- [Phone map](evidence/2026-11-16-artwork/map-390.png), including drawn home, invitation and back pictures.
+- Central picture library: [tablet](evidence/2026-11-16-artwork/image-library-1080.png) and [phone](evidence/2026-11-16-artwork/image-library-390.png); [browser report](evidence/2026-11-16-artwork/report.json).
+
+All 235 registered puzzle drawings across 17 atlases remain together in `assets/waldatelier/`, with their original IDs, cells and runtime paths. The new searchable library records actual use by the 31 puzzles, copies IDs and exports individual transparent PNGs from existing cells. It operates independently of game/review storage. Its generated catalogue is checked in CI.
+
+The [artwork handoff for Claude](artwork/README.md) retains the exact new prompts, supplied references, editable PNGs, source hashes and preparation manifests. It indexes recovered historical prompts and explains every known generator role, including the den and the one clearing shared by puzzle pages, menus and Settings. Missing final historical prompts are explicitly distinguished from new reconstruction recipes. The picture map, model portraits and procedural world have their actual code pipelines documented.
+
+All 31 puzzle revision IDs remain identical to 9.3.74, preserving existing review decisions. No review data or approvals are written by this change or its browser fixtures. All 112 model tests, all 31 puzzles at two viewport sizes, the complete letter journey and the new artwork/library browser checks passed. Installed-app checks from 9.3.74 passed partial-work retention, dialog protection, complete offline installation, failed-download recovery and the independent recovery page. [Source/runtime hashes and revision comparison](evidence/2026-11-16-artwork/art-and-revisions.json) and the [validation record](evidence/2026-11-16-artwork/README.md) accompany the screenshots.
 
 ## Published approval recovery and review comments — 9.3.72
 

@@ -12,7 +12,8 @@ This is the single visual specification for the active game. The direction is a 
 | Learning subjects: animals, objects, quantities and pictured verbs | Drawn crayon/pencil illustrations, soft textured edges, transparent background, consistent woodland palette | `assets/waldatelier/*.webp`, `FK.visual.art(subject)`; `forest-actions` for actions and `puzzle-vocabulary` for nouns |
 | Exact geometry, shape constructions, mirror grids, routes, handwriting paths | SVG/canvas paths where precision is the task. Use the same paper, ink, colour palette and rounded stroke language | Shared puzzle renderer, `js/learn/glyphs.js`, trace engine |
 | Utility controls: back, explain, settings, map, letter and reset | One sepia SVG family, rounded line ends, 48-unit viewBox, 2.2-unit strokes, restrained fills | `js/ui/waldatelier-icons.js`, `FK.icons.element(name)` or `FK.icon(name)` |
-| The world's own buttons (forest and den): map, letter, settings, home/den tree, door | The same 48-unit grid and sepia outline, filled in the world's warm palette, on round wooden medallions, so they sit with the painted den and the plush cast. Puzzle pages keep the plain utility family | `js/friends/hud-art.js`, `FK.hudArt.element(name)` |
+| The world's own buttons (forest and den): map, letter, settings, home/den tree, door, back | One drawn pencil/gouache family: cream parchment, honey wood, sage leaves and red wax; clean transparent cells on the shared wooden medallions. Puzzle pages keep the plain SVG utility family | `assets/interface/navigation.webp`, `js/friends/hud-art.js`, `FK.hudArt.element(name)`; [recorded prompts and sources](artwork/README.md) |
+| Picture letter | Drawn cream stationery with transparent deckled edges and leaf stamp; the actual sender's current model portrait is composited on its clear left half | `assets/interface/letter-paper.webp`, `letterPortrait(id)` in `js/friends/game.js`; [letter recipe](artwork/letter-paper.json) |
 | Puzzle surroundings and map | Painted woodland backdrop; the picture map reflects the actual world layout, with rendered identity pins | `puzzle-clearing.webp`, `world-map.webp`, `tools/map/` |
 | Retired colouring pages and saved drawings | Inactive historical artwork/data; preserve saved IDs and local drawing records. The den table and paper pile remain in the background without drawing icons | `colouring-friends.webp`, `js/art/`, `js/paint/` |
 
@@ -52,7 +53,7 @@ Use one clear task area, generous cream space and a small portrait/context row. 
 
 - Add subjects to an existing drawn atlas or supply a matching drawn sheet. Register and name every picture before using it. Transparent cells need consistent scale, crop and padding; counted pictures must show exactly one object.
 - Change character identity through the current sculpt/bake pipeline: `tools/characters/plush.js` → `tools/bake/` → GLBs → `tools/portraits/` → one portrait atlas. Update all surfaces together.
-- Keep UI icons in the shared symbol source. Do not introduce a one-off painted or Unicode control icon.
+- Keep quiet puzzle utility icons in the shared SVG source and world navigation in the one drawn atlas. Register additions with the matching family and record their sources; no one-off or Unicode controls.
 - No runtime imports, styles, assets or offline downloads may come from `archive/` or retired design prototypes.
 - After shared visual changes, regenerate the puzzle implementation fingerprint. Sign-offs for affected puzzles become stale; adults must inspect the new revisions. Unrelated puzzles and unused atlas cells retain their sign-offs. Record the result in [Consistency audit](STYLE-AUDIT.md), run the design checks and capture the real game at phone and tablet sizes.
 

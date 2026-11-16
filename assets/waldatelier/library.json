@@ -1,0 +1,5217 @@
+{
+  "format": "waldpost-drawn-image-library",
+  "version": 1,
+  "directory": "assets/waldatelier",
+  "guide": "design/artwork/README.md",
+  "runtimeRegistry": "js/ui/waldatelier.js",
+  "puzzles": {
+    "friends-squirrel": {
+      "title": "Nüsse zählen",
+      "host": "squirrel"
+    },
+    "friends-bird": {
+      "title": "Reimpaare lesen",
+      "host": "bird"
+    },
+    "friends-owl": {
+      "title": "Lies und zeig",
+      "host": "owl"
+    },
+    "friends-beaver": {
+      "title": "Welche Form fehlt?",
+      "host": "beaver"
+    },
+    "friends-mouse": {
+      "title": "Wörter und Bilder",
+      "host": "mouse"
+    },
+    "friends-hedgehog": {
+      "title": "Tierrätsel",
+      "host": "hedgehog"
+    },
+    "friends-fish": {
+      "title": "Fische zählen",
+      "host": "fish"
+    },
+    "friends-deer": {
+      "title": "Wer wohnt wo?",
+      "host": "deer"
+    },
+    "friends-kingfisher": {
+      "title": "Am Bach zählen",
+      "host": "kingfisher"
+    },
+    "friends-frog": {
+      "title": "Tierwörter lesen",
+      "host": "frog"
+    },
+    "friends-badger": {
+      "title": "Naturrätsel",
+      "host": "badger"
+    },
+    "count": {
+      "title": "Waldkäfer zählen",
+      "host": "squirrel"
+    },
+    "add": {
+      "title": "Äpfel rechnen",
+      "host": "squirrel"
+    },
+    "pattern": {
+      "title": "Waldmuster",
+      "host": "owl"
+    },
+    "nature": {
+      "title": "Naturdetektive",
+      "host": "bird"
+    },
+    "rocket": {
+      "title": "Glühwürmchen sammeln",
+      "host": "squirrel"
+    },
+    "picnic": {
+      "title": "Waldpicknick",
+      "host": "squirrel"
+    },
+    "syllable": {
+      "title": "Silben zählen",
+      "host": "bird"
+    },
+    "robot": {
+      "title": "Waldpost",
+      "host": "beaver"
+    },
+    "sequence": {
+      "title": "Was kommt zuerst?",
+      "host": "owl"
+    },
+    "treasure": {
+      "title": "Waldschatz",
+      "host": "owl"
+    },
+    "neighbours": {
+      "title": "Zahlennachbarn",
+      "host": "squirrel"
+    },
+    "compare": {
+      "title": "Beeren vergleichen",
+      "host": "squirrel"
+    },
+    "mirror": {
+      "title": "Waldspiegel",
+      "host": "beaver"
+    },
+    "vowels": {
+      "title": "Waldwörter ergänzen",
+      "host": "mouse"
+    },
+    "read-puzzle": {
+      "title": "Silben-Puzzle",
+      "host": "mouse"
+    },
+    "read-word": {
+      "title": "Wort und Waldbild",
+      "host": "mouse"
+    },
+    "read-leaves": {
+      "title": "Silbenblätter",
+      "host": "mouse"
+    },
+    "read-colours": {
+      "title": "Farben lesen",
+      "host": "mouse"
+    },
+    "trace": {
+      "title": "Schreibspuren",
+      "host": "mouse"
+    },
+    "trace-numbers": {
+      "title": "Zahlenspuren",
+      "host": "mouse"
+    }
+  },
+  "sheets": [
+    {
+      "id": "alphabet",
+      "file": "alphabet.webp",
+      "width": 1254,
+      "height": 1254,
+      "columns": 4,
+      "rows": 4,
+      "sha256": "1999236e340fca2aa6cb22a2c48368d9a4b78882b5a5c92867d3df25c64385fb",
+      "provenance": {
+        "status": "recorded-original",
+        "promptFile": "design/artwork/prompts/recorded-waldatelier.json",
+        "promptId": "alphabet",
+        "guide": "design/artwork/README.md"
+      }
+    },
+    {
+      "id": "animals",
+      "file": "animals.webp",
+      "width": 1254,
+      "height": 1254,
+      "columns": 4,
+      "rows": 4,
+      "sha256": "f12730079d950dd197225d118d04b049f531cf4d6eec76817f002c589b946a65",
+      "provenance": {
+        "status": "recorded-original",
+        "promptFile": "design/artwork/prompts/recorded-waldatelier.json",
+        "promptId": "animals",
+        "guide": "design/artwork/README.md"
+      }
+    },
+    {
+      "id": "creatures",
+      "file": "creatures.webp",
+      "width": 1254,
+      "height": 1254,
+      "columns": 4,
+      "rows": 4,
+      "sha256": "30e05028bb56dedaf58dd88f0bd52803fee08177cd2c636870a417ef8f0aa0f2",
+      "provenance": {
+        "status": "recorded-original",
+        "promptFile": "design/artwork/prompts/recorded-waldatelier.json",
+        "promptId": "creatures",
+        "guide": "design/artwork/README.md"
+      }
+    },
+    {
+      "id": "discovery",
+      "file": "discovery.webp",
+      "width": 1254,
+      "height": 1254,
+      "columns": 4,
+      "rows": 4,
+      "sha256": "ebe641587a934c61e80feeb5fd33afdf5a212f1856586634ec75aae7cc7928f9",
+      "provenance": {
+        "status": "recorded-original",
+        "promptFile": "design/artwork/prompts/recorded-waldatelier.json",
+        "promptId": "discovery",
+        "guide": "design/artwork/README.md"
+      }
+    },
+    {
+      "id": "forest-actions",
+      "file": "forest-actions.webp",
+      "width": 1254,
+      "height": 1254,
+      "columns": 4,
+      "rows": 4,
+      "sha256": "8fc2de98bc806e8cec0fac9e194e188510de4e94cc0b217c46120d874a99db0d",
+      "provenance": {
+        "status": "reconstruction-recipe",
+        "guide": "design/artwork/README.md",
+        "recipe": "design/artwork/prompts/puzzle-sheet-reconstruction.txt"
+      }
+    },
+    {
+      "id": "forest-fox",
+      "file": "forest-fox.webp",
+      "width": 640,
+      "height": 640,
+      "columns": 2,
+      "rows": 2,
+      "sha256": "e5958deb7111a6e7896b02915950745fcd5b108666556091b0b2b9bae6b56451",
+      "provenance": {
+        "status": "recorded",
+        "manifest": "design/illustrations/forest-fox.json",
+        "guide": "design/illustrations/README.md"
+      }
+    },
+    {
+      "id": "forest-objects",
+      "file": "forest-objects.webp",
+      "width": 1254,
+      "height": 1254,
+      "columns": 4,
+      "rows": 4,
+      "sha256": "5222de559e00e2a1f1cb5c0257138f37035fc546a0dcf3ecd93c69b8313d2933",
+      "provenance": {
+        "status": "reconstruction-recipe",
+        "guide": "design/artwork/README.md",
+        "recipe": "design/artwork/prompts/puzzle-sheet-reconstruction.txt"
+      }
+    },
+    {
+      "id": "forest-wildlife",
+      "file": "forest-wildlife.webp",
+      "width": 1280,
+      "height": 1280,
+      "columns": 4,
+      "rows": 4,
+      "sha256": "f152dfbc074a80d29d6fc91a1d7cbef62a3bec70b253d94bbaae60f50a1de1e8",
+      "provenance": {
+        "status": "recorded",
+        "manifest": "design/illustrations/forest-wildlife.json",
+        "guide": "design/illustrations/README.md"
+      }
+    },
+    {
+      "id": "menu",
+      "file": "menu.webp",
+      "width": 1536,
+      "height": 1024,
+      "columns": 3,
+      "rows": 2,
+      "sha256": "b2289b40f87df596cbd23fa87476408b34b656f4f447f41a1548637d41a411d6",
+      "provenance": {
+        "status": "reconstruction-recipe",
+        "guide": "design/artwork/README.md",
+        "recipe": "design/artwork/prompts/puzzle-sheet-reconstruction.txt"
+      }
+    },
+    {
+      "id": "navigation",
+      "file": "navigation.webp",
+      "width": 1254,
+      "height": 1254,
+      "columns": 4,
+      "rows": 4,
+      "sha256": "023c726e535602c27b5d0669609350a234dac1f45a1927c4e196f66a7ccd263b",
+      "provenance": {
+        "status": "recorded-original",
+        "promptFile": "design/artwork/prompts/recorded-waldatelier.json",
+        "promptId": "navigation",
+        "guide": "design/artwork/README.md"
+      }
+    },
+    {
+      "id": "people",
+      "file": "people.webp",
+      "width": 1254,
+      "height": 1254,
+      "columns": 4,
+      "rows": 4,
+      "sha256": "b059d4b45ec043f6056f657a07e03b1d6c32d22e4a6b6324c41047d96e4dfc54",
+      "provenance": {
+        "status": "recorded-original",
+        "promptFile": "design/artwork/prompts/recorded-waldatelier.json",
+        "promptId": "people",
+        "guide": "design/artwork/README.md"
+      }
+    },
+    {
+      "id": "puzzle-flowers",
+      "file": "puzzle-flowers.webp",
+      "width": 1536,
+      "height": 1024,
+      "columns": 3,
+      "rows": 2,
+      "sha256": "bfd8e5e889ee0bd4d29488f063104e9129b4afe9bdf8a78ba8f466f00188bc6e",
+      "provenance": {
+        "status": "reconstruction-recipe",
+        "guide": "design/artwork/README.md",
+        "recipe": "design/artwork/prompts/puzzle-sheet-reconstruction.txt"
+      }
+    },
+    {
+      "id": "puzzle-vocabulary",
+      "file": "puzzle-vocabulary.webp",
+      "width": 1120,
+      "height": 1400,
+      "columns": 4,
+      "rows": 5,
+      "sha256": "df1f2141b6ff98b83702887986c0d63add0f8edbbab81bc10c9805e000d3247a",
+      "provenance": {
+        "status": "reconstruction-recipe",
+        "guide": "design/artwork/README.md",
+        "recipe": "design/artwork/prompts/puzzle-sheet-reconstruction.txt"
+      }
+    },
+    {
+      "id": "rhyme-vocabulary",
+      "file": "rhyme-vocabulary.webp",
+      "width": 1280,
+      "height": 1280,
+      "columns": 4,
+      "rows": 4,
+      "sha256": "7017fb46ace669eb61fe475135e09f2feb1d87932d4248c7933f48653af943b3",
+      "provenance": {
+        "status": "recorded",
+        "manifest": "design/illustrations/rhyme-vocabulary.json",
+        "guide": "design/illustrations/README.md"
+      }
+    },
+    {
+      "id": "words-one",
+      "file": "words-one.webp",
+      "width": 1254,
+      "height": 1254,
+      "columns": 4,
+      "rows": 4,
+      "sha256": "15ad880d4339f2d21981a3645603d15cf4abbc15441560599c2935154b8c57fa",
+      "provenance": {
+        "status": "recorded-original",
+        "promptFile": "design/artwork/prompts/recorded-waldatelier.json",
+        "promptId": "words-one",
+        "guide": "design/artwork/README.md"
+      }
+    },
+    {
+      "id": "words-three",
+      "file": "words-three.webp",
+      "width": 1254,
+      "height": 1254,
+      "columns": 4,
+      "rows": 4,
+      "sha256": "e2c6a2c0d0fb7de51b550ff2fd398f74fe408071f719a03d4429f83cde2c5f71",
+      "provenance": {
+        "status": "recorded-original",
+        "promptFile": "design/artwork/prompts/recorded-waldatelier.json",
+        "promptId": "words-three",
+        "guide": "design/artwork/README.md"
+      }
+    },
+    {
+      "id": "words-two",
+      "file": "words-two.webp",
+      "width": 1254,
+      "height": 1254,
+      "columns": 4,
+      "rows": 4,
+      "sha256": "2371914cdcdf4f3ab0584174729b2257f331a69088cf2df75832e13150df4c85",
+      "provenance": {
+        "status": "recorded-original",
+        "promptFile": "design/artwork/prompts/recorded-waldatelier.json",
+        "promptId": "words-two",
+        "guide": "design/artwork/README.md"
+      }
+    }
+  ],
+  "images": [
+    {
+      "id": "ant",
+      "label": "Ameise",
+      "sheet": "alphabet",
+      "index": 12,
+      "column": 0,
+      "row": 3,
+      "sourceRect": {
+        "x": 0,
+        "y": 940.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🐜"
+      ],
+      "usedBy": [
+        "friends-hedgehog",
+        "friends-frog",
+        "nature",
+        "syllable",
+        "vowels",
+        "read-puzzle",
+        "read-word"
+      ]
+    },
+    {
+      "id": "apple",
+      "label": "apple",
+      "sheet": "words-two",
+      "index": 5,
+      "column": 1,
+      "row": 1,
+      "sourceRect": {
+        "x": 313.5,
+        "y": 313.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🍎",
+        "🍏"
+      ],
+      "usedBy": [
+        "friends-deer",
+        "friends-badger",
+        "trace-numbers"
+      ]
+    },
+    {
+      "id": "badger",
+      "label": "badger",
+      "sheet": "alphabet",
+      "index": 13,
+      "column": 1,
+      "row": 3,
+      "sourceRect": {
+        "x": 313.5,
+        "y": 940.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🦡"
+      ],
+      "usedBy": [
+        "friends-frog",
+        "friends-badger",
+        "nature"
+      ]
+    },
+    {
+      "id": "badger-sleep",
+      "label": "Dachs schläft",
+      "sheet": "forest-wildlife",
+      "index": 5,
+      "column": 1,
+      "row": 1,
+      "sourceRect": {
+        "x": 320,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-owl"
+      ]
+    },
+    {
+      "id": "badger-walk",
+      "label": "Dachs läuft",
+      "sheet": "forest-wildlife",
+      "index": 4,
+      "column": 0,
+      "row": 1,
+      "sourceRect": {
+        "x": 0,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-owl",
+        "friends-hedgehog"
+      ]
+    },
+    {
+      "id": "ball",
+      "label": "Ball",
+      "sheet": "words-three",
+      "index": 13,
+      "column": 1,
+      "row": 3,
+      "sourceRect": {
+        "x": 313.5,
+        "y": 940.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "⚽"
+      ],
+      "usedBy": [
+        "friends-bird",
+        "friends-mouse"
+      ]
+    },
+    {
+      "id": "balloon",
+      "label": "balloon",
+      "sheet": "words-three",
+      "index": 14,
+      "column": 2,
+      "row": 3,
+      "sourceRect": {
+        "x": 627,
+        "y": 940.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🎈"
+      ],
+      "usedBy": [
+        "trace-numbers"
+      ]
+    },
+    {
+      "id": "banana",
+      "label": "banana",
+      "sheet": "words-one",
+      "index": 8,
+      "column": 0,
+      "row": 2,
+      "sourceRect": {
+        "x": 0,
+        "y": 627,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🍌"
+      ],
+      "usedBy": [
+        "syllable",
+        "vowels",
+        "read-puzzle",
+        "read-word",
+        "trace"
+      ]
+    },
+    {
+      "id": "bean",
+      "label": "bean",
+      "sheet": "discovery",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🫘"
+      ],
+      "usedBy": [
+        "sequence"
+      ]
+    },
+    {
+      "id": "bear",
+      "label": "bear",
+      "sheet": "creatures",
+      "index": 10,
+      "column": 2,
+      "row": 2,
+      "sourceRect": {
+        "x": 627,
+        "y": 627,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🐻"
+      ],
+      "usedBy": [
+        "friends-frog",
+        "trace"
+      ]
+    },
+    {
+      "id": "beaver",
+      "label": "Biber",
+      "sheet": "creatures",
+      "index": 5,
+      "column": 1,
+      "row": 1,
+      "sourceRect": {
+        "x": 313.5,
+        "y": 313.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🦫"
+      ],
+      "usedBy": [
+        "friends-hedgehog",
+        "nature",
+        "syllable",
+        "vowels",
+        "read-puzzle",
+        "read-word"
+      ]
+    },
+    {
+      "id": "bed",
+      "label": "bed",
+      "sheet": "words-three",
+      "index": 4,
+      "column": 0,
+      "row": 1,
+      "sourceRect": {
+        "x": 0,
+        "y": 313.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🛏️"
+      ],
+      "usedBy": [
+        "sequence"
+      ]
+    },
+    {
+      "id": "bee",
+      "label": "Biene",
+      "sheet": "animals",
+      "index": 7,
+      "column": 3,
+      "row": 1,
+      "sourceRect": {
+        "x": 940.5,
+        "y": 313.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🐝"
+      ],
+      "usedBy": [
+        "friends-bird",
+        "friends-hedgehog",
+        "friends-deer",
+        "friends-frog",
+        "friends-badger",
+        "count",
+        "nature",
+        "syllable",
+        "sequence",
+        "vowels",
+        "read-puzzle",
+        "read-word"
+      ]
+    },
+    {
+      "id": "bell",
+      "label": "bell",
+      "sheet": "words-two",
+      "index": 12,
+      "column": 0,
+      "row": 3,
+      "sourceRect": {
+        "x": 0,
+        "y": 940.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🔔"
+      ],
+      "usedBy": [
+        "syllable",
+        "vowels",
+        "read-puzzle",
+        "read-word"
+      ]
+    },
+    {
+      "id": "berry-cluster",
+      "label": "berry cluster",
+      "sheet": "menu",
+      "index": 2,
+      "column": 2,
+      "row": 0,
+      "sourceRect": {
+        "x": 1024,
+        "y": 0,
+        "width": 512,
+        "height": 512
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "bicycle",
+      "label": "bicycle",
+      "sheet": "words-one",
+      "index": 6,
+      "column": 2,
+      "row": 1,
+      "sourceRect": {
+        "x": 627,
+        "y": 313.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🚲"
+      ],
+      "usedBy": []
+    },
+    {
+      "id": "bird",
+      "label": "bird",
+      "sheet": "animals",
+      "index": 5,
+      "column": 1,
+      "row": 1,
+      "sourceRect": {
+        "x": 313.5,
+        "y": 313.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🐦"
+      ],
+      "usedBy": [
+        "trace"
+      ]
+    },
+    {
+      "id": "bird-fly",
+      "label": "Vogel fliegt",
+      "sheet": "forest-actions",
+      "index": 3,
+      "column": 3,
+      "row": 0,
+      "sourceRect": {
+        "x": 940.5,
+        "y": 0,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-owl"
+      ]
+    },
+    {
+      "id": "bird-sit",
+      "label": "Vogel sitzt",
+      "sheet": "forest-actions",
+      "index": 4,
+      "column": 0,
+      "row": 1,
+      "sourceRect": {
+        "x": 0,
+        "y": 313.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-owl",
+        "friends-hedgehog",
+        "friends-deer",
+        "friends-badger",
+        "nature",
+        "syllable",
+        "sequence",
+        "vowels",
+        "read-puzzle",
+        "read-word",
+        "trace"
+      ]
+    },
+    {
+      "id": "biscuit",
+      "label": "biscuit",
+      "sheet": "words-two",
+      "index": 8,
+      "column": 0,
+      "row": 2,
+      "sourceRect": {
+        "x": 0,
+        "y": 627,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🍪"
+      ],
+      "usedBy": [
+        "trace-numbers"
+      ]
+    },
+    {
+      "id": "blue-tit",
+      "label": "blue tit",
+      "sheet": "menu",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 512,
+        "y": 0,
+        "width": 512,
+        "height": 512
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "blueberries",
+      "label": "blueberries",
+      "sheet": "people",
+      "index": 15,
+      "column": 3,
+      "row": 3,
+      "sourceRect": {
+        "x": 940.5,
+        "y": 940.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "boat",
+      "label": "Boot",
+      "sheet": "words-three",
+      "index": 11,
+      "column": 3,
+      "row": 2,
+      "sourceRect": {
+        "x": 940.5,
+        "y": 627,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "⛵"
+      ],
+      "usedBy": [
+        "friends-bird",
+        "friends-mouse",
+        "friends-deer",
+        "friends-badger"
+      ]
+    },
+    {
+      "id": "book",
+      "label": "Buch",
+      "sheet": "words-three",
+      "index": 3,
+      "column": 3,
+      "row": 0,
+      "sourceRect": {
+        "x": 940.5,
+        "y": 0,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "📖",
+        "📚"
+      ],
+      "usedBy": [
+        "friends-bird",
+        "friends-mouse",
+        "sequence"
+      ]
+    },
+    {
+      "id": "bowl",
+      "label": "bowl",
+      "sheet": "alphabet",
+      "index": 14,
+      "column": 2,
+      "row": 3,
+      "sourceRect": {
+        "x": 627,
+        "y": 940.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🥣"
+      ],
+      "usedBy": [
+        "sequence"
+      ]
+    },
+    {
+      "id": "bucket",
+      "label": "bucket",
+      "sheet": "discovery",
+      "index": 7,
+      "column": 3,
+      "row": 1,
+      "sourceRect": {
+        "x": 940.5,
+        "y": 313.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🪣"
+      ],
+      "usedBy": [
+        "friends-badger",
+        "sequence"
+      ]
+    },
+    {
+      "id": "bus",
+      "label": "Bus",
+      "sheet": "creatures",
+      "index": 13,
+      "column": 1,
+      "row": 3,
+      "sourceRect": {
+        "x": 313.5,
+        "y": 940.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🚌"
+      ],
+      "usedBy": [
+        "friends-bird",
+        "friends-mouse"
+      ]
+    },
+    {
+      "id": "butterfly",
+      "label": "Schmetterling",
+      "sheet": "animals",
+      "index": 10,
+      "column": 2,
+      "row": 2,
+      "sourceRect": {
+        "x": 627,
+        "y": 627,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🦋"
+      ],
+      "usedBy": [
+        "friends-hedgehog",
+        "friends-badger",
+        "nature",
+        "syllable",
+        "sequence",
+        "vowels",
+        "read-puzzle",
+        "read-word",
+        "trace-numbers"
+      ]
+    },
+    {
+      "id": "cake",
+      "label": "cake",
+      "sheet": "words-three",
+      "index": 7,
+      "column": 3,
+      "row": 1,
+      "sourceRect": {
+        "x": 940.5,
+        "y": 313.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🍰"
+      ],
+      "usedBy": [
+        "syllable",
+        "vowels",
+        "read-puzzle",
+        "read-word"
+      ]
+    },
+    {
+      "id": "camel",
+      "label": "camel",
+      "sheet": "creatures",
+      "index": 3,
+      "column": 3,
+      "row": 0,
+      "sourceRect": {
+        "x": 940.5,
+        "y": 0,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🐫",
+        "🐪"
+      ],
+      "usedBy": [
+        "friends-frog",
+        "nature"
+      ]
+    },
+    {
+      "id": "camera",
+      "label": "camera",
+      "sheet": "words-one",
+      "index": 13,
+      "column": 1,
+      "row": 3,
+      "sourceRect": {
+        "x": 313.5,
+        "y": 940.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "📷"
+      ],
+      "usedBy": [
+        "syllable",
+        "vowels",
+        "read-puzzle",
+        "read-word"
+      ]
+    },
+    {
+      "id": "canoe",
+      "label": "canoe",
+      "sheet": "people",
+      "index": 9,
+      "column": 1,
+      "row": 2,
+      "sourceRect": {
+        "x": 313.5,
+        "y": 627,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🛶"
+      ],
+      "usedBy": []
+    },
+    {
+      "id": "car",
+      "label": "car",
+      "sheet": "creatures",
+      "index": 14,
+      "column": 2,
+      "row": 3,
+      "sourceRect": {
+        "x": 627,
+        "y": 940.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🚗"
+      ],
+      "usedBy": []
+    },
+    {
+      "id": "carrot",
+      "label": "carrot",
+      "sheet": "words-two",
+      "index": 6,
+      "column": 2,
+      "row": 1,
+      "sourceRect": {
+        "x": 627,
+        "y": 313.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🥕"
+      ],
+      "usedBy": [
+        "friends-deer",
+        "friends-badger",
+        "syllable",
+        "sequence",
+        "vowels",
+        "read-puzzle",
+        "read-word",
+        "trace"
+      ]
+    },
+    {
+      "id": "cat",
+      "label": "cat",
+      "sheet": "animals",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 313.5,
+        "y": 0,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🐱",
+        "🐈"
+      ],
+      "usedBy": [
+        "friends-frog",
+        "nature"
+      ]
+    },
+    {
+      "id": "cat-sit",
+      "label": "Katze sitzt",
+      "sheet": "forest-actions",
+      "index": 11,
+      "column": 3,
+      "row": 2,
+      "sourceRect": {
+        "x": 940.5,
+        "y": 627,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-owl",
+        "friends-frog",
+        "nature"
+      ]
+    },
+    {
+      "id": "cat-sleep",
+      "label": "Katze schläft",
+      "sheet": "forest-actions",
+      "index": 10,
+      "column": 2,
+      "row": 2,
+      "sourceRect": {
+        "x": 627,
+        "y": 627,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-owl"
+      ]
+    },
+    {
+      "id": "caterpillar",
+      "label": "Raupe",
+      "sheet": "animals",
+      "index": 11,
+      "column": 3,
+      "row": 2,
+      "sourceRect": {
+        "x": 940.5,
+        "y": 627,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🐛"
+      ],
+      "usedBy": [
+        "friends-hedgehog",
+        "friends-deer",
+        "friends-frog",
+        "syllable",
+        "sequence",
+        "vowels",
+        "read-puzzle",
+        "read-word"
+      ]
+    },
+    {
+      "id": "cheese",
+      "label": "cheese",
+      "sheet": "people",
+      "index": 12,
+      "column": 0,
+      "row": 3,
+      "sourceRect": {
+        "x": 0,
+        "y": 940.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🧀"
+      ],
+      "usedBy": [
+        "friends-deer",
+        "friends-badger",
+        "sequence"
+      ]
+    },
+    {
+      "id": "chick",
+      "label": "chick",
+      "sheet": "discovery",
+      "index": 12,
+      "column": 0,
+      "row": 3,
+      "sourceRect": {
+        "x": 0,
+        "y": 940.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🐣",
+        "🐤"
+      ],
+      "usedBy": [
+        "friends-badger",
+        "sequence",
+        "trace-numbers"
+      ]
+    },
+    {
+      "id": "chocolate",
+      "label": "chocolate",
+      "sheet": "words-two",
+      "index": 9,
+      "column": 1,
+      "row": 2,
+      "sourceRect": {
+        "x": 313.5,
+        "y": 627,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🍫"
+      ],
+      "usedBy": []
+    },
+    {
+      "id": "clock",
+      "label": "clock",
+      "sheet": "words-three",
+      "index": 5,
+      "column": 1,
+      "row": 1,
+      "sourceRect": {
+        "x": 313.5,
+        "y": 313.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "⏰",
+        "⌚"
+      ],
+      "usedBy": []
+    },
+    {
+      "id": "cloud",
+      "label": "cloud",
+      "sheet": "discovery",
+      "index": 5,
+      "column": 1,
+      "row": 1,
+      "sourceRect": {
+        "x": 313.5,
+        "y": 313.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "☁️"
+      ],
+      "usedBy": [
+        "friends-deer",
+        "friends-badger",
+        "syllable",
+        "sequence",
+        "vowels",
+        "read-puzzle",
+        "read-word"
+      ]
+    },
+    {
+      "id": "clown",
+      "label": "clown",
+      "sheet": "alphabet",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 313.5,
+        "y": 0,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🤡",
+        "🎪"
+      ],
+      "usedBy": [
+        "trace"
+      ]
+    },
+    {
+      "id": "cocoon",
+      "label": "cocoon",
+      "sheet": "discovery",
+      "index": 13,
+      "column": 1,
+      "row": 3,
+      "sourceRect": {
+        "x": 313.5,
+        "y": 940.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🟤"
+      ],
+      "usedBy": [
+        "friends-badger",
+        "sequence"
+      ]
+    },
+    {
+      "id": "comet",
+      "label": "comet",
+      "sheet": "people",
+      "index": 13,
+      "column": 1,
+      "row": 3,
+      "sourceRect": {
+        "x": 313.5,
+        "y": 940.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "☄️"
+      ],
+      "usedBy": []
+    },
+    {
+      "id": "cow",
+      "label": "Kuh",
+      "sheet": "animals",
+      "index": 13,
+      "column": 1,
+      "row": 3,
+      "sourceRect": {
+        "x": 313.5,
+        "y": 940.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🐄",
+        "🐮"
+      ],
+      "usedBy": [
+        "friends-bird",
+        "friends-mouse",
+        "friends-deer",
+        "nature",
+        "sequence",
+        "trace"
+      ]
+    },
+    {
+      "id": "croissant",
+      "label": "croissant",
+      "sheet": "words-two",
+      "index": 7,
+      "column": 3,
+      "row": 1,
+      "sourceRect": {
+        "x": 940.5,
+        "y": 313.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🥐"
+      ],
+      "usedBy": []
+    },
+    {
+      "id": "crown",
+      "label": "crown",
+      "sheet": "words-two",
+      "index": 15,
+      "column": 3,
+      "row": 3,
+      "sourceRect": {
+        "x": 940.5,
+        "y": 940.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "👑"
+      ],
+      "usedBy": []
+    },
+    {
+      "id": "daddy",
+      "label": "daddy",
+      "sheet": "people",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 313.5,
+        "y": 0,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "👨‍👧"
+      ],
+      "usedBy": []
+    },
+    {
+      "id": "dinosaur",
+      "label": "dinosaur",
+      "sheet": "alphabet",
+      "index": 2,
+      "column": 2,
+      "row": 0,
+      "sourceRect": {
+        "x": 627,
+        "y": 0,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🦕",
+        "🦖"
+      ],
+      "usedBy": [
+        "trace"
+      ]
+    },
+    {
+      "id": "dog",
+      "label": "Hund",
+      "sheet": "animals",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🐶",
+        "🐕"
+      ],
+      "usedBy": [
+        "friends-bird",
+        "friends-frog",
+        "nature",
+        "trace"
+      ]
+    },
+    {
+      "id": "dog-run",
+      "label": "Hund rennt",
+      "sheet": "forest-actions",
+      "index": 12,
+      "column": 0,
+      "row": 3,
+      "sourceRect": {
+        "x": 0,
+        "y": 940.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-owl"
+      ]
+    },
+    {
+      "id": "dog-sleep",
+      "label": "Hund schläft",
+      "sheet": "forest-actions",
+      "index": 13,
+      "column": 1,
+      "row": 3,
+      "sourceRect": {
+        "x": 313.5,
+        "y": 940.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-bird",
+        "friends-owl",
+        "friends-frog",
+        "nature",
+        "trace"
+      ]
+    },
+    {
+      "id": "dragon",
+      "label": "dragon",
+      "sheet": "creatures",
+      "index": 8,
+      "column": 0,
+      "row": 2,
+      "sourceRect": {
+        "x": 0,
+        "y": 627,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🐉"
+      ],
+      "usedBy": []
+    },
+    {
+      "id": "drum",
+      "label": "drum",
+      "sheet": "navigation",
+      "index": 9,
+      "column": 1,
+      "row": 2,
+      "sourceRect": {
+        "x": 313.5,
+        "y": 627,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🥁"
+      ],
+      "usedBy": []
+    },
+    {
+      "id": "duck-fly",
+      "label": "Ente fliegt",
+      "sheet": "forest-actions",
+      "index": 15,
+      "column": 3,
+      "row": 3,
+      "sourceRect": {
+        "x": 940.5,
+        "y": 940.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-owl"
+      ]
+    },
+    {
+      "id": "duck-swim",
+      "label": "Ente schwimmt",
+      "sheet": "forest-actions",
+      "index": 14,
+      "column": 2,
+      "row": 3,
+      "sourceRect": {
+        "x": 627,
+        "y": 940.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-owl",
+        "friends-frog"
+      ]
+    },
+    {
+      "id": "ear",
+      "label": "ear",
+      "sheet": "alphabet",
+      "index": 5,
+      "column": 1,
+      "row": 1,
+      "sourceRect": {
+        "x": 313.5,
+        "y": 313.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "👂"
+      ],
+      "usedBy": [
+        "trace"
+      ]
+    },
+    {
+      "id": "egg",
+      "label": "egg",
+      "sheet": "words-two",
+      "index": 11,
+      "column": 3,
+      "row": 2,
+      "sourceRect": {
+        "x": 940.5,
+        "y": 627,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🥚"
+      ],
+      "usedBy": [
+        "friends-deer",
+        "friends-badger",
+        "sequence"
+      ]
+    },
+    {
+      "id": "elephant",
+      "label": "elephant",
+      "sheet": "alphabet",
+      "index": 3,
+      "column": 3,
+      "row": 0,
+      "sourceRect": {
+        "x": 940.5,
+        "y": 0,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🐘"
+      ],
+      "usedBy": [
+        "friends-frog",
+        "nature",
+        "trace"
+      ]
+    },
+    {
+      "id": "feather",
+      "label": "feather",
+      "sheet": "words-one",
+      "index": 14,
+      "column": 2,
+      "row": 3,
+      "sourceRect": {
+        "x": 627,
+        "y": 940.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🪶"
+      ],
+      "usedBy": []
+    },
+    {
+      "id": "fir",
+      "label": "fir",
+      "sheet": "words-two",
+      "index": 13,
+      "column": 1,
+      "row": 3,
+      "sourceRect": {
+        "x": 313.5,
+        "y": 940.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🌲"
+      ],
+      "usedBy": [
+        "friends-badger"
+      ]
+    },
+    {
+      "id": "fire-engine",
+      "label": "fire engine",
+      "sheet": "discovery",
+      "index": 15,
+      "column": 3,
+      "row": 3,
+      "sourceRect": {
+        "x": 940.5,
+        "y": 940.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🚒"
+      ],
+      "usedBy": []
+    },
+    {
+      "id": "fish",
+      "label": "Fisch",
+      "sheet": "animals",
+      "index": 6,
+      "column": 2,
+      "row": 1,
+      "sourceRect": {
+        "x": 627,
+        "y": 313.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🐟",
+        "🐠"
+      ],
+      "usedBy": [
+        "trace"
+      ]
+    },
+    {
+      "id": "fish-swim",
+      "label": "Fisch schwimmt",
+      "sheet": "forest-actions",
+      "index": 5,
+      "column": 1,
+      "row": 1,
+      "sourceRect": {
+        "x": 313.5,
+        "y": 313.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-bird",
+        "friends-mouse",
+        "friends-hedgehog",
+        "friends-fish",
+        "friends-deer",
+        "friends-badger",
+        "nature",
+        "syllable",
+        "vowels",
+        "read-word",
+        "trace"
+      ]
+    },
+    {
+      "id": "flower",
+      "label": "flower",
+      "sheet": "words-two",
+      "index": 4,
+      "column": 0,
+      "row": 1,
+      "sourceRect": {
+        "x": 0,
+        "y": 313.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🌸",
+        "🌼"
+      ],
+      "usedBy": [
+        "friends-deer",
+        "friends-badger",
+        "sequence",
+        "trace-numbers"
+      ]
+    },
+    {
+      "id": "forest-apple",
+      "label": "Apfel",
+      "sheet": "forest-objects",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 313.5,
+        "y": 0,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-deer",
+        "friends-badger",
+        "add",
+        "syllable",
+        "sequence",
+        "treasure",
+        "vowels",
+        "read-puzzle",
+        "read-word",
+        "trace-numbers"
+      ]
+    },
+    {
+      "id": "forest-basket",
+      "label": "forest basket",
+      "sheet": "forest-objects",
+      "index": 15,
+      "column": 3,
+      "row": 3,
+      "sourceRect": {
+        "x": 940.5,
+        "y": 940.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [],
+      "usedBy": [
+        "picnic",
+        "sequence"
+      ]
+    },
+    {
+      "id": "forest-bat",
+      "label": "Fledermaus",
+      "sheet": "forest-wildlife",
+      "index": 11,
+      "column": 3,
+      "row": 2,
+      "sourceRect": {
+        "x": 960,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-hedgehog"
+      ]
+    },
+    {
+      "id": "forest-berry",
+      "label": "Beere",
+      "sheet": "forest-objects",
+      "index": 2,
+      "column": 2,
+      "row": 0,
+      "sourceRect": {
+        "x": 627,
+        "y": 0,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-mouse",
+        "friends-hedgehog",
+        "friends-fish",
+        "friends-deer",
+        "friends-kingfisher",
+        "friends-frog",
+        "friends-badger",
+        "picnic",
+        "syllable",
+        "sequence",
+        "treasure",
+        "compare",
+        "vowels",
+        "read-puzzle",
+        "read-word",
+        "read-leaves",
+        "read-colours",
+        "trace",
+        "trace-numbers"
+      ]
+    },
+    {
+      "id": "forest-branch",
+      "label": "Ast",
+      "sheet": "forest-objects",
+      "index": 11,
+      "column": 3,
+      "row": 2,
+      "sourceRect": {
+        "x": 940.5,
+        "y": 627,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-beaver",
+        "robot",
+        "sequence",
+        "mirror"
+      ]
+    },
+    {
+      "id": "forest-feather",
+      "label": "Feder",
+      "sheet": "forest-objects",
+      "index": 4,
+      "column": 0,
+      "row": 1,
+      "sourceRect": {
+        "x": 0,
+        "y": 313.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-bird",
+        "friends-kingfisher",
+        "pattern",
+        "nature",
+        "syllable",
+        "treasure",
+        "vowels",
+        "read-puzzle",
+        "read-word",
+        "trace-numbers"
+      ]
+    },
+    {
+      "id": "forest-fir",
+      "label": "Tanne",
+      "sheet": "forest-objects",
+      "index": 5,
+      "column": 1,
+      "row": 1,
+      "sourceRect": {
+        "x": 313.5,
+        "y": 313.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-bird",
+        "friends-badger",
+        "syllable",
+        "robot",
+        "vowels",
+        "read-puzzle",
+        "read-word"
+      ]
+    },
+    {
+      "id": "forest-flower",
+      "label": "Blume",
+      "sheet": "forest-objects",
+      "index": 7,
+      "column": 3,
+      "row": 1,
+      "sourceRect": {
+        "x": 940.5,
+        "y": 313.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-squirrel",
+        "friends-bird",
+        "friends-owl",
+        "friends-beaver",
+        "friends-mouse",
+        "friends-hedgehog",
+        "friends-fish",
+        "friends-deer",
+        "friends-kingfisher",
+        "friends-frog",
+        "friends-badger",
+        "count",
+        "add",
+        "pattern",
+        "nature",
+        "rocket",
+        "picnic",
+        "syllable",
+        "robot",
+        "sequence",
+        "treasure",
+        "neighbours",
+        "compare",
+        "mirror",
+        "vowels",
+        "read-puzzle",
+        "read-word",
+        "read-leaves",
+        "read-colours",
+        "trace",
+        "trace-numbers"
+      ]
+    },
+    {
+      "id": "forest-fox",
+      "label": "Fuchs",
+      "sheet": "forest-fox",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-hedgehog",
+        "friends-frog"
+      ]
+    },
+    {
+      "id": "forest-honey",
+      "label": "forest honey",
+      "sheet": "forest-objects",
+      "index": 8,
+      "column": 0,
+      "row": 2,
+      "sourceRect": {
+        "x": 0,
+        "y": 627,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-deer",
+        "friends-badger"
+      ]
+    },
+    {
+      "id": "forest-lantern",
+      "label": "forest lantern",
+      "sheet": "forest-objects",
+      "index": 12,
+      "column": 0,
+      "row": 3,
+      "sourceRect": {
+        "x": 0,
+        "y": 940.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-owl",
+        "pattern",
+        "sequence",
+        "treasure",
+        "trace"
+      ]
+    },
+    {
+      "id": "forest-leaf",
+      "label": "Blatt",
+      "sheet": "forest-objects",
+      "index": 3,
+      "column": 3,
+      "row": 0,
+      "sourceRect": {
+        "x": 940.5,
+        "y": 0,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-squirrel",
+        "friends-bird",
+        "friends-owl",
+        "friends-beaver",
+        "friends-mouse",
+        "friends-hedgehog",
+        "friends-fish",
+        "friends-deer",
+        "friends-kingfisher",
+        "friends-frog",
+        "friends-badger",
+        "count",
+        "add",
+        "pattern",
+        "nature",
+        "rocket",
+        "picnic",
+        "syllable",
+        "robot",
+        "sequence",
+        "treasure",
+        "neighbours",
+        "compare",
+        "mirror",
+        "vowels",
+        "read-puzzle",
+        "read-word",
+        "read-leaves",
+        "read-colours",
+        "trace",
+        "trace-numbers"
+      ]
+    },
+    {
+      "id": "forest-lynx",
+      "label": "Luchs",
+      "sheet": "forest-wildlife",
+      "index": 14,
+      "column": 2,
+      "row": 3,
+      "sourceRect": {
+        "x": 640,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-hedgehog"
+      ]
+    },
+    {
+      "id": "forest-marten",
+      "label": "Baummarder",
+      "sheet": "forest-wildlife",
+      "index": 15,
+      "column": 3,
+      "row": 3,
+      "sourceRect": {
+        "x": 960,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-hedgehog"
+      ]
+    },
+    {
+      "id": "forest-mushroom",
+      "label": "Pilz",
+      "sheet": "forest-objects",
+      "index": 6,
+      "column": 2,
+      "row": 1,
+      "sourceRect": {
+        "x": 627,
+        "y": 313.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-deer",
+        "friends-kingfisher",
+        "syllable",
+        "sequence",
+        "treasure",
+        "vowels",
+        "read-word"
+      ]
+    },
+    {
+      "id": "forest-nut",
+      "label": "Nuss",
+      "sheet": "forest-objects",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🌰"
+      ],
+      "usedBy": [
+        "friends-squirrel",
+        "friends-bird",
+        "friends-mouse",
+        "friends-deer",
+        "friends-badger",
+        "count",
+        "add",
+        "pattern",
+        "rocket",
+        "picnic",
+        "syllable",
+        "sequence",
+        "treasure",
+        "neighbours",
+        "compare",
+        "vowels",
+        "read-word",
+        "trace-numbers"
+      ]
+    },
+    {
+      "id": "forest-owl",
+      "label": "Waldkauz",
+      "sheet": "forest-wildlife",
+      "index": 12,
+      "column": 0,
+      "row": 3,
+      "sourceRect": {
+        "x": 0,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-hedgehog"
+      ]
+    },
+    {
+      "id": "forest-post",
+      "label": "forest post",
+      "sheet": "forest-objects",
+      "index": 14,
+      "column": 2,
+      "row": 3,
+      "sourceRect": {
+        "x": 627,
+        "y": 940.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [],
+      "usedBy": [
+        "robot"
+      ]
+    },
+    {
+      "id": "forest-robin",
+      "label": "Rotkehlchen",
+      "sheet": "forest-wildlife",
+      "index": 13,
+      "column": 1,
+      "row": 3,
+      "sourceRect": {
+        "x": 320,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-hedgehog"
+      ]
+    },
+    {
+      "id": "forest-rose",
+      "label": "Rose",
+      "sheet": "forest-objects",
+      "index": 9,
+      "column": 1,
+      "row": 2,
+      "sourceRect": {
+        "x": 313.5,
+        "y": 627,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-bird",
+        "friends-mouse",
+        "friends-badger",
+        "syllable",
+        "vowels",
+        "read-puzzle",
+        "read-word"
+      ]
+    },
+    {
+      "id": "forest-shapes",
+      "label": "forest shapes",
+      "sheet": "forest-objects",
+      "index": 13,
+      "column": 1,
+      "row": 3,
+      "sourceRect": {
+        "x": 313.5,
+        "y": 940.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "forest-stone",
+      "label": "Stein",
+      "sheet": "forest-objects",
+      "index": 10,
+      "column": 2,
+      "row": 2,
+      "sourceRect": {
+        "x": 627,
+        "y": 627,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-kingfisher",
+        "treasure"
+      ]
+    },
+    {
+      "id": "forest-woodpecker",
+      "label": "Buntspecht",
+      "sheet": "forest-wildlife",
+      "index": 10,
+      "column": 2,
+      "row": 2,
+      "sourceRect": {
+        "x": 640,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-hedgehog"
+      ]
+    },
+    {
+      "id": "fork",
+      "label": "fork",
+      "sheet": "words-two",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🍴"
+      ],
+      "usedBy": [
+        "friends-badger",
+        "syllable",
+        "vowels",
+        "read-puzzle",
+        "read-word"
+      ]
+    },
+    {
+      "id": "fox",
+      "label": "fox",
+      "sheet": "navigation",
+      "index": 14,
+      "column": 2,
+      "row": 3,
+      "sourceRect": {
+        "x": 627,
+        "y": 940.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🦊"
+      ],
+      "usedBy": []
+    },
+    {
+      "id": "fox-animal",
+      "label": "fox animal",
+      "sheet": "animals",
+      "index": 3,
+      "column": 3,
+      "row": 0,
+      "sourceRect": {
+        "x": 940.5,
+        "y": 0,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "fox-run",
+      "label": "Fuchs rennt",
+      "sheet": "forest-actions",
+      "index": 9,
+      "column": 1,
+      "row": 2,
+      "sourceRect": {
+        "x": 313.5,
+        "y": 627,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-owl"
+      ]
+    },
+    {
+      "id": "fox-sleep",
+      "label": "Fuchs schläft",
+      "sheet": "forest-actions",
+      "index": 8,
+      "column": 0,
+      "row": 2,
+      "sourceRect": {
+        "x": 0,
+        "y": 627,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-owl"
+      ]
+    },
+    {
+      "id": "frog",
+      "label": "frog",
+      "sheet": "creatures",
+      "index": 6,
+      "column": 2,
+      "row": 1,
+      "sourceRect": {
+        "x": 627,
+        "y": 313.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🐸"
+      ],
+      "usedBy": [
+        "friends-frog",
+        "nature"
+      ]
+    },
+    {
+      "id": "frog-jump",
+      "label": "Frosch springt",
+      "sheet": "forest-wildlife",
+      "index": 9,
+      "column": 1,
+      "row": 2,
+      "sourceRect": {
+        "x": 320,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-owl"
+      ]
+    },
+    {
+      "id": "frog-sit",
+      "label": "Frosch sitzt",
+      "sheet": "forest-wildlife",
+      "index": 8,
+      "column": 0,
+      "row": 2,
+      "sourceRect": {
+        "x": 0,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-owl",
+        "friends-hedgehog"
+      ]
+    },
+    {
+      "id": "giraffe",
+      "label": "giraffe",
+      "sheet": "alphabet",
+      "index": 4,
+      "column": 0,
+      "row": 1,
+      "sourceRect": {
+        "x": 0,
+        "y": 313.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🦒"
+      ],
+      "usedBy": [
+        "friends-frog",
+        "nature",
+        "trace"
+      ]
+    },
+    {
+      "id": "grandma",
+      "label": "grandma",
+      "sheet": "people",
+      "index": 2,
+      "column": 2,
+      "row": 0,
+      "sourceRect": {
+        "x": 627,
+        "y": 0,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "👵"
+      ],
+      "usedBy": []
+    },
+    {
+      "id": "grandpa",
+      "label": "grandpa",
+      "sheet": "people",
+      "index": 3,
+      "column": 3,
+      "row": 0,
+      "sourceRect": {
+        "x": 940.5,
+        "y": 0,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "👴"
+      ],
+      "usedBy": []
+    },
+    {
+      "id": "grapes",
+      "label": "grapes",
+      "sheet": "words-three",
+      "index": 9,
+      "column": 1,
+      "row": 2,
+      "sourceRect": {
+        "x": 313.5,
+        "y": 627,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🍇"
+      ],
+      "usedBy": [
+        "friends-deer"
+      ]
+    },
+    {
+      "id": "hand-mirror",
+      "label": "hand mirror",
+      "sheet": "menu",
+      "index": 4,
+      "column": 1,
+      "row": 1,
+      "sourceRect": {
+        "x": 512,
+        "y": 512,
+        "width": 512,
+        "height": 512
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "hare-run",
+      "label": "Hase rennt",
+      "sheet": "forest-actions",
+      "index": 6,
+      "column": 2,
+      "row": 1,
+      "sourceRect": {
+        "x": 627,
+        "y": 313.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-owl"
+      ]
+    },
+    {
+      "id": "hare-sit",
+      "label": "Hase sitzt",
+      "sheet": "forest-actions",
+      "index": 7,
+      "column": 3,
+      "row": 1,
+      "sourceRect": {
+        "x": 940.5,
+        "y": 313.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-bird",
+        "friends-owl",
+        "friends-mouse",
+        "friends-hedgehog",
+        "nature",
+        "syllable",
+        "vowels",
+        "read-puzzle",
+        "read-word"
+      ]
+    },
+    {
+      "id": "hat",
+      "label": "Hut",
+      "sheet": "words-three",
+      "index": 12,
+      "column": 0,
+      "row": 3,
+      "sourceRect": {
+        "x": 0,
+        "y": 940.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "👒",
+        "🎩"
+      ],
+      "usedBy": [
+        "friends-bird",
+        "friends-mouse",
+        "friends-badger"
+      ]
+    },
+    {
+      "id": "heart",
+      "label": "heart",
+      "sheet": "words-three",
+      "index": 2,
+      "column": 2,
+      "row": 0,
+      "sourceRect": {
+        "x": 627,
+        "y": 0,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "❤️",
+        "💜"
+      ],
+      "usedBy": []
+    },
+    {
+      "id": "hedgehog",
+      "label": "Igel",
+      "sheet": "animals",
+      "index": 4,
+      "column": 0,
+      "row": 1,
+      "sourceRect": {
+        "x": 0,
+        "y": 313.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🦔"
+      ],
+      "usedBy": [
+        "friends-hedgehog",
+        "friends-frog",
+        "nature",
+        "syllable",
+        "sequence",
+        "vowels",
+        "read-puzzle",
+        "read-word",
+        "trace"
+      ]
+    },
+    {
+      "id": "hedgehog-sleep",
+      "label": "Igel schläft",
+      "sheet": "forest-wildlife",
+      "index": 3,
+      "column": 3,
+      "row": 0,
+      "sourceRect": {
+        "x": 960,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-owl"
+      ]
+    },
+    {
+      "id": "hedgehog-walk",
+      "label": "Igel läuft",
+      "sheet": "forest-wildlife",
+      "index": 2,
+      "column": 2,
+      "row": 0,
+      "sourceRect": {
+        "x": 640,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-owl"
+      ]
+    },
+    {
+      "id": "honey",
+      "label": "honey",
+      "sheet": "people",
+      "index": 11,
+      "column": 3,
+      "row": 2,
+      "sourceRect": {
+        "x": 940.5,
+        "y": 627,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🍯"
+      ],
+      "usedBy": [
+        "friends-deer",
+        "friends-badger"
+      ]
+    },
+    {
+      "id": "icecream",
+      "label": "icecream",
+      "sheet": "words-three",
+      "index": 10,
+      "column": 2,
+      "row": 2,
+      "sourceRect": {
+        "x": 627,
+        "y": 627,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🍦"
+      ],
+      "usedBy": []
+    },
+    {
+      "id": "jacket",
+      "label": "jacket",
+      "sheet": "alphabet",
+      "index": 10,
+      "column": 2,
+      "row": 2,
+      "sourceRect": {
+        "x": 627,
+        "y": 627,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🧥"
+      ],
+      "usedBy": [
+        "trace"
+      ]
+    },
+    {
+      "id": "judo",
+      "label": "judo",
+      "sheet": "people",
+      "index": 5,
+      "column": 1,
+      "row": 1,
+      "sourceRect": {
+        "x": 313.5,
+        "y": 313.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🥋"
+      ],
+      "usedBy": []
+    },
+    {
+      "id": "kiwi",
+      "label": "kiwi",
+      "sheet": "words-one",
+      "index": 7,
+      "column": 3,
+      "row": 1,
+      "sourceRect": {
+        "x": 940.5,
+        "y": 313.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🥝"
+      ],
+      "usedBy": []
+    },
+    {
+      "id": "ladybird",
+      "label": "ladybird",
+      "sheet": "animals",
+      "index": 12,
+      "column": 0,
+      "row": 3,
+      "sourceRect": {
+        "x": 0,
+        "y": 940.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🐞"
+      ],
+      "usedBy": [
+        "friends-hedgehog",
+        "friends-frog",
+        "count",
+        "nature",
+        "trace-numbers"
+      ]
+    },
+    {
+      "id": "leaf",
+      "label": "leaf",
+      "sheet": "discovery",
+      "index": 14,
+      "column": 2,
+      "row": 3,
+      "sourceRect": {
+        "x": 627,
+        "y": 940.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🌿",
+        "🍃",
+        "🍂",
+        "🍁"
+      ],
+      "usedBy": [
+        "friends-deer",
+        "friends-badger",
+        "sequence"
+      ]
+    },
+    {
+      "id": "lemonade",
+      "label": "lemonade",
+      "sheet": "people",
+      "index": 8,
+      "column": 0,
+      "row": 2,
+      "sourceRect": {
+        "x": 0,
+        "y": 627,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🥤"
+      ],
+      "usedBy": []
+    },
+    {
+      "id": "letter",
+      "label": "letter",
+      "sheet": "discovery",
+      "index": 8,
+      "column": 0,
+      "row": 2,
+      "sourceRect": {
+        "x": 0,
+        "y": 627,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "✉️",
+        "✉",
+        "💌"
+      ],
+      "usedBy": [
+        "robot",
+        "sequence"
+      ]
+    },
+    {
+      "id": "lion",
+      "label": "lion",
+      "sheet": "creatures",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 313.5,
+        "y": 0,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🦁"
+      ],
+      "usedBy": [
+        "friends-frog",
+        "nature",
+        "trace"
+      ]
+    },
+    {
+      "id": "llama",
+      "label": "llama",
+      "sheet": "people",
+      "index": 4,
+      "column": 0,
+      "row": 1,
+      "sourceRect": {
+        "x": 0,
+        "y": 313.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🦙"
+      ],
+      "usedBy": []
+    },
+    {
+      "id": "magic-wand",
+      "label": "magic wand",
+      "sheet": "menu",
+      "index": 5,
+      "column": 2,
+      "row": 1,
+      "sourceRect": {
+        "x": 1024,
+        "y": 512,
+        "width": 512,
+        "height": 512
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "magnifier",
+      "label": "Lupe",
+      "sheet": "words-one",
+      "index": 5,
+      "column": 1,
+      "row": 1,
+      "sourceRect": {
+        "x": 313.5,
+        "y": 313.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🔎",
+        "🔍"
+      ],
+      "usedBy": [
+        "syllable",
+        "vowels",
+        "read-puzzle",
+        "read-word"
+      ]
+    },
+    {
+      "id": "mailbox",
+      "label": "mailbox",
+      "sheet": "discovery",
+      "index": 10,
+      "column": 2,
+      "row": 2,
+      "sourceRect": {
+        "x": 627,
+        "y": 627,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "📬"
+      ],
+      "usedBy": [
+        "robot",
+        "sequence"
+      ]
+    },
+    {
+      "id": "monkey",
+      "label": "monkey",
+      "sheet": "alphabet",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🐒",
+        "🐵"
+      ],
+      "usedBy": [
+        "trace"
+      ]
+    },
+    {
+      "id": "moon",
+      "label": "moon",
+      "sheet": "words-two",
+      "index": 3,
+      "column": 3,
+      "row": 0,
+      "sourceRect": {
+        "x": 940.5,
+        "y": 0,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🌙"
+      ],
+      "usedBy": [
+        "friends-deer",
+        "friends-badger",
+        "sequence"
+      ]
+    },
+    {
+      "id": "moped",
+      "label": "moped",
+      "sheet": "people",
+      "index": 7,
+      "column": 3,
+      "row": 1,
+      "sourceRect": {
+        "x": 940.5,
+        "y": 313.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🛵"
+      ],
+      "usedBy": []
+    },
+    {
+      "id": "mouse",
+      "label": "Maus",
+      "sheet": "creatures",
+      "index": 7,
+      "column": 3,
+      "row": 1,
+      "sourceRect": {
+        "x": 940.5,
+        "y": 313.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🐭"
+      ],
+      "usedBy": []
+    },
+    {
+      "id": "mouse-run",
+      "label": "Maus rennt",
+      "sheet": "forest-actions",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 313.5,
+        "y": 0,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-owl"
+      ]
+    },
+    {
+      "id": "mouse-sit",
+      "label": "Maus sitzt",
+      "sheet": "forest-actions",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-bird",
+        "friends-owl",
+        "friends-mouse",
+        "friends-hedgehog",
+        "syllable",
+        "read-word",
+        "trace"
+      ]
+    },
+    {
+      "id": "mouse-sleep",
+      "label": "Maus schläft",
+      "sheet": "forest-actions",
+      "index": 2,
+      "column": 2,
+      "row": 0,
+      "sourceRect": {
+        "x": 627,
+        "y": 0,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-owl"
+      ]
+    },
+    {
+      "id": "mummy",
+      "label": "mummy",
+      "sheet": "people",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "👩‍👧"
+      ],
+      "usedBy": []
+    },
+    {
+      "id": "mushroom",
+      "label": "mushroom",
+      "sheet": "words-two",
+      "index": 14,
+      "column": 2,
+      "row": 3,
+      "sourceRect": {
+        "x": 627,
+        "y": 940.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🍄"
+      ],
+      "usedBy": []
+    },
+    {
+      "id": "nature",
+      "label": "nature",
+      "sheet": "navigation",
+      "index": 2,
+      "column": 2,
+      "row": 0,
+      "sourceRect": {
+        "x": 627,
+        "y": 0,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "needle",
+      "label": "needle",
+      "sheet": "words-one",
+      "index": 15,
+      "column": 3,
+      "row": 3,
+      "sourceRect": {
+        "x": 940.5,
+        "y": 940.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🪡"
+      ],
+      "usedBy": [
+        "syllable",
+        "vowels",
+        "read-puzzle",
+        "read-word"
+      ]
+    },
+    {
+      "id": "neighbour-houses",
+      "label": "neighbour houses",
+      "sheet": "menu",
+      "index": 3,
+      "column": 0,
+      "row": 1,
+      "sourceRect": {
+        "x": 0,
+        "y": 512,
+        "width": 512,
+        "height": 512
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "nest",
+      "label": "Nest",
+      "sheet": "discovery",
+      "index": 11,
+      "column": 3,
+      "row": 2,
+      "sourceRect": {
+        "x": 940.5,
+        "y": 627,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🪺"
+      ],
+      "usedBy": [
+        "friends-deer",
+        "friends-badger",
+        "syllable",
+        "sequence",
+        "vowels",
+        "read-word"
+      ]
+    },
+    {
+      "id": "nose",
+      "label": "Nase",
+      "sheet": "words-one",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "👃"
+      ],
+      "usedBy": [
+        "friends-bird",
+        "friends-mouse",
+        "trace"
+      ]
+    },
+    {
+      "id": "numbers",
+      "label": "numbers",
+      "sheet": "navigation",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🔢"
+      ],
+      "usedBy": []
+    },
+    {
+      "id": "painting",
+      "label": "painting",
+      "sheet": "navigation",
+      "index": 4,
+      "column": 0,
+      "row": 1,
+      "sourceRect": {
+        "x": 0,
+        "y": 313.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🖌️"
+      ],
+      "usedBy": []
+    },
+    {
+      "id": "palette",
+      "label": "palette",
+      "sheet": "navigation",
+      "index": 15,
+      "column": 3,
+      "row": 3,
+      "sourceRect": {
+        "x": 940.5,
+        "y": 940.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🎨"
+      ],
+      "usedBy": []
+    },
+    {
+      "id": "parcel",
+      "label": "parcel",
+      "sheet": "words-two",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 313.5,
+        "y": 0,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "📦",
+        "🎁"
+      ],
+      "usedBy": []
+    },
+    {
+      "id": "pear",
+      "label": "pear",
+      "sheet": "words-three",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🍐"
+      ],
+      "usedBy": [
+        "friends-badger",
+        "sequence"
+      ]
+    },
+    {
+      "id": "pencil",
+      "label": "pencil",
+      "sheet": "navigation",
+      "index": 12,
+      "column": 0,
+      "row": 3,
+      "sourceRect": {
+        "x": 0,
+        "y": 940.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "✏️",
+        "👆",
+        "🖐️"
+      ],
+      "usedBy": [
+        "sequence"
+      ]
+    },
+    {
+      "id": "penguin",
+      "label": "penguin",
+      "sheet": "creatures",
+      "index": 2,
+      "column": 2,
+      "row": 0,
+      "sourceRect": {
+        "x": 627,
+        "y": 0,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🐧"
+      ],
+      "usedBy": [
+        "friends-frog",
+        "nature",
+        "trace"
+      ]
+    },
+    {
+      "id": "picnic",
+      "label": "picnic",
+      "sheet": "navigation",
+      "index": 7,
+      "column": 3,
+      "row": 1,
+      "sourceRect": {
+        "x": 940.5,
+        "y": 313.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🧺"
+      ],
+      "usedBy": [
+        "picnic"
+      ]
+    },
+    {
+      "id": "pictures",
+      "label": "pictures",
+      "sheet": "navigation",
+      "index": 5,
+      "column": 1,
+      "row": 1,
+      "sourceRect": {
+        "x": 313.5,
+        "y": 313.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🖼️"
+      ],
+      "usedBy": []
+    },
+    {
+      "id": "pig",
+      "label": "pig",
+      "sheet": "animals",
+      "index": 15,
+      "column": 3,
+      "row": 3,
+      "sourceRect": {
+        "x": 940.5,
+        "y": 940.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🐷"
+      ],
+      "usedBy": [
+        "friends-deer",
+        "friends-frog",
+        "friends-badger",
+        "nature"
+      ]
+    },
+    {
+      "id": "pilot",
+      "label": "pilot",
+      "sheet": "people",
+      "index": 10,
+      "column": 2,
+      "row": 2,
+      "sourceRect": {
+        "x": 627,
+        "y": 627,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🧑‍✈️"
+      ],
+      "usedBy": []
+    },
+    {
+      "id": "plant",
+      "label": "plant",
+      "sheet": "discovery",
+      "index": 2,
+      "column": 2,
+      "row": 0,
+      "sourceRect": {
+        "x": 627,
+        "y": 0,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🪴"
+      ],
+      "usedBy": [
+        "friends-badger",
+        "sequence"
+      ]
+    },
+    {
+      "id": "postbox",
+      "label": "postbox",
+      "sheet": "discovery",
+      "index": 9,
+      "column": 1,
+      "row": 2,
+      "sourceRect": {
+        "x": 313.5,
+        "y": 627,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "📮"
+      ],
+      "usedBy": [
+        "robot",
+        "sequence"
+      ]
+    },
+    {
+      "id": "puzzle-flower-blau",
+      "label": "puzzle flower blau",
+      "sheet": "puzzle-flowers",
+      "index": 2,
+      "column": 2,
+      "row": 0,
+      "sourceRect": {
+        "x": 1024,
+        "y": 0,
+        "width": 512,
+        "height": 512
+      },
+      "tokens": [],
+      "usedBy": [
+        "read-colours"
+      ]
+    },
+    {
+      "id": "puzzle-flower-gelb",
+      "label": "puzzle flower gelb",
+      "sheet": "puzzle-flowers",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 512,
+        "y": 0,
+        "width": 512,
+        "height": 512
+      },
+      "tokens": [],
+      "usedBy": [
+        "read-colours"
+      ]
+    },
+    {
+      "id": "puzzle-flower-lila",
+      "label": "puzzle flower lila",
+      "sheet": "puzzle-flowers",
+      "index": 5,
+      "column": 2,
+      "row": 1,
+      "sourceRect": {
+        "x": 1024,
+        "y": 512,
+        "width": 512,
+        "height": 512
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "puzzle-flower-rosa",
+      "label": "puzzle flower rosa",
+      "sheet": "puzzle-flowers",
+      "index": 3,
+      "column": 0,
+      "row": 1,
+      "sourceRect": {
+        "x": 0,
+        "y": 512,
+        "width": 512,
+        "height": 512
+      },
+      "tokens": [],
+      "usedBy": [
+        "read-colours"
+      ]
+    },
+    {
+      "id": "puzzle-flower-rot",
+      "label": "puzzle flower rot",
+      "sheet": "puzzle-flowers",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 512,
+        "height": 512
+      },
+      "tokens": [],
+      "usedBy": [
+        "read-colours"
+      ]
+    },
+    {
+      "id": "puzzle-flower-weiss",
+      "label": "puzzle flower weiss",
+      "sheet": "puzzle-flowers",
+      "index": 4,
+      "column": 1,
+      "row": 1,
+      "sourceRect": {
+        "x": 512,
+        "y": 512,
+        "width": 512,
+        "height": 512
+      },
+      "tokens": [],
+      "usedBy": [
+        "read-colours"
+      ]
+    },
+    {
+      "id": "rabbit",
+      "label": "rabbit",
+      "sheet": "animals",
+      "index": 2,
+      "column": 2,
+      "row": 0,
+      "sourceRect": {
+        "x": 627,
+        "y": 0,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🐰",
+        "🐇"
+      ],
+      "usedBy": []
+    },
+    {
+      "id": "radio",
+      "label": "radio",
+      "sheet": "words-one",
+      "index": 12,
+      "column": 0,
+      "row": 3,
+      "sourceRect": {
+        "x": 0,
+        "y": 940.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "📻"
+      ],
+      "usedBy": []
+    },
+    {
+      "id": "rain",
+      "label": "rain",
+      "sheet": "discovery",
+      "index": 4,
+      "column": 0,
+      "row": 1,
+      "sourceRect": {
+        "x": 0,
+        "y": 313.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🌧️"
+      ],
+      "usedBy": [
+        "friends-badger",
+        "syllable",
+        "sequence",
+        "vowels",
+        "read-puzzle",
+        "read-word"
+      ]
+    },
+    {
+      "id": "reader",
+      "label": "reader",
+      "sheet": "people",
+      "index": 14,
+      "column": 2,
+      "row": 3,
+      "sourceRect": {
+        "x": 627,
+        "y": 940.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [],
+      "usedBy": [
+        "sequence"
+      ]
+    },
+    {
+      "id": "rhyme-bin",
+      "label": "Tonne",
+      "sheet": "rhyme-vocabulary",
+      "index": 3,
+      "column": 3,
+      "row": 0,
+      "sourceRect": {
+        "x": 960,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-bird"
+      ]
+    },
+    {
+      "id": "rhyme-blanket",
+      "label": "Decke",
+      "sheet": "rhyme-vocabulary",
+      "index": 2,
+      "column": 2,
+      "row": 0,
+      "sourceRect": {
+        "x": 640,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-bird"
+      ]
+    },
+    {
+      "id": "rhyme-bread",
+      "label": "Brot",
+      "sheet": "rhyme-vocabulary",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-bird"
+      ]
+    },
+    {
+      "id": "rhyme-brook",
+      "label": "Bach",
+      "sheet": "rhyme-vocabulary",
+      "index": 7,
+      "column": 3,
+      "row": 1,
+      "sourceRect": {
+        "x": 960,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-bird"
+      ]
+    },
+    {
+      "id": "rhyme-fly",
+      "label": "Fliege",
+      "sheet": "rhyme-vocabulary",
+      "index": 9,
+      "column": 1,
+      "row": 2,
+      "sourceRect": {
+        "x": 320,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-bird"
+      ]
+    },
+    {
+      "id": "rhyme-goat",
+      "label": "Ziege",
+      "sheet": "rhyme-vocabulary",
+      "index": 8,
+      "column": 0,
+      "row": 2,
+      "sourceRect": {
+        "x": 0,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-bird"
+      ]
+    },
+    {
+      "id": "rhyme-jug",
+      "label": "Kanne",
+      "sheet": "rhyme-vocabulary",
+      "index": 4,
+      "column": 0,
+      "row": 1,
+      "sourceRect": {
+        "x": 0,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-bird"
+      ]
+    },
+    {
+      "id": "rhyme-mouth",
+      "label": "Mund",
+      "sheet": "rhyme-vocabulary",
+      "index": 5,
+      "column": 1,
+      "row": 1,
+      "sourceRect": {
+        "x": 320,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-bird"
+      ]
+    },
+    {
+      "id": "rhyme-rail",
+      "label": "Schiene",
+      "sheet": "rhyme-vocabulary",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 320,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-bird"
+      ]
+    },
+    {
+      "id": "rhyme-roof",
+      "label": "Dach",
+      "sheet": "rhyme-vocabulary",
+      "index": 6,
+      "column": 2,
+      "row": 1,
+      "sourceRect": {
+        "x": 640,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-bird"
+      ]
+    },
+    {
+      "id": "robot",
+      "label": "robot",
+      "sheet": "navigation",
+      "index": 10,
+      "column": 2,
+      "row": 2,
+      "sourceRect": {
+        "x": 627,
+        "y": 627,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🤖"
+      ],
+      "usedBy": [
+        "robot"
+      ]
+    },
+    {
+      "id": "robot-word",
+      "label": "robot word",
+      "sheet": "words-three",
+      "index": 15,
+      "column": 3,
+      "row": 3,
+      "sourceRect": {
+        "x": 940.5,
+        "y": 940.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "rocket",
+      "label": "rocket",
+      "sheet": "navigation",
+      "index": 6,
+      "column": 2,
+      "row": 1,
+      "sourceRect": {
+        "x": 627,
+        "y": 313.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🚀"
+      ],
+      "usedBy": [
+        "trace"
+      ]
+    },
+    {
+      "id": "rocket-word",
+      "label": "rocket word",
+      "sheet": "words-one",
+      "index": 10,
+      "column": 2,
+      "row": 2,
+      "sourceRect": {
+        "x": 627,
+        "y": 627,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "roe-run",
+      "label": "Reh rennt",
+      "sheet": "forest-wildlife",
+      "index": 7,
+      "column": 3,
+      "row": 1,
+      "sourceRect": {
+        "x": 960,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-owl"
+      ]
+    },
+    {
+      "id": "roe-stand",
+      "label": "Reh steht",
+      "sheet": "forest-wildlife",
+      "index": 6,
+      "column": 2,
+      "row": 1,
+      "sourceRect": {
+        "x": 640,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-owl",
+        "friends-hedgehog"
+      ]
+    },
+    {
+      "id": "rose",
+      "label": "Rose",
+      "sheet": "words-one",
+      "index": 2,
+      "column": 2,
+      "row": 0,
+      "sourceRect": {
+        "x": 627,
+        "y": 0,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🌹"
+      ],
+      "usedBy": [
+        "friends-bird",
+        "friends-mouse"
+      ]
+    },
+    {
+      "id": "scooter",
+      "label": "scooter",
+      "sheet": "words-two",
+      "index": 10,
+      "column": 2,
+      "row": 2,
+      "sourceRect": {
+        "x": 627,
+        "y": 627,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🛴"
+      ],
+      "usedBy": []
+    },
+    {
+      "id": "seedling",
+      "label": "seedling",
+      "sheet": "discovery",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 313.5,
+        "y": 0,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-badger",
+        "sequence"
+      ]
+    },
+    {
+      "id": "shapes",
+      "label": "shapes",
+      "sheet": "navigation",
+      "index": 3,
+      "column": 3,
+      "row": 0,
+      "sourceRect": {
+        "x": 940.5,
+        "y": 0,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🔷"
+      ],
+      "usedBy": []
+    },
+    {
+      "id": "sheep",
+      "label": "sheep",
+      "sheet": "animals",
+      "index": 14,
+      "column": 2,
+      "row": 3,
+      "sourceRect": {
+        "x": 627,
+        "y": 940.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🐑"
+      ],
+      "usedBy": [
+        "friends-frog",
+        "friends-badger",
+        "nature"
+      ]
+    },
+    {
+      "id": "snail",
+      "label": "Schnecke",
+      "sheet": "animals",
+      "index": 8,
+      "column": 0,
+      "row": 2,
+      "sourceRect": {
+        "x": 0,
+        "y": 627,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🐌"
+      ],
+      "usedBy": [
+        "friends-bird",
+        "friends-hedgehog",
+        "friends-deer",
+        "friends-frog",
+        "count",
+        "nature",
+        "syllable",
+        "vowels",
+        "read-puzzle",
+        "read-word",
+        "trace-numbers"
+      ]
+    },
+    {
+      "id": "snowman",
+      "label": "snowman",
+      "sheet": "words-three",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 313.5,
+        "y": 0,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "⛄"
+      ],
+      "usedBy": [
+        "friends-badger"
+      ]
+    },
+    {
+      "id": "sofa",
+      "label": "sofa",
+      "sheet": "words-one",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 313.5,
+        "y": 0,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🛋️"
+      ],
+      "usedBy": []
+    },
+    {
+      "id": "spade",
+      "label": "spade",
+      "sheet": "alphabet",
+      "index": 15,
+      "column": 3,
+      "row": 3,
+      "sourceRect": {
+        "x": 940.5,
+        "y": 940.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-badger",
+        "syllable",
+        "sequence",
+        "vowels",
+        "read-puzzle",
+        "read-word"
+      ]
+    },
+    {
+      "id": "spider",
+      "label": "spider",
+      "sheet": "animals",
+      "index": 9,
+      "column": 1,
+      "row": 2,
+      "sourceRect": {
+        "x": 313.5,
+        "y": 627,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🕷️"
+      ],
+      "usedBy": [
+        "friends-hedgehog",
+        "friends-deer",
+        "friends-frog",
+        "nature"
+      ]
+    },
+    {
+      "id": "spoon",
+      "label": "spoon",
+      "sheet": "alphabet",
+      "index": 9,
+      "column": 1,
+      "row": 2,
+      "sourceRect": {
+        "x": 313.5,
+        "y": 627,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🥄"
+      ],
+      "usedBy": [
+        "friends-badger",
+        "trace"
+      ]
+    },
+    {
+      "id": "sprout",
+      "label": "sprout",
+      "sheet": "navigation",
+      "index": 11,
+      "column": 3,
+      "row": 2,
+      "sourceRect": {
+        "x": 940.5,
+        "y": 627,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🌱"
+      ],
+      "usedBy": []
+    },
+    {
+      "id": "squirrel",
+      "label": "squirrel",
+      "sheet": "menu",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 512,
+        "height": 512
+      },
+      "tokens": [],
+      "usedBy": [
+        "nature",
+        "sequence"
+      ]
+    },
+    {
+      "id": "squirrel-run",
+      "label": "Eichhörnchen rennt",
+      "sheet": "forest-wildlife",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 320,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-owl"
+      ]
+    },
+    {
+      "id": "squirrel-sit",
+      "label": "Eichhörnchen sitzt",
+      "sheet": "forest-wildlife",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-owl",
+        "friends-hedgehog",
+        "friends-frog"
+      ]
+    },
+    {
+      "id": "star",
+      "label": "Stern",
+      "sheet": "navigation",
+      "index": 8,
+      "column": 0,
+      "row": 2,
+      "sourceRect": {
+        "x": 0,
+        "y": 627,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "⭐",
+        "🌟",
+        "🌠"
+      ],
+      "usedBy": [
+        "friends-bird",
+        "friends-mouse",
+        "trace",
+        "trace-numbers"
+      ]
+    },
+    {
+      "id": "steam-train",
+      "label": "steam train",
+      "sheet": "creatures",
+      "index": 15,
+      "column": 3,
+      "row": 3,
+      "sourceRect": {
+        "x": 940.5,
+        "y": 940.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "strawberry",
+      "label": "strawberry",
+      "sheet": "words-three",
+      "index": 8,
+      "column": 0,
+      "row": 2,
+      "sourceRect": {
+        "x": 0,
+        "y": 627,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🍓"
+      ],
+      "usedBy": [
+        "friends-badger",
+        "trace-numbers"
+      ]
+    },
+    {
+      "id": "sun",
+      "label": "Sonne",
+      "sheet": "words-two",
+      "index": 2,
+      "column": 2,
+      "row": 0,
+      "sourceRect": {
+        "x": 627,
+        "y": 0,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "☀️"
+      ],
+      "usedBy": [
+        "friends-bird",
+        "friends-deer",
+        "friends-badger",
+        "syllable",
+        "sequence",
+        "vowels",
+        "read-puzzle",
+        "read-word",
+        "trace"
+      ]
+    },
+    {
+      "id": "sunflower",
+      "label": "sunflower",
+      "sheet": "alphabet",
+      "index": 11,
+      "column": 3,
+      "row": 2,
+      "sourceRect": {
+        "x": 940.5,
+        "y": 627,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🌻"
+      ],
+      "usedBy": [
+        "friends-badger",
+        "sequence"
+      ]
+    },
+    {
+      "id": "sunset",
+      "label": "sunset",
+      "sheet": "discovery",
+      "index": 6,
+      "column": 2,
+      "row": 1,
+      "sourceRect": {
+        "x": 627,
+        "y": 313.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🌇",
+        "🌄"
+      ],
+      "usedBy": [
+        "friends-badger",
+        "sequence"
+      ]
+    },
+    {
+      "id": "taxi",
+      "label": "taxi",
+      "sheet": "alphabet",
+      "index": 7,
+      "column": 3,
+      "row": 1,
+      "sourceRect": {
+        "x": 940.5,
+        "y": 313.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🚕"
+      ],
+      "usedBy": [
+        "trace"
+      ]
+    },
+    {
+      "id": "teddy",
+      "label": "teddy",
+      "sheet": "alphabet",
+      "index": 8,
+      "column": 0,
+      "row": 2,
+      "sourceRect": {
+        "x": 0,
+        "y": 627,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🧸"
+      ],
+      "usedBy": [
+        "trace"
+      ]
+    },
+    {
+      "id": "tiger",
+      "label": "tiger",
+      "sheet": "creatures",
+      "index": 4,
+      "column": 0,
+      "row": 1,
+      "sourceRect": {
+        "x": 0,
+        "y": 313.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🐯"
+      ],
+      "usedBy": [
+        "friends-frog",
+        "nature",
+        "trace"
+      ]
+    },
+    {
+      "id": "tin",
+      "label": "Dose",
+      "sheet": "words-one",
+      "index": 3,
+      "column": 3,
+      "row": 0,
+      "sourceRect": {
+        "x": 940.5,
+        "y": 0,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🥫"
+      ],
+      "usedBy": [
+        "friends-bird",
+        "friends-mouse"
+      ]
+    },
+    {
+      "id": "tomato",
+      "label": "tomato",
+      "sheet": "words-one",
+      "index": 9,
+      "column": 1,
+      "row": 2,
+      "sourceRect": {
+        "x": 313.5,
+        "y": 627,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🍅"
+      ],
+      "usedBy": [
+        "syllable",
+        "vowels",
+        "read-puzzle",
+        "read-word"
+      ]
+    },
+    {
+      "id": "tortoise",
+      "label": "tortoise",
+      "sheet": "creatures",
+      "index": 11,
+      "column": 3,
+      "row": 2,
+      "sourceRect": {
+        "x": 940.5,
+        "y": 627,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🐢"
+      ],
+      "usedBy": [
+        "friends-frog",
+        "nature"
+      ]
+    },
+    {
+      "id": "train",
+      "label": "train",
+      "sheet": "navigation",
+      "index": 13,
+      "column": 1,
+      "row": 3,
+      "sourceRect": {
+        "x": 313.5,
+        "y": 940.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🚂"
+      ],
+      "usedBy": []
+    },
+    {
+      "id": "tram",
+      "label": "tram",
+      "sheet": "creatures",
+      "index": 12,
+      "column": 0,
+      "row": 3,
+      "sourceRect": {
+        "x": 0,
+        "y": 940.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🚋"
+      ],
+      "usedBy": []
+    },
+    {
+      "id": "tree",
+      "label": "Baum",
+      "sheet": "words-three",
+      "index": 6,
+      "column": 2,
+      "row": 1,
+      "sourceRect": {
+        "x": 627,
+        "y": 313.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🌳"
+      ],
+      "usedBy": [
+        "friends-bird",
+        "friends-mouse",
+        "friends-deer",
+        "friends-badger",
+        "syllable",
+        "read-word"
+      ]
+    },
+    {
+      "id": "trousers",
+      "label": "Hose",
+      "sheet": "words-one",
+      "index": 4,
+      "column": 0,
+      "row": 1,
+      "sourceRect": {
+        "x": 0,
+        "y": 313.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "👖"
+      ],
+      "usedBy": [
+        "friends-bird",
+        "friends-mouse"
+      ]
+    },
+    {
+      "id": "ufo",
+      "label": "ufo",
+      "sheet": "people",
+      "index": 6,
+      "column": 2,
+      "row": 1,
+      "sourceRect": {
+        "x": 627,
+        "y": 313.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🛸"
+      ],
+      "usedBy": [
+        "trace"
+      ]
+    },
+    {
+      "id": "unicorn",
+      "label": "unicorn",
+      "sheet": "creatures",
+      "index": 9,
+      "column": 1,
+      "row": 2,
+      "sourceRect": {
+        "x": 313.5,
+        "y": 627,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🦄"
+      ],
+      "usedBy": []
+    },
+    {
+      "id": "vocab-arrow",
+      "label": "Pfeil",
+      "sheet": "puzzle-vocabulary",
+      "index": 14,
+      "column": 2,
+      "row": 3,
+      "sourceRect": {
+        "x": 560,
+        "y": 840,
+        "width": 280,
+        "height": 280
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-bird"
+      ]
+    },
+    {
+      "id": "vocab-bench",
+      "label": "Bank",
+      "sheet": "puzzle-vocabulary",
+      "index": 17,
+      "column": 1,
+      "row": 4,
+      "sourceRect": {
+        "x": 280,
+        "y": 1120,
+        "width": 280,
+        "height": 280
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-bird"
+      ]
+    },
+    {
+      "id": "vocab-cloth",
+      "label": "Tuch",
+      "sheet": "puzzle-vocabulary",
+      "index": 5,
+      "column": 1,
+      "row": 1,
+      "sourceRect": {
+        "x": 280,
+        "y": 280,
+        "width": 280,
+        "height": 280
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-bird",
+        "friends-mouse",
+        "sequence"
+      ]
+    },
+    {
+      "id": "vocab-cup",
+      "label": "Tasse",
+      "sheet": "puzzle-vocabulary",
+      "index": 15,
+      "column": 3,
+      "row": 3,
+      "sourceRect": {
+        "x": 840,
+        "y": 840,
+        "width": 280,
+        "height": 280
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-bird"
+      ]
+    },
+    {
+      "id": "vocab-hand",
+      "label": "Hand",
+      "sheet": "puzzle-vocabulary",
+      "index": 10,
+      "column": 2,
+      "row": 2,
+      "sourceRect": {
+        "x": 560,
+        "y": 560,
+        "width": 280,
+        "height": 280
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-bird",
+        "sequence"
+      ]
+    },
+    {
+      "id": "vocab-head",
+      "label": "Kopf",
+      "sheet": "puzzle-vocabulary",
+      "index": 9,
+      "column": 1,
+      "row": 2,
+      "sourceRect": {
+        "x": 280,
+        "y": 560,
+        "width": 280,
+        "height": 280
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-bird"
+      ]
+    },
+    {
+      "id": "vocab-house",
+      "label": "Haus",
+      "sheet": "puzzle-vocabulary",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 280,
+        "height": 280
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-bird",
+        "friends-mouse"
+      ]
+    },
+    {
+      "id": "vocab-leg",
+      "label": "Bein",
+      "sheet": "puzzle-vocabulary",
+      "index": 3,
+      "column": 3,
+      "row": 0,
+      "sourceRect": {
+        "x": 840,
+        "y": 0,
+        "width": 280,
+        "height": 280
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-bird",
+        "friends-mouse"
+      ]
+    },
+    {
+      "id": "vocab-pot",
+      "label": "Topf",
+      "sheet": "puzzle-vocabulary",
+      "index": 8,
+      "column": 0,
+      "row": 2,
+      "sourceRect": {
+        "x": 0,
+        "y": 560,
+        "width": 280,
+        "height": 280
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-bird",
+        "friends-mouse"
+      ]
+    },
+    {
+      "id": "vocab-rope",
+      "label": "Seil",
+      "sheet": "puzzle-vocabulary",
+      "index": 13,
+      "column": 1,
+      "row": 3,
+      "sourceRect": {
+        "x": 280,
+        "y": 840,
+        "width": 280,
+        "height": 280
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-bird"
+      ]
+    },
+    {
+      "id": "vocab-sand",
+      "label": "Sand",
+      "sheet": "puzzle-vocabulary",
+      "index": 11,
+      "column": 3,
+      "row": 2,
+      "sourceRect": {
+        "x": 840,
+        "y": 560,
+        "width": 280,
+        "height": 280
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-bird"
+      ]
+    },
+    {
+      "id": "vocab-scarf",
+      "label": "Schal",
+      "sheet": "puzzle-vocabulary",
+      "index": 12,
+      "column": 0,
+      "row": 3,
+      "sourceRect": {
+        "x": 0,
+        "y": 840,
+        "width": 280,
+        "height": 280
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-bird"
+      ]
+    },
+    {
+      "id": "vocab-seed",
+      "label": "Kern",
+      "sheet": "puzzle-vocabulary",
+      "index": 19,
+      "column": 3,
+      "row": 4,
+      "sourceRect": {
+        "x": 840,
+        "y": 1120,
+        "width": 280,
+        "height": 280
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-bird",
+        "sequence"
+      ]
+    },
+    {
+      "id": "vocab-shoe",
+      "label": "Schuh",
+      "sheet": "puzzle-vocabulary",
+      "index": 2,
+      "column": 2,
+      "row": 0,
+      "sourceRect": {
+        "x": 560,
+        "y": 0,
+        "width": 280,
+        "height": 280
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-bird",
+        "friends-mouse"
+      ]
+    },
+    {
+      "id": "vocab-stone",
+      "label": "Stein",
+      "sheet": "puzzle-vocabulary",
+      "index": 4,
+      "column": 0,
+      "row": 1,
+      "sourceRect": {
+        "x": 0,
+        "y": 280,
+        "width": 280,
+        "height": 280
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-bird",
+        "friends-mouse"
+      ]
+    },
+    {
+      "id": "vocab-table",
+      "label": "Tisch",
+      "sheet": "puzzle-vocabulary",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 280,
+        "y": 0,
+        "width": 280,
+        "height": 280
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-bird",
+        "friends-mouse",
+        "sequence"
+      ]
+    },
+    {
+      "id": "vocab-till",
+      "label": "Kasse",
+      "sheet": "puzzle-vocabulary",
+      "index": 16,
+      "column": 0,
+      "row": 4,
+      "sourceRect": {
+        "x": 0,
+        "y": 1120,
+        "width": 280,
+        "height": 280
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-bird"
+      ]
+    },
+    {
+      "id": "vocab-tower",
+      "label": "Turm",
+      "sheet": "puzzle-vocabulary",
+      "index": 6,
+      "column": 2,
+      "row": 1,
+      "sourceRect": {
+        "x": 560,
+        "y": 280,
+        "width": 280,
+        "height": 280
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-bird",
+        "friends-mouse"
+      ]
+    },
+    {
+      "id": "vocab-wardrobe",
+      "label": "Schrank",
+      "sheet": "puzzle-vocabulary",
+      "index": 18,
+      "column": 2,
+      "row": 4,
+      "sourceRect": {
+        "x": 560,
+        "y": 1120,
+        "width": 280,
+        "height": 280
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-bird"
+      ]
+    },
+    {
+      "id": "vocab-worm",
+      "label": "Wurm",
+      "sheet": "puzzle-vocabulary",
+      "index": 7,
+      "column": 3,
+      "row": 1,
+      "sourceRect": {
+        "x": 840,
+        "y": 280,
+        "width": 280,
+        "height": 280
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-bird",
+        "friends-mouse",
+        "friends-hedgehog",
+        "friends-deer",
+        "friends-badger"
+      ]
+    },
+    {
+      "id": "water",
+      "label": "water",
+      "sheet": "discovery",
+      "index": 3,
+      "column": 3,
+      "row": 0,
+      "sourceRect": {
+        "x": 940.5,
+        "y": 0,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "💧",
+        "🌊"
+      ],
+      "usedBy": [
+        "friends-deer",
+        "friends-badger",
+        "sequence"
+      ]
+    },
+    {
+      "id": "watermelon",
+      "label": "watermelon",
+      "sheet": "words-one",
+      "index": 11,
+      "column": 3,
+      "row": 2,
+      "sourceRect": {
+        "x": 940.5,
+        "y": 627,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🍉"
+      ],
+      "usedBy": []
+    },
+    {
+      "id": "whale",
+      "label": "Wal",
+      "sheet": "alphabet",
+      "index": 6,
+      "column": 2,
+      "row": 1,
+      "sourceRect": {
+        "x": 627,
+        "y": 313.5,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🐳"
+      ],
+      "usedBy": [
+        "friends-bird",
+        "trace"
+      ]
+    },
+    {
+      "id": "words",
+      "label": "words",
+      "sheet": "navigation",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 313.5,
+        "y": 0,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🔤"
+      ],
+      "usedBy": []
+    },
+    {
+      "id": "zebra",
+      "label": "zebra",
+      "sheet": "creatures",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 313.5,
+        "height": 313.5
+      },
+      "tokens": [
+        "🦓"
+      ],
+      "usedBy": [
+        "friends-frog",
+        "nature",
+        "trace"
+      ]
+    }
+  ]
+}

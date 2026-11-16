@@ -1,0 +1,54 @@
+{
+  "version": "9.3.75",
+  "comparisonRef": "697f0528875d73e06df47d4708262a6130ed7979",
+  "changedPuzzleRevisions": [],
+  "puzzleRevisions": {
+    "friends-squirrel": "19419ded1dc5387f",
+    "friends-bird": "41d83080bf38c4d8",
+    "friends-owl": "5a15e1445e6f43bc",
+    "friends-beaver": "5e182950e4b25186",
+    "friends-mouse": "04381d0583a4a143",
+    "friends-hedgehog": "5486a9db9e51413f",
+    "friends-fish": "cb5669c5bb382ef1",
+    "friends-deer": "805111fdf8885f7b",
+    "friends-kingfisher": "b9af86f1fba25ac7",
+    "friends-frog": "6365dbb7870366e9",
+    "friends-badger": "ccc45589cc5c88c3",
+    "count": "cce13a9e16df0f10",
+    "add": "cda6df8f6a002083",
+    "pattern": "55fa0aa78adf553f",
+    "nature": "b50467632c7da48b",
+    "rocket": "0529094df52f49b3",
+    "picnic": "06b4bc23ca89cc17",
+    "syllable": "60b5c29784d2c3c1",
+    "robot": "d45314232d19b1cf",
+    "sequence": "72f4f4be4e4d78e2",
+    "treasure": "cb8df8906931047a",
+    "neighbours": "acdd49d44abb6b6c",
+    "compare": "63b8b7fbd6fe72f5",
+    "mirror": "05bb95f4775e1f70",
+    "vowels": "97054868e4a04518",
+    "read-puzzle": "e02ec49f41726025",
+    "read-word": "3292dde19136d49b",
+    "read-leaves": "b0dfd5a18462e20f",
+    "read-colours": "3b5323061456a264",
+    "trace": "671ae83256339640",
+    "trace-numbers": "6eed89835dd74809"
+  },
+  "sources": [
+    {
+      "manifest": "design/artwork/navigation.json",
+      "source": "design/artwork/sources/navigation.png",
+      "sourceSha256": "1309707b374630bba62b9a19d8fe06035a8553a3bf2d9dcb6c9182b840d19be2",
+      "output": "assets/interface/navigation.webp",
+      "outputSha256": "62bffb49237691db25f1e66b07770790d2c5187c01335d648c09ce394449738d"
+    },
+    {
+      "manifest": "design/artwork/letter-paper.json",
+      "source": "design/artwork/sources/letter-paper.png",
+      "sourceSha256": "320460fa658b44ca15b3e66ef3c7b789edbf6109b1086f72128f718f5bc17683",
+      "output": "assets/interface/letter-paper.webp",
+      "outputSha256": "1890da11074d18719eef340559b5b191581ff44f12b7ebcf12fb047b09f30003"
+    }
+  ]
+}

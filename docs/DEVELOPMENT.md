@@ -7,6 +7,8 @@ Serve the repository root with `python3 -m http.server 8000 --bind 127.0.0.1`. T
 ```sh
 npm ci --prefix tools
 node tools/puzzle-catalogue.cjs
+node tools/illustrations/library.cjs
+node tools/illustrations/library.cjs --check
 node tools/check-design.cjs
 node --test tests/*.test.cjs
 node tests/design-system-browser.cjs
@@ -19,6 +21,7 @@ node tests/puzzle-review-browser.cjs
 node tests/review-sync-browser.cjs
 node tests/review-compatibility-browser.cjs
 node tests/puzzle-feedback-browser.cjs
+node tests/artwork-browser.cjs
 ```
 
 Browser suites require Playwright and Chromium. Set `PLAYWRIGHT_MODULE`, `CHROMIUM_PATH` and optionally `FARBTUPF_BASE_URL` for your installation. The review suite solves all 953 exact iterations, exercises native touch/mouse input for every puzzle, and checks whole-pool approval/rejection, gesture cancellation, persistence and offline review. The design suite compares review and child-play paper/writing dimensions for all 31 puzzles at phone/tablet sizes; `FARBTUPF_GAMES=add,trace,trace-numbers` limits its content pass during targeted work. Letter sessions checks Settings, real invitations, access restrictions, ten actual answers, mailman, home, sleep, reload/offline and adult restart. The design suite checks asset/font roles and current entry points. Screenshots go to `/tmp` unless an output path is set.
@@ -32,6 +35,8 @@ The [local play-log](PLAY-LOG.md) suite exercises exact answers/definitions, inp
 Read [Visual style](../design/VISUAL-STYLE.md) and [Puzzle blueprint](../design/PUZZLE-BLUEPRINT.md). Register finite, bounded content in `js/friends/puzzle-catalogue.js` and the inventory in `library.js`. Regenerate catalogue pages and the per-puzzle implementation fingerprints after any runtime/art change. Review is required again for every changed content/difficulty/presentation revision; deployment never grants approvals.
 
 Current character sculpt source: `tools/characters/plush.js`. Bake with `tools/bake/`, then generate all identity portraits with `tools/portraits/render.cjs`. Keep all characters in one pipeline. Learning nouns/actions use the drawn Waldatelier library. Preserve saved template IDs, settings records and historical localStorage/IndexedDB keys.
+
+The [artwork handoff for Claude](../design/artwork/README.md) indexes every image-generator role, exact recorded prompts, honest reconstruction recipes, references and source preparation. All puzzle drawings live in [one browsable library](../assets/waldatelier/README.md). Its JSON/GitHub index is generated from the runtime IDs and rendering dependencies; the standalone browser exports existing atlas cells as transparent PNGs. It never edits game/review storage.
 
 Work on a branch for reviewable changes, commit and push checkpoints. Merge/push `main` only when the owner authorizes publication. Keep current rules in `design/`; archive superseded documents with a clear index. No runtime reference may load archive material.
 

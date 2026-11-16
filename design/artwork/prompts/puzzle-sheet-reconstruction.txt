@@ -1,0 +1,9 @@
+RECONSTRUCTION TEMPLATE — use only for a sheet without a retained original prompt. This is not a record of its historical generation. First read assets/waldatelier/library.json for the exact cell order and current subject IDs; attach the existing sheet plus assets/waldatelier/forest-actions.webp or puzzle-vocabulary.webp as actual reference images.
+
+Create a companion Waldpost drawn learning-illustration atlas in the reference's warm picture-book family: coloured-pencil/watercolour/gouache texture, soft edges, gentle shading, restrained woodland colours, clear child-readable silhouettes. Use the existing reference's proportions and markings. Preserve accurate anatomy and meaningful action differences. No photographic/stock assets, platform emoji, glossy plastic or model-rendered character portraits.
+
+Canvas: [EXACT COLUMNS] × [EXACT ROWS] equal square cells. Fully transparent RGBA background, no visible grid or wash. One complete isolated subject per occupied cell, centred with generous empty transparent gutters. No ear, tail, leaf or wing may cross its cell boundary. Counted objects must show exactly ONE object. No words, labels, numbers or decoration. List EVERY cell in row-major order from library.json, including empty trailing cells. Do not infer a new order from the sheet's name.
+
+[PASTE THE COMPLETE ORDERED SUBJECT LIST AND PRECISE SUBJECT/ACTION BRIEFS HERE.]
+
+For scored colours, retain the required exact colour names and clear distinctions. Inspect generated anatomy, countability, transparency, matching scale and border crops before packing. Use tools/illustrations/pack-atlas.cjs with a recorded manifest. Adding unused pictures does not approve them or change existing puzzle definitions; changing a picture used by a puzzle requires its normal editorial review.

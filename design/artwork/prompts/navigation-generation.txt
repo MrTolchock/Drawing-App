@@ -1,0 +1,13 @@
+Create a polished Waldpost woodland navigation illustration atlas matching the TWO attached references: the warm painted fox den and the drawn forest objects. Soft hand-painted coloured-pencil/gouache children's picture-book texture, gentle shading, warm honey wood and cream parchment, moss/sage green, restrained red wax and blue water. These are small navigation icons for children: bold recognizable silhouettes, simple broad shapes, clear at 48 pixels, beautifully drawn natural materials, consistent lighting and scale. Not flat vector icons, emoji, glossy plastic, photographs or 3D character renders.
+
+Canvas: LANDSCAPE 3:2 aspect. EXACTLY THREE columns and TWO rows of equal SQUARE cells. No visible grid or cell borders. Fully transparent RGBA background everywhere outside the six objects. One complete isolated object in each cell, centered, with AT LEAST 18 percent empty transparent padding on every side of that cell. No parts cross a cell boundary. No badge disks, no buttons, no surrounding scenery, no letters, numbers, labels or logos.
+
+Order LEFT TO RIGHT, TOP TO BOTTOM:
+1. SETTINGS: one chunky warm carved wooden cogwheel with eight rounded teeth, visible subtle wood grain, a clean circular cream center and little brass hub. A simple strong gear silhouette.
+2. MAP: one folded cream parchment woodland map in three panels, warm hand-painted edges, a broad little blue stream, two small green woodland patches and a restrained red dotted trail. No words and no location pins or characters.
+3. LETTER: one closed cream handmade-paper envelope, triangular flap seam visible, a small red wax seal embossed with a leaf, and a tiny sage leaf postage stamp in an upper corner. No address or writing. Envelope silhouette stays wide and unmistakable.
+4. HOME: one cozy hollow woodland tree home, broad honey-brown trunk with roots, a rounded wooden door and one small glowing round window, a little leafy green crown. Like the home belonging to the attached den interior; no fox or other character.
+5. DOOR: one arched wooden door and rounded wood frame, door slightly open to a glimpse of soft green forest daylight, little brass knob. Strong simple doorway silhouette, no room around it.
+6. BACK: one broad carved honey-wood arrow pointing LEFT, softly rounded corners, subtle grain and darker side edge. Clearly a straight left arrow, no circle or curved undo arrow.
+
+All six are one carefully matched family. Preserve the warmth and tactile painted texture of the references without adding tiny distracting decoration.

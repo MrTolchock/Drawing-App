@@ -82,7 +82,7 @@ function snapshotReader(ref){
  const r=spawnSync('git',['ls-tree','-r','--name-only',ref,'css'],{cwd:root,encoding:'utf8'});if(r.status!==0)throw Error('Cannot read baseline '+ref);
  return {read,css:()=>r.stdout.trim().split('\n').filter(n=>n.endsWith('.css')).sort()};
 }
-function build(reader=currentReader()){
+function build(reader=currentReader(),{includeResources=false}={}){
  const {read}=reader,env=environment({read,review:false}),{FK,ctx}=env,C=FK.puzzleCatalogue;
  FK.STICKERS=[];FK.screen=()=>{};FK.on=()=>()=>{};FK.h=(tag,attrs,...children)=>({tag,attrs,children,classList:{add(){}}});
  ctx.MutationObserver=class{observe(){}};ctx.document={body:{}};
@@ -144,7 +144,9 @@ function build(reader=currentReader()){
   const {definition,pictures,portraitCells,...rest}=data;
   puzzles[id]={definition,presentation:hash({...rest,pictures:pictures.map(({key,index,...rec})=>({...rec,pixels:pixels[key][index]})),portraits:portraitCells.map(i=>pixels['assets/forest-friends/character-portraits.webp'][i])})};
  }
- return {schema:SCHEMA,puzzles};
+ const result={schema:SCHEMA,puzzles};
+ if(includeResources)result.resources=Object.fromEntries(Object.entries(all).map(([id,data])=>[id,[...new Set(data.pictures.flatMap(p=>p.subject?[p.subject]:Object.entries(FK.visual.subjects).filter(([,rec])=>FK.visual.source(rec.sheet)===p.key&&rec.index===p.index).map(([subject])=>subject)))].sort()]));
+ return result;
 }
 module.exports={SCHEMA,build,currentReader,snapshotReader};
 if(require.main===module){

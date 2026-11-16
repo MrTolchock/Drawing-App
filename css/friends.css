@@ -521,11 +521,14 @@
 .ff-letter-slider{flex:1;min-width:0;height:48px;accent-color:#6f8a43;cursor:pointer}
 .ff-letter-count{min-width:2.4em;padding:4px 8px;border:2px solid #c9b48a;border-radius:12px;background:#fffaf0;text-align:center;font-weight:700;font-size:20px;color:#4b3b2d}
 /* The world's own painted button pictures (js/friends/hud-art.js) and their wooden medallions. */
-.ff-hud-art{display:inline-flex;width:100%;height:100%}.ff-hud-art>svg{width:100%;height:100%;display:block}
+.ff-hud-art{display:block;flex:none;width:100%;height:100%;background-repeat:no-repeat;pointer-events:none}
 .friends-interface .ff-game .ff-nav{background:none;border:0;box-shadow:none;padding:0;gap:12px}
 .friends-interface .ff-game .ff-nav .ff-button{border-radius:50%;background:radial-gradient(circle at 50% 42%,#fffaf0 0 56%,#f6e8c8 57% 66%,var(--wb-timber,#a8703f) 67% 76%,var(--wb-timber-deep,#74482a) 77%);border:0;box-shadow:0 4px 0 #5e3a20,0 7px 14px #3a2a1440}
 .friends-interface .ff-game .ff-nav .ff-button:not(:disabled):active{transform:translateY(3px);box-shadow:0 1px 0 #5e3a20,0 3px 8px #3a2a1440}
-.friends-interface .ff-game .ff-nav .ff-button .ff-hud-picture{width:42px;height:42px}
+.friends-interface .ff-game .ff-nav .ff-button .ff-hud-picture{display:flex;width:42px;height:42px}
 .friends-interface .ff-game .ff-nav .ff-dev{align-self:center}
 @media(max-width:600px){.friends-interface .ff-game .ff-nav{gap:7px}.friends-interface .ff-game .ff-nav .ff-button .ff-hud-picture{width:36px;height:36px}}
 .ff-voice-choice{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:12px 0 8px}.ff-voice-select{min-height:48px;max-width:100%;padding:8px 10px;border:2px solid #c9b48a;border-radius:12px;background:#fffaf0;font:inherit;color:#4b3b2d}
+
+.ff-den-envelope>.ff-hud-picture{display:grid;place-items:center}.ff-den-envelope .ff-hud-art{width:auto;height:100%;aspect-ratio:1}
+.ff-map-invitation>.ff-hud-art{width:100%;height:100%}

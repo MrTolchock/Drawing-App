@@ -2,6 +2,8 @@
 
 This is the handoff for Claude and other assistants making new puzzle illustrations. Read the [visual style](../VISUAL-STYLE.md) and [puzzle blueprint](../PUZZLE-BLUEPRINT.md) first. They remain the specifications for the game.
 
+The [central image library](../../assets/waldatelier/README.md) now indexes every registered drawn picture, its stable ID, cells and puzzle use, with a searchable browser and transparent PNG downloads. The [complete artwork handoff](../artwork/README.md) covers the generated icons, letter, painted backgrounds, recovered original prompts and other image-generator uses.
+
 The 9.3.37 pictures were made with ChatGPT's hosted image-generation tool, using existing drawn sheets as image references and `transparent_background: true`. No custom model was trained for this project. The tool did not expose a model version or seed. This repository contains the prompts, references, editable outputs and preparation code; it does not contain the hosted generator or service credentials. Generation is not pixel-deterministic.
 
 ## Using this from Claude

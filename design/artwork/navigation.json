@@ -1,0 +1,12 @@
+{
+  "format":"waldpost-illustration-atlas","version":1,
+  "source":"sources/navigation.png","output":"../../assets/interface/navigation.webp",
+  "columns":3,"rows":2,"cellPixels":320,"subjectPixels":272,"alphaThresholdPercent":15,
+  "provenance":{
+    "date":"2026-11-16","tool":"ChatGPT hosted image-generation tool","transparent_background":true,
+    "references":["../../assets/forest-friends/den-v2.webp","../../assets/waldatelier/forest-objects.webp"],
+    "generationPrompt":"prompts/navigation-generation.txt","repairPrompt":"prompts/navigation-transparency.txt","draft":"sources/navigation-draft.png",
+    "sourceSha256":"1309707b374630bba62b9a19d8fe06035a8553a3bf2d9dcb6c9182b840d19be2"
+  },
+  "subjects":[{"id":"gear","label":"Einstellungen"},{"id":"map","label":"Bildkarte"},{"id":"letter","label":"Brief"},{"id":"den","label":"Zuhause"},{"id":"door","label":"Nach draussen"},{"id":"back","label":"Zurück"}]
+}

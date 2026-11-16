@@ -2,6 +2,8 @@
 
 [Play](https://mrtolchock.github.io/Drawing-App/) · [Current design](design/README.md) · [All puzzles and competences](docs/PUZZLE-CATALOGUE.md) · [Development](docs/DEVELOPMENT.md)
 
+[Drawn image library](https://mrtolchock.github.io/Drawing-App/assets/waldatelier/) · [Artwork, backgrounds and generator handoff for Claude](design/artwork/README.md)
+
 A woodland learning game for first-grade practice in Zürich, in Swiss Standard German. Parents choose how many letters their child can complete. Fuchs starts at the den, receives a pictured letter, walks to that friend and solves a puzzle of five different iterations. Hase delivers the next letter. After the last puzzle, Fuchs returns home to sleep and the journey ends.
 
 Only the friend on the current letter offers a puzzle. The 31 puzzles have 953 finite iterations, with a common page, sounds, feedback and celebration. Settings contains the adult-only gallery and review workbench: review every unconfirmed iteration in the normal game viewport. Correct completion approves and advances; × opens an optional rejection comment. The full queue ends with the usual celebration and approves the puzzle when every iteration passed. Exact-revision approvals are required before child play. New content, difficulty and shared implementation changes require review again. Deployment never approves content.

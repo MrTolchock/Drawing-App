@@ -1,0 +1,31 @@
+{
+  "world": [
+    {
+      "width": 1080,
+      "height": 810,
+      "host": "bird",
+      "letterFits": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "host": "bird",
+      "letterFits": true
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "host": "bird",
+      "letterFits": true
+    }
+  ],
+  "library": {
+    "images": 235,
+    "sheets": 17,
+    "search": true,
+    "filters": true,
+    "clipboard": true,
+    "transparentPngDownload": true
+  },
+  "reviewWrites": 0
+}

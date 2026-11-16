@@ -5,7 +5,6 @@ let root,canvas,world,state,audio,overlay,hotspots,nav,statusBar,nearButton,capt
 let area='den',panel=null,host=null,example=false,feedbackTimer=null,activeMs=0,lastTick=performance.now(),returnArea='den',finalSleep=false;
 const actionPictures={outside:'door'};
 const actionNames={outside:'Nach draussen'};
-const envelopeSVG='<svg viewBox="0 0 120 85" aria-hidden="true"><rect x="3" y="5" width="114" height="75" rx="7" fill="#fff6dc" stroke="#967044" stroke-width="3"/><path d="m5 76 40-33m70 33L75 43M5 9l55 43 55-43" fill="none" stroke="#b59466" stroke-width="3"/><circle cx="60" cy="53" r="9" fill="#a9bb85"/><path d="m56 53 3 3 5-7" fill="none" stroke="#547043" stroke-width="2"/></svg>';
 const doorSVG=`<svg viewBox="0 0 1448 1086" preserveAspectRatio="none"><defs><linearGradient id="letter-flap" x2="0" y2="1"><stop stop-color="#cc9743"/><stop offset=".5" stop-color="#e5bd70"/><stop offset="1" stop-color="#ae7633"/></linearGradient></defs><rect class="ff-mail-opening" x="1180" y="280" width="106" height="34" rx="3" fill="#49331f"/><rect class="ff-mail-lid" x="1180" y="280" width="106" height="34" rx="3" fill="url(#letter-flap)" stroke="#d7af64" stroke-width="2"/></svg>`;
 function syncMail(){
   if(!world||!state||!doorScene)return;
@@ -34,9 +33,7 @@ function showLetter(fromMailman){
   open('letter');syncMail();
   const id=state.mail().host;
   overlay.classList.add('ff-postcard-overlay');
-  const letter=h('button',{type:'button',class:'ff-letter-paper','data-host':id,'aria-label':'Zum Freund gehen',onclick:()=>go('forest')},
-    h('div',{class:'ff-letter-stamp'},art('leaf')),letterPortrait(id),
-    h('div',{class:'ff-letter-scribbles','aria-hidden':'true',html:'<svg viewBox="0 0 320 100"><path d="M15 18q8-16 18 0t18-2 19 0 22-1m16 0q12-12 24-1t24 0 20-1 25 0 23-2M15 44q10-15 18-1t18 0 24-1 21 0m15 0q14-14 24 0t26-1 22 0 22 0M15 70q9-12 18 0t22 0 22 0m16 0q12-14 24-1t21 0 23-1 25 0 22 0" fill="none" stroke="#877257" stroke-width="3" stroke-linecap="round"/></svg>'}));
+  const letter=h('button',{type:'button',class:'ff-letter-paper','data-host':id,'aria-label':'Zum Freund gehen','aria-description':'Ein Brief von '+C.hosts[id].name,onclick:()=>go('forest')},letterPortrait(id));
   overlay.append(letter);requestAnimationFrame(()=>letter.focus());
   say('Ein Brief von '+C.hosts[id].name+'! Schau auf das Bild. Draussen zeigt dir der Pfeil den Weg.');
 }
@@ -105,7 +102,7 @@ function map(){
     if(id==='mailman')continue;
     const b=button(p.name,p.picture,()=>{if(area!=='forest')go('forest');else close();world.route(id);});
     b.replaceChildren(id==='home'?FK.hudArt.element('den'):FK.friendsArt.portrait(id));b.dataset.place=id;if(id==='home')b.classList.add('ff-map-home');
-    const invited=mail.phase==='to-friend'&&mail.host===id||mail.phase==='return-home'&&id==='home';b.classList.toggle('ff-map-invited',invited);if(invited)b.append(h('span',{class:'ff-map-invitation'},FK.icons.element('letter')));
+    const invited=mail.phase==='to-friend'&&mail.host===id||mail.phase==='return-home'&&id==='home';b.classList.toggle('ff-map-invited',invited);if(invited)b.append(h('span',{class:'ff-map-invitation'},FK.hudArt.element('letter')));
     const [x,y]=mapPins[id];b.style.left=(x*100)+'%';b.style.top=(y*100)+'%';board.append(b);
   }
   // Where Fuchs is now: his portrait on a pin with a soft pulse on the spot (in the den: at home).

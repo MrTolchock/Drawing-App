@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="de-CH">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Waldpost · Bildbibliothek</title><link rel="stylesheet" href="library.css"><script src="library.js" defer></script></head>
+<body>
+<header><a class="brand" href="../../">Waldpost</a><p class="eyebrow">Zeichnungen für neue Rätsel</p><h1>Die Bildbibliothek</h1><p>Vorhandene Bilder finden, ihre Verwendung prüfen und transparente Einzelbilder herunterladen.</p><nav><a href="https://github.com/MrTolchock/Drawing-App/blob/main/design/artwork/README.md">Zeichenstil, Hintergründe & Generator</a><a href="README.md">Dateiübersicht</a><a href="library.json">Katalog als JSON</a></nav></header>
+<main>
+<section class="filters" aria-label="Bilder filtern">
+<label class="search">Bildname oder ID<input id="search" type="search" placeholder="Zum Beispiel Nuss, Maus oder forest-fox" autocomplete="off"></label>
+<label>Bildbogen<select id="sheet" aria-label="Bildbogen"><option value="">Alle Bildbogen</option></select></label>
+<label class="check"><input id="used" type="checkbox">Nur Bilder aus aktiven Rätseln</label>
+<label class="check"><input id="transparency" type="checkbox">Transparenzraster zeigen</label>
+</section>
+<p id="count" role="status" aria-live="polite">Bilder werden geladen …</p>
+<section id="images" class="images" aria-label="Gezeichnete Bilder"></section><button id="more" hidden>Weitere Bilder zeigen</button>
+<p id="message" class="message" role="status" aria-live="polite"></p>
+<aside>Die Bilder liegen gemeinsam unter <code>assets/waldatelier/</code>. Mit ihrer ID lassen sie sich direkt im Rätsel verwenden. Figurenporträts, Briefpapier und Hintergründe haben eigene Aufgaben und sind im <a href="https://github.com/MrTolchock/Drawing-App/blob/main/design/artwork/README.md">Zeichenhandbuch</a> verzeichnet.</aside>
+</main><footer>Waldpost · Referenzbibliothek für Autorinnen, Autoren und Bildgeneratoren</footer>
+</body></html>

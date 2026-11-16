@@ -1,0 +1,26 @@
+{
+  "format":"waldpost-artwork-inventory","version":1,
+  "generated":[
+    {"id":"puzzle-pictures","directory":"assets/waldatelier","catalogue":"assets/waldatelier/library.json","registry":"js/ui/waldatelier.js","guide":"design/illustrations/README.md","role":"drawn learning subjects","provenance":"Per-sheet recorded prompt/manifest or explicitly labelled reconstruction recipe is listed in the catalogue."},
+    {"id":"world-navigation","file":"assets/interface/navigation.webp","width":960,"height":640,"columns":3,"rows":2,"alpha":true,"manifest":"design/artwork/navigation.json","role":"world settings, map, letter, home, door, back","provenance":"Exact generation and transparency-repair prompts, draft and final PNG retained."},
+    {"id":"letter-paper","file":"assets/interface/letter-paper.webp","width":1200,"height":900,"alpha":true,"manifest":"design/artwork/letter-paper.json","role":"invitation stationery","provenance":"Exact generation prompt and PNG retained; sender is a separately rendered current-model portrait."},
+    {"id":"den","file":"assets/forest-friends/den-v2.webp","width":1448,"height":1086,"alpha":false,"role":"painted room behind live 3D fox","firstFinalEditCommit":"44574ce","recordedBase":"design/artwork/prompts/recorded-forest-concepts.json","recordedBaseAsset":"den-v1.png","finalPromptRetained":false,"reconstruction":"design/artwork/prompts/den-current-reconstruction.txt","guide":"design/artwork/BACKGROUNDS.md"},
+    {"id":"clearing","file":"assets/forest-friends/puzzle-clearing.webp","width":1536,"height":1024,"alpha":false,"roles":["puzzle background","adult gallery/review background","menu woodland","settings woodland"],"originalPng":"git:6f40fc0:assets/forest-friends/puzzle-clearing.png","webpConversionCommit":"6226578","finalPromptRetained":false,"reconstruction":"design/artwork/prompts/puzzle-clearing-reconstruction.txt"},
+    {"id":"historical-hero","file":"assets/waldatelier/hero.webp","width":1536,"height":1024,"alpha":false,"role":"historical Lake Zürich landing artwork; not Settings scenery","recordedPrompt":"design/artwork/prompts/recorded-waldatelier.json","promptId":"hero","originalPng":"git:991bb95:assets/waldatelier/hero.png"},
+    {"id":"app-icon","source":"archive/project-baseline/design/waldatelier/app-icon.png","outputs":["icons/icon-192.png","icons/icon-512.png","icons/apple-touch-icon.png","icons/icon-maskable-512.png","icons/icon.svg"],"role":"app branding","recordedBrief":"design/artwork/prompts/recorded-app-icon.json","provenance":"Generated original; install sizes and SVG wrapper are mechanical exports. Maskable portrait uses 75% scale on warm ivory."},
+    {"id":"historical-colouring","file":"assets/forest-friends/colouring-friends.webp","role":"retired six-panel colouring artwork; saved IDs preserved","finalPromptRetained":false,"historicalRecord":"archive/design-history/forest-friends/visuals/milestones/den-polish/COMPARISON.md"}
+  ],
+  "generatedHistoricalExplorations":[
+    {"id":"style-directions","recordedBriefs":"design/artwork/prompts/recorded-style-directions.json","images":"archive/design-history/archive/visual-identities","status":"Waldatelier was selected; other directions are historical reference."},
+    {"id":"forest-friend-concepts","recordedPrompts":"design/artwork/prompts/recorded-forest-concepts.json","images":"archive/design-history/forest-friends/visuals","status":"Design concepts, not current production 3D models."},
+    {"id":"painted-postcard-portraits","historicalRecord":"archive/design-history/forest-friends/visuals/milestones/den-polish/COMPARISON.md","status":"Superseded by same-model portrait renders; not current identity artwork."}
+  ],
+  "notImageGenerated":[
+    {"id":"picture-map","file":"assets/forest-friends/world-map.webp","source":"tools/map/map.html","guide":"tools/map/README.md","method":"Canvas painting from actual world geometry and coordinates."},
+    {"id":"character-identities","file":"assets/forest-friends/character-portraits.webp","source":"tools/portraits","guide":"tools/portraits/README.md","method":"Transparent renders of the current sculpted/baked GLB character models."},
+    {"id":"live-world","source":"js/friends/world","method":"Geometry, code-painted canvas textures and shaders; no generated backdrop."},
+    {"id":"puzzle-utility","source":"js/ui/waldatelier-icons.js","method":"Authored shared sepia SVG symbols."},
+    {"id":"handwriting","source":"js/learn/glyphs.js","method":"Authored exact stroke paths."},
+    {"id":"paper-and-control-frames","source":"css/waldbuch.css","method":"CSS surfaces, stitching, timber frames, shadows and washes; invitation paper uses its separate generated image."}
+  ]
+}

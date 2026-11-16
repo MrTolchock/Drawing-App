@@ -1,0 +1,11 @@
+{
+  "format":"waldpost-illustration-image","version":1,
+  "source":"sources/letter-paper.png","output":"../../assets/interface/letter-paper.webp",
+  "width":1200,"height":900,"fit":"contain","transparent":true,"quality":90,
+  "provenance":{
+    "date":"2026-11-16","tool":"ChatGPT hosted image-generation tool","transparent_background":true,
+    "references":["../../assets/forest-friends/den-v2.webp","sources/navigation.png"],
+    "generationPrompt":"prompts/letter-generation.txt",
+    "sourceSha256":"320460fa658b44ca15b3e66ef3c7b789edbf6109b1086f72128f718f5bc17683"
+  }
+}

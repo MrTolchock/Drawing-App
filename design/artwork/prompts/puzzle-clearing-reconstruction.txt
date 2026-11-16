@@ -1,0 +1,7 @@
+RECONSTRUCTION RECIPE — the original prompt for the current clearing is not retained. Attach assets/forest-friends/puzzle-clearing.webp as the primary composition/style reference. Use an opaque background.
+
+Create a companion Waldpost woodland clearing background matching the attached painting. Landscape 3:2, 1536 × 1024 composition, warm children's picture-book gouache/coloured-pencil texture, gentle sunlight, sage/olive foliage, warm honey-brown bark and soft ivory/golden clearing. Two large trees frame the far left and right edges, with leaf canopy along the upper corners, quiet fern/moss/white flowers at their roots, a few acorns and orange-brown oak leaves, and warm little mushrooms in the lower corners. A softly blurred woodland recedes in the distance.
+
+The broad central area must stay VERY quiet, pale and mostly empty for real cream puzzle pages, menus and settings to sit on top. Do not paint paper panels, buttons, text, symbols, character portraits or animals into the background. Keep detailed decoration at the perimeter, preserve safe quiet space for portrait/landscape viewport crops, and retain the source's warm natural light. No photograph, glossy 3D, dark vignette, neon colours, lettering or logos.
+
+The same clearing file is used behind puzzle pages, gallery/review pages and settings, with different CSS washes and cover crops. There is no separate generated settings woodland to reproduce.
