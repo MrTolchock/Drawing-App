@@ -58,6 +58,10 @@
       "title": "Naturrätsel",
       "host": "badger"
     },
+    "friends-ibex": {
+      "title": "Bergmuster",
+      "host": "ibex"
+    },
     "count": {
       "title": "Waldkäfer zählen",
       "host": "squirrel"
@@ -2029,6 +2033,7 @@
       "usedBy": [
         "friends-bird",
         "friends-badger",
+        "friends-ibex",
         "syllable",
         "robot",
         "vowels",
@@ -2062,6 +2067,7 @@
         "friends-kingfisher",
         "friends-frog",
         "friends-badger",
+        "friends-ibex",
         "count",
         "add",
         "pattern",
@@ -2170,6 +2176,7 @@
         "friends-kingfisher",
         "friends-frog",
         "friends-badger",
+        "friends-ibex",
         "count",
         "add",
         "pattern",
@@ -2274,6 +2281,7 @@
         "friends-mouse",
         "friends-deer",
         "friends-badger",
+        "friends-ibex",
         "count",
         "add",
         "pattern",
@@ -2399,6 +2407,7 @@
       "tokens": [],
       "usedBy": [
         "friends-kingfisher",
+        "friends-ibex",
         "treasure"
       ]
     },

@@ -360,7 +360,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   const sound = {cues: [], at: -1, moving: false, speed: 0, ground: 'grass', trees: 1, meadow: 0, swamp: 0, spruce: 0, brook: 0, falls: 0, fallsPan: 0}, soundBiome = {};
   function listen() {
     const T = WORLD.terrain, b = T.biome(pos.x, pos.z, soundBiome), c = T.onCrossing(pos.x, pos.z), pa = T.pathAt(pos.x, pos.z);
-    sound.ground = c ? (c.c.kind === 'dam' ? 'sticks' : 'wood') : b.snow > .5 ? 'snow' : b.rock > .6 || b.cave > .5 ? 'rock' : b.swamp > .5 ? 'wet' : pa.d < pa.w / 2 + .15 ? 'earth' : b.meadow > .5 ? 'meadow' : b.spruce > .5 ? 'needles' : 'grass';
+    sound.ground = c ? (c.c.kind === 'dam' ? 'sticks' : c.c.kind === 'slab' ? 'rock' : 'wood') : b.snow > .5 ? 'snow' : b.rock > .6 || b.cave > .5 ? 'rock' : b.swamp > .5 ? 'wet' : pa.d < pa.w / 2 + .15 ? 'earth' : b.meadow > .5 ? 'meadow' : b.spruce > .5 ? 'needles' : 'grass';
     sound.crossing = c ? c.c.kind : null;
     { const st = T.site(pos.x, pos.z); sound.wade = st.still === st.still && st.still - st.h > .005 && !c; sound.bank = (st.sd - st.sw / 2 < 1.1) || (st.still === st.still && b.swamp < .5 && st.h - st.still < .4); }
     sound.trees = (1 - b.meadow) * (1 - b.swamp * .6) * (1 - b.rock * .7) * (1 - b.snow); sound.snow = b.snow; sound.rock = b.rock; sound.cave = b.caveRoof || 0; sound.meadow = b.meadow; sound.swamp = b.swamp; sound.spruce = b.spruce;

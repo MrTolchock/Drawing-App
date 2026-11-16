@@ -5,21 +5,28 @@
   const clone=x=>JSON.parse(JSON.stringify(x));
   const SCHEMA=1;
   const Logging=typeof module!=='undefined'?require('./play-log.js'):root.PlayLog;
-  function create({storage,content,development=false,namespace='',now=()=>Date.now(),random=Math.random,onStatus=()=>{},appVersion=()=>root.FK?.VERSION||'unknown',logContext=()=>({}),loggingEnabled=()=>!root.FK?.playLog?.development()}){
+  function create({storage,content,eligible=null,development=false,namespace='',now=()=>Date.now(),random=Math.random,onStatus=()=>{},appVersion=()=>root.FK?.VERSION||'unknown',logContext=()=>({}),loggingEnabled=()=>!root.FK?.playLog?.development()}){
     const key='farbtupf.friends.'+(namespace?namespace+'.':development?'development.':'')+'v1', backup=key+'.backup', logKey=key+'.log';
     let state,blocked=false,readFailed=false,expected=null,error='';
     const uid=()=>now().toString(36)+'-'+random().toString(36).slice(2,12);
     const sessionId=uid();
     // An invitation stays stable; future friends come from a saved shuffled bag.
-    const mailHosts=['squirrel','bird','owl','beaver','mouse','hedgehog','fish','deer','kingfisher','frog','badger'];
+    const mailHosts=['squirrel','bird','owl','beaver','mouse','hedgehog','fish','deer','kingfisher','frog','badger','ibex'];
+    // A letter goes only to a friend whose puzzles are ready (`eligible`, from the game: signed off in the review); if none is, as before.
+    const ok=id=>{try{return !eligible||!!eligible(id);}catch{return true;}};
     const letterLimit=n=>Number.isInteger(n)&&n>=1&&n<=50;
     const session=(limit=3)=>({id:uid(),limit,completed:0});
-    const firstMail=()=>{const [host,...remaining]=shuffled(mailHosts);return {phase:'den-letter',host,remaining,index:0,completed:0,session:session()};};
+    const firstMail=()=>{const all=shuffled(mailHosts),k=Math.max(0,all.findIndex(ok)),[host]=all.splice(k,1);return {phase:'den-letter',host,remaining:all,index:0,completed:0,session:session()};};
     const prepare=s=>{s.settings.letterLimit=letterLimit(s.settings.letterLimit)?s.settings.letterLimit:3;s.mail=s.mail||firstMail();if(!s.mail.remaining)s.mail.remaining=shuffled(mailHosts.filter(id=>id!==s.mail.host));if(!s.mail.session){s.mail.session=session(s.settings.letterLimit);if(s.mail.phase==='to-mailman')s.mail.session.completed=1;if(s.mail.session.completed>=s.mail.session.limit)s.mail.phase='return-home';}s.unlocks.leaf=true;s.unlocks.pencils=true;return s;};
     function nextHost(s){
-      const m=s.mail;if(!m.remaining.length)m.remaining=shuffled(mailHosts);
-      if(m.remaining[0]===m.host){if(m.remaining.length===1)m.remaining=shuffled(mailHosts);const other=m.remaining.findIndex(id=>id!==m.host);[m.remaining[0],m.remaining[other]]=[m.remaining[other],m.remaining[0]];}
-      m.host=m.remaining.shift();m.index++;
+      const m=s.mail,next=()=>m.remaining.findIndex(id=>id!==m.host&&ok(id));
+      if(!m.remaining.length)m.remaining=shuffled(mailHosts);
+      let k=next();
+      // nobody ready left in this bag: the friends already visited join it again (in a new order)
+      if(k<0){m.remaining=[...m.remaining,...shuffled(mailHosts.filter(id=>!m.remaining.includes(id)))];k=next();}
+      if(k<0)k=m.remaining.findIndex(id=>id!==m.host);
+      if(k<0){m.remaining=shuffled(mailHosts.filter(id=>id!==m.host));k=0;}
+      m.host=m.remaining.splice(k,1)[0];m.index++;
     }
     function finishMail(s,host){if(s.mail.phase!=='to-friend'||s.mail.host!==host||s.mail.session.completed>=s.mail.session.limit)return false;s.mail.completed++;s.mail.session.completed++;s.mail.phase=s.mail.session.completed>=s.mail.session.limit?'return-home':'to-mailman';return true;}
     const fresh=()=>({schema:SCHEMA,revision:0,contentVersion:content.version,wallet:{nuts:0,seeds:0,feathers:0,logs:0,berries:0},inventory:{apple:0,bath:0},unlocks:{leaf:true,pencils:true},rounds:{},previous:{},completed:{},seenExamples:{},selectedPage:'free',drawings:{free:[],leaf:[]},settings:{music:true,ambience:true,speech:false,letterLimit:3},world:{x:0,z:5},collected:{},animation:null,transactions:[],legacyPreserved:true,mail:firstMail()});
@@ -39,7 +46,7 @@
       if(s.settings?.letterLimit!==undefined&&!letterLimit(s.settings.letterLimit))return false;
       if(!['nuts','seeds','feathers','logs','berries'].every(k=>quantity(s.wallet?.[k])))return false;
       if(!['apple','bath'].every(k=>quantity(s.inventory?.[k]))||!['leaf','pencils'].every(k=>typeof s.unlocks?.[k]==='boolean'))return false;
-      if(!object(s.rounds)||!Object.entries(s.rounds).every(([host,r])=>content.hosts[host]&&r&&r.host===host&&typeof r.id==='string'&&r.tasks?.length===5&&r.tasks.every(t=>typeof t.id==='string'&&Array.isArray(t.choices)&&t.choices.includes(t.answer)&&t.choices.every(v=>typeof v==='string')&&['count','shape','sentence','word','rhyme'].includes(t.kind))&&Number.isInteger(r.index)&&r.index>=0&&r.index<=5&&Array.isArray(r.attempts)&&Array.isArray(r.support)&&Number.isFinite(r.activeMilliseconds)&&r.activeMilliseconds>=0&&typeof r.rewarded==='boolean'&&(r.index===5)===r.rewarded))return false;
+      if(!object(s.rounds)||!Object.entries(s.rounds).every(([host,r])=>content.hosts[host]&&r&&r.host===host&&typeof r.id==='string'&&r.tasks?.length===5&&r.tasks.every(t=>typeof t.id==='string'&&Array.isArray(t.choices)&&t.choices.includes(t.answer)&&t.choices.every(v=>typeof v==='string')&&['count','shape','sentence','word','rhyme','pattern'].includes(t.kind))&&Number.isInteger(r.index)&&r.index>=0&&r.index<=5&&Array.isArray(r.attempts)&&Array.isArray(r.support)&&Number.isFinite(r.activeMilliseconds)&&r.activeMilliseconds>=0&&typeof r.rewarded==='boolean'&&(r.index===5)===r.rewarded))return false;
       if(!s.drawings||!['free','leaf'].every(k=>strokes(s.drawings[k]))||!['free','leaf'].includes(s.selectedPage))return false;
       if(!s.settings||!['speech','music','ambience'].every(k=>typeof s.settings[k]==='boolean'))return false;
       if(!s.world||!Number.isFinite(s.world.x)||!Number.isFinite(s.world.z)||(s.world.region!==undefined&&typeof s.world.region!=='string'))return false;

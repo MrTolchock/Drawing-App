@@ -81,6 +81,13 @@ const games=[
     "screen": "puzzle"
   },
   {
+    "id": "friends-ibex",
+    "host": "ibex",
+    "title": "Bergmuster",
+    "picture": "forest-fir",
+    "screen": "puzzle"
+  },
+  {
     "id": "count",
     "host": "squirrel",
     "title": "Waldkäfer zählen",

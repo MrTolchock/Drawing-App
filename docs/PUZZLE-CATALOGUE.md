@@ -1,6 +1,6 @@
 # Puzzle catalogue and competence map
 
-The active library contains **31 puzzles and 953 individually reviewable iterations**. Each play is five randomly selected, distinct iterations. Children start puzzles only at the friend on their current letter; the full gallery is in adult Settings. [Parent letter limits](LETTER-SESSIONS.md) end the journey at the den after sleeping.
+The active library contains **32 puzzles and 983 individually reviewable iterations**. Each play is five randomly selected, distinct iterations. Children start puzzles only at the friend on their current letter; the full gallery is in adult Settings. [Parent letter limits](LETTER-SESSIONS.md) end the journey at the den after sleeping.
 
 Generated from the runtime catalogue with `node tools/puzzle-catalogue.cjs`. Every linked puzzle page lists all iteration IDs, content and expected solutions. No generated item is automatically approved.
 
@@ -21,6 +21,7 @@ Competences below are bounded practice references to [Zürich Zyklus 1](CURRICUL
 | [Am Bach zählen](puzzles/friends-kingfisher.md) | Eisvogel | MA.1.A.2.a — Dinge am Bach zählen | 2–20; sechs verschiedene Gegenstände | 30 |
 | [Tierwörter lesen](puzzles/friends-frog.md) | Frosch | D.2.A.1.b — Tierwörter lesen | 25 Tiernamen; ausschliesslich Tierbilder | 25 |
 | [Naturrätsel](puzzles/friends-badger.md) | Dachs | NMG.2.3.a; D.2.B.1.b — Wachstum und Naturveränderungen erkennen | 25 kurze Fragen zu Wetter, Pflanzen und Entwicklung | 25 |
+| [Bergmuster](puzzles/friends-ibex.md) | Steinbock | MA.2.A.2.a — Wiederholungsmuster fortsetzen und ergänzen | AAB, ABB, ABC, ABAC, AABC mit Stein, Tanne und Blume; Lücke am Ende oder in der zweiten Gruppe | 30 |
 | [Waldkäfer zählen](puzzles/count.md) | Eichhörnchen | MA.1.A.2.a — Gezielt Mengen zählen | 6–15 Marienkäfer zwischen Bienen und Schnecken | 30 |
 | [Äpfel rechnen](puzzles/add.md) | Eichhörnchen | MA.1.A.3.a — Sichtbare Gruppen addieren | Zwei positive Summanden; Summe höchstens 10 | 36 |
 | [Waldmuster](puzzles/pattern.md) | Waldkauz | MA.2.A.2.a — Wiederholungsmuster fortsetzen | AAB, ABB, ABC, ABAC, AABC; zwei sichtbare Einheiten | 30 |

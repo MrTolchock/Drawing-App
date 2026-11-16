@@ -9,7 +9,7 @@ test('the painted map matches its approved landmark calibration without folds or
  for(const triangle of spec.triangles)for(let i=0;i<3;i++){const a=spec.anchors[triangle[i]],b=spec.anchors[triangle[(i+1)%3]],p=mapPoint((a[1]+b[1])/2,(a[2]+b[2])/2);assert.ok(Math.abs(p[0]*1536-(a[3]+b[3])/2)<1e-6&&Math.abs(p[1]*1024-(a[4]+b[4])/2)<1e-6,'continuous triangle edges');}
 });
 test('all thirteen named destinations have separate 64 px targets at the minimum phone map width',async()=>{
- const {mapPin,extraMapPlaces}=await api(),pins=Object.keys(spec.pins).map(id=>({id,...mapPin(id)}));assert.equal(pins.length,13);assert.equal(mapPin('ibex').label,'Steinbock');assert.deepEqual([extraMapPlaces.ibex.x,extraMapPlaces.ibex.z],[74.2,-56.3]);
+ const {mapPin,extraMapPlaces}=await api(),pins=Object.keys(spec.pins).map(id=>({id,...mapPin(id)}));assert.equal(pins.length,13);assert.equal(mapPin('ibex').label,'Steinbock');assert.deepEqual(extraMapPlaces,{});
  for(let i=0;i<pins.length;i++)for(let j=0;j<i;j++)assert.ok(Math.max(Math.abs(pins[i].x-pins[j].x)*880,Math.abs(pins[i].y-pins[j].y)*(880*2/3))>=72,pins[i].id+' and '+pins[j].id+' do not share a hit area');
  assert.throws(()=>mapPin('missing'),/Unknown map pin/);
 });

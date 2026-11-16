@@ -15,9 +15,21 @@
     frog: { name: 'Frosch', picture: 'friend-frog', resource: 'seeds', category: 'Lesen', code: 'READ-03', reference: 'D.2.A.1.b', instruction: 'Lies das Wort. Welches Tier ist es?' },
     // Dachs (Natur): how plants and animals grow, weather, day and evening.
     badger: { name: 'Dachs', picture: 'friend-badger', resource: 'seeds', category: 'Natur', code: 'NAT-03', reference: 'NMG.2.3.a', instruction: 'Lies die Frage. Tippe auf das passende Bild.' },
+    // Steinbock (Mathematik) lives up on the Rock, across the bridging stone: patterns of stone, fir and flower.
+    ibex: { name: 'Steinbock', picture: 'friend-ibex', resource: 'seeds', category: 'Mathematik', code: 'PAT-01', reference: 'MA.2.A.2.a', instruction: 'Welches Bild fehlt im Bergmuster?' },
   };
   const words = { Maus:'mouse', Haus:'house', Hose:'trousers', Hut:'hat', Rose:'rose', Nase:'nose', Fisch:'fish', Tisch:'table', Ball:'ball', Baum:'tree', Boot:'boat', Kuh:'cow', Schuh:'shoe', Bein:'leg', Stein:'stone', Buch:'book', Tuch:'cloth', Hase:'hare', Dose:'tin', Bus:'bus', Nuss:'nut', Stern:'star', Turm:'tower', Wurm:'worm', Topf:'pot', Kopf:'head', Hand:'hand', Sand:'sand', Schal:'scarf', Wal:'whale', Seil:'rope', Pfeil:'arrow', Tasse:'cup', Kasse:'till', Bank:'bench', Schrank:'wardrobe', Kern:'seeds' };
   const version = 'friends-2';
+  /* The Steinbock's mountain patterns: five kinds of repeating group (AAB, ABB, ABC, ABAC, AABC) with stone, fir and
+     flower in all six orders. The pattern runs twice and starts a third time; the empty place is the next picture at the
+     end, or (every second one) a picture inside the second group. 30 distinct tasks. */
+  function mountainPatterns() {
+    const tokens = ['forest-stone', 'forest-fir', 'forest-flower'], names = {'forest-stone': 'Stein', 'forest-fir': 'Tanne', 'forest-flower': 'Blume'}, kinds = ['AAB', 'ABB', 'ABC', 'ABAC', 'AABC'];
+    const units = [[0, 0, 1], [0, 1, 1], [0, 1, 2], [0, 1, 0, 2], [0, 0, 1, 2]], orders = [[0, 1, 2], [0, 2, 1], [1, 0, 2], [1, 2, 0], [2, 0, 1], [2, 1, 0]], out = [];
+    units.forEach((u, i) => orders.forEach((o, j) => { const unit = u.map(x => tokens[o[x]]), sequence = Array.from({length: unit.length * 2 + 1}, (_, k) => unit[k % unit.length]), gap = j % 2 ? unit.length + (i + j) % unit.length : sequence.length - 1;
+      out.push({key: kinds[i] + '-' + (j + 1), label: sequence.map((t, k) => k === gap ? '?' : names[t]).join(', '), sequence, gap, answer: sequence[gap], choices: [...tokens]}); }));
+    return out;
+  }
   function task(host, id, data) { return { id: hosts[host].code+'-'+id, version, host, ...data }; }
   const pools = {};
   pools.squirrel = Array.from({length:21}, (_,n) => task('squirrel',n,{ kind:'count', count:n, answer:String(n), choices:[Math.max(0,n-1),n,n+1].filter((v,i,a)=>a.indexOf(v)===i).concat(n===0?[2]:[]).map(v=>String(v>20?18:v)) })).filter(t=>t.count!==3);
@@ -62,6 +74,8 @@
   const animals = [['Frosch', 'frog'], ['Igel', 'hedgehog'], ['Biene', 'bee'], ['Schnecke', 'snail'], ['Hund', 'dog'], ['Katze', 'cat'], ['Spinne', 'spider'], ['Raupe', 'caterpillar'], ['Bär', 'bear'], ['Schaf', 'sheep'],
     ['Schwein', 'pig'], ['Ei', 'egg'], ['Nest', 'nest'], ['Ameise', 'ant'], ['Käfer', 'ladybird'], ['Schildkröte', 'tortoise'], ['Pilz', 'forest-mushroom']];
   pools.frog = animals.map(([target, answer], i) => task('frog', i, {kind: 'word', target, answer, choices: [answer, animals[(i + 4) % animals.length][1], animals[(i + 9) % animals.length][1]]}));
+  // Steinbock: a group of pictures repeats; one place is empty, at the end or in the middle of the second group.
+  pools.ibex = mountainPatterns().map((p, i) => task('ibex', i, {kind: 'pattern', target: p.label, sequence: p.sequence, gap: p.gap, answer: p.answer, choices: p.choices}));
   const examples = {
     squirrel:task('squirrel','example',{kind:'count',count:3,answer:'3',choices:['2','3','4'], explanation:'Jede Nuss zählt einmal. Es sind drei.'}),
     mouse:task('mouse','example',{kind:'word',target:'Ast',answer:'branch',choices:['house','branch','hat'],explanation:'Das Wort heisst Ast. Dieses Bild passt.'}),
@@ -74,8 +88,9 @@
     kingfisher:task('kingfisher','example',{...counting(2,{item:'forest-feather'}),explanation:'Jede Feder zählt einmal. Es sind zwei.'}),
     frog:task('frog','example',{kind:'word',target:'Löwe',answer:'lion',choices:['lion','dog','bee'],explanation:'Das Wort heisst Löwe. Dieses Bild passt.'}),
     badger:task('badger','example',{kind:'word',target:'Wer legt Eier ins Nest?',answer:'bird',choices:['bird','dog','fish'],explanation:'Der Vogel legt Eier ins Nest. Dieses Bild passt.'}),
+    ibex:task('ibex','example',{kind:'pattern',target:'Stein, Tanne, Stein, Tanne, ?',sequence:['forest-stone','forest-fir','forest-stone','forest-fir','forest-stone'],gap:4,answer:'forest-stone',choices:['forest-stone','forest-fir','forest-flower'],explanation:'Stein und Tanne wiederholen sich. Nach der Tanne kommt der Stein.'}),
   };
   const shop={leaf:{name:'Blatt-Malvorlage',picture:'leaf',resource:'seeds',price:2,permanent:true},pencils:{name:'Buntstifte',picture:'pencils',resource:'logs',price:2,permanent:true},apple:{name:'Apfel',picture:'apple',resource:'nuts',price:1},bath:{name:'Schaumbad',picture:'bath',resource:'feathers',price:2}};
-  const api={version,hosts,pools,examples,shop,words};
+  const api={version,hosts,pools,examples,shop,words,mountainPatterns};
   if(typeof module!=='undefined')module.exports=api;else root.FriendsContent=api;
 })(typeof window!=='undefined'?window:globalThis);

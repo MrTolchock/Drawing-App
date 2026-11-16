@@ -1,7 +1,7 @@
 // Render model references only; tools/illustrations prepares the shared painted runtime cast.
 const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
 const fs=require('node:fs'),path=require('node:path');
-const ids=['fox','squirrel','bird','owl','beaver','mouse','mailman','hedgehog','fish','deer','kingfisher','frog','badger','fox-sleep'];
+const ids=['fox','squirrel','bird','owl','beaver','mouse','mailman','hedgehog','fish','deer','kingfisher','frog','badger','ibex','fox-sleep'];
 (async()=>{const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||undefined,args:['--use-angle=swiftshader','--enable-unsafe-swiftshader']});
 try{const p=await browser.newPage({viewport:{width:1536,height:1536}}),cells=[];
  for(const id of ids){await p.goto((process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000')+'/tools/portraits/portraits.html?id='+id);await p.waitForFunction(()=>window.ready,null,{timeout:90000});cells.push(await p.evaluate(()=>window.colour));}

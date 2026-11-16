@@ -57,7 +57,7 @@ export const TRAILS = [
   {id: 'beaver', pts: [[15.1, -3], [18.6, -5], [21.5, -8.2], [22.6, -12], [23.2, -15.5]], w: .85},
   {id: 'falls', pts: [[23.2, -15.5], [24.5, -22], [29.5, -29], [37, -34.5], [44.5, -41], [51, -46.5], [55, -50]], w: .8},
   {id: 'peak', pts: [[75, -77], [78.6, -79.6], [80.2, -83.6], [81.6, -87.6], [80.9, -91.4], [80.2, -94.2]], w: .6},
-  {id: 'summit', pts: [[51, -46.5], [47, -56], [43.5, -67], [42.5, -77], [47, -82.5], [56, -83], [66, -81], [75, -77], [76, -68], [72.5, -62.5]], w: .75},
+  {id: 'summit', pts: [[51, -46.5], [47, -56], [43.5, -67], [42.5, -77], [47, -82.5], [56, -83], [66, -81], [75, -77], [75.2, -70.5], [73.4, -66.6], [71.45, -63.75]], w: .75},   // it ends at the bridging stone
   {id: 'north', pts: [[-1.2, -4.4], [-5, -8], [-9, -14], [-12, -25], [-18, -38], [-25, -50], [-29.5, -59]], w: .9},
   {id: 'west', pts: [[-.6, -1.6], [-8, .8], [-18, 4.6], [-28, 8.6], [-31.5, 9.6]], w: .9},
   {id: 'meadow', pts: [[-31.5, 9.6], [-46, 6], [-60, 0], [-72, -6], [-79, -10.5], [-92, -20]], w: .8},
@@ -73,6 +73,7 @@ export const TRAILS = [
   {id: 'badger', pts: [[-46, -46], [-48.4, -49.4], [-50, -52.6]], w: .7},
   {id: 'owl-falls', pts: [[84.5, -4.5], [80, -22], [71, -35], [62.5, -41], [58.6, -42.6]], w: .75},
   {id: 'cave', pts: [[80, -22], [83.5, -33], [87, -44], [88, -53.5]], w: .7},
+  {id: 'ibex', pts: [[73.6, -61.65], [72.9, -59.4], [71.5, -57], [71.6, -54.8], [73, -53.9], [74.4, -53.8]], w: .7},   // from the bridging stone round the Steinbock's crag to the rim in front of it
 ];
 
 /* Ways across water. `at` is snapped to the named stream; boardwalk planks are given end to end. */
@@ -80,6 +81,7 @@ export const CROSSINGS = [
   {kind: 'bridge', stream: 'brook', at: [13, -3]},
   {kind: 'log', stream: 'brook', at: [-2.8, 62.4]},
   {kind: 'stones', stream: 'upper', at: [54.6, -42.2]},
+  {kind: 'slab', stream: 'spring', at: [72.4, -62.9]},   // the bridging stone on the Rock, on the way to the Steinbock
   {kind: 'dam'},
   {kind: 'planks', a: [-13, 65.5], b: [-17.5, 70.5]},
   {kind: 'planks', a: [-17.5, 70.5], b: [-17, 77]},
@@ -104,7 +106,8 @@ export const PLACES = {
   deer: {x: -78.6, z: -11, picture: 'friend-deer', name: 'Zu Reh'},
   kingfisher: {x: 11.2, z: 21.5, picture: 'friend-kingfisher', name: 'Zu Eisvogel'},
   frog: {x: -27.4, z: 83.2, picture: 'friend-frog', name: 'Zu Frosch'},
-  badger: {x: -50, z: -52.6, picture: 'friend-badger', name: 'Zu Dachs', map: [-56, -50]},   // `map`: the pin sits a little west, clear of Eichhörnchen's
+  badger: {x: -50, z: -52.6, picture: 'friend-badger', name: 'Zu Dachs', map: [-56, -50]},
+  ibex: {x: 74.4, z: -53.8, picture: 'friend-ibex', name: 'Zu Steinbock'},   // in front of his crag at the Rock's rim, over the bridging stone
 };
 /** The picture map (assets/forest-friends/world-map.webp, tools/map/) shows this part of the world. */
 export const MAP = {x0: -168, x1: 168, z0: -112, z1: 112};
@@ -124,12 +127,10 @@ export const NEIGHBOURS = {
   fish: {at: [57.6, -47.4], y: .02, yaw: .4, h: .8, onWater: true, swim: [1.3, 1]},   // the west side of the plunge pool, clear of the trees; swims a ring there
   kingfisher: {at: [12.9, 22.85], y: 1.6, yaw: -1.2, h: .6},
   badger: {at: [-51.7, -54.7], y: 0, yaw: .7, h: 1.2},
+  ibex: {at: [74.2, -56.3], y: .86, yaw: .25, h: 1.95},   // the Steinbock on his crag at the Rock's rim, above the waterfall (the drawn map's `ibex` landmark)
 };
-/* Who else lives in the land without a letter box: the Steinbock on his crag at the Rock's rim, above the waterfall.
-   Fuchs can visit him: he shows his trick and points the way the letter leads. */
-export const EXTRAS = {
-  ibex: {at: [74.2, -56.3], y: .86, yaw: .25, h: 1.95},
-};
+/* Characters without a letter box, should there be any (they show a trick and point the way when Fuchs stops beside them; none at present). */
+export const EXTRAS = {};
 /* Authored trees [x, z, size, options]: the friends' trees and a few giants. */
 export const TREES = [
   [-59.3, 54.2, .62, {kind: 'birch', branch: [1.7, 2.42, .45]}],

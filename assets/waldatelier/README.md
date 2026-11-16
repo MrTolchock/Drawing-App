@@ -4,7 +4,7 @@ All drawn puzzle subjects live in this directory. Reuse their stable IDs with `F
 
 [Browse, search and download individual pictures](https://mrtolchock.github.io/Drawing-App/assets/waldatelier/) · [Canonical style and fixed references](../../design/illustrations/STYLE.md) · [Generator handoff](../../design/artwork/README.md) · [Machine-readable catalogue](library.json)
 
-**235 pictures · 17 atlases · 31 active puzzles.** The browser library shows which pictures each puzzle uses, copies stable IDs and exports transparent PNGs from the existing atlas cells. Character portraits and backgrounds have separate roles, documented in the handoff.
+**235 pictures · 17 atlases · 32 active puzzles.** The browser library shows which pictures each puzzle uses, copies stable IDs and exports transparent PNGs from the existing atlas cells. Character portraits and backgrounds have separate roles, documented in the handoff.
 
 New generations use **`waldpost-watercolour-pencil-v1`** and `node tools/illustrations/style.cjs --request <id>`. The complete prompts below include the same canonical style and reference images. Historical records describe existing assets; they are not forward prompts or style inputs.
 

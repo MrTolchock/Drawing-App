@@ -7,7 +7,7 @@ import {rng} from '../noise.js';
 import {TAU, lerp, sstep} from '../noise.js';
 import {Buffer, templates} from '../tiles.js';
 import {canvasTex} from '../textures.js';
-import {waterMaterial} from './tiles.js';
+import {waterMaterial, stony} from './tiles.js';
 import {landmarkSteps} from '../landmarks.js';
 import {wonderSteps} from './wonders.js';
 import {caveSteps} from './cave.js';
@@ -52,6 +52,13 @@ export function siteSteps(site, look, world, group, out) {
     const stones = new Buffer();
     for (const c of T.crossings.filter(k => k.kind === 'stones')) { const n = 4; for (let k = 0; k <= n; k++) { const t = k / n, x = c.a[0] + (c.b[0] - c.a[0]) * t + (R() - .5) * .12, z = c.a[1] + (c.b[1] - c.a[1]) * t + (R() - .5) * .12, v = .85 + R() * .2; add(stones, new THREE.CylinderGeometry(.34 + R() * .08, .42, .5, 9).translate(x, c.y - .26, z), v, v, v * .95); } }
     mesh(stones, M.rock, 'stepping stones', false);
+  });
+  if (site.id === 'falls') steps.push(() => { // the bridging stone over the spring on the Rock: one long flat slab from bank to bank, a boulder under each end
+    const slab = new Buffer(), t = templates(), c3 = new THREE.Color();
+    for (const c of T.crossings.filter(k => k.kind === 'slab')) { const dx = c.b[0] - c.a[0], dz = c.b[1] - c.a[1], len = Math.hypot(dx, dz), ry = Math.atan2(-dz, dx), mx = (c.a[0] + c.b[0]) / 2, mz = (c.a[1] + c.b[1]) / 2;
+      slab.add(t.stone, {x: mx, y: c.y - .2, z: mz, ry, sx: len * .5 + .55, sy: .42, sz: 1.02, c: c3.setRGB(.86, .85, .82)});
+      for (const [end, s] of [[c.a, -1], [c.b, 1]]) { const x = end[0] + dx / len * s * .1, z = end[1] + dz / len * s * .1, sc = .55 + R() * .15; slab.add(t.rock, {x: x - dz / len * .7, y: T.ground(x, z) - .18, z: z + dx / len * .7, ry: R() * TAU, sx: sc, sy: sc * .7, sz: sc, c: c3.setRGB(.85, .84, .8)}); slab.add(t.rock, {x: x + dz / len * .75, y: T.ground(x, z) - .2, z: z - dx / len * .75, ry: R() * TAU, sx: sc * .8, sy: sc * .6, sz: sc * .8, c: c3.setRGB(.8, .8, .77)}); } }
+    const g = slab.geometry(); if (g) { const m = stony(new THREE.Mesh(g, M.rock)); m.name = 'bridging stone'; m.castShadow = M.shadows; m.receiveShadow = M.shadows; group.add(m); }
   });
   if (site.id === 'falls') steps.push(() => { // the waterfall: a ribbon of white water down the cliff, foam where it lands, mist
     const F = T.falls, [dx, dz] = F.dir, sx = -dz, sz = dx, pos = [], uv = [], idx = []; let y = F.top, run = 0, prev = null, rows = 0;

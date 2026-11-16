@@ -15,6 +15,7 @@
     'friends-kingfisher':['MA.1.A.2.a','Dinge am Bach zählen','2–20; sechs verschiedene Gegenstände'],
     'friends-frog':['D.2.A.1.b','Tierwörter lesen','25 Tiernamen; ausschliesslich Tierbilder'],
     'friends-badger':['NMG.2.3.a; D.2.B.1.b','Wachstum und Naturveränderungen erkennen','25 kurze Fragen zu Wetter, Pflanzen und Entwicklung'],
+    'friends-ibex':['MA.2.A.2.a','Wiederholungsmuster fortsetzen und ergänzen','AAB, ABB, ABC, ABAC, AABC mit Stein, Tanne und Blume; Lücke am Ende oder in der zweiten Gruppe'],
     count:['MA.1.A.2.a','Gezielt Mengen zählen','6–15 Marienkäfer zwischen Bienen und Schnecken'],
     add:['MA.1.A.3.a','Sichtbare Gruppen addieren','Zwei positive Summanden; Summe höchstens 10'],
     pattern:['MA.2.A.2.a','Wiederholungsmuster fortsetzen','AAB, ABB, ABC, ABAC, AABC; zwei sichtbare Einheiten'],
@@ -44,6 +45,8 @@
     for(let n=0;n<=20;n++)add(id,'count-'+n,'Menge '+n,numberQ(n,item));
     for(const n of [4,8,12,16])add(id,'four-'+n,'Menge '+n+' in Viererreihen',numberQ(n,item,4));
   }
+  // Steinbock: mountain patterns of stone, fir and flower (content.js mountainPatterns), 30 tasks.
+  for(const p of C.mountainPatterns())add('friends-ibex','pattern-'+p.key,p.label,{kind:'pattern',prompt:'Welches Bild fehlt im Bergmuster?',sequence:p.sequence,gap:p.gap,answer:p.answer,choices:p.choices});
   for(const item of ['forest-feather','forest-leaf','forest-stone','forest-flower','forest-berry','forest-mushroom'])for(const n of [2,5,9,14,20])add('friends-kingfisher',item+'-'+n,n+' × '+item,numberQ(n,item));
   const wordArt={...R.wordArt,Bus:'bus',Hose:'trousers',Stern:'star',Topf:'vocab-pot'};
   const reading=['Maus','Haus','Hut','Rose','Nase','Fisch','Tisch','Ball','Baum','Boot','Kuh','Schuh','Bein','Stein','Buch','Hase','Dose','Nuss','Hose','Bus','Stern','Turm','Wurm','Tuch','Topf'];

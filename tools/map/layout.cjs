@@ -14,7 +14,8 @@ import {EXTRAS} from './world/big/layout.js';
 const canvas=${JSON.stringify(canvas)},extent=${JSON.stringify(worldExtent)};
 const anchors=${JSON.stringify(anchors)},triangles=${JSON.stringify(triangles)};
 const pins=${JSON.stringify(positions)};
-export const extraMapPlaces={ibex:{x:EXTRAS.ibex.at[0],z:EXTRAS.ibex.at[1],name:'Zu Steinbock',picture:'ibex'}};
+// characters without a letter box who still have a pin (world/big/layout.js EXTRAS; the Steinbock is a letter friend now)
+export const extraMapPlaces=Object.fromEntries(Object.entries(EXTRAS).filter(([id])=>pins[id]).map(([id,e])=>[id,{x:e.at[0],z:e.at[1],name:'Zu '+pins[id][2],picture:id}]));
 export function mapPin(id){const p=pins[id];if(!p)throw Error('Unknown map pin: '+id);return {x:p[0]/canvas[0],y:p[1]/canvas[1],label:p[2]};}
 export function mapPoint(x,z){
  x=Math.max(extent[0],Math.min(extent[2],x));z=Math.max(extent[1],Math.min(extent[3],z));

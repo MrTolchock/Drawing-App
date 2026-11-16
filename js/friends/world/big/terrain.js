@@ -247,10 +247,11 @@ export function createTerrain() {
     if (c.kind === 'dam') return {...c, a: dam.a, b: dam.b, width: 1.2, y: dam.top};
     const s = streamOf(c.stream); let bi = 0, bd = Infinity; s.samples.forEach((p, i) => { const d = Math.hypot(p.x - c.at[0], p.z - c.at[1]); if (d < bd) { bd = d; bi = i; } });
     const p = s.samples[bi], q = s.samples[Math.min(s.N, bi + 4)], o = s.samples[Math.max(0, bi - 4)], dx = q.x - o.x, dz = q.z - o.z, l = Math.hypot(dx, dz), sx = -dz / l, sz = dx / l, w = s.width(bi), sign = sx < 0 ? -1 : 1;
-    const half = c.kind === 'bridge' ? w / 2 + 1.2 : c.kind === 'log' ? w / 2 + 1.5 : w / 2 + .75;
+    const half = c.kind === 'bridge' ? w / 2 + 1.2 : c.kind === 'log' ? w / 2 + 1.5 : c.kind === 'slab' ? w / 2 + 1.05 : w / 2 + .75;
     const a = [p.x - sx * half * sign, p.z - sz * half * sign], b = [p.x + sx * half * sign, p.z + sz * half * sign];
     if (c.kind === 'bridge') return {...c, a, b, width: 1.3, span: half * 2, level: s.level[bi]};
     if (c.kind === 'log') return {...c, a, b, width: .8, radius: .34, ya: ground(...a) + .3, yb: ground(...b) + .24, level: s.level[bi]};
+    if (c.kind === 'slab') return {...c, a, b, width: 1.5, y: s.level[bi] + .47, level: s.level[bi]};   // one long flat stone laid from bank to bank
     return {...c, a, b, width: 1, y: s.level[bi] + .13, level: s.level[bi]};
   });
   const on = {c: null, t: 0};
