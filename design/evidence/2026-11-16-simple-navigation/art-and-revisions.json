@@ -1,6 +1,7 @@
 {
   "version": "9.3.77",
   "baseline": "6b272e1a4fc5fe3e13e28f6bdde94c041fa34d8d",
+  "integratedMain": "0bfdab7461456fa5d5d1d7610e36d79b1cd440dd",
   "sourceSha256": "faf60a657616d1b3a802d59725926a05f20c4a51d79a23b0e43abd9e7f45007e",
   "runtimeSha256": "f9c7c6974bd023d60a6510ea60ef5e4f4fa2537c0da853f077fc8b5c050bd0f4",
   "preservedPinsSha256": "62bffb49237691db25f1e66b07770790d2c5187c01335d648c09ce394449738d",

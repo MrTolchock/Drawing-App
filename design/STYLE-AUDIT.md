@@ -14,6 +14,8 @@ The map and shared topbar use one navigation-back component: the same drawn arro
 
 The [source/pin hashes and revision comparison](evidence/2026-11-16-simple-navigation/art-and-revisions.json) prove the existing pin atlas is byte-identical and all 31 puzzle revisions remain unchanged. No approvals or production review records are written. The new CSS and symbol atlas are included in the offline cache.
 
+Main's 9.3.76 landscape changes are integrated. All 112 model tests and the navigation comparison passed again on the combined runtime; upgrade checks from 9.3.76 passed partial-work/dialog protection, saved-data retention, failed-download/offline recovery, first install and the independent recovery page. The offline fixture waits for startup before testing the separate manual update control. [Validation record](evidence/2026-11-16-simple-navigation/README.md).
+
 ## Drawn navigation, letter and shared image library — 9.3.75
 
 Settings, map, envelope, den/home, door and back now use one drawn pencil/gouache atlas: honey wood, cream parchment, sage leaves and red wax. Their accessible button names and adult gate remain intact. The navigation pictures render as squares inside the existing 48 px or larger targets; the back picture keeps its drawn colours. Puzzle utility controls retain the shared quiet SVG family.
