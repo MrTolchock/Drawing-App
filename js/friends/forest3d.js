@@ -116,8 +116,6 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     sun.color.copy(todBase.sun); sun.intensity = todBase.si * (1 - .75 * r) + .25 * f; fill.intensity = todBase.fill * (1 - .25 * r); hemi.intensity = todBase.hi * (1 - .2 * r); hemi.color.copy(todBase.sky).lerp(HEMI_RAIN, r); hemi.groundColor.copy(todBase.ground);
     skyU.top.value.copy(todBase.top).lerp(GREY_TOP, r * .85); skyU.horizon.value.copy(todBase.hor).lerp(GREY_HORIZON, r * .8); skyU.glow.value = todBase.glow * (1 - r * .9) + f * .3;
     if (look.M.ground) look.M.ground.color.setScalar(1 - .2 * w.wet);
-    // the water gives back this hour's sky and the dark of the trees, and glitters as much as the sun shines
-    if (look.M.water) { const u = look.M.water.uniforms; u.uSky.value.copy(skyU.horizon.value).lerp(skyU.top.value, .65); u.uTrees.value.set('#3c6a3a').multiplyScalar(todBase.hi / 1.35 * (1 - .3 * w.rain)); u.uSun.value.copy(todBase.sun); u.uGlint.value = (1 - .9 * w.rain) * (.45 + .55 * todBase.si / 2.6) + .3 * f; }
     // under the rock: no sun and little sky on Fuchs, a cool light as from the crystals; the sky itself goes out
     { const ck = caveEase(); if (ck > 0) { sun.intensity *= 1 - .9 * ck; hemi.intensity *= 1 - .58 * ck; fill.intensity *= 1 + .5 * ck; skyU.top.value.multiplyScalar(1 - ck); skyU.horizon.value.multiplyScalar(1 - ck); skyU.glow.value *= 1 - ck; }
       fill.color.copy(FILL).lerp(CAVE_FILL, ck); horizon.visible = ck < .97; r *= 1 - ck;
@@ -429,7 +427,9 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     const halos = streamer.landmarks.home?.halos; if (halos) halos.material.opacity = reduced ? .55 : .5 + Math.sin(time * 7) * .06;
     plushDusk.value = dusk() * (1 - weather.state.rain); plushSun.value.copy(sunDir).transformDirection(camera.matrixWorldInverse).multiplyScalar((1 - .85 * weather.state.rain) * (1 + .3 * dusk())); updateWeather(dt, time, reduced); shaftMat.opacity = (reduced ? .15 : .14 + Math.sin(time * .35) * .04) * (1 - weather.state.rain) * (1 + .4 * weather.state.fresh) * (1 - .75 * dusk()) * (1 - caveK); motes.visible = caveK < .5;
     { const lodge = streamer.landmarks.pond?.lodgeGlow; if (lodge) { lodge.material.opacity = dusk() * (reduced ? .8 : .72 + .1 * Math.sin(time * 2.3)); lodge.visible = lodge.material.opacity > .01; } }   // someone is at home in the lodge at dusk
-    { const cv = streamer.landmarks.cave; if (cv?.halos) cv.halos.material.opacity = reduced ? .42 : .4 + .07 * Math.sin(time * 1.3); if (cv?.worms) cv.worms.material.opacity = reduced ? .9 : .78 + .2 * Math.sin(time * .9); }
+    // the crystals glow in the dark of the cave; seen from outside by day they are only bright stones (at dusk they show again)
+    { const cv = streamer.landmarks.cave, ck = caveEase(), lit = lerp(lerp(.42, 1, dusk()), 1, ck); caveLight.inside.value = ck;
+      if (cv?.crystals) cv.crystals.material.color.setScalar(lit); if (cv?.halos) cv.halos.material.opacity = (reduced ? .42 : .4 + .07 * Math.sin(time * 1.3)) * lerp(lerp(.12, 1, dusk()), 1, ck); if (cv?.worms) cv.worms.material.opacity = (reduced ? .9 : .78 + .2 * Math.sin(time * .9)) * lerp(.35, 1, ck); }
     ambience.update(dt, time, pos, {dusk: dusk() * (1 - caveK), morning: morning() * (1 - caveK), weather: weather.state, trees: sound.trees, meadow: sound.meadow, swamp: sound.swamp, reduced, height, fov: camera.fov});
     if (bats.update(dt, time, pos, {caveK, dusk: dusk() * (1 - weather.state.rain), reduced})) { sound.cues.push({type: 'bats'}); if (sound.cues.length > 4) sound.cues.shift(); onMove({event: 'wonder_reaction', kind: 'bats', area: 'forest'}); }
     if (!reduced) { if (look.M.water) look.M.water.uniforms.uTime.value += dt; motes.position.set(pos.x, Math.sin(time * .35) * .3, pos.z); motes.rotation.y = time * .01; } else motes.position.set(pos.x, 0, pos.z);
