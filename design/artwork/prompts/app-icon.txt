@@ -16,6 +16,7 @@ Use the canonical warm illustrated technique as a simple readable app emblem. Ke
 ATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:
 1. design/illustrations/references/watercolour-pencil-v1/animals.png — canonical-style: canonical drawing technique for animals; fixed majority-style pixels
 2. design/illustrations/references/watercolour-pencil-v1/objects.png — canonical-style: canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels
+3. icons/icon-512.png — composition-only: current app-emblem identity, framing and colours only
 
 SUBJECT AND LAYOUT BRIEF:
 A single friendly illustrated red-fox head as a clear app emblem, warm orange/cream/sepia on a quiet warm-ivory square. No text or tiny scenery. Keep the silhouette readable at 32 pixels and important details inside a generous maskable safe zone. Preserve current install identity/URLs; changing the app emblem does not replace model portraits in maps or puzzles, or the painted sender portraits in letters.

@@ -1,0 +1,8 @@
+Transparent square learning/motif atlas, exactly four columns by four rows of equal square cells. This is the retained Waldatelier subject sheet, separate from the simple settings/map/letter control atlas. IDs identify cells; do not draw the IDs. Fixed row-major order:
+
+Row 1: numbers — three counting blocks in ochre, blue and terracotta with no numerals; words — open picture book with no letters; nature — blue-and-orange kingfisher on a twig; shapes — triangle, circle and square geometry pieces.
+Row 2: painting — cup holding three paintbrushes; pictures — two landscape picture cards; rocket — small toy rocket; picnic — picnic basket with an apple.
+Row 3: star — one golden five-point star; drum — small drum with two drumsticks; robot — friendly small toy robot; sprout — two-leaf seedling.
+Row 4: pencil — sharpened drawing pencil; train — blue toy locomotive; fox — full-body sitting orange fox with green neckerchief; palette — artist palette with three paint dabs.
+
+Exactly sixteen complete motifs; at least 18 percent transparent padding on every side of each cell. Preserve exact component quantities. No lettering, numerals, labels, visible grid, shared scenery or opaque background. Current atlas supplies subject identity and order only.

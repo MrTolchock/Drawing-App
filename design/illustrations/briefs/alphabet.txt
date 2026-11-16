@@ -1,0 +1,8 @@
+Transparent square atlas, exactly four columns by four rows of equal square cells. One subject per cell, in this fixed row-major order. IDs below identify cells; do not draw the IDs or any writing.
+
+Row 1: monkey — monkey with long curved tail; clown — friendly clown with red nose and hat; dinosaur — long-necked diplodocus; elephant — complete elephant.
+Row 2: giraffe — giraffe with clear markings; ear — one human ear with a small context contour; whale — blue whale; taxi — yellow taxi with blank roof sign.
+Row 3: teddy — brown teddy bear; spoon — one spoon; jacket — warm red jacket; sunflower — one sunflower on its stem.
+Row 4: ant — one ant with exactly six legs; badger — European badger with striped face; bowl — mixing bowl; spade — small garden spade.
+
+Exactly sixteen complete pictures. At least 18 percent transparent padding on every side of each subject. Preserve species anatomy and recognizable object silhouettes. No scenery, labels, numerals, visible grid or opaque cell backgrounds. The supplied current atlas defines subject identity and cell order only.

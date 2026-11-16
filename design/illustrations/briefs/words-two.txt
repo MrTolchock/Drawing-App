@@ -1,0 +1,8 @@
+Transparent square atlas, four columns by four rows of equal square cells. IDs identify cells and must not be drawn. Fixed row-major order:
+
+Row 1: fork — one fork; parcel — wrapped parcel; sun — warm golden sun with simple rays; moon — crescent moon.
+Row 2: flower — small pink flower; apple — one red apple; carrot — one orange carrot; croissant — one croissant.
+Row 3: biscuit — one biscuit; chocolate — partly unwrapped chocolate bar; scooter — kick scooter; egg — one chicken egg.
+Row 4: bell — small bell; fir — fir tree; mushroom — red toadstool mushroom; crown — golden crown.
+
+Exactly sixteen complete subjects, with at least 18 percent empty transparent padding on each side. Preserve single-object quantities and exact colours; keep rays, leaves and crown tips inside each cell. No text, labels, numerals, visible grid, shared scenery or opaque cell backgrounds. Current atlas supplies identities and order only.

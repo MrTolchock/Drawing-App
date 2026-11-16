@@ -158,7 +158,8 @@
         "recordKind": "original-brief",
         "promptId": "alphabet",
         "styleContract": "design/illustrations/style.json",
-        "forwardPrompt": "design/illustrations/prompts/subject-sheet.txt",
+        "requestId": "alphabet",
+        "forwardPrompt": "design/illustrations/prompts/alphabet.txt",
         "guide": "design/illustrations/STYLE.md"
       }
     },
@@ -176,7 +177,8 @@
         "recordKind": "original-brief",
         "promptId": "animals",
         "styleContract": "design/illustrations/style.json",
-        "forwardPrompt": "design/illustrations/prompts/subject-sheet.txt",
+        "requestId": "animals",
+        "forwardPrompt": "design/illustrations/prompts/animals.txt",
         "guide": "design/illustrations/STYLE.md"
       }
     },
@@ -194,7 +196,8 @@
         "recordKind": "original-brief",
         "promptId": "creatures",
         "styleContract": "design/illustrations/style.json",
-        "forwardPrompt": "design/illustrations/prompts/subject-sheet.txt",
+        "requestId": "creatures",
+        "forwardPrompt": "design/illustrations/prompts/creatures.txt",
         "guide": "design/illustrations/STYLE.md"
       }
     },
@@ -212,7 +215,8 @@
         "recordKind": "original-brief",
         "promptId": "discovery",
         "styleContract": "design/illustrations/style.json",
-        "forwardPrompt": "design/illustrations/prompts/subject-sheet.txt",
+        "requestId": "discovery",
+        "forwardPrompt": "design/illustrations/prompts/discovery.txt",
         "guide": "design/illustrations/STYLE.md"
       }
     },
@@ -230,6 +234,7 @@
         "recordKind": "generation-record",
         "manifest": "design/illustrations/forest-actions.json",
         "styleContract": "design/illustrations/style.json",
+        "requestId": "forest-actions",
         "forwardPrompt": "design/illustrations/prompts/forest-actions.txt",
         "guide": "design/illustrations/STYLE.md"
       }
@@ -248,6 +253,7 @@
         "recordKind": "generation-record",
         "manifest": "design/illustrations/forest-fox.json",
         "styleContract": "design/illustrations/style.json",
+        "requestId": "forest-fox",
         "forwardPrompt": "design/illustrations/prompts/forest-fox.txt",
         "guide": "design/illustrations/STYLE.md"
       }
@@ -266,6 +272,7 @@
         "recordKind": "generation-record",
         "manifest": "design/illustrations/forest-objects.json",
         "styleContract": "design/illustrations/style.json",
+        "requestId": "forest-objects",
         "forwardPrompt": "design/illustrations/prompts/forest-objects.txt",
         "guide": "design/illustrations/STYLE.md"
       }
@@ -284,6 +291,7 @@
         "recordKind": "generation-record",
         "manifest": "design/illustrations/forest-wildlife.json",
         "styleContract": "design/illustrations/style.json",
+        "requestId": "forest-wildlife",
         "forwardPrompt": "design/illustrations/prompts/forest-wildlife.txt",
         "guide": "design/illustrations/STYLE.md"
       }
@@ -301,7 +309,8 @@
         "record": "archive/design-history/2026-11-16-before-style-contract/design/artwork/assets.json",
         "recordKind": "inventory-only",
         "styleContract": "design/illustrations/style.json",
-        "forwardPrompt": "design/illustrations/prompts/subject-sheet.txt",
+        "requestId": "menu",
+        "forwardPrompt": "design/illustrations/prompts/menu.txt",
         "guide": "design/illustrations/STYLE.md"
       }
     },
@@ -319,7 +328,8 @@
         "recordKind": "original-brief",
         "promptId": "navigation",
         "styleContract": "design/illustrations/style.json",
-        "forwardPrompt": "design/illustrations/prompts/subject-sheet.txt",
+        "requestId": "navigation",
+        "forwardPrompt": "design/illustrations/prompts/navigation.txt",
         "guide": "design/illustrations/STYLE.md"
       }
     },
@@ -337,7 +347,8 @@
         "recordKind": "original-brief",
         "promptId": "people",
         "styleContract": "design/illustrations/style.json",
-        "forwardPrompt": "design/illustrations/prompts/subject-sheet.txt",
+        "requestId": "people",
+        "forwardPrompt": "design/illustrations/prompts/people.txt",
         "guide": "design/illustrations/STYLE.md"
       }
     },
@@ -355,6 +366,7 @@
         "recordKind": "generation-record",
         "manifest": "design/illustrations/puzzle-flowers.json",
         "styleContract": "design/illustrations/style.json",
+        "requestId": "puzzle-flowers",
         "forwardPrompt": "design/illustrations/prompts/puzzle-flowers.txt",
         "guide": "design/illustrations/STYLE.md"
       }
@@ -372,7 +384,8 @@
         "record": "archive/design-history/2026-11-16-before-style-contract/design/artwork/assets.json",
         "recordKind": "inventory-only",
         "styleContract": "design/illustrations/style.json",
-        "forwardPrompt": "design/illustrations/prompts/subject-sheet.txt",
+        "requestId": "puzzle-vocabulary",
+        "forwardPrompt": "design/illustrations/prompts/puzzle-vocabulary.txt",
         "guide": "design/illustrations/STYLE.md"
       }
     },
@@ -390,6 +403,7 @@
         "recordKind": "generation-record",
         "manifest": "design/illustrations/rhyme-vocabulary.json",
         "styleContract": "design/illustrations/style.json",
+        "requestId": "rhyme-vocabulary",
         "forwardPrompt": "design/illustrations/prompts/rhyme-vocabulary.txt",
         "guide": "design/illustrations/STYLE.md"
       }
@@ -408,7 +422,8 @@
         "recordKind": "original-brief",
         "promptId": "words-one",
         "styleContract": "design/illustrations/style.json",
-        "forwardPrompt": "design/illustrations/prompts/subject-sheet.txt",
+        "requestId": "words-one",
+        "forwardPrompt": "design/illustrations/prompts/words-one.txt",
         "guide": "design/illustrations/STYLE.md"
       }
     },
@@ -426,7 +441,8 @@
         "recordKind": "original-brief",
         "promptId": "words-three",
         "styleContract": "design/illustrations/style.json",
-        "forwardPrompt": "design/illustrations/prompts/subject-sheet.txt",
+        "requestId": "words-three",
+        "forwardPrompt": "design/illustrations/prompts/words-three.txt",
         "guide": "design/illustrations/STYLE.md"
       }
     },
@@ -444,7 +460,8 @@
         "recordKind": "original-brief",
         "promptId": "words-two",
         "styleContract": "design/illustrations/style.json",
-        "forwardPrompt": "design/illustrations/prompts/subject-sheet.txt",
+        "requestId": "words-two",
+        "forwardPrompt": "design/illustrations/prompts/words-two.txt",
         "guide": "design/illustrations/STYLE.md"
       }
     }

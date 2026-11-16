@@ -8,13 +8,14 @@ Search the [235-picture library](../../assets/waldatelier/README.md) and reuse s
 
 ```sh
 node tools/illustrations/style.cjs --request subject-sheet
+node tools/illustrations/style.cjs --request puzzle-vocabulary
 node tools/illustrations/style.cjs --request forest-actions
 node tools/illustrations/style.cjs --request layout-repair
 ```
 
 The JSON output contains the complete prompt, absolute paths of the actual reference images, and `transparent_background`. Supply these to the available image-generation/editing service. It is a local request-preparation tool, not an image model or service client. Keep the two canonical images first when adding a current edit target. No archived artwork is a generation-style input.
 
-Available learning briefs: `subject-sheet`, `forest-actions`, `forest-objects`, `puzzle-flowers`, `forest-wildlife`, `forest-fox`, `rhyme-vocabulary`, `layout-repair`, `transparency-repair`. Read the subject/layout brief, fill any generic placeholders and regenerate complete prompts before use. Change subjects/layout in `briefs/`, not the generated `prompts/` files. Every request retains the current style and final style-priority instruction.
+Every existing atlas has a specific request with the same ID as the sheet, including the older vocabulary, animal and menu sheets. The [complete generator-input index](../artwork/GENERATOR-INPUTS.md) lists all 17 and supplies portable full requests for any AI model. Use `subject-sheet` only as a template for new subjects; `layout-repair` and `transparency-repair` need an explicit current target. Read the subject/layout brief, fill any generic placeholders and regenerate complete prompts before use. Change subjects/layout in `briefs/`, not the generated `prompts/` files. Every request retains the current style and final style-priority instruction.
 
 ## Prepare and integrate
 
@@ -31,6 +32,8 @@ Inspect every picture against its intended answer and canonical references. Regi
 ```sh
 node tools/illustrations/style.cjs --check
 node tools/illustrations/library.cjs
+node tools/illustrations/handoff.cjs
+node tools/illustrations/handoff.cjs --check
 node tools/puzzle-catalogue.cjs
 node tools/check-design.cjs
 ```

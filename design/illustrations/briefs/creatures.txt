@@ -1,0 +1,8 @@
+Transparent square atlas, four columns by four rows of equal square cells. IDs are metadata, not drawn text. Fixed row-major order:
+
+Row 1: zebra — zebra with black and white stripes; lion — male lion with mane; penguin — penguin; camel — camel with two humps.
+Row 2: tiger — striped tiger; beaver — beaver with flat tail; frog — green frog; mouse — small grey mouse.
+Row 3: dragon — friendly storybook dragon; unicorn — gentle unicorn; bear — brown bear; tortoise — tortoise with shell.
+Row 4: tram — blue-and-cream Zürich tram; bus — blue bus; car — small blue car; steam-train — red steam locomotive.
+
+Exactly sixteen complete subjects, with at least 18 percent transparent padding per side. Keep full tails, horns, legs and vehicles inside their cells. No route numbers, signs, writing, scenery, grid or opaque background. The current atlas defines identities and ordering only.

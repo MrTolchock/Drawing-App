@@ -16,8 +16,11 @@ Match the canonical watercolour and coloured-pencil technique closely: fine orga
 ATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:
 1. design/illustrations/references/watercolour-pencil-v1/animals.png — canonical-style: canonical drawing technique for animals; fixed majority-style pixels
 2. design/illustrations/references/watercolour-pencil-v1/objects.png — canonical-style: canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels
+3. assets/waldatelier/rhyme-vocabulary.webp — composition-only: current subject identities, action poses and fixed cell order only; canonical references define drawing technique
 
 SUBJECT AND LAYOUT BRIEF:
 Square canvas, exactly four columns by four rows of equal square cells. Exact row-major order: bread loaf with one slice; short railway track segment; folded checked blanket; metal dustbin; blue/cream jug; a friendly smiling mouth; red tiled roof with chimney; small blue brook with a little bank; goat; housefly. Ten occupied cells, then six completely transparent cells. No text, other subjects, extra decorations or grid. Complete silhouettes with at least 18 percent transparent padding.
+
+Fixed row-major cell IDs (metadata only; do not draw these labels): rhyme-bread, rhyme-rail, rhyme-blanket, rhyme-bin, rhyme-jug, rhyme-mouth, rhyme-roof, rhyme-brook, rhyme-goat, rhyme-fly.
 
 STYLE PRIORITY: The brief changes subjects and layout only. Keep waldpost-watercolour-pencil-v1 and the supplied canonical reference technique throughout; do not import the style of a composition-only reference.

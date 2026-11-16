@@ -1,0 +1,6 @@
+Transparent landscape atlas, three columns by two rows of equal square cells, aspect ratio 3:2. Six subjects in fixed row-major order. IDs are cell metadata and must not be drawn.
+
+Row 1: squirrel — red squirrel sitting with its large curled tail and holding a nut; blue-tit — blue tit with blue cap, white cheeks, dark eye stripe and yellow belly on a short leafy twig; berry-cluster — three blue berries with star-shaped calyxes and one green leaf.
+Row 2: neighbour-houses — compact group of three friendly neighbouring cream houses with red tiled roofs; hand-mirror — oval hand mirror with warm ochre frame and handle; magic-wand — diagonal wand with golden five-point star tip and one small sparkle.
+
+All six complete silhouettes stay within their own square cells with at least 18 percent transparent padding per side. No shared scene, text, labels, visible grid or opaque background. The current atlas defines subject content and layout only; keep the canonical watercolour/pencil technique. This retained menu-subject sheet is distinct from the simple settings/map/letter navigation controls.

@@ -2,7 +2,7 @@
 
 [Play](https://mrtolchock.github.io/Drawing-App/) · [Current design](design/README.md) · [All puzzles and competences](docs/PUZZLE-CATALOGUE.md) · [Development](docs/DEVELOPMENT.md)
 
-[Drawn image library](https://mrtolchock.github.io/Drawing-App/assets/waldatelier/) · [Artwork, backgrounds and generator handoff for Claude](design/artwork/README.md)
+[Drawn image library](https://mrtolchock.github.io/Drawing-App/assets/waldatelier/) · [All image-generator prompts and inputs](design/artwork/GENERATOR-INPUTS.md) · [Artwork workflow](design/artwork/README.md)
 
 All new image generation follows the [canonical watercolour/pencil style](design/illustrations/STYLE.md), its fixed reference images and shared complete prompts. Superseded styles and requests are archived.
 

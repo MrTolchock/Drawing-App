@@ -6,3 +6,5 @@ Row 3: amber honey jar with tied cream cloth and one wooden dipper; one pink wil
 Row 4: one handled glass/wood lantern with two tiny yellow fireflies inside; exactly three wooden shapes (circle behind, triangle left, square right); one brown post satchel with one cream envelope/red seal peeking out; one woven basket with one red apple and folded cream/sage cloth.
 
 Exactly sixteen cells, no extra items or scene, at least 18 percent empty transparent padding per side.
+
+Fixed row-major cell IDs (metadata only; do not draw these labels): forest-nut, forest-apple, forest-berry, forest-leaf, forest-feather, forest-fir, forest-mushroom, forest-flower, forest-honey, forest-rose, forest-stone, forest-branch, forest-lantern, forest-shapes, forest-post, forest-basket.

@@ -2,7 +2,7 @@
 
 All drawn puzzle subjects live in this directory. Reuse their stable IDs with `FK.visual.art(id)`; their atlas cells stay in place.
 
-[Browse, search and download individual pictures](https://mrtolchock.github.io/Drawing-App/assets/waldatelier/) · [Canonical style and fixed references](../../design/illustrations/STYLE.md) · [Generator handoff](../../design/artwork/README.md) · [Machine-readable catalogue](library.json)
+[Browse, search and download individual pictures](https://mrtolchock.github.io/Drawing-App/assets/waldatelier/) · [Canonical style and fixed references](../../design/illustrations/STYLE.md) · [All generator inputs and prompts](../../design/artwork/GENERATOR-INPUTS.md) · [Machine-readable catalogue](library.json)
 
 **235 pictures · 17 atlases · 32 active puzzles.** The browser library shows which pictures each puzzle uses, copies stable IDs and exports transparent PNGs from the existing atlas cells. Character portraits and backgrounds have separate roles, documented in the handoff.
 
@@ -12,22 +12,22 @@ Generated with `node tools/illustrations/library.cjs`. Edit the runtime registry
 
 | Sheet | Pictures | Current forward prompt | Historical provenance only |
 | --- | ---: | --- | --- |
-| [alphabet](alphabet.webp) | 16 | [Style-complete prompt](../../design/illustrations/prompts/subject-sheet.txt) | [Archived record](../../archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json) |
-| [animals](animals.webp) | 16 | [Style-complete prompt](../../design/illustrations/prompts/subject-sheet.txt) | [Archived record](../../archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json) |
-| [creatures](creatures.webp) | 16 | [Style-complete prompt](../../design/illustrations/prompts/subject-sheet.txt) | [Archived record](../../archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json) |
-| [discovery](discovery.webp) | 16 | [Style-complete prompt](../../design/illustrations/prompts/subject-sheet.txt) | [Archived record](../../archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json) |
+| [alphabet](alphabet.webp) | 16 | [Style-complete prompt](../../design/illustrations/prompts/alphabet.txt) | [Archived record](../../archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json) |
+| [animals](animals.webp) | 16 | [Style-complete prompt](../../design/illustrations/prompts/animals.txt) | [Archived record](../../archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json) |
+| [creatures](creatures.webp) | 16 | [Style-complete prompt](../../design/illustrations/prompts/creatures.txt) | [Archived record](../../archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json) |
+| [discovery](discovery.webp) | 16 | [Style-complete prompt](../../design/illustrations/prompts/discovery.txt) | [Archived record](../../archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json) |
 | [forest-actions](forest-actions.webp) | 16 | [Style-complete prompt](../../design/illustrations/prompts/forest-actions.txt) | [Archived record](../../archive/design-history/2026-11-16-before-style-contract/design/illustrations/forest-actions.json) |
 | [forest-fox](forest-fox.webp) | 1 | [Style-complete prompt](../../design/illustrations/prompts/forest-fox.txt) | [Archived record](../../archive/design-history/2026-11-16-before-style-contract/design/illustrations/forest-fox.json) |
 | [forest-objects](forest-objects.webp) | 16 | [Style-complete prompt](../../design/illustrations/prompts/forest-objects.txt) | [Archived record](../../archive/design-history/2026-11-16-before-style-contract/design/illustrations/forest-objects.json) |
 | [forest-wildlife](forest-wildlife.webp) | 16 | [Style-complete prompt](../../design/illustrations/prompts/forest-wildlife.txt) | [Archived record](../../archive/design-history/2026-11-16-before-style-contract/design/illustrations/forest-wildlife.json) |
-| [menu](menu.webp) | 6 | [Style-complete prompt](../../design/illustrations/prompts/subject-sheet.txt) | [Archived record](../../archive/design-history/2026-11-16-before-style-contract/design/artwork/assets.json) |
-| [navigation](navigation.webp) | 16 | [Style-complete prompt](../../design/illustrations/prompts/subject-sheet.txt) | [Archived record](../../archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json) |
-| [people](people.webp) | 16 | [Style-complete prompt](../../design/illustrations/prompts/subject-sheet.txt) | [Archived record](../../archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json) |
+| [menu](menu.webp) | 6 | [Style-complete prompt](../../design/illustrations/prompts/menu.txt) | [Archived record](../../archive/design-history/2026-11-16-before-style-contract/design/artwork/assets.json) |
+| [navigation](navigation.webp) | 16 | [Style-complete prompt](../../design/illustrations/prompts/navigation.txt) | [Archived record](../../archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json) |
+| [people](people.webp) | 16 | [Style-complete prompt](../../design/illustrations/prompts/people.txt) | [Archived record](../../archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json) |
 | [puzzle-flowers](puzzle-flowers.webp) | 6 | [Style-complete prompt](../../design/illustrations/prompts/puzzle-flowers.txt) | [Archived record](../../archive/design-history/2026-11-16-before-style-contract/design/illustrations/puzzle-flowers.json) |
-| [puzzle-vocabulary](puzzle-vocabulary.webp) | 20 | [Style-complete prompt](../../design/illustrations/prompts/subject-sheet.txt) | [Archived record](../../archive/design-history/2026-11-16-before-style-contract/design/artwork/assets.json) |
+| [puzzle-vocabulary](puzzle-vocabulary.webp) | 20 | [Style-complete prompt](../../design/illustrations/prompts/puzzle-vocabulary.txt) | [Archived record](../../archive/design-history/2026-11-16-before-style-contract/design/artwork/assets.json) |
 | [rhyme-vocabulary](rhyme-vocabulary.webp) | 10 | [Style-complete prompt](../../design/illustrations/prompts/rhyme-vocabulary.txt) | [Archived record](../../archive/design-history/2026-11-16-before-style-contract/design/illustrations/rhyme-vocabulary.json) |
-| [words-one](words-one.webp) | 16 | [Style-complete prompt](../../design/illustrations/prompts/subject-sheet.txt) | [Archived record](../../archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json) |
-| [words-three](words-three.webp) | 16 | [Style-complete prompt](../../design/illustrations/prompts/subject-sheet.txt) | [Archived record](../../archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json) |
-| [words-two](words-two.webp) | 16 | [Style-complete prompt](../../design/illustrations/prompts/subject-sheet.txt) | [Archived record](../../archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json) |
+| [words-one](words-one.webp) | 16 | [Style-complete prompt](../../design/illustrations/prompts/words-one.txt) | [Archived record](../../archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json) |
+| [words-three](words-three.webp) | 16 | [Style-complete prompt](../../design/illustrations/prompts/words-three.txt) | [Archived record](../../archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json) |
+| [words-two](words-two.webp) | 16 | [Style-complete prompt](../../design/illustrations/prompts/words-two.txt) | [Archived record](../../archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json) |
 
 For an individual file, open the browser library, search its ID/name, then choose **PNG herunterladen**. The PNG comes from the existing atlas; it is not newly generated. Atlas cell coordinates and exact pixel dimensions are also in `library.json`.

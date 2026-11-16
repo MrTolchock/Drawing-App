@@ -16,8 +16,11 @@ Match the canonical watercolour and coloured-pencil technique closely: fine orga
 ATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:
 1. design/illustrations/references/watercolour-pencil-v1/animals.png — canonical-style: canonical drawing technique for animals; fixed majority-style pixels
 2. design/illustrations/references/watercolour-pencil-v1/objects.png — canonical-style: canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels
+3. assets/waldatelier/forest-fox.webp — composition-only: current subject identities, action poses and fixed cell order only; canonical references define drawing technique
 
 SUBJECT AND LAYOUT BRIEF:
 One natural red fox sitting in a readable side/three-quarter pose. Orange coat, pale chest, dark legs, pointed ears and full white-tipped tail. No scarf, clothing or accessories. It is a drawn learning animal, not a model-identity portrait. Keep every part inside generous transparent padding. Prepare a two-by-two square grid with the fox in the first cell and the other three cells empty, preserving the existing forest-fox ID and grid.
+
+Fixed row-major cell IDs (metadata only; do not draw these labels): forest-fox.
 
 STYLE PRIORITY: The brief changes subjects and layout only. Keep waldpost-watercolour-pencil-v1 and the supplied canonical reference technique throughout; do not import the style of a composition-only reference.

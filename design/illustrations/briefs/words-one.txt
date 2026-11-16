@@ -1,0 +1,8 @@
+Transparent square atlas, four columns by four rows of equal square cells. IDs identify cells and must not be drawn. Fixed row-major order:
+
+Row 1: nose — human nose in profile with minimal facial context; sofa — cosy blue sofa; rose — one red rose on green stem; tin — upright food tin can.
+Row 2: trousers — blue trousers; magnifier — magnifying glass; bicycle — bicycle; kiwi — sliced kiwi fruit.
+Row 3: banana — one yellow banana; tomato — one red tomato; rocket-word — toy rocket; watermelon — watermelon wedge.
+Row 4: radio — small vintage radio; camera — simple camera; feather — one bird feather; needle — one sewing needle with thread.
+
+Exactly sixteen complete subjects with at least 18 percent empty transparent padding per side. Keep the needle/thread, bicycle wheels and all leaves within their cells. No lettering, numerals, labels, visible grid, shared scenery or opaque backgrounds. Current atlas supplies identities and order only.
