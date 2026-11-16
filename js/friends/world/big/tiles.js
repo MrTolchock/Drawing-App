@@ -41,18 +41,21 @@ export function waterMaterial(look, fog) {
     uniforms: {uTime: {value: 3.7}, uNoise: {value: look.T.noise}, uShallow: {value: C('#7fc3b0')}, uDeep: {value: C('#1d6476')}, uFoam: {value: C('#f6fbf2')}, uSky: {value: C('#e6f1df')}, uSun: {value: C('#fff1c8')}, uSunDir: {value: fog.sunDir}, fogColor: {value: fog.color}, fogNear: {value: fog.near}, fogFar: {value: fog.far}},
     vertexShader: 'attribute vec3 wa;varying vec2 vUv;varying vec3 vW,vA;varying float vFog;void main(){vUv=uv;vA=wa;vec4 w=modelMatrix*vec4(position,1.);vW=w.xyz;vec4 mv=viewMatrix*w;vFog=-mv.z;gl_Position=projectionMatrix*mv;}',
     // wa = (1 for a stream / 0 for still water, depth 0…1 of still water, fade at a stream's ends)
+    // Still water wears the streams' look: ripples of about the same size and strength, and only a little sky, as the
+    // camera sees open water from further back and at a flatter angle (with as much sky it washes out to a pale
+    // turquoise beside the blue brook). Only the streams' flow, streaks and edge foam set them apart.
     fragmentShader: `uniform float uTime;uniform sampler2D uNoise;uniform vec3 uShallow,uDeep,uFoam,uSky,uSun,uSunDir,fogColor;uniform float fogNear,fogFar;varying vec2 vUv;varying vec3 vW,vA;varying float vFog;
     void main(){
       float flow=vA.x;float across=mix(1.-smoothstep(0.,.5,vA.y),abs(vUv.x-.5)*2.,flow);float along=vUv.y;
-      vec2 still=vW.xz*.09;
+      vec2 still=vW.xz*.22;
       vec2 f1=mix(still+vec2(uTime*.008,uTime*.005),vec2(vUv.x*.6,along*.07-uTime*.12),flow),f2=mix(still*1.9+vec2(.37-uTime*.011,uTime*.007),vec2(vUv.x*1.1+.37,along*.12-uTime*.2),flow);
       float n1=texture2D(uNoise,f1).r,n2=texture2D(uNoise,f2).r,n=(n1+n2)*.5;
       float e=.015;float nx=texture2D(uNoise,f2+vec2(e,0.)).r-n2,nz=texture2D(uNoise,f2+vec2(0.,e)).r-n2;
-      vec3 N=normalize(vec3(-nx*mix(1.2,2.5,flow),1.,-nz*mix(1.2,2.5,flow)));vec3 V=normalize(cameraPosition-vW);
+      vec3 N=normalize(vec3(-nx*2.5,1.,-nz*2.5));vec3 V=normalize(cameraPosition-vW);
       float depth=mix(vA.y,1.-across*across,flow);
       vec3 c=mix(uShallow,uDeep,smoothstep(.0,.8,depth)*.92);
       c*=.94+.12*n;
-      float fres=pow(1.-max(dot(N,V),0.),4.);c=mix(c,uSky,fres*mix(.5,.35,flow));
+      float fres=pow(1.-max(dot(N,V),0.),4.);c=mix(c,uSky,fres*mix(.18,.35,flow));
       vec3 Hh=normalize(uSunDir+V);c+=uSun*smoothstep(.72,.92,n2)*pow(max(dot(N,Hh),0.),260.)*1.4;
       float streak=smoothstep(.7,.82,n2)*(.2+.6*depth)*flow;c=mix(c,uFoam,streak*.08);
       float foam=smoothstep(.84,.99,across)*smoothstep(.45,.7,n1+.18*sin(along*2.6+uTime*1.7))*mix(.0,1.,flow);
@@ -201,7 +204,7 @@ export function* buildBigTile(world, look, i, j, ring) {
       if (k % 32 === 0) yield 'brook';
       const Rs = rng(tileSeed(SEED + 2, k, s.N)), tt = k / s.N, w = s.width(k) / 2, q = s.samples[Math.min(s.N, k + 1)], o = s.samples[Math.max(0, k - 1)], dx = q.x - o.x, dz = q.z - o.z, l = Math.hypot(dx, dz) || 1;
       if (fbm(tt * 30 + s.N, 2) > .55 && T.snow(p.x, p.z) < .05) for (const side of [-1, 1]) { if (Rs() < .45) continue; const off = w + .05 + Rs() * .4, x = p.x - dz / l * off * side, z = p.z + dx / l * off * side; if (T.pathAt(x, z).d < 1.2 || T.onCrossing(x, z) || T.stillDepth(x, z) > .05) continue; const sc = .8 + Rs() * .5; foliage.add(t.reeds, {x, y: T.ground(x, z) - .05, z, ry: Rs() * TAU, sx: sc, sy: sc, sz: sc, cell: ATLAS.reeds, up: true}); }
-      if (k % 8 === 0 && fbm(tt * 22, 7 + s.N) > .5) { const side = Rs() < .5 ? -1 : 1, off = w + (Rs() - .3) * .6, x = p.x - dz / l * off * side, z = p.z + dx / l * off * side; if (T.pathAt(x, z).d > 1 && !T.onCrossing(x, z)) { const sc = .22 + Rs() * .4; rocks.add(t.rock, {x, y: T.ground(x, z) + .02, z, ry: Rs() * TAU, sx: sc, sy: sc, sz: sc}); } }
+      if (k % 8 === 0 && fbm(tt * 22, 7 + s.N) > .5) { const side = Rs() < .5 ? -1 : 1, off = w + (Rs() - .3) * .6, x = p.x - dz / l * off * side, z = p.z + dx / l * off * side; if (T.pathAt(x, z).d > 1 && !T.onCrossing(x, z)) { const sc = .22 + Rs() * .4; rocks.add(sc > .45 ? t.boulder : t.rock, {x, y: T.ground(x, z) + .02, z, ry: Rs() * TAU, sx: sc, sy: sc, sz: sc}); } }
       { const off = (Rs() * 2 - 1) * w * .9, x = p.x - dz / l * off, z = p.z + dx / l * off, v = .7 + Rs() * .5, sc = .05 + Rs() * .08; rocks.add(t.pebble, {x, y: T.ground(x, z) + .02, z, ry: Rs() * TAU, sx: sc, sy: sc, sz: sc, c: tone.setRGB(v, v * .95, v * .85)}); }
     }
   }
@@ -215,13 +218,13 @@ export function* buildBigTile(world, look, i, j, ring) {
     else if (depth < -.14 && depth > -.6 && bm.swamp > .3 && R() < .25) { const sc = .7 + R() * .6; foliage.add(t.reeds, {x, y: s0.h - .04, z, ry: R() * TAU, sx: sc, sy: sc * .55, sz: sc, cell: ATLAS.sedge, up: true}); }
   }
   yield 'rocks';
-  for (const [x, z, sz, hh] of L.ROCKS) if (inTile(x, z)) rocks.add(t.rock, {x, y: T.ground(x, z) - .05, z, ry: x * 1.7, sx: sz * 1.05, sy: sz * hh, sz: sz * .95});
+  for (const [x, z, sz, hh] of L.ROCKS) if (inTile(x, z)) rocks.add(t.boulder, {x, y: T.ground(x, z) - .05, z, ry: x * 1.7, sx: sz * 1.05, sy: sz * hh, sz: sz * .95});
   for (let k = 0, n = Math.round(area * (.012 + .09 * mix.rock)); k < n; k++) { // mossy rocks near trees; boulders and scree round the Rock
     const [x, z] = spot(), s0 = T.site(x, z); if (!dry(s0, .8) || s0.sd - s0.sw / 2 < 1) continue; const h = s0.h; T.biome(x, z, bm);
     const scree = R() < bm.rock; if ((!scree && treeGap(x, z) > 4) || world.blocked(x, z, .3)) continue;
     // rocks here are not colliders: big ones only where Fuchs cannot walk anyway
     let sc = scree ? .12 + R() * R() * .9 : .14 + R() * .2; if (sc > .32 && world.walkable(x, z)) sc = .2 + R() * .12;
-    rocks.add(t.rock, {x, y: h + .03, z, ry: R() * TAU, sx: sc, sy: sc * (scree ? .7 + R() * .5 : 1), sz: sc});
+    rocks.add(sc > .45 ? t.boulder : t.rock, {x, y: h + .03, z, ry: R() * TAU, sx: sc, sy: sc * (scree ? .7 + R() * .5 : 1), sz: sc});
   }
   for (const tr of T.trails) for (let k = 4; k < tr.samples.length; k += 4) { // flat stones and fallen leaves along the trails
     const p = tr.samples[k]; if (!inTile(p.x, p.z)) continue; const Rs = rng(tileSeed(SEED + 3, k, tr.samples.length));
@@ -381,7 +384,7 @@ export function* buildBigTile(world, look, i, j, ring) {
     }
     if (mix.swamp || T.pools.some(p => Math.abs(p.x - x0 - 8) < p.rx + 12 && Math.abs(p.z - z0 - 8) < p.rx + 12)) for (let r = 0; r < TILE; r += 2) for (let k = 0; k < TILE; k += 2) { // still water as 2 m squares
       const x = x0 + k + 1, z = z0 + r + 1, s0 = T.site(x, z); if (!(s0.still - s0.h > .02)) continue; const y = s0.still + .02;
-      quad(far, [x - 1, y, z - 1, x + 1, y, z - 1, x + 1, y, z + 1, x - 1, y, z + 1], ATLAS.white, .3, .56, .6); for (let v = far.n - 4; v < far.n; v++) { far.uv[v * 2] = WHITE_UV[0]; far.uv[v * 2 + 1] = WHITE_UV[1]; }
+      quad(far, [x - 1, y, z - 1, x + 1, y, z - 1, x + 1, y, z + 1, x - 1, y, z + 1], ATLAS.white, .36, .62, .64); for (let v = far.n - 4; v < far.n; v++) { far.uv[v * 2] = WHITE_UV[0]; far.uv[v * 2 + 1] = WHITE_UV[1]; }
     }
     yield 'far mesh';
     meshOf(far, M.plants, {name: 'far', receive: false});

@@ -185,7 +185,7 @@ export function caveSteps(site, look, world, group, out) {
       const arch = stony(new THREE.Mesh(ag, M.rock), .9); arch.name = 'cave arch'; arch.castShadow = M.shadows; arch.receiveShadow = M.shadows; group.add(arch); }
     // a few boulders frame the mouth; heather and grass grow on the roof as on the hill around it
     const rocks = new Buffer(), plants = new Buffer(), t = templates();
-    for (const [u, v, sc] of [[-4.1, C.open - .7, .7], [4, C.open - .6, .8], [-3.3, C.open - 2.2, .45], [3.3, C.open - 2.4, .5], [3.9, C.open - 3.6, .36], [-3.8, C.open - 3.8, .4]]) { const [x, z] = at(u, v), w = .8 + R() * .12; rocks.add(t.rock, {x, y: T.ground(x, z) - sc * .25, z, ry: R() * TAU, sx: sc * 1.2, sy: sc, sz: sc, c: c.setRGB(w, w * .97, w * .92)}); }
+    for (const [u, v, sc] of [[-4.1, C.open - .7, .7], [4, C.open - .6, .8], [-3.3, C.open - 2.2, .45], [3.3, C.open - 2.4, .5], [3.9, C.open - 3.6, .36], [-3.8, C.open - 3.8, .4]]) { const [x, z] = at(u, v), w = .8 + R() * .12; rocks.add(sc > .45 ? t.boulder : t.rock, {x, y: T.ground(x, z) - sc * .25, z, ry: R() * TAU, sx: sc * 1.2, sy: sc, sz: sc, c: c.setRGB(w, w * .97, w * .92)}); }
     for (let k = 0; k < 520; k++) { const u = lerp(B.u0, B.u1, R()), v = lerp(C.open + .3, B.v1, R()), [x, z] = at(u, v); if (T.cave(x, z).sd > 1.85) continue; const e = .5, s = Math.hypot(T.rawHill(x + e, z) - T.rawHill(x - e, z), T.rawHill(x, z + e) - T.rawHill(x, z - e)); if (s > .75 || T.snow(x, z) > .05) continue;
       const y = topAt(x, z) + .05, q = R(), sc = .8 + R() * .6, v2 = .82 + R() * .3;
       if (q < .5) plants.add(t.grass, {x, y, z, ry: R() * TAU, sx: sc, sy: sc * .9, sz: sc, cell: ATLAS.grass, up: true, c: c.setRGB(v2, v2, v2 * .86)});

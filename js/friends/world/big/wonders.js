@@ -6,13 +6,23 @@
    materials; the solid ones have colliders (layout.js SOLIDS) and a small clearing (GLADES). */
 import {THREE} from '../../../scene/materials.js';
 import {rng} from '../noise.js';
-import {Buffer, trunkGeometry, rootGeometries, crownCards, instanced} from '../tiles.js';
+import {Buffer, trunkGeometry, rootGeometries, crownCards, instanced, weld} from '../tiles.js';
 import {canvasTex, patch} from '../textures.js';
 
 const TAU = Math.PI * 2;
 function tinted(g, [r, gr, b]) { const c = new Float32Array(g.attributes.position.count * 3); for (let k = 0; k < c.length; k += 3) { c[k] = r; c[k + 1] = gr; c[k + 2] = b; } g.setAttribute('color', new THREE.BufferAttribute(c, 3)); return g; }
-// a lumpy stone or blob: an icosphere with its points pushed in and out a little
-function lump(R, r, detail = 1, rough = .16) { const g = new THREE.IcosahedronGeometry(r, detail), p = g.attributes.position, seen = new Map(); for (let i = 0; i < p.count; i++) { const key = p.getX(i).toFixed(3) + p.getY(i).toFixed(3) + p.getZ(i).toFixed(3); if (!seen.has(key)) seen.set(key, 1 + (R() - .5) * 2 * rough); const k = seen.get(key); p.setXYZ(i, p.getX(i) * k, p.getY(i) * k, p.getZ(i) * k); } g.computeVertexNormals(); return g; }
+// a lumpy stone or blob: an icosphere with its points pushed in and out a little. The pushes are drawn for the
+// corners of a coarse sphere (as many random draws as ever, so nothing else in a site moves) and spread smoothly
+// over a finer, welded one: the stone is round and softly shaded, not cut into facets.
+function lump(R, r, detail = 1, rough = .16) {
+  const base = new THREE.IcosahedronGeometry(r, detail), p = base.attributes.position, seen = new Map();
+  for (let i = 0; i < p.count; i++) { const key = p.getX(i).toFixed(3) + p.getY(i).toFixed(3) + p.getZ(i).toFixed(3); if (!seen.has(key)) seen.set(key, [p.getX(i) / r, p.getY(i) / r, p.getZ(i) / r, 1 + (R() - .5) * 2 * rough]); }
+  base.dispose(); const pts = [...seen.values()], sharp = 7 + 5 * detail;
+  const g = weld(new THREE.IcosahedronGeometry(r, r >= .3 ? detail * 2 + 2 : detail + 1)), q = g.attributes.position;
+  const uv = new Float32Array(q.count * 2);
+  for (let i = 0; i < q.count; i++) { const x = q.getX(i) / r, y = q.getY(i) / r, z = q.getZ(i) / r; let s = 0, ws = 0; for (const [a, b, c, k] of pts) { const e = Math.exp(sharp * (x * a + y * b + z * c - 1)); s += e * k; ws += e; } const k = s / ws; q.setXYZ(i, q.getX(i) * k, q.getY(i) * k, q.getZ(i) * k); uv[i * 2] = .5 + x * .45; uv[i * 2 + 1] = .5 + z * .45 + y * .2; }
+  g.setAttribute('uv', new THREE.BufferAttribute(uv, 2)); g.computeVertexNormals(); return g;
+}
 
 export function wonderSteps(site, look, world, group) {
   const T = world.terrain, M = look.M, R = rng(Math.round(site.x * 131 + site.z * 17) + 5), [x0, z0] = [site.x, site.z], y0 = T.ground(x0, z0), yaw = site.yaw || 0;

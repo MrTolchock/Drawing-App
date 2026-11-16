@@ -107,7 +107,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     for (const key of ['si', 'fill', 'hi', 'glow']) todBase[key] = lerp(a[key], b[key], u);
     todBase.dir.set(lerp(a.dir[0], b.dir[0], u), lerp(a.dir[1], b.dir[1], u), lerp(a.dir[2], b.dir[2], u)).normalize();
   }
-  const dusk = () => THREE.MathUtils.smoothstep(tod, .62, 1), morning = () => 1 - THREE.MathUtils.smoothstep(tod, .05, .38);
+  const dusk = () => THREE.MathUtils.smoothstep(tod, .62, 1);
   function updateWeather(dt, time, reduced) {
     const w = weather.state, f = w.fresh; let r = w.rain;
     tod += THREE.MathUtils.clamp(todTo - tod, -dt / 30, dt / 30); blendTod();
@@ -430,7 +430,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     // the crystals glow in the dark of the cave; seen from outside by day they are only bright stones (at dusk they show again)
     { const cv = streamer.landmarks.cave, ck = caveEase(), lit = lerp(lerp(.42, 1, dusk()), 1, ck); caveLight.inside.value = ck;
       if (cv?.crystals) cv.crystals.material.color.setScalar(lit); if (cv?.halos) cv.halos.material.opacity = (reduced ? .42 : .4 + .07 * Math.sin(time * 1.3)) * lerp(lerp(.12, 1, dusk()), 1, ck); if (cv?.worms) cv.worms.material.opacity = (reduced ? .9 : .78 + .2 * Math.sin(time * .9)) * lerp(.35, 1, ck); }
-    ambience.update(dt, time, pos, {dusk: dusk() * (1 - caveK), morning: morning() * (1 - caveK), weather: weather.state, trees: sound.trees, meadow: sound.meadow, swamp: sound.swamp, reduced, height, fov: camera.fov});
+    ambience.update(dt, time, pos, {dusk: dusk() * (1 - caveK), weather: weather.state, trees: sound.trees, meadow: sound.meadow, swamp: sound.swamp, reduced, height, fov: camera.fov});
     if (bats.update(dt, time, pos, {caveK, dusk: dusk() * (1 - weather.state.rain), reduced})) { sound.cues.push({type: 'bats'}); if (sound.cues.length > 4) sound.cues.shift(); onMove({event: 'wonder_reaction', kind: 'bats', area: 'forest'}); }
     if (!reduced) { if (look.M.water) look.M.water.uniforms.uTime.value += dt; motes.position.set(pos.x, Math.sin(time * .35) * .3, pos.z); motes.rotation.y = time * .01; } else motes.position.set(pos.x, 0, pos.z);
     if (ring.visible) ring.material.opacity = .55 + Math.sin(time * 4) * .25;

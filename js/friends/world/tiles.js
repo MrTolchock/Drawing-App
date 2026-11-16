@@ -54,6 +54,14 @@ export class Buffer {
   }
 }
 export const template = (g, color = null) => { const t = {pos: [...g.attributes.position.array], nor: [...g.attributes.normal.array], uv: g.attributes.uv ? [...g.attributes.uv.array] : null, idx: g.index ? [...g.index.array] : [...Array(g.attributes.position.count).keys()], col: g.attributes.color ? [...g.attributes.color.array] : null}; if (color) t.col = t.pos.map((_, i) => [color.r, color.g, color.b][i % 3]); return t; };
+/** A polyhedron as three.js makes it (every face with its own corners) welded into shared points, so that
+    computeVertexNormals shades it smoothly instead of facet by facet. Only the positions are kept. */
+export function weld(g) {
+  const p = g.attributes.position, seen = new Map(), pos = [], idx = [];
+  for (let i = 0; i < p.count; i++) { const x = p.getX(i), y = p.getY(i), z = p.getZ(i), key = Math.round(x * 1e4) + ',' + Math.round(y * 1e4) + ',' + Math.round(z * 1e4);
+    let k = seen.get(key); if (k === undefined) { k = pos.length / 3; seen.set(key, k); pos.push(x, y, z); } idx.push(k); }
+  g.dispose(); const out = new THREE.BufferGeometry(); out.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); out.setIndex(idx); return out;
+}
 export const quads = (w, h, angles, lift = 0) => { const parts = angles.map(a => new THREE.PlaneGeometry(w, h).translate(0, h / 2 + lift, 0).rotateY(a)); const b = new Buffer(false); parts.forEach(p => b.addGeometry(p)); return template(b.geometry()); };
 // Atlas cells as [u0, v0, du, dv] (v from the bottom, as three.js flips canvas textures).
 const cell = (col, row, w = 1, h = 1) => [col / 4, 1 - (row + h) / 4, w / 4, h / 4];
@@ -71,15 +79,18 @@ export function templates() {
   T.reeds = quads(.9, 1.3, [0, Math.PI / 3, -Math.PI / 3], -.05);
   T.crown = quads(1, .5, [0, Math.PI / 2]);
   { const fronds = new Buffer(false); for (let k = 0; k < 8; k++) { const g = new THREE.PlaneGeometry(.34, 1, 1, 5), p = g.attributes.position; g.translate(0, .5, 0); for (let i = 0; i < p.count; i++) { const y = p.getY(i); p.setXYZ(i, p.getX(i), Math.sin(y * 1.9) * .62, y * .9 + y * y * .25); } g.rotateY(k / 8 * TAU + Math.sin(k * 7.3) * .3); fronds.addGeometry(g); } T.fern = template(fronds.geometry()); }
-  // rocks: noise-displaced icosahedra with moss on top faces; pebbles and flat stones
+  // rocks: noise-displaced icosahedra with moss on top; pebbles and flat stones. The sphere is welded, so the
+  // normals are shared and the stone is shaded round instead of in flat facets; the displacement is a function of
+  // the point, so a finer sphere gives the same stone with a smoother outline (`boulder`, `bigStone` for the large ones).
   const rockGeo = (seed, detail, base = ['#8e8a80', '#6f6c62'], mossy = true) => {
-    const g = new THREE.IcosahedronGeometry(1, detail), p = g.attributes.position, v = new THREE.Vector3();
-    for (let i = 0; i < p.count; i++) { v.set(p.getX(i), p.getY(i), p.getZ(i)); v.multiplyScalar(.78 + .35 * fbm(v.x * 1.3 + seed, v.y * 1.3 + v.z)); v.y *= .62; p.setXYZ(i, v.x, v.y, v.z); }
+    const g = weld(new THREE.IcosahedronGeometry(1, detail)), p = g.attributes.position, v = new THREE.Vector3(), uv = [];
+    for (let i = 0; i < p.count; i++) { v.set(p.getX(i), p.getY(i), p.getZ(i)); uv.push(.5 + v.x * .45, .5 + v.z * .45 + v.y * .2); v.multiplyScalar(.78 + .35 * fbm(v.x * 1.3 + seed, v.y * 1.3 + v.z)); v.y *= .62; p.setXYZ(i, v.x, v.y, v.z); }
+    g.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2));
     g.computeVertexNormals(); const n = g.attributes.normal, c = [], a = C(base[0]), b = C(base[1]), m = C('#8aa457'), t = new THREE.Color();
     for (let i = 0; i < p.count; i++) { t.copy(a).lerp(b, fbm(p.getX(i) * 3, p.getZ(i) * 3)); if (mossy) t.lerp(m, sstep(.75, .95, n.getY(i) + (fbm(p.getX(i) * 4 + seed, p.getZ(i) * 4) - .5) * .7) * .85); c.push(t.r, t.g, t.b); }
     g.setAttribute('color', new THREE.Float32BufferAttribute(c, 3)); return template(g);
   };
-  T.rock = rockGeo(1, 2); T.pebble = rockGeo(9, 0, ['#b6ab98', '#8f8676'], false); T.stone = rockGeo(4, 1, ['#b9ad98', '#948a7a'], false);
+  T.rock = rockGeo(1, 2); T.boulder = rockGeo(1, 4); T.pebble = rockGeo(9, 0, ['#b6ab98', '#8f8676'], false); T.stone = rockGeo(4, 1, ['#b9ad98', '#948a7a'], false); T.bigStone = rockGeo(4, 3, ['#b9ad98', '#948a7a'], false);
   { const cap = new THREE.LatheGeometry([[0, .16], [.12, .155], [.17, .12], [.18, .09], [.15, .085], [0, .09]].map(([r, y]) => new THREE.Vector2(r, y)), 12), stem = new THREE.CylinderGeometry(.035, .05, .1, 8).translate(0, .05, 0);
     const b = new Buffer(); b.add(template(stem, C('#f2e8d6')), {}); T.stem = template(b.geometry()); T.cap = template(cap, C('#ffffff')); }
   return T;

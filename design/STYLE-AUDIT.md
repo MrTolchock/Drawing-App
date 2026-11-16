@@ -1,6 +1,10 @@
 # Current visual consistency audit
 
-Current game art: **Waldpost 9.3.84**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal/object reference pixels and **23** complete forward image-generation prompts.
+Current game art: **Waldpost 9.3.85**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal/object reference pixels and **23** complete forward image-generation prompts.
+
+## Smooth stones and matching water — 9.3.85
+
+The 3D world's big stones no longer look cut from polygons: boulders, scree, the cave-mouth and waterfall boulders, the stepping stones, the bridging stone and the stone circle are welded, softly shaded spheres, and the large ones use a finer sphere with the same shape. The stepping stones are rounded stones instead of nine-sided posts. Standing water (pond, plunge pool, swamp) again looks like the flowing brook. Two things set it apart although the water shader itself was unchanged since before 9.3.71: the morning mist added in 9.3.45 lay only over still water, and the first letter of every journey is in the morning, so the pond and plunge pool read almost grey beside the blue brook; and from the camera's further-back view of open water the pools took so much sky that they read as pale turquoise. The morning mist over the pond and plunge pool is removed (the swamp keeps its own mist), and still water shares the brook's ripple size/strength and takes less sky. Measured on the same morning frame, the pond moved from rgb(159,178,172) (saturation 0.11) to rgb(81,132,130) (0.39), beside the brook's rgb(80,129,118) (0.39); in the afternoon from rgb(100,137,131) to rgb(82,129,124). Painted UI assets, puzzle art and puzzle presentation are unchanged, so no review revision changes.
 
 ## Steinbock as a letter friend
 
