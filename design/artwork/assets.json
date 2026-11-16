@@ -132,6 +132,20 @@
       "forwardPrompt": "design/artwork/prompts/navigation-symbols.txt"
     },
     {
+      "id": "navigation-back",
+      "file": "assets/interface/navigation-back.webp",
+      "role": "navigation",
+      "manifest": "design/artwork/navigation-back.json",
+      "forwardPrompt": "design/artwork/prompts/navigation-back.txt"
+    },
+    {
+      "id": "letter-friends",
+      "file": "assets/interface/letter-friends.webp",
+      "role": "letter-portrait",
+      "manifest": "design/artwork/letter-friends.json",
+      "forwardPrompt": "design/artwork/prompts/letter-friends.txt"
+    },
+    {
       "id": "letter-paper",
       "file": "assets/interface/letter-paper.webp",
       "role": "stationery",
@@ -162,8 +176,7 @@
       "role": "reuse-existing",
       "ids": [
         "den",
-        "door",
-        "back"
+        "door"
       ],
       "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/artwork/navigation.json",
       "policy": "Reuse current pixels unless explicitly changing these pins; the unused old toolbar cells are not style references."
@@ -212,5 +225,16 @@
   "history": {
     "index": "archive/design-history/2026-11-16-before-style-contract/README.md",
     "policy": "Original briefs, alternatives, retired hero/colouring/portrait records and drafts are provenance only; never use as current style inputs."
-  }
+  },
+  "designDrafts": [
+    {
+      "id": "drawn-map-v1",
+      "file": "design/artwork/drafts/drawn-map-v1.png",
+      "status": "proposal-only-not-implemented",
+      "forwardPrompt": "design/artwork/prompts/drawn-map-draft.txt",
+      "generationRecord": "design/artwork/generation-records/drawn-map-draft.json",
+      "runtimeMap": "assets/forest-friends/world-map.webp",
+      "policy": "Keep outside runtime dependencies/offline cache until the owner approves this draft."
+    }
+  ]
 }

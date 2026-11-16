@@ -1,0 +1,77 @@
+{
+  "format": "waldpost-illustration-atlas",
+  "version": 1,
+  "source": "sources/letter-friends.png",
+  "output": "../../assets/interface/letter-friends.webp",
+  "columns": 4,
+  "rows": 4,
+  "cellPixels": 320,
+  "subjectPixels": 272,
+  "alphaThresholdPercent": 15,
+  "provenance": {
+    "date": "2026-11-16",
+    "tool": "ChatGPT hosted image-generation tool",
+    "sourceSha256": "d224be7f902916318c4b1892802aa4d1ae2b162701e0babada97ab93a2e1e1b3",
+    "generationRecord": "generation-records/letter-friends.json",
+    "styleContract": "../illustrations/style.json",
+    "forwardPrompt": "prompts/letter-friends.txt"
+  },
+  "subjects": [
+    {
+      "id": "fox",
+      "label": "Fuchs"
+    },
+    {
+      "id": "squirrel",
+      "label": "Eichhörnchen"
+    },
+    {
+      "id": "bird",
+      "label": "Blaumeise"
+    },
+    {
+      "id": "owl",
+      "label": "Waldkauz"
+    },
+    {
+      "id": "beaver",
+      "label": "Biber"
+    },
+    {
+      "id": "mouse",
+      "label": "Maus"
+    },
+    {
+      "id": "mailman",
+      "label": "Briefträger"
+    },
+    {
+      "id": "hedgehog",
+      "label": "Igel"
+    },
+    {
+      "id": "fish",
+      "label": "Fisch"
+    },
+    {
+      "id": "deer",
+      "label": "Reh"
+    },
+    {
+      "id": "kingfisher",
+      "label": "Eisvogel"
+    },
+    {
+      "id": "frog",
+      "label": "Frosch"
+    },
+    {
+      "id": "badger",
+      "label": "Dachs"
+    },
+    {
+      "id": "ibex",
+      "label": "Steinbock"
+    }
+  ]
+}

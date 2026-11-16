@@ -42,8 +42,7 @@
     "treatment": "drawn",
     "ids": [
       "den",
-      "door",
-      "back"
+      "door"
     ],
     "minimumTouchTarget": 48,
     "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/artwork/navigation.json"
@@ -61,18 +60,22 @@
     "styleContract": "design/illustrations/style.json"
   },
   "navigationBack": {
-    "source": "assets/interface/navigation.webp",
-    "treatment": "drawn",
+    "source": "assets/interface/navigation-back.webp",
+    "treatment": "simple-illustrated",
     "component": "FK.hudArt.decorateBack",
     "style": "css/navigation.css",
-    "minimumTouchTarget": 48
+    "minimumTouchTarget": 48,
+    "manifest": "design/artwork/navigation-back.json",
+    "styleContract": "design/illustrations/style.json"
   },
   "letter": {
     "source": "assets/interface/letter-paper.webp",
     "treatment": "drawn-stationery",
     "manifest": "design/artwork/letter-paper.json",
-    "portrait": "same-model-render",
-    "styleContract": "design/illustrations/style.json"
+    "portrait": "canonical-painted",
+    "styleContract": "design/illustrations/style.json",
+    "portraitSource": "assets/interface/letter-friends.webp",
+    "portraitManifest": "design/artwork/letter-friends.json"
   },
   "type": {
     "learning": "Andika",
@@ -84,5 +87,27 @@
     "minimumPool": 25,
     "correctDelayMs": 900,
     "celebrationMs": 2200
+  },
+  "letterFriends": {
+    "source": "assets/interface/letter-friends.webp",
+    "treatment": "canonical-painted",
+    "component": "FK.friendsArt.letterPortrait",
+    "ids": [
+      "fox",
+      "squirrel",
+      "bird",
+      "owl",
+      "beaver",
+      "mouse",
+      "mailman",
+      "hedgehog",
+      "fish",
+      "deer",
+      "kingfisher",
+      "frog",
+      "badger",
+      "ibex"
+    ],
+    "styleContract": "design/illustrations/style.json"
   }
 }

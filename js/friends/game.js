@@ -38,7 +38,7 @@ function showLetter(fromMailman){
   say('Ein Brief von '+C.hosts[id].name+'! Schau auf das Bild. Draussen zeigt dir der Pfeil den Weg.');
 }
 function letterPortrait(id){
- const pic=FK.friendsArt.portrait(id);pic.classList.add('ff-letter-friend');pic.setAttribute('role','img');pic.setAttribute('aria-label',C.hosts[id].name);pic.dataset.friend=id;return pic;
+ const pic=FK.friendsArt.letterPortrait(id);pic.classList.add('ff-letter-friend');pic.removeAttribute('aria-hidden');pic.setAttribute('role','img');pic.setAttribute('aria-label',C.hosts[id].name);pic.dataset.friend=id;return pic;
 }
 // Character identity, utility controls and drawn subjects have separate sources.
 function art(name,cls=''){

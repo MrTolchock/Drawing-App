@@ -1,0 +1,25 @@
+{
+  "format": "waldpost-illustration-atlas",
+  "version": 1,
+  "source": "sources/navigation-back.png",
+  "output": "../../assets/interface/navigation-back.webp",
+  "columns": 1,
+  "rows": 1,
+  "cellPixels": 320,
+  "subjectPixels": 272,
+  "alphaThresholdPercent": 15,
+  "provenance": {
+    "date": "2026-11-16",
+    "tool": "ChatGPT hosted image-generation tool",
+    "sourceSha256": "e006e6ade9e6413328376e210f6d54fa2303b895e0c08037dd1e23ba10ad0ef1",
+    "generationRecord": "generation-records/navigation-back.json",
+    "styleContract": "../illustrations/style.json",
+    "forwardPrompt": "prompts/navigation-back.txt"
+  },
+  "subjects": [
+    {
+      "id": "back",
+      "label": "Zurück"
+    }
+  ]
+}

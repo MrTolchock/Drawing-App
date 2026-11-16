@@ -11,7 +11,7 @@ The role instructions below set the necessary detail and composition within this
 Preserve subject identity, counted quantities, exact answer colours and action differences. Use real alpha for isolated pictures and stationery, and an opaque canvas only when the selected role requires a scene or branding image. No accidental background, halo, visible grid, labels or extra objects.
 
 ROLE: stationery
-Apply the canonical drawing technique to pale cream paper with restrained pencil borders and small leaf details. Keep clean empty space for the actual model-rendered sender portrait. Genuine transparency surrounds the whole paper. Do not generate a substitute character or paint interface controls into the asset.
+Apply the canonical drawing technique to pale cream paper with restrained pencil borders and small leaf details. Keep clean empty space for the separately painted sender portrait. Genuine transparency surrounds the whole paper. Do not generate a substitute character or paint interface controls into the asset.
 
 ATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:
 1. design/illustrations/references/watercolour-pencil-v1/animals.png — canonical-style: canonical drawing technique for animals; fixed majority-style pixels
@@ -19,6 +19,6 @@ ATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:
 3. assets/interface/letter-paper.webp — composition-only: current stationery composition only; preserve the empty portrait zone
 
 SUBJECT AND LAYOUT BRIEF:
-One landscape 4:3 cream letter sheet, entire softly irregular perimeter visible with transparent padding. Thin restrained sepia border and tiny leaf details. A small sage leaf postage stamp/postmark stays in the top right. Keep the left half (roughly 12–50 percent width, 23–80 percent height) clean for the separately rendered sender portrait. A few short sepia pen swashes in the lower right, no readable writing or pseudo alphabet. No animal, hands, envelope, room, table, background halo or UI.
+One landscape 4:3 cream letter sheet, entire softly irregular perimeter visible with transparent padding. Thin restrained sepia border and tiny leaf details. A small sage leaf postage stamp/postmark stays in the top right. Keep the left half (roughly 12–50 percent width, 23–80 percent height) clean for the separately painted sender portrait. A few short sepia pen swashes in the lower right, no readable writing or pseudo alphabet. No animal, hands, envelope, room, table, background halo or UI.
 
 STYLE PRIORITY: The brief changes subjects and layout only. Keep waldpost-watercolour-pencil-v1 and the supplied canonical reference technique throughout; do not import the style of a composition-only reference.

@@ -1,0 +1,32 @@
+WALDPOST CANONICAL ILLUSTRATION STYLE — waldpost-watercolour-pencil-v1
+
+Use the supplied canonical animals.png and objects.png reference images as the authority for drawing technique. They show the predominant style of the current Waldpost gallery. Match their actual pixels, not an imagined style suggested by a filename.
+
+Draw warm children's picture-book watercolour finished with visible coloured-pencil strokes. Use light, gently uneven washes, organic sepia contours, delicate hatching, softly irregular edges and modest drawn shading. Surfaces look painted and pencilled, with paper grain within the illustration. Keep the warmth of cream, honey brown, restrained sage and blue, while preserving every exact colour required by a task. Subjects remain friendly, recognizable and anatomically believable.
+
+Do not turn the drawing into a 3D render, plush toy, clay or felt craft, photograph, glossy object, embossed surface or studio-lit miniature. Avoid deep ambient-occlusion shadows, inflated forms and realistic material microtexture. Do not mix in another illustration technique or use historical artwork as a style reference.
+
+The role instructions below set the necessary detail and composition within this one style. Learning pictures retain fine drawn contours; small navigation symbols use the approved simpler, broader shapes and flat fills in the same palette. Keep the existing rendered game-character identities separate from image-generated learning subjects. Exact geometry and handwriting remain authored paths.
+
+Preserve subject identity, counted quantities, exact answer colours and action differences. Use real alpha for isolated pictures and stationery, and an opaque canvas only when the selected role requires a scene or branding image. No accidental background, halo, visible grid, labels or extra objects.
+
+ROLE: letter-portrait
+Paint recognizable sender friends in the canonical watercolour and coloured-pencil medium, with natural friendly animal proportions, organic sepia contours and gentle drawn volume. Keep species markings and identity accessories readable, with genuine transparency and complete silhouettes in generous square cells. Any model reference defines identity and colour only, never rendering style. This explicit painted-portrait role is for letters; existing world and puzzle/map identity pipelines remain separate.
+
+ATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:
+1. design/illustrations/references/watercolour-pencil-v1/animals.png — canonical-style: canonical drawing technique for animals; fixed majority-style pixels
+2. design/illustrations/references/watercolour-pencil-v1/objects.png — canonical-style: canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels
+3. assets/forest-friends/character-portraits.webp — composition-only: current species, markings and identity accessories only; do not copy model proportions, 3D lighting or plush finish
+
+SUBJECT AND LAYOUT BRIEF:
+Create one genuinely transparent square atlas with a strict FOUR columns by FOUR rows of equal square cells. Fourteen complete, charming woodland friend portraits, one isolated full-body animal per cell, two final cells empty. Keep every ear, tail, wing, foot and horn inside the middle 56 percent of its own cell, with ample fully transparent gutters on all four sides. The packing tool restores display scale afterwards. Draw with light watercolour washes and visible coloured-pencil contours, like the canonical animal reference. The current model sheet is an IDENTITY/COLOUR reference only: translate the recognizable species, markings and one necessary accessory into painted pictures, never its glossy plush material, spherical shapes, lighting or render style. Natural small-animal proportions, warm friendly eyes, simple welcoming three-quarter poses, quiet details. No circles, frames, ground, foliage, letters, labels or UI. Uniform visual scale within each cell; no chopped busts.
+
+Exact row-major order, left to right:
+Row 1: (1) Fuchs: red fox with white chest and white tail tip, small sage-green neckerchief. (2) Eichhörnchen: red squirrel, bushy raised tail, holding one acorn. (3) Blaumeise: true blue tit with blue cap/wings, white cheeks, dark eye stripe, yellow belly. (4) Waldkauz: brown tawny owl with round cream facial discs and small beak, not an eagle owl.
+Row 2: (5) Biber: chestnut beaver with a visible broad flat dark tail, small front teeth. (6) Maus: small grey-brown mouse, rounded ears, pink nose and feet, long thin tail. (7) Briefträger: upright hare/rabbit with long ears, blue-grey postman's cap and vest, small brown letter satchel; friendly animal face, no human hands. (8) Igel: brown hedgehog with pale face and belly, a drawn spiny back, small feet.
+Row 3: (9) Fisch: one friendly freshwater fish, blue-green back, pale belly and warm orange fins, horizontal swimming pose. (10) Reh: slim warm tan roe deer with large ears, dark nose, pale throat/belly, small neat hooves; a roe deer, not a reindeer and not a horned goat. (11) Eisvogel: kingfisher with teal-blue back/head, orange chest, cream cheek patch and a long straight dark beak. (12) Frosch: green frog with pale cream belly, crouched, clear four-limbed silhouette.
+Row 4: (13) Dachs: European badger, grey body, black-and-cream striped face, short paws. (14) Steinbock: Alpine ibex, sturdy grey-brown body, short beard and two long backward-curving ridged horns, four dark hooves. (15) EMPTY transparent cell. (16) EMPTY transparent cell.
+
+All fourteen share exactly the same watercolour/pencil technique and gentle level of finish. These are painted sender portraits for invitation letters only; they do not replace world models or the model portraits used on puzzle/map surfaces. Steinbock is included as an available illustration, without inventing a puzzle or new letter journey.
+
+STYLE PRIORITY: The brief changes subjects and layout only. Keep waldpost-watercolour-pencil-v1 and the supplied canonical reference technique throughout; do not import the style of a composition-only reference.

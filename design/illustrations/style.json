@@ -37,13 +37,16 @@
       ]
     },
     "stationery": {
-      "instruction": "Apply the canonical drawing technique to pale cream paper with restrained pencil borders and small leaf details. Keep clean empty space for the actual model-rendered sender portrait. Genuine transparency surrounds the whole paper. Do not generate a substitute character or paint interface controls into the asset."
+      "instruction": "Apply the canonical drawing technique to pale cream paper with restrained pencil borders and small leaf details. Keep clean empty space for the separately painted sender portrait. Genuine transparency surrounds the whole paper. Do not generate a substitute character or paint interface controls into the asset."
     },
     "scene": {
       "instruction": "Apply the canonical watercolour/pencil medium at landscape scale: broad quiet washes, restrained drawn detail at the edges, matte natural colours and soft organic contours. The scene is opaque. Keep the centre pale and calm for real panels and preserve required camera/layout anchors. Existing scene references define composition only; the canonical pair defines technique. Do not paint UI panels, text or characters into backgrounds."
     },
     "branding": {
-      "instruction": "Use the canonical warm illustrated technique as a simple readable app emblem. Keep a clear silhouette and quiet background. A branding fox is not a replacement for the existing model portraits used to identify game characters."
+      "instruction": "Use the canonical warm illustrated technique as a simple readable app emblem. Keep a clear silhouette and quiet background. A branding fox is not a replacement for the existing puzzle/map model portraits or the painted letter sender portraits."
+    },
+    "letter-portrait": {
+      "instruction": "Paint recognizable sender friends in the canonical watercolour and coloured-pencil medium, with natural friendly animal proportions, organic sepia contours and gentle drawn volume. Keep species markings and identity accessories readable, with genuine transparency and complete silhouettes in generous square cells. Any model reference defines identity and colour only, never rendering style. This explicit painted-portrait role is for letters; existing world and puzzle/map identity pipelines remain separate."
     }
   },
   "prompts": [
@@ -175,6 +178,43 @@
       "path": "design/artwork/prompts/app-icon.txt",
       "brief": "design/artwork/briefs/app-icon.txt",
       "transparent": false
+    },
+    {
+      "id": "navigation-back",
+      "role": "navigation",
+      "path": "design/artwork/prompts/navigation-back.txt",
+      "brief": "design/artwork/briefs/navigation-back.txt",
+      "transparent": true
+    },
+    {
+      "id": "letter-friends",
+      "role": "letter-portrait",
+      "path": "design/artwork/prompts/letter-friends.txt",
+      "brief": "design/artwork/briefs/letter-friends.txt",
+      "transparent": true,
+      "references": [
+        {
+          "path": "assets/forest-friends/character-portraits.webp",
+          "sha256": "b2e4054bd18580b86d51743fe3b4eebb88c50a0b6bc0b0a50ce3dfb83631ef7f",
+          "purpose": "current species, markings and identity accessories only; do not copy model proportions, 3D lighting or plush finish",
+          "usage": "composition-only"
+        }
+      ]
+    },
+    {
+      "id": "drawn-map-draft",
+      "role": "scene",
+      "path": "design/artwork/prompts/drawn-map-draft.txt",
+      "brief": "design/artwork/briefs/drawn-map-draft.txt",
+      "transparent": false,
+      "references": [
+        {
+          "path": "assets/forest-friends/world-map.webp",
+          "sha256": "84bd806fe2bcfa2262f10b1a512549525a2c74af310c7fd05568197b17fe3ff5",
+          "purpose": "actual geography, path topology, landmark locations and map extent only; repaint in the canonical medium",
+          "usage": "composition-only"
+        }
+      ]
     }
   ],
   "preparationManifests": [
@@ -185,7 +225,9 @@
     "design/illustrations/forest-objects.json",
     "design/illustrations/forest-wildlife.json",
     "design/illustrations/puzzle-flowers.json",
-    "design/illustrations/rhyme-vocabulary.json"
+    "design/illustrations/rhyme-vocabulary.json",
+    "design/artwork/navigation-back.json",
+    "design/artwork/letter-friends.json"
   ],
   "history": "archive/design-history/2026-11-16-before-style-contract",
   "preview": {

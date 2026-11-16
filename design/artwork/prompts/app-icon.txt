@@ -11,13 +11,13 @@ The role instructions below set the necessary detail and composition within this
 Preserve subject identity, counted quantities, exact answer colours and action differences. Use real alpha for isolated pictures and stationery, and an opaque canvas only when the selected role requires a scene or branding image. No accidental background, halo, visible grid, labels or extra objects.
 
 ROLE: branding
-Use the canonical warm illustrated technique as a simple readable app emblem. Keep a clear silhouette and quiet background. A branding fox is not a replacement for the existing model portraits used to identify game characters.
+Use the canonical warm illustrated technique as a simple readable app emblem. Keep a clear silhouette and quiet background. A branding fox is not a replacement for the existing puzzle/map model portraits or the painted letter sender portraits.
 
 ATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:
 1. design/illustrations/references/watercolour-pencil-v1/animals.png — canonical-style: canonical drawing technique for animals; fixed majority-style pixels
 2. design/illustrations/references/watercolour-pencil-v1/objects.png — canonical-style: canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels
 
 SUBJECT AND LAYOUT BRIEF:
-A single friendly illustrated red-fox head as a clear app emblem, warm orange/cream/sepia on a quiet warm-ivory square. No text or tiny scenery. Keep the silhouette readable at 32 pixels and important details inside a generous maskable safe zone. Preserve current install identity/URLs; changing the app emblem does not replace model portraits in letters, maps or puzzles.
+A single friendly illustrated red-fox head as a clear app emblem, warm orange/cream/sepia on a quiet warm-ivory square. No text or tiny scenery. Keep the silhouette readable at 32 pixels and important details inside a generous maskable safe zone. Preserve current install identity/URLs; changing the app emblem does not replace model portraits in maps or puzzles, or the painted sender portraits in letters.
 
 STYLE PRIORITY: The brief changes subjects and layout only. Keep waldpost-watercolour-pencil-v1 and the supplied canonical reference technique throughout; do not import the style of a composition-only reference.

@@ -2,11 +2,11 @@
 .friends-interface .screen :is(.topbar,.ff-card-top) button.ff-navigation-back:is(.btn-back,.ff-button){
   --btn:56px;--btn-w:56px;--ic:40px;flex:none;display:grid;place-items:center;
   width:56px;height:56px;min-width:56px;min-height:56px;padding:0;border-radius:50%;
-  background:var(--wb-paper,#fffaf0);border:2px solid var(--wb-timber-deep,#74482a);color:var(--wb-ink,#4b3b2d);
-  box-shadow:0 4px 0 var(--wb-timber-deep,#74482a),0 6px 12px #3a2a1426;transform:none;translate:none;
+  background:var(--wb-paper,#fffaf0);border:2px solid #8a623d;color:var(--wb-ink,#4b3b2d);
+  box-shadow:0 2px 5px #3a2a1420;transform:none;translate:none;
   cursor:pointer;transition:transform .08s,box-shadow .08s;
 }
-.friends-interface .screen :is(.topbar,.ff-card-top) button.ff-navigation-back:is(.btn-back,.ff-button):not(:disabled):active{transform:translateY(3px);translate:none;box-shadow:0 1px 0 var(--wb-timber-deep,#74482a),0 3px 8px #3a2a1426}
+.friends-interface .screen :is(.topbar,.ff-card-top) button.ff-navigation-back:is(.btn-back,.ff-button):not(:disabled):active{transform:translateY(1px);translate:none;box-shadow:0 1px 2px #3a2a1420}
 .friends-interface .screen :is(.topbar,.ff-card-top) button.ff-navigation-back:is(.btn-back,.ff-button):focus-visible{outline:4px solid var(--wb-focus,#456b81);outline-offset:4px}
 .friends-interface .screen :is(.topbar,.ff-card-top) button.ff-navigation-back:is(.btn-back,.ff-button)>.ff-picture{display:flex;width:40px;height:40px;filter:none}
 .ff-navigation-back>.ic{display:none}

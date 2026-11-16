@@ -20,11 +20,12 @@ Avoid sculpted/plush/felt/clay finishes, rendered or photographic material detai
 | --- | --- |
 | Learning subjects | Fine organic pencil contours and light watercolour; complete recognizable subjects in transparent square cells, with generous clean gutters |
 | Navigation symbols | The approved simpler application: broad sepia outline, bold silhouette, nearly flat warm fills, very little detail, readable at 32 px; use the current symbol sheet as an additional simplicity reference |
-| Stationery | Pale cream paper with restrained pencil borders/leaf details; transparent perimeter and empty space for the separately rendered sender |
+| Stationery | Pale cream paper with restrained pencil borders/leaf details; transparent perimeter and empty space for the separately painted sender |
+| Letter sender portraits | The same watercolour/pencil animal drawing as the canonical references, with recognizable species/markings/accessories; isolated complete animals in transparent square cells. Use the `letter-friends` request, including Steinbock |
 | Background paintings | The same watercolour/pencil medium at scene scale; quiet pale washes, restrained edge detail and preserved camera/layout anchors; opaque canvas |
 | App emblem | Simple, readable illustrated branding in the same palette and technique |
 
-Current model-rendered character portraits and the real-time world keep their existing code/model pipelines. Exact geometry, routes and handwriting remain authored paths. Preserve existing den/door/back pictures by reuse unless the user specifically asks to change them. These role boundaries are prescribed parts of the design, not a menu of competing styles.
+Puzzle/map/companion portraits and the real-time world keep their existing code/model pipelines. Invitation letters use the explicitly painted sender role through `FK.friendsArt.letterPortrait`, rather than the model atlas. Exact geometry, routes and handwriting remain authored paths. Preserve existing den/door pictures by reuse unless the user specifically asks to change them. Navigation back is a simple flat illustrated arrow matching the map, letter and settings symbols. These role boundaries are prescribed parts of the design, not a menu of competing styles.
 
 ## Make a request
 
@@ -43,4 +44,4 @@ A new visual direction requires updating this contract, its versioned references
 
 Old guides, alternative styles, generation requests, drafts, before images, comparisons and dated evidence are preserved in the [historical snapshot](../../archive/design-history/2026-11-16-before-style-contract/README.md). Original requests remain byte-exact records. They are deliberately absent from the active prompt folders.
 
-Current final PNGs and preparation manifests remain alongside this guide. Their `generationRecord` points to the archived account of how the existing image was made; their `forwardPrompt` points to the current style-complete request for future work. A historical source record never overrides this style contract.
+Current final PNGs and preparation manifests remain in the design area. Their `generationRecord` points either to the archived account of an existing image or a retained new request in `design/artwork/generation-records/`; their `forwardPrompt` points to the current style-complete request for future work. New records retain the full actual request, ordered references and source hashes. A source record never overrides this style contract.

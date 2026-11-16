@@ -24,3 +24,10 @@ test('archived working instructions cannot become active scoped agent rules',()=
  assert.ok(check({archiveFiles:['archive/old-snapshot/CLAUDE.md']}).some(e=>e.includes('inert .record.md filename')));
  assert.ok(check({archiveFiles:['archive/old-snapshot/AGENTS.md']}).some(e=>e.includes('inert .record.md filename')));
 });
+test('new generation records retain the actual canonical request, ordered references and matching source hash',()=>{
+ const file='design/artwork/generation-records/navigation-back.json';
+ const change=edit=>modified(file,s=>{const value=JSON.parse(s);edit(value);return JSON.stringify(value);});
+ assert.ok(check({read:change(value=>value.request.prompt='obsolete direction')}).some(e=>e.includes('Actual generation request lacks the canonical style')));
+ assert.ok(check({read:change(value=>value.references.reverse())}).some(e=>e.includes('ordered canonical references')));
+ assert.ok(check({read:change(value=>value.sourceSha256='wrong')}).some(e=>e.includes('does not match its source/style')));
+});
