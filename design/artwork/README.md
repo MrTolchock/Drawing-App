@@ -9,7 +9,7 @@
 | Learning subjects/actions/colour pictures | `subject-sheet` or the registered sheet name | [Illustration workflow](../illustrations/README.md), [image library](../../assets/waldatelier/README.md) |
 | Simpler settings/map/envelope symbols | `navigation-symbols` | Broad outlines, flat warm fills, no miniature scenery or material detail |
 | Map den marker | `den-marker` | Watercolour/pencil landmark matching the animal pins; transparent, compact silhouette |
-| Leaving-den sign | Authored SVG | Flat 64-unit icon with rounded sepia outline, cream/ochre/blue fills; edit `assets/interface/exit-symbol.svg`, no image generator |
+| Leaving-den sign | `exit-symbol` | Same illustrated family as settings/map/letter: softly irregular sepia outlines and nearly flat cream/ochre/blue fills; source, actual request and packing in `exit-symbol.json` |
 | Navigation back arrow | `navigation-back` | Same simple symbol family; no wood grain, carving, bevel or circular backing in the picture |
 | Invitation paper | `letter-paper` | Empty portrait zone; current sender added from the painted friend atlas |
 | Shared painted UI friends | `friend-portraits` | Four-by-four atlas with fourteen friends plus sleeping Fuchs; same cast on letters, puzzles, map pins and menus |
@@ -24,12 +24,13 @@
 
 ```sh
 node tools/illustrations/style.cjs --request navigation-symbols
+node tools/illustrations/style.cjs --request exit-symbol
 node tools/illustrations/style.cjs --request den
 ```
 
 Pass the returned `prompt`, `referenced_image_paths` and `transparent_background` to the available image service. Paths in prose do not attach their pixels. The repository supplies reference files, briefs and preparation tools; it contains no custom model, hosted generator, service credentials or deterministic seed. If generation is unavailable, explain that capability gap and reuse existing images or prepare the brief.
 
-The two canonical animal/object images always define drawing technique. Additional current assets define composition, species identity or the prescribed navigation simplicity. The map home uses the painted `den-marker` asset; the leaving-den sign is the authored flat `exit-symbol.svg`. Keep those role treatments separate and never reuse the retired detailed wooden icons. Never use the superseded detailed toolbar, historical style boards or sculpted/plush pictures as new style references. The model sheet in `letter-friends` defines markings and accessories only; repaint every animal in the canonical technique.
+The two canonical animal/object images always define drawing technique. Additional current assets define composition, species identity or the prescribed navigation simplicity. The map home uses the painted `den-marker` asset; the leaving-den sign is the simple illustrated `exit-symbol.webp`, generated with the approved settings/map/letter sheet as the navigation-simplicity reference. Its original geometric SVG is retired; do not use it as a style input or replacement. Keep those role treatments separate and never reuse the retired detailed wooden icons. Never use the superseded detailed toolbar, historical style boards or sculpted/plush pictures as new style references. The model sheet in `letter-friends` defines markings and accessories only; repaint every animal in the canonical technique.
 
 ## Prepare and retain
 

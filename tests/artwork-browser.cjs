@@ -5,7 +5,16 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',out=process.en
 (async()=>{const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||'/usr/bin/chromium',args:['--use-angle=swiftshader','--enable-unsafe-swiftshader']});try{
  const context=await browser.newContext({viewport:{width:1080,height:810},hasTouch:true,reducedMotion:'reduce',serviceWorkers:'block',acceptDownloads:true,permissions:['clipboard-read','clipboard-write']}),page=await context.newPage(),errors=[];page.setDefaultTimeout(60000);page.on('pageerror',e=>errors.push(e.message));const remote=await installRemote(context);
  await page.goto(base+'/?software=1');await page.waitForFunction(()=>!!window.FK?.friendsView&&FK.current()==='friends',{},{timeout:120000});
- const exit=page.getByRole('button',{name:'Nach draussen',exact:true});assert.match(await exit.locator('[data-hud="door"]').evaluate(n=>getComputedStyle(n).backgroundImage),/exit-symbol.svg/);assert.ok(await exit.evaluate(n=>{const r=n.getBoundingClientRect();return r.width>=48&&r.height>=48;}),'flat exit sign remains a touch target');
+ const exit=page.getByRole('button',{name:'Nach draussen',exact:true}),den=[];
+ for(const [width,height]of [[1080,810],[390,844],[844,390]]){
+  await page.setViewportSize({width,height});
+  assert.match(await exit.locator('[data-hud="door"]').evaluate(n=>getComputedStyle(n).backgroundImage),/exit-symbol.webp/);
+  assert.ok(await exit.evaluate(n=>{const r=n.getBoundingClientRect();return r.width>=48&&r.height>=48&&r.x>=0&&r.y>=0&&r.right<=innerWidth&&r.bottom<=innerHeight;}),'illustrated exit remains a visible touch target');
+  await exit.locator('[data-hud="door"]').evaluate(async n=>{const pic=new Image();pic.src=getComputedStyle(n).backgroundImage.slice(5,-2);await pic.decode();if(pic.naturalWidth!==320||pic.naturalHeight!==320)throw Error('Exit artwork did not load');});
+  await page.screenshot({path:out+'/den-exit-'+width+'.png'});
+  den.push({width,height,exitVisible:true,touchTarget:true});
+ }
+ await exit.tap();await page.getByRole('button',{name:'Zum Freund gehen',exact:true}).click();await page.waitForFunction(()=>document.querySelector('.ff-game').dataset.area==='forest');
  const active=()=>page.locator('.screen:not([hidden])'),gate=async()=>{const [a,b]=(await page.locator('.gate-task').textContent()).match(/\d+/g).map(Number);await page.getByLabel('Deine Antwort',{exact:true}).fill(String(a*b));await page.locator('.gate-submit').click();};
  const states=[];
  for(const [width,height]of [[1080,810],[390,844],[844,390]]){
@@ -37,5 +46,5 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',out=process.en
  const download=gallery.waitForEvent('download');await gallery.locator('[data-image="forest-nut"] .actions button').last().click();const file=await download;assert.equal(file.suggestedFilename(),'forest-nut.png');const metadata=await sharp(await file.path()).metadata();assert.equal(metadata.format,'png');assert.ok(metadata.hasAlpha&&metadata.width>=300&&metadata.height>=300);await gallery.screenshot({path:out+'/image-library-1080.png'});
  await gallery.getByLabel('Bildname oder ID',{exact:true}).fill('');await gallery.getByLabel('Bildbogen',{exact:true}).selectOption('forest-wildlife');assert.equal(await gallery.locator('.image-card').count(),16);await gallery.getByLabel('Nur Bilder aus aktiven Rätseln',{exact:true}).check();assert.ok(await gallery.locator('.image-card').count()>0);
  await gallery.setViewportSize({width:390,height:844});assert.equal(await gallery.evaluate(()=>document.documentElement.scrollWidth>innerWidth+2),false);await gallery.screenshot({path:out+'/image-library-390.png'});await gallery.getByLabel('Bildname oder ID',{exact:true}).fill('does-not-exist');assert.equal(await gallery.locator('.image-card').count(),0);assert.match(await gallery.locator('#images').textContent(),/Kein Bild/);
- assert.deepEqual(errors,[]);fs.writeFileSync(out+'/report.json',JSON.stringify({world:states,library:{images:235,sheets:17,search:true,filters:true,clipboard:true,transparentPngDownload:true},reviewWrites:remote.writes.length},null,2)+'\n');await context.close();console.log('PASS drawn navigation, sender-aware letter at phone/tablet/landscape sizes, map/settings gates, image-library search/filter/copy and real transparent PNG export.');
+ assert.deepEqual(errors,[]);fs.writeFileSync(out+'/report.json',JSON.stringify({den,exitAction:'unread invitation followed by forest',world:states,library:{images:235,sheets:17,search:true,filters:true,clipboard:true,transparentPngDownload:true},reviewWrites:remote.writes.length},null,2)+'\n');await context.close();console.log('PASS illustrated den exit and its touch action, drawn navigation, sender-aware letter at phone/tablet/landscape sizes, map/settings gates, image-library search/filter/copy and real transparent PNG export.');
 }finally{await browser.close();}})().catch(error=>{console.error(error);process.exitCode=1;});

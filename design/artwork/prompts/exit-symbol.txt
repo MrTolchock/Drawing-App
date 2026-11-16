@@ -1,0 +1,26 @@
+WALDPOST CANONICAL ILLUSTRATION STYLE — waldpost-watercolour-pencil-v1
+
+Use the supplied canonical animals.png and objects.png reference images as the authority for drawing technique. They show the predominant style of the current Waldpost gallery. Match their actual pixels, not an imagined style suggested by a filename.
+
+Draw warm children's picture-book watercolour finished with visible coloured-pencil strokes. Use light, gently uneven washes, organic sepia contours, delicate hatching, softly irregular edges and modest drawn shading. Surfaces look painted and pencilled, with paper grain within the illustration. Keep the warmth of cream, honey brown, restrained sage and blue, while preserving every exact colour required by a task. Subjects remain friendly, recognizable and anatomically believable.
+
+Do not turn the drawing into a 3D render, plush toy, clay or felt craft, photograph, glossy object, embossed surface or studio-lit miniature. Avoid deep ambient-occlusion shadows, inflated forms and realistic material microtexture. Do not mix in another illustration technique or use historical artwork as a style reference.
+
+The role instructions below set the necessary detail and composition within this one style. Learning pictures retain fine drawn contours; small navigation symbols use the approved simpler, broader shapes and flat fills in the same palette. Keep the existing rendered game-character identities separate from image-generated learning subjects. Exact geometry and handwriting remain authored paths.
+
+Preserve subject identity, counted quantities, exact answer colours and action differences. Use real alpha for isolated pictures and stationery, and an opaque canvas only when the selected role requires a scene or branding image. No accidental background, halo, visible grid, labels or extra objects.
+
+ROLE: navigation
+Use the same warm hand-drawn palette as a SIMPLE small pictogram. Follow the approved navigation-symbol reference for broad, softly irregular sepia outlines, rounded bold silhouettes and nearly flat fills. Match its illustrated edge softness and outline-to-fill proportions. Omit tiny scenery, stamps, material grain, fine hatching, glossy hubs and extra decoration. It must read at 32 pixels. This is a prescribed low-detail application of the canonical style. The den exit and navigation back belong to this same illustrated family as settings, map and letter. The map home marker uses its separate painted map-landmark role. Reuse current assets rather than rigid geometric substitutes or the retired detailed wooden pins.
+
+ATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:
+1. design/illustrations/references/watercolour-pencil-v1/animals.png — canonical-style: canonical drawing technique for animals; fixed majority-style pixels
+2. design/illustrations/references/watercolour-pencil-v1/objects.png — canonical-style: canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels
+3. assets/interface/navigation-symbols.webp — navigation-simplicity: approved simplicity and silhouette reference for navigation; not a material-realism reference
+
+SUBJECT AND LAYOUT BRIEF:
+One simple illustrated open-door exit pictogram, centred on a genuinely transparent square. It belongs beside the settings gear, folded map and envelope in the supplied navigation-symbols image. Match those three icons' actual broad warm-brown organic outlines, softly rounded corners, nearly flat cream/ochre fills and subtle hand-drawn edge softness. Use the same relative outline thickness as the envelope and map, with generous areas of flat colour; the brown contour must not dominate the icon.
+
+Show a small cream upright doorway, one plain ochre door swung open to the left and a single broad muted-blue arrow pointing right through the opening. Recognizable as leaving the den at 32–48 pixels. Keep the doorway, open door and arrow clearly separated and the whole silhouette compact, balanced and friendly. Very few broad shapes; no tiny hardware, door panels, keyholes, wood grain, bark, floor, tree, landscape, extra symbols, letters or text. No bevels, shadows, 3D material rendering, glossy highlights, thin sketch lines, texture or detailed painting. Avoid the rigid heavy geometric appearance of a technical SVG: use the same gently uneven drawn contours as the supplied gear, map and envelope. Do not copy those three subjects into the output; draw only the exit icon. Keep every edge complete within the central 72 percent of the square, with empty transparent padding all around, and no badge or circular backing.
+
+STYLE PRIORITY: The brief changes subjects and layout only. Keep waldpost-watercolour-pencil-v1 and the supplied canonical reference technique throughout; do not import the style of a composition-only reference.

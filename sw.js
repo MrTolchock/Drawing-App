@@ -1,5 +1,5 @@
 /* Farbtupf – Service Worker: keeps the whole app on the device so it runs without internet. */
-const CACHE = 'farbtupf-v9.3.82-waldpost';
+const CACHE = 'farbtupf-v9.3.83-waldpost';
 const SCOPE=self.registration.scope;
 const INDEX=new URL('index.html',SCOPE).href;
 const ACTIVE_MARKER=new URL('.farbtupf-active-cache',SCOPE).href;
@@ -10,7 +10,7 @@ const ASSETS = [
   './css/map.css',
   './js/friends/map-layout.js',
   './assets/interface/den-marker.webp',
-  './assets/interface/exit-symbol.svg',
+  './assets/interface/exit-symbol.webp',
   './assets/interface/letter-paper.webp',
   './js/friends/review-repository.js',
   './js/ui/review-connection.js',

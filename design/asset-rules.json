@@ -132,9 +132,11 @@
     ]
   },
   "exit": {
-    "source": "assets/interface/exit-symbol.svg",
-    "treatment": "flat-vector-pictogram",
+    "source": "assets/interface/exit-symbol.webp",
+    "treatment": "simple-illustrated-navigation-symbol",
     "component": "FK.hudArt.element(door)",
-    "minimumTouchTarget": 48
+    "minimumTouchTarget": 48,
+    "manifest": "design/artwork/exit-symbol.json",
+    "forwardPrompt": "design/artwork/prompts/exit-symbol.txt"
   }
 }

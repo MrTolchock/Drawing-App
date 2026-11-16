@@ -1,0 +1,25 @@
+{
+  "format": "waldpost-illustration-atlas",
+  "version": 1,
+  "source": "sources/exit-symbol.png",
+  "output": "../../assets/interface/exit-symbol.webp",
+  "columns": 1,
+  "rows": 1,
+  "cellPixels": 320,
+  "subjectPixels": 272,
+  "alphaThresholdPercent": 15,
+  "provenance": {
+    "date": "2026-11-16",
+    "tool": "ChatGPT hosted image-generation tool",
+    "sourceSha256": "a67adc03584b9dff4b39e488f46ea38825c7f082a66f9eb48ab7090cc986727b",
+    "generationRecord": "generation-records/exit-symbol.json",
+    "styleContract": "../illustrations/style.json",
+    "forwardPrompt": "prompts/exit-symbol.txt"
+  },
+  "subjects": [
+    {
+      "id": "door",
+      "label": "Bau verlassen"
+    }
+  ]
+}
