@@ -1,53 +1,150 @@
 <!doctype html>
 <html lang="de-CH"><head><meta charset="utf-8"><title>Picture map painter (development)</title>
-<style>html,body{margin:0;background:#222}canvas{display:block}</style></head>
+<style>@font-face{font-family:"Baloo 2";src:url("../../fonts/baloo2.woff2") format("woff2");font-weight:400 800}html,body{margin:0;background:#222}canvas{display:block}</style></head>
 <body><canvas id="c"></canvas>
 <script type="module">
-/* Paints the picture map from the world (tools/map/README.md): soft hill light, meadow and wood colours,
-   tree crowns as dabs with a shadow, water with a light rim, earth trails, the Rock's stone, a paper grain
-   and a warm vignette. Covers layout MAP at ?s pixels per metre (default 1200 × 800). */
+/* Paints the picture map from the world (tools/map/README.md) as a storybook map on paper:
+   - the land as a soft wash (the world's own ground colours, lit from the north-west so hills and the Rock stand out),
+     the Rock's stone with bedding strokes, snow on the peak, meadow flowers, reeds in the swamp;
+   - water drawn sharp over it: deeper blue in the middle, a light shore, a dark outline, little waves, the waterfall;
+   - trails as dotted earth paths; every tree as a small drawing seen from the south (trunk, crown or spruce tiers,
+     shadow), the nearer ones over the farther ones;
+   - the places as small drawings: den tree, bridges, dam and lodge, cave mouth with crystals, summit cross, well,
+     picnic fire, signposts, toadstool house and ring, stone circle, apple trees and berry bushes, sett, the Steinbock;
+   - the wood running out into the paper at both sides, a compass, the name on a ribbon, a paper grain.
+   Covers layout MAP at ?s pixels per metre (default 1800 × 1200). Pins are laid over it by the game. */
 import {THREE} from '../../js/scene/materials.js';
 import {createBigWorld} from '../../js/friends/world/big/index.js';
 import {MAP} from '../../js/friends/world/big/layout.js';
+import {LODGE} from '../../js/friends/world/big/beaver.js';
 import {fbm, rng} from '../../js/friends/world/noise.js';
-const S = +(new URLSearchParams(location.search).get('s') || 1200 / (MAP.x1 - MAP.x0)), W = Math.round((MAP.x1 - MAP.x0) * S), H = Math.round((MAP.z1 - MAP.z0) * S);
-const world = createBigWorld(), T = world.terrain, c = document.getElementById('c'); c.width = W; c.height = H;
-const g = c.getContext('2d'), img = g.createImageData(W, H), col = new THREE.Color(), sun = new THREE.Vector3(-.55, .8, -.56).normalize(), n = new THREE.Vector3();
-const water = new THREE.Color('#6fb3b4'), deep = new THREE.Color('#3f8d9a'), paper = new THREE.Color('#f3e6c4'), rim = new THREE.Color('#d8e7cf');
-for (let j = 0; j < H; j++) for (let i = 0; i < W; i++) {
-  const x = MAP.x0 + (i + .5) / S, z = MAP.z0 + (j + .5) / S, e = 1.2, h = T.ground(x, z);
-  n.set(-(T.ground(x + e, z) - T.ground(x - e, z)) / (2 * e), 1, -(T.ground(x, z + e) - T.ground(x, z - e)) / (2 * e)).normalize();
-  T.colour(x, z, col); T.cliff(x, z, n.y, col);
-  let k = .78 + .42 * Math.max(0, n.dot(sun)) + (fbm(x * .5, z * .5) - .5) * .08;
-  const d = T.stillDepth(x, z), s = T.streamAt(x, z);
-  if (d > 0) { col.copy(water).lerp(deep, Math.min(1, d * .9)); if (d < .25) col.lerp(rim, .6 * (1 - d / .25)); k = 1; }
-  else if (s.d < s.w / 2 + .3) { col.copy(water); if (s.d > s.w / 2 - .2) col.lerp(rim, .5); k = 1; }
-  const out = Math.min(x - world.extent.x0, world.extent.x1 - x, z - world.extent.z0, world.extent.z1 - z, T.edge(x, z) - 9);
-  if (out < 0) { col.lerp(new THREE.Color('#5d7a3a'), Math.min(.8, -out / 14)); k *= .92; }
-  col.lerp(paper, .16); col.convertLinearToSRGB();
-  const grain = .97 + .06 * fbm(i * .9, j * .9), o = (j * W + i) * 4;
-  img.data[o] = 255 * Math.min(1, col.r * k * grain); img.data[o + 1] = 255 * Math.min(1, col.g * k * grain); img.data[o + 2] = 255 * Math.min(1, col.b * k * grain); img.data[o + 3] = 255;
-}
-g.putImageData(img, 0, 0);
-const P = (x, z) => [(x - MAP.x0) * S, (z - MAP.z0) * S];
-// trails as soft earth strokes under the trees
-g.lineCap = g.lineJoin = 'round'; for (const tr of T.trails) { g.strokeStyle = 'rgba(196,146,92,.85)'; g.lineWidth = 1.5 * S; g.beginPath(); tr.samples.forEach((q, k) => { const [px, pz] = P(q.x, q.z); k ? g.lineTo(px, pz) : g.moveTo(px, pz); }); g.stroke(); }
-// tree crowns: a shadow to the south-east, then a dab with a lighter top-left
-const R = rng(5), trees = world.allTrees(); for (let x = MAP.x0; x < MAP.x1; x += 7) for (let z = MAP.z0; z < MAP.z1; z += 7) { const out = Math.min(x - world.extent.x0, world.extent.x1 - x, z - world.extent.z0, world.extent.z1 - z); if (out < 0) trees.push({x: x + R() * 5, z: z + R() * 5, r: .6, kind: R() < .5 ? 'spruce' : 'beech'}); }
-const tone = {beech: ['#4f7f2c', '#7aa847'], oak: ['#4a7a2a', '#76a444'], hollow: ['#4a7a2a', '#76a444'], spruce: ['#2f5b36', '#4f7f4a'], birch: ['#8fb44a', '#c4d56c'], alder: ['#55803a', '#83aa55'], willow: ['#7fa64a', '#b8cd6a'], snag: ['#8d8676', '#aba493']};
-trees.sort((a, b) => a.z - b.z);
-for (const t of trees) { const [px, pz] = P(t.x, t.z), r = (t.kind === 'spruce' ? 2.6 : t.kind === 'birch' ? 2.2 : t.kind === 'snag' ? 1 : 3.3) * S * Math.min(t.s || 1, 1.25), [d, l] = tone[t.kind] || tone.beech;
-  g.fillStyle = 'rgba(40,52,24,.28)'; g.beginPath(); g.ellipse(px + r * .35, pz + r * .3, r, r * .85, 0, 0, 7); g.fill();
-  const gr = g.createRadialGradient(px - r * .35, pz - r * .4, r * .1, px, pz, r); gr.addColorStop(0, l); gr.addColorStop(1, d); g.fillStyle = gr; g.beginPath(); g.arc(px, pz, r, 0, 7); g.fill(); }
-// the den tree, the dam and the boardwalk as small drawings
-{ const [x, z] = P(0, -8); g.fillStyle = '#6a4426'; g.beginPath(); g.arc(x, z, 3.6 * S, 0, 7); g.fill(); g.fillStyle = '#3f7a2c'; g.beginPath(); g.arc(x, z - 1.2 * S, 6 * S, 0, 7); g.fill(); g.fillStyle = '#5f9a3a'; g.beginPath(); g.arc(x - 1.5 * S, z - 2.6 * S, 3.4 * S, 0, 7); g.fill(); }
-g.lineCap = 'round'; for (const cr of T.crossings) { const [ax, az] = P(...cr.a), [bx, bz] = P(...cr.b); g.strokeStyle = cr.kind === 'dam' ? '#7a5634' : cr.kind === 'stones' ? '#a39c8c' : '#a8753f'; g.lineWidth = Math.max(3, cr.width * S); g.beginPath(); g.moveTo(ax, az); g.lineTo(bx, bz); g.stroke(); }
-// the cave in the Rock: the dark arched mouth facing the trail, and its way under the hill as a faint dotted line to the hall
-{ const C = world.layout.CAVE, at = (u, v) => P(C.x + u, C.z - v), [mx, mz] = at(0, C.open);
-  g.strokeStyle = 'rgba(70,58,48,.5)'; g.lineWidth = .55 * S; g.setLineDash([.9 * S, 1.3 * S]); g.beginPath(); C.spine.filter(p => p[1] >= C.open).forEach(([u, v], k) => { const [x, z] = at(u, v); k ? g.lineTo(x, z) : g.moveTo(x, z); }); g.stroke(); g.setLineDash([]);
-  g.fillStyle = '#d6cfbf'; g.beginPath(); g.ellipse(mx, mz, 3.5 * S, 2.6 * S, 0, Math.PI, 0); g.fill();
-  g.fillStyle = '#2f2721'; g.beginPath(); g.ellipse(mx, mz, 2.5 * S, 2 * S, 0, Math.PI, 0); g.fill(); g.fillStyle = '#7fe3f0'; g.beginPath(); g.arc(mx + .8 * S, mz - .8 * S, .45 * S, 0, 7); g.fill(); }
-// a warm vignette
-const v = g.createRadialGradient(W / 2, H / 2, H * .35, W / 2, H / 2, W * .62); v.addColorStop(0, 'rgba(90,60,20,0)'); v.addColorStop(1, 'rgba(90,60,20,.28)'); g.fillStyle = v; g.fillRect(0, 0, W, H);
+const S = +(new URLSearchParams(location.search).get('s') || 1800 / (MAP.x1 - MAP.x0)), W = Math.round((MAP.x1 - MAP.x0) * S), H = Math.round((MAP.z1 - MAP.z0) * S);
+const world = createBigWorld(), T = world.terrain, L = world.layout, E = world.extent, c = document.getElementById('c'); c.width = W; c.height = H;
+const g = c.getContext('2d'), R = rng(5), TAU = Math.PI * 2, P = (x, z) => [(x - MAP.x0) * S, (z - MAP.z0) * S], m = v => v * S;
+const PAPER = '#f4e8c8', paper = new THREE.Color(PAPER), col = new THREE.Color(), sun = new THREE.Vector3(-.6, .62, -.5).normalize(), n = new THREE.Vector3();
+await document.fonts.load('700 40px "Baloo 2"').catch(() => {});
+
+/* ---------- the land: a wash at half size, smoothed up ---------- */
+{ const w = Math.ceil(W / 2), h = Math.ceil(H / 2), small = document.createElement('canvas'); small.width = w; small.height = h; const sg = small.getContext('2d'), img = sg.createImageData(w, h), rock = new THREE.Color('#b9b3a4'), snowC = new THREE.Color('#ffffff'), bm = {};
+  for (let j = 0; j < h; j++) for (let i = 0; i < w; i++) {
+    const x = MAP.x0 + (i + .5) * 2 / S, z = MAP.z0 + (j + .5) * 2 / S, e = 1.4;
+    n.set(-(T.ground(x + e, z) - T.ground(x - e, z)) / (2 * e), 1, -(T.ground(x, z + e) - T.ground(x, z - e)) / (2 * e)).normalize();
+    T.colour(x, z, col, true); T.cliff(x, z, n.y, col); const b = T.biome(x, z, bm);
+    col.lerp(rock, Math.min(1, (col.stone || 0) * .5)); if (b.snow > 0) col.lerp(snowC, b.snow * .9);
+    // brighter and a little warmer than the game's ground, as painted
+    col.r = Math.min(1, col.r * 1.12 + .02); col.g = Math.min(1, col.g * 1.1 + .02); col.b *= .96;
+    const k = (.68 + .5 * Math.max(0, n.dot(sun)) + (fbm(x * .22, z * .22) - .5) * .12) * (1 - .1 * Math.min(1, b.spruce)) * (.97 + .06 * fbm(i * .9, j * .9));
+    col.lerp(paper, .14); col.convertLinearToSRGB(); const o = (j * w + i) * 4;
+    img.data[o] = 255 * Math.min(1, col.r * k); img.data[o + 1] = 255 * Math.min(1, col.g * k); img.data[o + 2] = 255 * Math.min(1, col.b * k); img.data[o + 3] = 255; }
+  sg.putImageData(img, 0, 0); g.imageSmoothingQuality = 'high'; g.drawImage(small, 0, 0, W, H); }
+
+/* ---------- small marks on the land ---------- */
+{ const bm = {};
+  // the Rock: short level strokes for its beds, darker under the cliffs
+  for (let k = 0; k < 2600; k++) { const x = L.ROCK.x + (R() * 2 - 1) * (L.ROCK.rx + 8), z = L.ROCK.z + (R() * 2 - 1) * (L.ROCK.rz + 8); if (T.rock(x, z).d < -4 || T.snow(x, z) > .3 || T.cave(x, z).k > 0) continue; const s = T.slope(x, z), [px, pz] = P(x, z), l = m(.8 + R() * 1.6);
+    g.strokeStyle = `rgba(80,72,60,${Math.min(.5, .08 + s * .3)})`; g.lineWidth = m(.12 + s * .12); g.beginPath(); g.moveTo(px - l, pz + (R() - .5) * 2); g.quadraticCurveTo(px, pz - m(.2), px + l, pz + (R() - .5) * 2); g.stroke(); }
+  // snow: blue shade on the side away from the light
+  for (let k = 0; k < 500; k++) { const x = L.PEAK.x + (R() * 2 - 1) * L.PEAK.r, z = L.PEAK.z + (R() * 2 - 1) * L.PEAK.r; if (T.snow(x, z) < .6) continue; const [px, pz] = P(x, z), dx = x - L.PEAK.x, dz = z - L.PEAK.z; if (dx + dz < 2) continue; g.fillStyle = 'rgba(150,175,215,.13)'; g.beginPath(); g.ellipse(px, pz, m(1.6), m(.9), .6, 0, TAU); g.fill(); }
+  // meadow flowers, swamp reeds, grass ticks in the open
+  const dots = ['#fff7df', '#f6c93c', '#e8574a', '#7f8fe0', '#f2a3c0'];
+  for (let k = 0; k < 9000; k++) { const x = E.x0 + R() * (E.x1 - E.x0), z = E.z0 + R() * (E.z1 - E.z0), b = T.biome(x, z, bm), [px, pz] = P(x, z); if (T.stillDepth(x, z) > -.05 || T.streamAt(x, z).d < 1.2 || T.edge(x, z) < 6) continue;
+    if (b.meadow > .5 && R() < .75) { g.fillStyle = dots[Math.floor(R() * dots.length)]; g.beginPath(); g.arc(px, pz, m(.22 + R() * .16), 0, TAU); g.fill(); }
+    else if (b.swamp > .4 && R() < .5) { g.strokeStyle = 'rgba(70,96,44,.7)'; g.lineWidth = m(.12); g.beginPath(); for (const o of [-.3, 0, .3]) { g.moveTo(px + m(o), pz); g.lineTo(px + m(o * 1.8), pz - m(1 + R() * .5)); } g.stroke(); }
+    else if (b.glade > .3 && b.rock < .3 && R() < .2) { g.strokeStyle = 'rgba(86,128,48,.55)'; g.lineWidth = m(.11); g.beginPath(); for (const o of [-.25, .1, .4]) { g.moveTo(px + m(o), pz); g.lineTo(px + m(o * 1.6), pz - m(.6)); } g.stroke(); } } }
+
+/* ---------- water, sharp, over the wash ---------- */
+{ const layer = document.createElement('canvas'); layer.width = W; layer.height = H; const lg = layer.getContext('2d'), img = lg.createImageData(W, H), boxes = [...T.pools.map(p => [p.x - p.rx * 1.6, p.z - p.rx * 1.6, p.x + p.rx * 1.6, p.z + p.rx * 1.6]), [T.swamp.x - T.swamp.rx - 4, T.swamp.z - T.swamp.rz - 4, T.swamp.x + T.swamp.rx + 4, T.swamp.z + T.swamp.rz + 4]];
+  for (const s of T.streams) for (let k = 0; k < s.N; k += 12) { const a = s.samples[k]; boxes.push([a.x - 5, a.z - 5, a.x + 5, a.z + 5]); }
+  const done = new Uint8Array(W * H), shallow = [142, 205, 208], deep = [70, 150, 172], shore = [226, 242, 232], line = [52, 108, 124];
+  for (const [bx0, bz0, bx1, bz1] of boxes) { const [i0, j0] = P(bx0, bz0).map(Math.floor), [i1, j1] = P(bx1, bz1).map(Math.ceil);
+    for (let j = Math.max(0, j0); j < Math.min(H, j1); j++) for (let i = Math.max(0, i0); i < Math.min(W, i1); i++) { const o = j * W + i; if (done[o]) continue; done[o] = 1;
+      const x = MAP.x0 + (i + .5) / S, z = MAP.z0 + (j + .5) / S, d = T.stillDepth(x, z), st = T.streamAt(x, z); let c3 = null, a = 1;
+      if (d > -.03) { const t = Math.min(1, Math.max(0, d) * 1.1); c3 = shallow.map((v, q) => v + (deep[q] - v) * t); if (d < .16) c3 = c3.map((v, q) => v + (shore[q] - v) * (1 - d / .16) * .8); if (d < .03) { c3 = line; a = .75; } }
+      else if (st.stream && st.d < st.w / 2 + .45) { const q = st.d / (st.w / 2 + .45); c3 = q > .78 ? line : shallow.map((v, k) => v + (shore[k] - v) * (q > .55 ? .5 : 0)); a = q > .78 ? .7 : 1; }
+      if (c3) { img.data[o * 4] = c3[0]; img.data[o * 4 + 1] = c3[1]; img.data[o * 4 + 2] = c3[2]; img.data[o * 4 + 3] = 255 * a; } } }
+  lg.putImageData(img, 0, 0); g.drawImage(layer, 0, 0);
+  // little waves on the open water
+  g.strokeStyle = 'rgba(255,255,255,.7)'; g.lineWidth = m(.16); g.lineCap = 'round';
+  for (let k = 0; k < 2600; k++) { const x = E.x0 + R() * (E.x1 - E.x0), z = E.z0 + R() * (E.z1 - E.z0); if (T.stillDepth(x, z) < .35) continue; const [px, pz] = P(x, z), l = m(.5 + R() * .5); if (R() < .5 + (T.swampMask(x, z) > .3 ? .2 : -.35)) continue; g.beginPath(); g.moveTo(px - l, pz); g.quadraticCurveTo(px - l / 2, pz - m(.3), px, pz); g.quadraticCurveTo(px + l / 2, pz + m(.3), px + l, pz); g.stroke(); }
+  // the waterfall: white water down the cliff, spray where it lands
+  { const F = T.falls, [ax, az] = P(...F.lip), [bx, bz] = P(...F.base); g.strokeStyle = '#ffffff'; g.lineWidth = m(1.5); g.beginPath(); g.moveTo(ax, az); g.lineTo(bx, bz); g.stroke(); g.strokeStyle = 'rgba(120,180,200,.8)'; g.lineWidth = m(.2); for (const o of [-.4, 0, .4]) { g.beginPath(); g.moveTo(ax + m(o), az); g.lineTo(bx + m(o), bz); g.stroke(); }
+    g.fillStyle = 'rgba(255,255,255,.85)'; for (let k = 0; k < 9; k++) { g.beginPath(); g.arc(bx + m((R() - .5) * 3), bz + m(R() * 1.6), m(.5 + R() * .5), 0, TAU); g.fill(); } } }
+
+/* ---------- trails: dotted earth paths ---------- */
+g.lineCap = g.lineJoin = 'round';
+for (const pass of [['rgba(120,84,48,.5)', 1.9, []], ['#e3bd86', 1.25, []], ['rgba(150,104,60,.75)', .3, [m(.9), m(1.5)]]]) for (const tr of T.trails) { g.strokeStyle = pass[0]; g.lineWidth = m(pass[1]); g.setLineDash(pass[2]); g.beginPath(); tr.samples.forEach((q, k) => { const [px, pz] = P(q.x, q.z); k ? g.lineTo(px, pz) : g.moveTo(px, pz); }); g.stroke(); }
+g.setLineDash([]);
+
+/* ---------- things drawn seen from the south, the nearer over the farther ---------- */
+const things = [], put = (x, z, draw) => things.push({z, x, draw});
+const blob = (px, py, r, dark, light) => { g.fillStyle = dark; g.beginPath(); for (const [ox, oy, k] of [[0, 0, 1], [-.62, .22, .68], [.62, .25, .66], [-.3, -.42, .66], [.34, -.4, .62]]) { g.moveTo(px + ox * r + r * k, py + oy * r); g.arc(px + ox * r, py + oy * r, r * k, 0, TAU); } g.fill();
+  g.fillStyle = light; g.beginPath(); for (const [ox, oy, k] of [[-.25, -.3, .62], [-.6, .1, .42], [.2, -.5, .4]]) { g.moveTo(px + ox * r + r * k, py + oy * r); g.arc(px + ox * r, py + oy * r, r * k, 0, TAU); } g.fill(); };
+const shade = (px, py, rx, ry = rx * .5) => { g.fillStyle = 'rgba(40,52,24,.22)'; g.beginPath(); g.ellipse(px + rx * .45, py + ry * .3, rx, ry, 0, 0, TAU); g.fill(); };
+const TONE = {beech: ['#4c8030', '#7fb04a'], oak: ['#46782c', '#78a846'], hollow: ['#46782c', '#78a846'], birch: ['#86b048', '#c3d970'], alder: ['#55803a', '#86ad55'], willow: ['#7ea548', '#bcd26e']};
+function tree(t, fade = 1) { const [px, pz] = P(t.x, t.z), k = Math.min(t.s || 1, 1.3) * (.9 + (Math.sin(t.x * 12.9 + t.z * 7.3) * .5 + .5) * .25);
+  g.globalAlpha = fade;
+  if (t.kind === 'spruce') { const w = m(1.7) * k, h = m(5.8) * k; shade(px, pz, w * 1.1); g.fillStyle = '#6a4a2c'; g.fillRect(px - w * .12, pz - h * .2, w * .24, h * .2);
+    for (let q = 0; q < 3; q++) { const y0 = pz - h * (.14 + q * .26), ww = w * (1 - q * .24), hh = h * .42; g.fillStyle = '#2f5d38'; g.beginPath(); g.moveTo(px - ww, y0); g.lineTo(px, y0 - hh); g.lineTo(px + ww, y0); g.closePath(); g.fill(); g.fillStyle = '#4c8250'; g.beginPath(); g.moveTo(px - ww, y0); g.lineTo(px, y0 - hh); g.lineTo(px - ww * .15, y0); g.closePath(); g.fill(); } }
+  else if (t.kind === 'snag') { shade(px, pz, m(.7)); g.strokeStyle = '#8c8676'; g.lineWidth = m(.45); g.beginPath(); g.moveTo(px, pz); g.lineTo(px, pz - m(2.6)); g.moveTo(px, pz - m(1.6)); g.lineTo(px + m(.9), pz - m(2.4)); g.stroke(); }
+  else { const birch = t.kind === 'birch', r = m(birch ? 1.8 : t.kind === 'alder' || t.kind === 'willow' ? 2 : 2.8) * k, hgt = r * (birch ? 1.9 : 1.25), [d, l] = TONE[t.kind] || TONE.beech; shade(px, pz, r * .95);
+    g.fillStyle = birch ? '#f3eee2' : '#7a5230'; g.fillRect(px - r * (birch ? .1 : .16), pz - hgt, r * (birch ? .2 : .32), hgt); blob(px, pz - hgt - r * .35, r, d, l); }
+  g.globalAlpha = 1; }
+for (const t of world.allTrees()) if (Math.hypot(t.x - L.DEN.x, t.z - L.DEN.z) > 5) put(t.x, t.z, () => tree(t));
+// the wood beyond the land runs out into the paper
+for (let x = MAP.x0; x < MAP.x1; x += 6.5) for (let z = MAP.z0 - 4; z < MAP.z1 + 6; z += 6.5) { const out = Math.max(E.x0 - x, x - E.x1, E.z0 - z, z - E.z1); if (out < 0) continue; const t = {x: x + R() * 5, z: z + R() * 5, kind: R() < .45 ? 'spruce' : R() < .2 ? 'birch' : 'beech', s: .9 + R() * .3}, fade = Math.max(0, 1 - Math.max(0, Math.max(E.x0 - t.x, t.x - E.x1)) / 30); if (fade > .05 && R() < fade + .15) put(t.x, t.z, () => tree(t, fade * fade)); }
+const icon = (x, z, draw) => put(x, z, () => { const [px, pz] = P(x, z); g.save(); g.translate(px, pz); draw(); g.restore(); });
+const house = (w, h, wall, roof) => { g.fillStyle = wall; g.fillRect(-w / 2, -h, w, h); g.fillStyle = roof; g.beginPath(); g.moveTo(-w * .75, -h); g.lineTo(0, -h * 1.9); g.lineTo(w * .75, -h); g.closePath(); g.fill(); };
+// the den tree: the biggest tree of all, with its door and round window
+icon(L.DEN.x, L.DEN.z, () => { const r = m(6.2); shade(0, 0, r * .9); g.fillStyle = '#7a4f2c'; g.beginPath(); g.moveTo(-r * .42, 0); g.quadraticCurveTo(-r * .26, -r * .7, -r * .3, -r * 1.3); g.lineTo(r * .3, -r * 1.3); g.quadraticCurveTo(r * .26, -r * .7, r * .42, 0); g.closePath(); g.fill();
+  blob(0, -r * 1.75, r, '#3f7a2c', '#6ea63e'); g.fillStyle = '#4a2c16'; g.beginPath(); g.moveTo(-r * .13, 0); g.lineTo(-r * .13, -r * .3); g.arc(0, -r * .3, r * .13, Math.PI, 0); g.lineTo(r * .13, 0); g.closePath(); g.fill(); g.fillStyle = '#ffd97a'; g.beginPath(); g.arc(r * .17, -r * .62, r * .07, 0, TAU); g.fill(); });
+// crossings
+for (const cr of T.crossings) { const [ax, az] = P(...cr.a), [bx, bz] = P(...cr.b); put((cr.a[0] + cr.b[0]) / 2, Math.max(cr.a[1], cr.b[1]), () => { g.lineCap = 'round';
+  if (cr.kind === 'stones') { g.fillStyle = '#c9c2b2'; for (let k = 0; k <= 4; k++) { g.beginPath(); g.ellipse(ax + (bx - ax) * k / 4, az + (bz - az) * k / 4, m(.42), m(.3), 0, 0, TAU); g.fill(); } return; }
+  if (cr.kind === 'dam') { g.strokeStyle = '#6f4a2a'; g.lineWidth = m(1.9); g.beginPath(); g.moveTo(ax, az); g.lineTo(bx, bz); g.stroke(); g.strokeStyle = '#a97c4c'; g.lineWidth = m(.22); for (let k = 0; k < 14; k++) { const t = k / 13, x = ax + (bx - ax) * t, y = az + (bz - az) * t; g.beginPath(); g.moveTo(x - m(.9), y - m(.6)); g.lineTo(x + m(.8), y + m(.9)); g.stroke(); } return; }
+  g.strokeStyle = '#6b4526'; g.lineWidth = m(cr.kind === 'log' ? 1 : 1.7); g.beginPath(); g.moveTo(ax, az); g.lineTo(bx, bz); g.stroke(); g.strokeStyle = cr.kind === 'log' ? '#a8753f' : '#d2a468'; g.lineWidth = m(cr.kind === 'log' ? .6 : 1.2); g.beginPath(); g.moveTo(ax, az); g.lineTo(bx, bz); g.stroke();
+  if (cr.kind !== 'log') { g.strokeStyle = 'rgba(100,66,36,.7)'; g.lineWidth = m(.14); const len = Math.hypot(bx - ax, bz - az), nx = -(bz - az) / len, nz = (bx - ax) / len; for (let d = m(.5); d < len; d += m(.6)) { const x = ax + (bx - ax) * d / len, y = az + (bz - az) * d / len; g.beginPath(); g.moveTo(x - nx * m(.6), y - nz * m(.6)); g.lineTo(x + nx * m(.6), y + nz * m(.6)); g.stroke(); } } }); }
+// Biber's lodge
+icon(LODGE[0], LODGE[1], () => { const r = m(2.4); g.fillStyle = '#6a4a30'; g.beginPath(); g.ellipse(0, 0, r, r * .5, 0, 0, TAU); g.fill(); g.beginPath(); g.moveTo(-r, 0); g.quadraticCurveTo(0, -r * 1.5, r, 0); g.closePath(); g.fill(); g.strokeStyle = '#b08350'; g.lineWidth = m(.2); for (let k = 0; k < 11; k++) { const a = -1 + k * .2; g.beginPath(); g.moveTo(a * r * .95, -m(.1)); g.lineTo(a * r * .25, -r * .78); g.stroke(); } g.fillStyle = '#2a1c12'; g.beginPath(); g.arc(-r * .15, 0, r * .26, Math.PI, 0); g.fill(); });
+// the cave: a dark mouth in the Rock with crystals, and its way under the hill as a dotted line to the hall
+{ const C = L.CAVE, at = (u, v) => P(C.x + u, C.z - v);
+  put(C.x, C.z - 30, () => { g.strokeStyle = 'rgba(66,56,48,.55)'; g.lineWidth = m(.5); g.setLineDash([m(.8), m(1.2)]); g.beginPath(); C.spine.filter(p => p[1] >= C.open).forEach(([u, v], k) => { const [x, z] = at(u, v); k ? g.lineTo(x, z) : g.moveTo(x, z); }); g.stroke(); g.setLineDash([]);
+    const [hx, hz] = at(15.5, 21.5); g.fillStyle = 'rgba(60,160,175,.6)'; g.beginPath(); g.ellipse(hx, hz, m(2.6), m(1.9), 0, 0, TAU); g.fill(); for (const [dx, dz, cc] of [[-3.2, -1, '#c9a6ff'], [3, 1.4, '#8fe9f2'], [.5, -3, '#9ff0c8']]) { g.fillStyle = cc; g.beginPath(); g.moveTo(hx + m(dx) - m(.5), hz + m(dz)); g.lineTo(hx + m(dx), hz + m(dz) - m(1.6)); g.lineTo(hx + m(dx) + m(.5), hz + m(dz)); g.closePath(); g.fill(); } });
+  icon(C.x, C.z - C.open + .5, () => { g.fillStyle = '#d9d2c2'; g.beginPath(); g.arc(0, 0, m(3.4), Math.PI, 0); g.fill(); g.fillStyle = '#2b231d'; g.beginPath(); g.arc(0, 0, m(2.5), Math.PI, 0); g.fill(); g.fillStyle = '#8fe9f2'; g.beginPath(); g.moveTo(m(.5), 0); g.lineTo(m(.95), -m(1.4)); g.lineTo(m(1.4), 0); g.closePath(); g.fill(); g.fillStyle = '#c9a6ff'; g.beginPath(); g.moveTo(-m(1.5), 0); g.lineTo(-m(1.15), -m(1)); g.lineTo(-m(.8), 0); g.closePath(); g.fill(); }); }
+// the small things to discover
+for (const w of L.WONDERS) { const k = w.kind;
+  if (k === 'ring') icon(w.x, w.z, () => { for (let q = 0; q < 8; q++) { const a = q / 8 * TAU, x = Math.cos(a) * m(2), y = Math.sin(a) * m(1.1); g.fillStyle = '#f6efe2'; g.fillRect(x - m(.12), y - m(.5), m(.24), m(.5)); g.fillStyle = '#d7402f'; g.beginPath(); g.arc(x, y - m(.5), m(.42), Math.PI, 0); g.fill(); } });
+  if (k === 'stones') icon(w.x, w.z, () => { for (let q = 0; q < 7; q++) { const a = q / 7 * TAU, x = Math.cos(a) * m(2.6), y = Math.sin(a) * m(1.4); g.fillStyle = '#8f8a7e'; g.beginPath(); g.ellipse(x, y - m(.5), m(.5), m(.8), 0, 0, TAU); g.fill(); g.fillStyle = '#c0baa9'; g.beginPath(); g.ellipse(x - m(.12), y - m(.65), m(.26), m(.5), 0, 0, TAU); g.fill(); } });
+  if (k === 'log') icon(w.x, w.z, () => { g.rotate(-w.yaw); g.fillStyle = '#7a5230'; g.beginPath(); g.roundRect(-m(2.4), -m(1.3), m(4.8), m(1.3), m(.6)); g.fill(); g.fillStyle = '#2a1c12'; g.beginPath(); g.ellipse(-m(2.3), -m(.65), m(.35), m(.55), 0, 0, TAU); g.fill(); });
+  if (k === 'apple') icon(w.x, w.z, () => { const r = m(2.3); shade(0, 0, r); g.fillStyle = '#7a5230'; g.fillRect(-r * .14, -r * 1.2, r * .28, r * 1.2); blob(0, -r * 1.55, r, '#4f8a34', '#86b74c'); g.fillStyle = '#e0382c'; for (const [x, y] of [[-.5, -1.4], [.3, -1.8], [.55, -1.25], [-.1, -1.1], [-.25, -1.95]]) { g.beginPath(); g.arc(x * r, y * r, r * .14, 0, TAU); g.fill(); } });
+  if (k === 'berries') icon(w.x, w.z, () => { const r = m(1.25); blob(0, -r * .7, r, '#3f7030', '#6c9f45'); g.fillStyle = w.berry === 'blue' ? '#4a55c8' : '#d93a3a'; for (const [x, y] of [[-.5, -.6], [.3, -1], [.55, -.4], [-.1, -.3], [0, -.95]]) { g.beginPath(); g.arc(x * r, y * r, r * .15, 0, TAU); g.fill(); } });
+  if (k === 'well') icon(w.x, w.z, () => { g.fillStyle = '#a9a394'; g.fillRect(-m(.9), -m(1.1), m(1.8), m(1.1)); g.fillStyle = '#8f5a34'; g.fillRect(-m(.95), -m(2.6), m(.22), m(1.6)); g.fillRect(m(.73), -m(2.6), m(.22), m(1.6)); g.fillStyle = '#b5482f'; g.beginPath(); g.moveTo(-m(1.5), -m(2.5)); g.lineTo(0, -m(3.7)); g.lineTo(m(1.5), -m(2.5)); g.closePath(); g.fill(); });
+  if (k === 'table') icon(w.x, w.z, () => { g.fillStyle = '#9a6a3c'; g.beginPath(); g.ellipse(0, -m(.7), m(1.3), m(.6), 0, 0, TAU); g.fill(); g.fillStyle = '#7a5230'; g.fillRect(-m(.3), -m(.7), m(.6), m(.8)); });
+  if (k === 'picnic') { icon(w.x, w.z, () => { g.fillStyle = '#a8753f'; g.fillRect(-m(1.6), -m(1.2), m(3.2), m(.5)); g.fillStyle = '#7a5230'; g.fillRect(-m(1.4), -m(.8), m(.3), m(.8)); g.fillRect(m(1.1), -m(.8), m(.3), m(.8)); g.fillStyle = '#946537'; g.fillRect(-m(1.7), -m(.35), m(3.4), m(.3)); });
+    icon(w.fire[0], w.fire[1], () => { g.fillStyle = '#8f8a7e'; g.beginPath(); g.ellipse(0, 0, m(1), m(.5), 0, 0, TAU); g.fill(); g.fillStyle = '#f08a24'; g.beginPath(); g.moveTo(-m(.5), 0); g.quadraticCurveTo(-m(.6), -m(1), 0, -m(1.9)); g.quadraticCurveTo(m(.6), -m(1), m(.5), 0); g.closePath(); g.fill(); g.fillStyle = '#ffd95a'; g.beginPath(); g.moveTo(-m(.25), 0); g.quadraticCurveTo(-m(.3), -m(.6), 0, -m(1.1)); g.quadraticCurveTo(m(.3), -m(.6), m(.25), 0); g.closePath(); g.fill(); }); }
+  if (k === 'sign') icon(w.x, w.z, () => { g.fillStyle = '#7a5230'; g.fillRect(-m(.14), -m(2.4), m(.28), m(2.4)); g.fillStyle = '#d9b274'; g.beginPath(); g.moveTo(-m(1.3), -m(2.3)); g.lineTo(m(.9), -m(2.3)); g.lineTo(m(1.3), -m(1.95)); g.lineTo(m(.9), -m(1.6)); g.lineTo(-m(1.3), -m(1.6)); g.closePath(); g.fill(); });
+  if (k === 'fairyhouse') icon(w.x, w.z, () => { shade(0, 0, m(1.6)); g.fillStyle = '#f6efe2'; g.beginPath(); g.roundRect(-m(.9), -m(1.9), m(1.8), m(1.9), m(.4)); g.fill(); g.fillStyle = '#d7402f'; g.beginPath(); g.ellipse(0, -m(1.9), m(1.9), m(1.3), 0, Math.PI, 0); g.fill(); g.fillStyle = '#fff'; for (const [x, y] of [[-.8, -2.4], [.2, -2.8], [.9, -2.3]]) { g.beginPath(); g.arc(m(x), m(y), m(.24), 0, TAU); g.fill(); } g.fillStyle = '#6a4426'; g.beginPath(); g.roundRect(-m(.3), -m(1), m(.6), m(1), m(.3)); g.fill(); });
+  if (k === 'summit') { icon(w.x, w.z, () => { g.fillStyle = '#9d978b'; g.beginPath(); g.ellipse(0, 0, m(1.1), m(.5), 0, 0, TAU); g.fill(); g.strokeStyle = '#6a4426'; g.lineWidth = m(.38); g.lineCap = 'butt'; g.beginPath(); g.moveTo(0, 0); g.lineTo(0, -m(3.6)); g.moveTo(-m(1.1), -m(2.6)); g.lineTo(m(1.1), -m(2.6)); g.stroke(); });
+    icon(w.snowman[0], w.snowman[1], () => { g.fillStyle = '#fff'; g.strokeStyle = 'rgba(120,150,200,.7)'; g.lineWidth = m(.1); for (const [y, r] of [[-.7, .8], [-1.8, .55]]) { g.beginPath(); g.arc(0, m(y), m(r), 0, TAU); g.fill(); g.stroke(); } g.fillStyle = '#f08a24'; g.fillRect(0, -m(1.85), m(.5), m(.14)); }); } }
+// the badger's sett, the mouse's stump, the Steinbock on his crag
+icon(L.SETT[0], L.SETT[1] + 1.5, () => { g.fillStyle = '#7c8b46'; g.beginPath(); g.moveTo(-m(3), 0); g.quadraticCurveTo(0, -m(3.2), m(3), 0); g.closePath(); g.fill(); g.fillStyle = '#8a6240'; g.beginPath(); g.ellipse(0, 0, m(1.5), m(.6), 0, 0, TAU); g.fill(); g.fillStyle = '#24170f'; g.beginPath(); g.arc(0, -m(.1), m(.7), Math.PI, 0); g.fill(); });
+icon(...L.FRIENDS.mouse.at, () => { g.fillStyle = '#8f6238'; g.fillRect(-m(.9), -m(.8), m(1.8), m(.8)); g.fillStyle = '#d6aa72'; g.beginPath(); g.ellipse(0, -m(.8), m(.9), m(.4), 0, 0, TAU); g.fill(); });
+icon(...L.EXTRAS.ibex.at, () => { g.fillStyle = '#8f8a7e'; g.beginPath(); g.moveTo(-m(2), 0); g.lineTo(-m(1), -m(1.5)); g.lineTo(m(.9), -m(1.7)); g.lineTo(m(2), 0); g.closePath(); g.fill(); g.fillStyle = '#b7b1a2'; g.beginPath(); g.moveTo(-m(1), -m(1.5)); g.lineTo(m(.9), -m(1.7)); g.lineTo(m(.2), -m(.6)); g.closePath(); g.fill();
+  g.translate(0, -m(1.6)); g.fillStyle = '#9c8468'; g.beginPath(); g.ellipse(0, -m(1.1), m(.62), m(.85), 0, 0, TAU); g.fill(); g.beginPath(); g.arc(0, -m(2.3), m(.62), 0, TAU); g.fill(); g.fillStyle = '#f1e2c6'; g.beginPath(); g.ellipse(0, -m(1), m(.34), m(.55), 0, 0, TAU); g.fill();
+  g.strokeStyle = '#6f6253'; g.lineWidth = m(.26); g.lineCap = 'round'; for (const s of [-1, 1]) { g.beginPath(); g.moveTo(s * m(.3), -m(2.8)); g.quadraticCurveTo(s * m(.6), -m(4.2), s * m(1.5), -m(4)); g.stroke(); } g.fillStyle = '#2a1810'; for (const s of [-1, 1]) { g.beginPath(); g.arc(s * m(.24), -m(2.35), m(.1), 0, TAU); g.fill(); } });
+things.sort((a, b) => a.z - b.z || a.x - b.x); for (const t of things) t.draw();
+
+/* ---------- the paper ---------- */
+{ // the land runs out into the paper at both sides; a soft frame all round
+  for (const [x0, x1] of [[E.x0 - 6, E.x0 - 34], [E.x1 + 6, E.x1 + 34]]) { const a = P(x0, 0)[0], b = P(x1, 0)[0], gr = g.createLinearGradient(a, 0, b, 0); gr.addColorStop(0, 'rgba(244,232,200,0)'); gr.addColorStop(1, PAPER); g.fillStyle = gr; g.fillRect(Math.min(a, b), 0, Math.abs(b - a), H); g.fillStyle = PAPER; if (x1 < x0) g.fillRect(0, 0, b, H); else g.fillRect(b, 0, W - b, H); }
+  const v = g.createRadialGradient(W / 2, H / 2, H * .42, W / 2, H / 2, W * .64); v.addColorStop(0, 'rgba(120,84,36,0)'); v.addColorStop(1, 'rgba(120,84,36,.3)'); g.fillStyle = v; g.fillRect(0, 0, W, H);
+  // a compass in the lower left corner: north is up
+  { const cx = W * .058, cy = H * .87, r = H * .062; g.save(); g.translate(cx, cy); g.fillStyle = 'rgba(255,250,235,.75)'; g.strokeStyle = '#8a6a3c'; g.lineWidth = r * .05; g.beginPath(); g.arc(0, 0, r, 0, TAU); g.fill(); g.stroke();
+    for (let k = 0; k < 8; k++) { g.save(); g.rotate(k * TAU / 8); const l = k % 2 ? r * .5 : r * .88, w = k % 2 ? r * .12 : r * .2; g.fillStyle = k === 0 ? '#c8452f' : k % 2 ? '#c9a66a' : '#8a6a3c'; g.beginPath(); g.moveTo(0, -l); g.lineTo(w, 0); g.lineTo(-w, 0); g.closePath(); g.fill(); g.restore(); }
+    g.fillStyle = '#fff6df'; g.beginPath(); g.arc(0, 0, r * .12, 0, TAU); g.fill(); g.fillStyle = '#6a4a2e'; g.font = `700 ${r * .5}px "Baloo 2", sans-serif`; g.textAlign = 'center'; g.textBaseline = 'alphabetic'; g.fillText('N', 0, -r * 1.12); g.restore(); }
+  // the name on a ribbon in the upper left corner
+  { const x = W * .012, y = H * .045, w = W * .1, h = H * .058; g.save(); g.translate(x, y); g.fillStyle = '#b0503a'; g.beginPath(); g.moveTo(-w * .04, h * .2); g.lineTo(w * .1, h * .2); g.lineTo(w * .1, h * 1.2); g.lineTo(-w * .04, h * 1.2); g.lineTo(w * .03, h * .7); g.closePath(); g.fill(); g.beginPath(); g.moveTo(w * 1.04, h * .2); g.lineTo(w * .9, h * .2); g.lineTo(w * .9, h * 1.2); g.lineTo(w * 1.04, h * 1.2); g.lineTo(w * .97, h * .7); g.closePath(); g.fill();
+    g.fillStyle = '#d4604a'; g.beginPath(); g.roundRect(w * .04, 0, w * .92, h, h * .12); g.fill(); g.fillStyle = '#fff6df'; g.font = `700 ${h * .66}px "Baloo 2", sans-serif`; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText('Waldpost', w * .5, h * .54); g.restore(); }
+  // paper grain
+  const img = g.getImageData(0, 0, W, H), d = img.data; for (let j = 0; j < H; j++) for (let i = 0; i < W; i++) { const o = (j * W + i) * 4, k = .965 + .07 * fbm(i * .45, j * .45) + (((i * 7 + j * 13) % 5) - 2) * .003; d[o] *= k; d[o + 1] *= k; d[o + 2] *= k; } g.putImageData(img, 0, 0); }
 window.mapReady = true;
 </script></body></html>
