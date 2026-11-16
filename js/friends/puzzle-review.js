@@ -23,15 +23,22 @@
   function seen(id,iteration){const r=revision(id,iteration);if(!r)return false;const next=clone(data);next.seen[recordKey(id,iteration)]=r;return persist(next);}
   function progress(id){const items=C.iterations(id),approved=items.filter(i=>status(id,i.id).status==='approved').length,improve=items.filter(i=>status(id,i.id).status==='improve').length;return {total:items.length,approved,improve,pending:items.length-approved-improve};}
   function ready(id){const p=progress(id);return p.total>=25&&p.approved===p.total&&status(id).status==='approved'&&(!FK.reviewRepository||FK.reviewRepository.confirmed(id));}
-  function decide(id,iteration,value,note=''){
+  function decide(id,iteration,value,note){
     const r=revision(id,iteration);if(!r||!statuses.includes(value)){error='Unbekannte Aufgabe oder Entscheidung.';return false;}
-    note=String(note).trim().slice(0,4000);
+    note=String(note??(!iteration?status(id).decision?.note:'')??'').trim().slice(0,4000);
     if(value==='approved'){
       if(iteration&&!status(id,iteration).seen){error='Bitte diese Iteration zuerst im Spiel ansehen.';return false;}
       if(!iteration&&progress(id).approved!==progress(id).total){error='Zuerst jede Iteration ansehen und freigeben.';return false;}
     }
     const next=clone(data),k=recordKey(id,iteration),old=next.decisions[k];if(old)next.history.push(old);
     next.decisions[k]={key:k,revision:r,status:value,note,at:new Date().toISOString()};return persist(next);
+  }
+  // A general comment uses the existing puzzle record, preserving its decision and exact revision.
+  function comment(id,note){
+    if(!authorized||!C.puzzle(id)){error='Bitte die Puzzle-Prüfung öffnen.';return false;}
+    const next=clone(data),k=recordKey(id),old=next.decisions[k];if(old)next.history.push(old);
+    next.decisions[k]={...(old||{key:k,revision:revision(id),status:'pending'}),note:String(note).trim().slice(0,4000),at:new Date().toISOString()};
+    return persist(next);
   }
   function exportData(){return {version:1,decisions:clone(data.decisions),seen:clone(data.seen),history:clone(data.history),exportedAt:new Date().toISOString(),catalogue:Object.fromEntries(FK.friendsLibrary.catalogue().map(g=>[g.id,C.puzzleRevision(g.id)]))};}
   function importData(raw){
@@ -95,7 +102,7 @@
     if(!authorized||!C.puzzle(id)){error='Unbekanntes Puzzle.';return false;}
     const next=clone(data),at=new Date().toISOString(),put=(k,r)=>{const old=next.decisions[k];if(old&&old.revision===r&&old.status==='approved')return;if(old)next.history.push(old);next.decisions[k]={key:k,revision:r,status:'approved',note,at};};
     for(const it of C.iterations(id)){const r=C.iterationRevision(id,it);next.seen[it.id]=r;put(it.id,r);}
-    put(recordKey(id),C.puzzleRevision(id));return persist(next);
+    put(recordKey(id),C.puzzleRevision(id));next.decisions[recordKey(id)].note=status(id).decision?.note||'';return persist(next);
   }
   function finishSession(session){
     if(!authorized||!session?.review||session.round!==session.questions.length||session.reviewRevision!==C.puzzleRevision(session.id)||session.reviewResults.filter(Boolean).length!==session.questions.length)return false;
@@ -103,7 +110,7 @@
     return decide(session.id,null,'approved');
   }
   window.addEventListener?.('storage',event=>{if(event.key!==key)return;try{const next=JSON.parse(event.newValue);if(valid(next)){data=next;error='';}else {data=empty();error='Prüfung wurde geändert. Bitte erneut prüfen.';}FK.emit?.('puzzle-review-change');}catch{data=empty();FK.emit?.('puzzle-review-change');}});
-  FK.puzzleReview={key,status,seen,progress,ready,decide,approveAll,exportData,importData,open,openGallery,gallerySession,play,preview,start,previewSession,visit,sessionDecision,finishSession,get authorized(){return authorized;},get error(){return error;}};
+  FK.puzzleReview={key,status,seen,progress,ready,decide,comment,approveAll,exportData,importData,open,openGallery,gallerySession,play,preview,start,previewSession,visit,sessionDecision,finishSession,get authorized(){return authorized;},get error(){return error;}};
   if(FK.ReviewRepository&&window.fetch&&window.document&&new URLSearchParams(location.search).get('dev')!=='1'){
     let tokenStorage;try{tokenStorage=window.sessionStorage;}catch{/* A temporary connection still works. */}
     FK.reviewRepository=FK.ReviewRepository.create({

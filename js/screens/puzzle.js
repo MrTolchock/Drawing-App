@@ -313,7 +313,7 @@
   FK.puzzleUI={picture,shape,progress,context,completion:(...args)=>{cancelCompletion();cancelCompletion=completion(...args);return cancelCompletion;}};
   FK.screen('puzzle',{
     build(el){
-      root=el;bar=FK.ui.topbar({title:'Waldspiel',stars:false,onBack:()=>FK.go(origin)});title=bar.querySelector('.title');body=h('div',{class:'puzzle-paper scroll'});root.append(bar,body);FK.play.bindTouch(root);FK.on('puzzle-review-change',()=>{if(alive&&session&&!session.review&&!FK.puzzleReview.ready(game)){clearTimeout(timer);locked=true;blocked();}});
+      root=el;bar=FK.ui.topbar({title:'Waldspiel',stars:false,onBack:()=>FK.go(origin,session?.review?{reviewPuzzle:game}:{},{isBack:true})});title=bar.querySelector('.title');body=h('div',{class:'puzzle-paper scroll'});root.append(bar,body);FK.play.bindTouch(root);FK.on('puzzle-review-change',()=>{if(alive&&session&&!session.review&&!FK.puzzleReview.ready(game)){clearTimeout(timer);locked=true;blocked();}});
     },
     enter(params){
       alive=true;root.scrollTop=0;game=params.game;const entry=FK.friendsLibrary.catalogue().find(g=>g.id===game);

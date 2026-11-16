@@ -529,7 +529,6 @@
 .friends-interface .ff-game .ff-nav .ff-button .ff-hud-picture{display:flex;width:42px;height:42px}
 .friends-interface .ff-game .ff-nav .ff-dev{align-self:center}
 @media(max-width:600px){.friends-interface .ff-game .ff-nav{gap:7px}.friends-interface .ff-game .ff-nav .ff-button .ff-hud-picture{width:36px;height:36px}}
-.ff-voice-choice{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:12px 0 8px}.ff-voice-select{min-height:48px;max-width:100%;padding:8px 10px;border:2px solid #c9b48a;border-radius:12px;background:#fffaf0;font:inherit;color:#4b3b2d}
 
 .ff-den-envelope>.ff-hud-picture{display:grid;place-items:center}.ff-den-envelope .ff-hud-art{width:auto;height:100%;aspect-ratio:1}
 .ff-map-invitation>.ff-hud-art{width:100%;height:100%}

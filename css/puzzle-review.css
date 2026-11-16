@@ -38,3 +38,5 @@
 .setting-buttons .btn .lbl{white-space:normal}
 /* Start the review, or confirm every iteration of the puzzle at once. */
 .review-start{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:12px 0}
+
+.review-competence,.review-comment{padding:16px;border:1px solid #d8c5a1;border-radius:16px;background:#fffdf7;margin:16px 0}.review-competence h3,.review-comment h3{margin-top:0}.review-comment label{display:block}.review-comment textarea{margin:8px 0 12px}

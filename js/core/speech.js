@@ -20,11 +20,10 @@
     return s;
   }
   const german = () => (synth ? synth.getVoices() : []).filter(v => score(v) > -Infinity).sort((a, b) => score(b) - score(a));
-  // an adult may pick the voice in Settings (FK.settings 'stimme', the voice's name); otherwise the best one is used
+  // Use the standard automatic German voice; retired saved choices no longer override it.
   function voice() {
-    const wanted = FK.settings?.get('stimme');
-    if (chosen && chosen.name === (wanted || chosen.name) && (navigator.onLine !== false || chosen.localService !== false)) return chosen;
-    const list = german(); chosen = (wanted && list.find(v => v.name === wanted)) || list[0] || null;
+    if (chosen && (navigator.onLine !== false || chosen.localService !== false)) return chosen;
+    chosen = german()[0] || null;
     return chosen;
   }
   if (synth && 'onvoiceschanged' in synth) synth.addEventListener?.('voiceschanged', () => { chosen = null; });
@@ -56,12 +55,8 @@
     };
     try { FK.emit('speech', {active: true}); next(); return !!current; } catch (_) { current = null; return false; }
   }
-  /** The German voices on this device, best first: [{name, lang, quality}] (for the voice choice in Settings). */
-  function voices() { return german().map(v => ({name: v.name, lang: v.lang, quality: /premium|enhanced|natural|neural|wavenet|studio|siri/i.test(v.name) ? 'hoch' : /compact|espeak/i.test(v.name) ? 'einfach' : ''})); }
-  FK.forestVoice = {say, explain: text => say(text, {explicit: true}), cancel, repeat: () => say(last), voices, sample: () => say('Hallo, ich bin Fuchs. Komm, wir lesen zusammen den Brief.', {explicit: true, speaker: 'fox'}),
+  FK.forestVoice = {say, explain: text => say(text, {explicit: true}), cancel, repeat: () => say(last),
     get available() { return !!voice(); }, get voiceName() { return voice()?.name || null; }};
-  if (synth) synth.addEventListener?.('voiceschanged', () => FK.emit?.('voices'));
-  FK.on('settings', e => { if (e.key === 'stimme') chosen = null; });
   FK.on('settings', e => { if (e.key === 'sound' && !e.value) cancel(); });
   document.addEventListener('visibilitychange', () => { if (document.hidden) cancel(); });
 })();

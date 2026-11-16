@@ -93,7 +93,7 @@ function act(id){if(panel||['sleeping','finished'].includes(state.mail().phase))
   const p=world.position;if(Math.hypot(p.x-destination.x,p.z-destination.z)>3.2){world.route(id);say('Folge Fuchs zu '+(C.hosts[id]?.name||(id==='home'?'deinem Zuhause':'dem Briefträger'))+'.');return;}
   if(id==='home')go('den');else if(id==='mailman'){if(state.mail().phase==='to-mailman')showLetter(true);}else meet(id);
 }else if(id==='outside'){if(state.mail().phase==='den-letter')showLetter(false);else go('forest');}}
-// Named touch targets sit on the calibrated painting; routes still use the actual world destinations.
+// Picture-only touch targets sit on the calibrated painting; routes still use the actual world destinations.
 function map(){
   if(state.mail().phase==='den-letter'){showLetter(false);return;}
   state.record('map_opened',{area});open('map');const card=h('section',{class:'ff-card ff-map-card'});overlay.append(card);
@@ -103,7 +103,8 @@ function map(){
     if(id==='mailman')continue;
     const b=button(p.name,p.picture,()=>{if(area!=='forest')go('forest');else close();world.route(id);});
     const pin=mapPin(id),[ax,ay]=mapPoint(p.x,p.z);
-    b.replaceChildren(id==='home'?FK.hudArt.element('den'):FK.friendsArt.portrait(id),h('span',{class:'ff-map-pin-label',text:pin.label}));b.dataset.place=id;if(id==='home')b.classList.add('ff-map-home');
+    b.removeAttribute('title'); // Picture-only pins; keep the accessible destination name.
+    b.replaceChildren(id==='home'?FK.hudArt.element('den'):FK.friendsArt.portrait(id));b.dataset.place=id;if(id==='home')b.classList.add('ff-map-home');
     const line=document.createElementNS(links.namespaceURI,'line');for(const [key,value]of Object.entries({x1:ax*1536,y1:ay*1024,x2:pin.x*1536,y2:pin.y*1024}))line.setAttribute(key,String(value));links.append(line);
     const invited=mail.phase==='to-friend'&&mail.host===id||mail.phase==='return-home'&&id==='home';b.classList.toggle('ff-map-invited',invited);if(invited)b.append(h('span',{class:'ff-map-invitation'},FK.hudArt.element('letter')));
     b.style.left=(pin.x*100)+'%';b.style.top=(pin.y*100)+'%';board.append(b);
@@ -113,11 +114,11 @@ function map(){
   const me=h('div',{class:'ff-map-here',role:'img','aria-label':'Hier ist Fuchs'},h('span',{class:'ff-map-here-pulse'}),h('span',{class:'ff-map-here-pin'},FK.friendsArt.portrait('fox')));
   me.style.left=(hx*100)+'%';me.style.top=(hy*100)+'%';board.append(me);
   me.style.setProperty('--ff-here-x',hx>.9?'-56px':'12px');me.style.setProperty('--ff-here-y',hy>.88?'-58px':'14px');
-  // Keep named 64 px pins readable on phones; the map pans sideways, centred on Fuchs.
+  // Keep picture-only 64 px pins separated on phones; the map pans sideways, centred on Fuchs.
   const scroller=h('div',{class:'ff-map-scroll'},board);card.append(scroller);scroller.scrollLeft=Math.max(0,Math.min(scroller.scrollWidth-scroller.clientWidth,hx*scroller.scrollWidth-scroller.clientWidth/2));board.querySelector('button')?.focus({preventScroll:true});
   if(mail.phase==='to-mailman'){
     const b=button('Zum Briefträger','mailman',()=>{if(area!=='forest')go('forest');else close();world.route('mailman');},'ff-map-courier');
-    b.replaceChildren(FK.friendsArt.portrait('mailman'),h('span',{text:'Zum Briefträger'}));b.dataset.place='mailman';card.append(b);
+    b.removeAttribute('title');b.replaceChildren(FK.friendsArt.portrait('mailman'));b.dataset.place='mailman';card.append(b);
   }
 }
 function meet(id){
