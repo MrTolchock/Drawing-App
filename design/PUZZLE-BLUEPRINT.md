@@ -2,6 +2,8 @@
 
 This is the required contract for every active and future puzzle. It builds on the existing Waldbuch page and Silben-Puzzle interaction. Visual decisions are defined once in [Visual style](VISUAL-STYLE.md); the [runtime inventory](../docs/PUZZLE-CATALOGUE.md) maps every puzzle to this contract.
 
+All generated learning pictures follow the [canonical watercolour/pencil style](illustrations/STYLE.md), with its fixed reference images and style-complete prompts. Historical generation records do not define new artwork.
+
 ## The shared contract
 
 | Rule | Every active puzzle |

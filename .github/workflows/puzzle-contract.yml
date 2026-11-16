@@ -11,6 +11,7 @@ jobs:
         with:
           node-version: '24'
       - run: npm ci --prefix tools
+      - run: node tools/illustrations/style.cjs --check
       - run: node tools/check-design.cjs
       - run: node tools/puzzle-catalogue.cjs --check
       - run: node tools/illustrations/library.cjs --check

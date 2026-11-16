@@ -1,0 +1,24 @@
+WALDPOST CANONICAL ILLUSTRATION STYLE — waldpost-watercolour-pencil-v1
+
+Use the supplied canonical animals.png and objects.png reference images as the authority for drawing technique. They show the predominant style of the current Waldpost gallery. Match their actual pixels, not an imagined style suggested by a filename.
+
+Draw warm children's picture-book watercolour finished with visible coloured-pencil strokes. Use light, gently uneven washes, organic sepia contours, delicate hatching, softly irregular edges and modest drawn shading. Surfaces look painted and pencilled, with paper grain within the illustration. Keep the warmth of cream, honey brown, restrained sage and blue, while preserving every exact colour required by a task. Subjects remain friendly, recognizable and anatomically believable.
+
+Do not turn the drawing into a 3D render, plush toy, clay or felt craft, photograph, glossy object, embossed surface or studio-lit miniature. Avoid deep ambient-occlusion shadows, inflated forms and realistic material microtexture. Do not mix in another illustration technique or use historical artwork as a style reference.
+
+The role instructions below set the necessary detail and composition within this one style. Learning pictures retain fine drawn contours; small navigation symbols use the approved simpler, broader shapes and flat fills in the same palette. Keep the existing rendered game-character identities separate from image-generated learning subjects. Exact geometry and handwriting remain authored paths.
+
+Preserve subject identity, counted quantities, exact answer colours and action differences. Use real alpha for isolated pictures and stationery, and an opaque canvas only when the selected role requires a scene or branding image. No accidental background, halo, visible grid, labels or extra objects.
+
+ROLE: scene
+Apply the canonical watercolour/pencil medium at landscape scale: broad quiet washes, restrained drawn detail at the edges, matte natural colours and soft organic contours. The scene is opaque. Keep the centre pale and calm for real panels and preserve required camera/layout anchors. Existing scene references define composition only; the canonical pair defines technique. Do not paint UI panels, text or characters into backgrounds.
+
+ATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:
+1. design/illustrations/references/watercolour-pencil-v1/animals.png — canonical-style: canonical drawing technique for animals; fixed majority-style pixels
+2. design/illustrations/references/watercolour-pencil-v1/objects.png — canonical-style: canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels
+3. assets/forest-friends/den-v2.webp — composition-only: existing camera/layout and door-slot composition only; canonical references define drawing technique
+
+SUBJECT AND LAYOUT BRIEF:
+Edit the existing opaque 1448 by 1086 den composition. Preserve the bed left, green blanket/pillow, root window upper left, shelf/books/plant, basket, closed arched door at back right, brass knob and mail slot, and drawing table/paper at lower right. Keep the empty central floor. No animal: the existing fox is rendered separately. Preserve lens/perspective and the mail-flap source rectangle x=1180, y=280, width=106, height=34. Standing/bed/door anchors and phone crop are specified in BACKGROUNDS.md. No added furniture, floor cushion, labels, arrows or interface controls.
+
+STYLE PRIORITY: The brief changes subjects and layout only. Keep waldpost-watercolour-pencil-v1 and the supplied canonical reference technique throughout; do not import the style of a composition-only reference.

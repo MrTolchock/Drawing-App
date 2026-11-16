@@ -22,7 +22,7 @@ for(const f of live){
  if(/(?:src|url|from|import)\s*[^\n]*['"](?:\.\.\/)*archive\//.test(source))errors.push(f+' loads archive material');
 }
 // Check the active docs, including every generated competence page. Historical links stay historical.
-for(const f of ['README.md','CLAUDE.md',...walk('design').filter(f=>f.endsWith('.md')),...walk('docs').filter(f=>f.endsWith('.md'))]){
+for(const f of ['README.md','AGENTS.md','CLAUDE.md',...walk('design').filter(f=>f.endsWith('.md')),...walk('docs').filter(f=>f.endsWith('.md'))]){
  for(const m of read(f).matchAll(/\[[^\]]*\]\(([^)]+)\)/g)){
   const ref=m[1].split('#')[0];if(!ref||/^(?:https?:|mailto:)/.test(ref))continue;
   const target=path.posix.normalize(path.posix.join(path.posix.dirname(f),ref));if(!exists(target))errors.push(f+' → broken document link '+ref);

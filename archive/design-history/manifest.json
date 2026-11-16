@@ -3048,5 +3048,995 @@
     "original": "js/screens/gallery.js",
     "archived": "archive/retired-drawing/gallery.js",
     "sha256": "75952389d3ab5beab7b72cc19ba2182639326a57d94f4c99846f5a5c62631182"
+  },
+  {
+    "original": "design/artwork/BACKGROUNDS.md",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/artwork/BACKGROUNDS.md",
+    "sha256": "bd1d258ee083c88d26c757bad3fa18b7708587472ea7f5a74fa17c0cf0972f69",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/artwork/README.md",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/artwork/README.md",
+    "sha256": "35fbdbe7a8bbd0555bab84e27d0aa0526bf065d0967220bffdff3390134889e7",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/artwork/assets.json",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/artwork/assets.json",
+    "sha256": "d21e10108122635dae5673fb75fa4b7ec603d9db4be3a13da201bdfeeaa539da",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/artwork/letter-paper.json",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/artwork/letter-paper.json",
+    "sha256": "b058192bef87effb62dce2f3bc953cb6c677de118ff31a8a58826ae220b2f7c8",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/artwork/navigation-symbols.json",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/artwork/navigation-symbols.json",
+    "sha256": "520ec8e1785148910dbe5ee8d1ef48f345c5e473273f335fbc6b08e0a9444381",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/artwork/navigation.json",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/artwork/navigation.json",
+    "sha256": "f96ebaa92b390ea37f02fd7d6c73375949e96ccc7123b8b93fff7eb39430065e",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/artwork/prompts/den-current-reconstruction.txt",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/den-current-reconstruction.txt",
+    "sha256": "bad6c048afdfd1e0c29c3743c44f889ba210200486d1d08b5b9bb052dbcb6295",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/artwork/prompts/letter-generation.txt",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/letter-generation.txt",
+    "sha256": "4879588827e15226a6428610866c0843f8ea25b3ebac283e619ae26ee2013016",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/artwork/prompts/navigation-generation.txt",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/navigation-generation.txt",
+    "sha256": "4f8181579a76ac9084fd94c44933f6789dd45ac8efdaf9974a4938f38f5c4a5b",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/artwork/prompts/navigation-symbols-generation.txt",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/navigation-symbols-generation.txt",
+    "sha256": "5837aac0add693e2d4820824272bcae5849c71beb0831464837b731baac4d46e",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/artwork/prompts/navigation-transparency.txt",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/navigation-transparency.txt",
+    "sha256": "3c30c628ce2734a613f3384ecaf659d317e1280c4ad6019ca01983b75ca00c80",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/artwork/prompts/puzzle-clearing-reconstruction.txt",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/puzzle-clearing-reconstruction.txt",
+    "sha256": "66c8c7c7bbcfa12048fedb3100eeea23460a495a54529932d26b613319debc14",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/artwork/prompts/puzzle-sheet-reconstruction.txt",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/puzzle-sheet-reconstruction.txt",
+    "sha256": "efd5a2e03ae5aa58bd0fb5cb7fc252e6b27aae99a73f78287e4de9b2ac26ced4",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/artwork/prompts/recorded-app-icon.json",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-app-icon.json",
+    "sha256": "656981086a0f7a6fe2c775cca36b708d279c130f3d5bb274ca453c38b0a37b20",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/artwork/prompts/recorded-forest-concepts.json",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-forest-concepts.json",
+    "sha256": "b32d9edbe95cdb6fc698d3fbdb2856a861f738fd27dd07018023674acc80b341",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/artwork/prompts/recorded-style-directions.json",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-style-directions.json",
+    "sha256": "a8758cd4fd1cf8fa3e6d8d4c4f2fb3e11dd5937a9f06c15657c448338a9ce545",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/artwork/prompts/recorded-waldatelier.json",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
+    "sha256": "bd671ef2dc0af5dc3cf70af2a338b24f71a3b5169ec3619caae7f58f98f90702",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/artwork/sources/letter-paper.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/artwork/sources/letter-paper.png",
+    "sha256": "320460fa658b44ca15b3e66ef3c7b789edbf6109b1086f72128f718f5bc17683",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/artwork/sources/navigation-draft.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/artwork/sources/navigation-draft.png",
+    "sha256": "913bb55083cfb8cd5e9c2aa56bd8225b110b0de7a952fc303abfa36f825952f2",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/artwork/sources/navigation-symbols.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/artwork/sources/navigation-symbols.png",
+    "sha256": "faf60a657616d1b3a802d59725926a05f20c4a51d79a23b0e43abd9e7f45007e",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/artwork/sources/navigation.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/artwork/sources/navigation.png",
+    "sha256": "1309707b374630bba62b9a19d8fe06035a8553a3bf2d9dcb6c9182b840d19be2",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/illustrations/GALLERY-STYLE-AUDIT.md",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/GALLERY-STYLE-AUDIT.md",
+    "sha256": "00dcbb19b6cbc2a51a18102b1675ee8f8148091b67e675be71efb5af53ae4c0a",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/illustrations/README.md",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/README.md",
+    "sha256": "ac6eec657ef8bde455c04c2136eab4e778129b9fda942198f9834be9f2f8b4f3",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/illustrations/forest-actions.json",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/forest-actions.json",
+    "sha256": "f6aeafdf4015d6c907dff2ad29408a124a55ce056ba8a7949f7ba0643165a9f5",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/illustrations/forest-fox.json",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/forest-fox.json",
+    "sha256": "9b51ade338b5fe625ea065c029bf61c52b765e806719952fe514114edfefb5c5",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/illustrations/forest-objects.json",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/forest-objects.json",
+    "sha256": "7d21b2fd5602be7dd0c89a75676ee25bc23829206e97ab3993f08c96519b0a1e",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/illustrations/forest-wildlife.json",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/forest-wildlife.json",
+    "sha256": "939d7bb7af257153eb66a70db1e53a8a83be0ae799a529ab41d1b1ef071441b9",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/illustrations/gallery-style-audit.json",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/gallery-style-audit.json",
+    "sha256": "44447370e691518833cfde1b0582c1168d5ac24de8e8727e48b2e5fda7fe1439",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/illustrations/prompts/forest-actions-style-generation.txt",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/prompts/forest-actions-style-generation.txt",
+    "sha256": "6b5af750da29cefbfbd2771e7d3dc4bc1298a91ca4945975f3eddb6e7b30808a",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/illustrations/prompts/forest-actions-style-padding.txt",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/prompts/forest-actions-style-padding.txt",
+    "sha256": "a80b5aa6952f4fd2603360a29b73759c50f7c2360e43786e385fbf999288be9b",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/illustrations/prompts/forest-fox-generation.txt",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/prompts/forest-fox-generation.txt",
+    "sha256": "9e6b70e7ebd92a8eeb0f7bb3f70fe0b6d1318ca659a5843f61632b8f6b0498ab",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/illustrations/prompts/forest-objects-style-generation.txt",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/prompts/forest-objects-style-generation.txt",
+    "sha256": "c65c1e98b4b7584e6c64e6ab29d448c1314f12402958d8f6e9a964094b5071e3",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/illustrations/prompts/forest-objects-style-padding.txt",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/prompts/forest-objects-style-padding.txt",
+    "sha256": "a80b5aa6952f4fd2603360a29b73759c50f7c2360e43786e385fbf999288be9b",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/illustrations/prompts/forest-wildlife-generation.txt",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/prompts/forest-wildlife-generation.txt",
+    "sha256": "38c2fc495e80eb6f179b54a0c4ff114c159fbc90de0d9a540acb3e0475f0dcc0",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/illustrations/prompts/forest-wildlife-padding.txt",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/prompts/forest-wildlife-padding.txt",
+    "sha256": "cf281f224bdb03ba53f13eb52567bd6d2f8a252aa62feea69696ffea8a287cfe",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/illustrations/prompts/puzzle-flowers-style-generation.txt",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/prompts/puzzle-flowers-style-generation.txt",
+    "sha256": "05be138a552e8464c1e8656ec370f268ebe020ee760718ff78fff6361871592b",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/illustrations/prompts/rhyme-vocabulary-generation.txt",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/prompts/rhyme-vocabulary-generation.txt",
+    "sha256": "46370870e0d0c53484a6e30b07f387703daebc1c703f7de7dc6e76b5926a9334",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/illustrations/prompts/rhyme-vocabulary-padding.txt",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/prompts/rhyme-vocabulary-padding.txt",
+    "sha256": "78707db0a4a7a7bec7e2a58b10339ea531309d1ca75bfa8b50f8fe30d8b92ad4",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/illustrations/puzzle-flowers.json",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/puzzle-flowers.json",
+    "sha256": "c5e8c1f5da7502a1e063af7f5f47a9dea591c5c03a37360da2ecac75d7a36607",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/illustrations/references/gallery-style/animals-paper.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/references/gallery-style/animals-paper.png",
+    "sha256": "65867082294d157ab4ffbe33926857272625ef3c25cdb7cab81c2a4ea73d9316",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/illustrations/references/gallery-style/forest-actions-before-paper.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/references/gallery-style/forest-actions-before-paper.png",
+    "sha256": "a83f345c6f3e9ccf7851678d1d2bf4c1297483d6d820b8c21d9991a2b3411486",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/illustrations/references/gallery-style/forest-actions-before.webp",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/references/gallery-style/forest-actions-before.webp",
+    "sha256": "8fc2de98bc806e8cec0fac9e194e188510de4e94cc0b217c46120d874a99db0d",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/illustrations/references/gallery-style/forest-objects-before-paper.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/references/gallery-style/forest-objects-before-paper.png",
+    "sha256": "0d9579d3e703c7e60cc79f3433d1ed1cc84cd0b4abdb0f9407feb0cd5be10025",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/illustrations/references/gallery-style/forest-objects-before.webp",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/references/gallery-style/forest-objects-before.webp",
+    "sha256": "5222de559e00e2a1f1cb5c0257138f37035fc546a0dcf3ecd93c69b8313d2933",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/illustrations/references/gallery-style/puzzle-flowers-before-paper.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/references/gallery-style/puzzle-flowers-before-paper.png",
+    "sha256": "b723ad93770486b8a6d4c0565974388284cef9da4238f9483f31412aaf16ca86",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/illustrations/references/gallery-style/puzzle-flowers-before.webp",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/references/gallery-style/puzzle-flowers-before.webp",
+    "sha256": "bfd8e5e889ee0bd4d29488f063104e9129b4afe9bdf8a78ba8f466f00188bc6e",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/illustrations/references/gallery-style/words-two-paper.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/references/gallery-style/words-two-paper.png",
+    "sha256": "0bb37d6fc82c75034eddf30da2cc57c546dd8bc70d246aeeda85b637bd87dd80",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/illustrations/rhyme-vocabulary.json",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/rhyme-vocabulary.json",
+    "sha256": "df6b6d44164df1191da369198cd7f669cf7623e3e45fa8e9775352bcec41940a",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/illustrations/sources/forest-actions-style-draft.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/sources/forest-actions-style-draft.png",
+    "sha256": "fd78a0b2ed4927847c9d8f52895dce1077dd85d326d2bb20ea494d7dbe5f6cea",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/illustrations/sources/forest-actions-style.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/sources/forest-actions-style.png",
+    "sha256": "f027b4ed1b2d7e9fc727220736fd00945e707e2cf20e46770e55b8e91d432e8b",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/illustrations/sources/forest-fox-grid.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/sources/forest-fox-grid.png",
+    "sha256": "05e872f985b13b4d10e75d2e74d43b676ae056ebbcfff4e89842683be37b44dc",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/illustrations/sources/forest-fox.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/sources/forest-fox.png",
+    "sha256": "ebc5f860ee36b9e912eb8a077b54c0a40a50dc7d3359a08f728981aa2f54f4fe",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/illustrations/sources/forest-objects-style-draft.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/sources/forest-objects-style-draft.png",
+    "sha256": "7c9c94e963548a4975ec694a0a762d1748178bd724b808cdf3d658a4e9be8b54",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/illustrations/sources/forest-objects-style.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/sources/forest-objects-style.png",
+    "sha256": "194d7f4f9364e1ca039e4ce26652d9a83e3113b9dfc890924cfedb8dfc516d0c",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/illustrations/sources/forest-wildlife-padded.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/sources/forest-wildlife-padded.png",
+    "sha256": "6747767174eea7a29e1a57bbda20f027c8d33f4419c1bec9e8470ceae5c7ecb6",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/illustrations/sources/puzzle-flowers-style.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/sources/puzzle-flowers-style.png",
+    "sha256": "fd8a2a77565d3bc4345765733a063554f608448c462f42a7c4c39e96b9fecf68",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/illustrations/sources/rhyme-vocabulary-padded.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/sources/rhyme-vocabulary-padded.png",
+    "sha256": "66429d3dd450da10e647592e2c6ff9daaa2c2b7d8f25178ae00593404fda8ec9",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-12/add-1080.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-12/add-1080.png",
+    "sha256": "580471b25ebdce0eab51586651ea044a735f5e20f54e585e092ab25a3a6de43c",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-12/add-390.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-12/add-390.png",
+    "sha256": "fff1a206d7accc2573b4e16cf12c9e16ce4ce2641929b26273cdf64eb396de7f",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-12/den-start.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-12/den-start.png",
+    "sha256": "0401ad839267c8545c1562dc2f3be3ecad23e8de5dde2e56160de3617d380fad",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-12/friends-owl-1080.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-12/friends-owl-1080.png",
+    "sha256": "b2c87ca7375a0126aa16375ee020fd1d02442c2301735fdc383429351a9fc17e",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-12/friends-owl-390.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-12/friends-owl-390.png",
+    "sha256": "da507ff3df77b180201541f7b454205b47b2ebc86cb4d13f5a3106b8ac6c5fa4",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-12/game-over-phone.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-12/game-over-phone.png",
+    "sha256": "fc9d0f6d7f104a3bb244f959e8d301302292823cacf28049796c3afe9a4cc3f6",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-12/game-over-tablet.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-12/game-over-tablet.png",
+    "sha256": "657f1563c787f7c3d0efc07d82735eb28f5f8d7951df67a906ecb6d076e59f74",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-12/letter-tablet.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-12/letter-tablet.png",
+    "sha256": "85b9c5b86bd35731dfa952091eb66d65d18f69474ecc90391bf3f74bb0c03ea4",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-12/read-puzzle-1080.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-12/read-puzzle-1080.png",
+    "sha256": "be653d4f84bce8d438847ed176f03b179fd00a24232579f734d98af7d94994fd",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-12/read-puzzle-390.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-12/read-puzzle-390.png",
+    "sha256": "c5a0438053f71b4bc4d548a3e462c69193a37586efaaa25ee332c1ea1fdcc5ad",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-12/report.json",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-12/report.json",
+    "sha256": "f59345eec5720394f683fc856a765bdae052e8275fd40200ac92f95a07f2d666",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-12/settings-phone.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-12/settings-phone.png",
+    "sha256": "5394869019cde0cd7613f8d3867860ef9424de381b4f6e9244ed2979365788c1",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-12/trace-1080.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-12/trace-1080.png",
+    "sha256": "dbd49d33d2101a7295aa46ffc95f2fbdebecf78e17a3e64e49ffad756a4a74de",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-12/trace-390.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-12/trace-390.png",
+    "sha256": "45f5210865d9ae908a30993a728ee6bf2fbc6f0beda48f4dcd8c7e9539a60b6a",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-12-review-workflow/iteration-signoff-1080.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-12-review-workflow/iteration-signoff-1080.png",
+    "sha256": "f134249085326cd9eb09a9fee971ba5f4122f5aa0fa16190b26a6deb8c3c3411",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-12-review-workflow/iteration-signoff-390.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-12-review-workflow/iteration-signoff-390.png",
+    "sha256": "086b079b6b3b5d7bd7a7e98a81d5be1bf6c71c97a9246f7eb053d0c35f543047",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-12-review-workflow/puzzle-signoff-1080.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-12-review-workflow/puzzle-signoff-1080.png",
+    "sha256": "946453710290560df29369ce0e80ceae638a6e75d123ee6578a6c3f6f6dd43f4",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-12-review-workflow/puzzle-signoff-390.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-12-review-workflow/puzzle-signoff-390.png",
+    "sha256": "59a1d00d5bed9413a939d136ead86902c491f8567a28430663732e68ca381292",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-12-review-workflow/report.json",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-12-review-workflow/report.json",
+    "sha256": "f59345eec5720394f683fc856a765bdae052e8275fd40200ac92f95a07f2d666",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-12-review-workflow/speech-1080.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-12-review-workflow/speech-1080.png",
+    "sha256": "f4af3f535eae31079cd95394c36a54e152e93ff4608b27c81f5a07436998369f",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-12-review-workflow/speech-390.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-12-review-workflow/speech-390.png",
+    "sha256": "f44e904d073b94c56990d3990148ef03b8bc0262b0ac29763723c7c7303023d1",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-12-shared-reviews/fresh-browser-phone.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-12-shared-reviews/fresh-browser-phone.png",
+    "sha256": "f71c4feb5af4b72e524b8a523404f3c7202e280e6791b1aa44a350c1c7a555cc",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-12-shared-reviews/layout-report.json",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-12-shared-reviews/layout-report.json",
+    "sha256": "f59345eec5720394f683fc856a765bdae052e8275fd40200ac92f95a07f2d666",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-12-shared-reviews/synced-review-tablet.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-12-shared-reviews/synced-review-tablet.png",
+    "sha256": "3624f03f7681ad12276500c4c6aa8d1fca87d5b6ee983a1740123dfaff7ba782",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-13-developer-mode/developer-mode-1080.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-13-developer-mode/developer-mode-1080.png",
+    "sha256": "d9517d98528596edfa221795976ff827a5234b3bea5c23a55a9c2b97752e7e9f",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-13-developer-mode/developer-mode-390.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-13-developer-mode/developer-mode-390.png",
+    "sha256": "e388203aa34ee3398ef07090e04a2a7acdff01d2db2e95c71c6db0fdfb56103c",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-13-gameplay-review/add-1080.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-13-gameplay-review/add-1080.png",
+    "sha256": "0cc8dd8a27cb9b037cead8129f2c1c8b155f0016b7b22b9df531f20ec3b11a55",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-13-gameplay-review/add-390.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-13-gameplay-review/add-390.png",
+    "sha256": "dd4c5e6fe9bc6f0ee4bb4b601c220473daf7201f17d4c69d78d1a1052945b651",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-13-gameplay-review/report.json",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-13-gameplay-review/report.json",
+    "sha256": "f59345eec5720394f683fc856a765bdae052e8275fd40200ac92f95a07f2d666",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-13-gameplay-review/trace-1080.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-13-gameplay-review/trace-1080.png",
+    "sha256": "2025b972bdb853ef518a2f9f51d1bc4a45b5324f954d08c47aa572e585a3c3b0",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-13-gameplay-review/trace-390.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-13-gameplay-review/trace-390.png",
+    "sha256": "0a432740808abc49c3e072f8e225d3b46f6835e08c0b7a490e0429ec61aa8865",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-13-gameplay-review/trace-numbers-1080.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-13-gameplay-review/trace-numbers-1080.png",
+    "sha256": "0e1691f63a0966ad633c02cbed165ea2743142b1252e35276356ea10cfbf7832",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-13-gameplay-review/trace-numbers-390.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-13-gameplay-review/trace-numbers-390.png",
+    "sha256": "81114c847ede386f62be3fc5338f71195ae6e555b16190b17fce2aeeaad30a71",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-13-gameplay-review/trace-numbers-nine-390.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-13-gameplay-review/trace-numbers-nine-390.png",
+    "sha256": "bb3a76e6a45e755ec73ee2edcff7b12cad0adbc72d4348c5cef7df6620ea4b92",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-13-letter-variety/den-no-drawing-controls.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-13-letter-variety/den-no-drawing-controls.png",
+    "sha256": "b1b249b30bf624868a89c5abeae33c3d2278a8123fe5e980d282ec1b282ce8c3",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-13-letter-variety/layout-report.json",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-13-letter-variety/layout-report.json",
+    "sha256": "f59345eec5720394f683fc856a765bdae052e8275fd40200ac92f95a07f2d666",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-13-local-play-log/layout-report.json",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-13-local-play-log/layout-report.json",
+    "sha256": "f59345eec5720394f683fc856a765bdae052e8275fd40200ac92f95a07f2d666",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-13-local-play-log/local-log-1080.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-13-local-play-log/local-log-1080.png",
+    "sha256": "5b021928b9773cc07a8670d62576e541a5c119ba7735b657b1036249f989ba03",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-13-local-play-log/local-log-390.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-13-local-play-log/local-log-390.png",
+    "sha256": "b1759dce9886127cd24b46f4c165476f703ea49db5c219844ea443938ee660c7",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-13-waldpost/branding-report.json",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-13-waldpost/branding-report.json",
+    "sha256": "67509856bcca2270998cdf3085c429a1f8d3f780f440cda95cffc43a42a65541",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-13-waldpost/settings-phone.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-13-waldpost/settings-phone.png",
+    "sha256": "975d708686f9b7e0a0be9e6042a10b081cf22cea478aaf086db6970bbf4dbf26",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-14-review-feedback/matrix-1080.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-14-review-feedback/matrix-1080.png",
+    "sha256": "7bea427495ef731b74bdb23813979658a9265c1ca8420f7865740440a0101f46",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-14-review-feedback/matrix-390.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-14-review-feedback/matrix-390.png",
+    "sha256": "d27ec4f3639f62d63ba79615ad4718500e8c14fcc442366b0380fefc4e1eaf3e",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-14-review-feedback/report.json",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-14-review-feedback/report.json",
+    "sha256": "425817868c0a5c2dda446fc566cedeb947d08d4a99bbf2cc8315ac363c7854b7",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-14-review-feedback/single-animal-1080.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-14-review-feedback/single-animal-1080.png",
+    "sha256": "de41d278d589e397a7f2d50e9aaa95ebbb0921212a5ddab77ba54e183dcd524b",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-14-review-feedback/single-animal-390.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-14-review-feedback/single-animal-390.png",
+    "sha256": "4f955a9a37a16df726d524a453be4646fe6666ac773575e1dd1c6aa538dc1855",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-14-review-feedback/sleeping-dog-1080.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-14-review-feedback/sleeping-dog-1080.png",
+    "sha256": "3045892ebcad8e682c818611b37222cbdaa7e75795649c8c72366791b8b765b0",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-14-review-feedback/sleeping-dog-390.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-14-review-feedback/sleeping-dog-390.png",
+    "sha256": "b37023bd71b282cbab656a0a9f8b6891009ee2ec467e4fa07e542f1ebefa3565",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-14-review-feedback-2/friends-bird-1080.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-14-review-feedback-2/friends-bird-1080.png",
+    "sha256": "f0121e76f6e826969cdcda3350429ca747754de50b4c2828076e24069332334b",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-14-review-feedback-2/friends-bird-390.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-14-review-feedback-2/friends-bird-390.png",
+    "sha256": "ba0688f234395356b5fd27284c64c1f456dbfcf667aac3cef8d533893d433e0e",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-14-review-feedback-2/friends-hedgehog-1080.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-14-review-feedback-2/friends-hedgehog-1080.png",
+    "sha256": "e7aa0c4378e8b085291d9c94df379a1b0b86e1a127153b4d8748f6e071681ef2",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-14-review-feedback-2/friends-hedgehog-390.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-14-review-feedback-2/friends-hedgehog-390.png",
+    "sha256": "64ed32de235f6a7eb808ddd07608651baa45266a30e8b74bba32a061fee100d9",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-14-review-feedback-2/friends-owl-1080.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-14-review-feedback-2/friends-owl-1080.png",
+    "sha256": "f60b6c826fc7ca796bf7f53c146270f9db3fd5ea7929c4cc49d276c365a0b6b6",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-14-review-feedback-2/friends-owl-390.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-14-review-feedback-2/friends-owl-390.png",
+    "sha256": "20bbd994ed8896d04d65c8adca77e4feee346b8f68648bbd6e98ee6674fa99fb",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-14-review-feedback-2/report.json",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-14-review-feedback-2/report.json",
+    "sha256": "fbcf5d6eda1c5c7037dc03ff72525659eab128992d9ffeb8b63786dd901db1e6",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-15-review-feedback/add-390.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-15-review-feedback/add-390.png",
+    "sha256": "1789cdff1870937cc1b0048f9b3865e1b0677241e77e38ce9e58bbbd8a963fb6",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-15-review-feedback/hedgehog-390.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-15-review-feedback/hedgehog-390.png",
+    "sha256": "b9f8ea40c6819f54a6ead0c68c70ee03934a01800a163cc8d13c1ddc71c7d3b9",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-15-review-feedback/layout-report.json",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-15-review-feedback/layout-report.json",
+    "sha256": "5052c4683706de1ca65f75b204e5f59f46a5f83b6a02294c7ed067d8edf26de7",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-15-review-feedback/mirror-1080.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-15-review-feedback/mirror-1080.png",
+    "sha256": "6efa06f5c5ffba83c26dfca5c28aa905833e4ea3885a17d51d11fd10c75c5e14",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-15-review-feedback/mirror-390.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-15-review-feedback/mirror-390.png",
+    "sha256": "a1d66f2e835c9de4d77ebe5a12920f74736fa8d2992b12b03376dfc6bb08afc0",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-15-review-feedback/picnic-1080.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-15-review-feedback/picnic-1080.png",
+    "sha256": "d68be540a3242b909b77e44593e3090558c01db8f9d59d74d36ccd2430dc5d1a",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-15-review-feedback/picnic-390.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-15-review-feedback/picnic-390.png",
+    "sha256": "6878fac5c66996d99ef557b91ffcd02d2e334b03e13e565384ca4f60b53fb961",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-15-review-feedback/restored-squirrel-390.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-15-review-feedback/restored-squirrel-390.png",
+    "sha256": "bc97106d427471f73e69cc0ed984680e3e519b5e329279ef6d89231308582d11",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-15-review-feedback/robot-390.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-15-review-feedback/robot-390.png",
+    "sha256": "0e005a5cce1a6b9a20890e3883d3bb515b1fa92fc74694bd92f520979945b0a7",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-15-review-feedback/sequence-1080.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-15-review-feedback/sequence-1080.png",
+    "sha256": "a3b87edf8c507c461d722f5f01ed41c37836434c830a341d82e8805609538d01",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-15-review-feedback/sequence-390.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-15-review-feedback/sequence-390.png",
+    "sha256": "e4e0155612ee01a95f258f3f42f88aa6681f1e89ed2a3edf77582e374ae10d82",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-15-review-feedback/treasure-390.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-15-review-feedback/treasure-390.png",
+    "sha256": "9b31c4374917cba15ce65ec17ef113407a5621976176628d540252d938f2ec10",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-15-review-feedback/validation.json",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-15-review-feedback/validation.json",
+    "sha256": "cbace4cf4949167ff1d3de498901c5a0272e9b74f017dd9caf06b2b4f9860849",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-16-artwork/README.md",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-16-artwork/README.md",
+    "sha256": "41185f5e9f2719f20213025c8d78357a80c03380fdd8d48cf45d9058b26c40dd",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-16-artwork/art-and-revisions.json",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-16-artwork/art-and-revisions.json",
+    "sha256": "c88c28297dee7fe5a5592e2c43bdbcb495dbdec8ab9bf9f2d34ec5ea827b6436",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-16-artwork/image-library-1080.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-16-artwork/image-library-1080.png",
+    "sha256": "6c6ae05d0de307168bf89492da5c6a5ad8c6145f2e1399f21efcebe9bfef0fe1",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-16-artwork/image-library-390.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-16-artwork/image-library-390.png",
+    "sha256": "a8129d24fb4b4c7dbada4abc821175a93b88096986099f5f2e3781c7ec5779ce",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-16-artwork/letter-1080.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-16-artwork/letter-1080.png",
+    "sha256": "dd79a39f97accb005acb5e4b2d024e1addb3bf8ee9bae612aed50e6a153e2afe",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-16-artwork/letter-390.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-16-artwork/letter-390.png",
+    "sha256": "98282b67768140c9e15ce376a84c62a6b7ea2ff1a3998968e51980a7ec51ee54",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-16-artwork/letter-844.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-16-artwork/letter-844.png",
+    "sha256": "89e25e063b6614334854a86f885337bf49287b4fa11eef4ab862f8eeafbf3241",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-16-artwork/map-390.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-16-artwork/map-390.png",
+    "sha256": "529d0183666cd6ce74d31b937c5fdc28accee9a6746f5b6b9016f352889a7505",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-16-artwork/navigation-1080.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-16-artwork/navigation-1080.png",
+    "sha256": "1a1774f4b8e4bf4580e0bee3e7a5969fe61d54d2b5c0e053f6ababa4537e843f",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-16-artwork/navigation-390.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-16-artwork/navigation-390.png",
+    "sha256": "9a8652af2bd6b54bd421d5eb893d389c74a0edac446b6d79a6053ce2835f5c78",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-16-artwork/report.json",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-16-artwork/report.json",
+    "sha256": "d376dd7db7d5e8b8de8c8cd4585fe54d2f568b0dfebe7bf9c62750bc2b40a217",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-16-gallery-style/README.md",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-16-gallery-style/README.md",
+    "sha256": "8e8eec248f0f3f77c33459de753b784ea60ae05e9afc8d2005e61461cd74e1eb",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-16-gallery-style/add-390.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-16-gallery-style/add-390.png",
+    "sha256": "c448d44cbb950d05be63ea0c7591e520258eeaf46c2e865c50356fb8155a6b7f",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-16-gallery-style/all-sheets-after.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-16-gallery-style/all-sheets-after.png",
+    "sha256": "75b86878900c16c91aea6a3abba9be37dfd4a4801bfaa87b51d2d52cb994256b",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-16-gallery-style/all-sheets-before.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-16-gallery-style/all-sheets-before.png",
+    "sha256": "df4db324063f0e320e27c0e8c6ac1957610556b86dd074f89e317f3c5d3f57a6",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-16-gallery-style/art-report.json",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-16-gallery-style/art-report.json",
+    "sha256": "7e5d36d8e769da4f085401e2abdd4387a7996a909c32ba14a8d8997efeb82a16",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-16-gallery-style/comparison.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-16-gallery-style/comparison.png",
+    "sha256": "47a63d7e8227ddae2c2b234548ca819da0dc13a618860a13096e4943ea4c9da7",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-16-gallery-style/forest-objects-1080.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-16-gallery-style/forest-objects-1080.png",
+    "sha256": "a673be16c16cac17875f22c40948f9a8a0f92bcf31580cd5769b2c295b98c279",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-16-gallery-style/friends-owl-390.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-16-gallery-style/friends-owl-390.png",
+    "sha256": "9ad03d3f94469f6730a4a2dddd3bbb93727c8918b15fd84f97adebf1048bbb84",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-16-gallery-style/gallery-download-report.json",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-16-gallery-style/gallery-download-report.json",
+    "sha256": "4b94d9481199a68e21e7f120dd0d41da0ad79508679e27cb6f7f58934e93e4d6",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-16-gallery-style/layout-report.json",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-16-gallery-style/layout-report.json",
+    "sha256": "5052c4683706de1ca65f75b204e5f59f46a5f83b6a02294c7ed067d8edf26de7",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-16-gallery-style/puzzle-flowers-390.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-16-gallery-style/puzzle-flowers-390.png",
+    "sha256": "7fc2a43678e362541604382baa5edb72dc43e19fe215eb25e08cb231f01eaec5",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-16-gallery-style/trace-numbers-390.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-16-gallery-style/trace-numbers-390.png",
+    "sha256": "d503911756720f7bb0fe9a99148a7a592dc0b5c92ee70e1169f12029d2a5909a",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-16-simple-navigation/README.md",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-16-simple-navigation/README.md",
+    "sha256": "6e5167ecfbd1a4741910537f7382e415028afc209af180519f1d2cc6f67fa058",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-16-simple-navigation/add-390.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-16-simple-navigation/add-390.png",
+    "sha256": "f442ca864035e19ba63fb3760283a558a37d26fcf38f025cf0126d6b9b8b1e49",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-16-simple-navigation/art-and-revisions.json",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-16-simple-navigation/art-and-revisions.json",
+    "sha256": "e21be11b7576bdfe8c76900832a164464c56340d55418da97f3b0a45d3f6e908",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-16-simple-navigation/layout-report.json",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-16-simple-navigation/layout-report.json",
+    "sha256": "5052c4683706de1ca65f75b204e5f59f46a5f83b6a02294c7ed067d8edf26de7",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-16-simple-navigation/map-390.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-16-simple-navigation/map-390.png",
+    "sha256": "adcdcafd82e7211e28254d5d0cb70924c0bf5e269205f810b0fdc8abf1c08e75",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-16-simple-navigation/navigation-1080.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-16-simple-navigation/navigation-1080.png",
+    "sha256": "de4656b7e084a77d02e26c582e1a0eda573cd08cdb5bf67f0cc3c2da55d49802",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-16-simple-navigation/navigation-390.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-16-simple-navigation/navigation-390.png",
+    "sha256": "28f9041b21bdc1225c45bd88e85e430f0227956023c8b2ff90fb2d9dc9250a86",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-16-simple-navigation/navigation-report.json",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-16-simple-navigation/navigation-report.json",
+    "sha256": "6ab334b122bf13b70ea63ca982aed51b9e3c1ec95d20abb1178ddc5152d09c6e",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-16-simple-navigation/settings-390.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-16-simple-navigation/settings-390.png",
+    "sha256": "95ffe8760fde3c57d272d6ebfdbb4050e5b5a330114ee7a6137baa4ec5dec215",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/evidence/2026-11-16-simple-navigation/trace-390.png",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-16-simple-navigation/trace-390.png",
+    "sha256": "006b1b9c15c1cba56ad5a3144d966bce94cda689ae3530a5787b7c28b1e0f105",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/STYLE-AUDIT.md",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/STYLE-AUDIT.md",
+    "sha256": "6b655176c4dd1e27a6f2a8fc31f77f28c64df9b1d3011c10d43661197f871988",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/REVIEW-FEEDBACK-2026-11-15.md",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/REVIEW-FEEDBACK-2026-11-15.md",
+    "sha256": "85145e432ed40e13becdc6f1782a4eaa06916cb60d9fd0448f6e751b08e4b833",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/README.md",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/README.md",
+    "sha256": "2d152c229432c0c8d9a5b136cebe2b969d4cb0270f0576dfb1bb7ee4bf042cdb",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/VISUAL-STYLE.md",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/VISUAL-STYLE.md",
+    "sha256": "9d4ad5d85fdd0b4b133adb8130a6db8187cf9b2a50b6bce8fee32a45967b148e",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "design/asset-rules.json",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/design/asset-rules.json",
+    "sha256": "bc232f701a613bdbed20f10ca3dbc34cb384b08053ba5cbe23ed5bcdea681f5d",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "AGENTS.md",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/AGENTS.md",
+    "sha256": "480308c67649a9038ca91292420ce951f537baf9034d347d98f9c0ef7c1d8df4",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
+  },
+  {
+    "original": "CLAUDE.md",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/CLAUDE.md",
+    "sha256": "8eca820da1745f051a95b18d3567e5edeed0e3b6ff7430f8b833630f1ba911be",
+    "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
   }
 ]

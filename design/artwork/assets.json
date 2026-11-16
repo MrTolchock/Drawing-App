@@ -1,27 +1,216 @@
 {
-  "format":"waldpost-artwork-inventory","version":1,
-  "generated":[
-    {"id":"puzzle-pictures","directory":"assets/waldatelier","catalogue":"assets/waldatelier/library.json","registry":"js/ui/waldatelier.js","guide":"design/illustrations/README.md","role":"drawn learning subjects","provenance":"Per-sheet recorded prompt/manifest or explicitly labelled reconstruction recipe is listed in the catalogue."},
-    {"id":"world-navigation","file":"assets/interface/navigation.webp","width":960,"height":640,"columns":3,"rows":2,"alpha":true,"manifest":"design/artwork/navigation.json","role":"unchanged home/den, exit door and shared navigation back; original detailed settings/map/letter cells retained as history","provenance":"Exact generation and transparency-repair prompts, draft and final PNG retained."},
-    {"id":"navigation-symbols","file":"assets/interface/navigation-symbols.webp","width":640,"height":640,"columns":2,"rows":2,"alpha":true,"manifest":"design/artwork/navigation-symbols.json","role":"simple illustrated settings, map and envelope; fourth cell empty","provenance":"Exact simplification prompt and original PNG retained; reference is the original navigation atlas."},
-    {"id":"letter-paper","file":"assets/interface/letter-paper.webp","width":1200,"height":900,"alpha":true,"manifest":"design/artwork/letter-paper.json","role":"invitation stationery","provenance":"Exact generation prompt and PNG retained; sender is a separately rendered current-model portrait."},
-    {"id":"den","file":"assets/forest-friends/den-v2.webp","width":1448,"height":1086,"alpha":false,"role":"painted room behind live 3D fox","firstFinalEditCommit":"44574ce","recordedBase":"design/artwork/prompts/recorded-forest-concepts.json","recordedBaseAsset":"den-v1.png","finalPromptRetained":false,"reconstruction":"design/artwork/prompts/den-current-reconstruction.txt","guide":"design/artwork/BACKGROUNDS.md"},
-    {"id":"clearing","file":"assets/forest-friends/puzzle-clearing.webp","width":1536,"height":1024,"alpha":false,"roles":["puzzle background","adult gallery/review background","menu woodland","settings woodland"],"originalPng":"git:6f40fc0:assets/forest-friends/puzzle-clearing.png","webpConversionCommit":"6226578","finalPromptRetained":false,"reconstruction":"design/artwork/prompts/puzzle-clearing-reconstruction.txt"},
-    {"id":"historical-hero","file":"assets/waldatelier/hero.webp","width":1536,"height":1024,"alpha":false,"role":"historical Lake Zürich landing artwork; not Settings scenery","recordedPrompt":"design/artwork/prompts/recorded-waldatelier.json","promptId":"hero","originalPng":"git:991bb95:assets/waldatelier/hero.png"},
-    {"id":"app-icon","source":"archive/project-baseline/design/waldatelier/app-icon.png","outputs":["icons/icon-192.png","icons/icon-512.png","icons/apple-touch-icon.png","icons/icon-maskable-512.png","icons/icon.svg"],"role":"app branding","recordedBrief":"design/artwork/prompts/recorded-app-icon.json","provenance":"Generated original; install sizes and SVG wrapper are mechanical exports. Maskable portrait uses 75% scale on warm ivory."},
-    {"id":"historical-colouring","file":"assets/forest-friends/colouring-friends.webp","role":"retired six-panel colouring artwork; saved IDs preserved","finalPromptRetained":false,"historicalRecord":"archive/design-history/forest-friends/visuals/milestones/den-polish/COMPARISON.md"}
+  "format": "waldpost-artwork-inventory",
+  "version": 2,
+  "styleContract": "design/illustrations/style.json",
+  "canonicalGuide": "design/illustrations/STYLE.md",
+  "learningSheets": {
+    "alphabet": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/subject-sheet.txt",
+      "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
+      "recordKind": "original-brief",
+      "historicalPromptId": "alphabet"
+    },
+    "animals": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/subject-sheet.txt",
+      "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
+      "recordKind": "original-brief",
+      "historicalPromptId": "animals"
+    },
+    "creatures": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/subject-sheet.txt",
+      "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
+      "recordKind": "original-brief",
+      "historicalPromptId": "creatures"
+    },
+    "discovery": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/subject-sheet.txt",
+      "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
+      "recordKind": "original-brief",
+      "historicalPromptId": "discovery"
+    },
+    "forest-actions": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/forest-actions.txt",
+      "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/forest-actions.json",
+      "recordKind": "generation-record"
+    },
+    "forest-fox": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/forest-fox.txt",
+      "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/forest-fox.json",
+      "recordKind": "generation-record"
+    },
+    "forest-objects": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/forest-objects.txt",
+      "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/forest-objects.json",
+      "recordKind": "generation-record"
+    },
+    "forest-wildlife": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/forest-wildlife.txt",
+      "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/forest-wildlife.json",
+      "recordKind": "generation-record"
+    },
+    "menu": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/subject-sheet.txt",
+      "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/artwork/assets.json",
+      "recordKind": "inventory-only"
+    },
+    "navigation": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/subject-sheet.txt",
+      "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
+      "recordKind": "original-brief",
+      "historicalPromptId": "navigation"
+    },
+    "people": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/subject-sheet.txt",
+      "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
+      "recordKind": "original-brief",
+      "historicalPromptId": "people"
+    },
+    "puzzle-flowers": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/puzzle-flowers.txt",
+      "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/puzzle-flowers.json",
+      "recordKind": "generation-record"
+    },
+    "puzzle-vocabulary": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/subject-sheet.txt",
+      "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/artwork/assets.json",
+      "recordKind": "inventory-only"
+    },
+    "rhyme-vocabulary": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/rhyme-vocabulary.txt",
+      "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/rhyme-vocabulary.json",
+      "recordKind": "generation-record"
+    },
+    "words-one": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/subject-sheet.txt",
+      "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
+      "recordKind": "original-brief",
+      "historicalPromptId": "words-one"
+    },
+    "words-three": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/subject-sheet.txt",
+      "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
+      "recordKind": "original-brief",
+      "historicalPromptId": "words-three"
+    },
+    "words-two": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/subject-sheet.txt",
+      "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
+      "recordKind": "original-brief",
+      "historicalPromptId": "words-two"
+    }
+  },
+  "currentGenerated": [
+    {
+      "id": "puzzle-pictures",
+      "directory": "assets/waldatelier",
+      "catalogue": "assets/waldatelier/library.json",
+      "role": "learning",
+      "workflow": "design/illustrations/README.md"
+    },
+    {
+      "id": "navigation-symbols",
+      "file": "assets/interface/navigation-symbols.webp",
+      "role": "navigation",
+      "manifest": "design/artwork/navigation-symbols.json",
+      "forwardPrompt": "design/artwork/prompts/navigation-symbols.txt"
+    },
+    {
+      "id": "letter-paper",
+      "file": "assets/interface/letter-paper.webp",
+      "role": "stationery",
+      "manifest": "design/artwork/letter-paper.json",
+      "forwardPrompt": "design/artwork/prompts/letter-paper.txt"
+    },
+    {
+      "id": "den",
+      "file": "assets/forest-friends/den-v2.webp",
+      "role": "scene",
+      "forwardPrompt": "design/artwork/prompts/den.txt",
+      "guide": "design/artwork/BACKGROUNDS.md",
+      "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/artwork/BACKGROUNDS.md",
+      "originalFinalRequestRetained": false
+    },
+    {
+      "id": "clearing",
+      "file": "assets/forest-friends/puzzle-clearing.webp",
+      "role": "scene",
+      "forwardPrompt": "design/artwork/prompts/puzzle-clearing.txt",
+      "guide": "design/artwork/BACKGROUNDS.md",
+      "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/artwork/BACKGROUNDS.md",
+      "originalFinalRequestRetained": false
+    },
+    {
+      "id": "existing-navigation-pins",
+      "file": "assets/interface/navigation.webp",
+      "role": "reuse-existing",
+      "ids": [
+        "den",
+        "door",
+        "back"
+      ],
+      "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/artwork/navigation.json",
+      "policy": "Reuse current pixels unless explicitly changing these pins; the unused old toolbar cells are not style references."
+    },
+    {
+      "id": "app-branding",
+      "outputs": [
+        "icons/icon-192.png",
+        "icons/icon-512.png",
+        "icons/apple-touch-icon.png",
+        "icons/icon-maskable-512.png",
+        "icons/icon.svg"
+      ],
+      "role": "branding",
+      "forwardPrompt": "design/artwork/prompts/app-icon.txt",
+      "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-app-icon.json"
+    }
   ],
-  "generatedHistoricalExplorations":[
-    {"id":"style-directions","recordedBriefs":"design/artwork/prompts/recorded-style-directions.json","images":"archive/design-history/archive/visual-identities","status":"Waldatelier was selected; other directions are historical reference."},
-    {"id":"forest-friend-concepts","recordedPrompts":"design/artwork/prompts/recorded-forest-concepts.json","images":"archive/design-history/forest-friends/visuals","status":"Design concepts, not current production 3D models."},
-    {"id":"painted-postcard-portraits","historicalRecord":"archive/design-history/forest-friends/visuals/milestones/den-polish/COMPARISON.md","status":"Superseded by same-model portrait renders; not current identity artwork."}
+  "codePipelines": [
+    {
+      "id": "picture-map",
+      "source": "tools/map",
+      "guide": "tools/map/README.md",
+      "method": "Canvas painting from actual world geometry; no image generator."
+    },
+    {
+      "id": "character-identities",
+      "source": "tools/portraits",
+      "guide": "tools/portraits/README.md",
+      "method": "Current GLB renders, not generated substitute identities."
+    },
+    {
+      "id": "live-world",
+      "source": "js/friends/world",
+      "method": "Geometry, code-painted textures, materials and shaders."
+    },
+    {
+      "id": "task-geometry-and-writing",
+      "sources": [
+        "js/ui/waldatelier-icons.js",
+        "js/learn/glyphs.js"
+      ],
+      "method": "Authored SVG/canvas/stroke geometry."
+    }
   ],
-  "notImageGenerated":[
-    {"id":"picture-map","file":"assets/forest-friends/world-map.webp","source":"tools/map/map.html","guide":"tools/map/README.md","method":"Canvas painting from actual world geometry and coordinates."},
-    {"id":"character-identities","file":"assets/forest-friends/character-portraits.webp","source":"tools/portraits","guide":"tools/portraits/README.md","method":"Transparent renders of the current sculpted/baked GLB character models."},
-    {"id":"live-world","source":"js/friends/world","method":"Geometry, code-painted canvas textures and shaders; no generated backdrop."},
-    {"id":"puzzle-utility","source":"js/ui/waldatelier-icons.js","method":"Authored shared sepia SVG symbols."},
-    {"id":"handwriting","source":"js/learn/glyphs.js","method":"Authored exact stroke paths."},
-    {"id":"paper-and-control-frames","source":"css/waldbuch.css","method":"CSS surfaces, stitching, timber frames, shadows and washes; invitation paper uses its separate generated image."}
-  ]
+  "history": {
+    "index": "archive/design-history/2026-11-16-before-style-contract/README.md",
+    "policy": "Original briefs, alternatives, retired hero/colouring/portrait records and drafts are provenance only; never use as current style inputs."
+  }
 }

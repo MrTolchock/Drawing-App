@@ -11,18 +11,11 @@
   "provenance": {
     "date": "2026-11-16",
     "tool": "ChatGPT hosted image-generation tool",
-    "transparent_background": true,
-    "references": [
-      "references/gallery-style/animals-paper.png",
-      "references/gallery-style/words-two-paper.png",
-      "references/gallery-style/forest-actions-before-paper.png"
-    ],
-    "generationPrompt": "prompts/forest-actions-style-generation.txt",
     "sourceSha256": "f027b4ed1b2d7e9fc727220736fd00945e707e2cf20e46770e55b8e91d432e8b",
-    "purpose": "Match the gallery majority pencil/watercolour style while preserving subjects, actions and cell order.",
-    "draft": "sources/forest-actions-style-draft.png",
-    "paddingPrompt": "prompts/forest-actions-style-padding.txt",
-    "draftSha256": "fd78a0b2ed4927847c9d8f52895dce1077dd85d326d2bb20ea494d7dbe5f6cea"
+    "generationRecord": "../../archive/design-history/2026-11-16-before-style-contract/design/illustrations/forest-actions.json",
+    "styleContract": "style.json",
+    "forwardPrompt": "prompts/forest-actions.txt",
+    "note": "The archived record describes the existing asset. New generations use the current style contract and forward prompt."
   },
   "subjects": [
     {

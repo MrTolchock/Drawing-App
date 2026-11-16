@@ -1,0 +1,50 @@
+{
+  "format": "waldpost-illustration-atlas",
+  "version": 1,
+  "source": "sources/puzzle-flowers-style.png",
+  "output": "../../assets/waldatelier/puzzle-flowers.webp",
+  "columns": 3,
+  "rows": 2,
+  "cellPixels": 320,
+  "subjectPixels": 256,
+  "alphaThresholdPercent": 15,
+  "provenance": {
+    "date": "2026-11-16",
+    "tool": "ChatGPT hosted image-generation tool",
+    "transparent_background": true,
+    "references": [
+      "references/gallery-style/words-two-paper.png",
+      "references/gallery-style/animals-paper.png",
+      "references/gallery-style/puzzle-flowers-before-paper.png"
+    ],
+    "generationPrompt": "prompts/puzzle-flowers-style-generation.txt",
+    "sourceSha256": "fd8a2a77565d3bc4345765733a063554f608448c462f42a7c4c39e96b9fecf68",
+    "purpose": "Match the gallery majority pencil/watercolour style while preserving subjects, actions and cell order."
+  },
+  "subjects": [
+    {
+      "id": "puzzle-flower-rot",
+      "label": "puzzle flower rot"
+    },
+    {
+      "id": "puzzle-flower-gelb",
+      "label": "puzzle flower gelb"
+    },
+    {
+      "id": "puzzle-flower-blau",
+      "label": "puzzle flower blau"
+    },
+    {
+      "id": "puzzle-flower-rosa",
+      "label": "puzzle flower rosa"
+    },
+    {
+      "id": "puzzle-flower-weiss",
+      "label": "puzzle flower weiss"
+    },
+    {
+      "id": "puzzle-flower-lila",
+      "label": "puzzle flower lila"
+    }
+  ]
+}

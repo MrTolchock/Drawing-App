@@ -1,0 +1,24 @@
+WALDPOST CANONICAL ILLUSTRATION STYLE — waldpost-watercolour-pencil-v1
+
+Use the supplied canonical animals.png and objects.png reference images as the authority for drawing technique. They show the predominant style of the current Waldpost gallery. Match their actual pixels, not an imagined style suggested by a filename.
+
+Draw warm children's picture-book watercolour finished with visible coloured-pencil strokes. Use light, gently uneven washes, organic sepia contours, delicate hatching, softly irregular edges and modest drawn shading. Surfaces look painted and pencilled, with paper grain within the illustration. Keep the warmth of cream, honey brown, restrained sage and blue, while preserving every exact colour required by a task. Subjects remain friendly, recognizable and anatomically believable.
+
+Do not turn the drawing into a 3D render, plush toy, clay or felt craft, photograph, glossy object, embossed surface or studio-lit miniature. Avoid deep ambient-occlusion shadows, inflated forms and realistic material microtexture. Do not mix in another illustration technique or use historical artwork as a style reference.
+
+The role instructions below set the necessary detail and composition within this one style. Learning pictures retain fine drawn contours; small navigation symbols use the approved simpler, broader shapes and flat fills in the same palette. Keep the existing rendered game-character identities separate from image-generated learning subjects. Exact geometry and handwriting remain authored paths.
+
+Preserve subject identity, counted quantities, exact answer colours and action differences. Use real alpha for isolated pictures and stationery, and an opaque canvas only when the selected role requires a scene or branding image. No accidental background, halo, visible grid, labels or extra objects.
+
+ROLE: navigation
+Use the same warm hand-drawn palette as a SIMPLE small pictogram. Follow the approved navigation-symbol reference for broad sepia outlines, bold silhouettes and nearly flat fills. Omit tiny scenery, stamps, material grain, fine hatching, glossy hubs and extra decoration. It must read at 32 pixels. This is a prescribed low-detail application of the canonical style. Preserve the existing den, door and back pictures by reuse when they are not the requested subject.
+
+ATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:
+1. design/illustrations/references/watercolour-pencil-v1/animals.png — canonical-style: canonical drawing technique for animals; fixed majority-style pixels
+2. design/illustrations/references/watercolour-pencil-v1/objects.png — canonical-style: canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels
+3. assets/interface/navigation-symbols.webp — navigation-simplicity: approved simplicity and silhouette reference for navigation; not a material-realism reference
+
+SUBJECT AND LAYOUT BRIEF:
+Square canvas, two columns by two rows of equal square cells. Top left: simple ochre eight-tooth gear with cream hole. Top right: cream folded map with two fold lines, one blue river curve and a short red dashed route. Bottom left: cream envelope with two flap lines and a plain red circular seal. Bottom right: fully transparent. No map scenery, postage stamp, embossed leaf, brass hub or texture. Keep broad clear shapes and at least 22 percent transparent padding per side.
+
+STYLE PRIORITY: The brief changes subjects and layout only. Keep waldpost-watercolour-pencil-v1 and the supplied canonical reference technique throughout; do not import the style of a composition-only reference.

@@ -1,0 +1,3 @@
+Landscape 3:2, exactly three columns by two rows of equal square cells. Exactly one full upright daisy-like flower per cell: eight thin petals, a small yellow centre, slender green stem and two sage leaves. All six share the same construction and size. Change only petal colour.
+
+Top row: RED, YELLOW, BLUE. Bottom row: PINK, WHITE, VIOLET. Keep red distinct from pink, blue distinct from violet, and white distinct from yellow. Outline white petals lightly so they remain visible on cream. Petal colour dominates the small centre. No pot, ground, insects, extra flowers, fallen petals or background. At least 18 percent transparent padding per side.

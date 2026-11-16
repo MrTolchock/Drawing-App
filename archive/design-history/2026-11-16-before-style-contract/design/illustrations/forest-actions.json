@@ -1,0 +1,93 @@
+{
+  "format": "waldpost-illustration-atlas",
+  "version": 1,
+  "source": "sources/forest-actions-style.png",
+  "output": "../../assets/waldatelier/forest-actions.webp",
+  "columns": 4,
+  "rows": 4,
+  "cellPixels": 320,
+  "subjectPixels": 256,
+  "alphaThresholdPercent": 15,
+  "provenance": {
+    "date": "2026-11-16",
+    "tool": "ChatGPT hosted image-generation tool",
+    "transparent_background": true,
+    "references": [
+      "references/gallery-style/animals-paper.png",
+      "references/gallery-style/words-two-paper.png",
+      "references/gallery-style/forest-actions-before-paper.png"
+    ],
+    "generationPrompt": "prompts/forest-actions-style-generation.txt",
+    "sourceSha256": "f027b4ed1b2d7e9fc727220736fd00945e707e2cf20e46770e55b8e91d432e8b",
+    "purpose": "Match the gallery majority pencil/watercolour style while preserving subjects, actions and cell order.",
+    "draft": "sources/forest-actions-style-draft.png",
+    "paddingPrompt": "prompts/forest-actions-style-padding.txt",
+    "draftSha256": "fd78a0b2ed4927847c9d8f52895dce1077dd85d326d2bb20ea494d7dbe5f6cea"
+  },
+  "subjects": [
+    {
+      "id": "mouse-sit",
+      "label": "Maus sitzt"
+    },
+    {
+      "id": "mouse-run",
+      "label": "Maus rennt"
+    },
+    {
+      "id": "mouse-sleep",
+      "label": "Maus schläft"
+    },
+    {
+      "id": "bird-fly",
+      "label": "Vogel fliegt"
+    },
+    {
+      "id": "bird-sit",
+      "label": "Vogel sitzt"
+    },
+    {
+      "id": "fish-swim",
+      "label": "Fisch schwimmt"
+    },
+    {
+      "id": "hare-run",
+      "label": "Hase rennt"
+    },
+    {
+      "id": "hare-sit",
+      "label": "Hase sitzt"
+    },
+    {
+      "id": "fox-sleep",
+      "label": "Fuchs schläft"
+    },
+    {
+      "id": "fox-run",
+      "label": "Fuchs rennt"
+    },
+    {
+      "id": "cat-sleep",
+      "label": "Katze schläft"
+    },
+    {
+      "id": "cat-sit",
+      "label": "Katze sitzt"
+    },
+    {
+      "id": "dog-run",
+      "label": "Hund rennt"
+    },
+    {
+      "id": "dog-sleep",
+      "label": "Hund schläft"
+    },
+    {
+      "id": "duck-swim",
+      "label": "Ente schwimmt"
+    },
+    {
+      "id": "duck-fly",
+      "label": "Ente fliegt"
+    }
+  ]
+}

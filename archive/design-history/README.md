@@ -8,6 +8,7 @@ These are the original superseded design folders, preserved when the repository 
 - `world-10x/`: previous large-world proposal; the active world source remains in `js/friends/world/`.
 - `archive/`: the older design archive, kept intact.
 - `prior-documentation/`: superseded root/docs working documents before consolidation.
+- [2026-11-16-before-style-contract](2026-11-16-before-style-contract/README.md): 165 byte-preserved prompts, old styles, drafts, before images, dated evidence and prior guides. Use the [current canonical style](../../design/illustrations/STYLE.md) for all new generation; these records are not style inputs.
 - `manifest.json`: original paths, archive paths and SHA-256 for preserved files (including retired runtime/tests). `node tools/check-design.cjs` verifies integrity.
 
 Relative links inside old documents retain their historical context; use the manifest to locate moved targets. Fixed visual references were not overwritten to match the new implementation. Their original checker still runs at `forest-friends/visuals/check-baseline.py`.

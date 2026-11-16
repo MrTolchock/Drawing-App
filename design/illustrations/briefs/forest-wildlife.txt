@@ -1,0 +1,8 @@
+Square canvas, exactly four columns by four rows of equal square cells. Use recognizable Swiss woodland species, accurate anatomy and consistent markings within action pairs.
+
+Row 1: red squirrel sits; same squirrel runs; hedgehog walks; same hedgehog sleeps curled up.
+Row 2: badger walks; same badger sleeps curled up; roe deer stands; same roe deer runs.
+Row 3: green frog sits; same frog jumps with extended hind legs; great spotted woodpecker on a short trunk; small bat hangs upside down with folded wings.
+Row 4: tawny owl perches; robin stands; lynx sits with ear tufts and spotted coat; pine marten stands with pale throat patch.
+
+Exactly sixteen complete pictures with at least 18 percent transparent padding. No labels, scenery or extra animals. Preserve correct species and unmistakable actions.

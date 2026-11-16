@@ -6,6 +6,7 @@ Serve the repository root with `python3 -m http.server 8000 --bind 127.0.0.1`. T
 
 ```sh
 npm ci --prefix tools
+node tools/illustrations/style.cjs --check
 node tools/puzzle-catalogue.cjs
 node tools/illustrations/library.cjs
 node tools/illustrations/library.cjs --check
@@ -37,7 +38,7 @@ Read [Visual style](../design/VISUAL-STYLE.md) and [Puzzle blueprint](../design/
 
 Current character sculpt source: `tools/characters/plush.js`. Bake with `tools/bake/`, then generate all identity portraits with `tools/portraits/render.cjs`. Keep all characters in one pipeline. Learning nouns/actions use the drawn Waldatelier library. Preserve saved template IDs, settings records and historical localStorage/IndexedDB keys.
 
-The [artwork handoff for Claude](../design/artwork/README.md) indexes every image-generator role, exact recorded prompts, honest reconstruction recipes, references and source preparation. All puzzle drawings live in [one browsable library](../assets/waldatelier/README.md). Its JSON/GitHub index is generated from the runtime IDs and rendering dependencies; the standalone browser exports existing atlas cells as transparent PNGs. It never edits game/review storage.
+Every image-generator request starts with the [canonical style](../design/illustrations/STYLE.md). `node tools/illustrations/style.cjs --request <id>` prepares the complete prompt, actual canonical reference-image paths and transparency flag. Edit registered subject/layout briefs, regenerate with `node tools/illustrations/style.cjs`, then run `--check`; CI enforces the shared block, fixed reference pixels, current source records and absence of unregistered/historical prompts. The [artwork handoff](../design/artwork/README.md) explains each role. All puzzle drawings remain in [one browsable library](../assets/waldatelier/README.md). Historical original prompts/drafts/evidence are archived as provenance, not future style instructions. Documentation/archive/prompt changes alone do not need a runtime version bump or reopen puzzle reviews.
 
 Work on a branch for reviewable changes, commit and push checkpoints. Merge/push `main` only when the owner authorizes publication. Keep current rules in `design/`; archive superseded documents with a clear index. No runtime reference may load archive material.
 

@@ -9,7 +9,7 @@ This is the single visual specification for the active game. The direction is a 
 | Forest, terrain, trees, water, walking characters | Real-time 3D, soft natural lighting and plush character materials | `js/friends/forest3d.js`, `world/`, `characters3d.js`, `assets/characters/*.glb` |
 | Den | Painted interior with the same model fox rendered into the room; perspective and warm light match the painting | `assets/forest-friends/den-v2.webp`, `js/friends/painted.js` |
 | Character identity on letters, map, puzzle context, companions, votes, celebration and game-over | Transparent render of the **same current model**, same lighting/framing for the entire cast. Sleeping fox is a pose of that model | `assets/forest-friends/character-portraits.webp`, `FK.friendsArt.portrait(id)`; generated with `tools/portraits/` |
-| Learning subjects: animals, objects, quantities and pictured verbs | Drawn crayon/pencil illustrations, soft textured edges, transparent background, consistent woodland palette | `assets/waldatelier/*.webp`, `FK.visual.art(subject)`; `forest-actions` for actions and `puzzle-vocabulary` for nouns |
+| Learning subjects: animals, objects, quantities and pictured verbs | The canonical watercolour-and-coloured-pencil drawing, organic sepia contours, soft edges, transparent background and consistent woodland palette | [Canonical style](illustrations/STYLE.md), `assets/waldatelier/*.webp`, `FK.visual.art(subject)` |
 | Exact geometry, shape constructions, mirror grids, routes, handwriting paths | SVG/canvas paths where precision is the task. Use the same paper, ink, colour palette and rounded stroke language | Shared puzzle renderer, `js/learn/glyphs.js`, trace engine |
 | Puzzle utility controls: explain, reset and task directions | One sepia SVG family, rounded line ends, 48-unit viewBox, 2.2-unit strokes, restrained fills | `js/ui/waldatelier-icons.js`, `FK.icons.element(name)` or `FK.icon(name)` |
 | World controls: map, letter and settings | Simple illustrated symbols with broad brown outlines, nearly flat cream/ochre fills and restrained blue/red marks; no miniature scenery, grain, stamps or material realism | `assets/interface/navigation-symbols.webp`, `FK.hudArt.element(name)`; [recorded prompts and sources](artwork/README.md) |
@@ -23,7 +23,7 @@ A vocabulary fox is a drawn animal; a letter from Fuchs shows the model portrait
 
 The distinction between the 3D world and drawn learning pages is intentional. Within each role, use one treatment. Historical colouring artwork remains as legacy assets/data; drawing is no longer an active activity.
 
-For new learning drawings, use `animals.webp` and `words-two.webp` as the primary majority-style references: light watercolour washes, visible coloured-pencil strokes and thin organic contours. The [gallery audit](illustrations/GALLERY-STYLE-AUDIT.md) records the 38 sculpted/plush/felt-like outliers redrawn to that style. Keep props and animals visibly illustrated; use the simpler flat symbols only for navigation.
+For every new image-generator request, follow the [single canonical illustration contract](illustrations/STYLE.md), its frozen reference pixels and complete generated prompt. Learning pictures use light watercolour washes, visible coloured-pencil strokes and organic contours; navigation uses the prescribed simpler detail level in the same palette. Historical prompts and images are archived records, never alternative current directions.
 
 ## Typography
 

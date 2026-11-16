@@ -1,0 +1,197 @@
+{
+  "format": "waldpost-illustration-style",
+  "version": 1,
+  "id": "waldpost-watercolour-pencil-v1",
+  "canonicalGuide": "design/illustrations/STYLE.md",
+  "date": "2026-11-16",
+  "basedOn": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34",
+  "styleBlock": "design/illustrations/STYLE.txt",
+  "styleBlockSha256": "2a00ce3fe3e14c55cae91fd86b9066da2ef13eab68017e23d86f92859ecf82ca",
+  "references": [
+    {
+      "path": "design/illustrations/references/watercolour-pencil-v1/animals.png",
+      "sha256": "65867082294d157ab4ffbe33926857272625ef3c25cdb7cab81c2a4ea73d9316",
+      "purpose": "canonical drawing technique for animals; fixed majority-style pixels",
+      "usage": "canonical-style"
+    },
+    {
+      "path": "design/illustrations/references/watercolour-pencil-v1/objects.png",
+      "sha256": "0bb37d6fc82c75034eddf30da2cc57c546dd8bc70d246aeeda85b637bd87dd80",
+      "purpose": "canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels",
+      "usage": "canonical-style"
+    }
+  ],
+  "roles": {
+    "learning": {
+      "instruction": "Match the canonical watercolour and coloured-pencil technique closely: fine organic contours, uneven washes and gentle drawn volume. Keep accurate species, action contrasts, one counted object per item and exact answer colours. Use transparent square cells, generous gutters and complete silhouettes."
+    },
+    "navigation": {
+      "instruction": "Use the same warm hand-drawn palette as a SIMPLE small pictogram. Follow the approved navigation-symbol reference for broad sepia outlines, bold silhouettes and nearly flat fills. Omit tiny scenery, stamps, material grain, fine hatching, glossy hubs and extra decoration. It must read at 32 pixels. This is a prescribed low-detail application of the canonical style. Preserve the existing den, door and back pictures by reuse when they are not the requested subject.",
+      "references": [
+        {
+          "path": "assets/interface/navigation-symbols.webp",
+          "sha256": "f9c7c6974bd023d60a6510ea60ef5e4f4fa2537c0da853f077fc8b5c050bd0f4",
+          "purpose": "approved simplicity and silhouette reference for navigation; not a material-realism reference",
+          "usage": "navigation-simplicity"
+        }
+      ]
+    },
+    "stationery": {
+      "instruction": "Apply the canonical drawing technique to pale cream paper with restrained pencil borders and small leaf details. Keep clean empty space for the actual model-rendered sender portrait. Genuine transparency surrounds the whole paper. Do not generate a substitute character or paint interface controls into the asset."
+    },
+    "scene": {
+      "instruction": "Apply the canonical watercolour/pencil medium at landscape scale: broad quiet washes, restrained drawn detail at the edges, matte natural colours and soft organic contours. The scene is opaque. Keep the centre pale and calm for real panels and preserve required camera/layout anchors. Existing scene references define composition only; the canonical pair defines technique. Do not paint UI panels, text or characters into backgrounds."
+    },
+    "branding": {
+      "instruction": "Use the canonical warm illustrated technique as a simple readable app emblem. Keep a clear silhouette and quiet background. A branding fox is not a replacement for the existing model portraits used to identify game characters."
+    }
+  },
+  "prompts": [
+    {
+      "id": "subject-sheet",
+      "role": "learning",
+      "path": "design/illustrations/prompts/subject-sheet.txt",
+      "brief": "design/illustrations/briefs/subject-sheet.txt",
+      "transparent": true
+    },
+    {
+      "id": "forest-actions",
+      "role": "learning",
+      "path": "design/illustrations/prompts/forest-actions.txt",
+      "brief": "design/illustrations/briefs/forest-actions.txt",
+      "transparent": true
+    },
+    {
+      "id": "forest-objects",
+      "role": "learning",
+      "path": "design/illustrations/prompts/forest-objects.txt",
+      "brief": "design/illustrations/briefs/forest-objects.txt",
+      "transparent": true
+    },
+    {
+      "id": "puzzle-flowers",
+      "role": "learning",
+      "path": "design/illustrations/prompts/puzzle-flowers.txt",
+      "brief": "design/illustrations/briefs/puzzle-flowers.txt",
+      "transparent": true
+    },
+    {
+      "id": "forest-wildlife",
+      "role": "learning",
+      "path": "design/illustrations/prompts/forest-wildlife.txt",
+      "brief": "design/illustrations/briefs/forest-wildlife.txt",
+      "transparent": true
+    },
+    {
+      "id": "forest-fox",
+      "role": "learning",
+      "path": "design/illustrations/prompts/forest-fox.txt",
+      "brief": "design/illustrations/briefs/forest-fox.txt",
+      "transparent": true
+    },
+    {
+      "id": "rhyme-vocabulary",
+      "role": "learning",
+      "path": "design/illustrations/prompts/rhyme-vocabulary.txt",
+      "brief": "design/illustrations/briefs/rhyme-vocabulary.txt",
+      "transparent": true
+    },
+    {
+      "id": "layout-repair",
+      "role": "learning",
+      "path": "design/illustrations/prompts/layout-repair.txt",
+      "brief": "design/illustrations/briefs/layout-repair.txt",
+      "transparent": true
+    },
+    {
+      "id": "transparency-repair",
+      "role": "learning",
+      "path": "design/illustrations/prompts/transparency-repair.txt",
+      "brief": "design/illustrations/briefs/transparency-repair.txt",
+      "transparent": true
+    },
+    {
+      "id": "navigation-symbols",
+      "role": "navigation",
+      "path": "design/artwork/prompts/navigation-symbols.txt",
+      "brief": "design/artwork/briefs/navigation-symbols.txt",
+      "transparent": true
+    },
+    {
+      "id": "letter-paper",
+      "role": "stationery",
+      "path": "design/artwork/prompts/letter-paper.txt",
+      "brief": "design/artwork/briefs/letter-paper.txt",
+      "transparent": true,
+      "references": [
+        {
+          "path": "assets/interface/letter-paper.webp",
+          "sha256": "1890da11074d18719eef340559b5b191581ff44f12b7ebcf12fb047b09f30003",
+          "purpose": "current stationery composition only; preserve the empty portrait zone",
+          "usage": "composition-only"
+        }
+      ]
+    },
+    {
+      "id": "den",
+      "role": "scene",
+      "path": "design/artwork/prompts/den.txt",
+      "brief": "design/artwork/briefs/den.txt",
+      "transparent": false,
+      "references": [
+        {
+          "path": "assets/forest-friends/den-v2.webp",
+          "sha256": "64d409b3ec6da974d8316cddf61f2b4310ad2df9b0fcd3c75e0eb4e8bf664455",
+          "purpose": "existing camera/layout and door-slot composition only; canonical references define drawing technique",
+          "usage": "composition-only"
+        }
+      ]
+    },
+    {
+      "id": "puzzle-clearing",
+      "role": "scene",
+      "path": "design/artwork/prompts/puzzle-clearing.txt",
+      "brief": "design/artwork/briefs/puzzle-clearing.txt",
+      "transparent": false,
+      "references": [
+        {
+          "path": "assets/forest-friends/puzzle-clearing.webp",
+          "sha256": "736f0b8ec0a8e892505c80ff54e851a197800266c57c0b5f12b5be1faf04ed01",
+          "purpose": "current clearing framing and quiet central area only",
+          "usage": "composition-only"
+        }
+      ]
+    },
+    {
+      "id": "background",
+      "role": "scene",
+      "path": "design/artwork/prompts/background.txt",
+      "brief": "design/artwork/briefs/background.txt",
+      "transparent": false
+    },
+    {
+      "id": "app-icon",
+      "role": "branding",
+      "path": "design/artwork/prompts/app-icon.txt",
+      "brief": "design/artwork/briefs/app-icon.txt",
+      "transparent": false
+    }
+  ],
+  "preparationManifests": [
+    "design/artwork/letter-paper.json",
+    "design/artwork/navigation-symbols.json",
+    "design/illustrations/forest-actions.json",
+    "design/illustrations/forest-fox.json",
+    "design/illustrations/forest-objects.json",
+    "design/illustrations/forest-wildlife.json",
+    "design/illustrations/puzzle-flowers.json",
+    "design/illustrations/rhyme-vocabulary.json"
+  ],
+  "history": "archive/design-history/2026-11-16-before-style-contract",
+  "preview": {
+    "path": "design/illustrations/references/watercolour-pencil-v1/style-board.png",
+    "sha256": "7fad01642ff98c9142980f4126d815233cd7f8dc60d43501eb093c570dcc4d89",
+    "usage": "canonical-style",
+    "purpose": "human-readable board of the two canonical reference sheets"
+  }
+}

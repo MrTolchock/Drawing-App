@@ -1,0 +1,8 @@
+Square canvas, exactly four columns by four rows of equal square cells. Preserve repeated animals' markings and distinct actions. Closed sleeping eyes; visibly extended running poses; open wings for flying. Grey mouse, blue tit with blue cap/white cheeks/dark eye stripe/yellow belly, spotted brown trout, brown hare, orange fox with a small sage bandana, grey tabby, brown-and-white beagle with red collar, and mottled brown female duck.
+
+Row 1: mouse sits; same mouse runs right; same mouse sleeps curled up; blue tit flies right.
+Row 2: same blue tit sits on a short twig; trout swims above two short blue water strokes; hare runs right; same hare sits.
+Row 3: fox sleeps curled up; same fox runs right; tabby sleeps curled up; same tabby sits.
+Row 4: beagle runs right; same beagle sleeps curled up; female duck swims right above two short water strokes; same duck flies right.
+
+Exactly sixteen complete pictures. No extra animals, labels, background or changes to cell order. Give every cell at least 18 percent empty transparent padding.
