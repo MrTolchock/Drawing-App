@@ -20,3 +20,7 @@ test('altered reference pixels and archived style inputs are rejected',()=>{
 test('current preparation records must link the canonical style and a registered forward prompt',()=>{
  const file='design/illustrations/forest-actions.json',changed=modified(file,s=>{const v=JSON.parse(s);v.provenance.forwardPrompt='prompts/old-generation.txt';return JSON.stringify(v);});assert.ok(check({read:changed}).some(e=>e.includes('lacks a current forward prompt')));
 });
+test('archived working instructions cannot become active scoped agent rules',()=>{
+ assert.ok(check({archiveFiles:['archive/old-snapshot/CLAUDE.md']}).some(e=>e.includes('inert .record.md filename')));
+ assert.ok(check({archiveFiles:['archive/old-snapshot/AGENTS.md']}).some(e=>e.includes('inert .record.md filename')));
+});

@@ -8,6 +8,6 @@ This snapshot preserves **165 files from commit `3fff5b516fa9b0c9a22baa2aeae389d
 - [Previous artwork guides, concepts, original briefs, reconstruction recipes and detailed toolbar](design/artwork/).
 - [Dated renderer evidence and comparisons](design/evidence/).
 - [Historical consistency audit](design/STYLE-AUDIT.md) and [review-feedback record](design/REVIEW-FEEDBACK-2026-11-15.md).
-- Prior root working instructions and design index are retained here as records.
+- Prior root [agent instructions](AGENTS.record.md), [Claude instructions](CLAUDE.record.md) and design index are retained as records. The instruction filenames are deliberately inert so assistants cannot auto-load old rules.
 
 Historical documents keep their original relative paths and wording. Use [snapshot.json](snapshot.json), the preserved commit and [the archive manifest](../manifest.json) to resolve their original context. A prompt records what was actually requested then; it does not authorize that style now. Current final preparation inputs were copied into the clean design area without changing their pixels.

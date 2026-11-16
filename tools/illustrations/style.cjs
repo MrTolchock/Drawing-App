@@ -13,7 +13,7 @@ function promptFor(s,item){
 }
 function outputs(read=readDefault){const s=state(read);return Object.fromEntries(s.spec.prompts.map(item=>[item.path,promptFor(s,item)]));}
 function request(id,read=readDefault){const s=state(read),item=s.spec.prompts.find(p=>p.id===id);if(!item)throw Error('Unknown prompt: '+id);const role=s.spec.roles[item.role];return {prompt:promptFor(s,item),referenced_image_paths:[...s.spec.references,...(role.references||[]),...(item.references||[])].map(r=>path.join(root,r.path)),transparent_background:item.transparent};}
-function check({read=readDefault,files=walk('design')}={}){
+function check({read=readDefault,files=walk('design'),archiveFiles=walk('archive')}={}){
  const errors=[];let s;try{s=state(read);}catch(e){return ['Cannot read the illustration style: '+e.message];}const {spec}=s;
  if(spec.format!=='waldpost-illustration-style'||spec.version!==1||spec.id!=='waldpost-watercolour-pencil-v1')errors.push('Unknown current illustration style.');
  if(spec.styleBlock!=='design/illustrations/STYLE.txt')errors.push('The canonical style block must stay in the current style kit.');
@@ -40,6 +40,7 @@ function check({read=readDefault,files=walk('design')}={}){
  }
  for(const file of files)if(file.endsWith('.txt')&&!allowedText.has(file))errors.push('Unregistered active prompt/text recipe: '+file);
  for(const file of files.filter(f=>/^design\/(?:illustrations|artwork)\/prompts\//.test(f)))if(!paths.has(file))errors.push('Historical or unregistered file in an active prompt directory: '+file);
+ for(const file of archiveFiles)if(/\/(?:AGENTS|CLAUDE)\.md$/.test(file)&&!['archive/AGENTS.md','archive/CLAUDE.md'].includes(file))errors.push('Historical working instructions must use an inert .record.md filename: '+file);
  for(const file of spec.preparationManifests||[]){try{const m=JSON.parse(read(file)),p=m.provenance,base=path.posix.dirname(file);if(path.posix.normalize(path.posix.join(base,p.styleContract))!==configFile)errors.push('Preparation manifest lacks the canonical style contract: '+file);if(!paths.has(path.posix.normalize(path.posix.join(base,p.forwardPrompt))))errors.push('Preparation manifest lacks a current forward prompt: '+file);const source=path.posix.normalize(path.posix.join(base,m.source));if(source.startsWith('archive/')||sha(read(source))!==p.sourceSha256)errors.push('Current editable source changed or moved to archive: '+file);const record=path.posix.normalize(path.posix.join(base,p.generationRecord));if(!record.startsWith(spec.history+'/'))errors.push('Generation record must be historical: '+file);read(record);}catch(e){errors.push('Invalid preparation record: '+file+' ('+e.message+')');}}
  for(const f of ['AGENTS.md','CLAUDE.md'])if(!read(f).toString().includes('design/illustrations/STYLE.md'))errors.push(f+' must direct assistants to the canonical style.');
  return [...new Set(errors)];

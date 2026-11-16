@@ -2386,7 +2386,7 @@
   },
   {
     "original": "CLAUDE.md",
-    "archived": "archive/design-history/prior-documentation/CLAUDE.md",
+    "archived": "archive/design-history/prior-documentation/CLAUDE.record.md",
     "sha256": "6718aa1b443e7e370d25710efb198380dd69c4435b61dfda3a204609db00ad34"
   },
   {
@@ -4029,13 +4029,13 @@
   },
   {
     "original": "AGENTS.md",
-    "archived": "archive/design-history/2026-11-16-before-style-contract/AGENTS.md",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/AGENTS.record.md",
     "sha256": "480308c67649a9038ca91292420ce951f537baf9034d347d98f9c0ef7c1d8df4",
     "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
   },
   {
     "original": "CLAUDE.md",
-    "archived": "archive/design-history/2026-11-16-before-style-contract/CLAUDE.md",
+    "archived": "archive/design-history/2026-11-16-before-style-contract/CLAUDE.record.md",
     "sha256": "8eca820da1745f051a95b18d3567e5edeed0e3b6ff7430f8b833630f1ba911be",
     "snapshot": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34"
   }
