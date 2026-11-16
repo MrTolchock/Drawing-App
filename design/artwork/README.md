@@ -61,6 +61,8 @@ The letter background is applied in `css/waldbuch.css`; its portrait occupies th
 
 The [puzzle illustration handoff](../illustrations/README.md) contains the detailed style template, packing rules, exact recent prompts and cell manifests. Use the library to find the closest existing action/subject sheet before requesting new art.
 
+The [16 November gallery audit](../illustrations/GALLERY-STYLE-AUDIT.md) records all 235 pictures, the 38 style outliers that were redrawn and the 197 retained pictures. Use `animals.webp` and `words-two.webp` as the primary majority-style references. The corrected actions/objects/flowers retain exact generation and spacing-repair prompts, before references, editable sources and manifests. Learning drawings keep their pencil/watercolour technique, separately from the simpler navigation symbols.
+
 The shared style is warm coloured-pencil/watercolour/gouache picture-book drawing, soft textured edges, gentle shading, honey/cream/sepia with restrained woodland greens and blues. Match the **supplied picture reference**, not a generic description of “cartoon”. Animals need accurate anatomy; one counted item must depict one object. Preserve action contrasts, exact scored colours, square cells, generous transparent padding and fixed cell order. Use drawn subjects for answers and model portraits for identity.
 
 After adding/registering a picture, run:

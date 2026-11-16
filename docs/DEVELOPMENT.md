@@ -22,6 +22,7 @@ node tests/review-sync-browser.cjs
 node tests/review-compatibility-browser.cjs
 node tests/puzzle-feedback-browser.cjs
 node tests/artwork-browser.cjs
+node tests/gallery-images-browser.cjs   # all 38 redrawn pictures: real PNG exports, source-cell match, alpha and phone layout
 ```
 
 Browser suites require Playwright and Chromium. Set `PLAYWRIGHT_MODULE`, `CHROMIUM_PATH` and optionally `FARBTUPF_BASE_URL` for your installation. The review suite solves all 953 exact iterations, exercises native touch/mouse input for every puzzle, and checks whole-pool approval/rejection, gesture cancellation, persistence and offline review. The design suite compares review and child-play paper/writing dimensions for all 31 puzzles at phone/tablet sizes; `FARBTUPF_GAMES=add,trace,trace-numbers` limits its content pass during targeted work. Letter sessions checks Settings, real invitations, access restrictions, ten actual answers, mailman, home, sleep, reload/offline and adult restart. The design suite checks asset/font roles and current entry points. Screenshots go to `/tmp` unless an output path is set.

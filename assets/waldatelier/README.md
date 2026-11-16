@@ -14,14 +14,14 @@ Generated with `node tools/illustrations/library.cjs`. Edit the runtime registry
 | [animals](animals.webp) | 16 | [Original recorded prompt](../../design/artwork/prompts/recorded-waldatelier.json) |
 | [creatures](creatures.webp) | 16 | [Original recorded prompt](../../design/artwork/prompts/recorded-waldatelier.json) |
 | [discovery](discovery.webp) | 16 | [Original recorded prompt](../../design/artwork/prompts/recorded-waldatelier.json) |
-| [forest-actions](forest-actions.webp) | 16 | [Reconstruction recipe](../../design/artwork/prompts/puzzle-sheet-reconstruction.txt) |
+| [forest-actions](forest-actions.webp) | 16 | [Recorded prompt and source](../../design/illustrations/forest-actions.json) |
 | [forest-fox](forest-fox.webp) | 1 | [Recorded prompt and source](../../design/illustrations/forest-fox.json) |
-| [forest-objects](forest-objects.webp) | 16 | [Reconstruction recipe](../../design/artwork/prompts/puzzle-sheet-reconstruction.txt) |
+| [forest-objects](forest-objects.webp) | 16 | [Recorded prompt and source](../../design/illustrations/forest-objects.json) |
 | [forest-wildlife](forest-wildlife.webp) | 16 | [Recorded prompt and source](../../design/illustrations/forest-wildlife.json) |
 | [menu](menu.webp) | 6 | [Reconstruction recipe](../../design/artwork/prompts/puzzle-sheet-reconstruction.txt) |
 | [navigation](navigation.webp) | 16 | [Original recorded prompt](../../design/artwork/prompts/recorded-waldatelier.json) |
 | [people](people.webp) | 16 | [Original recorded prompt](../../design/artwork/prompts/recorded-waldatelier.json) |
-| [puzzle-flowers](puzzle-flowers.webp) | 6 | [Reconstruction recipe](../../design/artwork/prompts/puzzle-sheet-reconstruction.txt) |
+| [puzzle-flowers](puzzle-flowers.webp) | 6 | [Recorded prompt and source](../../design/illustrations/puzzle-flowers.json) |
 | [puzzle-vocabulary](puzzle-vocabulary.webp) | 20 | [Reconstruction recipe](../../design/artwork/prompts/puzzle-sheet-reconstruction.txt) |
 | [rhyme-vocabulary](rhyme-vocabulary.webp) | 10 | [Recorded prompt and source](../../design/illustrations/rhyme-vocabulary.json) |
 | [words-one](words-one.webp) | 16 | [Original recorded prompt](../../design/artwork/prompts/recorded-waldatelier.json) |

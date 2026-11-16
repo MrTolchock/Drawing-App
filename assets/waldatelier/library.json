@@ -194,15 +194,15 @@
     {
       "id": "forest-actions",
       "file": "forest-actions.webp",
-      "width": 1254,
-      "height": 1254,
+      "width": 1280,
+      "height": 1280,
       "columns": 4,
       "rows": 4,
-      "sha256": "8fc2de98bc806e8cec0fac9e194e188510de4e94cc0b217c46120d874a99db0d",
+      "sha256": "d3a67b017d42bd3bea98d1034c0316d3ba11e7575e6bcadda7ae1e7962f74862",
       "provenance": {
-        "status": "reconstruction-recipe",
-        "guide": "design/artwork/README.md",
-        "recipe": "design/artwork/prompts/puzzle-sheet-reconstruction.txt"
+        "status": "recorded",
+        "manifest": "design/illustrations/forest-actions.json",
+        "guide": "design/illustrations/README.md"
       }
     },
     {
@@ -222,15 +222,15 @@
     {
       "id": "forest-objects",
       "file": "forest-objects.webp",
-      "width": 1254,
-      "height": 1254,
+      "width": 1280,
+      "height": 1280,
       "columns": 4,
       "rows": 4,
-      "sha256": "5222de559e00e2a1f1cb5c0257138f37035fc546a0dcf3ecd93c69b8313d2933",
+      "sha256": "aeb5cdd3aef93cc3f55e63f2323770b83b5eea90e190f0948d243828fc5aab83",
       "provenance": {
-        "status": "reconstruction-recipe",
-        "guide": "design/artwork/README.md",
-        "recipe": "design/artwork/prompts/puzzle-sheet-reconstruction.txt"
+        "status": "recorded",
+        "manifest": "design/illustrations/forest-objects.json",
+        "guide": "design/illustrations/README.md"
       }
     },
     {
@@ -294,15 +294,15 @@
     {
       "id": "puzzle-flowers",
       "file": "puzzle-flowers.webp",
-      "width": 1536,
-      "height": 1024,
+      "width": 960,
+      "height": 640,
       "columns": 3,
       "rows": 2,
-      "sha256": "bfd8e5e889ee0bd4d29488f063104e9129b4afe9bdf8a78ba8f466f00188bc6e",
+      "sha256": "78baf1dcf9409af99fc57ed3b4a1a52896fc199b53acb7cc7c090aeeecf71b64",
       "provenance": {
-        "status": "reconstruction-recipe",
-        "guide": "design/artwork/README.md",
-        "recipe": "design/artwork/prompts/puzzle-sheet-reconstruction.txt"
+        "status": "recorded",
+        "manifest": "design/illustrations/puzzle-flowers.json",
+        "guide": "design/illustrations/README.md"
       }
     },
     {
@@ -755,10 +755,10 @@
       "column": 3,
       "row": 0,
       "sourceRect": {
-        "x": 940.5,
+        "x": 960,
         "y": 0,
-        "width": 313.5,
-        "height": 313.5
+        "width": 320,
+        "height": 320
       },
       "tokens": [],
       "usedBy": [
@@ -774,9 +774,9 @@
       "row": 1,
       "sourceRect": {
         "x": 0,
-        "y": 313.5,
-        "width": 313.5,
-        "height": 313.5
+        "y": 320,
+        "width": 320,
+        "height": 320
       },
       "tokens": [],
       "usedBy": [
@@ -1142,10 +1142,10 @@
       "column": 3,
       "row": 2,
       "sourceRect": {
-        "x": 940.5,
-        "y": 627,
-        "width": 313.5,
-        "height": 313.5
+        "x": 960,
+        "y": 640,
+        "width": 320,
+        "height": 320
       },
       "tokens": [],
       "usedBy": [
@@ -1162,10 +1162,10 @@
       "column": 2,
       "row": 2,
       "sourceRect": {
-        "x": 627,
-        "y": 627,
-        "width": 313.5,
-        "height": 313.5
+        "x": 640,
+        "y": 640,
+        "width": 320,
+        "height": 320
       },
       "tokens": [],
       "usedBy": [
@@ -1501,9 +1501,9 @@
       "row": 3,
       "sourceRect": {
         "x": 0,
-        "y": 940.5,
-        "width": 313.5,
-        "height": 313.5
+        "y": 960,
+        "width": 320,
+        "height": 320
       },
       "tokens": [],
       "usedBy": [
@@ -1518,10 +1518,10 @@
       "column": 1,
       "row": 3,
       "sourceRect": {
-        "x": 313.5,
-        "y": 940.5,
-        "width": 313.5,
-        "height": 313.5
+        "x": 320,
+        "y": 960,
+        "width": 320,
+        "height": 320
       },
       "tokens": [],
       "usedBy": [
@@ -1576,10 +1576,10 @@
       "column": 3,
       "row": 3,
       "sourceRect": {
-        "x": 940.5,
-        "y": 940.5,
-        "width": 313.5,
-        "height": 313.5
+        "x": 960,
+        "y": 960,
+        "width": 320,
+        "height": 320
       },
       "tokens": [],
       "usedBy": [
@@ -1594,10 +1594,10 @@
       "column": 2,
       "row": 3,
       "sourceRect": {
-        "x": 627,
-        "y": 940.5,
-        "width": 313.5,
-        "height": 313.5
+        "x": 640,
+        "y": 960,
+        "width": 320,
+        "height": 320
       },
       "tokens": [],
       "usedBy": [
@@ -1754,10 +1754,10 @@
       "column": 1,
       "row": 1,
       "sourceRect": {
-        "x": 313.5,
-        "y": 313.5,
-        "width": 313.5,
-        "height": 313.5
+        "x": 320,
+        "y": 320,
+        "width": 320,
+        "height": 320
       },
       "tokens": [],
       "usedBy": [
@@ -1806,10 +1806,10 @@
       "column": 1,
       "row": 0,
       "sourceRect": {
-        "x": 313.5,
+        "x": 320,
         "y": 0,
-        "width": 313.5,
-        "height": 313.5
+        "width": 320,
+        "height": 320
       },
       "tokens": [],
       "usedBy": [
@@ -1833,10 +1833,10 @@
       "column": 3,
       "row": 3,
       "sourceRect": {
-        "x": 940.5,
-        "y": 940.5,
-        "width": 313.5,
-        "height": 313.5
+        "x": 960,
+        "y": 960,
+        "width": 320,
+        "height": 320
       },
       "tokens": [],
       "usedBy": [
@@ -1870,10 +1870,10 @@
       "column": 2,
       "row": 0,
       "sourceRect": {
-        "x": 627,
+        "x": 640,
         "y": 0,
-        "width": 313.5,
-        "height": 313.5
+        "width": 320,
+        "height": 320
       },
       "tokens": [],
       "usedBy": [
@@ -1906,10 +1906,10 @@
       "column": 3,
       "row": 2,
       "sourceRect": {
-        "x": 940.5,
-        "y": 627,
-        "width": 313.5,
-        "height": 313.5
+        "x": 960,
+        "y": 640,
+        "width": 320,
+        "height": 320
       },
       "tokens": [],
       "usedBy": [
@@ -1928,9 +1928,9 @@
       "row": 1,
       "sourceRect": {
         "x": 0,
-        "y": 313.5,
-        "width": 313.5,
-        "height": 313.5
+        "y": 320,
+        "width": 320,
+        "height": 320
       },
       "tokens": [],
       "usedBy": [
@@ -1954,10 +1954,10 @@
       "column": 1,
       "row": 1,
       "sourceRect": {
-        "x": 313.5,
-        "y": 313.5,
-        "width": 313.5,
-        "height": 313.5
+        "x": 320,
+        "y": 320,
+        "width": 320,
+        "height": 320
       },
       "tokens": [],
       "usedBy": [
@@ -1978,10 +1978,10 @@
       "column": 3,
       "row": 1,
       "sourceRect": {
-        "x": 940.5,
-        "y": 313.5,
-        "width": 313.5,
-        "height": 313.5
+        "x": 960,
+        "y": 320,
+        "width": 320,
+        "height": 320
       },
       "tokens": [],
       "usedBy": [
@@ -2046,9 +2046,9 @@
       "row": 2,
       "sourceRect": {
         "x": 0,
-        "y": 627,
-        "width": 313.5,
-        "height": 313.5
+        "y": 640,
+        "width": 320,
+        "height": 320
       },
       "tokens": [],
       "usedBy": [
@@ -2065,9 +2065,9 @@
       "row": 3,
       "sourceRect": {
         "x": 0,
-        "y": 940.5,
-        "width": 313.5,
-        "height": 313.5
+        "y": 960,
+        "width": 320,
+        "height": 320
       },
       "tokens": [],
       "usedBy": [
@@ -2086,10 +2086,10 @@
       "column": 3,
       "row": 0,
       "sourceRect": {
-        "x": 940.5,
+        "x": 960,
         "y": 0,
-        "width": 313.5,
-        "height": 313.5
+        "width": 320,
+        "height": 320
       },
       "tokens": [],
       "usedBy": [
@@ -2170,10 +2170,10 @@
       "column": 2,
       "row": 1,
       "sourceRect": {
-        "x": 627,
-        "y": 313.5,
-        "width": 313.5,
-        "height": 313.5
+        "x": 640,
+        "y": 320,
+        "width": 320,
+        "height": 320
       },
       "tokens": [],
       "usedBy": [
@@ -2196,8 +2196,8 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "width": 313.5,
-        "height": 313.5
+        "width": 320,
+        "height": 320
       },
       "tokens": [
         "🌰"
@@ -2249,10 +2249,10 @@
       "column": 2,
       "row": 3,
       "sourceRect": {
-        "x": 627,
-        "y": 940.5,
-        "width": 313.5,
-        "height": 313.5
+        "x": 640,
+        "y": 960,
+        "width": 320,
+        "height": 320
       },
       "tokens": [],
       "usedBy": [
@@ -2285,10 +2285,10 @@
       "column": 1,
       "row": 2,
       "sourceRect": {
-        "x": 313.5,
-        "y": 627,
-        "width": 313.5,
-        "height": 313.5
+        "x": 320,
+        "y": 640,
+        "width": 320,
+        "height": 320
       },
       "tokens": [],
       "usedBy": [
@@ -2309,10 +2309,10 @@
       "column": 1,
       "row": 3,
       "sourceRect": {
-        "x": 313.5,
-        "y": 940.5,
-        "width": 313.5,
-        "height": 313.5
+        "x": 320,
+        "y": 960,
+        "width": 320,
+        "height": 320
       },
       "tokens": [],
       "usedBy": []
@@ -2325,10 +2325,10 @@
       "column": 2,
       "row": 2,
       "sourceRect": {
-        "x": 627,
-        "y": 627,
-        "width": 313.5,
-        "height": 313.5
+        "x": 640,
+        "y": 640,
+        "width": 320,
+        "height": 320
       },
       "tokens": [],
       "usedBy": [
@@ -2420,10 +2420,10 @@
       "column": 1,
       "row": 2,
       "sourceRect": {
-        "x": 313.5,
-        "y": 627,
-        "width": 313.5,
-        "height": 313.5
+        "x": 320,
+        "y": 640,
+        "width": 320,
+        "height": 320
       },
       "tokens": [],
       "usedBy": [
@@ -2439,9 +2439,9 @@
       "row": 2,
       "sourceRect": {
         "x": 0,
-        "y": 627,
-        "width": 313.5,
-        "height": 313.5
+        "y": 640,
+        "width": 320,
+        "height": 320
       },
       "tokens": [],
       "usedBy": [
@@ -2608,10 +2608,10 @@
       "column": 2,
       "row": 1,
       "sourceRect": {
-        "x": 627,
-        "y": 313.5,
-        "width": 313.5,
-        "height": 313.5
+        "x": 640,
+        "y": 320,
+        "width": 320,
+        "height": 320
       },
       "tokens": [],
       "usedBy": [
@@ -2626,10 +2626,10 @@
       "column": 3,
       "row": 1,
       "sourceRect": {
-        "x": 940.5,
-        "y": 313.5,
-        "width": 313.5,
-        "height": 313.5
+        "x": 960,
+        "y": 320,
+        "width": 320,
+        "height": 320
       },
       "tokens": [],
       "usedBy": [
@@ -3123,10 +3123,10 @@
       "column": 1,
       "row": 0,
       "sourceRect": {
-        "x": 313.5,
+        "x": 320,
         "y": 0,
-        "width": 313.5,
-        "height": 313.5
+        "width": 320,
+        "height": 320
       },
       "tokens": [],
       "usedBy": [
@@ -3143,8 +3143,8 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "width": 313.5,
-        "height": 313.5
+        "width": 320,
+        "height": 320
       },
       "tokens": [],
       "usedBy": [
@@ -3165,10 +3165,10 @@
       "column": 2,
       "row": 0,
       "sourceRect": {
-        "x": 627,
+        "x": 640,
         "y": 0,
-        "width": 313.5,
-        "height": 313.5
+        "width": 320,
+        "height": 320
       },
       "tokens": [],
       "usedBy": [
@@ -3580,10 +3580,10 @@
       "column": 2,
       "row": 0,
       "sourceRect": {
-        "x": 1024,
+        "x": 640,
         "y": 0,
-        "width": 512,
-        "height": 512
+        "width": 320,
+        "height": 320
       },
       "tokens": [],
       "usedBy": [
@@ -3598,10 +3598,10 @@
       "column": 1,
       "row": 0,
       "sourceRect": {
-        "x": 512,
+        "x": 320,
         "y": 0,
-        "width": 512,
-        "height": 512
+        "width": 320,
+        "height": 320
       },
       "tokens": [],
       "usedBy": [
@@ -3616,10 +3616,10 @@
       "column": 2,
       "row": 1,
       "sourceRect": {
-        "x": 1024,
-        "y": 512,
-        "width": 512,
-        "height": 512
+        "x": 640,
+        "y": 320,
+        "width": 320,
+        "height": 320
       },
       "tokens": [],
       "usedBy": []
@@ -3633,9 +3633,9 @@
       "row": 1,
       "sourceRect": {
         "x": 0,
-        "y": 512,
-        "width": 512,
-        "height": 512
+        "y": 320,
+        "width": 320,
+        "height": 320
       },
       "tokens": [],
       "usedBy": [
@@ -3652,8 +3652,8 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "width": 512,
-        "height": 512
+        "width": 320,
+        "height": 320
       },
       "tokens": [],
       "usedBy": [
@@ -3668,10 +3668,10 @@
       "column": 1,
       "row": 1,
       "sourceRect": {
-        "x": 512,
-        "y": 512,
-        "width": 512,
-        "height": 512
+        "x": 320,
+        "y": 320,
+        "width": 320,
+        "height": 320
       },
       "tokens": [],
       "usedBy": [

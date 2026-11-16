@@ -1,6 +1,14 @@
 # Visual consistency audit
 
-Latest audit: 16 November 2026, Waldpost 9.3.77. The dated entries below record earlier releases. This checks the active game against [Visual style](VISUAL-STYLE.md) and [Puzzle blueprint](PUZZLE-BLUEPRINT.md). It records implementation evidence; it does not grant editorial approval.
+Latest audit: 16 November 2026, Waldpost 9.3.78. The dated entries below record earlier releases. This checks the active game against [Visual style](VISUAL-STYLE.md) and [Puzzle blueprint](PUZZLE-BLUEPRINT.md). It records implementation evidence; it does not grant editorial approval.
+
+## Gallery drawing-style consistency — 9.3.78
+
+The [manual audit](illustrations/GALLERY-STYLE-AUDIT.md) compares every one of the 235 gallery drawings. The majority uses warm watercolour washes, visible coloured-pencil marks, organic sepia contours and soft drawn shading. Sixteen animal-action pictures, sixteen woodland objects and six colour flowers had a smoother sculpted/plush/felt-like finish. Those 38 pictures now match the majority; the other 197 pictures and all 14 other atlases retain their original pixels. [Before/after](evidence/2026-11-16-gallery-style/comparison.png) and [whole corrected gallery](evidence/2026-11-16-gallery-style/all-sheets-after.png).
+
+Subjects, stable IDs, cell order, action contrasts, animal markings, counted quantities and the six flower colours are preserved. Each subject has clean transparent cell corners and complete limbs/leaves inside its bounds. Exact prompts, supplied reference composites, drafts, padding repairs, final PNGs, hashes and manifests are retained in the illustration handoff. Navigation, den/door pins, backgrounds and model identity portraits remain unchanged.
+
+All 112 model tests, all 31 puzzles at phone/tablet sizes, all 38 real PNG exports and the installed-app upgrade/offline checks passed. The shared progress leaf and celebration flower change, so all 31 puzzle rendering revisions reopen normally. A fresh reader with actual pre-redraw approvals correctly shows pending review, preserves history and makes zero writes. Compatibility tests use declared unchanged fixtures for the positive recovery case, rather than assuming today's changed artwork is still compatible. [Validation, screenshots and reports](evidence/2026-11-16-gallery-style/README.md).
 
 ## Simpler symbols and consistent navigation back — 9.3.77
 

@@ -23,6 +23,8 @@ A vocabulary fox is a drawn animal; a letter from Fuchs shows the model portrait
 
 The distinction between the 3D world and drawn learning pages is intentional. Within each role, use one treatment. Historical colouring artwork remains as legacy assets/data; drawing is no longer an active activity.
 
+For new learning drawings, use `animals.webp` and `words-two.webp` as the primary majority-style references: light watercolour washes, visible coloured-pencil strokes and thin organic contours. The [gallery audit](illustrations/GALLERY-STYLE-AUDIT.md) records the 38 sculpted/plush/felt-like outliers redrawn to that style. Keep props and animals visibly illustrated; use the simpler flat symbols only for navigation.
+
 ## Typography
 
 All fonts are bundled locally; no network font requests.

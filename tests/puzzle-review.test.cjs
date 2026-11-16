@@ -1,6 +1,9 @@
 const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
 const {setup,check}=require('../tools/puzzle-catalogue.cjs');
 const plain=v=>JSON.parse(JSON.stringify(v));
+// Component fixture for a release whose picture cells were verified unchanged.
+// Current production art may legitimately have no compatible historical release.
+function compatibleSetup(saved){const env=setup(saved);env.FK.puzzleLegacyImplementations['friends-squirrel']=['test-only-identical-pictures'];return env;}
 function approve(FK,id){const V=FK.puzzleReview,C=FK.puzzleCatalogue;for(const it of C.iterations(id)){assert.ok(V.seen(id,it.id));assert.ok(V.decide(id,it.id,'approved'));}assert.ok(V.decide(id,null,'approved'));}
 test('every active puzzle has at least 25 unique finite definitions, competence and real artwork',()=>{
  const {FK,ctx}=setup();FK.STICKERS=[];ctx.MutationObserver=class{observe(){}};ctx.document={body:{}};vm.runInContext(fs.readFileSync('js/ui/waldatelier.js','utf8'),ctx);
@@ -162,16 +165,16 @@ test('rejection, a failed save, an unvisited queue or changed revision never gra
 });
 test('generated GitHub pages and revision reflect the exact runtime',()=>assert.deepEqual(check(),[]));
 test('verified unchanged historical reviews remain valid without rewriting decisions or inspection evidence',()=>{
- const {FK,memory}=setup(),C=FK.puzzleCatalogue,id='friends-squirrel',items=C.iterations(id),now=FK.puzzleImplementation,map=FK.puzzleImplementations;
+ const {FK,memory}=compatibleSetup(),C=FK.puzzleCatalogue,id='friends-squirrel',items=C.iterations(id),now=FK.puzzleImplementation,map=FK.puzzleImplementations;
  FK.puzzleImplementation=FK.puzzleLegacyImplementations[id][0];delete FK.puzzleImplementations;approve(FK,id);
  const before=JSON.stringify([...memory]);FK.puzzleImplementation=now;FK.puzzleImplementations=map;
  assert.equal(FK.puzzleReview.status(id,items[0].id).status,'approved');assert.equal(FK.puzzleReview.status(id,items[0].id).seen,true);assert.ok(FK.puzzleReview.ready(id));
  assert.equal(JSON.stringify([...memory]),before,'read-only recovery preserves timestamps, notes and history');
  const key=memory.keys().next().value,raw=JSON.parse(memory.get(key));raw.decisions[items[1].id].revision='0000000000000000';memory.set(key,JSON.stringify(raw));
- const V=setup(memory).FK.puzzleReview;assert.equal(V.status(id,items[0].id).status,'approved');assert.equal(V.status(id,items[1].id).status,'pending');assert.equal(V.ready(id),false);
+ const V=compatibleSetup(memory).FK.puzzleReview;assert.equal(V.status(id,items[0].id).status,'approved');assert.equal(V.status(id,items[1].id).status,'pending');assert.equal(V.ready(id),false);
 });
 test('verified unchanged partial rounds resume verbatim; changed questions remain archived',()=>{
- const {FK,memory}=setup(),id='friends-squirrel',s=FK.puzzleRounds.start(id);s.round=2;s.work={marks:[0,2]};s.catalogueRevision=FK.puzzleCatalogue.formerPuzzleRevisions(id)[0];FK.puzzleRounds.save(s);
- assert.deepEqual(plain(setup(memory).FK.puzzleRounds.start(id)),plain(s));
- s.questions[0].count=99;FK.puzzleRounds.save(s);const restored=setup(memory),next=restored.FK.puzzleRounds.start(id);assert.equal(next.round,0);assert.equal(JSON.parse(restored.memory.get('farbtupf.puzzles.v1')).legacy[id].questions[0].count,99,'the earlier snapshot is archived');
+ const {FK,memory}=compatibleSetup(),id='friends-squirrel',s=FK.puzzleRounds.start(id);s.round=2;s.work={marks:[0,2]};s.catalogueRevision=FK.puzzleCatalogue.formerPuzzleRevisions(id)[0];FK.puzzleRounds.save(s);
+ assert.deepEqual(plain(compatibleSetup(memory).FK.puzzleRounds.start(id)),plain(s));
+ s.questions[0].count=99;FK.puzzleRounds.save(s);const restored=compatibleSetup(memory),next=restored.FK.puzzleRounds.start(id);assert.equal(next.round,0);assert.equal(JSON.parse(restored.memory.get('farbtupf.puzzles.v1')).legacy[id].questions[0].count,99,'the earlier snapshot is archived');
 });

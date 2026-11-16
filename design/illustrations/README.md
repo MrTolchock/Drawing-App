@@ -18,6 +18,8 @@ Use these **drawn learning subjects** as reference inputs:
 
 | Reference | What it establishes |
 | --- | --- |
+| [Majority animal drawings](../../assets/waldatelier/animals.webp) | Primary reference: light watercolour, visible coloured-pencil strokes and organic contours |
+| [Majority object vocabulary](../../assets/waldatelier/words-two.webp) | Primary reference: the same drawn technique for objects, leaves and flowers |
 | [Existing animal actions](../../assets/waldatelier/forest-actions.webp) | Animal proportions, warm pencil/crayon shading and clear action contrasts |
 | [Existing vocabulary](../../assets/waldatelier/puzzle-vocabulary.webp) | Drawn objects, textured edges, colour palette and isolated subjects |
 | [New woodland animals](../../assets/waldatelier/forest-wildlife.webp) | Matching action pairs plus Swiss woodland species |
@@ -28,6 +30,18 @@ Use these **drawn learning subjects** as reference inputs:
 The drawing style is a warm children's picture book: soft coloured-pencil/crayon texture, gentle shading, soft edges, warm browns/cream, restrained green/blue accents and friendly, recognizable subjects. Animals need believable anatomy and the features that make the answer correct. Keep identity and markings consistent between action pictures of the same animal.
 
 Learning pictures use this drawn style. The separate [character identity atlas](../../assets/forest-friends/character-portraits.webp) is rendered from the game's 3D models and belongs on letters, host portraits and celebrations. Use the drawn references above for scored animals and objects.
+
+## Gallery style correction — 16 November 2026
+
+The [manual gallery audit](GALLERY-STYLE-AUDIT.md) compares all 235 drawings. The 38 animal-action, woodland-object and colour-flower pictures with a smooth sculpted/plush/felt-like finish were redrawn to match the majority watercolour/pencil technique. The other 197 drawings retain their original pixels. This is the current style reference; keep learning subjects drawn rather than copying the separate simplified navigation-symbol style.
+
+| Corrected sheet | Exact prompt | Source / packing manifest |
+| --- | --- | --- |
+| Sixteen animal actions | [Generation](prompts/forest-actions-style-generation.txt), [padding repair](prompts/forest-actions-style-padding.txt) | [Manifest](forest-actions.json) |
+| Sixteen woodland objects | [Generation](prompts/forest-objects-style-generation.txt), [padding repair](prompts/forest-objects-style-padding.txt) | [Manifest](forest-objects.json) |
+| Six exact flower colours | [Generation](prompts/puzzle-flowers-style-generation.txt) | [Manifest](puzzle-flowers.json) |
+
+The manifests retain the actual ordered reference inputs, draft/final PNGs and hashes. References are cream composites for viewing; generated outputs use real transparency. Original pre-correction atlases remain in [references/gallery-style/](references/gallery-style/), which also preserves the older references used by the 9.3.37 generations below. Regenerate these corrected sheets with the same `pack-atlas.cjs` command. They retain all IDs/cell order, 320 px cells and a 256 px subject bound. The shared progress leaf changes too, so normal review is required again for all 31 puzzles; do not carry old approvals across this art change.
 
 ## Prompts used for 9.3.37
 

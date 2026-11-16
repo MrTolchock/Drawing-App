@@ -1,0 +1,234 @@
+{
+  "images": [
+    {
+      "id": "mouse-sit",
+      "transparent": true,
+      "pngMatchesAtlas": true,
+      "meanPixelError": 0.16934895833333333
+    },
+    {
+      "id": "mouse-run",
+      "transparent": true,
+      "pngMatchesAtlas": true,
+      "meanPixelError": 0.1021484375
+    },
+    {
+      "id": "mouse-sleep",
+      "transparent": true,
+      "pngMatchesAtlas": true,
+      "meanPixelError": 0.18124348958333333
+    },
+    {
+      "id": "bird-fly",
+      "transparent": true,
+      "pngMatchesAtlas": true,
+      "meanPixelError": 0.14147135416666667
+    },
+    {
+      "id": "bird-sit",
+      "transparent": true,
+      "pngMatchesAtlas": true,
+      "meanPixelError": 0.13239908854166665
+    },
+    {
+      "id": "fish-swim",
+      "transparent": true,
+      "pngMatchesAtlas": true,
+      "meanPixelError": 0.10394205729166667
+    },
+    {
+      "id": "hare-run",
+      "transparent": true,
+      "pngMatchesAtlas": true,
+      "meanPixelError": 0.10739583333333333
+    },
+    {
+      "id": "hare-sit",
+      "transparent": true,
+      "pngMatchesAtlas": true,
+      "meanPixelError": 0.10790690104166667
+    },
+    {
+      "id": "fox-sleep",
+      "transparent": true,
+      "pngMatchesAtlas": true,
+      "meanPixelError": 0.14411458333333332
+    },
+    {
+      "id": "fox-run",
+      "transparent": true,
+      "pngMatchesAtlas": true,
+      "meanPixelError": 0.127724609375
+    },
+    {
+      "id": "cat-sleep",
+      "transparent": true,
+      "pngMatchesAtlas": true,
+      "meanPixelError": 0.14912760416666668
+    },
+    {
+      "id": "cat-sit",
+      "transparent": true,
+      "pngMatchesAtlas": true,
+      "meanPixelError": 0.13500651041666667
+    },
+    {
+      "id": "dog-run",
+      "transparent": true,
+      "pngMatchesAtlas": true,
+      "meanPixelError": 0.138896484375
+    },
+    {
+      "id": "dog-sleep",
+      "transparent": true,
+      "pngMatchesAtlas": true,
+      "meanPixelError": 0.117294921875
+    },
+    {
+      "id": "duck-swim",
+      "transparent": true,
+      "pngMatchesAtlas": true,
+      "meanPixelError": 0.12130533854166667
+    },
+    {
+      "id": "duck-fly",
+      "transparent": true,
+      "pngMatchesAtlas": true,
+      "meanPixelError": 0.11816080729166667
+    },
+    {
+      "id": "forest-nut",
+      "transparent": true,
+      "pngMatchesAtlas": true,
+      "meanPixelError": 0.16527018229166668
+    },
+    {
+      "id": "forest-apple",
+      "transparent": true,
+      "pngMatchesAtlas": true,
+      "meanPixelError": 0.19595052083333334
+    },
+    {
+      "id": "forest-berry",
+      "transparent": true,
+      "pngMatchesAtlas": true,
+      "meanPixelError": 0.204130859375
+    },
+    {
+      "id": "forest-leaf",
+      "transparent": true,
+      "pngMatchesAtlas": true,
+      "meanPixelError": 0.19596028645833333
+    },
+    {
+      "id": "forest-feather",
+      "transparent": true,
+      "pngMatchesAtlas": true,
+      "meanPixelError": 0.133662109375
+    },
+    {
+      "id": "forest-fir",
+      "transparent": true,
+      "pngMatchesAtlas": true,
+      "meanPixelError": 0.18689778645833333
+    },
+    {
+      "id": "forest-mushroom",
+      "transparent": true,
+      "pngMatchesAtlas": true,
+      "meanPixelError": 0.19435221354166668
+    },
+    {
+      "id": "forest-flower",
+      "transparent": true,
+      "pngMatchesAtlas": true,
+      "meanPixelError": 0.166416015625
+    },
+    {
+      "id": "forest-honey",
+      "transparent": true,
+      "pngMatchesAtlas": true,
+      "meanPixelError": 0.216708984375
+    },
+    {
+      "id": "forest-rose",
+      "transparent": true,
+      "pngMatchesAtlas": true,
+      "meanPixelError": 0.17822591145833333
+    },
+    {
+      "id": "forest-stone",
+      "transparent": true,
+      "pngMatchesAtlas": true,
+      "meanPixelError": 0.2303125
+    },
+    {
+      "id": "forest-branch",
+      "transparent": true,
+      "pngMatchesAtlas": true,
+      "meanPixelError": 0.11386067708333333
+    },
+    {
+      "id": "forest-lantern",
+      "transparent": true,
+      "pngMatchesAtlas": true,
+      "meanPixelError": 0.15685872395833333
+    },
+    {
+      "id": "forest-shapes",
+      "transparent": true,
+      "pngMatchesAtlas": true,
+      "meanPixelError": 0.16818033854166667
+    },
+    {
+      "id": "forest-post",
+      "transparent": true,
+      "pngMatchesAtlas": true,
+      "meanPixelError": 0.20652018229166666
+    },
+    {
+      "id": "forest-basket",
+      "transparent": true,
+      "pngMatchesAtlas": true,
+      "meanPixelError": 0.197216796875
+    },
+    {
+      "id": "puzzle-flower-rot",
+      "transparent": true,
+      "pngMatchesAtlas": true,
+      "meanPixelError": 0.111923828125
+    },
+    {
+      "id": "puzzle-flower-gelb",
+      "transparent": true,
+      "pngMatchesAtlas": true,
+      "meanPixelError": 0.11681966145833333
+    },
+    {
+      "id": "puzzle-flower-blau",
+      "transparent": true,
+      "pngMatchesAtlas": true,
+      "meanPixelError": 0.13001302083333333
+    },
+    {
+      "id": "puzzle-flower-rosa",
+      "transparent": true,
+      "pngMatchesAtlas": true,
+      "meanPixelError": 0.113427734375
+    },
+    {
+      "id": "puzzle-flower-weiss",
+      "transparent": true,
+      "pngMatchesAtlas": true,
+      "meanPixelError": 0.09547526041666667
+    },
+    {
+      "id": "puzzle-flower-lila",
+      "transparent": true,
+      "pngMatchesAtlas": true,
+      "meanPixelError": 0.14060221354166666
+    }
+  ],
+  "storageUnchanged": true,
+  "errors": []
+}
