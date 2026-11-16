@@ -228,9 +228,21 @@
   },
   "designDrafts": [
     {
+      "id": "drawn-map-v2",
+      "file": "design/artwork/drafts/drawn-map-v2.png",
+      "status": "proposal-only-not-implemented",
+      "role": "cartography",
+      "projection": "orthographic-top-down-2d",
+      "detail": "simplified-cartographic-plan",
+      "forwardPrompt": "design/artwork/prompts/drawn-map-draft.txt",
+      "generationRecord": "design/artwork/generation-records/drawn-map-draft-v2.json",
+      "runtimeMap": "assets/forest-friends/world-map.webp",
+      "policy": "Design draft only. Do not use as a runtime dependency or offline asset until the owner approves implementation."
+    },
+    {
       "id": "drawn-map-v1",
       "file": "design/artwork/drafts/drawn-map-v1.png",
-      "status": "proposal-only-not-implemented",
+      "status": "superseded-proposal-only-not-implemented",
       "forwardPrompt": "design/artwork/prompts/drawn-map-draft.txt",
       "generationRecord": "design/artwork/generation-records/drawn-map-draft.json",
       "runtimeMap": "assets/forest-friends/world-map.webp",

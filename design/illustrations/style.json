@@ -47,6 +47,9 @@
     },
     "letter-portrait": {
       "instruction": "Paint recognizable sender friends in the canonical watercolour and coloured-pencil medium, with natural friendly animal proportions, organic sepia contours and gentle drawn volume. Keep species markings and identity accessories readable, with genuine transparency and complete silhouettes in generous square cells. Any model reference defines identity and colour only, never rendering style. This explicit painted-portrait role is for letters; existing world and puzzle/map identity pipelines remain separate."
+    },
+    "cartography": {
+      "instruction": "Apply the canonical watercolour/pencil medium as a simplified flat cartographic plan. Strict orthographic top-down projection throughout, no perspective, visible vertical surfaces, relief modelling or cast shadows. Use broad quiet colour regions, light washes, fine organic sepia outlines and a few small plan-view symbols. Keep path connections, water boundaries and relative landmark positions clear; remove decorative microdetail. Opaque landscape canvas. Geography references define layout only. The result is a design proposal outside runtime assets until approved."
     }
   },
   "prompts": [
@@ -203,7 +206,7 @@
     },
     {
       "id": "drawn-map-draft",
-      "role": "scene",
+      "role": "cartography",
       "path": "design/artwork/prompts/drawn-map-draft.txt",
       "brief": "design/artwork/briefs/drawn-map-draft.txt",
       "transparent": false,

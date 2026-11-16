@@ -11,7 +11,7 @@
 | Navigation back arrow | `navigation-back` | Same simple symbol family; no wood grain, carving, bevel or circular backing in the picture |
 | Invitation paper | `letter-paper` | Empty portrait zone; current sender added from the painted friend atlas |
 | Painted invitation friends | `letter-friends` | Four-by-four atlas with fourteen portraits, including Reh, Igel and Steinbock; model reference defines identity only |
-| Drawn map proposal | `drawn-map-draft` | Design draft only; preserve actual geography and do not replace the runtime map before approval |
+| Drawn map proposal | `drawn-map-draft` | `cartography` role: simplified flat 2D, strict top-down view, broad forest patches and clear paths/water; preserve actual geography. Draft only until approved |
 | Den painting | `den` | [Camera/layout anchors](BACKGROUNDS.md) |
 | Shared puzzle/menu/settings woodland | `puzzle-clearing` | [Shared scene and quiet crop area](BACKGROUNDS.md) |
 | New companion scene | `background` | Same canonical medium; explicit framing and panel-safe space |

@@ -8,7 +8,7 @@ Every navigation back now uses one simple ochre/sepia arrow matching the map, le
 
 Invitation letters use a separate painted fourteen-friend atlas, including Reh, Igel and Steinbock. The [cast/preparation guide](artwork/LETTER-FRIENDS.md) fixes cell order, actual requests and source hashes. A spacing repair preserves complete ears, tails and horns before packing. Only the letter renderer uses `FK.friendsArt.letterPortrait`; world, puzzle, companion and map identities keep their model pipeline. Steinbock is available as a drawing; puzzle destinations and journey rules remain unchanged.
 
-The [drawn map proposal](artwork/drafts/README.md) is a design draft only. Runtime map pixels, coordinates, pin positions and offline dependencies do not use it.
+The [drawn map proposal](artwork/drafts/README.md) is a design draft only. Version 2 reduces detail and uses a flat, strictly top-down cartographic plan, with broad land-cover regions, clear water/routes and sparse symbols. Its dedicated `cartography` role preserves the canonical watercolour/pencil medium. Version 1 remains a superseded proposal. Runtime map pixels, coordinates, pin positions and offline dependencies do not use either draft.
 
 Historical prompts, competing directions, drafts, before images, comparisons, dated audits and renderer evidence are [archived with their original bytes](../archive/design-history/2026-11-16-before-style-contract/README.md). They are provenance only. The archived [gallery audit](../archive/design-history/2026-11-16-before-style-contract/design/illustrations/GALLERY-STYLE-AUDIT.md) and [validation](../archive/design-history/2026-11-16-before-style-contract/design/evidence/2026-11-16-gallery-style/README.md) document the previous correction.
 
