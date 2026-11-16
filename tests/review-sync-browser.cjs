@@ -18,14 +18,24 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
  async function connect(page){
   await active(page).locator('.review-connection summary').click();await active(page).getByLabel('GitHub-Zugriffstoken',{exact:true}).fill('test-review-token');await active(page).getByRole('button',{name:'Mit GitHub verbinden',exact:true}).click();await page.waitForFunction(()=>FK.reviewRepository.state.connected&&FK.reviewRepository.state.phase==='saved');
  }
- await connect(a.page);await a.page.locator('[data-puzzle="add"]').click();await a.page.locator('[data-iteration="add/1-1"]').click();
+ await connect(a.page);await a.page.locator('[data-puzzle="add"]').click();
+ await a.page.getByLabel('Allgemeiner Kommentar zum Puzzle',{exact:true}).fill('Die Bilder im ganzen Puzzle prüfen.');
+ await a.page.getByRole('button',{name:'Offen',exact:true}).click();assert.equal(await a.page.getByLabel('Allgemeiner Kommentar zum Puzzle',{exact:true}).inputValue(),'Die Bilder im ganzen Puzzle prüfen.','filtering preserves the comment draft');
+ await active(a.page).locator('.btn-back').click();await a.page.locator('[data-puzzle="add"]').click();assert.equal(await a.page.getByLabel('Allgemeiner Kommentar zum Puzzle',{exact:true}).inputValue(),'Die Bilder im ganzen Puzzle prüfen.','Back and reselect preserve the comment draft');
+ await a.page.getByRole('button',{name:'Kommentar speichern',exact:true}).click();await a.page.evaluate(()=>FK.reviewRepository.refresh());await a.page.waitForFunction(()=>FK.reviewRepository.state.pending===0);
+ assert.equal(Object.values(server.ledger.entries).find(e=>e.key==='puzzle:add').note,'Die Bilder im ganzen Puzzle prüfen.');
+ assert.equal(await a.page.evaluate(()=>FK.puzzleReview.status('add').status),'pending','a comment does not approve the puzzle');
+ await a.page.locator('[data-iteration="add/1-1"]').click();
  await active(a.page).locator('[data-answer="2"]').tap();await a.page.evaluate(()=>FK.reviewRepository.refresh());await a.page.waitForFunction(()=>FK.reviewRepository.state.pending===0&&FK.reviewRepository.state.phase==='saved');
  assert.equal(Object.values(server.ledger.entries).find(e=>e.key==='add/1-1').status,'approved');
  await a.page.waitForFunction(()=>document.querySelector('.screen:not([hidden])').dataset.reviewIteration!=='add/1-1');
  const second=await active(a.page).getAttribute('data-review-iteration');await active(a.page).getByRole('button',{name:'Iteration ablehnen',exact:true}).tap();await a.page.getByRole('button',{name:'Ablehnen und weiter',exact:true}).tap();await a.page.evaluate(()=>FK.reviewRepository.refresh());await a.page.waitForFunction(()=>FK.reviewRepository.state.pending===0);
  assert.equal(Object.values(server.ledger.entries).find(e=>e.key===second).status,'improve');
  const b=await device(390);assert.equal(await b.page.evaluate(()=>FK.reviewRepository.state.connected),false);assert.equal(await b.page.evaluate(()=>FK.puzzleReview.status('add','add/1-1').status),'approved');assert.equal(await b.page.evaluate(id=>FK.puzzleReview.status('add',id).status,second),'improve');
- await b.page.screenshot({path:shots+'/fresh-browser-phone.png'});
+ await b.page.locator('[data-puzzle="add"]').click();assert.equal(await b.page.getByLabel('Allgemeiner Kommentar zum Puzzle',{exact:true}).inputValue(),'Die Bilder im ganzen Puzzle prüfen.');
+ assert.equal(await active(b.page).locator('.review-connection').count(),0);
+ await b.page.screenshot({path:shots+'/puzzle-comment-phone.png'});
+ await active(b.page).locator('.btn-back').click();await b.page.screenshot({path:shots+'/fresh-browser-phone.png'});
  // A completed fixture pool can finish its actual celebration, without a sign-off form.
  await seedFromPage(a.page,server,['add']);await active(a.page).getByRole('button',{name:'Zur Puzzle-Prüfung',exact:true}).click();
  await a.page.evaluate(()=>FK.puzzleReview.decide('add',null,'pending'));await a.page.evaluate(()=>FK.reviewRepository.refresh());
@@ -35,7 +45,7 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
  await a.context.setOffline(true);await a.page.evaluate(()=>FK.puzzleReview.decide('add','add/1-1','improve'));assert.equal(await a.page.evaluate(()=>FK.puzzleReview.ready('add')),false);await a.page.evaluate(()=>FK.reviewRepository.refresh());assert.equal(await a.page.evaluate(()=>FK.reviewRepository.state.pending),1);
  await connect(b.page);await b.page.evaluate(()=>FK.puzzleReview.decide('add','add/1-1','pending'));await b.page.evaluate(()=>FK.reviewRepository.refresh());
  await a.context.setOffline(false);await a.page.evaluate(()=>FK.reviewRepository.refresh());assert.equal(await a.page.evaluate(()=>FK.reviewRepository.state.phase),'conflict');assert.equal(Object.values(server.ledger.entries).find(e=>e.key==='add/1-1').status,'pending');
- await active(a.page).getByRole('button',{name:'GitHub behalten',exact:true}).click();await a.page.waitForFunction(()=>FK.reviewRepository.state.pending===0);assert.equal(await a.page.evaluate(()=>FK.puzzleReview.status('add','add/1-1').status),'pending');
+ await active(a.page).locator('.btn-back').click();await active(a.page).getByRole('button',{name:'GitHub behalten',exact:true}).click();await a.page.waitForFunction(()=>FK.reviewRepository.state.pending===0);assert.equal(await a.page.evaluate(()=>FK.puzzleReview.status('add','add/1-1').status),'pending');
  // A fresh install with no cache/token restores the authoritative decision automatically.
  await b.page.evaluate(()=>FK.puzzleReview.decide('add','add/1-1','improve'));await b.page.evaluate(()=>FK.reviewRepository.refresh());const c=await device(1080);assert.equal(await c.page.evaluate(()=>FK.puzzleReview.status('add','add/1-1').status),'improve');assert.equal(await c.page.evaluate(()=>FK.reviewRepository.state.connected),false);
  assert.equal(await a.page.evaluate(()=>JSON.stringify(FK.puzzleReview.exportData()).includes('test-review-token')),false);assert.equal(await a.page.evaluate(()=>Object.values(localStorage).some(v=>v.includes('test-review-token'))),false);

@@ -1067,7 +1067,7 @@
     if (e.key !== 'Escape' || view !== 'play' || document.querySelector('.modal')) return;
     e.stopImmediatePropagation();
     e.preventDefault();
-    if(woodlandSession)FK.go(woodlandOrigin);else showOver();
+    if(woodlandSession)FK.go(woodlandOrigin,woodlandSession.review?{reviewPuzzle:woodlandGame}:{},{isBack:true});else showOver();
   }
   function onVis() {
     if (document.hidden) {
@@ -1082,7 +1082,7 @@
       FK.on('puzzle-review-change',()=>{if(active&&woodlandSession&&!woodlandSession.review&&!woodlandSession.blocked&&!FK.puzzleReview.ready(woodlandGame)){FK.playLog?.stop('review_required');stopActivity();playEl.hidden=true;woodlandContext.hidden=true;woodlandEnd.hidden=false;woodlandEnd.replaceChildren(h('p',{class:'puzzle-review-blocked',text:'Dieses Puzzle wartet auf erneute Freigabe.'}));}});
       const bar = FK.ui.topbar({
         title: 'Schreiben',
-        onBack: () => { if(woodlandSession)FK.go(woodlandOrigin);else if (view === 'play') showOver(); else FK.back(); },
+        onBack: () => { if(woodlandSession)FK.go(woodlandOrigin,woodlandSession.review?{reviewPuzzle:woodlandGame}:{},{isBack:true});else if (view === 'play') showOver(); else FK.back(); },
       });
       bar.append(FK.play.listen('Fahre die Schreibspur mit dem Finger oder Stift nach. Beginne beim Punkt und folge dem Pfeil.','Spiel erklären'));
       backUse = bar.querySelector('.btn-back use');

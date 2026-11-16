@@ -101,6 +101,7 @@ function map(){
   for(const [id,p]of Object.entries(places)){
     if(id==='mailman')continue;
     const b=button(p.name,p.picture,()=>{if(area!=='forest')go('forest');else close();world.route(id);});
+    b.removeAttribute('title'); // Picture-only pins; keep the accessible destination name.
     b.replaceChildren(id==='home'?FK.hudArt.element('den'):FK.friendsArt.portrait(id));b.dataset.place=id;if(id==='home')b.classList.add('ff-map-home');
     const invited=mail.phase==='to-friend'&&mail.host===id||mail.phase==='return-home'&&id==='home';b.classList.toggle('ff-map-invited',invited);if(invited)b.append(h('span',{class:'ff-map-invitation'},FK.hudArt.element('letter')));
     const [x,y]=mapPins[id];b.style.left=(x*100)+'%';b.style.top=(y*100)+'%';board.append(b);
@@ -113,7 +114,7 @@ function map(){
   const scroller=h('div',{class:'ff-map-scroll'},board);card.append(scroller);requestAnimationFrame(()=>{scroller.scrollLeft=Math.max(0,Math.min(scroller.scrollWidth-scroller.clientWidth,hx*scroller.scrollWidth-scroller.clientWidth/2));});
   if(mail.phase==='to-mailman'){
     const b=button('Zum Briefträger','mailman',()=>{if(area!=='forest')go('forest');else close();world.route('mailman');},'ff-map-courier');
-    b.replaceChildren(FK.friendsArt.portrait('mailman'),h('span',{text:'Zum Briefträger'}));b.dataset.place='mailman';card.append(b);
+    b.removeAttribute('title');b.replaceChildren(FK.friendsArt.portrait('mailman'));b.dataset.place='mailman';card.append(b);
   }
 }
 function meet(id){

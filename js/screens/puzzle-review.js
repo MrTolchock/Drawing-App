@@ -2,7 +2,42 @@
 (function(){
   'use strict';
   const FK=window.FK,h=FK.h,C=FK.puzzleCatalogue,V=FK.puzzleReview;
-  let body,selected=null,filter='all',notice='';
+  let body,backButton,selected=null,filter='all',notice='';
+  const drafts=new Map();
+  // Describe the bounded practice in this puzzle; these are explanations, not curriculum quotations.
+  const competences={
+    'friends-squirrel':'Das Kind zählt abgebildete Nüsse bis 20 und nutzt Vierer- oder Fünferreihen, um Mengen zu überblicken.',
+    'friends-bird':'Das Kind liest vertraute Wörter und erkennt an ihrem Klang, welche Wörter sich reimen.',
+    'friends-owl':'Das Kind liest einen kurzen Satz, versteht die beschriebene Handlung und wählt das passende Tierbild.',
+    'friends-beaver':'Das Kind erkennt Kreis, Dreieck und Quadrat und ergänzt die fehlende Form in einer geordneten Matrix.',
+    'friends-mouse':'Das Kind liest ein vertrautes Nomen und verbindet das gelesene Wort mit dem passenden Bild.',
+    'friends-hedgehog':'Das Kind versteht eine kurze gelesene Frage und ordnet sichtbare Merkmale dem passenden Tier zu.',
+    'friends-fish':'Das Kind bestimmt Anzahlen bis 20, indem es Fische zählt und geordnete Reihen nutzt.',
+    'friends-deer':'Das Kind liest Naturfragen und ordnet Tieren passende Lebensräume oder Nahrung zu.',
+    'friends-kingfisher':'Das Kind zählt unterschiedliche Gegenstände am Bach und bestimmt ihre Anzahl bis 20.',
+    'friends-frog':'Das Kind liest Tiernamen und erkennt, welches Tierbild zum gelesenen Wort gehört.',
+    'friends-badger':'Das Kind liest kurze Naturfragen und erkennt Zusammenhänge bei Pflanzenwachstum, Wetter und Entwicklung.',
+    count:'Das Kind unterscheidet Marienkäfer von anderen kleinen Tieren und zählt gezielt nur die gesuchte Menge.',
+    add:'Das Kind fasst zwei sichtbare Gruppen zu einer Gesamtmenge zusammen und bestimmt ihre Summe bis 10.',
+    pattern:'Das Kind erkennt die wiederkehrende Einheit eines Musters und setzt die Folge nach derselben Regel fort.',
+    nature:'Das Kind liest zwei kurze Hinweise, verbindet deren Bedeutung und erschliesst daraus das gesuchte Tier oder Naturding.',
+    rocket:'Das Kind vergleicht besetzte mit freien Plätzen und bestimmt, wie viele bis zur Gesamtmenge von 5 bis 10 fehlen.',
+    picnic:'Das Kind verteilt Beeren einzeln auf zwei bis vier Freunde, bis alle gleich viele erhalten haben.',
+    syllable:'Das Kind erkennt die Sprechsilben eines vertrauten Bildworts und bestimmt, ob das Wort eine, zwei oder drei Silben hat.',
+    robot:'Das Kind plant eine Folge benachbarter Schritte auf einem Raster, um ein sichtbares Ziel zu erreichen und Hindernisse zu umgehen.',
+    sequence:'Das Kind erkennt den zeitlichen Zusammenhang dreier beschrifteter Bilder und ordnet sie zu einer sinnvollen Geschichte.',
+    treasure:'Das Kind merkt sich vier abgebildete Gegenstände und erkennt nach dem Vergleich, welcher Gegenstand fehlt. Dies ist eine ergänzende Gedächtnisübung ohne Lehrplancode.',
+    neighbours:'Das Kind orientiert sich in der Zahlenfolge und bestimmt die Zahl unmittelbar vor oder nach einer gegebenen Zahl.',
+    compare:'Das Kind vergleicht zwei sichtbare Mengen bis 10 und entscheidet, wo mehr oder ob gleich viele Beeren liegen.',
+    mirror:'Das Kind erkennt die Lage von Blättern zur senkrechten Spiegelachse und überträgt das Muster spiegelbildlich auf die andere Seite.',
+    vowels:'Das Kind verbindet ein Bild mit seinem Wort und ergänzt den fehlenden Vokal an der passenden Stelle.',
+    'read-puzzle':'Das Kind liest einzelne Silben und setzt sie in der richtigen Reihenfolge zu einem passenden Bildwort zusammen.',
+    'read-word':'Das Kind liest vertraute Waldwörter und verbindet das gelesene Wort mit seiner bildlichen Bedeutung.',
+    'read-leaves':'Das Kind erkennt Buchstabenfolgen in kurzen Silben und unterscheidet ähnlich aussehende Silben beim Lesen.',
+    'read-colours':'Das Kind liest Farbsätze genau und verbindet Farbwörter und gegebenenfalls links/rechts mit dem passenden Bild.',
+    trace:'Das Kind folgt den vorgegebenen Strichen grosser und kleiner Buchstaben und übt deren Form und Bewegungsrichtung. Freies Schreiben wird dabei nicht beurteilt.',
+    'trace-numbers':'Das Kind folgt den vorgegebenen Strichen der Ziffern 0 bis 9 und verbindet die Ziffer mit einer gezeichneten Menge. Freies Schreiben wird dabei nicht beurteilt.'
+  };
   const names={pending:'Offen',approved:'Freigegeben',improve:'Verbessern'};
   const btn=(label,fn)=>FK.ui.btn({label,onClick:fn});
   const statusText=s=>(s.stale?'Geändert · ':'')+names[s.status];
@@ -11,16 +46,17 @@
   async function approveAll(id){
     const p=C.puzzle(id);
     if(!await FK.ui.confirm('Alle '+V.progress(id).total+' Iterationen von «'+p.title+'» freigeben?','Alle bestätigen','Abbrechen'))return;
-    notice=V.approveAll(id)?'Alle Iterationen von «'+p.title+'» bestätigt. '+(FK.reviewRepository?'Bitte den GitHub-Speicherstatus oben beachten.':''):(V.error||'Bestätigen fehlgeschlagen.');draw();
+    notice=V.approveAll(id)?'Alle Iterationen von «'+p.title+'» bestätigt. '+(FK.reviewRepository?'Bitte den GitHub-Speicherstatus unten beachten.':''):(V.error||'Bestätigen fehlgeschlagen.');draw();
   }
-  function message(){return h('p',{class:'review-notice',role:'status','aria-live':'polite',text:V.error||notice});}
+  function message(){return h('p',{class:'review-notice',role:'status','aria-live':'polite',text:V.error||notice,hidden:!(V.error||notice)});}
   function draw(){
     FK.forestVoice.cancel();
     const games=FK.friendsLibrary.catalogue();
-    const controls=h('div',{class:'review-controls'},btn('Alle Puzzles',()=>{selected=null;draw();toTop();}));
     const total=games.reduce((a,g)=>a+C.iterations(g.id).length,0),ready=games.filter(g=>V.ready(g.id)).length;
-    body.replaceChildren(h('p',{class:'review-intro',text:ready+' / '+games.length+' Puzzles freigegeben · '+total+' einzelne Iterationen. Nur auf GitHub gespeicherte Freigaben sind für Kinder spielbar. Vorschauen verändern keinen Spielstand.'}),FK.reviewConnection.panel(),controls,message());
+    backButton.setAttribute('aria-label',selected?'Zur Puzzle-Übersicht':'Zurück zu Einstellungen');
+    body.replaceChildren();
     if(!selected){
+      body.append(h('p',{class:'review-intro',text:ready+' / '+games.length+' Puzzles freigegeben · '+total+' einzelne Iterationen. Nur auf GitHub gespeicherte Freigaben sind für Kinder spielbar. Vorschauen verändern keinen Spielstand.'}),FK.reviewConnection.panel(),message());
       const grid=h('div',{class:'review-grid'});
       for(const g of games){const p=C.puzzle(g.id),progress=V.progress(g.id);
         const card=btn(g.title,()=>{selected=g.id;filter='all';draw();toTop();});card.classList.add('review-puzzle');card.dataset.puzzle=g.id;
@@ -30,7 +66,13 @@
     const p=C.puzzle(selected),progress=V.progress(selected);
     const speechStatus=h('p',{class:'review-speech-status',role:'status','aria-live':'polite'});
     const speech=FK.ui.btn({icon:'sound',label:'Spielerklärung anhören',onClick:()=>{speechStatus.textContent=FK.forestVoice.explain(p.instruction)?'Spielerklärung wird vorgelesen.':'Die Sprachausgabe ist auf diesem Gerät nicht verfügbar.';}});
-    body.append(h('h2',{text:p.title}),h('p',{text:p.competence+' · '+p.reference}),h('p',{text:'Schwierigkeit: '+p.difficulty}),h('p',{text:progress.approved+' / '+progress.total+' freigegeben · '+progress.improve+' verbessern · '+progress.pending+' offen'}),h('section',{class:'review-speech'},h('h3',{text:'Spielerklärung'}),h('p',{text:p.instruction}),speech,speechStatus));
+    body.append(message(),h('h2',{text:p.title}),h('section',{class:'review-competence'},h('h3',{text:'Geübte Kompetenz: '+p.competence}),h('p',{text:competences[selected]}),h('p',{text:'Lehrplanbezug: '+p.reference})),h('p',{text:'Schwierigkeit: '+p.difficulty}),h('p',{text:progress.approved+' / '+progress.total+' freigegeben · '+progress.improve+' verbessern · '+progress.pending+' offen'}),h('section',{class:'review-speech'},h('h3',{text:'Spielerklärung'}),h('p',{text:p.instruction}),speech,speechStatus));
+    const id=selected,note=h('textarea',{'aria-label':'Allgemeiner Kommentar zum Puzzle',maxlength:4000,rows:4,placeholder:'Was möchtest du zum gesamten Puzzle festhalten?',text:drafts.get(id)??V.status(id).decision?.note??''});
+    const saved=h('p',{class:'review-notice',role:'status','aria-live':'polite'});
+    note.addEventListener('input',()=>{drafts.set(id,note.value);saved.textContent='Noch nicht gespeichert.';});
+    body.append(h('section',{class:'review-comment'},h('h3',{text:'Allgemeiner Kommentar zum Puzzle'}),h('label',{},'Kommentar (optional)',note),btn('Kommentar speichern',()=>{
+      if(V.comment(id,note.value)){drafts.delete(id);saved.textContent='Kommentar gespeichert.';}else saved.textContent=V.error;
+    }),saved));
     const tabs=h('nav',{class:'review-actions','aria-label':'Aufgaben filtern'});
     for(const [value,label]of Object.entries({all:'Alle Iterationen',pending:'Offen',improve:'Verbessern',approved:'Freigegeben',stale:'Geändert'})){const b=btn(label,()=>{filter=value;draw();});b.setAttribute('aria-pressed',String(value===filter));tabs.append(b);}
     const all=btn('Alle bestätigen',()=>approveAll(selected));all.classList.add('review-approve-all');all.disabled=V.ready(selected)||(progress.approved===progress.total&&V.status(selected).status==='approved');
@@ -45,7 +87,7 @@
     const history=V.exportData().history.filter(d=>d.key==='puzzle:'+selected||d.key.startsWith(selected+'/'));
     if(history.length)body.append(h('details',{},h('summary',{text:'Bisherige Entscheidungen ('+history.length+')'}),history.slice().reverse().map(d=>h('p',{text:d.key+' · '+names[d.status]+' · '+d.at+(d.note?' · '+d.note:'')}))));
   }
-  function returnToGallery(id){selected=id;FK.go('puzzle-review');}
+  function returnToGallery(id){FK.go('puzzle-review',{reviewPuzzle:id});}
   function saveFailure(retry){
     FK.ui.modal({title:'Prüfung nicht gespeichert',body:h('p',{text:V.error||'Bitte erneut versuchen.'}),actions:[
       {label:'Erneut versuchen',onClick:retry},{label:'Zur Puzzle-Prüfung',onClick:()=>returnToGallery(document.querySelector('.screen:not([hidden])')?.dataset.game)}]});
@@ -73,7 +115,7 @@
   function finishPreview(session){
     const all=V.progress(session.id);
     if(!session.reviewResults.includes('improve')&&all.approved===all.total&&!V.finishSession(session)){saveFailure(()=>finishPreview(session));return;}
-    notice=all.approved===all.total?'Alle Iterationen geprüft. Puzzle-Freigabe lokal gespeichert. '+(FK.reviewRepository?'Bitte den GitHub-Speicherstatus oben beachten.':''):(all.total-all.approved)+' Iterationen bleiben zur Verbesserung oder Prüfung offen.';
+    notice=all.approved===all.total?'Alle Iterationen geprüft. Puzzle-Freigabe lokal gespeichert. '+(FK.reviewRepository?'Bitte den GitHub-Speicherstatus unten beachten.':''):(all.total-all.approved)+' Iterationen bleiben zur Verbesserung oder Prüfung offen.';
     returnToGallery(session.id);
   }
   V.attachPreview=attachPreview;V.saveFailure=saveFailure;V.finishPreview=finishPreview;
@@ -88,8 +130,12 @@
     });
   });
   FK.screen('puzzle-review',{
-    build(root){root.classList.add('ff-settings-screen');body=h('div',{class:'review-body scroll'});root.append(FK.ui.topbar({title:'Puzzle-Prüfung',stars:false,onBack:()=>FK.go('settings',{},{isBack:true})}),body);},
-    enter(){if(!V.authorized){V.open();return;}draw();toTop();},
+    build(root){root.classList.add('ff-settings-screen');body=h('div',{class:'review-body scroll'});
+      const bar=FK.ui.topbar({title:'Puzzle-Prüfung',stars:false,onBack:()=>{
+        if(selected){selected=null;filter='all';notice='';draw();toTop();}else FK.go('settings',{},{isBack:true});
+      }});backButton=bar.querySelector('.btn-back');root.append(bar,body);
+    },
+    enter(params){if(!V.authorized){V.open();return;}selected=C.puzzle(params.reviewPuzzle)?params.reviewPuzzle:null;filter='all';draw();toTop();},
     leave(){notice='';FK.forestVoice.cancel();}
   });
 })();

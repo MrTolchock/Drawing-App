@@ -12,19 +12,25 @@ const BASE=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000';
   const current=()=>page.evaluate(()=>FK.current());
   const appearance=button=>button.evaluate(n=>{const s=getComputedStyle(n),icon=n.querySelector('[data-hud="back"]'),i=icon&&getComputedStyle(icon);return {width:s.width,height:s.height,background:s.background,border:s.border,borderRadius:s.borderRadius,boxShadow:s.boxShadow,icon:i&&{width:i.width,height:i.height,image:i.backgroundImage,position:i.backgroundPosition,filter:i.filter}};});
   await page.getByRole('button',{name:'Dein Brief',exact:true}).click();await page.getByRole('button',{name:'Zum Freund gehen',exact:true}).click();
-  await page.getByRole('button',{name:'Bildkarte',exact:true}).click();const mapBack=page.locator('.screen:not([hidden]) .ff-card-top').getByRole('button',{name:'Zurück',exact:true}),reference=await appearance(mapBack);assert.ok(parseFloat(reference.width)>=48);assert.match(reference.icon.image,/assets\/interface\/navigation.webp/);assert.equal(reference.icon.filter,'none');await mapBack.click();
+  await page.getByRole('button',{name:'Bildkarte',exact:true}).click();const mapBack=page.locator('.screen:not([hidden]) .ff-card-top').getByRole('button',{name:'Zurück',exact:true}),reference=await appearance(mapBack);assert.ok(parseFloat(reference.width)>=48);assert.match(reference.icon.image,/assets\/interface\/navigation.webp/);assert.equal(reference.icon.filter,'none');assert.equal(await page.locator('.ff-map [data-place]').evaluateAll(nodes=>nodes.every(n=>!n.textContent.trim()&&!n.hasAttribute('title')&&n.getAttribute('aria-label'))),true,'map has picture-only pins with accessible names');await mapBack.click();
   const checked=[];
   const back=async()=>{const button=page.locator('.screen:not([hidden]) .btn-back').first();assert.deepEqual(await appearance(button),reference,'same drawn arrow and frame in '+await current());checked.push(await current());await button.click();await page.waitForTimeout(250);};
   const gate=async()=>{const n=(await page.locator('.gate-task').innerText()).match(/\d+/g).map(Number);await page.locator('.gate-input').fill(String(n[0]*n[1]));await page.getByRole('button',{name:'Öffnen',exact:true}).click();};
   const settings=async()=>{await page.getByRole('button',{name:'Einstellungen für Erwachsene',exact:true}).first().click();await gate();await page.waitForFunction(()=>FK.current()==='settings');};
   for(let round=0;round<2;round++){
-   await settings();
+   await settings();assert.equal(await page.getByLabel('Stimme zum Vorlesen',{exact:true}).count(),0);assert.equal(await page.locator('.screen:not([hidden]) .review-connection').count(),0);
    // into the review and back, twice, then into a puzzle preview from the review and back
    for(let k=0;k<2;k++){await page.getByRole('button',{name:'Puzzle-Prüfung öffnen',exact:true}).click();await page.waitForFunction(()=>FK.current()==='puzzle-review');await back();assert.equal(await current(),'settings','review back → settings');}
    await page.getByRole('button',{name:'Puzzle-Prüfung öffnen',exact:true}).click();await page.waitForFunction(()=>FK.current()==='puzzle-review');
+   assert.equal(await page.locator('.review-puzzle').count(),31);
+   assert.equal(await page.getByRole('button',{name:'Alle Puzzles',exact:true}).count(),0);
    const id=round===0?'friends-squirrel':'trace',it=await page.evaluate(id=>FK.puzzleCatalogue.iterations(id)[0].id,id);
+   await page.locator('[data-puzzle="'+id+'"]').click();
+   assert.equal(await page.locator('.screen:not([hidden]) .review-connection').count(),0);
+   assert.ok((await page.locator('.review-competence').innerText()).includes('Das Kind'));
    assert.ok(await page.evaluate(([id,it])=>FK.puzzleReview.preview(id,it),[id,it]),'preview opens');await page.waitForTimeout(400);assert.notEqual(await current(),'puzzle-review');
    await back();assert.equal(await current(),'puzzle-review','puzzle back → review');
+   await back();assert.equal(await current(),'puzzle-review','selected puzzle back → all puzzles');assert.equal(await page.locator('.review-puzzle').count(),31);
    await back();assert.equal(await current(),'settings','review back → settings');
    await back();assert.equal(await current(),'friends','settings back → the game');
   }

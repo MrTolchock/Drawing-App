@@ -21,7 +21,8 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
  // One shared spoken rule is tested on each puzzle overview, never per iteration.
  await page.evaluate(()=>{window.reviewSpeechRequests=[];const synth=window.speechSynthesis,speak=synth.speak.bind(synth);synth.speak=utterance=>{reviewSpeechRequests.push({text:utterance.text,lang:utterance.lang});speak(utterance);};});
  for(const g of entries){
-  await page.getByRole('button',{name:'Alle Puzzles',exact:true}).click();await page.locator('[data-puzzle="'+g.id+'"]').click();
+  if(await page.locator('.screen:not([hidden]) .review-iterations').count())await page.locator('.screen:not([hidden]) .btn-back').click();
+  await page.locator('[data-puzzle="'+g.id+'"]').click();
   assert.equal(await page.getByLabel('Prüferin oder Prüfer',{exact:true}).count(),0);
   assert.equal(await page.locator('.review-decision input[type="checkbox"],.review-decision fieldset').count(),0);
   await page.getByRole('button',{name:'Spielerklärung anhören',exact:true}).click();
@@ -84,7 +85,7 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
   await verifyCompletion(inspected);
  };
 
- await page.getByRole('button',{name:'Alle Puzzles',exact:true}).click();await page.locator('[data-puzzle="add"]').click();
+ await page.locator('.screen:not([hidden]) .btn-back').click();await page.locator('[data-puzzle="add"]').click();
  assert.equal(await page.getByRole('button',{name:'Puzzle freigeben',exact:true}).count(),0);
  await page.screenshot({path:shots+'/puzzle-overview-tablet.png'});
  await page.getByRole('button',{name:/^Offene Iterationen prüfen/}).click();

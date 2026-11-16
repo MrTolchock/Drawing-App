@@ -4,18 +4,20 @@ Open **Einstellungen** through its existing adult calculation, then tap **Puzzle
 
 ## Inspect and decide
 
-1. Choose a puzzle. Its overview shows competence, fixed difficulty and iteration progress. Use **Spielerklärung anhören** to test the one shared spoken rule for that puzzle. The complete rule text is also shown. Speech is requested only by that button; individual iteration previews have no repeated speech control. Normal child play keeps **Spiel erklären**.
+1. The entry page shows all 31 puzzles and the single **Prüfung auf GitHub** connection panel. Choose a puzzle to open its details, including a plain-language competence explanation, curriculum reference, fixed difficulty and iteration progress. The header back arrow returns to all puzzles; from there it returns to Settings. Use **Spielerklärung anhören** to test the one shared spoken rule for that puzzle. The complete rule text is also shown. Speech is requested only by that button; individual iteration previews have no repeated speech control. Normal child play keeps **Spiel erklären**.
 2. Press **Offene Iterationen prüfen**. The queue contains every currently unconfirmed iteration of that puzzle, including items marked for improvement and changed revisions. It is not limited to five. The task area has exactly the normal game's viewport; there is no sign-off footer. The counter shows your position in the queue and the five leaves show overall progress.
 3. Solve the task normally. Wrong answers remain editable. A correct answer saves that iteration's approval, shows the usual correct feedback for 900 ms and advances automatically. Handwriting requires completing every stroke. There is no separate approval button.
 4. The small **×** replaces the normal rule-speech control. It opens **Kommentar (optional)** and **Ablehnen und weiter**. Reject with or without a comment; the item stays marked **Verbessern**. **Weiter prüfen**, the dialog close button or Escape cancels without making a decision. Rejections appear once in this run and return in the next run, avoiding an endless loop.
 5. After the final iteration, the normal friend/leaf/flower celebration plays for 2.2 seconds. When all current iterations passed, completing the celebration also saves the puzzle approval. Rejected items keep it blocked. If you leave before the celebration finishes, open the puzzle again to finish reviewing; approvals already saved are retained.
 6. **Zur Puzzle-Prüfung** returns to the selected puzzle. You can also select a particular iteration from the list, including an approved item you want to inspect again. It appears first, followed by that puzzle's remaining unconfirmed items. Refreshing or reopening starts a fresh queue of only the still-unconfirmed items.
 
+Each puzzle also has an optional **Allgemeiner Kommentar zum Puzzle** field and **Kommentar speichern**. This comment uses the existing puzzle-level review record, syncs through GitHub, and survives completing a review or confirming all iterations. Saving or clearing a comment preserves the approval status and revision, including stale decisions; it does not approve or reject anything. Unsaved text stays available while navigating and filtering during the visit.
+
 Only puzzles whose current iterations **and puzzle** are approved enter child play. Flagging an iteration or the puzzle removes that eligibility immediately. Filters show pending, improvement, approved and changed items.
 
 ## Save, restore and revisit
 
-[Connect GitHub once per editing session](REVIEW-STORAGE.md) in Settings to save changes automatically. Other browsers and fresh installations read the shared file without a token. A local-only decision does not release a puzzle for children. Wait for **Auf GitHub gespeichert** before deleting local storage; offline changes remain in the outbox until uploaded.
+[Connect GitHub once per editing session](REVIEW-STORAGE.md) on the Puzzle-Prüfung entry page to save changes automatically. Other browsers and fresh installations read the shared file without a token. A local-only decision does not release a puzzle for children. Wait for **Auf GitHub gespeichert** before deleting local storage; offline changes remain in the outbox until uploaded.
 
 There is no file export/import any more: GitHub is the backup. Each puzzle offers **Alle bestätigen** to approve all its current iterations and the puzzle together (after a confirmation), as an alternative to playing each one. Earlier decisions stay in the history. New decisions contain no reviewer/checklist fields.
 

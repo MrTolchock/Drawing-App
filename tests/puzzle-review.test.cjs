@@ -178,3 +178,14 @@ test('verified unchanged partial rounds resume verbatim; changed questions remai
  assert.deepEqual(plain(compatibleSetup(memory).FK.puzzleRounds.start(id)),plain(s));
  s.questions[0].count=99;FK.puzzleRounds.save(s);const restored=compatibleSetup(memory),next=restored.FK.puzzleRounds.start(id);assert.equal(next.round,0);assert.equal(JSON.parse(restored.memory.get('farbtupf.puzzles.v1')).legacy[id].questions[0].count,99,'the earlier snapshot is archived');
 });
+
+test('general puzzle comments persist without changing release status or reviving stale approvals',()=>{
+ const {FK,memory}=setup(),V=owner(FK);
+ assert.ok(V.comment('add','  Gemeinsame Rückmeldung  '));assert.equal(V.status('add').decision.note,'Gemeinsame Rückmeldung');assert.equal(V.status('add').status,'pending');assert.equal(V.ready('add'),false);
+ assert.equal(setup(memory).FK.puzzleReview.status('add').decision.note,'Gemeinsame Rückmeldung');
+ const session=V.previewSession('add');for(;session.round<session.questions.length;session.round++)assert.ok(V.sessionDecision(session,'approved'));
+ assert.ok(V.finishSession(session));assert.equal(V.status('add').decision.note,'Gemeinsame Rückmeldung');assert.ok(V.ready('add'));
+ assert.ok(V.comment('add','Bilder passen.'));assert.ok(V.ready('add'));assert.ok(V.approveAll('add'));assert.equal(V.status('add').decision.note,'Bilder passen.');
+ const revision=V.status('add').decision.revision;FK.puzzleImplementation='changed';assert.ok(V.comment('add','Nach Änderung neu prüfen.'));assert.equal(V.status('add').decision.revision,revision);assert.equal(V.status('add').stale,true);assert.equal(V.ready('add'),false);
+ assert.ok(V.comment('add',''));assert.equal(V.status('add').decision.note,'');
+});
