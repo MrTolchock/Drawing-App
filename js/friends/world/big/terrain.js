@@ -235,8 +235,8 @@ export function createTerrain() {
   function cliff(x, z, up, out) {
     let k = sstep(.9, .66, up + (fbm(x * .7, z * .7) - .5) * .12); if (k <= 0) return out;
     const sn = snow(x, z); if (sn > 0) k *= 1 - sn * sstep(.34, .56, up);                // snow stays on all but the steepest rock
-    const y = ground(x, z), band = .5 + .5 * Math.sin(y * 2.4 + fbm(x * .25, z * .25) * 5);
-    out.stone = Math.max(out.stone || 0, k); return out.lerp(scratchC.copy(stoneA).lerp(stoneB, band * .7).lerp(stoneD, sstep(.6, .9, fbm(x * 1.3 + 2, z * 1.3)) * .5), k);
+    const y = ground(x, z), band = fbm(x * .16 + y * .5, z * .16 - y * .3);   // patches of lighter stone, not level bands
+    out.stone = Math.max(out.stone || 0, k); return out.lerp(scratchC.copy(stoneA).lerp(stoneB, sstep(.35, .7, band) * .6).lerp(stoneD, sstep(.6, .9, fbm(x * 1.3 + 2, z * 1.3)) * .5), k);
   }
   const scratchC = new THREE.Color();
 

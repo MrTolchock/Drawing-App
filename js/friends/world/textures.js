@@ -58,16 +58,17 @@ const NEAR_CLIP = `#include <clipping_planes_fragment>
  float ffLine=(1.-smoothstep(.95,2.5,length(ffD)))*smoothstep(ffFox.z+.6,ffFox.z+2.4,ffP.z)*.92;
  float nearFade=max(ffLine,clamp((6.5-vViewPosition.z)/2.4,0.,1.));if(nearFade>0.&&ffNoise(gl_FragCoord.xy)<nearFade)discard;`;
 // Bare rock: where a mesh says so (`rk` per vertex: the Rock's cliffs and stony ground, boulders), the wrapping rock
-// texture is laid on from three sides, so bedding lines run level round a cliff, and is read as relief too.
+// texture is laid on from three sides (cracks and blotches, the level beds only faintly) and is read as relief too.
 const ROCK_VERT = '#include <begin_vertex>\nffRk = rk; ffRw = (modelMatrix * vec4(transformed, 1.)).xyz; ffRn = normal;';
 const ROCK_COLOUR = `#include <color_fragment>
  float ffRh = 0.;
  if (ffRk > .01) { vec3 ffB = abs(normalize(ffRn)); ffB *= ffB; ffB *= ffB; ffB /= ffB.x + ffB.y + ffB.z;
-  vec3 ffT = texture2D(ffRock, ffRw.zy * .2).rgb * ffB.x + texture2D(ffRock, ffRw.xz * .2).grb * ffB.y + texture2D(ffRock, ffRw.xy * .2).rgb * ffB.z;
-  ffRh = ffT.r; diffuseColor.rgb *= mix(1., .56 + .78 * ffT.r, ffRk); }`;
+  // mostly the rock's cracks and blotches; of its level beds only a faint hint, or a whole hill looks ruled
+  vec3 ffTx = texture2D(ffRock, ffRw.zy * .2).rgb, ffTy = texture2D(ffRock, ffRw.xz * .2).rgb, ffTz = texture2D(ffRock, ffRw.xy * .2).rgb;
+  ffRh = mix(ffTx.g, ffTx.r, .16) * ffB.x + ffTy.g * ffB.y + mix(ffTz.g, ffTz.r, .16) * ffB.z; diffuseColor.rgb *= mix(1., .6 + .7 * ffRh, ffRk); }`;
 const ROCK_NORMAL = `#include <normal_fragment_maps>
  if (ffRk > .01) { vec3 ffSx = normalize(dFdx(-vViewPosition)), ffSy = normalize(dFdy(-vViewPosition)), ffR1 = cross(ffSy, normal), ffR2 = cross(normal, ffSx); float ffDet = dot(ffSx, ffR1);
-  normal = normalize(abs(ffDet) * normal - sign(ffDet) * (dFdx(ffRh) * ffR1 + dFdy(ffRh) * ffR2) * 5.5 * ffRk); }`;
+  normal = normalize(abs(ffDet) * normal - sign(ffDet) * (dFdx(ffRh) * ffR1 + dFdy(ffRh) * ffR2) * 4. * ffRk); }`;
 export function patch(material, {foliage = false, near = false, rock = null}, key) {
   material.onBeforeCompile = sh => {
     if (rock) { sh.uniforms.ffRock = {value: rock}; sh.vertexShader = sh.vertexShader.replace('#include <common>', '#include <common>\nattribute float rk;\nvarying float ffRk;\nvarying vec3 ffRw, ffRn;').replace('#include <begin_vertex>', ROCK_VERT);

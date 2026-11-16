@@ -16,38 +16,45 @@ import {canvasTex} from '../textures.js';
 import {ATLAS} from './atlas.js';
 
 /** What the cave's shaders share with the forest: the time, and the daylight at the mouth (forest3d.js sets both). */
-export const caveLight = {time: {value: 0}, day: {value: new THREE.Color(1, .93, .8)}};
+export const caveLight = {time: {value: 0}, day: {value: new THREE.Color(1, .93, .8)}, inside: {value: 0}};   // inside: 0 while Fuchs is out in the open, 1 in the cave
 const HUES = [[.35, 1.25, 1.55], [.95, .55, 1.6], [.45, 1.5, 1.15]], GLOW = [[.3, .9, 1.1], [.75, .45, 1.15], [.35, 1.05, .8]];
 const DARK = 'vec3(.012,.012,.017)';
 
 function caveMaterial(look) {
   return new THREE.ShaderMaterial({
-    uniforms: {uRock: {value: look.T.rock}, uTime: caveLight.time, uDay: caveLight.day},
+    uniforms: {uRock: {value: look.T.rock}, uTime: caveLight.time, uDay: caveLight.day, uIn: caveLight.inside},
     vertexShader: `attribute vec3 color;attribute vec4 gl;varying vec3 vC,vW,vN;varying vec4 vG;varying float vD;
       void main(){vC=color;vG=gl;vN=normal;vW=position;vec4 mv=modelViewMatrix*vec4(position,1.);vD=-mv.z;gl_Position=projectionMatrix*mv;}`,
-    fragmentShader: `uniform sampler2D uRock;uniform float uTime;uniform vec3 uDay;varying vec3 vC,vW,vN;varying vec4 vG;varying float vD;
+    fragmentShader: `uniform sampler2D uRock;uniform float uTime,uIn;uniform vec3 uDay;varying vec3 vC,vW,vN;varying vec4 vG;varying float vD;
       void main(){
         vec3 b=abs(normalize(vN));b*=b;b*=b;b/=b.x+b.y+b.z;
         vec3 t=texture2D(uRock,vW.zy*.27).rgb*b.x+texture2D(uRock,vW.xz*.27).grb*b.y+texture2D(uRock,vW.xy*.27).rgb*b.z;
-        vec3 glow=vG.rgb*(.93+.07*sin(uTime*1.1+vW.x*.7+vW.z*.5)),light=vec3(.07,.08,.105)+glow+uDay*vG.a;
+        vec3 glow=vG.rgb*(.93+.07*sin(uTime*1.1+vW.x*.7+vW.z*.5)),light=vec3(.07,.08,.105)+glow+uDay*vG.a*mix(2.3,1.,uIn);
         vec3 c=vC*(.5+.95*t.r)*light;
         float sp=smoothstep(.93,.97,t.b)*(.5+.5*sin(uTime*2.3+t.b*90.+vW.x*5.+vW.y*4.));c+=(glow+uDay*vG.a*.25)*sp*.55;
-        c=mix(c,${DARK},smoothstep(9.,34.,vD));
+        c=mix(c,${DARK},smoothstep(9.,34.,vD)*mix(.25,1.,uIn));
         gl_FragColor=vec4(c,1.);
         #include <tonemapping_fragment>
         #include <colorspace_fragment>
       }`});
 }
 
+/** The top of the rock over the cave: the hillside, raised to a rounded outcrop over the mouth so that the way in
+    can be a round arch with rock above it. */
+export function caveRoofTop(world) {
+  const T = world.terrain, C = world.layout.CAVE; let F = null;
+  return (x, z) => { if (F === null) F = T.ground(C.x, C.z); const h = T.rawHill(x, z), d = Math.hypot(x - C.x, (C.z - z) - (C.open + 1.4)) / 5.4; if (d >= 1) return h; const dome = F + 4.05 * Math.pow(1 - d * d, 1.1); return dome > h ? h + (dome - h) * sstep(0, .6, dome - h) : h; };
+}
 /** The cave's ceiling as a function of the place (world x, z): walls about a man's height, then an arch up to the
-    crown (much higher in the hall), rough all over, and never nearer the hillside above than half a metre. */
+    crown (much higher in the hall), rough all over, and never nearer the rock's top than half a metre. At the mouth
+    the walls are low and the arch a half round, so the way in is round. */
 export function caveCeiling(world) {
-  const T = world.terrain, cv = {};
+  const T = world.terrain, C = world.layout.CAVE, top = caveRoofTop(world), cv = {};
   return (x, z) => {
-    T.cave(x, z, cv); const d = Math.max(0, .05 - cv.sd), hall = sstep(21, 29, cv.s), wall = 1.5 + .55 * fbm(x * .5 + 1, z * .5), crown = lerp(3.05, 6.3, hall) + (fbm(x * .23, z * .23 + 5) - .5) * lerp(.5, 1.8, hall);
-    const t = Math.min(1, d / lerp(1.9, 4.4, hall)), arch = Math.sqrt(1 - (1 - t) * (1 - t));
-    const y = T.ground(x, z) + .03 + wall + (crown - wall) * arch + (fbm(x * .9 + 7, z * .9) - .5) * .6 * arch + (fbm(x * 2.3, z * 2.3 + 4) - .5) * .18;
-    return Math.min(y, T.rawHill(x, z) - .5);
+    T.cave(x, z, cv); const d = Math.max(0, .05 - cv.sd), hall = sstep(21, 29, cv.s), mouth = sstep(C.open + 3.2, C.open + .2, cv.v), wall = lerp(1.5 + .55 * fbm(x * .5 + 1, z * .5), .35, mouth), crown = lerp(lerp(3.05, 6.3, hall) + (fbm(x * .23, z * .23 + 5) - .5) * lerp(.5, 1.8, hall), 2.85, mouth);
+    const t = Math.min(1, d / lerp(lerp(1.9, 4.4, hall), 2.3, mouth)), arch = Math.sqrt(1 - (1 - t) * (1 - t));
+    const y = T.ground(x, z) + .03 + wall + (crown - wall) * arch + (fbm(x * .9 + 7, z * .9) - .5) * .6 * arch * (1 - mouth) + (fbm(x * 2.3, z * 2.3 + 4) - .5) * .18 * (1 - .6 * mouth);
+    return Math.min(y, top(x, z) - .45);
   };
 }
 
@@ -56,7 +63,7 @@ export function caveSteps(site, look, world, group, out) {
   const NU = Math.ceil((B.u1 - B.u0) / G), NV = Math.ceil((B.v1 - C.open) / G), W = NU + 1;
   const X = u => C.x + u, Z = v => C.z - v, at = (u, v) => [C.x + u, C.z - v];
   const floorAt = (x, z) => T.ground(x, z) + .03, F0 = T.ground(C.x, C.z), SMOUTH = T.cave(X(0), Z(C.open)).s;
-  const ceilAt = caveCeiling(world), cv = {};
+  const ceilAt = caveCeiling(world), topAt = caveRoofTop(world), cv = {};
   /* ---------- the lights that are baked into the rock ---------- */
   const lights = [];
   for (const [u, v, r, hue] of C.crystals) { const [x, z] = at(u, v); lights.push({x, y: floorAt(x, z) + .5, z, c: GLOW[hue], R: 1.9 + r * 2.8, I: 1.55}); }
@@ -145,7 +152,7 @@ export function caveSteps(site, look, world, group, out) {
   steps.push(() => { // the hillside over the cave, the rock face above the mouth, and the night inside the rock
     const over = new Float32Array(W * (NV + 1)); for (let j = 0; j <= NV; j++) for (let i = 0; i <= NU; i++) over[j * W + i] = 2.75 - T.cave(X(B.u0 + i * G), Z(C.open + j * G)).sd;
     const tp = [], tc = [], ti = [], dark = [], di = [], up = new THREE.Vector3(), c = new THREE.Color(), row0 = [], rim = [];
-    const make = (gi, gj) => { const x = X(B.u0 + gi * G), z = Z(C.open + gj * G), h = T.rawHill(x, z), e = .4, hx = T.rawHill(x + e, z) - T.rawHill(x - e, z), hz = T.rawHill(x, z + e) - T.rawHill(x, z - e);
+    const make = (gi, gj) => { const x = X(B.u0 + gi * G), z = Z(C.open + gj * G), h = topAt(x, z), e = .4, hx = topAt(x + e, z) - topAt(x - e, z), hz = topAt(x, z + e) - topAt(x, z - e);
       up.set(-hx / (2 * e), 1, -hz / (2 * e)).normalize(); T.colour(x, z, c, true); T.cliff(x, z, up.y, c);   // painted as the hillside, not as the cave's floor under it
       tp.push(x, h + .07, z); tc.push(c.r, c.g, c.b); dark.push(x, h - .3, z); const v = tp.length / 3 - 1; if (gj === 0) row0.push([B.u0 + gi * G, v]); return v; };
     trace(over, make, (gi, gj) => { const v = make(gi, gj); rim.push(v); return v; },
@@ -154,7 +161,7 @@ export function caveSteps(site, look, world, group, out) {
     row0.sort((a, b) => a[0] - b[0]); const arch = [...ceilRow0.entries()].map(([v, u]) => [u, v]).sort((a, b) => a[0] - b[0]), z0 = Z(C.open), fp = [], fc = [], fi = [];
     const archY = u => { for (let k = 0; k < arch.length - 1; k++) if (u >= arch[k][0] - 1e-6 && u <= arch[k + 1][0] + 1e-6) { const t = (u - arch[k][0]) / (arch[k + 1][0] - arch[k][0] || 1); return lerp(pos[arch[k][1] * 3 + 1], pos[arch[k + 1][1] * 3 + 1], t); } return null; };
     const cols = [], us = [...new Set([...row0.map(r => r[0]), ...arch.map(a => a[0])])].sort((a, b) => a - b), FR = 4;
-    const colAt = (u, a) => { const x = X(u), top = T.rawHill(x, z0) + .07, low = a === null ? Math.min(T.ground(x, z0), top) - .35 : a, ring = [];
+    const colAt = (u, a) => { const x = X(u), top = topAt(x, z0) + .07, low = a === null ? Math.min(T.ground(x, z0), top) - .35 : a, ring = [];
       for (let r = 0; r <= FR; r++) { const t = r / FR, y = lerp(low, top, t), bulge = Math.sin(t * Math.PI) * (fbm(x * .8, y * .9) - .3) * .5; T.colour(x, z0, c, true); T.cliff(x, z0, .3, c); fp.push(x, y, z0 + bulge + (r === FR ? 0 : .04)); fc.push(c.r, c.g, c.b); ring.push(fp.length / 3 - 1); }
       cols.push(ring); };
     for (const u of us) { const a = archY(u); if (a !== null && arch.length && u === arch[0][0]) colAt(u, null); colAt(u, a); if (a !== null && arch.length && u === arch[arch.length - 1][0]) colAt(u, null); }
@@ -163,16 +170,24 @@ export function caveSteps(site, look, world, group, out) {
     const roof = stony(new THREE.Mesh(geo(tp, tc, ti), M.ground), 1); roof.name = 'cave roof'; roof.castShadow = M.shadows; roof.receiveShadow = M.shadows; group.add(roof); out.roof = roof;
     const face = stony(new THREE.Mesh(geo(fp, fc, fi), M.rock), 1); face.name = 'cave mouth'; face.castShadow = M.shadows; face.receiveShadow = M.shadows; group.add(face);
     // night: a lid just under the hillside, a curtain from every wall's top up to it, a skirt round the outside, a floor far below
-    const lidY = (x, z) => T.rawHill(x, z) - .3, low = F0 - 4;
+    const lidY = (x, z) => topAt(x, z) - .3, low = F0 - 4;
     for (const [a, b] of out.wallQuads) { const n = dark.length / 3; for (const v of [a, b]) { const [ox, oz] = outward(pos[v * 3], pos[v * 3 + 2]), x = pos[v * 3] + ox * .7, z = pos[v * 3 + 2] + oz * .7; dark.push(x, pos[v * 3 + 1] - .6, z, x, lidY(x, z), z); } di.push(n, n + 3, n + 2, n, n + 1, n + 3); }
     for (let k = 0; k < rim.length; k++) if (rim[k] === -1) { const a = rim[k + 1], b = rim[k + 2], n = dark.length / 3; for (const v of [a, b]) dark.push(dark[v * 3], low, dark[v * 3 + 2]); di.push(n, b, n + 1, n, a, b); k += 2; }
     { const n = dark.length / 3, x0 = X(B.u0 - 3), x1 = X(B.u1 + 3), za = Z(C.open - 1), zb = Z(B.v1 + 3); dark.push(x0, low, za, x1, low, za, x1, low, zb, x0, low, zb); di.push(n, n + 1, n + 2, n, n + 2, n + 3); }
     const night = new THREE.Mesh(geo(dark, null, di), new THREE.MeshBasicMaterial({color: '#030304', fog: false})); night.name = 'cave night'; group.add(night);
+    // the way in: a round arch of rock, thick at its feet, rough and mossy on top, standing in the hillside
+    { const SEG = 26, RAD = 11, ap = [], ac = [], ai = [], moss = new THREE.Color('#7f9a4d'), A = new THREE.Color('#928d80'), Bc = new THREE.Color('#6f6b61'), zc = Z(C.open - .25), fy = T.ground(X(0), zc);
+      for (let i = 0; i <= SEG; i++) { const a = lerp(-.16, Math.PI + .16, i / SEG), up = Math.max(0, Math.sin(a)), cx = Math.cos(a) * 2.95, cy = Math.sin(a) * 3.02, r = lerp(.98, .62, up) * (.88 + .3 * fbm(i * .55, 3.3));
+        for (let j = 0; j < RAD; j++) { const b = j / RAD * TAU, k = 1 + (fbm(i * .7 + Math.cos(b) * 1.3, j * .9 + 5) - .5) * .5, ox = Math.cos(b) * r * k, oz = Math.sin(b) * r * k * 1.3, x = X(cx + Math.cos(a) * ox), y = fy + cy + Math.sin(a) * ox, z = zc + oz;
+          ap.push(x, y, z); const n = fbm(x * 1.1 + y, z * 1.1 - y), topness = Math.sin(a) * Math.cos(b) * up + (1 - up) * .2; c.copy(A).lerp(Bc, n).lerp(moss, sstep(.5, .85, topness + (fbm(x * 2.3, z * 2.3 + y) - .5) * .5) * .75); ac.push(c.r, c.g, c.b); } }
+      for (let i = 0; i < SEG; i++) for (let j = 0; j < RAD; j++) { const p0 = i * RAD + j, p1 = i * RAD + (j + 1) % RAD, q0 = p0 + RAD, q1 = p1 + RAD; ai.push(p0, q0, p1, p1, q0, q1); }
+      const ag = geo(ap, ac, ai); if (ag.attributes.normal.getY(Math.floor(SEG / 2) * RAD) < 0) { ag.setIndex(ai.map((v, n) => ai[n - n % 3 + [0, 2, 1][n % 3]])); ag.computeVertexNormals(); }
+      const arch = stony(new THREE.Mesh(ag, M.rock), .9); arch.name = 'cave arch'; arch.castShadow = M.shadows; arch.receiveShadow = M.shadows; group.add(arch); }
     // a few boulders frame the mouth; heather and grass grow on the roof as on the hill around it
     const rocks = new Buffer(), plants = new Buffer(), t = templates();
-    for (const [u, v, sc] of [[-3.1, C.open - .5, .8], [3, C.open - .3, .9], [-2.7, C.open - 1.9, .5], [2.8, C.open - 2.2, .55], [-1.2, C.open + .1, .3], [3.6, C.open - 3.4, .4], [-3.4, C.open - 3.6, .42]]) { const [x, z] = at(u, v), w = .8 + R() * .12; rocks.add(t.rock, {x, y: T.ground(x, z) - sc * .25, z, ry: R() * TAU, sx: sc * 1.2, sy: sc, sz: sc, c: c.setRGB(w, w * .97, w * .92)}); }
+    for (const [u, v, sc] of [[-4.1, C.open - .7, .7], [4, C.open - .6, .8], [-3.3, C.open - 2.2, .45], [3.3, C.open - 2.4, .5], [3.9, C.open - 3.6, .36], [-3.8, C.open - 3.8, .4]]) { const [x, z] = at(u, v), w = .8 + R() * .12; rocks.add(t.rock, {x, y: T.ground(x, z) - sc * .25, z, ry: R() * TAU, sx: sc * 1.2, sy: sc, sz: sc, c: c.setRGB(w, w * .97, w * .92)}); }
     for (let k = 0; k < 520; k++) { const u = lerp(B.u0, B.u1, R()), v = lerp(C.open + .3, B.v1, R()), [x, z] = at(u, v); if (T.cave(x, z).sd > 1.85) continue; const e = .5, s = Math.hypot(T.rawHill(x + e, z) - T.rawHill(x - e, z), T.rawHill(x, z + e) - T.rawHill(x, z - e)); if (s > .75 || T.snow(x, z) > .05) continue;
-      const y = T.rawHill(x, z) + .05, q = R(), sc = .8 + R() * .6, v2 = .82 + R() * .3;
+      const y = topAt(x, z) + .05, q = R(), sc = .8 + R() * .6, v2 = .82 + R() * .3;
       if (q < .5) plants.add(t.grass, {x, y, z, ry: R() * TAU, sx: sc, sy: sc * .9, sz: sc, cell: ATLAS.grass, up: true, c: c.setRGB(v2, v2, v2 * .86)});
       else if (q < .85) plants.add(t.grass, {x, y: y - .03, z, ry: R() * TAU, sx: sc, sy: sc * 1.6, sz: sc, cell: ATLAS.heather, up: true});
       else { const rs = .1 + R() * .22; rocks.add(t.rock, {x, y, z, ry: R() * TAU, sx: rs, sy: rs * .8, sz: rs}); } }
