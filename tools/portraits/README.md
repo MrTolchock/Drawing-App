@@ -1,7 +1,7 @@
-# Character identity portraits
+# Model identity references
 
-`assets/forest-friends/character-portraits.webp` supplies puzzle, map and companion identities: all 13 current characters and the fox sleep pose. It uses the same baked GLBs as the world, with one fixed camera, warm lighting and consistent framing. The transparent 4 × 4 atlas has 256 px cells (4 MiB decoded). Invitation letters use a separate painted friend atlas through `FK.friendsArt.letterPortrait`; generate those with the canonical `letter-friends` request in the [artwork handoff](../../design/artwork/README.md).
+The runtime UI uses the canonical painted cast in `assets/forest-friends/character-portraits.webp`, including the sleeping Fuchs. See the [shared portrait guide](../../design/artwork/LETTER-FRIENDS.md). The live world keeps its baked GLBs.
 
-Serve the repository root, then run `node tools/portraits/render.cjs`. Set `PLAYWRIGHT_MODULE` and `CHROMIUM_PATH` to your installed tools when needed. The script fails on an empty render. Re-bake changed models first; the maintained sculpt source is `tools/characters/plush.js`.
+This tool renders those models only as development identity references. Serve the repository root and run `node tools/portraits/render.cjs`; the default output is `/tmp/waldpost-model-identities.webp`. Set `FARBTUPF_PORTRAITS_OUT`, `PLAYWRIGHT_MODULE` and `CHROMIUM_PATH` when needed. It must never overwrite the painted runtime atlas. Re-bake changed models first; the sculpt source is `tools/characters/plush.js`.
 
-See [visual style](../../design/VISUAL-STYLE.md) for the boundary between rendered character identity and drawn learning subjects. The previous mixed portrait pipeline is preserved under `archive/legacy-game/tools/portraits/`.
+The preserved prior model sheet in `design/artwork/references/model-identities.webp` records the exact input used by earlier requests. Do not overwrite frozen references: save a new version and update current registered request hashes when intentionally changing an identity reference. For image generation, the canonical pair defines drawing technique; model references may define species/markings only.

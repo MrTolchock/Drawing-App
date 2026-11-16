@@ -1,0 +1,36 @@
+{
+  "format": "waldpost-image-generation-record",
+  "version": 1,
+  "id": "fox-sleep-portrait",
+  "date": "2026-11-16",
+  "tool": "ChatGPT hosted image-generation tool",
+  "style": "waldpost-watercolour-pencil-v1",
+  "source": "design/artwork/sources/fox-sleep-portrait.png",
+  "sourceSha256": "f2510b5af53f4116888e0db1d5d5bf5560edafdd35094fdf87874aa146297967",
+  "request": {
+    "prompt": "WALDPOST CANONICAL ILLUSTRATION STYLE — waldpost-watercolour-pencil-v1\n\nUse the supplied canonical animals.png and objects.png reference images as the authority for drawing technique. They show the predominant style of the current Waldpost gallery. Match their actual pixels, not an imagined style suggested by a filename.\n\nDraw warm children's picture-book watercolour finished with visible coloured-pencil strokes. Use light, gently uneven washes, organic sepia contours, delicate hatching, softly irregular edges and modest drawn shading. Surfaces look painted and pencilled, with paper grain within the illustration. Keep the warmth of cream, honey brown, restrained sage and blue, while preserving every exact colour required by a task. Subjects remain friendly, recognizable and anatomically believable.\n\nDo not turn the drawing into a 3D render, plush toy, clay or felt craft, photograph, glossy object, embossed surface or studio-lit miniature. Avoid deep ambient-occlusion shadows, inflated forms and realistic material microtexture. Do not mix in another illustration technique or use historical artwork as a style reference.\n\nThe role instructions below set the necessary detail and composition within this one style. Learning pictures retain fine drawn contours; small navigation symbols use the approved simpler, broader shapes and flat fills in the same palette. Keep the existing rendered game-character identities separate from image-generated learning subjects. Exact geometry and handwriting remain authored paths.\n\nPreserve subject identity, counted quantities, exact answer colours and action differences. Use real alpha for isolated pictures and stationery, and an opaque canvas only when the selected role requires a scene or branding image. No accidental background, halo, visible grid, labels or extra objects.\n\nROLE: character\nUse the canonical watercolour-and-coloured-pencil medium for the shared game-character portraits on letters, map pins, puzzle pages, menus, companions and celebrations. Reuse the approved painted identities, natural friendly proportions, species markings and accessories. Complete silhouettes, real transparency and generous square-cell margins. Keep the live 3D world as its own model pipeline; do not substitute these identity portraits for scored learning pictures.\n\nATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:\n1. design/illustrations/references/watercolour-pencil-v1/animals.png — canonical-style: canonical drawing technique for animals; fixed majority-style pixels\n2. design/illustrations/references/watercolour-pencil-v1/objects.png — canonical-style: canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels\n3. assets/interface/letter-friends.webp — composition-only: approved painted Fuchs identity and green scarf; retain this exact character in a sleeping pose\n\nSUBJECT AND LAYOUT BRIEF:\nOne complete, peaceful sleeping red fox, curled up in a natural cosy oval, with its fluffy white-tipped tail wrapped around its body, closed eyes, white muzzle/chest, dark paws and a small sage-green neckerchief. Match the recognizable Fuchs in the supplied painted friend atlas, especially its orange coat, cream markings and green scarf. Use the same warm watercolour and coloured-pencil drawing as the canonical references and the existing painted Fuchs. This is the sleeping pose for the shared UI cast, not a new fox identity.\n\nSingle isolated full-body animal centred on a genuinely transparent square with generous clean margins. Every ear and tail tip fits well inside the middle 70 percent of the canvas. No bed, cushion, ground, scenery, paper rectangle, glow, shadow, letters, Z symbols, clothing beyond the existing scarf, frame or UI. Keep the quiet handmade medium; no 3D/plush modelling.\n\nSTYLE PRIORITY: The brief changes subjects and layout only. Keep waldpost-watercolour-pencil-v1 and the supplied canonical reference technique throughout; do not import the style of a composition-only reference.\n",
+    "referenced_image_paths": [
+      "/workspace/Drawing-App/design/illustrations/references/watercolour-pencil-v1/animals.png",
+      "/workspace/Drawing-App/design/illustrations/references/watercolour-pencil-v1/objects.png",
+      "/workspace/Drawing-App/assets/interface/letter-friends.webp"
+    ],
+    "transparent_background": true
+  },
+  "references": [
+    {
+      "path": "design/illustrations/references/watercolour-pencil-v1/animals.png",
+      "sha256": "65867082294d157ab4ffbe33926857272625ef3c25cdb7cab81c2a4ea73d9316",
+      "usage": "canonical-style"
+    },
+    {
+      "path": "design/illustrations/references/watercolour-pencil-v1/objects.png",
+      "sha256": "0bb37d6fc82c75034eddf30da2cc57c546dd8bc70d246aeeda85b637bd87dd80",
+      "usage": "canonical-style"
+    },
+    {
+      "path": "assets/interface/letter-friends.webp",
+      "sha256": "93d5f6a3696519c05779ca43c29fcbb271822f3f94d4bc6afc0571f6c6cda667",
+      "usage": "composition-only"
+    }
+  ]
+}

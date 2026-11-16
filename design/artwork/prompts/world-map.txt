@@ -1,0 +1,26 @@
+WALDPOST CANONICAL ILLUSTRATION STYLE — waldpost-watercolour-pencil-v1
+
+Use the supplied canonical animals.png and objects.png reference images as the authority for drawing technique. They show the predominant style of the current Waldpost gallery. Match their actual pixels, not an imagined style suggested by a filename.
+
+Draw warm children's picture-book watercolour finished with visible coloured-pencil strokes. Use light, gently uneven washes, organic sepia contours, delicate hatching, softly irregular edges and modest drawn shading. Surfaces look painted and pencilled, with paper grain within the illustration. Keep the warmth of cream, honey brown, restrained sage and blue, while preserving every exact colour required by a task. Subjects remain friendly, recognizable and anatomically believable.
+
+Do not turn the drawing into a 3D render, plush toy, clay or felt craft, photograph, glossy object, embossed surface or studio-lit miniature. Avoid deep ambient-occlusion shadows, inflated forms and realistic material microtexture. Do not mix in another illustration technique or use historical artwork as a style reference.
+
+The role instructions below set the necessary detail and composition within this one style. Learning pictures retain fine drawn contours; small navigation symbols use the approved simpler, broader shapes and flat fills in the same palette. Keep the existing rendered game-character identities separate from image-generated learning subjects. Exact geometry and handwriting remain authored paths.
+
+Preserve subject identity, counted quantities, exact answer colours and action differences. Use real alpha for isolated pictures and stationery, and an opaque canvas only when the selected role requires a scene or branding image. No accidental background, halo, visible grid, labels or extra objects.
+
+ROLE: cartography
+Apply the canonical watercolour/pencil medium as a simplified flat cartographic plan. Strict orthographic top-down projection throughout, no perspective, visible vertical surfaces, relief modelling or cast shadows. Use broad quiet colour regions, light washes, fine organic sepia outlines and a few small plan-view symbols. Keep path connections, water boundaries and relative landmark positions clear; remove decorative microdetail. Opaque landscape canvas. Geography references define layout only. Keep runtime-approved geography calibrated to the actual interface; new proposals stay separate until the owner approves them.
+
+ATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:
+1. design/illustrations/references/watercolour-pencil-v1/animals.png — canonical-style: canonical drawing technique for animals; fixed majority-style pixels
+2. design/illustrations/references/watercolour-pencil-v1/objects.png — canonical-style: canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels
+3. design/artwork/drafts/drawn-map-v2.png — composition-only: approved flat top-down map: preserve its geography, projection and sparse detail
+
+SUBJECT AND LAYOUT BRIEF:
+The adopted Waldpost map is a simple flat 2D top-down watercolour-and-pencil plan, 1536 by 1024, landscape 3:2. Preserve the supplied approved map's path topology, water boundaries, land-cover regions, calm palette and sparse overhead symbols. Preserve projection, extent and the landmark positions in the map calibration, design/artwork/world-map-layout.json: actual UI pins and the current-position marker use that calibration. Any intentional geographic shift requires updating and checking it before publication.
+
+Broad sage woodland patches, pale meadow, blue pools/stream/southern lake, thin sepia banks, ochre paths, grey mountain region with sparse contour rings. Every canopy, bridge and small landmark is viewed straight down; no side-view trees, visible trunks/facades, relief, perspective or cast shadows. No decorative microdetail, UI, portraits, labels or player markers in the painting. Destination buttons, names, leader lines and the Fuchs marker are real interface layers, kept separate and clickable. Opaque canvas. This is the runtime map role approved by the owner, not a request to invent new geography.
+
+STYLE PRIORITY: The brief changes subjects and layout only. Keep waldpost-watercolour-pencil-v1 and the supplied canonical reference technique throughout; do not import the style of a composition-only reference.

@@ -1,5 +1,6 @@
 import {createWorld,places,exitPoints} from './world.js';
 import {createAudio} from './audio.js';
+import {mapPoint,mapPin,extraMapPlaces} from './map-layout.js';
 const FK=window.FK,h=FK.h,C=window.FriendsContent;
 let root,canvas,world,state,audio,overlay,hotspots,nav,statusBar,nearButton,caption,fader,doorScene,denEnvelope,framing=false;
 let area='den',panel=null,host=null,example=false,feedbackTimer=null,activeMs=0,lastTick=performance.now(),returnArea='den',finalSleep=false;
@@ -43,7 +44,7 @@ function letterPortrait(id){
 // Character identity, utility controls and drawn subjects have separate sources.
 function art(name,cls=''){
  const id=name.startsWith('friend-')?name.slice(7):name;
- if(C.hosts[id]||['fox','mailman'].includes(id))return h('span',{class:'ff-picture '+cls},FK.friendsArt.portrait(id));
+ if(C.hosts[id]||['fox','mailman','ibex'].includes(id))return h('span',{class:'ff-picture '+cls},FK.friendsArt.portrait(id));
  if(FK.hudArt?.has(name))return h('span',{class:'ff-picture ff-hud-picture '+cls},FK.hudArt.element(name));   // the world's own painted buttons
  const control={pencils:'pencil',gallery:'gallery',door:'home',bag:'book',skip:'next'}[name]||name;
  if(FK.icons.has(control))return h('span',{class:'ff-picture '+cls},FK.icons.element(control));
@@ -91,25 +92,27 @@ function act(id){if(panel||['sleeping','finished'].includes(state.mail().phase))
   const p=world.position;if(Math.hypot(p.x-destination.x,p.z-destination.z)>3.2){world.route(id);say('Folge Fuchs zu '+(C.hosts[id]?.name||(id==='home'?'deinem Zuhause':'dem Briefträger'))+'.');return;}
   if(id==='home')go('den');else if(id==='mailman'){if(state.mail().phase==='to-mailman')showLetter(true);}else meet(id);
 }else if(id==='outside'){if(state.mail().phase==='den-letter')showLetter(false);else go('forest');}}
-// The picture map is drawn from the world (tools/map/): a place's pin is where it lies on it.
-const MAP={x0:-168,x1:168,z0:-112,z1:112};   // as world/big/layout.js MAP
-const mapPins=new Proxy({},{get:(_,id)=>{const p=places[id],[x,z]=p.map||[p.x,p.z];return [(x-MAP.x0)/(MAP.x1-MAP.x0),(z-MAP.z0)/(MAP.z1-MAP.z0)];}});
+// Named touch targets sit on the calibrated painting; routes still use the actual world destinations.
 function map(){
   if(state.mail().phase==='den-letter'){showLetter(false);return;}
   state.record('map_opened',{area});open('map');const card=shell('map');card.classList.add('ff-map-card');
   const board=h('div',{class:'ff-map ff-map-storybook','aria-label':'Bildkarte des Waldes'}),mail=state.mail();
-  for(const [id,p]of Object.entries(places)){
+  const links=document.createElementNS('http://www.w3.org/2000/svg','svg');links.setAttribute('viewBox','0 0 1536 1024');links.setAttribute('aria-hidden','true');links.classList.add('ff-map-links');board.append(links);
+  for(const [id,p]of Object.entries({...places,...extraMapPlaces})){
     if(id==='mailman')continue;
     const b=button(p.name,p.picture,()=>{if(area!=='forest')go('forest');else close();world.route(id);});
-    b.replaceChildren(id==='home'?FK.hudArt.element('den'):FK.friendsArt.portrait(id));b.dataset.place=id;if(id==='home')b.classList.add('ff-map-home');
+    const pin=mapPin(id),[ax,ay]=mapPoint(p.x,p.z);
+    b.replaceChildren(id==='home'?FK.hudArt.element('den'):FK.friendsArt.portrait(id),h('span',{class:'ff-map-pin-label',text:pin.label}));b.dataset.place=id;if(id==='home')b.classList.add('ff-map-home');
+    const line=document.createElementNS(links.namespaceURI,'line');for(const [key,value]of Object.entries({x1:ax*1536,y1:ay*1024,x2:pin.x*1536,y2:pin.y*1024}))line.setAttribute(key,String(value));links.append(line);
     const invited=mail.phase==='to-friend'&&mail.host===id||mail.phase==='return-home'&&id==='home';b.classList.toggle('ff-map-invited',invited);if(invited)b.append(h('span',{class:'ff-map-invitation'},FK.hudArt.element('letter')));
-    const [x,y]=mapPins[id];b.style.left=(x*100)+'%';b.style.top=(y*100)+'%';board.append(b);
+    b.style.left=(pin.x*100)+'%';b.style.top=(pin.y*100)+'%';board.append(b);
   }
   // Where Fuchs is now: his portrait on a pin with a soft pulse on the spot (in the den: at home).
-  const here=area==='forest'?world.position:places.home,hx=(here.x-MAP.x0)/(MAP.x1-MAP.x0),hy=(here.z-MAP.z0)/(MAP.z1-MAP.z0);
+  const here=area==='forest'?world.position:places.home,[hx,hy]=mapPoint(here.x,here.z);
   const me=h('div',{class:'ff-map-here',role:'img','aria-label':'Hier ist Fuchs'},h('span',{class:'ff-map-here-pulse'}),h('span',{class:'ff-map-here-pin'},FK.friendsArt.portrait('fox')));
   me.style.left=(hx*100)+'%';me.style.top=(hy*100)+'%';board.append(me);
-  // On a phone the map is wider than the screen (eleven pins need room) and scrolls sideways, centred on Fuchs.
+  me.style.setProperty('--ff-here-x',hx>.9?'-56px':'12px');me.style.setProperty('--ff-here-y',hy>.88?'-58px':'14px');
+  // Keep named 64 px pins readable on phones; the map pans sideways, centred on Fuchs.
   const scroller=h('div',{class:'ff-map-scroll'},board);card.append(scroller);requestAnimationFrame(()=>{scroller.scrollLeft=Math.max(0,Math.min(scroller.scrollWidth-scroller.clientWidth,hx*scroller.scrollWidth-scroller.clientWidth/2));});
   if(mail.phase==='to-mailman'){
     const b=button('Zum Briefträger','mailman',()=>{if(area!=='forest')go('forest');else close();world.route('mailman');},'ff-map-courier');
@@ -117,7 +120,7 @@ function map(){
   }
 }
 function meet(id){
-  if(!state.canPuzzle(id)){const m=state.mail(),toward=m.phase==='to-friend'?m.host:m.phase==='to-mailman'?'mailman':m.phase==='return-home'?'home':null,name=C.hosts[id]?.name||'';
+  if(!state.canPuzzle(id)){const m=state.mail(),toward=m.phase==='to-friend'?m.host:m.phase==='to-mailman'?'mailman':m.phase==='return-home'?'home':null,name=C.hosts[id]?.name||(extraMapPlaces[id]?mapPin(id).label:'');
     state.record('friend_unavailable',{host:id,reason:m.phase==='to-friend'?'wrong_letter':m.phase==='return-home'?'return_home':'needs_letter'});
     // A visit still shows something: the friend does a little trick and points the way.
     world.visit?.(id,toward);

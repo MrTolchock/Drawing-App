@@ -1,0 +1,81 @@
+{
+  "format": "waldpost-illustration-atlas",
+  "version": 1,
+  "source": "sources/friend-portraits.png",
+  "output": "../../assets/forest-friends/character-portraits.webp",
+  "columns": 4,
+  "rows": 4,
+  "cellPixels": 320,
+  "subjectPixels": 272,
+  "alphaThresholdPercent": 15,
+  "provenance": {
+    "date": "2026-11-16",
+    "tool": "ChatGPT hosted image-generation tool",
+    "sourceSha256": "64fc7b7ac0084145613e4daa505a8a3930b29ccf92aa5b2d382ff9483c35c8e8",
+    "generationRecord": "generation-records/friend-portraits.json",
+    "styleContract": "../illustrations/style.json",
+    "forwardPrompt": "prompts/friend-portraits.txt"
+  },
+  "subjects": [
+    {
+      "id": "fox",
+      "label": "Fuchs"
+    },
+    {
+      "id": "squirrel",
+      "label": "Eichhörnchen"
+    },
+    {
+      "id": "bird",
+      "label": "Blaumeise"
+    },
+    {
+      "id": "owl",
+      "label": "Waldkauz"
+    },
+    {
+      "id": "beaver",
+      "label": "Biber"
+    },
+    {
+      "id": "mouse",
+      "label": "Maus"
+    },
+    {
+      "id": "mailman",
+      "label": "Briefträger"
+    },
+    {
+      "id": "hedgehog",
+      "label": "Igel"
+    },
+    {
+      "id": "fish",
+      "label": "Fisch"
+    },
+    {
+      "id": "deer",
+      "label": "Reh"
+    },
+    {
+      "id": "kingfisher",
+      "label": "Eisvogel"
+    },
+    {
+      "id": "frog",
+      "label": "Frosch"
+    },
+    {
+      "id": "badger",
+      "label": "Dachs"
+    },
+    {
+      "id": "ibex",
+      "label": "Steinbock"
+    },
+    {
+      "id": "fox-sleep",
+      "label": "Schlafender Fuchs"
+    }
+  ]
+}

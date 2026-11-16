@@ -10,8 +10,10 @@
 | Simpler settings/map/envelope symbols | `navigation-symbols` | Broad outlines, flat warm fills, no miniature scenery or material detail |
 | Navigation back arrow | `navigation-back` | Same simple symbol family; no wood grain, carving, bevel or circular backing in the picture |
 | Invitation paper | `letter-paper` | Empty portrait zone; current sender added from the painted friend atlas |
-| Painted invitation friends | `letter-friends` | Four-by-four atlas with fourteen portraits, including Reh, Igel and Steinbock; model reference defines identity only |
-| Drawn map proposal | `drawn-map-draft` | `cartography` role: simplified flat 2D, strict top-down view, broad forest patches and clear paths/water; preserve actual geography. Draft only until approved |
+| Shared painted UI friends | `friend-portraits` | Four-by-four atlas with fourteen friends plus sleeping Fuchs; same cast on letters, puzzles, map pins and menus |
+| Sleeping Fuchs pose | `fox-sleep-portrait` | Matching scarf, markings and watercolour/pencil medium |
+| Adopted drawn map | `world-map` | Flat 2D, strict top-down view; preserve geography and [calibration](world-map-layout.json). Named pins and current-position marker remain real interactive layers |
+| New map proposal | `drawn-map-draft` | A separate future proposal, outside runtime until approved |
 | Den painting | `den` | [Camera/layout anchors](BACKGROUNDS.md) |
 | Shared puzzle/menu/settings woodland | `puzzle-clearing` | [Shared scene and quiet crop area](BACKGROUNDS.md) |
 | New companion scene | `background` | Same canonical medium; explicit framing and panel-safe space |
@@ -51,6 +53,6 @@ See [painted letter friends](LETTER-FRIENDS.md) for the complete cast and packin
 
 ## Current pipelines and history
 
-[assets.json](assets.json) separates current assets, current forward prompts and historical provenance. The runtime picture map is painted from actual world geometry by `tools/map/`; the proposed drawn map remains a separate, unimplemented draft. Puzzle/map/companion portraits are rendered from current GLBs by `tools/portraits/`; invitation letters use the separate painted friend atlas. The live world, sky, water and textures use geometry/canvas/shaders.
+[assets.json](assets.json) separates runtime art, current forward prompts, preparation inputs and historical provenance. The runtime map is the approved version 2 painting, prepared with `world-map.json`; `tools/map/` maintains geographic calibration and can produce geometry references for development. All UI identities use the shared painted atlas; `tools/portraits/` produces model references only. The live world, den fox, sky, water and textures retain their geometry/material pipelines.
 
 Old briefs, alternative directions, original requests, drafts, before images and dated evidence are in the [historical snapshot](../../archive/design-history/2026-11-16-before-style-contract/README.md). All original bytes are protected by the archive manifest. They are retained for explanation and exact provenance, not for copying into a new generator request.

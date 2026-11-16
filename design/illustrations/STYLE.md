@@ -21,12 +21,12 @@ Avoid sculpted/plush/felt/clay finishes, rendered or photographic material detai
 | Learning subjects | Fine organic pencil contours and light watercolour; complete recognizable subjects in transparent square cells, with generous clean gutters |
 | Navigation symbols | The approved simpler application: broad sepia outline, bold silhouette, nearly flat warm fills, very little detail, readable at 32 px; use the current symbol sheet as an additional simplicity reference |
 | Stationery | Pale cream paper with restrained pencil borders/leaf details; transparent perimeter and empty space for the separately painted sender |
-| Letter sender portraits | The same watercolour/pencil animal drawing as the canonical references, with recognizable species/markings/accessories; isolated complete animals in transparent square cells. Use the `letter-friends` request, including Steinbock |
+| Shared character portraits | The same watercolour/pencil animal drawing as the canonical references, with recognizable species/markings/accessories; isolated complete animals in transparent square cells. Use the `friend-portraits` request, including Steinbock and the sleeping Fuchs |
 | Background paintings | The same watercolour/pencil medium at scene scale; quiet pale washes, restrained edge detail and preserved camera/layout anchors; opaque canvas |
-| Map proposals | The same medium as a simplified, flat, strictly top-down cartographic plan; broad woodland regions, readable routes/water and sparse plan symbols, with no oblique scenery or relief. Design draft only |
+| Map proposals | The same medium as a simplified, flat, strictly top-down cartographic plan; broad woodland regions, readable routes/water and sparse plan symbols, with no oblique scenery or relief. Preserve the adopted map and its calibrated overlays |
 | App emblem | Simple, readable illustrated branding in the same palette and technique |
 
-Puzzle/map/companion portraits and the real-time world keep their existing code/model pipelines. Invitation letters use the explicitly painted sender role through `FK.friendsArt.letterPortrait`, rather than the model atlas. Exact geometry, routes and handwriting remain authored paths. Preserve existing den/door pictures by reuse unless the user specifically asks to change them. Navigation back is a simple flat illustrated arrow matching the map, letter and settings symbols. These role boundaries are prescribed parts of the design, not a menu of competing styles.
+All UI character identities use the shared painted cast: letters, puzzle context, map pins, menus, companions and celebration. The real-time world and den fox keep their existing model pipeline. `FK.friendsArt.portrait` and `letterPortrait` use the same painted atlas. Exact geometry, routes and handwriting remain authored paths. Preserve existing den/door pictures by reuse unless the user specifically asks to change them. Navigation back is a simple flat illustrated arrow matching the map, letter and settings symbols. These role boundaries are prescribed parts of the design, not a menu of competing styles.
 
 ## Make a request
 

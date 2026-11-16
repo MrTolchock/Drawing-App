@@ -46,10 +46,13 @@
       "instruction": "Use the canonical warm illustrated technique as a simple readable app emblem. Keep a clear silhouette and quiet background. A branding fox is not a replacement for the existing puzzle/map model portraits or the painted letter sender portraits."
     },
     "letter-portrait": {
-      "instruction": "Paint recognizable sender friends in the canonical watercolour and coloured-pencil medium, with natural friendly animal proportions, organic sepia contours and gentle drawn volume. Keep species markings and identity accessories readable, with genuine transparency and complete silhouettes in generous square cells. Any model reference defines identity and colour only, never rendering style. This explicit painted-portrait role is for letters; existing world and puzzle/map identity pipelines remain separate."
+      "instruction": "Paint recognizable sender friends in the canonical watercolour and coloured-pencil medium, with natural friendly animal proportions, organic sepia contours and gentle drawn volume. Keep species markings and identity accessories readable, with genuine transparency and complete silhouettes in generous square cells. Any model reference defines identity and colour only, never rendering style. This fourteen-animal base supplies the shared painted cast; a matching sleeping fox completes the common UI atlas. The live world retains its 3D model pipeline."
     },
     "cartography": {
-      "instruction": "Apply the canonical watercolour/pencil medium as a simplified flat cartographic plan. Strict orthographic top-down projection throughout, no perspective, visible vertical surfaces, relief modelling or cast shadows. Use broad quiet colour regions, light washes, fine organic sepia outlines and a few small plan-view symbols. Keep path connections, water boundaries and relative landmark positions clear; remove decorative microdetail. Opaque landscape canvas. Geography references define layout only. The result is a design proposal outside runtime assets until approved."
+      "instruction": "Apply the canonical watercolour/pencil medium as a simplified flat cartographic plan. Strict orthographic top-down projection throughout, no perspective, visible vertical surfaces, relief modelling or cast shadows. Use broad quiet colour regions, light washes, fine organic sepia outlines and a few small plan-view symbols. Keep path connections, water boundaries and relative landmark positions clear; remove decorative microdetail. Opaque landscape canvas. Geography references define layout only. Keep runtime-approved geography calibrated to the actual interface; new proposals stay separate until the owner approves them."
+    },
+    "character": {
+      "instruction": "Use the canonical watercolour-and-coloured-pencil medium for the shared game-character portraits on letters, map pins, puzzle pages, menus, companions and celebrations. Reuse the approved painted identities, natural friendly proportions, species markings and accessories. Complete silhouettes, real transparency and generous square-cell margins. Keep the live 3D world as its own model pipeline; do not substitute these identity portraits for scored learning pictures."
     }
   },
   "prompts": [
@@ -197,7 +200,7 @@
       "transparent": true,
       "references": [
         {
-          "path": "assets/forest-friends/character-portraits.webp",
+          "path": "design/artwork/references/model-identities.webp",
           "sha256": "b2e4054bd18580b86d51743fe3b4eebb88c50a0b6bc0b0a50ce3dfb83631ef7f",
           "purpose": "current species, markings and identity accessories only; do not copy model proportions, 3D lighting or plush finish",
           "usage": "composition-only"
@@ -212,9 +215,54 @@
       "transparent": false,
       "references": [
         {
-          "path": "assets/forest-friends/world-map.webp",
+          "path": "design/artwork/references/world-map-geography.webp",
           "sha256": "84bd806fe2bcfa2262f10b1a512549525a2c74af310c7fd05568197b17fe3ff5",
           "purpose": "actual geography, path topology, landmark locations and map extent only; repaint in the canonical medium",
+          "usage": "composition-only"
+        }
+      ]
+    },
+    {
+      "id": "fox-sleep-portrait",
+      "role": "character",
+      "path": "design/artwork/prompts/fox-sleep-portrait.txt",
+      "brief": "design/artwork/briefs/fox-sleep-portrait.txt",
+      "transparent": true,
+      "references": [
+        {
+          "path": "assets/interface/letter-friends.webp",
+          "sha256": "93d5f6a3696519c05779ca43c29fcbb271822f3f94d4bc6afc0571f6c6cda667",
+          "purpose": "approved painted Fuchs identity and green scarf; retain this exact character in a sleeping pose",
+          "usage": "composition-only"
+        }
+      ]
+    },
+    {
+      "id": "world-map",
+      "role": "cartography",
+      "path": "design/artwork/prompts/world-map.txt",
+      "brief": "design/artwork/briefs/world-map.txt",
+      "transparent": false,
+      "references": [
+        {
+          "path": "design/artwork/drafts/drawn-map-v2.png",
+          "sha256": "99f0e8db39bde8071bc458979e60189a79d2ac29e3e948ec0b95ce9de39460b2",
+          "purpose": "approved flat top-down map: preserve its geography, projection and sparse detail",
+          "usage": "composition-only"
+        }
+      ]
+    },
+    {
+      "id": "friend-portraits",
+      "role": "character",
+      "path": "design/artwork/prompts/friend-portraits.txt",
+      "brief": "design/artwork/briefs/friend-portraits.txt",
+      "transparent": true,
+      "references": [
+        {
+          "path": "assets/interface/letter-friends.webp",
+          "sha256": "93d5f6a3696519c05779ca43c29fcbb271822f3f94d4bc6afc0571f6c6cda667",
+          "purpose": "approved painted identities, species markings and accessories; include the matching sleeping Fuchs pose",
           "usage": "composition-only"
         }
       ]
@@ -230,7 +278,10 @@
     "design/illustrations/puzzle-flowers.json",
     "design/illustrations/rhyme-vocabulary.json",
     "design/artwork/navigation-back.json",
-    "design/artwork/letter-friends.json"
+    "design/artwork/letter-friends.json",
+    "design/artwork/world-map.json",
+    "design/artwork/fox-sleep-portrait.json",
+    "design/artwork/friend-portraits.json"
   ],
   "history": "archive/design-history/2026-11-16-before-style-contract",
   "preview": {

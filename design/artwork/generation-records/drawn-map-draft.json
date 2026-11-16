@@ -30,7 +30,8 @@
     {
       "path": "assets/forest-friends/world-map.webp",
       "sha256": "84bd806fe2bcfa2262f10b1a512549525a2c74af310c7fd05568197b17fe3ff5",
-      "usage": "composition-only"
+      "usage": "composition-only",
+      "preservedAt": "design/artwork/references/world-map-geography.webp"
     }
   ],
   "status": "proposal-only-not-implemented"

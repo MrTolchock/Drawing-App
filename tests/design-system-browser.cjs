@@ -13,7 +13,7 @@ try{
  assert.equal(await page.evaluate(()=>localStorage.getItem('farbtupf.forest.v1')),'{"archivedFixture":true}');
  const duplicateIds=await page.locator('symbol[id]').evaluateAll(nodes=>nodes.map(n=>n.id).filter((id,i,all)=>all.indexOf(id)!==i));assert.deepEqual(duplicateIds,[]);
  await page.getByRole('button',{name:'Brief öffnen',exact:true}).click();
- assert.match(await page.locator('.ff-letter-friend').evaluate(e=>getComputedStyle(e).backgroundImage),/letter-friends.webp/);
+ assert.match(await page.locator('.ff-letter-friend').evaluate(e=>getComputedStyle(e).backgroundImage),/character-portraits.webp/);
  await page.screenshot({path:out+'/letter-tablet.png'});
  await page.evaluate(()=>FK.puzzleReview.open());await page.locator('.gate-task').waitFor();
  const [a,b]=(await page.locator('.gate-task').textContent()).match(/\d+/g).map(Number);await page.getByLabel('Deine Antwort',{exact:true}).fill(String(a*b));await page.locator('.gate-submit').click();await page.waitForFunction(()=>FK.current()==='puzzle-review');

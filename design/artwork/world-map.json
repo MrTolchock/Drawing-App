@@ -1,0 +1,19 @@
+{
+  "format": "waldpost-illustration-image",
+  "version": 1,
+  "source": "sources/world-map.png",
+  "output": "../../assets/forest-friends/world-map.webp",
+  "width": 1536,
+  "height": 1024,
+  "fit": "contain",
+  "transparent": false,
+  "quality": 92,
+  "provenance": {
+    "date": "2026-11-16",
+    "tool": "ChatGPT hosted image-generation tool; adopted approved map v2",
+    "sourceSha256": "99f0e8db39bde8071bc458979e60189a79d2ac29e3e948ec0b95ce9de39460b2",
+    "generationRecord": "generation-records/world-map.json",
+    "styleContract": "../illustrations/style.json",
+    "forwardPrompt": "prompts/world-map.txt"
+  }
+}

@@ -14,21 +14,21 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',out=process.en
   }
   await page.screenshot({path:out+'/navigation-'+width+'.png'});await nav.getByRole('button',{name:'Dein Brief',exact:true}).click();
   const letter=active().getByRole('button',{name:'Zum Freund gehen',exact:true});assert.match(await letter.evaluate(n=>getComputedStyle(n).backgroundImage),/letter-paper.webp/);
-  const host=await page.evaluate(()=>FK.friends.mail().host),portrait=letter.locator('.ff-letter-friend');assert.equal(await portrait.getAttribute('data-friend'),host);assert.match(await portrait.evaluate(n=>getComputedStyle(n).backgroundImage),/letter-friends.webp/);
+  const host=await page.evaluate(()=>FK.friends.mail().host),portrait=letter.locator('.ff-letter-friend');assert.equal(await portrait.getAttribute('data-friend'),host);assert.match(await portrait.evaluate(n=>getComputedStyle(n).backgroundImage),/character-portraits.webp/);
   const rect=await letter.boundingBox();assert.ok(rect.x>=0&&rect.y>=0&&rect.x+rect.width<=width&&rect.y+rect.height<=height,JSON.stringify({width,height,rect}));assert.ok(await portrait.evaluate(n=>{const r=n.getBoundingClientRect();return r.width>=140&&r.height>=140;}));
   await page.screenshot({path:out+'/letter-'+width+'.png'});states.push({width,height,host,letterFits:true});await letter.click();
   await nav.getByRole('button',{name:'Bildkarte',exact:true}).click();await active().locator('.ff-map-storybook').waitFor();assert.equal(await active().locator('.ff-map-home [data-hud="den"]').count(),1);assert.equal(await active().locator('.ff-map-invitation [data-hud="letter"]').count(),1);const back=active().getByRole('button',{name:'Zurück',exact:true});assert.equal(await back.locator('[data-hud="back"]').count(),1);assert.equal(await back.locator('.ff-picture').evaluate(n=>getComputedStyle(n).filter),'none','map back uses the same flat symbol family');await page.screenshot({path:out+'/map-'+width+'.png'});await back.click();
   await nav.getByRole('button',{name:'Einstellungen für Erwachsene',exact:true}).click();await gate();await page.waitForFunction(()=>FK.current()==='settings');assert.equal(await active().evaluate(n=>n.scrollWidth>n.clientWidth+2),false);await page.screenshot({path:out+'/settings-'+width+'.png'});await active().locator('.btn-back').click();await page.waitForFunction(()=>FK.current()==='friends');
  }
- const painted=await page.evaluate(()=>['fox','squirrel','bird','owl','beaver','mouse','mailman','hedgehog','fish','deer','kingfisher','frog','badger','ibex'].map(id=>{
+ const painted=await page.evaluate(()=>['fox','squirrel','bird','owl','beaver','mouse','mailman','hedgehog','fish','deer','kingfisher','frog','badger','ibex','fox-sleep'].map(id=>{
   const pic=FK.friendsArt.letterPortrait(id);document.body.append(pic);const style=getComputedStyle(pic),result={id,role:pic.dataset.artRole,image:style.backgroundImage,position:style.backgroundPosition};pic.remove();return result;
  }));
- assert.equal(new Set(painted.map(p=>p.position)).size,14,'each sender, including Steinbock, has its own painted cell');for(const pic of painted){assert.equal(pic.role,'letter-character');assert.match(pic.image,/letter-friends.webp/);}
- const atlas=sharp('assets/interface/letter-friends.webp'),meta=await atlas.metadata();assert.ok(meta.hasAlpha);assert.equal(meta.width,1280);assert.equal(meta.height,1280);
+ assert.equal(new Set(painted.map(p=>p.position)).size,15,'each sender, including Steinbock, has its own painted cell');for(const pic of painted){assert.equal(pic.role,'letter-character');assert.match(pic.image,/character-portraits.webp/);}
+ const atlas=sharp('assets/forest-friends/character-portraits.webp'),meta=await atlas.metadata();assert.ok(meta.hasAlpha);assert.equal(meta.width,1280);assert.equal(meta.height,1280);
  for(let i=0;i<16;i++){
-  const cell=await sharp('assets/interface/letter-friends.webp').extract({left:i%4*320,top:Math.floor(i/4)*320,width:320,height:320}).ensureAlpha().raw().toBuffer();let paintedPixels=0;
+  const cell=await sharp('assets/forest-friends/character-portraits.webp').extract({left:i%4*320,top:Math.floor(i/4)*320,width:320,height:320}).ensureAlpha().raw().toBuffer();let paintedPixels=0;
   for(let y=0;y<320;y++)for(let x=0;x<320;x++){const alpha=cell[(y*320+x)*4+3];if(alpha>38){paintedPixels++;assert.ok(x>=20&&x<300&&y>=20&&y<300,'complete portrait stays inside its cell: '+i);}}
-  assert.ok(i<14?paintedPixels>2500:paintedPixels===0,'correct filled/empty portrait cell '+i);
+  assert.ok(i<15?paintedPixels>2500:paintedPixels===0,'correct filled/empty portrait cell '+i);
  }
  assert.equal(await page.evaluate(()=>FK.friends.mail().session.completed),0,'viewing letters/maps never completes a puzzle');assert.equal(remote.writes.length,0);
  const gallery=await context.newPage();gallery.on('pageerror',e=>errors.push(e.message));await gallery.goto(base+'/assets/waldatelier/');await gallery.waitForFunction(()=>document.querySelector('#count').textContent.includes('235'));

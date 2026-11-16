@@ -9,7 +9,7 @@ All generated learning pictures follow the [canonical watercolour/pencil style](
 | Rule | Every active puzzle |
 | --- | --- |
 | Identity | One stable puzzle ID, title, host, explicit difficulty and bounded competence. A puzzle is not a difficulty ladder. |
-| Pictures | Drawn woodland illustrations for scored subjects; model-rendered portraits only for character identity. Exact SVG geometry, arrows and handwriting strokes where those are the subject. See the visual-style asset table. No emoji, stock-photo or text substitute for a missing picture. |
+| Pictures | Drawn woodland illustrations for scored subjects; the common painted cast for character identity. Exact SVG geometry, arrows and handwriting strokes where those are the subject. See the visual-style asset table. No emoji, stock-photo or text substitute for a missing picture. |
 | Page | Cream stitched Waldbuch paper, woodland clearing, matching wooden answer cards, Andika for scored text, one host portrait and five progress leaves. |
 | Round | A random sample of five distinct iterations from the finite, inspectable pool. Prefer items not in the last completed round. Keep the selected questions and partial work stable on return/reload. |
 | Pool | At least 25 explicit, stable iterations per puzzle. Full upper/lower alphabet including ÄÖÜ; numeral practice includes the complete 0–9 set in three illustrated quantity contexts. Iterations differ in content, configuration or required action, never only answer order or a random seed. |
@@ -61,7 +61,7 @@ Use `js/screens/puzzle.js` and `css/puzzle-rounds.css`. Writing uses the existin
 - Cream stitched paper and quiet woodland background; one main task per page. Cards use the shared wood/cream treatment, soft brown borders and sage selected states. Feedback adds a visible mark and accessible status, never colour alone.
 - Andika 700 for the puzzle title, prompt, scored words and numerals; Andika 400 for explanations and labels. Do not use Baloo for scored text or handwriting.
 - Touch controls are at least 48 × 48 CSS px. On a narrow screen wrap answers or scroll the task region; do not shrink letters or targets until they become hard to use. Keep the topbar and back button reachable. Honour safe areas, visible keyboard focus and reduced motion.
-- Nouns/verbs use drawn artwork through `FK.visual`; companions and voters use the identity API `FK.friendsArt.portrait`. A model portrait must never substitute for a pictured vocabulary answer. Task utility controls use `FK.icons`; the header back uses the shared `FK.ui.topbar` navigation arrow, matching menus and the map.
+- Nouns/verbs use drawn artwork through `FK.visual`; companions and voters use the same painted identity API `FK.friendsArt.portrait`. An identity portrait must never substitute for a pictured vocabulary answer. Task utility controls use `FK.icons`; the header back uses the shared `FK.ui.topbar` navigation arrow, matching menus and the map.
 
 ## Adding or revising a puzzle
 

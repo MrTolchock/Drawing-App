@@ -1,4 +1,4 @@
-// Render every identity with the same model, lighting, crop and cell size.
+// Render model references only; tools/illustrations prepares the shared painted runtime cast.
 const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
 const fs=require('node:fs'),path=require('node:path');
 const ids=['fox','squirrel','bird','owl','beaver','mouse','mailman','hedgehog','fish','deer','kingfisher','frog','badger','fox-sleep'];
@@ -10,5 +10,5 @@ try{const p=await browser.newPage({viewport:{width:1536,height:1536}}),cells=[];
    for(let y=0;y<c.height;y++)for(let x=0;x<c.width;x++)if(d[(y*c.width+x)*4+3]>8){x0=Math.min(x0,x);y0=Math.min(y0,y);x1=Math.max(x1,x);y1=Math.max(y1,y);}
    if(x0>=x1||y0>=y1)throw Error('Empty portrait '+i);const w=x1-x0+1,h=y1-y0+1,k=Math.min(224/w,236/h);g.drawImage(c,x0,y0,w,h,(i%4)*256+(256-w*k)/2,Math.floor(i/4)*256+250-h*k,w*k,h*k);
   }return canvas.toDataURL('image/webp',.9);},cells);
- const out=process.env.FARBTUPF_PORTRAITS_OUT||path.join(__dirname,'../../assets/forest-friends/character-portraits.webp');fs.writeFileSync(out,Buffer.from(url.split(',')[1],'base64'));console.log('Rendered '+ids.length+' portraits: '+out);
+ const out=process.env.FARBTUPF_PORTRAITS_OUT||path.join(require('node:os').tmpdir(),'waldpost-model-identities.webp');fs.writeFileSync(out,Buffer.from(url.split(',')[1],'base64'));console.log('Rendered '+ids.length+' model identity references: '+out);
 }finally{await browser.close();}})().catch(e=>{console.error(e);process.exitCode=1;});

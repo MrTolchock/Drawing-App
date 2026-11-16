@@ -1,7 +1,7 @@
 {
   "character": {
     "source": "assets/forest-friends/character-portraits.webp",
-    "treatment": "same-model-render",
+    "treatment": "canonical-painted",
     "ids": [
       "fox",
       "squirrel",
@@ -16,8 +16,11 @@
       "kingfisher",
       "frog",
       "badger",
+      "ibex",
       "fox-sleep"
-    ]
+    ],
+    "manifest": "design/artwork/friend-portraits.json",
+    "styleContract": "design/illustrations/style.json"
   },
   "subject": {
     "directory": "assets/waldatelier",
@@ -74,8 +77,8 @@
     "manifest": "design/artwork/letter-paper.json",
     "portrait": "canonical-painted",
     "styleContract": "design/illustrations/style.json",
-    "portraitSource": "assets/interface/letter-friends.webp",
-    "portraitManifest": "design/artwork/letter-friends.json"
+    "portraitSource": "assets/forest-friends/character-portraits.webp",
+    "portraitManifest": "design/artwork/friend-portraits.json"
   },
   "type": {
     "learning": "Andika",
@@ -89,7 +92,7 @@
     "celebrationMs": 2200
   },
   "letterFriends": {
-    "source": "assets/interface/letter-friends.webp",
+    "source": "assets/forest-friends/character-portraits.webp",
     "treatment": "canonical-painted",
     "component": "FK.friendsArt.letterPortrait",
     "ids": [
@@ -108,6 +111,16 @@
       "badger",
       "ibex"
     ],
+    "styleContract": "design/illustrations/style.json"
+  },
+  "map": {
+    "source": "assets/forest-friends/world-map.webp",
+    "manifest": "design/artwork/world-map.json",
+    "layout": "design/artwork/world-map-layout.json",
+    "runtimeLayout": "js/friends/map-layout.js",
+    "projection": "orthographic-top-down-2d",
+    "minimumBoardWidth": 960,
+    "minimumPinTarget": 64,
     "styleContract": "design/illustrations/style.json"
   }
 }

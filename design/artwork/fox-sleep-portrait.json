@@ -1,0 +1,25 @@
+{
+  "format": "waldpost-illustration-atlas",
+  "version": 1,
+  "source": "sources/fox-sleep-portrait.png",
+  "output": "prepared/fox-sleep.webp",
+  "columns": 1,
+  "rows": 1,
+  "cellPixels": 320,
+  "subjectPixels": 272,
+  "alphaThresholdPercent": 15,
+  "provenance": {
+    "date": "2026-11-16",
+    "tool": "ChatGPT hosted image-generation tool",
+    "sourceSha256": "f2510b5af53f4116888e0db1d5d5bf5560edafdd35094fdf87874aa146297967",
+    "generationRecord": "generation-records/fox-sleep-portrait.json",
+    "styleContract": "../illustrations/style.json",
+    "forwardPrompt": "prompts/fox-sleep-portrait.txt"
+  },
+  "subjects": [
+    {
+      "id": "fox-sleep",
+      "label": "Schlafender Fuchs"
+    }
+  ]
+}

@@ -11,12 +11,12 @@ The role instructions below set the necessary detail and composition within this
 Preserve subject identity, counted quantities, exact answer colours and action differences. Use real alpha for isolated pictures and stationery, and an opaque canvas only when the selected role requires a scene or branding image. No accidental background, halo, visible grid, labels or extra objects.
 
 ROLE: cartography
-Apply the canonical watercolour/pencil medium as a simplified flat cartographic plan. Strict orthographic top-down projection throughout, no perspective, visible vertical surfaces, relief modelling or cast shadows. Use broad quiet colour regions, light washes, fine organic sepia outlines and a few small plan-view symbols. Keep path connections, water boundaries and relative landmark positions clear; remove decorative microdetail. Opaque landscape canvas. Geography references define layout only. The result is a design proposal outside runtime assets until approved.
+Apply the canonical watercolour/pencil medium as a simplified flat cartographic plan. Strict orthographic top-down projection throughout, no perspective, visible vertical surfaces, relief modelling or cast shadows. Use broad quiet colour regions, light washes, fine organic sepia outlines and a few small plan-view symbols. Keep path connections, water boundaries and relative landmark positions clear; remove decorative microdetail. Opaque landscape canvas. Geography references define layout only. Keep runtime-approved geography calibrated to the actual interface; new proposals stay separate until the owner approves them.
 
 ATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:
 1. design/illustrations/references/watercolour-pencil-v1/animals.png — canonical-style: canonical drawing technique for animals; fixed majority-style pixels
 2. design/illustrations/references/watercolour-pencil-v1/objects.png — canonical-style: canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels
-3. assets/forest-friends/world-map.webp — composition-only: actual geography, path topology, landmark locations and map extent only; repaint in the canonical medium
+3. design/artwork/references/world-map-geography.webp — composition-only: actual geography, path topology, landmark locations and map extent only; repaint in the canonical medium
 
 SUBJECT AND LAYOUT BRIEF:
 Redraw the Waldpost woodland as a very clear, simplified TWO-DIMENSIONAL CARTOGRAPHIC MAP, LANDSCAPE THREE-TO-TWO. True orthographic top-down plan view: the camera points straight down at 90 degrees everywhere on the map. Every feature uses the same plan projection. Preserve the north-up extent, main path network, waterways and landmark locations of the supplied actual-world map. The previous painted proposal, if attached, supplies layout/content only and must be flattened and radically simplified. This is a design draft only.

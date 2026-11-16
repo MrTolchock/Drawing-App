@@ -458,7 +458,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
       streamer.focus(pos.x, pos.z); const finishing = streamer.complete(); if (perf) perf.stats.enterBuildMs = finishing; compile(); aimSun(pos.x, pos.z); snapCamera(); renderer.shadowMap.needsUpdate = true;
     },
     resize(w, h) { width = w; height = h; narrow = w < 600; camera.aspect = w / Math.max(1, h); camera.fov = narrow ? 54 : 42; camera.updateProjectionMatrix(); const vh = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * 1.02; vignette.scale.set(vh * camera.aspect, vh, 1); snapCamera(); },
-    update, route(id) { const p = forestPlaces[id]; if (id === 'mailman') { courierGoal = null; courierPath = []; courierWait = 20; } if (p) walkTo(new THREE.Vector3(p.x, 0, p.z), id); },
+    update, route(id) { const extra=WORLD.extras[id],p = forestPlaces[id]||(extra&&{x:extra.at[0],z:extra.at[1]}); if (id === 'mailman') { courierGoal = null; courierPath = []; courierWait = 20; } if (p) walkTo(new THREE.Vector3(p.x, 0, p.z), id); },
     walkTo(x, z) { walkTo(new THREE.Vector3(x, 0, z)); },
     /** A short close shot of Fuchs and the invited friend before the puzzle opens; returns its length (s), 0 with reduced motion. */
     frame(id) { const f = friends[id]; if (!f || window.FK.reduced) return 0; shot = {id, t: 0, dur: 1.5}; const yaw = Math.atan2(f.x - pos.x, f.z - pos.z); fox.rotation.y = yaw; f.metAt = null; return 1.3; },

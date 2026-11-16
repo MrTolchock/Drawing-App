@@ -30,7 +30,8 @@
     {
       "path": "assets/forest-friends/character-portraits.webp",
       "sha256": "b2e4054bd18580b86d51743fe3b4eebb88c50a0b6bc0b0a50ce3dfb83631ef7f",
-      "usage": "composition-only"
+      "usage": "composition-only",
+      "preservedAt": "design/artwork/references/model-identities.webp"
     }
   ],
   "status": "not-used-in-runtime-layout-repair-required"

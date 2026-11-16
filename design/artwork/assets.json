@@ -139,11 +139,11 @@
       "forwardPrompt": "design/artwork/prompts/navigation-back.txt"
     },
     {
-      "id": "letter-friends",
-      "file": "assets/interface/letter-friends.webp",
-      "role": "letter-portrait",
-      "manifest": "design/artwork/letter-friends.json",
-      "forwardPrompt": "design/artwork/prompts/letter-friends.txt"
+      "id": "friend-portraits",
+      "file": "assets/forest-friends/character-portraits.webp",
+      "role": "character",
+      "manifest": "design/artwork/friend-portraits.json",
+      "forwardPrompt": "design/artwork/prompts/friend-portraits.txt"
     },
     {
       "id": "letter-paper",
@@ -193,6 +193,15 @@
       "role": "branding",
       "forwardPrompt": "design/artwork/prompts/app-icon.txt",
       "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-app-icon.json"
+    },
+    {
+      "id": "world-map",
+      "file": "assets/forest-friends/world-map.webp",
+      "role": "cartography",
+      "manifest": "design/artwork/world-map.json",
+      "layout": "design/artwork/world-map-layout.json",
+      "forwardPrompt": "design/artwork/prompts/world-map.txt",
+      "adoptedSource": "design/artwork/drafts/drawn-map-v2.png"
     }
   ],
   "codePipelines": [
@@ -200,13 +209,13 @@
       "id": "picture-map",
       "source": "tools/map",
       "guide": "tools/map/README.md",
-      "method": "Canvas painting from actual world geometry; no image generator."
+      "method": "Geometry-derived development reference only; runtime uses the approved top-down painting and calibrated UI projection."
     },
     {
       "id": "character-identities",
       "source": "tools/portraits",
       "guide": "tools/portraits/README.md",
-      "method": "Current GLB renders, not generated substitute identities."
+      "method": "GLB identity references for the live world only; UI identities use the shared painted friend atlas."
     },
     {
       "id": "live-world",
@@ -230,14 +239,14 @@
     {
       "id": "drawn-map-v2",
       "file": "design/artwork/drafts/drawn-map-v2.png",
-      "status": "proposal-only-not-implemented",
+      "status": "adopted-runtime-source",
       "role": "cartography",
       "projection": "orthographic-top-down-2d",
       "detail": "simplified-cartographic-plan",
-      "forwardPrompt": "design/artwork/prompts/drawn-map-draft.txt",
+      "forwardPrompt": "design/artwork/prompts/world-map.txt",
       "generationRecord": "design/artwork/generation-records/drawn-map-draft-v2.json",
       "runtimeMap": "assets/forest-friends/world-map.webp",
-      "policy": "Design draft only. Do not use as a runtime dependency or offline asset until the owner approves implementation."
+      "policy": "Owner approved implementation of version 2. The PNG is a retained source record; runtime uses the prepared WebP and calibrated interactive overlays."
     },
     {
       "id": "drawn-map-v1",
@@ -247,6 +256,14 @@
       "generationRecord": "design/artwork/generation-records/drawn-map-draft.json",
       "runtimeMap": "assets/forest-friends/world-map.webp",
       "policy": "Keep outside runtime dependencies/offline cache until the owner approves this draft."
+    }
+  ],
+  "preparationInputs": [
+    {
+      "id": "painted-base-cast",
+      "file": "assets/interface/letter-friends.webp",
+      "manifest": "design/artwork/letter-friends.json",
+      "policy": "Fourteen approved painted identities used to compose the shared fifteen-pose atlas. Not a runtime dependency."
     }
   ]
 }
