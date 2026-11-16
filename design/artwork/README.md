@@ -43,7 +43,19 @@ node tools/illustrations/prepare-image.cjs design/artwork/letter-paper.json
 
 These commands need Node and ImageMagick 7 (`magick`) with WebP/profile support. Both accept `--output /tmp/example.webp` and `--icc-profile /path/to/sRGB.icc`; `WALDPOST_SRGB_PROFILE` and `WALDPOST_MAGICK` are also supported. Conversion needs no image-service key. Packing crops visible bounds while preserving the original alpha, fits each subject and leaves clean cell gutters. Letter conversion preserves its aspect ratio; it does not stretch the paper or bake in a sender.
 
-World pictures use `FK.hudArt.element(name)` in `js/friends/hud-art.js`. Their order is `gear, map, letter, den, door, back`; it must match the manifest. The letter background is applied in `css/waldbuch.css`; its portrait occupies the clear left half. Test the complete letter, door delivery, map and parent gate at phone/tablet sizes, including a short landscape viewport.
+### Simplified navigation symbols — 9.3.77
+
+The owner requested simpler, more illustrative controls instead of tiny realistic objects. **Settings, map and envelope now use [navigation-symbols.webp](../../assets/interface/navigation-symbols.webp)**: bold brown outlines, broad nearly flat fills and a few meaningful interior marks. No wood grain, paper fibres, brass hub, tiny trees, postage stamp or embossed leaf. [Exact simplification prompt](prompts/navigation-symbols-generation.txt) · [original generated PNG](sources/navigation-symbols.png) · [packing manifest](navigation-symbols.json). The original six-icon atlas was supplied as the palette/subject reference; no final repair pass was needed.
+
+```sh
+node tools/illustrations/pack-atlas.cjs design/artwork/navigation-symbols.json
+```
+
+The new atlas is **2 × 2**: `gear, map, letter`, then one empty cell. It is deliberately separate from the original 3 × 2 atlas: the approved den/home tree, exit door and back arrow keep their original pixels. Do not regenerate those pins when changing toolbar symbols.
+
+World pictures use `FK.hudArt.element(name)` in `js/friends/hud-art.js`, which selects the appropriate atlas and cell. **Every navigation back uses `FK.hudArt.decorateBack(button)`**, including the map and the shared `FK.ui.topbar` used by Settings, galleries, review and puzzle pages. `css/navigation.css` supplies their common cream/wood 56 px frame and 40 px drawn arrow; labels, callbacks and keyboard activation stay with the original button. A hidden legacy SVG handle remains for the retired handwriting overview's home/back update; it is not a second visible icon. Direction arrows within tasks and handwriting are separate functional content.
+
+The letter background is applied in `css/waldbuch.css`; its portrait occupies the clear left half. Test the complete letter, door delivery, map, parent gate and all back routes at phone/tablet sizes, including a short landscape viewport. New sources must keep the simplified symbols' bold shape language; do not add material realism back to the toolbar.
 
 ## Puzzle pictures
 

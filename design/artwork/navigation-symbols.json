@@ -1,0 +1,13 @@
+{
+  "format":"waldpost-illustration-atlas","version":1,
+  "source":"sources/navigation-symbols.png","output":"../../assets/interface/navigation-symbols.webp",
+  "columns":2,"rows":2,"cellPixels":320,"subjectPixels":272,"alphaThresholdPercent":15,
+  "provenance":{
+    "date":"2026-11-16","tool":"ChatGPT hosted image-generation tool","transparent_background":true,
+    "references":["../../assets/interface/navigation.webp"],
+    "generationPrompt":"prompts/navigation-symbols-generation.txt",
+    "sourceSha256":"faf60a657616d1b3a802d59725926a05f20c4a51d79a23b0e43abd9e7f45007e",
+    "purpose":"Simpler illustrated settings, map and envelope symbols; retain the existing den, door and back pictures."
+  },
+  "subjects":[{"id":"gear","label":"Einstellungen"},{"id":"map","label":"Bildkarte"},{"id":"letter","label":"Brief"}]
+}

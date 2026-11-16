@@ -127,19 +127,22 @@
   // Header with a home/back button, a title and the star counter.
   function settingsButton() {
     const b=btn({ icon:'gear', cls:'btn-round btn-parents', title:'Einstellungen für Erwachsene', onClick:() => parentGate(() => FK.go('settings')) });
-    if(FK.friendsArt)b.replaceChildren(FK.friendsArt.icon('gear'));
+    if(FK.hudArt)b.replaceChildren(FK.hudArt.element('gear'));
+    else if(FK.friendsArt)b.replaceChildren(FK.friendsArt.icon('gear'));
     return b;
   }
 
   function topbar(o) {
     const bar = h('header', { class: 'topbar' });
     if (o.back !== false) {
-      bar.append(btn({
+      const back=btn({
         icon: o.backIcon || 'back',
         cls: 'btn-round btn-back',
         title: o.backTitle || 'Zurück',
         onClick: o.onBack || (() => FK.back()),
-      }));
+      });
+      if((!o.backIcon||o.backIcon==='back')&&FK.hudArt)FK.hudArt.decorateBack(back);
+      bar.append(back);
     }
     const t = h('h1', { class: 'title' });
     if (o.title) t.textContent = o.title;

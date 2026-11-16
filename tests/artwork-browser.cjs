@@ -10,7 +10,7 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',out=process.en
  for(const [width,height]of [[1080,810],[390,844],[844,390]]){
   await page.setViewportSize({width,height});
   const nav=active().locator('.ff-nav');for(const label of ['Bildkarte','Dein Brief','Einstellungen für Erwachsene']){
-   const button=nav.getByRole('button',{name:label,exact:true});assert.ok(await button.evaluate(n=>{const r=n.getBoundingClientRect();return r.width>=48&&r.height>=48;}));const icon=button.locator('.ff-hud-art');assert.match(await icon.evaluate(n=>getComputedStyle(n).backgroundImage),/assets\/interface\/navigation.webp/);assert.ok(await icon.evaluate(n=>{const r=n.getBoundingClientRect();return r.width>=34&&r.height>=34&&Math.abs(r.width-r.height)<1;}),label+' has visible square artwork');
+   const button=nav.getByRole('button',{name:label,exact:true});assert.ok(await button.evaluate(n=>{const r=n.getBoundingClientRect();return r.width>=48&&r.height>=48;}));const icon=button.locator('.ff-hud-art');assert.match(await icon.evaluate(n=>getComputedStyle(n).backgroundImage),/assets\/interface\/navigation-symbols.webp/);assert.ok(await icon.evaluate(n=>{const r=n.getBoundingClientRect();return r.width>=34&&r.height>=34&&Math.abs(r.width-r.height)<1;}),label+' has visible square artwork');
   }
   await page.screenshot({path:out+'/navigation-'+width+'.png'});await nav.getByRole('button',{name:'Dein Brief',exact:true}).click();
   const letter=active().getByRole('button',{name:'Zum Freund gehen',exact:true});assert.match(await letter.evaluate(n=>getComputedStyle(n).backgroundImage),/letter-paper.webp/);

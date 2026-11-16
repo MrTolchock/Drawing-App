@@ -1,0 +1,26 @@
+{
+  "reference": {
+    "width": "56px",
+    "height": "56px",
+    "background": "rgb(255, 248, 232) none repeat scroll 0% 0% / auto padding-box border-box",
+    "border": "2px solid rgb(116, 72, 42)",
+    "borderRadius": "50%",
+    "boxShadow": "rgb(116, 72, 42) 0px 4px 0px 0px, rgba(58, 42, 20, 0.15) 0px 6px 12px 0px",
+    "icon": {
+      "width": "40px",
+      "height": "40px",
+      "image": "url(\"http://127.0.0.1:8000/assets/interface/navigation.webp\")",
+      "position": "100% 100%",
+      "filter": "none"
+    }
+  },
+  "checkedScreens": [
+    "puzzle-review",
+    "puzzle",
+    "settings",
+    "trace",
+    "puzzle-gallery"
+  ],
+  "phone": true,
+  "keyboard": true
+}

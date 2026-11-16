@@ -59,7 +59,7 @@ Use `js/screens/puzzle.js` and `css/puzzle-rounds.css`. Writing uses the existin
 - Cream stitched paper and quiet woodland background; one main task per page. Cards use the shared wood/cream treatment, soft brown borders and sage selected states. Feedback adds a visible mark and accessible status, never colour alone.
 - Andika 700 for the puzzle title, prompt, scored words and numerals; Andika 400 for explanations and labels. Do not use Baloo for scored text or handwriting.
 - Touch controls are at least 48 × 48 CSS px. On a narrow screen wrap answers or scroll the task region; do not shrink letters or targets until they become hard to use. Keep the topbar and back button reachable. Honour safe areas, visible keyboard focus and reduced motion.
-- Nouns/verbs use drawn artwork through `FK.visual`; companions and voters use the identity API `FK.friendsArt.portrait`. A model portrait must never substitute for a pictured vocabulary answer. Utility controls use `FK.icons`.
+- Nouns/verbs use drawn artwork through `FK.visual`; companions and voters use the identity API `FK.friendsArt.portrait`. A model portrait must never substitute for a pictured vocabulary answer. Task utility controls use `FK.icons`; the header back uses the shared `FK.ui.topbar` navigation arrow, matching menus and the map.
 
 ## Adding or revising a puzzle
 

@@ -1,6 +1,18 @@
 # Visual consistency audit
 
-Latest audit: 16 November 2026, Waldpost 9.3.75. The dated entries below record earlier releases. This checks the active game against [Visual style](VISUAL-STYLE.md) and [Puzzle blueprint](PUZZLE-BLUEPRINT.md). It records implementation evidence; it does not grant editorial approval.
+Latest audit: 16 November 2026, Waldpost 9.3.77. The dated entries below record earlier releases. This checks the active game against [Visual style](VISUAL-STYLE.md) and [Puzzle blueprint](PUZZLE-BLUEPRINT.md). It records implementation evidence; it does not grant editorial approval.
+
+## Simpler symbols and consistent navigation back — 9.3.77
+
+Settings, map and envelope now use broad brown outlines, plain cream/ochre fills and a few blue/red marks. The realistic grain, tiny scenery, brass centre and postage decoration are removed. The new three-symbol atlas is separate; the den/home tree, exit-door pin and existing back arrow retain their original pixels. [Exact prompt, source and packing instructions](artwork/README.md#simplified-navigation-symbols--9377).
+
+The map and shared topbar use one navigation-back component: the same drawn arrow, cream circular centre, brown rim/shadow, 56 px target and 40 px picture across Settings, galleries, review and puzzle/writing headers. Accessible names, keyboard activation and actual return routes are preserved. The legacy handwriting SVG handle remains hidden for compatibility; task-direction arrows stay separate.
+
+- Simpler toolbar: [phone](evidence/2026-11-16-simple-navigation/navigation-390.png) and [tablet](evidence/2026-11-16-simple-navigation/navigation-1080.png).
+- Same back treatment: [map](evidence/2026-11-16-simple-navigation/map-390.png), [Settings](evidence/2026-11-16-simple-navigation/settings-390.png), [puzzle](evidence/2026-11-16-simple-navigation/add-390.png) and [writing](evidence/2026-11-16-simple-navigation/trace-390.png).
+- [Computed-style and real-route comparison](evidence/2026-11-16-simple-navigation/navigation-report.json) passed map, Settings, gallery, review, puzzle and handwriting, with phone and keyboard navigation. [All 31 puzzles × two viewports](evidence/2026-11-16-simple-navigation/layout-report.json) passed the existing layout/role contract; all 112 model tests passed.
+
+The [source/pin hashes and revision comparison](evidence/2026-11-16-simple-navigation/art-and-revisions.json) prove the existing pin atlas is byte-identical and all 31 puzzle revisions remain unchanged. No approvals or production review records are written. The new CSS and symbol atlas are included in the offline cache.
 
 ## Drawn navigation, letter and shared image library — 9.3.75
 

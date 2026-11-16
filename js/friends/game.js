@@ -49,7 +49,7 @@ function art(name,cls=''){
  if(FK.icons.has(control))return h('span',{class:'ff-picture '+cls},FK.icons.element(control));
  return h('span',{class:'ff-picture ff-painted-picture '+cls},FK.visual.art(name));
 }
-function button(name,pic,fn,cls=''){return h('button',{type:'button',class:'ff-button '+cls,'aria-label':name,title:name,onclick:()=>{audio?.unlock();fn();}},art(pic));}
+function button(name,pic,fn,cls=''){const b=h('button',{type:'button',class:'ff-button '+cls,'aria-label':name,title:name,onclick:()=>{audio?.unlock();fn();}},art(pic));return pic==='back'?FK.hudArt.decorateBack(b):b;}
 function say(text){caption.textContent=text;caption.hidden=panel!=='puzzle';}
 function saveStatus(){if(!statusBar||!state)return;statusBar.hidden=!state.error;statusBar.replaceChildren(...(state.error?[h('span',{text:state.error}),button('Erneut versuchen','undo',()=>{state.retrySave();saveStatus();})]:[]));}
 function tick(){const now=performance.now();if(panel==='puzzle'&&!example&&!document.hidden&&state.round(host)?.feedback!=='correct')activeMs+=Math.min(500,now-lastTick);lastTick=now;}
