@@ -11,7 +11,7 @@ The role instructions below set the necessary detail and composition within this
 Preserve subject identity, counted quantities, exact answer colours and action differences. Use real alpha for isolated pictures and stationery, and an opaque canvas only when the selected role requires a scene or branding image. No accidental background, halo, visible grid, labels or extra objects.
 
 ROLE: navigation
-Use the same warm hand-drawn palette as a SIMPLE small pictogram. Follow the approved navigation-symbol reference for broad sepia outlines, bold silhouettes and nearly flat fills. Omit tiny scenery, stamps, material grain, fine hatching, glossy hubs and extra decoration. It must read at 32 pixels. This is a prescribed low-detail application of the canonical style. Preserve the existing den, door and back pictures by reuse when they are not the requested subject.
+Use the same warm hand-drawn palette as a SIMPLE small pictogram. Follow the approved navigation-symbol reference for broad sepia outlines, bold silhouettes and nearly flat fills. Omit tiny scenery, stamps, material grain, fine hatching, glossy hubs and extra decoration. It must read at 32 pixels. This is a prescribed low-detail application of the canonical style. The map home marker uses its separate painted map-landmark role. The den exit is an authored flat vector pictogram in the same palette. Reuse those current assets rather than the retired detailed wooden pins.
 
 ATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:
 1. design/illustrations/references/watercolour-pencil-v1/animals.png — canonical-style: canonical drawing technique for animals; fixed majority-style pixels

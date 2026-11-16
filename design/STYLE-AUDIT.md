@@ -1,21 +1,25 @@
 # Current visual consistency audit
 
-Current game art: **Waldpost 9.3.80**. Current generation contract: **`waldpost-watercolour-pencil-v1`**, defined in the [canonical style kit](illustrations/STYLE.md). All **21** forward generation/editing requests include the same shared block and fixed animal/object reference pixels.
+Current game art: **Waldpost 9.3.81**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal/object reference pixels and **22** complete forward image-generation prompts.
 
-## Drawn map and common UI cast
+## Compact map and dismissal
 
-The owner approved the simplified, flat top-down version 2 map for the game. Its [source and preparation](artwork/world-map.json) preserve the approved painting; [map calibration](artwork/world-map-layout.json) ties 24 world landmarks to painting coordinates through 42 non-folding triangles. Actual walking routes still use the original world destinations. The current Fuchs marker uses the same continuous calibration.
+The adopted top-down map is unchanged as a painting. Its panel is capped at 940 px / 92 vw and 82 dvh, with less padding and no map/back header icons. There is visible backdrop around it. A primary tap that starts and ends on the backdrop closes either the map or an invitation letter; a drag, pan, cancelled pointer or gesture started inside the content does not dismiss it. Escape remains available, focus returns to the launcher, and map keyboard focus wraps across its destination buttons.
 
-Thirteen named destination pins include all puzzle friends, the den and Steinbock. Each has an independent 64 px touch target and a visible name. Fixed display centres leave space between nearby pins; fine leader lines indicate the actual projected location. The map pans on small screens and retains readable animals. Portraits, names and leader lines do not intercept the button's pointer handling; the position marker sits behind destination buttons. Touch and keyboard routes are checked in the real game. Steinbock remains a non-puzzle neighbour.
+The board now stays at least 880 px wide, with the same thirteen named 64 px pins and real world routes, including Steinbock. Calibration/spacing checks still reject overlapping hit areas. Animal identity, painting pixels, landmark calibration and route destinations are unchanged.
 
-All UI animals use the [shared painted cast](artwork/LETTER-FRIENDS.md): invitation letters, puzzle context, companions, map pins, menus, review/gallery cards, celebration and game-over. Fourteen approved friends and one matching sleeping Fuchs occupy a transparent four-by-four atlas with one empty cell. Their composition/source records are retained. The freely explorable world and den fox retain their real-time 3D models. Model-portrait and geometry-map tools now produce development references in `/tmp`, preventing accidental overwrites of painted runtime art.
+## Den and exit roles
 
-The simpler navigation arrow, map/letter/settings symbols and approved den/door icons remain in their established families. The 235 learning illustrations and their atlas cells, task answers, competence, difficulty and all 953 iteration definitions are unchanged.
+The den destination has a new [painted tree-home marker](artwork/den-marker.json), using the same watercolour/pencil finish as the animal portraits. Its compact silhouette avoids miniature leaves, realistic wood, hardware and scenery. The complete request, ordered canonical references, source and packing hashes are retained.
 
-## Review and verification
+The leaving-den sign is a reduced [flat SVG](../assets/interface/exit-symbol.svg): broad rounded sepia outline, cream/ochre door and blue exit arrow, matching the map/letter/settings pictograms. It has no painted wood or material texture. The old detailed six-icon sheet is retained as provenance, but no runtime/offline dependency uses it. Current Claude/design instructions distinguish the painted map landmark from flat navigation controls.
 
-The host portraits changed on every puzzle, so all **31** presentation revisions are new and require adult visual review. Existing approvals/comments remain history in the separate review ledger; this deployment neither edits editorial decisions nor grants approvals. Saved device data and letter/puzzle IDs remain intact.
+All other UI animals keep the shared fourteen-friend cast plus sleeping Fuchs; the live world and den fox keep their 3D models. The 235 learning pictures and all 953 task definitions, answers, competence and difficulty remain unchanged.
 
-The model suite, including calibration/style/provenance guards, passes **121 checks**. Real-browser design checks cover all 31 puzzles at tablet and phone sizes. The map suite activates every one of the thirteen pins by touch at tablet, phone and landscape sizes, verifies separate unobstructed hit areas and actual world routes, and checks keyboard activation. Navigation, invitation/layout/image-library and installed-app update checks cover their existing flows. The [development guide](../docs/DEVELOPMENT.md) lists commands.
+## Review and validation
 
-Historical original requests and source/reference hashes remain preserved. A generation record's `preservedAt` identifies a byte-exact input copy when its original runtime URL is later updated; the actual tool arguments remain unchanged. CI checks those preserved pixels separately from current forward prompts. All **775** protected archived originals retain their bytes. Superseded styles and archived working instructions are provenance only; the current contract and generated prompts are the authority for new requests.
+All **31** puzzle presentation revisions are byte-identical to 9.3.80; this map/control update causes no additional review invalidation. The visual-review requirements from the earlier painted-portrait adoption still apply. Editorial decisions, their history and real-device saved data are not edited or auto-approved.
+
+Validation covers model/style/calibration contracts, real map/letter backdrop taps, gesture safety, Escape/focus, compact dimensions and all thirteen real touch/keyboard routes at tablet, phone and landscape sizes. Existing artwork, navigation and installed-app update checks cover their normal flows. See [Development](../docs/DEVELOPMENT.md) for commands.
+
+All **775** protected archived originals retain their bytes. Historical requests are provenance only, while the canonical contract and registered forward prompts define future requests.

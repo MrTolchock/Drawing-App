@@ -26,7 +26,7 @@
       "instruction": "Match the canonical watercolour and coloured-pencil technique closely: fine organic contours, uneven washes and gentle drawn volume. Keep accurate species, action contrasts, one counted object per item and exact answer colours. Use transparent square cells, generous gutters and complete silhouettes."
     },
     "navigation": {
-      "instruction": "Use the same warm hand-drawn palette as a SIMPLE small pictogram. Follow the approved navigation-symbol reference for broad sepia outlines, bold silhouettes and nearly flat fills. Omit tiny scenery, stamps, material grain, fine hatching, glossy hubs and extra decoration. It must read at 32 pixels. This is a prescribed low-detail application of the canonical style. Preserve the existing den, door and back pictures by reuse when they are not the requested subject.",
+      "instruction": "Use the same warm hand-drawn palette as a SIMPLE small pictogram. Follow the approved navigation-symbol reference for broad sepia outlines, bold silhouettes and nearly flat fills. Omit tiny scenery, stamps, material grain, fine hatching, glossy hubs and extra decoration. It must read at 32 pixels. This is a prescribed low-detail application of the canonical style. The map home marker uses its separate painted map-landmark role. The den exit is an authored flat vector pictogram in the same palette. Reuse those current assets rather than the retired detailed wooden pins.",
       "references": [
         {
           "path": "assets/interface/navigation-symbols.webp",
@@ -53,6 +53,9 @@
     },
     "character": {
       "instruction": "Use the canonical watercolour-and-coloured-pencil medium for the shared game-character portraits on letters, map pins, puzzle pages, menus, companions and celebrations. Reuse the approved painted identities, natural friendly proportions, species markings and accessories. Complete silhouettes, real transparency and generous square-cell margins. Keep the live 3D world as its own model pipeline; do not substitute these identity portraits for scored learning pictures."
+    },
+    "map-landmark": {
+      "instruction": "Use the canonical watercolour-and-coloured-pencil medium for a single map destination landmark, matching the painted character portraits in finish and detail. Keep the silhouette compact and recognizable at 40–50 pixels, with broad simple forms, organic sepia contours, gentle washes and restrained pencil shading. Genuine transparency, generous square padding and complete edges. No miniature realistic scenery or material microdetail. Actual map buttons, names and click behaviour remain code."
     }
   },
   "prompts": [
@@ -266,6 +269,13 @@
           "usage": "composition-only"
         }
       ]
+    },
+    {
+      "id": "den-marker",
+      "role": "map-landmark",
+      "path": "design/artwork/prompts/den-marker.txt",
+      "brief": "design/artwork/briefs/den-marker.txt",
+      "transparent": true
     }
   ],
   "preparationManifests": [
@@ -281,7 +291,8 @@
     "design/artwork/letter-friends.json",
     "design/artwork/world-map.json",
     "design/artwork/fox-sleep-portrait.json",
-    "design/artwork/friend-portraits.json"
+    "design/artwork/friend-portraits.json",
+    "design/artwork/den-marker.json"
   ],
   "history": "archive/design-history/2026-11-16-before-style-contract",
   "preview": {

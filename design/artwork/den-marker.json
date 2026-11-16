@@ -1,0 +1,25 @@
+{
+  "format": "waldpost-illustration-atlas",
+  "version": 1,
+  "source": "sources/den-marker.png",
+  "output": "../../assets/interface/den-marker.webp",
+  "columns": 1,
+  "rows": 1,
+  "cellPixels": 320,
+  "subjectPixels": 272,
+  "alphaThresholdPercent": 15,
+  "provenance": {
+    "date": "2026-11-16",
+    "tool": "ChatGPT hosted image-generation tool",
+    "sourceSha256": "e6b3418df44ee4e80829f110137429b46973f972bb597977406d1d48dad26e4d",
+    "generationRecord": "generation-records/den-marker.json",
+    "styleContract": "../illustrations/style.json",
+    "forwardPrompt": "prompts/den-marker.txt"
+  },
+  "subjects": [
+    {
+      "id": "den",
+      "label": "Fuchsbau"
+    }
+  ]
+}

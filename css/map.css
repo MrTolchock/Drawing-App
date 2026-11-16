@@ -1,7 +1,7 @@
 /* The approved top-down painting, calibrated locations and readable independent touch targets. */
-.friends-interface .ff-map-card{width:min(1040px,100%)}
+.friends-interface .ff-map-card{width:min(940px,92vw);max-height:82dvh;padding:14px}
 .friends-interface .ff-map-scroll{overflow-x:auto;overflow-y:hidden;padding:4px 0 12px;touch-action:pan-x pan-y;scrollbar-color:#b7a17a #f3e9d5}
-.friends-interface .ff-map-scroll .ff-map.ff-map-storybook{min-width:960px}
+.friends-interface .ff-map-scroll .ff-map.ff-map-storybook{min-width:880px}
 .friends-interface .ff-map-scroll .ff-map-storybook .ff-button{width:64px;height:64px;min-width:64px;min-height:64px;z-index:3;touch-action:manipulation}
 .friends-interface .ff-map-scroll .ff-map-storybook .ff-button:focus-visible{outline:4px solid var(--wb-focus,#456b81);outline-offset:5px;z-index:5}
 .friends-interface .ff-map-storybook .ff-map-friend{inset:3px}

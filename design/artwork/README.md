@@ -8,6 +8,8 @@
 | --- | --- | --- |
 | Learning subjects/actions/colour pictures | `subject-sheet` or the registered sheet name | [Illustration workflow](../illustrations/README.md), [image library](../../assets/waldatelier/README.md) |
 | Simpler settings/map/envelope symbols | `navigation-symbols` | Broad outlines, flat warm fills, no miniature scenery or material detail |
+| Map den marker | `den-marker` | Watercolour/pencil landmark matching the animal pins; transparent, compact silhouette |
+| Leaving-den sign | Authored SVG | Flat 64-unit icon with rounded sepia outline, cream/ochre/blue fills; edit `assets/interface/exit-symbol.svg`, no image generator |
 | Navigation back arrow | `navigation-back` | Same simple symbol family; no wood grain, carving, bevel or circular backing in the picture |
 | Invitation paper | `letter-paper` | Empty portrait zone; current sender added from the painted friend atlas |
 | Shared painted UI friends | `friend-portraits` | Four-by-four atlas with fourteen friends plus sleeping Fuchs; same cast on letters, puzzles, map pins and menus |
@@ -27,7 +29,7 @@ node tools/illustrations/style.cjs --request den
 
 Pass the returned `prompt`, `referenced_image_paths` and `transparent_background` to the available image service. Paths in prose do not attach their pixels. The repository supplies reference files, briefs and preparation tools; it contains no custom model, hosted generator, service credentials or deterministic seed. If generation is unavailable, explain that capability gap and reuse existing images or prepare the brief.
 
-The two canonical animal/object images always define drawing technique. Additional current assets define composition, species identity or the prescribed navigation simplicity. Preserve existing den/home and exit-door pictures by reuse when they are outside the requested change. Never use the superseded detailed toolbar, historical style boards or sculpted/plush pictures as new style references. The model sheet in `letter-friends` defines markings and accessories only; repaint every animal in the canonical technique.
+The two canonical animal/object images always define drawing technique. Additional current assets define composition, species identity or the prescribed navigation simplicity. The map home uses the painted `den-marker` asset; the leaving-den sign is the authored flat `exit-symbol.svg`. Keep those role treatments separate and never reuse the retired detailed wooden icons. Never use the superseded detailed toolbar, historical style boards or sculpted/plush pictures as new style references. The model sheet in `letter-friends` defines markings and accessories only; repaint every animal in the canonical technique.
 
 ## Prepare and retain
 
@@ -56,3 +58,5 @@ See [painted letter friends](LETTER-FRIENDS.md) for the complete cast and packin
 [assets.json](assets.json) separates runtime art, current forward prompts, preparation inputs and historical provenance. The runtime map is the approved version 2 painting, prepared with `world-map.json`; `tools/map/` maintains geographic calibration and can produce geometry references for development. All UI identities use the shared painted atlas; `tools/portraits/` produces model references only. The live world, den fox, sky, water and textures retain their geometry/material pipelines.
 
 Old briefs, alternative directions, original requests, drafts, before images and dated evidence are in the [historical snapshot](../../archive/design-history/2026-11-16-before-style-contract/README.md). All original bytes are protected by the archive manifest. They are retained for explanation and exact provenance, not for copying into a new generator request.
+
+The map dialog is a compact, header-free panel dismissed by outside taps or Escape. Keep the 64 px animal targets, real routing and pan gestures intact when changing its framing. See [map behaviour and calibration](../../tools/map/README.md).

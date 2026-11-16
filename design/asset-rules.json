@@ -41,14 +41,14 @@
     "minimumTouchTarget": 48
   },
   "navigation": {
-    "source": "assets/interface/navigation.webp",
-    "treatment": "drawn",
+    "source": "assets/interface/den-marker.webp",
+    "treatment": "painted-map-landmark",
     "ids": [
-      "den",
-      "door"
+      "den"
     ],
     "minimumTouchTarget": 48,
-    "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/artwork/navigation.json"
+    "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/artwork/navigation.json",
+    "manifest": "design/artwork/den-marker.json"
   },
   "navigationSymbols": {
     "source": "assets/interface/navigation-symbols.webp",
@@ -119,8 +119,22 @@
     "layout": "design/artwork/world-map-layout.json",
     "runtimeLayout": "js/friends/map-layout.js",
     "projection": "orthographic-top-down-2d",
-    "minimumBoardWidth": 960,
+    "minimumBoardWidth": 880,
     "minimumPinTarget": 64,
-    "styleContract": "design/illustrations/style.json"
+    "styleContract": "design/illustrations/style.json",
+    "panelMaxWidth": 940,
+    "panelMaxViewportWidth": 0.92,
+    "panelMaxViewportHeight": 0.82,
+    "headerIcons": false,
+    "dismissal": [
+      "outside-tap",
+      "Escape"
+    ]
+  },
+  "exit": {
+    "source": "assets/interface/exit-symbol.svg",
+    "treatment": "flat-vector-pictogram",
+    "component": "FK.hudArt.element(door)",
+    "minimumTouchTarget": 48
   }
 }

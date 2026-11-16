@@ -10,6 +10,6 @@ test('the painted map matches its approved landmark calibration without folds or
 });
 test('all thirteen named destinations have separate 64 px targets at the minimum phone map width',async()=>{
  const {mapPin,extraMapPlaces}=await api(),pins=Object.keys(spec.pins).map(id=>({id,...mapPin(id)}));assert.equal(pins.length,13);assert.equal(mapPin('ibex').label,'Steinbock');assert.deepEqual([extraMapPlaces.ibex.x,extraMapPlaces.ibex.z],[74.2,-56.3]);
- for(let i=0;i<pins.length;i++)for(let j=0;j<i;j++)assert.ok(Math.max(Math.abs(pins[i].x-pins[j].x)*960,Math.abs(pins[i].y-pins[j].y)*640)>=72,pins[i].id+' and '+pins[j].id+' do not share a hit area');
+ for(let i=0;i<pins.length;i++)for(let j=0;j<i;j++)assert.ok(Math.max(Math.abs(pins[i].x-pins[j].x)*880,Math.abs(pins[i].y-pins[j].y)*(880*2/3))>=72,pins[i].id+' and '+pins[j].id+' do not share a hit area');
  assert.throws(()=>mapPin('missing'),/Unknown map pin/);
 });

@@ -15,7 +15,7 @@ node tools/check-design.cjs
 node --test tests/*.test.cjs
 node tests/design-system-browser.cjs
 node tests/letter-sessions-browser.cjs
-node tests/navigation-browser.cjs   # same drawn back/frame in map, menus, review and puzzles; correct routes, phone and keyboard
+node tests/navigation-browser.cjs   # map dismissal; same back/frame in menus, review and puzzles; correct routes, phone and keyboard
 node tests/puzzle-gallery-browser.cjs   # gallery: only signed-off puzzles, friend filter, five-task round without saving
 node tests/review-seen-browser.cjs   # an answered review task is approved even if its seen mark was lost; dialog buttons fit
 node tests/play-log-browser.cjs
@@ -24,7 +24,7 @@ node tests/review-sync-browser.cjs
 node tests/review-compatibility-browser.cjs
 node tests/puzzle-feedback-browser.cjs
 node tests/artwork-browser.cjs
-node tests/drawn-map-browser.cjs   # all 13 named pins: separate hit areas, real touch routes, keyboard, phone/tablet/landscape
+node tests/drawn-map-browser.cjs   # compact map, no header icons, outside tap/Escape/focus, pan safety; all 13 named pins and real routes at phone/tablet/landscape
 node tests/gallery-images-browser.cjs   # all 38 redrawn pictures: real PNG exports, source-cell match, alpha and phone layout
 ```
 

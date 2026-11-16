@@ -2,7 +2,7 @@ import {createWorld,places,exitPoints} from './world.js';
 import {createAudio} from './audio.js';
 import {mapPoint,mapPin,extraMapPlaces} from './map-layout.js';
 const FK=window.FK,h=FK.h,C=window.FriendsContent;
-let root,canvas,world,state,audio,overlay,hotspots,nav,statusBar,nearButton,caption,fader,doorScene,denEnvelope,framing=false;
+let root,canvas,world,state,audio,overlay,hotspots,nav,statusBar,nearButton,caption,fader,doorScene,denEnvelope,framing=false,backdropTap=null;
 let area='den',panel=null,host=null,example=false,feedbackTimer=null,activeMs=0,lastTick=performance.now(),returnArea='den',finalSleep=false;
 const actionPictures={outside:'door'};
 const actionNames={outside:'Nach draussen'};
@@ -55,17 +55,18 @@ function say(text){caption.textContent=text;caption.hidden=panel!=='puzzle';}
 function saveStatus(){if(!statusBar||!state)return;statusBar.hidden=!state.error;statusBar.replaceChildren(...(state.error?[h('span',{text:state.error}),button('Erneut versuchen','undo',()=>{state.retrySave();saveStatus();})]:[]));}
 function tick(){const now=performance.now();if(panel==='puzzle'&&!example&&!document.hidden&&state.round(host)?.feedback!=='correct')activeMs+=Math.min(500,now-lastTick);lastTick=now;}
 setInterval(tick,100);
-function close(){
+function close({restoreFocus=true}={}){
+  const returnLabel=restoreFocus?(panel==='map'?'Bildkarte':panel==='letter'?'Dein Brief':null):null;backdropTap=null;
   overlay.classList.remove('ff-postcard-overlay','ff-session-end-overlay');
   FK.forestVoice.cancel();
   tick();if(panel==='puzzle'&&host){state.record('task_leave',{host,activeMilliseconds:activeMs});if(activeMs)state.duration(host,activeMs);activeMs=0;}
   clearTimeout(feedbackTimer);feedbackTimer=null;panel=null;example=false;overlay.hidden=true;overlay.replaceChildren();world.pause(false);nav.hidden=false;renderHotspots();caption.hidden=true;syncMail();
+  if(returnLabel)requestAnimationFrame(()=>{if(!panel&&!nav.hidden&&FK.current()==='friends')nav.querySelector('[aria-label="'+returnLabel+'"]')?.focus({preventScroll:true});});
 }
-function open(kind){clearTimeout(feedbackTimer);panel=kind;world.pause(true);nav.hidden=true;hotspots.replaceChildren();nearButton.hidden=true;overlay.hidden=false;overlay.replaceChildren();}
-function shell(titlePic,back=close){const card=h('div',{class:'ff-card'});card.append(h('div',{class:'ff-card-top'},button('Zurück','back',back),art(titlePic,'ff-card-portrait')));overlay.append(card);requestAnimationFrame(()=>card.querySelector('button')?.focus());return card;}
+function open(kind){clearTimeout(feedbackTimer);backdropTap=null;panel=kind;world.pause(true);nav.hidden=true;hotspots.replaceChildren();nearButton.hidden=true;overlay.hidden=false;overlay.setAttribute('aria-label',kind==='map'?'Bildkarte des Waldes':'Waldaktivität');overlay.replaceChildren();}
 function go(next,restore=false){
   if(next!=='den'&&['sleeping','finished'].includes(state.mail().phase))return;
-  close();if(!restore&&next==='forest'&&area==='den')state.position(exitPoints.den.x,exitPoints.den.z);
+  close({restoreFocus:false});if(!restore&&next==='forest'&&area==='den')state.position(exitPoints.den.x,exitPoints.den.z);
   area=next;root.dataset.area=next;if(fader){fader.classList.remove('on');void fader.offsetWidth;fader.classList.add('on');}
   world.setArea(next);audio.setArea(next);state.record('area_transition',{area:next});renderNav();renderHotspots();caption.hidden=true;syncMail();
   if(next==='den'&&state.mail().phase==='return-home'){if(state.beginSleep())sequence('sleep',true);else saveStatus();return;}
@@ -95,7 +96,7 @@ function act(id){if(panel||['sleeping','finished'].includes(state.mail().phase))
 // Named touch targets sit on the calibrated painting; routes still use the actual world destinations.
 function map(){
   if(state.mail().phase==='den-letter'){showLetter(false);return;}
-  state.record('map_opened',{area});open('map');const card=shell('map');card.classList.add('ff-map-card');
+  state.record('map_opened',{area});open('map');const card=h('section',{class:'ff-card ff-map-card'});overlay.append(card);
   const board=h('div',{class:'ff-map ff-map-storybook','aria-label':'Bildkarte des Waldes'}),mail=state.mail();
   const links=document.createElementNS('http://www.w3.org/2000/svg','svg');links.setAttribute('viewBox','0 0 1536 1024');links.setAttribute('aria-hidden','true');links.classList.add('ff-map-links');board.append(links);
   for(const [id,p]of Object.entries({...places,...extraMapPlaces})){
@@ -113,7 +114,7 @@ function map(){
   me.style.left=(hx*100)+'%';me.style.top=(hy*100)+'%';board.append(me);
   me.style.setProperty('--ff-here-x',hx>.9?'-56px':'12px');me.style.setProperty('--ff-here-y',hy>.88?'-58px':'14px');
   // Keep named 64 px pins readable on phones; the map pans sideways, centred on Fuchs.
-  const scroller=h('div',{class:'ff-map-scroll'},board);card.append(scroller);requestAnimationFrame(()=>{scroller.scrollLeft=Math.max(0,Math.min(scroller.scrollWidth-scroller.clientWidth,hx*scroller.scrollWidth-scroller.clientWidth/2));});
+  const scroller=h('div',{class:'ff-map-scroll'},board);card.append(scroller);scroller.scrollLeft=Math.max(0,Math.min(scroller.scrollWidth-scroller.clientWidth,hx*scroller.scrollWidth-scroller.clientWidth/2));board.querySelector('button')?.focus({preventScroll:true});
   if(mail.phase==='to-mailman'){
     const b=button('Zum Briefträger','mailman',()=>{if(area!=='forest')go('forest');else close();world.route('mailman');},'ff-map-courier');
     b.replaceChildren(FK.friendsArt.portrait('mailman'),h('span',{text:'Zum Briefträger'}));b.dataset.place='mailman';card.append(b);
@@ -148,6 +149,10 @@ function endSequence(skipped=false){
 function settings(){FK.go('settings');}
 FK.screen('friends',{
   build(el){root=el;root.classList.add('ff-game');root.dataset.area=area;canvas=h('canvas',{class:'ff-world','aria-label':'Dreidimensionale Waldwelt'});hotspots=h('div',{class:'ff-hotspots'});nav=h('nav',{class:'ff-nav','aria-label':'Waldmenü'});overlay=h('div',{class:'ff-overlay',hidden:true,role:'dialog','aria-label':'Waldaktivität','aria-modal':'true'});statusBar=h('div',{class:'ff-save-status',role:'alert',hidden:true});caption=h('div',{class:'ff-caption','aria-live':'polite'});nearButton=button('Mit Freund sprechen','check',()=>act(world.near),'ff-near');nearButton.hidden=true;
+    overlay.addEventListener('pointerdown',e=>{backdropTap=e.isPrimary&&e.button===0&&e.target===overlay&&['map','letter'].includes(panel)?{id:e.pointerId,x:e.clientX,y:e.clientY,panel}:null;});
+    overlay.addEventListener('pointermove',e=>{if(backdropTap&&Math.hypot(e.clientX-backdropTap.x,e.clientY-backdropTap.y)>8)backdropTap=null;});
+    overlay.addEventListener('pointercancel',()=>{backdropTap=null;});
+    overlay.addEventListener('pointerup',e=>{const tap=backdropTap;backdropTap=null;if(tap&&tap.id===e.pointerId&&tap.panel===panel&&e.target===overlay&&Math.hypot(e.clientX-tap.x,e.clientY-tap.y)<=8){e.preventDefault();e.stopPropagation();close();}});
     doorScene=h('div',{class:'ff-den-door',html:doorSVG,'aria-hidden':'true'});
     denEnvelope=button('Brief öffnen','letter',()=>showLetter(false),'ff-den-envelope');
     fader=h('div',{class:'ff-fader','aria-hidden':'true'});

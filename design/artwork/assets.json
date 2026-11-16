@@ -171,17 +171,6 @@
       "originalFinalRequestRetained": false
     },
     {
-      "id": "existing-navigation-pins",
-      "file": "assets/interface/navigation.webp",
-      "role": "reuse-existing",
-      "ids": [
-        "den",
-        "door"
-      ],
-      "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/artwork/navigation.json",
-      "policy": "Reuse current pixels unless explicitly changing these pins; the unused old toolbar cells are not style references."
-    },
-    {
       "id": "app-branding",
       "outputs": [
         "icons/icon-192.png",
@@ -202,6 +191,13 @@
       "layout": "design/artwork/world-map-layout.json",
       "forwardPrompt": "design/artwork/prompts/world-map.txt",
       "adoptedSource": "design/artwork/drafts/drawn-map-v2.png"
+    },
+    {
+      "id": "den-marker",
+      "file": "assets/interface/den-marker.webp",
+      "role": "map-landmark",
+      "manifest": "design/artwork/den-marker.json",
+      "forwardPrompt": "design/artwork/prompts/den-marker.txt"
     }
   ],
   "codePipelines": [
@@ -229,6 +225,11 @@
         "js/learn/glyphs.js"
       ],
       "method": "Authored SVG/canvas/stroke geometry."
+    },
+    {
+      "id": "den-exit-symbol",
+      "source": "assets/interface/exit-symbol.svg",
+      "method": "Authored flat vector pictogram, 64-unit viewBox, broad rounded sepia outline with cream, ochre and blue fills; no generator or material textures."
     }
   ],
   "history": {
@@ -264,6 +265,12 @@
       "file": "assets/interface/letter-friends.webp",
       "manifest": "design/artwork/letter-friends.json",
       "policy": "Fourteen approved painted identities used to compose the shared fifteen-pose atlas. Not a runtime dependency."
+    }
+  ],
+  "retiredRuntimeArtwork": [
+    {
+      "file": "assets/interface/navigation.webp",
+      "reason": "Original detailed toolbar/den/door/back sheet retained as provenance only; current controls use simple symbols, a painted den map landmark and a flat exit SVG. No offline/runtime dependency."
     }
   ]
 }

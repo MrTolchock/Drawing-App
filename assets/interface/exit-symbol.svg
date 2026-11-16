@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>Bau verlassen</title>
+  <g stroke="#633b1b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <path fill="#fae0b7" d="M9 58V12a5 5 0 0 1 5-5h25a5 5 0 0 1 5 5v46z"/>
+    <path fill="#e9a23b" d="m12 10 17 8v40l-17-7z"/>
+    <path fill="#65a6b5" d="M33 29h11v-9l16 16-16 16v-9H33z"/>
+  </g>
+</svg>
