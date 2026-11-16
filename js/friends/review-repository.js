@@ -94,7 +94,15 @@
         const entry=change.entry,key=entry.key;
         if(wanted.has(address(entry))||!selected[key])next.decisions[key]={key,revision:entry.revision,status:entry.status,note:entry.note,at:entry.at};
       }
-      for(const [key,decision]of Object.entries(data.decisions))if(!same(decision,next.decisions[key]))next.history.push(clone(decision));
+      // Restore notes from every revision on a fresh device, even when a newer decision has no note.
+      // History is read-only context; only the selected exact-revision records control release.
+      const remembered=new Set(next.history.map(canonical));
+      const remember=decision=>{const signature=canonical(decision);if(!remembered.has(signature)){next.history.push(clone(decision));remembered.add(signature);}};
+      for(const [key,decision]of Object.entries(data.decisions))if(!same(decision,next.decisions[key]))remember(decision);
+      for(const entry of [...Object.values(ledger.entries),...ledger.history]){
+        const decision={key:entry.key,revision:entry.revision,status:entry.status,note:entry.note,at:entry.at};
+        if(entry.note.trim()&&!same(decision,next.decisions[entry.key]))remember(decision);
+      }
       for(const entry of [...Object.values(selected),...Object.values(pending).map(change=>change.entry)])if(entry.seen&&next.decisions[entry.key]?.revision===entry.revision)next.seen[entry.key]=entry.revision;
       const keep=new Set([...wanted,...Object.keys(pending),...Object.values(selected).map(address)]);
       next.repository={base:Object.fromEntries(Object.entries(ledger.entries).filter(([id])=>keep.has(id))),pending,checked:true,lastSyncedAt:now()};

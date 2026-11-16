@@ -44,6 +44,20 @@ test('different content revisions coexist; older browsers cannot replace a newer
  const server=remoteServer(),a=client(server),b=client(server);await a.repo.start();await b.repo.start();a.decide('add/0','approved','new-revision');b.decide('add/0','improve','old-revision');
  await a.repo.connect('test-review-token');await b.repo.connect('test-review-token');assert.equal(server.ledger.entries['add/0@new-revision'].status,'approved');assert.equal(server.ledger.entries['add/0@old-revision'].status,'improve');a.repo.stop();b.repo.stop();
 });
+test('fresh devices restore older feedback without replacing current decisions, granting approval or uploading it',async()=>{
+ const ledger=R.empty(),at='2026-11-15T20:58:24.776Z';
+ const old={key:'add/0',revision:'before-new-pictures',status:'improve',note:'Die Äpfel in die Mitte setzen.',at,seen:true};
+ const current={...old,revision:'r-add/0',status:'pending',note:'',at:'2026-11-16T12:00:00.000Z'};
+ ledger.entries['add/0@before-new-pictures']=old;ledger.entries['add/0@r-add/0']=current;
+ ledger.history.push({...old,note:'Die Tiere von den Feldern entfernen.'});
+ const server=remoteServer(ledger),a=client(server);await a.repo.start();
+ assert.equal(a.data.decisions['add/0'].revision,'r-add/0');assert.equal(a.data.decisions['add/0'].status,'pending');assert.equal(a.data.decisions['add/0'].note,'');
+ assert.deepEqual(a.data.history.map(d=>d.note).sort(),['Die Tiere von den Feldern entfernen.','Die Äpfel in die Mitte setzen.'].sort());
+ assert.equal(a.repo.confirmed('add'),false);assert.equal(a.repo.state.pending,0);assert.equal(server.writes.length,0);assert.deepEqual(server.ledger,ledger);
+ await a.repo.refresh();assert.equal(a.data.history.length,2,'repeated refresh does not duplicate historical notes');
+ server.offline=true;const cached=client(server,a.data);assert.equal(await cached.repo.start(),false);assert.equal(cached.data.history.length,2,'restored notes remain available offline');
+ a.repo.stop();cached.repo.stop();
+});
 test('retry after a lost write response is idempotent, including another edit made during that write',async()=>{
  const server=remoteServer(),a=client(server);await a.repo.start();await a.repo.connect('test-review-token');a.decide('add/0','approved');
  server.beforePut=async()=>{a.decide('add/0','improve');};server.loseResponse=true;assert.equal(await a.repo.refresh(),false);assert.equal(a.repo.state.pending,1);

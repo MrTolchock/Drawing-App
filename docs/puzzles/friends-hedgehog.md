@@ -27,30 +27,30 @@
 | Stable iteration ID | Content / configuration | Expected answer or solution |
 | --- | --- | --- |
 | `friends-hedgehog/riddle-0` | Wer hat Stacheln? — Wer hat Stacheln? | "hedgehog" |
-| `friends-hedgehog/riddle-1` | Wer hat eine blaue Kappe? — Wer hat eine blaue Kappe? | "bird-sit" |
+| `friends-hedgehog/riddle-1` | Wer hat einen blauen Kopf? — Wer hat einen blauen Kopf? | "bird-sit" |
 | `friends-hedgehog/riddle-2` | Wer hat Flossen? — Wer hat Flossen? | "fish-swim" |
-| `friends-hedgehog/riddle-3` | Wer macht Honig? — Wer macht Honig? | "bee" |
-| `friends-hedgehog/riddle-4` | Wer trägt ein Schneckenhaus? — Wer trägt ein Schneckenhaus? | "snail" |
+| `friends-hedgehog/riddle-3` | Wer ist gelb und schwarz? — Wer ist gelb und schwarz? | "bee" |
+| `friends-hedgehog/riddle-4` | Wer trägt ein Haus? — Wer trägt ein Haus? | "snail" |
 | `friends-hedgehog/riddle-5` | Wer hat acht Beine? — Wer hat acht Beine? | "spider" |
 | `friends-hedgehog/riddle-6` | Wer hat bunte Flügel? — Wer hat bunte Flügel? | "butterfly" |
-| `friends-hedgehog/riddle-7` | Wer wird ein Schmetterling? — Wer wird ein Schmetterling? | "caterpillar" |
-| `friends-hedgehog/riddle-8` | Wer ist rot mit schwarzen Punkten? — Wer ist rot mit schwarzen Punkten? | "ladybird" |
+| `friends-hedgehog/riddle-7` | Wer hat viele Beine? — Wer hat viele Beine? | "caterpillar" |
+| `friends-hedgehog/riddle-8` | Wer hat schwarze Punkte? — Wer hat schwarze Punkte? | "ladybird" |
 | `friends-hedgehog/riddle-9` | Wer hat lange Ohren? — Wer hat lange Ohren? | "hare-sit" |
-| `friends-hedgehog/riddle-10` | Wer sammelt Nüsse? — Wer sammelt Nüsse? | "squirrel-sit" |
+| `friends-hedgehog/riddle-10` | Wer hält eine Nuss? — Wer hält eine Nuss? | "squirrel-sit" |
 | `friends-hedgehog/riddle-11` | Wer hat Streifen im Gesicht? — Wer hat Streifen im Gesicht? | "badger-walk" |
-| `friends-hedgehog/riddle-12` | Wer hat einen flachen Schwanz? — Wer hat einen flachen Schwanz? | "beaver" |
-| `friends-hedgehog/riddle-13` | Wer quakt? — Wer quakt? | "frog-sit" |
-| `friends-hedgehog/riddle-14` | Wer lebt im Ameisenhaufen? — Wer lebt im Ameisenhaufen? | "ant" |
+| `friends-hedgehog/riddle-12` | Wer hat einen breiten Schwanz? — Wer hat einen breiten Schwanz? | "beaver" |
+| `friends-hedgehog/riddle-13` | Wer ist grün? — Wer ist grün? | "frog-sit" |
+| `friends-hedgehog/riddle-14` | Wer hat Fühler? — Wer hat Fühler? | "ant" |
 | `friends-hedgehog/riddle-15` | Wer hat einen dünnen Schwanz? — Wer hat einen dünnen Schwanz? | "mouse-sit" |
 | `friends-hedgehog/riddle-16` | Wer hat eine weisse Schwanzspitze? — Wer hat eine weisse Schwanzspitze? | "forest-fox" |
-| `friends-hedgehog/riddle-17` | Wer hat ein kleines Geweih? — Wer hat ein kleines Geweih? | "roe-stand" |
-| `friends-hedgehog/riddle-18` | Wer klopft am Baum? — Wer klopft am Baum? | "forest-woodpecker" |
-| `friends-hedgehog/riddle-19` | Wer schläft mit dem Kopf unten? — Wer schläft mit dem Kopf unten? | "forest-bat" |
-| `friends-hedgehog/riddle-20` | Wer hat grosse, runde Augen? — Wer hat grosse, runde Augen? | "forest-owl" |
+| `friends-hedgehog/riddle-17` | Wer hat ein Geweih? — Wer hat ein Geweih? | "roe-stand" |
+| `friends-hedgehog/riddle-18` | Wer hat Rot am Kopf? — Wer hat Rot am Kopf? | "forest-woodpecker" |
+| `friends-hedgehog/riddle-19` | Wer hängt am Ast? — Wer hängt am Ast? | "forest-bat" |
+| `friends-hedgehog/riddle-20` | Wer hat grosse Augen? — Wer hat grosse Augen? | "forest-owl" |
 | `friends-hedgehog/riddle-21` | Wer hat eine rote Brust? — Wer hat eine rote Brust? | "forest-robin" |
-| `friends-hedgehog/riddle-22` | Wer hat Pinsel an den Ohren? — Wer hat Pinsel an den Ohren? | "forest-lynx" |
-| `friends-hedgehog/riddle-23` | Wer hat einen hellen Fleck am Hals? — Wer hat einen hellen Fleck am Hals? | "forest-marten" |
-| `friends-hedgehog/riddle-24` | Wer kriecht ohne Beine? — Wer kriecht ohne Beine? | "vocab-worm" |
+| `friends-hedgehog/riddle-22` | Wer hat Flecken im Fell? — Wer hat Flecken im Fell? | "forest-lynx" |
+| `friends-hedgehog/riddle-23` | Wer hat einen hellen Hals? — Wer hat einen hellen Hals? | "forest-marten" |
+| `friends-hedgehog/riddle-24` | Wer hat keine Beine? — Wer hat keine Beine? | "vocab-worm" |
 
 ## Exact definitions
 
@@ -74,11 +74,11 @@ These definitions are the same finite data used by the game and review previews.
   },
   {
     "id": "friends-hedgehog/riddle-1",
-    "label": "Wer hat eine blaue Kappe?",
+    "label": "Wer hat einen blauen Kopf?",
     "question": {
       "kind": "reading",
       "prompt": "Welches Tier passt?",
-      "text": "Wer hat eine blaue Kappe?",
+      "text": "Wer hat einen blauen Kopf?",
       "answer": "bird-sit",
       "choices": [
         "bird-sit",
@@ -102,11 +102,11 @@ These definitions are the same finite data used by the game and review previews.
   },
   {
     "id": "friends-hedgehog/riddle-3",
-    "label": "Wer macht Honig?",
+    "label": "Wer ist gelb und schwarz?",
     "question": {
       "kind": "reading",
       "prompt": "Welches Tier passt?",
-      "text": "Wer macht Honig?",
+      "text": "Wer ist gelb und schwarz?",
       "answer": "bee",
       "choices": [
         "bee",
@@ -116,11 +116,11 @@ These definitions are the same finite data used by the game and review previews.
   },
   {
     "id": "friends-hedgehog/riddle-4",
-    "label": "Wer trägt ein Schneckenhaus?",
+    "label": "Wer trägt ein Haus?",
     "question": {
       "kind": "reading",
       "prompt": "Welches Tier passt?",
-      "text": "Wer trägt ein Schneckenhaus?",
+      "text": "Wer trägt ein Haus?",
       "answer": "snail",
       "choices": [
         "snail",
@@ -158,11 +158,11 @@ These definitions are the same finite data used by the game and review previews.
   },
   {
     "id": "friends-hedgehog/riddle-7",
-    "label": "Wer wird ein Schmetterling?",
+    "label": "Wer hat viele Beine?",
     "question": {
       "kind": "reading",
       "prompt": "Welches Tier passt?",
-      "text": "Wer wird ein Schmetterling?",
+      "text": "Wer hat viele Beine?",
       "answer": "caterpillar",
       "choices": [
         "caterpillar",
@@ -172,11 +172,11 @@ These definitions are the same finite data used by the game and review previews.
   },
   {
     "id": "friends-hedgehog/riddle-8",
-    "label": "Wer ist rot mit schwarzen Punkten?",
+    "label": "Wer hat schwarze Punkte?",
     "question": {
       "kind": "reading",
       "prompt": "Welches Tier passt?",
-      "text": "Wer ist rot mit schwarzen Punkten?",
+      "text": "Wer hat schwarze Punkte?",
       "answer": "ladybird",
       "choices": [
         "ladybird",
@@ -200,11 +200,11 @@ These definitions are the same finite data used by the game and review previews.
   },
   {
     "id": "friends-hedgehog/riddle-10",
-    "label": "Wer sammelt Nüsse?",
+    "label": "Wer hält eine Nuss?",
     "question": {
       "kind": "reading",
       "prompt": "Welches Tier passt?",
-      "text": "Wer sammelt Nüsse?",
+      "text": "Wer hält eine Nuss?",
       "answer": "squirrel-sit",
       "choices": [
         "squirrel-sit",
@@ -228,11 +228,11 @@ These definitions are the same finite data used by the game and review previews.
   },
   {
     "id": "friends-hedgehog/riddle-12",
-    "label": "Wer hat einen flachen Schwanz?",
+    "label": "Wer hat einen breiten Schwanz?",
     "question": {
       "kind": "reading",
       "prompt": "Welches Tier passt?",
-      "text": "Wer hat einen flachen Schwanz?",
+      "text": "Wer hat einen breiten Schwanz?",
       "answer": "beaver",
       "choices": [
         "beaver",
@@ -242,11 +242,11 @@ These definitions are the same finite data used by the game and review previews.
   },
   {
     "id": "friends-hedgehog/riddle-13",
-    "label": "Wer quakt?",
+    "label": "Wer ist grün?",
     "question": {
       "kind": "reading",
       "prompt": "Welches Tier passt?",
-      "text": "Wer quakt?",
+      "text": "Wer ist grün?",
       "answer": "frog-sit",
       "choices": [
         "frog-sit",
@@ -256,11 +256,11 @@ These definitions are the same finite data used by the game and review previews.
   },
   {
     "id": "friends-hedgehog/riddle-14",
-    "label": "Wer lebt im Ameisenhaufen?",
+    "label": "Wer hat Fühler?",
     "question": {
       "kind": "reading",
       "prompt": "Welches Tier passt?",
-      "text": "Wer lebt im Ameisenhaufen?",
+      "text": "Wer hat Fühler?",
       "answer": "ant",
       "choices": [
         "ant",
@@ -298,11 +298,11 @@ These definitions are the same finite data used by the game and review previews.
   },
   {
     "id": "friends-hedgehog/riddle-17",
-    "label": "Wer hat ein kleines Geweih?",
+    "label": "Wer hat ein Geweih?",
     "question": {
       "kind": "reading",
       "prompt": "Welches Tier passt?",
-      "text": "Wer hat ein kleines Geweih?",
+      "text": "Wer hat ein Geweih?",
       "answer": "roe-stand",
       "choices": [
         "roe-stand",
@@ -312,11 +312,11 @@ These definitions are the same finite data used by the game and review previews.
   },
   {
     "id": "friends-hedgehog/riddle-18",
-    "label": "Wer klopft am Baum?",
+    "label": "Wer hat Rot am Kopf?",
     "question": {
       "kind": "reading",
       "prompt": "Welches Tier passt?",
-      "text": "Wer klopft am Baum?",
+      "text": "Wer hat Rot am Kopf?",
       "answer": "forest-woodpecker",
       "choices": [
         "forest-woodpecker",
@@ -326,11 +326,11 @@ These definitions are the same finite data used by the game and review previews.
   },
   {
     "id": "friends-hedgehog/riddle-19",
-    "label": "Wer schläft mit dem Kopf unten?",
+    "label": "Wer hängt am Ast?",
     "question": {
       "kind": "reading",
       "prompt": "Welches Tier passt?",
-      "text": "Wer schläft mit dem Kopf unten?",
+      "text": "Wer hängt am Ast?",
       "answer": "forest-bat",
       "choices": [
         "forest-bat",
@@ -340,11 +340,11 @@ These definitions are the same finite data used by the game and review previews.
   },
   {
     "id": "friends-hedgehog/riddle-20",
-    "label": "Wer hat grosse, runde Augen?",
+    "label": "Wer hat grosse Augen?",
     "question": {
       "kind": "reading",
       "prompt": "Welches Tier passt?",
-      "text": "Wer hat grosse, runde Augen?",
+      "text": "Wer hat grosse Augen?",
       "answer": "forest-owl",
       "choices": [
         "forest-owl",
@@ -368,11 +368,11 @@ These definitions are the same finite data used by the game and review previews.
   },
   {
     "id": "friends-hedgehog/riddle-22",
-    "label": "Wer hat Pinsel an den Ohren?",
+    "label": "Wer hat Flecken im Fell?",
     "question": {
       "kind": "reading",
       "prompt": "Welches Tier passt?",
-      "text": "Wer hat Pinsel an den Ohren?",
+      "text": "Wer hat Flecken im Fell?",
       "answer": "forest-lynx",
       "choices": [
         "forest-lynx",
@@ -382,11 +382,11 @@ These definitions are the same finite data used by the game and review previews.
   },
   {
     "id": "friends-hedgehog/riddle-23",
-    "label": "Wer hat einen hellen Fleck am Hals?",
+    "label": "Wer hat einen hellen Hals?",
     "question": {
       "kind": "reading",
       "prompt": "Welches Tier passt?",
-      "text": "Wer hat einen hellen Fleck am Hals?",
+      "text": "Wer hat einen hellen Hals?",
       "answer": "forest-marten",
       "choices": [
         "forest-marten",
@@ -396,11 +396,11 @@ These definitions are the same finite data used by the game and review previews.
   },
   {
     "id": "friends-hedgehog/riddle-24",
-    "label": "Wer kriecht ohne Beine?",
+    "label": "Wer hat keine Beine?",
     "question": {
       "kind": "reading",
       "prompt": "Welches Tier passt?",
-      "text": "Wer kriecht ohne Beine?",
+      "text": "Wer hat keine Beine?",
       "answer": "vocab-worm",
       "choices": [
         "vocab-worm",

@@ -49,6 +49,25 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
  // A fresh install with no cache/token restores the authoritative decision automatically.
  await b.page.evaluate(()=>FK.puzzleReview.decide('add','add/1-1','improve'));await b.page.evaluate(()=>FK.reviewRepository.refresh());const c=await device(1080);assert.equal(await c.page.evaluate(()=>FK.puzzleReview.status('add','add/1-1').status),'improve');assert.equal(await c.page.evaluate(()=>FK.reviewRepository.state.connected),false);
  assert.equal(await a.page.evaluate(()=>JSON.stringify(FK.puzzleReview.exportData()).includes('test-review-token')),false);assert.equal(await a.page.evaluate(()=>Object.values(localStorage).some(v=>v.includes('test-review-token'))),false);
+ // Notes attached to yesterday's graphics survive a fresh browser and link to today's task.
+ const previous={key:'syllable/word-6',revision:'before-new-graphics',status:'improve',note:'Das Klopfen braucht es nicht, einfach nur Silben zählen.',at:'2026-11-15T20:58:24.776Z',seen:true};
+ const current=await c.page.evaluate(()=>{const C=FK.puzzleCatalogue,it=C.iterations('syllable').find(it=>it.id==='syllable/word-6');return C.iterationRevision('syllable',it);});
+ const ledger=server.ledger;ledger.entries[previous.key+'@'+previous.revision]=previous;ledger.entries[previous.key+'@'+current]={...previous,revision:current,status:'pending',note:'',at:'2026-11-16T12:00:00.000Z',seen:false};
+ ledger.history.push({...previous,key:'puzzle:syllable',note:'Die frühere Notiz bleibt auch nach Bildänderungen wichtig.'});server.ledger=ledger;
+ for(const width of [1080,390]){
+  const fresh=await device(width),page=fresh.page,writes=server.writes.length;await page.locator('[data-puzzle="syllable"]').click();
+  const note=active(page).locator('.review-feedback [data-feedback-key="syllable/word-6"]');assert.equal(await note.locator('p').textContent(),previous.note);assert.match(await note.locator('small').textContent(),/15\.11\.2026.*Frühere Version/);
+  assert.equal(await active(page).locator('.review-feedback [data-feedback-key="puzzle:syllable"]').count(),1);
+  if(width===1080){
+   const updated=server.ledger;updated.history.push({...previous,key:'syllable/word-7',note:'Ein später geladener Hinweis zur früheren Grafik.'});server.ledger=updated;
+   await page.evaluate(()=>FK.reviewRepository.refresh());await active(page).locator('.review-feedback').getByText('Ein später geladener Hinweis zur früheren Grafik.',{exact:true}).waitFor();
+  }
+  await active(page).getByRole('button',{name:'Verbessern',exact:true}).click();assert.equal(await note.count(),1,'older feedback remains visible when the current revision is pending');
+  assert.equal(await page.evaluate(()=>FK.puzzleReview.status('syllable','syllable/word-6').status),'pending');assert.equal(await page.evaluate(()=>FK.puzzleReview.ready('syllable')),false);assert.equal(server.writes.length,writes,'restoring notes never writes decisions');
+  await note.scrollIntoViewIfNeeded();await page.screenshot({path:shots+'/older-feedback-'+width+'.png'});
+  await note.getByRole('button',{name:'Aktuelle Aufgabe ansehen',exact:true}).click();assert.equal(await active(page).locator('.puzzle-prompt').textContent(),'Wie viele Silben hat das Wort?');
+  assert.equal(await active(page).getAttribute('data-review-iteration'),'syllable/word-6');await fresh.context.close();
+ }
  await a.page.screenshot({path:shots+'/synced-review-tablet.png'});assert.deepEqual(errors,[]);console.log('PASS GitHub review UI: automatic writes, independent browsers/fresh install, confirmed release, offline outbox, conflict choice, token isolation and no required notes/checklist.');
  await a.context.close();await b.context.close();await c.context.close();
 }finally{await browser.close();}})().catch(e=>{console.error(e);process.exitCode=1;});

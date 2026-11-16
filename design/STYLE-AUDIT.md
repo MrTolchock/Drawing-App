@@ -1,6 +1,16 @@
 # Current visual consistency audit
 
-Current game art: **Waldpost 9.3.85**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal/object reference pixels and **23** complete forward image-generation prompts.
+Current game art: **Waldpost 9.3.86**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal/object reference pixels and **35** complete forward image-generation prompts.
+
+## Feedback survives changed graphics — 9.3.86
+
+The [15 November follow-up](../docs/PUZZLE-FEEDBACK-2026-11-15.md) accounts for all 26 original improvement notes, including those attached to older artwork. Existing fixes for animal-only answers, natural wording, centred apples, drag/drop, control sizing, memory-picture size, matching mirror leaves and the three removed puzzles are retained and rechecked against the current game.
+
+The remaining syllable prompt no longer asks for clapping. All hedgehog questions now use at most six words and describe a feature visible in the two current pictures, removing lifecycle/behaviour recall and the ear-tuft metaphor. The existing canonical pictures, animal identities and stable task IDs stay in place.
+
+Fresh browsers restore older GitHub notes into read-only history. Puzzle details expose their original dates, distinguish earlier versions and link to the current task. Notes cannot grant approval or become an upload through restoration; the remote review ledger is untouched. Only the two changed puzzle definitions require new review; unrelated puzzle presentation and sign-offs are retained.
+
+Validation: all 126 model tests pass. The feedback browser suite passes native mouse/touch gestures and keyboard alternatives at 390 px and 1080 px. The GitHub sync suite passes fresh-device historical notes, history-only refresh, filters and links to current tasks, alongside its existing save/conflict/offline checks. Design-system and historical-approval compatibility browser checks pass. Canonical style, image library/handoff, calibrated map, generated catalogue and offline/archive/link checks pass. Evidence is under `/tmp/waldpost-feedback-sync`, `/tmp/puzzle-feedback` and `/tmp/design-system`.
 
 ## Smooth stones and matching water — 9.3.85
 

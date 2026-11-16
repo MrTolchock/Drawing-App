@@ -4,6 +4,7 @@ Start with [current design](../design/README.md). The [visual style](../design/V
 
 - [All puzzles, competences and iterations](PUZZLE-CATALOGUE.md)
 - [Adult review and sign-off](PUZZLE-REVIEW.md)
+- [Follow-up to all 26 puzzle notes from 15 November](PUZZLE-FEEDBACK-2026-11-15.md)
 - [Shared GitHub review storage and connection](REVIEW-STORAGE.md)
 - [Parent-controlled letter sessions](LETTER-SESSIONS.md)
 - [Local gameplay log and AI export](PLAY-LOG.md)
