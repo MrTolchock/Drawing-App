@@ -93,30 +93,30 @@
   };
   const forestRiddles=[
     ['Wer hat Stacheln?','hedgehog','mouse-sit'],
-    ['Wer hat eine blaue Kappe?','bird-sit','forest-robin'],
+    ['Wer hat einen blauen Kopf?','bird-sit','forest-robin'],
     ['Wer hat Flossen?','fish-swim','snail'],
-    ['Wer macht Honig?','bee','spider'],
-    ['Wer trägt ein Schneckenhaus?','snail','caterpillar'],
+    ['Wer ist gelb und schwarz?','bee','spider'],
+    ['Wer trägt ein Haus?','snail','caterpillar'],
     ['Wer hat acht Beine?','spider','bird-sit'],
     ['Wer hat bunte Flügel?','butterfly','vocab-worm'],
-    ['Wer wird ein Schmetterling?','caterpillar','snail'],
-    ['Wer ist rot mit schwarzen Punkten?','ladybird','bee'],
+    ['Wer hat viele Beine?','caterpillar','snail'],
+    ['Wer hat schwarze Punkte?','ladybird','bee'],
     ['Wer hat lange Ohren?','hare-sit','hedgehog'],
-    ['Wer sammelt Nüsse?','squirrel-sit','frog-sit'],
+    ['Wer hält eine Nuss?','squirrel-sit','frog-sit'],
     ['Wer hat Streifen im Gesicht?','badger-walk','forest-fox'],
-    ['Wer hat einen flachen Schwanz?','beaver','hare-sit'],
-    ['Wer quakt?','frog-sit','mouse-sit'],
-    ['Wer lebt im Ameisenhaufen?','ant','spider'],
+    ['Wer hat einen breiten Schwanz?','beaver','hare-sit'],
+    ['Wer ist grün?','frog-sit','mouse-sit'],
+    ['Wer hat Fühler?','ant','spider'],
     ['Wer hat einen dünnen Schwanz?','mouse-sit','squirrel-sit'],
     ['Wer hat eine weisse Schwanzspitze?','forest-fox','badger-walk'],
-    ['Wer hat ein kleines Geweih?','roe-stand','hare-sit'],
-    ['Wer klopft am Baum?','forest-woodpecker','frog-sit'],
-    ['Wer schläft mit dem Kopf unten?','forest-bat','squirrel-sit'],
-    ['Wer hat grosse, runde Augen?','forest-owl','vocab-worm'],
+    ['Wer hat ein Geweih?','roe-stand','hare-sit'],
+    ['Wer hat Rot am Kopf?','forest-woodpecker','frog-sit'],
+    ['Wer hängt am Ast?','forest-bat','squirrel-sit'],
+    ['Wer hat grosse Augen?','forest-owl','vocab-worm'],
     ['Wer hat eine rote Brust?','forest-robin','bird-sit'],
-    ['Wer hat Pinsel an den Ohren?','forest-lynx','forest-fox'],
-    ['Wer hat einen hellen Fleck am Hals?','forest-marten','vocab-worm'],
-    ['Wer kriecht ohne Beine?','vocab-worm','ant']
+    ['Wer hat Flecken im Fell?','forest-lynx','forest-fox'],
+    ['Wer hat einen hellen Hals?','forest-marten','vocab-worm'],
+    ['Wer hat keine Beine?','vocab-worm','ant']
   ];
   forestRiddles.forEach(([text,answer,wrong],i)=>add('friends-hedgehog','riddle-'+i,text,{kind:'reading',prompt:'Welches Tier passt?',text,answer,choices:[answer,wrong]}));
   for(const host of ['deer','badger']){
@@ -166,7 +166,7 @@
   const words=R.words.concat([['Ba-na-ne','banana'],['To-ma-te','tomato'],['Ka-me-ra','camera'],['Na-del','needle'],['Ga-bel','fork'],['Glo-cke','bell'],['Ka-rot-te','carrot'],['Wol-ke','cloud'],['Schau-fel','spade'],['Ku-chen','cake'],['Re-gen','rain'],['Vo-gel','bird-sit'],['Schne-cke','snail']]);
   words.forEach(([w,picture],i)=>{
     const word=w.replaceAll('-',''),parts=w.split('-'),choices=[picture,words[(i+4)%words.length][1],words[(i+9)%words.length][1]];
-    add('syllable','word-'+i,word,{kind:'syllable',prompt:'Klopfe die Silben. Wie viele hörst du?',word,picture,parts,answer:parts.length,choices:[1,2,3]});
+    add('syllable','word-'+i,word,{kind:'syllable',prompt:'Wie viele Silben hat das Wort?',word,picture,parts,answer:parts.length,choices:[1,2,3]});
     add('read-word','word-'+i,word,{kind:'reading',prompt:'Welches Bild passt zum Wort?',text:word,answer:picture,choices});
     if(parts.length>1){const distractor=['ma','lo','su','ta','fe'].find(s=>!parts.some(p=>p.toLowerCase()===s)),chips=parts.concat(distractor);add('read-puzzle','word-'+i,word,{kind:'syllables',prompt:'Setze das Wort aus Silben zusammen.',word,picture,parts,chips,order:chips.map((_,n)=>n),answer:word});}
     // Every eligible vowel position is a different spelling task.

@@ -73,7 +73,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Hase",
     "question": {
       "kind": "syllable",
-      "prompt": "Klopfe die Silben. Wie viele hörst du?",
+      "prompt": "Wie viele Silben hat das Wort?",
       "word": "Hase",
       "picture": "hare-sit",
       "parts": [
@@ -93,7 +93,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Biber",
     "question": {
       "kind": "syllable",
-      "prompt": "Klopfe die Silben. Wie viele hörst du?",
+      "prompt": "Wie viele Silben hat das Wort?",
       "word": "Biber",
       "picture": "beaver",
       "parts": [
@@ -113,7 +113,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Igel",
     "question": {
       "kind": "syllable",
-      "prompt": "Klopfe die Silben. Wie viele hörst du?",
+      "prompt": "Wie viele Silben hat das Wort?",
       "word": "Igel",
       "picture": "hedgehog",
       "parts": [
@@ -133,7 +133,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Feder",
     "question": {
       "kind": "syllable",
-      "prompt": "Klopfe die Silben. Wie viele hörst du?",
+      "prompt": "Wie viele Silben hat das Wort?",
       "word": "Feder",
       "picture": "forest-feather",
       "parts": [
@@ -153,7 +153,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Rose",
     "question": {
       "kind": "syllable",
-      "prompt": "Klopfe die Silben. Wie viele hörst du?",
+      "prompt": "Wie viele Silben hat das Wort?",
       "word": "Rose",
       "picture": "forest-rose",
       "parts": [
@@ -173,7 +173,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Lupe",
     "question": {
       "kind": "syllable",
-      "prompt": "Klopfe die Silben. Wie viele hörst du?",
+      "prompt": "Wie viele Silben hat das Wort?",
       "word": "Lupe",
       "picture": "magnifier",
       "parts": [
@@ -193,7 +193,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Blume",
     "question": {
       "kind": "syllable",
-      "prompt": "Klopfe die Silben. Wie viele hörst du?",
+      "prompt": "Wie viele Silben hat das Wort?",
       "word": "Blume",
       "picture": "forest-flower",
       "parts": [
@@ -213,7 +213,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Tanne",
     "question": {
       "kind": "syllable",
-      "prompt": "Klopfe die Silben. Wie viele hörst du?",
+      "prompt": "Wie viele Silben hat das Wort?",
       "word": "Tanne",
       "picture": "forest-fir",
       "parts": [
@@ -233,7 +233,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Apfel",
     "question": {
       "kind": "syllable",
-      "prompt": "Klopfe die Silben. Wie viele hörst du?",
+      "prompt": "Wie viele Silben hat das Wort?",
       "word": "Apfel",
       "picture": "forest-apple",
       "parts": [
@@ -253,7 +253,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Raupe",
     "question": {
       "kind": "syllable",
-      "prompt": "Klopfe die Silben. Wie viele hörst du?",
+      "prompt": "Wie viele Silben hat das Wort?",
       "word": "Raupe",
       "picture": "caterpillar",
       "parts": [
@@ -273,7 +273,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Beere",
     "question": {
       "kind": "syllable",
-      "prompt": "Klopfe die Silben. Wie viele hörst du?",
+      "prompt": "Wie viele Silben hat das Wort?",
       "word": "Beere",
       "picture": "forest-berry",
       "parts": [
@@ -293,7 +293,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Biene",
     "question": {
       "kind": "syllable",
-      "prompt": "Klopfe die Silben. Wie viele hörst du?",
+      "prompt": "Wie viele Silben hat das Wort?",
       "word": "Biene",
       "picture": "bee",
       "parts": [
@@ -313,7 +313,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Maus",
     "question": {
       "kind": "syllable",
-      "prompt": "Klopfe die Silben. Wie viele hörst du?",
+      "prompt": "Wie viele Silben hat das Wort?",
       "word": "Maus",
       "picture": "mouse-sit",
       "parts": [
@@ -332,7 +332,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Baum",
     "question": {
       "kind": "syllable",
-      "prompt": "Klopfe die Silben. Wie viele hörst du?",
+      "prompt": "Wie viele Silben hat das Wort?",
       "word": "Baum",
       "picture": "tree",
       "parts": [
@@ -351,7 +351,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Pilz",
     "question": {
       "kind": "syllable",
-      "prompt": "Klopfe die Silben. Wie viele hörst du?",
+      "prompt": "Wie viele Silben hat das Wort?",
       "word": "Pilz",
       "picture": "forest-mushroom",
       "parts": [
@@ -370,7 +370,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Nuss",
     "question": {
       "kind": "syllable",
-      "prompt": "Klopfe die Silben. Wie viele hörst du?",
+      "prompt": "Wie viele Silben hat das Wort?",
       "word": "Nuss",
       "picture": "forest-nut",
       "parts": [
@@ -389,7 +389,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Fisch",
     "question": {
       "kind": "syllable",
-      "prompt": "Klopfe die Silben. Wie viele hörst du?",
+      "prompt": "Wie viele Silben hat das Wort?",
       "word": "Fisch",
       "picture": "fish-swim",
       "parts": [
@@ -408,7 +408,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Nest",
     "question": {
       "kind": "syllable",
-      "prompt": "Klopfe die Silben. Wie viele hörst du?",
+      "prompt": "Wie viele Silben hat das Wort?",
       "word": "Nest",
       "picture": "nest",
       "parts": [
@@ -427,7 +427,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Blatt",
     "question": {
       "kind": "syllable",
-      "prompt": "Klopfe die Silben. Wie viele hörst du?",
+      "prompt": "Wie viele Silben hat das Wort?",
       "word": "Blatt",
       "picture": "forest-leaf",
       "parts": [
@@ -446,7 +446,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Sonne",
     "question": {
       "kind": "syllable",
-      "prompt": "Klopfe die Silben. Wie viele hörst du?",
+      "prompt": "Wie viele Silben hat das Wort?",
       "word": "Sonne",
       "picture": "sun",
       "parts": [
@@ -466,7 +466,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Schmetterling",
     "question": {
       "kind": "syllable",
-      "prompt": "Klopfe die Silben. Wie viele hörst du?",
+      "prompt": "Wie viele Silben hat das Wort?",
       "word": "Schmetterling",
       "picture": "butterfly",
       "parts": [
@@ -487,7 +487,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Ameise",
     "question": {
       "kind": "syllable",
-      "prompt": "Klopfe die Silben. Wie viele hörst du?",
+      "prompt": "Wie viele Silben hat das Wort?",
       "word": "Ameise",
       "picture": "ant",
       "parts": [
@@ -508,7 +508,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Banane",
     "question": {
       "kind": "syllable",
-      "prompt": "Klopfe die Silben. Wie viele hörst du?",
+      "prompt": "Wie viele Silben hat das Wort?",
       "word": "Banane",
       "picture": "banana",
       "parts": [
@@ -529,7 +529,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Tomate",
     "question": {
       "kind": "syllable",
-      "prompt": "Klopfe die Silben. Wie viele hörst du?",
+      "prompt": "Wie viele Silben hat das Wort?",
       "word": "Tomate",
       "picture": "tomato",
       "parts": [
@@ -550,7 +550,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Kamera",
     "question": {
       "kind": "syllable",
-      "prompt": "Klopfe die Silben. Wie viele hörst du?",
+      "prompt": "Wie viele Silben hat das Wort?",
       "word": "Kamera",
       "picture": "camera",
       "parts": [
@@ -571,7 +571,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Nadel",
     "question": {
       "kind": "syllable",
-      "prompt": "Klopfe die Silben. Wie viele hörst du?",
+      "prompt": "Wie viele Silben hat das Wort?",
       "word": "Nadel",
       "picture": "needle",
       "parts": [
@@ -591,7 +591,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Gabel",
     "question": {
       "kind": "syllable",
-      "prompt": "Klopfe die Silben. Wie viele hörst du?",
+      "prompt": "Wie viele Silben hat das Wort?",
       "word": "Gabel",
       "picture": "fork",
       "parts": [
@@ -611,7 +611,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Glocke",
     "question": {
       "kind": "syllable",
-      "prompt": "Klopfe die Silben. Wie viele hörst du?",
+      "prompt": "Wie viele Silben hat das Wort?",
       "word": "Glocke",
       "picture": "bell",
       "parts": [
@@ -631,7 +631,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Karotte",
     "question": {
       "kind": "syllable",
-      "prompt": "Klopfe die Silben. Wie viele hörst du?",
+      "prompt": "Wie viele Silben hat das Wort?",
       "word": "Karotte",
       "picture": "carrot",
       "parts": [
@@ -652,7 +652,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Wolke",
     "question": {
       "kind": "syllable",
-      "prompt": "Klopfe die Silben. Wie viele hörst du?",
+      "prompt": "Wie viele Silben hat das Wort?",
       "word": "Wolke",
       "picture": "cloud",
       "parts": [
@@ -672,7 +672,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Schaufel",
     "question": {
       "kind": "syllable",
-      "prompt": "Klopfe die Silben. Wie viele hörst du?",
+      "prompt": "Wie viele Silben hat das Wort?",
       "word": "Schaufel",
       "picture": "spade",
       "parts": [
@@ -692,7 +692,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Kuchen",
     "question": {
       "kind": "syllable",
-      "prompt": "Klopfe die Silben. Wie viele hörst du?",
+      "prompt": "Wie viele Silben hat das Wort?",
       "word": "Kuchen",
       "picture": "cake",
       "parts": [
@@ -712,7 +712,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Regen",
     "question": {
       "kind": "syllable",
-      "prompt": "Klopfe die Silben. Wie viele hörst du?",
+      "prompt": "Wie viele Silben hat das Wort?",
       "word": "Regen",
       "picture": "rain",
       "parts": [
@@ -732,7 +732,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Vogel",
     "question": {
       "kind": "syllable",
-      "prompt": "Klopfe die Silben. Wie viele hörst du?",
+      "prompt": "Wie viele Silben hat das Wort?",
       "word": "Vogel",
       "picture": "bird-sit",
       "parts": [
@@ -752,7 +752,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Schnecke",
     "question": {
       "kind": "syllable",
-      "prompt": "Klopfe die Silben. Wie viele hörst du?",
+      "prompt": "Wie viele Silben hat das Wort?",
       "word": "Schnecke",
       "picture": "snail",
       "parts": [

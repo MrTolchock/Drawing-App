@@ -99,7 +99,7 @@
       const layout=layouts[round],holes=mix(layout.parts.map((_,i)=>i),random).slice(0,2);
       return {...q,kind:'build',prompt:'Baue das Bild fertig.',...layout,holes,choices:shapes};
     }
-    if(id==='syllable')return {...q,kind:'syllable',prompt:'Klopfe die Silben. Wie viele hörst du?',word,picture:entry[1],parts:entry[0].split('-'),answer:entry[0].split('-').length,choices:[1,2,3]};
+    if(id==='syllable')return {...q,kind:'syllable',prompt:'Wie viele Silben hat das Wort?',word,picture:entry[1],parts:entry[0].split('-'),answer:entry[0].split('-').length,choices:[1,2,3]};
     if(id==='robot'){
       const size=4,start=[0,12,3,15,0][round],goal=[15,3,12,0,15][round],obstacles=[[5,6],[5,9],[6,10],[9,10],[2,5,9]][round];
       return {...q,kind:'robot',mode:'route',prompt:'Bring den Brief zum Briefkasten.',size,start,goal,obstacles};

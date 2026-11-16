@@ -22,6 +22,10 @@
   function status(id,iteration){const k=recordKey(id,iteration),d=data.decisions[k],valid=d&&C.acceptsRevision(id,iteration,d.revision);return {status:valid?d.status:'pending',stale:!!d&&!valid,decision:d?clone(d):null,seen:C.acceptsRevision(id,iteration,data.seen[k])};}
   function seen(id,iteration){const r=revision(id,iteration);if(!r)return false;const next=clone(data);next.seen[recordKey(id,iteration)]=r;return persist(next);}
   function progress(id){const items=C.iterations(id),approved=items.filter(i=>status(id,i.id).status==='approved').length,improve=items.filter(i=>status(id,i.id).status==='improve').length;return {total:items.length,approved,improve,pending:items.length-approved-improve};}
+  function feedback(id){
+    const notes=[...Object.values(data.decisions),...data.history].filter(d=>(d.key==='puzzle:'+id||d.key.startsWith(id+'/'))&&d.note.trim()&&d.note!=='Alle Iterationen zusammen bestätigt').sort((a,b)=>Date.parse(b.at)-Date.parse(a.at)),unique=new Set();
+    return notes.filter(d=>{const signature=d.key+'\n'+d.note;if(unique.has(signature))return false;unique.add(signature);return true;}).map(d=>({...clone(d),stale:!C.acceptsRevision(id,d.key.startsWith('puzzle:')?null:d.key,d.revision)}));
+  }
   function ready(id){const p=progress(id);return p.total>=25&&p.approved===p.total&&status(id).status==='approved'&&(!FK.reviewRepository||FK.reviewRepository.confirmed(id));}
   function decide(id,iteration,value,note){
     const r=revision(id,iteration);if(!r||!statuses.includes(value)){error='Unbekannte Aufgabe oder Entscheidung.';return false;}
@@ -110,7 +114,7 @@
     return decide(session.id,null,'approved');
   }
   window.addEventListener?.('storage',event=>{if(event.key!==key)return;try{const next=JSON.parse(event.newValue);if(valid(next)){data=next;error='';}else {data=empty();error='Prüfung wurde geändert. Bitte erneut prüfen.';}FK.emit?.('puzzle-review-change');}catch{data=empty();FK.emit?.('puzzle-review-change');}});
-  FK.puzzleReview={key,status,seen,progress,ready,decide,comment,approveAll,exportData,importData,open,openGallery,gallerySession,play,preview,start,previewSession,visit,sessionDecision,finishSession,get authorized(){return authorized;},get error(){return error;}};
+  FK.puzzleReview={key,status,seen,progress,feedback,ready,decide,comment,approveAll,exportData,importData,open,openGallery,gallerySession,play,preview,start,previewSession,visit,sessionDecision,finishSession,get authorized(){return authorized;},get error(){return error;}};
   if(FK.ReviewRepository&&window.fetch&&window.document&&new URLSearchParams(location.search).get('dev')!=='1'){
     let tokenStorage;try{tokenStorage=window.sessionStorage;}catch{/* A temporary connection still works. */}
     FK.reviewRepository=FK.ReviewRepository.create({

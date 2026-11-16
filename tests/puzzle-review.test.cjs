@@ -64,7 +64,7 @@ test('hedgehog riddles and every distractor use Swiss forest wildlife',()=>{
  const pool=setup().FK.puzzleCatalogue.iterations('friends-hedgehog');
  const allowed=new Set(['hedgehog','bird-sit','fish-swim','bee','snail','spider','butterfly','caterpillar','ladybird','hare-sit','squirrel-sit','badger-walk','beaver','frog-sit','ant','mouse-sit','fox-run','roe-stand','forest-woodpecker','forest-bat','forest-owl','forest-robin','forest-lynx','forest-marten','forest-fox','vocab-worm']);
  assert.equal(pool.length,25);assert.equal(new Set(pool.map(it=>it.question.answer)).size,25);
- for(const it of pool){assert.equal(it.question.choices.length,2);assert.ok(it.question.text.split(/\s+/).length<=8,it.id+' has a short clue');assert.ok(it.question.choices.every(id=>allowed.has(id)),it.id+' contains only local wildlife');}
+ for(const it of pool){assert.equal(it.question.choices.length,2);assert.ok(it.question.text.split(/\s+/).length<=6,it.id+' has a short clue');assert.ok(it.question.choices.every(id=>allowed.has(id)),it.id+' contains only local wildlife');assert.doesNotMatch(it.question.text,/Honig|wird ein|Ameisenhaufen|Pinsel|klopft|schläft/i,it.id+' asks about the visible picture rather than hidden facts');}
 });
 test('latest review fixes apply throughout the relevant pools and retire all three requested puzzles',()=>{
  const {FK}=setup(),C=FK.puzzleCatalogue;
@@ -75,6 +75,14 @@ test('latest review fixes apply throughout the relevant pools and retire all thr
  for(const [index,phrase]of [[4,'Ich kann gut riechen.'],[11,'wachse ich'],[14,'Wolle'],[17,'hohe Bäume'],[18,'Ich habe eine Mähne.'],[20,'ohne zu trinken'],[24,'Mit meinen Zähnen fälle ich Bäume.']])assert.ok(nature[index].question.text.includes(phrase),nature[index].id);
  assert.equal(C.iterations('friends-badger')[16].question.text,'Was braucht eine Pflanze zum Wachsen?');
  assert.equal(C.iterations('friends-badger')[24].question.text,'Was ernten wir vom Birnbaum?');
+ for(const it of C.iterations('syllable')){assert.equal(it.question.prompt,'Wie viele Silben hat das Wort?');assert.equal(it.question.answer,it.question.parts.length);}
+});
+test('feedback remains readable across changed revisions without changing the review decision',()=>{
+ const {FK}=setup(),V=FK.puzzleReview,C=FK.puzzleCatalogue,id='syllable',key='syllable/word-6',old={key,revision:'before-new-pictures',status:'improve',note:'Einfach nur Silben zählen.',at:'2026-11-15T20:58:24.776Z'};
+ const data=V.exportData();data.decisions[key]={key,revision:C.iterationRevision(id,C.iterations(id).find(it=>it.id===key)),status:'pending',note:'',at:'2026-11-16T12:00:00.000Z'};data.history.push(old,{...old,revision:'another-older-picture'}, {...old,key:'puzzle:syllable',note:'Alle Iterationen zusammen bestätigt'});
+ assert.ok(V.importData(data));const before=plain(V.exportData());delete before.exportedAt;
+ const notes=plain(V.feedback(id));assert.equal(notes.length,1);assert.equal(notes[0].note,old.note);assert.equal(notes[0].at,old.at);assert.equal(notes[0].stale,true);
+ const after=plain(V.exportData());delete after.exportedAt;assert.deepEqual(after,before);assert.equal(V.status(id,key).status,'pending');assert.equal(V.ready(id),false);
 });
 test('five distinct questions are deterministic, restored verbatim and avoid the previous round',()=>{
  const {FK,memory}=setup(),C=FK.puzzleCatalogue,R=FK.puzzleRounds;

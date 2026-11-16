@@ -2,7 +2,7 @@
 (function(){
   'use strict';
   const FK=window.FK,h=FK.h,C=FK.puzzleCatalogue,V=FK.puzzleReview;
-  let body,backButton,selected=null,filter='all',notice='';
+  let body,backButton,selected=null,filter='all',notice='',displayedNotes='';
   const drafts=new Map();
   // Describe the bounded practice in this puzzle; these are explanations, not curriculum quotations.
   const competences={
@@ -57,6 +57,7 @@
     backButton.setAttribute('aria-label',selected?'Zur Puzzle-Übersicht':'Zurück zu Einstellungen');
     body.replaceChildren();
     if(!selected){
+      displayedNotes='';
       body.append(h('p',{class:'review-intro',text:ready+' / '+games.length+' Puzzles freigegeben · '+total+' einzelne Iterationen. Nur auf GitHub gespeicherte Freigaben sind für Kinder spielbar. Vorschauen verändern keinen Spielstand.'}),FK.reviewConnection.panel(),message());
       const grid=h('div',{class:'review-grid'});
       for(const g of games){const p=C.puzzle(g.id),progress=V.progress(g.id);
@@ -74,6 +75,16 @@
     body.append(h('section',{class:'review-comment'},h('h3',{text:'Allgemeiner Kommentar zum Puzzle'}),h('label',{},'Kommentar (optional)',note),btn('Kommentar speichern',()=>{
       if(V.comment(id,note.value)){drafts.delete(id);saved.textContent='Kommentar gespeichert.';}else saved.textContent=V.error;
     }),saved));
+    const notes=V.feedback(id);
+    displayedNotes=C.canonical(notes);
+    if(notes.length){
+      const items=C.iterations(id),list=h('ul',{class:'review-feedback-list'});
+      for(const entry of notes){
+        const iteration=items.find(it=>it.id===entry.key),date=new Date(entry.at).toLocaleDateString('de-CH');
+        list.append(h('li',{'data-feedback-key':entry.key},h('b',{text:entry.key==='puzzle:'+id?'Zum gesamten Puzzle':iteration?.label||entry.key}),h('small',{text:date+(entry.stale?' · Frühere Version':'')}),h('p',{text:entry.note}),iteration?btn('Aktuelle Aufgabe ansehen',()=>V.preview(id,iteration.id)):null));
+      }
+      body.append(h('section',{class:'review-feedback'},h('h3',{text:'Bisherige Hinweise'}),h('p',{text:'Frühere Notizen bleiben auch nach Änderungen am Puzzle sichtbar.'}),list));
+    }
     const tabs=h('nav',{class:'review-actions','aria-label':'Aufgaben filtern'});
     for(const [value,label]of Object.entries({all:'Alle Iterationen',pending:'Offen',improve:'Verbessern',approved:'Freigegeben',stale:'Geändert'})){const b=btn(label,()=>{filter=value;draw();});b.setAttribute('aria-pressed',String(value===filter));tabs.append(b);}
     const all=btn('Alle bestätigen',()=>approveAll(selected));all.classList.add('review-approve-all');all.disabled=V.ready(selected)||(progress.approved===progress.total&&V.status(selected).status==='approved');
@@ -122,7 +133,7 @@
   V.attachPreview=attachPreview;V.saveFailure=saveFailure;V.finishPreview=finishPreview;
   let queuedRefresh=false;
   FK.on('puzzle-review-change',event=>{
-    if(event?.source!=='github'||!event.changed||queuedRefresh)return;
+    if(event?.source!=='github'||(!event.changed&&(selected?C.canonical(V.feedback(selected)):'')===displayedNotes)||queuedRefresh)return;
     queuedRefresh=true;requestAnimationFrame(()=>{
       queuedRefresh=false;
       // A remote update must not erase an optional note that is still being typed.
