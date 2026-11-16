@@ -279,3 +279,5 @@ The mailman (same model) also walks his own round on the paths near the den betw
 **9.3.71.** Water: reflections of the sky and of the trees' dark as soft streaks, light on the bed in the shallows, sun glitter that follows the weather and the hour, and a lapping line of foam along the shores of pond, pools and swamp. Same water colours.
 
 **9.3.73.** The picture map is repainted from the world as a storybook map (`tools/map/map.html`, 1800 × 1200): a lit wash of the land, sharp water with shore and waves, dotted trails, every tree drawn small, the places as small drawings (den tree, dam and lodge, bridges, the deeper cave with its hall, summit cross, well, picnic fire, signposts, toadstool house, stone circle, apple trees, sett, the Steinbock), the wood running out into paper at the sides, a compass and the name on a ribbon. Pins sit where they sat (`MAP` unchanged).
+
+**9.3.74.** The peak's snow stays on all but the steepest rock: the dark, jagged smudge of half-covered rock on its flank is gone.
