@@ -1,0 +1,26 @@
+WALDPOST CANONICAL ILLUSTRATION STYLE — waldpost-watercolour-pencil-v1
+
+Use the supplied canonical animals.png and objects.png reference images as the authority for drawing technique. They show the predominant style of the current Waldpost gallery. Match their actual pixels, not an imagined style suggested by a filename.
+
+Draw warm children's picture-book watercolour finished with visible coloured-pencil strokes. Use light, gently uneven washes, organic sepia contours, delicate hatching, softly irregular edges and modest drawn shading. Surfaces look painted and pencilled, with paper grain within the illustration. Keep the warmth of cream, honey brown, restrained sage and blue, while preserving every exact colour required by a task. Subjects remain friendly, recognizable and anatomically believable.
+
+Do not turn the drawing into a 3D render, plush toy, clay or felt craft, photograph, glossy object, embossed surface or studio-lit miniature. Avoid deep ambient-occlusion shadows, inflated forms and realistic material microtexture. Do not mix in another illustration technique or use historical artwork as a style reference.
+
+The role instructions below set the necessary detail and composition within this one style. Learning pictures retain fine drawn contours; small navigation symbols use the approved simpler, broader shapes and flat fills in the same palette. Keep the existing rendered game-character identities separate from image-generated learning subjects. Exact geometry and handwriting remain authored paths.
+
+Preserve subject identity, counted quantities, exact answer colours and action differences. Use real alpha for isolated pictures and stationery, and an opaque canvas only when the selected role requires a scene or branding image. No accidental background, halo, visible grid, labels or extra objects.
+
+ROLE: landscape
+Use the canonical watercolour-and-coloured-pencil medium at landscape scale: broad light washes, fine organic sepia contours and modest drawn shading. Include only the story subjects explicitly required by the brief. Preserve the supplied composition and quiet space for separately placed controls. Opaque canvas, no painted interface or text.
+
+ATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:
+1. design/illustrations/references/watercolour-pencil-v1/animals.png — canonical-style: canonical drawing technique for animals; fixed majority-style pixels
+2. design/illustrations/references/watercolour-pencil-v1/objects.png — canonical-style: canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels
+3. assets/waldatelier/hero.webp — composition-only: retained lake composition and fox identity only
+
+SUBJECT AND LAYOUT BRIEF:
+Opaque landscape 3:2, target 1536 by 1024. Preserve the retained Lake Zürich composition: mature leafy tree framing the left and upper left, small friendly full-body orange fox with cream markings and green neckerchief sitting on a mossy rock in the lower-left quarter, small botanical foreground, calm blue lake, a tiny sailboat and distant Zürich shoreline with the twin towers of Grossmünster. Keep the right half mostly open pale lake and sky for separately placed controls. Warm daylight, clear friendly silhouettes and restrained details. The supplied current painting defines composition and fox identity only; use the canonical watercolour/pencil medium.
+
+No interface, frames, badges, labels, letters, numbers or watermark. This is retained landing artwork, separate from the active puzzle/menu/settings clearing. The fox belongs in this illustration; it is not the separately rendered den fox.
+
+STYLE PRIORITY: The brief changes subjects and layout only. Keep waldpost-watercolour-pencil-v1 and the supplied canonical reference technique throughout; do not import the style of a composition-only reference.

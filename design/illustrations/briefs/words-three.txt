@@ -1,0 +1,8 @@
+Transparent square atlas, four columns by four rows of equal square cells. IDs identify cells and must not be drawn. Fixed row-major order:
+
+Row 1: pear — one pear; snowman — friendly snowman; heart — one red heart; book — open book without words.
+Row 2: bed — small bed; clock — round analogue clock without numerals; tree — leafy deciduous tree; cake — one slice of cake.
+Row 3: strawberry — one strawberry; grapes — bunch of purple grapes; icecream — ice-cream cone; boat — small sailboat.
+Row 4: hat — brown brimmed hat; ball — one red ball; balloon — blue balloon on string; robot-word — friendly small toy robot.
+
+Exactly sixteen complete subjects, with at least 18 percent empty transparent padding per side. Keep sails, tree canopy, balloon string and limbs within each cell. No text, labels, numerals, visible grid, shared scenery or opaque cell backgrounds. Current atlas supplies identities and order only.

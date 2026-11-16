@@ -6,3 +6,5 @@ Row 3: green frog sits; same frog jumps with extended hind legs; great spotted w
 Row 4: tawny owl perches; robin stands; lynx sits with ear tufts and spotted coat; pine marten stands with pale throat patch.
 
 Exactly sixteen complete pictures with at least 18 percent transparent padding. No labels, scenery or extra animals. Preserve correct species and unmistakable actions.
+
+Fixed row-major cell IDs (metadata only; do not draw these labels): squirrel-sit, squirrel-run, hedgehog-walk, hedgehog-sleep, badger-walk, badger-sleep, roe-stand, roe-run, frog-sit, frog-jump, forest-woodpecker, forest-bat, forest-owl, forest-robin, forest-lynx, forest-marten.

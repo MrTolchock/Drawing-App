@@ -16,4 +16,5 @@ jobs:
       - run: node tools/check-design.cjs
       - run: node tools/puzzle-catalogue.cjs --check
       - run: node tools/illustrations/library.cjs --check
+      - run: node tools/illustrations/handoff.cjs --check
       - run: node --test tests/*.test.cjs

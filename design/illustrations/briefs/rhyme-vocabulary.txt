@@ -1,1 +1,3 @@
 Square canvas, exactly four columns by four rows of equal square cells. Exact row-major order: bread loaf with one slice; short railway track segment; folded checked blanket; metal dustbin; blue/cream jug; a friendly smiling mouth; red tiled roof with chimney; small blue brook with a little bank; goat; housefly. Ten occupied cells, then six completely transparent cells. No text, other subjects, extra decorations or grid. Complete silhouettes with at least 18 percent transparent padding.
+
+Fixed row-major cell IDs (metadata only; do not draw these labels): rhyme-bread, rhyme-rail, rhyme-blanket, rhyme-bin, rhyme-jug, rhyme-mouth, rhyme-roof, rhyme-brook, rhyme-goat, rhyme-fly.

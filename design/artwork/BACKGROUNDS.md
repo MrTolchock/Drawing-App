@@ -2,6 +2,8 @@
 
 Use the [canonical watercolour/pencil style](../illustrations/STYLE.md) and the complete `den`, `puzzle-clearing` or `background` request from `node tools/illustrations/style.cjs --request <id>`. The fixed animal/object references define technique; the current painting supplies composition only. Historical concept prompts are archived and are not current recipes.
 
+The [complete generator-input index](GENERATOR-INPUTS.md) links every painting and records full portable requests, actual reference paths/hashes, dimensions, proposed exports and available original sources in [generator-inputs.json](generator-inputs.json). It also covers the older Lake Zürich scene and explicitly missing historical requests.
+
 ## Den
 
 Current painting: [den-v2.webp](../../assets/forest-friends/den-v2.webp), 1448 × 1086, opaque. The live fox, its shadow and sleep pose are rendered separately by `js/friends/painted.js`; keep the room empty of generated characters.

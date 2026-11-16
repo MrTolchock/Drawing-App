@@ -1,0 +1,8 @@
+Transparent square atlas, four columns by four rows of equal square cells. Fixed row-major order. IDs below are metadata and must not appear in the drawing.
+
+Row 1: mummy — smiling mother and young daughter together, waist-up; daddy — smiling father and young daughter together, waist-up; grandma — friendly grandmother, waist-up; grandpa — friendly grandfather, waist-up.
+Row 2: llama — llama; judo — child in white judo uniform and belt; ufo — small flying saucer; moped — small moped with pedals.
+Row 3: lemonade — glass of lemonade; canoe — canoe with paddle; pilot — pilot in uniform, waist-up; honey — jar of honey.
+Row 4: cheese — wedge of Swiss cheese with holes; comet — comet with trailing tail; reader — smiling girl reading a book; blueberries — small jar of blueberries.
+
+Exactly sixteen complete cell motifs, with paired people confined to their single cell. At least 18 percent transparent padding per side; preserve complete heads, hands and silhouettes within the specified portrait crops. No readable writing, labels, logos, grid, shared scenery or opaque cell backgrounds. Current atlas supplies identities and ordering only.

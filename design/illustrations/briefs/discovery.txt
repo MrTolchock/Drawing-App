@@ -1,0 +1,8 @@
+Transparent square atlas, four columns by four rows of equal square cells. IDs are metadata, not labels. Fixed row-major order:
+
+Row 1: bean — one brown bean seed; seedling — tiny two-leaf seedling; plant — young leafy plant; water — one blue water droplet.
+Row 2: rain — grey raincloud with raindrops; cloud — soft white cloud with pale blue shading; sunset — compact low orange sun and horizon motif; bucket — small empty wooden bucket.
+Row 3: letter — unfolded blank letter with small envelope; postbox — red public postbox with letter slot; mailbox — rural mailbox with a letter; nest — bird nest with one egg.
+Row 4: chick — chick emerging from an egg; cocoon — butterfly chrysalis hanging from a short twig; leaf — green oak leaf with clear veins; fire-engine — small red fire engine.
+
+Exactly sixteen complete motifs. Keep the minimal context needed to identify rain, sunset or nest within its own cell; no shared landscape or ground. At least 18 percent empty transparent padding per side. No lettering, numerals, visible grid, opaque background or extra subjects. Current atlas supplies composition and identity only.

@@ -1,0 +1,8 @@
+Transparent square atlas, exactly four columns by four rows of equal square cells. IDs identify cells and must not appear in the drawing. Fixed row-major order:
+
+Row 1: dog — friendly brown dog; cat — sitting tabby cat; rabbit — rabbit with long ears; fox-animal — orange fox with green neckerchief.
+Row 2: hedgehog — hedgehog with clear spines; bird — blue-and-orange kingfisher; fish — freshwater fish with visible fins; bee — honeybee with exactly six legs and four wings.
+Row 3: snail — garden snail with shell; spider — spider with exactly eight legs; butterfly — butterfly with two paired wings; caterpillar — green caterpillar.
+Row 4: ladybird — red ladybird with exactly six legs; cow — Swiss brown cow; sheep — woolly white sheep; pig — pink pig.
+
+Exactly sixteen complete animals. At least 18 percent empty transparent padding per side in each cell; no ears, tails, legs or wings cross cell boundaries. Preserve markings and anatomy; no extra animals, labels, scenery, grid or opaque backgrounds. The current atlas supplies identity and ordering only. These learning subjects remain separate from the shared UI friend portraits.

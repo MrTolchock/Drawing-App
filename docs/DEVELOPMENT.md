@@ -11,6 +11,7 @@ node tools/map/layout.cjs --check
 node tools/puzzle-catalogue.cjs
 node tools/illustrations/library.cjs
 node tools/illustrations/library.cjs --check
+node tools/illustrations/handoff.cjs --check
 node tools/check-design.cjs
 node --test tests/*.test.cjs
 node tests/design-system-browser.cjs
@@ -41,6 +42,8 @@ Read [Visual style](../design/VISUAL-STYLE.md) and [Puzzle blueprint](../design/
 Current character sculpt source: `tools/characters/plush.js`, baked to GLBs for the live world. All UI identities now use the canonical painted cast in `assets/forest-friends/character-portraits.webp`: letters, puzzle context, map pins, menus, companions and celebrations. Use `friend-portraits` and `fox-sleep-portrait`; `tools/portraits/` creates development model references only. The approved top-down map uses `design/artwork/world-map.json`; [map calibration](../tools/map/README.md) aligns real world locations with the painting and keeps named 64 px pins separate. Learning nouns/actions remain in the drawn Waldatelier library. Preserve saved template IDs, settings records and historical localStorage/IndexedDB keys.
 
 Every image-generator request starts with the [canonical style](../design/illustrations/STYLE.md). `node tools/illustrations/style.cjs --request <id>` prepares the complete prompt, actual canonical reference-image paths and transparency flag. Edit registered subject/layout briefs, regenerate with `node tools/illustrations/style.cjs`, then run `--check`; CI enforces the shared block, fixed reference pixels, current source records and absence of unregistered/historical prompts. The [artwork handoff](../design/artwork/README.md) explains each role. All puzzle drawings remain in [one browsable library](../assets/waldatelier/README.md). Historical original prompts/drafts/evidence are archived as provenance, not future style instructions. Documentation/archive/prompt changes alone do not need a runtime version bump or reopen puzzle reviews.
+
+The [generator-input index](../design/artwork/GENERATOR-INPUTS.md) and committed `generator-inputs.json` provide complete portable requests and preparation inputs for other AI models. After changing a brief, inventory, source or reference, regenerate style prompts, the library and then `node tools/illustrations/handoff.cjs`. CI runs `handoff.cjs --check` to reject stale inputs, missing per-sheet subject IDs and undocumented offline images.
 
 Work on a branch for reviewable changes, commit and push checkpoints. Merge/push `main` only when the owner authorizes publication. Keep current rules in `design/`; archive superseded documents with a clear index. No runtime reference may load archive material.
 

@@ -1,4 +1,6 @@
-# Artwork handoff for Claude
+# Artwork handoff for image-capable AI models
+
+Start with [all image-generator inputs and prompts](GENERATOR-INPUTS.md). Its [portable JSON handoff](generator-inputs.json) contains full requests, ordered reference paths/hashes, every shipped image's dimensions and available source/export records. Each puzzle sheet has its own concrete prompt. The index covers shared menu/settings woodland, den, map, letters, icons, portraits, branding and retained artwork, including explicitly missing historical prompts.
 
 **Read the [canonical illustration style](../illustrations/STYLE.md) first.** Every image-generator request uses `waldpost-watercolour-pencil-v1`, the same fixed reference pixels and the generated complete prompts. There is one current style contract; role instructions control detail and composition.
 
@@ -47,6 +49,8 @@ Save the actual generator/date, complete request, ordered reference inputs, edit
 node tools/illustrations/style.cjs
 node tools/illustrations/style.cjs --check
 node tools/illustrations/library.cjs
+node tools/illustrations/handoff.cjs
+node tools/illustrations/handoff.cjs --check
 node tools/check-design.cjs
 ```
 

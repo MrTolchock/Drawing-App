@@ -6,3 +6,5 @@ Row 3: fox sleeps curled up; same fox runs right; tabby sleeps curled up; same t
 Row 4: beagle runs right; same beagle sleeps curled up; female duck swims right above two short water strokes; same duck flies right.
 
 Exactly sixteen complete pictures. No extra animals, labels, background or changes to cell order. Give every cell at least 18 percent empty transparent padding.
+
+Fixed row-major cell IDs (metadata only; do not draw these labels): mouse-sit, mouse-run, mouse-sleep, bird-fly, bird-sit, fish-swim, hare-run, hare-sit, fox-sleep, fox-run, cat-sleep, cat-sit, dog-run, dog-sleep, duck-swim, duck-fly.

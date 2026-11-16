@@ -56,6 +56,9 @@
     },
     "map-landmark": {
       "instruction": "Use the canonical watercolour-and-coloured-pencil medium for a single map destination landmark, matching the painted character portraits in finish and detail. Keep the silhouette compact and recognizable at 40–50 pixels, with broad simple forms, organic sepia contours, gentle washes and restrained pencil shading. Genuine transparency, generous square padding and complete edges. No miniature realistic scenery or material microdetail. Actual map buttons, names and click behaviour remain code."
+    },
+    "landscape": {
+      "instruction": "Use the canonical watercolour-and-coloured-pencil medium at landscape scale: broad light washes, fine organic sepia contours and modest drawn shading. Include only the story subjects explicitly required by the brief. Preserve the supplied composition and quiet space for separately placed controls. Opaque canvas, no painted interface or text."
     }
   },
   "prompts": [
@@ -71,42 +74,90 @@
       "role": "learning",
       "path": "design/illustrations/prompts/forest-actions.txt",
       "brief": "design/illustrations/briefs/forest-actions.txt",
-      "transparent": true
+      "transparent": true,
+      "references": [
+        {
+          "path": "assets/waldatelier/forest-actions.webp",
+          "sha256": "d3a67b017d42bd3bea98d1034c0316d3ba11e7575e6bcadda7ae1e7962f74862",
+          "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
+          "usage": "composition-only"
+        }
+      ]
     },
     {
       "id": "forest-objects",
       "role": "learning",
       "path": "design/illustrations/prompts/forest-objects.txt",
       "brief": "design/illustrations/briefs/forest-objects.txt",
-      "transparent": true
+      "transparent": true,
+      "references": [
+        {
+          "path": "assets/waldatelier/forest-objects.webp",
+          "sha256": "aeb5cdd3aef93cc3f55e63f2323770b83b5eea90e190f0948d243828fc5aab83",
+          "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
+          "usage": "composition-only"
+        }
+      ]
     },
     {
       "id": "puzzle-flowers",
       "role": "learning",
       "path": "design/illustrations/prompts/puzzle-flowers.txt",
       "brief": "design/illustrations/briefs/puzzle-flowers.txt",
-      "transparent": true
+      "transparent": true,
+      "references": [
+        {
+          "path": "assets/waldatelier/puzzle-flowers.webp",
+          "sha256": "78baf1dcf9409af99fc57ed3b4a1a52896fc199b53acb7cc7c090aeeecf71b64",
+          "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
+          "usage": "composition-only"
+        }
+      ]
     },
     {
       "id": "forest-wildlife",
       "role": "learning",
       "path": "design/illustrations/prompts/forest-wildlife.txt",
       "brief": "design/illustrations/briefs/forest-wildlife.txt",
-      "transparent": true
+      "transparent": true,
+      "references": [
+        {
+          "path": "assets/waldatelier/forest-wildlife.webp",
+          "sha256": "f152dfbc074a80d29d6fc91a1d7cbef62a3bec70b253d94bbaae60f50a1de1e8",
+          "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
+          "usage": "composition-only"
+        }
+      ]
     },
     {
       "id": "forest-fox",
       "role": "learning",
       "path": "design/illustrations/prompts/forest-fox.txt",
       "brief": "design/illustrations/briefs/forest-fox.txt",
-      "transparent": true
+      "transparent": true,
+      "references": [
+        {
+          "path": "assets/waldatelier/forest-fox.webp",
+          "sha256": "e5958deb7111a6e7896b02915950745fcd5b108666556091b0b2b9bae6b56451",
+          "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
+          "usage": "composition-only"
+        }
+      ]
     },
     {
       "id": "rhyme-vocabulary",
       "role": "learning",
       "path": "design/illustrations/prompts/rhyme-vocabulary.txt",
       "brief": "design/illustrations/briefs/rhyme-vocabulary.txt",
-      "transparent": true
+      "transparent": true,
+      "references": [
+        {
+          "path": "assets/waldatelier/rhyme-vocabulary.webp",
+          "sha256": "7017fb46ace669eb61fe475135e09f2feb1d87932d4248c7933f48653af943b3",
+          "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
+          "usage": "composition-only"
+        }
+      ]
     },
     {
       "id": "layout-repair",
@@ -186,7 +237,15 @@
       "role": "branding",
       "path": "design/artwork/prompts/app-icon.txt",
       "brief": "design/artwork/briefs/app-icon.txt",
-      "transparent": false
+      "transparent": false,
+      "references": [
+        {
+          "path": "icons/icon-512.png",
+          "sha256": "d025959eea9a1d2b2909dd0e8e1af594433e6d18d3f5ab571c36b3c2647627d1",
+          "purpose": "current app-emblem identity, framing and colours only",
+          "usage": "composition-only"
+        }
+      ]
     },
     {
       "id": "navigation-back",
@@ -283,6 +342,186 @@
       "path": "design/artwork/prompts/den-marker.txt",
       "brief": "design/artwork/briefs/den-marker.txt",
       "transparent": true
+    },
+    {
+      "id": "alphabet",
+      "role": "learning",
+      "path": "design/illustrations/prompts/alphabet.txt",
+      "brief": "design/illustrations/briefs/alphabet.txt",
+      "transparent": true,
+      "references": [
+        {
+          "path": "assets/waldatelier/alphabet.webp",
+          "sha256": "1999236e340fca2aa6cb22a2c48368d9a4b78882b5a5c92867d3df25c64385fb",
+          "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
+          "usage": "composition-only"
+        }
+      ]
+    },
+    {
+      "id": "animals",
+      "role": "learning",
+      "path": "design/illustrations/prompts/animals.txt",
+      "brief": "design/illustrations/briefs/animals.txt",
+      "transparent": true,
+      "references": [
+        {
+          "path": "assets/waldatelier/animals.webp",
+          "sha256": "f12730079d950dd197225d118d04b049f531cf4d6eec76817f002c589b946a65",
+          "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
+          "usage": "composition-only"
+        }
+      ]
+    },
+    {
+      "id": "creatures",
+      "role": "learning",
+      "path": "design/illustrations/prompts/creatures.txt",
+      "brief": "design/illustrations/briefs/creatures.txt",
+      "transparent": true,
+      "references": [
+        {
+          "path": "assets/waldatelier/creatures.webp",
+          "sha256": "30e05028bb56dedaf58dd88f0bd52803fee08177cd2c636870a417ef8f0aa0f2",
+          "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
+          "usage": "composition-only"
+        }
+      ]
+    },
+    {
+      "id": "discovery",
+      "role": "learning",
+      "path": "design/illustrations/prompts/discovery.txt",
+      "brief": "design/illustrations/briefs/discovery.txt",
+      "transparent": true,
+      "references": [
+        {
+          "path": "assets/waldatelier/discovery.webp",
+          "sha256": "ebe641587a934c61e80feeb5fd33afdf5a212f1856586634ec75aae7cc7928f9",
+          "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
+          "usage": "composition-only"
+        }
+      ]
+    },
+    {
+      "id": "menu",
+      "role": "learning",
+      "path": "design/illustrations/prompts/menu.txt",
+      "brief": "design/illustrations/briefs/menu.txt",
+      "transparent": true,
+      "references": [
+        {
+          "path": "assets/waldatelier/menu.webp",
+          "sha256": "b2289b40f87df596cbd23fa87476408b34b656f4f447f41a1548637d41a411d6",
+          "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
+          "usage": "composition-only"
+        }
+      ]
+    },
+    {
+      "id": "navigation",
+      "role": "learning",
+      "path": "design/illustrations/prompts/navigation.txt",
+      "brief": "design/illustrations/briefs/navigation.txt",
+      "transparent": true,
+      "references": [
+        {
+          "path": "assets/waldatelier/navigation.webp",
+          "sha256": "023c726e535602c27b5d0669609350a234dac1f45a1927c4e196f66a7ccd263b",
+          "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
+          "usage": "composition-only"
+        }
+      ]
+    },
+    {
+      "id": "people",
+      "role": "learning",
+      "path": "design/illustrations/prompts/people.txt",
+      "brief": "design/illustrations/briefs/people.txt",
+      "transparent": true,
+      "references": [
+        {
+          "path": "assets/waldatelier/people.webp",
+          "sha256": "b059d4b45ec043f6056f657a07e03b1d6c32d22e4a6b6324c41047d96e4dfc54",
+          "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
+          "usage": "composition-only"
+        }
+      ]
+    },
+    {
+      "id": "puzzle-vocabulary",
+      "role": "learning",
+      "path": "design/illustrations/prompts/puzzle-vocabulary.txt",
+      "brief": "design/illustrations/briefs/puzzle-vocabulary.txt",
+      "transparent": true,
+      "references": [
+        {
+          "path": "assets/waldatelier/puzzle-vocabulary.webp",
+          "sha256": "df1f2141b6ff98b83702887986c0d63add0f8edbbab81bc10c9805e000d3247a",
+          "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
+          "usage": "composition-only"
+        }
+      ]
+    },
+    {
+      "id": "words-one",
+      "role": "learning",
+      "path": "design/illustrations/prompts/words-one.txt",
+      "brief": "design/illustrations/briefs/words-one.txt",
+      "transparent": true,
+      "references": [
+        {
+          "path": "assets/waldatelier/words-one.webp",
+          "sha256": "15ad880d4339f2d21981a3645603d15cf4abbc15441560599c2935154b8c57fa",
+          "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
+          "usage": "composition-only"
+        }
+      ]
+    },
+    {
+      "id": "words-three",
+      "role": "learning",
+      "path": "design/illustrations/prompts/words-three.txt",
+      "brief": "design/illustrations/briefs/words-three.txt",
+      "transparent": true,
+      "references": [
+        {
+          "path": "assets/waldatelier/words-three.webp",
+          "sha256": "e2c6a2c0d0fb7de51b550ff2fd398f74fe408071f719a03d4429f83cde2c5f71",
+          "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
+          "usage": "composition-only"
+        }
+      ]
+    },
+    {
+      "id": "words-two",
+      "role": "learning",
+      "path": "design/illustrations/prompts/words-two.txt",
+      "brief": "design/illustrations/briefs/words-two.txt",
+      "transparent": true,
+      "references": [
+        {
+          "path": "assets/waldatelier/words-two.webp",
+          "sha256": "2371914cdcdf4f3ab0584174729b2257f331a69088cf2df75832e13150df4c85",
+          "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
+          "usage": "composition-only"
+        }
+      ]
+    },
+    {
+      "id": "lake-hero",
+      "role": "landscape",
+      "path": "design/artwork/prompts/lake-hero.txt",
+      "brief": "design/artwork/briefs/lake-hero.txt",
+      "transparent": false,
+      "references": [
+        {
+          "path": "assets/waldatelier/hero.webp",
+          "sha256": "e289f8e5eabc30cc230d16035d4280f8ea17882ecb45ac9f5c2fe7cd92a060e6",
+          "purpose": "retained lake composition and fox identity only",
+          "usage": "composition-only"
+        }
+      ]
     }
   ],
   "preparationManifests": [
