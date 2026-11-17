@@ -116,6 +116,20 @@ test('verified equivalent approvals restore read-only and later decisions across
  // An older app can also flag the same unchanged content. Equal-time rejections win.
  next.entries['add/0@r-add/0'].status='approved';next.entries['add/0@legacy-add/0']={...next.entries['add/0@legacy-add/0'],status:'improve',at:'2026-11-14T13:00:00.000Z'};server.ledger=next;await a.repo.refresh();assert.equal(a.repo.confirmed('add'),false);assert.equal(a.data.decisions['add/0'].revision,'legacy-add/0');assert.equal(a.repo.state.pending,0);assert.equal(server.writes.length,0);a.repo.stop();
 });
+test('later restrictions on other revisions survive recovery and offline restart without rewriting GitHub',async()=>{
+ for(const status of ['improve','pending']){
+  const aliases={...catalogue,revisions:(id,item)=>[item?'r-'+item.id:'puzzle-r1',item?'legacy-'+item.id:'legacy-puzzle']};
+  const ledger=R.empty(),at='2026-11-17T10:00:00Z';
+  for(const key of ['puzzle:add',...catalogue.iterations().map(it=>it.id)]){const revision=key.startsWith('puzzle:')?'legacy-puzzle':'legacy-'+key;ledger.entries[key+'@'+revision]={key,revision,status:'approved',note:'Original decision',at,seen:true};}
+  const server=remoteServer(ledger),a=client(server,null,{catalogue:aliases});await a.repo.start();assert.equal(a.repo.confirmed('add'),true);
+  const later={key:'add/0',revision:'unrecognized-later-renderer',status,note:'Späterer Hinweis bleibt erhalten.',at:'2026-11-17T11:00:00Z',seen:true},next=server.ledger;next.entries[R.address(later)]=later;server.ledger=next;
+  await a.repo.refresh();assert.equal(a.repo.confirmed('add'),false);assert.equal(a.data.decisions['add/0'].status,status);assert.equal(a.data.decisions['add/0'].note,later.note);
+  server.offline=true;const cached=client(server,a.data,{catalogue:aliases});assert.equal(await cached.repo.start(),false);assert.equal(cached.repo.confirmed('add'),false);assert.equal(cached.data.decisions['add/0'].at,later.at);
+  server.offline=false;const fresh=client(server,null,{catalogue:aliases});await fresh.repo.start();assert.deepEqual(fresh.data.decisions['add/0'],a.data.decisions['add/0']);assert.equal(fresh.repo.state.pending,0);assert.equal(server.writes.length,0);assert.deepEqual(server.ledger,next);
+  const approved=server.ledger;approved.entries['add/0@r-add/0']={...later,revision:'r-add/0',status:'approved',at:'2026-11-17T12:00:00Z'};server.ledger=approved;await a.repo.refresh();assert.equal(a.repo.confirmed('add'),true,'a later explicit compatible approval can resolve the restriction');
+  for(const c of [a,cached,fresh])c.repo.stop();
+ }
+});
 
 test('comment deletions sync without altering decisions, survive fresh devices and merge independent offline deletions',async()=>{
  const old={key:'add/0',revision:'old-r',status:'improve',note:'Frühere Notiz.',at:'2026-11-15T10:00:00.000Z',seen:true};

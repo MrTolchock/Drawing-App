@@ -1,0 +1,17 @@
+# Restore existing puzzle decisions — 9.3.92
+
+The 9.3.91 empty-basket correction changed every puzzle's presentation hash because the fingerprint builder included the basket's old shared rendering branch even where no question could use it. The GitHub review ledger was intact, but the game stopped recognizing its approvals. Historical compatibility also omitted the per-puzzle part of modern implementation tokens.
+
+The repair prunes only provably unreachable branches for each finite puzzle pool, includes the empty-basket picture only in zero-count/zero-tracing tasks, and compares historical releases with the same builder. Both the puzzle definition and normalized presentation must match. Historical tokens retain their original shared and per-puzzle parts. Generated baseline metadata records the builder digest so a future builder edit cannot silently reuse stale comparisons.
+
+The owner's requested return to the original nut picture has one explicit restoration rule: the exact known hazelnut atlas can be compared with the exact original atlas. The generator verifies the whole-file source/destination hashes and identical decoded pixels in the other fifteen cells. This rule grants no general exemption for artwork changes. Current arbitrary nut, picture-cell, shared CSS, question and difficulty changes still invalidate affected approvals.
+
+Against 9.3.90, 26 active puzzles are equivalent under this explicit restoration. Five remain changed: `friends-squirrel`, `friends-hedgehog`, `friends-deer`, `friends-badger`, and `trace-numbers`. The duplicate Fisch activity stays retired. Earlier artwork versions only count where their actual definition and presentation also match; missing or incompatible puzzle-level decisions remain unapproved.
+
+The read-only production snapshot at data commit `f9d22832470bf5c887feadbebb0ace635f78b6ab` contains 1,290 revision records, eight history records and sixteen comment deletion markers. Its existing records restore nine complete puzzle releases: `friends-bird`, `friends-owl`, `friends-beaver`, `friends-mouse`, `friends-kingfisher`, `friends-frog`, `friends-ibex`, `count`, and `add`. These numbers describe that snapshot; later owner edits remain authoritative.
+
+Recovery does not edit `puzzle-review-data`, create approvals, migrate revisions, change timestamps or stage an upload. Every note is recovered from the original records/history with its original date, subject to existing deletion markers. A later rejection or withdrawal on a stable task takes precedence over an older compatible approval, even if written by a different app revision. A changed-version rejection stays visibly marked for improvement. A later explicit approval of compatible content can resolve it.
+
+Regression checks cover scoped basket code and image changes, all 31 historical puzzle/iteration compatibility decisions, genuine content/art changes, read-only restoration, conflicting/later decisions, unchanged timestamps, the playable gallery, new devices, deletion markers and offline restart. Browser fixtures intercept every GitHub request; production data is only read.
+
+Validation passed: all 141 model tests; review synchronization, comment deletion and compatibility browser suites; recovery with 26 synthetic historical releases; and recovery of the nine releases from the unchanged production snapshot. Both recovery runs made zero remote writes and left no pending uploads. Catalogue, design, canonical-style, image-library and generator-handoff checks passed.

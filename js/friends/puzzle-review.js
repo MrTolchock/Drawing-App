@@ -21,7 +21,7 @@
   const recordKey=(id,iteration)=>iteration||'puzzle:'+id;
   const noteDeleted=d=>(data.deletedNotes||[]).some(v=>v.key===d.key&&v.note===d.note&&Date.parse(v.at)>=Date.parse(d.at));
   const noteTime=(key,note)=>new Date(Math.max(Date.now(),...(data.deletedNotes||[]).filter(d=>d.key===key&&d.note===note).map(d=>Date.parse(d.at)+1))).toISOString();
-  function status(id,iteration){const k=recordKey(id,iteration),d=data.decisions[k],valid=d&&C.acceptsRevision(id,iteration,d.revision);return {status:valid?d.status:'pending',stale:!!d&&!valid,decision:d?{...clone(d),note:noteDeleted(d)?'':d.note}:null,seen:C.acceptsRevision(id,iteration,data.seen[k])};}
+  function status(id,iteration){const k=recordKey(id,iteration),d=data.decisions[k],valid=d&&C.acceptsRevision(id,iteration,d.revision);return {status:valid?d.status:d?.status==='improve'?'improve':'pending',stale:!!d&&!valid,decision:d?{...clone(d),note:noteDeleted(d)?'':d.note}:null,seen:C.acceptsRevision(id,iteration,data.seen[k])};}
   function seen(id,iteration){const r=revision(id,iteration);if(!r)return false;const next=clone(data);next.seen[recordKey(id,iteration)]=r;return persist(next);}
   function progress(id){const items=C.iterations(id),approved=items.filter(i=>status(id,i.id).status==='approved').length,improve=items.filter(i=>status(id,i.id).status==='improve').length;return {total:items.length,approved,improve,pending:items.length-approved-improve};}
   function feedback(id){

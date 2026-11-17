@@ -100,12 +100,14 @@
         const old=selected[entry.key],preferred=wanted.has(address(entry));
         if(!old||preferred&&!wanted.has(address(old))||preferred===wanted.has(address(old))&&later(entry,old))selected[entry.key]=entry;
       }
+      // An older compatible approval must never hide a later flag or explicit withdrawal on this stable task.
+      for(const entry of Object.values(ledger.entries))if(entry.status!=='approved'&&later(entry,selected[entry.key]))selected[entry.key]=entry;
       for(const [key,decision]of Object.entries(data.decisions))if(m.base[key+'@'+decision.revision]&&!selected[key]&&!Object.values(pending).some(change=>change.entry.key===key))delete next.decisions[key];
       // GitHub's current record wins unless this device has an explicit unsaved edit for that revision.
       for(const [key,entry]of Object.entries(selected))next.decisions[key]={key,revision:entry.revision,status:entry.status,note:entry.note,at:entry.at};
       for(const change of Object.values(pending)){
         const entry=change.entry,key=entry.key;
-        if(wanted.has(address(entry))||!selected[key])next.decisions[key]={key,revision:entry.revision,status:entry.status,note:entry.note,at:entry.at};
+        if(wanted.has(address(entry))||!selected[key]||entry.status!=='approved'&&later(entry,selected[key]))next.decisions[key]={key,revision:entry.revision,status:entry.status,note:entry.note,at:entry.at};
       }
       // Restore notes from every revision on a fresh device, even when a newer decision has no note.
       // History is read-only context; only the selected exact-revision records control release.
@@ -221,7 +223,7 @@
       if(!m.checked&&!observed)return false;
       const okay=(key,accepted)=>{
         let latest;for(const revision of accepted){const entry=base[key+'@'+revision];if(entry&&(!latest||later(entry,latest)))latest=entry;}
-        return latest?.status==='approved'&&(key.startsWith('puzzle:')||latest.seen);
+        return latest?.status==='approved'&&(key.startsWith('puzzle:')||latest.seen)&&!Object.values(base).some(entry=>entry.key===key&&entry.status!=='approved'&&later(entry,latest));
       };
       return okay('puzzle:'+id,revisions(id))&&catalogue.iterations(id).every(item=>okay(item.id,revisions(id,item)));
     }

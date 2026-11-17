@@ -1,16 +1,17 @@
 #!/usr/bin/env node
 /* Rebuild exact implementation revision and GitHub-readable content inventory. */
 const fs=require('node:fs'),path=require('node:path');
-const {environment}=require('./puzzle-environment.cjs'),{SCHEMA,build}=require('./puzzle-review-build.cjs');
+const {environment}=require('./puzzle-environment.cjs'),{SCHEMA,build,generatorFingerprint}=require('./puzzle-review-build.cjs');
 const root=path.resolve(__dirname,'..');
 function setup(saved){
  const env=environment({saved});env.execute('js/friends/puzzle-implementation.js');return env;
 }
 function outputs(){
  const built=build(),baselines=JSON.parse(fs.readFileSync(path.join(__dirname,'puzzle-review-baselines.json'))),implementations={},legacy={};
+ if(baselines.version!==2||baselines.generatorSha256!==generatorFingerprint())throw Error('Regenerate verified review baselines after changing the fingerprint builder.');
  for(const [id,value]of Object.entries(built.puzzles)){
   implementations[id]=value.presentation;
-  legacy[id]=[...new Set(baselines.releases.filter(r=>r.puzzles[id]?.definition===value.definition&&r.puzzles[id]?.presentation===value.presentation).map(r=>r.implementation))];
+  legacy[id]=[...new Set(baselines.releases.filter(r=>r.puzzles[id]?.definition===value.definition&&r.puzzles[id]?.presentation===value.presentation).map(r=>r.implementation+(r.implementations?.[id]?':'+r.implementations[id]:'')))].filter(implementation=>implementation!==SCHEMA+':'+value.presentation);
  }
  const fields={puzzleImplementation:SCHEMA,puzzleImplementations:implementations,puzzleLegacyImplementations:legacy};
  const {FK}=environment({fields}),C=FK.puzzleCatalogue,games=FK.friendsLibrary.catalogue(),files={};

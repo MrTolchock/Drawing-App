@@ -91,6 +91,11 @@ test('feedback remains readable across changed revisions without changing the re
  const notes=plain(V.feedback(id));assert.equal(notes.length,1);assert.equal(notes[0].note,old.note);assert.equal(notes[0].at,old.at);assert.equal(notes[0].stale,true);
  const after=plain(V.exportData());delete after.exportedAt;assert.deepEqual(after,before);assert.equal(V.status(id,key).status,'pending');assert.equal(V.ready(id),false);
 });
+test('a stale rejection remains marked for improvement while a stale approval cannot release changed content',()=>{
+ const {FK}=setup(),V=FK.puzzleReview,id='add',items=FK.puzzleCatalogue.iterations(id),data=V.exportData();
+ for(const [index,status]of ['approved','improve'].entries()){const key=items[index].id;data.seen[key]='different-content';data.decisions[key]={key,revision:'different-content',status,note:'Original note',at:'2026-11-17T12:00:00Z'};}
+ assert.ok(V.importData(data));assert.equal(V.status(id,items[0].id).status,'pending');assert.equal(V.status(id,items[1].id).status,'improve');assert.equal(V.status(id,items[1].id).stale,true);assert.equal(V.status(id,items[1].id).decision.note,'Original note');assert.equal(V.ready(id),false);
+});
 test('five distinct questions are deterministic, restored verbatim and avoid the previous round',()=>{
  const {FK,memory}=setup(),C=FK.puzzleCatalogue,R=FK.puzzleRounds;
  for(const g of FK.friendsLibrary.catalogue()){

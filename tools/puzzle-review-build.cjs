@@ -12,18 +12,24 @@ function moduleOf(source){
  return {body,bindings};
 }
 const property=node=>node?.computed?node.property?.value:node?.property?.name;
-function normal(node,{kinds=[],special={},items=[]}={},owner=''){
+function normal(node,{kinds=[],special={},items=[],pictureIds=[]}={},owner=''){
  if(!node||typeof node!=='object')return node;
- if(Array.isArray(node))return node.map(x=>normal(x,{kinds,special,items},owner));
+ if(Array.isArray(node))return node.map(x=>normal(x,{kinds,special,items,pictureIds},owner)).filter(x=>x?.type!=='ExcludedReviewBranch');
  if(['VariableDeclarator','FunctionDeclaration'].includes(node.type)&&Object.hasOwn(special,node.id.name))return {type:'SelectedData',name:node.id.name,value:special[node.id.name]};
  if(node.type==='FunctionDeclaration')owner=node.id.name;
  const values=n=>{
   if(n?.type==='Literal')return [n.value];
   if(n?.type==='MemberExpression'&&['q','question'].includes(n.object?.name)&&['kind','item'].includes(property(n)))return [...new Set(items.map(q=>q[property(n)]))];
   if(n?.type==='Identifier'&&n.name==='id'&&owner==='renderCount')return [...new Set(items.flatMap(q=>q.kind==='nuts'?[q.item||'forest-nut']:q.bugs||[]))];
+  if(n?.type==='Identifier'&&n.name==='id'&&owner==='picture')return pictureIds;
   return null;
  };
  const truth=n=>{
+  // A zero-only decoration cannot affect a finite pool containing no zero quantities.
+  if(owner==='renderCount'&&n?.type==='UnaryExpression'&&n.operator==='!'&&n.argument?.type==='MemberExpression'&&n.argument.object?.name==='items'&&property(n.argument)==='length'){
+   const counts=items.map(q=>q.kind==='nuts'?q.count:q.bugs?.length);
+   if(counts.length&&counts.every(n=>Number.isInteger(n)&&n>0))return false;
+  }
   if(n?.type==='BinaryExpression'&&['===','!==','==','!='].includes(n.operator)){
    const a=values(n.left),b=values(n.right);if(!a?.length||!b?.length)return;
    const out=new Set(a.flatMap(x=>b.map(y=>n.operator.includes('!')?x!==y:x===y)));if(out.size===1)return [...out][0];
@@ -31,7 +37,7 @@ function normal(node,{kinds=[],special={},items=[]}={},owner=''){
   if(n?.type==='LogicalExpression'){const a=truth(n.left);if(n.operator==='&&'&&a===false||n.operator==='||'&&a===true)return a;if(a!==undefined)return truth(n.right);}
  };
  if(['ConditionalExpression','IfStatement'].includes(node.type)){
-  const value=truth(node.test);if(value!==undefined)return normal(value?node.consequent:node.alternate,{kinds,special,items},owner)||{type:'EmptyStatement'};
+  const value=truth(node.test);if(value!==undefined)return normal(value?node.consequent:node.alternate,{kinds,special,items,pictureIds},owner)||{type:'ExcludedReviewBranch'};
  }
  const out={};for(const [key,value]of Object.entries(node)){
   if(['start','end','loc','raw'].includes(key))continue;
@@ -39,8 +45,8 @@ function normal(node,{kinds=[],special={},items=[]}={},owner=''){
    if(value.type!=='ObjectExpression')throw Error('Renderer dispatch must remain an explicit object.');
    const properties=value.properties.filter(p=>kinds.includes(p.key.name||p.key.value));
    if(properties.length!==kinds.length)throw Error('A puzzle kind has no declared renderer.');
-   out[key]=normal({...value,properties},{kinds,special,items},owner);
-  }else out[key]=normal(value,{kinds,special,items},owner);
+   out[key]=normal({...value,properties},{kinds,special,items,pictureIds},owner);
+  }else out[key]=normal(value,{kinds,special,items,pictureIds},owner);
  }return out;
 }
 function closure(module,roots,options={}){
@@ -109,11 +115,12 @@ function build(reader=currentReader(),{includeResources=false}={}){
    if(q.kind==='rhyme')for(const word of [q.text,...q.choices])refs.add(FK.puzzleRounds.wordArt[word]);
    if(q.kind==='colours')for(const [colour]of q.choices)refs.add('puzzle-flower-'+colour);
    if(q.kind==='trace')refs.add(FK.glyphs.data[q.glyph]?.emoji);
+   if(q.kind==='nuts'&&q.count===0||q.kind==='trace'&&q.quantity?.count===0)refs.add('empty-basket');
   }
   // Keep data tables out of code hashes: only the labels/aliases and image cells used by this puzzle count.
   const selectData=table=>Object.fromEntries([...refs].filter(id=>Object.hasOwn(table,id)).sort().map(id=>[id,table[id]]));
   const ui=exportUI.properties.filter(p=>['picture','context','progress','completion'].includes(p.key.name||p.key.value));
-  const codeFor=()=>kinds.includes('trace')?{shared:closure(puzzle,[...ui,...effects],{kinds:[],items,special:{aliases:selectData(FK.__pictureData.aliases),labels:selectData(FK.__pictureData.labels)}}),trace:normal(moduleOf(read('js/screens/trace.js').toString()).body)}:closure(puzzle,[screen,...ui,...effects],{kinds,items,special:{aliases:selectData(FK.__pictureData.aliases),labels:selectData(FK.__pictureData.labels)}});
+  const codeFor=()=>kinds.includes('trace')?{shared:closure(puzzle,[...ui,...effects],{kinds:[],items,pictureIds:[...refs],special:{aliases:selectData(FK.__pictureData.aliases),labels:selectData(FK.__pictureData.labels)}}),trace:normal(moduleOf(read('js/screens/trace.js').toString()).body)}:closure(puzzle,[screen,...ui,...effects],{kinds,items,pictureIds:[...refs],special:{aliases:selectData(FK.__pictureData.aliases),labels:selectData(FK.__pictureData.labels)}});
   let code=codeFor();
   const literals=[];walk(code,node=>{if(node.type==='Literal'&&typeof node.value==='string')literals.push(node.value);});
   walk(code,node=>{
@@ -148,9 +155,28 @@ function build(reader=currentReader(),{includeResources=false}={}){
  if(includeResources)result.resources=Object.fromEntries(Object.entries(all).map(([id,data])=>[id,[...new Set(data.pictures.flatMap(p=>p.subject?[p.subject]:Object.entries(FK.visual.subjects).filter(([,rec])=>FK.visual.source(rec.sheet)===p.key&&rec.index===p.index).map(([subject])=>subject)))].sort()]));
  return result;
 }
-module.exports={SCHEMA,build,currentReader,snapshotReader};
+const generatorFingerprint=()=>hash(fs.readFileSync(__filename));
+module.exports={SCHEMA,build,currentReader,snapshotReader,generatorFingerprint};
 if(require.main===module){
  const file=path.join(__dirname,'puzzle-review-baselines.json'),refs=process.argv.slice(2);if(!refs.length)throw Error('Pass the historical release commit IDs to record.');
- const releases=refs.map(ref=>{const reader=snapshotReader(ref),implementation=reader.read('js/friends/puzzle-implementation.js').toString().match(/puzzleImplementation\s*=\s*'([^']+)'/)[1];return {commit:ref,implementation,puzzles:build(reader).puzzles};});
- fs.writeFileSync(file,JSON.stringify({version:1,releases},null,2)+'\n');console.log('Recorded verified review baselines for '+refs.length+' releases.');
+ const restorations=JSON.parse(fs.readFileSync(file)).restorations||[];
+ const restored=new Map();
+ for(const rule of restorations){
+  const bytes=snapshotReader(rule.commit).read(rule.path);if(hash(bytes)!==rule.toSha256)throw Error('Restored artwork does not match its recorded original: '+rule.path);
+  restored.set(rule.path,bytes);
+ }
+ const releases=refs.map(ref=>{
+  const source=snapshotReader(ref),env=environment({read:source.read,review:false});env.execute('js/friends/puzzle-implementation.js');
+  const used=restorations.filter(rule=>hash(source.read(rule.path))===rule.fromSha256);
+  // A user-requested, exact artwork rollback can retain its earlier decisions. No other source is substituted.
+  for(const rule of used){
+   const images=[{key:'before',columns:4,rows:4,bytes:source.read(rule.path).toString('base64')},{key:'restored',columns:4,rows:4,bytes:restored.get(rule.path).toString('base64')}];
+   const checked=spawnSync(process.execPath,[path.join(__dirname,'puzzle-pixels.cjs')],{input:JSON.stringify(images),encoding:'utf8',maxBuffer:1024*1024});
+   if(checked.status!==0)throw Error('Cannot verify artwork restoration cells.');const pixels=JSON.parse(checked.stdout);
+   if(pixels.before.length!==16||pixels.before.some((cell,index)=>!rule.cells.includes(index)&&cell!==pixels.restored[index]))throw Error('Artwork restoration changes an unapproved cell: '+rule.path);
+  }
+  const reader={...source,read:name=>used.some(rule=>rule.path===name)?restored.get(name):source.read(name)};
+  return {commit:ref,implementation:env.FK.puzzleImplementation,...(env.FK.puzzleImplementations?{implementations:env.FK.puzzleImplementations}:{}),...(used.length?{restoredInputs:used.map(rule=>rule.path)}:{}),puzzles:build(reader).puzzles};
+ });
+ fs.writeFileSync(file,JSON.stringify({version:2,generatorSha256:generatorFingerprint(),restorations,releases},null,2)+'\n');console.log('Recorded verified review baselines for '+refs.length+' releases.');
 }
