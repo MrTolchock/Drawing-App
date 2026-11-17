@@ -7957,6 +7957,24 @@
       "at": "2026-11-17T19:44:05.335Z",
       "seen": true,
       "operation": "cf210bd1-c367-4f60-9b64-bfe96f54e3e9"
+    },
+    "friends-owl/pair-0@ec17ed83a897f611": {
+      "key": "friends-owl/pair-0",
+      "revision": "ec17ed83a897f611",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T19:44:08.447Z",
+      "seen": true,
+      "operation": "0ceea497-0266-4a11-b248-8c36c5434af8"
+    },
+    "friends-owl/pair-1@760470b3cdd12d37": {
+      "key": "friends-owl/pair-1",
+      "revision": "760470b3cdd12d37",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T19:44:11.194Z",
+      "seen": true,
+      "operation": "b0fc68ba-7e14-46d8-8d4e-e732bbfc23a9"
     }
   },
   "history": [
