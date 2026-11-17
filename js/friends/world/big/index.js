@@ -64,7 +64,8 @@ export function createBigWorld() {
   function walkable(x, z, pad = .25) {
     if (T.edge(x, z) < 9 || blocked(x, z, pad)) return false;
     if (T.onCrossing(x, z)) return true;
-    if (T.wet(x, z)) return false;
+    // The bog is soft ground even where a hummock rises above the water: stay on the Steg.
+    if (T.swampMask(x, z) > .3 || T.wet(x, z)) return false;
     { const c = T.cave(x, z); if (c.roof > 0 && c.sd > -.4) return false; }   // not into the cave's walls
     // cliffs: only the Rock and the dam's flanks are steep enough to matter
     if (T.rock(x, z).d > -15 || (Math.abs(x - dam.a[0]) < 12 && Math.abs(z - dam.a[1]) < 12)) return T.slope(x, z) < 1.05;

@@ -1,6 +1,12 @@
 # Current visual consistency audit
 
-Current game art: **Waldpost 9.3.86**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal/object reference pixels and **35** complete forward image-generation prompts.
+Current game art: **Waldpost 9.3.87**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal/object reference pixels and **35** complete forward image-generation prompts.
+
+## Stay on the Steg in Frosch's swamp — 9.3.87
+
+The soft bog is no longer walkable merely because it sits above the water. The wooden boardwalk starts further north on firm ground and its five connected sections remain the way into the swamp. Fuchs stops on the centre of its final section beside Frosch. The grid route planner permits diagonal movement along the same crossing or crossings sharing a real endpoint, preserving the connected narrow deck without permitting ordinary blocked corners to be cut. Routes can also begin and end inside one plank.
+
+World-navigation checks sample routes to Frosch and back from every named destination, plus the whole bog and every boardwalk joint. The real-game browser check covers both travel directions, manual steering against the edge and blocked ground destinations at phone/tablet sizes. The adopted map painting, character locations/pins, learning artwork and all puzzle definitions and presentation revisions are unchanged; this world change requires no new puzzle approvals.
 
 ## Feedback survives changed graphics — 9.3.86
 
