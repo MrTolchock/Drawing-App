@@ -8263,6 +8263,24 @@
       "at": "2026-11-17T19:58:00.496Z",
       "seen": true,
       "operation": "4f35edcb-52fc-468d-b578-b80422f81122"
+    },
+    "friends-mouse/word-17@4a020625678566a5": {
+      "key": "friends-mouse/word-17",
+      "revision": "4a020625678566a5",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T19:58:03.369Z",
+      "seen": true,
+      "operation": "5244a28e-cbaf-45ad-93ee-0fa6deb380a1"
+    },
+    "friends-mouse/word-18@66e21f0db111a92f": {
+      "key": "friends-mouse/word-18",
+      "revision": "66e21f0db111a92f",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T19:58:05.621Z",
+      "seen": true,
+      "operation": "b985ae5b-4b43-4890-93eb-2cd55bb78c04"
     }
   },
   "history": [
