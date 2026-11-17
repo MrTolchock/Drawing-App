@@ -10603,6 +10603,33 @@
       "at": "2026-11-17T20:41:43.104Z",
       "seen": true,
       "operation": "3f347407-03f1-44ec-aeea-1029d7116a99"
+    },
+    "friends-ibex/pattern-ABC-6@cd6262679a772d07": {
+      "key": "friends-ibex/pattern-ABC-6",
+      "revision": "cd6262679a772d07",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T20:41:47.435Z",
+      "seen": true,
+      "operation": "6c4996e5-38b1-4965-b4d2-55655e65161a"
+    },
+    "friends-ibex/pattern-ABAC-1@6b29e1d266873f56": {
+      "key": "friends-ibex/pattern-ABAC-1",
+      "revision": "6b29e1d266873f56",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T20:41:52.261Z",
+      "seen": true,
+      "operation": "c2bcfb7e-da7e-4d95-8a98-f74c47e3b61b"
+    },
+    "friends-ibex/pattern-ABAC-2@415f2767038e2f19": {
+      "key": "friends-ibex/pattern-ABAC-2",
+      "revision": "415f2767038e2f19",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T20:41:55.255Z",
+      "seen": true,
+      "operation": "b6abb332-6bab-4979-b5c4-fd2c2c6dbd70"
     }
   },
   "history": [
