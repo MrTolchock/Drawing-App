@@ -1,4 +1,4 @@
-# Restore existing puzzle decisions — 9.3.92
+# Restore existing puzzle decisions — 9.3.93
 
 The 9.3.91 empty-basket correction changed every puzzle's presentation hash because the fingerprint builder included the basket's old shared rendering branch even where no question could use it. The GitHub review ledger was intact, but the game stopped recognizing its approvals. Historical compatibility also omitted the per-puzzle part of modern implementation tokens.
 
@@ -14,4 +14,4 @@ Recovery does not edit `puzzle-review-data`, create approvals, migrate revisions
 
 Regression checks cover scoped basket code and image changes, all 31 historical puzzle/iteration compatibility decisions, genuine content/art changes, read-only restoration, conflicting/later decisions, unchanged timestamps, the playable gallery, new devices, deletion markers and offline restart. Browser fixtures intercept every GitHub request; production data is only read.
 
-Validation passed: all 141 model tests; review synchronization, comment deletion and compatibility browser suites; recovery with 26 synthetic historical releases; and recovery of the nine releases from the unchanged production snapshot. Both recovery runs made zero remote writes and left no pending uploads. Catalogue, design, canonical-style, image-library and generator-handoff checks passed.
+Validation passed before integrating the newer main: all 141 model tests; review synchronization, comment deletion and compatibility browser suites; recovery with 26 synthetic historical releases; and recovery of the nine releases from the unchanged production snapshot. Both recovery runs made zero remote writes and left no pending uploads. Catalogue, design, canonical-style, image-library and generator-handoff checks passed. The concurrent 9.3.92 water-edge fix is retained in full; this recovery publishes as 9.3.93.

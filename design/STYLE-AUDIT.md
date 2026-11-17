@@ -96,7 +96,7 @@ The Dachs replacement asks «Was wächst aus einer Eichel?» with a unique pictu
 
 [Phone/tablet evidence](evidence/2026-11-17-review-followup/README.md) confirms the real rendering. Browser checks passed for all 130 affected iterations, native input for every active puzzle, the complete letter/home/sleep/offline flow, all 31 puzzle layouts at both widths and 41 PNG exports. The unchanged Biber definitions retain their existing two-plus-one tests; regenerated shared presentation fingerprints follow the normal review requirement.
 
-## Historical puzzle approvals — 17 November 2026, 9.3.92
+## Historical puzzle approvals — 17 November 2026, 9.3.93
 
 The shared basket branch was included too broadly in 9.3.91's fingerprints and reopened unrelated games. [The recovery record](../docs/PUZZLE-REVIEW-RECOVERY-2026-11-17.md) documents the corrected finite-pool comparison, full historical implementation tokens, exact owner-requested nut restoration and preserved later restrictions. Twenty-six games match the previous release under that restoration; the five actually changed games remain subject to review. The inspected GitHub snapshot restores nine complete puzzle releases without writing or fabricating editorial decisions. Original dates, later notes, rejection status and comment deletion markers survive fresh-device and offline recovery. No puzzle rendering or artwork changes in this repair.
 
