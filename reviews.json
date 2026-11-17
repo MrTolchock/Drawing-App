@@ -8128,6 +8128,33 @@
       "at": "2026-11-17T19:57:17.873Z",
       "seen": true,
       "operation": "9dba78b6-568d-43e7-a59e-130532e7ef13"
+    },
+    "friends-mouse/word-2@30a902d8e34111b6": {
+      "key": "friends-mouse/word-2",
+      "revision": "30a902d8e34111b6",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T19:57:20.874Z",
+      "seen": true,
+      "operation": "c9d3cf2b-0215-4b60-8b7e-1876a6605f51"
+    },
+    "friends-mouse/word-3@c3a5abcabbf1780a": {
+      "key": "friends-mouse/word-3",
+      "revision": "c3a5abcabbf1780a",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T19:57:23.482Z",
+      "seen": true,
+      "operation": "be49fb5b-37c4-41fe-8b1c-ec7d0782ef42"
+    },
+    "friends-mouse/word-4@8ec6ff66218a8d9a": {
+      "key": "friends-mouse/word-4",
+      "revision": "8ec6ff66218a8d9a",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T19:57:26.031Z",
+      "seen": true,
+      "operation": "147c4ef2-9144-40d0-89cc-64b59af7b31b"
     }
   },
   "history": [
