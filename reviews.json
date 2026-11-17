@@ -7885,6 +7885,42 @@
       "at": "2026-11-17T19:43:47.152Z",
       "seen": true,
       "operation": "a3ec4389-80ce-4b3f-90f7-f5c8b9a3dcbd"
+    },
+    "friends-owl/sentence-7@b404a3cd976ea5bb": {
+      "key": "friends-owl/sentence-7",
+      "revision": "b404a3cd976ea5bb",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T19:43:49.678Z",
+      "seen": true,
+      "operation": "4bf6bd74-8706-4fca-9202-e2ef6ab8e861"
+    },
+    "friends-owl/sentence-8@83bc6a6edfe579b2": {
+      "key": "friends-owl/sentence-8",
+      "revision": "83bc6a6edfe579b2",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T19:43:51.336Z",
+      "seen": true,
+      "operation": "7dd2bbaa-5148-4a4a-9ace-dabb5452a6aa"
+    },
+    "friends-owl/sentence-9@afc32f09e215fc55": {
+      "key": "friends-owl/sentence-9",
+      "revision": "afc32f09e215fc55",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T19:43:54.085Z",
+      "seen": true,
+      "operation": "976ce1a0-b213-4f14-b9ad-91c654a6f38d"
+    },
+    "friends-owl/sentence-10@3848b53ccbca5b0c": {
+      "key": "friends-owl/sentence-10",
+      "revision": "3848b53ccbca5b0c",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T19:43:55.667Z",
+      "seen": true,
+      "operation": "8a81f456-bbb6-4543-8a7d-9fed2844b2f8"
     }
   },
   "history": [
