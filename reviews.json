@@ -10432,6 +10432,24 @@
       "at": "2026-11-17T20:31:44.711Z",
       "seen": true,
       "operation": "3c495fbd-dc82-4e66-84d7-008052c04c7f"
+    },
+    "friends-mouse/word-24@375af61a2a5fcd0c": {
+      "key": "friends-mouse/word-24",
+      "revision": "375af61a2a5fcd0c",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T20:31:46.965Z",
+      "seen": true,
+      "operation": "1fbfb6d2-6200-40b2-b24e-a44fbaa5d50f"
+    },
+    "puzzle:friends-mouse@6b5b0632041bcfce": {
+      "key": "puzzle:friends-mouse",
+      "revision": "6b5b0632041bcfce",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T20:31:50.091Z",
+      "seen": true,
+      "operation": "a9f829d1-9243-49e2-b49d-2507e29936a2"
     }
   },
   "history": [
@@ -10523,6 +10541,11 @@
       "key": "friends-bird/rhyme-16",
       "note": "Tisch and fisch iteration counts as same as fisch and tisch, just swapping is not ok. Just keep one and delete rest, fill wirh new iterations. Counts for all such cases in this puzzle",
       "at": "2026-11-17T20:26:08.658Z"
+    },
+    {
+      "key": "friends-mouse/word-19",
+      "note": "Haus ersetzen",
+      "at": "2026-11-17T20:31:53.675Z"
     },
     {
       "key": "friends-owl/pair-0",
