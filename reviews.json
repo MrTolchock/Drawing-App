@@ -9982,6 +9982,24 @@
       "at": "2026-11-17T20:27:33.799Z",
       "seen": true,
       "operation": "db6d370f-6c59-40eb-a3a9-e1129c757c7c"
+    },
+    "friends-beaver/matrix-0@b09a90f61042bd74": {
+      "key": "friends-beaver/matrix-0",
+      "revision": "b09a90f61042bd74",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T20:28:34.463Z",
+      "seen": true,
+      "operation": "375e8e6e-486e-4ae7-91a4-a634f2038bf0"
+    },
+    "friends-beaver/matrix-1@625390702738d536": {
+      "key": "friends-beaver/matrix-1",
+      "revision": "625390702738d536",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T20:28:37.496Z",
+      "seen": true,
+      "operation": "36f96250-287a-4080-bf4f-cb93016fd6d6"
     }
   },
   "history": [
@@ -10059,6 +10077,11 @@
     }
   ],
   "deletedNotes": [
+    {
+      "key": "friends-beaver/matrix-20",
+      "note": "Also better use triangle instead of quadrat and rectangle",
+      "at": "2026-11-17T20:28:27.794Z"
+    },
     {
       "key": "friends-beaver/matrix-3",
       "note": "For all make more clear that there are three rows. Now looks like block of 9",
