@@ -39,3 +39,5 @@ node tools/check-design.cjs
 ```
 
 Follow the relevant checks in [Development](../../docs/DEVELOPMENT.md). Current final sources and packing manifests are editable preparation inputs. Their archived `generationRecord` is provenance only; use `forwardPrompt` for new work. [Historical records](../../legacy/design-history/2026-11-16-before-style-contract/README.md) retain all original prompts, old styles and drafts without presenting them as current instructions.
+
+For a correction to one cell of an existing packed atlas, keep the other visible RGBA pixels and cell positions unchanged. The current corrected forest-object, puzzle-vocabulary and portrait manifests retain already packed composite PNGs with `preservePixels: true`. Export them with `node tools/illustrations/prepare-image.cjs <manifest>`; this mode requires the exact output dimensions and writes profiled lossless WebP without resizing/repacking unaffected cells. Actual generator output and the original base commit/hash are recorded separately in each generation record.

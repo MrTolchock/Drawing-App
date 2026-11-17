@@ -22,6 +22,7 @@ node tests/review-seen-browser.cjs   # an answered review task is approved even 
 node tests/play-log-browser.cjs
 node tests/puzzle-review-browser.cjs
 node tests/review-sync-browser.cjs
+node tests/review-comments-browser.cjs   # comment X controls, historical duplicates, offline outbox, other devices and unchanged decisions
 node tests/review-compatibility-browser.cjs
 node tests/puzzle-feedback-browser.cjs
 node tests/artwork-browser.cjs

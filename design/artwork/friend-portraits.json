@@ -1,21 +1,17 @@
 {
-  "format": "waldpost-illustration-atlas",
+  "format": "waldpost-illustration-image",
   "version": 1,
-  "source": "sources/friend-portraits.png",
+  "source": "sources/friend-portraits-feedback-2026-11-17.png",
   "output": "../../assets/forest-friends/character-portraits.webp",
+  "width": 1280,
+  "height": 1280,
+  "fit": "contain",
+  "transparent": true,
+  "quality": 100,
+  "preservePixels": true,
   "columns": 4,
   "rows": 4,
   "cellPixels": 320,
-  "subjectPixels": 272,
-  "alphaThresholdPercent": 15,
-  "provenance": {
-    "date": "2026-11-16",
-    "tool": "ChatGPT hosted image-generation tool",
-    "sourceSha256": "64fc7b7ac0084145613e4daa505a8a3930b29ccf92aa5b2d382ff9483c35c8e8",
-    "generationRecord": "generation-records/friend-portraits.json",
-    "styleContract": "../illustrations/style.json",
-    "forwardPrompt": "prompts/friend-portraits.txt"
-  },
   "subjects": [
     {
       "id": "fox",
@@ -77,5 +73,14 @@
       "id": "fox-sleep",
       "label": "Schlafender Fuchs"
     }
-  ]
+  ],
+  "provenance": {
+    "date": "2026-11-17",
+    "tool": "ChatGPT image_gen.imagegen",
+    "sourceSha256": "23b78bae3ba06f120e98e931b484359ac5f4c534982746d65c7e8dab12349cfd",
+    "generationRecord": "generation-records/squirrel-portrait-repair.json",
+    "styleContract": "../illustrations/style.json",
+    "forwardPrompt": "prompts/friend-portraits.txt",
+    "note": "Only the squirrel identity cell is redrawn. Every other portrait remains pixel-identical. This PNG is the already packed editable composite."
+  }
 }

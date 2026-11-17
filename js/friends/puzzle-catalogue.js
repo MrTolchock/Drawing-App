@@ -7,7 +7,7 @@
     'friends-squirrel':['MA.1.A.2.a','Mengen zählen','0–20 Nüsse; Vierer- und Fünferstruktur'],
     'friends-bird':['D.2.A.1.b; D.1.A.1.b','Wörter lesen und Reime erkennen','25 verschiedene Reimpaare ohne vertauschte Doppelungen; eingeführte Buchstaben'],
     'friends-owl':['D.2.A.1.b; D.2.B.1.b','Kurze Sätze verstehen','Ein kurzer Satz über ein Tier; immer zwei Bildantworten'],
-    'friends-beaver':['MA.2.A.1.a','Formen in einer Matrix erkennen','Drei Reihen mit je drei Formen: Kreis, Dreieck, Quadrat'],
+    'friends-beaver':['MA.2.A.1.a','Formenmengen in einer Matrix erkennen','Zwei gleiche und eine andere Form je Reihe; das Muster der ersten zwei Reihen ergänzen'],
     'friends-mouse':['D.2.A.1.b','Wörter mit Bildern verbinden','25 vertraute Nomen; eingeführte Buchstaben'],
     'friends-hedgehog':['NMG.2.4.a; D.2.B.1.b','Tiermerkmale erkennen und Fragen lesen','25 kurze Fragen zu sichtbaren Tiermerkmalen; zwei Bildantworten'],
     'friends-fish':['MA.1.A.2.a','Fische zählen','0–20; Vierer- und Fünferstruktur'],
@@ -80,16 +80,17 @@
     ['Der Frosch springt.','frog-jump','frog-sit']
   ];
   animalActions.forEach(([text,answer,wrong],i)=>add('friends-owl','pair-'+i,text,{kind:'reading',prompt:'Welches Bild passt zum Satz?',text,answer,choices:[answer,wrong]}));
-  // Always include the triangle; never ask children to distinguish a square
-  // from a rectangle here. Different row orders/gaps retain 25 distinct tasks.
-  const shapes=['circle','triangle','square'],shapeOrders=[[0,1,2],[0,2,1],[1,0,2],[1,2,0],[2,0,1],[2,1,0]];let matrixN=0;
-  for(const order of shapeOrders)for(const shift of [1,2])for(let gap=0;gap<3&&matrixN<25;gap++){
-    const line=order.map(i=>shapes[i]),matrix=Array.from({length:9},(_,i)=>line[(i%3+Math.floor(i/3)*shift)%3]),hole=6+gap;
-    add('friends-beaver','matrix-'+matrixN++,'Formenreihe '+matrixN,{kind:'matrix',prompt:'In jeder Reihe dieselben drei Formen. Welche fehlt?',matrix,gap:hole,answer:matrix[hole],choices:line});
+  // The first two rows establish a repeated quantity pattern (two of A, one of B).
+  // The incomplete last row alone cannot tell whether A or B needs repeating.
+  const shapes=['circle','triangle','square'],shapeOrders=[[0,1,2],[0,2,1],[1,0,2],[1,2,0],[2,0,1],[2,1,0]];
+  for(let n=0;n<25;n++){
+    const order=shapeOrders[n%6],line=[shapes[order[0]],shapes[order[0]],shapes[order[1]]],shift=1+Math.floor(n/6)%2,phase=Math.floor(n/12),hole=6+Math.floor(n/6)%3;
+    const matrix=Array.from({length:9},(_,i)=>line[(i%3+Math.floor(i/3)*shift+phase)%3]);
+    add('friends-beaver','matrix-'+n,'Formenreihe '+(n+1),{kind:'matrix',prompt:'Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?',matrix,gap:hole,answer:matrix[hole],choices:shapes});
   }
   const extra={
     deer:[['Wo sammelt der Schmetterling Nektar?','flower','water','egg'],['Was knabbert der Biber ab?','tree','fish','egg'],['Was pickt der Vogel aus der Erde?','vocab-worm','boat','moon'],['Was frisst die Schnecke?','leaf','fish','egg'],['Wo sucht der Igel kleine Tiere?','leaf','cloud','moon'],['Was stellt die Biene aus Nektar her?','honey','cheese','egg'],['Wo kann der Frosch schwimmen?','water','cloud','tree'],['Was knabbert der Hase auf der Wiese?','leaf','moon','nest'],['Was hängt an einer Weinrebe?','grapes','egg','fish']],
-    badger:[['Was braucht eine Pflanze zum Wachsen?','sun','moon','cheese'],['Was wird aus einer Apfelblüte?','apple','egg','snowman'],['Was wächst aus einem Samen in der Erde?','plant','fish','moon'],['Was sammeln wir im Herbst unter der Eiche?','forest-nut','egg','snowman'],['Was sehen wir bei klarem Himmel in der Nacht?','moon','sun','sunflower'],['Was wächst auf der Erdbeerpflanze?','strawberry','carrot','egg'],['Womit giessen wir die Pflanzen?','bucket','fork','hat'],['Was schützt einen Samen in der Erde vor dem Austrocknen?','water','cheese','snowman'],['Was ernten wir vom Birnbaum?','pear','fish','egg']]
+    badger:[['Was braucht eine Pflanze zum Wachsen?','sun','moon','cheese'],['Was wird aus einer Apfelblüte?','apple','egg','snowman'],['Was wächst aus einem Samen in der Erde?','plant','fish','moon'],['Was sammelt das Eichhörnchen im Herbst?','forest-nut','egg','snowman'],['Was sehen wir bei klarem Himmel in der Nacht?','moon','sun','sunflower'],['Was wächst auf der Erdbeerpflanze?','strawberry','carrot','egg'],['Womit giessen wir die Pflanzen?','bucket','fork','hat'],['Was schützt einen Samen in der Erde vor dem Austrocknen?','water','cheese','snowman'],['Was ernten wir vom Birnbaum?','pear','fish','egg']]
   };
   const forestRiddles=[
     ['Wer hat Stacheln?','hedgehog','mouse-sit'],

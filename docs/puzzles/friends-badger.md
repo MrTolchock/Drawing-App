@@ -45,7 +45,7 @@
 | `friends-badger/riddle-16` | Was braucht eine Pflanze zum Wachsen? — Was braucht eine Pflanze zum Wachsen? | "sun" |
 | `friends-badger/riddle-17` | Was wird aus einer Apfelblüte? — Was wird aus einer Apfelblüte? | "apple" |
 | `friends-badger/riddle-18` | Was wächst aus einem Samen in der Erde? — Was wächst aus einem Samen in der Erde? | "plant" |
-| `friends-badger/riddle-19` | Was sammeln wir im Herbst unter der Eiche? — Was sammeln wir im Herbst unter der Eiche? | "forest-nut" |
+| `friends-badger/riddle-19` | Was sammelt das Eichhörnchen im Herbst? — Was sammelt das Eichhörnchen im Herbst? | "forest-nut" |
 | `friends-badger/riddle-20` | Was sehen wir bei klarem Himmel in der Nacht? — Was sehen wir bei klarem Himmel in der Nacht? | "moon" |
 | `friends-badger/riddle-21` | Was wächst auf der Erdbeerpflanze? — Was wächst auf der Erdbeerpflanze? | "strawberry" |
 | `friends-badger/riddle-22` | Womit giessen wir die Pflanzen? — Womit giessen wir die Pflanzen? | "bucket" |
@@ -345,11 +345,11 @@ These definitions are the same finite data used by the game and review previews.
   },
   {
     "id": "friends-badger/riddle-19",
-    "label": "Was sammeln wir im Herbst unter der Eiche?",
+    "label": "Was sammelt das Eichhörnchen im Herbst?",
     "question": {
       "kind": "reading",
       "prompt": "Welches Bild passt zur Frage?",
-      "text": "Was sammeln wir im Herbst unter der Eiche?",
+      "text": "Was sammelt das Eichhörnchen im Herbst?",
       "answer": "forest-nut",
       "choices": [
         "forest-nut",

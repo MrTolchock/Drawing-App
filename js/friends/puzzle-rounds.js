@@ -15,7 +15,7 @@
     'friends-frog':'Lies das Wort. Tippe auf das passende Tier.',
     'friends-bird':'Lies das Wort und die Wörter bei den Bildern. Wähle das Wort, das sich reimt.',
     'friends-owl':'Lies den Satz. Wähle das passende Bild.',
-    'friends-beaver':'In jeder Reihe stehen dieselben drei Formen. Welche Form fehlt beim Fragezeichen?',
+    'friends-beaver':'Schau die ersten zwei Reihen an. In jeder Reihe sind dieselben Formen gleich oft zu sehen. Welche Form fehlt in der dritten Reihe?',
     'friends-mouse':'Lies das Wort. Wähle das passende Bild.',
     count:'Zähle nur die roten Marienkäfer zwischen den anderen Waldbewohnern. Du kannst jeden Käfer markieren. Wähle dann die Zahl.',
     add:'Zähle die Äpfel in beiden Gruppen zusammen und wähle das Ergebnis.',

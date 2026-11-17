@@ -1,0 +1,27 @@
+WALDPOST CANONICAL ILLUSTRATION STYLE — waldpost-watercolour-pencil-v1
+
+Use the supplied canonical animals.png and objects.png reference images as the authority for drawing technique. They show the predominant style of the current Waldpost gallery. Match their actual pixels, not an imagined style suggested by a filename.
+
+Draw warm children's picture-book watercolour finished with visible coloured-pencil strokes. Use light, gently uneven washes, organic sepia contours, delicate hatching, softly irregular edges and modest drawn shading. Surfaces look painted and pencilled, with paper grain within the illustration. Keep the warmth of cream, honey brown, restrained sage and blue, while preserving every exact colour required by a task. Subjects remain friendly, recognizable and anatomically believable.
+
+Do not turn the drawing into a 3D render, plush toy, clay or felt craft, photograph, glossy object, embossed surface or studio-lit miniature. Avoid deep ambient-occlusion shadows, inflated forms and realistic material microtexture. Do not mix in another illustration technique or use historical artwork as a style reference.
+
+The role instructions below set the necessary detail and composition within this one style. Learning pictures retain fine drawn contours; small navigation symbols use the approved simpler, broader shapes and flat fills in the same palette. Keep the existing rendered game-character identities separate from image-generated learning subjects. Exact geometry and handwriting remain authored paths.
+
+Preserve subject identity, counted quantities, exact answer colours and action differences. Use real alpha for isolated pictures and stationery, and an opaque canvas only when the selected role requires a scene or branding image. No accidental background, halo, visible grid, labels or extra objects.
+
+ROLE: character
+Use the canonical watercolour-and-coloured-pencil medium for the shared game-character portraits on letters, map pins, puzzle pages, menus, companions and celebrations. Reuse the approved painted identities, natural friendly proportions, species markings and accessories. Complete silhouettes, real transparency and generous square-cell margins. Keep the live 3D world as its own model pipeline; do not substitute these identity portraits for scored learning pictures.
+
+ATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:
+1. design/illustrations/references/watercolour-pencil-v1/animals.png — canonical-style: canonical drawing technique for animals; fixed majority-style pixels
+2. design/illustrations/references/watercolour-pencil-v1/objects.png — canonical-style: canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels
+3. design/illustrations/references/feedback-2026-11-17/squirrel-before.png — composition-only: squirrel identity and seated pose only; replace its modelled finish with the canonical reference technique
+
+SUBJECT AND LAYOUT BRIEF:
+Redraw the current Waldpost Eichhörnchen character from reference 3 in the canonical painted technique of references 1 and 2. The reviewer saw this portrait at friends-squirrel/count-0, where no nuts are drawn in the task, and reported that its illustration does not match the other painted pictures.
+Produce a transparent 2 by 2 square-cell sheet. Only the top-left cell is occupied: one whole seated red squirrel facing slightly right, the familiar large bushy curved tail behind its left side, two pointed tufted ears, cream muzzle and belly, gentle friendly dark eye, small brown nose and two little paws holding ONE brown hazelnut. Preserve its recognizable species, orange-red markings and friendly seated pose from reference 3.
+Use visibly hand-drawn fine sepia coloured-pencil contours, light uneven watercolour washes, sparse pencil fur strokes and softly irregular painted edges, matching the dog, cat, hare and fox in canonical reference 1. Make the fur simple drawn strokes, not a highly modelled plush pelt. Avoid the inflated, sculpted, glossy, smooth three-dimensional character finish of reference 3. No deep shadows under paws or tail, no heavy material rendering. The squirrel should sit naturally alongside the canonical hare and fox drawings on a cream book page.
+Keep the complete ears, tail, feet and hazelnut within the top-left cell with 18 percent transparent margins. No scarf, clothes, ground, scenery, captions, labels, grid lines, backdrop, paper square or checkerboard pattern. The other three cells are completely transparent. Real alpha around the entire subject; preserve the canonical reference drawing style throughout.
+
+STYLE PRIORITY: The brief changes subjects and layout only. Keep waldpost-watercolour-pencil-v1 and the supplied canonical reference technique throughout; do not import the style of a composition-only reference.

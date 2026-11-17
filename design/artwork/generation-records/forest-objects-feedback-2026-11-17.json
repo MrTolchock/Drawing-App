@@ -1,0 +1,62 @@
+{
+  "format": "waldpost-image-generation-record",
+  "version": 1,
+  "id": "forest-objects-feedback-2026-11-17",
+  "style": "waldpost-watercolour-pencil-v1",
+  "date": "2026-11-17",
+  "tool": "ChatGPT image_gen.imagegen",
+  "source": "design/illustrations/sources/forest-objects-feedback-2026-11-17.png",
+  "sourceSha256": "c380ab5d7eab4149bb4b8714ddbbc35619ff228c2b514334783e2bbfb8a32292",
+  "request": {
+    "prompt": "WALDPOST CANONICAL ILLUSTRATION STYLE \u2014 waldpost-watercolour-pencil-v1\n\nUse the supplied canonical animals.png and objects.png reference images as the authority for drawing technique. They show the predominant style of the current Waldpost gallery. Match their actual pixels, not an imagined style suggested by a filename.\n\nDraw warm children's picture-book watercolour finished with visible coloured-pencil strokes. Use light, gently uneven washes, organic sepia contours, delicate hatching, softly irregular edges and modest drawn shading. Surfaces look painted and pencilled, with paper grain within the illustration. Keep the warmth of cream, honey brown, restrained sage and blue, while preserving every exact colour required by a task. Subjects remain friendly, recognizable and anatomically believable.\n\nDo not turn the drawing into a 3D render, plush toy, clay or felt craft, photograph, glossy object, embossed surface or studio-lit miniature. Avoid deep ambient-occlusion shadows, inflated forms and realistic material microtexture. Do not mix in another illustration technique or use historical artwork as a style reference.\n\nThe role instructions below set the necessary detail and composition within this one style. Learning pictures retain fine drawn contours; small navigation symbols use the approved simpler, broader shapes and flat fills in the same palette. Keep the existing rendered game-character identities separate from image-generated learning subjects. Exact geometry and handwriting remain authored paths.\n\nPreserve subject identity, counted quantities, exact answer colours and action differences. Use real alpha for isolated pictures and stationery, and an opaque canvas only when the selected role requires a scene or branding image. No accidental background, halo, visible grid, labels or extra objects.\n\nROLE: learning\nMatch the canonical watercolour and coloured-pencil technique closely: fine organic contours, uneven washes and gentle drawn volume. Keep accurate species, action contrasts, one counted object per item and exact answer colours. Use transparent square cells, generous gutters and complete silhouettes.\n\nATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:\n1. design/illustrations/references/watercolour-pencil-v1/animals.png \u2014 canonical-style: canonical drawing technique for animals; fixed majority-style pixels\n2. design/illustrations/references/watercolour-pencil-v1/objects.png \u2014 canonical-style: canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels\n3. design/illustrations/references/feedback-2026-11-17/nut-before.png \u2014 composition-only: current nut subject identity only; correct the drawing using canonical references, not its old finish\n4. design/illustrations/references/feedback-2026-11-17/house-before.png \u2014 composition-only: current house subject identity only; correct the drawing using canonical references, not its old finish\n\nSUBJECT AND LAYOUT BRIEF:\nRepair two puzzle pictures reported on 17 November 2026. Produce a transparent square sheet with exactly 2 by 2 equal square cells, no grid lines, no labels and generous clear gutters. Row-major order:\n- Top left: forest-nut \u2014 exactly ONE whole hazelnut in its brown shell, small pale base, rounded oval body, fine brown pencil lines. No acorn cap, no oak scales, no loose pieces, no leaves or extra nuts. Warm light watercolour washes and visible delicate coloured pencil like canonical objects reference 2. Clear simple outline, recognizable at 40 pixels; no glossy/plastic/sculpted modelling. The current acorn-like picture in reference 3 is the incorrect subject/finish to replace.\n- Top right: vocab-house \u2014 one small welcoming cream cottage with red pitched tiled roof, brown door, simple blue windows. Draw in a coherent nearly frontal view: front wall, doorway and every front window lie on one flat frontal plane; window frames are neat straight rectangles, their horizontal sills parallel to the wall base, verticals parallel to the door sides. The triangular front gable and roof fit that same view. No inexplicable skewed, rounded or sideways window on the front wall. Restrained sage shutters, a few pencil-drawn roof tiles; no tiny flowers/decorative scenery. Warm hand-painted pencil/watercolour technique, no deep rendered shadows. Reference 4 only identifies the house subject, not the perspective or finish to copy.\n- Bottom left and bottom right: fully empty transparent cells.\nKeep the two subjects independent, fully contained in their own cells, centered with even margins; no ground strip, white square, paper background, drop shadow, checkerboard pattern or visible captions. The canonical style references 1 and 2 define technique; references 3 and 4 only identify the subjects being replaced. Retain true alpha transparency around and between both drawings.\n\nSTYLE PRIORITY: The brief changes subjects and layout only. Keep waldpost-watercolour-pencil-v1 and the supplied canonical reference technique throughout; do not import the style of a composition-only reference.\n",
+    "referenced_image_paths": [
+      "design/illustrations/references/watercolour-pencil-v1/animals.png",
+      "design/illustrations/references/watercolour-pencil-v1/objects.png",
+      "design/illustrations/references/feedback-2026-11-17/nut-before.png",
+      "design/illustrations/references/feedback-2026-11-17/house-before.png"
+    ],
+    "transparent_background": true
+  },
+  "references": [
+    {
+      "path": "design/illustrations/references/watercolour-pencil-v1/animals.png",
+      "sha256": "65867082294d157ab4ffbe33926857272625ef3c25cdb7cab81c2a4ea73d9316",
+      "purpose": "canonical drawing technique for animals; fixed majority-style pixels",
+      "usage": "canonical-style"
+    },
+    {
+      "path": "design/illustrations/references/watercolour-pencil-v1/objects.png",
+      "sha256": "0bb37d6fc82c75034eddf30da2cc57c546dd8bc70d246aeeda85b637bd87dd80",
+      "purpose": "canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels",
+      "usage": "canonical-style"
+    },
+    {
+      "path": "design/illustrations/references/feedback-2026-11-17/nut-before.png",
+      "sha256": "da4f3f2af03d986f7bba0f8865b9e7a2c6ef3f76516beb6a2284d51ccf1b6e93",
+      "purpose": "current nut subject identity only; correct the drawing using canonical references, not its old finish",
+      "usage": "composition-only"
+    },
+    {
+      "path": "design/illustrations/references/feedback-2026-11-17/house-before.png",
+      "sha256": "cb6123ebcecd35247207c582a31cae270e9a79b758812390f387d57995968a05",
+      "purpose": "current house subject identity only; correct the drawing using canonical references, not its old finish",
+      "usage": "composition-only"
+    }
+  ],
+  "generatorOutput": {
+    "path": "design/illustrations/sources/puzzle-feedback-repairs.png",
+    "sha256": "57d9ee4a3d03a4cb9872be2fdc8c185d68edd921e66d7e3eb08397dd82d5554d",
+    "columns": 2,
+    "rows": 2,
+    "index": 0
+  },
+  "preparation": {
+    "baseCommit": "44130c3",
+    "basePath": "assets/waldatelier/forest-objects.webp",
+    "baseSha256": "aeb5cdd3aef93cc3f55e63f2323770b83b5eea90e190f0948d243828fc5aab83",
+    "replacementIndex": 0,
+    "alphaThresholdPercent": 15,
+    "subjectPixels": 256,
+    "note": "Crop the generated cell to alpha >15%, preserve original RGBA, contain in 256px, center inside original cell. Replace the first cell of the base atlas only. Other cells are copied without resampling. Retained composite PNG is the current export source."
+  }
+}

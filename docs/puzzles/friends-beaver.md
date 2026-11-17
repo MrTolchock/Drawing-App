@@ -4,8 +4,8 @@
 
 - Stable puzzle ID: `friends-beaver`
 - Host: beaver
-- Related competence: **MA.2.A.1.a** — Formen in einer Matrix erkennen
-- Difficulty: Drei Reihen mit je drei Formen: Kreis, Dreieck, Quadrat
+- Related competence: **MA.2.A.1.a** — Formenmengen in einer Matrix erkennen
+- Difficulty: Zwei gleiche und eine andere Form je Reihe; das Muster der ersten zwei Reihen ergänzen
 - Pool: 25 explicit iterations; a round selects five.
 - Review: solve every unconfirmed iteration to approve it; × rejects with an optional note. The final celebration approves the puzzle only when all iterations passed. Exact revisions gate release; changes require review again.
 
@@ -26,31 +26,31 @@
 
 | Stable iteration ID | Content / configuration | Expected answer or solution |
 | --- | --- | --- |
-| `friends-beaver/matrix-0` | Formenreihe 1 — In jeder Reihe dieselben drei Formen. Welche fehlt? | "square" |
-| `friends-beaver/matrix-1` | Formenreihe 2 — In jeder Reihe dieselben drei Formen. Welche fehlt? | "circle" |
-| `friends-beaver/matrix-2` | Formenreihe 3 — In jeder Reihe dieselben drei Formen. Welche fehlt? | "triangle" |
-| `friends-beaver/matrix-3` | Formenreihe 4 — In jeder Reihe dieselben drei Formen. Welche fehlt? | "triangle" |
-| `friends-beaver/matrix-4` | Formenreihe 5 — In jeder Reihe dieselben drei Formen. Welche fehlt? | "square" |
-| `friends-beaver/matrix-5` | Formenreihe 6 — In jeder Reihe dieselben drei Formen. Welche fehlt? | "circle" |
-| `friends-beaver/matrix-6` | Formenreihe 7 — In jeder Reihe dieselben drei Formen. Welche fehlt? | "triangle" |
-| `friends-beaver/matrix-7` | Formenreihe 8 — In jeder Reihe dieselben drei Formen. Welche fehlt? | "circle" |
-| `friends-beaver/matrix-8` | Formenreihe 9 — In jeder Reihe dieselben drei Formen. Welche fehlt? | "square" |
-| `friends-beaver/matrix-9` | Formenreihe 10 — In jeder Reihe dieselben drei Formen. Welche fehlt? | "square" |
-| `friends-beaver/matrix-10` | Formenreihe 11 — In jeder Reihe dieselben drei Formen. Welche fehlt? | "triangle" |
-| `friends-beaver/matrix-11` | Formenreihe 12 — In jeder Reihe dieselben drei Formen. Welche fehlt? | "circle" |
-| `friends-beaver/matrix-12` | Formenreihe 13 — In jeder Reihe dieselben drei Formen. Welche fehlt? | "square" |
-| `friends-beaver/matrix-13` | Formenreihe 14 — In jeder Reihe dieselben drei Formen. Welche fehlt? | "triangle" |
-| `friends-beaver/matrix-14` | Formenreihe 15 — In jeder Reihe dieselben drei Formen. Welche fehlt? | "circle" |
-| `friends-beaver/matrix-15` | Formenreihe 16 — In jeder Reihe dieselben drei Formen. Welche fehlt? | "circle" |
-| `friends-beaver/matrix-16` | Formenreihe 17 — In jeder Reihe dieselben drei Formen. Welche fehlt? | "square" |
-| `friends-beaver/matrix-17` | Formenreihe 18 — In jeder Reihe dieselben drei Formen. Welche fehlt? | "triangle" |
-| `friends-beaver/matrix-18` | Formenreihe 19 — In jeder Reihe dieselben drei Formen. Welche fehlt? | "circle" |
-| `friends-beaver/matrix-19` | Formenreihe 20 — In jeder Reihe dieselben drei Formen. Welche fehlt? | "triangle" |
-| `friends-beaver/matrix-20` | Formenreihe 21 — In jeder Reihe dieselben drei Formen. Welche fehlt? | "square" |
-| `friends-beaver/matrix-21` | Formenreihe 22 — In jeder Reihe dieselben drei Formen. Welche fehlt? | "square" |
-| `friends-beaver/matrix-22` | Formenreihe 23 — In jeder Reihe dieselben drei Formen. Welche fehlt? | "circle" |
-| `friends-beaver/matrix-23` | Formenreihe 24 — In jeder Reihe dieselben drei Formen. Welche fehlt? | "triangle" |
-| `friends-beaver/matrix-24` | Formenreihe 25 — In jeder Reihe dieselben drei Formen. Welche fehlt? | "triangle" |
+| `friends-beaver/matrix-0` | Formenreihe 1 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "triangle" |
+| `friends-beaver/matrix-1` | Formenreihe 2 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "square" |
+| `friends-beaver/matrix-2` | Formenreihe 3 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "circle" |
+| `friends-beaver/matrix-3` | Formenreihe 4 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "square" |
+| `friends-beaver/matrix-4` | Formenreihe 5 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "circle" |
+| `friends-beaver/matrix-5` | Formenreihe 6 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "triangle" |
+| `friends-beaver/matrix-6` | Formenreihe 7 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "triangle" |
+| `friends-beaver/matrix-7` | Formenreihe 8 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "square" |
+| `friends-beaver/matrix-8` | Formenreihe 9 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "circle" |
+| `friends-beaver/matrix-9` | Formenreihe 10 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "square" |
+| `friends-beaver/matrix-10` | Formenreihe 11 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "circle" |
+| `friends-beaver/matrix-11` | Formenreihe 12 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "triangle" |
+| `friends-beaver/matrix-12` | Formenreihe 13 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "triangle" |
+| `friends-beaver/matrix-13` | Formenreihe 14 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "square" |
+| `friends-beaver/matrix-14` | Formenreihe 15 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "circle" |
+| `friends-beaver/matrix-15` | Formenreihe 16 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "square" |
+| `friends-beaver/matrix-16` | Formenreihe 17 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "circle" |
+| `friends-beaver/matrix-17` | Formenreihe 18 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "triangle" |
+| `friends-beaver/matrix-18` | Formenreihe 19 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "triangle" |
+| `friends-beaver/matrix-19` | Formenreihe 20 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "square" |
+| `friends-beaver/matrix-20` | Formenreihe 21 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "circle" |
+| `friends-beaver/matrix-21` | Formenreihe 22 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "square" |
+| `friends-beaver/matrix-22` | Formenreihe 23 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "circle" |
+| `friends-beaver/matrix-23` | Formenreihe 24 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "triangle" |
+| `friends-beaver/matrix-24` | Formenreihe 25 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "triangle" |
 
 ## Exact definitions
 
@@ -63,20 +63,20 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Formenreihe 1",
     "question": {
       "kind": "matrix",
-      "prompt": "In jeder Reihe dieselben drei Formen. Welche fehlt?",
+      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
       "matrix": [
         "circle",
-        "triangle",
-        "square",
-        "triangle",
-        "square",
         "circle",
-        "square",
+        "triangle",
         "circle",
-        "triangle"
+        "triangle",
+        "circle",
+        "triangle",
+        "circle",
+        "circle"
       ],
       "gap": 6,
-      "answer": "square",
+      "answer": "triangle",
       "choices": [
         "circle",
         "triangle",
@@ -89,20 +89,20 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Formenreihe 2",
     "question": {
       "kind": "matrix",
-      "prompt": "In jeder Reihe dieselben drei Formen. Welche fehlt?",
+      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
       "matrix": [
         "circle",
-        "triangle",
+        "circle",
         "square",
-        "triangle",
+        "circle",
         "square",
         "circle",
         "square",
         "circle",
-        "triangle"
+        "circle"
       ],
-      "gap": 7,
-      "answer": "circle",
+      "gap": 6,
+      "answer": "square",
       "choices": [
         "circle",
         "triangle",
@@ -115,20 +115,20 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Formenreihe 3",
     "question": {
       "kind": "matrix",
-      "prompt": "In jeder Reihe dieselben drei Formen. Welche fehlt?",
+      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
       "matrix": [
+        "triangle",
+        "triangle",
         "circle",
         "triangle",
-        "square",
+        "circle",
         "triangle",
-        "square",
         "circle",
-        "square",
-        "circle",
+        "triangle",
         "triangle"
       ],
-      "gap": 8,
-      "answer": "triangle",
+      "gap": 6,
+      "answer": "circle",
       "choices": [
         "circle",
         "triangle",
@@ -141,20 +141,20 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Formenreihe 4",
     "question": {
       "kind": "matrix",
-      "prompt": "In jeder Reihe dieselben drei Formen. Welche fehlt?",
+      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
       "matrix": [
-        "circle",
-        "triangle",
-        "square",
-        "square",
-        "circle",
         "triangle",
         "triangle",
         "square",
-        "circle"
+        "triangle",
+        "square",
+        "triangle",
+        "square",
+        "triangle",
+        "triangle"
       ],
       "gap": 6,
-      "answer": "triangle",
+      "answer": "square",
       "choices": [
         "circle",
         "triangle",
@@ -167,20 +167,20 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Formenreihe 5",
     "question": {
       "kind": "matrix",
-      "prompt": "In jeder Reihe dieselben drei Formen. Welche fehlt?",
+      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
       "matrix": [
-        "circle",
-        "triangle",
         "square",
         "square",
         "circle",
-        "triangle",
-        "triangle",
         "square",
-        "circle"
+        "circle",
+        "square",
+        "circle",
+        "square",
+        "square"
       ],
-      "gap": 7,
-      "answer": "square",
+      "gap": 6,
+      "answer": "circle",
       "choices": [
         "circle",
         "triangle",
@@ -193,20 +193,20 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Formenreihe 6",
     "question": {
       "kind": "matrix",
-      "prompt": "In jeder Reihe dieselben drei Formen. Welche fehlt?",
+      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
       "matrix": [
-        "circle",
-        "triangle",
         "square",
         "square",
-        "circle",
-        "triangle",
         "triangle",
         "square",
-        "circle"
+        "triangle",
+        "square",
+        "triangle",
+        "square",
+        "square"
       ],
-      "gap": 8,
-      "answer": "circle",
+      "gap": 6,
+      "answer": "triangle",
       "choices": [
         "circle",
         "triangle",
@@ -219,24 +219,24 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Formenreihe 7",
     "question": {
       "kind": "matrix",
-      "prompt": "In jeder Reihe dieselben drei Formen. Welche fehlt?",
+      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
       "matrix": [
         "circle",
-        "square",
-        "triangle",
-        "square",
-        "triangle",
         "circle",
         "triangle",
+        "triangle",
         "circle",
-        "square"
+        "circle",
+        "circle",
+        "triangle",
+        "circle"
       ],
-      "gap": 6,
+      "gap": 7,
       "answer": "triangle",
       "choices": [
         "circle",
-        "square",
-        "triangle"
+        "triangle",
+        "square"
       ]
     }
   },
@@ -245,24 +245,24 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Formenreihe 8",
     "question": {
       "kind": "matrix",
-      "prompt": "In jeder Reihe dieselben drei Formen. Welche fehlt?",
+      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
       "matrix": [
         "circle",
-        "square",
-        "triangle",
-        "square",
-        "triangle",
         "circle",
-        "triangle",
+        "square",
+        "square",
         "circle",
-        "square"
+        "circle",
+        "circle",
+        "square",
+        "circle"
       ],
       "gap": 7,
-      "answer": "circle",
+      "answer": "square",
       "choices": [
         "circle",
-        "square",
-        "triangle"
+        "triangle",
+        "square"
       ]
     }
   },
@@ -271,24 +271,24 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Formenreihe 9",
     "question": {
       "kind": "matrix",
-      "prompt": "In jeder Reihe dieselben drei Formen. Welche fehlt?",
+      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
       "matrix": [
-        "circle",
-        "square",
         "triangle",
-        "square",
         "triangle",
         "circle",
+        "circle",
+        "triangle",
+        "triangle",
         "triangle",
         "circle",
-        "square"
+        "triangle"
       ],
-      "gap": 8,
-      "answer": "square",
+      "gap": 7,
+      "answer": "circle",
       "choices": [
         "circle",
-        "square",
-        "triangle"
+        "triangle",
+        "square"
       ]
     }
   },
@@ -297,24 +297,24 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Formenreihe 10",
     "question": {
       "kind": "matrix",
-      "prompt": "In jeder Reihe dieselben drei Formen. Welche fehlt?",
+      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
       "matrix": [
-        "circle",
-        "square",
         "triangle",
         "triangle",
-        "circle",
         "square",
         "square",
         "triangle",
-        "circle"
+        "triangle",
+        "triangle",
+        "square",
+        "triangle"
       ],
-      "gap": 6,
+      "gap": 7,
       "answer": "square",
       "choices": [
         "circle",
-        "square",
-        "triangle"
+        "triangle",
+        "square"
       ]
     }
   },
@@ -323,24 +323,24 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Formenreihe 11",
     "question": {
       "kind": "matrix",
-      "prompt": "In jeder Reihe dieselben drei Formen. Welche fehlt?",
+      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
       "matrix": [
+        "square",
+        "square",
+        "circle",
         "circle",
         "square",
-        "triangle",
-        "triangle",
+        "square",
+        "square",
         "circle",
-        "square",
-        "square",
-        "triangle",
-        "circle"
+        "square"
       ],
       "gap": 7,
-      "answer": "triangle",
+      "answer": "circle",
       "choices": [
         "circle",
-        "square",
-        "triangle"
+        "triangle",
+        "square"
       ]
     }
   },
@@ -349,24 +349,24 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Formenreihe 12",
     "question": {
       "kind": "matrix",
-      "prompt": "In jeder Reihe dieselben drei Formen. Welche fehlt?",
+      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
       "matrix": [
-        "circle",
-        "square",
-        "triangle",
-        "triangle",
-        "circle",
         "square",
         "square",
         "triangle",
-        "circle"
+        "triangle",
+        "square",
+        "square",
+        "square",
+        "triangle",
+        "square"
       ],
-      "gap": 8,
-      "answer": "circle",
+      "gap": 7,
+      "answer": "triangle",
       "choices": [
         "circle",
-        "square",
-        "triangle"
+        "triangle",
+        "square"
       ]
     }
   },
@@ -375,23 +375,23 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Formenreihe 13",
     "question": {
       "kind": "matrix",
-      "prompt": "In jeder Reihe dieselben drei Formen. Welche fehlt?",
+      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
       "matrix": [
+        "circle",
         "triangle",
         "circle",
-        "square",
+        "triangle",
         "circle",
-        "square",
-        "triangle",
-        "square",
-        "triangle",
-        "circle"
+        "circle",
+        "circle",
+        "circle",
+        "triangle"
       ],
-      "gap": 6,
-      "answer": "square",
+      "gap": 8,
+      "answer": "triangle",
       "choices": [
-        "triangle",
         "circle",
+        "triangle",
         "square"
       ]
     }
@@ -401,23 +401,23 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Formenreihe 14",
     "question": {
       "kind": "matrix",
-      "prompt": "In jeder Reihe dieselben drei Formen. Welche fehlt?",
+      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
       "matrix": [
-        "triangle",
         "circle",
         "square",
         "circle",
         "square",
-        "triangle",
-        "square",
-        "triangle",
-        "circle"
+        "circle",
+        "circle",
+        "circle",
+        "circle",
+        "square"
       ],
-      "gap": 7,
-      "answer": "triangle",
+      "gap": 8,
+      "answer": "square",
       "choices": [
-        "triangle",
         "circle",
+        "triangle",
         "square"
       ]
     }
@@ -427,23 +427,23 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Formenreihe 15",
     "question": {
       "kind": "matrix",
-      "prompt": "In jeder Reihe dieselben drei Formen. Welche fehlt?",
+      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
       "matrix": [
         "triangle",
         "circle",
-        "square",
-        "circle",
-        "square",
         "triangle",
-        "square",
+        "circle",
+        "triangle",
+        "triangle",
+        "triangle",
         "triangle",
         "circle"
       ],
       "gap": 8,
       "answer": "circle",
       "choices": [
-        "triangle",
         "circle",
+        "triangle",
         "square"
       ]
     }
@@ -453,23 +453,23 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Formenreihe 16",
     "question": {
       "kind": "matrix",
-      "prompt": "In jeder Reihe dieselben drei Formen. Welche fehlt?",
+      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
       "matrix": [
         "triangle",
-        "circle",
-        "square",
         "square",
         "triangle",
-        "circle",
-        "circle",
         "square",
-        "triangle"
+        "triangle",
+        "triangle",
+        "triangle",
+        "triangle",
+        "square"
       ],
-      "gap": 6,
-      "answer": "circle",
+      "gap": 8,
+      "answer": "square",
       "choices": [
-        "triangle",
         "circle",
+        "triangle",
         "square"
       ]
     }
@@ -479,23 +479,23 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Formenreihe 17",
     "question": {
       "kind": "matrix",
-      "prompt": "In jeder Reihe dieselben drei Formen. Welche fehlt?",
+      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
       "matrix": [
-        "triangle",
+        "square",
+        "circle",
+        "square",
         "circle",
         "square",
         "square",
-        "triangle",
-        "circle",
-        "circle",
         "square",
-        "triangle"
+        "square",
+        "circle"
       ],
-      "gap": 7,
-      "answer": "square",
+      "gap": 8,
+      "answer": "circle",
       "choices": [
-        "triangle",
         "circle",
+        "triangle",
         "square"
       ]
     }
@@ -505,23 +505,23 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Formenreihe 18",
     "question": {
       "kind": "matrix",
-      "prompt": "In jeder Reihe dieselben drei Formen. Welche fehlt?",
+      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
       "matrix": [
-        "triangle",
-        "circle",
-        "square",
         "square",
         "triangle",
-        "circle",
-        "circle",
+        "square",
+        "triangle",
+        "square",
+        "square",
+        "square",
         "square",
         "triangle"
       ],
       "gap": 8,
       "answer": "triangle",
       "choices": [
-        "triangle",
         "circle",
+        "triangle",
         "square"
       ]
     }
@@ -531,24 +531,24 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Formenreihe 19",
     "question": {
       "kind": "matrix",
-      "prompt": "In jeder Reihe dieselben drei Formen. Welche fehlt?",
+      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
       "matrix": [
-        "triangle",
-        "square",
-        "circle",
-        "square",
         "circle",
         "triangle",
+        "circle",
+        "circle",
+        "circle",
+        "triangle",
+        "triangle",
+        "circle",
+        "circle"
+      ],
+      "gap": 6,
+      "answer": "triangle",
+      "choices": [
         "circle",
         "triangle",
         "square"
-      ],
-      "gap": 6,
-      "answer": "circle",
-      "choices": [
-        "triangle",
-        "square",
-        "circle"
       ]
     }
   },
@@ -557,24 +557,24 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Formenreihe 20",
     "question": {
       "kind": "matrix",
-      "prompt": "In jeder Reihe dieselben drei Formen. Welche fehlt?",
+      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
       "matrix": [
-        "triangle",
-        "square",
         "circle",
         "square",
         "circle",
-        "triangle",
+        "circle",
+        "circle",
+        "square",
+        "square",
+        "circle",
+        "circle"
+      ],
+      "gap": 6,
+      "answer": "square",
+      "choices": [
         "circle",
         "triangle",
         "square"
-      ],
-      "gap": 7,
-      "answer": "triangle",
-      "choices": [
-        "triangle",
-        "square",
-        "circle"
       ]
     }
   },
@@ -583,24 +583,24 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Formenreihe 21",
     "question": {
       "kind": "matrix",
-      "prompt": "In jeder Reihe dieselben drei Formen. Welche fehlt?",
+      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
       "matrix": [
         "triangle",
-        "square",
-        "circle",
-        "square",
         "circle",
         "triangle",
+        "triangle",
+        "triangle",
+        "circle",
+        "circle",
+        "triangle",
+        "triangle"
+      ],
+      "gap": 6,
+      "answer": "circle",
+      "choices": [
         "circle",
         "triangle",
         "square"
-      ],
-      "gap": 8,
-      "answer": "square",
-      "choices": [
-        "triangle",
-        "square",
-        "circle"
       ]
     }
   },
@@ -609,24 +609,24 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Formenreihe 22",
     "question": {
       "kind": "matrix",
-      "prompt": "In jeder Reihe dieselben drei Formen. Welche fehlt?",
+      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
       "matrix": [
         "triangle",
         "square",
-        "circle",
-        "circle",
+        "triangle",
+        "triangle",
         "triangle",
         "square",
         "square",
-        "circle",
+        "triangle",
         "triangle"
       ],
       "gap": 6,
       "answer": "square",
       "choices": [
+        "circle",
         "triangle",
-        "square",
-        "circle"
+        "square"
       ]
     }
   },
@@ -635,24 +635,24 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Formenreihe 23",
     "question": {
       "kind": "matrix",
-      "prompt": "In jeder Reihe dieselben drei Formen. Welche fehlt?",
+      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
       "matrix": [
-        "triangle",
+        "square",
+        "circle",
+        "square",
+        "square",
         "square",
         "circle",
         "circle",
-        "triangle",
         "square",
-        "square",
-        "circle",
-        "triangle"
+        "square"
       ],
-      "gap": 7,
+      "gap": 6,
       "answer": "circle",
       "choices": [
+        "circle",
         "triangle",
-        "square",
-        "circle"
+        "square"
       ]
     }
   },
@@ -661,24 +661,24 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Formenreihe 24",
     "question": {
       "kind": "matrix",
-      "prompt": "In jeder Reihe dieselben drei Formen. Welche fehlt?",
+      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
       "matrix": [
-        "triangle",
         "square",
-        "circle",
-        "circle",
         "triangle",
         "square",
         "square",
-        "circle",
-        "triangle"
+        "square",
+        "triangle",
+        "triangle",
+        "square",
+        "square"
       ],
-      "gap": 8,
+      "gap": 6,
       "answer": "triangle",
       "choices": [
+        "circle",
         "triangle",
-        "square",
-        "circle"
+        "square"
       ]
     }
   },
@@ -687,24 +687,24 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Formenreihe 25",
     "question": {
       "kind": "matrix",
-      "prompt": "In jeder Reihe dieselben drei Formen. Welche fehlt?",
+      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
       "matrix": [
-        "square",
+        "triangle",
+        "circle",
+        "circle",
+        "circle",
         "circle",
         "triangle",
         "circle",
         "triangle",
-        "square",
-        "triangle",
-        "square",
         "circle"
       ],
-      "gap": 6,
+      "gap": 7,
       "answer": "triangle",
       "choices": [
-        "square",
         "circle",
-        "triangle"
+        "triangle",
+        "square"
       ]
     }
   }
