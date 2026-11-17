@@ -10216,6 +10216,24 @@
       "at": "2026-11-17T20:29:43.142Z",
       "seen": true,
       "operation": "f7be0489-2167-48cd-a7ee-9dc5785e0c65"
+    },
+    "friends-mouse/word-0@1e533187d1521905": {
+      "key": "friends-mouse/word-0",
+      "revision": "1e533187d1521905",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T20:30:55.383Z",
+      "seen": true,
+      "operation": "b190291e-06a9-4b98-9df0-44e1e92504c9"
+    },
+    "friends-mouse/word-1@d13b1bbdcbdf48fd": {
+      "key": "friends-mouse/word-1",
+      "revision": "d13b1bbdcbdf48fd",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T20:30:57.564Z",
+      "seen": true,
+      "operation": "4bf890b3-ba0f-4003-ad4c-d9f1495e349a"
     }
   },
   "history": [
