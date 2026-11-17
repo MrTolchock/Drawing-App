@@ -12,7 +12,6 @@
     'friends-beaver':'Das Kind vergleicht die ersten zwei Reihen: Jede enthält zwei gleiche und eine andere Form. Es ergänzt die dritte Reihe so, dass jede Form dort gleich oft vorkommt.',
     'friends-mouse':'Das Kind liest ein vertrautes Nomen und verbindet das gelesene Wort mit dem passenden Bild.',
     'friends-hedgehog':'Das Kind versteht eine kurze gelesene Frage und ordnet sichtbare Merkmale dem passenden Tier zu.',
-    'friends-fish':'Das Kind bestimmt Anzahlen bis 20, indem es Fische zählt und geordnete Reihen nutzt.',
     'friends-deer':'Das Kind liest Naturfragen und ordnet Tieren passende Lebensräume oder Nahrung zu.',
     'friends-kingfisher':'Das Kind zählt unterschiedliche Gegenstände am Bach und bestimmt ihre Anzahl bis 20.',
     'friends-frog':'Das Kind liest Tiernamen und erkennt, welches Tierbild zum gelesenen Wort gehört.',

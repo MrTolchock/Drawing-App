@@ -55,7 +55,7 @@
       "instruction": "Use the canonical watercolour-and-coloured-pencil medium for the shared game-character portraits on letters, map pins, puzzle pages, menus, companions and celebrations. Reuse the approved painted identities, natural friendly proportions, species markings and accessories. Complete silhouettes, real transparency and generous square-cell margins. Keep the live 3D world as its own model pipeline; do not substitute these identity portraits for scored learning pictures."
     },
     "map-landmark": {
-      "instruction": "Use the canonical watercolour-and-coloured-pencil medium for a single map destination landmark, matching the painted character portraits in finish and detail. Keep the silhouette compact and recognizable at 40–50 pixels, with broad simple forms, organic sepia contours, gentle washes and restrained pencil shading. Genuine transparency, generous square padding and complete edges. No miniature realistic scenery or material microdetail. Actual map buttons, names and click behaviour remain code."
+      "instruction": "Use the canonical watercolour-and-coloured-pencil medium for a single map destination landmark, matching the painted character portraits in finish and detail. Keep the silhouette compact and recognizable at 40\u201350 pixels, with broad simple forms, organic sepia contours, gentle washes and restrained pencil shading. Genuine transparency, generous square padding and complete edges. No miniature realistic scenery or material microdetail. Actual map buttons, names and click behaviour remain code."
     }
   },
   "prompts": [
@@ -90,7 +90,7 @@
       "references": [
         {
           "path": "assets/waldatelier/forest-objects.webp",
-          "sha256": "540899ac15def0b9193c25494fb5c799ce942c76e016963598fc85df28186cde",
+          "sha256": "aeb5cdd3aef93cc3f55e63f2323770b83b5eea90e190f0948d243828fc5aab83",
           "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
           "usage": "composition-only"
         }
@@ -525,6 +525,21 @@
           "usage": "composition-only"
         }
       ]
+    },
+    {
+      "id": "review-nature",
+      "role": "learning",
+      "path": "design/illustrations/prompts/review-nature.txt",
+      "brief": "design/illustrations/briefs/review-nature.txt",
+      "transparent": true,
+      "references": [
+        {
+          "path": "design/illustrations/references/followup-2026-11-17/squirrel-sit-before.png",
+          "sha256": "cd5980b53238c03128e4bc3b1a5202d9c7bb0d2f879ea6fa1e250d419b0b786f",
+          "purpose": "existing learning squirrel species, colours and seated pose only; add a clearly visible nut held between its two forepaws",
+          "usage": "composition-only"
+        }
+      ]
     }
   ],
   "preparationManifests": [
@@ -543,7 +558,8 @@
     "design/artwork/friend-portraits.json",
     "design/artwork/den-marker.json",
     "design/artwork/exit-symbol.json",
-    "design/illustrations/puzzle-vocabulary.json"
+    "design/illustrations/puzzle-vocabulary.json",
+    "design/illustrations/review-nature.json"
   ],
   "history": "legacy/design-history/2026-11-16-before-style-contract",
   "preview": {

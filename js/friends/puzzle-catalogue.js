@@ -10,7 +10,6 @@
     'friends-beaver':['MA.2.A.1.a','Formenmengen in einer Matrix erkennen','Zwei gleiche und eine andere Form je Reihe; das Muster der ersten zwei Reihen ergänzen'],
     'friends-mouse':['D.2.A.1.b','Wörter mit Bildern verbinden','25 vertraute Nomen; eingeführte Buchstaben'],
     'friends-hedgehog':['NMG.2.4.a; D.2.B.1.b','Tiermerkmale erkennen und Fragen lesen','25 kurze Fragen zu sichtbaren Tiermerkmalen; zwei Bildantworten'],
-    'friends-fish':['MA.1.A.2.a','Fische zählen','0–20; Vierer- und Fünferstruktur'],
     'friends-deer':['NMG.2.1.a; D.2.B.1.b','Lebensräume und Nahrung zuordnen','25 kurze Naturfragen; drei Bildantworten'],
     'friends-kingfisher':['MA.1.A.2.a','Dinge am Bach zählen','2–20; sechs verschiedene Gegenstände'],
     'friends-frog':['D.2.A.1.b','Tierwörter lesen','25 Tiernamen; ausschliesslich Tierbilder'],
@@ -41,7 +40,7 @@
   function add(id,key,label,q){(pools[id]||=[]).push({id:id+'/'+key,label,question:clone(q)});}
   const numeric=(n,max=20)=>[n,Math.max(0,n-1),Math.min(max,n+1)].filter((v,i,a)=>a.indexOf(v)===i).concat(n===0?[2]:n===max?[max-2]:[]);
   const numberQ=(count,item,columns=5)=>({kind:'nuts',prompt:'Wie viele '+(item==='fish'?'Fische':item==='forest-nut'?'Nüsse':'Dinge')+' sind hier?',count,item,columns,answer:count,choices:numeric(count)});
-  for(const [id,item]of [['friends-squirrel','forest-nut'],['friends-fish','fish']]){
+  for(const [id,item]of [['friends-squirrel','forest-nut']]){
     for(let n=0;n<=20;n++)add(id,'count-'+n,'Menge '+n,numberQ(n,item));
     for(const n of [4,8,12,16])add(id,'four-'+n,'Menge '+n+' in Viererreihen',numberQ(n,item,4));
   }
@@ -90,7 +89,7 @@
   }
   const extra={
     deer:[['Wo sammelt der Schmetterling Nektar?','flower','water','egg'],['Was knabbert der Biber ab?','tree','fish','egg'],['Was pickt der Vogel aus der Erde?','vocab-worm','boat','moon'],['Was frisst die Schnecke?','leaf','fish','egg'],['Wo sucht der Igel kleine Tiere?','leaf','cloud','moon'],['Was stellt die Biene aus Nektar her?','honey','cheese','egg'],['Wo kann der Frosch schwimmen?','water','cloud','tree'],['Was knabbert der Hase auf der Wiese?','leaf','moon','nest'],['Was hängt an einer Weinrebe?','grapes','egg','fish']],
-    badger:[['Was braucht eine Pflanze zum Wachsen?','sun','moon','cheese'],['Was wird aus einer Apfelblüte?','apple','egg','snowman'],['Was wächst aus einem Samen in der Erde?','plant','fish','moon'],['Was sammelt das Eichhörnchen im Herbst?','forest-nut','egg','snowman'],['Was sehen wir bei klarem Himmel in der Nacht?','moon','sun','sunflower'],['Was wächst auf der Erdbeerpflanze?','strawberry','carrot','egg'],['Womit giessen wir die Pflanzen?','bucket','fork','hat'],['Was schützt einen Samen in der Erde vor dem Austrocknen?','water','cheese','snowman'],['Was ernten wir vom Birnbaum?','pear','fish','egg']]
+    badger:[['Was braucht eine Pflanze zum Wachsen?','sun','moon','cheese'],['Was wird aus einer Apfelblüte?','apple','egg','snowman'],['Was wächst aus einem Samen in der Erde?','plant','fish','moon'],['Was sammelt das Eichhörnchen im Herbst?','forest-nut','egg','snowman'],['Was sehen wir bei klarem Himmel in der Nacht?','moon','sun','sunflower'],['Was wächst auf der Erdbeerpflanze?','strawberry','carrot','egg'],['Womit giessen wir die Pflanzen?','bucket','fork','hat'],['Was wächst aus einer Eichel?','tree','cloud','snowman'],['Was ernten wir vom Birnbaum?','pear','fish','egg']]
   };
   const forestRiddles=[
     ['Wer hat Stacheln?','hedgehog','mouse-sit'],
@@ -103,7 +102,7 @@
     ['Wer hat viele Beine?','caterpillar','snail'],
     ['Wer hat schwarze Punkte?','ladybird','bee'],
     ['Wer hat lange Ohren?','hare-sit','hedgehog'],
-    ['Wer hält eine Nuss?','squirrel-sit','frog-sit'],
+    ['Wer hält eine Nuss?','squirrel-nut','frog-sit'],
     ['Wer hat Streifen im Gesicht?','badger-walk','forest-fox'],
     ['Wer hat einen breiten Schwanz?','beaver','hare-sit'],
     ['Wer ist grün?','frog-sit','mouse-sit'],
@@ -124,6 +123,8 @@
     const list=C.pools[host].map(t=>[t.target,t.answer,...t.choices.filter(c=>c!==t.answer)]).concat(extra[host]);
     list.forEach(([text,answer,...wrong],i)=>add('friends-'+host,'riddle-'+i,text,{kind:'reading',prompt:'Welches Bild passt zur Frage?',text,answer,choices:[answer,...wrong]}));
   }
+  // Habitat questions need a visible place to swim, rather than a water droplet.
+  for(const it of pools['friends-deer']){it.question.choices=it.question.choices.map(pic=>pic==='water'?'habitat-pond':pic);if(it.question.answer==='water')it.question.answer='habitat-pond';}
   const animals=C.pools.frog.map(t=>t.answer==='nest'?['Ente','duck-swim']:t.answer==='egg'?['Fuchs','forest-fox']:['mushroom','forest-mushroom'].includes(t.answer)?['Eichhörnchen','squirrel-sit']:[t.target,t.answer]).concat([['Zebra','zebra'],['Löwe','lion'],['Pinguin','penguin'],['Kamel','camel'],['Tiger','tiger'],['Elefant','elephant'],['Giraffe','giraffe'],['Dachs','badger']]);
   animals.forEach(([text,answer],i)=>add('friends-frog','animal-'+i,text,{kind:'reading',prompt:'Welches Tier passt zum Wort?',text,answer,choices:[answer,animals[(i+4)%animals.length][1],animals[(i+9)%animals.length][1]]}));
   for(let n=6;n<=15;n++)for(let b=2;b<=4;b++)add('count',n+'-'+b,n+' Käfer, '+b+' Bienen',{kind:'count',prompt:'Wie viele rote Marienkäfer sind hier?',count:n,answer:n,choices:numeric(n),bugs:[...Array(n).fill('ladybird'),...Array(b).fill('bee'),...Array(2).fill('snail')]});

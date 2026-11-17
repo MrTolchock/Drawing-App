@@ -12,7 +12,7 @@ test('mail begins in the den and keeps a complete shuffled friend cycle across r
   assert.equal(state.completeMail(host==='mouse'?'owl':'mouse'),false);assert.ok(state.completeMail(host));assert.equal(state.completeMail(host),false);assert.equal(state.mail().completed,n+1);
   assert.deepEqual(create({storage,content}).mail(),state.mail());assert.ok(state.openLetter());
  }
- assert.equal(new Set(seen.slice(0,12)).size,12);assert.equal(new Set(seen.slice(12)).size,10);assert.ok(seen.every((host,i)=>!i||host!==seen[i-1]));
+ assert.equal(new Set(seen.slice(0,11)).size,11);assert.equal(new Set(seen.slice(11)).size,11);assert.ok(seen.every((host,i)=>host!=='fish'&&(!i||host!==seen[i-1])));
 });
 test('older invitations retain their recipient and gain a durable mixed order for future letters',()=>{
  const {state,storage}=fixture(),old=state.get();old.mail={phase:'to-mailman',host:'owl',index:7,completed:7};storage.setItem(state.key,JSON.stringify(old));
@@ -45,5 +45,5 @@ test('new sessions vary their first friend and never restart with the current re
  const starts=new Set();for(let seed=1;seed<=40;seed++){
   let n=seed;const random=()=>((n=Math.imul(1664525,n)+1013904223>>>0)/4294967296),map=new Map(),storage={getItem:k=>map.get(k)??null,setItem:(k,v)=>map.set(k,v)};
   const s=create({storage,content,random});for(let j=0;j<5;j++){const before=s.mail().host;assert.ok(s.startLetterSession(3));assert.notEqual(s.mail().host,before);starts.add(s.mail().host);s.openLetter();const invitation=s.mail();assert.deepEqual(create({storage,content}).mail(),invitation);}
- }assert.equal(starts.size,12);
+ }assert.equal(starts.size,11);
 });

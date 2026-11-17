@@ -49,7 +49,7 @@
 | `friends-badger/riddle-20` | Was sehen wir bei klarem Himmel in der Nacht? — Was sehen wir bei klarem Himmel in der Nacht? | "moon" |
 | `friends-badger/riddle-21` | Was wächst auf der Erdbeerpflanze? — Was wächst auf der Erdbeerpflanze? | "strawberry" |
 | `friends-badger/riddle-22` | Womit giessen wir die Pflanzen? — Womit giessen wir die Pflanzen? | "bucket" |
-| `friends-badger/riddle-23` | Was schützt einen Samen in der Erde vor dem Austrocknen? — Was schützt einen Samen in der Erde vor dem Austrocknen? | "water" |
+| `friends-badger/riddle-23` | Was wächst aus einer Eichel? — Was wächst aus einer Eichel? | "tree" |
 | `friends-badger/riddle-24` | Was ernten wir vom Birnbaum? — Was ernten wir vom Birnbaum? | "pear" |
 
 ## Exact definitions
@@ -405,15 +405,15 @@ These definitions are the same finite data used by the game and review previews.
   },
   {
     "id": "friends-badger/riddle-23",
-    "label": "Was schützt einen Samen in der Erde vor dem Austrocknen?",
+    "label": "Was wächst aus einer Eichel?",
     "question": {
       "kind": "reading",
       "prompt": "Welches Bild passt zur Frage?",
-      "text": "Was schützt einen Samen in der Erde vor dem Austrocknen?",
-      "answer": "water",
+      "text": "Was wächst aus einer Eichel?",
+      "answer": "tree",
       "choices": [
-        "water",
-        "cheese",
+        "tree",
+        "cloud",
         "snowman"
       ]
     }

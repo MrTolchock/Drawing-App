@@ -36,7 +36,7 @@
 | `friends-hedgehog/riddle-7` | Wer hat viele Beine? — Wer hat viele Beine? | "caterpillar" |
 | `friends-hedgehog/riddle-8` | Wer hat schwarze Punkte? — Wer hat schwarze Punkte? | "ladybird" |
 | `friends-hedgehog/riddle-9` | Wer hat lange Ohren? — Wer hat lange Ohren? | "hare-sit" |
-| `friends-hedgehog/riddle-10` | Wer hält eine Nuss? — Wer hält eine Nuss? | "squirrel-sit" |
+| `friends-hedgehog/riddle-10` | Wer hält eine Nuss? — Wer hält eine Nuss? | "squirrel-nut" |
 | `friends-hedgehog/riddle-11` | Wer hat Streifen im Gesicht? — Wer hat Streifen im Gesicht? | "badger-walk" |
 | `friends-hedgehog/riddle-12` | Wer hat einen breiten Schwanz? — Wer hat einen breiten Schwanz? | "beaver" |
 | `friends-hedgehog/riddle-13` | Wer ist grün? — Wer ist grün? | "frog-sit" |
@@ -205,9 +205,9 @@ These definitions are the same finite data used by the game and review previews.
       "kind": "reading",
       "prompt": "Welches Tier passt?",
       "text": "Wer hält eine Nuss?",
-      "answer": "squirrel-sit",
+      "answer": "squirrel-nut",
       "choices": [
-        "squirrel-sit",
+        "squirrel-nut",
         "frog-sit"
       ]
     }

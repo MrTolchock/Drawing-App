@@ -8,10 +8,10 @@
   const labels={...Object.fromEntries(Object.entries(R.wordArt).map(([word,pic])=>[pic,word])),...Object.fromEntries(R.words.map(([word,pic])=>[pic,word.replaceAll('-','')])),
     'mouse-sit':'Maus sitzt','mouse-run':'Maus rennt','mouse-sleep':'Maus schläft','bird-fly':'Vogel fliegt','bird-sit':'Vogel sitzt','fish-swim':'Fisch schwimmt','hare-run':'Hase rennt','hare-sit':'Hase sitzt','fox-sleep':'Fuchs schläft','fox-run':'Fuchs rennt','cat-sleep':'Katze schläft','cat-sit':'Katze sitzt','dog-run':'Hund rennt','dog-sleep':'Hund schläft','duck-swim':'Ente schwimmt','duck-fly':'Ente fliegt','forest-stone':'Stein','forest-apple':'Apfel','forest-feather':'Feder','forest-flower':'Blume','forest-nut':'Nuss','forest-leaf':'Blatt','forest-berry':'Beere'};
   Object.assign(labels,{'squirrel-sit':'Eichhörnchen sitzt','squirrel-run':'Eichhörnchen rennt','hedgehog-walk':'Igel läuft','hedgehog-sleep':'Igel schläft','badger-walk':'Dachs läuft','badger-sleep':'Dachs schläft','roe-stand':'Reh steht','roe-run':'Reh rennt','frog-sit':'Frosch sitzt','frog-jump':'Frosch springt','forest-fox':'Fuchs','forest-woodpecker':'Buntspecht','forest-bat':'Fledermaus','forest-owl':'Waldkauz','forest-robin':'Rotkehlchen','forest-lynx':'Luchs','forest-marten':'Baummarder'});
+  Object.assign(labels,{'empty-basket':'Leerer Korb','habitat-pond':'Teich','squirrel-nut':'Eichhörnchen mit Nuss'});
   const pictureName=id=>id.startsWith('scene:')?id.slice(6).split('+').map(pictureName).join(' und '):id.startsWith('puzzle-flower-')?id.slice(13)+'e Blume':labels[id]||labels[aliases[id]]||id;
   function picture(id,label='') {
     if(id?.startsWith('scene:'))return h('span',{class:'puzzle-picture puzzle-picture-composite',role:'img','aria-label':label||'Bild mit zwei Motiven'},id.slice(6).split('+').map(pic=>picture(pic)));
-    if(id==='empty-basket')return h('span',{class:'puzzle-picture',role:'img','aria-label':'Leerer Korb',html:'<svg viewBox="0 0 180 130"><path d="M25 43Q90 0 155 43L139 112Q90 133 41 112Z" fill="#dfbf87" stroke="#987449" stroke-width="3"/><ellipse cx="90" cy="43" rx="65" ry="21" fill="#f4e7cb" stroke="#987449" stroke-width="3"/><path d="M41 72Q90 91 147 72M44 91Q90 111 142 91M60 64 67 119M89 65V124M120 63 113 120" fill="none" stroke="#b0905c" stroke-width="2"/></svg>'});
     const value=aliases[id]||id;
     if(!FK.visual.has(value)&&FK.visual.supports(value))return h('span',{class:'puzzle-picture',text:value,role:label?'img':null,'aria-label':label||null});
     return h('span',{class:'puzzle-picture'},FK.visual.art(value,'',label));
@@ -70,7 +70,7 @@
         node.classList.toggle('marked',marks.has(i));node.setAttribute('aria-pressed',String(marks.has(i)));work().marks=[...marks];persist();
       },'puzzle-counter'+(marks.has(i)?' marked':''),picture(id));node.setAttribute('aria-pressed',String(marks.has(i)));field.append(node);
     });
-    if(!items.length){field.classList.add('puzzle-empty');field.append(h('span',{class:'puzzle-empty-basket','aria-hidden':'true',html:'<svg viewBox="0 0 180 130"><path d="M25 43Q90 0 155 43L139 112Q90 133 41 112Z" fill="#dfbf87" stroke="#987449" stroke-width="3"/><ellipse cx="90" cy="43" rx="65" ry="21" fill="#f4e7cb" stroke="#987449" stroke-width="3"/><path d="M41 72Q90 91 147 72M44 91Q90 111 142 91M60 64 67 119M89 65V124M120 63 113 120" fill="none" stroke="#b0905c" stroke-width="2"/></svg>'}));}
+    if(!items.length){field.classList.add('puzzle-empty');field.append(h('span',{class:'puzzle-empty-basket'},picture('empty-basket','Leerer Korb')));}
     scene.append(field);numeric();
   }
   function renderReading(q) {

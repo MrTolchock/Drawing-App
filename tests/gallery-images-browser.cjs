@@ -5,8 +5,8 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',out=process.en
 (async()=>{const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||'/usr/bin/chromium'});try{
  const context=await browser.newContext({viewport:{width:1080,height:810},serviceWorkers:'block',acceptDownloads:true}),page=await context.newPage(),errors=[],report=[];
  await context.addInitScript(()=>localStorage.setItem('gallery-storage-fixture','retained'));page.on('pageerror',e=>errors.push(e.message));page.setDefaultTimeout(30000);
- await page.goto(base+'/assets/waldatelier/');await page.waitForFunction(()=>document.querySelector('#count').textContent.includes('235'));await page.getByLabel('Transparenzraster zeigen',{exact:true}).check();
- for(const sheet of ['forest-actions','forest-objects','puzzle-flowers']){
+ await page.goto(base+'/assets/waldatelier/');await page.waitForFunction(()=>document.querySelector('#count').textContent.includes('238'));await page.getByLabel('Transparenzraster zeigen',{exact:true}).check();
+ for(const sheet of ['forest-actions','forest-objects','puzzle-flowers','review-nature']){
   const manifest=require('../design/illustrations/'+sheet+'.json');await page.getByLabel('Bildbogen',{exact:true}).selectOption(sheet);assert.equal(await page.locator('.image-card').count(),manifest.subjects.length);
   await page.evaluate(async file=>{const image=new Image();image.src=file;await image.decode();},sheet+'.webp');await page.screenshot({path:out+'/'+sheet+'-1080.png',fullPage:true});
   for(let index=0;index<manifest.subjects.length;index++){
@@ -19,5 +19,5 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',out=process.en
   }
   await page.getByLabel('Bildname oder ID',{exact:true}).fill('');await page.setViewportSize({width:390,height:844});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+2),false);await page.screenshot({path:out+'/'+sheet+'-390.png'});await page.setViewportSize({width:1080,height:810});
  }
- assert.equal(report.length,38);assert.deepEqual(await page.evaluate(()=>Object.fromEntries(Object.entries(localStorage))),{'gallery-storage-fixture':'retained'});assert.deepEqual(errors,[]);fs.writeFileSync(out+'/report.json',JSON.stringify({images:report,storageUnchanged:true,errors},null,2)+'\n');await context.close();console.log('PASS: all 38 gallery images have correct, matching transparent PNG exports; all three sheets fit desktop/phone and preserve storage.');
+ assert.equal(report.length,41);assert.deepEqual(await page.evaluate(()=>Object.fromEntries(Object.entries(localStorage))),{'gallery-storage-fixture':'retained'});assert.deepEqual(errors,[]);fs.writeFileSync(out+'/report.json',JSON.stringify({images:report,storageUnchanged:true,errors},null,2)+'\n');await context.close();console.log('PASS: all 41 gallery images have correct, matching transparent PNG exports; all four sheets fit desktop/phone and preserve storage.');
 }finally{await browser.close();}})().catch(error=>{console.error(error);process.exitCode=1;});

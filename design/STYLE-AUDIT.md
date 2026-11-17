@@ -87,3 +87,13 @@ The settings introduction now says «Danach geht der Fuchs in seinen Bau schlafe
 [Actual phone/tablet screenshots](evidence/2026-11-17-settings/README.md) document the corrected sentence and combined section. Computed-style checks confirm identical heading/prose/button typography and text colours across sections, horizontal fit and complete touch targets. The existing local-log suite passed developer-mode on/off and reload, JSON export and isolated deletion; the navigation suite passed settings/review/gallery exits plus phone and keyboard use. Regenerating the catalogue leaves every puzzle implementation fingerprint byte-identical.
 
 All 134 model tests and the design/offline, canonical-style, generator-handoff, generated-catalogue and whitespace checks passed before publication.
+
+## New puzzle review follow-up — 17 November 2026, 9.3.91
+
+The [second feedback pass](../docs/PUZZLE-FEEDBACK-2026-11-17-FOLLOWUP.md) respects the user's preferred original counting nuts by restoring their exact original atlas bytes. The reported zero-task basket was a separate geometric SVG: both copies are replaced with one canonical painted empty-basket subject, also used in zero numeral quantities. The new 2 × 2 transparent atlas includes a recognizable pond for swimming habitats and a learning squirrel unmistakably holding one nut. Actual generation request, canonical reference pixels, raw source/hash and preparation are retained. Other existing picture cells and the shared UI cast are preserved.
+
+The Dachs replacement asks «Was wächst aus einer Eichel?» with a unique pictured tree answer. The redundant Fische zählen pool is removed: 31 active puzzles and 958 iterations remain. Future invitations omit Fisch and unfinished old Fisch invitations are retargeted without losing letter index, phase, session progress or world position. Historical saves and editorial records remain readable. Biber's already implemented two-plus-one matrices are retained after checking the repeated note.
+
+[Phone/tablet evidence](evidence/2026-11-17-review-followup/README.md) confirms the real rendering. Browser checks passed for all 130 affected iterations, native input for every active puzzle, the complete letter/home/sleep/offline flow, all 31 puzzle layouts at both widths and 41 PNG exports. The unchanged Biber definitions retain their existing two-plus-one tests; regenerated shared presentation fingerprints follow the normal review requirement.
+
+All 137 model tests and the final style, image-library, generator-handoff, catalogue, design/offline and whitespace checks passed. The restored counting-nut atlas is byte-identical to `44130c3`.

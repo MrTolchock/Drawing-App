@@ -35,3 +35,17 @@ test('inconsistent session budgets are rejected instead of silently removing the
 test('no timer runtime, stylesheet or initialization remains in the active app',()=>{
  for(const p of ['index.html','sw.js','js/app.js','js/friends/settings.js'])assert.doesNotMatch(fs.readFileSync(p,'utf8'),/timerUI|playTimer|css\/timer|js\/(core|ui)\/timer/);
 });
+
+test('retired Fisch is excluded from new invitations even without any published puzzle approvals',()=>{
+ const {storage}=fixture(),s=create({storage,content,eligible:()=>false});assert.ok(s.startLetterSession(30));
+ for(let n=0;n<30;n++){assert.notEqual(s.mail().host,'fish');assert.equal(s.mail().remaining.includes('fish'),false);assert.ok(s.openLetter());assert.ok(s.completeMail(s.mail().host));}
+ assert.equal(s.mail().phase,'return-home');
+});
+test('saved invitations to retired Fisch are retargeted without losing letter progress or the saved world',()=>{
+ for(const phase of ['den-letter','to-friend','to-mailman','return-home','sleeping','finished']){
+  const {map,state:s}=fixture(),raw=s.get();raw.mail.host='fish';raw.mail.phase=phase;raw.mail.index=7;raw.mail.completed=2;raw.mail.remaining=['fish','deer','squirrel'];raw.mail.session.completed=['return-home','sleeping','finished'].includes(phase)?raw.mail.session.limit:phase==='den-letter'?0:1;raw.world={x:11,z:24};map.set(s.key,JSON.stringify(raw));
+  const loaded=fixture(map),m=loaded.state.mail();assert.equal(loaded.state.blocked,false);assert.equal(m.phase,phase);assert.equal(m.index,7);assert.equal(m.completed,2);assert.deepEqual(m.session,raw.mail.session);assert.deepEqual(loaded.state.get().world,raw.world);assert.equal(m.remaining.includes('fish'),false);
+  if(['den-letter','to-friend'].includes(phase))assert.notEqual(m.host,'fish');else assert.equal(m.host,'fish','completed/historical invitations keep their identity');
+  assert.ok(loaded.state.setting('ambience',false));assert.equal(fixture(loaded.map).state.mail().host,m.host,'replacement is saved durably with the next normal transaction');
+ }
+});

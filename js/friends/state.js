@@ -12,20 +12,30 @@
     const sessionId=uid();
     // An invitation stays stable; future friends come from a saved shuffled bag.
     const mailHosts=['squirrel','bird','owl','beaver','mouse','hedgehog','fish','deer','kingfisher','frog','badger','ibex'];
+    // Fisch remains a world neighbour and a valid historical save identity; its duplicate counting puzzle is retired.
+    const activeMailHosts=mailHosts.filter(id=>id!=='fish');
     // A letter goes only to a friend whose puzzles are ready (`eligible`, from the game: signed off in the review); if none is, as before.
     const ok=id=>{try{return !eligible||!!eligible(id);}catch{return true;}};
     const letterLimit=n=>Number.isInteger(n)&&n>=1&&n<=50;
     const session=(limit=3)=>({id:uid(),limit,completed:0});
-    const firstMail=()=>{const all=shuffled(mailHosts),k=Math.max(0,all.findIndex(ok)),[host]=all.splice(k,1);return {phase:'den-letter',host,remaining:all,index:0,completed:0,session:session()};};
-    const prepare=s=>{s.settings.letterLimit=letterLimit(s.settings.letterLimit)?s.settings.letterLimit:3;s.mail=s.mail||firstMail();if(!s.mail.remaining)s.mail.remaining=shuffled(mailHosts.filter(id=>id!==s.mail.host));if(!s.mail.session){s.mail.session=session(s.settings.letterLimit);if(s.mail.phase==='to-mailman')s.mail.session.completed=1;if(s.mail.session.completed>=s.mail.session.limit)s.mail.phase='return-home';}s.unlocks.leaf=true;s.unlocks.pencils=true;return s;};
+    const firstMail=()=>{const all=shuffled(activeMailHosts),k=Math.max(0,all.findIndex(ok)),[host]=all.splice(k,1);return {phase:'den-letter',host,remaining:all,index:0,completed:0,session:session()};};
+    const prepare=s=>{
+      s.settings.letterLimit=letterLimit(s.settings.letterLimit)?s.settings.letterLimit:3;s.mail=s.mail||firstMail();
+      const m=s.mail;m.remaining=(m.remaining||shuffled(activeMailHosts.filter(id=>id!==m.host))).filter(id=>activeMailHosts.includes(id));
+      if(!m.session){m.session=session(s.settings.letterLimit);if(m.phase==='to-mailman')m.session.completed=1;if(m.session.completed>=m.session.limit)m.phase='return-home';}
+      // Replace an unfinished invitation to the retired puzzle, keeping the same letter, phase and completed count.
+      if(['den-letter','to-friend'].includes(m.phase)&&!activeMailHosts.includes(m.host)){const index=m.index;nextHost(s);m.index=index;}
+      s.unlocks.leaf=true;s.unlocks.pencils=true;return s;
+    };
     function nextHost(s){
       const m=s.mail,next=()=>m.remaining.findIndex(id=>id!==m.host&&ok(id));
-      if(!m.remaining.length)m.remaining=shuffled(mailHosts);
+      m.remaining=m.remaining.filter(id=>activeMailHosts.includes(id));
+      if(!m.remaining.length)m.remaining=shuffled(activeMailHosts);
       let k=next();
       // nobody ready left in this bag: the friends already visited join it again (in a new order)
-      if(k<0){m.remaining=[...m.remaining,...shuffled(mailHosts.filter(id=>!m.remaining.includes(id)))];k=next();}
+      if(k<0){m.remaining=[...m.remaining,...shuffled(activeMailHosts.filter(id=>!m.remaining.includes(id)))];k=next();}
       if(k<0)k=m.remaining.findIndex(id=>id!==m.host);
-      if(k<0){m.remaining=shuffled(mailHosts.filter(id=>id!==m.host));k=0;}
+      if(k<0){m.remaining=shuffled(activeMailHosts.filter(id=>id!==m.host));k=0;}
       m.host=m.remaining.splice(k,1)[0];m.index++;
     }
     function finishMail(s,host){if(s.mail.phase!=='to-friend'||s.mail.host!==host||s.mail.session.completed>=s.mail.session.limit)return false;s.mail.completed++;s.mail.session.completed++;s.mail.phase=s.mail.session.completed>=s.mail.session.limit?'return-home':'to-mailman';return true;}

@@ -84,7 +84,7 @@
       "brief": "design/illustrations/briefs/forest-objects.txt",
       "requiresBriefCustomization": false,
       "request": {
-        "prompt": "WALDPOST CANONICAL ILLUSTRATION STYLE — waldpost-watercolour-pencil-v1\n\nUse the supplied canonical animals.png and objects.png reference images as the authority for drawing technique. They show the predominant style of the current Waldpost gallery. Match their actual pixels, not an imagined style suggested by a filename.\n\nDraw warm children's picture-book watercolour finished with visible coloured-pencil strokes. Use light, gently uneven washes, organic sepia contours, delicate hatching, softly irregular edges and modest drawn shading. Surfaces look painted and pencilled, with paper grain within the illustration. Keep the warmth of cream, honey brown, restrained sage and blue, while preserving every exact colour required by a task. Subjects remain friendly, recognizable and anatomically believable.\n\nDo not turn the drawing into a 3D render, plush toy, clay or felt craft, photograph, glossy object, embossed surface or studio-lit miniature. Avoid deep ambient-occlusion shadows, inflated forms and realistic material microtexture. Do not mix in another illustration technique or use historical artwork as a style reference.\n\nThe role instructions below set the necessary detail and composition within this one style. Learning pictures retain fine drawn contours; small navigation symbols use the approved simpler, broader shapes and flat fills in the same palette. Keep the existing rendered game-character identities separate from image-generated learning subjects. Exact geometry and handwriting remain authored paths.\n\nPreserve subject identity, counted quantities, exact answer colours and action differences. Use real alpha for isolated pictures and stationery, and an opaque canvas only when the selected role requires a scene or branding image. No accidental background, halo, visible grid, labels or extra objects.\n\nROLE: learning\nMatch the canonical watercolour and coloured-pencil technique closely: fine organic contours, uneven washes and gentle drawn volume. Keep accurate species, action contrasts, one counted object per item and exact answer colours. Use transparent square cells, generous gutters and complete silhouettes.\n\nATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:\n1. design/illustrations/references/watercolour-pencil-v1/animals.png — canonical-style: canonical drawing technique for animals; fixed majority-style pixels\n2. design/illustrations/references/watercolour-pencil-v1/objects.png — canonical-style: canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels\n3. assets/waldatelier/forest-objects.webp — composition-only: current subject identities, action poses and fixed cell order only; canonical references define drawing technique\n\nSUBJECT AND LAYOUT BRIEF:\nSquare canvas, exactly four columns by four rows of equal square cells. Preserve this exact row-major order. Counted nut, apple, blueberry, leaf, feather, fir, mushroom and flower each depict ONE item.\n\nRow 1: one whole brown hazelnut in its shell with a pale base and no acorn cap; one red apple with one leaf; one dark blue blueberry with star crown; one sage oak leaf with a short stalk.\nRow 2: one brown/cream feather; one green fir with short trunk; one brown-capped porcini with cream stalk; one pink five-petal flower with yellow centre, short stem and two leaves.\nRow 3: amber honey jar with tied cream cloth and one wooden dipper; one pink wild rose on a short leafy stem; one grey stone with a small moss patch; one short forked branch with a few leaves.\nRow 4: one handled glass/wood lantern with two tiny yellow fireflies inside; exactly three wooden shapes (circle behind, triangle left, square right); one brown post satchel with one cream envelope/red seal peeking out; one woven basket with one red apple and folded cream/sage cloth.\n\nExactly sixteen cells, no extra items or scene, at least 18 percent empty transparent padding per side.\n\nFixed row-major cell IDs (metadata only; do not draw these labels): forest-nut, forest-apple, forest-berry, forest-leaf, forest-feather, forest-fir, forest-mushroom, forest-flower, forest-honey, forest-rose, forest-stone, forest-branch, forest-lantern, forest-shapes, forest-post, forest-basket.\n\nSTYLE PRIORITY: The brief changes subjects and layout only. Keep waldpost-watercolour-pencil-v1 and the supplied canonical reference technique throughout; do not import the style of a composition-only reference.\n",
+        "prompt": "WALDPOST CANONICAL ILLUSTRATION STYLE — waldpost-watercolour-pencil-v1\n\nUse the supplied canonical animals.png and objects.png reference images as the authority for drawing technique. They show the predominant style of the current Waldpost gallery. Match their actual pixels, not an imagined style suggested by a filename.\n\nDraw warm children's picture-book watercolour finished with visible coloured-pencil strokes. Use light, gently uneven washes, organic sepia contours, delicate hatching, softly irregular edges and modest drawn shading. Surfaces look painted and pencilled, with paper grain within the illustration. Keep the warmth of cream, honey brown, restrained sage and blue, while preserving every exact colour required by a task. Subjects remain friendly, recognizable and anatomically believable.\n\nDo not turn the drawing into a 3D render, plush toy, clay or felt craft, photograph, glossy object, embossed surface or studio-lit miniature. Avoid deep ambient-occlusion shadows, inflated forms and realistic material microtexture. Do not mix in another illustration technique or use historical artwork as a style reference.\n\nThe role instructions below set the necessary detail and composition within this one style. Learning pictures retain fine drawn contours; small navigation symbols use the approved simpler, broader shapes and flat fills in the same palette. Keep the existing rendered game-character identities separate from image-generated learning subjects. Exact geometry and handwriting remain authored paths.\n\nPreserve subject identity, counted quantities, exact answer colours and action differences. Use real alpha for isolated pictures and stationery, and an opaque canvas only when the selected role requires a scene or branding image. No accidental background, halo, visible grid, labels or extra objects.\n\nROLE: learning\nMatch the canonical watercolour and coloured-pencil technique closely: fine organic contours, uneven washes and gentle drawn volume. Keep accurate species, action contrasts, one counted object per item and exact answer colours. Use transparent square cells, generous gutters and complete silhouettes.\n\nATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:\n1. design/illustrations/references/watercolour-pencil-v1/animals.png — canonical-style: canonical drawing technique for animals; fixed majority-style pixels\n2. design/illustrations/references/watercolour-pencil-v1/objects.png — canonical-style: canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels\n3. assets/waldatelier/forest-objects.webp — composition-only: current subject identities, action poses and fixed cell order only; canonical references define drawing technique\n\nSUBJECT AND LAYOUT BRIEF:\nSquare canvas, exactly four columns by four rows of equal square cells. Preserve this exact row-major order. Counted nut, apple, blueberry, leaf, feather, fir, mushroom and flower each depict ONE item.\n\nRow 1: one brown acorn with cap/stem; one red apple with one leaf; one dark blue blueberry with star crown; one sage oak leaf with a short stalk.\nRow 2: one brown/cream feather; one green fir with short trunk; one brown-capped porcini with cream stalk; one pink five-petal flower with yellow centre, short stem and two leaves.\nRow 3: amber honey jar with tied cream cloth and one wooden dipper; one pink wild rose on a short leafy stem; one grey stone with a small moss patch; one short forked branch with a few leaves.\nRow 4: one handled glass/wood lantern with two tiny yellow fireflies inside; exactly three wooden shapes (circle behind, triangle left, square right); one brown post satchel with one cream envelope/red seal peeking out; one woven basket with one red apple and folded cream/sage cloth.\n\nExactly sixteen cells, no extra items or scene, at least 18 percent empty transparent padding per side.\n\nFixed row-major cell IDs (metadata only; do not draw these labels): forest-nut, forest-apple, forest-berry, forest-leaf, forest-feather, forest-fir, forest-mushroom, forest-flower, forest-honey, forest-rose, forest-stone, forest-branch, forest-lantern, forest-shapes, forest-post, forest-basket.\n\nSTYLE PRIORITY: The brief changes subjects and layout only. Keep waldpost-watercolour-pencil-v1 and the supplied canonical reference technique throughout; do not import the style of a composition-only reference.\n",
         "referenced_image_paths": [
           "design/illustrations/references/watercolour-pencil-v1/animals.png",
           "design/illustrations/references/watercolour-pencil-v1/objects.png",
@@ -107,7 +107,7 @@
         },
         {
           "path": "assets/waldatelier/forest-objects.webp",
-          "sha256": "540899ac15def0b9193c25494fb5c799ce942c76e016963598fc85df28186cde",
+          "sha256": "aeb5cdd3aef93cc3f55e63f2323770b83b5eea90e190f0948d243828fc5aab83",
           "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
           "usage": "composition-only"
         }
@@ -1208,6 +1208,41 @@
           "path": "design/illustrations/references/feedback-2026-11-17/squirrel-before.png",
           "sha256": "1e3bb9988b20e061194293c0af7495b182a3d7265339510e1158f9355701d750",
           "purpose": "squirrel identity and seated pose only; replace its modelled finish with the canonical reference technique",
+          "usage": "composition-only"
+        }
+      ]
+    },
+    "review-nature": {
+      "role": "learning",
+      "promptFile": "design/illustrations/prompts/review-nature.txt",
+      "brief": "design/illustrations/briefs/review-nature.txt",
+      "requiresBriefCustomization": false,
+      "request": {
+        "prompt": "WALDPOST CANONICAL ILLUSTRATION STYLE — waldpost-watercolour-pencil-v1\n\nUse the supplied canonical animals.png and objects.png reference images as the authority for drawing technique. They show the predominant style of the current Waldpost gallery. Match their actual pixels, not an imagined style suggested by a filename.\n\nDraw warm children's picture-book watercolour finished with visible coloured-pencil strokes. Use light, gently uneven washes, organic sepia contours, delicate hatching, softly irregular edges and modest drawn shading. Surfaces look painted and pencilled, with paper grain within the illustration. Keep the warmth of cream, honey brown, restrained sage and blue, while preserving every exact colour required by a task. Subjects remain friendly, recognizable and anatomically believable.\n\nDo not turn the drawing into a 3D render, plush toy, clay or felt craft, photograph, glossy object, embossed surface or studio-lit miniature. Avoid deep ambient-occlusion shadows, inflated forms and realistic material microtexture. Do not mix in another illustration technique or use historical artwork as a style reference.\n\nThe role instructions below set the necessary detail and composition within this one style. Learning pictures retain fine drawn contours; small navigation symbols use the approved simpler, broader shapes and flat fills in the same palette. Keep the existing rendered game-character identities separate from image-generated learning subjects. Exact geometry and handwriting remain authored paths.\n\nPreserve subject identity, counted quantities, exact answer colours and action differences. Use real alpha for isolated pictures and stationery, and an opaque canvas only when the selected role requires a scene or branding image. No accidental background, halo, visible grid, labels or extra objects.\n\nROLE: learning\nMatch the canonical watercolour and coloured-pencil technique closely: fine organic contours, uneven washes and gentle drawn volume. Keep accurate species, action contrasts, one counted object per item and exact answer colours. Use transparent square cells, generous gutters and complete silhouettes.\n\nATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:\n1. design/illustrations/references/watercolour-pencil-v1/animals.png — canonical-style: canonical drawing technique for animals; fixed majority-style pixels\n2. design/illustrations/references/watercolour-pencil-v1/objects.png — canonical-style: canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels\n3. design/illustrations/references/followup-2026-11-17/squirrel-sit-before.png — composition-only: existing learning squirrel species, colours and seated pose only; add a clearly visible nut held between its two forepaws\n\nSUBJECT AND LAYOUT BRIEF:\nCreate exactly three independent learning pictures in a square transparent atlas of 2 columns by 2 rows with equal square cells. No grid lines or labels. All pictures use the actual canonical animal/object technique of references 1 and 2: fine organic coloured-pencil contours, light watercolour washes, drawn texture and gentle shading. Reference 3 identifies an existing learning squirrel to correct, not a new style.\nRow-major subjects:\n1. Top left — empty-basket: one unmistakably EMPTY woven wicker basket, viewed slightly from above so its open oval interior and empty base are clearly visible. Soft honey-brown pencil weave, light uneven cream/ochre washes, one arch handle behind the opening, modest drawn shading. The rim, body and handle form one complete basket. No nuts, fruit, cloth, flowers, other contents, separate props or background. It must look hand-painted beside the existing woodland objects, not a flat geometric SVG icon or rendered plastic container. This picture represents zero things in a counting task.\n2. Top right — habitat-pond: one small recognizable woodland POND or lake, viewed at a gentle oblique picture-book angle. A broad flat irregular oval surface of quiet blue water, a low natural grassy bank around it and only a few simple rushes at its edge. It is a place an animal can swim, with a clearly horizontal water surface, not a teardrop, splashing droplet, puddle icon, vase or glass. No visible fish, frog, bird or other animal that would give away another answer, no boat, bridge, house or waterfall. The tiny bank and water are one contained habitat vignette, with transparent space outside its irregular shoreline.\n3. Bottom left — squirrel-nut: one complete seated red squirrel matching the visible species and soft orange/cream markings of reference 3. Its two front paws unmistakably grasp ONE large brown acorn with a visible cap directly in front of its cream chest, away from the body outline, so the nut is clearly recognizable even at a 90px answer-card size. The squirrel looks friendly, has tufted pointed ears, a large bushy curved tail and two back feet. Keep paws and nut anatomically clear; no extra fingers, no duplicate nut, no clothes, scarf, branch or scenery. Warm handmade watercolour/pencil, never plush or sculpted. This must make the question 'Wer hält eine Nuss?' true from the visible picture alone.\n4. Bottom right — entirely transparent and empty.\nEvery complete subject stays inside its own square cell with at least 18 percent empty padding on all four sides. Keep tails, ears, handles and shoreline entirely within their cell. Real alpha transparency between and around subjects. No background paper, opaque rectangles, checkerboard pattern, drop shadows, captions, text or numbers.\n\nSTYLE PRIORITY: The brief changes subjects and layout only. Keep waldpost-watercolour-pencil-v1 and the supplied canonical reference technique throughout; do not import the style of a composition-only reference.\n",
+        "referenced_image_paths": [
+          "design/illustrations/references/watercolour-pencil-v1/animals.png",
+          "design/illustrations/references/watercolour-pencil-v1/objects.png",
+          "design/illustrations/references/followup-2026-11-17/squirrel-sit-before.png"
+        ],
+        "transparent_background": true
+      },
+      "references": [
+        {
+          "path": "design/illustrations/references/watercolour-pencil-v1/animals.png",
+          "sha256": "65867082294d157ab4ffbe33926857272625ef3c25cdb7cab81c2a4ea73d9316",
+          "purpose": "canonical drawing technique for animals; fixed majority-style pixels",
+          "usage": "canonical-style"
+        },
+        {
+          "path": "design/illustrations/references/watercolour-pencil-v1/objects.png",
+          "sha256": "0bb37d6fc82c75034eddf30da2cc57c546dd8bc70d246aeeda85b637bd87dd80",
+          "purpose": "canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels",
+          "usage": "canonical-style"
+        },
+        {
+          "path": "design/illustrations/references/followup-2026-11-17/squirrel-sit-before.png",
+          "sha256": "cd5980b53238c03128e4bc3b1a5202d9c7bb0d2f879ea6fa1e250d419b0b786f",
+          "purpose": "existing learning squirrel species, colours and seated pose only; add a clearly visible nut held between its two forepaws",
           "usage": "composition-only"
         }
       ]
@@ -2429,7 +2464,6 @@
             "🌊"
           ],
           "usedBy": [
-            "friends-deer",
             "friends-badger",
             "sequence"
           ]
@@ -2853,7 +2887,6 @@
             "friends-bird",
             "friends-mouse",
             "friends-hedgehog",
-            "friends-fish",
             "friends-deer",
             "friends-badger",
             "nature",
@@ -3251,7 +3284,6 @@
       "historicalRecord": "legacy/design-history/2026-11-16-before-style-contract/design/illustrations/forest-objects.json",
       "recordKind": "generation-record",
       "requestId": "forest-objects",
-      "generationRecord": "design/artwork/generation-records/forest-objects-feedback-2026-11-17.json",
       "file": "assets/waldatelier/forest-objects.webp",
       "columns": 4,
       "rows": 4,
@@ -3338,7 +3370,6 @@
           "usedBy": [
             "friends-mouse",
             "friends-hedgehog",
-            "friends-fish",
             "friends-deer",
             "friends-kingfisher",
             "friends-frog",
@@ -3378,7 +3409,6 @@
             "friends-beaver",
             "friends-mouse",
             "friends-hedgehog",
-            "friends-fish",
             "friends-deer",
             "friends-kingfisher",
             "friends-frog",
@@ -3503,7 +3533,6 @@
             "friends-beaver",
             "friends-mouse",
             "friends-hedgehog",
-            "friends-fish",
             "friends-deer",
             "friends-kingfisher",
             "friends-frog",
@@ -3696,7 +3725,7 @@
       "files": [
         {
           "path": "assets/waldatelier/forest-objects.webp",
-          "sha256": "540899ac15def0b9193c25494fb5c799ce942c76e016963598fc85df28186cde",
+          "sha256": "aeb5cdd3aef93cc3f55e63f2323770b83b5eea90e190f0948d243828fc5aab83",
           "width": 1280,
           "height": 1280,
           "hasAlpha": true
@@ -3706,27 +3735,23 @@
         "manifest": "design/illustrations/forest-objects.json",
         "pathsRelativeTo": "design/illustrations",
         "settings": {
-          "format": "waldpost-illustration-image",
+          "format": "waldpost-illustration-atlas",
           "version": 1,
-          "source": "sources/forest-objects-feedback-2026-11-17.png",
+          "source": "sources/forest-objects-style.png",
           "output": "../../assets/waldatelier/forest-objects.webp",
-          "width": 1280,
-          "height": 1280,
-          "fit": "contain",
-          "transparent": true,
-          "quality": 100,
-          "preservePixels": true,
           "columns": 4,
           "rows": 4,
           "cellPixels": 320,
+          "subjectPixels": 256,
+          "alphaThresholdPercent": 15,
           "provenance": {
-            "date": "2026-11-17",
-            "tool": "ChatGPT image_gen.imagegen",
-            "sourceSha256": "c380ab5d7eab4149bb4b8714ddbbc35619ff228c2b514334783e2bbfb8a32292",
-            "generationRecord": "../artwork/generation-records/forest-objects-feedback-2026-11-17.json",
+            "date": "2026-11-16",
+            "tool": "ChatGPT hosted image-generation tool",
+            "sourceSha256": "194d7f4f9364e1ca039e4ce26652d9a83e3113b9dfc890924cfedb8dfc516d0c",
+            "generationRecord": "../../legacy/design-history/2026-11-16-before-style-contract/design/illustrations/forest-objects.json",
             "styleContract": "style.json",
             "forwardPrompt": "prompts/forest-objects.txt",
-            "note": "Only the first stable subject cell was replaced from the retained generator output. All other atlas cells keep their original visible RGBA pixels. The editable source is the already packed composite; export without per-cell renormalization."
+            "note": "The archived record describes the existing asset. New generations use the current style contract and forward prompt."
           },
           "subjects": [
             {
@@ -3795,11 +3820,11 @@
             }
           ]
         },
-        "command": "node tools/illustrations/prepare-image.cjs design/illustrations/forest-objects.json"
+        "command": "node tools/illustrations/pack-atlas.cjs design/illustrations/forest-objects.json"
       },
       "source": {
-        "path": "design/illustrations/sources/forest-objects-feedback-2026-11-17.png",
-        "sha256": "c380ab5d7eab4149bb4b8714ddbbc35619ff228c2b514334783e2bbfb8a32292"
+        "path": "design/illustrations/sources/forest-objects-style.png",
+        "sha256": "194d7f4f9364e1ca039e4ce26652d9a83e3113b9dfc890924cfedb8dfc516d0c"
       }
     },
     {
@@ -5602,6 +5627,128 @@
       "source": {
         "path": "design/illustrations/sources/puzzle-vocabulary-feedback-2026-11-17.png",
         "sha256": "9538d11748e44243bd983986f71be4be842a0ec4a5571dee42a1c889695d0827"
+      }
+    },
+    {
+      "id": "review-nature",
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/review-nature.txt",
+      "historicalRecord": "design/artwork/generation-records/review-nature.json",
+      "recordKind": "generation-record",
+      "requestId": "review-nature",
+      "file": "assets/waldatelier/review-nature.webp",
+      "columns": 2,
+      "rows": 2,
+      "subjects": [
+        {
+          "id": "empty-basket",
+          "label": "Leerer Korb",
+          "sheet": "review-nature",
+          "index": 0,
+          "column": 0,
+          "row": 0,
+          "sourceRect": {
+            "x": 0,
+            "y": 0,
+            "width": 320,
+            "height": 320
+          },
+          "tokens": [],
+          "usedBy": [
+            "friends-squirrel",
+            "friends-kingfisher",
+            "count"
+          ]
+        },
+        {
+          "id": "habitat-pond",
+          "label": "Teich",
+          "sheet": "review-nature",
+          "index": 1,
+          "column": 1,
+          "row": 0,
+          "sourceRect": {
+            "x": 320,
+            "y": 0,
+            "width": 320,
+            "height": 320
+          },
+          "tokens": [],
+          "usedBy": [
+            "friends-deer"
+          ]
+        },
+        {
+          "id": "squirrel-nut",
+          "label": "Eichhörnchen mit Nuss",
+          "sheet": "review-nature",
+          "index": 2,
+          "column": 0,
+          "row": 1,
+          "sourceRect": {
+            "x": 0,
+            "y": 320,
+            "width": 320,
+            "height": 320
+          },
+          "tokens": [],
+          "usedBy": [
+            "friends-hedgehog"
+          ]
+        }
+      ],
+      "manifest": "design/illustrations/review-nature.json",
+      "kind": "learning-sheet",
+      "files": [
+        {
+          "path": "assets/waldatelier/review-nature.webp",
+          "sha256": "b1e6bd17fda1b913f8c40a707ceeb6bf05b03ef5f72ca8695d286599fd735f13",
+          "width": 640,
+          "height": 640,
+          "hasAlpha": true
+        }
+      ],
+      "preparation": {
+        "manifest": "design/illustrations/review-nature.json",
+        "pathsRelativeTo": "design/illustrations",
+        "settings": {
+          "format": "waldpost-illustration-atlas",
+          "version": 1,
+          "source": "sources/review-nature.png",
+          "output": "../../assets/waldatelier/review-nature.webp",
+          "columns": 2,
+          "rows": 2,
+          "cellPixels": 320,
+          "subjectPixels": 256,
+          "alphaThresholdPercent": 15,
+          "provenance": {
+            "date": "2026-11-17",
+            "tool": "ChatGPT image_gen.imagegen",
+            "sourceSha256": "8c8436ede0777ee4edb1797ff7815e9f67c9fcbf99ebf9583489e872ba9f4b0c",
+            "generationRecord": "../artwork/generation-records/review-nature.json",
+            "styleContract": "style.json",
+            "forwardPrompt": "prompts/review-nature.txt"
+          },
+          "subjects": [
+            {
+              "id": "empty-basket",
+              "label": "Leerer Korb"
+            },
+            {
+              "id": "habitat-pond",
+              "label": "Teich"
+            },
+            {
+              "id": "squirrel-nut",
+              "label": "Eichhörnchen mit Nuss"
+            }
+          ]
+        },
+        "command": "node tools/illustrations/pack-atlas.cjs design/illustrations/review-nature.json"
+      },
+      "source": {
+        "path": "design/illustrations/sources/review-nature.png",
+        "sha256": "8c8436ede0777ee4edb1797ff7815e9f67c9fcbf99ebf9583489e872ba9f4b0c"
       }
     },
     {
@@ -7828,6 +7975,7 @@
     "assets/waldatelier/people.webp",
     "assets/waldatelier/puzzle-flowers.webp",
     "assets/waldatelier/puzzle-vocabulary.webp",
+    "assets/waldatelier/review-nature.webp",
     "assets/waldatelier/rhyme-vocabulary.webp",
     "assets/waldatelier/words-one.webp",
     "assets/waldatelier/words-three.webp",

@@ -55,8 +55,7 @@
       "forwardPrompt": "design/illustrations/prompts/forest-objects.txt",
       "historicalRecord": "legacy/design-history/2026-11-16-before-style-contract/design/illustrations/forest-objects.json",
       "recordKind": "generation-record",
-      "requestId": "forest-objects",
-      "generationRecord": "design/artwork/generation-records/forest-objects-feedback-2026-11-17.json"
+      "requestId": "forest-objects"
     },
     "forest-wildlife": {
       "style": "waldpost-watercolour-pencil-v1",
@@ -133,6 +132,13 @@
       "recordKind": "original-brief",
       "historicalPromptId": "words-two",
       "requestId": "words-two"
+    },
+    "review-nature": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/review-nature.txt",
+      "historicalRecord": "design/artwork/generation-records/review-nature.json",
+      "recordKind": "generation-record",
+      "requestId": "review-nature"
     }
   },
   "currentGenerated": [

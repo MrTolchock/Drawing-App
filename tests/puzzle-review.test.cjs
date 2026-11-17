@@ -29,7 +29,7 @@ test('every active puzzle has at least 25 unique finite definitions, competence 
    if(q.kind==='survey'&&q.task==='most'){const max=Math.max(...q.counts);assert.equal(q.counts.filter(n=>n===max).length,1);assert.equal(q.answer,q.fruit[q.counts.indexOf(max)]);}
   }
  }
- assert.equal(total,983);
+ assert.equal(total,958);
 });
 test('rhyme pairs are distinct even when their word order is ignored',()=>{
  const pool=setup().FK.puzzleCatalogue.iterations('friends-bird'),pairs=pool.map(it=>[it.question.text,it.question.answer].map(w=>w.toLocaleLowerCase('de-CH')).sort().join('/'));
@@ -69,13 +69,13 @@ test('owl reading uses one sentence and two pictures; beaver needs the upper row
 });
 test('hedgehog riddles and every distractor use Swiss forest wildlife',()=>{
  const pool=setup().FK.puzzleCatalogue.iterations('friends-hedgehog');
- const allowed=new Set(['hedgehog','bird-sit','fish-swim','bee','snail','spider','butterfly','caterpillar','ladybird','hare-sit','squirrel-sit','badger-walk','beaver','frog-sit','ant','mouse-sit','fox-run','roe-stand','forest-woodpecker','forest-bat','forest-owl','forest-robin','forest-lynx','forest-marten','forest-fox','vocab-worm']);
+ const allowed=new Set(['hedgehog','bird-sit','fish-swim','bee','snail','spider','butterfly','caterpillar','ladybird','hare-sit','squirrel-sit','squirrel-nut','badger-walk','beaver','frog-sit','ant','mouse-sit','fox-run','roe-stand','forest-woodpecker','forest-bat','forest-owl','forest-robin','forest-lynx','forest-marten','forest-fox','vocab-worm']);
  assert.equal(pool.length,25);assert.equal(new Set(pool.map(it=>it.question.answer)).size,25);
  for(const it of pool){assert.equal(it.question.choices.length,2);assert.ok(it.question.text.split(/\s+/).length<=6,it.id+' has a short clue');assert.ok(it.question.choices.every(id=>allowed.has(id)),it.id+' contains only local wildlife');assert.doesNotMatch(it.question.text,/Honig|wird ein|Ameisenhaufen|Pinsel|klopft|schläft/i,it.id+' asks about the visible picture rather than hidden facts');}
 });
-test('latest review fixes apply throughout the relevant pools and retire all three requested puzzles',()=>{
+test('latest review fixes apply throughout the relevant pools and retire the requested puzzles',()=>{
  const {FK}=setup(),C=FK.puzzleCatalogue;
- for(const id of ['double','shapes','survey']){assert.equal(C.puzzle(id),null);assert.equal(C.iterations(id).length,0);assert.equal(FK.puzzleRounds.instructions[id],undefined);}
+ for(const id of ['double','shapes','survey','friends-fish']){assert.equal(C.puzzle(id),null);assert.equal(C.iterations(id).length,0);assert.equal(FK.puzzleRounds.instructions[id],undefined);}
  const animalPictures=new Set(['frog','hedgehog','bee','snail','dog','cat','spider','caterpillar','bear','sheep','pig','forest-fox','duck-swim','ant','ladybird','tortoise','squirrel-sit','zebra','lion','penguin','camel','tiger','elephant','giraffe','badger']);
  for(const it of C.iterations('friends-frog'))assert.ok(it.question.choices.every(id=>animalPictures.has(id)),it.id+' has only animals');
  const nature=C.iterations('nature');
@@ -222,4 +222,12 @@ test('comment deletion requires the adult review and a successful local write; a
  const unauthorized=setup().FK.puzzleReview;assert.ok(unauthorized.importData(saved));assert.equal(unauthorized.deleteFeedback('add',note),false);
  const write=ctx.localStorage.setItem;ctx.localStorage.setItem=()=>{throw Error('quota');};assert.equal(V.deleteFeedback('add',note),false);assert.equal(V.feedback('add').length,1);ctx.localStorage.setItem=write;
  assert.ok(V.approveAll('add'));assert.ok(V.ready('add'));const before=plain(V.exportData().decisions);assert.ok(V.deleteFeedback('add',V.feedback('add')[0]));assert.ok(V.ready('add'));assert.deepEqual(plain(V.exportData().decisions),before);
+});
+
+test('November 17 follow-up uses a pictured nut, real swimming habitat and a short replacement growth question',()=>{
+ const C=setup().FK.puzzleCatalogue,q=(id,key)=>C.iterations(id).find(it=>it.id===id+'/'+key).question;
+ const squirrel=q('friends-hedgehog','riddle-10');assert.equal(squirrel.text,'Wer hält eine Nuss?');assert.equal(squirrel.answer,'squirrel-nut');assert.ok(squirrel.choices.includes('squirrel-nut'));
+ for(const key of ['riddle-0','riddle-22']){const item=q('friends-deer',key);assert.equal(item.answer,'habitat-pond');assert.ok(!item.choices.includes('water'));}
+ const growth=q('friends-badger','riddle-23');assert.equal(growth.text,'Was wächst aus einer Eichel?');assert.equal(growth.answer,'tree');assert.equal(q('friends-badger','riddle-6').answer,'water','watering questions still use water rather than a habitat');
+ assert.equal(C.puzzle('friends-fish'),null);assert.equal(C.iterations('friends-fish').length,0);
 });

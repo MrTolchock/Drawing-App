@@ -22,12 +22,12 @@ const BASE=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000';
    // into the review and back, twice, then into a puzzle preview from the review and back
    for(let k=0;k<2;k++){await page.getByRole('button',{name:'Puzzle-Prüfung öffnen',exact:true}).click();await page.waitForFunction(()=>FK.current()==='puzzle-review');await back();assert.equal(await current(),'settings','review back → settings');}
    await page.getByRole('button',{name:'Puzzle-Prüfung öffnen',exact:true}).click();await page.waitForFunction(()=>FK.current()==='puzzle-review');
-   assert.equal(await page.locator('.review-puzzle').count(),32);assert.equal(await page.getByRole('button',{name:'Alle Puzzles',exact:true}).count(),0);
+   assert.equal(await page.locator('.review-puzzle').count(),31);assert.equal(await page.getByRole('button',{name:'Alle Puzzles',exact:true}).count(),0);
    const id=round===0?'friends-squirrel':'trace',it=await page.evaluate(id=>FK.puzzleCatalogue.iterations(id)[0].id,id);
    await page.locator('[data-puzzle="'+id+'"]').click();assert.equal(await page.locator('.screen:not([hidden]) .review-connection').count(),0);assert.ok((await page.locator('.review-competence').innerText()).includes('Das Kind'));
    assert.ok(await page.evaluate(([id,it])=>FK.puzzleReview.preview(id,it),[id,it]),'preview opens');await page.waitForTimeout(400);assert.notEqual(await current(),'puzzle-review');
    await back();assert.equal(await current(),'puzzle-review','puzzle back → review');
-   await back();assert.equal(await current(),'puzzle-review','selected puzzle back → all puzzles');assert.equal(await page.locator('.review-puzzle').count(),32);
+   await back();assert.equal(await current(),'puzzle-review','selected puzzle back → all puzzles');assert.equal(await page.locator('.review-puzzle').count(),31);
    await back();assert.equal(await current(),'settings','review back → settings');
    await back();assert.equal(await current(),'friends','settings back → the game');
   }

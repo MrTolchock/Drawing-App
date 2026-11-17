@@ -21,9 +21,9 @@ node tools/illustrations/style.cjs --request puzzle-vocabulary > /tmp/waldpost-v
 
 The repository prepares inputs; it does not include a hosted image model, API key or deterministic seed. Earlier model identifiers and seeds were not retained/exposed. These are usable reconstruction/edit recipes; a different model will not reproduce identical pixels. Actual historical generation records remain separately linked as provenance and do not override the current style.
 
-## Puzzle pictures: all 235 subjects
+## Puzzle pictures: all 238 subjects
 
-Each of the 17 atlases has its own complete prompt and ordered stable IDs. No sheet below requires filling the generic `subject-sheet` template. Cell indices are zero-based in JSON; prompt rows are one-based, left to right then top to bottom. Empty trailing cells remain transparent. Current atlases are attached as composition-only inputs after the canonical style pair.
+Each of the 18 atlases has its own complete prompt and ordered stable IDs. No sheet below requires filling the generic `subject-sheet` template. Cell indices are zero-based in JSON; prompt rows are one-based, left to right then top to bottom. Empty trailing cells remain transparent. Current atlases are attached as composition-only inputs after the canonical style pair.
 
 | Request ID / sheet | Grid | Complete prompt |
 | --- | --- | --- |
@@ -40,6 +40,7 @@ Each of the 17 atlases has its own complete prompt and ordered stable IDs. No sh
 | `people` | 4 × 4 | [People and vocabulary](../illustrations/prompts/people.txt) |
 | `puzzle-flowers` | 3 × 2 | [Six scored flower colours](../illustrations/prompts/puzzle-flowers.txt) |
 | `puzzle-vocabulary` | 4 × 5 | [Twenty puzzle nouns](../illustrations/prompts/puzzle-vocabulary.txt) |
+| `review-nature` | 2 × 2; three occupied | [Empty basket, swimming habitat and squirrel with nut](../illustrations/prompts/review-nature.txt) |
 | `rhyme-vocabulary` | 4 × 4; ten occupied | [Rhyme nouns](../illustrations/prompts/rhyme-vocabulary.txt) |
 | `words-one` | 4 × 4 | [Vocabulary 1](../illustrations/prompts/words-one.txt) |
 | `words-two` | 4 × 4 | [Vocabulary 2](../illustrations/prompts/words-two.txt) |
@@ -47,7 +48,7 @@ Each of the 17 atlases has its own complete prompt and ordered stable IDs. No sh
 
 For each sheet, `assets` in the JSON records its exact runtime filename, width/height, columns/rows and ordered `subjects`, including stable IDs, source rectangles, labels, tokens and puzzle usage. [library.json](../../assets/waldatelier/library.json) is the picture-level catalogue. Preserve IDs and ordering when replacing artwork; English IDs are metadata, not text to paint into the image. Exact answer colours, quantities, species and action contrasts are functional content.
 
-Six newer sheets retain editable PNGs and [packing manifests](../illustrations/README.md). Older sheets have original briefs or inventory-only provenance and no retained final packing manifest; the JSON says so. For a newly generated source, make an atlas manifest using its existing columns/rows and ordered subject list, an integer square cell size and explicit subject bounds. See [forest-actions.json](../illustrations/forest-actions.json) for the format. Do not apply a default 4 × 4 square grid to the 3 × 2 or 4 × 5 sheets. `pack-atlas.cjs` preserves aspect ratio and genuine edge alpha; it cannot repair an incorrect subject or quantity.
+The newer sheets retain editable PNGs and [packing manifests](../illustrations/README.md). Older sheets have original briefs or inventory-only provenance and no retained final packing manifest; the JSON says so. For a newly generated source, make an atlas manifest using its existing columns/rows and ordered subject list, an integer square cell size and explicit subject bounds. See [forest-actions.json](../illustrations/forest-actions.json) for the format. Do not apply a default 4 × 4 square grid to the 3 × 2 or 4 × 5 sheets. `pack-atlas.cjs` preserves aspect ratio and genuine edge alpha; it cannot repair an incorrect subject or quantity.
 
 ## Painted scenes, map, letters and icons
 

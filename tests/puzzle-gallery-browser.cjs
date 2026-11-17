@@ -39,7 +39,7 @@ const BASE=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
   assert.deepEqual(after,before,'no saved round and no letter change');
   await act().locator('.btn-back').click();await page.waitForTimeout(300);assert.equal(await current(),'puzzle-gallery');
   await act().locator('.btn-back').click();await page.waitForTimeout(300);assert.equal(await current(),'settings');
-  await page.getByRole('button',{name:'Puzzle-Prüfung öffnen',exact:true}).click();await page.waitForFunction(()=>FK.current()==='puzzle-review');assert.equal(await act().locator('.review-puzzle').count(),32,'the review still lists every puzzle');
+  await page.getByRole('button',{name:'Puzzle-Prüfung öffnen',exact:true}).click();await page.waitForFunction(()=>FK.current()==='puzzle-review');assert.equal(await act().locator('.review-puzzle').count(),31,'the review still lists every puzzle');
   assert.deepEqual(errors,[]);console.log('PASS: Puzzle-Galerie lists only signed-off puzzles, filters by friend and plays five tasks without saving; Puzzle-Prüfung is separate.');
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exit(1);});
