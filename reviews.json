@@ -10234,6 +10234,60 @@
       "at": "2026-11-17T20:30:57.564Z",
       "seen": true,
       "operation": "4bf890b3-ba0f-4003-ad4c-d9f1495e349a"
+    },
+    "friends-mouse/word-2@4d41f7873d7b8ee3": {
+      "key": "friends-mouse/word-2",
+      "revision": "4d41f7873d7b8ee3",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T20:31:00.119Z",
+      "seen": true,
+      "operation": "bef0759d-13b0-4130-b3a0-d518ce218a30"
+    },
+    "friends-mouse/word-3@b77469edae270ddf": {
+      "key": "friends-mouse/word-3",
+      "revision": "b77469edae270ddf",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T20:31:02.147Z",
+      "seen": true,
+      "operation": "b30321b3-a59d-456a-ada6-9ffb7a72cb28"
+    },
+    "friends-mouse/word-4@8d7605996f83c8cf": {
+      "key": "friends-mouse/word-4",
+      "revision": "8d7605996f83c8cf",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T20:31:04.282Z",
+      "seen": true,
+      "operation": "27a51e30-0991-4494-913f-2699b2edc8df"
+    },
+    "friends-mouse/word-5@83e79c32b4df0314": {
+      "key": "friends-mouse/word-5",
+      "revision": "83e79c32b4df0314",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T20:31:06.612Z",
+      "seen": true,
+      "operation": "a10c2f46-5d5d-47a4-be3c-e3fa8ccb3c92"
+    },
+    "friends-mouse/word-6@bdc753808adb41a4": {
+      "key": "friends-mouse/word-6",
+      "revision": "bdc753808adb41a4",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T20:31:08.350Z",
+      "seen": true,
+      "operation": "d780cb36-d698-4c0a-ba7e-72b9adcb5c47"
+    },
+    "friends-mouse/word-7@f1b82af8d65a3b78": {
+      "key": "friends-mouse/word-7",
+      "revision": "f1b82af8d65a3b78",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T20:31:10.531Z",
+      "seen": true,
+      "operation": "347cf596-4302-4633-9cf0-b83bb03cdd5a"
     }
   },
   "history": [
