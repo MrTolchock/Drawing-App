@@ -9073,6 +9073,42 @@
       "at": "2026-11-17T20:10:41.475Z",
       "seen": true,
       "operation": "ff1c4f54-8848-4d8d-bd7e-5645a4178404"
+    },
+    "friends-kingfisher/forest-leaf-9@a32b799ddc37a6ef": {
+      "key": "friends-kingfisher/forest-leaf-9",
+      "revision": "a32b799ddc37a6ef",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T20:10:43.360Z",
+      "seen": true,
+      "operation": "e185b204-c703-4c82-8a28-2760868502d4"
+    },
+    "friends-kingfisher/forest-leaf-14@889c6f322c1bf34c": {
+      "key": "friends-kingfisher/forest-leaf-14",
+      "revision": "889c6f322c1bf34c",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T20:10:45.760Z",
+      "seen": true,
+      "operation": "bc0a5957-a030-4d43-b4cb-ac37fc0d810f"
+    },
+    "friends-kingfisher/forest-leaf-20@a196aa86d5e3ba4c": {
+      "key": "friends-kingfisher/forest-leaf-20",
+      "revision": "a196aa86d5e3ba4c",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T20:10:47.794Z",
+      "seen": true,
+      "operation": "f621b7b9-0007-4d02-8b58-e080f83ac38b"
+    },
+    "friends-kingfisher/forest-stone-2@8a98dea0f00bb692": {
+      "key": "friends-kingfisher/forest-stone-2",
+      "revision": "8a98dea0f00bb692",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T20:10:49.923Z",
+      "seen": true,
+      "operation": "c748b884-cd02-4c4f-ae35-132ed1e058d0"
     }
   },
   "history": [
