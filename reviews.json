@@ -9748,6 +9748,24 @@
       "at": "2026-11-17T20:16:38.636Z",
       "seen": true,
       "operation": "8e2b9be5-0582-4c07-9556-eae5928f27b3"
+    },
+    "friends-bird/rhyme-0@b67d7421ca3a17b7": {
+      "key": "friends-bird/rhyme-0",
+      "revision": "b67d7421ca3a17b7",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T20:26:23.895Z",
+      "seen": true,
+      "operation": "556506aa-fa7c-4185-9584-1011ab1fec3c"
+    },
+    "friends-bird/rhyme-1@bf29410f5db6492b": {
+      "key": "friends-bird/rhyme-1",
+      "revision": "bf29410f5db6492b",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T20:26:26.255Z",
+      "seen": true,
+      "operation": "7518da90-b500-4927-9987-660950f6ca3f"
     }
   },
   "history": [
