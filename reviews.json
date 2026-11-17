@@ -10630,6 +10630,15 @@
       "at": "2026-11-17T20:41:55.255Z",
       "seen": true,
       "operation": "b6abb332-6bab-4979-b5c4-fd2c2c6dbd70"
+    },
+    "friends-ibex/pattern-ABAC-3@9bcf6f60c15aaa54": {
+      "key": "friends-ibex/pattern-ABAC-3",
+      "revision": "9bcf6f60c15aaa54",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T20:41:59.604Z",
+      "seen": true,
+      "operation": "e2b81730-5580-4455-9bee-2091e7034013"
     }
   },
   "history": [
