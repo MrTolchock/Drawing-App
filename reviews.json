@@ -9814,5 +9814,12 @@
       "seen": true,
       "operation": "c789fb04-fa68-49e3-a816-325a195b9cc4"
     }
+  ],
+  "deletedNotes": [
+    {
+      "key": "friends-squirrel/count-0",
+      "note": "Illustration passt nicht zu anderen gemalten Bildern",
+      "at": "2026-11-17T20:24:48.801Z"
+    }
   ]
 }
