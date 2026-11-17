@@ -8560,6 +8560,15 @@
       "at": "2026-11-17T20:03:30.647Z",
       "seen": true,
       "operation": "dbd6828d-3c96-4180-8ccc-8b97e549720e"
+    },
+    "friends-fish/count-0@2e3e69ca5a967968": {
+      "key": "friends-fish/count-0",
+      "revision": "2e3e69ca5a967968",
+      "status": "improve",
+      "note": "Wie bei nuss, korb passt nicht in rstliche grafiken, neu zeichnen",
+      "at": "2026-11-17T20:04:38.358Z",
+      "seen": true,
+      "operation": "133d6372-74e7-40d3-a86a-cb54c0003645"
     }
   },
   "history": [
