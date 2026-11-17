@@ -9289,6 +9289,15 @@
       "at": "2026-11-17T20:11:35.596Z",
       "seen": true,
       "operation": "27974767-59c8-4997-8517-81b7d616a9f2"
+    },
+    "friends-frog/animal-0@2faee59a7a721558": {
+      "key": "friends-frog/animal-0",
+      "revision": "2faee59a7a721558",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T20:13:09.532Z",
+      "seen": true,
+      "operation": "1e5db887-c669-4f45-8e43-fed8004e15f1"
     }
   },
   "history": [
