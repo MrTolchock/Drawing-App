@@ -24,6 +24,7 @@ node tests/puzzle-review-browser.cjs
 node tests/review-sync-browser.cjs
 node tests/review-comments-browser.cjs   # comment X controls, historical duplicates, offline outbox, other devices and unchanged decisions
 node tests/review-compatibility-browser.cjs
+node tests/review-recovery-browser.cjs   # verified historical approvals, gallery access, later restrictions and zero review writes
 node tests/puzzle-feedback-browser.cjs
 node tests/artwork-browser.cjs
 node tests/drawn-map-browser.cjs   # compact map, no header icons, outside tap/Escape/focus, pan safety; all 13 named pins and real routes at phone/tablet/landscape

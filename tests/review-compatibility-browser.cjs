@@ -26,7 +26,7 @@ if(!process.env.WALDPOST_REVIEW_SNAPSHOT){
  await page.reload();await page.waitForFunction(()=>FK.reviewRepository.state.phase==='saved');assert.equal(await page.evaluate(()=>FK.puzzleReview.ready('friends-squirrel')),compatible);
  // A later flag from an older compatible app still blocks release, and remains blocked offline.
  const next=server.ledger,key=C.iterations(id)[0].id,revision=earlierIteration(C.iterations(id)[0]);next.entries[key+'@'+revision]={key,revision,status:'improve',note:'Newer fixture rejection',at:'2099-01-01T00:00:00Z',seen:true};server.ledger=next;
- await page.evaluate(()=>FK.reviewRepository.refresh());assert.equal(await page.evaluate(()=>FK.puzzleReview.ready('friends-squirrel')),false);assert.equal(await page.evaluate(()=>FK.puzzleReview.status('friends-squirrel','friends-squirrel/count-0').status),compatible?'improve':'pending');
+ await page.evaluate(()=>FK.reviewRepository.refresh());assert.equal(await page.evaluate(()=>FK.puzzleReview.ready('friends-squirrel')),false);assert.equal(await page.evaluate(()=>FK.puzzleReview.status('friends-squirrel','friends-squirrel/count-0').status),'improve');
  server.offline=true;await page.reload();await page.waitForFunction(()=>FK.reviewRepository.state.phase==='error');assert.equal(await page.evaluate(()=>FK.puzzleReview.ready('friends-squirrel')),false);assert.equal(server.writes.length,0);assert.deepEqual(errors,[]);
  await context.close();console.log('PASS '+(compatible?'compatible historical approval recovery':'changed gallery artwork reopens pre-redraw approvals')+': fresh reader, no token/outbox/writes, reload, later rejection and offline cache.');
 }finally{await browser.close();}})().catch(e=>{console.error(e);process.exitCode=1;});
