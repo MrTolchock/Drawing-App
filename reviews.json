@@ -8281,6 +8281,24 @@
       "at": "2026-11-17T19:58:05.621Z",
       "seen": true,
       "operation": "b985ae5b-4b43-4890-93eb-2cd55bb78c04"
+    },
+    "friends-mouse/word-19@18e13ecff031d723": {
+      "key": "friends-mouse/word-19",
+      "revision": "18e13ecff031d723",
+      "status": "improve",
+      "note": "Haus ersetzen",
+      "at": "2026-11-17T19:58:22.969Z",
+      "seen": true,
+      "operation": "47cd2085-cb28-445b-9ff8-407a8ea7a6e9"
+    },
+    "friends-mouse/word-20@6a777f8926ca61bf": {
+      "key": "friends-mouse/word-20",
+      "revision": "6a777f8926ca61bf",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T19:58:24.125Z",
+      "seen": true,
+      "operation": "0383ce71-4ccf-457f-9112-4d946a9c799e"
     }
   },
   "history": [
