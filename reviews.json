@@ -8200,6 +8200,33 @@
       "at": "2026-11-17T19:57:37.415Z",
       "seen": true,
       "operation": "1320d1d8-896a-4511-96b6-c45b66a52fb4"
+    },
+    "friends-mouse/word-10@1b22966d324d81d1": {
+      "key": "friends-mouse/word-10",
+      "revision": "1b22966d324d81d1",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T19:57:39.281Z",
+      "seen": true,
+      "operation": "2823dcf7-e5b1-4cf6-82a8-0a1590e053aa"
+    },
+    "friends-mouse/word-11@c4df17b66833436a": {
+      "key": "friends-mouse/word-11",
+      "revision": "c4df17b66833436a",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T19:57:47.597Z",
+      "seen": true,
+      "operation": "e7c9ffbd-eafd-43ea-9d07-ae2b0c710be2"
+    },
+    "friends-mouse/word-12@6dfd156717dfeb91": {
+      "key": "friends-mouse/word-12",
+      "revision": "6dfd156717dfeb91",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T19:57:49.832Z",
+      "seen": true,
+      "operation": "7c24ba9f-a3c8-401c-a080-9262c9f85a0c"
     }
   },
   "history": [
