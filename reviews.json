@@ -10666,6 +10666,24 @@
       "at": "2026-11-17T20:42:26.202Z",
       "seen": true,
       "operation": "a5788b41-32f9-4bbc-89e1-1d1c83a29425"
+    },
+    "friends-ibex/pattern-AABC-1@4a1a4f6c83bf2ab6": {
+      "key": "friends-ibex/pattern-AABC-1",
+      "revision": "4a1a4f6c83bf2ab6",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T20:42:32.381Z",
+      "seen": true,
+      "operation": "25271ac7-d704-4a75-85e9-e14134c6c92b"
+    },
+    "friends-ibex/pattern-AABC-2@4bdc16c0948deed8": {
+      "key": "friends-ibex/pattern-AABC-2",
+      "revision": "4bdc16c0948deed8",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T20:42:37.468Z",
+      "seen": true,
+      "operation": "0164808d-de10-4f63-a28a-1d2f72c1b53d"
     }
   },
   "history": [
