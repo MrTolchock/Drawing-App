@@ -7736,11 +7736,11 @@
     "friends-bird/rhyme-15@753f71f4bef054b4": {
       "key": "friends-bird/rhyme-15",
       "revision": "753f71f4bef054b4",
-      "status": "approved",
-      "note": "",
-      "at": "2026-11-17T19:41:03.201Z",
+      "status": "improve",
+      "note": "Haus ist perspektivisch falsch beim Fenster; neu zeichnen",
+      "at": "2026-11-17T19:41:55.597Z",
       "seen": true,
-      "operation": "77531322-149c-4970-8903-219066e57ed2"
+      "operation": "3e9bc8a1-2b54-4b56-86f0-e36353f17744"
     }
   },
   "history": [
@@ -7779,6 +7779,15 @@
       "at": "2026-11-14T21:05:44.503Z",
       "seen": true,
       "operation": "800ef1ff-c627-4b1d-8754-1b81c234210f"
+    },
+    {
+      "key": "friends-bird/rhyme-15",
+      "revision": "753f71f4bef054b4",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T19:41:03.201Z",
+      "seen": true,
+      "operation": "77531322-149c-4970-8903-219066e57ed2"
     }
   ]
 }
