@@ -4245,10 +4245,10 @@
       "key": "puzzle:friends-fish",
       "revision": "9b8dfe879782bdf9",
       "status": "approved",
-      "note": "",
-      "at": "2026-11-15T20:24:17.612Z",
+      "note": "Lösche rästel weil gibt schon nüsse zählen und dinge am bach die gleich sind",
+      "at": "2026-11-17T20:12:46.683Z",
       "seen": true,
-      "operation": "c789fb04-fa68-49e3-a816-325a195b9cc4"
+      "operation": "447a99fe-d02b-4245-9a0f-50426878ed74"
     },
     "friends-deer/riddle-0@25184aef3221b661": {
       "key": "friends-deer/riddle-0",
@@ -9345,6 +9345,15 @@
       "at": "2026-11-14T21:05:24.070Z",
       "seen": true,
       "operation": "dd152ff2-c004-49a4-8887-d73ee041a92b"
+    },
+    {
+      "key": "puzzle:friends-fish",
+      "revision": "9b8dfe879782bdf9",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-15T20:24:17.612Z",
+      "seen": true,
+      "operation": "c789fb04-fa68-49e3-a816-325a195b9cc4"
     }
   ]
 }
