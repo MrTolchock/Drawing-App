@@ -1,21 +1,25 @@
 {
-  "format": "waldpost-illustration-atlas",
+  "format": "waldpost-illustration-image",
   "version": 1,
-  "source": "sources/forest-objects-style.png",
+  "source": "sources/forest-objects-feedback-2026-11-17.png",
   "output": "../../assets/waldatelier/forest-objects.webp",
+  "width": 1280,
+  "height": 1280,
+  "fit": "contain",
+  "transparent": true,
+  "quality": 100,
+  "preservePixels": true,
   "columns": 4,
   "rows": 4,
   "cellPixels": 320,
-  "subjectPixels": 256,
-  "alphaThresholdPercent": 15,
   "provenance": {
-    "date": "2026-11-16",
-    "tool": "ChatGPT hosted image-generation tool",
-    "sourceSha256": "194d7f4f9364e1ca039e4ce26652d9a83e3113b9dfc890924cfedb8dfc516d0c",
-    "generationRecord": "../../legacy/design-history/2026-11-16-before-style-contract/design/illustrations/forest-objects.json",
+    "date": "2026-11-17",
+    "tool": "ChatGPT image_gen.imagegen",
+    "sourceSha256": "c380ab5d7eab4149bb4b8714ddbbc35619ff228c2b514334783e2bbfb8a32292",
+    "generationRecord": "../artwork/generation-records/forest-objects-feedback-2026-11-17.json",
     "styleContract": "style.json",
     "forwardPrompt": "prompts/forest-objects.txt",
-    "note": "The archived record describes the existing asset. New generations use the current style contract and forward prompt."
+    "note": "Only the first stable subject cell was replaced from the retained generator output. All other atlas cells keep their original visible RGBA pixels. The editable source is the already packed composite; export without per-cell renormalization."
   },
   "subjects": [
     {

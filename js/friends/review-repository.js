@@ -13,6 +13,13 @@
   const address=entry=>entry.key+'@'+entry.revision;
   const empty=()=>({format:'farbtupf-review-ledger',version:1,entries:{},history:[]});
   const isObject=value=>!!value&&typeof value==='object'&&!Array.isArray(value);
+  const validDeletedNote=v=>isObject(v)&&typeof v.key==='string'&&v.key.length<=250&&typeof v.note==='string'&&v.note.length<=4000&&typeof v.at==='string'&&Number.isFinite(Date.parse(v.at));
+  function mergeDeletedNotes(...lists){
+    const notes=new Map();for(const note of lists.flat()){
+      if(!validDeletedNote(note))throw Error('Ungültige gelöschte Kommentare. Die lokale Sicherung bleibt erhalten.');
+      const id=canonical([note.key,note.note]),old=notes.get(id);if(!old||Date.parse(note.at)>Date.parse(old.at))notes.set(id,clone(note));
+    }return [...notes.values()].sort((a,b)=>canonical([a.key,a.note]).localeCompare(canonical([b.key,b.note])));
+  }
   function validEntry(entry){
     return isObject(entry)&&typeof entry.key==='string'&&entry.key.length<=250&&typeof entry.revision==='string'&&entry.revision.length<=100&&
       ['pending','approved','improve'].includes(entry.status)&&typeof entry.note==='string'&&entry.note.length<=4000&&
@@ -23,11 +30,13 @@
   }
   function validate(ledger){
     if(!isObject(ledger)||ledger.format!=='farbtupf-review-ledger'||ledger.version!==1||!isObject(ledger.entries)||!Array.isArray(ledger.history)||
-      !Object.entries(ledger.entries).every(([key,value])=>validEntry(value)&&address(value)===key)||!ledger.history.every(validEntry))throw Error('Ungültige GitHub-Prüfdaten. Die lokale Sicherung bleibt erhalten.');
+      !Object.entries(ledger.entries).every(([key,value])=>validEntry(value)&&address(value)===key)||!ledger.history.every(validEntry)||
+      ledger.deletedNotes!==undefined&&(!Array.isArray(ledger.deletedNotes)||!ledger.deletedNotes.every(validDeletedNote)))throw Error('Ungültige GitHub-Prüfdaten. Die lokale Sicherung bleibt erhalten.');
     return ledger;
   }
-  function merge(ledger,pending){
+  function merge(ledger,pending,deletedNotes=[]){
     const next=clone(validate(ledger)),conflicts={},accepted=[];
+    const deleted=mergeDeletedNotes(ledger.deletedNotes||[],deletedNotes);if(deleted.length)next.deletedNotes=deleted;
     for(const [key,change]of Object.entries(pending)){
       if(!isObject(change)||!validEntry(change.entry)||address(change.entry)!==key||change.base!==null&&!validEntry(change.base))throw Error('Die lokale Warteschlange ist ungültig. Bitte die Prüfung exportieren.');
       const remote=next.entries[key]||null;
@@ -46,8 +55,11 @@
     try{token=tokenStorage?.getItem(tokenKey)||'';}catch{/* Reading and offline play do not need a token. */}
     const read=()=>vault.read();
     const meta=data=>isObject(data.repository)&&isObject(data.repository.base)&&isObject(data.repository.pending)?data.repository:{base:{},pending:{},checked:false,lastSyncedAt:null};
+    function pendingCount(data=read()){
+      const m=meta(data);return Object.keys(m.pending).length+(data.deletedNotes||[]).filter(note=>!(m.deletedNotes||[]).some(old=>old.key===note.key&&old.note===note.note&&Date.parse(old.at)>=Date.parse(note.at))).length;
+    }
     function publish(phase,message,extra={}){
-      const m=meta(read());state={...state,...extra,phase,message,pending:Object.keys(m.pending).length,connected:!!token,lastSyncedAt:m.lastSyncedAt};onChange(clone(state));return state;
+      const m=meta(read());state={...state,...extra,phase,message,pending:pendingCount(),connected:!!token,lastSyncedAt:m.lastSyncedAt};onChange(clone(state));return state;
     }
     function entryFor(decision,data){
       const entry={key:decision.key,revision:decision.revision,status:decision.status,note:decision.note,at:decision.at,seen:decision.key.startsWith('puzzle:')||data.seen[decision.key]===decision.revision,operation:newId()};
@@ -79,6 +91,7 @@
     const later=(entry,old)=>Date.parse(entry.at)>Date.parse(old.at)||Date.parse(entry.at)===Date.parse(old.at)&&({approved:0,pending:1,improve:2}[entry.status]>{approved:0,pending:1,improve:2}[old.status]);
     function apply(ledger){
       validate(ledger);observed=ledger;const data=read(),m=clone(meta(data)),next=clone(data),wanted=currentIds();
+      const deleted=mergeDeletedNotes(data.deletedNotes||[],ledger.deletedNotes||[]);if(deleted.length)next.deletedNotes=deleted;
       const pending=m.pending;
       for(const [id,change]of Object.entries(pending))if(equivalent(ledger.entries[id],change.entry)||ledger.entries[id]?.operation===change.entry.operation)delete pending[id];
       for(const [id,change]of Object.entries(pending))if(ledger.entries[id]?.operation&&Array.isArray(change.ancestors)&&change.ancestors.includes(ledger.entries[id].operation))change.base=clone(ledger.entries[id]);
@@ -105,7 +118,7 @@
       }
       for(const entry of [...Object.values(selected),...Object.values(pending).map(change=>change.entry)])if(entry.seen&&next.decisions[entry.key]?.revision===entry.revision)next.seen[entry.key]=entry.revision;
       const keep=new Set([...wanted,...Object.keys(pending),...Object.values(selected).map(address)]);
-      next.repository={base:Object.fromEntries(Object.entries(ledger.entries).filter(([id])=>keep.has(id))),pending,checked:true,lastSyncedAt:now()};
+      next.repository={base:Object.fromEntries(Object.entries(ledger.entries).filter(([id])=>keep.has(id))),pending,deletedNotes:clone(ledger.deletedNotes||[]),checked:true,lastSyncedAt:now()};
       if(!vault.write(next))throw Error('GitHub wurde gelesen, aber die lokale Sicherung konnte nicht gespeichert werden.');
       state.conflicts=merge(ledger,pending).conflicts;
     }
@@ -147,7 +160,7 @@
     function encode(value){const bytes=new TextEncoder().encode(JSON.stringify(value,null,2)+'\n');let binary='';for(const byte of bytes)binary+=String.fromCharCode(byte);return globalThis.btoa?globalThis.btoa(binary):Buffer.from(bytes).toString('base64');}
     async function run(write=false){
       if(stopped)return false;
-      if(busy){await busy;if(write&&token&&Object.keys(meta(read()).pending).length)return run(true);return true;}
+      if(busy){await busy;if(write&&token&&pendingCount())return run(true);return true;}
       busy=(async()=>{
         let lostConnection=false;
         try{
@@ -158,8 +171,8 @@
               if(token&&(error.status===401||error.status===403)){forgetToken();lostConnection=true;remote=await load(false);}else throw error;
             }
             apply(remote.ledger);lastPull=Date.now();
-            const pending=clone(meta(read()).pending),result=merge(remote.ledger,pending);
-            if(!write||!token||!Object.keys(meta(read()).pending).length)break;
+            const pending=clone(meta(read()).pending),result=merge(remote.ledger,pending,read().deletedNotes||[]);
+            if(!write||!token||!pendingCount())break;
             if(same(result.ledger,remote.ledger))break;
             lastWrite=Date.now();
             const response=await request(fileURL,{method:'PUT',headers:{...headers(true),'Content-Type':'application/json'},credentials:'omit',body:JSON.stringify({message:'Update puzzle review decisions',branch:config.branch,sha:remote.sha,content:encode(result.ledger)})});
@@ -167,7 +180,7 @@
             await json(response);apply(result.ledger);
             break; // Any edit made during this request already has its own durable, throttled schedule.
           }
-          const m=meta(read()),count=Object.keys(m.pending).length,conflicts=state.conflicts;
+          const count=pendingCount(),conflicts=state.conflicts;
           if(Object.keys(conflicts).length)publish('conflict','Änderungen auf einem anderen Gerät gefunden. Bitte die Entscheidung auswählen.',{conflicts});
           else if(count)publish('pending',token?'Weitere Änderungen warten auf GitHub.':'Nur lokal gesichert. Zum Speichern auf GitHub verbinden.');
           else publish('saved',lostConnection?'Prüfung geladen. GitHub zum Bearbeiten erneut verbinden.':'Auf GitHub gespeichert. Auf anderen Geräten wieder verfügbar.',{conflicts:{}});
@@ -178,7 +191,7 @@
     }
     function schedule(){
       if(stopped)return;clearTimeout(timer);
-      const count=Object.keys(meta(read()).pending).length;
+      const count=pendingCount();
       if(!count)return;
       publish('pending',token?'Lokal gesichert. Speichern auf GitHub folgt.':'Nur lokal gesichert. Zum Speichern auf GitHub verbinden.');
       if(token)timer=setTimeout(()=>run(true),Math.max(debounce,minWriteGap-(Date.now()-lastWrite)));
@@ -213,7 +226,7 @@
       return okay('puzzle:'+id,revisions(id))&&catalogue.iterations(id).every(item=>okay(item.id,revisions(id,item)));
     }
     function refresh(){return run(!!token);}
-    function resume(){if(Date.now()-lastPull>60000||Object.keys(meta(read()).pending).length)return refresh();return Promise.resolve(true);}
+    function resume(){if(Date.now()-lastPull>60000||pendingCount())return refresh();return Promise.resolve(true);}
     function stop(){stopped=true;clearTimeout(timer);}
     return {stage,schedule,connect,disconnect,refresh,resume,resolve,confirmed,stop,start:refresh,get state(){return clone(state);},url:'https://github.com/'+config.owner+'/'+config.repo+'/blob/'+config.branch+'/'+config.path,config:clone(config)};
   }

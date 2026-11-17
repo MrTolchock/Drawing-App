@@ -8,7 +8,7 @@
   const statuses=['approved','improve','pending'],clone=v=>JSON.parse(JSON.stringify(v));
   let data=empty(),error='',authorized=false;
   // Older backups may contain reviewer/checklist metadata; keep it readable without requiring it.
-  function valid(d){return d&&d.version===1&&d.decisions&&typeof d.decisions==='object'&&!Array.isArray(d.decisions)&&d.seen&&typeof d.seen==='object'&&!Array.isArray(d.seen)&&Array.isArray(d.history)&&Object.values(d.seen).every(v=>typeof v==='string')&&[...Object.values(d.decisions),...d.history].every(v=>v&&typeof v.key==='string'&&typeof v.revision==='string'&&statuses.includes(v.status)&&typeof v.note==='string'&&v.note.length<=4000&&(v.reviewer===undefined||typeof v.reviewer==='string'&&v.reviewer.length<=120)&&typeof v.at==='string'&&Number.isFinite(Date.parse(v.at))&&(v.checks===undefined||Array.isArray(v.checks)&&v.checks.every(c=>typeof c==='string')));}
+  function valid(d){return d&&d.version===1&&d.decisions&&typeof d.decisions==='object'&&!Array.isArray(d.decisions)&&d.seen&&typeof d.seen==='object'&&!Array.isArray(d.seen)&&Array.isArray(d.history)&&(d.deletedNotes===undefined||Array.isArray(d.deletedNotes)&&d.deletedNotes.every(v=>v&&typeof v.key==='string'&&typeof v.note==='string'&&v.note.length<=4000&&Number.isFinite(Date.parse(v.at))))&&Object.values(d.seen).every(v=>typeof v==='string')&&[...Object.values(d.decisions),...d.history].every(v=>v&&typeof v.key==='string'&&typeof v.revision==='string'&&statuses.includes(v.status)&&typeof v.note==='string'&&v.note.length<=4000&&(v.reviewer===undefined||typeof v.reviewer==='string'&&v.reviewer.length<=120)&&typeof v.at==='string'&&Number.isFinite(Date.parse(v.at))&&(v.checks===undefined||Array.isArray(v.checks)&&v.checks.every(c=>typeof c==='string')));}
   try{const raw=localStorage.getItem(key);if(raw){const d=JSON.parse(raw);if(valid(d))data=d;else error='Die gespeicherte Prüfung ist ungültig. Bitte eine Sicherung importieren.';}}catch{error='Die Prüfung konnte nicht geladen werden. Bitte eine Sicherung importieren.';}
   function persist(next,fromRepository=false){try{
     if(!fromRepository&&FK.reviewRepository)next=FK.reviewRepository.stage(next,data);
@@ -19,12 +19,21 @@
   function item(id,iteration){return iteration?C.iterations(id).find(i=>i.id===iteration):null;}
   function revision(id,iteration){const it=item(id,iteration);return iteration?(it?C.iterationRevision(id,it):null):C.puzzle(id)?C.puzzleRevision(id):null;}
   const recordKey=(id,iteration)=>iteration||'puzzle:'+id;
-  function status(id,iteration){const k=recordKey(id,iteration),d=data.decisions[k],valid=d&&C.acceptsRevision(id,iteration,d.revision);return {status:valid?d.status:'pending',stale:!!d&&!valid,decision:d?clone(d):null,seen:C.acceptsRevision(id,iteration,data.seen[k])};}
+  const noteDeleted=d=>(data.deletedNotes||[]).some(v=>v.key===d.key&&v.note===d.note&&Date.parse(v.at)>=Date.parse(d.at));
+  const noteTime=(key,note)=>new Date(Math.max(Date.now(),...(data.deletedNotes||[]).filter(d=>d.key===key&&d.note===note).map(d=>Date.parse(d.at)+1))).toISOString();
+  function status(id,iteration){const k=recordKey(id,iteration),d=data.decisions[k],valid=d&&C.acceptsRevision(id,iteration,d.revision);return {status:valid?d.status:'pending',stale:!!d&&!valid,decision:d?{...clone(d),note:noteDeleted(d)?'':d.note}:null,seen:C.acceptsRevision(id,iteration,data.seen[k])};}
   function seen(id,iteration){const r=revision(id,iteration);if(!r)return false;const next=clone(data);next.seen[recordKey(id,iteration)]=r;return persist(next);}
   function progress(id){const items=C.iterations(id),approved=items.filter(i=>status(id,i.id).status==='approved').length,improve=items.filter(i=>status(id,i.id).status==='improve').length;return {total:items.length,approved,improve,pending:items.length-approved-improve};}
   function feedback(id){
-    const notes=[...Object.values(data.decisions),...data.history].filter(d=>(d.key==='puzzle:'+id||d.key.startsWith(id+'/'))&&d.note.trim()&&d.note!=='Alle Iterationen zusammen bestätigt').sort((a,b)=>Date.parse(b.at)-Date.parse(a.at)),unique=new Set();
+    const notes=[...Object.values(data.decisions),...data.history].filter(d=>(d.key==='puzzle:'+id||d.key.startsWith(id+'/'))&&d.note.trim()&&d.note!=='Alle Iterationen zusammen bestätigt'&&!noteDeleted(d)).sort((a,b)=>Date.parse(b.at)-Date.parse(a.at)),unique=new Set();
     return notes.filter(d=>{const signature=d.key+'\n'+d.note;if(unique.has(signature))return false;unique.add(signature);return true;}).map(d=>({...clone(d),stale:!C.acceptsRevision(id,d.key.startsWith('puzzle:')?null:d.key,d.revision)}));
+  }
+  // Delete the displayed note across duplicate revisions, independently of all review decisions.
+  function deleteFeedback(id,entry){
+    if(!authorized||!feedback(id).some(d=>d.key===entry?.key&&d.note===entry.note)){error='Dieser Kommentar ist nicht mehr vorhanden.';return false;}
+    const next=clone(data),at=new Date(Math.max(Date.now(),...[...Object.values(data.decisions),...data.history].filter(d=>d.key===entry.key&&d.note===entry.note).map(d=>Date.parse(d.at)))).toISOString();
+    next.deletedNotes=(next.deletedNotes||[]).filter(d=>d.key!==entry.key||d.note!==entry.note);
+    next.deletedNotes.push({key:entry.key,note:entry.note,at});return persist(next);
   }
   function ready(id){const p=progress(id);return p.total>=25&&p.approved===p.total&&status(id).status==='approved'&&(!FK.reviewRepository||FK.reviewRepository.confirmed(id));}
   function decide(id,iteration,value,note){
@@ -35,16 +44,16 @@
       if(!iteration&&progress(id).approved!==progress(id).total){error='Zuerst jede Iteration ansehen und freigeben.';return false;}
     }
     const next=clone(data),k=recordKey(id,iteration),old=next.decisions[k];if(old)next.history.push(old);
-    next.decisions[k]={key:k,revision:r,status:value,note,at:new Date().toISOString()};return persist(next);
+    next.decisions[k]={key:k,revision:r,status:value,note,at:noteTime(k,note)};return persist(next);
   }
   // A general comment uses the existing puzzle record, preserving its decision and exact revision.
   function comment(id,note){
     if(!authorized||!C.puzzle(id)){error='Bitte die Puzzle-Prüfung öffnen.';return false;}
     const next=clone(data),k=recordKey(id),old=next.decisions[k];if(old)next.history.push(old);
-    next.decisions[k]={...(old||{key:k,revision:revision(id),status:'pending'}),note:String(note).trim().slice(0,4000),at:new Date().toISOString()};
+    note=String(note).trim().slice(0,4000);next.decisions[k]={...(old||{key:k,revision:revision(id),status:'pending'}),note,at:noteTime(k,note)};
     return persist(next);
   }
-  function exportData(){return {version:1,decisions:clone(data.decisions),seen:clone(data.seen),history:clone(data.history),exportedAt:new Date().toISOString(),catalogue:Object.fromEntries(FK.friendsLibrary.catalogue().map(g=>[g.id,C.puzzleRevision(g.id)]))};}
+  function exportData(){return {version:1,decisions:clone(data.decisions),seen:clone(data.seen),history:clone(data.history),...(data.deletedNotes?{deletedNotes:clone(data.deletedNotes)}:{}),exportedAt:new Date().toISOString(),catalogue:Object.fromEntries(FK.friendsLibrary.catalogue().map(g=>[g.id,C.puzzleRevision(g.id)]))};}
   function importData(raw){
     let d;try{d=typeof raw==='string'?JSON.parse(raw):clone(raw);}catch{error='Keine gültige JSON-Prüfdatei.';return false;}
     if(!valid(d)||Object.entries(d.decisions).some(([k,v])=>k!==v.key)){error='Ungültige Prüfdatei; die gespeicherte Prüfung bleibt erhalten.';return false;}
@@ -56,7 +65,7 @@
       if(v.status==='approved'&&iteration&&d.seen[k]!==v.revision){error='Die Prüfdatei enthält eine unvollständige Freigabe.';return false;}
       if(next.decisions[k])next.history.push(next.decisions[k]);next.decisions[k]=v;
     }
-    Object.assign(next.seen,d.seen);next.history.push(...d.history);return persist(next);
+    Object.assign(next.seen,d.seen);next.history.push(...d.history);if(d.deletedNotes)next.deletedNotes=[...(next.deletedNotes||[]),...d.deletedNotes];return persist(next);
   }
   // One adult calculation per visit: coming from Settings, the Puzzle-Galerie or the Prüfung itself (already past the
   // gate) opens directly; any other way in asks once.
@@ -114,7 +123,7 @@
     return decide(session.id,null,'approved');
   }
   window.addEventListener?.('storage',event=>{if(event.key!==key)return;try{const next=JSON.parse(event.newValue);if(valid(next)){data=next;error='';}else {data=empty();error='Prüfung wurde geändert. Bitte erneut prüfen.';}FK.emit?.('puzzle-review-change');}catch{data=empty();FK.emit?.('puzzle-review-change');}});
-  FK.puzzleReview={key,status,seen,progress,feedback,ready,decide,comment,approveAll,exportData,importData,open,openGallery,gallerySession,play,preview,start,previewSession,visit,sessionDecision,finishSession,get authorized(){return authorized;},get error(){return error;}};
+  FK.puzzleReview={key,status,seen,progress,feedback,deleteFeedback,ready,decide,comment,approveAll,exportData,importData,open,openGallery,gallerySession,play,preview,start,previewSession,visit,sessionDecision,finishSession,get authorized(){return authorized;},get error(){return error;}};
   if(FK.ReviewRepository&&window.fetch&&window.document&&new URLSearchParams(location.search).get('dev')!=='1'){
     let tokenStorage;try{tokenStorage=window.sessionStorage;}catch{/* A temporary connection still works. */}
     FK.reviewRepository=FK.ReviewRepository.create({

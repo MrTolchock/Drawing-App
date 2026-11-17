@@ -1,0 +1,29 @@
+WALDPOST CANONICAL ILLUSTRATION STYLE — waldpost-watercolour-pencil-v1
+
+Use the supplied canonical animals.png and objects.png reference images as the authority for drawing technique. They show the predominant style of the current Waldpost gallery. Match their actual pixels, not an imagined style suggested by a filename.
+
+Draw warm children's picture-book watercolour finished with visible coloured-pencil strokes. Use light, gently uneven washes, organic sepia contours, delicate hatching, softly irregular edges and modest drawn shading. Surfaces look painted and pencilled, with paper grain within the illustration. Keep the warmth of cream, honey brown, restrained sage and blue, while preserving every exact colour required by a task. Subjects remain friendly, recognizable and anatomically believable.
+
+Do not turn the drawing into a 3D render, plush toy, clay or felt craft, photograph, glossy object, embossed surface or studio-lit miniature. Avoid deep ambient-occlusion shadows, inflated forms and realistic material microtexture. Do not mix in another illustration technique or use historical artwork as a style reference.
+
+The role instructions below set the necessary detail and composition within this one style. Learning pictures retain fine drawn contours; small navigation symbols use the approved simpler, broader shapes and flat fills in the same palette. Keep the existing rendered game-character identities separate from image-generated learning subjects. Exact geometry and handwriting remain authored paths.
+
+Preserve subject identity, counted quantities, exact answer colours and action differences. Use real alpha for isolated pictures and stationery, and an opaque canvas only when the selected role requires a scene or branding image. No accidental background, halo, visible grid, labels or extra objects.
+
+ROLE: learning
+Match the canonical watercolour and coloured-pencil technique closely: fine organic contours, uneven washes and gentle drawn volume. Keep accurate species, action contrasts, one counted object per item and exact answer colours. Use transparent square cells, generous gutters and complete silhouettes.
+
+ATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:
+1. design/illustrations/references/watercolour-pencil-v1/animals.png — canonical-style: canonical drawing technique for animals; fixed majority-style pixels
+2. design/illustrations/references/watercolour-pencil-v1/objects.png — canonical-style: canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels
+3. design/illustrations/references/feedback-2026-11-17/nut-before.png — composition-only: current nut subject identity only; correct the drawing using canonical references, not its old finish
+4. design/illustrations/references/feedback-2026-11-17/house-before.png — composition-only: current house subject identity only; correct the drawing using canonical references, not its old finish
+
+SUBJECT AND LAYOUT BRIEF:
+Repair two puzzle pictures reported on 17 November 2026. Produce a transparent square sheet with exactly 2 by 2 equal square cells, no grid lines, no labels and generous clear gutters. Row-major order:
+- Top left: forest-nut — exactly ONE whole hazelnut in its brown shell, small pale base, rounded oval body, fine brown pencil lines. No acorn cap, no oak scales, no loose pieces, no leaves or extra nuts. Warm light watercolour washes and visible delicate coloured pencil like canonical objects reference 2. Clear simple outline, recognizable at 40 pixels; no glossy/plastic/sculpted modelling. The current acorn-like picture in reference 3 is the incorrect subject/finish to replace.
+- Top right: vocab-house — one small welcoming cream cottage with red pitched tiled roof, brown door, simple blue windows. Draw in a coherent nearly frontal view: front wall, doorway and every front window lie on one flat frontal plane; window frames are neat straight rectangles, their horizontal sills parallel to the wall base, verticals parallel to the door sides. The triangular front gable and roof fit that same view. No inexplicable skewed, rounded or sideways window on the front wall. Restrained sage shutters, a few pencil-drawn roof tiles; no tiny flowers/decorative scenery. Warm hand-painted pencil/watercolour technique, no deep rendered shadows. Reference 4 only identifies the house subject, not the perspective or finish to copy.
+- Bottom left and bottom right: fully empty transparent cells.
+Keep the two subjects independent, fully contained in their own cells, centered with even margins; no ground strip, white square, paper background, drop shadow, checkerboard pattern or visible captions. The canonical style references 1 and 2 define technique; references 3 and 4 only identify the subjects being replaced. Retain true alpha transparency around and between both drawings.
+
+STYLE PRIORITY: The brief changes subjects and layout only. Keep waldpost-watercolour-pencil-v1 and the supplied canonical reference technique throughout; do not import the style of a composition-only reference.

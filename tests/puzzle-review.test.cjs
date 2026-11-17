@@ -37,7 +37,7 @@ test('rhyme pairs are distinct even when their word order is ignored',()=>{
  assert.equal(new Set(pairs).size,pool.length,'a reversed pair cannot count as another iteration');
  assert.equal(pairs.filter(pair=>pair==='fisch/tisch').length,1);
 });
-test('owl reading always uses one sentence and two pictures of the same animal; beaver rows use three distinct shapes',()=>{
+test('owl reading uses one sentence and two pictures; beaver needs the upper rows to establish shape quantities',()=>{
  const C=setup().FK.puzzleCatalogue,owl=C.iterations('friends-owl'),beaver=C.iterations('friends-beaver');
  assert.equal(owl.length,25);assert.equal(beaver.length,25);
  for(const it of owl){
@@ -56,9 +56,16 @@ test('owl reading always uses one sentence and two pictures of the same animal; 
  for(const it of beaver){
   const q=it.question;
   assert.deepEqual([...q.choices].sort(),['circle','square','triangle']);
-  for(let row=0;row<3;row++)assert.deepEqual([...q.matrix.slice(row*3,row*3+3)].sort(),['circle','square','triangle'],it.id+' row '+row);
+  const expected=[...q.matrix.slice(0,3)].sort(),counts=q.choices.map(s=>expected.filter(v=>v===s).length).sort();
+  assert.deepEqual([...counts],[0,1,2],it.id+' has two of one shape and one of another, not a fixed set of all three');
+  for(let row=1;row<3;row++)assert.deepEqual([...q.matrix.slice(row*3,row*3+3)].sort(),expected,it.id+' row '+row+' preserves the first row quantities');
+  assert.notDeepEqual(q.matrix.slice(0,3),q.matrix.slice(3,6),'rows show different arrangements');
+  assert.ok(q.gap>=6&&q.gap<=8,'gap is in the row to complete');
+  const matches=q.choices.filter(shape=>{const line=q.matrix.slice(6);line[q.gap-6]=shape;return JSON.stringify(line.sort())===JSON.stringify(expected);});
+  assert.deepEqual([...matches],[q.answer],'the first two rows imply exactly one completion');
   assert.equal(q.matrix[q.gap],q.answer);
  }
+ assert.equal(new Set(beaver.map(it=>[...it.question.matrix.slice(0,3)].sort().join(','))).size,6,'both repeated quantities occur for every pair of shapes');
 });
 test('hedgehog riddles and every distractor use Swiss forest wildlife',()=>{
  const pool=setup().FK.puzzleCatalogue.iterations('friends-hedgehog');
@@ -196,4 +203,23 @@ test('general puzzle comments persist without changing release status or revivin
  assert.ok(V.comment('add','Bilder passen.'));assert.ok(V.ready('add'));assert.ok(V.approveAll('add'));assert.equal(V.status('add').decision.note,'Bilder passen.');
  const revision=V.status('add').decision.revision;FK.puzzleImplementation='changed';assert.ok(V.comment('add','Nach Änderung neu prüfen.'));assert.equal(V.status('add').decision.revision,revision);assert.equal(V.status('add').stale,true);assert.equal(V.ready('add'),false);
  assert.ok(V.comment('add',''));assert.equal(V.status('add').decision.note,'');
+});
+
+test('deleting a displayed comment removes every older duplicate but preserves all decisions and inspection evidence',()=>{
+ const {FK,memory}=setup(),V=owner(FK),id='add',key='add/1-1',d={key,revision:'old-art',status:'improve',note:'Bilder prüfen.',at:'2026-11-15T12:00:00.000Z'};
+ const saved=V.exportData();saved.decisions[key]=d;saved.history.push({...d,revision:'older-art'},{...d,note:'Anderer Hinweis.'},{...d,key:'add/1-2'});assert.ok(V.importData(saved));
+ assert.ok(V.comment(id,'Allgemeiner Hinweis.'));const before=V.exportData(),note=V.feedback(id).find(v=>v.key===key&&v.note===d.note);
+ assert.ok(V.deleteFeedback(id,note));assert.equal(V.feedback(id).filter(v=>v.key===key&&v.note===d.note).length,0);
+ assert.deepEqual(plain(V.exportData().decisions),plain(before.decisions));assert.deepEqual(plain(V.exportData().seen),plain(before.seen));assert.equal(V.status(id,key).decision.note,'');assert.equal(V.status(id,key).stale,true);assert.equal(V.ready(id),false);
+ assert.equal(V.feedback(id).length,3,'other notes, other iterations and puzzle comment are retained');assert.equal(V.deleteFeedback(id,note),false,'a disappeared row cannot be deleted twice');
+ const restored=setup(memory).FK.puzzleReview;assert.equal(restored.feedback(id).some(v=>v.key===key&&v.note===d.note),false,'reload retains deletion');
+ const general=V.feedback(id).find(v=>v.key==='puzzle:'+id);assert.ok(V.deleteFeedback(id,general));assert.equal(V.status(id).decision.note,'');
+ assert.ok(V.comment(id,general.note));assert.equal(V.feedback(id).some(v=>v.key===general.key&&v.note===general.note),true,'explicitly saving the same comment again is allowed');
+ const exported=V.exportData(),other=setup().FK.puzzleReview;assert.ok(other.importData(exported));assert.equal(other.feedback(id).some(v=>v.key===key&&v.note===d.note),false,'backups retain deletions too');
+});
+test('comment deletion requires the adult review and a successful local write; approved puzzles remain approved',()=>{
+ const {FK,ctx}=setup(),V=owner(FK);assert.ok(V.comment('add','Prüfnotiz.'));const note=V.feedback('add')[0],saved=V.exportData();
+ const unauthorized=setup().FK.puzzleReview;assert.ok(unauthorized.importData(saved));assert.equal(unauthorized.deleteFeedback('add',note),false);
+ const write=ctx.localStorage.setItem;ctx.localStorage.setItem=()=>{throw Error('quota');};assert.equal(V.deleteFeedback('add',note),false);assert.equal(V.feedback('add').length,1);ctx.localStorage.setItem=write;
+ assert.ok(V.approveAll('add'));assert.ok(V.ready('add'));const before=plain(V.exportData().decisions);assert.ok(V.deleteFeedback('add',V.feedback('add')[0]));assert.ok(V.ready('add'));assert.deepEqual(plain(V.exportData().decisions),before);
 });

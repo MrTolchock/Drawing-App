@@ -9,7 +9,7 @@
     'friends-squirrel':'Das Kind zählt abgebildete Nüsse bis 20 und nutzt Vierer- oder Fünferreihen, um Mengen zu überblicken.',
     'friends-bird':'Das Kind liest vertraute Wörter und erkennt an ihrem Klang, welche Wörter sich reimen.',
     'friends-owl':'Das Kind liest einen kurzen Satz, versteht die beschriebene Handlung und wählt das passende Tierbild.',
-    'friends-beaver':'Das Kind erkennt Kreis, Dreieck und Quadrat und ergänzt die fehlende Form in einer geordneten Matrix.',
+    'friends-beaver':'Das Kind vergleicht die ersten zwei Reihen: Jede enthält zwei gleiche und eine andere Form. Es ergänzt die dritte Reihe so, dass jede Form dort gleich oft vorkommt.',
     'friends-mouse':'Das Kind liest ein vertrautes Nomen und verbindet das gelesene Wort mit dem passenden Bild.',
     'friends-hedgehog':'Das Kind versteht eine kurze gelesene Frage und ordnet sichtbare Merkmale dem passenden Tier zu.',
     'friends-fish':'Das Kind bestimmt Anzahlen bis 20, indem es Fische zählt und geordnete Reihen nutzt.',
@@ -73,7 +73,7 @@
     const saved=h('p',{class:'review-notice',role:'status','aria-live':'polite'});
     note.addEventListener('input',()=>{drafts.set(id,note.value);saved.textContent='Noch nicht gespeichert.';});
     body.append(h('section',{class:'review-comment'},h('h3',{text:'Allgemeiner Kommentar zum Puzzle'}),h('label',{},'Kommentar (optional)',note),btn('Kommentar speichern',()=>{
-      if(V.comment(id,note.value)){drafts.delete(id);saved.textContent='Kommentar gespeichert.';}else saved.textContent=V.error;
+      if(V.comment(id,note.value)){drafts.delete(id);notice='Kommentar gespeichert.';draw();}else saved.textContent=V.error;
     }),saved));
     const notes=V.feedback(id);
     displayedNotes=C.canonical(notes);
@@ -81,7 +81,12 @@
       const items=C.iterations(id),list=h('ul',{class:'review-feedback-list'});
       for(const entry of notes){
         const iteration=items.find(it=>it.id===entry.key),date=new Date(entry.at).toLocaleDateString('de-CH');
-        list.append(h('li',{'data-feedback-key':entry.key},h('b',{text:entry.key==='puzzle:'+id?'Zum gesamten Puzzle':iteration?.label||entry.key}),h('small',{text:date+(entry.stale?' · Frühere Version':'')}),h('p',{text:entry.note}),iteration?btn('Aktuelle Aufgabe ansehen',()=>V.preview(id,iteration.id)):null));
+        const label=entry.key==='puzzle:'+id?'Zum gesamten Puzzle':iteration?.label||entry.key;
+        const remove=FK.ui.btn({icon:'close',label:'Kommentar löschen: '+label,onClick:()=>{
+          if(V.deleteFeedback(id,entry)){notice='Kommentar gelöscht. '+(FK.reviewRepository?'Bitte den GitHub-Speicherstatus unten beachten.':'');draw();body.querySelector('.review-delete-comment,.review-comment .btn')?.focus();}
+          else {notice=V.error;draw();}
+        }});remove.classList.add('review-delete-comment');
+        list.append(h('li',{'data-feedback-key':entry.key},h('div',{class:'review-feedback-heading'},h('b',{text:label}),remove),h('small',{text:date+(entry.stale?' · Frühere Version':'')}),h('p',{text:entry.note}),iteration?btn('Aktuelle Aufgabe ansehen',()=>V.preview(id,iteration.id)):null));
       }
       body.append(h('section',{class:'review-feedback'},h('h3',{text:'Bisherige Hinweise'}),h('p',{text:'Frühere Notizen bleiben auch nach Änderungen am Puzzle sichtbar.'}),list));
     }
@@ -97,7 +102,7 @@
     }
     body.append(list,FK.reviewConnection.statusLine());
     const history=V.exportData().history.filter(d=>d.key==='puzzle:'+selected||d.key.startsWith(selected+'/'));
-    if(history.length)body.append(h('details',{},h('summary',{text:'Bisherige Entscheidungen ('+history.length+')'}),history.slice().reverse().map(d=>h('p',{text:d.key+' · '+names[d.status]+' · '+d.at+(d.note?' · '+d.note:'')}))));
+    if(history.length)body.append(h('details',{},h('summary',{text:'Bisherige Entscheidungen ('+history.length+')'}),history.slice().reverse().map(d=>h('p',{text:d.key+' · '+names[d.status]+' · '+d.at}))));
   }
   function returnToGallery(id){FK.go('puzzle-review',{reviewPuzzle:id});}
   function saveFailure(retry){

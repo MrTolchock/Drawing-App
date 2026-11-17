@@ -21,7 +21,7 @@ ATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:
 SUBJECT AND LAYOUT BRIEF:
 Transparent portrait atlas, exactly four columns by five rows of equal square cells, aspect ratio 4:5. Twenty subjects in the fixed row-major order below. IDs and German answer words are metadata; do not draw any writing.
 
-Row 1: vocab-house — Haus, one cream house with red roof; vocab-table — Tisch, one wooden table; vocab-shoe — Schuh, one brown lace-up shoe; vocab-leg — Bein, one lower leg with foot.
+Row 1: vocab-house — coherent frontal cottage with rectangular windows and sills aligned to the front wall; Haus, one cream house with red roof; vocab-table — Tisch, one wooden table; vocab-shoe — Schuh, one brown lace-up shoe; vocab-leg — Bein, one lower leg with foot.
 Row 2: vocab-stone — Stein, one grey stone; vocab-cloth — Tuch, folded blue cloth with pale stripes; vocab-tower — Turm, one crenellated stone tower with small red flag; vocab-worm — Wurm, one curved pink earthworm.
 Row 3: vocab-pot — Topf, red cooking pot with lid and side handles; vocab-head — Kopf, friendly child's head with small neck/shoulder context; vocab-hand — Hand, one open hand with five fingers; vocab-sand — Sand, small heap of golden sand.
 Row 4: vocab-scarf — Schal, red-orange scarf; vocab-rope — Seil, coiled rope; vocab-arrow — Pfeil, one horizontal arrow pointing right; vocab-cup — Tasse, one cream cup with blue decoration and handle.

@@ -116,3 +116,30 @@ test('verified equivalent approvals restore read-only and later decisions across
  // An older app can also flag the same unchanged content. Equal-time rejections win.
  next.entries['add/0@r-add/0'].status='approved';next.entries['add/0@legacy-add/0']={...next.entries['add/0@legacy-add/0'],status:'improve',at:'2026-11-14T13:00:00.000Z'};server.ledger=next;await a.repo.refresh();assert.equal(a.repo.confirmed('add'),false);assert.equal(a.data.decisions['add/0'].revision,'legacy-add/0');assert.equal(a.repo.state.pending,0);assert.equal(server.writes.length,0);a.repo.stop();
 });
+
+test('comment deletions sync without altering decisions, survive fresh devices and merge independent offline deletions',async()=>{
+ const old={key:'add/0',revision:'old-r',status:'improve',note:'Frühere Notiz.',at:'2026-11-15T10:00:00.000Z',seen:true};
+ const ledger=R.empty();ledger.entries['add/0@old-r']=old;ledger.history.push({...old,revision:'even-older-r'});
+ const server=remoteServer(ledger),a=client(server),b=client(server);await a.repo.start();await b.repo.start();
+ function remove(client,key,note){const previous=client.data,next=clone(previous);next.deletedNotes=[...(next.deletedNotes||[]),{key,note,at:'2026-11-17T20:00:00.000Z'}];client.vault.write(client.repo.stage(next,previous));client.repo.schedule();}
+ server.offline=true;remove(a,old.key,old.note);assert.equal(a.repo.state.pending,1);assert.equal(await a.repo.refresh(),false);
+ const restarted=client(server,a.data);assert.equal(await restarted.repo.start(),false);assert.equal(restarted.repo.state.pending,1,'deletion remains pending after an offline restart');
+ server.offline=false;remove(b,'puzzle:add','Andere Notiz.');await b.repo.connect('test-review-token');await restarted.repo.connect('test-review-token');
+ assert.equal(restarted.repo.state.pending,0);assert.equal(server.ledger.deletedNotes.length,2);assert.deepEqual(server.ledger.entries,ledger.entries);assert.deepEqual(server.ledger.history,ledger.history);
+ const fresh=client(server);await fresh.repo.start();assert.equal(fresh.data.deletedNotes.length,2);assert.equal(fresh.repo.state.pending,0,'restoring deletions does not upload anything');
+ const writes=server.writes.length;await restarted.repo.refresh();assert.equal(server.writes.length,writes,'refresh does not repeat a deletion');
+ const stale=client(server,a.data);await stale.repo.start();assert.equal(stale.repo.state.pending,0,'another browser acknowledges the same deletion');
+ for(const c of [a,b,restarted,fresh,stale])c.repo.stop();
+});
+test('lost deletion write responses and simultaneous decision conflicts retain the deletion without changing approvals',async()=>{
+ const server=remoteServer(),a=client(server),b=client(server);await a.repo.start();await b.repo.start();await a.repo.connect('test-review-token');
+ a.decide('add/0','approved');await a.repo.refresh();b.decide('add/0','improve');
+ const previous=b.data,next=clone(previous);next.deletedNotes=[{key:'add/1',note:'Überholte Notiz.',at:'2026-11-17T20:00:00.000Z'}];b.vault.write(b.repo.stage(next,previous));
+ server.loseResponse=true;await b.repo.connect('test-review-token');assert.equal(b.repo.state.phase,'error');assert.equal(server.ledger.deletedNotes.length,1);assert.equal(server.ledger.entries['add/0@r-add/0'].status,'approved');
+ await b.repo.refresh();assert.equal(b.repo.state.phase,'conflict');assert.equal(b.repo.state.pending,1,'only the conflicting decision remains pending');assert.equal(server.ledger.deletedNotes.length,1);
+ await b.repo.resolve('add/0@r-add/0','remote');assert.equal(b.repo.state.pending,0);assert.equal(server.ledger.entries['add/0@r-add/0'].status,'approved');a.repo.stop();b.repo.stop();
+});
+test('malformed comment deletions preserve the working cache',async()=>{
+ const server=remoteServer(),a=client(server);await a.repo.start();const before=a.data;server.ledger={...R.empty(),deletedNotes:[{key:'add/0',note:'Notiz',at:'invalid'}]};
+ assert.equal(await a.repo.refresh(),false);assert.deepEqual(a.data,before);a.repo.stop();
+});

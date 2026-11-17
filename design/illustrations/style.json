@@ -90,7 +90,7 @@
       "references": [
         {
           "path": "assets/waldatelier/forest-objects.webp",
-          "sha256": "aeb5cdd3aef93cc3f55e63f2323770b83b5eea90e190f0948d243828fc5aab83",
+          "sha256": "540899ac15def0b9193c25494fb5c799ce942c76e016963598fc85df28186cde",
           "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
           "usage": "composition-only"
         }
@@ -439,7 +439,7 @@
       "references": [
         {
           "path": "assets/waldatelier/puzzle-vocabulary.webp",
-          "sha256": "df1f2141b6ff98b83702887986c0d63add0f8edbbab81bc10c9805e000d3247a",
+          "sha256": "962a04b4c023de932e78059147cfc56f4775eb38c7bf3f0ab366dd25fcee932f",
           "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
           "usage": "composition-only"
         }
@@ -489,6 +489,42 @@
           "usage": "composition-only"
         }
       ]
+    },
+    {
+      "id": "puzzle-feedback-repairs",
+      "role": "learning",
+      "path": "design/illustrations/prompts/puzzle-feedback-repairs.txt",
+      "brief": "design/illustrations/briefs/puzzle-feedback-repairs.txt",
+      "transparent": true,
+      "references": [
+        {
+          "path": "design/illustrations/references/feedback-2026-11-17/nut-before.png",
+          "sha256": "da4f3f2af03d986f7bba0f8865b9e7a2c6ef3f76516beb6a2284d51ccf1b6e93",
+          "purpose": "current nut subject identity only; correct the drawing using canonical references, not its old finish",
+          "usage": "composition-only"
+        },
+        {
+          "path": "design/illustrations/references/feedback-2026-11-17/house-before.png",
+          "sha256": "cb6123ebcecd35247207c582a31cae270e9a79b758812390f387d57995968a05",
+          "purpose": "current house subject identity only; correct the drawing using canonical references, not its old finish",
+          "usage": "composition-only"
+        }
+      ]
+    },
+    {
+      "id": "squirrel-portrait-repair",
+      "role": "character",
+      "path": "design/artwork/prompts/squirrel-portrait-repair.txt",
+      "brief": "design/artwork/briefs/squirrel-portrait-repair.txt",
+      "transparent": true,
+      "references": [
+        {
+          "path": "design/illustrations/references/feedback-2026-11-17/squirrel-before.png",
+          "sha256": "1e3bb9988b20e061194293c0af7495b182a3d7265339510e1158f9355701d750",
+          "purpose": "squirrel identity and seated pose only; replace its modelled finish with the canonical reference technique",
+          "usage": "composition-only"
+        }
+      ]
     }
   ],
   "preparationManifests": [
@@ -506,7 +542,8 @@
     "design/artwork/fox-sleep-portrait.json",
     "design/artwork/friend-portraits.json",
     "design/artwork/den-marker.json",
-    "design/artwork/exit-symbol.json"
+    "design/artwork/exit-symbol.json",
+    "design/illustrations/puzzle-vocabulary.json"
   ],
   "history": "legacy/design-history/2026-11-16-before-style-contract",
   "preview": {
