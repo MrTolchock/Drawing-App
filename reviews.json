@@ -8308,6 +8308,33 @@
       "at": "2026-11-17T19:58:26.158Z",
       "seen": true,
       "operation": "a5c1b8a5-43e5-4ab2-9ea6-6459fcb43948"
+    },
+    "friends-mouse/word-22@3c8bcafc9c8e213e": {
+      "key": "friends-mouse/word-22",
+      "revision": "3c8bcafc9c8e213e",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T19:58:28.129Z",
+      "seen": true,
+      "operation": "cecd9d22-83d2-4ccc-8716-ef4743e7c620"
+    },
+    "friends-mouse/word-23@157a2cb35bbb6d8d": {
+      "key": "friends-mouse/word-23",
+      "revision": "157a2cb35bbb6d8d",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T19:58:30.199Z",
+      "seen": true,
+      "operation": "c7ecfa59-07fa-4a9d-927f-d73d45f1ffc6"
+    },
+    "friends-mouse/word-24@a9a25447111b2379": {
+      "key": "friends-mouse/word-24",
+      "revision": "a9a25447111b2379",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T19:58:32.091Z",
+      "seen": true,
+      "operation": "67901bb1-d0ed-4543-a1cf-cad8ec8f5935"
     }
   },
   "history": [
