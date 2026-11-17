@@ -10486,6 +10486,51 @@
       "at": "2026-11-17T20:41:06.440Z",
       "seen": true,
       "operation": "3bb007c5-bc5d-44a3-aa28-32f403f3ffb2"
+    },
+    "friends-ibex/pattern-AAB-5@962c1c59a566369f": {
+      "key": "friends-ibex/pattern-AAB-5",
+      "revision": "962c1c59a566369f",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T20:41:09.506Z",
+      "seen": true,
+      "operation": "43422b28-cef0-49f0-8e2d-15ca943e18a8"
+    },
+    "friends-ibex/pattern-AAB-6@901740c454c8aea4": {
+      "key": "friends-ibex/pattern-AAB-6",
+      "revision": "901740c454c8aea4",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T20:41:11.888Z",
+      "seen": true,
+      "operation": "c15b421e-eea4-4feb-8fc1-191f7e3a7416"
+    },
+    "friends-ibex/pattern-ABB-1@acb1f3d6e8ad9c38": {
+      "key": "friends-ibex/pattern-ABB-1",
+      "revision": "acb1f3d6e8ad9c38",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T20:41:14.056Z",
+      "seen": true,
+      "operation": "18da4c4a-96de-40dc-9251-4c5d1372018b"
+    },
+    "friends-ibex/pattern-ABB-2@ed1f889acf240a08": {
+      "key": "friends-ibex/pattern-ABB-2",
+      "revision": "ed1f889acf240a08",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T20:41:17.093Z",
+      "seen": true,
+      "operation": "00a3e77f-d854-4c26-9727-28a47938b7b4"
+    },
+    "friends-ibex/pattern-ABB-3@556e89c6314c9cda": {
+      "key": "friends-ibex/pattern-ABB-3",
+      "revision": "556e89c6314c9cda",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T20:41:19.198Z",
+      "seen": true,
+      "operation": "46c6f452-b0e8-4fd2-b857-fcbe1336258a"
     }
   },
   "history": [
