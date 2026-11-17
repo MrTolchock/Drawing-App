@@ -10702,6 +10702,33 @@
       "at": "2026-11-17T20:42:46.931Z",
       "seen": true,
       "operation": "63e59171-de1a-456b-8baa-a72bb54a4aae"
+    },
+    "friends-ibex/pattern-AABC-5@8ff6dbd864f74732": {
+      "key": "friends-ibex/pattern-AABC-5",
+      "revision": "8ff6dbd864f74732",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T20:42:51.015Z",
+      "seen": true,
+      "operation": "447af895-e697-4643-b964-d7c0ceae08dc"
+    },
+    "friends-ibex/pattern-AABC-6@1874950641f128bc": {
+      "key": "friends-ibex/pattern-AABC-6",
+      "revision": "1874950641f128bc",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T20:42:54.265Z",
+      "seen": true,
+      "operation": "e7f15b9c-78ca-4176-aa14-66370221b596"
+    },
+    "puzzle:friends-ibex@a36016218e4244cb": {
+      "key": "puzzle:friends-ibex",
+      "revision": "a36016218e4244cb",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T20:42:57.404Z",
+      "seen": true,
+      "operation": "46329fef-cb59-42f8-8ac2-29a9aa63e148"
     }
   },
   "history": [
