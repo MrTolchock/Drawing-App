@@ -8335,6 +8335,15 @@
       "at": "2026-11-17T19:58:32.091Z",
       "seen": true,
       "operation": "67901bb1-d0ed-4543-a1cf-cad8ec8f5935"
+    },
+    "friends-hedgehog/riddle-0@cb0c73ff774dc5b9": {
+      "key": "friends-hedgehog/riddle-0",
+      "revision": "cb0c73ff774dc5b9",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T20:00:45.445Z",
+      "seen": true,
+      "operation": "fc1e3cb0-162a-4a06-9f5b-9987a5dca68a"
     }
   },
   "history": [
