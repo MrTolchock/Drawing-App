@@ -11602,6 +11602,15 @@
       "at": "2026-11-17T20:55:11.991Z",
       "seen": true,
       "operation": "8a0e5894-dc58-4eb8-8519-6ea6b84be09a"
+    },
+    "pattern/4-5@ae3960e663a15872": {
+      "key": "pattern/4-5",
+      "revision": "ae3960e663a15872",
+      "status": "improve",
+      "note": "Teilweise lässt sich nicht gut klicken, prüfen",
+      "at": "2026-11-17T20:55:37.928Z",
+      "seen": true,
+      "operation": "31b90cb5-637c-4cd7-8e35-59ad14b84367"
     }
   },
   "history": [
