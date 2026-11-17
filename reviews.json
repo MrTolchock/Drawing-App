@@ -3552,10 +3552,10 @@
       "key": "puzzle:friends-beaver",
       "revision": "27a3de24d8bafdea",
       "status": "approved",
-      "note": "Alle Iterationen zusammen bestätigt",
-      "at": "2026-11-14T21:05:24.070Z",
+      "note": "Reihen sind immer kreis, dreieck und quadrat. Beim fehlenden zeichen muss man gar nicht wissen, was erste zwei reihen zeigen. Besser wäre ein muster in ersten zwei reihen das in dritter weitergeführt wird, bsw. Immer zwei dreiecke und ein kreis, in unterschiedlichen reihenfolgen, und in letzter zeile muss ergänzt werden",
+      "at": "2026-11-17T19:48:56.777Z",
       "seen": true,
-      "operation": "dd152ff2-c004-49a4-8887-d73ee041a92b"
+      "operation": "1f7fb2d5-0079-4772-bd1f-08c58fe9a8d9"
     },
     "friends-mouse/word-0@1c92488e8f9685a6": {
       "key": "friends-mouse/word-0",
@@ -8157,6 +8157,15 @@
       "at": "2026-11-17T19:41:03.201Z",
       "seen": true,
       "operation": "77531322-149c-4970-8903-219066e57ed2"
+    },
+    {
+      "key": "puzzle:friends-beaver",
+      "revision": "27a3de24d8bafdea",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-14T21:05:24.070Z",
+      "seen": true,
+      "operation": "dd152ff2-c004-49a4-8887-d73ee041a92b"
     }
   ]
 }
