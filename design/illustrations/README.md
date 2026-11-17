@@ -4,7 +4,7 @@ Start with the [canonical illustration style](STYLE.md), **`waldpost-watercolour
 
 ## Reuse and generate
 
-Search the [235-picture library](../../assets/waldatelier/README.md) and reuse stable IDs with `FK.visual.art(id)`. New subjects belong in `assets/waldatelier/`; preserve existing IDs and cell positions.
+Search the [238-picture library](../../assets/waldatelier/README.md) and reuse stable IDs with `FK.visual.art(id)`. New subjects belong in `assets/waldatelier/`; preserve existing IDs and cell positions.
 
 ```sh
 node tools/illustrations/style.cjs --request subject-sheet
@@ -15,7 +15,7 @@ node tools/illustrations/style.cjs --request layout-repair
 
 The JSON output contains the complete prompt, absolute paths of the actual reference images, and `transparent_background`. Supply these to the available image-generation/editing service. It is a local request-preparation tool, not an image model or service client. Keep the two canonical images first when adding a current edit target. No archived artwork is a generation-style input.
 
-Every existing atlas has a specific request with the same ID as the sheet, including the older vocabulary, animal and menu sheets. The [complete generator-input index](../artwork/GENERATOR-INPUTS.md) lists all 17 and supplies portable full requests for any AI model. Use `subject-sheet` only as a template for new subjects; `layout-repair` and `transparency-repair` need an explicit current target. Read the subject/layout brief, fill any generic placeholders and regenerate complete prompts before use. Change subjects/layout in `briefs/`, not the generated `prompts/` files. Every request retains the current style and final style-priority instruction.
+Every existing atlas has a specific request with the same ID as the sheet, including the older vocabulary, animal and menu sheets. The [complete generator-input index](../artwork/GENERATOR-INPUTS.md) lists all 18 and supplies portable full requests for any AI model. Use `subject-sheet` only as a template for new subjects; `layout-repair` and `transparency-repair` need an explicit current target. Read the subject/layout brief, fill any generic placeholders and regenerate complete prompts before use. Change subjects/layout in `briefs/`, not the generated `prompts/` files. Every request retains the current style and final style-priority instruction.
 
 ## Prepare and integrate
 
@@ -40,4 +40,4 @@ node tools/check-design.cjs
 
 Follow the relevant checks in [Development](../../docs/DEVELOPMENT.md). Current final sources and packing manifests are editable preparation inputs. Their archived `generationRecord` is provenance only; use `forwardPrompt` for new work. [Historical records](../../legacy/design-history/2026-11-16-before-style-contract/README.md) retain all original prompts, old styles and drafts without presenting them as current instructions.
 
-For a correction to one cell of an existing packed atlas, keep the other visible RGBA pixels and cell positions unchanged. The current corrected forest-object, puzzle-vocabulary and portrait manifests retain already packed composite PNGs with `preservePixels: true`. Export them with `node tools/illustrations/prepare-image.cjs <manifest>`; this mode requires the exact output dimensions and writes profiled lossless WebP without resizing/repacking unaffected cells. Actual generator output and the original base commit/hash are recorded separately in each generation record.
+For a correction to one cell of an existing packed atlas, keep the other visible RGBA pixels and cell positions unchanged. The current corrected puzzle-vocabulary and portrait manifests retain already packed composite PNGs with `preservePixels: true`. Export them with `node tools/illustrations/prepare-image.cjs <manifest>`; this mode requires the exact output dimensions and writes profiled lossless WebP without resizing/repacking unaffected cells. Actual generator output and the original base commit/hash are recorded separately in each generation record.

@@ -8,7 +8,6 @@
     'friends-squirrel':'Zähle die Nüsse. Du kannst sie zum Zählen markieren. Tippe auf die passende Zahl.',
     'friends-badger':'Lies die Frage. Tippe auf das passende Bild.',
     'friends-ibex':'Stein, Tanne und Blume wiederholen sich in Gruppen. Suche die Gruppe. Welches Bild gehört in die Lücke?',
-    'friends-fish':'Zähle die Fische. Du kannst sie zum Zählen markieren. Tippe auf die passende Zahl.',
     'friends-kingfisher':'Zähle die Bilder. Du kannst sie zum Zählen markieren. Tippe auf die passende Zahl.',
     'friends-hedgehog':'Lies die Frage. Tippe auf das Tier, das gemeint ist.',
     'friends-deer':'Lies die Frage. Tippe auf das passende Bild.',

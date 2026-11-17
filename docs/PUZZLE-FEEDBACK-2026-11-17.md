@@ -1,5 +1,7 @@
 # Puzzle feedback from 17 November 2026
 
+**Later follow-up:** [9.3.91](PUZZLE-FEEDBACK-2026-11-17-FOLLOWUP.md) restores the preferred original nuts and addresses the actual zero-task basket, further nature-picture feedback and retirement of Fische zählen. The first-pass record below remains historical evidence.
+
 Read from the public `puzzle-review-data/reviews.json` ledger on 17 November 2026. All three notes dated today were read, including the general comment on an approved Biber puzzle. The implementation is 9.3.89; this follow-up does not approve content or delete the original editorial records.
 
 | Stable key | Original feedback | Change |

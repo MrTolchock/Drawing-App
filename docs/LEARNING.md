@@ -6,7 +6,7 @@ Every active puzzle has an explicit fixed difficulty boundary in the [catalogue]
 
 | Area | Current activities |
 | --- | --- |
-| Quantities and arithmetic | Nüsse zählen, Fische zählen, Am Bach zählen, Waldkäfer zählen, Äpfel rechnen, Zahlennachbarn, Glühwürmchen sammeln, Waldpicknick, Beeren vergleichen |
+| Quantities and arithmetic | Nüsse zählen, Am Bach zählen, Waldkäfer zählen, Äpfel rechnen, Zahlennachbarn, Glühwürmchen sammeln, Waldpicknick, Beeren vergleichen |
 | Patterns, memory and space | Welche Form fehlt?, Waldmuster, Waldschatz, Waldspiegel, Waldpost |
 | Nature and sequence | Tierrätsel, Wer wohnt wo?, Naturrätsel, Naturdetektive, Was kommt zuerst? |
 | Reading and writing | Reimpaare lesen, Lies und zeig, Wörter und Bilder, Tierwörter lesen, Silben zählen, Waldwörter ergänzen, Silben-Puzzle, Wort und Waldbild, Silbenblätter, Farben lesen, Schreibspuren, Zahlenspuren |

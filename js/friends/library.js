@@ -46,13 +46,6 @@ const games=[
     "screen": "puzzle"
   },
   {
-    "id": "friends-fish",
-    "host": "fish",
-    "title": "Fische zählen",
-    "picture": "fish",
-    "screen": "puzzle"
-  },
-  {
     "id": "friends-deer",
     "host": "deer",
     "title": "Wer wohnt wo?",

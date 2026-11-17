@@ -1,0 +1,33 @@
+{
+  "format": "waldpost-illustration-atlas",
+  "version": 1,
+  "source": "sources/review-nature.png",
+  "output": "../../assets/waldatelier/review-nature.webp",
+  "columns": 2,
+  "rows": 2,
+  "cellPixels": 320,
+  "subjectPixels": 256,
+  "alphaThresholdPercent": 15,
+  "provenance": {
+    "date": "2026-11-17",
+    "tool": "ChatGPT image_gen.imagegen",
+    "sourceSha256": "8c8436ede0777ee4edb1797ff7815e9f67c9fcbf99ebf9583489e872ba9f4b0c",
+    "generationRecord": "../artwork/generation-records/review-nature.json",
+    "styleContract": "style.json",
+    "forwardPrompt": "prompts/review-nature.txt"
+  },
+  "subjects": [
+    {
+      "id": "empty-basket",
+      "label": "Leerer Korb"
+    },
+    {
+      "id": "habitat-pond",
+      "label": "Teich"
+    },
+    {
+      "id": "squirrel-nut",
+      "label": "Eichh\u00f6rnchen mit Nuss"
+    }
+  ]
+}

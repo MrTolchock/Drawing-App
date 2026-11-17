@@ -1,0 +1,30 @@
+WALDPOST CANONICAL ILLUSTRATION STYLE — waldpost-watercolour-pencil-v1
+
+Use the supplied canonical animals.png and objects.png reference images as the authority for drawing technique. They show the predominant style of the current Waldpost gallery. Match their actual pixels, not an imagined style suggested by a filename.
+
+Draw warm children's picture-book watercolour finished with visible coloured-pencil strokes. Use light, gently uneven washes, organic sepia contours, delicate hatching, softly irregular edges and modest drawn shading. Surfaces look painted and pencilled, with paper grain within the illustration. Keep the warmth of cream, honey brown, restrained sage and blue, while preserving every exact colour required by a task. Subjects remain friendly, recognizable and anatomically believable.
+
+Do not turn the drawing into a 3D render, plush toy, clay or felt craft, photograph, glossy object, embossed surface or studio-lit miniature. Avoid deep ambient-occlusion shadows, inflated forms and realistic material microtexture. Do not mix in another illustration technique or use historical artwork as a style reference.
+
+The role instructions below set the necessary detail and composition within this one style. Learning pictures retain fine drawn contours; small navigation symbols use the approved simpler, broader shapes and flat fills in the same palette. Keep the existing rendered game-character identities separate from image-generated learning subjects. Exact geometry and handwriting remain authored paths.
+
+Preserve subject identity, counted quantities, exact answer colours and action differences. Use real alpha for isolated pictures and stationery, and an opaque canvas only when the selected role requires a scene or branding image. No accidental background, halo, visible grid, labels or extra objects.
+
+ROLE: learning
+Match the canonical watercolour and coloured-pencil technique closely: fine organic contours, uneven washes and gentle drawn volume. Keep accurate species, action contrasts, one counted object per item and exact answer colours. Use transparent square cells, generous gutters and complete silhouettes.
+
+ATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:
+1. design/illustrations/references/watercolour-pencil-v1/animals.png — canonical-style: canonical drawing technique for animals; fixed majority-style pixels
+2. design/illustrations/references/watercolour-pencil-v1/objects.png — canonical-style: canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels
+3. design/illustrations/references/followup-2026-11-17/squirrel-sit-before.png — composition-only: existing learning squirrel species, colours and seated pose only; add a clearly visible nut held between its two forepaws
+
+SUBJECT AND LAYOUT BRIEF:
+Create exactly three independent learning pictures in a square transparent atlas of 2 columns by 2 rows with equal square cells. No grid lines or labels. All pictures use the actual canonical animal/object technique of references 1 and 2: fine organic coloured-pencil contours, light watercolour washes, drawn texture and gentle shading. Reference 3 identifies an existing learning squirrel to correct, not a new style.
+Row-major subjects:
+1. Top left — empty-basket: one unmistakably EMPTY woven wicker basket, viewed slightly from above so its open oval interior and empty base are clearly visible. Soft honey-brown pencil weave, light uneven cream/ochre washes, one arch handle behind the opening, modest drawn shading. The rim, body and handle form one complete basket. No nuts, fruit, cloth, flowers, other contents, separate props or background. It must look hand-painted beside the existing woodland objects, not a flat geometric SVG icon or rendered plastic container. This picture represents zero things in a counting task.
+2. Top right — habitat-pond: one small recognizable woodland POND or lake, viewed at a gentle oblique picture-book angle. A broad flat irregular oval surface of quiet blue water, a low natural grassy bank around it and only a few simple rushes at its edge. It is a place an animal can swim, with a clearly horizontal water surface, not a teardrop, splashing droplet, puddle icon, vase or glass. No visible fish, frog, bird or other animal that would give away another answer, no boat, bridge, house or waterfall. The tiny bank and water are one contained habitat vignette, with transparent space outside its irregular shoreline.
+3. Bottom left — squirrel-nut: one complete seated red squirrel matching the visible species and soft orange/cream markings of reference 3. Its two front paws unmistakably grasp ONE large brown acorn with a visible cap directly in front of its cream chest, away from the body outline, so the nut is clearly recognizable even at a 90px answer-card size. The squirrel looks friendly, has tufted pointed ears, a large bushy curved tail and two back feet. Keep paws and nut anatomically clear; no extra fingers, no duplicate nut, no clothes, scarf, branch or scenery. Warm handmade watercolour/pencil, never plush or sculpted. This must make the question 'Wer hält eine Nuss?' true from the visible picture alone.
+4. Bottom right — entirely transparent and empty.
+Every complete subject stays inside its own square cell with at least 18 percent empty padding on all four sides. Keep tails, ears, handles and shoreline entirely within their cell. Real alpha transparency between and around subjects. No background paper, opaque rectangles, checkerboard pattern, drop shadows, captions, text or numbers.
+
+STYLE PRIORITY: The brief changes subjects and layout only. Keep waldpost-watercolour-pencil-v1 and the supplied canonical reference technique throughout; do not import the style of a composition-only reference.

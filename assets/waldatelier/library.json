@@ -38,10 +38,6 @@
       "title": "Tierrätsel",
       "host": "hedgehog"
     },
-    "friends-fish": {
-      "title": "Fische zählen",
-      "host": "fish"
-    },
     "friends-deer": {
       "title": "Wer wohnt wo?",
       "host": "deer"
@@ -265,7 +261,7 @@
       "height": 1280,
       "columns": 4,
       "rows": 4,
-      "sha256": "540899ac15def0b9193c25494fb5c799ce942c76e016963598fc85df28186cde",
+      "sha256": "aeb5cdd3aef93cc3f55e63f2323770b83b5eea90e190f0948d243828fc5aab83",
       "provenance": {
         "status": "historical-record",
         "record": "legacy/design-history/2026-11-16-before-style-contract/design/illustrations/forest-objects.json",
@@ -387,6 +383,25 @@
         "styleContract": "design/illustrations/style.json",
         "requestId": "puzzle-vocabulary",
         "forwardPrompt": "design/illustrations/prompts/puzzle-vocabulary.txt",
+        "guide": "design/illustrations/STYLE.md"
+      }
+    },
+    {
+      "id": "review-nature",
+      "file": "review-nature.webp",
+      "width": 640,
+      "height": 640,
+      "columns": 2,
+      "rows": 2,
+      "sha256": "b1e6bd17fda1b913f8c40a707ceeb6bf05b03ef5f72ca8695d286599fd735f13",
+      "provenance": {
+        "status": "historical-record",
+        "record": "design/artwork/generation-records/review-nature.json",
+        "recordKind": "generation-record",
+        "manifest": "design/illustrations/review-nature.json",
+        "styleContract": "design/illustrations/style.json",
+        "requestId": "review-nature",
+        "forwardPrompt": "design/illustrations/prompts/review-nature.txt",
         "guide": "design/illustrations/STYLE.md"
       }
     },
@@ -1758,6 +1773,26 @@
       ]
     },
     {
+      "id": "empty-basket",
+      "label": "Leerer Korb",
+      "sheet": "review-nature",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-squirrel",
+        "friends-kingfisher",
+        "count"
+      ]
+    },
+    {
       "id": "feather",
       "label": "feather",
       "sheet": "words-one",
@@ -1852,7 +1887,6 @@
         "friends-bird",
         "friends-mouse",
         "friends-hedgehog",
-        "friends-fish",
         "friends-deer",
         "friends-badger",
         "nature",
@@ -1967,7 +2001,6 @@
       "usedBy": [
         "friends-mouse",
         "friends-hedgehog",
-        "friends-fish",
         "friends-deer",
         "friends-kingfisher",
         "friends-frog",
@@ -2080,7 +2113,6 @@
         "friends-beaver",
         "friends-mouse",
         "friends-hedgehog",
-        "friends-fish",
         "friends-deer",
         "friends-kingfisher",
         "friends-frog",
@@ -2189,7 +2221,6 @@
         "friends-beaver",
         "friends-mouse",
         "friends-hedgehog",
-        "friends-fish",
         "friends-deer",
         "friends-kingfisher",
         "friends-frog",
@@ -2673,6 +2704,24 @@
       "tokens": [
         "🍇"
       ],
+      "usedBy": [
+        "friends-deer"
+      ]
+    },
+    {
+      "id": "habitat-pond",
+      "label": "Teich",
+      "sheet": "review-nature",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 320,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
       "usedBy": [
         "friends-deer"
       ]
@@ -4411,6 +4460,24 @@
       ]
     },
     {
+      "id": "squirrel-nut",
+      "label": "Eichhörnchen mit Nuss",
+      "sheet": "review-nature",
+      "index": 2,
+      "column": 0,
+      "row": 1,
+      "sourceRect": {
+        "x": 0,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-hedgehog"
+      ]
+    },
+    {
       "id": "squirrel-run",
       "label": "Eichhörnchen rennt",
       "sheet": "forest-wildlife",
@@ -5222,7 +5289,6 @@
         "🌊"
       ],
       "usedBy": [
-        "friends-deer",
         "friends-badger",
         "sequence"
       ]

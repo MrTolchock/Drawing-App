@@ -1,6 +1,6 @@
 # Puzzle catalogue and competence map
 
-The active library contains **32 puzzles and 983 individually reviewable iterations**. Each play is five randomly selected, distinct iterations. Children start puzzles only at the friend on their current letter; the full gallery is in adult Settings. [Parent letter limits](LETTER-SESSIONS.md) end the journey at the den after sleeping.
+The active library contains **31 puzzles and 958 individually reviewable iterations**. Each play is five randomly selected, distinct iterations. Children start puzzles only at the friend on their current letter; the full gallery is in adult Settings. [Parent letter limits](LETTER-SESSIONS.md) end the journey at the den after sleeping.
 
 Generated from the runtime catalogue with `node tools/puzzle-catalogue.cjs`. Every linked puzzle page lists all iteration IDs, content and expected solutions. No generated item is automatically approved.
 
@@ -16,7 +16,6 @@ Competences below are bounded practice references to [Zürich Zyklus 1](CURRICUL
 | [Welche Form fehlt?](puzzles/friends-beaver.md) | Biber | MA.2.A.1.a — Formenmengen in einer Matrix erkennen | Zwei gleiche und eine andere Form je Reihe; das Muster der ersten zwei Reihen ergänzen | 25 |
 | [Wörter und Bilder](puzzles/friends-mouse.md) | Maus | D.2.A.1.b — Wörter mit Bildern verbinden | 25 vertraute Nomen; eingeführte Buchstaben | 25 |
 | [Tierrätsel](puzzles/friends-hedgehog.md) | Igel | NMG.2.4.a; D.2.B.1.b — Tiermerkmale erkennen und Fragen lesen | 25 kurze Fragen zu sichtbaren Tiermerkmalen; zwei Bildantworten | 25 |
-| [Fische zählen](puzzles/friends-fish.md) | Fisch | MA.1.A.2.a — Fische zählen | 0–20; Vierer- und Fünferstruktur | 25 |
 | [Wer wohnt wo?](puzzles/friends-deer.md) | Reh | NMG.2.1.a; D.2.B.1.b — Lebensräume und Nahrung zuordnen | 25 kurze Naturfragen; drei Bildantworten | 25 |
 | [Am Bach zählen](puzzles/friends-kingfisher.md) | Eisvogel | MA.1.A.2.a — Dinge am Bach zählen | 2–20; sechs verschiedene Gegenstände | 30 |
 | [Tierwörter lesen](puzzles/friends-frog.md) | Frosch | D.2.A.1.b — Tierwörter lesen | 25 Tiernamen; ausschliesslich Tierbilder | 25 |

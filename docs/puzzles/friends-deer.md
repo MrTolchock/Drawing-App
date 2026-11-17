@@ -26,7 +26,7 @@
 
 | Stable iteration ID | Content / configuration | Expected answer or solution |
 | --- | --- | --- |
-| `friends-deer/riddle-0` | Wo schwimmt der Fisch? — Wo schwimmt der Fisch? | "water" |
+| `friends-deer/riddle-0` | Wo schwimmt der Fisch? — Wo schwimmt der Fisch? | "habitat-pond" |
 | `friends-deer/riddle-1` | Wo brütet der Vogel? — Wo brütet der Vogel? | "nest" |
 | `friends-deer/riddle-2` | Was frisst der Hase gern? — Was frisst der Hase gern? | "carrot" |
 | `friends-deer/riddle-3` | Was legt der Vogel? — Was legt der Vogel? | "egg" |
@@ -48,7 +48,7 @@
 | `friends-deer/riddle-19` | Was frisst die Schnecke? — Was frisst die Schnecke? | "leaf" |
 | `friends-deer/riddle-20` | Wo sucht der Igel kleine Tiere? — Wo sucht der Igel kleine Tiere? | "leaf" |
 | `friends-deer/riddle-21` | Was stellt die Biene aus Nektar her? — Was stellt die Biene aus Nektar her? | "honey" |
-| `friends-deer/riddle-22` | Wo kann der Frosch schwimmen? — Wo kann der Frosch schwimmen? | "water" |
+| `friends-deer/riddle-22` | Wo kann der Frosch schwimmen? — Wo kann der Frosch schwimmen? | "habitat-pond" |
 | `friends-deer/riddle-23` | Was knabbert der Hase auf der Wiese? — Was knabbert der Hase auf der Wiese? | "leaf" |
 | `friends-deer/riddle-24` | Was hängt an einer Weinrebe? — Was hängt an einer Weinrebe? | "grapes" |
 
@@ -65,9 +65,9 @@ These definitions are the same finite data used by the game and review previews.
       "kind": "reading",
       "prompt": "Welches Bild passt zur Frage?",
       "text": "Wo schwimmt der Fisch?",
-      "answer": "water",
+      "answer": "habitat-pond",
       "choices": [
-        "water",
+        "habitat-pond",
         "tree",
         "nest"
       ]
@@ -83,7 +83,7 @@ These definitions are the same finite data used by the game and review previews.
       "answer": "nest",
       "choices": [
         "nest",
-        "water",
+        "habitat-pond",
         "carrot"
       ]
     }
@@ -143,7 +143,7 @@ These definitions are the same finite data used by the game and review previews.
       "answer": "tree",
       "choices": [
         "tree",
-        "water",
+        "habitat-pond",
         "egg"
       ]
     }
@@ -308,7 +308,7 @@ These definitions are the same finite data used by the game and review previews.
       "answer": "flower",
       "choices": [
         "flower",
-        "water",
+        "habitat-pond",
         "egg"
       ]
     }
@@ -395,9 +395,9 @@ These definitions are the same finite data used by the game and review previews.
       "kind": "reading",
       "prompt": "Welches Bild passt zur Frage?",
       "text": "Wo kann der Frosch schwimmen?",
-      "answer": "water",
+      "answer": "habitat-pond",
       "choices": [
-        "water",
+        "habitat-pond",
         "cloud",
         "tree"
       ]
