@@ -10060,6 +10060,11 @@
   ],
   "deletedNotes": [
     {
+      "key": "friends-beaver/matrix-3",
+      "note": "For all make more clear that there are three rows. Now looks like block of 9",
+      "at": "2026-11-17T20:28:25.862Z"
+    },
+    {
       "key": "friends-bird/rhyme-16",
       "note": "Tisch and fisch iteration counts as same as fisch and tisch, just swapping is not ok. Just keep one and delete rest, fill wirh new iterations. Counts for all such cases in this puzzle",
       "at": "2026-11-17T20:26:08.658Z"
