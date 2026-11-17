@@ -7584,10 +7584,10 @@
       "key": "puzzle:friends-squirrel",
       "revision": "5c30ff4f4facfdd7",
       "status": "approved",
-      "note": "Alle Iterationen zusammen bestätigt",
-      "at": "2026-11-16T12:09:58.771Z",
+      "note": "Nüsse rückgängig machen, die waren besser vorher. Leerer korb bei der zahl 0 war das problem, dieser passt nicht",
+      "at": "2026-11-17T20:25:32.414Z",
       "seen": true,
-      "operation": "d3f857b8-f200-46ea-9cc3-e929ff69f20f"
+      "operation": "36acc3a7-8bc1-46eb-9354-b7d266763556"
     },
     "friends-squirrel/count-0@aa68c72410f06a78": {
       "key": "friends-squirrel/count-0",
@@ -9813,6 +9813,15 @@
       "at": "2026-11-15T20:24:17.612Z",
       "seen": true,
       "operation": "c789fb04-fa68-49e3-a816-325a195b9cc4"
+    },
+    {
+      "key": "puzzle:friends-squirrel",
+      "revision": "5c30ff4f4facfdd7",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-16T12:09:58.771Z",
+      "seen": true,
+      "operation": "d3f857b8-f200-46ea-9cc3-e929ff69f20f"
     }
   ],
   "deletedNotes": [
