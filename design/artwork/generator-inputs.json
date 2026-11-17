@@ -582,52 +582,17 @@
         }
       ]
     },
-    "drawn-map-draft": {
-      "role": "cartography",
-      "promptFile": "design/artwork/prompts/drawn-map-draft.txt",
-      "brief": "design/artwork/briefs/drawn-map-draft.txt",
-      "requiresBriefCustomization": false,
-      "request": {
-        "prompt": "WALDPOST CANONICAL ILLUSTRATION STYLE — waldpost-watercolour-pencil-v1\n\nUse the supplied canonical animals.png and objects.png reference images as the authority for drawing technique. They show the predominant style of the current Waldpost gallery. Match their actual pixels, not an imagined style suggested by a filename.\n\nDraw warm children's picture-book watercolour finished with visible coloured-pencil strokes. Use light, gently uneven washes, organic sepia contours, delicate hatching, softly irregular edges and modest drawn shading. Surfaces look painted and pencilled, with paper grain within the illustration. Keep the warmth of cream, honey brown, restrained sage and blue, while preserving every exact colour required by a task. Subjects remain friendly, recognizable and anatomically believable.\n\nDo not turn the drawing into a 3D render, plush toy, clay or felt craft, photograph, glossy object, embossed surface or studio-lit miniature. Avoid deep ambient-occlusion shadows, inflated forms and realistic material microtexture. Do not mix in another illustration technique or use historical artwork as a style reference.\n\nThe role instructions below set the necessary detail and composition within this one style. Learning pictures retain fine drawn contours; small navigation symbols use the approved simpler, broader shapes and flat fills in the same palette. Keep the existing rendered game-character identities separate from image-generated learning subjects. Exact geometry and handwriting remain authored paths.\n\nPreserve subject identity, counted quantities, exact answer colours and action differences. Use real alpha for isolated pictures and stationery, and an opaque canvas only when the selected role requires a scene or branding image. No accidental background, halo, visible grid, labels or extra objects.\n\nROLE: cartography\nApply the canonical watercolour/pencil medium as a simplified flat cartographic plan. Strict orthographic top-down projection throughout, no perspective, visible vertical surfaces, relief modelling or cast shadows. Use broad quiet colour regions, light washes, fine organic sepia outlines and a few small plan-view symbols. Keep path connections, water boundaries and relative landmark positions clear; remove decorative microdetail. Opaque landscape canvas. Geography references define layout only. Keep runtime-approved geography calibrated to the actual interface; new proposals stay separate until the owner approves them.\n\nATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:\n1. design/illustrations/references/watercolour-pencil-v1/animals.png — canonical-style: canonical drawing technique for animals; fixed majority-style pixels\n2. design/illustrations/references/watercolour-pencil-v1/objects.png — canonical-style: canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels\n3. design/artwork/references/world-map-geography.webp — composition-only: actual geography, path topology, landmark locations and map extent only; repaint in the canonical medium\n\nSUBJECT AND LAYOUT BRIEF:\nRedraw the Waldpost woodland as a very clear, simplified TWO-DIMENSIONAL CARTOGRAPHIC MAP, LANDSCAPE THREE-TO-TWO. True orthographic top-down plan view: the camera points straight down at 90 degrees everywhere on the map. Every feature uses the same plan projection. Preserve the north-up extent, main path network, waterways and landmark locations of the supplied actual-world map. The previous painted proposal, if attached, supplies layout/content only and must be flattened and radically simplified. This is a design draft only.\n\nUse broad, mostly flat pale sage/olive woodland areas, a pale open meadow at middle left, light blue water with a fine sepia bank outline, and continuous warm ochre paths. The routes and water must stand out immediately. Reduce decorative detail by at least 80 percent from the painted landscape proposal. Show forest cover mainly as a few large softly edged woodland patches, with a sparse scattering of small simple round or scalloped canopy symbols viewed directly from above. No individually drawn leaves, branches, trunks, roots, flowers, pebbles, reeds, grass blades or hundreds of miniature trees. Generous open space between routes and symbols. Keep the canonical watercolour/pencil character through faint uneven washes and soft sepia outlines, with extremely restrained paper texture.\n\nRetain these geographic anchors as simple PLAN symbols: mountain area upper right as a flat pale grey region with only three or four thin closed elevation contour lines and a tiny equal-armed plus-shaped summit mark; stream flowing from it through the small upper pool and the middle-right beaver pond, past the central crossing and into the southern wetland lake with a few simple island shapes. Bridges are short flat strips crossing water, viewed from above, without railings or arches. The fox's home tree just left of the central crossing is one slightly larger green canopy disc viewed straight down, with a tiny centred brown spot; the entire tree fits inside that overhead disc, with no trunk extending below it. The two orchard trees are overhead green canopy circles containing three red fruit dots each, with no visible trunks. The mushroom location above the meadow is a simple red circular disc with three cream spots, viewed from above, without a stem. The cave location at the mountain edge is a small flat filled circle beside the contour line, without a front-facing arch, doorway or stone facade. Keep the main looping woodland paths, western open meadow, small ring of six stone dots, and tiny picnic-table plan footprint south-west of the home tree. Any roof or landmark is a flat footprint viewed straight down.\n\nAbsolutely no oblique, isometric, tilted, bird's-eye landscape or side views. No upright pine silhouettes, visible tree trunks, building facades, vertical mountain faces, scenic snowy peak, horizon, light direction, cast shadows, relief rendering, bevels, dimensional shading or depth effects. Make it look like a practical, beautifully hand-painted hiking/park map, not a landscape painting viewed from a hill. Prioritize clear geographic areas, route connections and readable map symbols. Opaque full canvas on warm cream paper, with a narrow clean margin. No UI, player pins, character portraits, text, labels, title banner or decorative frame. This request produces a review image only and does not authorize replacing the runtime map.\n\nSTYLE PRIORITY: The brief changes subjects and layout only. Keep waldpost-watercolour-pencil-v1 and the supplied canonical reference technique throughout; do not import the style of a composition-only reference.\n",
-        "referenced_image_paths": [
-          "design/illustrations/references/watercolour-pencil-v1/animals.png",
-          "design/illustrations/references/watercolour-pencil-v1/objects.png",
-          "design/artwork/references/world-map-geography.webp"
-        ],
-        "transparent_background": false
-      },
-      "references": [
-        {
-          "path": "design/illustrations/references/watercolour-pencil-v1/animals.png",
-          "sha256": "65867082294d157ab4ffbe33926857272625ef3c25cdb7cab81c2a4ea73d9316",
-          "purpose": "canonical drawing technique for animals; fixed majority-style pixels",
-          "usage": "canonical-style"
-        },
-        {
-          "path": "design/illustrations/references/watercolour-pencil-v1/objects.png",
-          "sha256": "0bb37d6fc82c75034eddf30da2cc57c546dd8bc70d246aeeda85b637bd87dd80",
-          "purpose": "canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels",
-          "usage": "canonical-style"
-        },
-        {
-          "path": "design/artwork/references/world-map-geography.webp",
-          "sha256": "84bd806fe2bcfa2262f10b1a512549525a2c74af310c7fd05568197b17fe3ff5",
-          "purpose": "actual geography, path topology, landmark locations and map extent only; repaint in the canonical medium",
-          "usage": "composition-only"
-        }
-      ]
-    },
     "fox-sleep-portrait": {
       "role": "character",
       "promptFile": "design/artwork/prompts/fox-sleep-portrait.txt",
       "brief": "design/artwork/briefs/fox-sleep-portrait.txt",
       "requiresBriefCustomization": false,
       "request": {
-        "prompt": "WALDPOST CANONICAL ILLUSTRATION STYLE — waldpost-watercolour-pencil-v1\n\nUse the supplied canonical animals.png and objects.png reference images as the authority for drawing technique. They show the predominant style of the current Waldpost gallery. Match their actual pixels, not an imagined style suggested by a filename.\n\nDraw warm children's picture-book watercolour finished with visible coloured-pencil strokes. Use light, gently uneven washes, organic sepia contours, delicate hatching, softly irregular edges and modest drawn shading. Surfaces look painted and pencilled, with paper grain within the illustration. Keep the warmth of cream, honey brown, restrained sage and blue, while preserving every exact colour required by a task. Subjects remain friendly, recognizable and anatomically believable.\n\nDo not turn the drawing into a 3D render, plush toy, clay or felt craft, photograph, glossy object, embossed surface or studio-lit miniature. Avoid deep ambient-occlusion shadows, inflated forms and realistic material microtexture. Do not mix in another illustration technique or use historical artwork as a style reference.\n\nThe role instructions below set the necessary detail and composition within this one style. Learning pictures retain fine drawn contours; small navigation symbols use the approved simpler, broader shapes and flat fills in the same palette. Keep the existing rendered game-character identities separate from image-generated learning subjects. Exact geometry and handwriting remain authored paths.\n\nPreserve subject identity, counted quantities, exact answer colours and action differences. Use real alpha for isolated pictures and stationery, and an opaque canvas only when the selected role requires a scene or branding image. No accidental background, halo, visible grid, labels or extra objects.\n\nROLE: character\nUse the canonical watercolour-and-coloured-pencil medium for the shared game-character portraits on letters, map pins, puzzle pages, menus, companions and celebrations. Reuse the approved painted identities, natural friendly proportions, species markings and accessories. Complete silhouettes, real transparency and generous square-cell margins. Keep the live 3D world as its own model pipeline; do not substitute these identity portraits for scored learning pictures.\n\nATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:\n1. design/illustrations/references/watercolour-pencil-v1/animals.png — canonical-style: canonical drawing technique for animals; fixed majority-style pixels\n2. design/illustrations/references/watercolour-pencil-v1/objects.png — canonical-style: canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels\n3. assets/interface/letter-friends.webp — composition-only: approved painted Fuchs identity and green scarf; retain this exact character in a sleeping pose\n\nSUBJECT AND LAYOUT BRIEF:\nOne complete, peaceful sleeping red fox, curled up in a natural cosy oval, with its fluffy white-tipped tail wrapped around its body, closed eyes, white muzzle/chest, dark paws and a small sage-green neckerchief. Match the recognizable Fuchs in the supplied painted friend atlas, especially its orange coat, cream markings and green scarf. Use the same warm watercolour and coloured-pencil drawing as the canonical references and the existing painted Fuchs. This is the sleeping pose for the shared UI cast, not a new fox identity.\n\nSingle isolated full-body animal centred on a genuinely transparent square with generous clean margins. Every ear and tail tip fits well inside the middle 70 percent of the canvas. No bed, cushion, ground, scenery, paper rectangle, glow, shadow, letters, Z symbols, clothing beyond the existing scarf, frame or UI. Keep the quiet handmade medium; no 3D/plush modelling.\n\nSTYLE PRIORITY: The brief changes subjects and layout only. Keep waldpost-watercolour-pencil-v1 and the supplied canonical reference technique throughout; do not import the style of a composition-only reference.\n",
+        "prompt": "WALDPOST CANONICAL ILLUSTRATION STYLE — waldpost-watercolour-pencil-v1\n\nUse the supplied canonical animals.png and objects.png reference images as the authority for drawing technique. They show the predominant style of the current Waldpost gallery. Match their actual pixels, not an imagined style suggested by a filename.\n\nDraw warm children's picture-book watercolour finished with visible coloured-pencil strokes. Use light, gently uneven washes, organic sepia contours, delicate hatching, softly irregular edges and modest drawn shading. Surfaces look painted and pencilled, with paper grain within the illustration. Keep the warmth of cream, honey brown, restrained sage and blue, while preserving every exact colour required by a task. Subjects remain friendly, recognizable and anatomically believable.\n\nDo not turn the drawing into a 3D render, plush toy, clay or felt craft, photograph, glossy object, embossed surface or studio-lit miniature. Avoid deep ambient-occlusion shadows, inflated forms and realistic material microtexture. Do not mix in another illustration technique or use historical artwork as a style reference.\n\nThe role instructions below set the necessary detail and composition within this one style. Learning pictures retain fine drawn contours; small navigation symbols use the approved simpler, broader shapes and flat fills in the same palette. Keep the existing rendered game-character identities separate from image-generated learning subjects. Exact geometry and handwriting remain authored paths.\n\nPreserve subject identity, counted quantities, exact answer colours and action differences. Use real alpha for isolated pictures and stationery, and an opaque canvas only when the selected role requires a scene or branding image. No accidental background, halo, visible grid, labels or extra objects.\n\nROLE: character\nUse the canonical watercolour-and-coloured-pencil medium for the shared game-character portraits on letters, map pins, puzzle pages, menus, companions and celebrations. Reuse the approved painted identities, natural friendly proportions, species markings and accessories. Complete silhouettes, real transparency and generous square-cell margins. Keep the live 3D world as its own model pipeline; do not substitute these identity portraits for scored learning pictures.\n\nATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:\n1. design/illustrations/references/watercolour-pencil-v1/animals.png — canonical-style: canonical drawing technique for animals; fixed majority-style pixels\n2. design/illustrations/references/watercolour-pencil-v1/objects.png — canonical-style: canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels\n3. design/artwork/prepared/letter-friends.webp — composition-only: approved painted Fuchs identity and green scarf; retain this exact character in a sleeping pose\n\nSUBJECT AND LAYOUT BRIEF:\nOne complete, peaceful sleeping red fox, curled up in a natural cosy oval, with its fluffy white-tipped tail wrapped around its body, closed eyes, white muzzle/chest, dark paws and a small sage-green neckerchief. Match the recognizable Fuchs in the supplied painted friend atlas, especially its orange coat, cream markings and green scarf. Use the same warm watercolour and coloured-pencil drawing as the canonical references and the existing painted Fuchs. This is the sleeping pose for the shared UI cast, not a new fox identity.\n\nSingle isolated full-body animal centred on a genuinely transparent square with generous clean margins. Every ear and tail tip fits well inside the middle 70 percent of the canvas. No bed, cushion, ground, scenery, paper rectangle, glow, shadow, letters, Z symbols, clothing beyond the existing scarf, frame or UI. Keep the quiet handmade medium; no 3D/plush modelling.\n\nSTYLE PRIORITY: The brief changes subjects and layout only. Keep waldpost-watercolour-pencil-v1 and the supplied canonical reference technique throughout; do not import the style of a composition-only reference.\n",
         "referenced_image_paths": [
           "design/illustrations/references/watercolour-pencil-v1/animals.png",
           "design/illustrations/references/watercolour-pencil-v1/objects.png",
-          "assets/interface/letter-friends.webp"
+          "design/artwork/prepared/letter-friends.webp"
         ],
         "transparent_background": true
       },
@@ -645,7 +610,7 @@
           "usage": "canonical-style"
         },
         {
-          "path": "assets/interface/letter-friends.webp",
+          "path": "design/artwork/prepared/letter-friends.webp",
           "sha256": "93d5f6a3696519c05779ca43c29fcbb271822f3f94d4bc6afc0571f6c6cda667",
           "purpose": "approved painted Fuchs identity and green scarf; retain this exact character in a sleeping pose",
           "usage": "composition-only"
@@ -658,11 +623,11 @@
       "brief": "design/artwork/briefs/world-map.txt",
       "requiresBriefCustomization": false,
       "request": {
-        "prompt": "WALDPOST CANONICAL ILLUSTRATION STYLE — waldpost-watercolour-pencil-v1\n\nUse the supplied canonical animals.png and objects.png reference images as the authority for drawing technique. They show the predominant style of the current Waldpost gallery. Match their actual pixels, not an imagined style suggested by a filename.\n\nDraw warm children's picture-book watercolour finished with visible coloured-pencil strokes. Use light, gently uneven washes, organic sepia contours, delicate hatching, softly irregular edges and modest drawn shading. Surfaces look painted and pencilled, with paper grain within the illustration. Keep the warmth of cream, honey brown, restrained sage and blue, while preserving every exact colour required by a task. Subjects remain friendly, recognizable and anatomically believable.\n\nDo not turn the drawing into a 3D render, plush toy, clay or felt craft, photograph, glossy object, embossed surface or studio-lit miniature. Avoid deep ambient-occlusion shadows, inflated forms and realistic material microtexture. Do not mix in another illustration technique or use historical artwork as a style reference.\n\nThe role instructions below set the necessary detail and composition within this one style. Learning pictures retain fine drawn contours; small navigation symbols use the approved simpler, broader shapes and flat fills in the same palette. Keep the existing rendered game-character identities separate from image-generated learning subjects. Exact geometry and handwriting remain authored paths.\n\nPreserve subject identity, counted quantities, exact answer colours and action differences. Use real alpha for isolated pictures and stationery, and an opaque canvas only when the selected role requires a scene or branding image. No accidental background, halo, visible grid, labels or extra objects.\n\nROLE: cartography\nApply the canonical watercolour/pencil medium as a simplified flat cartographic plan. Strict orthographic top-down projection throughout, no perspective, visible vertical surfaces, relief modelling or cast shadows. Use broad quiet colour regions, light washes, fine organic sepia outlines and a few small plan-view symbols. Keep path connections, water boundaries and relative landmark positions clear; remove decorative microdetail. Opaque landscape canvas. Geography references define layout only. Keep runtime-approved geography calibrated to the actual interface; new proposals stay separate until the owner approves them.\n\nATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:\n1. design/illustrations/references/watercolour-pencil-v1/animals.png — canonical-style: canonical drawing technique for animals; fixed majority-style pixels\n2. design/illustrations/references/watercolour-pencil-v1/objects.png — canonical-style: canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels\n3. design/artwork/drafts/drawn-map-v2.png — composition-only: approved flat top-down map: preserve its geography, projection and sparse detail\n\nSUBJECT AND LAYOUT BRIEF:\nThe adopted Waldpost map is a simple flat 2D top-down watercolour-and-pencil plan, 1536 by 1024, landscape 3:2. Preserve the supplied approved map's path topology, water boundaries, land-cover regions, calm palette and sparse overhead symbols. Preserve projection, extent and the landmark positions in the map calibration, design/artwork/world-map-layout.json: actual UI pins and the current-position marker use that calibration. Any intentional geographic shift requires updating and checking it before publication.\n\nBroad sage woodland patches, pale meadow, blue pools/stream/southern lake, thin sepia banks, ochre paths, grey mountain region with sparse contour rings. Every canopy, bridge and small landmark is viewed straight down; no side-view trees, visible trunks/facades, relief, perspective or cast shadows. No decorative microdetail, UI, portraits, labels or player markers in the painting. Destination buttons, names, leader lines and the Fuchs marker are real interface layers, kept separate and clickable. Opaque canvas. This is the runtime map role approved by the owner, not a request to invent new geography.\n\nSTYLE PRIORITY: The brief changes subjects and layout only. Keep waldpost-watercolour-pencil-v1 and the supplied canonical reference technique throughout; do not import the style of a composition-only reference.\n",
+        "prompt": "WALDPOST CANONICAL ILLUSTRATION STYLE — waldpost-watercolour-pencil-v1\n\nUse the supplied canonical animals.png and objects.png reference images as the authority for drawing technique. They show the predominant style of the current Waldpost gallery. Match their actual pixels, not an imagined style suggested by a filename.\n\nDraw warm children's picture-book watercolour finished with visible coloured-pencil strokes. Use light, gently uneven washes, organic sepia contours, delicate hatching, softly irregular edges and modest drawn shading. Surfaces look painted and pencilled, with paper grain within the illustration. Keep the warmth of cream, honey brown, restrained sage and blue, while preserving every exact colour required by a task. Subjects remain friendly, recognizable and anatomically believable.\n\nDo not turn the drawing into a 3D render, plush toy, clay or felt craft, photograph, glossy object, embossed surface or studio-lit miniature. Avoid deep ambient-occlusion shadows, inflated forms and realistic material microtexture. Do not mix in another illustration technique or use historical artwork as a style reference.\n\nThe role instructions below set the necessary detail and composition within this one style. Learning pictures retain fine drawn contours; small navigation symbols use the approved simpler, broader shapes and flat fills in the same palette. Keep the existing rendered game-character identities separate from image-generated learning subjects. Exact geometry and handwriting remain authored paths.\n\nPreserve subject identity, counted quantities, exact answer colours and action differences. Use real alpha for isolated pictures and stationery, and an opaque canvas only when the selected role requires a scene or branding image. No accidental background, halo, visible grid, labels or extra objects.\n\nROLE: cartography\nApply the canonical watercolour/pencil medium as a simplified flat cartographic plan. Strict orthographic top-down projection throughout, no perspective, visible vertical surfaces, relief modelling or cast shadows. Use broad quiet colour regions, light washes, fine organic sepia outlines and a few small plan-view symbols. Keep path connections, water boundaries and relative landmark positions clear; remove decorative microdetail. Opaque landscape canvas. Geography references define layout only. Keep runtime-approved geography calibrated to the actual interface; new proposals stay separate until the owner approves them.\n\nATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:\n1. design/illustrations/references/watercolour-pencil-v1/animals.png — canonical-style: canonical drawing technique for animals; fixed majority-style pixels\n2. design/illustrations/references/watercolour-pencil-v1/objects.png — canonical-style: canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels\n3. design/artwork/sources/world-map.png — composition-only: approved flat top-down map: preserve its geography, projection and sparse detail\n\nSUBJECT AND LAYOUT BRIEF:\nThe adopted Waldpost map is a simple flat 2D top-down watercolour-and-pencil plan, 1536 by 1024, landscape 3:2. Preserve the supplied approved map's path topology, water boundaries, land-cover regions, calm palette and sparse overhead symbols. Preserve projection, extent and the landmark positions in the map calibration, design/artwork/world-map-layout.json: actual UI pins and the current-position marker use that calibration. Any intentional geographic shift requires updating and checking it before publication.\n\nBroad sage woodland patches, pale meadow, blue pools/stream/southern lake, thin sepia banks, ochre paths, grey mountain region with sparse contour rings. Every canopy, bridge and small landmark is viewed straight down; no side-view trees, visible trunks/facades, relief, perspective or cast shadows. No decorative microdetail, UI, portraits, labels or player markers in the painting. Destination buttons, names, leader lines and the Fuchs marker are real interface layers, kept separate and clickable. Opaque canvas. This is the runtime map role approved by the owner, not a request to invent new geography.\n\nSTYLE PRIORITY: The brief changes subjects and layout only. Keep waldpost-watercolour-pencil-v1 and the supplied canonical reference technique throughout; do not import the style of a composition-only reference.\n",
         "referenced_image_paths": [
           "design/illustrations/references/watercolour-pencil-v1/animals.png",
           "design/illustrations/references/watercolour-pencil-v1/objects.png",
-          "design/artwork/drafts/drawn-map-v2.png"
+          "design/artwork/sources/world-map.png"
         ],
         "transparent_background": false
       },
@@ -680,7 +645,7 @@
           "usage": "canonical-style"
         },
         {
-          "path": "design/artwork/drafts/drawn-map-v2.png",
+          "path": "design/artwork/sources/world-map.png",
           "sha256": "99f0e8db39bde8071bc458979e60189a79d2ac29e3e948ec0b95ce9de39460b2",
           "purpose": "approved flat top-down map: preserve its geography, projection and sparse detail",
           "usage": "composition-only"
@@ -693,11 +658,11 @@
       "brief": "design/artwork/briefs/friend-portraits.txt",
       "requiresBriefCustomization": false,
       "request": {
-        "prompt": "WALDPOST CANONICAL ILLUSTRATION STYLE — waldpost-watercolour-pencil-v1\n\nUse the supplied canonical animals.png and objects.png reference images as the authority for drawing technique. They show the predominant style of the current Waldpost gallery. Match their actual pixels, not an imagined style suggested by a filename.\n\nDraw warm children's picture-book watercolour finished with visible coloured-pencil strokes. Use light, gently uneven washes, organic sepia contours, delicate hatching, softly irregular edges and modest drawn shading. Surfaces look painted and pencilled, with paper grain within the illustration. Keep the warmth of cream, honey brown, restrained sage and blue, while preserving every exact colour required by a task. Subjects remain friendly, recognizable and anatomically believable.\n\nDo not turn the drawing into a 3D render, plush toy, clay or felt craft, photograph, glossy object, embossed surface or studio-lit miniature. Avoid deep ambient-occlusion shadows, inflated forms and realistic material microtexture. Do not mix in another illustration technique or use historical artwork as a style reference.\n\nThe role instructions below set the necessary detail and composition within this one style. Learning pictures retain fine drawn contours; small navigation symbols use the approved simpler, broader shapes and flat fills in the same palette. Keep the existing rendered game-character identities separate from image-generated learning subjects. Exact geometry and handwriting remain authored paths.\n\nPreserve subject identity, counted quantities, exact answer colours and action differences. Use real alpha for isolated pictures and stationery, and an opaque canvas only when the selected role requires a scene or branding image. No accidental background, halo, visible grid, labels or extra objects.\n\nROLE: character\nUse the canonical watercolour-and-coloured-pencil medium for the shared game-character portraits on letters, map pins, puzzle pages, menus, companions and celebrations. Reuse the approved painted identities, natural friendly proportions, species markings and accessories. Complete silhouettes, real transparency and generous square-cell margins. Keep the live 3D world as its own model pipeline; do not substitute these identity portraits for scored learning pictures.\n\nATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:\n1. design/illustrations/references/watercolour-pencil-v1/animals.png — canonical-style: canonical drawing technique for animals; fixed majority-style pixels\n2. design/illustrations/references/watercolour-pencil-v1/objects.png — canonical-style: canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels\n3. assets/interface/letter-friends.webp — composition-only: approved painted identities, species markings and accessories; include the matching sleeping Fuchs pose\n\nSUBJECT AND LAYOUT BRIEF:\nOne genuinely transparent square atlas with FOUR columns and FOUR rows of equal square cells. Reuse the approved fourteen painted identities and add the matching sleeping Fuchs pose. Keep every complete animal inside the middle 56 percent of its cell with clean transparent gutters; atlas preparation restores display size. These are the common animal identities for invitation letters, puzzle context, companions, map pins, menus, review/gallery cards and celebrations. The live 3D world retains its existing models.\n\nExact row-major order: row 1 Fuchs with sage scarf, red Eichhörnchen holding an acorn, blue/yellow Blaumeise, brown Waldkauz; row 2 Biber with flat tail, grey Maus with pink ears and thin tail, Briefträger hare with blue-grey cap/vest and small satchel, brown Igel; row 3 blue-green/orange-finned Fisch, tan Reh, blue/orange Eisvogel, green Frosch; row 4 striped Dachs, Alpine Steinbock with long swept-back horns, the same Fuchs curled up asleep with green scarf and white tail tip, EMPTY transparent cell.\n\nKeep species markings and the existing warm watercolour-and-coloured-pencil character, natural friendly proportions and gentle eyes. At small map-pin sizes preserve a clear silhouette and distinguishing markings, especially Blaumeise versus Eisvogel, Reh versus Steinbock, and Igel versus Dachs. No circles, frames, scenery, shadows, text, labels or UI. Real transparency. Preserve counted learning subjects as their own drawn assets; these are character identities, not replacements for puzzle answers.\n\nSTYLE PRIORITY: The brief changes subjects and layout only. Keep waldpost-watercolour-pencil-v1 and the supplied canonical reference technique throughout; do not import the style of a composition-only reference.\n",
+        "prompt": "WALDPOST CANONICAL ILLUSTRATION STYLE — waldpost-watercolour-pencil-v1\n\nUse the supplied canonical animals.png and objects.png reference images as the authority for drawing technique. They show the predominant style of the current Waldpost gallery. Match their actual pixels, not an imagined style suggested by a filename.\n\nDraw warm children's picture-book watercolour finished with visible coloured-pencil strokes. Use light, gently uneven washes, organic sepia contours, delicate hatching, softly irregular edges and modest drawn shading. Surfaces look painted and pencilled, with paper grain within the illustration. Keep the warmth of cream, honey brown, restrained sage and blue, while preserving every exact colour required by a task. Subjects remain friendly, recognizable and anatomically believable.\n\nDo not turn the drawing into a 3D render, plush toy, clay or felt craft, photograph, glossy object, embossed surface or studio-lit miniature. Avoid deep ambient-occlusion shadows, inflated forms and realistic material microtexture. Do not mix in another illustration technique or use historical artwork as a style reference.\n\nThe role instructions below set the necessary detail and composition within this one style. Learning pictures retain fine drawn contours; small navigation symbols use the approved simpler, broader shapes and flat fills in the same palette. Keep the existing rendered game-character identities separate from image-generated learning subjects. Exact geometry and handwriting remain authored paths.\n\nPreserve subject identity, counted quantities, exact answer colours and action differences. Use real alpha for isolated pictures and stationery, and an opaque canvas only when the selected role requires a scene or branding image. No accidental background, halo, visible grid, labels or extra objects.\n\nROLE: character\nUse the canonical watercolour-and-coloured-pencil medium for the shared game-character portraits on letters, map pins, puzzle pages, menus, companions and celebrations. Reuse the approved painted identities, natural friendly proportions, species markings and accessories. Complete silhouettes, real transparency and generous square-cell margins. Keep the live 3D world as its own model pipeline; do not substitute these identity portraits for scored learning pictures.\n\nATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:\n1. design/illustrations/references/watercolour-pencil-v1/animals.png — canonical-style: canonical drawing technique for animals; fixed majority-style pixels\n2. design/illustrations/references/watercolour-pencil-v1/objects.png — canonical-style: canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels\n3. design/artwork/prepared/letter-friends.webp — composition-only: approved painted identities, species markings and accessories; include the matching sleeping Fuchs pose\n\nSUBJECT AND LAYOUT BRIEF:\nOne genuinely transparent square atlas with FOUR columns and FOUR rows of equal square cells. Reuse the approved fourteen painted identities and add the matching sleeping Fuchs pose. Keep every complete animal inside the middle 56 percent of its cell with clean transparent gutters; atlas preparation restores display size. These are the common animal identities for invitation letters, puzzle context, companions, map pins, menus, review/gallery cards and celebrations. The live 3D world retains its existing models.\n\nExact row-major order: row 1 Fuchs with sage scarf, red Eichhörnchen holding an acorn, blue/yellow Blaumeise, brown Waldkauz; row 2 Biber with flat tail, grey Maus with pink ears and thin tail, Briefträger hare with blue-grey cap/vest and small satchel, brown Igel; row 3 blue-green/orange-finned Fisch, tan Reh, blue/orange Eisvogel, green Frosch; row 4 striped Dachs, Alpine Steinbock with long swept-back horns, the same Fuchs curled up asleep with green scarf and white tail tip, EMPTY transparent cell.\n\nKeep species markings and the existing warm watercolour-and-coloured-pencil character, natural friendly proportions and gentle eyes. At small map-pin sizes preserve a clear silhouette and distinguishing markings, especially Blaumeise versus Eisvogel, Reh versus Steinbock, and Igel versus Dachs. No circles, frames, scenery, shadows, text, labels or UI. Real transparency. Preserve counted learning subjects as their own drawn assets; these are character identities, not replacements for puzzle answers.\n\nSTYLE PRIORITY: The brief changes subjects and layout only. Keep waldpost-watercolour-pencil-v1 and the supplied canonical reference technique throughout; do not import the style of a composition-only reference.\n",
         "referenced_image_paths": [
           "design/illustrations/references/watercolour-pencil-v1/animals.png",
           "design/illustrations/references/watercolour-pencil-v1/objects.png",
-          "assets/interface/letter-friends.webp"
+          "design/artwork/prepared/letter-friends.webp"
         ],
         "transparent_background": true
       },
@@ -715,7 +680,7 @@
           "usage": "canonical-style"
         },
         {
-          "path": "assets/interface/letter-friends.webp",
+          "path": "design/artwork/prepared/letter-friends.webp",
           "sha256": "93d5f6a3696519c05779ca43c29fcbb271822f3f94d4bc6afc0571f6c6cda667",
           "purpose": "approved painted identities, species markings and accessories; include the matching sleeping Fuchs pose",
           "usage": "composition-only"
@@ -1169,41 +1134,6 @@
           "usage": "composition-only"
         }
       ]
-    },
-    "lake-hero": {
-      "role": "landscape",
-      "promptFile": "design/artwork/prompts/lake-hero.txt",
-      "brief": "design/artwork/briefs/lake-hero.txt",
-      "requiresBriefCustomization": false,
-      "request": {
-        "prompt": "WALDPOST CANONICAL ILLUSTRATION STYLE — waldpost-watercolour-pencil-v1\n\nUse the supplied canonical animals.png and objects.png reference images as the authority for drawing technique. They show the predominant style of the current Waldpost gallery. Match their actual pixels, not an imagined style suggested by a filename.\n\nDraw warm children's picture-book watercolour finished with visible coloured-pencil strokes. Use light, gently uneven washes, organic sepia contours, delicate hatching, softly irregular edges and modest drawn shading. Surfaces look painted and pencilled, with paper grain within the illustration. Keep the warmth of cream, honey brown, restrained sage and blue, while preserving every exact colour required by a task. Subjects remain friendly, recognizable and anatomically believable.\n\nDo not turn the drawing into a 3D render, plush toy, clay or felt craft, photograph, glossy object, embossed surface or studio-lit miniature. Avoid deep ambient-occlusion shadows, inflated forms and realistic material microtexture. Do not mix in another illustration technique or use historical artwork as a style reference.\n\nThe role instructions below set the necessary detail and composition within this one style. Learning pictures retain fine drawn contours; small navigation symbols use the approved simpler, broader shapes and flat fills in the same palette. Keep the existing rendered game-character identities separate from image-generated learning subjects. Exact geometry and handwriting remain authored paths.\n\nPreserve subject identity, counted quantities, exact answer colours and action differences. Use real alpha for isolated pictures and stationery, and an opaque canvas only when the selected role requires a scene or branding image. No accidental background, halo, visible grid, labels or extra objects.\n\nROLE: landscape\nUse the canonical watercolour-and-coloured-pencil medium at landscape scale: broad light washes, fine organic sepia contours and modest drawn shading. Include only the story subjects explicitly required by the brief. Preserve the supplied composition and quiet space for separately placed controls. Opaque canvas, no painted interface or text.\n\nATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:\n1. design/illustrations/references/watercolour-pencil-v1/animals.png — canonical-style: canonical drawing technique for animals; fixed majority-style pixels\n2. design/illustrations/references/watercolour-pencil-v1/objects.png — canonical-style: canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels\n3. assets/waldatelier/hero.webp — composition-only: retained lake composition and fox identity only\n\nSUBJECT AND LAYOUT BRIEF:\nOpaque landscape 3:2, target 1536 by 1024. Preserve the retained Lake Zürich composition: mature leafy tree framing the left and upper left, small friendly full-body orange fox with cream markings and green neckerchief sitting on a mossy rock in the lower-left quarter, small botanical foreground, calm blue lake, a tiny sailboat and distant Zürich shoreline with the twin towers of Grossmünster. Keep the right half mostly open pale lake and sky for separately placed controls. Warm daylight, clear friendly silhouettes and restrained details. The supplied current painting defines composition and fox identity only; use the canonical watercolour/pencil medium.\n\nNo interface, frames, badges, labels, letters, numbers or watermark. This is retained landing artwork, separate from the active puzzle/menu/settings clearing. The fox belongs in this illustration; it is not the separately rendered den fox.\n\nSTYLE PRIORITY: The brief changes subjects and layout only. Keep waldpost-watercolour-pencil-v1 and the supplied canonical reference technique throughout; do not import the style of a composition-only reference.\n",
-        "referenced_image_paths": [
-          "design/illustrations/references/watercolour-pencil-v1/animals.png",
-          "design/illustrations/references/watercolour-pencil-v1/objects.png",
-          "assets/waldatelier/hero.webp"
-        ],
-        "transparent_background": false
-      },
-      "references": [
-        {
-          "path": "design/illustrations/references/watercolour-pencil-v1/animals.png",
-          "sha256": "65867082294d157ab4ffbe33926857272625ef3c25cdb7cab81c2a4ea73d9316",
-          "purpose": "canonical drawing technique for animals; fixed majority-style pixels",
-          "usage": "canonical-style"
-        },
-        {
-          "path": "design/illustrations/references/watercolour-pencil-v1/objects.png",
-          "sha256": "0bb37d6fc82c75034eddf30da2cc57c546dd8bc70d246aeeda85b637bd87dd80",
-          "purpose": "canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels",
-          "usage": "canonical-style"
-        },
-        {
-          "path": "assets/waldatelier/hero.webp",
-          "sha256": "e289f8e5eabc30cc230d16035d4280f8ea17882ecb45ac9f5c2fe7cd92a060e6",
-          "purpose": "retained lake composition and fox identity only",
-          "usage": "composition-only"
-        }
-      ]
     }
   },
   "assets": [
@@ -1211,7 +1141,7 @@
       "id": "alphabet",
       "style": "waldpost-watercolour-pencil-v1",
       "forwardPrompt": "design/illustrations/prompts/alphabet.txt",
-      "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
+      "historicalRecord": "legacy/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
       "recordKind": "original-brief",
       "historicalPromptId": "alphabet",
       "requestId": "alphabet",
@@ -1577,7 +1507,7 @@
       "id": "animals",
       "style": "waldpost-watercolour-pencil-v1",
       "forwardPrompt": "design/illustrations/prompts/animals.txt",
-      "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
+      "historicalRecord": "legacy/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
       "recordKind": "original-brief",
       "historicalPromptId": "animals",
       "requestId": "animals",
@@ -1986,7 +1916,7 @@
       "id": "creatures",
       "style": "waldpost-watercolour-pencil-v1",
       "forwardPrompt": "design/illustrations/prompts/creatures.txt",
-      "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
+      "historicalRecord": "legacy/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
       "recordKind": "original-brief",
       "historicalPromptId": "creatures",
       "requestId": "creatures",
@@ -2336,7 +2266,7 @@
       "id": "discovery",
       "style": "waldpost-watercolour-pencil-v1",
       "forwardPrompt": "design/illustrations/prompts/discovery.txt",
-      "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
+      "historicalRecord": "legacy/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
       "recordKind": "original-brief",
       "historicalPromptId": "discovery",
       "requestId": "discovery",
@@ -2715,7 +2645,7 @@
       "id": "forest-actions",
       "style": "waldpost-watercolour-pencil-v1",
       "forwardPrompt": "design/illustrations/prompts/forest-actions.txt",
-      "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/forest-actions.json",
+      "historicalRecord": "legacy/design-history/2026-11-16-before-style-contract/design/illustrations/forest-actions.json",
       "recordKind": "generation-record",
       "requestId": "forest-actions",
       "file": "assets/waldatelier/forest-actions.webp",
@@ -3080,7 +3010,7 @@
             "date": "2026-11-16",
             "tool": "ChatGPT hosted image-generation tool",
             "sourceSha256": "f027b4ed1b2d7e9fc727220736fd00945e707e2cf20e46770e55b8e91d432e8b",
-            "generationRecord": "../../archive/design-history/2026-11-16-before-style-contract/design/illustrations/forest-actions.json",
+            "generationRecord": "../../legacy/design-history/2026-11-16-before-style-contract/design/illustrations/forest-actions.json",
             "styleContract": "style.json",
             "forwardPrompt": "prompts/forest-actions.txt",
             "note": "The archived record describes the existing asset. New generations use the current style contract and forward prompt."
@@ -3163,7 +3093,7 @@
       "id": "forest-fox",
       "style": "waldpost-watercolour-pencil-v1",
       "forwardPrompt": "design/illustrations/prompts/forest-fox.txt",
-      "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/forest-fox.json",
+      "historicalRecord": "legacy/design-history/2026-11-16-before-style-contract/design/illustrations/forest-fox.json",
       "recordKind": "generation-record",
       "requestId": "forest-fox",
       "file": "assets/waldatelier/forest-fox.webp",
@@ -3218,7 +3148,7 @@
             "date": "2026-11-15",
             "tool": "ChatGPT hosted image-generation tool",
             "sourceSha256": "05e872f985b13b4d10e75d2e74d43b676ae056ebbcfff4e89842683be37b44dc",
-            "generationRecord": "../../archive/design-history/2026-11-16-before-style-contract/design/illustrations/forest-fox.json",
+            "generationRecord": "../../legacy/design-history/2026-11-16-before-style-contract/design/illustrations/forest-fox.json",
             "styleContract": "style.json",
             "forwardPrompt": "prompts/forest-fox.txt",
             "note": "The archived record describes the existing asset. New generations use the current style contract and forward prompt."
@@ -3241,7 +3171,7 @@
       "id": "forest-objects",
       "style": "waldpost-watercolour-pencil-v1",
       "forwardPrompt": "design/illustrations/prompts/forest-objects.txt",
-      "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/forest-objects.json",
+      "historicalRecord": "legacy/design-history/2026-11-16-before-style-contract/design/illustrations/forest-objects.json",
       "recordKind": "generation-record",
       "requestId": "forest-objects",
       "file": "assets/waldatelier/forest-objects.webp",
@@ -3711,7 +3641,7 @@
             "date": "2026-11-16",
             "tool": "ChatGPT hosted image-generation tool",
             "sourceSha256": "194d7f4f9364e1ca039e4ce26652d9a83e3113b9dfc890924cfedb8dfc516d0c",
-            "generationRecord": "../../archive/design-history/2026-11-16-before-style-contract/design/illustrations/forest-objects.json",
+            "generationRecord": "../../legacy/design-history/2026-11-16-before-style-contract/design/illustrations/forest-objects.json",
             "styleContract": "style.json",
             "forwardPrompt": "prompts/forest-objects.txt",
             "note": "The archived record describes the existing asset. New generations use the current style contract and forward prompt."
@@ -3794,7 +3724,7 @@
       "id": "forest-wildlife",
       "style": "waldpost-watercolour-pencil-v1",
       "forwardPrompt": "design/illustrations/prompts/forest-wildlife.txt",
-      "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/forest-wildlife.json",
+      "historicalRecord": "legacy/design-history/2026-11-16-before-style-contract/design/illustrations/forest-wildlife.json",
       "recordKind": "generation-record",
       "requestId": "forest-wildlife",
       "file": "assets/waldatelier/forest-wildlife.webp",
@@ -4123,7 +4053,7 @@
             "date": "2026-11-14",
             "tool": "ChatGPT hosted image-generation tool",
             "sourceSha256": "6747767174eea7a29e1a57bbda20f027c8d33f4419c1bec9e8470ceae5c7ecb6",
-            "generationRecord": "../../archive/design-history/2026-11-16-before-style-contract/design/illustrations/forest-wildlife.json",
+            "generationRecord": "../../legacy/design-history/2026-11-16-before-style-contract/design/illustrations/forest-wildlife.json",
             "styleContract": "style.json",
             "forwardPrompt": "prompts/forest-wildlife.txt",
             "note": "The archived record describes the existing asset. New generations use the current style contract and forward prompt."
@@ -4206,7 +4136,7 @@
       "id": "menu",
       "style": "waldpost-watercolour-pencil-v1",
       "forwardPrompt": "design/illustrations/prompts/menu.txt",
-      "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/artwork/assets.json",
+      "historicalRecord": "legacy/design-history/2026-11-16-before-style-contract/design/artwork/assets.json",
       "recordKind": "inventory-only",
       "requestId": "menu",
       "file": "assets/waldatelier/menu.webp",
@@ -4329,7 +4259,7 @@
       "id": "navigation",
       "style": "waldpost-watercolour-pencil-v1",
       "forwardPrompt": "design/illustrations/prompts/navigation.txt",
-      "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
+      "historicalRecord": "legacy/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
       "recordKind": "original-brief",
       "historicalPromptId": "navigation",
       "requestId": "navigation",
@@ -4657,7 +4587,7 @@
       "id": "people",
       "style": "waldpost-watercolour-pencil-v1",
       "forwardPrompt": "design/illustrations/prompts/people.txt",
-      "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
+      "historicalRecord": "legacy/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
       "recordKind": "original-brief",
       "historicalPromptId": "people",
       "requestId": "people",
@@ -4977,7 +4907,7 @@
       "id": "puzzle-flowers",
       "style": "waldpost-watercolour-pencil-v1",
       "forwardPrompt": "design/illustrations/prompts/puzzle-flowers.txt",
-      "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/puzzle-flowers.json",
+      "historicalRecord": "legacy/design-history/2026-11-16-before-style-contract/design/illustrations/puzzle-flowers.json",
       "recordKind": "generation-record",
       "requestId": "puzzle-flowers",
       "file": "assets/waldatelier/puzzle-flowers.webp",
@@ -5119,7 +5049,7 @@
             "date": "2026-11-16",
             "tool": "ChatGPT hosted image-generation tool",
             "sourceSha256": "fd8a2a77565d3bc4345765733a063554f608448c462f42a7c4c39e96b9fecf68",
-            "generationRecord": "../../archive/design-history/2026-11-16-before-style-contract/design/illustrations/puzzle-flowers.json",
+            "generationRecord": "../../legacy/design-history/2026-11-16-before-style-contract/design/illustrations/puzzle-flowers.json",
             "styleContract": "style.json",
             "forwardPrompt": "prompts/puzzle-flowers.txt",
             "note": "The archived record describes the existing asset. New generations use the current style contract and forward prompt."
@@ -5162,7 +5092,7 @@
       "id": "puzzle-vocabulary",
       "style": "waldpost-watercolour-pencil-v1",
       "forwardPrompt": "design/illustrations/prompts/puzzle-vocabulary.txt",
-      "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/artwork/assets.json",
+      "historicalRecord": "legacy/design-history/2026-11-16-before-style-contract/design/artwork/assets.json",
       "recordKind": "inventory-only",
       "requestId": "puzzle-vocabulary",
       "file": "assets/waldatelier/puzzle-vocabulary.webp",
@@ -5562,7 +5492,7 @@
       "id": "rhyme-vocabulary",
       "style": "waldpost-watercolour-pencil-v1",
       "forwardPrompt": "design/illustrations/prompts/rhyme-vocabulary.txt",
-      "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/rhyme-vocabulary.json",
+      "historicalRecord": "legacy/design-history/2026-11-16-before-style-contract/design/illustrations/rhyme-vocabulary.json",
       "recordKind": "generation-record",
       "requestId": "rhyme-vocabulary",
       "file": "assets/waldatelier/rhyme-vocabulary.webp",
@@ -5778,7 +5708,7 @@
             "date": "2026-11-14",
             "tool": "ChatGPT hosted image-generation tool",
             "sourceSha256": "66429d3dd450da10e647592e2c6ff9daaa2c2b7d8f25178ae00593404fda8ec9",
-            "generationRecord": "../../archive/design-history/2026-11-16-before-style-contract/design/illustrations/rhyme-vocabulary.json",
+            "generationRecord": "../../legacy/design-history/2026-11-16-before-style-contract/design/illustrations/rhyme-vocabulary.json",
             "styleContract": "style.json",
             "forwardPrompt": "prompts/rhyme-vocabulary.txt",
             "note": "The archived record describes the existing asset. New generations use the current style contract and forward prompt."
@@ -5837,7 +5767,7 @@
       "id": "words-one",
       "style": "waldpost-watercolour-pencil-v1",
       "forwardPrompt": "design/illustrations/prompts/words-one.txt",
-      "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
+      "historicalRecord": "legacy/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
       "recordKind": "original-brief",
       "historicalPromptId": "words-one",
       "requestId": "words-one",
@@ -6188,7 +6118,7 @@
       "id": "words-three",
       "style": "waldpost-watercolour-pencil-v1",
       "forwardPrompt": "design/illustrations/prompts/words-three.txt",
-      "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
+      "historicalRecord": "legacy/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
       "recordKind": "original-brief",
       "historicalPromptId": "words-three",
       "requestId": "words-three",
@@ -6545,7 +6475,7 @@
       "id": "words-two",
       "style": "waldpost-watercolour-pencil-v1",
       "forwardPrompt": "design/illustrations/prompts/words-two.txt",
-      "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
+      "historicalRecord": "legacy/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
       "recordKind": "original-brief",
       "historicalPromptId": "words-two",
       "requestId": "words-two",
@@ -6942,7 +6872,7 @@
             "date": "2026-11-16",
             "tool": "ChatGPT hosted image-generation tool",
             "sourceSha256": "faf60a657616d1b3a802d59725926a05f20c4a51d79a23b0e43abd9e7f45007e",
-            "generationRecord": "../../archive/design-history/2026-11-16-before-style-contract/design/artwork/navigation-symbols.json",
+            "generationRecord": "../../legacy/design-history/2026-11-16-before-style-contract/design/artwork/navigation-symbols.json",
             "styleContract": "../illustrations/style.json",
             "forwardPrompt": "prompts/navigation-symbols.txt",
             "note": "The archived record describes the existing asset. New generations use the current style contract and forward prompt."
@@ -7163,7 +7093,7 @@
             "date": "2026-11-16",
             "tool": "ChatGPT hosted image-generation tool",
             "sourceSha256": "320460fa658b44ca15b3e66ef3c7b789edbf6109b1086f72128f718f5bc17683",
-            "generationRecord": "../../archive/design-history/2026-11-16-before-style-contract/design/artwork/letter-paper.json",
+            "generationRecord": "../../legacy/design-history/2026-11-16-before-style-contract/design/artwork/letter-paper.json",
             "styleContract": "../illustrations/style.json",
             "forwardPrompt": "prompts/letter-paper.txt",
             "note": "The archived record describes the existing asset. New generations use the current style contract and forward prompt."
@@ -7182,7 +7112,7 @@
       "role": "scene",
       "forwardPrompt": "design/artwork/prompts/den.txt",
       "guide": "design/artwork/BACKGROUNDS.md",
-      "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/artwork/BACKGROUNDS.md",
+      "historicalRecord": "legacy/design-history/2026-11-16-before-style-contract/design/artwork/BACKGROUNDS.md",
       "originalFinalRequestRetained": false,
       "requestId": "den",
       "exportRecipe": {
@@ -7210,7 +7140,7 @@
       "role": "scene",
       "forwardPrompt": "design/artwork/prompts/puzzle-clearing.txt",
       "guide": "design/artwork/BACKGROUNDS.md",
-      "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/artwork/BACKGROUNDS.md",
+      "historicalRecord": "legacy/design-history/2026-11-16-before-style-contract/design/artwork/BACKGROUNDS.md",
       "originalFinalRequestRetained": false,
       "requestId": "puzzle-clearing",
       "exportRecipe": {
@@ -7248,9 +7178,9 @@
       ],
       "role": "branding",
       "forwardPrompt": "design/artwork/prompts/app-icon.txt",
-      "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-app-icon.json",
+      "historicalRecord": "legacy/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-app-icon.json",
       "requestId": "app-icon",
-      "historicalSource": "archive/project-baseline/design/waldatelier/app-icon.png",
+      "historicalSource": "legacy/project-baseline/design/waldatelier/app-icon.png",
       "exportRecipe": {
         "note": "Generate one square master; mechanical PNG exports at 192, 512 and 180 px. For icon-maskable-512.png reduce portrait to 75 percent and centre on warm ivory. icon.svg wraps the 512 px PNG; preserve the Waldpost title, manifest identity and URLs."
       },
@@ -7447,12 +7377,11 @@
     },
     {
       "id": "lake-hero",
-      "file": "assets/waldatelier/hero.webp",
+      "file": "legacy/retired-runtime/assets/waldatelier/hero.webp",
       "status": "retained-legacy",
       "role": "older landing artwork, not the Settings woodland",
-      "requestId": "lake-hero",
-      "forwardPrompt": "design/artwork/prompts/lake-hero.txt",
-      "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
+      "forwardPrompt": null,
+      "historicalRecord": "legacy/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
       "historicalPromptId": "hero",
       "recordKind": "original-brief",
       "recoverableSource": {
@@ -7468,10 +7397,11 @@
         "quality": 82,
         "note": "Proposed export for new PNGs; exact original conversion settings are not retained."
       },
+      "archivedRecipe": "legacy/retired-design/design/artwork/prompts/lake-hero.txt",
       "kind": "retained-legacy",
       "files": [
         {
-          "path": "assets/waldatelier/hero.webp",
+          "path": "legacy/retired-runtime/assets/waldatelier/hero.webp",
           "sha256": "e289f8e5eabc30cc230d16035d4280f8ea17882ecb45ac9f5c2fe7cd92a060e6",
           "width": 1536,
           "height": 1024,
@@ -7481,10 +7411,10 @@
     },
     {
       "id": "colouring-friends",
-      "file": "assets/forest-friends/colouring-friends.webp",
+      "file": "legacy/retired-runtime/assets/forest-friends/colouring-friends.webp",
       "status": "retained-legacy",
-      "role": "retired colouring templates; historical IDs and offline dependency preserved",
-      "historicalRecord": "archive/design-history/forest-friends/visuals/milestones/den-polish/COMPARISON.md",
+      "role": "retired colouring templates; saved IDs and original pixels preserved outside runtime/offline downloads",
+      "historicalRecord": "legacy/design-history/forest-friends/visuals/milestones/den-polish/COMPARISON.md",
       "originalFinalRequestRetained": false,
       "forwardPrompt": null,
       "note": "No active generation request: this retired black-and-white line-art activity is outside the current painted illustration roles. The following are reconstruction facts, not a recovered original prompt. Retain closed fill regions, broad black outlines, white background, fixed 3 x 2 square-cell order and historical saved IDs.",
@@ -7519,7 +7449,7 @@
       "kind": "retained-legacy",
       "files": [
         {
-          "path": "assets/forest-friends/colouring-friends.webp",
+          "path": "legacy/retired-runtime/assets/forest-friends/colouring-friends.webp",
           "sha256": "75d42a705e0decd2057dfaf11eb3e72878694c1c24a47f72c15d35bef2f3cfd8",
           "width": 1536,
           "height": 1024,
@@ -7529,7 +7459,7 @@
     },
     {
       "id": "painted-base-cast",
-      "file": "assets/interface/letter-friends.webp",
+      "file": "design/artwork/prepared/letter-friends.webp",
       "manifest": "design/artwork/letter-friends.json",
       "policy": "Fourteen approved painted identities used to compose the shared fifteen-pose atlas. Not a runtime dependency.",
       "requestId": "letter-friends",
@@ -7537,7 +7467,7 @@
       "kind": "preparation-input",
       "files": [
         {
-          "path": "assets/interface/letter-friends.webp",
+          "path": "design/artwork/prepared/letter-friends.webp",
           "sha256": "93d5f6a3696519c05779ca43c29fcbb271822f3f94d4bc6afc0571f6c6cda667",
           "width": 1280,
           "height": 1280,
@@ -7551,7 +7481,7 @@
           "format": "waldpost-illustration-atlas",
           "version": 1,
           "source": "sources/letter-friends.png",
-          "output": "../../assets/interface/letter-friends.webp",
+          "output": "prepared/letter-friends.webp",
           "columns": 4,
           "rows": 4,
           "cellPixels": 320,
@@ -7685,20 +7615,19 @@
     },
     {
       "id": "drawn-map-v2",
-      "file": "design/artwork/drafts/drawn-map-v2.png",
+      "file": "legacy/retired-design/design/artwork/drafts/drawn-map-v2.png",
       "status": "adopted-runtime-source",
       "role": "cartography",
       "projection": "orthographic-top-down-2d",
       "detail": "simplified-cartographic-plan",
-      "forwardPrompt": "design/artwork/prompts/world-map.txt",
-      "generationRecord": "design/artwork/generation-records/drawn-map-draft-v2.json",
+      "forwardPrompt": null,
+      "generationRecord": "legacy/retired-design/design/artwork/generation-records/drawn-map-draft-v2.json",
       "runtimeMap": "assets/forest-friends/world-map.webp",
       "policy": "Owner approved implementation of version 2. The PNG is a retained source record; runtime uses the prepared WebP and calibrated interactive overlays.",
-      "requestId": "world-map",
       "kind": "design-record",
       "files": [
         {
-          "path": "design/artwork/drafts/drawn-map-v2.png",
+          "path": "legacy/retired-design/design/artwork/drafts/drawn-map-v2.png",
           "sha256": "99f0e8db39bde8071bc458979e60189a79d2ac29e3e948ec0b95ce9de39460b2",
           "width": 1536,
           "height": 1024,
@@ -7708,17 +7637,16 @@
     },
     {
       "id": "drawn-map-v1",
-      "file": "design/artwork/drafts/drawn-map-v1.png",
+      "file": "legacy/retired-design/design/artwork/drafts/drawn-map-v1.png",
       "status": "superseded-proposal-only-not-implemented",
-      "forwardPrompt": "design/artwork/prompts/drawn-map-draft.txt",
-      "generationRecord": "design/artwork/generation-records/drawn-map-draft.json",
+      "forwardPrompt": null,
+      "generationRecord": "legacy/retired-design/design/artwork/generation-records/drawn-map-draft.json",
       "runtimeMap": "assets/forest-friends/world-map.webp",
-      "policy": "Keep outside runtime dependencies/offline cache until the owner approves this draft.",
-      "requestId": "drawn-map-draft",
+      "policy": "Superseded map proposal, preserved only as historical provenance. Never a runtime dependency or forward style input.",
       "kind": "design-record",
       "files": [
         {
-          "path": "design/artwork/drafts/drawn-map-v1.png",
+          "path": "legacy/retired-design/design/artwork/drafts/drawn-map-v1.png",
           "sha256": "71d4354096cf057a3d305fc2e3644f95a571301525fdd711e1caa496c4d304fa",
           "width": 1536,
           "height": 1024,
@@ -7727,13 +7655,13 @@
       ]
     },
     {
-      "file": "assets/interface/navigation.webp",
+      "file": "legacy/retired-runtime/assets/interface/navigation.webp",
       "reason": "Original detailed toolbar/den/door/back sheet retained as provenance only; current controls use simple illustrated symbols and a painted den map landmark. No offline/runtime dependency.",
-      "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/artwork/navigation.json",
+      "historicalRecord": "legacy/design-history/2026-11-16-before-style-contract/design/artwork/navigation.json",
       "kind": "retired-artwork",
       "files": [
         {
-          "path": "assets/interface/navigation.webp",
+          "path": "legacy/retired-runtime/assets/interface/navigation.webp",
           "sha256": "62bffb49237691db25f1e66b07770790d2c5187c01335d648c09ce394449738d",
           "width": 960,
           "height": 640,
@@ -7742,12 +7670,12 @@
       ]
     },
     {
-      "file": "assets/interface/exit-symbol.svg",
+      "file": "legacy/retired-runtime/assets/interface/exit-symbol.svg",
       "reason": "Superseded rigid geometric door retained as provenance only. The current exit uses the illustrated navigation family. No offline/runtime dependency; never a new style input.",
       "kind": "retired-artwork",
       "files": [
         {
-          "path": "assets/interface/exit-symbol.svg",
+          "path": "legacy/retired-runtime/assets/interface/exit-symbol.svg",
           "sha256": "58ad9c28d6c791d35ab6b0d95ed286f2f52e79e83ac0288109b7ffdb65110a27",
           "width": 64,
           "height": 64,
@@ -7758,7 +7686,6 @@
   ],
   "offlineImages": [
     "assets/forest-friends/character-portraits.webp",
-    "assets/forest-friends/colouring-friends.webp",
     "assets/forest-friends/den-v2.webp",
     "assets/forest-friends/puzzle-clearing.webp",
     "assets/forest-friends/world-map.webp",
@@ -7775,7 +7702,6 @@
     "assets/waldatelier/forest-fox.webp",
     "assets/waldatelier/forest-objects.webp",
     "assets/waldatelier/forest-wildlife.webp",
-    "assets/waldatelier/hero.webp",
     "assets/waldatelier/menu.webp",
     "assets/waldatelier/navigation.webp",
     "assets/waldatelier/people.webp",
@@ -7828,7 +7754,7 @@
     }
   ],
   "history": {
-    "index": "archive/design-history/2026-11-16-before-style-contract/README.md",
+    "index": "legacy/design-history/2026-11-16-before-style-contract/README.md",
     "policy": "Original briefs, alternatives, retired hero/colouring/portrait records and drafts are provenance only; never use as current style inputs."
   }
 }

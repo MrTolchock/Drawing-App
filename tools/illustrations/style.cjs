@@ -2,6 +2,7 @@
 /* One current style, frozen reference pixels and complete forward-generation prompts. No image-service calls. */
 'use strict';
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
+const {historicalPath}=require('../legacy-paths.cjs');
 const root=path.resolve(__dirname,'../..'),configFile='design/illustrations/style.json';
 const readDefault=f=>fs.readFileSync(path.join(root,f)),sha=bytes=>crypto.createHash('sha256').update(bytes).digest('hex');
 const walk=dir=>fs.readdirSync(path.join(root,dir),{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(dir+'/'+e.name):[dir+'/'+e.name]);
@@ -13,7 +14,7 @@ function promptFor(s,item){
 }
 function outputs(read=readDefault){const s=state(read);return Object.fromEntries(s.spec.prompts.map(item=>[item.path,promptFor(s,item)]));}
 function request(id,read=readDefault){const s=state(read),item=s.spec.prompts.find(p=>p.id===id);if(!item)throw Error('Unknown prompt: '+id);const role=s.spec.roles[item.role];return {prompt:promptFor(s,item),referenced_image_paths:[...s.spec.references,...(role.references||[]),...(item.references||[])].map(r=>path.join(root,r.path)),transparent_background:item.transparent};}
-function check({read=readDefault,files=walk('design'),archiveFiles=walk('archive')}={}){
+function check({read=readDefault,files=walk('design'),archiveFiles=walk('legacy')}={}){
  const errors=[];let s;try{s=state(read);}catch(e){return ['Cannot read the illustration style: '+e.message];}const {spec}=s;
  if(spec.format!=='waldpost-illustration-style'||spec.version!==1||spec.id!=='waldpost-watercolour-pencil-v1')errors.push('Unknown current illustration style.');
  if(spec.styleBlock!=='design/illustrations/STYLE.txt')errors.push('The canonical style block must stay in the current style kit.');
@@ -21,8 +22,8 @@ function check({read=readDefault,files=walk('design'),archiveFiles=walk('archive
  if(sha(read(spec.styleBlock))!==spec.styleBlockSha256)errors.push('Canonical style block changed without updating its recorded hash.');
  if(!s.block.includes(spec.id))errors.push('The style block must name the current style ID.');
  if(!Array.isArray(spec.references)||spec.references.length!==2)errors.push('Use the two canonical style references.');
- const verifyReference=(ref,canonical=false)=>{try{
-  if(!safe(ref.path)||ref.path.startsWith('archive/'))throw Error('Archived/unsafe reference is forbidden for generation: '+ref.path);
+ const verifyReference=(ref,canonical=false,historical=false)=>{try{
+  if(!safe(ref.path)||(!historical&&/^(?:archive|legacy)\//.test(ref.path)))throw Error('Archived/unsafe reference is forbidden for generation: '+ref.path);
   if(canonical&&!ref.path.startsWith('design/illustrations/references/watercolour-pencil-v1/'))throw Error('Style references must be frozen in the current style kit.');
   if(canonical&&ref.usage!=='canonical-style')throw Error('Primary references must declare canonical style usage.');
   if(sha(read(ref.path))!==ref.sha256)throw Error('Reference pixels changed: '+ref.path);
@@ -36,12 +37,12 @@ function check({read=readDefault,files=walk('design'),archiveFiles=walk('archive
   if(!spec.roles[item.role]||typeof item.transparent!=='boolean'){errors.push('Invalid prompt role: '+item.id);continue;}
   for(const ref of spec.roles[item.role].references||[]){verifyReference(ref);if(item.role!=='navigation'||ref.usage!=='navigation-simplicity')errors.push('Only the prescribed navigation simplicity reference may supplement the canonical style pair.');}
   for(const ref of item.references||[]){verifyReference(ref);if(ref.usage!=='composition-only')errors.push('Additional target references must be composition-only: '+item.id);}
-  try{const expected=promptFor(s,item);if(read(item.path).toString()!==expected)errors.push('Regenerate complete style prompt: '+item.path);if(expected.includes('archive/'))errors.push('Historical inputs leaked into a forward prompt: '+item.id);}catch(e){errors.push('Missing prompt/brief: '+item.id+' ('+e.message+')');}
+  try{const expected=promptFor(s,item);if(read(item.path).toString()!==expected)errors.push('Regenerate complete style prompt: '+item.path);if(/(?:archive|legacy)\//.test(expected))errors.push('Historical inputs leaked into a forward prompt: '+item.id);}catch(e){errors.push('Missing prompt/brief: '+item.id+' ('+e.message+')');}
  }
  for(const file of files)if(file.endsWith('.txt')&&!allowedText.has(file))errors.push('Unregistered active prompt/text recipe: '+file);
  for(const file of files.filter(f=>/^design\/(?:illustrations|artwork)\/prompts\//.test(f)))if(!paths.has(file))errors.push('Historical or unregistered file in an active prompt directory: '+file);
- for(const file of archiveFiles)if(/\/(?:AGENTS|CLAUDE)\.md$/.test(file)&&!['archive/AGENTS.md','archive/CLAUDE.md'].includes(file))errors.push('Historical working instructions must use an inert .record.md filename: '+file);
- for(const file of spec.preparationManifests||[]){try{const m=JSON.parse(read(file)),p=m.provenance,base=path.posix.dirname(file);if(path.posix.normalize(path.posix.join(base,p.styleContract))!==configFile)errors.push('Preparation manifest lacks the canonical style contract: '+file);if(!paths.has(path.posix.normalize(path.posix.join(base,p.forwardPrompt))))errors.push('Preparation manifest lacks a current forward prompt: '+file);const source=path.posix.normalize(path.posix.join(base,m.source));if(source.startsWith('archive/')||sha(read(source))!==p.sourceSha256)errors.push('Current editable source changed or moved to archive: '+file);const record=path.posix.normalize(path.posix.join(base,p.generationRecord)),current=/^design\/artwork\/generation-records\/[a-z0-9-]+\.json$/.test(record);if(!record.startsWith(spec.history+'/')&&!current)errors.push('Generation record must be preserved history or a current generation record: '+file);const value=JSON.parse(read(record));if(current){if(value.style!==spec.id||value.sourceSha256!==p.sourceSha256||value.source!==source)errors.push('Current generation record does not match its source/style: '+file);if(!value.request?.prompt?.startsWith(s.block))errors.push('Actual generation request lacks the canonical style: '+file);const refs=value.references||[];for(let i=0;i<spec.references.length;i++)if(refs[i]?.path!==spec.references[i].path||refs[i]?.sha256!==spec.references[i].sha256)errors.push('Actual generation record lacks the ordered canonical references: '+file);for(const ref of refs)verifyReference(ref.preservedAt?{...ref,path:ref.preservedAt}:ref);}}catch(e){errors.push('Invalid preparation record: '+file+' ('+e.message+')');}}
+ for(const file of archiveFiles)if(/\/(?:AGENTS|CLAUDE)\.md$/.test(file)&&!['legacy/AGENTS.md','legacy/CLAUDE.md'].includes(file))errors.push('Historical working instructions must use an inert .record.md filename: '+file);
+ for(const file of spec.preparationManifests||[]){try{const m=JSON.parse(read(file)),p=m.provenance,base=path.posix.dirname(file);if(path.posix.normalize(path.posix.join(base,p.styleContract))!==configFile)errors.push('Preparation manifest lacks the canonical style contract: '+file);if(!paths.has(path.posix.normalize(path.posix.join(base,p.forwardPrompt))))errors.push('Preparation manifest lacks a current forward prompt: '+file);const source=path.posix.normalize(path.posix.join(base,m.source));if(/^(?:archive|legacy)\//.test(source)||sha(read(source))!==p.sourceSha256)errors.push('Current editable source changed or moved to archive: '+file);const record=path.posix.normalize(path.posix.join(base,p.generationRecord)),current=/^design\/artwork\/generation-records\/[a-z0-9-]+\.json$/.test(record);if(!record.startsWith(spec.history+'/')&&!current)errors.push('Generation record must be preserved history or a current generation record: '+file);const value=JSON.parse(read(record));if(current){if(value.style!==spec.id||value.sourceSha256!==p.sourceSha256||value.source!==source)errors.push('Current generation record does not match its source/style: '+file);if(!value.request?.prompt?.startsWith(s.block))errors.push('Actual generation request lacks the canonical style: '+file);const refs=value.references||[];for(let i=0;i<spec.references.length;i++)if(refs[i]?.path!==spec.references[i].path||refs[i]?.sha256!==spec.references[i].sha256)errors.push('Actual generation record lacks the ordered canonical references: '+file);for(const ref of refs)verifyReference({...ref,path:historicalPath(ref.preservedAt||ref.path)},false,true);}}catch(e){errors.push('Invalid preparation record: '+file+' ('+e.message+')');}}
  for(const f of ['AGENTS.md','CLAUDE.md'])if(!read(f).toString().includes('design/illustrations/STYLE.md'))errors.push(f+' must direct assistants to the canonical style.');
  return [...new Set(errors)];
 }

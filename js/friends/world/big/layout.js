@@ -1,7 +1,7 @@
 /* The big world's layout as plain data (metres; x east, z south, so north is −z and the camera
    looks north). Everything a child can find is listed here: water, trails, crossings, places,
    friends and landmark sites. `terrain.js` turns it into ground and water, `sites.js` into objects.
-   See design/world-10x/PLAN.md for the map in words. */
+   See tools/map/README.md for the current picture-map calibration. */
 
 export const EXTENT = {x0: -128, x1: 128, z0: -112, z1: 112};
 export const DEN = {x: 0, z: -8};

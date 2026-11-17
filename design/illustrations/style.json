@@ -56,9 +56,6 @@
     },
     "map-landmark": {
       "instruction": "Use the canonical watercolour-and-coloured-pencil medium for a single map destination landmark, matching the painted character portraits in finish and detail. Keep the silhouette compact and recognizable at 40–50 pixels, with broad simple forms, organic sepia contours, gentle washes and restrained pencil shading. Genuine transparency, generous square padding and complete edges. No miniature realistic scenery or material microdetail. Actual map buttons, names and click behaviour remain code."
-    },
-    "landscape": {
-      "instruction": "Use the canonical watercolour-and-coloured-pencil medium at landscape scale: broad light washes, fine organic sepia contours and modest drawn shading. Include only the story subjects explicitly required by the brief. Preserve the supplied composition and quiet space for separately placed controls. Opaque canvas, no painted interface or text."
     }
   },
   "prompts": [
@@ -270,21 +267,6 @@
       ]
     },
     {
-      "id": "drawn-map-draft",
-      "role": "cartography",
-      "path": "design/artwork/prompts/drawn-map-draft.txt",
-      "brief": "design/artwork/briefs/drawn-map-draft.txt",
-      "transparent": false,
-      "references": [
-        {
-          "path": "design/artwork/references/world-map-geography.webp",
-          "sha256": "84bd806fe2bcfa2262f10b1a512549525a2c74af310c7fd05568197b17fe3ff5",
-          "purpose": "actual geography, path topology, landmark locations and map extent only; repaint in the canonical medium",
-          "usage": "composition-only"
-        }
-      ]
-    },
-    {
       "id": "fox-sleep-portrait",
       "role": "character",
       "path": "design/artwork/prompts/fox-sleep-portrait.txt",
@@ -292,7 +274,7 @@
       "transparent": true,
       "references": [
         {
-          "path": "assets/interface/letter-friends.webp",
+          "path": "design/artwork/prepared/letter-friends.webp",
           "sha256": "93d5f6a3696519c05779ca43c29fcbb271822f3f94d4bc6afc0571f6c6cda667",
           "purpose": "approved painted Fuchs identity and green scarf; retain this exact character in a sleeping pose",
           "usage": "composition-only"
@@ -307,7 +289,7 @@
       "transparent": false,
       "references": [
         {
-          "path": "design/artwork/drafts/drawn-map-v2.png",
+          "path": "design/artwork/sources/world-map.png",
           "sha256": "99f0e8db39bde8071bc458979e60189a79d2ac29e3e948ec0b95ce9de39460b2",
           "purpose": "approved flat top-down map: preserve its geography, projection and sparse detail",
           "usage": "composition-only"
@@ -322,7 +304,7 @@
       "transparent": true,
       "references": [
         {
-          "path": "assets/interface/letter-friends.webp",
+          "path": "design/artwork/prepared/letter-friends.webp",
           "sha256": "93d5f6a3696519c05779ca43c29fcbb271822f3f94d4bc6afc0571f6c6cda667",
           "purpose": "approved painted identities, species markings and accessories; include the matching sleeping Fuchs pose",
           "usage": "composition-only"
@@ -507,21 +489,6 @@
           "usage": "composition-only"
         }
       ]
-    },
-    {
-      "id": "lake-hero",
-      "role": "landscape",
-      "path": "design/artwork/prompts/lake-hero.txt",
-      "brief": "design/artwork/briefs/lake-hero.txt",
-      "transparent": false,
-      "references": [
-        {
-          "path": "assets/waldatelier/hero.webp",
-          "sha256": "e289f8e5eabc30cc230d16035d4280f8ea17882ecb45ac9f5c2fe7cd92a060e6",
-          "purpose": "retained lake composition and fox identity only",
-          "usage": "composition-only"
-        }
-      ]
     }
   ],
   "preparationManifests": [
@@ -541,7 +508,7 @@
     "design/artwork/den-marker.json",
     "design/artwork/exit-symbol.json"
   ],
-  "history": "archive/design-history/2026-11-16-before-style-contract",
+  "history": "legacy/design-history/2026-11-16-before-style-contract",
   "preview": {
     "path": "design/illustrations/references/watercolour-pencil-v1/style-board.png",
     "sha256": "7fad01642ff98c9142980f4126d815233cd7f8dc60d43501eb093c570dcc4d89",

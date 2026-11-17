@@ -16,7 +16,7 @@ Use the canonical watercolour-and-coloured-pencil medium for the shared game-cha
 ATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:
 1. design/illustrations/references/watercolour-pencil-v1/animals.png — canonical-style: canonical drawing technique for animals; fixed majority-style pixels
 2. design/illustrations/references/watercolour-pencil-v1/objects.png — canonical-style: canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels
-3. assets/interface/letter-friends.webp — composition-only: approved painted identities, species markings and accessories; include the matching sleeping Fuchs pose
+3. design/artwork/prepared/letter-friends.webp — composition-only: approved painted identities, species markings and accessories; include the matching sleeping Fuchs pose
 
 SUBJECT AND LAYOUT BRIEF:
 One genuinely transparent square atlas with FOUR columns and FOUR rows of equal square cells. Reuse the approved fourteen painted identities and add the matching sleeping Fuchs pose. Keep every complete animal inside the middle 56 percent of its cell with clean transparent gutters; atlas preparation restores display size. These are the common animal identities for invitation letters, puzzle context, companions, map pins, menus, review/gallery cards and celebrations. The live 3D world retains its existing models.

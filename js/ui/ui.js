@@ -167,73 +167,7 @@
 
   const PRAISE = ['Mega schön!', 'Bravo!', 'Super gemacht!', 'Wunderschön!', 'Grossartig!', 'Toll!', 'Juhui!', 'Wow!'];
 
-  /* ---------- «Neuer Sticker!» ---------- */
-  // A sticker for the Sammelalbum is earned every STARS_PER_STICKER stars. The 'stars' event comes
-  // right before a celebration; the new stickers are announced when that celebration is over.
-  let newStickers = [];
-  FK.on('stars', (e) => {
-    if (!e || !(e.added > 0) || !FK.REWARDS) return;
-    const per = FK.STARS_PER_STICKER;
-    const max = FK.REWARDS.length;
-    const before = Math.min(max, Math.floor((e.total - e.added) / per));
-    const after = Math.min(max, Math.floor(e.total / per));
-    for (let i = before; i < after; i++) newStickers.push(i);
-  });
-  // stickers the child already saw in the Sammelalbum (or a reset) are not announced again
-  FK.on('settings', (e) => {
-    if (!e || e.key !== 'album.seen') return;
-    const seen = e.value | 0;
-    newStickers = seen ? newStickers.filter((i) => i >= seen) : [];
-  });
-
-  function stickerMoment() {
-    const list = newStickers.slice(-3);
-    newStickers = [];
-    if (!list.length) return Promise.resolve();
-    const title = FK.text.word(list.length > 1 ? 'Neue Sticker!' : 'Neuer Sticker!');
-    const row = h('div', { class: 'ns-row n' + list.length });
-    list.forEach((i, k) => {
-      const st = h('span', { class: 'ns-sticker' }, h('span', { class: 'emoji', text: FK.REWARDS[i][0] }));
-      st.style.setProperty('--k', k);
-      st.style.setProperty('--tilt', (k % 2 ? 7 : -6) + 'deg');
-      row.append(st);
-    });
-    const name = list.length === 1 ? h('span', { class: 'ns-name', text: FK.text.word(FK.REWARDS[list[0]][1]) }) : null;
-    const album = h('span', { class: 'ns-album', html: FK.icon('album', 'ic') });
-    const card = h('div', { class: 'ns-card' }, h('b', { class: 'ns-title', text: title }), row, name, album);
-    const wrap = h('div', { class: 'new-sticker', role: 'status', 'aria-label': title }, card);
-    document.body.append(wrap);
-    FK.sound.rainbow();
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        const r = row.getBoundingClientRect();
-        FK.fx.burst(r.left + r.width / 2, r.top + r.height / 2);
-      }, 350);
-      // after a moment the stickers fly into the album book; whatever comes next (end card) may
-      // already appear underneath while they fly
-      setTimeout(() => {
-        const a = album.getBoundingClientRect();
-        row.querySelectorAll('.ns-sticker').forEach((st) => {
-          const b = st.getBoundingClientRect();
-          st.style.setProperty('--dx', a.left + a.width / 2 - (b.left + b.width / 2) + 'px');
-          st.style.setProperty('--dy', a.top + a.height / 2 - (b.top + b.height / 2) + 'px');
-          st.classList.add('fly');
-        });
-        if (name) name.classList.add('fade');
-        resolve();
-      }, 1300);
-      setTimeout(() => {
-        FK.sound.twinkle();
-        bounce(album);
-      }, 1850);
-      setTimeout(() => {
-        wrap.classList.add('out');
-        setTimeout(() => wrap.remove(), 260);
-      }, 2350);
-    });
-  }
-
-  // Sound + confetti + praise bubble + stars flying into the counter (+ new sticker). Resolves when done.
+  // Sound + confetti + praise bubble + stars flying into the counter. Resolves when done.
   async function celebrate(o) {
     o = o || {};
     const big = !!o.big;
@@ -248,10 +182,6 @@
       await FK.fx.starFly(o.from || null, o.stars);
     } else {
       await FK.wait(700);
-    }
-    if (newStickers.length) {
-      await FK.wait(120);
-      await stickerMoment();
     }
   }
 

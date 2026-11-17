@@ -47,7 +47,7 @@
       "den"
     ],
     "minimumTouchTarget": 48,
-    "historicalRecord": "archive/design-history/2026-11-16-before-style-contract/design/artwork/navigation.json",
+    "historicalRecord": "legacy/design-history/2026-11-16-before-style-contract/design/artwork/navigation.json",
     "manifest": "design/artwork/den-marker.json"
   },
   "navigationSymbols": {

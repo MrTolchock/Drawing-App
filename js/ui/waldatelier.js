@@ -159,10 +159,4 @@
     else rec.addedNodes.forEach(decorate);
   })).observe(document.body, { childList:true, subtree:true, characterData:true });
 
-  // Curate stamp/reward choices to subjects that have real, matching artwork.
-  // Existing saved pictures stay pixels; reward count and progress keys stay stable.
-  FK.STICKERS = FK.STICKERS.map(group => Object.assign({},group,{ items:group.items.filter(([token]) => !!resolve(token)) })).filter(group => group.items.length);
-  FK.STICKERS.unshift({ icon:'🦊', name:'Waldatelier', items:[['🦊','Fuchs'],['🦡','Dachs'],['🦔','Igel'],['🦫','Biber'],['🐦','Eisvogel'],['🪺','Nest'],['🍃','Blatt'],['🌻','Sonnenblume'],['🚋','Tram'],['📮','Briefkasten'],['⛵','Segelboot'],['🧺','Picknickkorb']] });
-  const collection = [['🦊','Fuchs'],['🐦','Eisvogel'],['🦋','Schmetterling'],['🦔','Igel'],['🐰','Hase'],['🐻','Bär'],['🦄','Einhorn'],['🐉','Drache'],['🐌','Schnecke'],['🐝','Biene'],['🐞','Marienkäfer'],['🐸','Frosch'],['🦫','Biber'],['🐧','Pinguin'],['🦁','Löwe'],['🦓','Zebra'],['🐘','Elefant'],['🦒','Giraffe'],['🐢','Schildkröte'],['🐳','Wal'],['🌹','Rose'],['🌻','Sonnenblume'],['🍄','Pilz'],['🌳','Baum'],['🍃','Blatt'],['☀️','Sonne'],['🌙','Mond'],['⭐','Stern'],['🚋','Tram'],['⛵','Segelboot'],['🚂','Zug'],['🚲','Velo'],['🛸','Ufo'],['🚀','Rakete'],['🤖','Roboter'],['🎈','Ballon'],['👑','Krone'],['🧸','Teddy'],['🍓','Erdbeere'],['🍎','Apfel'],['🍰','Kuchen'],['🎨','Farben']];
-  FK.REWARDS = collection;
 })();

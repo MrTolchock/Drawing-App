@@ -29,4 +29,4 @@ For a new edit, the current painting defines this framing and the canonical refe
 
 Retain the new editable PNG, complete style-composed request, references and conversion manifest. `prepare-image.cjs` with `transparent:false` produces an opaque scene; use the intended ratio/dimensions and an explicit fit choice. Avoid stretching a room to fit a generator's default canvas.
 
-The final historical den edit and original clearing request were not retained in full. Their history, recoverable original PNG commits, earlier concept prompts and former reconstruction recipes are preserved in the [archived background record](../../archive/design-history/2026-11-16-before-style-contract/design/artwork/BACKGROUNDS.md). Those original records are not forward instructions.
+The final historical den edit and original clearing request were not retained in full. Their history, recoverable original PNG commits, earlier concept prompts and former reconstruction recipes are preserved in the [archived background record](../../legacy/design-history/2026-11-16-before-style-contract/design/artwork/BACKGROUNDS.md). Those original records are not forward instructions.
