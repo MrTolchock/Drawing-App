@@ -8,6 +8,7 @@ export function createNav({extent, walkable, crossings}) {
   const g = new Float32Array(N), from = new Int32Array(N), stamp = new Uint32Array(N); let run = 0, filled = 0;
   crossings.forEach((c, k) => { const len = Math.hypot(c.b[0] - c.a[0], c.b[1] - c.a[1]), n = Math.ceil(len / .25);
     for (let i = 0; i <= n; i++) { const x = c.a[0] + (c.b[0] - c.a[0]) * i / n, z = c.a[1] + (c.b[1] - c.a[1]) * i / n, ci = Math.floor(x - X0), cj = Math.floor(z - Z0); if (ci >= 0 && cj >= 0 && ci < W && cj < H) cross[cj * W + ci] = k; } });
+  const joins = crossings.map((c, i) => new Set(crossings.flatMap((other, j) => i === j || [c.a, c.b].some(a => [other.a, other.b].some(b => Math.hypot(a[0] - b[0], a[1] - b[1]) < 1e-6)) ? [j] : [])));
   const OFF = [[0, 0], [-.42, -.42], [.42, -.42], [-.42, .42], [.42, .42]];
   function free(i, j) {
     if (i < 0 || j < 0 || i >= W || j >= H) return false;
@@ -36,8 +37,12 @@ export function createNav({extent, walkable, crossings}) {
     while (heap.length && guard++ < 120000) {
       const [f, c] = pop(), i = c % W, j = (c / W) | 0; if (c === goal) { found = true; break; } if (f > g[c] + h(i, j) + 1e-3) continue;
       for (let dj = -1; dj <= 1; dj++) for (let di = -1; di <= 1; di++) {
-        if (!di && !dj) continue; const ni = i + di, nj = j + dj; if (!free(ni, nj)) continue; if (di && dj && (!free(i + di, j) || !free(i, j + dj))) continue;
-        const n = nj * W + ni, cost = g[c] + (di && dj ? 1.4142 : 1); if (stamp[n] === run && g[n] <= cost) continue;
+        if (!di && !dj) continue; const ni = i + di, nj = j + dj; if (!free(ni, nj)) continue;
+        const n = nj * W + ni;
+        // A diagonal plank can occupy only diagonal grid cells. Its route follows the real deck and
+        // shared joints, so it needs no walkable bog cell beside it. Other corners still cannot be cut.
+        if (di && dj && (!free(i + di, j) || !free(i, j + dj)) && !(cross[c] >= 0 && joins[cross[c]].has(cross[n]))) continue;
+        const cost = g[c] + (di && dj ? 1.4142 : 1); if (stamp[n] === run && g[n] <= cost) continue;
         g[n] = cost; stamp[n] = run; from[n] = c; push(cost + h(ni, nj), n);
       }
     }
@@ -63,7 +68,7 @@ export function createNav({extent, walkable, crossings}) {
       let j = i; if (!pts[i].hard) while (j + 1 < pts.length && !pts[j + 1].hard && clear(anchor.x, anchor.z, pts[j + 1].x, pts[j + 1].z)) j++;
       out.push([pts[j].x, pts[j].z]); anchor = pts[j]; i = j + 1;
     }
-    const last = out[out.length - 1]; if (Math.hypot(last[0] - bx, last[1] - bz) > .05) out.push([bx, bz]);
+    const last = out[out.length - 1]; if (!last || Math.hypot(last[0] - bx, last[1] - bz) > .05) out.push([bx, bz]);
     return out;
   }
   return {plan, work, free: (x, z) => free(Math.floor(x - X0), Math.floor(z - Z0)), get pending() { return filled < N; }};

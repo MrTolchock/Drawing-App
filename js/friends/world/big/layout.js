@@ -83,6 +83,7 @@ export const CROSSINGS = [
   {kind: 'stones', stream: 'upper', at: [54.6, -42.2]},
   {kind: 'slab', stream: 'spring', at: [72.4, -62.9]},   // the bridging stone on the Rock, on the way to the Steinbock
   {kind: 'dam'},
+  {kind: 'planks', a: [-9.5, 59], b: [-13, 65.5]},   // start on firm ground, before the soft bog
   {kind: 'planks', a: [-13, 65.5], b: [-17.5, 70.5]},
   {kind: 'planks', a: [-17.5, 70.5], b: [-17, 77]},
   {kind: 'planks', a: [-17, 77], b: [-22, 82.5]},
@@ -105,7 +106,7 @@ export const PLACES = {
   fish: {x: 57.6, z: -42.8, picture: 'friend-fish', name: 'Zu Fisch'},
   deer: {x: -78.6, z: -11, picture: 'friend-deer', name: 'Zu Reh'},
   kingfisher: {x: 11.2, z: 21.5, picture: 'friend-kingfisher', name: 'Zu Eisvogel'},
-  frog: {x: -27.4, z: 83.2, picture: 'friend-frog', name: 'Zu Frosch'},
+  frog: {x: -27.2, z: 83.7, picture: 'friend-frog', name: 'Zu Frosch'},   // on the middle of the Steg
   badger: {x: -50, z: -52.6, picture: 'friend-badger', name: 'Zu Dachs', map: [-56, -50]},
   ibex: {x: 74.4, z: -53.8, picture: 'friend-ibex', name: 'Zu Steinbock'},   // in front of his crag at the Rock's rim, over the bridging stone
 };
