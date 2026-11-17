@@ -45,7 +45,9 @@ export function createTerrain() {
     return scree + body * R.top + body * ((fbm(x * .09 + 3, z * .09) - .5) * 1.6 + (fbm(x * .3, z * .3 + 8) - .5) * .5) + pk;
   }
   const meadow = (x, z) => sstep(1.05, .72, Math.hypot((x + 72) / 41, (z + 4) / 37) + (fbm(x * .045 + 11, z * .045 + 3) - .5) * .45);
-  const swampMask = (x, z) => sstep(1, .6, Math.hypot((x - S.x) / S.rx, (z - S.z) / S.rz) + (fbm(x * .05 + 20, z * .05) - .5) * .35);
+  /** How far out in the swamp a spot is: 1 at the bog's wobbly outer edge. */
+  const swampQ = (x, z) => Math.hypot((x - S.x) / S.rx, (z - S.z) / S.rz) + (fbm(x * .05 + 20, z * .05) - .5) * .35;
+  const swampMask = (x, z) => sstep(1, .6, swampQ(x, z));
   const blob = (x, z, cx, cz, r, seed) => sstep(1.1, .7, Math.hypot(x - cx, z - cz) / r + (fbm(x * .05 + seed, z * .05 + seed * 2) - .5) * .5);
   function glade(x, z) { let g = 0; for (const [cx, cz, r] of L.GLADES) { const d = Math.hypot(x - cx, z - cz); if (d < r + 2.5) g = Math.max(g, sstep(r + 2.5, r - 1.5, d)); } return g; }
   /** How much of each habitat a spot has (0…1 each); the rest is beech wood. */
@@ -91,7 +93,11 @@ export function createTerrain() {
     h = lerp(h, roll * .12, sstep(30, 13, Math.hypot(x - 1, z + 4)));             // the den's clearing is nearly flat
     h += rockHeight(x, z);
     const ed = edge(x, z); h += sstep(10, -8, ed) * 7 + sstep(24, 6, ed) * 1.2;      // the wooded rim rises
-    const sw = swampMask(x, z);
+    // The bog lies in a hollow: towards its outer edge a low bank rises above its water all the way round. To the west
+    // and south the land falls away below the water's level, and there the water used to run on to the very edge of
+    // the bog and stop in a straight, toothed line; now the shore is where the bank comes out of the water.
+    const q = swampQ(x, z), sw = sstep(1, .6, q);
+    if (q < 1.6) { const bank = sstep(.86, .97, q) * sstep(1.6, 1.15, q); if (bank > 0) h = Math.max(h, lerp(h, S.level + .2, bank)); }
     if (sw > 0) h = lerp(h, S.level + (fbm(x * .085 + 5, z * .085 + 9) - .49) * 1.9 + (fbm(x * .4, z * .4) - .5) * .14, sw);
     return h;
   }
@@ -140,6 +146,13 @@ export function createTerrain() {
     const floor = def.to === 'swamp' ? S.level : def.to ? poolOf(def.to).level : -Infinity;
     for (let i = 0; i <= N; i++) stream.level[i] = Math.max(stream.level[i], floor);
     for (let pass = 0; pass < 3; pass++) for (let i = N - 1; i > 0; i--) stream.level[i] = Math.min(stream.level[i - 1], (stream.level[i - 1] + stream.level[i] * 2 + stream.level[i + 1]) / 4);
+    // How much the flowing water shows (tiles.js). Where it leaves or enters a pool without a dam between them it
+    // comes in across the pool's mouth while the pool's still water gives way to it (`fade` in site), so the pond runs
+    // into the brook with no edge; other loose ends fade over the first or last metres.
+    const fromPool = def.from && !def.drop ? poolOf(def.from) : null, toPool = def.to && def.to !== 'swamp' ? poolOf(def.to) : null;
+    stream.fade = Float32Array.from({length: N + 1}, (_, i) => Math.min(1,
+      fromPool ? sstep(.8, .97, poolE(fromPool, samples[i].x, samples[i].z)) : i / 9,
+      toPool ? sstep(.8, .97, poolE(toPool, samples[i].x, samples[i].z)) : def.id === 'spring' ? 1 : (N - i) / 14));
     return stream;
   });
   const hit = {d: Infinity, i: 0, t: 0}, st = {d: Infinity, w: 1, level: 0, i: 0, stream: null};
@@ -173,10 +186,10 @@ export function createTerrain() {
   // The dam's normal towards the pond: the pond's water ends at the dam, the brook below it runs lower.
   { const dx = dam.b[0] - dam.a[0], dz = dam.b[1] - dam.a[1], l = Math.hypot(dx, dz), p = poolOf('pond'), side = Math.sign((p.x - dam.a[0]) * dz - (p.z - dam.a[1]) * dx) || 1; dam.n = [dz / l * side, -dx / l * side]; dam.len = l; }
   // One spot is usually asked several times in a row (height, colour, water): remember the last answer.
-  const memo = {x: NaN, z: NaN, h: 0, raw: 0, sd: Infinity, sw: 1, sl: 0, pd: Infinity, pw: 1, still: NaN};
+  const memo = {x: NaN, z: NaN, h: 0, raw: 0, sd: Infinity, sw: 1, sl: 0, pd: Infinity, pw: 1, still: NaN, fade: 1};
   function site(x, z) {
     if (x === memo.x && z === memo.z) return memo;
-    let h = raw(x, z), still = NaN; memo.raw = h;
+    let h = raw(x, z), still = NaN, fade = 1; memo.raw = h;
     streamAt(x, z); const sd = st.d, hw = st.w / 2;
     if (sd < hw + 5) {
       const top = st.level + .34;
@@ -189,13 +202,19 @@ export function createTerrain() {
       if (Math.abs(x - p.x) > p.rx * 2.2 || Math.abs(z - p.z) > p.rx * 2.2) continue;
       const e = poolE(p, x, z); if (e > 1.9) continue;
       h = lerp(h, clamp(h, lerp(p.level + .12, Math.min(h, p.level + .12), nearStream), p.level + .5), sstep(1.9, 1.15, e));
-      if (e < 1.15) { h = Math.min(h, lerp(p.level + .12, p.level - p.depth, sstep(1.15, .5, e)) + (fbm(x * 1.7, z * 1.7) - .5) * .08); still = p.level; }
+      if (e < 1.15) { h = Math.min(h, lerp(p.level + .12, p.level - p.depth, sstep(1.15, .5, e)) + (fbm(x * 1.7, z * 1.7) - .5) * .08); still = p.level;
+        // Where a brook leaves or enters the pool (no dam between), the still water thins out across the pool's mouth
+        // as the brook's flowing water comes in (stream.fade): first over the channel itself, then on its banks, and
+        // it is gone before the pool ends, so no toothed edge is left across the channel.
+        const s = st.stream; if (s && !s.def.drop && (s.def.from === p.id || s.def.to === p.id) && sd < hw + 1.6) { const m = sstep(hw + .05, hw + .55, sd); fade = 1 - sstep(hw + 1.6, hw + 1, sd) * sstep(lerp(.84, .94, m), lerp(1, 1.1, m), e); } }
     }
     if (Math.abs(x - dam.a[0]) < 12 && Math.abs(z - dam.a[1]) < 12) { segment(x, z, dam.a[0], dam.a[1], dam.b[0], dam.b[1], seg); if (seg.d < 2.4) h = Math.max(h, dam.top - .12 - Math.max(0, seg.d - .45) * 1.5);
       if (still === still && (x - dam.a[0]) * dam.n[0] + (z - dam.a[1]) * dam.n[1] < -.25 && seg.d < 9) still = NaN; }
-    if (swampMask(x, z) > .04 && !(still === still)) still = S.level;
+    // the bog's water; its shore tint thins out towards the bog's outer edge (beyond which there is none), so the bank
+    // shows no toothed line where it ends
+    if (!(still === still)) { const m = swampMask(x, z); if (m > .04) { still = S.level; fade = sstep(.04, .2, m); } }
     pathAt(x, z); if (pa.d < pa.w / 2 + .35) h -= .045 * sstep(pa.w / 2 + .35, pa.w / 2 - .1, pa.d);
-    memo.x = x; memo.z = z; memo.h = h; memo.sd = sd; memo.sw = st.w; memo.sl = st.level; memo.pd = pa.d; memo.pw = pa.w; memo.still = still;
+    memo.x = x; memo.z = z; memo.h = h; memo.sd = sd; memo.sw = st.w; memo.sl = st.level; memo.pd = pa.d; memo.pw = pa.w; memo.still = still; memo.fade = fade;
     return memo;
   }
   const ground = (x, z) => site(x, z).h;
@@ -224,7 +243,9 @@ export function createTerrain() {
     if (pe < .25) out.lerp(edgeC, sstep(.25, 0, pe) * .6);
     if (pe < 0) { out.copy(dirt).lerp(dirtL, n2 * .7); out.stone = 0; if (b.rock > .5) { out.lerp(stoneB, .5); out.stone = .4; } }
     if (s.sd < 8) { const be = s.sd - s.sw / 2; if (be < 1.1) out.lerp(wetC, sstep(1.1, .25, be + (n2 - .5) * .3)); if (be < .35) out.lerp(sand, sstep(.35, .05, be) * (.5 + .5 * n2)); if (be < 0) out.copy(bed).lerp(sand, n2 * .5); }
-    if (s.still === s.still && b.swamp < .5) { const above = s.h - s.still; if (above < .45) out.lerp(wetC, sstep(.45, .1, above + (n2 - .5) * .2)); if (above < .12) out.lerp(sand, sstep(.12, 0, above) * (.4 + .6 * n2)); if (above < -.05) out.copy(bed).lerp(stoneD, sstep(-.1, -.9, above) * .6); }
+    // a pool's shore and bed (where it gives way to a brook, the brook's bed: see `fade` in site); in the bog its own
+    // mud takes over, gradually, so no line is drawn where it does
+    if (s.still === s.still && b.swamp < .5) { const above = s.h - s.still, f = s.fade * sstep(.5, .3, b.swamp); if (above < .45) out.lerp(wetC, sstep(.45, .1, above + (n2 - .5) * .2) * f); if (above < .12) out.lerp(sand, sstep(.12, 0, above) * (.4 + .6 * n2) * f); if (above < -.05) out.lerp(scratchC.copy(bed).lerp(stoneD, sstep(-.1, -.9, above) * .6), f); }
     // the cave's floor: dark, stony earth, darker further in
     if (b.cave > 0 && !hillside) { out.stone = Math.max(out.stone, b.cave * .8); } if (b.cave > 0 && !hillside) out.lerp(scratchC.copy(caveC).lerp(stoneD, n2 * .5).multiplyScalar(1 - .35 * b.caveRoof), b.cave * .9);
     // snow on the peak: bluish in the hollows, a trodden grey-white on the path

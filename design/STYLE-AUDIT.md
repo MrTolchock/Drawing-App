@@ -1,6 +1,6 @@
 # Current visual consistency audit
 
-Current game art: **Waldpost 9.3.87**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal/object reference pixels and **35** complete forward image-generation prompts.
+Current game art: **Waldpost 9.3.92**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal/object reference pixels and **35** complete forward image-generation prompts.
 
 ## Stay on the Steg in Frosch's swamp — 9.3.87
 
@@ -97,3 +97,9 @@ The Dachs replacement asks «Was wächst aus einer Eichel?» with a unique pictu
 [Phone/tablet evidence](evidence/2026-11-17-review-followup/README.md) confirms the real rendering. Browser checks passed for all 130 affected iterations, native input for every active puzzle, the complete letter/home/sleep/offline flow, all 31 puzzle layouts at both widths and 41 PNG exports. The unchanged Biber definitions retain their existing two-plus-one tests; regenerated shared presentation fingerprints follow the normal review requirement.
 
 All 137 model tests and the final style, image-library, generator-handoff, catalogue, design/offline and whitespace checks passed. The restored counting-nut atlas is byte-identical to `44130c3`.
+
+## Natural water edges — 17 November 2026, 9.3.92
+
+Two places drew a toothed edge on the half-metre water grid because water ended at a boundary in the code, not at a shore. Where the upper brook leaves Fisch's plunge pool, the pool's still water ran down the brook's channel, lay over the brook as a second, paler layer and stopped in a sawtooth across it. Now the still water thins out across the pool's mouth while the brook's flowing water comes in, and the pool's bed colour gives way to the brook's bed in the same way; the brook's inflow into Biber's pond uses the same crossfade instead of lying over the open pond. To the west and south of Frosch's swamp the land falls away below the bog's water, which therefore ran on to the bog's outline and stopped there in a staircase. A low bank (up to 0.2 m) now rises out of the water towards the bog's edge, so the shore is where the ground comes out of the water; its shore tint and the change from pond-like shore to bog mud fade gradually.
+
+The swamp keeps about 96 % of its open water; the Steg's firm start moves by less than a centimetre and stays below its deck. [Before/after screenshots](evidence/2026-11-17-water-edges/README.md) show the plunge-pool outlet, the pond inlet and the swamp's south and west shore. All 140 model tests, including the new `tests/water-edges.test.cjs` (which fails on 9.3.91), the Steg journeys, all 13 map routes, navigation and the style, map, catalogue, image-library, handoff, design/offline and whitespace checks passed. The adopted map painting, characters, learning artwork and every puzzle definition and fingerprint are unchanged; no new puzzle approvals are needed.
