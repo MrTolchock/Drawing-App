@@ -7822,6 +7822,15 @@
       "at": "2026-11-17T19:42:26.251Z",
       "seen": true,
       "operation": "6e77b63d-bccf-42f2-b5c9-73336d06be0f"
+    },
+    "friends-owl/sentence-0@5d07c7d615bfd58c": {
+      "key": "friends-owl/sentence-0",
+      "revision": "5d07c7d615bfd58c",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T19:43:33.286Z",
+      "seen": true,
+      "operation": "d9f5f8da-f838-48eb-ad60-3a459b0c2b2e"
     }
   },
   "history": [
