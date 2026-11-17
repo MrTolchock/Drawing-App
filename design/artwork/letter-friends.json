@@ -2,7 +2,7 @@
   "format": "waldpost-illustration-atlas",
   "version": 1,
   "source": "sources/letter-friends.png",
-  "output": "../../assets/interface/letter-friends.webp",
+  "output": "prepared/letter-friends.webp",
   "columns": 4,
   "rows": 4,
   "cellPixels": 320,

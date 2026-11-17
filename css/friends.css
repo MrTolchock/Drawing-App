@@ -161,21 +161,7 @@
 .ff-card>.ff-choices .ff-button:not(.ff-answer) .ff-picture{width:56px;height:56px}
 .ff-card>.ff-choices .ff-button[aria-label=Helfen],.ff-card>.ff-choices .ff-button[aria-label=Weiterspielen],.ff-card>.ff-choices .ff-button[aria-label=Kaufen]{
   border-color:#6d9a4f;background:linear-gradient(180deg,#f8fdea,#d8eab4);box-shadow:inset 0 2px 0 #fff,inset 0 -3px 0 #b9d39488,0 5px 0 #4d743988,0 10px 22px #3c5a2a2a}
-
-/* Wallet chips. */
-.ff-wallet{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin:16px 0}
-.ff-wallet>span{display:flex;align-items:center;gap:6px;padding:4px 14px 4px 6px;border-radius:30px;
-  background:linear-gradient(180deg,#fffaf0,#f1e1bd);border:2px solid #e2c48d;box-shadow:0 3px 0 #c9a46c77}
-.ff-wallet .ff-picture{width:40px;height:40px}
-.ff-wallet b{font:700 24px/1 var(--type-body);color:var(--wood-deep);padding-top:3px}
-
-/* Reward: tokens travel into the bag under a slow sunburst. */
-.ff-reward{position:relative;isolation:isolate;display:flex;justify-content:center;align-items:center;gap:24px;min-height:220px}
-.ff-reward::before{content:'';position:absolute;left:50%;top:50%;width:420px;height:420px;margin:-210px;border-radius:50%;pointer-events:none;
-  background:repeating-conic-gradient(from 0deg,#ffe28f44 0 10deg,transparent 10deg 22deg);
-  -webkit-mask:radial-gradient(circle,#000 25%,transparent 68%);mask:radial-gradient(circle,#000 25%,transparent 68%);animation:ff-spin 24s linear infinite;z-index:-1}
 @keyframes ff-spin{to{rotate:360deg}}
-.ff-reward>.ff-picture{width:125px;height:145px}
 .ff-flying-tokens{display:flex;gap:8px;animation:ff-transfer 1.8s ease-in-out 2}
 .ff-flying-tokens .ff-picture{width:58px;height:58px;animation:ff-hop 1.2s ease-in-out infinite}
 .ff-flying-tokens .ff-picture:nth-child(2){animation-delay:.15s}.ff-flying-tokens .ff-picture:nth-child(3){animation-delay:.3s}
@@ -198,32 +184,15 @@
 .ff-map .ff-button{position:absolute;transform:translate(-50%,-50%);border-radius:50%;width:70px;height:70px;border:3px solid #fff;
   background:radial-gradient(circle at 35% 30%,#fffdf5,#f5e3bd);box-shadow:0 4px 0 #6d4a2a88,0 10px 18px #2e211040}
 @media(hover:hover){.ff-map .ff-button:not(:disabled):hover{scale:1.08}}
-
-/* Shop. */
-.ff-shop-item{display:flex;justify-content:center;margin:0 auto 6px}
-.ff-shop-item>.ff-picture{width:170px;height:170px;padding:16px;border-radius:50%;background:radial-gradient(circle at 50% 40%,#fffdf5,#f4e3bf 70%);box-shadow:0 0 0 4px #fff,0 0 0 7px #e2c48d,0 14px 30px #4a37202a;animation:ff-sway 3.6s ease-in-out infinite}
 .ff-price{display:flex;justify-content:center;gap:10px;margin:14px auto}
 .ff-price .ff-picture{width:56px;height:56px;padding:6px;border-radius:50%;background:radial-gradient(circle at 40% 30%,#fff7e3,#ecd6a6);border:2px solid #fff;box-shadow:0 0 0 2px #d5ad72,0 3px 0 #a97b4566}
 .ff-owned{width:76px;height:76px;padding:10px;border-radius:50%;background:#e2efc6;box-shadow:0 0 0 4px #fff,0 0 0 6px #7fa75a}
 .ff-stock{display:inline-flex;justify-content:center;align-items:center;gap:12px;margin-top:18px;padding:4px 18px 4px 8px;border-radius:30px;background:#f3e3c1}
 .ff-stock b{font:700 26px/1 var(--type-body);color:var(--wood-deep)}
-
-/* Bag. */
-.ff-bag-items{display:flex;justify-content:center;gap:30px;padding:25px}
-.ff-bag-items .ff-button{flex-direction:column;width:150px;min-height:170px;border-radius:30px}
-.ff-bag-items .ff-picture{width:100px;height:100px}
-.ff-bag-items b{position:absolute;top:-10px;right:-10px;display:flex;align-items:center;justify-content:center;min-width:42px;height:42px;padding:3px 8px 0;border-radius:21px;border:3px solid #fff;
-  background:linear-gradient(180deg,#ee8a5b,#c25b45);color:#fff;font:700 24px/1 var(--type-body);box-shadow:0 3px 0 #8a3c2b88}
-.ff-bag-items .ff-button:disabled b{background:#b6a78d}
 .ff-card>.ff-button[aria-label$="öffnen"]{margin:6px}
 
 .ff-animation-overlay{background:transparent;pointer-events:none}
 .ff-skip{position:absolute;right:24px;bottom:30px;pointer-events:auto;border-radius:50%;width:70px;height:70px}
-
-/* Drawing table. */
-.ff-drawing-card{width:min(960px,100%)}
-.ff-drawing-tools{display:flex;gap:12px;justify-content:center;margin:8px auto 14px}
-.ff-drawing-tools .ff-button[aria-pressed=true]{border-color:#5c8a44;background:linear-gradient(180deg,#f8fdea,#d8eab4)}
 .ff-paper{display:block;width:min(100%,720px,64vh);max-height:48vh;aspect-ratio:4/3;margin:auto;background:#fffaf0;border:10px solid #fffaf0;border-radius:6px;touch-action:none;object-fit:contain;
   box-shadow:0 0 0 2px #d5ba86,2px 4px 0 #e7d2a8,4px 8px 0 #dcc296,0 18px 34px #4a37202e;rotate:-.4deg}
 .ff-palette{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:20px}
@@ -281,22 +250,12 @@
   .ff-game[data-area=forest] .ff-caption{left:auto;right:10px;transform:none;max-width:calc(100% - 160px)}
   .ff-pad{left:10px;bottom:max(10px,env(safe-area-inset-bottom));grid-template-columns:repeat(2,54px);gap:6px;padding:7px}
   .ff-pad button{width:54px;height:54px}
-  .ff-reward{gap:8px}
-  .ff-reward::before{width:300px;height:300px;margin:-150px}
-  .ff-reward>.ff-picture{width:82px;height:120px}
   .ff-flying-tokens{gap:0}
   .ff-flying-tokens .ff-picture{width:39px;height:39px}
-  .ff-wallet{gap:7px}
-  .ff-wallet>span{padding:3px 10px 3px 4px}
-  .ff-wallet .ff-picture{width:31px;height:31px}
-  .ff-wallet b{font-size:20px}
   .ff-map{margin:12px 0;height:55vh}
   .ff-map .ff-button{width:60px;height:60px}
   .ff-meet-scene{gap:12px;min-height:200px}
   .ff-meet-scene .ff-picture{width:120px;height:150px}
-  .ff-bag-items{gap:16px;padding:20px 6px}
-  .ff-bag-items .ff-button{width:130px;min-height:150px}
-  .ff-shop-item>.ff-picture{width:130px;height:130px}
   .ff-dev-dock{bottom:150px;gap:2px}
   .ff-dev-dock .ff-button{min-width:48px;min-height:48px;width:48px;height:48px}
   .ff-dev{position:absolute;top:67px;right:0;font-size:11px}
@@ -360,7 +319,6 @@
 .ff-answer.chosen,.ff-button.chosen{background:#e6edcf;border:3px solid #56713e;box-shadow:none}
 .ff-answer.ff-retry{background:#f7e7d3;border-color:#b77d50}
 .ff-numeral{font:700 52px/1 var(--type-learning);color:#4b3b2d;text-shadow:none;padding:0}
-.ff-wallet>span{background:#ead8b14d;border:1px solid #d3ba8b;box-shadow:none}
 .ff-meet-scene{border:1px solid #e4cfaa}
 .ff-card>.ff-choices .ff-button:not(.ff-answer){border-radius:24px}
 .ff-map .ff-button{border:2px solid #edcf97;background:#fff5dfe8;box-shadow:0 0 0 6px #fff8df45,0 5px 14px #302e1938}
@@ -385,15 +343,6 @@
 .ff-fader{position:absolute;inset:0;z-index:4;background:#2b1d10;opacity:0;pointer-events:none}
 .ff-fader.on{animation:ff-area-fade .5s ease-out}
 @keyframes ff-area-fade{from{opacity:.9}to{opacity:0}}
-
-/* The restored book uses the original painted stationery with the v2 hosts. */
-.screen-forest-book .ff-library-tabs{flex-wrap:wrap;justify-content:center}
-.ff-library-tabs .forest-book-neighbour{width:100px;height:auto;min-height:100px;padding:8px}
-.ff-library-tabs .forest-book-neighbour>span{display:flex;flex-direction:column;align-items:center;gap:5px}
-.ff-library-tabs .forest-book-neighbour :is(.wa-illustration,.woodland-art){width:60px;height:60px}
-.ff-library-tabs small{font:13px var(--read);color:var(--ink)}
-.forest-book-game .ff-library-host{display:flex;align-items:center;gap:6px;margin-top:4px}
-.ff-library-host .forest-portrait{width:30px;height:30px}
 .forest-book-game>span>.wa-illustration{width:100px;height:100px}
 .ff-picture>.ic,.ff-painted-picture>.woodland-art{width:100%;height:100%}
 /* New rounds share the garden, paper, sepia outlines and painted objects of the old games. */
@@ -406,7 +355,6 @@
 .ff-count.ff-frames>.ff-picture{outline:2px solid #7c995b}
 .ff-target{font-family:var(--read);color:#5c503b}
 .ff-answer .ff-word{font-family:var(--read);color:#5c503b}
-@media(max-width:600px){.ff-library-tabs .forest-book-neighbour{width:75px;min-width:75px;min-height:92px;padding:6px}.ff-library-tabs small{font-size:11px}}
 
 .ff-picture>.play-cue-drawing{width:100%;height:100%}
 .ff-round-title{font:700 26px var(--font);color:#49613b;margin:12px auto;text-align:center}
@@ -437,14 +385,7 @@
 @media(prefers-reduced-motion:reduce){.ff-den-envelope{animation:none;transform:translate(-18%,40%) rotate(-7deg)}.ff-mail-lid{animation:none!important}}
 /* The picture map is parchment now; every destination remains inside its corners. */
 .ff-map{border-radius:26px;overflow:visible;background:radial-gradient(ellipse at 30% 25%,#edf1d8,#cfddb0);border:3px solid #c8b489;box-shadow:inset 0 0 35px #6b8b4c33}
-/* Clear, illustrated colouring choices with one direct action per picture. */
-.den-colouring-book .cat-tabs{display:none}
-.den-colouring-book .book-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%;max-width:1100px;margin:0 auto;gap:22px;padding:12px}
-.den-colouring-book .book-card{padding:16px 16px 12px;border:1px solid #c7b187;border-radius:22px;background:#fffaf0;box-shadow:0 5px 16px #5f46231a;transform:none;overflow:hidden}
-.den-colouring-book .book-card canvas,.den-colouring-book .book-card .book-thumb{width:100%;height:auto;aspect-ratio:1;object-fit:contain;border-radius:12px;background:#fff;display:block}
-.den-colouring-book .book-card .name{display:block;font:700 20px/1.3 var(--font);margin:12px 0 3px;color:#49613b}
-.book-invitation{font:14px var(--read);color:#807057}.den-colouring-book .book-stars{display:none}
-@media(max-width:750px){.den-colouring-book .book-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:8px}.den-colouring-book .book-card{padding:10px}.den-colouring-book .book-card .name{font-size:17px}}
+.book-invitation{font:14px var(--read);color:#807057}
 /* The painted door supplies the wood and hinges; only the small mail flap moves. */
 .ff-mail-lid{opacity:0}
 .ff-mail-opening{opacity:0}

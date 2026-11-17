@@ -118,8 +118,6 @@
   outline:2px dashed #ead9b6;outline-offset:-12px;
   color:var(--wb-ink);
 }
-.friends-interface :is(.screen-learn,.screen-adventure,.screen-expedition)>.learn-body,
-.friends-interface .screen-read>.rd-stage{padding:26px 34px 30px}
 .friends-interface :is(.screen-trace .tr-over-view,.screen-dots .pp-over,.screen-trace .tr-play,.screen-dots .pp-play){background:var(--wb-paper)}
 
 /* Text a child reads: Andika; the prompt 26 px. */
@@ -140,27 +138,7 @@
     width:min(900px,calc(100% - var(--wb-gutter)));max-width:none;margin:0 0 14px var(--wb-gutter);
   }
   /* The portrait is positioned against the screen root (learn) or the stage (read). */
-  .friends-interface :is(.screen-learn,.screen-adventure,.screen-expedition) .play-context>.forest-portrait,
-  .friends-interface .screen-read .play-context>.forest-portrait{
-    position:absolute;z-index:5;left:max(6px,env(safe-area-inset-left));bottom:max(54px,calc(env(safe-area-inset-bottom) + 40px));
-    width:min(230px,calc(var(--wb-gutter) + 26px));height:auto;aspect-ratio:1;pointer-events:none;
-  }
-  .friends-interface .screen-read .play-context>.forest-portrait{left:calc(max(6px,env(safe-area-inset-left)) - 22px - var(--wb-gutter));bottom:24px}
-  .friends-interface :is(.screen-learn,.screen-adventure,.screen-expedition,.screen-read) .play-context>.forest-portrait::after{
-    content:"";position:absolute;z-index:-1;left:16%;right:16%;bottom:2%;height:9%;border-radius:50%;background:#3d2a1a38;
-  }
   /* "… spielt mit dir" becomes the name tag under the host. */
-  .friends-interface :is(.screen-learn,.screen-adventure,.screen-expedition,.screen-read) .play-context>.forest-portrait+span{
-    position:absolute;z-index:6;flex:none;
-    left:calc(max(6px,env(safe-area-inset-left)) + min(115px,calc(var(--wb-gutter)/2 + 13px)));bottom:max(30px,calc(env(safe-area-inset-bottom) + 16px));
-    transform:translateX(-50%);white-space:nowrap;max-width:calc(var(--wb-gutter) + 40px);overflow:hidden;text-overflow:ellipsis;
-    padding:5px 14px 6px;border-radius:var(--wb-r-s);background:var(--wb-paper);border:2px solid var(--accent,var(--wb-honey-deep));
-    box-shadow:var(--wb-lift);font:700 16px/1.1 var(--type-body);color:var(--wb-ink);
-  }
-  .friends-interface .screen-read .play-context>.forest-portrait+span{
-    left:calc(max(6px,env(safe-area-inset-left)) - 22px - var(--wb-gutter) + min(115px,calc(var(--wb-gutter)/2 + 13px)));bottom:0;
-  }
-  .friends-interface :is(.screen-learn,.screen-adventure,.screen-expedition,.screen-read) .play-context{justify-content:flex-end}
 
 
 }
@@ -194,7 +172,6 @@
   box-shadow:0 var(--wb-press) 0 #d6b680,var(--wb-lift);
   transition:transform .08s,box-shadow .08s,opacity .15s;
 }
-.friends-interface .learn-answer{font:700 clamp(28px,4vw,40px)/1 var(--wb-read)}
 .friends-interface .ff-answer .ff-numeral{font:700 clamp(40px,5vw,54px)/1 var(--type-body);color:var(--wb-ink)}
 .friends-interface .ff-answer .ff-word{font:700 clamp(24px,2.8vw,30px)/1.1 var(--wb-read);color:var(--wb-ink)}
 .friends-interface :is(.learn-answer,.ff-answer,.rd-card):not(:disabled):active{transform:translateY(4px);translate:none;box-shadow:0 2px 0 #d6b680,var(--wb-lift)}
@@ -210,20 +187,9 @@
 }
 
 /* Other page buttons (next, hint, finish actions): the same paper and timber. */
-.friends-interface .learn-button:not(.learn-answer){
-  background:#fffdf6;border:2px solid #e3cc9f;border-radius:var(--wb-r-m);color:var(--wb-ink);
-  box-shadow:0 4px 0 #d6b680;font-family:var(--type-body);
-}
 .friends-interface :is(.learn-next,.adventure-next,.exp-next){background:var(--wb-moss-tint);border-color:var(--wb-moss);box-shadow:0 4px 0 var(--wb-moss);min-height:64px;font-size:20px}
 
 /* ---------- Syllable chips (Lesen) ---------- */
-.friends-interface .rd-chip{
-  background:#fffdf6;border:2px solid #e3cc9f;border-radius:20px;color:var(--wb-ink);font-family:var(--wb-read);font-weight:700;
-  box-shadow:0 6px 0 var(--c,#d6b680),var(--wb-lift);
-}
-.friends-interface .rd-slot{border:3px dashed #c9b384;background:#fffdf6}
-.friends-interface .rd-slot.cur{background:var(--wb-moss-tint);border-color:#9db06f}
-.friends-interface .rd-paper{background:var(--wb-paper-inset);border:0;box-shadow:inset 0 3px 0 #e6d6b3}
 
 /* ---------- Step strip (older activities) ---------- */
 .friends-interface .play-steps{gap:12px;max-width:740px;margin:8px auto 18px}
@@ -354,10 +320,6 @@
 .friends-interface :is(.screen-forest-book,.den-colouring-book,.screen-gallery,.ff-settings-screen)>.topbar{
   width:100%;max-width:none;min-height:64px;margin:0 0 12px;padding:0;gap:16px;background:none;border:0;border-radius:0;box-shadow:none;
 }
-.friends-interface :is(.screen-forest-book,.den-colouring-book,.screen-gallery)>.topbar .title{
-  color:#fffaf0;font:700 clamp(28px,3.6vw,40px)/1.1 var(--wb-display);letter-spacing:0;
-  -webkit-text-stroke:6px var(--wb-timber-deep);paint-order:stroke fill;text-shadow:0 3px 0 var(--wb-timber-deep);
-}
 .friends-interface .ff-settings-screen>.topbar .title{color:var(--wb-ink);font:700 clamp(26px,3.2vw,34px)/1.1 var(--wb-display);-webkit-text-stroke:0;text-shadow:none}
 .friends-interface :is(.screen-forest-book,.den-colouring-book,.screen-gallery,.ff-settings-screen) .btn-back,
 .friends-interface .ff-map-card .ff-card-top>.ff-button:first-child{
@@ -372,7 +334,6 @@
 .friends-interface .ff-map-card .ff-card-top>.ff-button:first-child{background:var(--wb-paper)}
 .friends-interface .ff-map-card .ff-card-top>.ff-button:first-child .ff-picture{width:42px;height:42px}
 /* Waldspiele keeps Fuchs as its back button: his portrait sits in the wooden ring. */
-.friends-interface .screen-forest-book .btn-back>*{width:54px;height:54px;border-radius:50%;background-color:var(--wb-paper)}
 .friends-interface :is(.screen-forest-book,.screen-trace,.screen-dots) .topbar .btn-round:not(.btn-back){
   flex:none;width:64px;min-width:64px;height:64px;min-height:64px;padding:0;border-radius:50%;display:grid;place-items:center;
   background:var(--wb-paper);border:2px solid var(--wb-honey-deep);box-shadow:0 var(--wb-press) 0 var(--wb-timber),var(--wb-lift);
@@ -419,126 +380,11 @@
 .friends-interface .ff-map-storybook .ff-button.ff-map-invited{border-color:#e0a92c;box-shadow:0 0 0 5px #f6cf62,0 0 0 12px #ffd76a55,var(--wb-lift)}
 
 /* ---------- Waldspiele: bookmark tabs over a page of cards (4.5) ---------- */
-.friends-interface .screen-forest-book{background:#efe3c2 url('../assets/forest-friends/puzzle-clearing.webp') center/cover no-repeat}
-.friends-interface .screen-forest-book .forest-book-body{
-  width:100%;max-width:1000px;margin:0 auto;padding:0 0 26px;background:none;border:0;border-radius:0;box-shadow:none;outline:0;text-align:center;
-}
 /* The intro repeats the title and tab; it stays for screen readers. */
-.friends-interface .screen-forest-book .play-library-intro{
-  position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0;
-}
-.friends-interface .screen-forest-book .ff-library-tabs{
-  display:flex;flex-wrap:nowrap;justify-content:flex-start;align-items:flex-end;gap:8px;margin:0;padding:6px 24px 0;overflow-x:auto;overflow-y:hidden;
-  scrollbar-width:none;touch-action:pan-x;position:relative;z-index:1;
-}
-.friends-interface .screen-forest-book .ff-library-tabs::-webkit-scrollbar{display:none}
-.friends-interface .screen-forest-book .ff-library-tabs .forest-book-neighbour{
-  --accent:var(--wb-honey-deep);
-  flex:none;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
-  width:96px;min-width:96px;height:104px;min-height:0;margin:0 0 -2px;padding:0 0 8px;
-  border:2px solid #e8d4ab;border-bottom:0;border-radius:20px 20px 0 0;background:#fffdf6;
-  box-shadow:inset 0 6px 0 var(--accent);color:var(--wb-ink-soft);transform:none;translate:none;
-}
-.friends-interface .screen-forest-book .ff-library-tabs .forest-book-neighbour>span{gap:6px}
-.friends-interface .screen-forest-book .ff-library-tabs .forest-book-neighbour :is(.wa-illustration,.woodland-art,.forest-portrait){width:60px;height:60px}
-.friends-interface .screen-forest-book .ff-library-tabs small{font:700 15px/1 var(--type-body);color:inherit;white-space:nowrap}
-.friends-interface .screen-forest-book .ff-library-tabs .forest-book-neighbour[aria-pressed=true]{height:118px;background:var(--wb-paper);color:var(--wb-ink);box-shadow:inset 0 10px 0 var(--accent);border-color:#e6d2aa}
-.friends-interface .ff-library-tabs [aria-label="Mit Eichhörnchen spielen"]{--accent:var(--wb-squirrel)}
-.friends-interface .ff-library-tabs [aria-label="Mit Blaumeise spielen"]{--accent:var(--wb-bluetit)}
-.friends-interface .ff-library-tabs [aria-label="Mit Waldkauz spielen"]{--accent:var(--wb-owl)}
-.friends-interface .ff-library-tabs [aria-label="Mit Biber spielen"]{--accent:var(--wb-beaver)}
-.friends-interface .ff-library-tabs [aria-label="Mit Maus spielen"]{--accent:var(--wb-mouse)}
-.friends-interface .ff-library-tabs [aria-label="Malatelier"]{--accent:var(--wb-fox)}
-.friends-interface .screen-forest-book .forest-book-games{
-  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;width:100%;max-width:none;margin:0;padding:30px 28px 32px;
-  background:var(--wb-paper);border-radius:var(--wb-r-xl);
-  box-shadow:0 0 0 2px #e6d2aa,0 14px 0 -4px #e9d8b6,0 14px 0 -2px #d2b98d,0 22px 40px #4a33201f;
-  outline:2px dashed #ead9b6;outline-offset:-12px;
-}
-.friends-interface .screen-forest-book .forest-book-game{
-  width:auto;min-width:0;min-height:176px;padding:16px 10px 14px;border:2px solid #e8d4ab;border-radius:var(--wb-r-l);
-  background:#fffdf6;box-shadow:0 6px 0 #e2c995,var(--wb-lift);color:var(--wb-ink);transform:none;translate:none;transition:transform .08s,box-shadow .08s;
-}
-.friends-interface .screen-forest-book .forest-book-game:not(:disabled):active{transform:translateY(4px);box-shadow:0 2px 0 #e2c995,var(--wb-lift)}
-.friends-interface .screen-forest-book .forest-book-game:focus-visible{outline:4px solid var(--wb-focus);outline-offset:5px}
-.friends-interface .screen-forest-book .forest-book-game>span{gap:8px}
-.friends-interface .screen-forest-book .forest-book-game>span>.wa-illustration{width:92px;height:92px}
-.friends-interface .screen-forest-book .forest-book-game b{font:700 20px/1.2 var(--type-body);color:var(--wb-ink)}
-.friends-interface .screen-forest-book .forest-book-game .ff-library-host{
-  display:inline-flex;align-items:center;gap:6px;margin-top:2px;padding:3px 10px 3px 4px;border-radius:14px;
-  background:var(--wb-paper-inset);font:400 15px/1 var(--type-body);color:var(--wb-ink-soft);
-}
-.friends-interface .screen-forest-book .ff-library-host .forest-portrait{width:26px;height:26px}
-@media (max-width:860px){.friends-interface .screen-forest-book .forest-book-games{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media (max-width:600px){
-  .friends-interface .screen-forest-book .ff-library-tabs{padding:4px 14px 0;gap:6px}
-  .friends-interface .screen-forest-book .ff-library-tabs .forest-book-neighbour{width:76px;min-width:76px;height:90px}
-  .friends-interface .screen-forest-book .ff-library-tabs .forest-book-neighbour[aria-pressed=true]{height:102px}
-  .friends-interface .screen-forest-book .ff-library-tabs .forest-book-neighbour :is(.wa-illustration,.woodland-art,.forest-portrait){width:48px;height:48px}
-  .friends-interface .screen-forest-book .ff-library-tabs small{font-size:13px}
-  .friends-interface .screen-forest-book .forest-book-games{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:20px 14px 24px;border-radius:26px;outline-offset:-9px}
-  .friends-interface .screen-forest-book .forest-book-game{min-height:150px;padding:12px 6px}
-  .friends-interface .screen-forest-book .forest-book-game>span>.wa-illustration{width:72px;height:72px}
-  .friends-interface .screen-forest-book .forest-book-game b{font-size:17px}
-  .friends-interface .screen-forest-book .forest-book-game .ff-library-host{font-size:15px}
-}
-
-/* ---------- Ausmalen and Meine Bilder: the den painting under a flat tint (4.6, 4.7) ---------- */
-.friends-interface :is(.den-colouring-book,.screen-gallery){
-  background:linear-gradient(#5a3418a6,#5a3418a6),#5a3418 url('../assets/forest-friends/den-v2.webp') center/cover no-repeat;
-  padding:max(16px,env(safe-area-inset-top,0px)) max(22px,env(safe-area-inset-right)) max(18px,env(safe-area-inset-bottom)) max(22px,env(safe-area-inset-left));
-}
 /* Ausmalen: six taped pages; the names stay as each card's aria-label. */
-.friends-interface .den-colouring-book .book-grid{gap:40px 30px;padding:24px 14px 30px;max-width:1000px}
-.friends-interface .den-colouring-book .book-card{
-  --accent:var(--wb-fox);position:relative;overflow:visible;padding:14px;border:0;border-radius:10px;background:#fffdf6;
-  box-shadow:0 5px 0 #e6d3ad,var(--wb-lift);transform:none;transition:transform .08s;
-}
-.friends-interface .den-colouring-book .book-card:active{transform:translateY(3px)}
-.friends-interface .den-colouring-book .book-card:focus-visible{outline:4px solid var(--wb-focus);outline-offset:5px}
-.friends-interface .den-colouring-book .book-card :is(canvas,.book-thumb){border-radius:4px}
-.friends-interface .den-colouring-book .book-card :is(.name,.book-invitation,.book-stars){display:none}
-.friends-interface .den-colouring-book .book-card::before{
-  content:"";position:absolute;z-index:1;top:-14px;left:50%;width:96px;height:28px;margin-left:-48px;rotate:-4deg;border-radius:3px;opacity:.88;
-  background:repeating-linear-gradient(90deg,#ffffff4d 0 10px,transparent 10px 20px),var(--accent);
-}
-.friends-interface .den-colouring-book .book-card:nth-child(1){rotate:-2.5deg}
-.friends-interface .den-colouring-book .book-card:nth-child(2){rotate:1.5deg;--accent:var(--wb-squirrel)}
-.friends-interface .den-colouring-book .book-card:nth-child(3){rotate:-1deg;--accent:var(--wb-owl)}
-.friends-interface .den-colouring-book .book-card:nth-child(4){rotate:2deg;--accent:var(--wb-beaver)}
-.friends-interface .den-colouring-book .book-card:nth-child(5){rotate:-1.5deg;--accent:var(--wb-mouse)}
-.friends-interface .den-colouring-book .book-card:nth-child(6){rotate:1deg;--accent:var(--wb-bluetit)}
-@media (max-width:750px){.friends-interface .den-colouring-book .book-grid{gap:34px 18px;padding:20px 6px}.friends-interface .den-colouring-book .book-card{padding:9px}}
 
 /* Meine Bilder: pictures hang from pegs on a rope that scrolls sideways. */
-.friends-interface .screen-gallery .gallery-scroll{display:flex;flex-direction:column}
-.friends-interface .screen-gallery .gallery-grid{
-  display:flex;flex-wrap:nowrap;align-items:flex-start;gap:40px;min-height:120px;padding:58px 40px 34px;overflow-x:auto;overflow-y:hidden;touch-action:pan-x pan-y;scrollbar-width:none;
-  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 280 40'%3E%3Cpath d='M0 6Q140 46 280 6' fill='none' stroke='%23f3e6c8' stroke-width='3.5'/%3E%3Cpath d='M0 6Q140 46 280 6' fill='none' stroke='%23b99a6b' stroke-width='1.5' stroke-dasharray='3 6'/%3E%3C/svg%3E") 160px 32px/280px 40px repeat-x local;
-}
-.friends-interface .screen-gallery .gallery-grid::-webkit-scrollbar{display:none}
-.friends-interface .screen-gallery .frame-card{
-  position:relative;flex:none;width:240px;overflow:visible;padding:12px 12px 10px;border:0;border-radius:10px;background:#fffdf6;
-  box-shadow:0 5px 0 #e6d3ad,var(--wb-lift);transform:none;rotate:var(--tilt,0deg);
-}
-.friends-interface .screen-gallery .frame-card:focus-visible{outline:4px solid var(--wb-focus);outline-offset:5px}
-.friends-interface .screen-gallery .frame-card::before,
-.friends-interface .screen-gallery .gallery-grid:empty::before{
-  content:"";position:absolute;z-index:1;top:-26px;left:50%;width:16px;height:44px;margin-left:-8px;border-radius:5px;
-  background:linear-gradient(90deg,#d9a866,#b8834a);box-shadow:0 2px 0 #7a4f2b;
-}
-.friends-interface .screen-gallery .frame-date{display:block;margin-top:6px;font:400 15px var(--type-body);color:var(--wb-ink-soft)}
-.friends-interface .screen-gallery .gallery-grid:empty{position:relative}
-.friends-interface .screen-gallery .gallery-grid:empty::before{top:30px;left:50%}
 /* Empty: a happy Fuchs under the empty peg; the sentence stays for screen readers. */
-.friends-interface .screen-gallery .empty{display:block;margin:0 auto;padding:0;background:none;border:0;box-shadow:none}
-.friends-interface .screen-gallery .empty::before{content:"";display:block;width:min(240px,55vw);aspect-ratio:1;margin:0 auto;background:url('../assets/forest-friends/character-portraits.webp') 0 0/400% 400% no-repeat}
-.friends-interface .screen-gallery .empty .empty-ic{display:none}
-.friends-interface .screen-gallery .empty p{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
-@media (max-width:600px){
-  .friends-interface .screen-gallery .gallery-grid{gap:26px;padding:52px 22px 28px;background-position:104px 28px;background-size:190px 32px}
-  .friends-interface .screen-gallery .frame-card{width:164px}
-}
 
 /* ---------- Einstellungen: one calm page, switches and segmented choices (4.8) ---------- */
 .friends-interface .ff-settings-screen{
@@ -591,7 +437,6 @@
   background:var(--wb-moss) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M7 17l6 6L25 9' fill='none' stroke='%23fff' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/30px no-repeat;
   box-shadow:0 4px 0 var(--wb-moss-deep);animation:wb-badge .35s cubic-bezier(.2,1.6,.4,1) both;
 }
-.friends-interface .rd-card.right .rd-card-star{display:none}
 @keyframes wb-badge{from{transform:scale(.3);opacity:0}to{transform:none;opacity:1}}
 .friends-interface .wb-won{box-shadow:0 0 0 2px #b9cc8d,0 0 0 10px var(--wb-moss-tint),0 14px 0 6px #d2b98d,0 22px 40px #4a33201f!important}
 .friends-interface .wb-pop{animation:wb-pop .6s cubic-bezier(.2,1.6,.4,1) both!important}

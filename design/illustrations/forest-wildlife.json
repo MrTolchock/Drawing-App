@@ -12,7 +12,7 @@
     "date": "2026-11-14",
     "tool": "ChatGPT hosted image-generation tool",
     "sourceSha256": "6747767174eea7a29e1a57bbda20f027c8d33f4419c1bec9e8470ceae5c7ecb6",
-    "generationRecord": "../../archive/design-history/2026-11-16-before-style-contract/design/illustrations/forest-wildlife.json",
+    "generationRecord": "../../legacy/design-history/2026-11-16-before-style-contract/design/illustrations/forest-wildlife.json",
     "styleContract": "style.json",
     "forwardPrompt": "prompts/forest-wildlife.txt",
     "note": "The archived record describes the existing asset. New generations use the current style contract and forward prompt."

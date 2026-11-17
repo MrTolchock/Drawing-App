@@ -44,6 +44,6 @@ A new visual direction requires updating this contract, its versioned references
 
 ## History and sources
 
-Old guides, alternative styles, generation requests, drafts, before images, comparisons and dated evidence are preserved in the [historical snapshot](../../archive/design-history/2026-11-16-before-style-contract/README.md). Original requests remain byte-exact records. They are deliberately absent from the active prompt folders.
+Old guides, alternative styles, generation requests, drafts, before images, comparisons and dated evidence are preserved in the [historical snapshot](../../legacy/design-history/2026-11-16-before-style-contract/README.md). Original requests remain byte-exact records. They are deliberately absent from the active prompt folders.
 
 Current final PNGs and preparation manifests remain in the design area. Their `generationRecord` points either to the archived account of an existing image or a retained new request in `design/artwork/generation-records/`; their `forwardPrompt` points to the current style-complete request for future work. New records retain the full actual request, ordered references and source hashes. A source record never overrides this style contract.

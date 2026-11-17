@@ -8,7 +8,7 @@ All new image generation follows the [canonical watercolour/pencil style](design
 
 A woodland learning game for first-grade practice in Zürich, in Swiss Standard German. Parents choose how many letters their child can complete. Fuchs starts at the den, receives a pictured letter, walks to that friend and solves a puzzle of five different iterations. Hase delivers the next letter. After the last puzzle, Fuchs returns home to sleep and the journey ends.
 
-Only the friend on the current letter offers a puzzle. The 31 puzzles have 953 finite iterations, with a common page, sounds, feedback and celebration. Settings contains the adult-only gallery and review workbench: review every unconfirmed iteration in the normal game viewport. Correct completion approves and advances; × opens an optional rejection comment. The full queue ends with the usual celebration and approves the puzzle when every iteration passed. Exact-revision approvals are required before child play. New content, difficulty and shared implementation changes require review again. Deployment never approves content.
+Only the friend on the current letter offers a puzzle. The 32 puzzles have 983 finite iterations, with a common page, sounds, feedback and celebration. Settings contains the adult-only gallery and review workbench: review every unconfirmed iteration in the normal game viewport. Correct completion approves and advances; × opens an optional rejection comment. The full queue ends with the usual celebration and approves the puzzle when every iteration passed. Exact-revision approvals are required before child play. New content, difficulty and shared implementation changes require review again. Deployment never approves content.
 
 The table and picture pile remain part of the den painting; drawing and saved-picture screens are retired. There is no timer, shop or currency loop. Drawings and gameplay saves stay on the device. Editorial decisions are shared through [GitHub review storage](docs/REVIEW-STORAGE.md), with an offline cache and automatic recovery in other browsers. The game works offline after a complete initial download.
 
@@ -27,7 +27,11 @@ The table and picture pile remain part of the den painting; drawing and saved-pi
 | [Game implementation](docs/FOREST-FRIENDS.md) | Current modules, persistence and controls |
 | [Learning and sources](docs/LEARNING.md) | Scope, prerequisites and research limits |
 | [Development](docs/DEVELOPMENT.md) | Run, validate, author and publish |
-| [Archive](archive/README.md) | Retired Heart Tree, past plans, screenshots and source history |
+| [Legacy](legacy/README.md) | Retired engines, drawing tools, unused art, proposals and original history |
+
+## Repository layout
+
+`index.html`, `js/`, `css/`, `assets/`, `icons/`, `fonts/` and `vendor/` serve the current game and image library. `design/` documents current rules and editable artwork inputs. `docs/`, `tools/`, `tests/` and `.github/` maintain and validate this game. All retired implementations, unused runtime assets, old proposals and historical records live under `legacy/`; the game and offline cache never load them. Existing device saves and the separate GitHub review-data branch remain compatible.
 
 ## Run locally
 

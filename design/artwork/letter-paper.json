@@ -12,7 +12,7 @@
     "date": "2026-11-16",
     "tool": "ChatGPT hosted image-generation tool",
     "sourceSha256": "320460fa658b44ca15b3e66ef3c7b789edbf6109b1086f72128f718f5bc17683",
-    "generationRecord": "../../archive/design-history/2026-11-16-before-style-contract/design/artwork/letter-paper.json",
+    "generationRecord": "../../legacy/design-history/2026-11-16-before-style-contract/design/artwork/letter-paper.json",
     "styleContract": "../illustrations/style.json",
     "forwardPrompt": "prompts/letter-paper.txt",
     "note": "The archived record describes the existing asset. New generations use the current style contract and forward prompt."

@@ -154,7 +154,7 @@
       "sha256": "1999236e340fca2aa6cb22a2c48368d9a4b78882b5a5c92867d3df25c64385fb",
       "provenance": {
         "status": "historical-record",
-        "record": "archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
+        "record": "legacy/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
         "recordKind": "original-brief",
         "promptId": "alphabet",
         "styleContract": "design/illustrations/style.json",
@@ -173,7 +173,7 @@
       "sha256": "f12730079d950dd197225d118d04b049f531cf4d6eec76817f002c589b946a65",
       "provenance": {
         "status": "historical-record",
-        "record": "archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
+        "record": "legacy/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
         "recordKind": "original-brief",
         "promptId": "animals",
         "styleContract": "design/illustrations/style.json",
@@ -192,7 +192,7 @@
       "sha256": "30e05028bb56dedaf58dd88f0bd52803fee08177cd2c636870a417ef8f0aa0f2",
       "provenance": {
         "status": "historical-record",
-        "record": "archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
+        "record": "legacy/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
         "recordKind": "original-brief",
         "promptId": "creatures",
         "styleContract": "design/illustrations/style.json",
@@ -211,7 +211,7 @@
       "sha256": "ebe641587a934c61e80feeb5fd33afdf5a212f1856586634ec75aae7cc7928f9",
       "provenance": {
         "status": "historical-record",
-        "record": "archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
+        "record": "legacy/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
         "recordKind": "original-brief",
         "promptId": "discovery",
         "styleContract": "design/illustrations/style.json",
@@ -230,7 +230,7 @@
       "sha256": "d3a67b017d42bd3bea98d1034c0316d3ba11e7575e6bcadda7ae1e7962f74862",
       "provenance": {
         "status": "historical-record",
-        "record": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/forest-actions.json",
+        "record": "legacy/design-history/2026-11-16-before-style-contract/design/illustrations/forest-actions.json",
         "recordKind": "generation-record",
         "manifest": "design/illustrations/forest-actions.json",
         "styleContract": "design/illustrations/style.json",
@@ -249,7 +249,7 @@
       "sha256": "e5958deb7111a6e7896b02915950745fcd5b108666556091b0b2b9bae6b56451",
       "provenance": {
         "status": "historical-record",
-        "record": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/forest-fox.json",
+        "record": "legacy/design-history/2026-11-16-before-style-contract/design/illustrations/forest-fox.json",
         "recordKind": "generation-record",
         "manifest": "design/illustrations/forest-fox.json",
         "styleContract": "design/illustrations/style.json",
@@ -268,7 +268,7 @@
       "sha256": "aeb5cdd3aef93cc3f55e63f2323770b83b5eea90e190f0948d243828fc5aab83",
       "provenance": {
         "status": "historical-record",
-        "record": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/forest-objects.json",
+        "record": "legacy/design-history/2026-11-16-before-style-contract/design/illustrations/forest-objects.json",
         "recordKind": "generation-record",
         "manifest": "design/illustrations/forest-objects.json",
         "styleContract": "design/illustrations/style.json",
@@ -287,7 +287,7 @@
       "sha256": "f152dfbc074a80d29d6fc91a1d7cbef62a3bec70b253d94bbaae60f50a1de1e8",
       "provenance": {
         "status": "historical-record",
-        "record": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/forest-wildlife.json",
+        "record": "legacy/design-history/2026-11-16-before-style-contract/design/illustrations/forest-wildlife.json",
         "recordKind": "generation-record",
         "manifest": "design/illustrations/forest-wildlife.json",
         "styleContract": "design/illustrations/style.json",
@@ -306,7 +306,7 @@
       "sha256": "b2289b40f87df596cbd23fa87476408b34b656f4f447f41a1548637d41a411d6",
       "provenance": {
         "status": "historical-record",
-        "record": "archive/design-history/2026-11-16-before-style-contract/design/artwork/assets.json",
+        "record": "legacy/design-history/2026-11-16-before-style-contract/design/artwork/assets.json",
         "recordKind": "inventory-only",
         "styleContract": "design/illustrations/style.json",
         "requestId": "menu",
@@ -324,7 +324,7 @@
       "sha256": "023c726e535602c27b5d0669609350a234dac1f45a1927c4e196f66a7ccd263b",
       "provenance": {
         "status": "historical-record",
-        "record": "archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
+        "record": "legacy/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
         "recordKind": "original-brief",
         "promptId": "navigation",
         "styleContract": "design/illustrations/style.json",
@@ -343,7 +343,7 @@
       "sha256": "b059d4b45ec043f6056f657a07e03b1d6c32d22e4a6b6324c41047d96e4dfc54",
       "provenance": {
         "status": "historical-record",
-        "record": "archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
+        "record": "legacy/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
         "recordKind": "original-brief",
         "promptId": "people",
         "styleContract": "design/illustrations/style.json",
@@ -362,7 +362,7 @@
       "sha256": "78baf1dcf9409af99fc57ed3b4a1a52896fc199b53acb7cc7c090aeeecf71b64",
       "provenance": {
         "status": "historical-record",
-        "record": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/puzzle-flowers.json",
+        "record": "legacy/design-history/2026-11-16-before-style-contract/design/illustrations/puzzle-flowers.json",
         "recordKind": "generation-record",
         "manifest": "design/illustrations/puzzle-flowers.json",
         "styleContract": "design/illustrations/style.json",
@@ -381,7 +381,7 @@
       "sha256": "df1f2141b6ff98b83702887986c0d63add0f8edbbab81bc10c9805e000d3247a",
       "provenance": {
         "status": "historical-record",
-        "record": "archive/design-history/2026-11-16-before-style-contract/design/artwork/assets.json",
+        "record": "legacy/design-history/2026-11-16-before-style-contract/design/artwork/assets.json",
         "recordKind": "inventory-only",
         "styleContract": "design/illustrations/style.json",
         "requestId": "puzzle-vocabulary",
@@ -399,7 +399,7 @@
       "sha256": "7017fb46ace669eb61fe475135e09f2feb1d87932d4248c7933f48653af943b3",
       "provenance": {
         "status": "historical-record",
-        "record": "archive/design-history/2026-11-16-before-style-contract/design/illustrations/rhyme-vocabulary.json",
+        "record": "legacy/design-history/2026-11-16-before-style-contract/design/illustrations/rhyme-vocabulary.json",
         "recordKind": "generation-record",
         "manifest": "design/illustrations/rhyme-vocabulary.json",
         "styleContract": "design/illustrations/style.json",
@@ -418,7 +418,7 @@
       "sha256": "15ad880d4339f2d21981a3645603d15cf4abbc15441560599c2935154b8c57fa",
       "provenance": {
         "status": "historical-record",
-        "record": "archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
+        "record": "legacy/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
         "recordKind": "original-brief",
         "promptId": "words-one",
         "styleContract": "design/illustrations/style.json",
@@ -437,7 +437,7 @@
       "sha256": "e2c6a2c0d0fb7de51b550ff2fd398f74fe408071f719a03d4429f83cde2c5f71",
       "provenance": {
         "status": "historical-record",
-        "record": "archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
+        "record": "legacy/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
         "recordKind": "original-brief",
         "promptId": "words-three",
         "styleContract": "design/illustrations/style.json",
@@ -456,7 +456,7 @@
       "sha256": "2371914cdcdf4f3ab0584174729b2257f331a69088cf2df75832e13150df4c85",
       "provenance": {
         "status": "historical-record",
-        "record": "archive/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
+        "record": "legacy/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
         "recordKind": "original-brief",
         "promptId": "words-two",
         "styleContract": "design/illustrations/style.json",

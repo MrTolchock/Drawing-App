@@ -12,7 +12,7 @@
     "date": "2026-11-16",
     "tool": "ChatGPT hosted image-generation tool",
     "sourceSha256": "faf60a657616d1b3a802d59725926a05f20c4a51d79a23b0e43abd9e7f45007e",
-    "generationRecord": "../../archive/design-history/2026-11-16-before-style-contract/design/artwork/navigation-symbols.json",
+    "generationRecord": "../../legacy/design-history/2026-11-16-before-style-contract/design/artwork/navigation-symbols.json",
     "styleContract": "../illustrations/style.json",
     "forwardPrompt": "prompts/navigation-symbols.txt",
     "note": "The archived record describes the existing asset. New generations use the current style contract and forward prompt."

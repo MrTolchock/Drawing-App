@@ -38,4 +38,4 @@ node tools/puzzle-catalogue.cjs
 node tools/check-design.cjs
 ```
 
-Follow the relevant checks in [Development](../../docs/DEVELOPMENT.md). Current final sources and packing manifests are editable preparation inputs. Their archived `generationRecord` is provenance only; use `forwardPrompt` for new work. [Historical records](../../archive/design-history/2026-11-16-before-style-contract/README.md) retain all original prompts, old styles and drafts without presenting them as current instructions.
+Follow the relevant checks in [Development](../../docs/DEVELOPMENT.md). Current final sources and packing manifests are editable preparation inputs. Their archived `generationRecord` is provenance only; use `forwardPrompt` for new work. [Historical records](../../legacy/design-history/2026-11-16-before-style-contract/README.md) retain all original prompts, old styles and drafts without presenting them as current instructions.

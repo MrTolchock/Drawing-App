@@ -17,7 +17,6 @@ Start with [all image-generator inputs and prompts](GENERATOR-INPUTS.md). Its [p
 | Shared painted UI friends | `friend-portraits` | Four-by-four atlas with fourteen friends plus sleeping Fuchs; same cast on letters, puzzles, map pins and menus |
 | Sleeping Fuchs pose | `fox-sleep-portrait` | Matching scarf, markings and watercolour/pencil medium |
 | Adopted drawn map | `world-map` | Flat 2D, strict top-down view; preserve geography and [calibration](world-map-layout.json). Named pins and current-position marker remain real interactive layers |
-| New map proposal | `drawn-map-draft` | A separate future proposal, outside runtime until approved |
 | Den painting | `den` | [Camera/layout anchors](BACKGROUNDS.md) |
 | Shared puzzle/menu/settings woodland | `puzzle-clearing` | [Shared scene and quiet crop area](BACKGROUNDS.md) |
 | New companion scene | `background` | Same canonical medium; explicit framing and panel-safe space |
@@ -56,12 +55,12 @@ node tools/check-design.cjs
 
 Follow [Development](../../docs/DEVELOPMENT.md) for runtime version/cache, fingerprint and review checks. Documentation, archive and prompt maintenance alone do not change runtime art or grant puzzle approvals.
 
-See [painted letter friends](LETTER-FRIENDS.md) for the complete cast and packing order, and [current design drafts](drafts/README.md) for the unimplemented map proposal. Actual new requests live in `generation-records/`; these preserve the tool arguments and reference/source hashes separately from future prompt templates.
+See [painted letter friends](LETTER-FRIENDS.md) for the complete cast and packing order, and the [approved map source/export](world-map.json). Superseded map proposals and preparation attempts are in [legacy design records](../../legacy/README.md). Actual new requests live in `generation-records/`; these preserve the tool arguments and reference/source hashes separately from future prompt templates.
 
 ## Current pipelines and history
 
 [assets.json](assets.json) separates runtime art, current forward prompts, preparation inputs and historical provenance. The runtime map is the approved version 2 painting, prepared with `world-map.json`; `tools/map/` maintains geographic calibration and can produce geometry references for development. All UI identities use the shared painted atlas; `tools/portraits/` produces model references only. The live world, den fox, sky, water and textures retain their geometry/material pipelines.
 
-Old briefs, alternative directions, original requests, drafts, before images and dated evidence are in the [historical snapshot](../../archive/design-history/2026-11-16-before-style-contract/README.md). All original bytes are protected by the archive manifest. They are retained for explanation and exact provenance, not for copying into a new generator request.
+Old briefs, alternative directions, original requests, drafts, before images and dated evidence are in the [historical snapshot](../../legacy/design-history/2026-11-16-before-style-contract/README.md). All original bytes are protected by the archive manifest. They are retained for explanation and exact provenance, not for copying into a new generator request.
 
 The map dialog is a compact, header-free panel dismissed by outside taps or Escape. Keep the 64 px animal targets, real routing and pan gestures intact when changing its framing. See [map behaviour and calibration](../../tools/map/README.md).

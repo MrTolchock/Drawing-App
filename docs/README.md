@@ -14,4 +14,4 @@ Start with [current design](../design/README.md). The [visual style](../design/V
 - [Typography roles](TYPOGRAPHY.md)
 - [Development and deployment](DEVELOPMENT.md)
 
-[Historical documents and retired code](../archive/README.md) are preserved separately and do not define the current game.
+[Historical documents and retired code](../legacy/README.md) are preserved separately and do not define the current game.

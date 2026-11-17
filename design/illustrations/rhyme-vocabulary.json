@@ -12,7 +12,7 @@
     "date": "2026-11-14",
     "tool": "ChatGPT hosted image-generation tool",
     "sourceSha256": "66429d3dd450da10e647592e2c6ff9daaa2c2b7d8f25178ae00593404fda8ec9",
-    "generationRecord": "../../archive/design-history/2026-11-16-before-style-contract/design/illustrations/rhyme-vocabulary.json",
+    "generationRecord": "../../legacy/design-history/2026-11-16-before-style-contract/design/illustrations/rhyme-vocabulary.json",
     "styleContract": "style.json",
     "forwardPrompt": "prompts/rhyme-vocabulary.txt",
     "note": "The archived record describes the existing asset. New generations use the current style contract and forward prompt."

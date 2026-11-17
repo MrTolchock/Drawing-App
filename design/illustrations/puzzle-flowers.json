@@ -12,7 +12,7 @@
     "date": "2026-11-16",
     "tool": "ChatGPT hosted image-generation tool",
     "sourceSha256": "fd8a2a77565d3bc4345765733a063554f608448c462f42a7c4c39e96b9fecf68",
-    "generationRecord": "../../archive/design-history/2026-11-16-before-style-contract/design/illustrations/puzzle-flowers.json",
+    "generationRecord": "../../legacy/design-history/2026-11-16-before-style-contract/design/illustrations/puzzle-flowers.json",
     "styleContract": "style.json",
     "forwardPrompt": "prompts/puzzle-flowers.txt",
     "note": "The archived record describes the existing asset. New generations use the current style contract and forward prompt."

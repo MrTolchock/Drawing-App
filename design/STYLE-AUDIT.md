@@ -16,7 +16,7 @@ The remaining syllable prompt no longer asks for clapping. All hedgehog question
 
 Fresh browsers restore older GitHub notes into read-only history. Puzzle details expose their original dates, distinguish earlier versions and link to the current task. Notes cannot grant approval or become an upload through restoration; the remote review ledger is untouched. Only the two changed puzzle definitions require new review; unrelated puzzle presentation and sign-offs are retained.
 
-Validation: all 126 model tests pass. The feedback browser suite passes native mouse/touch gestures and keyboard alternatives at 390 px and 1080 px. The GitHub sync suite passes fresh-device historical notes, history-only refresh, filters and links to current tasks, alongside its existing save/conflict/offline checks. Design-system and historical-approval compatibility browser checks pass. Canonical style, image library/handoff, calibrated map, generated catalogue and offline/archive/link checks pass. Evidence is under `/tmp/waldpost-feedback-sync`, `/tmp/puzzle-feedback` and `/tmp/design-system`.
+Validation: all 126 model tests pass. The feedback browser suite passes native mouse/touch gestures and keyboard alternatives at 390 px and 1080 px. The GitHub sync suite passes fresh-device historical notes, history-only refresh, filters and links to current tasks, alongside its existing save/conflict/offline checks. Design-system and historical-approval compatibility browser checks pass. Canonical style, image library/handoff, calibrated map, generated catalogue and offline/legacy/link checks pass. Evidence is under `/tmp/waldpost-feedback-sync`, `/tmp/puzzle-feedback` and `/tmp/design-system`.
 
 ## Smooth stones and matching water — 9.3.85
 
@@ -61,3 +61,9 @@ The merge preserves the newer painted cast, compact calibrated map and Steinbock
 Merged-release validation: all **122** model tests passed. The navigation and GitHub sync browser suites passed against the combined 32-puzzle app; the visual suite checked every puzzle at phone/tablet sizes. Canonical style, design/offline inventory, generated puzzle catalogue, drawn-image library and calibrated map checks passed.
 
 The map browser suite passed all 13 picture-only destinations using real touch/keyboard routing at tablet, phone and landscape sizes, including compact layout, backdrop/Escape dismissal, focus restoration and safe panning.
+
+## Current-game repository cleanup — 17 November 2026
+
+The single `legacy/` root now contains the former archive, retired drawing engine/templates/palettes/stamps/word bank, obsolete colouring/landing/navigation assets, unused recipes and map/portrait preparation attempts. Exact original bytes and paths are recorded in `legacy/manifest.json`; the earlier 775-file protected manifest remains unchanged. Current scripts/styles are traced from `index.html`, and CI rejects unused live source files or legacy runtime/offline dependencies.
+
+Current artwork pixels, puzzle content, the map/Steg collision fixes, current authoring tools and the complete generator handoff remain available. The intermediate base-cast atlas moved from runtime assets to current design preparation inputs. Shared control/handwriting CSS remains; retired screen/paint rules were removed. Puzzle presentation fingerprints were regenerated because the old global paint stylesheet was removed; no editorial approvals are created. Historical feedback stays available across revisions, and local/IndexedDB save keys and stored drawings remain compatible.

@@ -16,7 +16,7 @@ Use the canonical watercolour-and-coloured-pencil medium for the shared game-cha
 ATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:
 1. design/illustrations/references/watercolour-pencil-v1/animals.png — canonical-style: canonical drawing technique for animals; fixed majority-style pixels
 2. design/illustrations/references/watercolour-pencil-v1/objects.png — canonical-style: canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels
-3. assets/interface/letter-friends.webp — composition-only: approved painted Fuchs identity and green scarf; retain this exact character in a sleeping pose
+3. design/artwork/prepared/letter-friends.webp — composition-only: approved painted Fuchs identity and green scarf; retain this exact character in a sleeping pose
 
 SUBJECT AND LAYOUT BRIEF:
 One complete, peaceful sleeping red fox, curled up in a natural cosy oval, with its fluffy white-tipped tail wrapped around its body, closed eyes, white muzzle/chest, dark paws and a small sage-green neckerchief. Match the recognizable Fuchs in the supplied painted friend atlas, especially its orange coat, cream markings and green scarf. Use the same warm watercolour and coloured-pencil drawing as the canonical references and the existing painted Fuchs. This is the sleeping pose for the shared UI cast, not a new fox identity.

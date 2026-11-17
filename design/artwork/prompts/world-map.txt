@@ -16,7 +16,7 @@ Apply the canonical watercolour/pencil medium as a simplified flat cartographic 
 ATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:
 1. design/illustrations/references/watercolour-pencil-v1/animals.png — canonical-style: canonical drawing technique for animals; fixed majority-style pixels
 2. design/illustrations/references/watercolour-pencil-v1/objects.png — canonical-style: canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels
-3. design/artwork/drafts/drawn-map-v2.png — composition-only: approved flat top-down map: preserve its geography, projection and sparse detail
+3. design/artwork/sources/world-map.png — composition-only: approved flat top-down map: preserve its geography, projection and sparse detail
 
 SUBJECT AND LAYOUT BRIEF:
 The adopted Waldpost map is a simple flat 2D top-down watercolour-and-pencil plan, 1536 by 1024, landscape 3:2. Preserve the supplied approved map's path topology, water boundaries, land-cover regions, calm palette and sparse overhead symbols. Preserve projection, extent and the landmark positions in the map calibration, design/artwork/world-map-layout.json: actual UI pins and the current-position marker use that calibration. Any intentional geographic shift requires updating and checking it before publication.
