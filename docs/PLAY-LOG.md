@@ -1,6 +1,6 @@
 # Local gameplay log for AI analysis
 
-Open **Einstellungen → Lokales Spielprotokoll → Protokoll für KI exportieren**. This downloads a JSON file for analysis in an AI tool of your choice. The game does not send gameplay records to GitHub or an AI service. The separate [editorial review ledger](REVIEW-STORAGE.md) still uses GitHub.
+Open **Einstellungen → Spielprotokoll und Entwicklermodus → Protokoll für KI exportieren**. This downloads a JSON file for analysis in an AI tool of your choice. The game does not send gameplay records to GitHub or an AI service. The separate [editorial review ledger](REVIEW-STORAGE.md) still uses GitHub.
 
 There is no manual **Spielstand sichern** control. The small automatic journey state retains the current letter, remaining parent allowance, shuffled order, unfinished questions and settings. It prevents a refresh from granting extra letters or discarding an interrupted task. Historical storage keys/data remain intact. This operational state is separate from the analysis log.
 
@@ -17,7 +17,7 @@ Owner review previews never produce child puzzle observations. Developer mode ad
 
 ## Developer mode
 
-Open the adult menu **Einstellungen → Zum Testen → Entwicklermodus**. On pauses every new usage observation, including startup, letters, movement, answers, timing and input events. Existing usage history is retained and remains exportable. The checkbox and a paused-log status show the selected mode; **ENTWICKLUNG** appears in forest navigation. The setting survives refresh in the same browser. Off resumes recording for subsequent play.
+Open the adult menu **Einstellungen → Spielprotokoll und Entwicklermodus → Entwicklermodus**. On pauses every new usage observation, including startup, letters, movement, answers, timing and input events. Existing usage history is retained and remains exportable. The checkbox and a paused-log status show the selected mode; **ENTWICKLUNG** appears in forest navigation. The setting survives refresh in the same browser. Off resumes recording for subsequent play.
 
 This menu toggle controls recording. Letter limits, unfinished gameplay and review requirements continue normally. A puzzle entered during testing is detached from its earlier usage run. If resumed after switching off, it gets a new run and its already-tested current iteration has no invented fresh first-try rate. Testing time and answers are never merged into the earlier child's visit.
 

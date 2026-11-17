@@ -1,6 +1,6 @@
 # Development and deployment
 
-Serve the repository root with `python3 -m http.server 8000 --bind 127.0.0.1`. There is no application build step. **Einstellungen → Zum Testen → Entwicklermodus** pauses usage logging until switched off, including after refresh. `?software=1` lowers rendering cost for automated checks; the older `?dev=1` route also suppresses logging and uses separate development saves/reviews. See [play-log modes](PLAY-LOG.md). Never clear real device storage for a demonstration.
+Serve the repository root with `python3 -m http.server 8000 --bind 127.0.0.1`. There is no application build step. **Einstellungen → Spielprotokoll und Entwicklermodus → Entwicklermodus** pauses usage logging until switched off, including after refresh. `?software=1` lowers rendering cost for automated checks; the older `?dev=1` route also suppresses logging and uses separate development saves/reviews. See [play-log modes](PLAY-LOG.md). Never clear real device storage for a demonstration.
 
 ## Required checks
 
