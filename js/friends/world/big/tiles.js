@@ -40,7 +40,7 @@ export function waterMaterial(look, fog) {
     transparent: true, depthWrite: false, side: THREE.DoubleSide,
     uniforms: {uTime: {value: 3.7}, uNoise: {value: look.T.noise}, uShallow: {value: C('#7fc3b0')}, uDeep: {value: C('#1d6476')}, uFoam: {value: C('#f6fbf2')}, uSky: {value: C('#e6f1df')}, uSun: {value: C('#fff1c8')}, uSunDir: {value: fog.sunDir}, fogColor: {value: fog.color}, fogNear: {value: fog.near}, fogFar: {value: fog.far}},
     vertexShader: 'attribute vec3 wa;varying vec2 vUv;varying vec3 vW,vA;varying float vFog;void main(){vUv=uv;vA=wa;vec4 w=modelMatrix*vec4(position,1.);vW=w.xyz;vec4 mv=viewMatrix*w;vFog=-mv.z;gl_Position=projectionMatrix*mv;}',
-    // wa = (1 for a stream / 0 for still water, depth 0…1 of still water, fade at a stream's ends)
+    // wa = (1 for a stream / 0 for still water, depth 0…1 of still water, fade: a stream's loose ends and where a pool gives way to its brook)
     // Still water wears the streams' look: ripples of about the same size and strength, and only a little sky, as the
     // camera sees open water from further back and at a flatter angle (with as much sky it washes out to a pale
     // turquoise beside the blue brook). Only the streams' flow, streaks and edge foam set them apart.
@@ -61,7 +61,7 @@ export function waterMaterial(look, fog) {
       float foam=smoothstep(.84,.99,across)*smoothstep(.45,.7,n1+.18*sin(along*2.6+uTime*1.7))*mix(.0,1.,flow);
       c=mix(c,uFoam,foam*.7);
       float alpha=mix(.86,.35,smoothstep(.45,1.,across));alpha=max(alpha,foam*.8);
-      alpha*=mix(smoothstep(.0,.16,vA.y),vA.z,flow);
+      alpha*=mix(smoothstep(.0,.16,vA.y),1.,flow)*vA.z;
       c=mix(c,fogColor,smoothstep(fogNear,fogFar,vFog));
       gl_FragColor=vec4(c,alpha);
       #include <tonemapping_fragment>
@@ -318,26 +318,26 @@ export function* buildBigTile(world, look, i, j, ring) {
   function waterGeometry() {
     const pos = [], uv = [], wa = [], idx = [];
     for (const s of T.streams) {
-      let prev = -2, base = 0; const toFalls = s.id === 'spring';
+      let prev = -2, base = 0;
       for (let k = 0; k < s.N; k++) {
         const p = s.samples[k]; if (!inTile(p.x, p.z)) continue;
-        if (prev !== k - 1) { base = pos.length / 3; section(s, k, toFalls); }
-        section(s, k + 1, toFalls); const a = base; idx.push(a, a + 2, a + 1, a + 1, a + 2, a + 3); base += 2; prev = k;
+        if (prev !== k - 1) { base = pos.length / 3; section(s, k); }
+        section(s, k + 1); const a = base; idx.push(a, a + 2, a + 1, a + 1, a + 2, a + 3); base += 2; prev = k;
       }
     }
-    function section(s, k, toFalls) {
+    function section(s, k) {
       const p = s.samples[k], q = s.samples[Math.min(s.N, k + 1)], o = s.samples[Math.max(0, k - 1)], dx = q.x - o.x, dz = q.z - o.z, l = Math.hypot(dx, dz) || 1, hw = s.width(k) / 2 + .16, y = s.level[k];
-      const fade = Math.min(1, k / 9, toFalls ? 1 : (s.N - k) / 14);
-      for (const side of [-1, 1]) { pos.push(p.x - dz / l * hw * side, y, p.z + dx / l * hw * side); uv.push(side < 0 ? 0 : 1, k * .2); wa.push(1, 0, fade); }
+      for (const side of [-1, 1]) { pos.push(p.x - dz / l * hw * side, y, p.z + dx / l * hw * side); uv.push(side < 0 ? 0 : 1, k * .2); wa.push(1, 0, s.fade[k]); }
     }
-    // still water: 1 m cells wherever the ground lies below a pool's level
-    const n = TILE * 2, depth = new Float32Array((n + 1) * (n + 1)), level = new Float32Array((n + 1) * (n + 1)); let any = false;
+    // still water: half-metre cells wherever the ground lies below a pool's level (a corner without still water also
+    // has no fade: depth and fade are each interpolated, and their product must not light up between such corners)
+    const n = TILE * 2, depth = new Float32Array((n + 1) * (n + 1)), level = new Float32Array((n + 1) * (n + 1)), fade = new Float32Array((n + 1) * (n + 1)); let any = false;
     if (mix.swamp || T.pools.some(p => Math.abs(p.x - x0 - 8) < p.rx + 12 && Math.abs(p.z - z0 - 8) < p.rx + 12)) {
-      for (let r = 0; r <= n; r++) for (let k = 0; k <= n; k++) { const s0 = T.site(x0 + k * .5, z0 + r * .5), v = r * (n + 1) + k; level[v] = s0.still; depth[v] = s0.still === s0.still ? s0.still - s0.h : -9; if (depth[v] > -.03) any = true; }
+      for (let r = 0; r <= n; r++) for (let k = 0; k <= n; k++) { const s0 = T.site(x0 + k * .5, z0 + r * .5), v = r * (n + 1) + k; level[v] = s0.still; fade[v] = s0.still === s0.still ? s0.fade : 0; depth[v] = s0.still === s0.still ? s0.still - s0.h : -9; if (depth[v] > -.03) any = true; }
       if (any) for (let r = 0; r < n; r++) for (let k = 0; k < n; k++) {
         const a = r * (n + 1) + k, c4 = [a, a + 1, a + n + 1, a + n + 2]; if (Math.max(depth[c4[0]], depth[c4[1]], depth[c4[2]], depth[c4[3]]) < -.03) continue;
         let lv = NaN; for (const v of c4) if (level[v] === level[v]) lv = level[v]; const b = pos.length / 3;
-        for (let q = 0; q < 4; q++) { const v = c4[q]; pos.push(x0 + (k + (q & 1)) * .5, lv, z0 + (r + (q >> 1)) * .5); uv.push(0, 0); wa.push(0, clamp(depth[v] < -8 ? -.1 : depth[v] / .8, -.1, 1), 1); }
+        for (let q = 0; q < 4; q++) { const v = c4[q]; pos.push(x0 + (k + (q & 1)) * .5, lv, z0 + (r + (q >> 1)) * .5); uv.push(0, 0); wa.push(0, clamp(depth[v] < -8 ? -.1 : depth[v] / .8, -.1, 1), fade[v]); }
         idx.push(b, b + 2, b + 1, b + 1, b + 2, b + 3);
       }
     }
