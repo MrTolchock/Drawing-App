@@ -9730,6 +9730,15 @@
       "at": "2026-11-17T20:16:23.714Z",
       "seen": true,
       "operation": "dbf5dc80-e660-4c2c-85b3-f2503a165006"
+    },
+    "friends-badger/riddle-23@829918df28ad6587": {
+      "key": "friends-badger/riddle-23",
+      "revision": "829918df28ad6587",
+      "status": "improve",
+      "note": "Frage ersetzen",
+      "at": "2026-11-17T20:16:36.603Z",
+      "seen": true,
+      "operation": "7968958e-b186-4f2d-bcc7-f2c3df470732"
     }
   },
   "history": [
