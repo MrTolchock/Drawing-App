@@ -13119,6 +13119,11 @@
       "key": "rocket/5-3",
       "note": "Hier sollen 5 leuchten und diese laterne braucht es im rätsel nicht",
       "at": "2026-11-18T08:07:43.343Z"
+    },
+    {
+      "key": "syllable/word-6",
+      "note": "Das klopfen braucht es nicht, einfach nur silben zählen",
+      "at": "2026-11-18T08:10:07.679Z"
     }
   ]
 }
