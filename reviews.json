@@ -15348,6 +15348,24 @@
       "at": "2026-11-18T20:16:08.177Z",
       "seen": true,
       "operation": "dc200d0a-04ca-42ea-bc1e-e4bd68f83b9a"
+    },
+    "sequence/story-4@11f183ab58dcbdd3": {
+      "key": "sequence/story-4",
+      "revision": "11f183ab58dcbdd3",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T20:16:14.658Z",
+      "seen": true,
+      "operation": "28414991-9974-4167-829b-939a0d2f8f14"
+    },
+    "sequence/story-5@ba7f6c8a62c9c5f8": {
+      "key": "sequence/story-5",
+      "revision": "ba7f6c8a62c9c5f8",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T20:16:20.427Z",
+      "seen": true,
+      "operation": "4a1c3b6b-a8ac-4dd0-87b8-075c434069c5"
     }
   },
   "history": [
