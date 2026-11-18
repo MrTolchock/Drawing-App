@@ -14646,6 +14646,24 @@
       "at": "2026-11-18T20:05:13.753Z",
       "seen": true,
       "operation": "1d254575-f6de-4e0f-aca5-7f20f0ce5c80"
+    },
+    "nature/clue-24@1e5925b406f3429a": {
+      "key": "nature/clue-24",
+      "revision": "1e5925b406f3429a",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T20:05:16.398Z",
+      "seen": true,
+      "operation": "1b3d339e-9896-4384-a1c0-a632049e87e2"
+    },
+    "puzzle:nature@79d907262447a13c": {
+      "key": "puzzle:nature",
+      "revision": "79d907262447a13c",
+      "status": "approved",
+      "note": "Nehme nur einen satz pro rätsel, nicht zwei.",
+      "at": "2026-11-18T20:05:19.543Z",
+      "seen": true,
+      "operation": "70f14486-b5af-481a-9be1-e36a8e560983"
     }
   },
   "history": [
