@@ -15804,6 +15804,11 @@
       "at": "2026-11-18T20:13:22.221Z"
     },
     {
+      "key": "puzzle:treasure",
+      "note": "Button für nochmals anzeigen ist in anderem format als button für habe es mir gemerkt, anpassen. Besser auch wenn bilder unten nicht bilder sind die oben schon drin sind, dann ist klar das immer das fehlt, was oben nicht sichtbar ist. Zb nuss oben drin, dann ist es unten nicht die nuss option. Besser neue bilder nehmen unten die in oberer zeile nicht drin sind",
+      "at": "2026-11-18T20:17:52.396Z"
+    },
+    {
       "key": "robot/0-3",
       "note": "Revert pfeil braucht es nicht. Pfeile sehen nicht identisch aus auf tasten, einige sind dünner. Tasten etwas grösser machen",
       "at": "2026-11-18T08:12:39.481Z"
