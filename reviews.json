@@ -13764,6 +13764,42 @@
       "at": "2026-11-18T19:54:11.586Z",
       "seen": true,
       "operation": "907ebc20-f256-440f-94bf-4a8ae8e460b1"
+    },
+    "friends-mouse/word-0@365707ce9d556a9a": {
+      "key": "friends-mouse/word-0",
+      "revision": "365707ce9d556a9a",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T19:57:38.373Z",
+      "seen": true,
+      "operation": "380bc21f-4127-435d-a856-e944997a10a7"
+    },
+    "friends-mouse/word-3@04b41b604f52855c": {
+      "key": "friends-mouse/word-3",
+      "revision": "04b41b604f52855c",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T19:57:40.901Z",
+      "seen": true,
+      "operation": "d70a4486-f393-4e99-a438-8f80ff136530"
+    },
+    "friends-mouse/word-21@6f684ec426ddeb7e": {
+      "key": "friends-mouse/word-21",
+      "revision": "6f684ec426ddeb7e",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T19:57:51.329Z",
+      "seen": true,
+      "operation": "664b70fc-7ac6-4fdc-bab6-0d87b715dcc5"
+    },
+    "puzzle:friends-mouse@2625145ef7664756": {
+      "key": "puzzle:friends-mouse",
+      "revision": "2625145ef7664756",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T19:57:54.480Z",
+      "seen": true,
+      "operation": "ff07bfc8-99ce-413a-82f2-c9784a22a465"
     }
   },
   "history": [
