@@ -13359,6 +13359,15 @@
       "at": "2026-11-18T08:17:39.054Z",
       "seen": true,
       "operation": "88d425a3-37cc-412b-a3d4-ff9031b846b8"
+    },
+    "treasure/3-3@22988cb3aff3e3cf": {
+      "key": "treasure/3-3",
+      "revision": "22988cb3aff3e3cf",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T08:17:41.126Z",
+      "seen": true,
+      "operation": "5c9f3cb4-62b8-4005-840f-7f37ecc4b1cc"
     }
   },
   "history": [
