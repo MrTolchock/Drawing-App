@@ -13467,6 +13467,15 @@
       "at": "2026-11-18T08:20:47.360Z",
       "seen": true,
       "operation": "c201c313-1ae8-413d-bad7-85a80c1ac957"
+    },
+    "puzzle:neighbours@2d1019b05384eda6": {
+      "key": "puzzle:neighbours",
+      "revision": "2d1019b05384eda6",
+      "status": "pending",
+      "note": "Grafik mit grünem haken für erfolg sieht komisch aus, verbessern",
+      "at": "2026-11-18T08:21:17.046Z",
+      "seen": true,
+      "operation": "f062dfc8-61c1-427b-ac3a-fb49d9c84219"
     }
   },
   "history": [
