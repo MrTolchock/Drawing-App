@@ -12448,6 +12448,33 @@
       "at": "2026-11-18T07:52:26.075Z",
       "seen": true,
       "operation": "79f5adbf-c0a3-47c8-8600-48854cb2a28a"
+    },
+    "friends-frog/animal-0@e146a44cc3b4fad6": {
+      "key": "friends-frog/animal-0",
+      "revision": "e146a44cc3b4fad6",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:53:57.952Z",
+      "seen": true,
+      "operation": "d54835ac-1864-4a77-a89d-13856dc09197"
+    },
+    "friends-frog/animal-1@302a0543cfedf529": {
+      "key": "friends-frog/animal-1",
+      "revision": "302a0543cfedf529",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:54:01.002Z",
+      "seen": true,
+      "operation": "8e5e117c-6d3c-4b53-a65b-6f6c9bab4989"
+    },
+    "friends-frog/animal-4@3da84c084318e3c8": {
+      "key": "friends-frog/animal-4",
+      "revision": "3da84c084318e3c8",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:54:03.252Z",
+      "seen": true,
+      "operation": "c2eff0cc-71e4-457b-838c-c3adaed7ad77"
     }
   },
   "history": [
@@ -12591,6 +12618,11 @@
       "key": "friends-deer/riddle-22",
       "note": "Zeige teich anstatt wassertropfen",
       "at": "2026-11-18T07:51:52.817Z"
+    },
+    {
+      "key": "friends-frog/animal-3",
+      "note": "Ei im nest ist kein tier",
+      "at": "2026-11-18T07:53:53.286Z"
     },
     {
       "key": "friends-frog/animal-7",
