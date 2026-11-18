@@ -13073,6 +13073,11 @@
       "key": "puzzle:friends-squirrel",
       "note": "Nüsse rückgängig machen, die waren besser vorher. Leerer korb bei der zahl 0 war das problem, dieser passt nicht",
       "at": "2026-11-18T07:43:37.226Z"
+    },
+    {
+      "key": "rocket/5-3",
+      "note": "Hier sollen 5 leuchten und diese laterne braucht es im rätsel nicht",
+      "at": "2026-11-18T08:07:43.343Z"
     }
   ]
 }
