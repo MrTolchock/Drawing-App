@@ -3,7 +3,10 @@ const {build,currentReader}=require('../tools/puzzle-review-build.cjs');
 const base=build(),reader=currentReader();
 const changed=(file,transform)=>{const source=reader.read(file).toString(),next=transform(source);assert.notEqual(next,source,'fixture must change '+file);return build({...reader,read:name=>name===file?Buffer.from(next):reader.read(name)});};
 const same=(a,b,id)=>assert.equal(a.puzzles[id].presentation,b.puzzles[id].presentation,id+' keeps its presentation');
-const different=(a,b,id)=>assert.notEqual(a.puzzles[id].presentation,b.puzzles[id].presentation,id+' changes its presentation');
+const different=(a,b,id)=>{
+ assert.notEqual(a.puzzles[id].presentation,b.puzzles[id].presentation,id+' changes its presentation');
+ assert.notEqual(a.puzzles[id].reviewPresentation,b.puzzles[id].reviewPresentation,id+' requires review');
+};
 test('unrelated content and renderer changes keep counting approvals valid',()=>{
  const content=changed('js/friends/puzzle-catalogue.js',s=>s.replace('Welches Wort reimt sich?','Welches Wort klingt gleich?'));
  same(base,content,'friends-squirrel');assert.notEqual(base.puzzles['friends-bird'].definition,content.puzzles['friends-bird'].definition);
@@ -18,6 +21,30 @@ test('zero-basket rendering only reopens puzzles that can display an empty baske
 test('puzzle-specific CSS stays scoped; shared progress CSS invalidates affected puzzles',()=>{
  const matrix=changed('css/puzzle-rounds.css',s=>s+'\n.puzzle-matrix{row-gap:27px}\n');same(base,matrix,'friends-squirrel');different(base,matrix,'friends-beaver');
  const common=changed('css/puzzle-rounds.css',s=>s+'\n.puzzle-progress{gap:27px}\n');different(base,common,'friends-squirrel');different(base,common,'friends-bird');different(base,common,'trace');
+});
+test('typography corrections retain review compatibility while exact rendered revisions still change',()=>{
+ const typography=changed('css/puzzle-rounds.css',s=>s+'\n.puzzle-read-text{font-size:32px;font-weight:700;line-height:1.4;letter-spacing:0;overflow-wrap:anywhere}\n');
+ for(const id of ['friends-owl','friends-mouse','friends-hedgehog','friends-deer','friends-frog']){
+  assert.notEqual(base.puzzles[id].presentation,typography.puzzles[id].presentation,id+' retains its exact display revision');
+  assert.equal(base.puzzles[id].reviewPresentation,typography.puzzles[id].reviewPresentation,id+' keeps its content approval');
+  assert.equal(base.puzzles[id].definition,typography.puzzles[id].definition);
+ }
+ const hidden=changed('css/puzzle-rounds.css',s=>s+'\n.puzzle-read-text{display:none}\n');
+ different(base,hidden,'friends-owl');
+});
+test('the previous release stays review-compatible only for typography corrections and the same answer pictures',()=>{
+ const {snapshotReader}=require('../tools/puzzle-review-build.cjs');
+ const previous=build(snapshotReader('94948722951a6196b39524b3ffe804cbb724e637'));
+ for(const id of ['friends-owl','friends-deer','friends-frog','add','read-leaves','read-colours']){
+  assert.equal(previous.puzzles[id].definition,base.puzzles[id].definition,id);
+  assert.equal(previous.puzzles[id].reviewPresentation,base.puzzles[id].reviewPresentation,id);
+ }
+ for(const key of ['friends-hedgehog/riddle-16','friends-hedgehog/riddle-18','friends-badger/riddle-14','friends-badger/riddle-22']){
+  assert.notEqual(previous.iterations[key].definition,base.iterations[key].definition,key+' has changed content');
+ }
+ for(const id of ['friends-bird','friends-mouse']){
+  assert.notEqual(previous.puzzles[id].reviewPresentation,base.puzzles[id].reviewPresentation,id+' contains the new rose');
+ }
 });
 test('only actual image cells affect a puzzle, including shared-atlas changes',async()=>{
  const sharp=require('../tools/node_modules/sharp'),file='assets/waldatelier/forest-objects.webp';

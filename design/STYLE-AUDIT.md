@@ -1,6 +1,6 @@
 # Current visual consistency audit
 
-Current game art is **Waldpost 9.3.97**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal and object reference pixels and **37** complete forward image-generation prompts.
+Current game art is **Waldpost 9.3.98**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal and object reference pixels and **37** complete forward image-generation prompts.
 
 ## Stay on the Steg in Frosch's swamp — 9.3.87
 
@@ -131,3 +131,9 @@ The 16 current feedback notes are accounted for in the [review follow-up](../doc
 The phone and tablet design check passed for all 31 puzzles. Gallery checks verified 131 transparent PNG exports, including eight browser downloads. The read-only GitHub snapshot test restored the three eligible puzzles on fresh devices, including Waldmuster. It also confirmed later restrictions and comment deletions.
 
 Version 9.3.97 installs the reviewed puzzle update and the woodland audio update together in a fresh offline cache. Both updates were merged with the same initial version number.
+
+## Preserve approvals after typography corrections — 18 November 2026, 9.3.98
+
+The 9.3.96 comparison treated the requested text-size corrections as fresh review requirements. Of the 727 revised iterations, 350 have matching tasks, interaction and pictures once typography is excluded. The compatibility comparison now excludes font declarations, line height, letter and word spacing, and text wrapping. Exact display revisions still include them. Questions, answers, difficulty, rules, interaction, picture pixels and the remaining layout properties continue to control review compatibility.
+
+Against the GitHub snapshot at data commit `dc9d88d6dcf203ca4f44a95ae061922b3da874dc`, the corrected comparison restores 199 recorded approvals. Seven puzzles are eligible, including Lies und zeig, Wer wohnt wo?, Tierwörter lesen and Äpfel rechnen. The review source contains 1,498 entries, 16 history records and 40 deletion markers. Recovery keeps the original dates, notes and later restrictions, with zero uploads. All 962 exact current iteration revisions are preserved.

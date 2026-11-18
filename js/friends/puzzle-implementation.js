@@ -1001,15 +1001,22 @@ window.FK.puzzleReviewCompatibility = {
   "puzzles": {
     "friends-squirrel": {
       "current": "505c8b1135858be9",
-      "former": []
+      "former": [
+        "505c8b1135858be9"
+      ]
     },
     "friends-bird": {
       "current": "76803de275a4f354",
-      "former": []
+      "former": [
+        "76803de275a4f354"
+      ]
     },
     "friends-owl": {
       "current": "8462da4d2a40cc81",
-      "former": []
+      "former": [
+        "e749f62902d2d191",
+        "8462da4d2a40cc81"
+      ]
     },
     "friends-beaver": {
       "current": "fb6c6c9fc5dc67a9",
@@ -1021,27 +1028,41 @@ window.FK.puzzleReviewCompatibility = {
     },
     "friends-mouse": {
       "current": "2625145ef7664756",
-      "former": []
+      "former": [
+        "2625145ef7664756"
+      ]
     },
     "friends-hedgehog": {
       "current": "f1ce43cf06aa29eb",
-      "former": []
+      "former": [
+        "f1ce43cf06aa29eb"
+      ]
     },
     "friends-deer": {
       "current": "3a589c003530280c",
-      "former": []
+      "former": [
+        "11cf75540d9dbe22",
+        "3a589c003530280c"
+      ]
     },
     "friends-kingfisher": {
       "current": "b4925a1cc20b89b8",
-      "former": []
+      "former": [
+        "b4925a1cc20b89b8"
+      ]
     },
     "friends-frog": {
       "current": "fcf4d6ca183c7aa2",
-      "former": []
+      "former": [
+        "b87abe2b2a3ecbdf",
+        "fcf4d6ca183c7aa2"
+      ]
     },
     "friends-badger": {
       "current": "072fe31a8648b048",
-      "former": []
+      "former": [
+        "072fe31a8648b048"
+      ]
     },
     "friends-ibex": {
       "current": "d20fd5b0163f388a",
@@ -1054,11 +1075,18 @@ window.FK.puzzleReviewCompatibility = {
     },
     "count": {
       "current": "38adf157885ddf19",
-      "former": []
+      "former": [
+        "38adf157885ddf19"
+      ]
     },
     "add": {
       "current": "1f0a412a47d95a90",
-      "former": []
+      "former": [
+        "9791c8e0b199dd24",
+        "3fea2e39e38e54e7",
+        "717e65e9c51773c5",
+        "1f0a412a47d95a90"
+      ]
     },
     "pattern": {
       "current": "09b7d16f27da749d",
@@ -1071,35 +1099,51 @@ window.FK.puzzleReviewCompatibility = {
     },
     "nature": {
       "current": "79d907262447a13c",
-      "former": []
+      "former": [
+        "79d907262447a13c"
+      ]
     },
     "rocket": {
       "current": "604d487a335c77b4",
-      "former": []
+      "former": [
+        "604d487a335c77b4"
+      ]
     },
     "picnic": {
       "current": "c7d492adf0c97485",
-      "former": []
+      "former": [
+        "c7d492adf0c97485"
+      ]
     },
     "syllable": {
       "current": "82764fb66d9cb7a8",
-      "former": []
+      "former": [
+        "82764fb66d9cb7a8"
+      ]
     },
     "robot": {
       "current": "e1c7c181d53d6187",
-      "former": []
+      "former": [
+        "e1c7c181d53d6187"
+      ]
     },
     "sequence": {
       "current": "9794d4b525da761d",
-      "former": []
+      "former": [
+        "9794d4b525da761d"
+      ]
     },
     "treasure": {
       "current": "ae676afdbecf0839",
-      "former": []
+      "former": [
+        "ae676afdbecf0839"
+      ]
     },
     "neighbours": {
       "current": "f41cacdd10dc021f",
-      "former": []
+      "former": [
+        "f41cacdd10dc021f"
+      ]
     },
     "compare": {
       "current": "245d7180798d4c3a",
@@ -1119,23 +1163,40 @@ window.FK.puzzleReviewCompatibility = {
     },
     "vowels": {
       "current": "3701f8b954e9ecad",
-      "former": []
+      "former": [
+        "3701f8b954e9ecad"
+      ]
     },
     "read-puzzle": {
       "current": "695149d9c2e77cf5",
-      "former": []
+      "former": [
+        "695149d9c2e77cf5"
+      ]
     },
     "read-word": {
       "current": "704d7d27ee87670f",
-      "former": []
+      "former": [
+        "704d7d27ee87670f"
+      ]
     },
     "read-leaves": {
       "current": "a252dc10551f323c",
-      "former": []
+      "former": [
+        "513b8650ceabf362",
+        "98e6eaedc5295c07",
+        "3063144f7dc1de07",
+        "a252dc10551f323c"
+      ]
     },
     "read-colours": {
       "current": "fa549131ea6e7c21",
-      "former": []
+      "former": [
+        "0efb3e9d9246580b",
+        "3e5f4d2cf4808b10",
+        "efa56defb9754e37",
+        "3e57f72f8f5deb0d",
+        "fa549131ea6e7c21"
+      ]
     },
     "trace": {
       "current": "897420ed86828ad3",
@@ -1155,303 +1216,538 @@ window.FK.puzzleReviewCompatibility = {
   "iterations": {
     "friends-squirrel/count-0": {
       "current": "9b4de120ad2198de",
-      "former": []
+      "former": [
+        "9b4de120ad2198de"
+      ]
     },
     "friends-squirrel/count-1": {
       "current": "e88ba91bf5f9935b",
-      "former": []
+      "former": [
+        "e88ba91bf5f9935b"
+      ]
     },
     "friends-squirrel/count-2": {
       "current": "135477193c390b7b",
-      "former": []
+      "former": [
+        "135477193c390b7b"
+      ]
     },
     "friends-squirrel/count-3": {
       "current": "195fe5c766a3339f",
-      "former": []
+      "former": [
+        "195fe5c766a3339f"
+      ]
     },
     "friends-squirrel/count-4": {
       "current": "2fbec0094f0f99bf",
-      "former": []
+      "former": [
+        "2fbec0094f0f99bf"
+      ]
     },
     "friends-squirrel/count-5": {
       "current": "eb1d74abebad51db",
-      "former": []
+      "former": [
+        "eb1d74abebad51db"
+      ]
     },
     "friends-squirrel/count-6": {
       "current": "f4e29d49508347fb",
-      "former": []
+      "former": [
+        "f4e29d49508347fb"
+      ]
     },
     "friends-squirrel/count-7": {
       "current": "321e0e7fc6ed4017",
-      "former": []
+      "former": [
+        "321e0e7fc6ed4017"
+      ]
     },
     "friends-squirrel/count-8": {
       "current": "f9e153b913f03037",
-      "former": []
+      "former": [
+        "f9e153b913f03037"
+      ]
     },
     "friends-squirrel/count-9": {
       "current": "7ffe6782f6a00820",
-      "former": []
+      "former": [
+        "7ffe6782f6a00820"
+      ]
     },
     "friends-squirrel/count-10": {
       "current": "5195b29c20b5b340",
-      "former": []
+      "former": [
+        "5195b29c20b5b340"
+      ]
     },
     "friends-squirrel/count-11": {
       "current": "8fbcbd55a2c11dfb",
-      "former": []
+      "former": [
+        "8fbcbd55a2c11dfb"
+      ]
     },
     "friends-squirrel/count-12": {
       "current": "4b63fe0df72b7d7b",
-      "former": []
+      "former": [
+        "4b63fe0df72b7d7b"
+      ]
     },
     "friends-squirrel/count-13": {
       "current": "11b72bf541cc707f",
-      "former": []
+      "former": [
+        "11b72bf541cc707f"
+      ]
     },
     "friends-squirrel/count-14": {
       "current": "6534b4ad5662a47f",
-      "former": []
+      "former": [
+        "6534b4ad5662a47f"
+      ]
     },
     "friends-squirrel/count-15": {
       "current": "5450884d22a179fb",
-      "former": []
+      "former": [
+        "5450884d22a179fb"
+      ]
     },
     "friends-squirrel/count-16": {
       "current": "f7cd29bd770bd97b",
-      "former": []
+      "former": [
+        "f7cd29bd770bd97b"
+      ]
     },
     "friends-squirrel/count-17": {
       "current": "0d1255ad723e5a77",
-      "former": []
+      "former": [
+        "0d1255ad723e5a77"
+      ]
     },
     "friends-squirrel/count-18": {
       "current": "71bc627dc333df77",
-      "former": []
+      "former": [
+        "71bc627dc333df77"
+      ]
     },
     "friends-squirrel/count-19": {
       "current": "9276a8e06ed86a92",
-      "former": []
+      "former": [
+        "9276a8e06ed86a92"
+      ]
     },
     "friends-squirrel/count-20": {
       "current": "4840f716637a8018",
-      "former": []
+      "former": [
+        "4840f716637a8018"
+      ]
     },
     "friends-squirrel/four-4": {
       "current": "878d72af94aafef3",
-      "former": []
+      "former": [
+        "878d72af94aafef3"
+      ]
     },
     "friends-squirrel/four-8": {
       "current": "d01882375888267b",
-      "former": []
+      "former": [
+        "d01882375888267b"
+      ]
     },
     "friends-squirrel/four-12": {
       "current": "22031db5c6a74957",
-      "former": []
+      "former": [
+        "22031db5c6a74957"
+      ]
     },
     "friends-squirrel/four-16": {
       "current": "7fefbb1d46c6ed57",
-      "former": []
+      "former": [
+        "7fefbb1d46c6ed57"
+      ]
     },
     "friends-bird/rhyme-0": {
       "current": "69acfe89cf9fd7db",
-      "former": []
+      "former": [
+        "8517b6041d4adf76",
+        "69acfe89cf9fd7db"
+      ]
     },
     "friends-bird/rhyme-1": {
       "current": "08468929dac847f1",
-      "former": []
+      "former": [
+        "0018f72740ab85d9",
+        "08468929dac847f1"
+      ]
     },
     "friends-bird/rhyme-2": {
       "current": "93d4b96c5b83261e",
-      "former": []
+      "former": [
+        "5b654531de2598b7",
+        "93d4b96c5b83261e"
+      ]
     },
     "friends-bird/rhyme-3": {
       "current": "b783d2950dbdba2b",
-      "former": []
+      "former": [
+        "5dd322e593030d95",
+        "b783d2950dbdba2b"
+      ]
     },
     "friends-bird/rhyme-4": {
       "current": "3bd1d3fd2b360f17",
-      "former": []
+      "former": [
+        "3bd1d3fd2b360f17"
+      ]
     },
     "friends-bird/rhyme-5": {
       "current": "0476d34bf9b00029",
-      "former": []
+      "former": [
+        "65d656508fc0047c",
+        "0476d34bf9b00029"
+      ]
     },
     "friends-bird/rhyme-6": {
       "current": "e57721fd451f9f6d",
-      "former": []
+      "former": [
+        "e57721fd451f9f6d"
+      ]
     },
     "friends-bird/rhyme-7": {
       "current": "45d923d5bdf000b1",
-      "former": []
+      "former": [
+        "4c4c305970692d6d",
+        "45d923d5bdf000b1"
+      ]
     },
     "friends-bird/rhyme-8": {
       "current": "b7d0c02c92645cba",
-      "former": []
+      "former": [
+        "c1f47b5f95762acd",
+        "b7d0c02c92645cba"
+      ]
     },
     "friends-bird/rhyme-9": {
       "current": "3f6926763cac44b8",
-      "former": []
+      "former": [
+        "d4363b81872e2aa9",
+        "3f6926763cac44b8"
+      ]
     },
     "friends-bird/rhyme-10": {
       "current": "637038aeb9c3eb26",
-      "former": []
+      "former": [
+        "21bb8e932514aded",
+        "637038aeb9c3eb26"
+      ]
     },
     "friends-bird/rhyme-11": {
       "current": "66d501bacca58cf8",
-      "former": []
+      "former": [
+        "66d501bacca58cf8"
+      ]
     },
     "friends-bird/rhyme-12": {
       "current": "1c676df38b226465",
-      "former": []
+      "former": [
+        "246b9954d099981a",
+        "1c676df38b226465"
+      ]
     },
     "friends-bird/rhyme-13": {
       "current": "af10b6cf8f5e7ab3",
-      "former": []
+      "former": [
+        "dfc0be3b9e02e7cd",
+        "af10b6cf8f5e7ab3"
+      ]
     },
     "friends-bird/rhyme-14": {
       "current": "7f1d31d709949019",
-      "former": []
+      "former": [
+        "4cb7f1771295ee99",
+        "7f1d31d709949019"
+      ]
     },
     "friends-bird/rhyme-15": {
       "current": "99acc27f9f29ddaf",
-      "former": []
+      "former": [
+        "0a8e097aaed04d78",
+        "99acc27f9f29ddaf"
+      ]
     },
     "friends-bird/rhyme-16": {
       "current": "1f6c791f58f1fc8b",
-      "former": []
+      "former": [
+        "e86f3b5ef182344c",
+        "1f6c791f58f1fc8b"
+      ]
     },
     "friends-bird/rhyme-17": {
       "current": "3dafc597a35a42f3",
-      "former": []
+      "former": [
+        "50eccd83745448d9",
+        "3dafc597a35a42f3"
+      ]
     },
     "friends-bird/rhyme-18": {
       "current": "f45158a50edd551b",
-      "former": []
+      "former": [
+        "f45158a50edd551b"
+      ]
     },
     "friends-bird/rhyme-19": {
       "current": "d05c4515e100cebb",
-      "former": []
+      "former": [
+        "4bc75c28321a04b0",
+        "d05c4515e100cebb"
+      ]
     },
     "friends-bird/rhyme-20": {
       "current": "bea0b5d3bad8f0c3",
-      "former": []
+      "former": [
+        "3800f239559f20ab",
+        "bea0b5d3bad8f0c3"
+      ]
     },
     "friends-bird/rhyme-21": {
       "current": "89e398bd7e815ebb",
-      "former": []
+      "former": [
+        "11a68c060e2cb100",
+        "89e398bd7e815ebb"
+      ]
     },
     "friends-bird/rhyme-22": {
       "current": "037a6b1e883d1434",
-      "former": []
+      "former": [
+        "e65944a25aaed3a8",
+        "037a6b1e883d1434"
+      ]
     },
     "friends-bird/rhyme-23": {
       "current": "cb94288ff88eb861",
-      "former": []
+      "former": [
+        "3aeaa6221b1b3d58",
+        "cb94288ff88eb861"
+      ]
     },
     "friends-bird/rhyme-24": {
       "current": "5909d790204e990a",
-      "former": []
+      "former": [
+        "7bdfcb1fba75e9cf",
+        "5909d790204e990a"
+      ]
     },
     "friends-owl/sentence-0": {
       "current": "08e8eb019c333de3",
-      "former": []
+      "former": [
+        "5d07c7d615bfd58c",
+        "b86dd8a7264c730f",
+        "a468eec0d6a1955a",
+        "713a3d067da4ec9c",
+        "08e8eb019c333de3"
+      ]
     },
     "friends-owl/sentence-1": {
       "current": "f843937200e40ca6",
-      "former": []
+      "former": [
+        "cbc65978a70a488a",
+        "d0c66045b217f309",
+        "69383c664827c45c",
+        "bf4b93217420cf59",
+        "f843937200e40ca6"
+      ]
     },
     "friends-owl/sentence-2": {
       "current": "8c4345da61cbb278",
-      "former": []
+      "former": [
+        "d76f8283bb575915",
+        "c55933b8b08e8df6",
+        "18d93ae105516a03",
+        "175bb70498b294d4",
+        "8c4345da61cbb278"
+      ]
     },
     "friends-owl/sentence-3": {
       "current": "ee7c5cd733867571",
-      "former": []
+      "former": [
+        "9b40a1610bfd0029",
+        "9534b3ca2dfd028a",
+        "a2fab57f953984bf",
+        "14880b3500f60f9d",
+        "ee7c5cd733867571"
+      ]
     },
     "friends-owl/sentence-4": {
       "current": "79232f638c837bb1",
-      "former": []
+      "former": [
+        "13d2a3b05b4c96e8",
+        "7cad8f515afcb8ab",
+        "52a0c1b2921acb3e",
+        "29a357d6bb6528c8",
+        "79232f638c837bb1"
+      ]
     },
     "friends-owl/sentence-5": {
       "current": "3ea44039fc40cc35",
-      "former": []
+      "former": [
+        "6f4fb0f544e0aa71",
+        "d7c0fa5621f15192",
+        "5a1405132edac467",
+        "b1d609e6aa52374a",
+        "3ea44039fc40cc35"
+      ]
     },
     "friends-owl/sentence-6": {
       "current": "4efb8b50886da532",
-      "former": []
+      "former": [
+        "15eb6ef3e0183515",
+        "9a8a8ba4e737dff6",
+        "956787b983fc6283",
+        "b1a866033b444a4d",
+        "4efb8b50886da532"
+      ]
     },
     "friends-owl/sentence-7": {
       "current": "f2ebe60c9c096dea",
-      "former": []
+      "former": [
+        "b404a3cd976ea5bb",
+        "ca51163c223e2fb8",
+        "549fe7730054e56d",
+        "1c1c1a667c776ece",
+        "f2ebe60c9c096dea"
+      ]
     },
     "friends-owl/sentence-8": {
       "current": "fc66623a29f00e02",
-      "former": []
+      "former": [
+        "83bc6a6edfe579b2",
+        "e1328f5338e0a5b1",
+        "dd053854011ab964",
+        "e957a85483e12de6",
+        "fc66623a29f00e02"
+      ]
     },
     "friends-owl/sentence-9": {
       "current": "e61697e0751f8cc4",
-      "former": []
+      "former": [
+        "db70fb342ec64480",
+        "e61697e0751f8cc4"
+      ]
     },
     "friends-owl/sentence-10": {
       "current": "ad151cff6e3a821f",
-      "former": []
+      "former": [
+        "f596a88b919e875b",
+        "ad151cff6e3a821f"
+      ]
     },
     "friends-owl/sentence-11": {
       "current": "dce0a478ebb2eba6",
-      "former": []
+      "former": [
+        "33775b29320d4557",
+        "eb31d6369afae6b4",
+        "a299f8834bed8141",
+        "56b43f2201222cce",
+        "dce0a478ebb2eba6"
+      ]
     },
     "friends-owl/sentence-12": {
       "current": "08955f5847b5a962",
-      "former": []
+      "former": [
+        "5aebb4542c618cb2",
+        "bf1ca3f7f70e4ed1",
+        "639669866484d624",
+        "cf4df56a0842508a",
+        "08955f5847b5a962"
+      ]
     },
     "friends-owl/sentence-13": {
       "current": "424c755e613c2428",
-      "former": []
+      "former": [
+        "2d9290aa19e0a0dc",
+        "f4f793f7677f645f",
+        "4f4bc384b6fae10a",
+        "68d4aa8baf0b483b",
+        "424c755e613c2428"
+      ]
     },
     "friends-owl/sentence-14": {
       "current": "088cd7bf134a4b9b",
-      "former": []
+      "former": [
+        "128a9c0ae34358e8",
+        "05f029d58489060b",
+        "8029d3d8bbf1a3fe",
+        "2070d1dc11d212e8",
+        "088cd7bf134a4b9b"
+      ]
     },
     "friends-owl/pair-0": {
       "current": "c7a770c1ba917353",
-      "former": []
+      "former": [
+        "194848f3cb3705c1",
+        "c7a770c1ba917353"
+      ]
     },
     "friends-owl/pair-1": {
       "current": "c32574da29e6cad6",
-      "former": []
+      "former": [
+        "5019419c79eb0344",
+        "c32574da29e6cad6"
+      ]
     },
     "friends-owl/pair-2": {
       "current": "2cfaeabfe0bd347b",
-      "former": []
+      "former": [
+        "0697ba530db1dabf",
+        "2cfaeabfe0bd347b"
+      ]
     },
     "friends-owl/pair-3": {
       "current": "d2885c8181501d09",
-      "former": []
+      "former": [
+        "bb787abd3533204d",
+        "d2885c8181501d09"
+      ]
     },
     "friends-owl/pair-4": {
       "current": "0e69a0d51bc16ebb",
-      "former": []
+      "former": [
+        "de44de0d8814feeb",
+        "0e69a0d51bc16ebb"
+      ]
     },
     "friends-owl/pair-5": {
       "current": "8c5aa02dc53df229",
-      "former": []
+      "former": [
+        "c4c06f7556e802f9",
+        "8c5aa02dc53df229"
+      ]
     },
     "friends-owl/pair-6": {
       "current": "d83f318595581253",
-      "former": []
+      "former": [
+        "9ab79ba6d8c0f1f8",
+        "d83f318595581253"
+      ]
     },
     "friends-owl/pair-7": {
       "current": "7f513efac9a31eca",
-      "former": []
+      "former": [
+        "1b9814194025c261",
+        "7f513efac9a31eca"
+      ]
     },
     "friends-owl/pair-8": {
       "current": "39978fb641fb0d10",
-      "former": []
+      "former": [
+        "806edee8706e6986",
+        "39978fb641fb0d10"
+      ]
     },
     "friends-owl/pair-9": {
       "current": "00b88186e6304eb8",
-      "former": []
+      "former": [
+        "dffced34785507ee",
+        "00b88186e6304eb8"
+      ]
     },
     "friends-beaver/matrix-0": {
       "current": "fb38bf60d5204092",
@@ -1655,623 +1951,1230 @@ window.FK.puzzleReviewCompatibility = {
     },
     "friends-mouse/word-0": {
       "current": "365707ce9d556a9a",
-      "former": []
+      "former": [
+        "365707ce9d556a9a"
+      ]
     },
     "friends-mouse/word-1": {
       "current": "1ebae364d81e0c5c",
-      "former": []
+      "former": [
+        "549e66f38c20e83b",
+        "1ebae364d81e0c5c"
+      ]
     },
     "friends-mouse/word-2": {
       "current": "e219bbfc5bfa039e",
-      "former": []
+      "former": [
+        "2e66012314c82f21",
+        "e219bbfc5bfa039e"
+      ]
     },
     "friends-mouse/word-3": {
       "current": "04b41b604f52855c",
-      "former": []
+      "former": [
+        "04b41b604f52855c"
+      ]
     },
     "friends-mouse/word-4": {
       "current": "e50f1131a593a613",
-      "former": []
+      "former": [
+        "b74d3537c06a4c19",
+        "e50f1131a593a613"
+      ]
     },
     "friends-mouse/word-5": {
       "current": "78127e711f0f8c13",
-      "former": []
+      "former": [
+        "54e9ad5d97fcaa31",
+        "78127e711f0f8c13"
+      ]
     },
     "friends-mouse/word-6": {
       "current": "a84270c38fcd9111",
-      "former": []
+      "former": [
+        "66ff07c684270d0a",
+        "a84270c38fcd9111"
+      ]
     },
     "friends-mouse/word-7": {
       "current": "6915c34c64d34846",
-      "former": []
+      "former": [
+        "533af063920b588b",
+        "6915c34c64d34846"
+      ]
     },
     "friends-mouse/word-8": {
       "current": "907a41b33e4af073",
-      "former": []
+      "former": [
+        "67985e39a4df6ab1",
+        "907a41b33e4af073"
+      ]
     },
     "friends-mouse/word-9": {
       "current": "ed16e93ee5d93f7c",
-      "former": []
+      "former": [
+        "386623d76dc1703b",
+        "ed16e93ee5d93f7c"
+      ]
     },
     "friends-mouse/word-10": {
       "current": "fb9cedcc2313c9fe",
-      "former": []
+      "former": [
+        "c43ae2614fbe3729",
+        "fb9cedcc2313c9fe"
+      ]
     },
     "friends-mouse/word-11": {
       "current": "0dc19b9f857a7009",
-      "former": []
+      "former": [
+        "fb04985bc6ce0785",
+        "0dc19b9f857a7009"
+      ]
     },
     "friends-mouse/word-12": {
       "current": "51adac557e699c97",
-      "former": []
+      "former": [
+        "369c960160ad719f",
+        "51adac557e699c97"
+      ]
     },
     "friends-mouse/word-13": {
       "current": "55549ce08130197c",
-      "former": []
+      "former": [
+        "ed7cb99a8fe9b7dc",
+        "55549ce08130197c"
+      ]
     },
     "friends-mouse/word-14": {
       "current": "a5e9b9139c9d4f1f",
-      "former": []
+      "former": [
+        "9f7c8540f30ee186",
+        "a5e9b9139c9d4f1f"
+      ]
     },
     "friends-mouse/word-15": {
       "current": "348ee51303dc121b",
-      "former": []
+      "former": [
+        "31f662754e96c123",
+        "348ee51303dc121b"
+      ]
     },
     "friends-mouse/word-16": {
       "current": "8bf7b037c483824b",
-      "former": []
+      "former": [
+        "04521b518390237f",
+        "8bf7b037c483824b"
+      ]
     },
     "friends-mouse/word-17": {
       "current": "a74fdb7097a524ea",
-      "former": []
+      "former": [
+        "146043e9400f77ad",
+        "a74fdb7097a524ea"
+      ]
     },
     "friends-mouse/word-18": {
       "current": "c061b410ed269be8",
-      "former": []
+      "former": [
+        "3ac6b084ebd80386",
+        "c061b410ed269be8"
+      ]
     },
     "friends-mouse/word-19": {
       "current": "26d38517e29244cf",
-      "former": []
+      "former": [
+        "3ae9cb0ad38fcd94",
+        "26d38517e29244cf"
+      ]
     },
     "friends-mouse/word-20": {
       "current": "63446bcd5c83f8cf",
-      "former": []
+      "former": [
+        "40c0961f75fd66cd",
+        "63446bcd5c83f8cf"
+      ]
     },
     "friends-mouse/word-21": {
       "current": "6f684ec426ddeb7e",
-      "former": []
+      "former": [
+        "6f684ec426ddeb7e"
+      ]
     },
     "friends-mouse/word-22": {
       "current": "c475acf51e3c25b9",
-      "former": []
+      "former": [
+        "43cf8c7d18c47503",
+        "c475acf51e3c25b9"
+      ]
     },
     "friends-mouse/word-23": {
       "current": "ee374e590be8a9e5",
-      "former": []
+      "former": [
+        "cddad6c1085fcfc7",
+        "ee374e590be8a9e5"
+      ]
     },
     "friends-mouse/word-24": {
       "current": "a55431712d6becbf",
-      "former": []
+      "former": [
+        "a2c57472e3c867fa",
+        "a55431712d6becbf"
+      ]
     },
     "friends-hedgehog/riddle-0": {
       "current": "9cfe1e4747d58537",
-      "former": []
+      "former": [
+        "cb0c73ff774dc5b9",
+        "b5960fa3439089b9",
+        "de4fa1b5fc7fb473",
+        "f94a683a941073e0",
+        "9cfe1e4747d58537"
+      ]
     },
     "friends-hedgehog/riddle-1": {
       "current": "ab24919ab7e577e8",
-      "former": []
+      "former": [
+        "1c4eb173675e4827",
+        "ab24919ab7e577e8"
+      ]
     },
     "friends-hedgehog/riddle-2": {
       "current": "84a25616e0e3c9c4",
-      "former": []
+      "former": [
+        "2257f35e150692c0",
+        "3eaa9c32468756c0",
+        "d135850cbb2faf0a",
+        "f21c441ae4b5b622",
+        "84a25616e0e3c9c4"
+      ]
     },
     "friends-hedgehog/riddle-3": {
       "current": "8b1279402eb61b3e",
-      "former": []
+      "former": [
+        "7069331b9115df81",
+        "fde4db8779922381",
+        "07c33e55efa6a30b",
+        "0621754d443b1c53",
+        "8b1279402eb61b3e"
+      ]
     },
     "friends-hedgehog/riddle-4": {
       "current": "4436ccf69292e378",
-      "former": []
+      "former": [
+        "6128a84e0dec0dd4",
+        "c6f4b1cada2ed1d4",
+        "bee8e3ec95ce519e",
+        "e55edc26d967db70",
+        "4436ccf69292e378"
+      ]
     },
     "friends-hedgehog/riddle-5": {
       "current": "4b866dfb3c7f15a9",
-      "former": []
+      "former": [
+        "43797246991582a0",
+        "feb966a2c60fc6a0",
+        "bb55b928b37b73aa",
+        "59c52fbda2f2c241",
+        "4b866dfb3c7f15a9"
+      ]
     },
     "friends-hedgehog/riddle-6": {
       "current": "7d6bdd484978c70a",
-      "former": []
+      "former": [
+        "7d9dd7052c396abb",
+        "7d6bdd484978c70a"
+      ]
     },
     "friends-hedgehog/riddle-7": {
       "current": "246bda9c7fe83b5e",
-      "former": []
+      "former": [
+        "943d92d9fdb71905",
+        "db8a0055327ddd05",
+        "2a30804f29cfd9cf",
+        "d17e4b6cd4cd8256",
+        "246bda9c7fe83b5e"
+      ]
     },
     "friends-hedgehog/riddle-8": {
       "current": "e83c9347a3a0d1cf",
-      "former": []
+      "former": [
+        "8d936d2ba5faf571",
+        "89716b6fdac1b971",
+        "71c8ef112715e5bb",
+        "f9d81f3cde5d27de",
+        "e83c9347a3a0d1cf"
+      ]
     },
     "friends-hedgehog/riddle-9": {
       "current": "f43edc825459200a",
-      "former": []
+      "former": [
+        "1c50e2cf547e4ed9",
+        "c4e836eb4d1b92d9",
+        "b2c3ddf951c52e53",
+        "80a892fa07cfd806",
+        "f43edc825459200a"
+      ]
     },
     "friends-hedgehog/riddle-10": {
       "current": "68f3aee0e6c60ca6",
-      "former": []
+      "former": [
+        "7eefc596440f9f5a",
+        "68f3aee0e6c60ca6"
+      ]
     },
     "friends-hedgehog/riddle-11": {
       "current": "75761cdeebeb4802",
-      "former": []
+      "former": [
+        "81d3580047f03dd0",
+        "75761cdeebeb4802"
+      ]
     },
     "friends-hedgehog/riddle-12": {
       "current": "f89cd57dac21c063",
-      "former": []
+      "former": [
+        "34b435db22388bf5",
+        "89d4dde7e9864ff5",
+        "ec81b0e17119263f",
+        "90b0b04095312730",
+        "f89cd57dac21c063"
+      ]
     },
     "friends-hedgehog/riddle-13": {
       "current": "fc4c064be2fa5d7b",
-      "former": []
+      "former": [
+        "7eb97e29f33f0547",
+        "fc4c064be2fa5d7b"
+      ]
     },
     "friends-hedgehog/riddle-14": {
       "current": "c5fdeb1db590ff83",
-      "former": []
+      "former": [
+        "f8bdc79593a4b8b7",
+        "2bf67db15adf7cb7",
+        "e113c1071c544f7d",
+        "a3e0c55fa8923d6f",
+        "c5fdeb1db590ff83"
+      ]
     },
     "friends-hedgehog/riddle-15": {
       "current": "a1f38947e99aea2b",
-      "former": []
+      "former": [
+        "be2d0a01fc2e78fd",
+        "a1f38947e99aea2b"
+      ]
     },
     "friends-hedgehog/riddle-16": {
       "current": "a7e29b1a48080060",
-      "former": []
+      "former": [
+        "a7e29b1a48080060"
+      ]
     },
     "friends-hedgehog/riddle-17": {
       "current": "c2fe9f280a50331c",
-      "former": []
+      "former": [
+        "5575419a2bb7fcc6",
+        "c2fe9f280a50331c"
+      ]
     },
     "friends-hedgehog/riddle-18": {
       "current": "b4389f28202cd588",
-      "former": []
+      "former": [
+        "b4389f28202cd588"
+      ]
     },
     "friends-hedgehog/riddle-19": {
       "current": "8e72a5395543b6b5",
-      "former": []
+      "former": [
+        "87607d0ead6a7160",
+        "8e72a5395543b6b5"
+      ]
     },
     "friends-hedgehog/riddle-20": {
       "current": "5e6fe792aa130ee8",
-      "former": []
+      "former": [
+        "057bfc84fa946ccc",
+        "5e6fe792aa130ee8"
+      ]
     },
     "friends-hedgehog/riddle-21": {
       "current": "883a29fd7ce66dab",
-      "former": []
+      "former": [
+        "3889059a539eb144",
+        "883a29fd7ce66dab"
+      ]
     },
     "friends-hedgehog/riddle-22": {
       "current": "176ae1e6a8eb0d56",
-      "former": []
+      "former": [
+        "680d194985c9898f",
+        "176ae1e6a8eb0d56"
+      ]
     },
     "friends-hedgehog/riddle-23": {
       "current": "239dd2a4121290b8",
-      "former": []
+      "former": [
+        "945dd8c9f20e62ef",
+        "239dd2a4121290b8"
+      ]
     },
     "friends-hedgehog/riddle-24": {
       "current": "a07e1487a8ef6051",
-      "former": []
+      "former": [
+        "56d82e901099e576",
+        "a07e1487a8ef6051"
+      ]
     },
     "friends-deer/riddle-0": {
       "current": "c39f707a08001692",
-      "former": []
+      "former": [
+        "0f732cba070149f0",
+        "c39f707a08001692"
+      ]
     },
     "friends-deer/riddle-1": {
       "current": "16ee72a6957ec4d2",
-      "former": []
+      "former": [
+        "11c1130a1620f534",
+        "b6845be769801019",
+        "8ec5f26ce4515962",
+        "16ee72a6957ec4d2"
+      ]
     },
     "friends-deer/riddle-2": {
       "current": "cb8f85af7c77f781",
-      "former": []
+      "former": [
+        "24cf46a973ee4311",
+        "3c0607f986cd9a91",
+        "9657a42c48a4abe4",
+        "8f3b426f6b7ba9e9",
+        "d6a0043e2ea1dcd2",
+        "cb8f85af7c77f781"
+      ]
     },
     "friends-deer/riddle-3": {
       "current": "27d1bde17bc2835b",
-      "former": []
+      "former": [
+        "cf988008bf3e106c",
+        "4507c97863e807ec",
+        "7c9235e1bdc3ed59",
+        "572b6b3ef77561d4",
+        "93a12ac9e3861ead",
+        "27d1bde17bc2835b"
+      ]
     },
     "friends-deer/riddle-4": {
       "current": "07d1a4af46f420d7",
-      "former": []
+      "former": [
+        "073a06ab60a8f797",
+        "f379aebb33cdb117",
+        "a2601e62907f7ba2",
+        "7c0fd355efefb2ef",
+        "0737e89cbb5cb446",
+        "07d1a4af46f420d7"
+      ]
     },
     "friends-deer/riddle-5": {
       "current": "adf4185a14326328",
-      "former": []
+      "former": [
+        "ab845bf7c32cb727",
+        "adf4185a14326328"
+      ]
     },
     "friends-deer/riddle-6": {
       "current": "709a35bb09cb93e7",
-      "former": []
+      "former": [
+        "bc98f9d6fd394b3c",
+        "f3c302463ab730bc",
+        "f6d55429cda7aba9",
+        "f9cf3490a8ff9b44",
+        "590bb6a846b5d562",
+        "709a35bb09cb93e7"
+      ]
     },
     "friends-deer/riddle-7": {
       "current": "767173ba8f8d8ca0",
-      "former": []
+      "former": [
+        "8e3c7369173ffb19",
+        "7e2cd2794154f499",
+        "20050a9434556dac",
+        "92eb6e0f7ecb5c61",
+        "986b4fe351d7726f",
+        "767173ba8f8d8ca0"
+      ]
     },
     "friends-deer/riddle-8": {
       "current": "296d6774de8c0996",
-      "former": []
+      "former": [
+        "34d9b83d257a1213",
+        "92064a6d638f9993",
+        "e32918561a4f4b46",
+        "b992837be50d552b",
+        "ef69ae9aa909703a",
+        "296d6774de8c0996"
+      ]
     },
     "friends-deer/riddle-9": {
       "current": "ec5778fe52460828",
-      "former": []
+      "former": [
+        "d27846765ce825ac",
+        "ae20c8069afdad2c",
+        "4224f5f1bf89c1f9",
+        "20fb5af057e79054",
+        "cca0ccbe9dff59e0",
+        "ec5778fe52460828"
+      ]
     },
     "friends-deer/riddle-10": {
       "current": "55ffb8ef23d74a45",
-      "former": []
+      "former": [
+        "47757986b5346bbe",
+        "4ae7a416a77fa13e",
+        "5d7a1753ea45b9cb",
+        "a1ff2fe0106a4406",
+        "32d2b4c155b0d483",
+        "55ffb8ef23d74a45"
+      ]
     },
     "friends-deer/riddle-11": {
       "current": "bbb22b1dd73c64d7",
-      "former": []
+      "former": [
+        "d7422a15b67ddc3d",
+        "53925ac5a3e2a3bd",
+        "4db1ee4669b59c28",
+        "65cabb1fbd03c445",
+        "021761b16c8e98df",
+        "bbb22b1dd73c64d7"
+      ]
     },
     "friends-deer/riddle-12": {
       "current": "21ae3286b60e69da",
-      "former": []
+      "former": [
+        "a0ead3a68d762f60",
+        "9ea509b6114794e0",
+        "31cda5e9409b2035",
+        "90df696000ae8818",
+        "ea33a59f18b949bf",
+        "21ae3286b60e69da"
+      ]
     },
     "friends-deer/riddle-13": {
       "current": "60d537f6c3dbb75e",
-      "former": []
+      "former": [
+        "edd795d953e4c03d",
+        "49629149762ae7bd",
+        "dd04aa7af4e8d5a8",
+        "a9d55a4b9516f045",
+        "b30e6d712da80c8b",
+        "60d537f6c3dbb75e"
+      ]
     },
     "friends-deer/riddle-14": {
       "current": "0944a8b6ea576a40",
-      "former": []
+      "former": [
+        "53721a37e52aaf11",
+        "d9273a2723403691",
+        "c50f9ee48e0f2a44",
+        "f2d299493c28c3a9",
+        "9501c7e48db38aa8",
+        "0944a8b6ea576a40"
+      ]
     },
     "friends-deer/riddle-15": {
       "current": "eeb52e62e41324fa",
-      "former": []
+      "former": [
+        "e21512adf9d29fbb",
+        "f2084afd8e7db73b",
+        "37d8e69cddfd318e",
+        "a23ee44f1d22bd03",
+        "1a633296e6ef2bf2",
+        "eeb52e62e41324fa"
+      ]
     },
     "friends-deer/riddle-16": {
       "current": "8196d9410357a9c1",
-      "former": []
+      "former": [
+        "ca4525e0244740be",
+        "ba441d3140b28e53",
+        "a57cef04a141751e",
+        "8196d9410357a9c1"
+      ]
     },
     "friends-deer/riddle-17": {
       "current": "8ad81e732b624cff",
-      "former": []
+      "former": [
+        "1ffc3b117107a935",
+        "8ad81e732b624cff"
+      ]
     },
     "friends-deer/riddle-18": {
       "current": "c6401206d63ca890",
-      "former": []
+      "former": [
+        "c9537e718a68b355",
+        "c6401206d63ca890"
+      ]
     },
     "friends-deer/riddle-19": {
       "current": "a89d32b2297ca2d2",
-      "former": []
+      "former": [
+        "ea4cf73d924f27cb",
+        "75cda4cd6f326f4b",
+        "5aa97c5eebeb5a1e",
+        "a818d333a2327173",
+        "41eef352c5d35df0",
+        "a89d32b2297ca2d2"
+      ]
     },
     "friends-deer/riddle-20": {
       "current": "6f62c937501a9423",
-      "former": []
+      "former": [
+        "ed0f9d9e6d77cc42",
+        "b2a73eee480fd1c2",
+        "88ee6f458a1c4f97",
+        "253496d4f1202c7a",
+        "eb355f34f6f378fa",
+        "6f62c937501a9423"
+      ]
     },
     "friends-deer/riddle-21": {
       "current": "4e41e3481149005e",
-      "former": []
+      "former": [
+        "fac2de1d653231e9",
+        "956b836d49803969",
+        "e91a490e7b0a50bc",
+        "0e11151f4070c091",
+        "19821b5f95030c21",
+        "4e41e3481149005e"
+      ]
     },
     "friends-deer/riddle-22": {
       "current": "3ee88dece364e420",
-      "former": []
+      "former": [
+        "02956acf97eccce1",
+        "3ee88dece364e420"
+      ]
     },
     "friends-deer/riddle-23": {
       "current": "478df8f204e7fe96",
-      "former": []
+      "former": [
+        "2b7474fe0853f7dc",
+        "7ff4838eba078f5c",
+        "4cf2efff8619c769",
+        "2857a074dd06c0a4",
+        "9bb4df3db7fd11ad",
+        "478df8f204e7fe96"
+      ]
     },
     "friends-deer/riddle-24": {
       "current": "08e9c2261fbc42e0",
-      "former": []
+      "former": [
+        "fa892a14ca5e51dc",
+        "08e9c2261fbc42e0"
+      ]
     },
     "friends-kingfisher/forest-feather-2": {
       "current": "4c47cb63970dd41f",
-      "former": []
+      "former": [
+        "4c47cb63970dd41f"
+      ]
     },
     "friends-kingfisher/forest-feather-5": {
       "current": "64d539c9f9c2dd7f",
-      "former": []
+      "former": [
+        "64d539c9f9c2dd7f"
+      ]
     },
     "friends-kingfisher/forest-feather-9": {
       "current": "e86f8da0df781e84",
-      "former": []
+      "former": [
+        "e86f8da0df781e84"
+      ]
     },
     "friends-kingfisher/forest-feather-14": {
       "current": "c75062b3482eb55b",
-      "former": []
+      "former": [
+        "c75062b3482eb55b"
+      ]
     },
     "friends-kingfisher/forest-feather-20": {
       "current": "cc2064aa7027dddc",
-      "former": []
+      "former": [
+        "cc2064aa7027dddc"
+      ]
     },
     "friends-kingfisher/forest-leaf-2": {
       "current": "612471dfb7ccc24b",
-      "former": []
+      "former": [
+        "612471dfb7ccc24b"
+      ]
     },
     "friends-kingfisher/forest-leaf-5": {
       "current": "726f0a2dcad227ab",
-      "former": []
+      "former": [
+        "726f0a2dcad227ab"
+      ]
     },
     "friends-kingfisher/forest-leaf-9": {
       "current": "88d7962cca166710",
-      "former": []
+      "former": [
+        "88d7962cca166710"
+      ]
     },
     "friends-kingfisher/forest-leaf-14": {
       "current": "543e7e43924c624f",
-      "former": []
+      "former": [
+        "543e7e43924c624f"
+      ]
     },
     "friends-kingfisher/forest-leaf-20": {
       "current": "35f7f9ec62948fa8",
-      "former": []
+      "former": [
+        "35f7f9ec62948fa8"
+      ]
     },
     "friends-kingfisher/forest-stone-2": {
       "current": "9685eb3e3fe32e18",
-      "former": []
+      "former": [
+        "9685eb3e3fe32e18"
+      ]
     },
     "friends-kingfisher/forest-stone-5": {
       "current": "156c8ad8c1ba4238",
-      "former": []
+      "former": [
+        "156c8ad8c1ba4238"
+      ]
     },
     "friends-kingfisher/forest-stone-9": {
       "current": "28299afbac200763",
-      "former": []
+      "former": [
+        "28299afbac200763"
+      ]
     },
     "friends-kingfisher/forest-stone-14": {
       "current": "9f7815aa076ca39c",
-      "former": []
+      "former": [
+        "9f7815aa076ca39c"
+      ]
     },
     "friends-kingfisher/forest-stone-20": {
       "current": "acc1ca030524da1b",
-      "former": []
+      "former": [
+        "acc1ca030524da1b"
+      ]
     },
     "friends-kingfisher/forest-flower-2": {
       "current": "aaddda770d31a58b",
-      "former": []
+      "former": [
+        "aaddda770d31a58b"
+      ]
     },
     "friends-kingfisher/forest-flower-5": {
       "current": "c10ae2f17456abab",
-      "former": []
+      "former": [
+        "c10ae2f17456abab"
+      ]
     },
     "friends-kingfisher/forest-flower-9": {
       "current": "a03a05a60aa03df0",
-      "former": []
+      "former": [
+        "a03a05a60aa03df0"
+      ]
     },
     "friends-kingfisher/forest-flower-14": {
       "current": "29cd184f555492cf",
-      "former": []
+      "former": [
+        "29cd184f555492cf"
+      ]
     },
     "friends-kingfisher/forest-flower-20": {
       "current": "352679a8509ff0a8",
-      "former": []
+      "former": [
+        "352679a8509ff0a8"
+      ]
     },
     "friends-kingfisher/forest-berry-2": {
       "current": "8f630c998e84992b",
-      "former": []
+      "former": [
+        "8f630c998e84992b"
+      ]
     },
     "friends-kingfisher/forest-berry-5": {
       "current": "8e66b6a30ec1a1cb",
-      "former": []
+      "former": [
+        "8e66b6a30ec1a1cb"
+      ]
     },
     "friends-kingfisher/forest-berry-9": {
       "current": "0ca190842d3acc90",
-      "former": []
+      "former": [
+        "0ca190842d3acc90"
+      ]
     },
     "friends-kingfisher/forest-berry-14": {
       "current": "630ea7458fab3daf",
-      "former": []
+      "former": [
+        "630ea7458fab3daf"
+      ]
     },
     "friends-kingfisher/forest-berry-20": {
       "current": "3b6780608ac9b068",
-      "former": []
+      "former": [
+        "3b6780608ac9b068"
+      ]
     },
     "friends-kingfisher/forest-mushroom-2": {
       "current": "71459b0dfea2013b",
-      "former": []
+      "former": [
+        "71459b0dfea2013b"
+      ]
     },
     "friends-kingfisher/forest-mushroom-5": {
       "current": "f1ccc6274a27d01b",
-      "former": []
+      "former": [
+        "f1ccc6274a27d01b"
+      ]
     },
     "friends-kingfisher/forest-mushroom-9": {
       "current": "7cf4c55e6ce9f860",
-      "former": []
+      "former": [
+        "7cf4c55e6ce9f860"
+      ]
     },
     "friends-kingfisher/forest-mushroom-14": {
       "current": "a3087b193f74293f",
-      "former": []
+      "former": [
+        "a3087b193f74293f"
+      ]
     },
     "friends-kingfisher/forest-mushroom-20": {
       "current": "bf1d7cc68bfd9998",
-      "former": []
+      "former": [
+        "bf1d7cc68bfd9998"
+      ]
     },
     "friends-frog/animal-0": {
       "current": "ff90f101945e8691",
-      "former": []
+      "former": [
+        "e146a44cc3b4fad6",
+        "ff90f101945e8691"
+      ]
     },
     "friends-frog/animal-1": {
       "current": "c4f0d6916efd8415",
-      "former": []
+      "former": [
+        "302a0543cfedf529",
+        "c4f0d6916efd8415"
+      ]
     },
     "friends-frog/animal-2": {
       "current": "6e357d43dcd60073",
-      "former": []
+      "former": [
+        "8bf8a22390feff21",
+        "67c8b81941b7b711",
+        "10afcc7398ecf8ed",
+        "ed63896e3848d464",
+        "6e357d43dcd60073"
+      ]
     },
     "friends-frog/animal-3": {
       "current": "0b4d5c3f6ff972e9",
-      "former": []
+      "former": [
+        "451e3349095da723",
+        "a141ba83edf43c93",
+        "42d32619acda34ef",
+        "c75991cb21ef70cb",
+        "0b4d5c3f6ff972e9"
+      ]
     },
     "friends-frog/animal-4": {
       "current": "1864e7394d78e807",
-      "former": []
+      "former": [
+        "3da84c084318e3c8",
+        "1864e7394d78e807"
+      ]
     },
     "friends-frog/animal-5": {
       "current": "2bde8eec2cc56c92",
-      "former": []
+      "former": [
+        "36da2a12ed7da09c",
+        "2bde8eec2cc56c92"
+      ]
     },
     "friends-frog/animal-6": {
       "current": "e8b63c72fd9ff3e0",
-      "former": []
+      "former": [
+        "5e3a14021ed29e4a",
+        "32a2c75009a3577a",
+        "78edd532ff310c86",
+        "785d0ab366d69363",
+        "e8b63c72fd9ff3e0"
+      ]
     },
     "friends-frog/animal-7": {
       "current": "d3d705d262d227f8",
-      "former": []
+      "former": [
+        "17c50ec8b4c237ba",
+        "d3d705d262d227f8"
+      ]
     },
     "friends-frog/animal-8": {
       "current": "ad76591a844d16f0",
-      "former": []
+      "former": [
+        "b7b93c3f3cb4dcad",
+        "337e07e5d817199d",
+        "11b0470f66a89861",
+        "9e70ca83b26484c1",
+        "ad76591a844d16f0"
+      ]
     },
     "friends-frog/animal-9": {
       "current": "80299d94efcfbc52",
-      "former": []
+      "former": [
+        "ff158575e0e8d929",
+        "556499af35976459",
+        "775cfea5ead21265",
+        "367978cd9c5ed1ff",
+        "80299d94efcfbc52"
+      ]
     },
     "friends-frog/animal-10": {
       "current": "4f1b900f977cc72f",
-      "former": []
+      "former": [
+        "ad6cac7e93e359a4",
+        "4f1b900f977cc72f"
+      ]
     },
     "friends-frog/animal-11": {
       "current": "c3e1d7eafe68c628",
-      "former": []
+      "former": [
+        "b7067524e0526fa4",
+        "e966efda56c28c94",
+        "5946cdf42356eb68",
+        "3fd0c9262c472ce4",
+        "c3e1d7eafe68c628"
+      ]
     },
     "friends-frog/animal-12": {
       "current": "ab0a74ea53fa89f2",
-      "former": []
+      "former": [
+        "5787d5f33e84302d",
+        "ab0a74ea53fa89f2"
+      ]
     },
     "friends-frog/animal-13": {
       "current": "cae09d331dfe5c7d",
-      "former": []
+      "former": [
+        "abfb32da18e7e30c",
+        "86bc97982914d07c",
+        "22773e6ad529e3c0",
+        "6194d6ccc354ee92",
+        "cae09d331dfe5c7d"
+      ]
     },
     "friends-frog/animal-14": {
       "current": "c3facd8187e61eb1",
-      "former": []
+      "former": [
+        "0524a9a11e7d1e61",
+        "c3facd8187e61eb1"
+      ]
     },
     "friends-frog/animal-15": {
       "current": "af6252a1a2c073b5",
-      "former": []
+      "former": [
+        "c324940d68fe91c3",
+        "af6252a1a2c073b5"
+      ]
     },
     "friends-frog/animal-16": {
       "current": "35ebf88efcc483fa",
-      "former": []
+      "former": [
+        "d5841566b864e788",
+        "35ebf88efcc483fa"
+      ]
     },
     "friends-frog/animal-17": {
       "current": "636e305805c50d90",
-      "former": []
+      "former": [
+        "f890219556ad54af",
+        "7a710a973f7b6d1f",
+        "eff3e5e55d584a63",
+        "31cb84cf39a9811d",
+        "636e305805c50d90"
+      ]
     },
     "friends-frog/animal-18": {
       "current": "eb06836f6ac87d6d",
-      "former": []
+      "former": [
+        "c1fc7efdad278beb",
+        "66ff807ff20f56db",
+        "66238e4db97819a7",
+        "40cae5b0f47dbf9e",
+        "eb06836f6ac87d6d"
+      ]
     },
     "friends-frog/animal-19": {
       "current": "01c851b6d34896be",
-      "former": []
+      "former": [
+        "9e2ea6dae4ea5e50",
+        "01c851b6d34896be"
+      ]
     },
     "friends-frog/animal-20": {
       "current": "a382f4a236559470",
-      "former": []
+      "former": [
+        "3e259da44bd26bf6",
+        "a382f4a236559470"
+      ]
     },
     "friends-frog/animal-21": {
       "current": "a68955018510bedf",
-      "former": []
+      "former": [
+        "8d0664e77f9d6381",
+        "a68955018510bedf"
+      ]
     },
     "friends-frog/animal-22": {
       "current": "2b6cafae80b3fe72",
-      "former": []
+      "former": [
+        "adfabcb9e3b83dfd",
+        "b1ad70f340e9f88d",
+        "155f5b09dc5cebb1",
+        "82fe3744285ec0da",
+        "2b6cafae80b3fe72"
+      ]
     },
     "friends-frog/animal-23": {
       "current": "dbd24ef7aca0e7db",
-      "former": []
+      "former": [
+        "4349bcab20f81775",
+        "dbd24ef7aca0e7db"
+      ]
     },
     "friends-frog/animal-24": {
       "current": "03ce6b1be5eac981",
-      "former": []
+      "former": [
+        "3c3dcc6165e2ad29",
+        "03ce6b1be5eac981"
+      ]
     },
     "friends-badger/riddle-0": {
       "current": "daef5126be5b1752",
-      "former": []
+      "former": [
+        "5b403b8674005cca",
+        "fa2a0c73d1a3af67",
+        "af3281ecf6c789cc",
+        "328a18a7a43090f3",
+        "e58121a864ab0666",
+        "daef5126be5b1752"
+      ]
     },
     "friends-badger/riddle-1": {
       "current": "d2557a6f51d53815",
-      "former": []
+      "former": [
+        "d34d0c91c2d949eb",
+        "d8eca82a493f50a6",
+        "fe5647ab0ff8b0ad",
+        "2afa9fd67cb307b2",
+        "ead7956ff4c68d51",
+        "d2557a6f51d53815"
+      ]
     },
     "friends-badger/riddle-2": {
       "current": "8ce0a188a44f412e",
-      "former": []
+      "former": [
+        "a6a516080a94a926",
+        "8ce0a188a44f412e"
+      ]
     },
     "friends-badger/riddle-3": {
       "current": "39dcc3dca0ede56c",
-      "former": []
+      "former": [
+        "515c029e560f3422",
+        "39dcc3dca0ede56c"
+      ]
     },
     "friends-badger/riddle-4": {
       "current": "2d1736f1573aa2e5",
-      "former": []
+      "former": [
+        "2665efe826876a7e",
+        "d67e555d05d96c13",
+        "54b6948e23d9f878",
+        "fa55adf99d646587",
+        "5515be4daac44ce1",
+        "2d1736f1573aa2e5"
+      ]
     },
     "friends-badger/riddle-5": {
       "current": "60887df39ac9ee01",
-      "former": []
+      "former": [
+        "85b4a8e50fef3ecf",
+        "924f0038d1afdb62",
+        "6bcd28a3bef11a49",
+        "7efec474eff7d1f6",
+        "00577422c37b745a",
+        "60887df39ac9ee01"
+      ]
     },
     "friends-badger/riddle-6": {
       "current": "a28998d7a987b9b1",
-      "former": []
+      "former": [
+        "6666a715847dbbeb",
+        "a28998d7a987b9b1"
+      ]
     },
     "friends-badger/riddle-7": {
       "current": "b346d47a6769c61a",
-      "former": []
+      "former": [
+        "0f7896dfddf25d73",
+        "d197f4868ea9a49e",
+        "de8e8ded5cc34375",
+        "4bf83ffa56701f0a",
+        "3dce64d9ac31df83",
+        "b346d47a6769c61a"
+      ]
     },
     "friends-badger/riddle-8": {
       "current": "9526fa1652c455d6",
-      "former": []
+      "former": [
+        "0fbb0a22f26a7ea6",
+        "3f96db31dc458fab",
+        "1c0f7d7486297a60",
+        "fec703851b7250bf",
+        "fc5648a6bbf1c30e",
+        "9526fa1652c455d6"
+      ]
     },
     "friends-badger/riddle-9": {
       "current": "9a42ae54aa8785c2",
-      "former": []
+      "former": [
+        "56e706007816823a",
+        "770ab055a5527d97",
+        "5be91f56aa42993c",
+        "ed363199994b3103",
+        "f100a9b7d8391257",
+        "9a42ae54aa8785c2"
+      ]
     },
     "friends-badger/riddle-10": {
       "current": "0c99a3f8603e020c",
-      "former": []
+      "former": [
+        "b23b850c0aa507fe",
+        "0c99a3f8603e020c"
+      ]
     },
     "friends-badger/riddle-11": {
       "current": "8dfb69fe484687d0",
-      "former": []
+      "former": [
+        "b1fd5b754db87f81",
+        "48f5a1326c8f238c",
+        "86e1841ba5732047",
+        "1e3d99de78345b98",
+        "b02aded08d11d3a4",
+        "8dfb69fe484687d0"
+      ]
     },
     "friends-badger/riddle-12": {
       "current": "dfe4b826c2ce5784",
-      "former": []
+      "former": [
+        "4cf861d84aa6a1ce",
+        "dfe4b826c2ce5784"
+      ]
     },
     "friends-badger/riddle-13": {
       "current": "651fcaf22e1f9f2a",
-      "former": []
+      "former": [
+        "651fcaf22e1f9f2a"
+      ]
     },
     "friends-badger/riddle-14": {
       "current": "e00e96d6b089a306",
-      "former": []
+      "former": [
+        "e00e96d6b089a306"
+      ]
     },
     "friends-badger/riddle-15": {
       "current": "e0c36d6ae6e2c9cc",
-      "former": []
+      "former": [
+        "b9efb66ca896e3ac",
+        "e0c36d6ae6e2c9cc"
+      ]
     },
     "friends-badger/riddle-16": {
       "current": "117c20d68932200a",
-      "former": []
+      "former": [
+        "f97effdf71ed5385",
+        "608dae46141ae568",
+        "ed54613906b31303",
+        "1e1037425dcedefc",
+        "f622de2d121f23f1",
+        "117c20d68932200a"
+      ]
     },
     "friends-badger/riddle-17": {
       "current": "5a6e3d92e8b55a12",
-      "former": []
+      "former": [
+        "578d9be6ce8a4442",
+        "5a6e3d92e8b55a12"
+      ]
     },
     "friends-badger/riddle-18": {
       "current": "dda5b59d0cb825b5",
-      "former": []
+      "former": [
+        "3c5e30bad478e142",
+        "54ed48a3b608ac2f",
+        "465019c81dfc5fc4",
+        "b9bfc5d793b088bb",
+        "3e98983d288f15f9",
+        "dda5b59d0cb825b5"
+      ]
     },
     "friends-badger/riddle-19": {
       "current": "13ffe4f70b961b09",
-      "former": []
+      "former": [
+        "36929518eb4914c0",
+        "13ffe4f70b961b09"
+      ]
     },
     "friends-badger/riddle-20": {
       "current": "daed7355d359c443",
-      "former": []
+      "former": [
+        "38ef1b159f721edb",
+        "3d001eb476d9cf76",
+        "d209491be89c985d",
+        "e24059284906aee2",
+        "d0bf20bbfadd7ac1",
+        "daed7355d359c443"
+      ]
     },
     "friends-badger/riddle-21": {
       "current": "53bff2f21b56295c",
-      "former": []
+      "former": [
+        "0715eb37a3125783",
+        "bf0b546c1aac10ce",
+        "20248b61588450c5",
+        "247e7ae8ee8224da",
+        "adb80459b7479373",
+        "53bff2f21b56295c"
+      ]
     },
     "friends-badger/riddle-22": {
       "current": "7becee5f333010a3",
-      "former": []
+      "former": [
+        "7becee5f333010a3"
+      ]
     },
     "friends-badger/riddle-23": {
       "current": "547c7becd1c24afa",
-      "former": []
+      "former": [
+        "ed9b42cc3411a0cc",
+        "547c7becd1c24afa"
+      ]
     },
     "friends-badger/riddle-24": {
       "current": "f03b584ef45fd3ba",
-      "former": []
+      "former": [
+        "5d4cc9708e0c129e",
+        "f03b584ef45fd3ba"
+      ]
     },
     "friends-ibex/pattern-AAB-1": {
       "current": "5af05b91145e6cf1",
@@ -2545,267 +3448,507 @@ window.FK.puzzleReviewCompatibility = {
     },
     "count/6-2": {
       "current": "08cb80692b7fbb0f",
-      "former": []
+      "former": [
+        "08cb80692b7fbb0f"
+      ]
     },
     "count/6-3": {
       "current": "64bd334064023900",
-      "former": []
+      "former": [
+        "64bd334064023900"
+      ]
     },
     "count/6-4": {
       "current": "86827fdf5ee9f289",
-      "former": []
+      "former": [
+        "86827fdf5ee9f289"
+      ]
     },
     "count/7-2": {
       "current": "748d4c0ee2bab3a2",
-      "former": []
+      "former": [
+        "748d4c0ee2bab3a2"
+      ]
     },
     "count/7-3": {
       "current": "f818f5bd046a240d",
-      "former": []
+      "former": [
+        "f818f5bd046a240d"
+      ]
     },
     "count/7-4": {
       "current": "17e83c1839f216e4",
-      "former": []
+      "former": [
+        "17e83c1839f216e4"
+      ]
     },
     "count/8-2": {
       "current": "f4bd915f9c3e12e3",
-      "former": []
+      "former": [
+        "f4bd915f9c3e12e3"
+      ]
     },
     "count/8-3": {
       "current": "3c24f66a30626e2c",
-      "former": []
+      "former": [
+        "3c24f66a30626e2c"
+      ]
     },
     "count/8-4": {
       "current": "4110117d867781e5",
-      "former": []
+      "former": [
+        "4110117d867781e5"
+      ]
     },
     "count/9-2": {
       "current": "c60ae0c354d1de55",
-      "former": []
+      "former": [
+        "c60ae0c354d1de55"
+      ]
     },
     "count/9-3": {
       "current": "5d61687a244b691a",
-      "former": []
+      "former": [
+        "5d61687a244b691a"
+      ]
     },
     "count/9-4": {
       "current": "f2d2c53d7822c7d3",
-      "former": []
+      "former": [
+        "f2d2c53d7822c7d3"
+      ]
     },
     "count/10-2": {
       "current": "4e023ca2dd9cb5d4",
-      "former": []
+      "former": [
+        "4e023ca2dd9cb5d4"
+      ]
     },
     "count/10-3": {
       "current": "478a2f8bd2ee959b",
-      "former": []
+      "former": [
+        "478a2f8bd2ee959b"
+      ]
     },
     "count/10-4": {
       "current": "101d9584ce946652",
-      "former": []
+      "former": [
+        "101d9584ce946652"
+      ]
     },
     "count/11-2": {
       "current": "a84e4fb6bb751e2e",
-      "former": []
+      "former": [
+        "a84e4fb6bb751e2e"
+      ]
     },
     "count/11-3": {
       "current": "80ed1ea3da929c61",
-      "former": []
+      "former": [
+        "80ed1ea3da929c61"
+      ]
     },
     "count/11-4": {
       "current": "955e6d64aecf1828",
-      "former": []
+      "former": [
+        "955e6d64aecf1828"
+      ]
     },
     "count/12-2": {
       "current": "82438309002f064f",
-      "former": []
+      "former": [
+        "82438309002f064f"
+      ]
     },
     "count/12-3": {
       "current": "556df6066ff912e0",
-      "former": []
+      "former": [
+        "556df6066ff912e0"
+      ]
     },
     "count/12-4": {
       "current": "6a3ef7bbf0533d89",
-      "former": []
+      "former": [
+        "6a3ef7bbf0533d89"
+      ]
     },
     "count/13-2": {
       "current": "523226502f1d888a",
-      "former": []
+      "former": [
+        "523226502f1d888a"
+      ]
     },
     "count/13-3": {
       "current": "fe36b67d36524a85",
-      "former": []
+      "former": [
+        "fe36b67d36524a85"
+      ]
     },
     "count/13-4": {
       "current": "83549c2e27d1408c",
-      "former": []
+      "former": [
+        "83549c2e27d1408c"
+      ]
     },
     "count/14-2": {
       "current": "0ffdfc93d30af2eb",
-      "former": []
+      "former": [
+        "0ffdfc93d30af2eb"
+      ]
     },
     "count/14-3": {
       "current": "5bd2f100e670dcc4",
-      "former": []
+      "former": [
+        "5bd2f100e670dcc4"
+      ]
     },
     "count/14-4": {
       "current": "99adc9dd914cde2d",
-      "former": []
+      "former": [
+        "99adc9dd914cde2d"
+      ]
     },
     "count/15-2": {
       "current": "3fcef5ba39145c6e",
-      "former": []
+      "former": [
+        "3fcef5ba39145c6e"
+      ]
     },
     "count/15-3": {
       "current": "453b9657946fbd21",
-      "former": []
+      "former": [
+        "453b9657946fbd21"
+      ]
     },
     "count/15-4": {
       "current": "5c3ad988c177e868",
-      "former": []
+      "former": [
+        "5c3ad988c177e868"
+      ]
     },
     "add/1-1": {
       "current": "1812657c30cf1e7a",
-      "former": []
+      "former": [
+        "a91525523ba0d7dc",
+        "d8e401cbfed574df",
+        "1b39bcca311bdc82",
+        "1812657c30cf1e7a"
+      ]
     },
     "add/1-2": {
       "current": "59d01016a8e645de",
-      "former": []
+      "former": [
+        "abdb03251158c83b",
+        "40821240d4e958f8",
+        "758bd3645a307ce6",
+        "59d01016a8e645de"
+      ]
     },
     "add/1-3": {
       "current": "f514c53c8bf621be",
-      "former": []
+      "former": [
+        "826995a4378b709a",
+        "a2748d2ddc4ce719",
+        "4c9cfaf2285cc3c6",
+        "f514c53c8bf621be"
+      ]
     },
     "add/1-4": {
       "current": "1a15a93a22cb701a",
-      "former": []
+      "former": [
+        "3c01786789677779",
+        "920b2a4a74d851ba",
+        "786f634095cc3722",
+        "1a15a93a22cb701a"
+      ]
     },
     "add/1-5": {
       "current": "4e455ddcdb5964fa",
-      "former": []
+      "former": [
+        "536df65e4b197158",
+        "b1d3b4cf02a48c5b",
+        "b8c5ab827f96a102",
+        "4e455ddcdb5964fa"
+      ]
     },
     "add/1-6": {
       "current": "92f0480e806d0056",
-      "former": []
+      "former": [
+        "30790a49e07f9bb7",
+        "4191d0d4afb9ae74",
+        "fc8ee8acd9ff956e",
+        "92f0480e806d0056"
+      ]
     },
     "add/1-7": {
       "current": "edc07b5c1de7fa36",
-      "former": []
+      "former": [
+        "06741c00fb7aa716",
+        "db3f4b31f4199b95",
+        "2a7aa10af948f04e",
+        "edc07b5c1de7fa36"
+      ]
     },
     "add/1-8": {
       "current": "6756e7ff516b98a1",
-      "former": []
+      "former": [
+        "f11f53fc6583b12e",
+        "12e26a9bca9e2acd",
+        "7df870cd1328ba99",
+        "6756e7ff516b98a1"
+      ]
     },
     "add/2-1": {
       "current": "9d294a4072cead7e",
-      "former": []
+      "former": [
+        "198d289bc897039b",
+        "26c70bb67316a818",
+        "5cb8fe062bc6a606",
+        "9d294a4072cead7e"
+      ]
     },
     "add/2-2": {
       "current": "2c0f7cd6a968f59e",
-      "former": []
+      "former": [
+        "6e1cd02c14fb47f8",
+        "999fc4215521163b",
+        "16188abc66373826",
+        "2c0f7cd6a968f59e"
+      ]
     },
     "add/2-3": {
       "current": "d016e6b07655f93a",
-      "former": []
+      "former": [
+        "663187c5a8b083dd",
+        "b788b3881fb0c8de",
+        "9e9b72c63115d8c2",
+        "d016e6b07655f93a"
+      ]
     },
     "add/2-4": {
       "current": "955a7e4a8d68f05a",
-      "former": []
+      "former": [
+        "c89e055ece98303a",
+        "aadfc35b8de194f9",
+        "3da0f5a829032be2",
+        "955a7e4a8d68f05a"
+      ]
     },
     "add/2-5": {
       "current": "899d03487be823f6",
-      "former": []
+      "former": [
+        "50b191c7d91b5917",
+        "8bc1aea22fbd7f94",
+        "434e11f67b83388e",
+        "899d03487be823f6"
+      ]
     },
     "add/2-6": {
       "current": "738c911e65060e16",
-      "former": []
+      "former": [
+        "c5303ac81a480074",
+        "1c3da1bd4ec44cb7",
+        "35e85be42244e4ae",
+        "738c911e65060e16"
+      ]
     },
     "add/2-7": {
       "current": "084ad795c7186581",
-      "former": []
+      "former": [
+        "0d8760129110bdc2",
+        "9584621952b4fca1",
+        "501eed434c483879",
+        "084ad795c7186581"
+      ]
     },
     "add/3-1": {
       "current": "05b07444c33d507e",
-      "former": []
+      "former": [
+        "dad8ad80d155455a",
+        "b9b71eddc7a8d359",
+        "8bb62b4a539d0a86",
+        "05b07444c33d507e"
+      ]
     },
     "add/3-2": {
       "current": "23ff7216008c745a",
-      "former": []
+      "former": [
+        "dfd3fe27849d2f3d",
+        "fbdd8b3ecba5fdfe",
+        "27f7d43c8e51f062",
+        "23ff7216008c745a"
+      ]
     },
     "add/3-3": {
       "current": "6ed80a4c6bce503a",
-      "former": []
+      "former": [
+        "c43828c6db9fce1c",
+        "8795911b1f6bda9f",
+        "108cfe8a0028f042",
+        "6ed80a4c6bce503a"
+      ]
     },
     "add/3-4": {
       "current": "df0418aa3a7d3c16",
-      "former": []
+      "former": [
+        "5f78a09555e02977",
+        "c14b8accafdb1ab4",
+        "127b9080bc12982e",
+        "df0418aa3a7d3c16"
+      ]
     },
     "add/3-5": {
       "current": "2baa2d6c4ec7e2f6",
-      "former": []
+      "former": [
+        "6e108034771afdd6",
+        "24b9e47120d309d5",
+        "c252655a862e790e",
+        "2baa2d6c4ec7e2f6"
+      ]
     },
     "add/3-6": {
       "current": "a919952317eaa4e1",
-      "former": []
+      "former": [
+        "b8b3b6c4aaf49862",
+        "15a996b7fd175f81",
+        "e5c40b3143cf86d9",
+        "a919952317eaa4e1"
+      ]
     },
     "add/4-1": {
       "current": "6e37f680398c7b7a",
-      "former": []
+      "former": [
+        "c6d5ca21b3e95f99",
+        "f85fa5b04441d61a",
+        "eea2495602355002",
+        "6e37f680398c7b7a"
+      ]
     },
     "add/4-2": {
       "current": "fdc7a536996ce51a",
-      "former": []
+      "former": [
+        "ff0d9ab6147827fa",
+        "03a09a8fc6a0f539",
+        "c2e3dc44674248a2",
+        "fdc7a536996ce51a"
+      ]
     },
     "add/4-3": {
       "current": "68c64e90ae5964b6",
-      "former": []
+      "former": [
+        "743cb3f7522164d7",
+        "076aa386baf918d4",
+        "3bcc47ce54bf3a4e",
+        "68c64e90ae5964b6"
+      ]
     },
     "add/4-4": {
       "current": "ca3c28424fc6b156",
-      "former": []
+      "former": [
+        "96d03f7c18cb6e30",
+        "1d8fe50d4c9336f3",
+        "2cb8107887bc99ee",
+        "ca3c28424fc6b156"
+      ]
     },
     "add/4-5": {
       "current": "56857c1d31f0abc1",
-      "former": []
+      "former": [
+        "18fee1de0a618006",
+        "2d2818614f959465",
+        "c1e3528baa085cb9",
+        "56857c1d31f0abc1"
+      ]
     },
     "add/5-1": {
       "current": "b388f574fadbe27a",
-      "former": []
+      "former": [
+        "1542bb3ebe9963d8",
+        "7bfb25571abc80db",
+        "759b063afb28a082",
+        "b388f574fadbe27a"
+      ]
     },
     "add/5-2": {
       "current": "f86aed9617933dd6",
-      "former": []
+      "former": [
+        "1a72df998e4bce37",
+        "852b21acd779a0f4",
+        "0a4a90ec7f9d0cee",
+        "f86aed9617933dd6"
+      ]
     },
     "add/5-3": {
       "current": "5d43bebc573c59b6",
-      "former": []
+      "former": [
+        "1add2cd033647396",
+        "9c388469563aee15",
+        "5bbce30a6a9751ce",
+        "5d43bebc573c59b6"
+      ]
     },
     "add/5-4": {
       "current": "0770f8674a978d21",
-      "former": []
+      "former": [
+        "74061174bc8c6ea6",
+        "f56ba9dbd103ac45",
+        "b8b6ae1d91a72b19",
+        "0770f8674a978d21"
+      ]
     },
     "add/6-1": {
       "current": "f6af72e8e17ba576",
-      "former": []
+      "former": [
+        "8bcbdbb7a2690d97",
+        "62fac4125a557014",
+        "2cb7ae565133360e",
+        "f6af72e8e17ba576"
+      ]
     },
     "add/6-2": {
       "current": "39208c7674af2d96",
-      "former": []
+      "former": [
+        "261162288ee94ef4",
+        "30f16b3d4971db37",
+        "96e7eef4a871c62e",
+        "39208c7674af2d96"
+      ]
     },
     "add/6-3": {
       "current": "b3b8945d44279901",
-      "former": []
+      "former": [
+        "f5561ef290ebb842",
+        "e989ac49bcdbb921",
+        "c25ecd4b540567f9",
+        "b3b8945d44279901"
+      ]
     },
     "add/7-1": {
       "current": "b48a71ec8e838876",
-      "former": []
+      "former": [
+        "b8ce526c4b434c56",
+        "45c6b0f94f039855",
+        "daf484fa95d7988e",
+        "b48a71ec8e838876"
+      ]
     },
     "add/7-2": {
       "current": "88f71b33bfd6d661",
-      "former": []
+      "former": [
+        "d1cc31bc9e3e56e2",
+        "1bcdaa4f8aeb5e01",
+        "01dd1eb9919dba59",
+        "88f71b33bfd6d661"
+      ]
     },
     "add/8-1": {
       "current": "758765c576051e41",
-      "former": []
+      "former": [
+        "c3037336204abf8e",
+        "7024faa1e40d15ed",
+        "fbb89da3f5709139",
+        "758765c576051e41"
+      ]
     },
     "pattern/0-0": {
       "current": "90b694036e196f87",
@@ -3079,1007 +4222,1509 @@ window.FK.puzzleReviewCompatibility = {
     },
     "nature/clue-0": {
       "current": "17208b9b531c2109",
-      "former": []
+      "former": [
+        "17208b9b531c2109"
+      ]
     },
     "nature/clue-1": {
       "current": "7238ad89f4b52fc9",
-      "former": []
+      "former": [
+        "7238ad89f4b52fc9"
+      ]
     },
     "nature/clue-2": {
       "current": "2fa0771460403906",
-      "former": []
+      "former": [
+        "2fa0771460403906"
+      ]
     },
     "nature/clue-3": {
       "current": "b86f1e4751089707",
-      "former": []
+      "former": [
+        "b86f1e4751089707"
+      ]
     },
     "nature/clue-4": {
       "current": "a6853e4c37597542",
-      "former": []
+      "former": [
+        "a6853e4c37597542"
+      ]
     },
     "nature/clue-5": {
       "current": "8f74d6202b82c482",
-      "former": []
+      "former": [
+        "8f74d6202b82c482"
+      ]
     },
     "nature/clue-6": {
       "current": "ed2179f6df0d5fb6",
-      "former": []
+      "former": [
+        "ed2179f6df0d5fb6"
+      ]
     },
     "nature/clue-7": {
       "current": "a1849aefaa958d87",
-      "former": []
+      "former": [
+        "a1849aefaa958d87"
+      ]
     },
     "nature/clue-8": {
       "current": "f9be49486cec865a",
-      "former": []
+      "former": [
+        "f9be49486cec865a"
+      ]
     },
     "nature/clue-9": {
       "current": "631d0f636622effd",
-      "former": []
+      "former": [
+        "631d0f636622effd"
+      ]
     },
     "nature/clue-10": {
       "current": "c8bca35fb9af76ab",
-      "former": []
+      "former": [
+        "c8bca35fb9af76ab"
+      ]
     },
     "nature/clue-11": {
       "current": "061d2f68e73cbd86",
-      "former": []
+      "former": [
+        "061d2f68e73cbd86"
+      ]
     },
     "nature/clue-12": {
       "current": "7c813cbb6a9ce123",
-      "former": []
+      "former": [
+        "7c813cbb6a9ce123"
+      ]
     },
     "nature/clue-13": {
       "current": "e6c226c74acfa853",
-      "former": []
+      "former": [
+        "e6c226c74acfa853"
+      ]
     },
     "nature/clue-14": {
       "current": "ac97e24d5b5ed9af",
-      "former": []
+      "former": [
+        "ac97e24d5b5ed9af"
+      ]
     },
     "nature/clue-15": {
       "current": "929d073491f15238",
-      "former": []
+      "former": [
+        "929d073491f15238"
+      ]
     },
     "nature/clue-16": {
       "current": "be50794dd51bcaf7",
-      "former": []
+      "former": [
+        "be50794dd51bcaf7"
+      ]
     },
     "nature/clue-17": {
       "current": "c0cf4b24d411e23c",
-      "former": []
+      "former": [
+        "c0cf4b24d411e23c"
+      ]
     },
     "nature/clue-18": {
       "current": "1eb9abcf6b2bc94d",
-      "former": []
+      "former": [
+        "1eb9abcf6b2bc94d"
+      ]
     },
     "nature/clue-19": {
       "current": "08ab447868adaa5c",
-      "former": []
+      "former": [
+        "08ab447868adaa5c"
+      ]
     },
     "nature/clue-20": {
       "current": "6b7dd86016986fe4",
-      "former": []
+      "former": [
+        "6b7dd86016986fe4"
+      ]
     },
     "nature/clue-21": {
       "current": "bfa41add7a35673d",
-      "former": []
+      "former": [
+        "bfa41add7a35673d"
+      ]
     },
     "nature/clue-22": {
       "current": "29ef623f035d5b99",
-      "former": []
+      "former": [
+        "29ef623f035d5b99"
+      ]
     },
     "nature/clue-23": {
       "current": "33127b8470dd79b6",
-      "former": []
+      "former": [
+        "33127b8470dd79b6"
+      ]
     },
     "nature/clue-24": {
       "current": "1e5925b406f3429a",
-      "former": []
+      "former": [
+        "1e5925b406f3429a"
+      ]
     },
     "rocket/5-1": {
       "current": "ccbaefe6c9594bde",
-      "former": []
+      "former": [
+        "ccbaefe6c9594bde"
+      ]
     },
     "rocket/5-2": {
       "current": "a0b763d6c1ff361e",
-      "former": []
+      "former": [
+        "a0b763d6c1ff361e"
+      ]
     },
     "rocket/5-3": {
       "current": "74c99742c734735a",
-      "former": []
+      "former": [
+        "74c99742c734735a"
+      ]
     },
     "rocket/5-4": {
       "current": "d022e9828185d19a",
-      "former": []
+      "former": [
+        "d022e9828185d19a"
+      ]
     },
     "rocket/6-1": {
       "current": "93bf1c626c09121a",
-      "former": []
+      "former": [
+        "93bf1c626c09121a"
+      ]
     },
     "rocket/6-2": {
       "current": "67d94cd2e8d82c1e",
-      "former": []
+      "former": [
+        "67d94cd2e8d82c1e"
+      ]
     },
     "rocket/6-3": {
       "current": "4dc37136093db69e",
-      "former": []
+      "former": [
+        "4dc37136093db69e"
+      ]
     },
     "rocket/6-4": {
       "current": "666e655e6ddc931a",
-      "former": []
+      "former": [
+        "666e655e6ddc931a"
+      ]
     },
     "rocket/6-5": {
       "current": "101d91228a30e11a",
-      "former": []
+      "former": [
+        "101d91228a30e11a"
+      ]
     },
     "rocket/7-1": {
       "current": "85b2e1ae8e038ada",
-      "former": []
+      "former": [
+        "85b2e1ae8e038ada"
+      ]
     },
     "rocket/7-2": {
       "current": "304063ae8cf0cb9a",
-      "former": []
+      "former": [
+        "304063ae8cf0cb9a"
+      ]
     },
     "rocket/7-3": {
       "current": "2208fd0ac7a533de",
-      "former": []
+      "former": [
+        "2208fd0ac7a533de"
+      ]
     },
     "rocket/7-4": {
       "current": "38df963ad8f3819e",
-      "former": []
+      "former": [
+        "38df963ad8f3819e"
+      ]
     },
     "rocket/7-5": {
       "current": "3b98500eac2b59da",
-      "former": []
+      "former": [
+        "3b98500eac2b59da"
+      ]
     },
     "rocket/7-6": {
       "current": "4f2960eea110da9a",
-      "former": []
+      "former": [
+        "4f2960eea110da9a"
+      ]
     },
     "rocket/8-1": {
       "current": "8b090c92dbd07a96",
-      "former": []
+      "former": [
+        "8b090c92dbd07a96"
+      ]
     },
     "rocket/8-2": {
       "current": "e7f8621a43f8049a",
-      "former": []
+      "former": [
+        "e7f8621a43f8049a"
+      ]
     },
     "rocket/8-3": {
       "current": "91c4cfa6604c529a",
-      "former": []
+      "former": [
+        "91c4cfa6604c529a"
+      ]
     },
     "rocket/8-4": {
       "current": "422b56562302cb1e",
-      "former": []
+      "former": [
+        "422b56562302cb1e"
+      ]
     },
     "rocket/8-5": {
       "current": "e110607a8e99d79e",
-      "former": []
+      "former": [
+        "e110607a8e99d79e"
+      ]
     },
     "rocket/8-6": {
       "current": "354d35fa1bc8759a",
-      "former": []
+      "former": [
+        "354d35fa1bc8759a"
+      ]
     },
     "rocket/8-7": {
       "current": "1300e3a64224839a",
-      "former": []
+      "former": [
+        "1300e3a64224839a"
+      ]
     },
     "rocket/9-1": {
       "current": "12c723ee22e872d6",
-      "former": []
+      "former": [
+        "12c723ee22e872d6"
+      ]
     },
     "rocket/9-2": {
       "current": "0bc5967e47ac6016",
-      "former": []
+      "former": [
+        "0bc5967e47ac6016"
+      ]
     },
     "rocket/9-3": {
       "current": "3d1c44921b7b8f5a",
-      "former": []
+      "former": [
+        "3d1c44921b7b8f5a"
+      ]
     },
     "rocket/9-4": {
       "current": "5d755e72a3850f9a",
-      "former": []
+      "former": [
+        "5d755e72a3850f9a"
+      ]
     },
     "rocket/9-5": {
       "current": "31db50c601cfd2de",
-      "former": []
+      "former": [
+        "31db50c601cfd2de"
+      ]
     },
     "rocket/9-6": {
       "current": "a53fbb76047d7d1e",
-      "former": []
+      "former": [
+        "a53fbb76047d7d1e"
+      ]
     },
     "rocket/9-7": {
       "current": "8ea50a52fd53c05a",
-      "former": []
+      "former": [
+        "8ea50a52fd53c05a"
+      ]
     },
     "rocket/9-8": {
       "current": "47ffdc225d42219a",
-      "former": []
+      "former": [
+        "47ffdc225d42219a"
+      ]
     },
     "rocket/10-1": {
       "current": "afa84ded8d823141",
-      "former": []
+      "former": [
+        "afa84ded8d823141"
+      ]
     },
     "rocket/10-2": {
       "current": "1520c0c01cae7f36",
-      "former": []
+      "former": [
+        "1520c0c01cae7f36"
+      ]
     },
     "rocket/10-3": {
       "current": "dbf6ae48fe37ca36",
-      "former": []
+      "former": [
+        "dbf6ae48fe37ca36"
+      ]
     },
     "rocket/10-4": {
       "current": "834804c424cc4bba",
-      "former": []
+      "former": [
+        "834804c424cc4bba"
+      ]
     },
     "rocket/10-5": {
       "current": "afdddc1c4235b23a",
-      "former": []
+      "former": [
+        "afdddc1c4235b23a"
+      ]
     },
     "rocket/10-6": {
       "current": "f4c58f884c26de3e",
-      "former": []
+      "former": [
+        "f4c58f884c26de3e"
+      ]
     },
     "rocket/10-7": {
       "current": "b80778b01e868c3e",
-      "former": []
+      "former": [
+        "b80778b01e868c3e"
+      ]
     },
     "rocket/10-8": {
       "current": "5869531403b817ba",
-      "former": []
+      "former": [
+        "5869531403b817ba"
+      ]
     },
     "rocket/10-9": {
       "current": "1b29a60c1719be3a",
-      "former": []
+      "former": [
+        "1b29a60c1719be3a"
+      ]
     },
     "picnic/2-1": {
       "current": "5792de7821d8d8de",
-      "former": []
+      "former": [
+        "5792de7821d8d8de"
+      ]
     },
     "picnic/2-2": {
       "current": "1667f3bf7cb4f01b",
-      "former": []
+      "former": [
+        "1667f3bf7cb4f01b"
+      ]
     },
     "picnic/2-3": {
       "current": "2f13a256b56c5a58",
-      "former": []
+      "former": [
+        "2f13a256b56c5a58"
+      ]
     },
     "picnic/2-4": {
       "current": "b509a1c11ba8e091",
-      "former": []
+      "former": [
+        "b509a1c11ba8e091"
+      ]
     },
     "picnic/2-5": {
       "current": "8ad66165d81d2e69",
-      "former": []
+      "former": [
+        "8ad66165d81d2e69"
+      ]
     },
     "picnic/2-6": {
       "current": "feef8a64a7b22a08",
-      "former": []
+      "former": [
+        "feef8a64a7b22a08"
+      ]
     },
     "picnic/2-7": {
       "current": "0fcea5d381b7cdaf",
-      "former": []
+      "former": [
+        "0fcea5d381b7cdaf"
+      ]
     },
     "picnic/2-8": {
       "current": "190907ce6b456742",
-      "former": []
+      "former": [
+        "190907ce6b456742"
+      ]
     },
     "picnic/2-9": {
       "current": "d3d0b361e9bb5eed",
-      "former": []
+      "former": [
+        "d3d0b361e9bb5eed"
+      ]
     },
     "picnic/2-10": {
       "current": "ac73f5228fe93efe",
-      "former": []
+      "former": [
+        "ac73f5228fe93efe"
+      ]
     },
     "picnic/3-1": {
       "current": "7ebb478dcaf7b1bf",
-      "former": []
+      "former": [
+        "7ebb478dcaf7b1bf"
+      ]
     },
     "picnic/3-2": {
       "current": "451929b384992839",
-      "former": []
+      "former": [
+        "451929b384992839"
+      ]
     },
     "picnic/3-3": {
       "current": "3b2d04f950165237",
-      "former": []
+      "former": [
+        "3b2d04f950165237"
+      ]
     },
     "picnic/3-4": {
       "current": "bc1ec4ac259a992a",
-      "former": []
+      "former": [
+        "bc1ec4ac259a992a"
+      ]
     },
     "picnic/3-5": {
       "current": "8623d280bbc7958c",
-      "former": []
+      "former": [
+        "8623d280bbc7958c"
+      ]
     },
     "picnic/3-6": {
       "current": "be8a66c8251aa862",
-      "former": []
+      "former": [
+        "be8a66c8251aa862"
+      ]
     },
     "picnic/4-1": {
       "current": "d69cad9e87904718",
-      "former": []
+      "former": [
+        "d69cad9e87904718"
+      ]
     },
     "picnic/4-2": {
       "current": "5141f1bfb6e74757",
-      "former": []
+      "former": [
+        "5141f1bfb6e74757"
+      ]
     },
     "picnic/4-3": {
       "current": "9edb13ed16e2a56d",
-      "former": []
+      "former": [
+        "9edb13ed16e2a56d"
+      ]
     },
     "picnic/4-4": {
       "current": "b5f4039ee869200e",
-      "former": []
+      "former": [
+        "b5f4039ee869200e"
+      ]
     },
     "picnic/4-5": {
       "current": "1fef2db61aa7b24a",
-      "former": []
+      "former": [
+        "1fef2db61aa7b24a"
+      ]
     },
     "picnic/started-2-3": {
       "current": "33455572fc76ef96",
-      "former": []
+      "former": [
+        "33455572fc76ef96"
+      ]
     },
     "picnic/started-2-4": {
       "current": "84ca0aacab07665c",
-      "former": []
+      "former": [
+        "84ca0aacab07665c"
+      ]
     },
     "picnic/started-3-2": {
       "current": "2fce1a498b2e490b",
-      "former": []
+      "former": [
+        "2fce1a498b2e490b"
+      ]
     },
     "picnic/started-4-2": {
       "current": "e613d804d1cb4098",
-      "former": []
+      "former": [
+        "e613d804d1cb4098"
+      ]
     },
     "syllable/word-0": {
       "current": "5b8c0731479ff673",
-      "former": []
+      "former": [
+        "5b8c0731479ff673"
+      ]
     },
     "syllable/word-1": {
       "current": "88c8c98ebbfc899c",
-      "former": []
+      "former": [
+        "88c8c98ebbfc899c"
+      ]
     },
     "syllable/word-2": {
       "current": "d28c47e503b170c9",
-      "former": []
+      "former": [
+        "d28c47e503b170c9"
+      ]
     },
     "syllable/word-3": {
       "current": "99d37efee1cbb548",
-      "former": []
+      "former": [
+        "99d37efee1cbb548"
+      ]
     },
     "syllable/word-4": {
       "current": "ce1e8d7846e18c80",
-      "former": []
+      "former": [
+        "ce1e8d7846e18c80"
+      ]
     },
     "syllable/word-5": {
       "current": "72dddfddceb69861",
-      "former": []
+      "former": [
+        "72dddfddceb69861"
+      ]
     },
     "syllable/word-6": {
       "current": "0a8b8c56813f822c",
-      "former": []
+      "former": [
+        "0a8b8c56813f822c"
+      ]
     },
     "syllable/word-7": {
       "current": "7ac24da507e96cc1",
-      "former": []
+      "former": [
+        "7ac24da507e96cc1"
+      ]
     },
     "syllable/word-8": {
       "current": "0f097c89387a0663",
-      "former": []
+      "former": [
+        "0f097c89387a0663"
+      ]
     },
     "syllable/word-9": {
       "current": "d1a514f511408465",
-      "former": []
+      "former": [
+        "d1a514f511408465"
+      ]
     },
     "syllable/word-10": {
       "current": "124a2ca781d05e23",
-      "former": []
+      "former": [
+        "124a2ca781d05e23"
+      ]
     },
     "syllable/word-11": {
       "current": "ee4d1a743978548e",
-      "former": []
+      "former": [
+        "ee4d1a743978548e"
+      ]
     },
     "syllable/word-12": {
       "current": "c0a326bcb4eee7a2",
-      "former": []
+      "former": [
+        "c0a326bcb4eee7a2"
+      ]
     },
     "syllable/word-13": {
       "current": "6841a6b464a0d7f0",
-      "former": []
+      "former": [
+        "6841a6b464a0d7f0"
+      ]
     },
     "syllable/word-14": {
       "current": "7da1ef2ad8bad1f4",
-      "former": []
+      "former": [
+        "7da1ef2ad8bad1f4"
+      ]
     },
     "syllable/word-15": {
       "current": "48be9cd66522c17a",
-      "former": []
+      "former": [
+        "48be9cd66522c17a"
+      ]
     },
     "syllable/word-16": {
       "current": "ce89da1600ed6b0e",
-      "former": []
+      "former": [
+        "ce89da1600ed6b0e"
+      ]
     },
     "syllable/word-17": {
       "current": "9e32b56926d5ee45",
-      "former": []
+      "former": [
+        "9e32b56926d5ee45"
+      ]
     },
     "syllable/word-18": {
       "current": "1e510631b15a0117",
-      "former": []
+      "former": [
+        "1e510631b15a0117"
+      ]
     },
     "syllable/word-19": {
       "current": "627b4f2a7be374d0",
-      "former": []
+      "former": [
+        "627b4f2a7be374d0"
+      ]
     },
     "syllable/word-20": {
       "current": "99129091e68a6b31",
-      "former": []
+      "former": [
+        "99129091e68a6b31"
+      ]
     },
     "syllable/word-21": {
       "current": "e15f3b256b28da6d",
-      "former": []
+      "former": [
+        "e15f3b256b28da6d"
+      ]
     },
     "syllable/word-22": {
       "current": "cf3d553f4340c18b",
-      "former": []
+      "former": [
+        "cf3d553f4340c18b"
+      ]
     },
     "syllable/word-23": {
       "current": "139cf07f61d2c787",
-      "former": []
+      "former": [
+        "139cf07f61d2c787"
+      ]
     },
     "syllable/word-24": {
       "current": "b546ed269440d154",
-      "former": []
+      "former": [
+        "b546ed269440d154"
+      ]
     },
     "syllable/word-25": {
       "current": "c67e1c1407b74aa6",
-      "former": []
+      "former": [
+        "c67e1c1407b74aa6"
+      ]
     },
     "syllable/word-26": {
       "current": "c5d5be9a72bfba3c",
-      "former": []
+      "former": [
+        "c5d5be9a72bfba3c"
+      ]
     },
     "syllable/word-27": {
       "current": "6846630d18d9f657",
-      "former": []
+      "former": [
+        "6846630d18d9f657"
+      ]
     },
     "syllable/word-28": {
       "current": "a8770445ce04a501",
-      "former": []
+      "former": [
+        "a8770445ce04a501"
+      ]
     },
     "syllable/word-29": {
       "current": "9221fcd47386e406",
-      "former": []
+      "former": [
+        "9221fcd47386e406"
+      ]
     },
     "syllable/word-30": {
       "current": "c368076fb9000ab5",
-      "former": []
+      "former": [
+        "c368076fb9000ab5"
+      ]
     },
     "syllable/word-31": {
       "current": "fa5a2e3166c30ee1",
-      "former": []
+      "former": [
+        "fa5a2e3166c30ee1"
+      ]
     },
     "syllable/word-32": {
       "current": "a2d2aa5493d82654",
-      "former": []
+      "former": [
+        "a2d2aa5493d82654"
+      ]
     },
     "syllable/word-33": {
       "current": "7cd081d9cf9601b5",
-      "former": []
+      "former": [
+        "7cd081d9cf9601b5"
+      ]
     },
     "syllable/word-34": {
       "current": "d10d0a13fe3a244b",
-      "former": []
+      "former": [
+        "d10d0a13fe3a244b"
+      ]
     },
     "syllable/word-35": {
       "current": "5101df636200ad3d",
-      "former": []
+      "former": [
+        "5101df636200ad3d"
+      ]
     },
     "syllable/word-36": {
       "current": "d45a317018b864d2",
-      "former": []
+      "former": [
+        "d45a317018b864d2"
+      ]
     },
     "syllable/word-37": {
       "current": "7e9b56eb8fa26dc3",
-      "former": []
+      "former": [
+        "7e9b56eb8fa26dc3"
+      ]
     },
     "syllable/word-38": {
       "current": "127c8bfbbf3b71d9",
-      "former": []
+      "former": [
+        "127c8bfbbf3b71d9"
+      ]
     },
     "robot/0-0": {
       "current": "7c7ad784a6f089a2",
-      "former": []
+      "former": [
+        "7c7ad784a6f089a2"
+      ]
     },
     "robot/0-1": {
       "current": "501aa965fe6a6a87",
-      "former": []
+      "former": [
+        "501aa965fe6a6a87"
+      ]
     },
     "robot/0-2": {
       "current": "643490d86d570ec4",
-      "former": []
+      "former": [
+        "643490d86d570ec4"
+      ]
     },
     "robot/0-3": {
       "current": "dd322ecb2a9db141",
-      "former": []
+      "former": [
+        "dd322ecb2a9db141"
+      ]
     },
     "robot/0-4": {
       "current": "4ea33acd3f78aed1",
-      "former": []
+      "former": [
+        "4ea33acd3f78aed1"
+      ]
     },
     "robot/0-5": {
       "current": "4fe5c5dc0f3868f4",
-      "former": []
+      "former": [
+        "4fe5c5dc0f3868f4"
+      ]
     },
     "robot/1-0": {
       "current": "cda8a1a290bc546c",
-      "former": []
+      "former": [
+        "cda8a1a290bc546c"
+      ]
     },
     "robot/1-1": {
       "current": "bcacddad4fcd1ce9",
-      "former": []
+      "former": [
+        "bcacddad4fcd1ce9"
+      ]
     },
     "robot/1-2": {
       "current": "3e5a1d8613b6b9ca",
-      "former": []
+      "former": [
+        "3e5a1d8613b6b9ca"
+      ]
     },
     "robot/1-3": {
       "current": "4750f883bf0cadef",
-      "former": []
+      "former": [
+        "4750f883bf0cadef"
+      ]
     },
     "robot/1-4": {
       "current": "d1342ea571faee7f",
-      "former": []
+      "former": [
+        "d1342ea571faee7f"
+      ]
     },
     "robot/1-5": {
       "current": "9e031f124394dc7a",
-      "former": []
+      "former": [
+        "9e031f124394dc7a"
+      ]
     },
     "robot/2-0": {
       "current": "1a3700fa306a5e14",
-      "former": []
+      "former": [
+        "1a3700fa306a5e14"
+      ]
     },
     "robot/2-1": {
       "current": "00aa39b359958e71",
-      "former": []
+      "former": [
+        "00aa39b359958e71"
+      ]
     },
     "robot/2-2": {
       "current": "4cc27c1010fddf92",
-      "former": []
+      "former": [
+        "4cc27c1010fddf92"
+      ]
     },
     "robot/2-3": {
       "current": "c1c12c139897f657",
-      "former": []
+      "former": [
+        "c1c12c139897f657"
+      ]
     },
     "robot/2-4": {
       "current": "fd341d1d473cab07",
-      "former": []
+      "former": [
+        "fd341d1d473cab07"
+      ]
     },
     "robot/2-5": {
       "current": "a86754f82e898922",
-      "former": []
+      "former": [
+        "a86754f82e898922"
+      ]
     },
     "robot/3-0": {
       "current": "bfc470003e41881a",
-      "former": []
+      "former": [
+        "bfc470003e41881a"
+      ]
     },
     "robot/3-1": {
       "current": "f235e8ff897167df",
-      "former": []
+      "former": [
+        "f235e8ff897167df"
+      ]
     },
     "robot/3-2": {
       "current": "b4bf11be9fbe195c",
-      "former": []
+      "former": [
+        "b4bf11be9fbe195c"
+      ]
     },
     "robot/3-3": {
       "current": "3a7d0bf78b1b1b79",
-      "former": []
+      "former": [
+        "3a7d0bf78b1b1b79"
+      ]
     },
     "robot/3-4": {
       "current": "5e5442d14d0ae6a9",
-      "former": []
+      "former": [
+        "5e5442d14d0ae6a9"
+      ]
     },
     "robot/3-5": {
       "current": "4b2f213eeeb6126c",
-      "former": []
+      "former": [
+        "4b2f213eeeb6126c"
+      ]
     },
     "robot/4-0": {
       "current": "a9776413fcd1d5f7",
-      "former": []
+      "former": [
+        "a9776413fcd1d5f7"
+      ]
     },
     "robot/4-1": {
       "current": "79c1d368e73466f2",
-      "former": []
+      "former": [
+        "79c1d368e73466f2"
+      ]
     },
     "robot/4-2": {
       "current": "efb65f2737fab391",
-      "former": []
+      "former": [
+        "efb65f2737fab391"
+      ]
     },
     "robot/4-3": {
       "current": "1779f7d6c5b886f4",
-      "former": []
+      "former": [
+        "1779f7d6c5b886f4"
+      ]
     },
     "robot/4-4": {
       "current": "b0735abe3213a784",
-      "former": []
+      "former": [
+        "b0735abe3213a784"
+      ]
     },
     "robot/4-5": {
       "current": "a53ed4b938401b81",
-      "former": []
+      "former": [
+        "a53ed4b938401b81"
+      ]
     },
     "sequence/story-0": {
       "current": "ede07f8548ebd737",
-      "former": []
+      "former": [
+        "ede07f8548ebd737"
+      ]
     },
     "sequence/story-1": {
       "current": "c4a530c3f35e887d",
-      "former": []
+      "former": [
+        "c4a530c3f35e887d"
+      ]
     },
     "sequence/story-2": {
       "current": "baf592a43b11f36c",
-      "former": []
+      "former": [
+        "baf592a43b11f36c"
+      ]
     },
     "sequence/story-3": {
       "current": "5a643461e2486989",
-      "former": []
+      "former": [
+        "5a643461e2486989"
+      ]
     },
     "sequence/story-4": {
       "current": "11f183ab58dcbdd3",
-      "former": []
+      "former": [
+        "11f183ab58dcbdd3"
+      ]
     },
     "sequence/story-5": {
       "current": "ba7f6c8a62c9c5f8",
-      "former": []
+      "former": [
+        "ba7f6c8a62c9c5f8"
+      ]
     },
     "sequence/story-6": {
       "current": "b85c6834038c89cc",
-      "former": []
+      "former": [
+        "b85c6834038c89cc"
+      ]
     },
     "sequence/story-7": {
       "current": "bec2e2db3cb38c17",
-      "former": []
+      "former": [
+        "bec2e2db3cb38c17"
+      ]
     },
     "sequence/story-8": {
       "current": "cbc307f1acb22ca1",
-      "former": []
+      "former": [
+        "cbc307f1acb22ca1"
+      ]
     },
     "sequence/story-9": {
       "current": "573ddf59b41678e3",
-      "former": []
+      "former": [
+        "573ddf59b41678e3"
+      ]
     },
     "sequence/story-10": {
       "current": "a86c857fc864b287",
-      "former": []
+      "former": [
+        "a86c857fc864b287"
+      ]
     },
     "sequence/story-11": {
       "current": "c9b486bb3d2449f5",
-      "former": []
+      "former": [
+        "c9b486bb3d2449f5"
+      ]
     },
     "sequence/story-12": {
       "current": "70d7bf38a0227cd6",
-      "former": []
+      "former": [
+        "70d7bf38a0227cd6"
+      ]
     },
     "sequence/story-13": {
       "current": "488585f691b6cd5e",
-      "former": []
+      "former": [
+        "488585f691b6cd5e"
+      ]
     },
     "sequence/story-14": {
       "current": "fda3b49ce695e27e",
-      "former": []
+      "former": [
+        "fda3b49ce695e27e"
+      ]
     },
     "sequence/story-15": {
       "current": "fbf1a84b74cccff3",
-      "former": []
+      "former": [
+        "fbf1a84b74cccff3"
+      ]
     },
     "sequence/story-16": {
       "current": "7c0d80990e34f167",
-      "former": []
+      "former": [
+        "7c0d80990e34f167"
+      ]
     },
     "sequence/story-17": {
       "current": "354389e7d6260d35",
-      "former": []
+      "former": [
+        "354389e7d6260d35"
+      ]
     },
     "sequence/story-18": {
       "current": "81645fc8ae289016",
-      "former": []
+      "former": [
+        "81645fc8ae289016"
+      ]
     },
     "sequence/story-19": {
       "current": "f34f520a9322b8e4",
-      "former": []
+      "former": [
+        "f34f520a9322b8e4"
+      ]
     },
     "sequence/story-20": {
       "current": "d39525032583c3b9",
-      "former": []
+      "former": [
+        "d39525032583c3b9"
+      ]
     },
     "sequence/story-21": {
       "current": "34b7c7d07af64390",
-      "former": []
+      "former": [
+        "34b7c7d07af64390"
+      ]
     },
     "sequence/story-22": {
       "current": "c667fee441c2eb54",
-      "former": []
+      "former": [
+        "c667fee441c2eb54"
+      ]
     },
     "sequence/story-23": {
       "current": "e6cb7a29b6fd06ab",
-      "former": []
+      "former": [
+        "e6cb7a29b6fd06ab"
+      ]
     },
     "sequence/story-24": {
       "current": "a8e1b7586f9ea206",
-      "former": []
+      "former": [
+        "a8e1b7586f9ea206"
+      ]
     },
     "treasure/0-0": {
       "current": "927174e75d02bdad",
-      "former": []
+      "former": [
+        "927174e75d02bdad"
+      ]
     },
     "treasure/0-1": {
       "current": "0a982b2dd39baad9",
-      "former": []
+      "former": [
+        "0a982b2dd39baad9"
+      ]
     },
     "treasure/0-2": {
       "current": "fc298da292649430",
-      "former": []
+      "former": [
+        "fc298da292649430"
+      ]
     },
     "treasure/0-3": {
       "current": "08ccd3674bf32a7b",
-      "former": []
+      "former": [
+        "08ccd3674bf32a7b"
+      ]
     },
     "treasure/1-0": {
       "current": "1f9aa7b2f1a1670c",
-      "former": []
+      "former": [
+        "1f9aa7b2f1a1670c"
+      ]
     },
     "treasure/1-1": {
       "current": "3e41f817f6845551",
-      "former": []
+      "former": [
+        "3e41f817f6845551"
+      ]
     },
     "treasure/1-2": {
       "current": "8310312cf2af7c20",
-      "former": []
+      "former": [
+        "8310312cf2af7c20"
+      ]
     },
     "treasure/1-3": {
       "current": "ea493d365c3a341a",
-      "former": []
+      "former": [
+        "ea493d365c3a341a"
+      ]
     },
     "treasure/2-0": {
       "current": "858f841384c9030f",
-      "former": []
+      "former": [
+        "858f841384c9030f"
+      ]
     },
     "treasure/2-1": {
       "current": "a905c2a0c59a93f2",
-      "former": []
+      "former": [
+        "a905c2a0c59a93f2"
+      ]
     },
     "treasure/2-2": {
       "current": "616721fc339318e8",
-      "former": []
+      "former": [
+        "616721fc339318e8"
+      ]
     },
     "treasure/2-3": {
       "current": "ae52223d72e9f829",
-      "former": []
+      "former": [
+        "ae52223d72e9f829"
+      ]
     },
     "treasure/3-0": {
       "current": "bb2ac3e903531969",
-      "former": []
+      "former": [
+        "bb2ac3e903531969"
+      ]
     },
     "treasure/3-1": {
       "current": "de4d0ad987140253",
-      "former": []
+      "former": [
+        "de4d0ad987140253"
+      ]
     },
     "treasure/3-2": {
       "current": "33151a1b84ff13a9",
-      "former": []
+      "former": [
+        "33151a1b84ff13a9"
+      ]
     },
     "treasure/3-3": {
       "current": "3859f21c70008624",
-      "former": []
+      "former": [
+        "3859f21c70008624"
+      ]
     },
     "treasure/4-0": {
       "current": "fdddebfa1cc65754",
-      "former": []
+      "former": [
+        "fdddebfa1cc65754"
+      ]
     },
     "treasure/4-1": {
       "current": "b4aee22a510bd04c",
-      "former": []
+      "former": [
+        "b4aee22a510bd04c"
+      ]
     },
     "treasure/4-2": {
       "current": "bb7bbb682db5034e",
-      "former": []
+      "former": [
+        "bb7bbb682db5034e"
+      ]
     },
     "treasure/4-3": {
       "current": "83d974bdbdbc83a3",
-      "former": []
+      "former": [
+        "83d974bdbdbc83a3"
+      ]
     },
     "treasure/5-0": {
       "current": "83ddb69aed79eab4",
-      "former": []
+      "former": [
+        "83ddb69aed79eab4"
+      ]
     },
     "treasure/5-1": {
       "current": "6a02562e8fd2c4c2",
-      "former": []
+      "former": [
+        "6a02562e8fd2c4c2"
+      ]
     },
     "treasure/5-2": {
       "current": "f7197776eed55d22",
-      "former": []
+      "former": [
+        "f7197776eed55d22"
+      ]
     },
     "treasure/5-3": {
       "current": "cad468bbef200575",
-      "former": []
+      "former": [
+        "cad468bbef200575"
+      ]
     },
     "treasure/6-0": {
       "current": "b6d67aea5d973796",
-      "former": []
+      "former": [
+        "b6d67aea5d973796"
+      ]
     },
     "treasure/6-1": {
       "current": "292cd6b133c00e67",
-      "former": []
+      "former": [
+        "292cd6b133c00e67"
+      ]
     },
     "treasure/6-2": {
       "current": "ef04f5526dbf0736",
-      "former": []
+      "former": [
+        "ef04f5526dbf0736"
+      ]
     },
     "treasure/6-3": {
       "current": "26db91db296a27b7",
-      "former": []
+      "former": [
+        "26db91db296a27b7"
+      ]
     },
     "treasure/7-0": {
       "current": "86d34e1e788c09bc",
-      "former": []
+      "former": [
+        "86d34e1e788c09bc"
+      ]
     },
     "treasure/7-1": {
       "current": "d60e6827c969d2d5",
-      "former": []
+      "former": [
+        "d60e6827c969d2d5"
+      ]
     },
     "treasure/7-2": {
       "current": "e63be122509f9e16",
-      "former": []
+      "former": [
+        "e63be122509f9e16"
+      ]
     },
     "treasure/7-3": {
       "current": "63bc8bb958c7fe17",
-      "former": []
+      "former": [
+        "63bc8bb958c7fe17"
+      ]
     },
     "neighbours/1-both": {
       "current": "0835287bc3c00fff",
-      "former": []
+      "former": [
+        "0835287bc3c00fff"
+      ]
     },
     "neighbours/1-left": {
       "current": "c3d8c20f6549e8d5",
-      "former": []
+      "former": [
+        "c3d8c20f6549e8d5"
+      ]
     },
     "neighbours/2-both": {
       "current": "bfcfa3be4cf02e64",
-      "former": []
+      "former": [
+        "bfcfa3be4cf02e64"
+      ]
     },
     "neighbours/2-left": {
       "current": "922d613e018ee24e",
-      "former": []
+      "former": [
+        "922d613e018ee24e"
+      ]
     },
     "neighbours/3-both": {
       "current": "710284be81ce88e4",
-      "former": []
+      "former": [
+        "710284be81ce88e4"
+      ]
     },
     "neighbours/3-left": {
       "current": "dcf11046402e060e",
-      "former": []
+      "former": [
+        "dcf11046402e060e"
+      ]
     },
     "neighbours/4-both": {
       "current": "4bfdf78677492564",
-      "former": []
+      "former": [
+        "4bfdf78677492564"
+      ]
     },
     "neighbours/4-left": {
       "current": "429cef026994e24e",
-      "former": []
+      "former": [
+        "429cef026994e24e"
+      ]
     },
     "neighbours/5-both": {
       "current": "5c42bc16afd2d3e4",
-      "former": []
+      "former": [
+        "5c42bc16afd2d3e4"
+      ]
     },
     "neighbours/5-left": {
       "current": "fa978ada7d68fa0e",
-      "former": []
+      "former": [
+        "fa978ada7d68fa0e"
+      ]
     },
     "neighbours/6-both": {
       "current": "b99f5546114c806c",
-      "former": []
+      "former": [
+        "b99f5546114c806c"
+      ]
     },
     "neighbours/6-left": {
       "current": "cf360706cc6ba646",
-      "former": []
+      "former": [
+        "cf360706cc6ba646"
+      ]
     },
     "neighbours/7-both": {
       "current": "17244ff6b94c72ec",
-      "former": []
+      "former": [
+        "17244ff6b94c72ec"
+      ]
     },
     "neighbours/7-left": {
       "current": "17ce95fe038ee606",
-      "former": []
+      "former": [
+        "17ce95fe038ee606"
+      ]
     },
     "neighbours/8-both": {
       "current": "237388ddecd6c1f7",
-      "former": []
+      "former": [
+        "237388ddecd6c1f7"
+      ]
     },
     "neighbours/8-left": {
       "current": "cf036ba5c3f811dd",
-      "former": []
+      "former": [
+        "cf036ba5c3f811dd"
+      ]
     },
     "neighbours/9-both": {
       "current": "e03be265a19ba737",
-      "former": []
+      "former": [
+        "e03be265a19ba737"
+      ]
     },
     "neighbours/9-left": {
       "current": "3897e1dde702055d",
-      "former": []
+      "former": [
+        "3897e1dde702055d"
+      ]
     },
     "neighbours/10-both": {
       "current": "6387b3e31237365b",
-      "former": []
+      "former": [
+        "6387b3e31237365b"
+      ]
     },
     "neighbours/10-left": {
       "current": "d5b89e47c73deef1",
-      "former": []
+      "former": [
+        "d5b89e47c73deef1"
+      ]
     },
     "neighbours/11-both": {
       "current": "0c3d95f3968c70db",
-      "former": []
+      "former": [
+        "0c3d95f3968c70db"
+      ]
     },
     "neighbours/11-left": {
       "current": "8d7c7547dbba2631",
-      "former": []
+      "former": [
+        "8d7c7547dbba2631"
+      ]
     },
     "neighbours/12-both": {
       "current": "5cc8441411514b84",
-      "former": []
+      "former": [
+        "5cc8441411514b84"
+      ]
     },
     "neighbours/12-left": {
       "current": "93a28630fb76aeae",
-      "former": []
+      "former": [
+        "93a28630fb76aeae"
+      ]
     },
     "neighbours/13-both": {
       "current": "6c9996147ccddbc4",
-      "former": []
+      "former": [
+        "6c9996147ccddbc4"
+      ]
     },
     "neighbours/13-left": {
       "current": "72ad4900af2e192e",
-      "former": []
+      "former": [
+        "72ad4900af2e192e"
+      ]
     },
     "neighbours/14-both": {
       "current": "5d8866bc5b0bd384",
-      "former": []
+      "former": [
+        "5d8866bc5b0bd384"
+      ]
     },
     "neighbours/14-left": {
       "current": "0386ea0c95c4d2ae",
-      "former": []
+      "former": [
+        "0386ea0c95c4d2ae"
+      ]
     },
     "neighbours/15-both": {
       "current": "b597b7fcd7348444",
-      "former": []
+      "former": [
+        "b597b7fcd7348444"
+      ]
     },
     "neighbours/15-left": {
       "current": "2b9edd8c890f98ae",
-      "former": []
+      "former": [
+        "2b9edd8c890f98ae"
+      ]
     },
     "neighbours/16-both": {
       "current": "d67b75c4a2343f8c",
-      "former": []
+      "former": [
+        "d67b75c4a2343f8c"
+      ]
     },
     "neighbours/16-left": {
       "current": "c97c7b505fbe72a6",
-      "former": []
+      "former": [
+        "c97c7b505fbe72a6"
+      ]
     },
     "neighbours/17-both": {
       "current": "a9629fe45d14c4cc",
-      "former": []
+      "former": [
+        "a9629fe45d14c4cc"
+      ]
     },
     "neighbours/17-left": {
       "current": "e02751b0ff655826",
-      "former": []
+      "former": [
+        "e02751b0ff655826"
+      ]
     },
     "neighbours/18-both": {
       "current": "e5bdf073af138405",
-      "former": []
+      "former": [
+        "e5bdf073af138405"
+      ]
     },
     "neighbours/18-left": {
       "current": "842838df2e54e7ef",
-      "former": []
+      "former": [
+        "842838df2e54e7ef"
+      ]
     },
     "compare/1-1": {
       "current": "df4c0baa25f0d0a4",
@@ -4547,739 +6192,1685 @@ window.FK.puzzleReviewCompatibility = {
     },
     "vowels/word-0-1": {
       "current": "a21ad8ad2b98c10d",
-      "former": []
+      "former": [
+        "4e271077fcd7133b",
+        "86e54b18608fc5dc",
+        "2cb5365b87b131ab",
+        "5f955509c6e9952b",
+        "a21ad8ad2b98c10d"
+      ]
     },
     "vowels/word-0-3": {
       "current": "e37976f9d0f77989",
-      "former": []
+      "former": [
+        "51349889d94b92b9",
+        "deee43f294ccc25e",
+        "ffca48ed47b8ed29",
+        "3d96076d3a89a0af",
+        "e37976f9d0f77989"
+      ]
     },
     "vowels/word-1-1": {
       "current": "ea11760a9c3d5642",
-      "former": []
+      "former": [
+        "27ccc432d9e4a7a8",
+        "089d19ddba30cf4f",
+        "71d66a66eb372238",
+        "1642671a8e05685e",
+        "ea11760a9c3d5642"
+      ]
     },
     "vowels/word-1-3": {
       "current": "918f8866d12c454e",
-      "former": []
+      "former": [
+        "950236a83481f2a2",
+        "1ff70eeb62296845",
+        "4c55ff1cc591ef32",
+        "635360b677aeba52",
+        "918f8866d12c454e"
+      ]
     },
     "vowels/word-2-0": {
       "current": "b73d1b20cb71b196",
-      "former": []
+      "former": [
+        "9083463e04117324",
+        "a4df3ecd9142e503",
+        "6b74428a65f051b4",
+        "4b9799f038e53ca0",
+        "b73d1b20cb71b196"
+      ]
     },
     "vowels/word-2-2": {
       "current": "c632e58ce208869a",
-      "former": []
+      "former": [
+        "33dac528e82fd7ea",
+        "687e0ee7dc4f898d",
+        "6d57901cc9b9bc7a",
+        "92c4d45c5c8560ac",
+        "c632e58ce208869a"
+      ]
     },
     "vowels/word-3-1": {
       "current": "b9c638a9067e364b",
-      "former": []
+      "former": [
+        "3eb16a722f6093fc",
+        "5b7d7ee10d41f39b",
+        "1eb5125e16210c6c",
+        "87256382f80b6f1e",
+        "b9c638a9067e364b"
+      ]
     },
     "vowels/word-3-3": {
       "current": "06478ed9b45c93cb",
-      "former": []
+      "former": [
+        "3f9d9324360d1d7a",
+        "a679c8f3799dde1d",
+        "d27fd318b58c13ea",
+        "8acf578abb28f19e",
+        "06478ed9b45c93cb"
+      ]
     },
     "vowels/word-4-1": {
       "current": "394353acd37f4f22",
-      "former": []
+      "former": [
+        "394353acd37f4f22"
+      ]
     },
     "vowels/word-4-3": {
       "current": "16e68fa8c59f356e",
-      "former": []
+      "former": [
+        "16e68fa8c59f356e"
+      ]
     },
     "vowels/word-5-1": {
       "current": "6d323cf75cafade7",
-      "former": []
+      "former": [
+        "07135807421a699f",
+        "c8e35c96f705ca98",
+        "3582d3eb8f6b100f",
+        "0afe274d57433b3d",
+        "6d323cf75cafade7"
+      ]
     },
     "vowels/word-5-3": {
       "current": "be32c3c32c564f6b",
-      "former": []
+      "former": [
+        "d07503adb57cd655",
+        "743f9d8cae8c34d2",
+        "41447e31dde25ec5",
+        "853ac6e9b06658b1",
+        "be32c3c32c564f6b"
+      ]
     },
     "vowels/word-6-2": {
       "current": "d982590940ca3a19",
-      "former": []
+      "former": [
+        "d69cb450a4a9e6f8",
+        "9001bd7589757b3f",
+        "82ce34dc9f14f768",
+        "fcd4eba93c21fd41",
+        "d982590940ca3a19"
+      ]
     },
     "vowels/word-6-4": {
       "current": "af5b53c5add18b15",
-      "former": []
+      "former": [
+        "5f62102a14348032",
+        "caca9847277717f5",
+        "424957363bc5a4a2",
+        "f03c4ae519baaf4d",
+        "af5b53c5add18b15"
+      ]
     },
     "vowels/word-7-1": {
       "current": "506ab96367980a67",
-      "former": []
+      "former": [
+        "e6184b6c7cd651c8",
+        "46c3050fd9cd25af",
+        "b2f03000a868e058",
+        "881dd215bc6d9217",
+        "506ab96367980a67"
+      ]
     },
     "vowels/word-7-4": {
       "current": "52c144074bcdda63",
-      "former": []
+      "former": [
+        "63661b69ece8994b",
+        "79cd8be6486f812c",
+        "cda4733dd22bebdb",
+        "8b99eb2105e2d093",
+        "52c144074bcdda63"
+      ]
     },
     "vowels/word-8-0": {
       "current": "22d7b2309ce501be",
-      "former": []
+      "former": [
+        "70f1b61db529e2b1",
+        "2a0b021221a4c196",
+        "a0d87cb1599cf521",
+        "ba90a2740dbd0254",
+        "22d7b2309ce501be"
+      ]
     },
     "vowels/word-8-3": {
       "current": "6d4d59ac48827d3a",
-      "former": []
+      "former": [
+        "3a7874ee117eb0f0",
+        "1313862944c2b697",
+        "61a16382bdd10b60",
+        "0ac1db6814fa5850",
+        "6d4d59ac48827d3a"
+      ]
     },
     "vowels/word-9-4": {
       "current": "2d0675190f8bfb77",
-      "former": []
+      "former": [
+        "841546fdaa2505e7",
+        "5e1c752c6ae3c4a0",
+        "36faa431d3b49877",
+        "0f82ef268dba2ac0",
+        "2d0675190f8bfb77"
+      ]
     },
     "vowels/word-10-1": {
       "current": "c7fe1ce06d7fbba8",
-      "former": []
+      "former": [
+        "51e7bf23880dc7b9",
+        "25b325221be7d67e",
+        "f496502f8d11e229",
+        "acd2aeee7304c42a",
+        "c7fe1ce06d7fbba8"
+      ]
     },
     "vowels/word-10-2": {
       "current": "8f8cb38047a5ac28",
-      "former": []
+      "former": [
+        "e344b8ec437c8cf8",
+        "cb99b351873bea3f",
+        "ad7e2e38505fef68",
+        "692aa4d6b330b5aa",
+        "8f8cb38047a5ac28"
+      ]
     },
     "vowels/word-10-4": {
       "current": "f4dd7218cf8d0ea8",
-      "former": []
+      "former": [
+        "e6865c120af8a8fe",
+        "15bb6bb3e160f339",
+        "139dd2966d5e856e",
+        "537159fed512172a",
+        "f4dd7218cf8d0ea8"
+      ]
     },
     "vowels/word-11-4": {
       "current": "773149a671e9c6f8",
-      "former": []
+      "former": [
+        "dca28b21854cb297",
+        "3cdd71c69e0cdd70",
+        "fded19fd32996f07",
+        "c86d0278a65195ba",
+        "773149a671e9c6f8"
+      ]
     },
     "vowels/word-14-1": {
       "current": "fa70c228ff73d7ca",
-      "former": []
+      "former": [
+        "0c1a9bbd596e0153",
+        "64e1f5bad57d3e34",
+        "2d8f1d310a65bbc3",
+        "de9d36cc4524570a",
+        "fa70c228ff73d7ca"
+      ]
     },
     "vowels/word-15-1": {
       "current": "f794a1fe98f122f8",
-      "former": []
+      "former": [
+        "0ce91845acd70941",
+        "953e27d8dbeb1e46",
+        "c410b2817b63ddd1",
+        "da4051c8d73c52c4",
+        "f794a1fe98f122f8"
+      ]
     },
     "vowels/word-16-1": {
       "current": "b32a691554575a93",
-      "former": []
+      "former": [
+        "edb31f9cd399c5c0",
+        "53c46b33932fc5a7",
+        "79650be0fc323050",
+        "f99a8987281b2b85",
+        "b32a691554575a93"
+      ]
     },
     "vowels/word-17-1": {
       "current": "2e3042e8a0792718",
-      "former": []
+      "former": [
+        "c882eab4d6ed5c78",
+        "73b3bee173318a3f",
+        "80bb44705e2760e8",
+        "1be1c9f919c29513",
+        "2e3042e8a0792718"
+      ]
     },
     "vowels/word-18-2": {
       "current": "e4b85691c1a5df39",
-      "former": []
+      "former": [
+        "f92396aa28fa62a4",
+        "ca95b7c16f059f43",
+        "9d9851066ed03b34",
+        "40abc7b113dd6b61",
+        "e4b85691c1a5df39"
+      ]
     },
     "vowels/word-19-1": {
       "current": "70f738836ef250ab",
-      "former": []
+      "former": [
+        "b827f1d42f03007e",
+        "42a7333b73f1cd99",
+        "13738f605483eeee",
+        "0ec73436923e6682",
+        "70f738836ef250ab"
+      ]
     },
     "vowels/word-19-4": {
       "current": "ba8b2f1febcbb1e7",
-      "former": []
+      "former": [
+        "b8bcfbb3f1b9f055",
+        "ef22ab400a0bf5b2",
+        "efaae09f01e61ec5",
+        "72f92a0e98380dce",
+        "ba8b2f1febcbb1e7"
+      ]
     },
     "vowels/word-20-4": {
       "current": "9a1af7c91244dd5f",
-      "former": []
+      "former": [
+        "96897f5677621be4",
+        "c3da0231d8426f03",
+        "be47a3c21ed7ca74",
+        "04f692e0d1cfca7e",
+        "9a1af7c91244dd5f"
+      ]
     },
     "vowels/word-20-7": {
       "current": "04e65a11cb483fdf",
-      "former": []
+      "former": [
+        "e7aeb15b1ec56209",
+        "5bd7453c79a584ee",
+        "b7575aef2093d699",
+        "8233a3b0f8804afe",
+        "04e65a11cb483fdf"
+      ]
     },
     "vowels/word-20-10": {
       "current": "cd33d051363fb513",
-      "former": []
+      "former": [
+        "04babf513bdb29dd",
+        "a8be47d4eddb1c5a",
+        "26da024541298c4d",
+        "d769fa6cb0f02db2",
+        "cd33d051363fb513"
+      ]
     },
     "vowels/word-21-0": {
       "current": "dc46ad34e5aeffce",
-      "former": []
+      "former": [
+        "7a4ac56dd9afed2d",
+        "63d512b69ed0200a",
+        "e1bb25b9e7e16fbd",
+        "3b85ff5906dd6511",
+        "dc46ad34e5aeffce"
+      ]
     },
     "vowels/word-21-5": {
       "current": "8367fa10bc20350a",
-      "former": []
+      "former": [
+        "8fc31ec6ab09150e",
+        "b1423509ffe859e9",
+        "75236cd261ded39e",
+        "8d063015d39b3695",
+        "8367fa10bc20350a"
+      ]
     },
     "vowels/word-22-1": {
       "current": "d9c63f002c03733a",
-      "former": []
+      "former": [
+        "c9aed11d77b7fd15",
+        "ffe3f43c52af9f92",
+        "02c188919aef2d85",
+        "e93015feac9fca0a",
+        "d9c63f002c03733a"
+      ]
     },
     "vowels/word-22-3": {
       "current": "b22c511865e885ba",
-      "former": []
+      "former": [
+        "5b0901ffe431ba13",
+        "509dff9a5c0b8794",
+        "f7d2b4cb46abaa83",
+        "a98ab586a5d6588a",
+        "b22c511865e885ba"
+      ]
     },
     "vowels/word-22-5": {
       "current": "0c2f70948b5eef3e",
-      "former": []
+      "former": [
+        "572548a5a95d5c15",
+        "38bcb09c210a4092",
+        "a1bd4869cc948c85",
+        "989040b229dc840e",
+        "0c2f70948b5eef3e"
+      ]
     },
     "vowels/word-23-1": {
       "current": "a28473883d4e1036",
-      "former": []
+      "former": [
+        "733c66db0a13db93",
+        "5274507a0d883614",
+        "92c16b6720e14003",
+        "047276cb529edf0d",
+        "a28473883d4e1036"
+      ]
     },
     "vowels/word-23-3": {
       "current": "ed40c6580af9897e",
-      "former": []
+      "former": [
+        "f2bd7cc10187fedd",
+        "39b24660865850da",
+        "a1b8e4756b045f4d",
+        "04a01047dc09a9c5",
+        "ed40c6580af9897e"
+      ]
     },
     "vowels/word-23-5": {
       "current": "867be0fc6d817afa",
-      "former": []
+      "former": [
+        "9d90809bcf0de7db",
+        "fe5cee3ea97400dc",
+        "ce0404a78507864b",
+        "d87218534cf13a41",
+        "867be0fc6d817afa"
+      ]
     },
     "vowels/word-24-1": {
       "current": "f9cb5d0ea7d17ec6",
-      "former": []
+      "former": [
+        "64dda7495b7348c9",
+        "72d01698cb5ab7ce",
+        "a660fb35f538b959",
+        "13c650ba7516ed3c",
+        "f9cb5d0ea7d17ec6"
+      ]
     },
     "vowels/word-24-3": {
       "current": "00fe0df2436b5a42",
-      "former": []
+      "former": [
+        "1b309957f592e4cb",
+        "2c1384ca2eb074cc",
+        "b58b5393c747915b",
+        "35e389062cf8a3b8",
+        "00fe0df2436b5a42"
+      ]
     },
     "vowels/word-24-5": {
       "current": "d356de46484b20c6",
-      "former": []
+      "former": [
+        "3c6828353d959fcd",
+        "fc9f71d4bdca9eca",
+        "f096d6e90f89105d",
+        "54af1ec215908f3c",
+        "d356de46484b20c6"
+      ]
     },
     "vowels/word-25-1": {
       "current": "cda85b62a201db3e",
-      "former": []
+      "former": [
+        "41ed44ce45007c32",
+        "2dc7b20bd1468575",
+        "6303532a5e492aa2",
+        "4bb9827f1c7d4fbd",
+        "cda85b62a201db3e"
+      ]
     },
     "vowels/word-25-3": {
       "current": "23974bb64ea48e3a",
-      "former": []
+      "former": [
+        "c57a94d8c04fab30",
+        "704507e99555f977",
+        "3125ea04d0ce57a0",
+        "97f27c8b2144e4b9",
+        "23974bb64ea48e3a"
+      ]
     },
     "vowels/word-26-1": {
       "current": "00ad211fe7b10321",
-      "former": []
+      "former": [
+        "49d7e99ec13b71a2",
+        "8debb0bbf2d60c65",
+        "e900ac8a8061ee32",
+        "a99d9d430ac83053",
+        "00ad211fe7b10321"
+      ]
     },
     "vowels/word-26-3": {
       "current": "81a87f538be7e125",
-      "former": []
+      "former": [
+        "0a45cdc070670da0",
+        "5ec071893edc5367",
+        "e6b47cec7413ca30",
+        "5dffb75fe0d20d57",
+        "81a87f538be7e125"
+      ]
     },
     "vowels/word-27-2": {
       "current": "92252e27b8d4abfb",
-      "former": []
+      "former": [
+        "bb0a26857b9c8c5d",
+        "c656863c02678bda",
+        "5f550379398518cd",
+        "56e68c3584e634ad",
+        "92252e27b8d4abfb"
+      ]
     },
     "vowels/word-27-5": {
       "current": "85a2b00b73c55fb7",
-      "former": []
+      "former": [
+        "4d7ff8066a8e3d14",
+        "69c33f4ba804b093",
+        "761cc25ac0600b84",
+        "de400cd17d5a93e1",
+        "85a2b00b73c55fb7"
+      ]
     },
     "vowels/word-28-1": {
       "current": "704fe32973112073",
-      "former": []
+      "former": [
+        "3c48ab917d434185",
+        "45856b283d6dc202",
+        "4aa319855053f415",
+        "f655b91427b7d96c",
+        "704fe32973112073"
+      ]
     },
     "vowels/word-28-3": {
       "current": "6735bd3982fc783b",
-      "former": []
+      "former": [
+        "8dfb8917a1a954cb",
+        "4600893e799349cc",
+        "d3a7fb13b8dfc35b",
+        "622333b00a2424a4",
+        "6735bd3982fc783b"
+      ]
     },
     "vowels/word-28-6": {
       "current": "24c68fddda9a5bf7",
-      "former": []
+      "former": [
+        "be0712ee9d7ef1c4",
+        "ff0a84c359d534c3",
+        "26f25342d6f8a454",
+        "be8c90b07a9d9fe8",
+        "24c68fddda9a5bf7"
+      ]
     },
     "vowels/word-29-1": {
       "current": "54d3e3e09a187148",
-      "former": []
+      "former": [
+        "f60c00fe4db48564",
+        "e0c7c3a59a437883",
+        "4af935aa6f892bf4",
+        "4a5f28e85d5cd5fa",
+        "54d3e3e09a187148"
+      ]
     },
     "vowels/word-29-4": {
       "current": "9a433aa81ca14a84",
-      "former": []
+      "former": [
+        "656956055380200f",
+        "4f6d315aead301e8",
+        "29410941af99c29f",
+        "b572d700200f9f36",
+        "9a433aa81ca14a84"
+      ]
     },
     "vowels/word-30-6": {
       "current": "d0e0b40533e5a2e3",
-      "former": []
+      "former": [
+        "106bbfffdbc71577",
+        "a8c0fc782974d990",
+        "20aab04b55f5f1e7",
+        "175a405e9865bafe",
+        "d0e0b40533e5a2e3"
+      ]
     },
     "vowels/word-31-1": {
       "current": "9f6d7c5a69f3bb06",
-      "former": []
+      "former": [
+        "5fcb893ee8c54d16",
+        "9f6d7c5a69f3bb06"
+      ]
     },
     "vowels/word-31-4": {
       "current": "727ca6768f53878a",
-      "former": []
+      "former": [
+        "654b63d2b754359a",
+        "727ca6768f53878a"
+      ]
     },
     "vowels/word-32-1": {
       "current": "95e21b5afb54dbe6",
-      "former": []
+      "former": [
+        "cdd22dc1e6014ae7",
+        "949e9570b9005620",
+        "043018b5985a6777",
+        "9a137ed9f0057185",
+        "95e21b5afb54dbe6"
+      ]
     },
     "vowels/word-32-3": {
       "current": "6e30aa52606bbd66",
-      "former": []
+      "former": [
+        "b1f8ab6b849a1561",
+        "8c7d842e43b22aa6",
+        "4efb51a71a866df1",
+        "4150eab98b3f9405",
+        "6e30aa52606bbd66"
+      ]
     },
     "vowels/word-33-1": {
       "current": "37744a6cbdfab168",
-      "former": []
+      "former": [
+        "9e9a40120786a280",
+        "360aa447925f6b87",
+        "a01cc5de7704f510",
+        "ef83b5b7e36270db",
+        "37744a6cbdfab168"
+      ]
     },
     "vowels/word-33-3": {
       "current": "7538d564ec3d7724",
-      "former": []
+      "former": [
+        "7754717c6f1805ca",
+        "ea77ef01bd5db14d",
+        "14224f58cb761a5a",
+        "95079eb33669c717",
+        "7538d564ec3d7724"
+      ]
     },
     "vowels/word-34-4": {
       "current": "61406a4bcac69761",
-      "former": []
+      "former": [
+        "27bd43cb673a166b",
+        "b22250b0d0d3d10c",
+        "d1cb9afffc8082fb",
+        "ef42cbaeda1b2ff6",
+        "61406a4bcac69761"
+      ]
     },
     "vowels/word-34-7": {
       "current": "0ed0d8a3bc77d661",
-      "former": []
+      "former": [
+        "8a941c42f4754206",
+        "0c5c8b5de9a1ade1",
+        "3bbbb02e2fffec96",
+        "a2415176b29d2df6",
+        "0ed0d8a3bc77d661"
+      ]
     },
     "read-puzzle/word-0": {
       "current": "93d235aa87ed532c",
-      "former": []
+      "former": [
+        "93d235aa87ed532c"
+      ]
     },
     "read-puzzle/word-1": {
       "current": "181c50704ded4358",
-      "former": []
+      "former": [
+        "181c50704ded4358"
+      ]
     },
     "read-puzzle/word-2": {
       "current": "d9c37c8481036822",
-      "former": []
+      "former": [
+        "d9c37c8481036822"
+      ]
     },
     "read-puzzle/word-3": {
       "current": "98d62a7b4dba678d",
-      "former": []
+      "former": [
+        "98d62a7b4dba678d"
+      ]
     },
     "read-puzzle/word-4": {
       "current": "ad6f592dedb370eb",
-      "former": []
+      "former": [
+        "ad6f592dedb370eb"
+      ]
     },
     "read-puzzle/word-5": {
       "current": "979d094e45c065d4",
-      "former": []
+      "former": [
+        "979d094e45c065d4"
+      ]
     },
     "read-puzzle/word-6": {
       "current": "4ffe8d14b7c75e68",
-      "former": []
+      "former": [
+        "4ffe8d14b7c75e68"
+      ]
     },
     "read-puzzle/word-7": {
       "current": "85b89b118498b779",
-      "former": []
+      "former": [
+        "85b89b118498b779"
+      ]
     },
     "read-puzzle/word-8": {
       "current": "b140b2f9fad07a07",
-      "former": []
+      "former": [
+        "b140b2f9fad07a07"
+      ]
     },
     "read-puzzle/word-9": {
       "current": "778f5ad6b56c5db6",
-      "former": []
+      "former": [
+        "778f5ad6b56c5db6"
+      ]
     },
     "read-puzzle/word-10": {
       "current": "be814c4e5cae062e",
-      "former": []
+      "former": [
+        "be814c4e5cae062e"
+      ]
     },
     "read-puzzle/word-11": {
       "current": "3006d2aaada72dd2",
-      "former": []
+      "former": [
+        "3006d2aaada72dd2"
+      ]
     },
     "read-puzzle/word-19": {
       "current": "b95f92aed26addfc",
-      "former": []
+      "former": [
+        "b95f92aed26addfc"
+      ]
     },
     "read-puzzle/word-20": {
       "current": "523de50cb345ea10",
-      "former": []
+      "former": [
+        "523de50cb345ea10"
+      ]
     },
     "read-puzzle/word-21": {
       "current": "9c39406e86bfca56",
-      "former": []
+      "former": [
+        "9c39406e86bfca56"
+      ]
     },
     "read-puzzle/word-22": {
       "current": "e80d05019439346b",
-      "former": []
+      "former": [
+        "e80d05019439346b"
+      ]
     },
     "read-puzzle/word-23": {
       "current": "17704e1bd3e340b9",
-      "former": []
+      "former": [
+        "17704e1bd3e340b9"
+      ]
     },
     "read-puzzle/word-24": {
       "current": "6179b177b9e05be5",
-      "former": []
+      "former": [
+        "6179b177b9e05be5"
+      ]
     },
     "read-puzzle/word-25": {
       "current": "6b230f26e9753db6",
-      "former": []
+      "former": [
+        "6b230f26e9753db6"
+      ]
     },
     "read-puzzle/word-26": {
       "current": "f7b9f24cf32babde",
-      "former": []
+      "former": [
+        "f7b9f24cf32babde"
+      ]
     },
     "read-puzzle/word-27": {
       "current": "7aee4ac559142dfb",
-      "former": []
+      "former": [
+        "7aee4ac559142dfb"
+      ]
     },
     "read-puzzle/word-28": {
       "current": "5506abae8659b8e6",
-      "former": []
+      "former": [
+        "5506abae8659b8e6"
+      ]
     },
     "read-puzzle/word-29": {
       "current": "5ac67b077afd6101",
-      "former": []
+      "former": [
+        "5ac67b077afd6101"
+      ]
     },
     "read-puzzle/word-30": {
       "current": "c1f62e6705343905",
-      "former": []
+      "former": [
+        "c1f62e6705343905"
+      ]
     },
     "read-puzzle/word-31": {
       "current": "0b5f6047845790df",
-      "former": []
+      "former": [
+        "0b5f6047845790df"
+      ]
     },
     "read-puzzle/word-32": {
       "current": "36150bed84a367ef",
-      "former": []
+      "former": [
+        "36150bed84a367ef"
+      ]
     },
     "read-puzzle/word-33": {
       "current": "a26a964de611d515",
-      "former": []
+      "former": [
+        "a26a964de611d515"
+      ]
     },
     "read-puzzle/word-34": {
       "current": "a221de0db93ab7f1",
-      "former": []
+      "former": [
+        "a221de0db93ab7f1"
+      ]
     },
     "read-word/word-0": {
       "current": "cbcc8167141e410b",
-      "former": []
+      "former": [
+        "cbcc8167141e410b"
+      ]
     },
     "read-word/word-1": {
       "current": "639aa0169f7b99e2",
-      "former": []
+      "former": [
+        "14f37a05232f2aab",
+        "ddafaba85716a0f4",
+        "80110e877fefd60f",
+        "90f0e9218c9ecc85",
+        "de07b8e50a9406c5",
+        "639aa0169f7b99e2"
+      ]
     },
     "read-word/word-2": {
       "current": "c6e4c0d58e15fb67",
-      "former": []
+      "former": [
+        "42bc3acf7071c205",
+        "24b14cc02317a17a",
+        "8e1dc7713e096221",
+        "75908b6b1f1fe5eb",
+        "7e976a9eeb6890fe",
+        "c6e4c0d58e15fb67"
+      ]
     },
     "read-word/word-3": {
       "current": "d0409a76e5d8aa18",
-      "former": []
+      "former": [
+        "b00eac7263c0345c",
+        "ff079717924d0743",
+        "a056efc8c2d36b38",
+        "453c8a3606a762b2",
+        "61161621d9abe685",
+        "d0409a76e5d8aa18"
+      ]
     },
     "read-word/word-4": {
       "current": "a639147f2046bfc3",
-      "former": []
+      "former": [
+        "a639147f2046bfc3"
+      ]
     },
     "read-word/word-5": {
       "current": "b29d53cc68f01c1e",
-      "former": []
+      "former": [
+        "bbfd3e844d06cfb2",
+        "52a257ffb1a3e98d",
+        "871e92c2d70dfc56",
+        "a4e63a08d3e5321c",
+        "81c377268cd69858",
+        "b29d53cc68f01c1e"
+      ]
     },
     "read-word/word-6": {
       "current": "789c8f9776314a6f",
-      "former": []
+      "former": [
+        "99e698efc35311e3",
+        "524775883a9f3c5c",
+        "4f8dfe8d8bfb7287",
+        "d9d387f3ccbb0ecd",
+        "f8334745138037ad",
+        "789c8f9776314a6f"
+      ]
     },
     "read-word/word-7": {
       "current": "23b6d4863541396c",
-      "former": []
+      "former": [
+        "14ff209a6a541d28",
+        "6d80b265c00ee8d7",
+        "991f21944c03784c",
+        "298f0f2ea3564286",
+        "6e7b15e10fc4fe71",
+        "23b6d4863541396c"
+      ]
     },
     "read-word/word-8": {
       "current": "de4ed6788f040d64",
-      "former": []
+      "former": [
+        "299a114a050188b2",
+        "12d42887da5a446d",
+        "9928551cea687a16",
+        "eb1d0fe637a9e29c",
+        "c7f0301fd815f013",
+        "de4ed6788f040d64"
+      ]
     },
     "read-word/word-9": {
       "current": "8a7afbfd25d2b745",
-      "former": []
+      "former": [
+        "67ca2cd792b4965b",
+        "8a7afbfd25d2b745"
+      ]
     },
     "read-word/word-10": {
       "current": "f217baea311b3332",
-      "former": []
+      "former": [
+        "b33e8f9f384312a5",
+        "d3906c7268e710fa",
+        "6fa5f7652941c981",
+        "e3d550c38b69680b",
+        "0dabb40dd48de8c1",
+        "f217baea311b3332"
+      ]
     },
     "read-word/word-11": {
       "current": "2cb5f1bcaf57e1d8",
-      "former": []
+      "former": [
+        "5182255687c4ecec",
+        "86fa60f95a6219d3",
+        "98686df8c6897e08",
+        "72f83cc2283aad42",
+        "2f3fd4b11c76f943",
+        "2cb5f1bcaf57e1d8"
+      ]
     },
     "read-word/word-12": {
       "current": "a47e67e959daee87",
-      "former": []
+      "former": [
+        "3225ad89200b7b45",
+        "8804b424a71c119a",
+        "65d2c197ba813521",
+        "71841abdf376902b",
+        "d858e358819896be",
+        "a47e67e959daee87"
+      ]
     },
     "read-word/word-13": {
       "current": "64f5220e16bfcf24",
-      "former": []
+      "former": [
+        "f7cc31cf4d34cd91",
+        "64f5220e16bfcf24"
+      ]
     },
     "read-word/word-14": {
       "current": "e27f7b1c6e81fdce",
-      "former": []
+      "former": [
+        "9aefbf45d3a95f57",
+        "2c87f432d7e7c568",
+        "13e8f2bb830c1f73",
+        "f4f42ea1d422c4b9",
+        "c11defcdd79e272f",
+        "e27f7b1c6e81fdce"
+      ]
     },
     "read-word/word-15": {
       "current": "fd8009dd0f86436f",
-      "former": []
+      "former": [
+        "815398c3f3774c11",
+        "e5d10ca00f34636e",
+        "29754ef53ddf3eb5",
+        "12359c877a2a947f",
+        "87ae12d503b1d5af",
+        "fd8009dd0f86436f"
+      ]
     },
     "read-word/word-16": {
       "current": "b2a736e68e593f9a",
-      "former": []
+      "former": [
+        "f249db7b33024033",
+        "3187c3684d48a98c",
+        "d1e35b89cd150457",
+        "0c0009ef5fec731d",
+        "9a8f3dee761818a0",
+        "b2a736e68e593f9a"
+      ]
     },
     "read-word/word-17": {
       "current": "a3b506e3b19d959f",
-      "former": []
+      "former": [
+        "2253b555360f06a9",
+        "4d487eca1c00eed6",
+        "3da12bbf5bd9d84d",
+        "fa9868c95500ea87",
+        "f6f6638e34bd9104",
+        "a3b506e3b19d959f"
+      ]
     },
     "read-word/word-18": {
       "current": "f76abd7044bee306",
-      "former": []
+      "former": [
+        "6e92e77b2108a8e9",
+        "7102552ac374b1f6",
+        "2e623ea99db2e34d",
+        "e143d737d0394ac7",
+        "d981b8b3cce34175",
+        "f76abd7044bee306"
+      ]
     },
     "read-word/word-19": {
       "current": "2bbaed48a00231ec",
-      "former": []
+      "former": [
+        "0ce7cbe73f570779",
+        "2ec1f8f6016aa5e6",
+        "d40ab5cdb0c8bedd",
+        "f561705359bd5cd7",
+        "b5f337ae456c8e66",
+        "2bbaed48a00231ec"
+      ]
     },
     "read-word/word-20": {
       "current": "0d617573bad3be77",
-      "former": []
+      "former": [
+        "4085800644185dce",
+        "f74f1f414f9d3471",
+        "5a2fab6c735b00ea",
+        "bbb08c72f2d14e20",
+        "97a1e9d6608b00ca",
+        "0d617573bad3be77"
+      ]
     },
     "read-word/word-21": {
       "current": "b269f194d6d48878",
-      "former": []
+      "former": [
+        "828c51d960704f47",
+        "a8a86eba728f62f8",
+        "9216f87f179160e3",
+        "99c1ec850146aca9",
+        "63f730110473f251",
+        "b269f194d6d48878"
+      ]
     },
     "read-word/word-22": {
       "current": "fb516547df9afc27",
-      "former": []
+      "former": [
+        "a387f1365f8c0e46",
+        "fb516547df9afc27"
+      ]
     },
     "read-word/word-23": {
       "current": "3fc2e5d1f788d6fd",
-      "former": []
+      "former": [
+        "393d9dca95708476",
+        "4538c54b99f49fa9",
+        "2db06d145f8673d2",
+        "ec6cef3efb5b0dd8",
+        "e4656bab7de45695",
+        "3fc2e5d1f788d6fd"
+      ]
     },
     "read-word/word-24": {
       "current": "8bb3e01dc790b239",
-      "former": []
+      "former": [
+        "210a8c53729ecc25",
+        "f4bd8fae967f2cfa",
+        "e2e590c10d13a081",
+        "97d487f7bd58a48b",
+        "979666ec3e46aff2",
+        "8bb3e01dc790b239"
+      ]
     },
     "read-word/word-25": {
       "current": "164cccf055cd6fca",
-      "former": []
+      "former": [
+        "c6d2a7dd1fc7436b",
+        "c1ff6924474ea534",
+        "800b110f3ff2a64f",
+        "ca90add94ac87045",
+        "7ce01199993c3311",
+        "164cccf055cd6fca"
+      ]
     },
     "read-word/word-26": {
       "current": "09d4757f60bea027",
-      "former": []
+      "former": [
+        "e9e0e6066666b7de",
+        "f0cbbb01e6882ea1",
+        "709fa5ece4c934fa",
+        "ed7b80422b29a130",
+        "f1a8cad5314a6631",
+        "09d4757f60bea027"
+      ]
     },
     "read-word/word-27": {
       "current": "a17581b7bb1fb1a7",
-      "former": []
+      "former": [
+        "ce35ed5f67493845",
+        "a17581b7bb1fb1a7"
+      ]
     },
     "read-word/word-28": {
       "current": "39c3924f7e351275",
-      "former": []
+      "former": [
+        "1908ca1574bcf291",
+        "aba42d64ad1a5e8e",
+        "2d274d6b56e02075",
+        "5380b6a17ca928ff",
+        "a28fc4ebb413c7a1",
+        "39c3924f7e351275"
+      ]
     },
     "read-word/word-29": {
       "current": "94eb79b1cf9d474d",
-      "former": []
+      "former": [
+        "5f7b01bec5157f4c",
+        "e031e1dbff2b7713",
+        "7b9b7e64552fe4a8",
+        "883da892682723a2",
+        "ac231c851a8678a7",
+        "94eb79b1cf9d474d"
+      ]
     },
     "read-word/word-30": {
       "current": "e8f43277f27b688d",
-      "former": []
+      "former": [
+        "e8f43277f27b688d"
+      ]
     },
     "read-word/word-31": {
       "current": "2a64217635942a7e",
-      "former": []
+      "former": [
+        "d29904f08d495252",
+        "2a64217635942a7e"
+      ]
     },
     "read-word/word-32": {
       "current": "156515b2a4de0174",
-      "former": []
+      "former": [
+        "44c32e5940c44053",
+        "48ead93e3b4beaac",
+        "a907624f0c959377",
+        "e4e8633db3d753bd",
+        "5072a6bb3f2e26fb",
+        "156515b2a4de0174"
+      ]
     },
     "read-word/word-33": {
       "current": "70bd5865c41ea12b",
-      "former": []
+      "former": [
+        "232ffe6c6b244686",
+        "aa098d5d63d72219",
+        "1b122226a60a3e62",
+        "583338d0523f9ee8",
+        "19373822135af84c",
+        "70bd5865c41ea12b"
+      ]
     },
     "read-word/word-34": {
       "current": "ddb769430cd7ee99",
-      "former": []
+      "former": [
+        "031c26fa0b3b0b62",
+        "fd0472632738807d",
+        "c1a9b7bcf523d946",
+        "d1e30cd6268702cc",
+        "9ccbfe09bc7b5ccf",
+        "ddb769430cd7ee99"
+      ]
     },
     "read-leaves/ma": {
       "current": "ee7570a76d5459fb",
-      "former": []
+      "former": [
+        "86aac72a4bbffefe",
+        "1176772b1872399b",
+        "799045e982928b75",
+        "ee7570a76d5459fb"
+      ]
     },
     "read-leaves/mi": {
       "current": "c7148d7f1d0d9bf3",
-      "former": []
+      "former": [
+        "fccc89fab51375fe",
+        "e0c3c80b81c5b09b",
+        "83911011d2d9497d",
+        "c7148d7f1d0d9bf3"
+      ]
     },
     "read-leaves/mo": {
       "current": "b028712d5d19cd35",
-      "former": []
+      "former": [
+        "c8eac4a20263c07e",
+        "c0b8438b4693641b",
+        "86767e9b5661e43b",
+        "b028712d5d19cd35"
+      ]
     },
     "read-leaves/mu": {
       "current": "6ebc6037ca10732f",
-      "former": []
+      "former": [
+        "8f5d48220417193e",
+        "47141c5f63df22db",
+        "b88ed57151fb0221",
+        "6ebc6037ca10732f"
+      ]
     },
     "read-leaves/la": {
       "current": "ec89bec45d3e103a",
-      "former": []
+      "former": [
+        "1b56d2c2eb35bafe",
+        "bca9213bfb85271b",
+        "d14932c6c7a5f7b4",
+        "ec89bec45d3e103a"
+      ]
     },
     "read-leaves/li": {
       "current": "41f7cbdc0cf75232",
-      "former": []
+      "former": [
+        "43998dd2548931fe",
+        "260754bb64d89e1b",
+        "2bf8a3de17ecb5bc",
+        "41f7cbdc0cf75232"
+      ]
     },
     "read-leaves/lo": {
       "current": "2b85070e1888de74",
-      "former": []
+      "former": [
+        "142cd27e2dbbe07e",
+        "75c5b6d7288a109b",
+        "58be932c75166d7a",
+        "2b85070e1888de74"
+      ]
     },
     "read-leaves/lu": {
       "current": "6de4e604f577006e",
-      "former": []
+      "former": [
+        "bfc36faee5b19a3e",
+        "bc020f3b52228b5b",
+        "5d8d5f961a1c1760",
+        "6de4e604f577006e"
+      ]
     },
     "read-leaves/sa": {
       "current": "94e4140107c66765",
-      "former": []
+      "former": [
+        "a487dedaf685bbfe",
+        "cd2f26e3a8fa9d9b",
+        "7f8dc22fcc5a30eb",
+        "94e4140107c66765"
+      ]
     },
     "read-leaves/si": {
       "current": "272ab0291fcfe56d",
-      "former": []
+      "former": [
+        "a402bf5a796500fe",
+        "42c0c0932bd9e29b",
+        "40304cc7b450b2e3",
+        "272ab0291fcfe56d"
+      ]
     },
     "read-leaves/so": {
       "current": "eebfad6be655cf2b",
-      "former": []
+      "former": [
+        "3dc69e8a5bee32fe",
+        "13ee01f3d924af9b",
+        "f21c435db15f9525",
+        "eebfad6be655cf2b"
+      ]
     },
     "read-leaves/su": {
       "current": "38b4bf21a99c5db1",
-      "former": []
+      "former": [
+        "c47805dabae588be",
+        "c48c9f87dcb0a35b",
+        "4660247751a162bf",
+        "38b4bf21a99c5db1"
+      ]
     },
     "read-leaves/na": {
       "current": "78f414e20d5d97b8",
-      "former": []
+      "former": [
+        "d08e55520631b6fe",
+        "674ec6a3ba63431b",
+        "cd2b25b87386ed36",
+        "78f414e20d5d97b8"
+      ]
     },
     "read-leaves/ni": {
       "current": "3bdd718abd16d9b0",
-      "former": []
+      "former": [
+        "405f37f26f852dfe",
+        "7437503323b6ba1b",
+        "c4335990c3cdab3e",
+        "3bdd718abd16d9b0"
+      ]
     },
     "read-leaves/no": {
       "current": "81b23c307e8d8576",
-      "former": []
+      "former": [
+        "9d1f72ae37ebbafe",
+        "cde02a9f1882491b",
+        "ac83447a6b124378",
+        "81b23c307e8d8576"
+      ]
     },
     "read-leaves/nu": {
       "current": "c881a3ba1edcc7ec",
-      "former": []
+      "former": [
+        "0ba1d5d623a793be",
+        "5c64b44b26a664db",
+        "c223f8604cb6cce2",
+        "c881a3ba1edcc7ec"
+      ]
     },
     "read-leaves/ra": {
       "current": "8162620ec067f5a4",
-      "former": []
+      "former": [
+        "aa782acaabdd1cfe",
+        "5269e9db4928d11b",
+        "2544374c00b6bf2a",
+        "8162620ec067f5a4"
+      ]
     },
     "read-leaves/ri": {
       "current": "e8b048e6d87173ac",
-      "former": []
+      "former": [
+        "fc281d0a2ebc61fe",
+        "100e79ebcc08161b",
+        "eae9e064e8ad4122",
+        "e8b048e6d87173ac"
+      ]
     },
     "read-leaves/ro": {
       "current": "6ec8991c1cabb86a",
-      "former": []
+      "former": [
+        "b5284b86b2adb7fe",
+        "49a9a12f0548dc1b",
+        "9b022f3e0d2e4064",
+        "6ec8991c1cabb86a"
+      ]
     },
     "read-leaves/ru": {
       "current": "7d9565c6121d0cf0",
-      "former": []
+      "former": [
+        "941d54363c0c2cbe",
+        "9660dd83b10f93db",
+        "3608549494a94ffe",
+        "7d9565c6121d0cf0"
+      ]
     },
     "read-leaves/fa": {
       "current": "fe88590aa00e5bb0",
-      "former": []
+      "former": [
+        "f6d700d2fb6af0fe",
+        "d8be97a3af9c7d1b",
+        "855fe790e0d6293e",
+        "fe88590aa00e5bb0"
+      ]
     },
     "read-leaves/fi": {
       "current": "02011aa2b817d9b8",
-      "former": []
+      "former": [
+        "be001f727e4a35fe",
+        "b02c2953327bc21b",
+        "5f52e938c8ccab36",
+        "02011aa2b817d9b8"
+      ]
     },
     "read-leaves/fo": {
       "current": "c132d668798e857e",
-      "former": []
+      "former": [
+        "d59888fe46b0c2fe",
+        "ebea53bf2747511b",
+        "2ab1e61270114370",
+        "c132d668798e857e"
+      ]
     },
     "read-leaves/fu": {
       "current": "2f20df22f1838de4",
-      "former": []
+      "former": [
+        "c7d510e6673f4fbe",
+        "f575ea1b6a3e20db",
+        "23b367a87a1006ea",
+        "2f20df22f1838de4"
+      ]
     },
     "read-leaves/ta": {
       "current": "ce3da7dc100bec22",
-      "former": []
+      "former": [
+        "d4a77732856e34fe",
+        "2bdfd5db95bda11b",
+        "657e65ae55124bac",
+        "ce3da7dc100bec22"
+      ]
     },
     "read-leaves/ti": {
       "current": "854c75c428156a2a",
-      "former": []
+      "former": [
+        "332a7582084d79fe",
+        "b5f4805b189ce61b",
+        "2a59f8563d08cda4",
+        "854c75c428156a2a"
+      ]
     },
     "read-leaves/to": {
       "current": "405fd4f633a6f66c",
-      "former": []
+      "former": [
+        "5e32b05ee180287e",
+        "6121fb07dc4e589b",
+        "d0ce04b49a328562",
+        "405fd4f633a6f66c"
+      ]
     },
     "read-leaves/tu": {
       "current": "25128f1c65b72a76",
-      "former": []
+      "former": [
+        "555fa11e37187e3e",
+        "3f88b65ba3896f5b",
+        "87d8922ee50eb578",
+        "25128f1c65b72a76"
+      ]
     },
     "read-leaves/pa": {
       "current": "758c4da010486e26",
-      "former": []
+      "former": [
+        "81f3a3ca90e120fe",
+        "b891e4438a4ab51b",
+        "dee87aaa54d5c9a8",
+        "758c4da010486e26"
+      ]
     },
     "read-leaves/pi": {
       "current": "0a268c782851ec2e",
-      "former": []
+      "former": [
+        "04001d5a13c065fe",
+        "21ebb7330d29fa1b",
+        "ead807323ccc4ba0",
+        "0a268c782851ec2e"
+      ]
     },
     "read-leaves/po": {
       "current": "00649b4ab6a71168",
-      "former": []
+      "former": [
+        "ad70b626a87ddd7e",
+        "d1721d371550a39b",
+        "0c4a982017326a66",
+        "00649b4ab6a71168"
+      ]
     },
     "read-leaves/pu": {
       "current": "7ff13210e8b74572",
-      "former": []
+      "former": [
+        "7e4ee4befe16333e",
+        "3bf16fa3dc8bba5b",
+        "08ec93ea620e9a7c",
+        "7ff13210e8b74572"
+      ]
     },
     "read-colours/rot": {
       "current": "e1b907f11e056bff",
-      "former": []
+      "former": [
+        "a2aae19e3206ca0a",
+        "65335b131b5cded1",
+        "3c9330480882b536",
+        "d67f36a82894295a",
+        "e1b907f11e056bff"
+      ]
     },
     "read-colours/rot-gelb": {
       "current": "b0a511ca22eb45a0",
-      "former": []
+      "former": [
+        "8f2841fe6740f5b2",
+        "e9da7165aa17cec9",
+        "25cf02640d322c0e",
+        "a0225de7ea1a5dbb",
+        "b0a511ca22eb45a0"
+      ]
     },
     "read-colours/rot-blau": {
       "current": "0ac4f8239ea3f873",
-      "former": []
+      "former": [
+        "d7adcd1e03618872",
+        "c9ca4f29c08f9e09",
+        "327d04648f6068ce",
+        "f6d49cb860f32b18",
+        "0ac4f8239ea3f873"
+      ]
     },
     "read-colours/rot-rosa": {
       "current": "9124d693c66e3135",
-      "former": []
+      "former": [
+        "e474fdc5e3f92557",
+        "cd557d50f556b44c",
+        "bf23f5df2e56336b",
+        "4fb2dbbcb478f98e",
+        "9124d693c66e3135"
+      ]
     },
     "read-colours/rot-weiss": {
       "current": "c7933f1660cdfa98",
-      "former": []
+      "former": [
+        "5226d4545f6ee712",
+        "b09f5883adbc09a9",
+        "cb08567a9468e16e",
+        "e336b75705d46707",
+        "c7933f1660cdfa98"
+      ]
     },
     "read-colours/gelb": {
       "current": "6de7f7c9ae38b201",
-      "former": []
+      "former": [
+        "19377f7010794fec",
+        "7768c6afd5bf8617",
+        "c440976ab7868550",
+        "faadd19c2ab68ede",
+        "6de7f7c9ae38b201"
+      ]
     },
     "read-colours/gelb-rot": {
       "current": "95ce75a696bf19e0",
-      "former": []
+      "former": [
+        "34414704dfbde552",
+        "4b5b509300dcb4a9",
+        "6f52affac091f72e",
+        "4b8cd71f73f2eafb",
+        "95ce75a696bf19e0"
+      ]
     },
     "read-colours/gelb-blau": {
       "current": "62080ed8c011a51a",
-      "former": []
+      "former": [
+        "2e265d52884fe972",
+        "10227c25920077c9",
+        "1ec2b98802e07bce",
+        "4bcec2aeb0a5e9f2",
+        "62080ed8c011a51a"
+      ]
     },
     "read-colours/gelb-rosa": {
       "current": "c1487d2c91043654",
-      "former": []
+      "former": [
+        "a649cd59c59f98d7",
+        "9993949449474c0c",
+        "0f9e38735f1f80eb",
+        "91162e1137b81947",
+        "c1487d2c91043654"
+      ]
     },
     "read-colours/gelb-weiss": {
       "current": "89ca9c3e1365bad6",
-      "former": []
+      "former": [
+        "a94587e40ab135d2",
+        "13bae5aba463fb29",
+        "0450182a5e857b2e",
+        "f4c7fdccff337d04",
+        "89ca9c3e1365bad6"
+      ]
     },
     "read-colours/blau": {
       "current": "bfda6ca3e7cbbd73",
-      "former": []
+      "former": [
+        "03135de34895147b",
+        "680e7fe2f61d3960",
+        "53f6a4754f32ff87",
+        "6ea5eedb67b321b7",
+        "bfda6ca3e7cbbd73"
+      ]
     },
     "read-colours/blau-rot": {
       "current": "4fba3c5b8eee8773",
-      "former": []
+      "former": [
+        "0a348134a1c197d2",
+        "f13cfa7b635ff829",
+        "f2a9833aa2d94aae",
+        "71ff9008316c2518",
+        "4fba3c5b8eee8773"
+      ]
     },
     "read-colours/blau-gelb": {
       "current": "fa1204e8f6aa579a",
-      "former": []
+      "former": [
+        "f0f7f63643b15b32",
+        "a2c01345e1dda909",
+        "74e3b7ec7ba1a48e",
+        "325800eeb4ffe172",
+        "fa1204e8f6aa579a"
+      ]
     },
     "read-colours/blau-rosa": {
       "current": "d65a837461d55948",
-      "former": []
+      "former": [
+        "7ae50e7502f9f3d7",
+        "b74d8f3046bd4e0c",
+        "5b52916f3f9755eb",
+        "14573929e14d9703",
+        "d65a837461d55948"
+      ]
     },
     "read-colours/blau-weiss": {
       "current": "6ca9888027978432",
-      "former": []
+      "former": [
+        "22286f6c3549e452",
+        "0518224b4169d7a9",
+        "9d44ebf2754b17ae",
+        "5a39f8ccee467358",
+        "6ca9888027978432"
+      ]
     },
     "read-colours/rosa": {
       "current": "f98f153521d535c5",
-      "former": []
+      "former": [
+        "27ba982eff5816c8",
+        "0a24d87946d6b933",
+        "babf77b870ece434",
+        "129a9d086f63ffb8",
+        "f98f153521d535c5"
+      ]
     },
     "read-colours/rosa-rot": {
       "current": "355c62975a66f875",
-      "former": []
+      "former": [
+        "31b9e0fb1cecd8b7",
+        "0d2502bef0ef9a6c",
+        "c37760655a472f4b",
+        "ae5a694cffb456ce",
+        "355c62975a66f875"
+      ]
     },
     "read-colours/rosa-gelb": {
       "current": "07d291665e776ff4",
-      "former": []
+      "former": [
+        "e306690512292857",
+        "0ae575e0e4e92b0c",
+        "eb2410d7680a666b",
+        "96a90d73394c78a7",
+        "07d291665e776ff4"
+      ]
     },
     "read-colours/rosa-blau": {
       "current": "f90b543636a656a8",
-      "former": []
+      "former": [
+        "48d1bbadbc690457",
+        "d9c889f0a507280c",
+        "2444aa0f84fda56b",
+        "57f16d3709d57aa3",
+        "f90b543636a656a8"
+      ]
     },
     "read-colours/rosa-weiss": {
       "current": "aa13d1a90af2eaf7",
-      "former": []
+      "former": [
+        "9fe18d439d4d6f77",
+        "6cabc13ae0bec5ac",
+        "ab5cb705bade9b8b",
+        "b8e1fccdb740fac1",
+        "aa13d1a90af2eaf7"
+      ]
     },
     "read-colours/weiss": {
       "current": "9a8b38ccdca4180c",
-      "former": []
+      "former": [
+        "90fa291bdd2eec4b",
+        "822812f8f79e3c30",
+        "b37b78510a68d1b7",
+        "09fe9d6ff71ff6d5",
+        "9a8b38ccdca4180c"
+      ]
     },
     "read-colours/weiss-rot": {
       "current": "4cd7f95add6df218",
-      "former": []
+      "former": [
+        "0b9f9ed849260ed2",
+        "13c816c77b1ef169",
+        "22b9624e476b51ae",
+        "e88ae2d31f4cd407",
+        "4cd7f95add6df218"
+      ]
     },
     "read-colours/weiss-gelb": {
       "current": "cbccf5f6e61089d6",
-      "former": []
+      "former": [
+        "48e66d66dcb852f2",
+        "4ead20fdb510b509",
+        "87ced5d46ebc1d4e",
+        "8c64a27c79721784",
+        "cbccf5f6e61089d6"
+      ]
     },
     "read-colours/weiss-blau": {
       "current": "b23a124062f27a72",
-      "former": []
+      "former": [
+        "31d539361cea36b2",
+        "3d0719412e6bf649",
+        "26aa4c14be0bc40e",
+        "a8d4014c6fb25998",
+        "b23a124062f27a72"
+      ]
     },
     "read-colours/weiss-rosa": {
       "current": "91a7489df431daf7",
-      "former": []
+      "former": [
+        "b37d30e501a7f097",
+        "9584dce020080c8c",
+        "f2d87bf71105c5ab",
+        "a35c4df13df97ac1",
+        "91a7489df431daf7"
+      ]
     },
     "trace/letter-A": {
       "current": "992afec6f3b23914",
