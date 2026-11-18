@@ -12475,6 +12475,51 @@
       "at": "2026-11-18T07:54:03.252Z",
       "seen": true,
       "operation": "c2eff0cc-71e4-457b-838c-c3adaed7ad77"
+    },
+    "friends-frog/animal-5@36da2a12ed7da09c": {
+      "key": "friends-frog/animal-5",
+      "revision": "36da2a12ed7da09c",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:54:05.019Z",
+      "seen": true,
+      "operation": "5c7c4457-774d-4a33-be00-6a062d7049e4"
+    },
+    "friends-frog/animal-7@17c50ec8b4c237ba": {
+      "key": "friends-frog/animal-7",
+      "revision": "17c50ec8b4c237ba",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:54:06.973Z",
+      "seen": true,
+      "operation": "22634db6-b0b6-448a-873a-41a2a241bd06"
+    },
+    "friends-frog/animal-10@ad6cac7e93e359a4": {
+      "key": "friends-frog/animal-10",
+      "revision": "ad6cac7e93e359a4",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:54:08.969Z",
+      "seen": true,
+      "operation": "5ad4e594-62d6-4802-aa51-7ac3d3714b71"
+    },
+    "friends-frog/animal-12@5787d5f33e84302d": {
+      "key": "friends-frog/animal-12",
+      "revision": "5787d5f33e84302d",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:54:11.752Z",
+      "seen": true,
+      "operation": "302aabe5-4649-4e61-980d-896522a81ee8"
+    },
+    "friends-frog/animal-14@0524a9a11e7d1e61": {
+      "key": "friends-frog/animal-14",
+      "revision": "0524a9a11e7d1e61",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:54:13.870Z",
+      "seen": true,
+      "operation": "dcefeb5d-21ea-4e58-a2cf-c4956c8f913f"
     }
   },
   "history": [
