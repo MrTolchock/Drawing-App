@@ -16563,6 +16563,51 @@
       "at": "2026-11-18T20:26:28.198Z",
       "seen": true,
       "operation": "8019c04c-caa0-441d-8294-d62d1e65812d"
+    },
+    "vowels/word-22-3@b22c511865e885ba": {
+      "key": "vowels/word-22-3",
+      "revision": "b22c511865e885ba",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T20:26:31.014Z",
+      "seen": true,
+      "operation": "fe308230-ef14-487e-b624-e0beba4fe50f"
+    },
+    "vowels/word-22-5@0c2f70948b5eef3e": {
+      "key": "vowels/word-22-5",
+      "revision": "0c2f70948b5eef3e",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T20:26:32.896Z",
+      "seen": true,
+      "operation": "f8f3b219-db5a-43a7-896f-ac2deba7c848"
+    },
+    "vowels/word-23-1@a28473883d4e1036": {
+      "key": "vowels/word-23-1",
+      "revision": "a28473883d4e1036",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T20:26:34.812Z",
+      "seen": true,
+      "operation": "336e1ba1-3d14-471b-b177-90b480ab209b"
+    },
+    "vowels/word-23-3@ed40c6580af9897e": {
+      "key": "vowels/word-23-3",
+      "revision": "ed40c6580af9897e",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T20:26:37.747Z",
+      "seen": true,
+      "operation": "1b068e16-65b2-4cec-bc68-1b71a535c2d2"
+    },
+    "vowels/word-23-5@867be0fc6d817afa": {
+      "key": "vowels/word-23-5",
+      "revision": "867be0fc6d817afa",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T20:26:39.945Z",
+      "seen": true,
+      "operation": "20d5e2c5-72be-43af-8e97-9fe6a7dc39af"
     }
   },
   "history": [
