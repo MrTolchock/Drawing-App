@@ -14133,6 +14133,24 @@
       "at": "2026-11-18T20:03:02.138Z",
       "seen": true,
       "operation": "c096e115-6cbb-4de3-8520-bf5da194ad4c"
+    },
+    "friends-badger/riddle-22@7becee5f333010a3": {
+      "key": "friends-badger/riddle-22",
+      "revision": "7becee5f333010a3",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T20:03:05.247Z",
+      "seen": true,
+      "operation": "f01abbda-0af3-4c72-a273-ad6986327189"
+    },
+    "puzzle:friends-badger@072fe31a8648b048": {
+      "key": "puzzle:friends-badger",
+      "revision": "072fe31a8648b048",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T20:03:08.393Z",
+      "seen": true,
+      "operation": "a0e7a20a-deff-429c-b188-97b13111631a"
     }
   },
   "history": [
@@ -14315,9 +14333,24 @@
       "at": "2026-11-18T08:21:41.407Z"
     },
     {
+      "key": "friends-badger/riddle-14",
+      "note": "Sonnenblume ist kein baum, anpassen",
+      "at": "2026-11-18T20:03:11.436Z"
+    },
+    {
       "key": "friends-badger/riddle-16",
       "note": "Was braucht eine pflanze zum wachsen reicht, neben wasser muss man nicht sagen",
       "at": "2026-11-17T20:34:58.911Z"
+    },
+    {
+      "key": "friends-badger/riddle-22",
+      "note": "Besser wäre: giesskanne",
+      "at": "2026-11-18T20:03:12.137Z"
+    },
+    {
+      "key": "friends-badger/riddle-23",
+      "note": "Frage ersetzen",
+      "at": "2026-11-18T20:03:12.890Z"
     },
     {
       "key": "friends-badger/riddle-24",
