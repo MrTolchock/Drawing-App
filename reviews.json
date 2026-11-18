@@ -13449,6 +13449,24 @@
       "at": "2026-11-18T08:20:02.379Z",
       "seen": true,
       "operation": "a21b9fc7-b185-446f-aa1a-4f333b1c4a4a"
+    },
+    "neighbours/1-both@a384f1b9ce86486d": {
+      "key": "neighbours/1-both",
+      "revision": "a384f1b9ce86486d",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T08:20:44.017Z",
+      "seen": true,
+      "operation": "5710b992-b7d0-43a9-b894-0b3db80dafcc"
+    },
+    "neighbours/1-left@cad549d18e561647": {
+      "key": "neighbours/1-left",
+      "revision": "cad549d18e561647",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T08:20:47.360Z",
+      "seen": true,
+      "operation": "c201c313-1ae8-413d-bad7-85a80c1ac957"
     }
   },
   "history": [
