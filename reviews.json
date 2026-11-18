@@ -13184,10 +13184,10 @@
       "key": "puzzle:robot",
       "revision": "81523fe61f8701d6",
       "status": "pending",
-      "note": "Zum teil spring brief bei einem klick gleich zwei felder, anpassen. Anstatt brief nehme bild vom hasenbriefträger",
-      "at": "2026-11-18T08:13:51.815Z",
+      "note": "Mache pfeilbuttons grösser",
+      "at": "2026-11-18T08:14:09.966Z",
       "seen": true,
-      "operation": "29fbc6b3-a4c9-45d3-8e16-63f468e9ca63"
+      "operation": "a54a4415-f374-4220-9f2b-c3a3bdc3e669"
     }
   },
   "history": [
@@ -13325,6 +13325,15 @@
       "at": "2026-11-18T08:11:51.669Z",
       "seen": true,
       "operation": "8a1fc110-429a-4caf-b0e0-7bf84f87f22f"
+    },
+    {
+      "key": "puzzle:robot",
+      "revision": "81523fe61f8701d6",
+      "status": "pending",
+      "note": "Zum teil spring brief bei einem klick gleich zwei felder, anpassen. Anstatt brief nehme bild vom hasenbriefträger",
+      "at": "2026-11-18T08:13:51.815Z",
+      "seen": true,
+      "operation": "29fbc6b3-a4c9-45d3-8e16-63f468e9ca63"
     }
   ],
   "deletedNotes": [
