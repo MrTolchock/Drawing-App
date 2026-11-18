@@ -17139,6 +17139,15 @@
       "at": "2026-11-18T20:29:58.660Z",
       "seen": true,
       "operation": "808d86be-251b-400d-abd9-c6613d6817c7"
+    },
+    "puzzle:friends-frog@fcf4d6ca183c7aa2": {
+      "key": "puzzle:friends-frog",
+      "revision": "fcf4d6ca183c7aa2",
+      "status": "improve",
+      "note": "Gleiches puzzle wie wörter und bilder. Lösche dieses puzzle aber füge iterationen hier in wörter und bilder ein",
+      "at": "2026-11-18T20:36:31.325Z",
+      "seen": true,
+      "operation": "8775cdee-5b48-4495-a1b7-83e009d45c6c"
     }
   },
   "history": [
