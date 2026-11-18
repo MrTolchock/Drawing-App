@@ -16824,6 +16824,24 @@
       "at": "2026-11-18T20:27:37.219Z",
       "seen": true,
       "operation": "3df9ee5c-c554-41c1-8220-fe3d2cf77a30"
+    },
+    "read-puzzle/word-0@93d235aa87ed532c": {
+      "key": "read-puzzle/word-0",
+      "revision": "93d235aa87ed532c",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T20:27:54.442Z",
+      "seen": true,
+      "operation": "1e45d16f-bfad-4cff-b2c6-fcb6c6ef8086"
+    },
+    "read-puzzle/word-1@181c50704ded4358": {
+      "key": "read-puzzle/word-1",
+      "revision": "181c50704ded4358",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T20:27:57.121Z",
+      "seen": true,
+      "operation": "07a70ab4-d7eb-40d1-afe7-b100fad98cd2"
     }
   },
   "history": [
