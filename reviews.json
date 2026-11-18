@@ -14151,6 +14151,285 @@
       "at": "2026-11-18T20:03:08.393Z",
       "seen": true,
       "operation": "a0e7a20a-deff-429c-b188-97b13111631a"
+    },
+    "count/6-2@08cb80692b7fbb0f": {
+      "key": "count/6-2",
+      "revision": "08cb80692b7fbb0f",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T20:03:46.124Z",
+      "seen": true,
+      "operation": "5d68b0b3-ca0e-450c-bcec-d678d0c15284"
+    },
+    "count/6-3@64bd334064023900": {
+      "key": "count/6-3",
+      "revision": "64bd334064023900",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T20:03:46.124Z",
+      "seen": true,
+      "operation": "8e15f746-b5f5-4952-a881-4b5b5d74bdd1"
+    },
+    "count/6-4@86827fdf5ee9f289": {
+      "key": "count/6-4",
+      "revision": "86827fdf5ee9f289",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T20:03:46.124Z",
+      "seen": true,
+      "operation": "5a0d6517-68c4-4820-8217-f75d5c7b8f7d"
+    },
+    "count/7-2@748d4c0ee2bab3a2": {
+      "key": "count/7-2",
+      "revision": "748d4c0ee2bab3a2",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T20:03:46.124Z",
+      "seen": true,
+      "operation": "bcbee707-cece-4fbf-9e4d-834f020219c2"
+    },
+    "count/7-3@f818f5bd046a240d": {
+      "key": "count/7-3",
+      "revision": "f818f5bd046a240d",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T20:03:46.124Z",
+      "seen": true,
+      "operation": "13265e8d-e33b-49fe-b7c3-77778318eceb"
+    },
+    "count/7-4@17e83c1839f216e4": {
+      "key": "count/7-4",
+      "revision": "17e83c1839f216e4",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T20:03:46.124Z",
+      "seen": true,
+      "operation": "06d36fbf-5568-4ec7-b065-c6c35bfb7d34"
+    },
+    "count/8-2@f4bd915f9c3e12e3": {
+      "key": "count/8-2",
+      "revision": "f4bd915f9c3e12e3",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T20:03:46.124Z",
+      "seen": true,
+      "operation": "706a519d-1711-4698-beaa-6313a1f2dcf6"
+    },
+    "count/8-3@3c24f66a30626e2c": {
+      "key": "count/8-3",
+      "revision": "3c24f66a30626e2c",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T20:03:46.124Z",
+      "seen": true,
+      "operation": "80cff9ea-2bb7-446a-94c0-e5550608c306"
+    },
+    "count/8-4@4110117d867781e5": {
+      "key": "count/8-4",
+      "revision": "4110117d867781e5",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T20:03:46.124Z",
+      "seen": true,
+      "operation": "7542a96a-2ddc-440f-9acd-82db3688e440"
+    },
+    "count/9-2@c60ae0c354d1de55": {
+      "key": "count/9-2",
+      "revision": "c60ae0c354d1de55",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T20:03:46.124Z",
+      "seen": true,
+      "operation": "36c0641b-4bc7-41ac-993a-ae6a7ac098fe"
+    },
+    "count/9-3@5d61687a244b691a": {
+      "key": "count/9-3",
+      "revision": "5d61687a244b691a",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T20:03:46.124Z",
+      "seen": true,
+      "operation": "3d16e53d-6678-4cc9-8d1f-81c8b69ede47"
+    },
+    "count/9-4@f2d2c53d7822c7d3": {
+      "key": "count/9-4",
+      "revision": "f2d2c53d7822c7d3",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T20:03:46.124Z",
+      "seen": true,
+      "operation": "be4e4520-fafa-4788-9e66-34c9a8e64670"
+    },
+    "count/10-2@4e023ca2dd9cb5d4": {
+      "key": "count/10-2",
+      "revision": "4e023ca2dd9cb5d4",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T20:03:46.124Z",
+      "seen": true,
+      "operation": "a3c5bd4b-8455-45f4-84e4-f33ce2f17c4d"
+    },
+    "count/10-3@478a2f8bd2ee959b": {
+      "key": "count/10-3",
+      "revision": "478a2f8bd2ee959b",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T20:03:46.124Z",
+      "seen": true,
+      "operation": "05827313-351a-45eb-b495-fce70650105e"
+    },
+    "count/10-4@101d9584ce946652": {
+      "key": "count/10-4",
+      "revision": "101d9584ce946652",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T20:03:46.124Z",
+      "seen": true,
+      "operation": "c9b04cfd-c6e0-45f6-92df-27e622da9438"
+    },
+    "count/11-2@a84e4fb6bb751e2e": {
+      "key": "count/11-2",
+      "revision": "a84e4fb6bb751e2e",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T20:03:46.124Z",
+      "seen": true,
+      "operation": "da2b775c-4e3f-482d-a27c-04829d4b2f65"
+    },
+    "count/11-3@80ed1ea3da929c61": {
+      "key": "count/11-3",
+      "revision": "80ed1ea3da929c61",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T20:03:46.124Z",
+      "seen": true,
+      "operation": "d1330a88-4d39-4f88-8577-cfcdd7d9ce0f"
+    },
+    "count/11-4@955e6d64aecf1828": {
+      "key": "count/11-4",
+      "revision": "955e6d64aecf1828",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T20:03:46.124Z",
+      "seen": true,
+      "operation": "a8bc385c-843c-4242-94d0-d19e42e97fdd"
+    },
+    "count/12-2@82438309002f064f": {
+      "key": "count/12-2",
+      "revision": "82438309002f064f",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T20:03:46.124Z",
+      "seen": true,
+      "operation": "fe121a53-ed8e-4ef0-bf80-1645886b37be"
+    },
+    "count/12-3@556df6066ff912e0": {
+      "key": "count/12-3",
+      "revision": "556df6066ff912e0",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T20:03:46.124Z",
+      "seen": true,
+      "operation": "c39f7845-6f40-4e79-9e4e-5262ec41a5d4"
+    },
+    "count/12-4@6a3ef7bbf0533d89": {
+      "key": "count/12-4",
+      "revision": "6a3ef7bbf0533d89",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T20:03:46.124Z",
+      "seen": true,
+      "operation": "6e4b7c81-e8bc-4fde-b6ec-e1a7947d30ba"
+    },
+    "count/13-2@523226502f1d888a": {
+      "key": "count/13-2",
+      "revision": "523226502f1d888a",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T20:03:46.124Z",
+      "seen": true,
+      "operation": "ac6f548a-6814-4889-bc3c-c3d283c9d6f6"
+    },
+    "count/13-3@fe36b67d36524a85": {
+      "key": "count/13-3",
+      "revision": "fe36b67d36524a85",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T20:03:46.124Z",
+      "seen": true,
+      "operation": "f26cfbb6-ce30-4047-8089-49eeb1eb5b9d"
+    },
+    "count/13-4@83549c2e27d1408c": {
+      "key": "count/13-4",
+      "revision": "83549c2e27d1408c",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T20:03:46.124Z",
+      "seen": true,
+      "operation": "7a6d43d0-ecde-4acf-8f3c-b3fb88c38a73"
+    },
+    "count/14-2@0ffdfc93d30af2eb": {
+      "key": "count/14-2",
+      "revision": "0ffdfc93d30af2eb",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T20:03:46.124Z",
+      "seen": true,
+      "operation": "d9cf01d4-a3bb-4995-9d7f-68f568bddfd2"
+    },
+    "count/14-3@5bd2f100e670dcc4": {
+      "key": "count/14-3",
+      "revision": "5bd2f100e670dcc4",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T20:03:46.124Z",
+      "seen": true,
+      "operation": "f7843840-577d-472d-958c-d8e2d5bd0542"
+    },
+    "count/14-4@99adc9dd914cde2d": {
+      "key": "count/14-4",
+      "revision": "99adc9dd914cde2d",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T20:03:46.124Z",
+      "seen": true,
+      "operation": "4b9e4ad8-b41e-40c9-81db-5672aaa5417c"
+    },
+    "count/15-2@3fcef5ba39145c6e": {
+      "key": "count/15-2",
+      "revision": "3fcef5ba39145c6e",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T20:03:46.124Z",
+      "seen": true,
+      "operation": "8b0dff2e-0a2e-484c-811f-7752e199b00e"
+    },
+    "count/15-3@453b9657946fbd21": {
+      "key": "count/15-3",
+      "revision": "453b9657946fbd21",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T20:03:46.124Z",
+      "seen": true,
+      "operation": "ab3fd55b-474f-4ebe-b982-20632d36435d"
+    },
+    "count/15-4@5c3ad988c177e868": {
+      "key": "count/15-4",
+      "revision": "5c3ad988c177e868",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T20:03:46.124Z",
+      "seen": true,
+      "operation": "1af3d3da-260a-428a-b7f7-8a7a1a8b6321"
+    },
+    "puzzle:count@38adf157885ddf19": {
+      "key": "puzzle:count",
+      "revision": "38adf157885ddf19",
+      "status": "approved",
+      "note": "Auch hier markierungen für käfer entfernen, wenn man draufklickt",
+      "at": "2026-11-18T20:03:46.124Z",
+      "seen": true,
+      "operation": "e2255669-93d8-437e-a332-cbffefced109"
     }
   },
   "history": [
