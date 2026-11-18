@@ -15213,6 +15213,15 @@
       "at": "2026-11-18T20:12:02.816Z",
       "seen": true,
       "operation": "06842740-4baf-4a9e-9b87-cc084d05f89b"
+    },
+    "picnic/4-5@1fef2db61aa7b24a": {
+      "key": "picnic/4-5",
+      "revision": "1fef2db61aa7b24a",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T20:12:21.296Z",
+      "seen": true,
+      "operation": "171d284e-0059-4795-88dd-c1bed157c288"
     }
   },
   "history": [
