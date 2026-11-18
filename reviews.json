@@ -13044,6 +13044,42 @@
       "at": "2026-11-18T08:11:24.459Z",
       "seen": true,
       "operation": "8de6d7b8-23ad-4752-87e9-657e07e21ec4"
+    },
+    "syllable/word-25@0a710f2fc4f1a99d": {
+      "key": "syllable/word-25",
+      "revision": "0a710f2fc4f1a99d",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T08:11:26.424Z",
+      "seen": true,
+      "operation": "6198a226-12ae-4300-9c23-899bef358d92"
+    },
+    "syllable/word-26@c9c68ab86729e5fa": {
+      "key": "syllable/word-26",
+      "revision": "c9c68ab86729e5fa",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T08:11:28.557Z",
+      "seen": true,
+      "operation": "762faeb1-4e05-46e9-8956-5b5d9e8ed5ae"
+    },
+    "syllable/word-27@95a14d4648207664": {
+      "key": "syllable/word-27",
+      "revision": "95a14d4648207664",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T08:11:30.406Z",
+      "seen": true,
+      "operation": "86bb6b0c-3c09-4d23-a096-1b036ed78061"
+    },
+    "syllable/word-28@991a48b00b1b12f0": {
+      "key": "syllable/word-28",
+      "revision": "991a48b00b1b12f0",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T08:11:33.408Z",
+      "seen": true,
+      "operation": "0504d578-c6b2-445e-9968-4341f1728e1b"
     }
   },
   "history": [
