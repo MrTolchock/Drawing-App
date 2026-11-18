@@ -17085,6 +17085,24 @@
       "at": "2026-11-18T20:29:20.025Z",
       "seen": true,
       "operation": "c475b6e0-8d10-4689-880d-4316902ecc20"
+    },
+    "read-word/word-0@cbcc8167141e410b": {
+      "key": "read-word/word-0",
+      "revision": "cbcc8167141e410b",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T20:29:47.880Z",
+      "seen": true,
+      "operation": "d813d184-bd1e-4597-a3b5-1bf6c946d489"
+    },
+    "read-word/word-1@639aa0169f7b99e2": {
+      "key": "read-word/word-1",
+      "revision": "639aa0169f7b99e2",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T20:29:49.880Z",
+      "seen": true,
+      "operation": "7a3bb62e-17ab-4a9a-be35-a3ed381097b0"
     }
   },
   "history": [
