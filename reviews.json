@@ -12801,6 +12801,15 @@
       "at": "2026-11-18T08:08:11.309Z",
       "seen": true,
       "operation": "753c4099-5dff-4e24-af31-93fa2b7798f9"
+    },
+    "picnic/2-3@5dea4ba8423e3bf0": {
+      "key": "picnic/2-3",
+      "revision": "5dea4ba8423e3bf0",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T08:08:23.162Z",
+      "seen": true,
+      "operation": "83649b60-fabd-4909-817f-1df63e3a581b"
     }
   },
   "history": [
