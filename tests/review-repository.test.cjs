@@ -28,6 +28,23 @@ test('legacy decisions without inspection proof are preserved without publishing
  await a.repo.start();assert.equal(a.repo.state.pending,1);await a.repo.connect('test-review-token');const entry=server.ledger.entries['add/0@older-revision'];
  assert.equal(entry.status,'pending');assert.equal(entry.legacyStatus,'approved');assert.equal(entry.note,'Original review note');assert.equal(a.repo.confirmed('add'),false);a.repo.stop();
 });
+test('a later compatible puzzle sign-off recovers downgraded iteration approvals read-only',async()=>{
+ const ledger=R.empty();
+ for(const it of catalogue.iterations('add')){
+  const entry={key:it.id,revision:catalogue.iterationRevision('add',it),status:'approved',note:'',at:'2026-11-18T07:50:00Z',seen:true};
+  ledger.entries[R.address(entry)]=entry;
+ }
+ const legacy=ledger.entries['add/0@r-add/0'];Object.assign(legacy,{status:'pending',seen:false,legacyStatus:'approved'});
+ const server=remoteServer(ledger),a=client(server);await a.repo.start();
+ assert.equal(a.repo.confirmed('add'),false);
+ const signoff={key:'puzzle:add',revision:catalogue.puzzleRevision('add'),status:'approved',note:'',at:'2026-11-18T08:00:00Z',seen:true};
+ ledger.entries[R.address(signoff)]=signoff;server.ledger=ledger;await a.repo.refresh();
+ assert.equal(a.data.decisions['add/0'].status,'approved');assert.equal(a.data.seen['add/0'],legacy.revision);assert.equal(a.repo.confirmed('add'),true);
+ assert.equal(server.ledger.entries['add/0@r-add/0'].status,'pending');assert.equal(server.writes.length,0);
+ const later={key:legacy.key,revision:'later-revision',status:'improve',note:'Noch offen.',at:'2026-11-18T08:01:00Z',seen:true};
+ ledger.entries[R.address(later)]=later;server.ledger=ledger;await a.repo.refresh();
+ assert.equal(a.repo.confirmed('add'),false);assert.equal(a.data.decisions['add/0'].note,later.note);a.repo.stop();
+});
 test('independent browsers merge different items without losing either decision',async()=>{
  const server=remoteServer(),a=client(server),b=client(server);await a.repo.start();await b.repo.start();
  a.decide('add/1','approved');b.decide('add/2','improve');await a.repo.connect('test-review-token');await b.repo.connect('test-review-token');await a.repo.refresh();

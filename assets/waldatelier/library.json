@@ -266,12 +266,13 @@
       "height": 1280,
       "columns": 4,
       "rows": 4,
-      "sha256": "aeb5cdd3aef93cc3f55e63f2323770b83b5eea90e190f0948d243828fc5aab83",
+      "sha256": "ebccfde4ff973c0736012ee2380e9b8654d1e06ec2ead4b03acacd1e83571f65",
       "provenance": {
         "status": "historical-record",
         "record": "legacy/design-history/2026-11-16-before-style-contract/design/illustrations/forest-objects.json",
         "recordKind": "generation-record",
-        "manifest": "design/illustrations/forest-objects.json",
+        "cellRepair": "design/illustrations/rose-repair-2026-11-18.json",
+        "priorPreparationManifest": "design/illustrations/forest-objects.json",
         "styleContract": "design/illustrations/style.json",
         "requestId": "forest-objects",
         "forwardPrompt": "design/illustrations/prompts/forest-objects.txt",
@@ -373,6 +374,25 @@
         "styleContract": "design/illustrations/style.json",
         "requestId": "puzzle-flowers",
         "forwardPrompt": "design/illustrations/prompts/puzzle-flowers.txt",
+        "guide": "design/illustrations/STYLE.md"
+      }
+    },
+    {
+      "id": "puzzle-garden",
+      "file": "puzzle-garden.webp",
+      "width": 640,
+      "height": 640,
+      "columns": 2,
+      "rows": 2,
+      "sha256": "ea3bc51d0772b62ab344abfc4ba3f40d26ba1f8159870040179edffdcb8d57d9",
+      "provenance": {
+        "status": "historical-record",
+        "record": "design/artwork/generation-records/puzzle-garden-2026-11-18.json",
+        "recordKind": "retained-generation-record",
+        "manifest": "design/illustrations/puzzle-garden.json",
+        "styleContract": "design/illustrations/style.json",
+        "requestId": "puzzle-garden",
+        "forwardPrompt": "design/illustrations/prompts/puzzle-garden.txt",
         "guide": "design/illustrations/STYLE.md"
       }
     },
@@ -1376,7 +1396,9 @@
       "tokens": [
         "🍫"
       ],
-      "usedBy": []
+      "usedBy": [
+        "syllable"
+      ]
     },
     {
       "id": "clock",
@@ -1858,7 +1880,27 @@
       "tokens": [
         "🚒"
       ],
-      "usedBy": []
+      "usedBy": [
+        "syllable"
+      ]
+    },
+    {
+      "id": "firefly",
+      "label": "Glühwürmchen",
+      "sheet": "puzzle-garden",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": [
+        "rocket"
+      ]
     },
     {
       "id": "fish",
@@ -3085,7 +3127,6 @@
         "💌"
       ],
       "usedBy": [
-        "robot",
         "sequence"
       ]
     },
@@ -3186,7 +3227,6 @@
         "📬"
       ],
       "usedBy": [
-        "robot",
         "sequence"
       ]
     },
@@ -4566,7 +4606,9 @@
         "height": 313.5
       },
       "tokens": [],
-      "usedBy": []
+      "usedBy": [
+        "syllable"
+      ]
     },
     {
       "id": "strawberry",
@@ -5306,6 +5348,24 @@
       ]
     },
     {
+      "id": "watering-can",
+      "label": "Giesskanne",
+      "sheet": "puzzle-garden",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 320,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": [
+        "friends-badger"
+      ]
+    },
+    {
       "id": "watermelon",
       "label": "watermelon",
       "sheet": "words-one",
@@ -5321,7 +5381,9 @@
       "tokens": [
         "🍉"
       ],
-      "usedBy": []
+      "usedBy": [
+        "syllable"
+      ]
     },
     {
       "id": "whale",

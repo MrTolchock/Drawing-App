@@ -4,6 +4,24 @@ This is the required contract for every active and future puzzle. It builds on t
 
 All generated learning pictures follow the [canonical watercolour/pencil style](illustrations/STYLE.md), with its fixed reference images and style-complete prompts. Historical generation records do not define new artwork.
 
+## Illustration and typography
+
+Use the actual animal and object reference images in every generation request. Compare answer pictures as a group on cream and on a dark background at the size used in the game. Pack isolated drawings with the longest visible side about 80% of the square cell and the silhouette centred on both axes. Keep proportions and soft pencil edges. Check for clipped features, pale matte and neighbour fragments, and reuse the same drawing when the subject and pose recur. A repair to one cell preserves the positions and visible pixels of the other cells. [Illustration workflow](illustrations/STYLE.md)
+
+Use bundled Andika for puzzle text in child play, gallery rounds and review previews. Keep the same role size across puzzles at a given viewport. Preserve the authored handwriting paths and the structure of exact diagrams.
+
+| Role | Font and size |
+| --- | --- |
+| Puzzle title | Andika 700, responsive 20–30 px |
+| Task prompt | Andika 700, responsive 21–29 px |
+| Scored words, sentences, syllables and numerals | Andika 700, 29 px at widths up to 600 px and 34 px above |
+| Text controls, including both memory actions | Andika 700, 21 px |
+| Picture captions and group success text | Andika 700, 16 px |
+| Host context and iteration counter | Andika 400 at 12/15 px and 700 at 14/16 px, respectively, on narrow/wide screens |
+| Tracing quantities and labels | Andika 400, 16 px |
+
+Give longer words and captions room to wrap. Keep the same touch area for equivalent controls.
+
 ## The shared contract
 
 | Rule | Every active puzzle |
@@ -30,10 +48,10 @@ Numeric bounds and reading prerequisites are explicit. Expanding variety must no
 ## Adult review and release gate
 
 1. Unlock **Einstellungen** with its existing adult calculation, then open **Puzzle-Galerie öffnen** or **Puzzle-Prüfung öffnen** directly; moving between Settings, the gallery and the review (e.g. the gallery's **Zur Puzzle-Prüfung**) asks no second calculation. Direct review URLs retain one adult gate.
-2. The entry page shows every puzzle and the single GitHub connection panel. Select a puzzle; its details show a plain-language competence explanation, curriculum reference, difficulty and an optional general comment. Saving the comment preserves the exact approval decision/revision and synchronizes through the existing review storage. The header back arrow returns to the all-puzzle overview, then to Settings. Inspect its competence and difficulty. Test **Spielerklärung anhören** once on the puzzle overview; iteration previews do not repeat the speech control.
+2. Select a puzzle to inspect its competence explanation, curriculum reference and difficulty. Test **Spielerklärung anhören** once in the details. Saving a general comment marks the puzzle **Offen** for improvement and keeps the individual iteration decisions. The comment field clears after saving. The header back arrow returns to all puzzles, then to Settings.
 3. Start **Offene Iterationen prüfen**. Review all unconfirmed iterations once in the normal puzzle viewport, with no footer. Explicitly selecting an iteration places it first. Correct completion saves its exact-revision approval, uses the same 900 ms feedback and advances automatically. Wrong answers do not approve it. Handwriting requires all strokes.
-4. A small **×** replaces rule speech during review and opens an optional comment and **Ablehnen und weiter**. Cancelling makes no decision. Rejected items stay flagged for the next run. After the entire queue, show the normal 2.2-second celebration; completing it approves the puzzle only if every current iteration passed. No name, checklist or required text. **Alle bestätigen** on the puzzle overview lets the adult approve every current iteration and the puzzle together after a confirmation; it is the adult's own decision, recorded like any other. Review never changes child saves or letters.
-5. Only fully approved puzzles enter child play. Flagging any iteration or the puzzle immediately removes its release eligibility.
+4. A small **×** in the rule-speech position opens **Ablehnen und weiter** and its optional comment. Cancelling keeps the existing decision. Rejected items return in the next queue. A completed queue plays the normal 2.2-second celebration automatically. **Alle bestätigen** lets the adult explicitly approve every current iteration and the puzzle after a confirmation. Review preserves child saves and letters.
+5. Every current iteration requires GitHub-confirmed approval for release. A flag on an iteration or a general comment blocks release immediately. Completing the open queue can clear an earlier puzzle flag. When all iterations are already approved, **Alle bestätigen** clears a general flag explicitly. A comment saved during an older review queue keeps the puzzle open.
 6. Additions, content/answer changes, difficulty changes and changes to shared presentation/interaction invalidate the relevant sign-offs automatically. Old decisions remain visible as history, never silently apply to new content.
 7. GitHub’s `puzzle-review-data` branch is the shared source of truth, keyed by stable ID and exact revision. Devices restore published decisions automatically and keep an offline cache/outbox. Only confirmed GitHub approvals release puzzles. Authenticate once per editing session on the Puzzle-Prüfung entry page; readers need no token. Conflicting edits require a choice. There is no file export/import or search in Puzzle-Prüfung; the page and each puzzle open at the top. A deployment does not approve anything. See [review storage](../docs/REVIEW-STORAGE.md).
 
@@ -59,7 +77,7 @@ Physical iPad/Safari, sound comfort and child suitability still need the owner's
 Use `js/screens/puzzle.js` and `css/puzzle-rounds.css`. Writing uses the existing stroke engine in `js/screens/trace.js` inside the same page shell. The context portrait, five leaves, topbar, guidance, feedback and celebration are shared. Adult review uses the same sized task region, with a small rejection × in the usual speech-control slot and no review strip. The counter shows the full review queue; five leaves represent its overall progress. The speech test belongs to the puzzle overview; children keep the shared “Spiel erklären” control during normal play.
 
 - Cream stitched paper and quiet woodland background; one main task per page. Cards use the shared wood/cream treatment, soft brown borders and sage selected states. Feedback adds a visible mark and accessible status, never colour alone.
-- Andika 700 for the puzzle title, prompt, scored words and numerals; Andika 400 for explanations and labels. Do not use Baloo for scored text or handwriting.
+- Use the typography roles above in the shared puzzle and tracing layouts.
 - Touch controls are at least 48 × 48 CSS px. On a narrow screen wrap answers or scroll the task region; do not shrink letters or targets until they become hard to use. Keep the topbar and back button reachable. Honour safe areas, visible keyboard focus and reduced motion.
 - Nouns/verbs use drawn artwork through `FK.visual`; companions and voters use the same painted identity API `FK.friendsArt.portrait`. An identity portrait must never substitute for a pictured vocabulary answer. Task utility controls use `FK.icons`; the header back uses the shared `FK.ui.topbar` navigation arrow, matching menus and the map.
 
@@ -69,4 +87,4 @@ Use `js/screens/puzzle.js` and `css/puzzle-rounds.css`. Writing uses the existin
 2. Supply at least 25 substantively different, inspectable iterations; include each expected answer/solution. Use complete natural sets where appropriate (alphabet, digits). Do not create a second page shell or duplicate a retired engine.
 3. Implement the interaction in the shared renderer, including saved partial work, editable retries, requested rule speech, mute, keyboard/touch input and the common finish sequence. Retain shared play-log hooks; log relevant actions for any new interaction and classify construction/tracing separately from choice questions in its summaries.
 4. Run `node tools/puzzle-catalogue.cjs`, `node tools/check-design.cjs`, model checks and the relevant browser suites. Review the real phone/tablet layout against [Visual style](VISUAL-STYLE.md).
-5. Open Settings → Puzzle-Prüfung, play through **every unconfirmed iteration**, solve to approve or use × to request improvement, and complete the celebration. New assets, interaction or difficulty change the revision and require review again. A deployment does not grant editorial approval.
+5. Open Settings → Puzzle-Prüfung and play through **every unconfirmed iteration**. Solve to approve or use × to request improvement. The final iteration ends the queue automatically. New assets, interaction or difficulty change the affected revisions and require review again.

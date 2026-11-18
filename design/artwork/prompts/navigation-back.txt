@@ -13,6 +13,9 @@ Preserve subject identity, counted quantities, exact answer colours and action d
 ROLE: navigation
 Use the same warm hand-drawn palette as a SIMPLE small pictogram. Follow the approved navigation-symbol reference for broad, softly irregular sepia outlines, rounded bold silhouettes and nearly flat fills. Match its illustrated edge softness and outline-to-fill proportions. Omit tiny scenery, stamps, material grain, fine hatching, glossy hubs and extra decoration. It must read at 32 pixels. This is a prescribed low-detail application of the canonical style. The den exit and navigation back belong to this same illustrated family as settings, map and letter. The map home marker uses its separate painted map-landmark role. Reuse current assets rather than rigid geometric substitutes or the retired detailed wooden pins.
 
+FRAMING AND EDGE QUALITY:
+Compare related pictures side by side at the size used in the game. For square cells, draw the complete silhouette with enough transparent space to pack it centred on both axes, with its longest visible side about 80% of the cell. Keep its proportions and use comparable visual weight for neighbouring answers. Reuse the same painting when a subject and pose recur. Leave genuine alpha around every isolated subject and retain the soft pencil edges. Inspect on light and dark backgrounds for pale matte, clipped outlines, stray pixels and neighbouring subjects. In a cell repair, preserve the pixels and positions of the other cells. Scenes and irregular layouts follow their role and brief.
+
 ATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:
 1. design/illustrations/references/watercolour-pencil-v1/animals.png — canonical-style: canonical drawing technique for animals; fixed majority-style pixels
 2. design/illustrations/references/watercolour-pencil-v1/objects.png — canonical-style: canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels

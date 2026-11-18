@@ -8,7 +8,7 @@
   const labels={...Object.fromEntries(Object.entries(R.wordArt).map(([word,pic])=>[pic,word])),...Object.fromEntries(R.words.map(([word,pic])=>[pic,word.replaceAll('-','')])),
     'mouse-sit':'Maus sitzt','mouse-run':'Maus rennt','mouse-sleep':'Maus schläft','bird-fly':'Vogel fliegt','bird-sit':'Vogel sitzt','fish-swim':'Fisch schwimmt','hare-run':'Hase rennt','hare-sit':'Hase sitzt','fox-sleep':'Fuchs schläft','fox-run':'Fuchs rennt','cat-sleep':'Katze schläft','cat-sit':'Katze sitzt','dog-run':'Hund rennt','dog-sleep':'Hund schläft','duck-swim':'Ente schwimmt','duck-fly':'Ente fliegt','forest-stone':'Stein','forest-apple':'Apfel','forest-feather':'Feder','forest-flower':'Blume','forest-nut':'Nuss','forest-leaf':'Blatt','forest-berry':'Beere'};
   Object.assign(labels,{'squirrel-sit':'Eichhörnchen sitzt','squirrel-run':'Eichhörnchen rennt','hedgehog-walk':'Igel läuft','hedgehog-sleep':'Igel schläft','badger-walk':'Dachs läuft','badger-sleep':'Dachs schläft','roe-stand':'Reh steht','roe-run':'Reh rennt','frog-sit':'Frosch sitzt','frog-jump':'Frosch springt','forest-fox':'Fuchs','forest-woodpecker':'Buntspecht','forest-bat':'Fledermaus','forest-owl':'Waldkauz','forest-robin':'Rotkehlchen','forest-lynx':'Luchs','forest-marten':'Baummarder'});
-  Object.assign(labels,{'empty-basket':'Leerer Korb','habitat-pond':'Teich','squirrel-nut':'Eichhörnchen mit Nuss'});
+  Object.assign(labels,{'empty-basket':'Leerer Korb','habitat-pond':'Teich','squirrel-nut':'Eichhörnchen mit Nuss',firefly:'Glühwürmchen','watering-can':'Giesskanne'});
   const pictureName=id=>id.startsWith('scene:')?id.slice(6).split('+').map(pictureName).join(' und '):id.startsWith('puzzle-flower-')?id.slice(13)+'e Blume':labels[id]||labels[aliases[id]]||id;
   function picture(id,label='') {
     if(id?.startsWith('scene:'))return h('span',{class:'puzzle-picture puzzle-picture-composite',role:'img','aria-label':label||'Bild mit zwei Motiven'},id.slice(6).split('+').map(pic=>picture(pic)));
@@ -59,17 +59,10 @@
   }
   function numeric(q=question) {q.choices.forEach(n=>option(n,null,String(n)));}
   function objects(id,n,cls='') {return h('div',{class:'puzzle-objects '+cls,'aria-label':n+' Objekte'},Array.from({length:n},()=>picture(id)));}
-  const countNames={fish:'Fische','forest-feather':'Federn','forest-leaf':'Blätter','forest-stone':'Steine','forest-flower':'Blumen','forest-berry':'Beeren','forest-mushroom':'Pilze'};
   function renderCount(q) {
-    const field=h('div',{class:q.kind==='nuts'?'puzzle-nuts':'puzzle-meadow',style:q.columns?{gridTemplateColumns:'repeat('+q.columns+', minmax(0,1fr))'}:{}}),marks=new Set(Array.isArray(work().marks)?work().marks:[]);
+    const field=h('div',{class:q.kind==='nuts'?'puzzle-nuts':'puzzle-meadow',style:q.columns?{gridTemplateColumns:'repeat('+q.columns+', minmax(0,1fr))'}:{}});
     const items=q.kind==='nuts'?Array(q.count).fill(q.item||'forest-nut'):q.bugs;
-    items.forEach((id,i)=>{
-      let node;node=button(id==='ladybird'?'Marienkäfer markieren':id==='forest-nut'?'Nuss markieren':q.kind==='nuts'?'Bild markieren':id==='bee'?'Biene':'Schnecke',()=>{
-        if(locked)return;if(id!=='ladybird'&&q.kind!=='nuts'){fail(node,'Zähle nur die roten Marienkäfer.');return;}
-        if(marks.has(i))marks.delete(i);else marks.add(i);
-        node.classList.toggle('marked',marks.has(i));node.setAttribute('aria-pressed',String(marks.has(i)));work().marks=[...marks];persist();
-      },'puzzle-counter'+(marks.has(i)?' marked':''),picture(id));node.setAttribute('aria-pressed',String(marks.has(i)));field.append(node);
-    });
+    for(const id of items)field.append(h('span',{class:'puzzle-counter'},picture(id,id==='ladybird'?'Marienkäfer':id==='bee'?'Biene':id==='snail'?'Schnecke':pictureName(id))));
     if(!items.length){field.classList.add('puzzle-empty');field.append(h('span',{class:'puzzle-empty-basket'},picture('empty-basket','Leerer Korb')));}
     scene.append(field);numeric();
   }
@@ -94,8 +87,7 @@
     scene.append(line);q.choices.forEach(v=>option(v,picture(v),'Dieses Bild einsetzen: '+pictureName(v)));
   }
   function renderFireflies(q) {
-    scene.append(h('div',{class:'puzzle-goal'},h('span',{text:'Hier sollen '+q.total+' leuchten'})));
-    const slots=h('div',{class:'puzzle-firefly-slots'});for(let i=0;i<q.total;i++)slots.append(h('span',{class:'puzzle-firefly-slot'+(i<q.filled?' filled':' is-empty'),'aria-label':i<q.filled?'Ein Glühwürmchen':'Ein freier Platz'},i<q.filled?FK.puzzles.firefly():'?'));
+    const slots=h('div',{class:'puzzle-firefly-slots'});for(let i=0;i<q.total;i++)slots.append(h('span',{class:'puzzle-firefly-slot'+(i<q.filled?' filled':' is-empty'),'aria-label':i<q.filled?'Ein Glühwürmchen':'Ein freier Platz'},i<q.filled?picture('firefly','Glühwürmchen'):'?'));
     scene.append(slots);numeric();
   }
   // Pointer dragging works with touch, pen and mouse. Ordinary taps/keyboard activation keep their button behavior.
@@ -118,7 +110,7 @@
       if(!press||event.pointerId!==press.id)return;
       if(!press.moved&&Math.hypot(event.clientX-press.x,event.clientY-press.y)<8)return;
       event.preventDefault();const starting=!press.moved;press.moved=true;press.px=event.clientX;press.py=event.clientY;FK.play.consumeGesture(event);
-      if(!ghost){const bounds=node.getBoundingClientRect();ghost=node.cloneNode(true);ghost.removeAttribute('id');ghost.className='puzzle-drag-ghost';ghost.setAttribute('aria-hidden','true');ghost.style.width=bounds.width+'px';ghost.style.height=bounds.height+'px';document.body.append(ghost);node.classList.add('is-dragging');}
+      if(!ghost){const bounds=node.getBoundingClientRect();ghost=node.cloneNode(true);ghost.removeAttribute('id');ghost.classList.add('puzzle-drag-ghost');ghost.setAttribute('aria-hidden','true');ghost.style.width=bounds.width+'px';ghost.style.height=bounds.height+'px';document.body.append(ghost);node.classList.add('is-dragging');}
       ghost.style.left=event.clientX+'px';ghost.style.top=event.clientY+'px';
       if(starting)follow();
     });
@@ -130,6 +122,9 @@
     });
     node.addEventListener('pointercancel',clean);node.addEventListener('lostpointercapture',clean);
     return node;
+  }
+  function groupResult(){
+    return h('p',{class:'puzzle-group-result','aria-hidden':'true'},FK.icons.element('check'),'Das passt!');
   }
   function renderPicnic(q) {
     let counts=Array.isArray(work().plates)&&work().plates.length===q.friends?work().plates.slice():(q.plates||Array(q.friends).fill(0)).slice();
@@ -153,7 +148,7 @@
       }
     };
     const update=()=>{work().plates=counts;persist();redraw();if(counts.every(n=>n===q.each))solved(places);};
-    scene.append(basket,places);redraw();
+    scene.append(basket,places,groupResult());redraw();
   }
   function renderMatrix(q) {
     const matrix=h('div',{class:'puzzle-matrix',role:'table','aria-label':'Drei Reihen mit je drei Formen'});
@@ -173,13 +168,22 @@
   function renderRobot(q) {
     const model={...q,kind:'robot'},saved=FK.routes.restore(model,work().route),initial=FK.routes.initial(model);let route=saved||initial;
     const board=h('div',{class:'puzzle-route',style:{'--size':q.size}}),arrows=h('div',{class:'puzzle-arrows'});
+    let activated=false;
+    for(const controls of [board,arrows]){
+      controls.addEventListener('pointerdown',()=>{activated=false;},true);
+      controls.addEventListener('click',event=>{
+        // Some touch browsers send an additional mouse click after the shared tap handler.
+        if(activated&&event.detail>0){event.preventDefault();event.stopImmediatePropagation();return;}
+        activated=true;
+      },true);
+    }
     function move(dx,dy,node){if(locked)return;const next=FK.routes.move(model,route,dx,dy);if(!next){fail(node,'Hier ist kein freier Weg.');return;}route=next;work().route=route;persist();redraw();if(route.answered)solved(board);}
     function redraw(){board.replaceChildren();for(let i=0;i<q.size*q.size;i++){
       const blocked=q.obstacles.includes(i),current=route.position===i,goal=q.goal===i;
-      const cell=button(blocked?'Hecke':current?'Hier ist der Brief':goal?'Briefkasten':'Freies Feld',()=>{
+      const cell=button(blocked?'Hecke':current?'Hier ist der Hasenbriefträger':goal?'Briefkasten':'Freies Feld',()=>{
         const dx=i%q.size-route.position%q.size,dy=Math.floor(i/q.size)-Math.floor(route.position/q.size);
         if(Math.abs(dx)+Math.abs(dy)!==1){fail(cell,'Tippe ein Nachbarfeld an.');return;}move(dx,dy,cell);
-      },'puzzle-route-cell'+(current?' post':'')+(goal?' goal':'')+(blocked?' hedge':''),blocked?picture('forest-fir'):current?picture(goal?'mailbox':'letter'):goal?picture('postbox'):route.history.includes(i)?h('span',{text:'·'}):'');
+      },'puzzle-route-cell'+(current?' post':'')+(goal?' goal':'')+(blocked?' hedge':''),blocked?picture('forest-fir'):current?FK.friendsLibrary.portrait('mailman'):goal?picture('postbox'):route.history.includes(i)?h('span',{text:'·'}):'');
       cell.dataset.cell=i;cell.disabled=blocked;board.append(cell);
     }}
     for(const [dx,dy,turn,label]of [[0,-1,-90,'Nach oben'],[-1,0,180,'Nach links'],[1,0,0,'Nach rechts'],[0,1,90,'Nach unten']])arrows.append(button(label,()=>move(dx,dy,board),'puzzle-arrow',h('span',{'aria-hidden':'true',style:{transform:'rotate('+turn+'deg)'},html:'<svg viewBox="0 0 48 48"><path d="M8 24h30M25 11l13 13-13 13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>'})));
@@ -190,6 +194,7 @@
     let order=Array.from({length:3},(_,i)=>Number.isInteger(saved[i])&&saved[i]>=0&&saved[i]<3&&saved.indexOf(saved[i])===i?saved[i]:null),selected=null;
     const slots=h('div',{class:'puzzle-story-slots'}),cards=h('div',{class:'puzzle-story-cards'});
     const caption=text=>text.replace(/Schmetterling|Sonnenblume|Erdbeerpflanze|Apfelblüte|Birnenblüte/g,word=>({Schmetterling:'Schmetter\u00adling',Sonnenblume:'Sonnen\u00adblume',Erdbeerpflanze:'Erdbeer\u00adpflanze',Apfelblüte:'Apfel\u00adblüte',Birnenblüte:'Birnen\u00adblüte'}[word]));
+    const tile=value=>h('span',{},picture(q.items[value][0]),h('small',{text:caption(q.items[value][1])}));
     const select=value=>{selected=selected===value?null:value;scene.querySelectorAll('[data-story-value]').forEach(node=>{const active=Number(node.dataset.storyValue)===selected;node.classList.toggle('active',active);node.setAttribute('aria-pressed',String(active));});};
     function place(value,index){
       if(locked)return;const from=order.indexOf(value),displaced=order[index];if(from!==-1)order[from]=displaced;order[index]=value;FK.playLog?.place?.('story',{item:value,from,to:index,order:order.slice()});selected=null;update();
@@ -200,23 +205,23 @@
     }
     function redraw(){
       slots.replaceChildren(...order.map((value,i)=>{
-        const node=button('Platz '+(i+1)+(value===null?'':': '+q.items[value][1]),()=>{if(locked)return;if(selected!==null)place(selected,i);else if(value!==null)select(value);},'puzzle-story-slot');
-        node.replaceChildren(h('b',{text:i+1}),value===null?h('span',{text:'?'}):h('span',{},picture(q.items[value][0]),h('small',{text:caption(q.items[value][1])})));node.dataset.storySlot=i;
+        const node=button('Platz '+(i+1)+(value===null?'':': '+q.items[value][1]),()=>{if(locked)return;if(selected!==null)place(selected,i);else if(value!==null)select(value);},'puzzle-story-slot'+(value===null?'':' puzzle-story-card'),value===null?[h('b',{text:i+1}),h('span',{text:'?'})]:tile(value));
+        node.dataset.storySlot=i;
         if(value!==null){node.dataset.storyValue=value;node.setAttribute('aria-pressed','false');}
         return value===null?node:draggable(node,'[data-story-slot]',target=>place(value,Number(target.dataset.storySlot)));
       }));
       cards.replaceChildren();q.order.filter(value=>!order.includes(value)).forEach(value=>{
-        const [pic,text]=q.items[value],node=button(text,()=>{if(!locked)select(value);},'puzzle-story-card',h('span',{},picture(pic),h('small',{text:caption(text)})));
+        const text=q.items[value][1],node=button(text,()=>{if(!locked)select(value);},'puzzle-story-card',tile(value));
         node.dataset.order=value;node.dataset.storyValue=value;node.setAttribute('aria-pressed','false');cards.append(draggable(node,'[data-story-slot]',target=>place(value,Number(target.dataset.storySlot))));
       });
     }
-    scene.append(slots,cards);answerArea.append(button('Reihenfolge zurücksetzen',()=>{if(locked)return;order=[null,null,null];selected=null;update();},'puzzle-reset','↺ Neu ordnen'));redraw();
+    scene.append(slots,cards);redraw();
   }
   function renderTreasure(q) {
     const reveal=!!work().hidden,items=h('div',{class:'puzzle-treasures'},q.objects.map((id,i)=>h('span',{class:reveal&&i===q.missing?'gap':''},reveal&&i===q.missing?'?':picture(id))));
     scene.append(items);
-    if(!reveal)answerArea.append(button('Ich habe sie mir gemerkt',()=>{if(locked)return;work().hidden=true;persist();draw();},'puzzle-memory-ready'));
-    else {body.querySelector('.puzzle-prompt').textContent='Welcher Waldschatz fehlt?';q.choices.forEach(v=>option(v,picture(v),'Diesen Waldschatz wählen: '+pictureName(v)));answerArea.append(button('Nochmals anschauen',()=>{if(locked)return;work().hidden=false;persist();draw();},'puzzle-look-again'));}
+    if(!reveal)answerArea.append(button('Ich habe sie mir gemerkt',()=>{if(locked)return;work().hidden=true;persist();draw();},'puzzle-memory-ready puzzle-memory-button'));
+    else {body.querySelector('.puzzle-prompt').textContent='Welcher Waldschatz fehlt?';q.choices.forEach(v=>option(v,picture(v),'Diesen Waldschatz wählen: '+pictureName(v)));answerArea.append(button('Nochmals anschauen',()=>{if(locked)return;work().hidden=false;persist();draw();},'puzzle-look-again puzzle-memory-button'));}
   }
   function renderNeighbours(q) {
     let selected=work().neighbours||(q.given==='left'?[q.n-1,null]:[null,null]),slot=selected[0]===null?0:1;const row=h('div',{class:'puzzle-neighbours'}),nodes=[];
@@ -224,7 +229,7 @@
       if(i===1)row.append(h('div',{class:'puzzle-number-card middle'},h('b',{text:q.n})));
       else {const pos=i===0?0:1,node=button(pos===0?'Zahl davor ändern':'Zahl danach ändern',()=>{if(locked)return;slot=pos;nodes.forEach((b,j)=>b.classList.toggle('active',j===slot));},'puzzle-number-card'+(pos===slot?' active':''),h('b',{text:selected[pos]??'?'}));nodes.push(node);row.append(node);}
     }
-    scene.append(row);q.choices.forEach(value=>{let node;node=button(String(value),()=>{
+    scene.append(row,groupResult());q.choices.forEach(value=>{let node;node=button(String(value),()=>{
       if(locked)return;selected[slot]=value;work().neighbours=selected;persist();nodes[slot].querySelector('b').textContent=value;
       if(selected.every(v=>v!==null)){
         if(selected.every((v,i)=>v===q.answer[i]))solved(row);else fail(row,'Zähle einen Schritt zurück und einen Schritt weiter.');

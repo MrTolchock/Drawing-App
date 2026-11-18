@@ -44,7 +44,7 @@
 | `friends-hedgehog/riddle-15` | Wer hat einen dünnen Schwanz? — Wer hat einen dünnen Schwanz? | "mouse-sit" |
 | `friends-hedgehog/riddle-16` | Wer hat eine weisse Schwanzspitze? — Wer hat eine weisse Schwanzspitze? | "forest-fox" |
 | `friends-hedgehog/riddle-17` | Wer hat ein Geweih? — Wer hat ein Geweih? | "roe-stand" |
-| `friends-hedgehog/riddle-18` | Wer hat Rot am Kopf? — Wer hat Rot am Kopf? | "forest-woodpecker" |
+| `friends-hedgehog/riddle-18` | Wessen Kopf ist oben rot? — Wessen Kopf ist oben rot? | "forest-woodpecker" |
 | `friends-hedgehog/riddle-19` | Wer hängt am Ast? — Wer hängt am Ast? | "forest-bat" |
 | `friends-hedgehog/riddle-20` | Wer hat grosse Augen? — Wer hat grosse Augen? | "forest-owl" |
 | `friends-hedgehog/riddle-21` | Wer hat eine rote Brust? — Wer hat eine rote Brust? | "forest-robin" |
@@ -292,7 +292,7 @@ These definitions are the same finite data used by the game and review previews.
       "answer": "forest-fox",
       "choices": [
         "forest-fox",
-        "badger-walk"
+        "mouse-sit"
       ]
     }
   },
@@ -312,11 +312,11 @@ These definitions are the same finite data used by the game and review previews.
   },
   {
     "id": "friends-hedgehog/riddle-18",
-    "label": "Wer hat Rot am Kopf?",
+    "label": "Wessen Kopf ist oben rot?",
     "question": {
       "kind": "reading",
       "prompt": "Welches Tier passt?",
-      "text": "Wer hat Rot am Kopf?",
+      "text": "Wessen Kopf ist oben rot?",
       "answer": "forest-woodpecker",
       "choices": [
         "forest-woodpecker",

@@ -10,7 +10,7 @@ const safe=f=>typeof f==='string'&&!path.isAbsolute(f)&&path.posix.normalize(f)=
 function state(read=readDefault){const spec=JSON.parse(read(configFile));return {spec,block:read(spec.styleBlock).toString().trimEnd(),read};}
 function promptFor(s,item){
  const role=s.spec.roles[item.role],references=[...s.spec.references,...(role.references||[]),...(item.references||[])];
- return s.block+'\n\nROLE: '+item.role+'\n'+role.instruction+'\n\nATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:\n'+references.map((r,i)=>(i+1)+'. '+r.path+' — '+r.usage+': '+r.purpose).join('\n')+'\n\nSUBJECT AND LAYOUT BRIEF:\n'+s.read(item.brief).toString().trimEnd()+'\n\nSTYLE PRIORITY: The brief changes subjects and layout only. Keep '+s.spec.id+' and the supplied canonical reference technique throughout; do not import the style of a composition-only reference.\n';
+ return s.block+'\n\nROLE: '+item.role+'\n'+role.instruction+'\n\nFRAMING AND EDGE QUALITY:\n'+s.spec.framingGuidance+'\n\nATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:\n'+references.map((r,i)=>(i+1)+'. '+r.path+' — '+r.usage+': '+r.purpose).join('\n')+'\n\nSUBJECT AND LAYOUT BRIEF:\n'+s.read(item.brief).toString().trimEnd()+'\n\nSTYLE PRIORITY: The brief changes subjects and layout only. Keep '+s.spec.id+' and the supplied canonical reference technique throughout; do not import the style of a composition-only reference.\n';
 }
 function outputs(read=readDefault){const s=state(read);return Object.fromEntries(s.spec.prompts.map(item=>[item.path,promptFor(s,item)]));}
 function request(id,read=readDefault){const s=state(read),item=s.spec.prompts.find(p=>p.id===id);if(!item)throw Error('Unknown prompt: '+id);const role=s.spec.roles[item.role];return {prompt:promptFor(s,item),referenced_image_paths:[...s.spec.references,...(role.references||[]),...(item.references||[])].map(r=>path.join(root,r.path)),transparent_background:item.transparent};}
@@ -21,6 +21,7 @@ function check({read=readDefault,files=walk('design'),archiveFiles=walk('legacy'
  if(spec.canonicalGuide!=='design/illustrations/STYLE.md'||!read(spec.canonicalGuide).toString().includes(spec.id))errors.push('The canonical guide must identify the current style.');
  if(sha(read(spec.styleBlock))!==spec.styleBlockSha256)errors.push('Canonical style block changed without updating its recorded hash.');
  if(!s.block.includes(spec.id))errors.push('The style block must name the current style ID.');
+ if(typeof spec.framingGuidance!=='string'||!spec.framingGuidance.trim())errors.push('Provide shared framing and edge guidance for every current request.');
  if(!Array.isArray(spec.references)||spec.references.length!==2)errors.push('Use the two canonical style references.');
  const verifyReference=(ref,canonical=false,historical=false)=>{try{
   if(!safe(ref.path)||(!historical&&/^(?:archive|legacy)\//.test(ref.path)))throw Error('Archived/unsafe reference is forbidden for generation: '+ref.path);

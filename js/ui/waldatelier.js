@@ -19,12 +19,13 @@
     'forest-actions':['mouse-sit','mouse-run','mouse-sleep','bird-fly','bird-sit','fish-swim','hare-run','hare-sit','fox-sleep','fox-run','cat-sleep','cat-sit','dog-run','dog-sleep','duck-swim','duck-fly'],
     'forest-fox':['forest-fox'],
     'review-nature':['empty-basket','habitat-pond','squirrel-nut'],
+    'puzzle-garden':['firefly','watering-can'],
     'forest-wildlife':['squirrel-sit','squirrel-run','hedgehog-walk','hedgehog-sleep','badger-walk','badger-sleep','roe-stand','roe-run','frog-sit','frog-jump','forest-woodpecker','forest-bat','forest-owl','forest-robin','forest-lynx','forest-marten'],
     'rhyme-vocabulary':['rhyme-bread','rhyme-rail','rhyme-blanket','rhyme-bin','rhyme-jug','rhyme-mouth','rhyme-roof','rhyme-brook','rhyme-goat','rhyme-fly'],
     'puzzle-vocabulary':['vocab-house','vocab-table','vocab-shoe','vocab-leg','vocab-stone','vocab-cloth','vocab-tower','vocab-worm','vocab-pot','vocab-head','vocab-hand','vocab-sand','vocab-scarf','vocab-rope','vocab-arrow','vocab-cup','vocab-till','vocab-bench','vocab-wardrobe','vocab-seed'],
     'puzzle-flowers':['puzzle-flower-rot','puzzle-flower-gelb','puzzle-flower-blau','puzzle-flower-rosa','puzzle-flower-weiss','puzzle-flower-lila'],
   };
-  const grid = { 'review-nature':[2,2], 'forest-fox':[2,2], menu:[3,2], 'puzzle-vocabulary':[4,5], 'puzzle-flowers':[3,2] };
+  const grid = { 'review-nature':[2,2], 'puzzle-garden':[2,2], 'forest-fox':[2,2], menu:[3,2], 'puzzle-vocabulary':[4,5], 'puzzle-flowers':[3,2] };
   const source = sheet => 'assets/waldatelier/' + sheet + '.webp';
   // Learning subjects are drawn illustrations; character identity uses friendsArt.
   const cast = {fox:'fox-animal',mouse:'mouse-sit',rabbit:'hare-sit'};

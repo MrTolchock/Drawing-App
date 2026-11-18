@@ -125,7 +125,7 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
    await solve(it.question);assert.equal(await page.evaluate(({id,it})=>FK.puzzleReview.status(id,it).status,{id:g.id,it:it.id}),'approved',it.id+' auto approval');checked++;
   }console.log('PASS every iteration:',g.id,pool.length);
  }
- if(!process.env.FARBTUPF_GAMES)assert.equal(checked,958);assert.deepEqual(await snapshot(),before,'review leaves child saves unchanged');
+ if(!process.env.FARBTUPF_GAMES)assert.equal(checked,962);assert.deepEqual(await snapshot(),before,'review leaves child saves unchanged');
  // All puzzle types accept real taps, including SVG/image descendants and redrawing controls.
  for(const width of [1080,390]){
   await page.setViewportSize({width,height:width===390?844:810});nativeInput=width===390?'mouse':true;
@@ -134,17 +134,16 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
  // Quiet button clicks use Web Audio and obey mute.
  await preview('friends-squirrel','friends-squirrel/count-2');
  await page.evaluate(()=>{window.reviewSoundCounts={clicks:0,oscillators:0};const tick=FK.sound.tick;FK.sound.tick=()=>{reviewSoundCounts.clicks++;tick();};const AC=window.AudioContext||window.webkitAudioContext;const create=AC.prototype.createOscillator;AC.prototype.createOscillator=function(){reviewSoundCounts.oscillators++;return create.call(this);};FK.settings.set('sound',true);});
- await page.locator('.puzzle-counter').first().tap();assert.equal(await page.evaluate(()=>reviewSoundCounts.clicks),1);assert.ok(await page.evaluate(()=>reviewSoundCounts.oscillators)>0);
- await page.evaluate(()=>{FK.settings.set('sound',false);reviewSoundCounts.clicks=0;reviewSoundCounts.oscillators=0;});await page.locator('.puzzle-counter').first().tap();assert.deepEqual(await page.evaluate(()=>reviewSoundCounts),{clicks:1,oscillators:0});
- // Repeated taps activate once each; drags and cancelled gestures must not become answers.
- const drum=page.locator('.puzzle-counter').first();
- for(let n=0;n<10;n++)await drum.tap();assert.equal(await page.locator('.puzzle-counter.marked').count(),0,'ten taps, no duplicate compatibility clicks');
- await drum.focus();await page.keyboard.press('Space');await page.waitForFunction(()=>document.querySelectorAll('.puzzle-counter.marked').length===1);assert.equal(await page.locator('.puzzle-counter.marked').count(),1,'Space activates once');
- await page.keyboard.press('Enter');await page.waitForFunction(()=>document.querySelectorAll('.puzzle-counter.marked').length===0);assert.equal(await page.locator('.puzzle-counter.marked').count(),0,'Enter activates once');
- await drum.scrollIntoViewIfNeeded();const hit=await drum.boundingBox(),center={x:hit.x+hit.width/2,y:hit.y+hit.height/2,id:1};
- await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[center]});await touch.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{...center,y:center.y-35}]});await touch.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});assert.equal(await page.locator('.puzzle-counter.marked').count(),0,'drag is not a tap');
- await drum.scrollIntoViewIfNeeded();const fresh=await drum.boundingBox();await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:fresh.x+fresh.width/2,y:fresh.y+fresh.height/2,id:1}]});await touch.send('Input.dispatchTouchEvent',{type:'touchCancel',touchPoints:[]});assert.equal(await page.locator('.puzzle-counter.marked').count(),0,'cancel is not a tap');await drum.tap();assert.equal(await page.locator('.puzzle-counter.marked').count(),1,'fresh tap after cancel works');
- await active().getByRole('button',{name:'Iteration ablehnen',exact:true}).tap();await page.locator('.modal-x').tap();await drum.tap();assert.equal(await page.locator('.puzzle-counter.marked').count(),0,'closing a modal does not eat the next tap');
+ const wrongCount=active().locator('[data-answer]:not([data-answer="2"])').first();
+ await page.locator('.puzzle-counter').first().tap();assert.equal(await page.evaluate(()=>reviewSoundCounts.clicks),0,'counted pictures are static');
+ await wrongCount.tap();assert.equal(await page.evaluate(()=>reviewSoundCounts.clicks),1);assert.ok(await page.evaluate(()=>reviewSoundCounts.oscillators)>0);
+ await page.evaluate(()=>{FK.settings.set('sound',false);reviewSoundCounts.clicks=0;reviewSoundCounts.oscillators=0;});
+ for(let n=0;n<10;n++)await wrongCount.tap();assert.deepEqual(await page.evaluate(()=>reviewSoundCounts),{clicks:10,oscillators:0});
+ await wrongCount.focus();await page.keyboard.press('Space');await page.keyboard.press('Enter');assert.equal(await page.evaluate(()=>reviewSoundCounts.clicks),12);
+ await wrongCount.scrollIntoViewIfNeeded();const hit=await wrongCount.boundingBox(),center={x:hit.x+hit.width/2,y:hit.y+hit.height/2,id:1};
+ await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[center]});await touch.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{...center,y:center.y-35}]});await touch.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});assert.equal(await page.evaluate(()=>reviewSoundCounts.clicks),12,'drag is not a tap');
+ await wrongCount.scrollIntoViewIfNeeded();const fresh=await wrongCount.boundingBox();await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:fresh.x+fresh.width/2,y:fresh.y+fresh.height/2,id:1}]});await touch.send('Input.dispatchTouchEvent',{type:'touchCancel',touchPoints:[]});assert.equal(await page.evaluate(()=>reviewSoundCounts.clicks),12,'cancel is not a tap');await wrongCount.tap();assert.equal(await page.evaluate(()=>reviewSoundCounts.clicks),13);
+ await active().getByRole('button',{name:'Iteration ablehnen',exact:true}).tap();await page.locator('.modal-x').tap();await page.evaluate(()=>reviewSoundCounts.clicks=0);await wrongCount.tap();assert.equal(await page.evaluate(()=>reviewSoundCounts.clicks),1,'closing a modal does not eat the next tap');
  // Complete a whole review queue through the actual answers, beyond the normal fifth item.
  await page.evaluate(()=>{for(const it of FK.puzzleCatalogue.iterations('add'))FK.puzzleReview.decide('add',it.id,'pending');FK.puzzleReview.decide('add',null,'pending');FK.puzzleReview.start('add');});
  for(let n=0;n<total;n++){

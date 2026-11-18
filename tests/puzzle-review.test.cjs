@@ -29,7 +29,7 @@ test('every active puzzle has at least 25 unique finite definitions, competence 
    if(q.kind==='survey'&&q.task==='most'){const max=Math.max(...q.counts);assert.equal(q.counts.filter(n=>n===max).length,1);assert.equal(q.answer,q.fruit[q.counts.indexOf(max)]);}
   }
  }
- assert.equal(total,958);
+ assert.equal(total,962);
 });
 test('rhyme pairs are distinct even when their word order is ignored',()=>{
  const pool=setup().FK.puzzleCatalogue.iterations('friends-bird'),pairs=pool.map(it=>[it.question.text,it.question.answer].map(w=>w.toLocaleLowerCase('de-CH')).sort().join('/'));
@@ -79,10 +79,13 @@ test('latest review fixes apply throughout the relevant pools and retire the req
  const animalPictures=new Set(['frog','hedgehog','bee','snail','dog','cat','spider','caterpillar','bear','sheep','pig','forest-fox','duck-swim','ant','ladybird','tortoise','squirrel-sit','zebra','lion','penguin','camel','tiger','elephant','giraffe','badger']);
  for(const it of C.iterations('friends-frog'))assert.ok(it.question.choices.every(id=>animalPictures.has(id)),it.id+' has only animals');
  const nature=C.iterations('nature');
- for(const [index,phrase]of [[4,'Ich kann gut riechen.'],[11,'wachse ich'],[14,'Wolle'],[17,'hohe Bäume'],[18,'Ich habe eine Mähne.'],[20,'ohne zu trinken'],[24,'Mit meinen Zähnen fälle ich Bäume.']])assert.ok(nature[index].question.text.includes(phrase),nature[index].id);
+ for(const it of nature)assert.match(it.question.text,/^[^.!?]+\.$/,it.id+' has one sentence');
  assert.equal(C.iterations('friends-badger')[16].question.text,'Was braucht eine Pflanze zum Wachsen?');
  assert.equal(C.iterations('friends-badger')[24].question.text,'Was ernten wir vom Birnbaum?');
+ assert.equal(C.iterations('friends-badger')[22].question.answer,'watering-can');
  for(const it of C.iterations('syllable')){assert.equal(it.question.prompt,'Wie viele Silben hat das Wort?');assert.equal(it.question.answer,it.question.parts.length);}
+ assert.ok(C.iterations('syllable').some(it=>it.question.answer===4));assert.ok(C.iterations('syllable').some(it=>it.question.answer===5));
+ for(const {question} of C.iterations('treasure'))assert.ok(question.choices.every(choice=>choice===question.answer||!question.objects.includes(choice)));
 });
 test('feedback remains readable across changed revisions without changing the review decision',()=>{
  const {FK}=setup(),V=FK.puzzleReview,C=FK.puzzleCatalogue,id='syllable',key='syllable/word-6',old={key,revision:'before-new-pictures',status:'improve',note:'Einfach nur Silben zählen.',at:'2026-11-15T20:58:24.776Z'};
@@ -158,6 +161,7 @@ test('review snapshots every unconfirmed item once, including rejected and stale
  assert.ok(V.seen('add',pool[0].id));assert.ok(V.decide('add',pool[0].id,'approved'));
  assert.ok(V.decide('add',pool[1].id,'improve','Check picture'));
  const s=V.previewSession('add');assert.equal(s.questions.length,pool.length-1);assert.ok(s.questions.length>5);assert.equal(s.iterationIds.includes(pool[0].id),false);assert.ok(s.iterationIds.includes(pool[1].id));
+ const selected=V.previewSession('add',pool[1].id);assert.equal(selected.iterationIds[0],pool[1].id);assert.equal(new Set(selected.iterationIds).size,s.questions.length);assert.equal(selected.questions.length,s.questions.length);
  assert.ok(V.visit(s));assert.ok(V.sessionDecision(s,'improve'));assert.equal(V.sessionDecision(s,'approved'),false);s.round++;
  assert.equal(s.questions.length,pool.length-1,'rejection is not re-added to the active run');
  const next=V.previewSession('add');assert.ok(next.iterationIds.includes(pool[1].id));
@@ -171,7 +175,7 @@ test('a puzzle becomes approved when every seen or answered iteration is approve
  for(;s.round<s.questions.length;s.round++){assert.ok(V.visit(s));assert.ok(V.sessionDecision(s,'approved'));}
  assert.equal(V.status('add').status,'approved');assert.ok(V.ready('add'));assert.ok(V.finishSession(s));
  assert.ok(setup(memory).FK.puzzleReview.ready('add'));assert.equal(memory.has('farbtupf.puzzles.v1'),false,'review does not create a child round');
- assert.equal(V.previewSession('add').questions.length,0);assert.ok(V.finishSession(V.previewSession('add')),'an interrupted final celebration can be completed');
+ assert.equal(V.previewSession('add').questions.length,0);assert.equal(V.start('add'),false,'the completed puzzle needs no empty review queue');
  const inspect=V.previewSession('add',s.iterationIds[0]);assert.equal(inspect.questions.length,1,'explicit reinspection remains possible');
 });
 test('rejection, a failed save, an unvisited queue or changed revision never grants release',()=>{
@@ -185,28 +189,34 @@ test('rejection, a failed save, an unvisited queue or changed revision never gra
 });
 test('generated GitHub pages and revision reflect the exact runtime',()=>assert.deepEqual(check(),[]));
 test('verified unchanged historical reviews remain valid without rewriting decisions or inspection evidence',()=>{
- const {environment}=require('../tools/puzzle-environment.cjs'),{snapshotReader}=require('../tools/puzzle-review-build.cjs'),old=environment({read:snapshotReader('073657f32f87daa47739910df090e4250289cc55').read});old.execute('js/friends/puzzle-implementation.js');approve(old.FK,'friends-squirrel');
- const memory=old.memory,before=JSON.stringify([...memory]),{FK}=compatibleSetup(memory),C=FK.puzzleCatalogue,id='friends-squirrel',items=C.iterations(id);
+ const id='friends-beaver',{environment}=require('../tools/puzzle-environment.cjs'),{snapshotReader}=require('../tools/puzzle-review-build.cjs'),old=environment({read:snapshotReader('073657f32f87daa47739910df090e4250289cc55').read});old.execute('js/friends/puzzle-implementation.js');approve(old.FK,id);
+ const memory=old.memory,before=JSON.stringify([...memory]),{FK}=compatibleSetup(memory),C=FK.puzzleCatalogue,items=C.iterations(id);
  assert.equal(FK.puzzleReview.status(id,items[0].id).status,'approved');assert.equal(FK.puzzleReview.status(id,items[0].id).seen,true);assert.ok(FK.puzzleReview.ready(id));
  assert.equal(JSON.stringify([...memory]),before,'read-only recovery preserves timestamps, notes and history');
+ const V=owner(FK);assert.ok(V.decide(id,items[0].id,'approved'));
+ assert.equal(V.exportData().seen[items[0].id],C.iterationRevision(id,items[0]),'an explicit review records exact inspection evidence');
  const key=memory.keys().next().value,raw=JSON.parse(memory.get(key));raw.decisions[items[1].id].revision='0000000000000000';memory.set(key,JSON.stringify(raw));
- const V=compatibleSetup(memory).FK.puzzleReview;assert.equal(V.status(id,items[0].id).status,'approved');assert.equal(V.status(id,items[1].id).status,'pending');assert.equal(V.ready(id),false);
+ const restored=compatibleSetup(memory).FK.puzzleReview;assert.equal(restored.status(id,items[0].id).status,'approved');assert.equal(restored.status(id,items[1].id).status,'pending');assert.equal(restored.ready(id),false);
 });
 test('verified unchanged partial rounds resume verbatim; changed questions remain archived',()=>{
- const {FK,memory}=compatibleSetup(),id='friends-squirrel',s=FK.puzzleRounds.start(id);s.round=2;s.work={marks:[0,2]};s.catalogueRevision=FK.puzzleCatalogue.formerPuzzleRevisions(id)[0];FK.puzzleRounds.save(s);
+ const {FK,memory}=compatibleSetup(),id='friends-beaver',s=FK.puzzleRounds.start(id);s.round=2;s.work={};s.catalogueRevision=FK.puzzleCatalogue.formerPuzzleRevisions(id)[0];FK.puzzleRounds.save(s);
  assert.deepEqual(plain(compatibleSetup(memory).FK.puzzleRounds.start(id)),plain(s));
  s.questions[0].count=99;FK.puzzleRounds.save(s);const restored=compatibleSetup(memory),next=restored.FK.puzzleRounds.start(id);assert.equal(next.round,0);assert.equal(JSON.parse(restored.memory.get('farbtupf.puzzles.v1')).legacy[id].questions[0].count,99,'the earlier snapshot is archived');
 });
 
-test('general puzzle comments persist without changing release status or reviving stale approvals',()=>{
+test('general puzzle comments reopen the puzzle and retain individual decisions',()=>{
  const {FK,memory}=setup(),V=owner(FK);
- assert.ok(V.comment('add','  Gemeinsame Rückmeldung  '));assert.equal(V.status('add').decision.note,'Gemeinsame Rückmeldung');assert.equal(V.status('add').status,'pending');assert.equal(V.ready('add'),false);
+ assert.ok(V.comment('add','  Gemeinsame Rückmeldung  '));assert.equal(V.status('add').decision.note,'Gemeinsame Rückmeldung');assert.equal(V.status('add').status,'improve');assert.equal(V.ready('add'),false);
  assert.equal(setup(memory).FK.puzzleReview.status('add').decision.note,'Gemeinsame Rückmeldung');
  const session=V.previewSession('add');for(;session.round<session.questions.length;session.round++)assert.ok(V.sessionDecision(session,'approved'));
  assert.ok(V.finishSession(session));assert.equal(V.status('add').decision.note,'Gemeinsame Rückmeldung');assert.ok(V.ready('add'));
- assert.ok(V.comment('add','Bilder passen.'));assert.ok(V.ready('add'));assert.ok(V.approveAll('add'));assert.equal(V.status('add').decision.note,'Bilder passen.');
- const revision=V.status('add').decision.revision;FK.puzzleImplementation='changed';assert.ok(V.comment('add','Nach Änderung neu prüfen.'));assert.equal(V.status('add').decision.revision,revision);assert.equal(V.status('add').stale,true);assert.equal(V.ready('add'),false);
- assert.ok(V.comment('add',''));assert.equal(V.status('add').decision.note,'');
+ const before=V.progress('add');assert.ok(V.comment('add','Bilder prüfen.'));assert.equal(V.ready('add'),false);assert.deepEqual(V.progress('add'),before);
+ assert.equal(V.comment('add','  '),false);assert.equal(V.status('add').decision.note,'Bilder prüfen.');
+ assert.ok(V.approveAll('add'));assert.ok(V.ready('add'));assert.equal(V.status('add').decision.note,'Bilder prüfen.');
+ const id='add/1-1';assert.ok(V.decide('add',id,'pending'));const earlier=V.previewSession('add');
+ assert.ok(V.sessionDecision(earlier,'approved'));earlier.round++;
+ assert.ok(V.comment('add','Späterer allgemeiner Hinweis.'));
+ assert.ok(V.finishSession(earlier));assert.equal(V.ready('add'),false);assert.equal(V.status('add').decision.note,'Späterer allgemeiner Hinweis.');
 });
 test('one changed iteration leaves all other approvals intact and the puzzle opens until that item passes',()=>{
  const {FK,execute}=setup(),id='friends-hedgehog';approve(FK,id);const before=plain(FK.puzzleReview.exportData().decisions);

@@ -46,14 +46,15 @@
       if(!iteration&&progress(id).approved!==progress(id).total){error='Zuerst jede Iteration ansehen und freigeben.';return false;}
     }
     const next=clone(data),k=recordKey(id,iteration),old=next.decisions[k];if(old)next.history.push(old);
+    // An explicit approval of the displayed task belongs to its exact revision.
+    if(iteration&&value==='approved')next.seen[k]=r;
     next.decisions[k]={key:k,revision:r,status:value,note,at:noteTime(k,note)};return persist(next);
   }
-  // A general comment uses the existing puzzle record, preserving its decision and exact revision.
   function comment(id,note){
     if(!authorized||!C.puzzle(id)){error='Bitte die Puzzle-Prüfung öffnen.';return false;}
-    const next=clone(data),k=recordKey(id),old=next.decisions[k];if(old)next.history.push(old);
-    note=String(note).trim().slice(0,4000);next.decisions[k]={...(old||{key:k,revision:revision(id),status:'pending'}),note,at:noteTime(k,note)};
-    return persist(next);
+    const message=String(note??'').trim();
+    if(!message){error='Bitte einen Kommentar eingeben.';return false;}
+    return decide(id,null,'improve',message);
   }
   function exportData(){return {version:1,decisions:clone(data.decisions),seen:clone(data.seen),history:clone(data.history),...(data.deletedNotes?{deletedNotes:clone(data.deletedNotes)}:{}),exportedAt:new Date().toISOString(),catalogue:Object.fromEntries(FK.friendsLibrary.catalogue().map(g=>[g.id,C.puzzleRevision(g.id)]))};}
   function importData(raw){
@@ -86,15 +87,20 @@
   }
   function play(id){if(!gallerySession(id))return false;FK.go(C.puzzle(id).screen,{game:id,gallery:true,returnTo:'puzzle-gallery',from:'friends'});return true;}
   function preview(id,iteration){if(!authorized)return false;const g=C.puzzle(id),it=item(id,iteration);if(!g||!it)return false;FK.go(g.screen,{game:id,reviewIteration:iteration,returnTo:'puzzle-review',from:'friends'});return true;}
-  function start(id){if(!authorized||!C.puzzle(id))return false;FK.go(C.puzzle(id).screen,{game:id,reviewQueue:true,returnTo:'puzzle-review',from:'friends'});return true;}
+  function start(id){
+    if(!authorized||!C.puzzle(id))return false;
+    const p=progress(id);if(p.approved===p.total)return false;
+    FK.go(C.puzzle(id).screen,{game:id,reviewQueue:true,returnTo:'puzzle-review',from:'friends'});return true;
+  }
   function previewSession(id,iteration){
     if(!authorized||!C.puzzle(id))return null;
     const first=iteration?item(id,iteration):null;if(iteration&&!first)return null;
     // Snapshot once: a rejected item is visited once, then stays open for the next run.
-    const items=C.iterations(id).filter(it=>it.id!==iteration&&status(id,it.id).status!=='approved');
-    if(first)items.unshift(first); // Explicit reinspection of an approved item is allowed.
+    const open=C.iterations(id).filter(it=>status(id,it.id).status!=='approved');
+    const items=first?[first,...open.filter(it=>it.id!==first.id)]:open;
     return {id,seed:0,round:0,solved:false,work:{},questions:C.prepare(items,Math.floor(Math.random()*0x100000000)).map(it=>it.question),iterationIds:items.map(it=>it.id),review:true,
-      reviewRevision:C.puzzleRevision(id),reviewRevisions:items.map(it=>C.iterationRevision(id,it)),reviewResults:[]};
+      reviewRevision:C.puzzleRevision(id),reviewRevisions:items.map(it=>C.iterationRevision(id,it)),reviewResults:[],
+      hasOpenItems:open.length>0,reviewHold:data.decisions[recordKey(id)]?.status==='improve'?data.decisions[recordKey(id)].at:null};
   }
   function currentReview(session){
     const id=session?.iterationIds?.[session.round];
@@ -115,13 +121,15 @@
      iteration is marked seen and approved, and the puzzle with them, in one save. Earlier decisions stay in history. */
   function approveAll(id,note='Alle Iterationen zusammen bestätigt'){
     if(!authorized||!C.puzzle(id)){error='Unbekanntes Puzzle.';return false;}
-    const next=clone(data),at=new Date().toISOString(),put=(k,r)=>{const old=next.decisions[k];if(old&&old.revision===r&&old.status==='approved')return;if(old)next.history.push(old);next.decisions[k]={key:k,revision:r,status:'approved',note,at};};
+    const next=clone(data),at=new Date().toISOString(),put=(k,r)=>{const old=next.decisions[k];if(old&&old.revision===r&&old.status==='approved'&&(k.startsWith('puzzle:')||data.seen[k]===r))return;if(old)next.history.push(old);next.decisions[k]={key:k,revision:r,status:'approved',note,at};};
     for(const it of C.iterations(id)){const r=C.iterationRevision(id,it);next.seen[it.id]=r;put(it.id,r);}
     put(recordKey(id),C.puzzleRevision(id));next.decisions[recordKey(id)].note=status(id).decision?.note||'';return persist(next);
   }
   function finishSession(session){
-    if(!authorized||!session?.review||session.round!==session.questions.length||session.reviewResults.filter(Boolean).length!==session.questions.length)return false;
+    if(!authorized||!session?.review||!session.questions.length||session.round!==session.questions.length||session.reviewResults.filter(Boolean).length!==session.questions.length)return false;
     if(session.reviewResults.includes('improve')||progress(session.id).approved!==progress(session.id).total)return false;
+    const hold=data.decisions[recordKey(session.id)];
+    if(hold?.status==='improve'&&(!session.hasOpenItems||hold.at!==session.reviewHold))return true;
     return decide(session.id,null,'approved');
   }
   window.addEventListener?.('storage',event=>{if(event.key!==key)return;try{const next=JSON.parse(event.newValue);if(valid(next)){data=next;error='';}else {data=empty();error='Prüfung wurde geändert. Bitte erneut prüfen.';}FK.emit?.('puzzle-review-change');}catch{data=empty();FK.emit?.('puzzle-review-change');}});

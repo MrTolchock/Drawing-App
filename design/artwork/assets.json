@@ -60,7 +60,8 @@
       "forwardPrompt": "design/illustrations/prompts/forest-objects.txt",
       "historicalRecord": "legacy/design-history/2026-11-16-before-style-contract/design/illustrations/forest-objects.json",
       "recordKind": "generation-record",
-      "requestId": "forest-objects"
+      "requestId": "forest-objects",
+      "cellRepair": "design/illustrations/rose-repair-2026-11-18.json"
     },
     "forest-wildlife": {
       "style": "waldpost-watercolour-pencil-v1",
@@ -152,6 +153,13 @@
       "historicalRecord": "design/artwork/generation-records/review-nature.json",
       "recordKind": "generation-record",
       "requestId": "review-nature"
+    },
+    "puzzle-garden": {
+      "historicalRecord": "design/artwork/generation-records/puzzle-garden-2026-11-18.json",
+      "recordKind": "retained-generation-record",
+      "requestId": "puzzle-garden",
+      "forwardPrompt": "design/illustrations/prompts/puzzle-garden.txt",
+      "role": "learning"
     }
   },
   "currentGenerated": [

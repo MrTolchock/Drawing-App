@@ -15,6 +15,7 @@ function main(){
  if(!positive(m.columns)||!positive(m.rows)||m.columns>16||m.rows>16)throw Error('Grid dimensions must be integers from 1 to 16.');
  if(!positive(m.cellPixels)||!positive(m.subjectPixels)||m.subjectPixels>m.cellPixels)throw Error('Subject size must fit inside the cell size.');
  if(!Number.isFinite(m.alphaThresholdPercent)||m.alphaThresholdPercent<0||m.alphaThresholdPercent>=100)throw Error('Alpha threshold must be between 0 and 100 (exclusive of 100).');
+ if(m.sourceCellPixels!==undefined&&!positive(m.sourceCellPixels))throw Error('The source cell size must be a positive integer.');
  if(!Array.isArray(m.subjects)||!m.subjects.length||m.subjects.length>m.columns*m.rows||m.subjects.some(s=>!s||!/^[a-z0-9][a-z0-9-]*$/.test(s.id)||typeof s.label!=='string'||!s.label.trim())||new Set(m.subjects.map(s=>s.id)).size!==m.subjects.length)throw Error('List unique named subjects in row-major order; unused trailing cells are left empty.');
  if(typeof m.source!=='string'||typeof m.output!=='string')throw Error('Source and output paths are required.');
  const source=path.resolve(base,m.source),output=options['--output']?path.resolve(options['--output']):path.resolve(base,m.output);
@@ -34,7 +35,9 @@ function main(){
   return r.stdout.trim();
  }
  const [width,height]=run(['identify','-format','%w %h',source]).split(/\s+/).map(Number);
- if(!positive(width)||!positive(height)||width<m.columns||height<m.rows||Math.abs(width/m.columns-height/m.rows)>1)throw Error('The source must contain equal square cells with the declared grid dimensions.');
+ const sourceHeight=m.sourceCellPixels===undefined?height:m.sourceCellPixels*m.rows;
+ const requiredHeight=sourceHeight*Math.ceil(m.subjects.length/m.columns)/m.rows;
+ if(!positive(width)||!positive(height)||width<m.columns||height<requiredHeight||height>sourceHeight||Math.abs(width/m.columns-sourceHeight/m.rows)>1)throw Error('The source must contain equal square cells for all declared subjects.');
  if(run(['identify','-format','%[opaque]',source]).toLowerCase()==='true')throw Error('The source is opaque; generate a genuinely transparent image before packing.');
  const temporary=fs.mkdtempSync(path.join(os.tmpdir(),'waldpost-illustrations-'));
  try{
@@ -42,8 +45,8 @@ function main(){
   for(let i=0;i<m.columns*m.rows;i++){
    const tile=path.join(temporary,String(i).padStart(3,'0')+'.png');tiles.push(tile);
    if(i>=m.subjects.length){run(['-size',m.cellPixels+'x'+m.cellPixels,'xc:none',tile]);continue;}
-   const col=i%m.columns,row=Math.floor(i/m.columns),x=Math.floor(col*width/m.columns),y=Math.floor(row*height/m.rows);
-   const w=Math.floor((col+1)*width/m.columns)-x,h=Math.floor((row+1)*height/m.rows)-y,cell=path.join(temporary,'source.png');
+   const col=i%m.columns,row=Math.floor(i/m.columns),x=Math.floor(col*width/m.columns),y=Math.floor(row*sourceHeight/m.rows);
+   const w=Math.floor((col+1)*width/m.columns)-x,h=Math.floor((row+1)*sourceHeight/m.rows)-y,cell=path.join(temporary,'source.png');
    run([source,'-crop',w+'x'+h+'+'+x+'+'+y,'+repage',cell]);
    const bounds=run([cell,'-alpha','extract','-threshold',m.alphaThresholdPercent+'%','-format','%@','info:']);
    if(!/^[1-9]\d*x[1-9]\d*\+\d+\+\d+$/.test(bounds))throw Error('Empty subject cell: '+m.subjects[i].id);

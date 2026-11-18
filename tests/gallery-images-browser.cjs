@@ -6,6 +6,8 @@ const assert = require('node:assert/strict');
 const sharp = require('../tools/node_modules/sharp');
 const library = require('../assets/waldatelier/library.json');
 const repair = require('../design/illustrations/library-repair-2026-11-18.json');
+const rose = require('../design/illustrations/rose-repair-2026-11-18.json');
+const garden = require('../design/illustrations/puzzle-garden.json');
 const base = process.env.FARBTUPF_BASE_URL || 'http://127.0.0.1:8000';
 const out = process.env.FARBTUPF_SHOTS || '/tmp/waldpost-gallery-images';
 const root = path.resolve(__dirname, '..');
@@ -82,14 +84,15 @@ function expectedCell({ data, info }, rect, width, height) {
     const errors = [], report = [];
     const focalSheets = new Set(['forest-actions', 'forest-wildlife', 'rhyme-vocabulary', 'puzzle-vocabulary', 'animals']);
     const originalSheets = new Set(['forest-actions', 'forest-objects', 'puzzle-flowers', 'review-nature']);
-    const downloaded = new Set(['cat', 'cat-sit', 'dog', 'forest-lynx', 'rhyme-fly']);
+    const downloaded = new Set(['cat', 'cat-sit', 'dog', 'forest-lynx', 'rhyme-fly', 'forest-rose', 'firefly', 'watering-can']);
     page.on('pageerror', error => errors.push(error.message));
     await page.goto(base + '/assets/waldatelier/');
     await page.waitForFunction(total => document.querySelector('#count').textContent.includes(String(total)), library.images.length);
     await page.getByLabel('Transparenzraster zeigen', { exact: true }).check();
     const search = page.getByLabel('Bildname oder ID', { exact: true });
     for (const sheet of library.sheets) {
-      const repaired = new Set(repair.sheets[sheet.id]?.ids || []);
+      const repaired = new Set([...repair.sheets[sheet.id]?.ids || [], ...rose.sheets[sheet.id]?.ids || [],
+        ...(sheet.id === 'puzzle-garden' ? garden.subjects.map(item => item.id) : [])]);
       if (!repaired.size && !originalSheets.has(sheet.id)) continue;
       await page.getByLabel('Bildbogen', { exact: true }).selectOption(sheet.id);
       const entries = library.images.filter(item => item.sheet === sheet.id);

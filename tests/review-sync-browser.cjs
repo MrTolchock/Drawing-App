@@ -24,11 +24,14 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
  await active(a.page).locator('.btn-back').click();await a.page.locator('[data-puzzle="add"]').click();assert.equal(await a.page.getByLabel('Allgemeiner Kommentar zum Puzzle',{exact:true}).inputValue(),'Die Bilder im ganzen Puzzle prüfen.','Back and reselect preserve the comment draft');
  await a.page.getByRole('button',{name:'Kommentar speichern',exact:true}).click();await a.page.evaluate(()=>FK.reviewRepository.refresh());await a.page.waitForFunction(()=>FK.reviewRepository.state.pending===0);
  assert.equal(Object.values(server.ledger.entries).find(e=>e.key==='puzzle:add').note,'Die Bilder im ganzen Puzzle prüfen.');
- assert.equal(await a.page.evaluate(()=>FK.puzzleReview.status('add').status),'pending','a comment does not approve the puzzle');
+ assert.equal(await a.page.evaluate(()=>FK.puzzleReview.status('add').status),'improve','a comment reopens the puzzle');
  await a.page.locator('[data-iteration="add/1-1"]').click();
  await active(a.page).locator('[data-answer="2"]').tap();await a.page.evaluate(()=>FK.reviewRepository.refresh());await a.page.waitForFunction(()=>FK.reviewRepository.state.pending===0&&FK.reviewRepository.state.phase==='saved');
  assert.equal(Object.values(server.ledger.entries).find(e=>e.key==='add/1-1').status,'approved');
- await a.page.waitForFunction(()=>document.querySelector('.screen:not([hidden])').dataset.reviewIteration!=='add/1-1');
+ await a.page.waitForFunction(()=>document.querySelector('.screen:not([hidden])').dataset.reviewIteration!=='add/1-1').catch(async error=>{
+  const state=await a.page.evaluate(()=>({hidden:document.hidden,modal:document.querySelector('.modal')?.textContent,status:document.querySelector('.puzzle-status')?.textContent}));
+  throw Error(JSON.stringify({state,errors}),{cause:error});
+ });
  const second=await active(a.page).getAttribute('data-review-iteration');await active(a.page).getByRole('button',{name:'Iteration ablehnen',exact:true}).tap();await a.page.getByRole('button',{name:'Ablehnen und weiter',exact:true}).tap();await a.page.evaluate(()=>FK.reviewRepository.refresh());await a.page.waitForFunction(()=>FK.reviewRepository.state.pending===0);
  assert.equal(Object.values(server.ledger.entries).find(e=>e.key===second).status,'improve');
  const b=await device(390);assert.equal(await b.page.evaluate(()=>FK.reviewRepository.state.connected),false);assert.equal(await b.page.evaluate(()=>FK.puzzleReview.status('add','add/1-1').status),'approved');assert.equal(await b.page.evaluate(id=>FK.puzzleReview.status('add',id).status,second),'improve');
@@ -36,10 +39,20 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
  assert.equal(await active(b.page).locator('.review-connection').count(),0);
  await b.page.screenshot({path:shots+'/puzzle-comment-phone.png'});
  await active(b.page).locator('.btn-back').click();await b.page.screenshot({path:shots+'/fresh-browser-phone.png'});
- // A completed fixture pool can finish its actual celebration, without a sign-off form.
+ // An approved pool has no empty queue. A new general comment withdraws only its puzzle release.
  await seedFromPage(a.page,server,['add']);await active(a.page).getByRole('button',{name:'Zur Puzzle-Prüfung',exact:true}).click();
- await a.page.evaluate(()=>FK.puzzleReview.decide('add',null,'pending'));await a.page.evaluate(()=>FK.reviewRepository.refresh());
- await a.page.evaluate(()=>FK.puzzleReview.start('add'));await a.page.locator('.puzzle-completion').waitFor();await a.page.waitForFunction(()=>FK.current()==='puzzle-review');await a.page.evaluate(()=>FK.reviewRepository.refresh());await a.page.waitForFunction(()=>FK.reviewRepository.state.pending===0&&FK.puzzleReview.ready('add'));
+ await a.page.waitForFunction(()=>FK.puzzleReview.ready('add'));
+ assert.equal(await a.page.getByRole('button',{name:/Prüfung abschliessen|Offene Iterationen prüfen/}).count(),0);
+ const comment=a.page.getByLabel('Allgemeiner Kommentar zum Puzzle',{exact:true});
+ await comment.fill('Nochmals das ganze Puzzle prüfen.');
+ await a.page.getByRole('button',{name:'Kommentar speichern',exact:true}).click();
+ assert.equal(await comment.inputValue(),'');
+ assert.deepEqual(await a.page.evaluate(()=>{const v=FK.puzzleReview,p=v.progress('add');return [v.ready('add'),p.approved===p.total];}),[false,true]);
+ await a.page.evaluate(()=>FK.reviewRepository.refresh());await a.page.waitForFunction(()=>FK.reviewRepository.state.pending===0);
+ await b.page.evaluate(()=>FK.reviewRepository.refresh());assert.equal(await b.page.evaluate(()=>FK.puzzleReview.ready('add')),false);
+ await a.page.getByRole('button',{name:'Alle bestätigen',exact:true}).click();
+ await a.page.locator('.modal').getByRole('button',{name:'Alle bestätigen',exact:true}).click();
+ await a.page.evaluate(()=>FK.reviewRepository.refresh());await a.page.waitForFunction(()=>FK.reviewRepository.state.pending===0&&FK.puzzleReview.ready('add'));
  await b.page.evaluate(()=>FK.reviewRepository.refresh());assert.equal(await b.page.evaluate(()=>FK.puzzleReview.ready('add')),true);await b.page.waitForFunction(()=>document.querySelector('.review-intro')?.textContent.startsWith('1 / 31'));
  // A flagged offline decision blocks this device immediately, persists and later conflicts safely.
  await a.context.setOffline(true);await a.page.evaluate(()=>FK.puzzleReview.decide('add','add/1-1','improve'));assert.equal(await a.page.evaluate(()=>FK.puzzleReview.ready('add')),false);await a.page.evaluate(()=>FK.reviewRepository.refresh());assert.equal(await a.page.evaluate(()=>FK.reviewRepository.state.pending),1);
