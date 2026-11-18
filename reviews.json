@@ -15699,6 +15699,15 @@
       "at": "2026-11-18T20:20:24.503Z",
       "seen": true,
       "operation": "03b7f5dd-10fc-4271-9e3f-257f545d567a"
+    },
+    "puzzle:neighbours@f41cacdd10dc021f": {
+      "key": "puzzle:neighbours",
+      "revision": "f41cacdd10dc021f",
+      "status": "improve",
+      "note": "Mache drag and drop anstatt nacheinander klicken",
+      "at": "2026-11-18T20:21:00.553Z",
+      "seen": true,
+      "operation": "38a2ec7b-f992-4c68-aa16-c362f68abd4d"
     }
   },
   "history": [
