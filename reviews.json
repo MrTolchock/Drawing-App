@@ -13476,6 +13476,15 @@
       "at": "2026-11-18T08:21:17.046Z",
       "seen": true,
       "operation": "f062dfc8-61c1-427b-ac3a-fb49d9c84219"
+    },
+    "compare/1-1@df4c0baa25f0d0a4": {
+      "key": "compare/1-1",
+      "revision": "df4c0baa25f0d0a4",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T08:21:48.878Z",
+      "seen": true,
+      "operation": "8a772a2d-ae0b-4942-b4c9-ecadfb58b734"
     }
   },
   "history": [
