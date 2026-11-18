@@ -12286,6 +12286,15 @@
       "at": "2026-11-18T07:50:01.713Z",
       "seen": true,
       "operation": "3412d97f-43cd-4179-b0a4-b3bd0a87cbcb"
+    },
+    "friends-hedgehog/riddle-16@d9c5b940a38f868c": {
+      "key": "friends-hedgehog/riddle-16",
+      "revision": "d9c5b940a38f868c",
+      "status": "improve",
+      "note": "Change dachs, im not sure maybe has white tipped tail as well",
+      "at": "2026-11-18T07:50:32.614Z",
+      "seen": true,
+      "operation": "8967e75f-61f8-4df3-a5fb-eecf47950983"
     }
   },
   "history": [
