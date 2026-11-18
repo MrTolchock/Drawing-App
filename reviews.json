@@ -15671,6 +15671,16 @@
       "at": "2026-11-18T20:12:49.624Z"
     },
     {
+      "key": "puzzle:robot",
+      "note": "Mache pfeilbuttons grösser",
+      "at": "2026-11-18T20:14:32.532Z"
+    },
+    {
+      "key": "puzzle:robot",
+      "note": "Zum teil spring brief bei einem klick gleich zwei felder, anpassen. Anstatt brief nehme bild vom hasenbriefträger",
+      "at": "2026-11-18T20:14:33.098Z"
+    },
+    {
       "key": "puzzle:rocket",
       "note": "Satz: Hier sollen x leuchten auf jeder Iteration entfernen. Glühwürmchen sind nicht richtig illustriert, anpassen.",
       "at": "2026-11-18T20:07:49.202Z"
