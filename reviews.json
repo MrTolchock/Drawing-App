@@ -13485,6 +13485,240 @@
       "at": "2026-11-18T08:21:48.878Z",
       "seen": true,
       "operation": "8a772a2d-ae0b-4942-b4c9-ecadfb58b734"
+    },
+    "friends-squirrel/count-0@9b4de120ad2198de": {
+      "key": "friends-squirrel/count-0",
+      "revision": "9b4de120ad2198de",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T19:43:33.247Z",
+      "seen": true,
+      "operation": "5a5d81f9-877c-44b5-b9c7-54e3b55d8a39"
+    },
+    "friends-squirrel/count-1@e88ba91bf5f9935b": {
+      "key": "friends-squirrel/count-1",
+      "revision": "e88ba91bf5f9935b",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T19:43:36.798Z",
+      "seen": true,
+      "operation": "eddccc4b-a19b-4de2-bb84-741f559cf474"
+    },
+    "friends-squirrel/count-2@135477193c390b7b": {
+      "key": "friends-squirrel/count-2",
+      "revision": "135477193c390b7b",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T19:43:38.639Z",
+      "seen": true,
+      "operation": "c477f9ff-67dc-4bcc-85ad-da254a3918d7"
+    },
+    "friends-squirrel/count-3@195fe5c766a3339f": {
+      "key": "friends-squirrel/count-3",
+      "revision": "195fe5c766a3339f",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T19:43:43.447Z",
+      "seen": true,
+      "operation": "9644c16f-5417-47c2-9ad9-05d53fb57767"
+    },
+    "friends-squirrel/count-4@2fbec0094f0f99bf": {
+      "key": "friends-squirrel/count-4",
+      "revision": "2fbec0094f0f99bf",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T19:43:45.181Z",
+      "seen": true,
+      "operation": "5582c99f-c61b-4e3a-add6-a16f678df18c"
+    },
+    "friends-squirrel/count-5@eb1d74abebad51db": {
+      "key": "friends-squirrel/count-5",
+      "revision": "eb1d74abebad51db",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T19:43:47.281Z",
+      "seen": true,
+      "operation": "20b258f3-f8be-44ab-b8c4-38c9f0311b34"
+    },
+    "friends-squirrel/count-6@f4e29d49508347fb": {
+      "key": "friends-squirrel/count-6",
+      "revision": "f4e29d49508347fb",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T19:45:30.085Z",
+      "seen": true,
+      "operation": "f0764b12-5f21-4f30-adc2-9ce1fe05cba8"
+    },
+    "friends-squirrel/count-7@321e0e7fc6ed4017": {
+      "key": "friends-squirrel/count-7",
+      "revision": "321e0e7fc6ed4017",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T19:45:30.085Z",
+      "seen": true,
+      "operation": "d926523c-8d91-4dd3-b6f7-4ac3a9c92673"
+    },
+    "friends-squirrel/count-8@f9e153b913f03037": {
+      "key": "friends-squirrel/count-8",
+      "revision": "f9e153b913f03037",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T19:45:30.085Z",
+      "seen": true,
+      "operation": "219cede9-b7aa-4410-9bb5-96c664e9d1e2"
+    },
+    "friends-squirrel/count-9@7ffe6782f6a00820": {
+      "key": "friends-squirrel/count-9",
+      "revision": "7ffe6782f6a00820",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T19:45:30.085Z",
+      "seen": true,
+      "operation": "afcb150e-7b4e-4b42-88b7-524cc37e3df5"
+    },
+    "friends-squirrel/count-10@5195b29c20b5b340": {
+      "key": "friends-squirrel/count-10",
+      "revision": "5195b29c20b5b340",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T19:45:30.085Z",
+      "seen": true,
+      "operation": "ae7f90ac-8f0c-4fea-b9c4-7676cd9d0cf2"
+    },
+    "friends-squirrel/count-11@8fbcbd55a2c11dfb": {
+      "key": "friends-squirrel/count-11",
+      "revision": "8fbcbd55a2c11dfb",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T19:45:30.085Z",
+      "seen": true,
+      "operation": "7e183424-d24c-434c-b30b-bda4e710badd"
+    },
+    "friends-squirrel/count-12@4b63fe0df72b7d7b": {
+      "key": "friends-squirrel/count-12",
+      "revision": "4b63fe0df72b7d7b",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T19:45:30.085Z",
+      "seen": true,
+      "operation": "0c129fdf-01fc-47dc-a06d-39d0b249a883"
+    },
+    "friends-squirrel/count-13@11b72bf541cc707f": {
+      "key": "friends-squirrel/count-13",
+      "revision": "11b72bf541cc707f",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T19:45:30.085Z",
+      "seen": true,
+      "operation": "1de26589-f133-4bf9-b9d4-19616e2ba45f"
+    },
+    "friends-squirrel/count-14@6534b4ad5662a47f": {
+      "key": "friends-squirrel/count-14",
+      "revision": "6534b4ad5662a47f",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T19:45:30.085Z",
+      "seen": true,
+      "operation": "36821d5d-3617-4f95-a01e-cf90cb63b50f"
+    },
+    "friends-squirrel/count-15@5450884d22a179fb": {
+      "key": "friends-squirrel/count-15",
+      "revision": "5450884d22a179fb",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T19:45:30.085Z",
+      "seen": true,
+      "operation": "5ce22aad-9ae1-4126-bd69-0816d4fc5558"
+    },
+    "friends-squirrel/count-16@f7cd29bd770bd97b": {
+      "key": "friends-squirrel/count-16",
+      "revision": "f7cd29bd770bd97b",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T19:45:30.085Z",
+      "seen": true,
+      "operation": "52f3abbc-003b-434e-b99a-42ac2afd5110"
+    },
+    "friends-squirrel/count-17@0d1255ad723e5a77": {
+      "key": "friends-squirrel/count-17",
+      "revision": "0d1255ad723e5a77",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T19:45:30.085Z",
+      "seen": true,
+      "operation": "f12729d5-a788-4ce9-b865-0ca6748a877a"
+    },
+    "friends-squirrel/count-18@71bc627dc333df77": {
+      "key": "friends-squirrel/count-18",
+      "revision": "71bc627dc333df77",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T19:45:30.085Z",
+      "seen": true,
+      "operation": "82d071d6-e4c7-40b8-89c6-1765fbed38e0"
+    },
+    "friends-squirrel/count-19@9276a8e06ed86a92": {
+      "key": "friends-squirrel/count-19",
+      "revision": "9276a8e06ed86a92",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T19:45:30.085Z",
+      "seen": true,
+      "operation": "2a81afbf-1565-4f01-900a-d93f4aa9a887"
+    },
+    "friends-squirrel/count-20@4840f716637a8018": {
+      "key": "friends-squirrel/count-20",
+      "revision": "4840f716637a8018",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T19:45:30.085Z",
+      "seen": true,
+      "operation": "3b22aa92-dfe6-455e-83b3-f0f938b06faf"
+    },
+    "friends-squirrel/four-4@878d72af94aafef3": {
+      "key": "friends-squirrel/four-4",
+      "revision": "878d72af94aafef3",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T19:45:30.085Z",
+      "seen": true,
+      "operation": "b28a2b92-5881-4b05-8278-209dfd0ad93e"
+    },
+    "friends-squirrel/four-8@d01882375888267b": {
+      "key": "friends-squirrel/four-8",
+      "revision": "d01882375888267b",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T19:45:30.085Z",
+      "seen": true,
+      "operation": "9782453b-559f-49fa-a2bc-9b0b88a8e4c6"
+    },
+    "friends-squirrel/four-12@22031db5c6a74957": {
+      "key": "friends-squirrel/four-12",
+      "revision": "22031db5c6a74957",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T19:45:30.085Z",
+      "seen": true,
+      "operation": "7e4ce5ff-ca61-4086-b4f6-b0b66966b576"
+    },
+    "friends-squirrel/four-16@7fefbb1d46c6ed57": {
+      "key": "friends-squirrel/four-16",
+      "revision": "7fefbb1d46c6ed57",
+      "status": "approved",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T19:45:30.085Z",
+      "seen": true,
+      "operation": "8e8649e4-3b1b-4322-a5c8-a909e5d5e23f"
+    },
+    "puzzle:friends-squirrel@505c8b1135858be9": {
+      "key": "puzzle:friends-squirrel",
+      "revision": "505c8b1135858be9",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T19:45:30.085Z",
+      "seen": true,
+      "operation": "431da8e5-816a-49e9-ae90-dc502dd593ff"
     }
   },
   "history": [
@@ -13803,6 +14037,11 @@
       "key": "puzzle:friends-beaver",
       "note": "Reihen sind immer kreis, dreieck und quadrat. Beim fehlenden zeichen muss man gar nicht wissen, was erste zwei reihen zeigen. Besser wäre ein muster in ersten zwei reihen das in dritter weitergeführt wird, bsw. Immer zwei dreiecke und ein kreis, in unterschiedlichen reihenfolgen, und in letzter zeile muss ergänzt werden",
       "at": "2026-11-18T07:47:44.321Z"
+    },
+    {
+      "key": "puzzle:friends-squirrel",
+      "note": "Im ganzen rätsel, entferne die markierung beim nüsse zählen. Dies ist das einzige spiel wo das geht, darum aus harmonisierung feature entfernen",
+      "at": "2026-11-18T19:45:22.993Z"
     },
     {
       "key": "puzzle:friends-squirrel",
