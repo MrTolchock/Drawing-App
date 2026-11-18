@@ -12574,6 +12574,24 @@
       "at": "2026-11-18T07:54:26.969Z",
       "seen": true,
       "operation": "0cc0b82b-ba62-4a50-85f9-a4a4ad4579c0"
+    },
+    "friends-frog/animal-24@3c3dcc6165e2ad29": {
+      "key": "friends-frog/animal-24",
+      "revision": "3c3dcc6165e2ad29",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:54:28.850Z",
+      "seen": true,
+      "operation": "76f1bd4d-b4ff-46d2-aad3-317a4bb82d34"
+    },
+    "puzzle:friends-frog@b87abe2b2a3ecbdf": {
+      "key": "puzzle:friends-frog",
+      "revision": "b87abe2b2a3ecbdf",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:54:32.057Z",
+      "seen": true,
+      "operation": "e8efe11f-8e65-4bd2-832c-54aec7d802f1"
     }
   },
   "history": [
