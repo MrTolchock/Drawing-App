@@ -13809,6 +13809,24 @@
       "at": "2026-11-18T20:00:15.988Z",
       "seen": true,
       "operation": "235a3f54-637f-46db-a554-291f6478eec5"
+    },
+    "friends-hedgehog/riddle-18@b4389f28202cd588": {
+      "key": "friends-hedgehog/riddle-18",
+      "revision": "b4389f28202cd588",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T20:00:21.128Z",
+      "seen": true,
+      "operation": "f3740523-14de-4800-bc0b-be07faeabef0"
+    },
+    "puzzle:friends-hedgehog@f1ce43cf06aa29eb": {
+      "key": "puzzle:friends-hedgehog",
+      "revision": "f1ce43cf06aa29eb",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T20:00:24.278Z",
+      "seen": true,
+      "operation": "91f95881-5fea-4862-b243-65c25a9947ce"
     }
   },
   "history": [
