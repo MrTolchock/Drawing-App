@@ -7,7 +7,7 @@
 - Related competence: **D.2.A.1.b (Übung)** — Silben visuell unterscheiden
 - Difficulty: 32 Silben: m/l/s/n/r/f/t/p mit a/i/o/u
 - Pool: 32 explicit iterations; a round selects five.
-- Review: solve every unconfirmed iteration to approve it; × rejects with an optional note. The final celebration approves the puzzle only when all iterations passed. Exact revisions gate release; changes require review again.
+- Review: solve every unconfirmed iteration to approve it; × rejects with an optional note. The puzzle is released when all current iterations passed. Exact per-iteration revisions gate release; only affected iterations require review after changes.
 
 ## Mapping to the blueprint
 

@@ -93,7 +93,8 @@ test('a GitHub rate limit retains the editing connection and every queued decisi
 });
 test('only confirmed current-revision decisions release a complete puzzle',async()=>{
  const server=remoteServer(),a=client(server);await a.repo.start();for(const item of catalogue.iterations())a.decide(item.id,'approved');a.decide('puzzle:add','approved','puzzle-r1');assert.equal(a.repo.confirmed('add'),false);
- await a.repo.connect('test-review-token');assert.equal(a.repo.confirmed('add'),true);catalogue.puzzleRevision=()=> 'puzzle-r2';assert.equal(a.repo.confirmed('add'),false);catalogue.puzzleRevision=()=> 'puzzle-r1';
+ await a.repo.connect('test-review-token');assert.equal(a.repo.confirmed('add'),true);catalogue.puzzleRevision=()=> 'puzzle-r2';assert.equal(a.repo.confirmed('add'),true,'an aggregate puzzle revision does not reopen unchanged iterations');catalogue.puzzleRevision=()=> 'puzzle-r1';
+ const original=catalogue.iterationRevision;catalogue.iterationRevision=(id,it)=>it.id==='add/0'?'changed-task':original(id,it);assert.equal(a.repo.confirmed('add'),false);catalogue.iterationRevision=original;
  const ledger=server.ledger;delete ledger.entries['add/0@r-add/0'];server.ledger=ledger;await a.repo.refresh();assert.equal(a.data.decisions['add/0'],undefined);assert.equal(a.repo.confirmed('add'),false);a.repo.stop();
 });
 test('malformed or uninspected remote approvals preserve the last working cache',async()=>{

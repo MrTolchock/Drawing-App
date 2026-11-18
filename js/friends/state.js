@@ -5,15 +5,15 @@
   const clone=x=>JSON.parse(JSON.stringify(x));
   const SCHEMA=1;
   const Logging=typeof module!=='undefined'?require('./play-log.js'):root.PlayLog;
-  function create({storage,content,eligible=null,development=false,namespace='',now=()=>Date.now(),random=Math.random,onStatus=()=>{},appVersion=()=>root.FK?.VERSION||'unknown',logContext=()=>({}),loggingEnabled=()=>!root.FK?.playLog?.development()}){
+  function create({storage,content,eligible=null,puzzleHosts=()=>root.FK?.friendsLibrary?.catalogue().map(g=>g.host)||Object.keys(content.hosts),development=false,namespace='',now=()=>Date.now(),random=Math.random,onStatus=()=>{},appVersion=()=>root.FK?.VERSION||'unknown',logContext=()=>({}),loggingEnabled=()=>!root.FK?.playLog?.development()}){
     const key='farbtupf.friends.'+(namespace?namespace+'.':development?'development.':'')+'v1', backup=key+'.backup', logKey=key+'.log';
     let state,blocked=false,readFailed=false,expected=null,error='';
     const uid=()=>now().toString(36)+'-'+random().toString(36).slice(2,12);
     const sessionId=uid();
     // An invitation stays stable; future friends come from a saved shuffled bag.
     const mailHosts=['squirrel','bird','owl','beaver','mouse','hedgehog','fish','deer','kingfisher','frog','badger','ibex'];
-    // Fisch remains a world neighbour and a valid historical save identity; its duplicate counting puzzle is retired.
-    const activeMailHosts=mailHosts.filter(id=>id!=='fish');
+    // All characters remain in the world. New letters require an assigned puzzle, including for Fisch.
+    const activeMailHosts=mailHosts.filter(id=>puzzleHosts().includes(id));
     // A letter goes only to a friend whose puzzles are ready (`eligible`, from the game: signed off in the review); if none is, as before.
     const ok=id=>{try{return !eligible||!!eligible(id);}catch{return true;}};
     const letterLimit=n=>Number.isInteger(n)&&n>=1&&n<=50;
@@ -23,7 +23,7 @@
       s.settings.letterLimit=letterLimit(s.settings.letterLimit)?s.settings.letterLimit:3;s.mail=s.mail||firstMail();
       const m=s.mail;m.remaining=(m.remaining||shuffled(activeMailHosts.filter(id=>id!==m.host))).filter(id=>activeMailHosts.includes(id));
       if(!m.session){m.session=session(s.settings.letterLimit);if(m.phase==='to-mailman')m.session.completed=1;if(m.session.completed>=m.session.limit)m.phase='return-home';}
-      // Replace an unfinished invitation to the retired puzzle, keeping the same letter, phase and completed count.
+      // Retarget an unfinished invitation without an assigned puzzle, keeping its letter, phase and completed count.
       if(['den-letter','to-friend'].includes(m.phase)&&!activeMailHosts.includes(m.host)){const index=m.index;nextHost(s);m.index=index;}
       s.unlocks.leaf=true;s.unlocks.pencils=true;return s;
     };

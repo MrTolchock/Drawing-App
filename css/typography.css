@@ -26,6 +26,14 @@ button,input,select,textarea { font-family:var(--type-body); }
 .friends-interface .screen-forest-book .forest-book-game b { font-family:var(--type-body);font-weight:700;line-height:1.3; }
 .friends-interface .ff-settings-body { font:400 var(--type-size-body)/1.5 var(--type-body);color:var(--wb-ink); }
 .friends-interface .ff-settings-body .setting-head h2 { margin:0;font:700 22px/1.3 var(--type-heading);color:inherit; }
+.friends-interface .ff-settings-body.review-body :is(h2,h3),.friends-interface .ff-settings-body .ff-developer-panel h3 { font:700 22px/1.3 var(--type-heading);color:inherit; }
+.friends-interface .ff-settings-body.review-body :is(input,textarea,label,.review-status,.review-save-state) { font:inherit;color:inherit; }
+.friends-interface .ff-settings-body.review-body .review-puzzle>b { font:700 22px/1.3 var(--type-heading); }
+.friends-interface .ff-settings-body.review-body .review-puzzle>span:not(.review-status):not(.forest-portrait) { font:400 var(--type-size-body)/1.5 var(--type-body); }
+.friends-interface .ff-settings-body.review-body .review-intro { margin:0 0 20px; }
+.friends-interface .ff-settings-body .review-feedback-list p { margin:6px 0 10px; }
+.friends-interface .ff-settings-body .ff-developer-panel { margin-top:24px;padding:18px;border:1px solid var(--wb-paper-edge);border-radius:16px;background:var(--wb-paper-inset); }
+.friends-interface .ff-settings-body .ff-developer-panel h3 { margin:0 0 10px; }
 .friends-interface .ff-settings-body :is(p,.setting-head small,.ff-letter-slider-row small) { margin:0;font:inherit;color:inherit; }
 .friends-interface .ff-settings-body .ff-setting-toggle,.friends-interface .ff-settings-body .ff-letter-range>span:first-child { font:700 var(--type-size-label)/1.4 var(--type-body);color:inherit; }
 .friends-interface .ff-settings-body .btn { --lbl:var(--type-size-label);font:700 var(--type-size-label)/1.4 var(--type-body);color:inherit; }

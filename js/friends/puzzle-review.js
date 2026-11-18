@@ -21,7 +21,9 @@
   const recordKey=(id,iteration)=>iteration||'puzzle:'+id;
   const noteDeleted=d=>(data.deletedNotes||[]).some(v=>v.key===d.key&&v.note===d.note&&Date.parse(v.at)>=Date.parse(d.at));
   const noteTime=(key,note)=>new Date(Math.max(Date.now(),...(data.deletedNotes||[]).filter(d=>d.key===key&&d.note===note).map(d=>Date.parse(d.at)+1))).toISOString();
-  function status(id,iteration){const k=recordKey(id,iteration),d=data.decisions[k],valid=d&&C.acceptsRevision(id,iteration,d.revision);return {status:valid?d.status:d?.status==='improve'?'improve':'pending',stale:!!d&&!valid,decision:d?{...clone(d),note:noteDeleted(d)?'':d.note}:null,seen:C.acceptsRevision(id,iteration,data.seen[k])};}
+  function status(id,iteration){const k=recordKey(id,iteration),d=data.decisions[k],valid=d&&C.acceptsRevision(id,iteration,d.revision),state={status:valid?d.status:d?.status==='improve'?'improve':'pending',stale:!!d&&!valid,decision:d?{...clone(d),note:noteDeleted(d)?'':d.note}:null,seen:C.acceptsRevision(id,iteration,data.seen[k])};
+    if(!iteration){const p=progress(id);state.status=d?.status==='improve'?'improve':p.total>=25&&p.approved===p.total?'approved':'pending';state.stale=C.iterations(id).some(it=>status(id,it.id).stale);}return state;
+  }
   function seen(id,iteration){const r=revision(id,iteration);if(!r)return false;const next=clone(data);next.seen[recordKey(id,iteration)]=r;return persist(next);}
   function progress(id){const items=C.iterations(id),approved=items.filter(i=>status(id,i.id).status==='approved').length,improve=items.filter(i=>status(id,i.id).status==='improve').length;return {total:items.length,approved,improve,pending:items.length-approved-improve};}
   function feedback(id){
@@ -35,7 +37,7 @@
     next.deletedNotes=(next.deletedNotes||[]).filter(d=>d.key!==entry.key||d.note!==entry.note);
     next.deletedNotes.push({key:entry.key,note:entry.note,at});return persist(next);
   }
-  function ready(id){const p=progress(id);return p.total>=25&&p.approved===p.total&&status(id).status==='approved'&&(!FK.reviewRepository||FK.reviewRepository.confirmed(id));}
+  function ready(id){const p=progress(id);return p.total>=25&&p.approved===p.total&&data.decisions[recordKey(id)]?.status!=='improve'&&(!FK.reviewRepository||FK.reviewRepository.confirmed(id));}
   function decide(id,iteration,value,note){
     const r=revision(id,iteration);if(!r||!statuses.includes(value)){error='Unbekannte Aufgabe oder Entscheidung.';return false;}
     note=String(note??(!iteration?status(id).decision?.note:'')??'').trim().slice(0,4000);
@@ -96,7 +98,7 @@
   }
   function currentReview(session){
     const id=session?.iterationIds?.[session.round];
-    if(!authorized||!session?.review||!id||session.reviewRevision!==C.puzzleRevision(session.id)||session.reviewRevisions[session.round]!==revision(session.id,id)){
+    if(!authorized||!session?.review||!id||session.reviewRevisions[session.round]!==revision(session.id,id)){
       error='Diese Aufgabe wurde geändert. Bitte die Prüfung neu öffnen.';return null;
     }return id;
   }
@@ -118,7 +120,7 @@
     put(recordKey(id),C.puzzleRevision(id));next.decisions[recordKey(id)].note=status(id).decision?.note||'';return persist(next);
   }
   function finishSession(session){
-    if(!authorized||!session?.review||session.round!==session.questions.length||session.reviewRevision!==C.puzzleRevision(session.id)||session.reviewResults.filter(Boolean).length!==session.questions.length)return false;
+    if(!authorized||!session?.review||session.round!==session.questions.length||session.reviewResults.filter(Boolean).length!==session.questions.length)return false;
     if(session.reviewResults.includes('improve')||progress(session.id).approved!==progress(session.id).total)return false;
     return decide(session.id,null,'approved');
   }

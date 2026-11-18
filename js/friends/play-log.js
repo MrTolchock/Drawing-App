@@ -2,13 +2,13 @@
 (function(root){
   'use strict';
   const copy=value=>JSON.parse(JSON.stringify(value));
-  const DAY=86400000,MAX_EVENTS=10000,MAX_CHARS=750000;
+  const DAY=86400000,RETENTION_DAYS=30,MAX_EVENTS=10000,MAX_CHARS=750000;
   const important=new Set(['session_start','session_end','letter_opened','letter_session_started','letter_session_finished','mail_puzzle_completed','puzzle_started','puzzle_resumed','iteration_presented','puzzle_attempt','iteration_interrupted','puzzle_completed','puzzle_visit_ended','pause','answer_submitted','development_skip']);
   function createRecorder({storage,key,now=()=>Date.now(),metadata=()=>({}),enabled=()=>true,schedule=fn=>{const t=setTimeout(fn,800);t.unref?.();return t;},cancel=clearTimeout}){
     let events=[],definitions={},truncated=false,dropped=0,sequence=0,timer=null,error='',dirty=false;
     const valid=e=>e&&typeof e.event==='string'&&Number.isFinite(e.timestamp);
     try{const old=JSON.parse(storage.getItem(key));events=Array.isArray(old?.events)?old.events.filter(valid):[];definitions=old?.definitions&&typeof old.definitions==='object'?old.definitions:{};truncated=!!old?.truncated;dropped=Number.isSafeInteger(old?.dropped)?old.dropped:0;sequence=Math.max(0,...events.map(e=>Number.isSafeInteger(e.sequence)?e.sequence:0));}catch{/* Recording can still work in memory. */}
-    function trim(){const kept=events.filter(e=>e.timestamp>=now()-7*DAY).slice(-MAX_EVENTS);if(kept.length<events.length){truncated=true;dropped+=events.length-kept.length;events=kept;dirty=true;}}
+    function trim(){const kept=events.filter(e=>e.timestamp>=now()-RETENTION_DAYS*DAY).slice(-MAX_EVENTS);if(kept.length<events.length){truncated=true;dropped+=events.length-kept.length;events=kept;dirty=true;}}
     const referenced=rows=>{const keys=new Set(rows.map(e=>e.taskKey).filter(Boolean));return Object.fromEntries(Object.entries(definitions).filter(([key])=>keys.has(key)));};
     function flush(){
       if(timer!==null){cancel(timer);timer=null;}trim();if(!dirty)return !error;
@@ -38,7 +38,7 @@
     function exportData(){flush();trim();const rows=copy(events),defs=copy(referenced(events));return {
       format:'farbtupf-play-log',schema:2,appName:root.FK?.APP_NAME||'Waldpost',exportedAt:new Date(now()).toISOString(),...metadata(),
       recording:{enabled:enabled()&&!metadata().development},
-      retention:{days:7,maxEvents:MAX_EVENTS,maxStorageCharacters:MAX_CHARS,truncated,droppedEvents:dropped},
+      retention:{days:RETENTION_DAYS,maxEvents:MAX_EVENTS,maxStorageCharacters:MAX_CHARS,truncated,droppedEvents:dropped},
       storage:{localOnly:true,persisted:!dirty&&!error,error:error||null},
       retainedFrom:rows[0]?.timestamp??null,retainedTo:rows.at(-1)?.timestamp??null,
       analysisGuide:{purpose:'Improve game flow, puzzle clarity, input usability and fixed difficulty.',

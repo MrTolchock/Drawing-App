@@ -32,7 +32,7 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
  const second=await active(a.page).getAttribute('data-review-iteration');await active(a.page).getByRole('button',{name:'Iteration ablehnen',exact:true}).tap();await a.page.getByRole('button',{name:'Ablehnen und weiter',exact:true}).tap();await a.page.evaluate(()=>FK.reviewRepository.refresh());await a.page.waitForFunction(()=>FK.reviewRepository.state.pending===0);
  assert.equal(Object.values(server.ledger.entries).find(e=>e.key===second).status,'improve');
  const b=await device(390);assert.equal(await b.page.evaluate(()=>FK.reviewRepository.state.connected),false);assert.equal(await b.page.evaluate(()=>FK.puzzleReview.status('add','add/1-1').status),'approved');assert.equal(await b.page.evaluate(id=>FK.puzzleReview.status('add',id).status,second),'improve');
- await b.page.locator('[data-puzzle="add"]').click();assert.equal(await b.page.getByLabel('Allgemeiner Kommentar zum Puzzle',{exact:true}).inputValue(),'Die Bilder im ganzen Puzzle prüfen.');
+ await b.page.locator('[data-puzzle="add"]').click();assert.equal(await b.page.getByLabel('Allgemeiner Kommentar zum Puzzle',{exact:true}).inputValue(),'');assert.match(await b.page.locator('.review-feedback').innerText(),/Die Bilder im ganzen Puzzle prüfen\./);
  assert.equal(await active(b.page).locator('.review-connection').count(),0);
  await b.page.screenshot({path:shots+'/puzzle-comment-phone.png'});
  await active(b.page).locator('.btn-back').click();await b.page.screenshot({path:shots+'/fresh-browser-phone.png'});
