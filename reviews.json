@@ -15168,6 +15168,15 @@
       "at": "2026-11-18T20:11:11.120Z",
       "seen": true,
       "operation": "1ab0f719-c03d-49df-941e-c77c39b61bd3"
+    },
+    "picnic/3-6@be8a66c8251aa862": {
+      "key": "picnic/3-6",
+      "revision": "be8a66c8251aa862",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T20:11:27.453Z",
+      "seen": true,
+      "operation": "324de873-dcb7-4100-a1dc-a36780dc2f9b"
     }
   },
   "history": [
