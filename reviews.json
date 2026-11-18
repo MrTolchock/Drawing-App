@@ -13517,19 +13517,19 @@
       "key": "friends-squirrel/count-3",
       "revision": "195fe5c766a3339f",
       "status": "approved",
-      "note": "",
-      "at": "2026-11-18T19:43:43.447Z",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T19:52:22.387Z",
       "seen": true,
-      "operation": "9644c16f-5417-47c2-9ad9-05d53fb57767"
+      "operation": "458cb91a-c726-4bc5-9a0b-286b57dbf6b2"
     },
     "friends-squirrel/count-4@2fbec0094f0f99bf": {
       "key": "friends-squirrel/count-4",
       "revision": "2fbec0094f0f99bf",
       "status": "approved",
-      "note": "",
-      "at": "2026-11-18T19:43:45.181Z",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T19:52:21.530Z",
       "seen": true,
-      "operation": "5582c99f-c61b-4e3a-add6-a16f678df18c"
+      "operation": "c85b95ae-6982-4fa4-a4e4-12192b6daa8b"
     },
     "friends-squirrel/count-5@eb1d74abebad51db": {
       "key": "friends-squirrel/count-5",
@@ -13874,6 +13874,24 @@
       "at": "2026-11-18T19:43:47.281Z",
       "seen": true,
       "operation": "20b258f3-f8be-44ab-b8c4-38c9f0311b34"
+    },
+    {
+      "key": "friends-squirrel/count-3",
+      "revision": "195fe5c766a3339f",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T19:43:43.447Z",
+      "seen": true,
+      "operation": "9644c16f-5417-47c2-9ad9-05d53fb57767"
+    },
+    {
+      "key": "friends-squirrel/count-4",
+      "revision": "2fbec0094f0f99bf",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T19:43:45.181Z",
+      "seen": true,
+      "operation": "5582c99f-c61b-4e3a-add6-a16f678df18c"
     }
   ],
   "deletedNotes": [
