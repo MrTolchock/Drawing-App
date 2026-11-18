@@ -13134,6 +13134,15 @@
       "at": "2026-11-18T08:11:48.508Z",
       "seen": true,
       "operation": "18dccdef-9481-4b0b-92e9-1ab34b27ef7a"
+    },
+    "puzzle:syllable@6d3736adbf2eaab5": {
+      "key": "puzzle:syllable",
+      "revision": "6d3736adbf2eaab5",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T08:11:51.669Z",
+      "seen": true,
+      "operation": "8a1fc110-429a-4caf-b0e0-7bf84f87f22f"
     }
   },
   "history": [
