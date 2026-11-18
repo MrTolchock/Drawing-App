@@ -1,6 +1,6 @@
 # Current visual consistency audit
 
-Current game art is **Waldpost 9.3.95**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal and object reference pixels and **35** complete forward image-generation prompts.
+Current game art is **Waldpost 9.3.96**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal and object reference pixels and **37** complete forward image-generation prompts.
 
 ## Stay on the Steg in Frosch's swamp — 9.3.87
 
@@ -121,3 +121,11 @@ The audit compared all 238 library images with the canonical animal and object p
 Pixel comparisons against 9.3.94 confirm that 149 images are identical. Fine edges and the original atlas grid are preserved in lossless downloads. Gallery previews and PNG downloads use the same sheet version. The 796 iterations with identical presentation retain their revisions. The 162 revised iterations display corrected art. A read-only check of the GitHub review ledger verified current approvals, later comments and restrictions, and recovery on a fresh device.
 
 All 151 model tests and the phone and tablet rendering checks for all 31 puzzles passed. The gallery check verified the pixels and transparency of 129 PNG exports, including five full browser downloads. The side-by-side crops, dark-background checks and real puzzle screenshots are available in the [image library evidence](evidence/2026-11-18-image-library/README.md).
+
+## Illustration guidance, puzzle type and review feedback — 18 November 2026, 9.3.96
+
+All current prompts include the shared centring, visible size and clean-alpha checks. The forest rose now uses the existing layered red rose painting. The two new garden pictures have retained generator inputs and transparent crops. The puzzle blueprint specifies Andika sizes for prompts, answers, controls, context and captions. [Puzzle and illustration checks](evidence/2026-11-18-review-feedback/README.md)
+
+The 16 current feedback notes are accounted for in the [review follow-up](../docs/PUZZLE-FEEDBACK-2026-11-18.md). General comments reopen a puzzle with its iteration decisions intact. Waldmuster restores the two original approvals from verified GitHub evidence. Review queues complete automatically. The live review branch is the authoritative record.
+
+The phone and tablet design check passed for all 31 puzzles. Gallery checks verified 131 transparent PNG exports, including eight browser downloads. The read-only GitHub snapshot test restored the three eligible puzzles on fresh devices, including Waldmuster. It also confirmed later restrictions and comment deletions.

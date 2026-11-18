@@ -1,0 +1,22 @@
+{
+  "format": "waldpost-library-cell-repair",
+  "version": 1,
+  "date": "2026-11-18",
+  "baseCommit": "94948722951a6196b39524b3ffe804cbb724e637",
+  "framing": {
+    "longestSideRatio": 0.8,
+    "centre": [0.5, 0.5],
+    "matteAlphaCore": 100,
+    "generatedAlphaCore": 70
+  },
+  "redraws": [],
+  "reuse": { "forest-rose": "rose" },
+  "sourceRectAdjustments": {},
+  "sheets": {
+    "forest-objects": {
+      "width": 1280,
+      "height": 1280,
+      "ids": ["forest-rose"]
+    }
+  }
+}

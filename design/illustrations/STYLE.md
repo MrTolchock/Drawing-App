@@ -1,6 +1,6 @@
 # Waldpost illustration style
 
-**Canonical style ID: `waldpost-watercolour-pencil-v1`.** This is the single authority for every new image-generator request. It preserves the predominant style of the 235-picture gallery after the November 2026 consistency correction.
+**Canonical style ID `waldpost-watercolour-pencil-v1`.** This is the single authority for every new image-generator request. It preserves the predominant watercolour and pencil style of the current gallery.
 
 ![Canonical animal and object reference board](references/watercolour-pencil-v1/style-board.png)
 
@@ -29,6 +29,12 @@ Avoid sculpted/plush/felt/clay finishes, rendered or photographic material detai
 
 All UI character identities use the shared painted cast: letters, puzzle context, map pins, menus, companions and celebration. The real-time world and den fox keep their existing model pipeline. `FK.friendsArt.portrait` and `letterPortrait` use the same painted atlas. Exact geometry, routes and handwriting remain authored paths. The den marker is a painted landmark matching the animals. The den exit uses the `exit-symbol` illustrated pictogram with the same softly irregular outlines and nearly flat fills as the simple map/letter/settings controls; do not resurrect the old detailed wooden pins. Navigation back in menus/review/puzzles is a simple flat illustrated arrow matching map, letter and settings. The map dialog has no header icons: outside taps or Escape dismiss it, while panning keeps it open. These role boundaries are prescribed parts of the design, not a menu of competing styles.
 
+## Framing and edge quality
+
+Compare pictures at their game size beside other answers. In a square cell, centre the full silhouette on both axes and fit its longest visible side to about 80% of the cell. Keep the original proportions and comparable visual weight. Reuse the same painting when a subject and pose recur. Draw the features that make the answer recognisable at a glance, such as the rose's layered petals or a firefly's golden rear segment.
+
+Leave genuine transparency around each subject and inside open shapes such as a handle. Check the exported cells on cream and on a dark surface for pale matte, stray fragments and clipped outlines. Keep the soft pencil edges. A local repair preserves the surrounding cells' positions and visible pixels. The shared framing guidance is part of every generated request. [Style and prompt registry](style.json)
+
 ## Make a request
 
 1. Reuse a picture from the [central library](../../assets/waldatelier/README.md) whenever it already fits.
@@ -38,7 +44,7 @@ All UI character identities use the shared painted cast: letters, puzzle context
 5. Inspect the result beside the canonical references on cream and transparency checkerboard, then in the actual phone/tablet puzzle. Check anatomy, exact quantities/colours, action differences, cell order, complete edges and real alpha. Packing cannot fix semantic drawing errors.
 6. Retain the actual request, supplied reference list, generator/date, editable output, hash and packing manifest. Use the existing preparation tools and normal puzzle review rules.
 
-All files under the active `prompts/` directories are generated from [STYLE.txt](STYLE.txt), the registered role and a subject/layout brief. Briefs are not standalone prompts. After editing a brief run `node tools/illustrations/style.cjs`, then `node tools/illustrations/style.cjs --check`. CI rejects missing/changed shared style text, unregistered prompts, altered reference pixels and historical generation inputs.
+All files under the active `prompts/` directories are generated from [STYLE.txt](STYLE.txt), the registered role, shared framing guidance and a subject/layout brief. After editing a brief run `node tools/illustrations/style.cjs`, then `node tools/illustrations/style.cjs --check`. CI checks the complete current prompt and fixed reference pixels.
 
 A new visual direction requires updating this contract, its versioned references and every generated prompt together. An explicit user instruction authorizes that work; do not request another confirmation for the same decision.
 

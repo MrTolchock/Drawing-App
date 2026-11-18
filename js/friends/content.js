@@ -69,7 +69,7 @@
     ['Was baut man aus Schnee?', 'snowman', 'boat', 'nest'], ['Wer schlüpft aus dem Ei?', 'chick', 'fish', 'bee'], ['Was fällt im Herbst vom Baum?', 'leaf', 'egg', 'moon'], ['Was trinken die Pflanzen?', 'water', 'honey', 'cheese'],
     ['Was machen die Bienen?', 'honey', 'cheese', 'egg'], ['Woraus kommt der Schmetterling?', 'cocoon', 'nest', 'bucket'], ['Was wird aus der Raupe?', 'butterfly', 'bee', 'bird'], ['Was siehst du am Abend?', 'sunset', 'rain', 'snowman'],
     ['Womit gräbt man in der Erde?', 'spade', 'spoon', 'fork'], ['Wer gräbt Gänge in der Erde?', 'vocab-worm', 'bird', 'fish'], ['Welche Blume schaut zur Sonne?', 'sunflower', 'forest-rose', 'fir'],
-    ['Welcher Baum hat Nadeln?', 'fir', 'tree', 'sunflower'], ['Wer hat Streifen im Gesicht?', 'badger', 'pig', 'sheep']]);
+    ['Welche Pflanze hat Nadeln?', 'fir', 'tree', 'sunflower'], ['Wer hat Streifen im Gesicht?', 'badger', 'pig', 'sheep']]);
   // Lesen: animal words, none of them in Maus' list.
   const animals = [['Frosch', 'frog'], ['Igel', 'hedgehog'], ['Biene', 'bee'], ['Schnecke', 'snail'], ['Hund', 'dog'], ['Katze', 'cat'], ['Spinne', 'spider'], ['Raupe', 'caterpillar'], ['Bär', 'bear'], ['Schaf', 'sheep'],
     ['Schwein', 'pig'], ['Ei', 'egg'], ['Nest', 'nest'], ['Ameise', 'ant'], ['Käfer', 'ladybird'], ['Schildkröte', 'tortoise'], ['Pilz', 'forest-mushroom']];

@@ -40,7 +40,7 @@
 | `friends-badger/riddle-11` | Womit gräbt man in der Erde? — Womit gräbt man in der Erde? | "spade" |
 | `friends-badger/riddle-12` | Wer gräbt Gänge in der Erde? — Wer gräbt Gänge in der Erde? | "vocab-worm" |
 | `friends-badger/riddle-13` | Welche Blume schaut zur Sonne? — Welche Blume schaut zur Sonne? | "sunflower" |
-| `friends-badger/riddle-14` | Welcher Baum hat Nadeln? — Welcher Baum hat Nadeln? | "fir" |
+| `friends-badger/riddle-14` | Welche Pflanze hat Nadeln? — Welche Pflanze hat Nadeln? | "fir" |
 | `friends-badger/riddle-15` | Wer hat Streifen im Gesicht? — Wer hat Streifen im Gesicht? | "badger" |
 | `friends-badger/riddle-16` | Was braucht eine Pflanze zum Wachsen? — Was braucht eine Pflanze zum Wachsen? | "sun" |
 | `friends-badger/riddle-17` | Was wird aus einer Apfelblüte? — Was wird aus einer Apfelblüte? | "apple" |
@@ -48,7 +48,7 @@
 | `friends-badger/riddle-19` | Was sammelt das Eichhörnchen im Herbst? — Was sammelt das Eichhörnchen im Herbst? | "forest-nut" |
 | `friends-badger/riddle-20` | Was sehen wir bei klarem Himmel in der Nacht? — Was sehen wir bei klarem Himmel in der Nacht? | "moon" |
 | `friends-badger/riddle-21` | Was wächst auf der Erdbeerpflanze? — Was wächst auf der Erdbeerpflanze? | "strawberry" |
-| `friends-badger/riddle-22` | Womit giessen wir die Pflanzen? — Womit giessen wir die Pflanzen? | "bucket" |
+| `friends-badger/riddle-22` | Womit giessen wir die Pflanzen? — Womit giessen wir die Pflanzen? | "watering-can" |
 | `friends-badger/riddle-23` | Was wächst aus einer Eichel? — Was wächst aus einer Eichel? | "tree" |
 | `friends-badger/riddle-24` | Was ernten wir vom Birnbaum? — Was ernten wir vom Birnbaum? | "pear" |
 
@@ -270,11 +270,11 @@ These definitions are the same finite data used by the game and review previews.
   },
   {
     "id": "friends-badger/riddle-14",
-    "label": "Welcher Baum hat Nadeln?",
+    "label": "Welche Pflanze hat Nadeln?",
     "question": {
       "kind": "reading",
       "prompt": "Welches Bild passt zur Frage?",
-      "text": "Welcher Baum hat Nadeln?",
+      "text": "Welche Pflanze hat Nadeln?",
       "answer": "fir",
       "choices": [
         "fir",
@@ -395,9 +395,9 @@ These definitions are the same finite data used by the game and review previews.
       "kind": "reading",
       "prompt": "Welches Bild passt zur Frage?",
       "text": "Womit giessen wir die Pflanzen?",
-      "answer": "bucket",
+      "answer": "watering-can",
       "choices": [
-        "bucket",
+        "watering-can",
         "fork",
         "hat"
       ]

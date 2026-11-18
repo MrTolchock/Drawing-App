@@ -4,7 +4,7 @@ Start with the [canonical illustration style](STYLE.md), **`waldpost-watercolour
 
 ## Reuse and generate
 
-Search the [238-picture library](../../assets/waldatelier/README.md) and reuse stable IDs with `FK.visual.art(id)`. New subjects belong in `assets/waldatelier/`; preserve existing IDs and cell positions.
+Search the [picture library](../../assets/waldatelier/README.md) and reuse stable IDs with `FK.visual.art(id)`. New subjects belong in `assets/waldatelier/`. Preserve existing IDs and cell positions.
 
 ```sh
 node tools/illustrations/style.cjs --request subject-sheet
@@ -27,7 +27,9 @@ node tools/illustrations/pack-atlas.cjs design/illustrations/forest-actions.json
 
 Manifest source/output paths are relative to the manifest. `--output` is relative to the working directory; `--icc-profile`, `WALDPOST_SRGB_PROFILE` and `WALDPOST_MAGICK` override local tool/profile locations. Packing finds subject bounds above the recorded alpha threshold, preserves aspect ratio and edge alpha, centres each picture and writes a profiled lossless WebP. Current sheets use 320 px cells and 256 px subject bounds; unused trailing cells stay transparent. A single registered subject uses a 2 × 2 atlas to preserve the renderer's grid contract.
 
-Inspect every picture against its intended answer and canonical references. Register ordered IDs and any grid override in `js/ui/waldatelier.js`, preserve accessible labels and exact quantities, and add new runtime dependencies to `sw.js`. Runtime art changes require app/cache version updates, generated fingerprints and normal adult review; they never grant approval automatically.
+Set `sourceCellPixels` when the generator supplies fewer trailing rows than the output grid. Each declared subject still has a complete square source cell. The packer fills the unused output cells with transparency.
+
+Inspect every picture against its intended answer and canonical references. Register ordered IDs and any grid override in `js/ui/waldatelier.js`, preserve accessible labels and exact quantities, and add new runtime dependencies to `sw.js`. Runtime art changes require app/cache version updates, generated fingerprints and normal adult review.
 
 ```sh
 node tools/illustrations/style.cjs --check

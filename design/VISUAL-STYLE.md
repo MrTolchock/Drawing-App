@@ -33,7 +33,7 @@ All fonts are bundled locally; no network font requests.
 | Role | Font | Weight / size |
 | --- | --- | --- |
 | Body, labels, controls, parent settings | Andika | 400 regular / 700 emphasis; body 16 px, controls usually 17–20 px, metadata 14 px minimum |
-| Puzzle titles, prompts, answers, scored words/numerals | Andika | 700; titles 21–28 px responsive; use the shared task sizes, never decorative lettering |
+| Puzzle titles, prompts, answers, scored words/numerals | Andika | 700. Titles 20–30 px, prompts 21–29 px, scored text 29/34 px. See the [puzzle typography roles](PUZZLE-BLUEPRINT.md#illustration-and-typography). |
 | Menu/section/modal headings | Baloo 2 | 700; titles 22–32 px responsive |
 | Brand wordmark only | Baloo 2 | 800 permitted |
 | Letter/digit tracing | Authored glyph paths | No font substitution; preserve stroke starts and direction |
@@ -56,7 +56,7 @@ Use one clear task area, generous cream space and a small portrait/context row. 
 
 ## Asset ownership and changes
 
-- Add subjects to an existing drawn atlas or supply a matching drawn sheet. Register and name every picture before using it. Transparent cells need consistent scale, crop and padding; counted pictures must show exactly one object.
+- Register every new subject and use the canonical drawings. Pack transparent cells to the shared 80% visible extent and centre each silhouette with its proportions intact. Compare picture choices side by side and check their edges on light and dark backgrounds. Counted pictures show one object. [Framing and edge quality](illustrations/STYLE.md#framing-and-edge-quality)
 - Live-world character identity comes from `tools/characters/plush.js` and the GLBs. UI identities come from the approved painted atlas and `FK.friendsArt.portrait`; `letterPortrait` uses the same image. Model renders are development references only. New portraits use the canonical `friend-portraits` request, preserving species, markings and accessories.
 - Keep quiet puzzle utility icons in the shared SVG source, world controls in their simple symbol atlas and navigation backs in the one shared component. Reuse the current painted den marker and illustrated exit pictogram; generate additions with their registered role and the approved reference images. Register additions with the matching family and record their sources; no one-off or Unicode controls.
 - No runtime imports, styles, assets or offline downloads may come from `legacy/` or retired design prototypes.

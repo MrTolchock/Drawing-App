@@ -1,0 +1,46 @@
+{
+  "format": "waldpost-image-generation-record",
+  "version": 1,
+  "id": "puzzle-garden",
+  "style": "waldpost-watercolour-pencil-v1",
+  "date": "2026-11-18",
+  "tool": "ChatGPT image_gen.imagegen",
+  "source": "design/illustrations/sources/puzzle-garden.png",
+  "sourceSha256": "e9cacd10359be85dd144ce043bcf7e054196b5d3ae78eac1b317f0e750cfd6d3",
+  "request": {
+    "prompt": "WALDPOST CANONICAL ILLUSTRATION STYLE — waldpost-watercolour-pencil-v1\n\nUse the supplied canonical animals.png and objects.png reference images as the authority for drawing technique. They show the predominant style of the current Waldpost gallery. Match their actual pixels, not an imagined style suggested by a filename.\n\nDraw warm children's picture-book watercolour finished with visible coloured-pencil strokes. Use light, gently uneven washes, organic sepia contours, delicate hatching, softly irregular edges and modest drawn shading. Surfaces look painted and pencilled, with paper grain within the illustration. Keep the warmth of cream, honey brown, restrained sage and blue, while preserving every exact colour required by a task. Subjects remain friendly, recognizable and anatomically believable.\n\nDo not turn the drawing into a 3D render, plush toy, clay or felt craft, photograph, glossy object, embossed surface or studio-lit miniature. Avoid deep ambient-occlusion shadows, inflated forms and realistic material microtexture. Do not mix in another illustration technique or use historical artwork as a style reference.\n\nThe role instructions below set the necessary detail and composition within this one style. Learning pictures retain fine drawn contours; small navigation symbols use the approved simpler, broader shapes and flat fills in the same palette. Keep the existing rendered game-character identities separate from image-generated learning subjects. Exact geometry and handwriting remain authored paths.\n\nPreserve subject identity, counted quantities, exact answer colours and action differences. Use real alpha for isolated pictures and stationery, and an opaque canvas only when the selected role requires a scene or branding image. No accidental background, halo, visible grid, labels or extra objects.\n\nROLE: learning\nMatch the canonical watercolour and coloured-pencil technique closely: fine organic contours, uneven washes and gentle drawn volume. Keep accurate species, action contrasts, one counted object per item and exact answer colours. Use transparent square cells, generous gutters and complete silhouettes.\n\nFRAMING AND EDGE QUALITY:\nCompare related pictures side by side at the size used in the game. For square cells, draw the complete silhouette with enough transparent space to pack it centred on both axes, with its longest visible side about 80% of the cell. Keep its proportions and use comparable visual weight for neighbouring answers. Reuse the same painting when a subject and pose recur. Leave genuine alpha around every isolated subject and retain the soft pencil edges. Inspect on light and dark backgrounds for pale matte, clipped outlines, stray pixels and neighbouring subjects. In a cell repair, preserve the pixels and positions of the other cells. Scenes and irregular layouts follow their role and brief.\n\nATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:\n1. design/illustrations/references/watercolour-pencil-v1/animals.png — canonical-style: canonical drawing technique for animals; fixed majority-style pixels\n2. design/illustrations/references/watercolour-pencil-v1/objects.png — canonical-style: canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels\n3. design/illustrations/sources/puzzle-garden.png — composition-only: current positions, identities and shapes of the two pictures only; remove its accidental background\n\nSUBJECT AND LAYOUT BRIEF:\nEdit the two existing drawn subjects from Reference 3. Keep the flying firefly at the top left and the blue-green watering can at the top right of the same square atlas. These two paintings and their soft natural edges are the entire foreground. Preserve their recognisable forms and compact scale. Use Reference 1 and Reference 2 as the style authority.\n\nRemove the accidental near-white checker pattern, stray marks and white fringe from the entire image. Leave every pixel outside the two drawn subjects at real alpha zero. Nothing is painted into the empty top margins or bottom half. The space under the watering can handle is a hole and must be fully transparent, too. Leave enough clear space between the independent subjects so each silhouette is whole. A checkerboard is never part of the art. No matte, shadow or aura around either subject. There is no surface behind them.\n\nSTYLE PRIORITY: The brief changes subjects and layout only. Keep waldpost-watercolour-pencil-v1 and the supplied canonical reference technique throughout; do not import the style of a composition-only reference.\n",
+    "referenced_image_paths": [
+      "design/illustrations/references/watercolour-pencil-v1/animals.png",
+      "design/illustrations/references/watercolour-pencil-v1/objects.png",
+      "design/illustrations/sources/puzzle-garden.png"
+    ],
+    "transparent_background": true
+  },
+  "references": [
+    {
+      "path": "design/illustrations/references/watercolour-pencil-v1/animals.png",
+      "sha256": "65867082294d157ab4ffbe33926857272625ef3c25cdb7cab81c2a4ea73d9316",
+      "purpose": "canonical drawing technique for animals; fixed majority-style pixels",
+      "usage": "canonical-style"
+    },
+    {
+      "path": "design/illustrations/references/watercolour-pencil-v1/objects.png",
+      "sha256": "0bb37d6fc82c75034eddf30da2cc57c546dd8bc70d246aeeda85b637bd87dd80",
+      "purpose": "canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels",
+      "usage": "canonical-style"
+    },
+    {
+      "path": "design/illustrations/sources/puzzle-garden.png",
+      "sha256": "5cde13610ca1e7095068823e2d10e058bf3ac7bbc0d22f8bc13d971f0859a175",
+      "purpose": "current positions, identities and shapes of the two pictures only; remove its accidental background",
+      "usage": "composition-only",
+      "preservedAt": "design/illustrations/sources/puzzle-garden-before.png"
+    }
+  ],
+  "subjects": [
+    "firefly",
+    "watering-can"
+  ],
+  "preparation": "design/illustrations/puzzle-garden.json",
+  "editedFrom": "design/artwork/generation-records/puzzle-garden-first-2026-11-18.json"
+}

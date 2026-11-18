@@ -7,6 +7,7 @@
   "basedOn": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34",
   "styleBlock": "design/illustrations/STYLE.txt",
   "styleBlockSha256": "2a00ce3fe3e14c55cae91fd86b9066da2ef13eab68017e23d86f92859ecf82ca",
+  "framingGuidance": "Compare related pictures side by side at the size used in the game. For square cells, draw the complete silhouette with enough transparent space to pack it centred on both axes, with its longest visible side about 80% of the cell. Keep its proportions and use comparable visual weight for neighbouring answers. Reuse the same painting when a subject and pose recur. Leave genuine alpha around every isolated subject and retain the soft pencil edges. Inspect on light and dark backgrounds for pale matte, clipped outlines, stray pixels and neighbouring subjects. In a cell repair, preserve the pixels and positions of the other cells. Scenes and irregular layouts follow their role and brief.",
   "references": [
     {
       "path": "design/illustrations/references/watercolour-pencil-v1/animals.png",
@@ -90,7 +91,7 @@
       "references": [
         {
           "path": "assets/waldatelier/forest-objects.webp",
-          "sha256": "aeb5cdd3aef93cc3f55e63f2323770b83b5eea90e190f0948d243828fc5aab83",
+          "sha256": "ebccfde4ff973c0736012ee2380e9b8654d1e06ec2ead4b03acacd1e83571f65",
           "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
           "usage": "composition-only"
         }
@@ -491,6 +492,21 @@
       ]
     },
     {
+      "id": "puzzle-garden",
+      "role": "learning",
+      "path": "design/illustrations/prompts/puzzle-garden.txt",
+      "brief": "design/illustrations/briefs/puzzle-garden.txt",
+      "transparent": true,
+      "references": [
+        {
+          "path": "assets/waldatelier/puzzle-garden.webp",
+          "sha256": "ea3bc51d0772b62ab344abfc4ba3f40d26ba1f8159870040179edffdcb8d57d9",
+          "purpose": "current subject identities and fixed cell order only; canonical references define drawing technique",
+          "usage": "composition-only"
+        }
+      ]
+    },
+    {
       "id": "puzzle-feedback-repairs",
       "role": "learning",
       "path": "design/illustrations/prompts/puzzle-feedback-repairs.txt",
@@ -559,7 +575,8 @@
     "design/artwork/den-marker.json",
     "design/artwork/exit-symbol.json",
     "design/illustrations/puzzle-vocabulary.json",
-    "design/illustrations/review-nature.json"
+    "design/illustrations/review-nature.json",
+    "design/illustrations/puzzle-garden.json"
   ],
   "history": "legacy/design-history/2026-11-16-before-style-contract",
   "preview": {

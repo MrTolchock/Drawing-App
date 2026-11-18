@@ -1,0 +1,30 @@
+{
+  "format": "waldpost-illustration-atlas",
+  "version": 1,
+  "source": "sources/puzzle-garden.png",
+  "output": "../../assets/waldatelier/puzzle-garden.webp",
+  "columns": 2,
+  "rows": 2,
+  "cellPixels": 320,
+  "subjectPixels": 256,
+  "alphaThresholdPercent": 8,
+  "provenance": {
+    "date": "2026-11-18",
+    "tool": "ChatGPT image_gen.imagegen",
+    "sourceSha256": "e9cacd10359be85dd144ce043bcf7e054196b5d3ae78eac1b317f0e750cfd6d3",
+    "generationRecord": "../artwork/generation-records/puzzle-garden-2026-11-18.json",
+    "styleContract": "style.json",
+    "forwardPrompt": "prompts/puzzle-garden.txt"
+  },
+  "subjects": [
+    {
+      "id": "firefly",
+      "label": "Glühwürmchen"
+    },
+    {
+      "id": "watering-can",
+      "label": "Giesskanne"
+    }
+  ],
+  "sourceCellPixels": 768
+}

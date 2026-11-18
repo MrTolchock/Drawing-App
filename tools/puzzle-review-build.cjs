@@ -147,7 +147,7 @@ function build(reader=currentReader(),{includeResources=false}={}){
   let code=compile();for(const value of code.staticRefs)refs.add(value);
   for(const value of [...refs,...code.literals].filter(x=>typeof x==='string'))for(const token of tokens)if(value.includes(token))refs.add(token);
   code=compile();
-  for(const value of code.literals)if(ctx.window.FriendsContent.hosts[value])portraits.add(value);
+  for(const value of code.literals)if(value==='mailman'||ctx.window.FriendsContent.hosts[value])portraits.add(value);
   const pictures=[...refs].filter(x=>typeof x==='string').sort().flatMap(pictureResource),ids=[],portraitIndices={};
   for(const id of portraits){const portrait=FK.friendsArt.portrait(id),[x,y]=portrait.attrs.style.backgroundPosition.split(' ').map(parseFloat),index=Math.round(y*3/100)*4+Math.round(x*3/100);ids.push(index);portraitIndices[id]=index;}
   atlas('assets/forest-friends/character-portraits.webp',4,4);
@@ -156,7 +156,11 @@ function build(reader=currentReader(),{includeResources=false}={}){
   const selectedCSS=cssCache.get(cssKey);
   let progress='0% 0%';const progressCell=node=>{if(!Array.isArray(node))return;if(node[0]==='--wb-item')progress=node[1];else node.forEach(progressCell);};progressCell(selectedCSS);
   const [px,py]=progress.split(' ').map(parseFloat),index=Math.round(py*3/100)*4+Math.round(px*3/100),key='assets/waldatelier/forest-objects.webp';atlas(key,4,4);pictures.push({key,index,role:'progress'});
-  const extra={dom};if(code.readsText)extra.text=textHelper;if(kinds.includes('robot'))extra.routes=hash(read('js/learn/routes.js'));if(kinds.includes('trace'))extra.glyphs=items.filter(q=>q.kind==='trace').map(q=>[q.glyph,FK.glyphs.data[q.glyph],FK.__reviewTraceFrame(q.glyph)]);if(kinds.includes('fireflies'))extra.firefly=hash(normal(moduleOf(read('js/friends/puzzles.js').toString()).bindings.get('firefly')));
+  const extra={dom};if(code.readsText)extra.text=textHelper;if(kinds.includes('robot'))extra.routes=hash(read('js/learn/routes.js'));if(kinds.includes('trace'))extra.glyphs=items.filter(q=>q.kind==='trace').map(q=>[q.glyph,FK.glyphs.data[q.glyph],FK.__reviewTraceFrame(q.glyph)]);
+  if(kinds.includes('fireflies')){
+   const legacyFirefly=moduleOf(read('js/friends/puzzles.js').toString()).bindings.get('firefly');
+   if(legacyFirefly)extra.firefly=hash(normal(legacyFirefly));
+  }
   const portraitCode={art:hash(closure(portraitModule,[portraitModule.bindings.get('portrait')],{special:{ids:portraitIndices}})),wrapper:hash(closure(libraryModule,[libraryModule.bindings.get('portrait')]))};
   return {definition:hash({puzzle:contract(C.puzzle(game.id)),items:pool.map(task)}),structure:hash({code:code.digest,tables:{aliases:selectData(FK.__pictureData.aliases),labels:selectData(FK.__pictureData.labels),...Object.fromEntries(Object.entries(FK.__visualData).map(([name,table])=>[name,selectData(table)]))},controls,selection,rendering,portraitCode,css:hash(selectedCSS),extra,wordArt:items.filter(q=>q.kind==='rhyme').map(q=>[q.text,...q.choices].map(w=>[w,FK.puzzleRounds.wordArt[w]])),shared}),pictures,portraitCells:ids.sort((a,b)=>a-b)};
  }
