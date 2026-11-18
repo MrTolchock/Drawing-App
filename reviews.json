@@ -15384,6 +15384,24 @@
       "at": "2026-11-18T20:17:28.681Z",
       "seen": true,
       "operation": "418dd6e2-09bb-425c-92a1-584905ba169c"
+    },
+    "treasure/0-0@927174e75d02bdad": {
+      "key": "treasure/0-0",
+      "revision": "927174e75d02bdad",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T20:17:59.534Z",
+      "seen": true,
+      "operation": "8a1a9328-9843-4f38-95ad-1786db03fb8d"
+    },
+    "treasure/0-1@0a982b2dd39baad9": {
+      "key": "treasure/0-1",
+      "revision": "0a982b2dd39baad9",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T20:18:03.379Z",
+      "seen": true,
+      "operation": "a9ab45a1-5700-4e2e-a5fa-3997b5df5df2"
     }
   },
   "history": [
