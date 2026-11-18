@@ -28,7 +28,7 @@ export const SPECIES = {
   cuckoo: {phrases: [1, 1], gap: [0, 0], rest: 170, far: true},
   woodpecker: {phrases: [1, 2], gap: [6, 10], rest: 100, far: true},
   robin: {phrases: [2, 4], gap: [3, 6], rest: 14},
-  wren: {phrases: [1, 3], gap: [4, 8], rest: 20},
+  wren: {phrases: [1, 3], gap: [7.2, 10], rest: 20},
   blackcap: {phrases: [1, 3], gap: [4, 7.5], rest: 18},
   thrush: {phrases: [1, 2], gap: [3, 6], rest: 24},
   nuthatch: {phrases: [1, 2], gap: [5, 9], rest: 30},
@@ -39,7 +39,7 @@ export const SPECIES = {
   cricket: {phrases: [1, 2], gap: [5, 9], rest: 24},
   bee: {phrases: [1, 1], gap: [0, 0], rest: 70},
 };
-const OUTSIDE = {indoors: false, moving: false, speed: 0, ground: 'grass', trees: .8, meadow: 0, swamp: 0, spruce: 0, brook: 0, falls: 0, fallsPan: 0, rock: 0, snow: 0, cave: 0};
+const OUTSIDE = {indoors: false, moving: false, speed: 0, ground: 'grass', trees: .8, meadow: 0, swamp: 0, spruce: 0, brook: 0, brookPan: 0, dusk: 0, falls: 0, fallsPan: 0, rock: 0, snow: 0, cave: 0};
 /* How likely each voice is at a place. */
 export function voicesAt(env) {
   if (env.indoors) return {blackbird: 2, robin: 1.5, greatTit: 1, dove: 1};
@@ -47,7 +47,7 @@ export function voicesAt(env) {
   const f = env.trees, sp = env.spruce || 0, broad = 1 - sp * .6, snowy = 1 - (env.snow || 0);
   return {chaffinch: 3.2 * f * (1 - sp * .3), blackbird: 2.6 * f + .4, robin: 2.4 * f + .2, wren: 1.9 * f, blackcap: 2 * f * broad, greatTit: 2 * f + .3, blueTit: 1.4 * f * broad + .1,
     thrush: 1.3 * f, nuthatch: 1.1 * f * broad, coalTit: 3 * sp * f, goldcrest: 2.4 * sp * f,
-    dove: .9 * f, cuckoo: .3 * f, woodpecker: .45 * f, jay: .25 * f, frog: 4.5 * env.swamp, cricket: 3 * env.meadow * snowy, bee: 1.1 * env.meadow * snowy};
+    dove: .9 * f, cuckoo: .3 * f, woodpecker: .45 * f, jay: .25 * f, frog: 4.5 * env.swamp, cricket: 3 * env.meadow * snowy, bee: 1.1 * env.meadow * snowy * (1 - (env.dusk || 0))};
 }
 export function createDirector({random = Math.random} = {}) {
   const range = (a, b) => a + (b - a) * random(), whole = (a, b) => Math.floor(range(a, b + 1));
@@ -73,10 +73,10 @@ export function createDirector({random = Math.random} = {}) {
     if (now >= nextGust) { gustTo = breezy ? range(.35, 1) : range(0, .42); nextGust = now + range(3, 9); }
     gust += (gustTo - gust) * (1 - Math.exp(-dt / 2.4)); flutter = .78 + .44 * random();
     const cover = Math.max(env.trees, env.meadow * .55, env.swamp * .4);
-    const beds = {wind: .3 + .7 * gust, leaves: cover * sstep(.3, 1, gust) * flutter, bright: clamp(.5 + .5 * env.meadow - .35 * env.spruce), brook: env.brook, falls: env.falls, fallsPan: env.fallsPan, gust};
+    const beds = {wind: .3 + .7 * gust, leaves: cover * sstep(.3, 1, gust) * flutter, bright: clamp(.5 + .5 * env.meadow - .35 * env.spruce), brook: env.brook, brookPan: env.brookPan, falls: env.falls, fallsPan: env.fallsPan, gust};
 
     // birds and other voices
-    const wetQuiet = (1 - .85 * (env.rain || 0)) * (1 - .8 * (env.cave || 0)), lively = Math.max(.05, settled * (env.indoors ? .4 : 1) * wetQuiet * (1 + .7 * (env.fresh || 0)));   // quiet in the rain, a burst of song after it
+    const wetQuiet = (1 - .85 * (env.rain || 0)) * (1 - .8 * (env.cave || 0)), lively = Math.max(.05, settled * (1 - .48 * env.dusk) * (env.indoors ? .4 : 1) * wetQuiet * (1 + .7 * (env.fresh || 0)));   // quiet in the rain, a burst of song after it
     if (now >= nextSinger && now >= quietUntil && singers.length < 2) {
       const kind = chooseKind(now, env);
       if (kind) { const sp = SPECIES[kind]; singers.push({kind, left: whole(...sp.phrases), next: now, pan: range(-.85, .85), far: sp.far ? range(.7, 1) : range(.15, .95)}); lastKind = kind; sangAt[kind] = now; }
@@ -107,14 +107,14 @@ export function createDirector({random = Math.random} = {}) {
       if (!wasMoving) nextStep = now + .04; walked = Math.min(14, walked + dt);
       if (now >= nextStep) { const every = Math.PI / Math.max(4, env.speed * 3.2); side = -side; if (nextStep < now - .3) nextStep = now;
         // steps are planned a moment ahead, so they fall between two looks at the clock and keep their own rhythm
-        events.push({type: 'step', ground: env.ground, at: nextStep + .12, side, level: (1 - .45 * sstep(4, 14, walked)) * settled * (1 + .3 * (env.cave || 0)), cave: env.cave || 0});
-        if ((env.ground === 'grass' || env.ground === 'needles') && random() < .012) events.push({type: 'twig', at: now + .03, level: settled});
+        events.push({type: 'step', ground: env.wade ? 'water' : env.ground, at: nextStep + .12, side, level: (1 - .45 * sstep(4, 14, walked)) * settled * (1 + .3 * (env.cave || 0)), cave: env.cave || 0});
+        if (!env.wade && (env.ground === 'grass' || env.ground === 'needles') && random() < .012) events.push({type: 'twig', at: now + .03, level: settled});
         nextStep += every * range(.93, 1.07); }
     } else walked = Math.max(0, walked - dt * 3);
     wasMoving = env.moving && !env.indoors;
 
     // the brook's bubbles and the swamp's plops
-    if (env.brook > .25 && !env.indoors) { let n = dt * (1.5 + 4.5 * env.brook) * env.brook; while (n > 0) { if (random() < n) events.push({type: 'bubble', at: now + random() * Math.max(dt, .05), level: env.brook, pan: range(-.5, .5)}); n--; } }
+    if (env.brook > .25 && !env.indoors) { let n = dt * (1.5 + 4.5 * env.brook) * env.brook; while (n > 0) { if (random() < n) events.push({type: 'bubble', at: now + random() * Math.max(dt, .05), level: env.brook, pan: clamp(env.brookPan * .75 + range(-.22, .22), -1, 1)}); n--; } }
     if (env.swamp > .4 && random() < dt * .06 * env.swamp) events.push({type: 'plop', at: now + .02, level: settled, pan: range(-.7, .7)});
 
     return {beds, events};

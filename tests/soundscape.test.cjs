@@ -68,3 +68,11 @@ test('water is heard only near water; wind comes in gusts', async () => {
 test('there is no music', async () => {
   assert.equal((await play({...WOOD, music: true})).of('note').length, 0);
 });
+
+test('crossing the brook moves the babble to the other ear and changes paws from splashes to earth', async () => {
+  const walk = await play(t => ({...WOOD, brook: 1, brookPan: t < 10 ? -1 : 1, moving: true,
+    speed: 2, ground: 'earth', wade: t < 10}), .4);
+  for (const drop of walk.of('bubble')) assert.equal(Math.sign(drop.pan), drop.now < 10 ? -1 : 1);
+  assert.ok(walk.of('step').some(s => s.ground === 'water'));
+  assert.ok(walk.of('step').every(s => s.ground === (s.now < 10 ? 'water' : 'earth')));
+});

@@ -11,9 +11,19 @@
   let master = null;
   let noise = null;
   let scribble = null;
+  let speaking = false;
   let lastTwinkle = 0;
 
   const enabled = () => !FK.settings || FK.settings.get('sound') !== false;
+
+  function mixLevel() {
+    if (!enabled() || document.hidden) return 0;
+    return speaking ? .22 : .66;
+  }
+
+  function updateMix() {
+    if (master) master.gain.setTargetAtTime(mixLevel(), ac.currentTime, .035);
+  }
 
   function ensure() {
     if (ac) return ac;
@@ -28,7 +38,7 @@
     comp.threshold.value = -14;
     comp.ratio.value = 6;
     master = ac.createGain();
-    master.gain.value = 0.75;
+    master.gain.value = mixLevel();
     master.connect(comp);
     comp.connect(ac.destination);
     const len = Math.floor(ac.sampleRate * 1.5);
@@ -53,7 +63,7 @@
   }
 
   function ready() {
-    if (!enabled()) return null;
+    if (!enabled() || document.hidden) return null;
     const c = ensure();
     if (!c) return null;
     if (c.state !== 'running') c.resume().catch(() => {});
@@ -104,77 +114,62 @@
     s.stop(t + dur + 0.05);
   }
 
-  // Marimba-like note: sine plus a short, quiet overtone.
+  // A muted wooden bar: the short, inharmonic attack dies before the body.
+  function wood(f, when = 0, strength = 1, decay = .24) {
+    const pitch = f * (.993 + Math.random() * .014);
+    tone(pitch, {when, dur: decay, vol: .145 * strength, attack: .003});
+    tone(pitch * 2.72, {when, dur: decay * .22, vol: .036 * strength, attack: .002});
+    noiseBurst({when, dur: .037, vol: .046 * strength, f0: 1700, f1: 820, q: .65});
+  }
+
   function note(i, when) {
-    const f = NOTES[Math.max(0, Math.min(NOTES.length - 1, i | 0))];
-    tone(f, { dur: 0.45, vol: 0.26, when });
-    tone(f * 4, { dur: 0.08, vol: 0.045, when });
+    const pitch = NOTES[Math.max(0, Math.min(NOTES.length - 1, i | 0))];
+    wood(pitch * .75, when);
+  }
+
+  function phrase(notes, spacing) {
+    notes.forEach((n, i) => note(n, i * spacing));
+  }
+
+  function paper() {
+    noiseBurst({dur: .16, vol: .13, f0: 1200, f1: 3200, q: .65});
+    noiseBurst({when: .09, dur: .19, vol: .095, f0: 2700, f1: 680, q: .8});
+  }
+
+  function drop(f, when) {
+    tone(f, {when, dur: .068, vol: .09, to: f * 1.55});
+    noiseBurst({when, dur: .05, vol: .055, f0: 1600, f1: 740});
   }
 
   FK.sound = {
     unlock,
     note,
-    rainbow() { [0, 2, 4, 5, 7, 9].forEach((n, k) => note(n + 2, k * 0.055)); },
-    tick() { tone(1400, { dur: 0.06, vol: 0.12, type: 'triangle' }); },
-    open() { tone(520, { dur: 0.16, vol: 0.15, to: 880, type: 'triangle' }); },
-    close() { tone(700, { dur: 0.14, vol: 0.11, to: 420, type: 'triangle' }); },
-    pop() {
-      tone(320, { dur: 0.12, vol: 0.3, to: 980 });
-      noiseBurst({ dur: 0.06, vol: 0.08, f0: 3000, f1: 1500, q: 2 });
-    },
+    rainbow() { phrase([0, 2, 4, 5, 7, 9], .075); },
+    tick() { wood(510, 0, .58, .09); },
+    open() { paper(); },
+    close() { wood(295, 0, .7, .12); },
+    pop() { drop(440, 0); },
     balloon() {
-      noiseBurst({ dur: 0.12, vol: 0.4, f0: 5000, f1: 900, q: 0.7, type: 'highpass' });
-      tone(900, { dur: 0.1, vol: 0.18, to: 300 });
+      noiseBurst({dur: .095, vol: .17, f0: 3100, f1: 950, q: .7});
+      wood(245, 0, .55, .09);
     },
-    blub() {
-      tone(180, { dur: 0.28, vol: 0.28, to: 620 });
-      tone(420, { dur: 0.16, vol: 0.15, to: 900, when: 0.12 });
-      tone(600, { dur: 0.14, vol: 0.11, to: 1300, when: 0.22 });
-    },
-    swoosh() { noiseBurst({ dur: 0.45, vol: 0.3, f0: 3200, f1: 260, q: 0.9 }); },
-    page() { noiseBurst({ dur: 0.25, vol: 0.18, f0: 1800, f1: 5000, q: 0.6 }); },
-    undo() { tone(900, { dur: 0.18, vol: 0.17, to: 380, type: 'triangle' }); },
-    nope() { tone(300, { dur: 0.12, vol: 0.13, type: 'square', to: 240 }); },
-    // gentle "not quite": two soft low notes
-    wrong() {
-      tone(330, { dur: 0.16, vol: 0.16, type: 'triangle' });
-      tone(262, { dur: 0.22, vol: 0.16, type: 'triangle', when: 0.13 });
-    },
-    // bright "yes!": three quick rising notes
-    right() {
-      note(7);
-      note(9, 0.08);
-      note(12, 0.16);
-    },
-    // rising "plip" for the n-th dot / syllable (n = 0, 1, 2 …)
+    blub() { drop(340, 0); drop(460, .12); drop(580, .21); },
+    swoosh() { noiseBurst({dur: .33, vol: .17, f0: 2200, f1: 460, q: .65}); },
+    page: paper,
+    undo() { wood(410, 0, .8); wood(325, .105, .72); },
+    nope() { wood(260, 0, .72, .16); },
+    wrong() { phrase([3, 1], .14); },
+    right() { phrase([4, 6, 9], .09); },
     plip(n) { note(Math.min(17, 4 + (n | 0)), 0); },
-    star() {
-      [12, 14, 16].forEach((n, k) => note(n, k * 0.07));
-      for (let k = 0; k < 4; k++) tone(2600 + Math.random() * 1600, { dur: 0.09, vol: 0.04, when: 0.2 + k * 0.05 });
-    },
-    click() {
-      noiseBurst({ dur: 0.07, vol: 0.18, f0: 6000, f1: 2500, q: 3 });
-      tone(1800, { dur: 0.05, vol: 0.08 });
-    },
-    tada() {
-      [523.25, 659.25, 783.99, 1046.5].forEach((f, k) => tone(f, { dur: 0.35, vol: 0.21, type: 'triangle', when: k * 0.09 }));
-      tone(1567.98, { dur: 0.6, vol: 0.12, when: 0.38 });
-      for (let k = 0; k < 6; k++) tone(2000 + Math.random() * 2000, { dur: 0.1, vol: 0.05, when: 0.45 + k * 0.06 });
-    },
-    // A longer fanfare for big wins (whole picture done by numbers, all letters …).
-    fanfare() {
-      const seq = [[523.25, 0], [659.25, 0.12], [783.99, 0.24], [1046.5, 0.36], [783.99, 0.52], [1046.5, 0.64]];
-      seq.forEach(([f, w]) => {
-        tone(f, { dur: 0.3, vol: 0.2, type: 'triangle', when: w });
-        tone(f / 2, { dur: 0.3, vol: 0.1, type: 'sine', when: w });
-      });
-      for (let k = 0; k < 10; k++) tone(2200 + Math.random() * 2400, { dur: 0.1, vol: 0.045, when: 0.7 + k * 0.05 });
-    },
+    star() { phrase([7, 9, 12], .09); },
+    click() { wood(630, 0, .52, .07); },
+    tada() { phrase([2, 4, 7, 9], .11); },
+    fanfare() { phrase([0, 2, 4, 7, 5, 9], .13); },
     twinkle() {
       const now = performance.now();
-      if (now - lastTwinkle < 70) return;
+      if (now - lastTwinkle < 130) return;
       lastTwinkle = now;
-      tone(1800 + Math.random() * 1800, { dur: 0.12, vol: 0.05 });
+      wood(780 + Math.random() * 260, 0, .28, .14);
     },
 
     // Continuous soft scribble noise while drawing; volume follows finger speed.
@@ -205,12 +200,15 @@
       f.connect(g);
       g.connect(master);
       s.start();
-      scribble = { s, g, vol: p.vol, kind };
+      scribble = { s, g, filter: f, preset: p, kind };
       if (kind === 'spray') g.gain.setTargetAtTime(p.vol, c.currentTime, 0.03);
     },
     scribbleSpeed(v) {
       if (!scribble || !ac || scribble.kind === 'spray') return;
-      const target = Math.min(1, v / 1.4) * scribble.vol + 0.0001;
+      const speed = Math.max(0, Math.min(1, v / 1.4));
+      const target = speed * scribble.preset.vol + 0.0001;
+      scribble.filter.frequency.setTargetAtTime(scribble.preset.f * (.7 + .45 * speed), ac.currentTime, .045);
+      scribble.s.playbackRate.setTargetAtTime(.75 + .5 * speed, ac.currentTime, .06);
       scribble.g.gain.setTargetAtTime(target, ac.currentTime, 0.04);
     },
     scribbleStop() {
@@ -223,5 +221,13 @@
     },
   };
 
-  if (FK.on) FK.on('settings', (e) => { if (e.key === 'sound' && !e.value) FK.sound.scribbleStop(); });
+  if (FK.on) {
+    FK.on('settings', e => {
+      if (e.key !== 'sound') return;
+      if (!e.value) FK.sound.scribbleStop();
+      updateMix();
+    });
+    FK.on('speech', e => { speaking = e.active; updateMix(); });
+  }
+  document.addEventListener('visibilitychange', updateMix);
 })();

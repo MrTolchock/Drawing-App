@@ -120,6 +120,9 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     { const ck = caveEase(); if (ck > 0) { sun.intensity *= 1 - .9 * ck; hemi.intensity *= 1 - .58 * ck; fill.intensity *= 1 + .5 * ck; skyU.top.value.multiplyScalar(1 - ck); skyU.horizon.value.multiplyScalar(1 - ck); skyU.glow.value *= 1 - ck; }
       fill.color.copy(FILL).lerp(CAVE_FILL, ck); horizon.visible = ck < .97; r *= 1 - ck;
       caveLight.time.value = reduced ? 0 : time; caveLight.day.value.copy(todBase.sun).multiplyScalar(todBase.si / 2.6 * (1 - .55 * w.rain)); }
+    sound.rain = r;
+    sound.fresh = w.fresh;
+    sound.dusk = dusk();
     rain.update(dt, time, pos, {rain: r, snow: sound.snow || 0, reduced, height, width, pixelRatio: renderer.getPixelRatio(), fov: camera.fov});
   }
   /* A soft reveal: walking into a big open area (the meadow, the Rock, the peak, the swamp) for the first time in a
@@ -360,11 +363,13 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   const sound = {cues: [], at: -1, moving: false, speed: 0, ground: 'grass', trees: 1, meadow: 0, swamp: 0, spruce: 0, brook: 0, falls: 0, fallsPan: 0}, soundBiome = {};
   function listen() {
     const T = WORLD.terrain, b = T.biome(pos.x, pos.z, soundBiome), c = T.onCrossing(pos.x, pos.z), pa = T.pathAt(pos.x, pos.z);
-    sound.ground = c ? (c.c.kind === 'dam' ? 'sticks' : c.c.kind === 'slab' ? 'rock' : 'wood') : b.snow > .5 ? 'snow' : b.rock > .6 || b.cave > .5 ? 'rock' : b.swamp > .5 ? 'wet' : pa.d < pa.w / 2 + .15 ? 'earth' : b.meadow > .5 ? 'meadow' : b.spruce > .5 ? 'needles' : 'grass';
+    sound.ground = c ? (c.c.kind === 'dam' ? 'sticks' : ['slab', 'stones'].includes(c.c.kind) ? 'rock' : 'wood') : b.snow > .5 ? 'snow' : b.rock > .6 || b.cave > .5 ? 'rock' : b.swamp > .5 ? 'wet' : pa.d < pa.w / 2 + .15 ? 'earth' : b.meadow > .5 ? 'meadow' : b.spruce > .5 ? 'needles' : 'grass';
     sound.crossing = c ? c.c.kind : null;
     { const st = T.site(pos.x, pos.z); sound.wade = st.still === st.still && st.still - st.h > .005 && !c; sound.bank = (st.sd - st.sw / 2 < 1.1) || (st.still === st.still && b.swamp < .5 && st.h - st.still < .4); }
     sound.trees = (1 - b.meadow) * (1 - b.swamp * .6) * (1 - b.rock * .7) * (1 - b.snow); sound.snow = b.snow; sound.rock = b.rock; sound.cave = b.caveRoof || 0; sound.meadow = b.meadow; sound.swamp = b.swamp; sound.spruce = b.spruce;
-    let near = Infinity; for (const s of T.streams) for (let i = 0; i <= s.N; i += 6) { const q = s.samples[i], d = (q.x - pos.x) ** 2 + (q.z - pos.z) ** 2; if (d < near) near = d; }
+    let near = Infinity, brookX = pos.x;
+    for (const s of T.streams) for (let i = 0; i <= s.N; i += 6) { const q = s.samples[i], d = (q.x - pos.x) ** 2 + (q.z - pos.z) ** 2; if (d < near) { near = d; brookX = q.x; } }
+    sound.brookPan = THREE.MathUtils.clamp((brookX - pos.x) / 6, -1, 1);
     sound.brook = THREE.MathUtils.clamp(1 - (Math.sqrt(near) - 1.2) / 13, 0, 1);
     const fx = T.falls.base[0] - pos.x, fz = T.falls.base[1] - pos.z; sound.falls = THREE.MathUtils.clamp(1 - (Math.hypot(fx, fz) - 5) / 42, 0, 1); sound.fallsPan = THREE.MathUtils.clamp(fx / 22, -1, 1);
   }
