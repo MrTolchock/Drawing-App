@@ -17148,6 +17148,15 @@
       "at": "2026-11-18T20:36:31.325Z",
       "seen": true,
       "operation": "8775cdee-5b48-4495-a1b7-83e009d45c6c"
+    },
+    "puzzle:read-word@704d7d27ee87670f": {
+      "key": "puzzle:read-word",
+      "revision": "704d7d27ee87670f",
+      "status": "improve",
+      "note": "Gleiches puzzle wie wörter und bilder. Lösche dieses puzzle hier aber füge iterationen bei wörter und bilder hinzu",
+      "at": "2026-11-18T20:41:51.250Z",
+      "seen": true,
+      "operation": "bc8c6151-1f4e-4e6d-a078-990b0bcab012"
     }
   },
   "history": [
