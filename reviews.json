@@ -15303,6 +15303,15 @@
       "at": "2026-11-18T20:14:52.705Z",
       "seen": true,
       "operation": "fed00d60-2427-4278-ae93-bbe02b6d7899"
+    },
+    "puzzle:robot@e1c7c181d53d6187": {
+      "key": "puzzle:robot",
+      "revision": "e1c7c181d53d6187",
+      "status": "improve",
+      "note": "Erlaube nur bewegung über pfeiltasten, nicht in feld klicken",
+      "at": "2026-11-18T20:15:21.063Z",
+      "seen": true,
+      "operation": "ae42ba69-b0e4-4603-8829-8710d2aa750f"
     }
   },
   "history": [
