@@ -15915,6 +15915,51 @@
       "at": "2026-11-18T20:22:15.656Z",
       "seen": true,
       "operation": "a6915c7f-1285-4514-bd2f-c426fadbbdf4"
+    },
+    "compare/9-8@f9d7b5cfa5f08613": {
+      "key": "compare/9-8",
+      "revision": "f9d7b5cfa5f08613",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T20:22:17.622Z",
+      "seen": true,
+      "operation": "1bd7782a-4139-4335-9086-0d3659ce8234"
+    },
+    "compare/9-10@08fa8a7c89089988": {
+      "key": "compare/9-10",
+      "revision": "08fa8a7c89089988",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T20:22:19.254Z",
+      "seen": true,
+      "operation": "7239d510-ad3e-4196-8dc9-f71b18c27727"
+    },
+    "compare/10-10@5c670714d51717c4": {
+      "key": "compare/10-10",
+      "revision": "5c670714d51717c4",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T20:22:21.156Z",
+      "seen": true,
+      "operation": "23d10291-329f-4350-9593-8f020140137b"
+    },
+    "compare/10-9@1a1895bb63df1e13": {
+      "key": "compare/10-9",
+      "revision": "1a1895bb63df1e13",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T20:22:22.954Z",
+      "seen": true,
+      "operation": "a419bcbb-a609-463a-b28b-8547a527e8af"
+    },
+    "puzzle:compare@245d7180798d4c3a": {
+      "key": "puzzle:compare",
+      "revision": "245d7180798d4c3a",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T20:22:26.111Z",
+      "seen": true,
+      "operation": "b9246254-ec43-469d-afd1-5d010234d6e9"
     }
   },
   "history": [
