@@ -17202,6 +17202,15 @@
       "at": "2026-11-18T20:42:19.916Z",
       "seen": true,
       "operation": "1632f486-bb8b-410b-b0a7-5afa70d14256"
+    },
+    "puzzle:read-leaves@a252dc10551f323c": {
+      "key": "puzzle:read-leaves",
+      "revision": "a252dc10551f323c",
+      "status": "improve",
+      "note": "Lösche dieses puzzle",
+      "at": "2026-11-18T20:42:30.516Z",
+      "seen": true,
+      "operation": "77d84aa5-f72a-4c71-915d-ed42b7e29fe6"
     }
   },
   "history": [
