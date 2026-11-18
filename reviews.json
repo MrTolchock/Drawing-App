@@ -15366,6 +15366,15 @@
       "at": "2026-11-18T20:16:20.427Z",
       "seen": true,
       "operation": "4a1c3b6b-a8ac-4dd0-87b8-075c434069c5"
+    },
+    "sequence/story-6@b85c6834038c89cc": {
+      "key": "sequence/story-6",
+      "revision": "b85c6834038c89cc",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T20:16:32.302Z",
+      "seen": true,
+      "operation": "a1a9babb-8bd2-42b6-a6b6-a1d062c8cdc2"
     }
   },
   "history": [
