@@ -17103,6 +17103,42 @@
       "at": "2026-11-18T20:29:49.880Z",
       "seen": true,
       "operation": "7a3bb62e-17ab-4a9a-be35-a3ed381097b0"
+    },
+    "read-word/word-2@c6e4c0d58e15fb67": {
+      "key": "read-word/word-2",
+      "revision": "c6e4c0d58e15fb67",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T20:29:51.796Z",
+      "seen": true,
+      "operation": "353e803c-0dfb-4a0d-8499-37414c428ac3"
+    },
+    "read-word/word-3@d0409a76e5d8aa18": {
+      "key": "read-word/word-3",
+      "revision": "d0409a76e5d8aa18",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T20:29:54.193Z",
+      "seen": true,
+      "operation": "fffba6c6-1ece-42a1-af61-235259741268"
+    },
+    "read-word/word-4@a639147f2046bfc3": {
+      "key": "read-word/word-4",
+      "revision": "a639147f2046bfc3",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T20:29:56.497Z",
+      "seen": true,
+      "operation": "d018af20-3706-4fdc-8e10-ed815c2a72e9"
+    },
+    "read-word/word-5@b29d53cc68f01c1e": {
+      "key": "read-word/word-5",
+      "revision": "b29d53cc68f01c1e",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T20:29:58.660Z",
+      "seen": true,
+      "operation": "808d86be-251b-400d-abd9-c6613d6817c7"
     }
   },
   "history": [
