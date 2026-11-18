@@ -12,7 +12,7 @@ async function catalogue(){
  for(const sheet of [...new Set(Object.values(FK.visual.subjects).map(rec=>rec.sheet))].sort()){
   const file=sheet+'.webp',bytes=fs.readFileSync(path.join(root,'assets/waldatelier',file)),metadata=await sharp(bytes).metadata(),rec=Object.values(FK.visual.subjects).find(rec=>rec.sheet===sheet);
   const manifest='design/illustrations/'+sheet+'.json',record=inventory.learningSheets[sheet];if(!record)throw Error('Missing current style/provenance for '+sheet);
-  const provenance={status:'historical-record',record:record.historicalRecord,recordKind:record.recordKind,...(record.historicalPromptId?{promptId:record.historicalPromptId}:{}),...(fs.existsSync(path.join(root,manifest))?{manifest}:{}),styleContract:inventory.styleContract,requestId:record.requestId,forwardPrompt:record.forwardPrompt,guide:style.canonicalGuide};
+  const provenance={status:'historical-record',record:record.historicalRecord,recordKind:record.recordKind,...(record.historicalPromptId?{promptId:record.historicalPromptId}:{}),...(record.cellRepair?{cellRepair:record.cellRepair}:{}),...(fs.existsSync(path.join(root,manifest))?{[record.cellRepair?'priorPreparationManifest':'manifest']:manifest}:{}),styleContract:inventory.styleContract,requestId:record.requestId,forwardPrompt:record.forwardPrompt,guide:style.canonicalGuide};
   sheets.push({id:sheet,file,width:metadata.width,height:metadata.height,columns:rec.columns,rows:rec.rows,sha256:sha(bytes),provenance});
  }
  const images=Object.entries(FK.visual.subjects).sort(([a],[b])=>a.localeCompare(b)).map(([id,rec])=>{

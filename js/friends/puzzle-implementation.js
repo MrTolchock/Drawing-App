@@ -2,35 +2,35 @@
 window.FK.puzzleImplementation = "58dc132291d4a1570169a46f85a872ffb1e49291ef95360425b243f877c6ae50";
 window.FK.puzzleImplementations = {
   "friends-squirrel": "d6d26bf14be2a343de5e17753bcdcdba2ebbaac1f139bae04a2aee0450b0adff",
-  "friends-bird": "6013088093a0f02e45d0c1dac9d36f02e57e9124cbe20d3a76a697045ec7cdca",
-  "friends-owl": "16f40174742c3eef25169e5a37a835d4f00b4fb986fdfefdfcf72827e5ab0a91",
+  "friends-bird": "de0207798341a3b739a9f912120d62bf77ee0f8d23bfa197641caf5997882297",
+  "friends-owl": "bcb75a2cbfcd52bef82c0078ea4ed77133073fcca669bb034d8f245deaa5ad99",
   "friends-beaver": "700522284c189b31fa14b30a16b1695796e9f7cb0bedded9993394eaec75602c",
-  "friends-mouse": "45b4ec58175571d2c94be1bfd2bd24948b2b0818e3c08fc51cbb65e62c90b30d",
-  "friends-hedgehog": "60b8df6c9f1ca47764a8635da0134a4ea2d46f9d9bd69cc1bd958f356951fd52",
-  "friends-deer": "f23cdce555c272f24e34f7775bfc747f86a8e97fc3351704ce2af1eda09a7d80",
+  "friends-mouse": "3c59eb8e1af899c49713cf9a1cc8e999eb9060c1c30c7f260b793c58b2eef461",
+  "friends-hedgehog": "c5d9ca26eedf80f6e7ce04732e003ef5f0a52608af6dec532e24346088523a67",
+  "friends-deer": "4bc06ba3ce946262b515862f19898116d7599ecfcf153f874f0bb51cd0e04e46",
   "friends-kingfisher": "00fe2bab1b0e39f2e199a82a60b35d19cc8e05daf0c88faf470cd3b71a126f25",
-  "friends-frog": "e934994f40257a3e8d4cfbf7d08017fa406c75f3b890ee2a959fce73a5eb5b25",
-  "friends-badger": "021e025328478437a71f57ef806a169fe8c683213c62a2ca373d0d1aceaae4dd",
+  "friends-frog": "0faa1c5897434bf9ef28cf44d836d768a609e4ab1efdca485a4d398520c97ef5",
+  "friends-badger": "eb95e2a9fb1718ea7a8c44fd33efb5a4a3d72f7fa161a91d7bf82309c86f13f7",
   "friends-ibex": "f0b6f800c9fb13ad063662878329355d68ce43a085752daa94d58de368c06dad",
   "count": "293826b9bee64145dfa9604806a286d3f26d81bd77097896f16885462b67200b",
   "add": "6ce030421861607eb3849db3fe7fd99fe3e94c6cfe73c8a6fccb6b8444ea3a8c",
   "pattern": "837531a6395487bfc69fea43d739f9eda97851fb6821d35b736b38d5e3eadd34",
-  "nature": "9f993a1a7dc1afdcb71bbe5c8635926251a7795cd9a6aaf872a741c47fee8b24",
+  "nature": "d0bf6b0c1e76d1c36c54f794ae19c05609743339fd8adeee5eee924cc7e9cdfe",
   "rocket": "d41cd5ac010c5bdd558a50177ee310e81c5a485b671a86ffc8ff6049c7d2d99c",
   "picnic": "3c9c5efb7e8f7be83b173ef8ffe933e5d963b123f76ba7071062ebd62eba9145",
-  "syllable": "e9eb10efec9eb87c7448a8b5eace17b3d77e8f1a8d49eaddb21c4badb98db80d",
+  "syllable": "92b662564d03d644af8d7bbb934c9c7f9240d8ce4f68b3263f43fc2d16057c81",
   "robot": "aeb77afaa015eaa46a2a30efc8f0bb8286f9ee278d4a269c836aee44812f5e6e",
-  "sequence": "2e65055e065f3c64bb6fc8c3b6b7d5a84a5bd857acf71366a3213a1de65e896c",
+  "sequence": "757e079d33ce38e67a4f560ea166e04082d9819a0c73070bff80fb1b1e2499f4",
   "treasure": "da5701bb88fc962331ff85e587b85a9dd9481787991f293e74eb129d31291bdc",
   "neighbours": "11d077fd881a976d2acbf2b148932ca773b613b48571bb5798a27ed5304027d4",
   "compare": "b89170f02a514644a31a75b9703c0f1fc26452d635bdbcc80936904abb1fc6ac",
   "mirror": "5819892b8bf12f9b465a65e1145bc1b10407267321f79df7496948e54b98e006",
-  "vowels": "14f945a418b7beaad51e4da671ea9d5facc3dc1faeff7f726bd74a0674d53046",
-  "read-puzzle": "ccc1332662fc930f5b6fdcd2d13ae496e9e56ccd9f5d1ed27f13dc777f6f80b9",
-  "read-word": "5ceedd85aada5e5ec852da02ffe2ec87d2c065e7adf476bccb3a8a2aedfe5183",
+  "vowels": "7b97b6605f778199eaa3d898e7a85ab20377260b7fd4cc6f32606bc331367638",
+  "read-puzzle": "a25e42c76453fb3442cfcb07e64616fbb17c91597d690ac24d9d918a870f81da",
+  "read-word": "95a06672dc6ca9ab12869e4fd57d86eba11b8b61ed73a0d503158760a3c70928",
   "read-leaves": "d9cff4881a73cbdaecb1b95c778cc82fc200c06bd0eaead7749a21dcb4454f4a",
   "read-colours": "d0ddcb8ac226d7626d436f5534ea6614666d5e14c3e3333b0f9c875efc2d3455",
-  "trace": "0bbd3117dbc5109e0671333ca0bbcd9b0096e3c2418a6f87455d2cc46ba48e85",
+  "trace": "49c5b3722467287f31df84a24ca7786fc152d2bfd3e3f0ee4d0c8ed02467332b",
   "trace-numbers": "9872f813982fc87cc394e40e74c3d72d69b29985cd608fafaf416350485e4824"
 };
 window.FK.puzzleIterationImplementations = {
@@ -59,31 +59,31 @@ window.FK.puzzleIterationImplementations = {
   "friends-squirrel/four-8": "11ec4999755007d2f934a27691b9b2a0c61556f6d9e7ec8d0ec3c9fcdedd788e",
   "friends-squirrel/four-12": "11ec4999755007d2f934a27691b9b2a0c61556f6d9e7ec8d0ec3c9fcdedd788e",
   "friends-squirrel/four-16": "11ec4999755007d2f934a27691b9b2a0c61556f6d9e7ec8d0ec3c9fcdedd788e",
-  "friends-bird/rhyme-0": "55c3cea8e5e7a3cafea3a167c369e27ba10c851a8257e173c22eb9ce1f9c0669",
-  "friends-bird/rhyme-1": "ed6ff672199e36f9c0f36c5f600b3e2dab3c02c762995967a4e1f1ea1f201bd3",
-  "friends-bird/rhyme-2": "1f4639a5299c04ed5dfc69bb86c4343a035bac7e5bac372d48d79274fc5ec6f6",
-  "friends-bird/rhyme-3": "d3ad6d8688cfcb932dd91481675f9eab23cdd4540f3e9a8d9ffdcd8787d7d8a7",
-  "friends-bird/rhyme-4": "e75e8f01d0fd73305904932d4fd55bb7a2b9f542c6f4a659fdfdbed6f8675c5d",
-  "friends-bird/rhyme-5": "2f95b406697da3c0686ce19d939087087efbb6d58ea5ddd409b25acb2f0e7ac7",
-  "friends-bird/rhyme-6": "b06ee54390e2a8fcb0010c6accce5e11bf023ffb062001a1a0f2c012f7ae9c41",
-  "friends-bird/rhyme-7": "2916dfe5386e0320dfb2aa3a50b042c167464a097c4d1fd0452a24d8a76ed7fd",
-  "friends-bird/rhyme-8": "4252108ce485650d6c1c163779a19ce8038d671f646d9af0b641505f5ff146d4",
-  "friends-bird/rhyme-9": "7ed6acc32f8ad4807ecb3628a571e41861fce1ad553878dcdf4202b4b4c3d065",
-  "friends-bird/rhyme-10": "d22b8185a7450edd0621be6508e8ce5f2d2abb5570d413fd1e242e372fb715ce",
-  "friends-bird/rhyme-11": "5f9397781541cf87c808f2e4e7bdf4148e2b12ef25a61b47c6ab718c2d6fd28f",
-  "friends-bird/rhyme-12": "b97b1f1a3d2b68348a0e64e571d68955bd5ef0f700a42b678ecb4af2116e7424",
-  "friends-bird/rhyme-13": "9e8ede4919a473e2a7779a82c2595791b2f778e16c3ed4c0eeaeee81af045768",
-  "friends-bird/rhyme-14": "02748a03dc849e8191dca1a79f132d75ef2a20b950aa28c9220af1be2842b767",
-  "friends-bird/rhyme-15": "0f8503cec9b6ab9db01bbfb6cb8529c18bd15a706976f1be8f8d395be064f4e6",
-  "friends-bird/rhyme-16": "e1388846973320c7cc8b4b7641dac8e0b4bf8ac46b45465fd8a57c416e92e520",
-  "friends-bird/rhyme-17": "4a051fae729f737120a8df21fafc469b8efe0c8ecf1171cafd2f8f1e82c9e14c",
-  "friends-bird/rhyme-18": "fd8b8585c1f07e999ce3a3df17bd56854c4ea982b65c5c24835a4886a4f2e479",
-  "friends-bird/rhyme-19": "ee2052686c739701501e31f934a1a5352fb0e0a00b227a36359540d315c710e5",
-  "friends-bird/rhyme-20": "764c68116a582726467786a3a5612dc3e08e2f626b4434e73f8b344d166a6728",
-  "friends-bird/rhyme-21": "5ae110ce4d2938578f0b704d6ed1e2c6189ffec43f6aa6cd52dc93e640a1a89a",
-  "friends-bird/rhyme-22": "3d9a3031a42483fec1496274595eeeb9e295dafef69da4abcdabca28f0b0ea61",
-  "friends-bird/rhyme-23": "823d8660de120652438acddd0b82b1da748ca868883dbceab1bf38f39f2f444e",
-  "friends-bird/rhyme-24": "c0ab5400c411ba613fd3cb2a2759f8c34e2c68cee175ef611c62acbf26f46c85",
+  "friends-bird/rhyme-0": "f3651ff91bbb08ed0a60c6044f171a3ec08aa95757e0f18d4063bd102b18278d",
+  "friends-bird/rhyme-1": "44a6c5a7f71a74f78545f86b1e5c57482247d15a6eecfb1b7a2ef0466bd35157",
+  "friends-bird/rhyme-2": "447c9728811304bb69105e882d68c10589dacb4e6d4128b83f0aa48eddfebc64",
+  "friends-bird/rhyme-3": "770577238a9d5c02053368c84ff73f363de864c5fbb6312d8555b6e5e1fe106b",
+  "friends-bird/rhyme-4": "7c53a2f3422a60aa12c2aabc253f550f4c947cf7a7eaa4762682488e2d4b8534",
+  "friends-bird/rhyme-5": "2c9221977f0637bb0608852cd82d416397624ffb973fc1aa0bb75137fce4139d",
+  "friends-bird/rhyme-6": "784bbc5f5e78c93466d91036759c5134be3a941b79a7d30f9c3071aeaef79720",
+  "friends-bird/rhyme-7": "5f2247d07381e00a748f02dba9be9cc7cac0c7e8ac44c15d27bde8a5a62037ff",
+  "friends-bird/rhyme-8": "93b4a3e715de21641310bbfb9af3f7e99a69bba4601b8c6e5d8a6db6569f220d",
+  "friends-bird/rhyme-9": "8138621173705ee6351b26bd958e4725f8f85a5baa3207dd16ed9e61741aae47",
+  "friends-bird/rhyme-10": "146ba2cc86e4bc0cb429f0982b0d0a78d3cdc3e064541f4ae963ab8892123c1c",
+  "friends-bird/rhyme-11": "a7e5b9a04283d699e25cb3c42ada6a5f019eb71f7f0cc28dfbccb7431756d827",
+  "friends-bird/rhyme-12": "b9bae63908b9e1010cd7d96cec3ad98d7a3d3a8d5f8bb9abac5876967b053d60",
+  "friends-bird/rhyme-13": "f74e8e8b00f55da0b37d7c31141a5d3e5a477c125a85e2515b0b58bd6a62885b",
+  "friends-bird/rhyme-14": "aa53d9bd331f4c03112741b0a7a331fc6db5e9f97ad21096ea597bb6584e243b",
+  "friends-bird/rhyme-15": "2dc1444206fe4927c7aeed278cfd6d9b564c9461c80555c124afebf3255ee815",
+  "friends-bird/rhyme-16": "3da3d809482c191f7c3a86fa558bfbd62f78362d4a2fb24231467584603f3718",
+  "friends-bird/rhyme-17": "6009878f802f0230f89f8e5e31fe75113708a92fab90c3dbf92e18723ac883b5",
+  "friends-bird/rhyme-18": "c5501390485b67c44b330f8cb633b9a0316994268c58923df2523ad633ffdc1b",
+  "friends-bird/rhyme-19": "c1d4f6892df862d57d84857a3a969b45a1e71742d4e5243852978197a6d58567",
+  "friends-bird/rhyme-20": "0b0b00f8ce4f7534259f61776b542afc6120444a569f095ee0cd3cfbb25c6e01",
+  "friends-bird/rhyme-21": "591e7b7d2c1118ff07d0699f619477f51927f9d5be5fffbb3cea1e7ea0f19dba",
+  "friends-bird/rhyme-22": "649b96034388b3dd8cc4d20596aad48ef1616f76e1430bd1fdb717518b65ab6a",
+  "friends-bird/rhyme-23": "da0885ce6747951c1de79f1b94731dfbcdbba152fe11a386ea14e839008420ea",
+  "friends-bird/rhyme-24": "4a10e0e6d7f928015bcb0cef5d996cb921297e321a347b33dce96235ae2a05c8",
   "friends-owl/sentence-0": "47483efc19b18b3603e6dcebcf6c84b0ae3473aeb41bbd3911af1f8261126b6a",
   "friends-owl/sentence-1": "47483efc19b18b3603e6dcebcf6c84b0ae3473aeb41bbd3911af1f8261126b6a",
   "friends-owl/sentence-2": "863c69fd84f201bce971c5307b6dfd05ac74f4ac26e4af53111c9e586a1b0cce",
@@ -93,22 +93,22 @@ window.FK.puzzleIterationImplementations = {
   "friends-owl/sentence-6": "f61f2d56bd58ee54489619fd8bd3ab9c200b3915bb3bb8234dbb2e8735dbe5f8",
   "friends-owl/sentence-7": "b9982f9dbff2557f56bd71e4bebd7af3f123a4ee7496d0ead7fa7bba160dfeef",
   "friends-owl/sentence-8": "b9982f9dbff2557f56bd71e4bebd7af3f123a4ee7496d0ead7fa7bba160dfeef",
-  "friends-owl/sentence-9": "ba656b37e16a9d9057ea1c52bef86145f1e9de070a5c705cc9f57a20bd90e43c",
-  "friends-owl/sentence-10": "ba656b37e16a9d9057ea1c52bef86145f1e9de070a5c705cc9f57a20bd90e43c",
+  "friends-owl/sentence-9": "f117a57c66fa751364a90ec01e22bdc8b1e772ab006233cbc350e4765078fbf1",
+  "friends-owl/sentence-10": "f117a57c66fa751364a90ec01e22bdc8b1e772ab006233cbc350e4765078fbf1",
   "friends-owl/sentence-11": "2b15fdeb1fcfb995a05c394afeed7d6f6e280bb6c4a40afbf9d550ed21b46aa1",
   "friends-owl/sentence-12": "2b15fdeb1fcfb995a05c394afeed7d6f6e280bb6c4a40afbf9d550ed21b46aa1",
   "friends-owl/sentence-13": "018ee49eebdbc1db1b4243544e2fb5ff78e782710da0884db8294647e9974bf7",
   "friends-owl/sentence-14": "018ee49eebdbc1db1b4243544e2fb5ff78e782710da0884db8294647e9974bf7",
-  "friends-owl/pair-0": "bede6e858772f52afe691e112794958dc12786a954e1340d9cda0307c2ef0f31",
-  "friends-owl/pair-1": "bede6e858772f52afe691e112794958dc12786a954e1340d9cda0307c2ef0f31",
-  "friends-owl/pair-2": "6c852cbe2a846106bf3ebb1d010e9dc5f09f0da63aefc611bd314c55779b54af",
-  "friends-owl/pair-3": "6c852cbe2a846106bf3ebb1d010e9dc5f09f0da63aefc611bd314c55779b54af",
-  "friends-owl/pair-4": "6d4bb268239af162851c04c9986adb4294a02713ce078092f12b490962209972",
-  "friends-owl/pair-5": "6d4bb268239af162851c04c9986adb4294a02713ce078092f12b490962209972",
-  "friends-owl/pair-6": "6f949a086efb7ff6b73763203477c1a6f27000d294665dec8344c478b77fde83",
-  "friends-owl/pair-7": "6f949a086efb7ff6b73763203477c1a6f27000d294665dec8344c478b77fde83",
-  "friends-owl/pair-8": "01bb66f91b1a68d84a05a457b0b5807e47ca31352ba2d3fc4a5b50a235f50ede",
-  "friends-owl/pair-9": "01bb66f91b1a68d84a05a457b0b5807e47ca31352ba2d3fc4a5b50a235f50ede",
+  "friends-owl/pair-0": "eea9a31663925e22ca088843b939fa48ccd759905cec8e87208b7c386d894af7",
+  "friends-owl/pair-1": "eea9a31663925e22ca088843b939fa48ccd759905cec8e87208b7c386d894af7",
+  "friends-owl/pair-2": "7fe14e33d72b9b587343f7c0b1a5cb2b7e01d438b5928d5ba9d47699a7e85321",
+  "friends-owl/pair-3": "7fe14e33d72b9b587343f7c0b1a5cb2b7e01d438b5928d5ba9d47699a7e85321",
+  "friends-owl/pair-4": "679e3d00d23bffd1d57960de98df1739e8a50c96fabd5d465255181661dd82b4",
+  "friends-owl/pair-5": "679e3d00d23bffd1d57960de98df1739e8a50c96fabd5d465255181661dd82b4",
+  "friends-owl/pair-6": "61a259b91ebcdb949a31cea970b451f134d3193a7f0b55d5f6dcbcbbe3c12421",
+  "friends-owl/pair-7": "61a259b91ebcdb949a31cea970b451f134d3193a7f0b55d5f6dcbcbbe3c12421",
+  "friends-owl/pair-8": "0b5dec24e01bf28dda0c3fcea1586ed04d2686c9d5725bcde407ec95cb561746",
+  "friends-owl/pair-9": "0b5dec24e01bf28dda0c3fcea1586ed04d2686c9d5725bcde407ec95cb561746",
   "friends-beaver/matrix-0": "700522284c189b31fa14b30a16b1695796e9f7cb0bedded9993394eaec75602c",
   "friends-beaver/matrix-1": "700522284c189b31fa14b30a16b1695796e9f7cb0bedded9993394eaec75602c",
   "friends-beaver/matrix-2": "700522284c189b31fa14b30a16b1695796e9f7cb0bedded9993394eaec75602c",
@@ -134,62 +134,62 @@ window.FK.puzzleIterationImplementations = {
   "friends-beaver/matrix-22": "700522284c189b31fa14b30a16b1695796e9f7cb0bedded9993394eaec75602c",
   "friends-beaver/matrix-23": "700522284c189b31fa14b30a16b1695796e9f7cb0bedded9993394eaec75602c",
   "friends-beaver/matrix-24": "700522284c189b31fa14b30a16b1695796e9f7cb0bedded9993394eaec75602c",
-  "friends-mouse/word-0": "336220b642b5f4730874c1023ede4c7d9cc9ad029ff146fadce78b28816c7648",
-  "friends-mouse/word-1": "be2d60ba465804f75489f8077d550252372061a6b51e0cee93ae007874e20400",
-  "friends-mouse/word-2": "cfa3052dc430da66c1cdfe0cb66c295a45fce24008dda3b7c7f162903f58da1d",
-  "friends-mouse/word-3": "34bfcb19b26c824ab530483b5778fa058ec7e2e9d68a0dd6c29e2c792e52fa13",
-  "friends-mouse/word-4": "8cef26155d53bb8b6256653a05a869a1133a6c13a039058f233054de77b5239e",
-  "friends-mouse/word-5": "180e172d11f5233bb84b26fbbb09b5ba912f3cb706c02c2385552e3ff198aedc",
-  "friends-mouse/word-6": "f42a8a5553f5bebd6abac8787632851fcf5dc94250d0721660271a67c2bc7e46",
-  "friends-mouse/word-7": "92f8bd810635185f7405d7e026e9457bf29a0376a1057f2e5cc22ac132d679fc",
-  "friends-mouse/word-8": "37ae9de3d0d4ad94a9712e98e01fca6b3734997337b6608fe6d129c22ae75fbb",
-  "friends-mouse/word-9": "b57ad94e4397d605dcf5e739c21315cb3b49e73c7a48003a411205a1eb55bebd",
-  "friends-mouse/word-10": "2cd02c8b35e0713324227f7753ac4fe711dc615494ee220d22d62c637c1f5143",
-  "friends-mouse/word-11": "0660ac4ab9fea086ce188810922a4ed6d1e4e8f5b0aec4f5667a6b80886771dc",
-  "friends-mouse/word-12": "8ad64455d24b42c9e852aa6e4650739471616a11723cbc3a2237280ae9f4f30d",
-  "friends-mouse/word-13": "ea2f965131863eb50c4d0be54eef0ff2737bb805d53634171d86637577671a0e",
-  "friends-mouse/word-14": "3b132e2da3621e51667e64fa29a0f05c0b8fdc866ef8d14a46e015471323e439",
-  "friends-mouse/word-15": "21ebe8ac59245c14f87a9b586632c4ad709e21a9a2963f548112b03faa28950d",
-  "friends-mouse/word-16": "dc197540fd3b3aec6d45ab80f655d6101a7bc0f92e891995151ddfc4c60b802d",
-  "friends-mouse/word-17": "3fd73d41d2c28ba12d7c63c896b6869a67c1dca94512cb8c934425d7c3b0744b",
-  "friends-mouse/word-18": "a036b859e96ea337266662df3e7f8935b34d7cef00c0f08e5f7606fa12e89699",
-  "friends-mouse/word-19": "33664727cc3473752d0aeb374122be809f9ef2a928939262424c348927fc1906",
-  "friends-mouse/word-20": "405a8b5788f7222acfcdef8428f38c6be6c488c533a47b2e272f305b313f1bc5",
-  "friends-mouse/word-21": "d1b425acc920908f0f16c4c51b73f52e86746ac014d5c28caa1abf5b50cf3a5d",
-  "friends-mouse/word-22": "3998e5e5742932fef354eb0807956fd6f8acd1de2ef53b09dbf95fe03f99f43b",
-  "friends-mouse/word-23": "7eefb5d962c03a47c172540b5df7e736cd994d50934145ed0cc44e175a6f8bd7",
-  "friends-mouse/word-24": "f579fcd30d176370cd40e3b5f67ee969c3eed307b2fdf7dbe8cbb9cbae58cb57",
+  "friends-mouse/word-0": "1d3c8a17b4a6147205242c1a1749053c4fc1f01679e8d06ee8954beb2d86c964",
+  "friends-mouse/word-1": "8cb3a531586f1b750f51ee10bd55b7462480cbd3807f90e581295d0ba6f71078",
+  "friends-mouse/word-2": "84851ab25e82c2b9085e4fd55c281e4d82d3c1176901c515efb4d92a28f4e4a5",
+  "friends-mouse/word-3": "bc70248df6822a9361263cd06f8f4ed1d083919f506e5a86a6e6b74066486770",
+  "friends-mouse/word-4": "0db5138fb47eaffab8b024f13206410fb0e9de495c041b27fbdade312425dd0f",
+  "friends-mouse/word-5": "6ab6069d3f0b5544691453d5c27b8337314d9d01461ae24fc3cbcfe68299c3c6",
+  "friends-mouse/word-6": "5c6113ab0a4990a94f246569b4070d098190fc8e455e488624a5c429aea6d956",
+  "friends-mouse/word-7": "7b3d064a7beb6d2d1fa251a8f65fbaf782039d2277059822ad8fc40cabe38ab4",
+  "friends-mouse/word-8": "9655b1799f0c555fe1b4661b6cad8ce3c3d6351b69dc57cd7773514f27cd1eed",
+  "friends-mouse/word-9": "e99f38697a221e26544be16ca788e9b1761e6c7121af193baffdbc92c3ef6d7f",
+  "friends-mouse/word-10": "6dd656b3b03dcf3499209055c64b88d675452221b85333932761ec669f23263e",
+  "friends-mouse/word-11": "421e36a7bf71d3e472e2c9f28c059bbb786602e07dd9999e30748cf9f0d46f4e",
+  "friends-mouse/word-12": "3194db9260b811f0e4a457f4e23cb8fa98b745d330b4f0a25f6957004c3a7c28",
+  "friends-mouse/word-13": "ed98640c9f26dfe6c2fbf8b317b53322a7e45441196c1b3887258cbba4969a59",
+  "friends-mouse/word-14": "c799a7b9e418f0780690b14cdd21607b482aefa0885434307be1c2d5cbdb62de",
+  "friends-mouse/word-15": "cb7a0c456ac9f4b0b9966da489d6a8c57af15385284ad8a8a141eba3f9a27685",
+  "friends-mouse/word-16": "2a8c710c8e0f3e0b95a2db24f562cd30d6c1ad41a64db3fb1111d8e4c4d762f9",
+  "friends-mouse/word-17": "244b3247be031c99502179399273f9a939344180f077af6da684f01a59b63fe4",
+  "friends-mouse/word-18": "d6eb55bdcb6e709b88325cee1b19b9ac88d1b0ff9bcbe7a573082f53b428260b",
+  "friends-mouse/word-19": "a214109786ca1d8958b5a326dbc5ed4fbf6992df73bfd0d0dbdddd3b5acdd7e2",
+  "friends-mouse/word-20": "6d4ddb77fcc11108e6f4e0cd45590f269433c1ac11c9edb6d6cc02d3a6391269",
+  "friends-mouse/word-21": "fbeeb7fd38aab7b1d3d03d2e03b382defbaecce5a094b4cb53ed618bdff927ca",
+  "friends-mouse/word-22": "620b42fc56a20c565f2116513374e1be3a690a8b38c346dd36e323388424bbe0",
+  "friends-mouse/word-23": "9e276edb53039d2777da5138a23aaca2f9e970fba2a93ee52aa6e453e22586d0",
+  "friends-mouse/word-24": "e759b48dcef42fde0ffe8ae9d94ccba0f39cefe48c427274c50d910b8215c973",
   "friends-hedgehog/riddle-0": "9000cd2918649ebb2501247e1e7b8be9fa676b1206cbeecf474f827a85e5dab0",
-  "friends-hedgehog/riddle-1": "d0dc60201ca6a81dc44dab6e2d7f01ed92e7a522e9bd68ba5156f7459543cec7",
+  "friends-hedgehog/riddle-1": "f97b9bea1335bbd2843d3b3dabe5595b82b68d2504bfe387de67a20784b6128b",
   "friends-hedgehog/riddle-2": "e3e7ff3a2e037d051abc4ce7e8d04e9bb041ddcf67bf6d6c0101e7e9776436e3",
   "friends-hedgehog/riddle-3": "073fb2bb779b26b0a0e7168627e8308a7abb4c3eb52c8b7f171f6644042e9bb2",
   "friends-hedgehog/riddle-4": "f07ced1e6f369815e40f0842ee8b5c9c1ee551067085f5e248090eb0d7a23e10",
   "friends-hedgehog/riddle-5": "ea2a9f01a528856420127958961cbe2554ef99ffb7f1eaeeef09dfa4058f988f",
-  "friends-hedgehog/riddle-6": "9eb5f42616f479ed7686491a9e1bc1e7c2c17c26073f2df2d8ad6131bc32a3d8",
+  "friends-hedgehog/riddle-6": "ad85e63efe86d84c8fa98dbdd89ff662745c8f672823f1229023aca7f568bb1c",
   "friends-hedgehog/riddle-7": "f07ced1e6f369815e40f0842ee8b5c9c1ee551067085f5e248090eb0d7a23e10",
   "friends-hedgehog/riddle-8": "48cdecbfc6f1d2bea6b5571f82bb71fdc86f1b61f654c978abd5996b9dd941bf",
   "friends-hedgehog/riddle-9": "0577c266a6457bbd45afddee96fef71c1c4d2830b877c1e52a772380b24bae0c",
-  "friends-hedgehog/riddle-10": "cb0f696161591569922c35479a0a57eec440f512f23a77e9e5f00338e3f0f980",
-  "friends-hedgehog/riddle-11": "bcd42863ef4db554864cf55933baa65108804967e6ce675d3a69f6b3a8955d0c",
+  "friends-hedgehog/riddle-10": "167b7e6c1897591f6e9361deef0a2d8e5267aa8ab6dc2ca0d6cb5eed4e9d6aaa",
+  "friends-hedgehog/riddle-11": "342c977400cb44c4791991fe67ce2f24580a6bd43c79e2c7fb59bb0fdd20bcae",
   "friends-hedgehog/riddle-12": "4b90b9e83b333926fc5ac68590ae45a565e6309aedba25ddc9a8b3885eae9113",
-  "friends-hedgehog/riddle-13": "2c317c93d83cc1c1a230ade661df87bafd82f3e8ecaa23003d90becadef705b4",
+  "friends-hedgehog/riddle-13": "53efe27109293682c44b030b33cc037c3db2e6e9761aa5e8f1ec8c57ceeb28b7",
   "friends-hedgehog/riddle-14": "1cac96c69ad4e5a141d01d1539aef04d4512327e7a4ae7ed594a6de571fd1b5c",
-  "friends-hedgehog/riddle-15": "a856db1e693ccca0ef320c60b69d8c6411fe9ab655b12e97470ec48f53d0dcda",
-  "friends-hedgehog/riddle-16": "bcd42863ef4db554864cf55933baa65108804967e6ce675d3a69f6b3a8955d0c",
-  "friends-hedgehog/riddle-17": "05a126ae62297acf27e26da34ddecced54ef1abc3442b7028c6ef1c0ebfad83c",
-  "friends-hedgehog/riddle-18": "ce1736cc384e96b2505f15a171c05686e93696cc6eaa0b49ed7620679014f8e0",
-  "friends-hedgehog/riddle-19": "bd8caf0e596b80bcd027c00e5db5a28b443f132b255033b6f13997f31d3647ce",
-  "friends-hedgehog/riddle-20": "39bf5d219f2695895d372970ce446225866c6b936c0475cb9f40860ea1463220",
-  "friends-hedgehog/riddle-21": "d0dc60201ca6a81dc44dab6e2d7f01ed92e7a522e9bd68ba5156f7459543cec7",
-  "friends-hedgehog/riddle-22": "7f5b8ff7d96a1f2c15052507460196cce4567d5dc222dbdcd430ddc0a91620f6",
-  "friends-hedgehog/riddle-23": "38f40e82f49e054c180c1ef91e258bff67bfa952dcc4d5ded024da048230e812",
-  "friends-hedgehog/riddle-24": "b640c4a7e516354f673b2aa65d27bf860d3ef6dadcedead96051cc09fe5b141f",
-  "friends-deer/riddle-0": "237597af4a6b31da55a72179931aa318bc15451ea6ebacab43b347daa55db008",
+  "friends-hedgehog/riddle-15": "64ec1a05381a34fb73b58e0f963dfdcd7d5bdbc9bd135ac6aa43288eab50c0d6",
+  "friends-hedgehog/riddle-16": "342c977400cb44c4791991fe67ce2f24580a6bd43c79e2c7fb59bb0fdd20bcae",
+  "friends-hedgehog/riddle-17": "82e626b5943999ebce8a755500f41d1dbd14c7797d991c09bf98e25d62d98c2b",
+  "friends-hedgehog/riddle-18": "cc068877418f4eab22be3846ed7e3b52ae7afe93b49a27e601cbbce8c8ade4c5",
+  "friends-hedgehog/riddle-19": "aa178742a377d46437a2710cc0e7f7db240bd8e1bc6b81e733e528346123f1d0",
+  "friends-hedgehog/riddle-20": "e3f349e96319e056eb9537396aa2290db93ef1d8758d4f8de134236ed621c6f3",
+  "friends-hedgehog/riddle-21": "f97b9bea1335bbd2843d3b3dabe5595b82b68d2504bfe387de67a20784b6128b",
+  "friends-hedgehog/riddle-22": "a92c2c7a60b93553085bb3b247c7c68a27fe090ca8315136db3ab41d15bd3084",
+  "friends-hedgehog/riddle-23": "e9a7ba5a13a3bc48414cb80b68f38102316a2543aaa5fb76611a866b787e12c1",
+  "friends-hedgehog/riddle-24": "b2c3792f4ee638543708a522279378db7e2f95cd12dbb9bf6d2b7b0d3135135b",
+  "friends-deer/riddle-0": "d3dbb25fd5a8f99b4f5c0d08a8fc6b2bab738379ece9a2220d24a4055fc1c91e",
   "friends-deer/riddle-1": "8ef04fbea832e5bf451df36811edff567b6738e91f0d17b1425d5f186e6dc094",
   "friends-deer/riddle-2": "61a8ae0baa6de6ec6868a733e6f6a20fc6624124787964a19f073399d5649852",
   "friends-deer/riddle-3": "27328c7f9fbfc224d916a514c716194f955e02cd85d995ae34b179522a8132f5",
   "friends-deer/riddle-4": "8328cad70bd44719966ea24af95cb3e18b75d40c08a1a35ca88b45179f90609e",
-  "friends-deer/riddle-5": "5c1e7011cb42f2809eb595fc40d74dd7f076d9a9043e1e4b8c3305bc5b9515c9",
+  "friends-deer/riddle-5": "f39ca9d8da895d39905aea9a2123d3d9f6a30a098725a50a157736dc704c6088",
   "friends-deer/riddle-6": "04093a6b42a179ab4bc5ddb78aa1ae00de5964d55fded0c7fa0906fe189413f2",
   "friends-deer/riddle-7": "8367640ad49a4084a2c8392ce53f9dc818ec372cd73098eb45e747e2b5a3077b",
   "friends-deer/riddle-8": "8aa7002666f766369525706913005d2ee3324fbbc698d1734bb67ee98e2224f4",
@@ -201,14 +201,14 @@ window.FK.puzzleIterationImplementations = {
   "friends-deer/riddle-14": "354c478c5231694973da27c14b187c943845b2064016b2935e507c9f7ac45102",
   "friends-deer/riddle-15": "f70bd1fdb1a2c1e5cac19658d7fc9c44ec233bc73aa75917dd0d31b8e321256e",
   "friends-deer/riddle-16": "333a300584f13e7e0e9445787a4686a82fd4d79114e1cc0ff3799e2180bc820b",
-  "friends-deer/riddle-17": "f63ec802c8ae8b0764b8b1926769d303ea94b3d39f0d7767e51bcb544c75cb9c",
-  "friends-deer/riddle-18": "4c993659f5145e03960dc1c6d438cd024bd502b9216376d5ec79e3c0a5740238",
+  "friends-deer/riddle-17": "cc639ac2ff9aded91c88fd6fae3f068f80d1628d02e024d4c84d200c60c9030b",
+  "friends-deer/riddle-18": "ee25ef9498780ad5f86491bbaa37432677afece0ba1993237b43bc8c9285e710",
   "friends-deer/riddle-19": "f78c7f04f0d66e7012b1a6d8b0a4eb1282a4f7faa109def553d601b6c2395849",
   "friends-deer/riddle-20": "d4821a8868a1130a2b809d7c299a9d97cb3fdcdc800c71ed8a95915480e642a2",
   "friends-deer/riddle-21": "0338044aecb91c99f438e0cfbc731819ac58cc292f8ed873461c9da98fd6ad4a",
-  "friends-deer/riddle-22": "6c0053ae261010c9691ea9c57772b677defcb65982c7e3263acf48d6d983cf91",
+  "friends-deer/riddle-22": "3e84fd9891b28a910b24fab46de2b59ed002e2dab052b69e3c9fefc24274b962",
   "friends-deer/riddle-23": "3cf3e74dd5aa45757f9977d9d4a7ef07fb165fc2d654a6dc09475149390a018e",
-  "friends-deer/riddle-24": "d3b07024e0e3788d732d3065fb27a837de9f55cb780af147a6306d756c8fe111",
+  "friends-deer/riddle-24": "4134d2da79f74c4d5ed2dc6e48b093cc363b3ba68d00098a51decb8ffba60141",
   "friends-kingfisher/forest-feather-2": "52b863a810ba74ada07a4459378152f2965c645b066e9b6c4c804deb3901f208",
   "friends-kingfisher/forest-feather-5": "52b863a810ba74ada07a4459378152f2965c645b066e9b6c4c804deb3901f208",
   "friends-kingfisher/forest-feather-9": "52b863a810ba74ada07a4459378152f2965c645b066e9b6c4c804deb3901f208",
@@ -239,56 +239,56 @@ window.FK.puzzleIterationImplementations = {
   "friends-kingfisher/forest-mushroom-9": "179a1b6b83ae7af937ef9a654d52cfd80e206385f30d73fd48f0f97b5acd4981",
   "friends-kingfisher/forest-mushroom-14": "179a1b6b83ae7af937ef9a654d52cfd80e206385f30d73fd48f0f97b5acd4981",
   "friends-kingfisher/forest-mushroom-20": "179a1b6b83ae7af937ef9a654d52cfd80e206385f30d73fd48f0f97b5acd4981",
-  "friends-frog/animal-0": "28f065d291441caa98a0c9a4b370887e50f04dc37bdf0eaaead954295b267ca4",
-  "friends-frog/animal-1": "e942a981022fdc67e4f8c4a04b61efd48220330bdb003a1d4afac6386c87f984",
+  "friends-frog/animal-0": "f9cee36c3a97129b8289b4fc48a2505d26b188a289c18c84f456e37a20813ec1",
+  "friends-frog/animal-1": "1ec0301b4a5876c4967a1ba9de03c758b98b79410b9a257848b838a59348777f",
   "friends-frog/animal-2": "e4c2b7627a6ed1db36990008ee35fe80e372198bbcb90aa09fcd7dd879446d18",
   "friends-frog/animal-3": "e714b050ffba36583b8f2464248c692e8aa99ca52ba5b07d460e70c78aefa976",
-  "friends-frog/animal-4": "d36dda538aa2d53352f33556b813ad426bbf209e751ed8568b662692a4f2353b",
-  "friends-frog/animal-5": "7853f42966b60e78381ee0d8345667e208d1c88cc56eea3037f0b2f8c972af38",
+  "friends-frog/animal-4": "daba18d10507358bcbe2c4f288c63f98dea82eea99177218855463dfb3244f82",
+  "friends-frog/animal-5": "4fc6426e971a71b7b96bb896b32d407ca19e8f6d2e3b1f9ed037c7325b0a3110",
   "friends-frog/animal-6": "894b1c73ca84d3f37c9b2f79d3ee0321077cf6ee132b1588fc0c2c54def7610c",
-  "friends-frog/animal-7": "7e7430facea90ecc1180ee4b043005846b60927ca3415a33ef53e124892f02c4",
+  "friends-frog/animal-7": "9196cfc8452f3daa2711b5e962d1eb761e9252365f7ecb2f435d39288e23208e",
   "friends-frog/animal-8": "cf8ada7ef1765a06d6e7311ba457f3d565713beeb3e73e95bcd1e941162fdd9a",
   "friends-frog/animal-9": "936a413952b53dcf3a197eadd4ae85e1d26673be4285f396c0c4a3dd331e4eb2",
-  "friends-frog/animal-10": "9bf49a73e48ae1d3d67c6e488b63ec93a79ec1a6d826c750571f4bb8f54ef3fc",
+  "friends-frog/animal-10": "ece113c979f660126f7e0e0e3f0932edf52c051fbc8e40d630732ad47cddc419",
   "friends-frog/animal-11": "8893a85ae8e295648f1005bebd2e3fce0b94d7c41e192102bf982762c97e4403",
-  "friends-frog/animal-12": "de89bbe4da43d789cdd766fe9f46f5d6751a4525c3a2e41a7a52d002f8522641",
+  "friends-frog/animal-12": "6e3ec87912c92f8c5640ecd85378a8072975cc4f7cd7a63195b4dda282435b28",
   "friends-frog/animal-13": "ce3f8fc5bdfd60a1ebebfd44a0b421a8ba1ce34d0dd2e8844e388e5c8c75dc29",
-  "friends-frog/animal-14": "72f97c168a3bf1a36f641b00feef4451822eb9bd5e594b01ae8909cf81ccffb4",
-  "friends-frog/animal-15": "7cb4f60b1c13774af830788dcb833939a8082f68ed3f6a8f5eea384f0f72296a",
-  "friends-frog/animal-16": "cf478abaae9402e7b28781a3325869333aab9e4d6216bc5954f9594798956b2f",
+  "friends-frog/animal-14": "9468ed8daf380695591583dbd5d0ec56b6118e7087c4198e21c23089632bbd82",
+  "friends-frog/animal-15": "8320bf3cd2a358efcf06f163ba3efcb9c0813216555d4d8c6de673f5401df3a0",
+  "friends-frog/animal-16": "42af93682a05eda225f145a0a97f0461d5bfe4d6c380170c0198452cc3bc3e60",
   "friends-frog/animal-17": "d883554379ec3915469be899e8ed1552b3db3d5b1398c29a98c004f3da8c6c9c",
   "friends-frog/animal-18": "51e3d4c6aee5e610b5a39954781a4b0063283b563a5b63a8b201b3a296aab42c",
-  "friends-frog/animal-19": "eff5bbc64402b2cc40cb695c5947dbb3d4e03e7fc20119f86e27dd06f59c9ba6",
-  "friends-frog/animal-20": "2429d6df280234db689e3edf2c288cfd9d08fe08465f5e161132c85924857e46",
-  "friends-frog/animal-21": "a718154a47238cc059f329a56f7e9c1250eb556a301f8e741a952705599058e3",
+  "friends-frog/animal-19": "978bb77df873715271f5c594982ff6b25070af239bedd93538d716212efd76c6",
+  "friends-frog/animal-20": "2771835892bd628d639eb18c0fef5f58e57c950113de6f2983856f38f145cc00",
+  "friends-frog/animal-21": "af50f42683bf3f9279708403e732b256bc42e86208f1618072344e0752e60b38",
   "friends-frog/animal-22": "4fd13682d9f8b900c0bcad7373e7435dbdb84ad01e989f6b4191f4f68da8babc",
-  "friends-frog/animal-23": "20cac81eac1ebc0e1117eb0b58b271a7eb6f4afeed4474aadfb7bbbcc06b7cde",
-  "friends-frog/animal-24": "c1e0da7d81c84c5d576074b5948c3b000547ca5509656ba0f088f83dbbb6e64d",
+  "friends-frog/animal-23": "570da667873e7b16ef7e7211054d4c6ad4b4db29ce8d38c34675e9848cef977e",
+  "friends-frog/animal-24": "01edd697d58f70ebaa6489bcd0895688debe787b7bf72dbd9185037ddb9b5804",
   "friends-badger/riddle-0": "65d92f7e430c94888409aa7953068a2cfbb906ec697a24beb973898efe72eb21",
   "friends-badger/riddle-1": "1756b197f9232737ceba21f373a19f0440d95991f7f8ce2652bdafa1396d519d",
-  "friends-badger/riddle-2": "3381f82fee96caf1744f2e34c5b1aee8e3ba1ae7a50fc01e6e0a12ff1e719ac0",
-  "friends-badger/riddle-3": "c1bdac7db3eeecdd63ea22cd807052c093f33554bde15cc8158dc7fa84ff6c4e",
+  "friends-badger/riddle-2": "3bb57fb2ffbcbbe5c40a9158df0e1f8063cd6fafab2796dc8d2d8e709b211d38",
+  "friends-badger/riddle-3": "28b419a0acd4fe01805388959f1eae85401f1c5e8c1cd6f92a3f50cb59d95b8d",
   "friends-badger/riddle-4": "5966109161d5476fb2e7cc771491c983e2cae70a132ce0e2c23aa11d9b4fb322",
   "friends-badger/riddle-5": "7de9990c080f153c3b0137bae83c816805f6f1e129694e500c5ef42c8ac741cd",
-  "friends-badger/riddle-6": "b04de4b2a3c69fe0f4b317628ca04e0874add113d38dfb2e332efa93f346f213",
+  "friends-badger/riddle-6": "59949c6952eff9ab9255e9f0522a52aedf05fb11d7bf28859d61b55e2dc537ae",
   "friends-badger/riddle-7": "ec5c9e0b872e47cf6a10ac1e9dbf9e22073091e298098b691a8bbd8973b73edb",
   "friends-badger/riddle-8": "da904b77ff41ca2712b2f22a52d46967cdeae623e616c09da89671f227d6c699",
   "friends-badger/riddle-9": "e7e7efde2fb8872f52b57367a8b6b1001a94a18ff6a13f3f482b728ccdc25639",
-  "friends-badger/riddle-10": "7bddaef7b552885b4846a476e966bb6556668e4c0c5455df36ea2565b546969b",
+  "friends-badger/riddle-10": "829507e338a5dff27c876bdad698ccf8e0e894b8c68f212a9eb78292ffdffe0e",
   "friends-badger/riddle-11": "878848e9a53e3a9dfb6a7428ee3bbefa3b66e304af454ff5e8d835a1c58ed912",
-  "friends-badger/riddle-12": "bcf9e22bf2ba018ce47080896830961b01bc548a712e071ea97f3e6750dca64a",
+  "friends-badger/riddle-12": "16b4923c882a27c26506040ee357db6d8ff66138af16405b54317f32614f1008",
   "friends-badger/riddle-13": "f56619e7871b9521b1d79b5f880442957b0e6089c1f95cb66ed89584736f580c",
-  "friends-badger/riddle-14": "b424e9b2b761f1057813a387cb8b8ed90e2a0b608b3193bacd46fbee29023db8",
-  "friends-badger/riddle-15": "44099d03d1bc27d3fd96ddea4e0592225c1680e049856aac2ba3a354c868560b",
+  "friends-badger/riddle-14": "08906f36dc132ac0ad9ee73b988f48d0cc89abd17b104887d194b40237f7f8a3",
+  "friends-badger/riddle-15": "bbd06cc10ffb0e143785c04112ecaa0ae9edcf990f4ee96b691eace49303e2da",
   "friends-badger/riddle-16": "bc39b2b3dc02bae782f6d27c9c9ef819d7833f5d4a820403c79ab0c39ff41216",
-  "friends-badger/riddle-17": "e7ddfe4cac17f03b93dc73df42eb2bdb1bea478582f21ddb696a288554e25e57",
+  "friends-badger/riddle-17": "ae03ba154be39ba26451f6b36bc5f403a4bc9a0c628bced2f8d883f708b4c8d9",
   "friends-badger/riddle-18": "62875bb80153c0c51ea7bacf0fde45561a3986aed058150116902f9ba1c2601a",
-  "friends-badger/riddle-19": "808b191c3ed90dbe2a7035a17fa21d948cb69aaf137e7311fa7fa00cd47737b3",
+  "friends-badger/riddle-19": "b2ea89f921e4351a3a24dad011342bc0e819c82554cfb1ccc3954187364f8c78",
   "friends-badger/riddle-20": "80bf4502c15a9959e15dc74fb6c6d7b759c79afc2463e6865a8a3233c886ce80",
   "friends-badger/riddle-21": "17743167205cc82eb01de46f7eaa9190a0422c2c568058e39ebf64d7bc469f79",
-  "friends-badger/riddle-22": "a4240f02826cef3444652cab75fa51b91ed8dd3d029b31a90fa32dcc285a24f0",
-  "friends-badger/riddle-23": "37686200e4069ee502460405314dc6ba2d6d9ddd387997f981c6a4156534ed2f",
-  "friends-badger/riddle-24": "2a3310037789b801af44f560e2f5b5b04a3020eddc52503a1a1cd8c691c1d47c",
+  "friends-badger/riddle-22": "72fa0bdd15ef7e7d8cf4d4bacc275e8015ea7ebb783e3a2a2e63471acfa12ffa",
+  "friends-badger/riddle-23": "7a3cfe2fad444e2c63f10e8e877e2dfdef71a3308928aa521b5ba143f6b7a905",
+  "friends-badger/riddle-24": "9e75cce2fb102308b396a5c2e33fc7072cca9d34cf26857b278039ac75638fc6",
   "friends-ibex/pattern-AAB-1": "f0b6f800c9fb13ad063662878329355d68ce43a085752daa94d58de368c06dad",
   "friends-ibex/pattern-AAB-2": "f0b6f800c9fb13ad063662878329355d68ce43a085752daa94d58de368c06dad",
   "friends-ibex/pattern-AAB-3": "f0b6f800c9fb13ad063662878329355d68ce43a085752daa94d58de368c06dad",
@@ -416,30 +416,30 @@ window.FK.puzzleIterationImplementations = {
   "pattern/4-4": "837531a6395487bfc69fea43d739f9eda97851fb6821d35b736b38d5e3eadd34",
   "pattern/4-5": "837531a6395487bfc69fea43d739f9eda97851fb6821d35b736b38d5e3eadd34",
   "nature/clue-0": "d9c88fa516679ddf1abf911449ee37757190a18fe1ac2a29a64f74a1f3b71de3",
-  "nature/clue-1": "7abad854f25039cec165a4ad051bcde3fcbd1aa37ef0a4450a408ea69ba9dace",
-  "nature/clue-2": "602a06439d7e8140def4443fcf2d9bb24cb2002874dc100c9824fd581eaba8ec",
+  "nature/clue-1": "d4636a7ccaedcbb5f2b7128bd1f0c69404e4ca71106cdec7a9b3689c9bb2129c",
+  "nature/clue-2": "f117bfc9cff6640921cb1e2122d36d292b3352d52658d6bfa6fcb2f927f5e9b9",
   "nature/clue-3": "4edc7163473d854bf83732a983d8bdb10d5f19ab7b039a57cba8f27c0e2bb4bf",
-  "nature/clue-4": "990a4f3cdd88c51ba4de8d2a43d248996e05d3961179f3e1f69f6cf9137ff6b8",
-  "nature/clue-5": "1350c31099c7260fbd27f8cd98f01287d4e1a97ebffa67cb666e06dc73a3aa88",
+  "nature/clue-4": "ea2f228b340ccbc8cb386eae013317da5f4eb60e3f056263b7db9b065f610c8d",
+  "nature/clue-5": "e96583c79688d1b8be611b1036c0cb7ea61504c2794f423c62bc36d8bc27b4e5",
   "nature/clue-6": "d3b36e65711dbf0133d91fbeb8190535e3771afabd03433bc392a560c678821f",
   "nature/clue-7": "bb8131f9c038e7297d8ea24d025b1387a22da4ee497fe46e3952ab5b43985df8",
-  "nature/clue-8": "0d95daaf369cac3087aeb51e921e1da0b6dd04d510ad91e7e63f71012a58f872",
+  "nature/clue-8": "861890e3dc0efa8649e7ebc7e75c8ee71e806366c5623c96ed206cdc1bd75032",
   "nature/clue-9": "be7d7548585daaca4868a2e0eec8d044e30572da339c4704c6e3686fa16f3f69",
   "nature/clue-10": "a7fdfe175caafd68661683baad3240119437c4ce72cec326aca582a6a5f44d9d",
   "nature/clue-11": "a81aebe7c7e47073b430b15858b6dcf0d6c92aef54079a3dad7a13cc3aa02956",
   "nature/clue-12": "b3e0a44bae35335c82bb57cd18d15fe3a980406836fc13e446fdf1bf447bbb42",
-  "nature/clue-13": "a135927efa0410716f9773221cbcd9f7659fff66f232f29e801c2971b2016e08",
+  "nature/clue-13": "dff998fafb8fa68af358ab58237602b462af72d0f4a66285332b7eb8f77dda63",
   "nature/clue-14": "e0e8ac188ecdf5b8a8e09c5127aa69a6ed7a6ea03fb840c938351af3c0dccc98",
   "nature/clue-15": "7b457f3a2ff592dda6983ed1f6a9bcf708a20116e98b9cb9f01bd497be84894f",
-  "nature/clue-16": "09d8df3830de0d1ea5e34c488c2108334069071cd5d8be37cea65bd84fa203e4",
-  "nature/clue-17": "7c07cb461661b0d25700217de6a8c19727b9f80030e43bd1cb17e5c58adf43fa",
+  "nature/clue-16": "250f42b72112f42199b9944c198d723e843f8bf83effd2c04f0b0f20abd7133f",
+  "nature/clue-17": "9705ef8a8bdfdddd8212625c44183c155087e9affedf98951376e7a3723508f9",
   "nature/clue-18": "86be2cac0346648890a68200974420f2414d6a777b21150b1a64de8433642e40",
-  "nature/clue-19": "fbe007a00173633980ff558df21db239249537c2fe48142feea447ac164cb176",
-  "nature/clue-20": "1daa0d33fe06cdfd54961caa4ec63570b8efb8caac1655f8b23bed21cc039985",
+  "nature/clue-19": "0eb7f50b4ddbc17315fe95a21449193e3d0edab0378e5f78175eb0aa41ac9227",
+  "nature/clue-20": "76b956b6f2974a825cab27adc37e738ae9c19177c647427c88d5b19cff5d63a1",
   "nature/clue-21": "39ac6d493bb72e2f3b2187de167fa937b75f6d4bba15c127b8e5e004e50442dc",
-  "nature/clue-22": "4b5f877dc1086ea524a4e724fa1490bd007fa53c17d7a85d1ce9d5bfd1ca9220",
-  "nature/clue-23": "780f2a6b03ce1e1946241890c930435f529abd2502334aae78431aed2942f504",
-  "nature/clue-24": "c751dbeafc303d798d3f2710af0a969001b7c6589a1238e2571d4ca1a40616a5",
+  "nature/clue-22": "9d80cc26ef778c376a5fcfe465aca736d8c8024f20266edc85475f23eebe2133",
+  "nature/clue-23": "353721351ec34cd4d9de0f16316f4d9dba3342d9488e02c534da631649f59367",
+  "nature/clue-24": "ee6f5ac8cc421fc3b8d9cfa9ab375c0e1f07aec0a55c4d1f903d50370e72c98e",
   "rocket/5-1": "d41cd5ac010c5bdd558a50177ee310e81c5a485b671a86ffc8ff6049c7d2d99c",
   "rocket/5-2": "d41cd5ac010c5bdd558a50177ee310e81c5a485b671a86ffc8ff6049c7d2d99c",
   "rocket/5-3": "d41cd5ac010c5bdd558a50177ee310e81c5a485b671a86ffc8ff6049c7d2d99c",
@@ -517,7 +517,7 @@ window.FK.puzzleIterationImplementations = {
   "syllable/word-10": "deb5d1fa7cf5d63a7a65ab167d4cb88b97fa12ed4fb3a449d5ae6ddf64880373",
   "syllable/word-11": "3961d3c82acf6ff3f5996af05bc8310a0e9eedfde8df1c0da8dda57c12e54762",
   "syllable/word-12": "75d4a4525442c51897d0a7186567fc510549bdc94ea418486387c99a246b04ab",
-  "syllable/word-13": "193afaa6d014853bd380e4aa344f24e03dbb8c06c6b971bd353d5e96f64cd460",
+  "syllable/word-13": "352f7c4337559dc146f195220c22de38871027bb4b6dc3ad9663228209486f4f",
   "syllable/word-14": "3655ce7c4731d93574957805ecee33be633e911fb97cbaaa4cb8601ed5a3103d",
   "syllable/word-15": "d34382f8d9ad416062b1d7ec2961ab277d7c42f060daa01787061b435d81e822",
   "syllable/word-16": "c5dfbdd5dc71ec75e9210f3ae1b299173c2cc1ea00d215c01c22fefa5765a222",
@@ -535,7 +535,7 @@ window.FK.puzzleIterationImplementations = {
   "syllable/word-28": "4d1f2e928e525c3e5fb436ac0c99ddf60f2efc5edf6435c769ed950a063fa6dd",
   "syllable/word-29": "d6424db2c3f39ad9905c543a558443ab9f42701e958aad70aa337cc03a999bcd",
   "syllable/word-30": "ebbcfdf7c7789c8fbd219a3c3961d6b6bd3cb2304e0e4854b8a1ff53b21e91ce",
-  "syllable/word-31": "bec48ecf630a816868ba296f1630d6b565f8d25bd15bd75d1d07163b73b8be9c",
+  "syllable/word-31": "51f81a91c601b5a33ca2d00e7918710632d337df68c4ff1ef203b7abb4d3c441",
   "syllable/word-32": "8f70316b1c7d8852f69476a89869ddaf0369bb2c56201be55f5bded71416014a",
   "syllable/word-33": "99753b39b338b56b2a252ab196f88f3d5d1d68e34b060bab5f345d7eb0045704",
   "syllable/word-34": "ca231d9539fa6358fb67ad240379635bd86a7840ca0036d8d622a0822932cf30",
@@ -569,31 +569,31 @@ window.FK.puzzleIterationImplementations = {
   "robot/4-3": "aeb77afaa015eaa46a2a30efc8f0bb8286f9ee278d4a269c836aee44812f5e6e",
   "robot/4-4": "aeb77afaa015eaa46a2a30efc8f0bb8286f9ee278d4a269c836aee44812f5e6e",
   "robot/4-5": "aeb77afaa015eaa46a2a30efc8f0bb8286f9ee278d4a269c836aee44812f5e6e",
-  "sequence/story-0": "04428c5fd19b1a58bfbb2c05c3d85c25c8a5f99f59930c1f69ce86957638ef06",
+  "sequence/story-0": "064c13f01165b9221c69a0315940a4bb9be81b0df9be6ae00111df4a0c93a618",
   "sequence/story-1": "4dffbbc2c3640551bc30565478b772c2ba8999299503fb341b50d4799d9e09c6",
   "sequence/story-2": "2435e84c46fff4a58234bdf57cbefe5fc601f1a7ea523ec4d76a5c0fc9dff4cc",
   "sequence/story-3": "446daac76935b80ccb220de98c3adcd5b76228f6c166d9354e65910cbe9eb8f6",
   "sequence/story-4": "f55e3c26783866be51aa8bd88ed42c83589c9fc5459a0ba7f3ce2c7a33e41fe9",
   "sequence/story-5": "09bec90b7a52f1d7ee818808ef5b0071db9c2fe1da67fc2700db5e83c9e9a32d",
   "sequence/story-6": "01d92a670e05fed60648613721e2017ff50ddca794bd4875f88b334c21aff141",
-  "sequence/story-7": "b4b9a1985313efaa647ffd6330552be4d3326e9b8c1f0b4b8efc36d0eb881619",
-  "sequence/story-8": "132eba90aef1718c8483ab3b8c305456298f0382336160f9a740a90c9ef0e63a",
-  "sequence/story-9": "ca6b31f4476333c72be60bb53beff117ddd2d7354b5b330b36ec98ebeb8c110c",
+  "sequence/story-7": "e4d43069495517e7fa90b7f06061c45c193a6cdcb2705eccc5e4750b56dbb6b5",
+  "sequence/story-8": "a38f9085b9550a5b06217b7ec131e5bbfab1cbc00a1c754bf9585325e5fd61d8",
+  "sequence/story-9": "16de6d8112ff02e558c0e6700fe15ee72b21e13542bea0a6fc967e7cd1aea5c7",
   "sequence/story-10": "3e3418bef00dd2b7bcd27dca1cb69978ee1d67582fbd678c11fe82b0d52d261d",
-  "sequence/story-11": "a9f7128b519339be0f9e498d168603926816ddef8625c051abe8ac06c33ca9af",
+  "sequence/story-11": "9f907e2456f3a9fefe7e41da0000698f3d3c87de533911e90884a275428e6321",
   "sequence/story-12": "578f3ff4ebb7c80a79f0eebd8934e025b6fcfb36d49ef5d20398648344c83cc4",
   "sequence/story-13": "e8b0b4b7b3f0acb01e9300d86b8c4dd723c4dcea69796793a146a381d3588043",
-  "sequence/story-14": "6df4c3c8745558f60a20376396c5a81a45723bc21e9fd423484b70a5697f3e0d",
+  "sequence/story-14": "dc132dcf6f0db8859b99125b1f63128f8d607b63b5eb64c602a01bd77492a170",
   "sequence/story-15": "d41b25bc3e6e0e61fcf2b9c6640188064ebbf683105b0573aeba92cf48df824e",
-  "sequence/story-16": "9084aaa3045287803c82d9af047693d937065b91da001e45d05190ef5bc6ee97",
+  "sequence/story-16": "88dc6562cbb1e3281258b8b427a8c8f83637ed9de606dea2176d71f09ab6b216",
   "sequence/story-17": "95a61b337db15ef97c0966442f8d3f907624139c78cdddd5a19592d686f9b2f0",
-  "sequence/story-18": "1d8547a9361cdcfe4db93406fc1eba105731ed724cb1520282126989f569c57c",
-  "sequence/story-19": "812bdf6422b3ca06cc2070f9688a9add5a4eb3b45928105c7fcba912993aca85",
-  "sequence/story-20": "502da56fe9d07f0af80fbcf5f4e81ebb7e7d1b7dcf515590f929c81769915f48",
-  "sequence/story-21": "21702a64ba74af4ae4dceba15b86ff0bb3e417a4c269b2bf0f58487e0c064d6c",
-  "sequence/story-22": "fa01283552ee3dafd6119448c371408d2989197e77282f6e6cc3941a8857195d",
-  "sequence/story-23": "7173b766b6617c1b65c9462973176ea2614e7c48f150d3c657a0ee7913644883",
-  "sequence/story-24": "78dcf393cc232e2741f557c5e167950281f3e981f18b16ce6e902c65ffd1283e",
+  "sequence/story-18": "4a8ce1e3e1767a8ab60df9670af97ad3ccfa265d2fefdabad126f58c0e301114",
+  "sequence/story-19": "a4710641939c0efe93c5d0f62fe898acbcdbfcd2bc0fd442d250a488dc81fc63",
+  "sequence/story-20": "d77011871c6e5a68f42911e8edee457f1d9c069b0dd5c3b686a488ecd6f98c22",
+  "sequence/story-21": "62f93b367460315a21055a020684b7b88aff50ab4cb2270643cc15c2e3188d8c",
+  "sequence/story-22": "205cbdfb144f43d344fe51bbc32b3bab72e65309152d886311b0834210bd4b40",
+  "sequence/story-23": "5fc281f0327817fc99db90aed2a742bfa69a43c62708bda2b0df08c4d50f50fc",
+  "sequence/story-24": "b759332690f11d927c1142c4ae851190a043b0fe890395d7ce8f9f569a4e8835",
   "treasure/0-0": "0c09df3b5dce18879a5efbe3dfc1210e1730f4349c9b6a05156446ec3593bcae",
   "treasure/0-1": "0c09df3b5dce18879a5efbe3dfc1210e1730f4349c9b6a05156446ec3593bcae",
   "treasure/0-2": "0c09df3b5dce18879a5efbe3dfc1210e1730f4349c9b6a05156446ec3593bcae",
@@ -776,8 +776,8 @@ window.FK.puzzleIterationImplementations = {
   "vowels/word-29-1": "c3099cf250d9481e102d1a300ecf5af8c5074b7e423710aac4fb87de1e19c889",
   "vowels/word-29-4": "c3099cf250d9481e102d1a300ecf5af8c5074b7e423710aac4fb87de1e19c889",
   "vowels/word-30-6": "ecb5d6b25fec9dfdbee00aa306abd82b8985a0fafd010bf3688fd853e085b2e7",
-  "vowels/word-31-1": "a8bcf502f1d5551e06fa4daaff5150ea7b8d177873a42136ec617ac37586bc0c",
-  "vowels/word-31-4": "a8bcf502f1d5551e06fa4daaff5150ea7b8d177873a42136ec617ac37586bc0c",
+  "vowels/word-31-1": "c91a34352fd25ff0950cdb5eef12ebcda0300da12dabd8e21cdfcd7ef758de49",
+  "vowels/word-31-4": "c91a34352fd25ff0950cdb5eef12ebcda0300da12dabd8e21cdfcd7ef758de49",
   "vowels/word-32-1": "5fb7587ed10d00bcfe44f71b1a3508a39b029f0678671f364732137fc54c9697",
   "vowels/word-32-3": "5fb7587ed10d00bcfe44f71b1a3508a39b029f0678671f364732137fc54c9697",
   "vowels/word-33-1": "5fad5dfaf149b6f4b93a3c9cab4518573f02c6ba82b7deb6cf0d214cd315dffc",
@@ -808,7 +808,7 @@ window.FK.puzzleIterationImplementations = {
   "read-puzzle/word-28": "2322e8120c9c3e1dbcf718ae74ceed058d4b30bb8d9892c25a51487b3f1758fa",
   "read-puzzle/word-29": "05107e5c93f79e29df3bb4b4c1a6d436735d0ab13dfdd334a1e27dc57b203b47",
   "read-puzzle/word-30": "6f8334202c1a1f18cbb05daccb3cc9e8d517a0fbe5adcd5583c6c0859264ec5d",
-  "read-puzzle/word-31": "f4c728f02fe70ba9fdae892b3ffe2ab5350b9dc9b615e333e49de70c81d9d362",
+  "read-puzzle/word-31": "cf762ef19dcf6c89a64d4c6a176b3f80b0232d51b837f1cc7307263cdf32f2a9",
   "read-puzzle/word-32": "a57ae9e2965087a28775ea3dcce20a0b65d6d055748245f654689a70710199f1",
   "read-puzzle/word-33": "a018b716226bceba4d854c414785384b442b35b0ce8b051f9ec593ca7088a0de",
   "read-puzzle/word-34": "a540e391cdc18555d17671378d97055891a6fa1653dc40b2d9db1f543f8dcc7f",
@@ -816,16 +816,16 @@ window.FK.puzzleIterationImplementations = {
   "read-word/word-1": "2420267cec6519bbdf1655fa88d2e3074e901fad559d927ed434b44ef07c7886",
   "read-word/word-2": "1a60a9d0382453407504e77c9bdcc76fe5a375233f663e93999bd4b8850d3751",
   "read-word/word-3": "a9d08d2c48c76fe450e2891601a8fe419ad7a812f1287df6b6c8482d5641ada2",
-  "read-word/word-4": "54e13bff4f7b83f2783b70b68b6368b9f6363c51a11bb4ce94441c0378fb23a7",
+  "read-word/word-4": "cadc8bf52674a5543eef7e778c47b5f8be737c8cee70678893eeb7372ec5364f",
   "read-word/word-5": "652798c6b92d3654cac149325e750861791d4fa9560965f165755f43b986d7c2",
   "read-word/word-6": "875ab51d760f9a9a243d7a51df67fa0214cf7aa9b40ab72bc7e3a675dd580b47",
   "read-word/word-7": "d86265668c43ccf15d486096ec67f14444e0260402b4d9cd21a2406816cffa91",
   "read-word/word-8": "f6619c88c6801f05b57c98848dacdbc9541f9511174be2ace594f06a6031fefb",
-  "read-word/word-9": "b1a9f2c9d45e9b1854d2592292ed567bfbdd9ac9d92149baf0e472917c939b07",
+  "read-word/word-9": "867c28de9c62d20c0c20c1e00f85ec3e7a8b18841283aa26a303f3af58859fd2",
   "read-word/word-10": "4cbdcb0b544941d25bc5596ac70d1436f07958623a3f987e55ea19b3902991e0",
   "read-word/word-11": "2c58f33e766d49d55202aed9b1d90514c3ad8d36b8490548a2a9fa527c3b6300",
   "read-word/word-12": "3c3076b89553bae5d6b5f84a39f73b899a363f221fb3f08bab6ab3b14fcecee7",
-  "read-word/word-13": "3c5f0d23bf4ff63e242d7405dc5b814f7b149afb5b10924ffa4f001f50ea7200",
+  "read-word/word-13": "4d737c08f6cd140e4e86c76f72cd85ca5f2250c8efdeb666852f9caff89aed7d",
   "read-word/word-14": "a9bcf3782e3f678d35ae5cd6fde9210ba8745e87d69378bc3f2a1bc03a67a5de",
   "read-word/word-15": "5bfeb410747ba2ae6c1bf57fef0169bebb78230d5726f215a97fe2be5376ba81",
   "read-word/word-16": "a602b4ef4138a2b1fdf539e5ffe187a673301f44d50919343006fe5e6cc44685",
@@ -834,16 +834,16 @@ window.FK.puzzleIterationImplementations = {
   "read-word/word-19": "74369ceeb125b3cf07d939c5ed9b4b2a01a124298b268758ef37624d418a3a78",
   "read-word/word-20": "ea104072adc009ff139826c3fbf64b777c9acef19091a272757b5948deb5904f",
   "read-word/word-21": "574399752a611112e36b7a9418df00a149cc48ba7aaf7897714c7ddddaa1d5b5",
-  "read-word/word-22": "1bf61a6a94823da1814f317654eae129225ca5f65b1aa03bd359f4d5e2281cfc",
+  "read-word/word-22": "7680d1c834d508e55586944e0a7ee0505b29bd98aa5a31c1d7f3d6fb7764e39b",
   "read-word/word-23": "4b9f2e4121163679234e60d1da9106b2802a262e53bf9e06d3bc9d45c50cb3b4",
   "read-word/word-24": "0f7eee87f6bfa03a1924ffe6a745383d9ffff68ace08997245be8e5e2b8f4d3f",
   "read-word/word-25": "6aa57e6c8ea9eded8212a4692ec90d4b8735d6dfca1109ae330ad56b70e47263",
   "read-word/word-26": "dc6f48945237366deae5d6f0b2a1408a829911dc07c8159b00fba0b7219d4811",
-  "read-word/word-27": "11a8f7121847e3ab1358ef6ed864f907b014a6aa227fb1835b76f884d323fdd0",
+  "read-word/word-27": "2d81843d878c9256513c93ba03c51ce2b6bf668335278f99314120820c6455c9",
   "read-word/word-28": "16203906c1dda0c70ac8485e3d3f3ff742ed36261d3593bcce2c0f0482d10b83",
   "read-word/word-29": "eff2869edafedb45b79a16f159637c3861c08d81bf67ae52b94554c01dd96f9a",
   "read-word/word-30": "92009fcdebc2c0d75430115779fae91ba42eaaf56c11e0d01433be63fce3508b",
-  "read-word/word-31": "a21f935849d4ed5549a5bc458bbdc3ee34ff2c996c8c9995100819ffd0fedd72",
+  "read-word/word-31": "5a765f983c37bc8d1e262d61fa9ee2cd9a624014dacac1c8a45fb60fdbb23daa",
   "read-word/word-32": "c14be266bdc00156f02105992c7253421d0fe32cba3d5114fe3770927dc7831e",
   "read-word/word-33": "f5eae396fe418aedde78345c35618fda22e54dc64e1173518dbc909b9d5b4f39",
   "read-word/word-34": "6c5d45636afd3732907d398a2cb43fca2a87b0167594723bdb697f33d40645f0",
@@ -904,58 +904,58 @@ window.FK.puzzleIterationImplementations = {
   "read-colours/weiss-gelb": "708474b44c73d9110c0d7a60684d9349a1d5363146cf1e9becde78329381966c",
   "read-colours/weiss-blau": "a6be538707448116e064510221040d1d3659620c92bfc96494f70bd8b1d64c88",
   "read-colours/weiss-rosa": "89cfc2fb653d4df1924e8ab3bacacad165c38db6153578a85e54279ff60af46d",
-  "trace/letter-A": "e759e5d4d9ba9e4d33ca1505fe3f12ea070dfcdee95cf8856e6dfc773c61ac57",
+  "trace/letter-A": "8ca5c01a4aeef79793049c058377b66405826c9562fbd8eb21368216ab604af6",
   "trace/letter-B": "1b944ea4f519821c549b59f546eaed48ce5ed5ae8ee549b7af6f99a93266a6f7",
   "trace/letter-C": "84099562542a4d582e56c7a3198063c8e37ffdb89670d63573933496eeb45e2f",
   "trace/letter-D": "30cb57a5efaea8448f1f3d2e9ba027d30f0d29daa3eaec348a76b6e32257d2b5",
   "trace/letter-E": "fccb2464135989fe480f72cbdb5fe80eb0d56d0798f6e1acc16697689434e119",
   "trace/letter-F": "23bf3dc98bf9dea8d429a7e728860b13227be16e39bd71fba38069c1609d29da",
-  "trace/letter-G": "a3125b805059b813aaff60316d6b03cb83d6ddf4b046509c930482ef40d4bdb1",
-  "trace/letter-H": "c52632783f912b6705662b335a0b22b235c74584520b3f6f5686aa85964cf655",
+  "trace/letter-G": "b73221bb31a8b4a251a922fc558f6f39f9dca373aaca395404070f056d654237",
+  "trace/letter-H": "b3cc6c464b61013d8bba6df05b127198b46e36d0af3c6108776f35b93447d3ef",
   "trace/letter-I": "da9db3f4d91f927c6182d18c8279af58fe4202de5739ab11a99d4fe60dba895a",
-  "trace/letter-J": "ea7c7ea80e0c265d9ccead1b1761f83881d80b6e981a6481b7790d75b6a00edd",
+  "trace/letter-J": "deeee9cacd7b04d810ad725e86ffb295f11b64be8a2f1a29340e6a54071cb3a0",
   "trace/letter-K": "3188c0f571cb5e600707659cac22b71f174457c5550fc5df091502c2235abcba",
   "trace/letter-L": "2266ffc151bef6954c003ba549c0188c10d815464a49eca84268bf117c38d07d",
   "trace/letter-M": "1951bf44ff863c5b258ec64d0b5770a9c93d0c3bfdcc37459bc65eac82c45210",
-  "trace/letter-N": "0773d9e7dce7a2c0938b83fc77d72d6eb4289075f7f93f1f5483463a1407f015",
+  "trace/letter-N": "33685e501e97f6c886a060f4b906d02757d7bfd36a9abb1116ad4e4cb7e6b6d9",
   "trace/letter-O": "78ab1aea298af8d26806c3c487a43435023393c7b9978df263837f86acd7daab",
-  "trace/letter-P": "4fd1db6865fb4a57b6e6f37e6e85baa214af2397cb323de038694d29e49af4a4",
+  "trace/letter-P": "f67c01d587ae3762b87541ecfc9f0cb143bdb3019311c2a7a793ce8eccc7086d",
   "trace/letter-Q": "1d98ed7f43da8d53999bf993befba75dd2466c7b630b0cad5ec85230862fe07a",
   "trace/letter-R": "ecfabb25bd7c77346afb21c4daf5ed441f0474f82a25a4222b4fec29ba6969b7",
   "trace/letter-S": "e0b41aca9b7a71a85220f47901f58e868a58f63620106dd224341c0cbc968d7b",
   "trace/letter-T": "4ae79384ed2f0448f59263aff4b3a331008bce7a9e32023cb855eefbe0a68606",
   "trace/letter-U": "8e9c1e251e3cdc563efe7fc4f6eed3a9ffc388292f2cc1fc8d5a4e89e4b67996",
   "trace/letter-V": "eebc105ac908865d4332486c24e96c75af03e43de162e5e2086e7299e720e7cb",
-  "trace/letter-W": "1886027e89b45f07b18dc0c44862d103953a49cd6514d9dc2f305be77ace8e42",
+  "trace/letter-W": "bb84e2d681512c2dbc9bec316e7150cfc6fcfd36ba92833bd441b56debfd2bce",
   "trace/letter-X": "8abfaf3d29220ad8cfd2fa254602916b6556d016fd752f6bd90c95760cea866f",
   "trace/letter-Y": "c4c674f0e9282b788a6f16c5e6a3f9dd24d6cf7b7248f4e1008a0babe9ab871f",
   "trace/letter-Z": "fa3560975e83bff62c11a8bebdc5f845fb89b1776945ac37c4960ce49572ec0e",
   "trace/letter-Ä": "87ef9ecd1f55c9f4184acd5a5a5e8c7c2454255e4a3a977e8ecbf5289b466fbb",
   "trace/letter-Ö": "04809028f94ef892fdfb0ab0428824726b803b650dd9dd1c5d716547f2609272",
   "trace/letter-Ü": "7c679fa5dec49d4a62e8f599d07ce697af88c9140ab0f761643b45df9d0854d7",
-  "trace/letter-a": "f52bc3a3cb4662e07e3d10b9f8b90c906636f670566247dd9fc9fe8a1a7917ff",
+  "trace/letter-a": "8c83f6e873fe97c3dae6a1a40d8d6da810f4960f27b641a2d37d73f3b91fb8d8",
   "trace/letter-b": "43a0b40a03821fa504d2fb84ba0c187f0fbb2915fc954290258721e10aadd9c0",
   "trace/letter-c": "6831fb9bbfd634f74fdd6c25c45a8301b0b1227dc57b7a6201ac65bf2065671d",
   "trace/letter-d": "7d37b4b3a984984ef722a07ac91caea69d0e0d5131431cffd9540397143d8e4a",
   "trace/letter-e": "573a98c0f5c2544d64bbeeec88979557b8ea89e6c3114dd7b02e5dc01b41f4ec",
   "trace/letter-f": "30d4c7e4a2052c043db937ec452d5545b92a11ae01570876a150f793e3dfa20f",
-  "trace/letter-g": "1167e0d180098c6bd21e264172704dd6af257204721f0b9969b1b2da4bd85507",
-  "trace/letter-h": "54df0ce40ad30eeaa1c4e044358f9422e3f65bf5cbd3fadafb6b210b165f7efe",
+  "trace/letter-g": "6b8704cefb03d5d3b3449beeb98cec0b0f7893d8e5b13d174e06a52ba0d8abbe",
+  "trace/letter-h": "abb25d9811972631545d885680d97da3a9a7c3bd976f15d1c284cf09aa06f4ce",
   "trace/letter-i": "70f73af6769fe61a3c56d471ccab66052fb735be902c6ae27a30605742375566",
-  "trace/letter-j": "e6b70a875223345c7f3058f521bc51bf139d446c5bb9e4be2ee311764a9d7ffa",
+  "trace/letter-j": "0c6497293c3ed6c84bed28b661638c8615b71d0c9c9d20cfc72b13c7d04c1b89",
   "trace/letter-k": "03d7e4c72230d9ca1e09c6dbd84639716b0e4800b7ab1d7d1e305d4101166b45",
   "trace/letter-l": "5cbdf201ab16a302043e337477a051b9cbd3fbb48a680744e7ae4f068017ce34",
   "trace/letter-m": "ba282803ab13a88e181e83098eed3c8639a454d5be52f96b3a1e27e5224b0516",
-  "trace/letter-n": "676668072be6c21f7a391b2ebc226cabdd1c03d411e4dca8f42f0c0ef3269254",
+  "trace/letter-n": "536abd581bea388448149eeaaee506e3c0c9303f69ccdadcca6b3d20c13806e8",
   "trace/letter-o": "f60df534ec4d50e756981a8bfa37cdeeee032fb20a579a9b99b9373415b5f29d",
-  "trace/letter-p": "874f09090cc5b4f421699bea592d2fc4bc433e9fddc2c1d45fc0d2564a695d85",
+  "trace/letter-p": "7d38d1298815cc4b0ecb212e3bc3447e67c29f26a8a5e883643ac2df7aef7db9",
   "trace/letter-q": "4108e50a149944abadf73fa688764c2f342930937e2fe3d67777a214cd07b8dd",
   "trace/letter-r": "f1febe5c702ea59eb9f013f46a154c782e418bed54c20eabcc50e14960c3081c",
   "trace/letter-s": "2b30b1304dce7d16b93cd84203e654107e8178fae91b52061a2f59a39089646a",
   "trace/letter-t": "a74946d75b322d28b39930624cd385c237ccaa999abdde1d1ecb188a9570f269",
   "trace/letter-u": "9cf84a72f5ce49ba1225ea986345dd1f5accf1f8bdc42368efb8d6b32f36cda8",
   "trace/letter-v": "ca8cb00cb4094b7f6edd70a1585b5380c09089d4440b89379bb0956d692e5ca8",
-  "trace/letter-w": "6aab15c785392872bdfb9f339e5b618c38c5b6044518d8cdb1c6b84ff6140c8c",
+  "trace/letter-w": "bddbb04ab8a81033bddc3e6a78edc6a109b855d27c3fc644cd5545eb1044a833",
   "trace/letter-x": "81098f3712d61d411d847b655190df91700c5b69b86ce0133d8b4f64d4f3175f",
   "trace/letter-y": "abb9be13d2a3d200428510a4b650a93d35f89c3cffd64ec1eafcea063a6e9af4",
   "trace/letter-z": "cf24673a0d5b32204f80209f3dce24d82df2fbf2ce65b9bdc0bcb21d9085ff5c",
@@ -1003,19 +1003,12 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "friends-bird": {
-      "current": "b5cb7a8aee86b422",
-      "former": [
-        "fb7a3978170d096e",
-        "044df044dc3158e2"
-      ]
+      "current": "cf0641715c27afaf",
+      "former": []
     },
     "friends-owl": {
-      "current": "c218fc214d38e3fb",
-      "former": [
-        "2ee6f97799b3faed",
-        "d095d28a81ae656e",
-        "388b97a91bb742bb"
-      ]
+      "current": "e749f62902d2d191",
+      "former": []
     },
     "friends-beaver": {
       "current": "fb6c6c9fc5dc67a9",
@@ -1025,26 +1018,16 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "friends-mouse": {
-      "current": "8ed0ae4937414f7d",
-      "former": [
-        "6b5b0632041bcfce",
-        "d5391755baecddb9",
-        "d826af71ea199d6d"
-      ]
+      "current": "eaf99a3c43cfdbba",
+      "former": []
     },
     "friends-hedgehog": {
-      "current": "3dd83f6de689a3e9",
-      "former": [
-        "7f4588f923ca0e35",
-        "1a4bdfffb8b424bf"
-      ]
+      "current": "1ec434b3111222d5",
+      "former": []
     },
     "friends-deer": {
-      "current": "b986bb49a5a0d5e1",
-      "former": [
-        "ccc4d63ec83dc586",
-        "2181047f5b1808eb"
-      ]
+      "current": "11cf75540d9dbe22",
+      "former": []
     },
     "friends-kingfisher": {
       "current": "a0ba7dba621b9f84",
@@ -1055,19 +1038,12 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "friends-frog": {
-      "current": "bf321e802e92673c",
-      "former": [
-        "0c735154961d5cbc",
-        "cad9c6cae2d8898c",
-        "81e65c44c3185470"
-      ]
+      "current": "b87abe2b2a3ecbdf",
+      "former": []
     },
     "friends-badger": {
-      "current": "fff39dd97cc1b9c5",
-      "former": [
-        "ce8332b40d24f96c",
-        "4406208118768df3"
-      ]
+      "current": "d94ca87b839eba1b",
+      "former": []
     },
     "friends-ibex": {
       "current": "d20fd5b0163f388a",
@@ -1101,12 +1077,8 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "nature": {
-      "current": "aaf14210b65321ee",
-      "former": [
-        "31d1250817d3df60",
-        "9f9c68e23cca8f32",
-        "6da384331426711f"
-      ]
+      "current": "311e650691267996",
+      "former": []
     },
     "rocket": {
       "current": "7088487b9290e193",
@@ -1123,12 +1095,8 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "syllable": {
-      "current": "5fb75dde30ac012c",
-      "former": [
-        "dfced4ec939db5c4",
-        "8c2880b113853edb",
-        "e36369498e66d80b"
-      ]
+      "current": "6d3736adbf2eaab5",
+      "former": []
     },
     "robot": {
       "current": "81523fe61f8701d6",
@@ -1138,12 +1106,8 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "sequence": {
-      "current": "bffd4d05c90a2fc5",
-      "former": [
-        "777fbd7a8412ed32",
-        "e2b90b0d0e5ef1f3",
-        "68f4ffbc1973bdde"
-      ]
+      "current": "c1c9a6ad333fd59d",
+      "former": []
     },
     "treasure": {
       "current": "0f6962f54b1e342d",
@@ -1175,28 +1139,16 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "vowels": {
-      "current": "a98c9d72ab1870bc",
-      "former": [
-        "6efa2131dc07a10b",
-        "1597db5c92787a4c",
-        "aa7e5afd2932869b"
-      ]
+      "current": "8dee072d5d828857",
+      "former": []
     },
     "read-puzzle": {
-      "current": "922fde86210f12a8",
-      "former": [
-        "ae996709ce5019cd",
-        "82aaaa8cd8cfcfd6"
-      ]
+      "current": "4e20afa8c60666ae",
+      "former": []
     },
     "read-word": {
-      "current": "aa5ff5f94956bb01",
-      "former": [
-        "4a822b53d3105677",
-        "bb71a420eaf7a9c8",
-        "df8a18317cebf513",
-        "bfc1e73fe206ff59"
-      ]
+      "current": "c5fc64a6230f4318",
+      "former": []
     },
     "read-leaves": {
       "current": "3063144f7dc1de07",
@@ -1214,11 +1166,8 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "trace": {
-      "current": "8eb8649c6036fefa",
-      "former": [
-        "2fe351e95b85f4d9",
-        "89cac457b4b42bf5"
-      ]
+      "current": "897420ed86828ad3",
+      "former": []
     },
     "trace-numbers": {
       "current": "b50862e4b89583e8",
@@ -1429,203 +1378,104 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "friends-bird/rhyme-0": {
-      "current": "7c17832dcf884435",
-      "former": [
-        "ed6eddb55ae2c9f3",
-        "b67d7421ca3a17b7",
-        "941bca954a0dc6bb"
-      ]
+      "current": "8517b6041d4adf76",
+      "former": []
     },
     "friends-bird/rhyme-1": {
-      "current": "28a4764a8ad96256",
-      "former": [
-        "e6ec4af345679b6f",
-        "bf29410f5db6492b",
-        "6f6e89d33cf5c4a7"
-      ]
+      "current": "0018f72740ab85d9",
+      "former": []
     },
     "friends-bird/rhyme-2": {
-      "current": "6054452c7f35cd4a",
-      "former": [
-        "7736a4b67be57878",
-        "3cf805eadb3a1fbc",
-        "250d2b16a8e25a30"
-      ]
+      "current": "5b654531de2598b7",
+      "former": []
     },
     "friends-bird/rhyme-3": {
-      "current": "00ed972f645642a9",
-      "former": [
-        "323e46e8a8c7b418",
-        "8b7ce6fca50bf65c",
-        "b97e2148cec4f5d0"
-      ]
+      "current": "5dd322e593030d95",
+      "former": []
     },
     "friends-bird/rhyme-4": {
-      "current": "754d87f2303d4d52",
-      "former": [
-        "869b40a2b06b141c",
-        "ff2b4946b1bcb758",
-        "06a0e90278265154"
-      ]
+      "current": "ebb4a31bb4d2cebb",
+      "former": []
     },
     "friends-bird/rhyme-5": {
-      "current": "552ea14f2f43cadf",
-      "former": [
-        "58c86d8c3ae49da2",
-        "92dbd4e0fbe24ae6",
-        "c02bc76ce636b76a"
-      ]
+      "current": "65d656508fc0047c",
+      "former": []
     },
     "friends-bird/rhyme-6": {
-      "current": "63e6937f7f819937",
-      "former": [
-        "6a800874082e1828",
-        "f2a332400ee5426c",
-        "415d42546947da60"
-      ]
+      "current": "84d62c66978be464",
+      "former": []
     },
     "friends-bird/rhyme-7": {
-      "current": "3dde9290f5de5a6a",
-      "former": [
-        "7dbdffb2ac960c84",
-        "bb90a336ea89f640",
-        "7532ab92d00cc04c"
-      ]
+      "current": "4c4c305970692d6d",
+      "former": []
     },
     "friends-bird/rhyme-8": {
-      "current": "2263084a54f58be0",
-      "former": [
-        "cede173b159f6db9",
-        "4cc375077188fb7d",
-        "19a23f9b509eb671"
-      ]
+      "current": "c1f47b5f95762acd",
+      "former": []
     },
     "friends-bird/rhyme-9": {
-      "current": "b263b9378553eb41",
-      "former": [
-        "c781f18d15e12f37",
-        "7b7d89e19ae7baf3",
-        "3b33baedf8d9daff"
-      ]
+      "current": "d4363b81872e2aa9",
+      "former": []
     },
     "friends-bird/rhyme-10": {
-      "current": "870ff53dae29cbe7",
-      "former": [
-        "39cbccc6a20285b4",
-        "19b4f632f8dde7f0",
-        "4cb2b0a6f038e47c"
-      ]
+      "current": "21bb8e932514aded",
+      "former": []
     },
     "friends-bird/rhyme-11": {
-      "current": "cfcf1a487487bd10",
-      "former": [
-        "0ccbe320163f0c76",
-        "a1c19e8c96e334b2",
-        "2a3bb180e4093e3e"
-      ]
+      "current": "7dfe312ee5e513c2",
+      "former": []
     },
     "friends-bird/rhyme-12": {
-      "current": "36effd4c6fc9376c",
-      "former": [
-        "9edda2fa9a78e1ac",
-        "f307a176137710e8",
-        "a9cb405a13c0f764"
-      ]
+      "current": "246b9954d099981a",
+      "former": []
     },
     "friends-bird/rhyme-13": {
-      "current": "293131cf592ee7f7",
-      "former": [
-        "2c2dd56ce30ddb3a",
-        "0930f3a0115b627e",
-        "fd3cbbcc32ffb1f2"
-      ]
+      "current": "dfc0be3b9e02e7cd",
+      "former": []
     },
     "friends-bird/rhyme-14": {
-      "current": "b0bae66272ea0ebc",
-      "former": [
-        "90a793b5149483fd",
-        "0b6226814bf223b9",
-        "690310152d580035"
-      ]
+      "current": "4cb7f1771295ee99",
+      "former": []
     },
     "friends-bird/rhyme-15": {
-      "current": "42b583d3d0ad12dd",
-      "former": [
-        "4c5e8ba8de0fd270",
-        "b4af12d4f0531f7c"
-      ]
+      "current": "0a8e097aaed04d78",
+      "former": []
     },
     "friends-bird/rhyme-16": {
-      "current": "31144b9fdc16eadf",
-      "former": [
-        "17d69f063cfb9300",
-        "56497612b9bd94c4",
-        "40d14be696ab99c8"
-      ]
+      "current": "e86f3b5ef182344c",
+      "former": []
     },
     "friends-bird/rhyme-17": {
-      "current": "2ec033340d37029c",
-      "former": [
-        "5de9abb0cfced3a8",
-        "12238c3c917d2f6c",
-        "8d6cda90d6dc5360"
-      ]
+      "current": "50eccd83745448d9",
+      "former": []
     },
     "friends-bird/rhyme-18": {
-      "current": "e698536677f051c6",
-      "former": [
-        "b546873ee8421a08",
-        "987d58da2e3b80cc",
-        "7506b21e6cfcb2c0"
-      ]
+      "current": "df2a62c01386ca26",
+      "former": []
     },
     "friends-bird/rhyme-19": {
-      "current": "efac3b99e2c2b491",
-      "former": [
-        "1a6206abdb578269",
-        "73a314a74baeec2d",
-        "a40cca8be129aa21"
-      ]
+      "current": "4bc75c28321a04b0",
+      "former": []
     },
     "friends-bird/rhyme-20": {
-      "current": "6b7c9563accc7ded",
-      "former": [
-        "a4103c03579e14d5",
-        "a30c8f6fb5586091",
-        "245a5c63d8f3f11d"
-      ]
+      "current": "3800f239559f20ab",
+      "former": []
     },
     "friends-bird/rhyme-21": {
-      "current": "4ea68bb5b08ac9f7",
-      "former": [
-        "426e6a1982c96053",
-        "0d47e83d21d4bc97",
-        "04f8d579ebc1dc1b"
-      ]
+      "current": "11a68c060e2cb100",
+      "former": []
     },
     "friends-bird/rhyme-22": {
-      "current": "053fd70c611fbd9c",
-      "former": [
-        "06da6979a0805bf3",
-        "c4fd69e56d0c1537",
-        "f20d8659135a253b"
-      ]
+      "current": "e65944a25aaed3a8",
+      "former": []
     },
     "friends-bird/rhyme-23": {
-      "current": "9c2db94bd11406ed",
-      "former": [
-        "b68c03a173a76f29",
-        "d59961552b3e026d",
-        "ce8587811bb27be1"
-      ]
+      "current": "3aeaa6221b1b3d58",
+      "former": []
     },
     "friends-bird/rhyme-24": {
-      "current": "8736092124be503b",
-      "former": [
-        "c74b3b9765e6c897",
-        "69c8470b454143d3",
-        "d3dfec7711818edf"
-      ]
+      "current": "7bdfcb1fba75e9cf",
+      "former": []
     },
     "friends-owl/sentence-0": {
       "current": "713a3d067da4ec9c",
@@ -1700,20 +1550,12 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "friends-owl/sentence-9": {
-      "current": "fcd36d085f06f0be",
-      "former": [
-        "afc32f09e215fc55",
-        "de39f3201aec7216",
-        "5c169afb197daf03"
-      ]
+      "current": "db70fb342ec64480",
+      "former": []
     },
     "friends-owl/sentence-10": {
-      "current": "a42c9aa7748267e5",
-      "former": [
-        "3848b53ccbca5b0c",
-        "08eb4c8b9a5daa2f",
-        "fed8daf24f34c51a"
-      ]
+      "current": "f596a88b919e875b",
+      "former": []
     },
     "friends-owl/sentence-11": {
       "current": "56b43f2201222cce",
@@ -1748,84 +1590,44 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "friends-owl/pair-0": {
-      "current": "ca73aa41af5b20a9",
-      "former": [
-        "ec17ed83a897f611",
-        "81a9fb9cd08e4772",
-        "c4d62f7167e0fd87"
-      ]
+      "current": "194848f3cb3705c1",
+      "former": []
     },
     "friends-owl/pair-1": {
-      "current": "c5f1ae5aef2f642c",
-      "former": [
-        "760470b3cdd12d37",
-        "7714e0181ebe6d54",
-        "6a75ab5552ad3aa1"
-      ]
+      "current": "5019419c79eb0344",
+      "former": []
     },
     "friends-owl/pair-2": {
-      "current": "3a895c9bab518819",
-      "former": [
-        "ca43ef69011ee0a9",
-        "cb866562fc2eed8a",
-        "ac44fe8fa11c033f"
-      ]
+      "current": "0697ba530db1dabf",
+      "former": []
     },
     "friends-owl/pair-3": {
-      "current": "1137ca95c980caab",
-      "former": [
-        "5883eb022dc21a76",
-        "4b0565b79a5d2cf5",
-        "a73e66a0c1053ba0"
-      ]
+      "current": "bb787abd3533204d",
+      "former": []
     },
     "friends-owl/pair-4": {
-      "current": "74d1ef5dd82fb6ef",
-      "former": [
-        "45b726b9a2993e53",
-        "6f69bba6e659b7b0",
-        "9019b40b162aa545"
-      ]
+      "current": "de44de0d8814feeb",
+      "former": []
     },
     "friends-owl/pair-5": {
-      "current": "b3c42e85dae6f77d",
-      "former": [
-        "6734fca0ee06ccec",
-        "fe5b41d526d9852f",
-        "d813fe5204ea3e3a"
-      ]
+      "current": "c4c06f7556e802f9",
+      "former": []
     },
     "friends-owl/pair-6": {
-      "current": "dca723c9803760a1",
-      "former": [
-        "8f0c79cada49f858",
-        "7ad925472d780d1b",
-        "ae9de8dcdef89a0e"
-      ]
+      "current": "9ab79ba6d8c0f1f8",
+      "former": []
     },
     "friends-owl/pair-7": {
-      "current": "38643f5e2b76e1b8",
-      "former": [
-        "f5c8f7acd81089fc",
-        "dc5e9249b434c0ff",
-        "ecb4c596f56e6a2a"
-      ]
+      "current": "1b9814194025c261",
+      "former": []
     },
     "friends-owl/pair-8": {
-      "current": "bebfacb87993d7fc",
-      "former": [
-        "d1161dbfa135bd39",
-        "34984b16e5be4bba",
-        "f196c6d1330b95ef"
-      ]
+      "current": "806edee8706e6986",
+      "former": []
     },
     "friends-owl/pair-9": {
-      "current": "2ad4d2a41f3d3154",
-      "former": [
-        "5d80627a9df17b34",
-        "6d06b7d1a1b25817",
-        "17dc99f0d8d5f3a2"
-      ]
+      "current": "dffced34785507ee",
+      "former": []
     },
     "friends-beaver/matrix-0": {
       "current": "fb38bf60d5204092",
@@ -2003,226 +1805,104 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "friends-mouse/word-0": {
-      "current": "256b2cda05260606",
-      "former": [
-        "f6b4f11c64dbff10",
-        "1e533187d1521905",
-        "77638ad0c02aba72",
-        "4cb81fbcd5fdbea6"
-      ]
+      "current": "5acf30756a4b9247",
+      "former": []
     },
     "friends-mouse/word-1": {
-      "current": "3de926a0c8b8886e",
-      "former": [
-        "d13b1bbdcbdf48fd",
-        "3692ead6679ef30a",
-        "96e19c823dc5b75e"
-      ]
+      "current": "549e66f38c20e83b",
+      "former": []
     },
     "friends-mouse/word-2": {
-      "current": "d5c618da97253cd0",
-      "former": [
-        "30a902d8e34111b6",
-        "4d41f7873d7b8ee3",
-        "e420b674dbd89014",
-        "1dffd6f87886fe40"
-      ]
+      "current": "2e66012314c82f21",
+      "former": []
     },
     "friends-mouse/word-3": {
-      "current": "657eb6d6a0586da0",
-      "former": [
-        "c3a5abcabbf1780a",
-        "b77469edae270ddf",
-        "f9cb296e10b57a68",
-        "fcba726ad365e63c"
-      ]
+      "current": "6210d787832e0a37",
+      "former": []
     },
     "friends-mouse/word-4": {
-      "current": "462503c36aff9c33",
-      "former": [
-        "8ec6ff66218a8d9a",
-        "8d7605996f83c8cf",
-        "3ca0332a5d4b3af8",
-        "d956c886bef283ac"
-      ]
+      "current": "b74d3537c06a4c19",
+      "former": []
     },
     "friends-mouse/word-5": {
-      "current": "2ec7afd5f13ad9b1",
-      "former": [
-        "0ed4010f231d3f21",
-        "83e79c32b4df0314",
-        "8df4197b6958b983",
-        "0d1379af1cfd1f57"
-      ]
+      "current": "54e9ad5d97fcaa31",
+      "former": []
     },
     "friends-mouse/word-6": {
-      "current": "4d85b7403a8b0c54",
-      "former": [
-        "02e7d44188362651",
-        "bdc753808adb41a4",
-        "f45ff7ed1033f7b3",
-        "29b783e100ee6367"
-      ]
+      "current": "66ff07c684270d0a",
+      "former": []
     },
     "friends-mouse/word-7": {
-      "current": "7726b592ba49af3e",
-      "former": [
-        "4a392d552af3014d",
-        "f1b82af8d65a3b78",
-        "f1529d598264c0af",
-        "5b4dfb7581915ffb"
-      ]
+      "current": "533af063920b588b",
+      "former": []
     },
     "friends-mouse/word-8": {
-      "current": "de162081acc8d4b5",
-      "former": [
-        "9f3d7defe758296b",
-        "060cebec4a7c40fe",
-        "ff1e99a364947949",
-        "098ece8f0b0cc01d"
-      ]
+      "current": "67985e39a4df6ab1",
+      "former": []
     },
     "friends-mouse/word-9": {
-      "current": "f90387c9e58aa25b",
-      "former": [
-        "b6c421402b4e3e98",
-        "3b9ccaa73f9567cd",
-        "d076ddf42ada077a",
-        "a90beae01cd9532e"
-      ]
+      "current": "386623d76dc1703b",
+      "former": []
     },
     "friends-mouse/word-10": {
-      "current": "c3675b5419db186e",
-      "former": [
-        "1b22966d324d81d1",
-        "2cd803b0bbff9124",
-        "0f7a0d2924556bb3",
-        "ac7d4e8d7236fce7"
-      ]
+      "current": "c43ae2614fbe3729",
+      "former": []
     },
     "friends-mouse/word-11": {
-      "current": "72eedced6c09b8c7",
-      "former": [
-        "c4df17b66833436a",
-        "a2d0db0bb3968ddf",
-        "da239d72ad2d9248",
-        "56e7d656e3da681c"
-      ]
+      "current": "fb04985bc6ce0785",
+      "former": []
     },
     "friends-mouse/word-12": {
-      "current": "f691d5160b67c91e",
-      "former": [
-        "6dfd156717dfeb91",
-        "b7394f6431fca484",
-        "a2653ccbaa7b8cf3",
-        "99fd0d87b94031a7"
-      ]
+      "current": "369c960160ad719f",
+      "former": []
     },
     "friends-mouse/word-13": {
-      "current": "015042859c1decb3",
-      "former": [
-        "cdcea8255ee407ed",
-        "850f865a8c6f4038",
-        "de6afd21fdd6f74f",
-        "066b34458201331b"
-      ]
+      "current": "ed7cb99a8fe9b7dc",
+      "former": []
     },
     "friends-mouse/word-14": {
-      "current": "4eb3b73fb9aaf517",
-      "former": [
-        "409e690dd238e3cd",
-        "c957283cb96d4378",
-        "7c1687e163dd442f",
-        "710d152dbfa40c7b"
-      ]
+      "current": "9f7c8540f30ee186",
+      "former": []
     },
     "friends-mouse/word-15": {
-      "current": "7ca11464de56136c",
-      "former": [
-        "4828feb86864f1f4",
-        "62d543b570924541",
-        "35bf0bfc07ae81d6",
-        "6a8fd7d85e7c3302"
-      ]
+      "current": "31f662754e96c123",
+      "former": []
     },
     "friends-mouse/word-16": {
-      "current": "7df5fc36787e3472",
-      "former": [
-        "529abf578c7bf883",
-        "606e3f5271dd3576",
-        "fbd8e653e939e9e1",
-        "67d1277762530335"
-      ]
+      "current": "04521b518390237f",
+      "former": []
     },
     "friends-mouse/word-17": {
-      "current": "7e338f865305dcf4",
-      "former": [
-        "4a020625678566a5",
-        "2d8f94e2a8ca8df0",
-        "c07ba9c1d7d0b507",
-        "07e0b1c54248d853"
-      ]
+      "current": "146043e9400f77ad",
+      "former": []
     },
     "friends-mouse/word-18": {
-      "current": "9cb6c270230e76b4",
-      "former": [
-        "66e21f0db111a92f",
-        "58823f102801c91a",
-        "bcc153010e4d3f8d",
-        "0d5774ad73a4b4d9"
-      ]
+      "current": "3ac6b084ebd80386",
+      "former": []
     },
     "friends-mouse/word-19": {
-      "current": "d8545d3640760ec8",
-      "former": [
-        "b4ce3bbc478431f6",
-        "ddb81753472f2901",
-        "58b265efdb2a54d5"
-      ]
+      "current": "3ae9cb0ad38fcd94",
+      "former": []
     },
     "friends-mouse/word-20": {
-      "current": "7c8b4c87623d0ffb",
-      "former": [
-        "6a777f8926ca61bf",
-        "137daae8858c080a",
-        "6ba6e23d8a88de9d",
-        "50f279a9a4df5fc9"
-      ]
+      "current": "40c0961f75fd66cd",
+      "former": []
     },
     "friends-mouse/word-21": {
-      "current": "fcba2a4f88b2d3a3",
-      "former": [
-        "04f6803366aef03f",
-        "276212b8548e00ea",
-        "bf8185efe776879d",
-        "0e021453a28914c9"
-      ]
+      "current": "0934ed55f56a12a1",
+      "former": []
     },
     "friends-mouse/word-22": {
-      "current": "7e508c788eae65f2",
-      "former": [
-        "3c8bcafc9c8e213e",
-        "3a0da8d3019a8f2b",
-        "d3d29c68b9eb731c",
-        "2fd69f1c7d43d3c8"
-      ]
+      "current": "43cf8c7d18c47503",
+      "former": []
     },
     "friends-mouse/word-23": {
-      "current": "a6aadf9ffb0e6455",
-      "former": [
-        "c3f09aec51d8d998",
-        "126a4e0fab66856f",
-        "3f2487d3989bebbb"
-      ]
+      "current": "cddad6c1085fcfc7",
+      "former": []
     },
     "friends-mouse/word-24": {
-      "current": "820c57d2673642ae",
-      "former": [
-        "a9a25447111b2379",
-        "375af61a2a5fcd0c",
-        "f6b8ddf38a85c7db",
-        "d74884e791dd620f"
-      ]
+      "current": "a2c57472e3c867fa",
+      "former": []
     },
     "friends-hedgehog/riddle-0": {
       "current": "f94a683a941073e0",
@@ -2233,12 +1913,8 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "friends-hedgehog/riddle-1": {
-      "current": "f45df2846f176126",
-      "former": [
-        "32397bb4ba6f6af6",
-        "083735782d14aef6",
-        "21fdc0ba6d1ab17c"
-      ]
+      "current": "1c4eb173675e4827",
+      "former": []
     },
     "friends-hedgehog/riddle-2": {
       "current": "f21c441ae4b5b622",
@@ -2273,12 +1949,8 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "friends-hedgehog/riddle-6": {
-      "current": "b9b09075023d9a95",
-      "former": [
-        "f3d954ccaa5c782e",
-        "ae5c76605cdcbc2e",
-        "ca752e72472d83a4"
-      ]
+      "current": "7d9dd7052c396abb",
+      "former": []
     },
     "friends-hedgehog/riddle-7": {
       "current": "d17e4b6cd4cd8256",
@@ -2305,19 +1977,12 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "friends-hedgehog/riddle-10": {
-      "current": "01ae4c4b4fe0eeab",
-      "former": [
-        "d94a2de71b0aedf5",
-        "780c988900a09a3f"
-      ]
+      "current": "7eefc596440f9f5a",
+      "former": []
     },
     "friends-hedgehog/riddle-11": {
-      "current": "5491a164a4fd0d36",
-      "former": [
-        "5a10d2eaaff63dee",
-        "9974ce86bac801ee",
-        "d22e232cbb353a24"
-      ]
+      "current": "81d3580047f03dd0",
+      "former": []
     },
     "friends-hedgehog/riddle-12": {
       "current": "90b0b04095312730",
@@ -2328,12 +1993,8 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "friends-hedgehog/riddle-13": {
-      "current": "281b19c083242aee",
-      "former": [
-        "4a8d7d4177c38b4b",
-        "37f0835d175acf4b",
-        "c7d506cf2e99ed41"
-      ]
+      "current": "7eb97e29f33f0547",
+      "former": []
     },
     "friends-hedgehog/riddle-14": {
       "current": "a3e0c55fa8923d6f",
@@ -2344,91 +2005,48 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "friends-hedgehog/riddle-15": {
-      "current": "e33d42763960fbf0",
-      "former": [
-        "fe3d65f7330cb95b",
-        "3620e43b3dde7d5b",
-        "8b077b61b8d80911"
-      ]
+      "current": "be2d0a01fc2e78fd",
+      "former": []
     },
     "friends-hedgehog/riddle-16": {
-      "current": "5d3c2c546d414b2a",
-      "former": [
-        "add2410f80dba6a7",
-        "0ae0aa33da8aeaa7",
-        "7d22d48d026f8a2d"
-      ]
+      "current": "d9c5b940a38f868c",
+      "former": []
     },
     "friends-hedgehog/riddle-17": {
-      "current": "69a1abff30b8014d",
-      "former": [
-        "626b3e2cd52599f0",
-        "acd7d2b0e16b5df0",
-        "4292b0b29f06733a"
-      ]
+      "current": "5575419a2bb7fcc6",
+      "former": []
     },
     "friends-hedgehog/riddle-18": {
-      "current": "0a774712e9344e8e",
-      "former": [
-        "8835d8f141632d9d",
-        "8a24d11d1331f19d",
-        "573459afdbd0c4d7"
-      ]
+      "current": "49f98a28f947b708",
+      "former": []
     },
     "friends-hedgehog/riddle-19": {
-      "current": "18793265dfc53d35",
-      "former": [
-        "c2b4b1c1f2bb73f7",
-        "2cdbfa5d278237f7",
-        "ef9e84f327ebe8bd"
-      ]
+      "current": "87607d0ead6a7160",
+      "former": []
     },
     "friends-hedgehog/riddle-20": {
-      "current": "cdba62d18bc8f1ed",
-      "former": [
-        "f9cc93244e35929a",
-        "83ccdc4815ff569a",
-        "30a09d06b9dc1b50"
-      ]
+      "current": "057bfc84fa946ccc",
+      "former": []
     },
     "friends-hedgehog/riddle-21": {
-      "current": "d9f782d72931f7a5",
-      "former": [
-        "55485bd264f4eaf6",
-        "0fcb64fe2c42aef6",
-        "9a9f307ca85bb2bc"
-      ]
+      "current": "3889059a539eb144",
+      "former": []
     },
     "friends-hedgehog/riddle-22": {
-      "current": "d67d6c9adddc6420",
-      "former": [
-        "b0781ea80ca1c84e",
-        "6c010514d3ef8c4e",
-        "8782274250f93c04"
-      ]
+      "current": "680d194985c9898f",
+      "former": []
     },
     "friends-hedgehog/riddle-23": {
-      "current": "2ffe97b4543e47fc",
-      "former": [
-        "7ab3a63979e84a19",
-        "bd864ced84ba0e19",
-        "a090c8a7feb2f3d3"
-      ]
+      "current": "945dd8c9f20e62ef",
+      "former": []
     },
     "friends-hedgehog/riddle-24": {
-      "current": "ef0996cc6b9756a2",
-      "former": [
-        "0457fc4218c42e16",
-        "54e1b96611617216",
-        "b6d028c85a18af9c"
-      ]
+      "current": "56d82e901099e576",
+      "former": []
     },
     "friends-deer/riddle-0": {
-      "current": "e257f0b4f494d890",
-      "former": [
-        "3b9c670b9324909d",
-        "a924928ef3e7bc30"
-      ]
+      "current": "0f732cba070149f0",
+      "former": []
     },
     "friends-deer/riddle-1": {
       "current": "8ec5f26ce4515962",
@@ -2465,11 +2083,8 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "friends-deer/riddle-5": {
-      "current": "ba0e86edbb18106d",
-      "former": [
-        "903013207012646c",
-        "ad56213716fa29e1"
-      ]
+      "current": "ab845bf7c32cb727",
+      "former": []
     },
     "friends-deer/riddle-6": {
       "current": "590bb6a846b5d562",
@@ -2569,22 +2184,12 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "friends-deer/riddle-17": {
-      "current": "ca532ea6121a9f28",
-      "former": [
-        "a2814217594c8245",
-        "3ca866a73196c7c5",
-        "0251d1d8fa529d90",
-        "7c6861414bb3ccfd"
-      ]
+      "current": "1ffc3b117107a935",
+      "former": []
     },
     "friends-deer/riddle-18": {
-      "current": "b83b4a5894a3bcca",
-      "former": [
-        "da43f50af7143a80",
-        "73374cba985e7000",
-        "a0e0589323720d35",
-        "499872e8908877f8"
-      ]
+      "current": "c9537e718a68b355",
+      "former": []
     },
     "friends-deer/riddle-19": {
       "current": "41eef352c5d35df0",
@@ -2614,11 +2219,8 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "friends-deer/riddle-22": {
-      "current": "7a8d61bd9f56c16b",
-      "former": [
-        "b25e2b767e8174f0",
-        "4c9dd41f4a9588dd"
-      ]
+      "current": "02956acf97eccce1",
+      "former": []
     },
     "friends-deer/riddle-23": {
       "current": "9bb4df3db7fd11ad",
@@ -2630,13 +2232,8 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "friends-deer/riddle-24": {
-      "current": "2a69a19e19053874",
-      "former": [
-        "12a00ff3358062c5",
-        "0152440347742c45",
-        "c5ce4fb859e6f790",
-        "8e9f6b455f86357d"
-      ]
+      "current": "fa892a14ca5e51dc",
+      "former": []
     },
     "friends-kingfisher/forest-feather-2": {
       "current": "e3ccdb478ce6d265",
@@ -2879,20 +2476,12 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "friends-frog/animal-0": {
-      "current": "d320aeadf8f0bf1d",
-      "former": [
-        "2faee59a7a721558",
-        "db384c987e0df228",
-        "7eded64a86d0f394"
-      ]
+      "current": "e146a44cc3b4fad6",
+      "former": []
     },
     "friends-frog/animal-1": {
-      "current": "d6ffcb538c83b7a1",
-      "former": [
-        "5e4e269e5f05a3b6",
-        "bfc573001a1f6886",
-        "aef3e94e7d7ebefa"
-      ]
+      "current": "302a0543cfedf529",
+      "former": []
     },
     "friends-frog/animal-2": {
       "current": "ed63896e3848d464",
@@ -2911,20 +2500,12 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "friends-frog/animal-4": {
-      "current": "24dadc8abd957568",
-      "former": [
-        "c4f9a8b29560afb4",
-        "e8c2a9ecc102a744",
-        "5095d102663fe8f8"
-      ]
+      "current": "3da84c084318e3c8",
+      "former": []
     },
     "friends-frog/animal-5": {
-      "current": "98288e472143dfa9",
-      "former": [
-        "b304e10cfc3fbb9c",
-        "70bfd8fe2caca72c",
-        "9172ce5c40af07d0"
-      ]
+      "current": "36da2a12ed7da09c",
+      "former": []
     },
     "friends-frog/animal-6": {
       "current": "785d0ab366d69363",
@@ -2935,12 +2516,8 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "friends-frog/animal-7": {
-      "current": "e6a2b9b75fe466b3",
-      "former": [
-        "75bdc5a1d177e489",
-        "b0d5b7a745441579",
-        "c5ef5d31f14595c5"
-      ]
+      "current": "17c50ec8b4c237ba",
+      "former": []
     },
     "friends-frog/animal-8": {
       "current": "9e70ca83b26484c1",
@@ -2959,12 +2536,8 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "friends-frog/animal-10": {
-      "current": "d5583709bd200407",
-      "former": [
-        "25ac22796c7d6dcd",
-        "ebeec6b75c21fbbd",
-        "0e40cd895db14181"
-      ]
+      "current": "ad6cac7e93e359a4",
+      "former": []
     },
     "friends-frog/animal-11": {
       "current": "3fd0c9262c472ce4",
@@ -2975,12 +2548,8 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "friends-frog/animal-12": {
-      "current": "d2d4440af44883f2",
-      "former": [
-        "22a37125c303cc95",
-        "e759e14391773765",
-        "1cb0bf95f11ce6d9"
-      ]
+      "current": "5787d5f33e84302d",
+      "former": []
     },
     "friends-frog/animal-13": {
       "current": "6194d6ccc354ee92",
@@ -2991,28 +2560,16 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "friends-frog/animal-14": {
-      "current": "3dcaa9cec0579d0a",
-      "former": [
-        "1517162647795cf6",
-        "5e54aea09107ccc6",
-        "6525ae56a664bcba"
-      ]
+      "current": "0524a9a11e7d1e61",
+      "former": []
     },
     "friends-frog/animal-15": {
-      "current": "276aac06f6805dde",
-      "former": [
-        "42aafee2a7ae7df2",
-        "d233570ce4202bc2",
-        "b18f5e92103682be"
-      ]
+      "current": "c324940d68fe91c3",
+      "former": []
     },
     "friends-frog/animal-16": {
-      "current": "85bed6d25015e804",
-      "former": [
-        "e9cf85ae9003e072",
-        "d618d4508e0bff42",
-        "b06baa1e8a28563e"
-      ]
+      "current": "d5841566b864e788",
+      "former": []
     },
     "friends-frog/animal-17": {
       "current": "31cb84cf39a9811d",
@@ -3031,28 +2588,16 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "friends-frog/animal-19": {
-      "current": "1a97f88838c49e78",
-      "former": [
-        "12419ff844585b66",
-        "947843ee913b5216",
-        "484caf68591ba32a"
-      ]
+      "current": "9e2ea6dae4ea5e50",
+      "former": []
     },
     "friends-frog/animal-20": {
-      "current": "6635e7733fc29923",
-      "former": [
-        "70e7c5ae4482f676",
-        "520bf39046725d46",
-        "3a41349e5d2fe93a"
-      ]
+      "current": "3e259da44bd26bf6",
+      "former": []
     },
     "friends-frog/animal-21": {
-      "current": "bc5797f3f245bcd1",
-      "former": [
-        "f0c8d3ea6919d7a6",
-        "7456d3fc6cf99296",
-        "1ce4c37a293e346a"
-      ]
+      "current": "8d0664e77f9d6381",
+      "former": []
     },
     "friends-frog/animal-22": {
       "current": "82fe3744285ec0da",
@@ -3063,20 +2608,12 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "friends-frog/animal-23": {
-      "current": "5db6ecbfdd0de1f5",
-      "former": [
-        "fadd808f7ab81827",
-        "331e22f5210fb9d7",
-        "294282bf43dd7ceb"
-      ]
+      "current": "4349bcab20f81775",
+      "former": []
     },
     "friends-frog/animal-24": {
-      "current": "4b98a638792bc5b6",
-      "former": [
-        "b4e7a9c01a0762e4",
-        "eeea2ce66ab6c554",
-        "690a7d90538e07a8"
-      ]
+      "current": "3c3dcc6165e2ad29",
+      "former": []
     },
     "friends-badger/riddle-0": {
       "current": "e58121a864ab0666",
@@ -3097,22 +2634,12 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "friends-badger/riddle-2": {
-      "current": "caf26ca0827489d8",
-      "former": [
-        "36745ad94ee8fda3",
-        "d9bd1c165884762e",
-        "fb71cecbf8a9ac65",
-        "4e916fa2c1d7783a"
-      ]
+      "current": "a6a516080a94a926",
+      "former": []
     },
     "friends-badger/riddle-3": {
-      "current": "24b4183396a5ca31",
-      "former": [
-        "557838f9e0c3cb3b",
-        "c3747c2e2596f636",
-        "120d24c306a225fd",
-        "c6206e0adfb56122"
-      ]
+      "current": "515c029e560f3422",
+      "former": []
     },
     "friends-badger/riddle-4": {
       "current": "5515be4daac44ce1",
@@ -3133,13 +2660,8 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "friends-badger/riddle-6": {
-      "current": "8f79bec17832ef51",
-      "former": [
-        "15d1ea00576b4662",
-        "31d24b8184b3e84f",
-        "f2dbdde612bae664",
-        "34159315848d58db"
-      ]
+      "current": "6666a715847dbbeb",
+      "former": []
     },
     "friends-badger/riddle-7": {
       "current": "3dce64d9ac31df83",
@@ -3169,13 +2691,8 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "friends-badger/riddle-10": {
-      "current": "ea591e00b70d1ac0",
-      "former": [
-        "67c65914f917f18e",
-        "b6a461071fff1b83",
-        "dab18db6ae38cb48",
-        "d907491b2facc497"
-      ]
+      "current": "b23b850c0aa507fe",
+      "former": []
     },
     "friends-badger/riddle-11": {
       "current": "b02aded08d11d3a4",
@@ -3187,13 +2704,8 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "friends-badger/riddle-12": {
-      "current": "f3b47dd93ef0e5f7",
-      "former": [
-        "dad4797cfd6ca5b6",
-        "fbf240c1e3579e9b",
-        "c96eeb6a5268b330",
-        "872408dd6f4f7e0f"
-      ]
+      "current": "4cf861d84aa6a1ce",
+      "former": []
     },
     "friends-badger/riddle-13": {
       "current": "d85bd82befe3e907",
@@ -3205,22 +2717,12 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "friends-badger/riddle-14": {
-      "current": "5c1038eacd58d15e",
-      "former": [
-        "56e2056a87efabf2",
-        "ed1d07f5f072cabf",
-        "d2d49c144856f7b4",
-        "06b65d4185fd69ab"
-      ]
+      "current": "a0d2f8c2792a26d6",
+      "former": []
     },
     "friends-badger/riddle-15": {
-      "current": "a64e40375443df39",
-      "former": [
-        "43793fed7db391ad",
-        "3284d47849eba180",
-        "d831a3e7eb19372b",
-        "9fdc66d44e4e4014"
-      ]
+      "current": "b9efb66ca896e3ac",
+      "former": []
     },
     "friends-badger/riddle-16": {
       "current": "f622de2d121f23f1",
@@ -3232,13 +2734,8 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "friends-badger/riddle-17": {
-      "current": "e94ba7ed610bbdf9",
-      "former": [
-        "898d4a24a5a69fd8",
-        "c24855613a381875",
-        "5d3947365574475e",
-        "bf8689052f210fe1"
-      ]
+      "current": "578d9be6ce8a4442",
+      "former": []
     },
     "friends-badger/riddle-18": {
       "current": "3e98983d288f15f9",
@@ -3250,12 +2747,8 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "friends-badger/riddle-19": {
-      "current": "819bb3e189258fb9",
-      "former": [
-        "6e9d83f3e8896bbb",
-        "983fd47c096d7d10",
-        "ae79062f52d97a2f"
-      ]
+      "current": "36929518eb4914c0",
+      "former": []
     },
     "friends-badger/riddle-20": {
       "current": "d0bf20bbfadd7ac1",
@@ -3276,29 +2769,16 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "friends-badger/riddle-22": {
-      "current": "ea298d3159756bdb",
-      "former": [
-        "0df6110589298c11",
-        "e43793e279bf3a9c",
-        "beadf78bc8bcbbd7",
-        "039a6baed8b57d88"
-      ]
+      "current": "23523c40aedeac10",
+      "former": []
     },
     "friends-badger/riddle-23": {
-      "current": "c59bb4cd09c52c79",
-      "former": [
-        "838f652f4ecad2cd",
-        "ce01cd68b66f70b2"
-      ]
+      "current": "ed9b42cc3411a0cc",
+      "former": []
     },
     "friends-badger/riddle-24": {
-      "current": "16a8dc54866c2d86",
-      "former": [
-        "b787075db39c3e6b",
-        "864a088a9ae987e6",
-        "ff235f0f3dc1182d",
-        "c4e7ba76403e3cf2"
-      ]
+      "current": "5d4cc9708e0c129e",
+      "former": []
     },
     "friends-ibex/pattern-AAB-1": {
       "current": "5af05b91145e6cf1",
@@ -4281,20 +3761,12 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "nature/clue-1": {
-      "current": "b2807f553bea15d7",
-      "former": [
-        "8e76604ba806218f",
-        "df38b3011a7c185d",
-        "90d1349c1ba2b4b0"
-      ]
+      "current": "416b13c352464995",
+      "former": []
     },
     "nature/clue-2": {
-      "current": "1daba7cc96c64332",
-      "former": [
-        "d602348dfc75bda9",
-        "b1b08b43b4541bbb",
-        "843c2df0d41e78f6"
-      ]
+      "current": "b0b479d6cf91919e",
+      "former": []
     },
     "nature/clue-3": {
       "current": "4cd4438621250c36",
@@ -4305,20 +3777,12 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "nature/clue-4": {
-      "current": "98984eb5b4d90b35",
-      "former": [
-        "fbb270a5ecbcc9cb",
-        "71794a07ef2cf9d9",
-        "231eda50be9a4854"
-      ]
+      "current": "75f09ec827010e84",
+      "former": []
     },
     "nature/clue-5": {
-      "current": "32364ccdb8f836cf",
-      "former": [
-        "34eec051520eeccf",
-        "710e56633dee93dd",
-        "086f6630e67d3410"
-      ]
+      "current": "e6871e7af51c7452",
+      "former": []
     },
     "nature/clue-6": {
       "current": "5d8160d173dcf61d",
@@ -4337,12 +3801,8 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "nature/clue-8": {
-      "current": "f6c6423fb68587b5",
-      "former": [
-        "69b1e2afa14e9e0f",
-        "5ec4450dc93e11dd",
-        "bf4df910e55a6370"
-      ]
+      "current": "8d33fcd6a64a021c",
+      "former": []
     },
     "nature/clue-9": {
       "current": "eee5bc91de593e6d",
@@ -4377,12 +3837,8 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "nature/clue-13": {
-      "current": "7c61c0db9c926b3d",
-      "former": [
-        "4737f3576a21cf95",
-        "55977235f5003a87",
-        "86ffe5ee5ef6320a"
-      ]
+      "current": "032423560424a1e6",
+      "former": []
     },
     "nature/clue-14": {
       "current": "818c67f2f7812cf4",
@@ -4401,20 +3857,12 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "nature/clue-16": {
-      "current": "3b0a632fe47a05bf",
-      "former": [
-        "dba9da9fc9ba39f5",
-        "f51c0d1192eaf0a7",
-        "14871fd0308bb80a"
-      ]
+      "current": "b00680bb7be71499",
+      "former": []
     },
     "nature/clue-17": {
-      "current": "ac3694e8ff88e8c0",
-      "former": [
-        "f92d8de8e09356f4",
-        "20b456a27aef8226",
-        "4bf8522351537f4b"
-      ]
+      "current": "4f8f4bf91d3120f9",
+      "former": []
     },
     "nature/clue-18": {
       "current": "c469d10afb8f622e",
@@ -4425,20 +3873,12 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "nature/clue-19": {
-      "current": "c66eda415c846c61",
-      "former": [
-        "915d7930d0e8e236",
-        "7d8b0b6a68af6aa4",
-        "cdd9c1713a109da9"
-      ]
+      "current": "148ba03c17472a66",
+      "former": []
     },
     "nature/clue-20": {
-      "current": "70a3a98abc58ca64",
-      "former": [
-        "62b7e7955da5599d",
-        "80b5b26f6a70b14f",
-        "dd8329e60ca80b22"
-      ]
+      "current": "4fab0bcdb0e77e57",
+      "former": []
     },
     "nature/clue-21": {
       "current": "3df786e6e102c06a",
@@ -4449,28 +3889,16 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "nature/clue-22": {
-      "current": "d007d4a3a48cbcc5",
-      "former": [
-        "6d53579ec24ab87e",
-        "bba6fd0c151c342c",
-        "694d0d01db4a0641"
-      ]
+      "current": "b18eaa8e2db8c7b4",
+      "former": []
     },
     "nature/clue-23": {
-      "current": "425011a7f7fc87f7",
-      "former": [
-        "c147fee36f9ea01b",
-        "8b1ac00123af8bc9",
-        "4529b8dc3c78c264"
-      ]
+      "current": "418a146bc0cb5f89",
+      "former": []
     },
     "nature/clue-24": {
-      "current": "1d39cddf992bcc0f",
-      "former": [
-        "c7d82f25361884db",
-        "ab968ff7156adb49",
-        "4be91ae4253c3ec4"
-      ]
+      "current": "cfae0b10b0b8338e",
+      "former": []
     },
     "rocket/5-1": {
       "current": "b3d97861acbb107b",
@@ -5025,12 +4453,8 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "syllable/word-13": {
-      "current": "08a6ad1a812b8580",
-      "former": [
-        "99d8fa9fb9aec9cd",
-        "b1719a4a5f5cb0d2",
-        "35100d5233ec6b82"
-      ]
+      "current": "3aca9ed56a73ae63",
+      "former": []
     },
     "syllable/word-14": {
       "current": "3220e04e4247f49e",
@@ -5169,12 +4593,8 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "syllable/word-31": {
-      "current": "de0e918e20614a86",
-      "former": [
-        "52f2f3a5f0157c0d",
-        "41424c6a3faf5cf2",
-        "60be3c62bb5518a2"
-      ]
+      "current": "cfaefc7c1929ae08",
+      "former": []
     },
     "syllable/word-32": {
       "current": "72ba92c01f8b70d0",
@@ -5411,12 +4831,8 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "sequence/story-0": {
-      "current": "c556578b50b18ead",
-      "former": [
-        "cc6390126f1ef4d2",
-        "d0281debe5c372b3",
-        "41946588d264b63e"
-      ]
+      "current": "685fd2be7294ba94",
+      "former": []
     },
     "sequence/story-1": {
       "current": "21975aa75ccfff5f",
@@ -5467,28 +4883,16 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "sequence/story-7": {
-      "current": "13a85ebc8887e778",
-      "former": [
-        "3e1b382aa9b2dce0",
-        "7147a08f7cdb9cc1",
-        "dce6084cac284bcc"
-      ]
+      "current": "1ff0bda5ba234ec5",
+      "former": []
     },
     "sequence/story-8": {
-      "current": "7e0ab1d6b00e5cf8",
-      "former": [
-        "14aff6e11ad1908f",
-        "109e0310f83b986e",
-        "57fd7d87977a5ce3"
-      ]
+      "current": "1fa2699a6f23ed4a",
+      "former": []
     },
     "sequence/story-9": {
-      "current": "e67acff7216846f9",
-      "former": [
-        "a752c2b9d98b0bd3",
-        "530d54fc557c0772",
-        "26a5736f9e173cbf"
-      ]
+      "current": "a1051aebe8e76a4f",
+      "former": []
     },
     "sequence/story-10": {
       "current": "b73357a0d51a3378",
@@ -5499,12 +4903,8 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "sequence/story-11": {
-      "current": "6ceda5799d476e67",
-      "former": [
-        "9930e8901a0f6078",
-        "25714c97412cbfb9",
-        "30f6573ee0b7dd14"
-      ]
+      "current": "14bf4b7d3ae8f2c1",
+      "former": []
     },
     "sequence/story-12": {
       "current": "6fb586b35aa03bdb",
@@ -5523,12 +4923,8 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "sequence/story-14": {
-      "current": "931edf2f271453b7",
-      "former": [
-        "3ba5c9fef500185a",
-        "6bc331d306d5757b",
-        "c7645e3c05dfbc36"
-      ]
+      "current": "c3063273f1581cef",
+      "former": []
     },
     "sequence/story-15": {
       "current": "6ef51189e9706b1f",
@@ -5539,12 +4935,8 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "sequence/story-16": {
-      "current": "0841521515bf844d",
-      "former": [
-        "9f90002010b39e04",
-        "b8054ea5d6cc1a65",
-        "8ab9d7f215e96268"
-      ]
+      "current": "e7b3b6d9637868a7",
+      "former": []
     },
     "sequence/story-17": {
       "current": "ab71db4363c7b4cb",
@@ -5555,60 +4947,32 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "sequence/story-18": {
-      "current": "284ddeb16648b6cd",
-      "former": [
-        "b11cd6af8b64360f",
-        "8dddb494af7bb88e",
-        "8b0624c961d649a3"
-      ]
+      "current": "cca034ca12ad61f6",
+      "former": []
     },
     "sequence/story-19": {
-      "current": "697fb0672a7b5099",
-      "former": [
-        "7ffa5b038743cfe9",
-        "3c6f91cce3043ae8",
-        "a43d53a1e06f5c85"
-      ]
+      "current": "8b34ce864b867afc",
+      "former": []
     },
     "sequence/story-20": {
-      "current": "4f5d0b48a92d5ece",
-      "former": [
-        "5e1f8a3380dbb71b",
-        "d1d49d70430b57da",
-        "a35a266dec934eb7"
-      ]
+      "current": "a15dbd3de45a4985",
+      "former": []
     },
     "sequence/story-21": {
-      "current": "a631060f20c63015",
-      "former": [
-        "6c9e0ed4b113378a",
-        "6ba0c23f02a885cb",
-        "aed3635ed1a50826"
-      ]
+      "current": "1949a0dae08178ec",
+      "former": []
     },
     "sequence/story-22": {
-      "current": "da3c3e1cca5821ae",
-      "former": [
-        "fbb6747284e5f26a",
-        "82214a4d7ad90c6b",
-        "b9d8e88cab7e6306"
-      ]
+      "current": "a6faa44af2abdff0",
+      "former": []
     },
     "sequence/story-23": {
-      "current": "97078e52ab126b54",
-      "former": [
-        "2dd939194595d19b",
-        "f2e1f1406776c67a",
-        "b3ae77471a81a2f7"
-      ]
+      "current": "60986e4594e91cd5",
+      "former": []
     },
     "sequence/story-24": {
-      "current": "ccebb19066c78328",
-      "former": [
-        "8cd96f42d6ba387e",
-        "f317ddede24755ff",
-        "a2856d84397f1c92"
-      ]
+      "current": "d9de40687995b278",
+      "former": []
     },
     "treasure/0-0": {
       "current": "42f3471c51be5adc",
@@ -6973,20 +6337,12 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "vowels/word-31-1": {
-      "current": "d7cf00dde6996c8f",
-      "former": [
-        "c97866e67c8ef510",
-        "2711312b81fb8697",
-        "323e67e2287fd180"
-      ]
+      "current": "5fcb893ee8c54d16",
+      "former": []
     },
     "vowels/word-31-4": {
-      "current": "a90f4231bcce3e83",
-      "former": [
-        "826f5373b2b37d5b",
-        "74ce43ba909903dc",
-        "1b07660f8812bdcb"
-      ]
+      "current": "654b63d2b754359a",
+      "former": []
     },
     "vowels/word-32-1": {
       "current": "9a137ed9f0057185",
@@ -7205,11 +6561,8 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "read-puzzle/word-31": {
-      "current": "fbe16dc29d1de0f2",
-      "former": [
-        "9fd87571e49b4f4f",
-        "9c08099ea24167f4"
-      ]
+      "current": "c64b9eeea5a40a6e",
+      "former": []
     },
     "read-puzzle/word-32": {
       "current": "5a9c3f0d693877cd",
@@ -7269,13 +6622,8 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "read-word/word-4": {
-      "current": "018381193641de99",
-      "former": [
-        "58bf07be0bfa420a",
-        "04722b7d1766d2b5",
-        "ea4192fc64a0882e",
-        "3ee7baf2de6391e4"
-      ]
+      "current": "23a157ef8d2f9a5f",
+      "former": []
     },
     "read-word/word-5": {
       "current": "81c377268cd69858",
@@ -7314,13 +6662,8 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "read-word/word-9": {
-      "current": "09c8313332e07d6d",
-      "former": [
-        "10a69f11e26e6b81",
-        "aefb0800ecf31cde",
-        "db409ac7320446e5",
-        "bb20c86de06597ef"
-      ]
+      "current": "67ca2cd792b4965b",
+      "former": []
     },
     "read-word/word-10": {
       "current": "0dabb40dd48de8c1",
@@ -7350,13 +6693,8 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "read-word/word-13": {
-      "current": "6b3d246bba2f9b5d",
-      "former": [
-        "d224ef65c6d349c9",
-        "d8e44ef8100129d6",
-        "723e505b499c002d",
-        "bc2a6f213f58a227"
-      ]
+      "current": "f7cc31cf4d34cd91",
+      "former": []
     },
     "read-word/word-14": {
       "current": "c11defcdd79e272f",
@@ -7431,13 +6769,8 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "read-word/word-22": {
-      "current": "f609b13556e29e0f",
-      "former": [
-        "c56ea56ec1b94b98",
-        "0c711a937c299f87",
-        "c4175d9c172f367c",
-        "941c0cbab1b323f6"
-      ]
+      "current": "a387f1365f8c0e46",
+      "former": []
     },
     "read-word/word-23": {
       "current": "e4656bab7de45695",
@@ -7476,13 +6809,8 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "read-word/word-27": {
-      "current": "b713c556874be852",
-      "former": [
-        "c63d2f72941622aa",
-        "438053c32e260af5",
-        "05dd37b41a0c808e",
-        "d7c575ce509ed084"
-      ]
+      "current": "ce35ed5f67493845",
+      "former": []
     },
     "read-word/word-28": {
       "current": "a28fc4ebb413c7a1",
@@ -7512,13 +6840,8 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "read-word/word-31": {
-      "current": "ce57577374ae14ed",
-      "former": [
-        "3c491e3921264b0f",
-        "c1000406499ba5f0",
-        "b998311f3dea792b",
-        "c9452ab514a5a461"
-      ]
+      "current": "d29904f08d495252",
+      "former": []
     },
     "read-word/word-32": {
       "current": "5072a6bb3f2e26fb",
@@ -7972,11 +7295,8 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "trace/letter-A": {
-      "current": "aeea8f4bbe4111db",
-      "former": [
-        "61504f643968988c",
-        "b2c5c96e4e365ce0"
-      ]
+      "current": "992afec6f3b23914",
+      "former": []
     },
     "trace/letter-B": {
       "current": "938ee1372bdcf6b1",
@@ -8014,18 +7334,12 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "trace/letter-G": {
-      "current": "6ec9dad75f6ae565",
-      "former": [
-        "0b81b0861c41d2ca",
-        "9eea23ccacbab326"
-      ]
+      "current": "e90d676e1ecefe08",
+      "former": []
     },
     "trace/letter-H": {
-      "current": "be5f74ca73addd8c",
-      "former": [
-        "c83648713bad83e5",
-        "1d984d2bc16220c9"
-      ]
+      "current": "c29237a452200086",
+      "former": []
     },
     "trace/letter-I": {
       "current": "af560a3294185d50",
@@ -8035,11 +7349,8 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "trace/letter-J": {
-      "current": "8693b3695728d05d",
-      "former": [
-        "a54b2c4f79c8e4a7",
-        "e2b75afd334c4a8b"
-      ]
+      "current": "fe4433643d8cf6e8",
+      "former": []
     },
     "trace/letter-K": {
       "current": "46b2f4fb3824a20b",
@@ -8063,11 +7374,8 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "trace/letter-N": {
-      "current": "a9c460aa7ef08958",
-      "former": [
-        "6b9f54c308adaf23",
-        "08b040e9e5f8fe0f"
-      ]
+      "current": "a9dbe779bb020833",
+      "former": []
     },
     "trace/letter-O": {
       "current": "234fa719a2c7b2c9",
@@ -8077,11 +7385,8 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "trace/letter-P": {
-      "current": "d105ecd1655fd177",
-      "former": [
-        "1bd7a5997bf1bcfd",
-        "91748b33440e93d1"
-      ]
+      "current": "ef157d511781b1b3",
+      "former": []
     },
     "trace/letter-Q": {
       "current": "edd5cb69091e2c0d",
@@ -8126,11 +7431,8 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "trace/letter-W": {
-      "current": "3556ba9467fcd0e8",
-      "former": [
-        "37b6afb67dba28da",
-        "4b94717c0a4b4936"
-      ]
+      "current": "75223dda7fd11c76",
+      "former": []
     },
     "trace/letter-X": {
       "current": "3b006a894af65ac5",
@@ -8175,11 +7477,8 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "trace/letter-a": {
-      "current": "6d753216fb6d877a",
-      "former": [
-        "85bc6ec4cd695aec",
-        "7bdfd7ce9f90bb80"
-      ]
+      "current": "92bcc022ad75f13e",
+      "former": []
     },
     "trace/letter-b": {
       "current": "14f07d711a2a312b",
@@ -8217,18 +7516,12 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "trace/letter-g": {
-      "current": "db59f75f55073271",
-      "former": [
-        "79785c26e8304a2a",
-        "a31322ac809e1cc6"
-      ]
+      "current": "bf535ab5c62051d9",
+      "former": []
     },
     "trace/letter-h": {
-      "current": "1448c10f8ff062db",
-      "former": [
-        "b2c0865160ec39c5",
-        "88e976cb1ae30be9"
-      ]
+      "current": "e7e85ddcda77c2a0",
+      "former": []
     },
     "trace/letter-i": {
       "current": "6a75f01393d1d7b9",
@@ -8238,11 +7531,8 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "trace/letter-j": {
-      "current": "a3abfe25e9ae55f7",
-      "former": [
-        "f9e3a3af0eb26387",
-        "fcc5ad9d4b696cab"
-      ]
+      "current": "cb665425d9d57a89",
+      "former": []
     },
     "trace/letter-k": {
       "current": "5122c422885d3f80",
@@ -8266,11 +7556,8 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "trace/letter-n": {
-      "current": "624b26a1217c54ef",
-      "former": [
-        "2db14ca3b1ae3003",
-        "2f223cc9e9ff1e2f"
-      ]
+      "current": "92aece62793b3554",
+      "former": []
     },
     "trace/letter-o": {
       "current": "aca52f562c19bed0",
@@ -8280,11 +7567,8 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "trace/letter-p": {
-      "current": "bf354217d32378a1",
-      "former": [
-        "78200839a51832dd",
-        "af5c1dd3a1773ef1"
-      ]
+      "current": "2c737899762ab391",
+      "former": []
     },
     "trace/letter-q": {
       "current": "318c9bcd9d26f5cd",
@@ -8329,11 +7613,8 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "trace/letter-w": {
-      "current": "49c83b7dbbde3133",
-      "former": [
-        "c943785649a8a03a",
-        "c3fd5ddce21672d6"
-      ]
+      "current": "69157e061400e23e",
+      "former": []
     },
     "trace/letter-x": {
       "current": "d315204421a10052",

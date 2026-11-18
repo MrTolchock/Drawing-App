@@ -1,0 +1,46 @@
+{
+  "format": "waldpost-image-generation-record",
+  "version": 1,
+  "id": "rhyme-cutout-repair",
+  "style": "waldpost-watercolour-pencil-v1",
+  "date": "2026-11-18",
+  "tool": "ChatGPT image_gen.imagegen",
+  "source": "design/illustrations/sources/2026-11-18-library/rhyme-cutout-repair.png",
+  "sourceSha256": "f89ff65cde2bdbf57878ecc9d0be9a35f9b2e1df059f97cbface8596dc741e3e",
+  "request": {
+    "prompt": "WALDPOST CANONICAL ILLUSTRATION STYLE — waldpost-watercolour-pencil-v1\n\nUse the supplied canonical animals.png and objects.png reference images as the authority for drawing technique. They show the predominant style of the current Waldpost gallery. Match their actual pixels, not an imagined style suggested by a filename.\n\nDraw warm children's picture-book watercolour finished with visible coloured-pencil strokes. Use light, gently uneven washes, organic sepia contours, delicate hatching, softly irregular edges and modest drawn shading. Surfaces look painted and pencilled, with paper grain within the illustration. Keep the warmth of cream, honey brown, restrained sage and blue, while preserving every exact colour required by a task. Subjects remain friendly, recognizable and anatomically believable.\n\nDo not turn the drawing into a 3D render, plush toy, clay or felt craft, photograph, glossy object, embossed surface or studio-lit miniature. Avoid deep ambient-occlusion shadows, inflated forms and realistic material microtexture. Do not mix in another illustration technique or use historical artwork as a style reference.\n\nThe role instructions below set the necessary detail and composition within this one style. Learning pictures retain fine drawn contours; small navigation symbols use the approved simpler, broader shapes and flat fills in the same palette. Keep the existing rendered game-character identities separate from image-generated learning subjects. Exact geometry and handwriting remain authored paths.\n\nPreserve subject identity, counted quantities, exact answer colours and action differences. Use real alpha for isolated pictures and stationery, and an opaque canvas only when the selected role requires a scene or branding image. No accidental background, halo, visible grid, labels or extra objects.\n\nROLE: learning\nMatch the canonical watercolour and coloured-pencil technique closely: fine organic contours, uneven washes and gentle drawn volume. Keep accurate species, action contrasts, one counted object per item and exact answer colours. Use transparent square cells, generous gutters and complete silhouettes.\n\nATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:\n1. design/illustrations/references/watercolour-pencil-v1/animals.png — canonical-style: canonical drawing technique for animals; fixed majority-style pixels\n2. design/illustrations/references/watercolour-pencil-v1/objects.png — canonical-style: canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels\n3. assets/waldatelier/rhyme-vocabulary.webp — composition-only: current four subject meanings, proportions and composition only\n\nSUBJECT AND LAYOUT BRIEF:\nRepaint four specific pictures from the current rhyme sheet in the fixed canonical animal and object medium. Reference three identifies the previous subjects and their meanings. Draw a square 2 by 2 sheet of four independently isolated pictures. Keep the centre of each picture near the centre of its own square and leave at least 15 percent of clear space on each side. Finish all legs, wing tips, horns, stream banks and rails well inside the cells.\n\nUpper left, rhyme-fly: one friendly, recognizable housefly in three-quarter side view. A small charcoal and warm-grey body, six jointed legs, a pair of complete translucent wings with light pencil veins, two rounded muted-brown fly eyes. Fine organic sepia pencil and soft uneven washes like the canonical bee and spider. A clearly recognizable fly without a bee's stripes or a spider's extra legs. Pale blue wings, visibly painted, never glass or rendered plastic. No floor or shadow.\n\nUpper right, rhyme-goat: one complete tan-and-cream young goat looking right with a short beard, two gently backwards-curving horns, split hooves, and short upturned tail. Make the goat believable and clear at answer-card size, in the same pencil and wash as the sheep and cow. No bells, grass or extra objects.\n\nLower left, rhyme-brook: a tiny winding blue stream, seen gently from above, running from a narrower bend to a wide near bend, with a few simple green bank shapes and round pebbles. One irregular isolated woodland-water vignette with clear blue flow. The stream and banks end naturally in the transparency. No cut edges, rectangular background, pond, animal, lettering or horizon.\n\nLower right, rhyme-rail: one short complete piece of railway track, two parallel rails with clearly defined ends over four honey-brown wooden sleepers, viewed at a slight angle. Draw the metal with restrained blue-grey wash and irregular pencil, without realistic reflection. No vehicle or ground underneath.\n\nEach item is one distinct educational picture in the style of the frozen references. Use true alpha between and around silhouettes, including through gaps in the rails and fly legs. Complete the drawing at every edge. Keep the outside completely transparent with no paper texture behind the subject, checkerboard, square matte, drop shadow, text or outlines around cells.\n\nSTYLE PRIORITY: The brief changes subjects and layout only. Keep waldpost-watercolour-pencil-v1 and the supplied canonical reference technique throughout; do not import the style of a composition-only reference.\n",
+    "referenced_image_paths": [
+      "design/illustrations/references/watercolour-pencil-v1/animals.png",
+      "design/illustrations/references/watercolour-pencil-v1/objects.png",
+      "assets/waldatelier/rhyme-vocabulary.webp"
+    ],
+    "transparent_background": true
+  },
+  "references": [
+    {
+      "path": "design/illustrations/references/watercolour-pencil-v1/animals.png",
+      "sha256": "65867082294d157ab4ffbe33926857272625ef3c25cdb7cab81c2a4ea73d9316",
+      "purpose": "canonical drawing technique for animals; fixed majority-style pixels",
+      "usage": "canonical-style"
+    },
+    {
+      "path": "design/illustrations/references/watercolour-pencil-v1/objects.png",
+      "sha256": "0bb37d6fc82c75034eddf30da2cc57c546dd8bc70d246aeeda85b637bd87dd80",
+      "purpose": "canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels",
+      "usage": "canonical-style"
+    },
+    {
+      "path": "assets/waldatelier/rhyme-vocabulary.webp",
+      "sha256": "7017fb46ace669eb61fe475135e09f2feb1d87932d4248c7933f48653af943b3",
+      "purpose": "current four subject meanings, proportions and composition only",
+      "usage": "composition-only",
+      "preservedAt": "design/evidence/2026-11-18-image-library/rhyme-vocabulary-before.webp"
+    }
+  ],
+  "subjects": [
+    "rhyme-fly",
+    "rhyme-goat",
+    "rhyme-brook",
+    "rhyme-rail"
+  ]
+}

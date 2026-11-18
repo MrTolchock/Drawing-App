@@ -3,6 +3,7 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const sharp=require('../node_modules/sharp'),style=require('./style.cjs'),{catalogue}=require('./library.cjs');
+const {readRepair}=require('./prepare-library-repair.cjs');
 const root=path.resolve(__dirname,'../..'),output='design/artwork/generator-inputs.json';
 const read=file=>fs.readFileSync(path.join(root,file)),json=file=>JSON.parse(read(file));
 const sha=bytes=>crypto.createHash('sha256').update(bytes).digest('hex');
@@ -24,6 +25,7 @@ async function bundle(){
    requiresBriefCustomization:['subject-sheet','background','layout-repair','transparency-repair'].includes(item.id),
    request:{...packet,referenced_image_paths:references.map(ref=>ref.path)},references}];
  }));
+ const cellRepairs=new Map();
  async function fileInfo(file){
   const bytes=read(file),metadata=await sharp(bytes).metadata();
   return {path:file,sha256:sha(bytes),width:metadata.width,height:metadata.height,hasAlpha:metadata.hasAlpha};
@@ -34,7 +36,15 @@ async function bundle(){
   if(record.forwardPrompt&&requests[record.requestId]?.promptFile!==record.forwardPrompt)throw Error('Mismatched forward prompt for '+record.id);
   const files=await Promise.all((record.outputs||[record.file]).filter(Boolean).map(fileInfo));
   const result={...record,kind,files};
-  if(record.manifest){
+  if(record.cellRepair){
+   if(!cellRepairs.has(record.cellRepair))cellRepairs.set(record.cellRepair,readRepair(record.cellRepair));
+   const {repair,redraws}=cellRepairs.get(record.cellRepair),sheet=repair.sheets[record.id];
+   if(!sheet||sheet.width!==files[0].width||sheet.height!==files[0].height||sheet.ids.some(id=>!record.subjects.some(subject=>subject.id===id)))throw Error('Invalid cell preparation for '+record.id);
+   result.preparation={manifest:record.cellRepair,baseCommit:repair.baseCommit,framing:repair.framing,affectedSubjects:sheet.ids,
+    redrawRecords:redraws.filter(redraw=>redraw.subjects.some(id=>sheet.ids.includes(id))).map(redraw=>redraw.recordFile),
+    command:'node tools/illustrations/prepare-library-repair.cjs '+record.cellRepair+' assets/waldatelier '+record.id};
+   result.source={path:record.file,commit:repair.baseCommit};
+  }else if(record.manifest){
    const manifest=json(record.manifest);
    result.preparation={manifest:record.manifest,pathsRelativeTo:path.posix.dirname(record.manifest),settings:manifest,
     command:'node tools/illustrations/'+(manifest.format==='waldpost-illustration-atlas'?'pack-atlas.cjs':'prepare-image.cjs')+' '+record.manifest};
@@ -50,8 +60,8 @@ async function bundle(){
   const brief=read(requests[record.requestId].brief).toString();
   for(const subject of subjects)if(!new RegExp('(^|[^a-z0-9-])'+subject.id+'([^a-z0-9-]|$)').test(brief))throw Error('Brief lacks stable cell ID '+subject.id+': '+sheet.id);
   assets.push(await assetRecord({id:sheet.id,...record,file:'assets/waldatelier/'+sheet.file,columns:sheet.columns,rows:sheet.rows,subjects,
-   ...(fs.existsSync(path.join(root,manifest))?{manifest}:{}),
-   ...(!fs.existsSync(path.join(root,manifest))?{preparationNote:'No original packing manifest is retained. For a new PNG, create an atlas manifest with this exact grid and ordered subject list; see GENERATOR-INPUTS.md.'}:{})},'learning-sheet'));
+   ...(fs.existsSync(path.join(root,manifest))?{[record.cellRepair?'priorPreparationManifest':'manifest']:manifest}:{}),
+   ...(!record.cellRepair&&!fs.existsSync(path.join(root,manifest))?{preparationNote:'No original packing manifest is retained. For a new PNG, create an atlas manifest with this exact grid and ordered subject list; see GENERATOR-INPUTS.md.'}:{})},'learning-sheet'));
  }
  for(const [key,kind]of [['currentGenerated','current-artwork'],['retainedGenerated','retained-legacy'],['preparationInputs','preparation-input'],['designDrafts','design-record'],['retiredRuntimeArtwork','retired-artwork']]){
   for(const record of inventory[key]||[]){

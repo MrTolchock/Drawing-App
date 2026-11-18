@@ -1,6 +1,6 @@
 # Current visual consistency audit
 
-Current game art: **Waldpost 9.3.92**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal/object reference pixels and **35** complete forward image-generation prompts.
+Current game art is **Waldpost 9.3.95**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal and object reference pixels and **35** complete forward image-generation prompts.
 
 ## Stay on the Steg in Frosch's swamp — 9.3.87
 
@@ -113,3 +113,11 @@ The swamp keeps about 96 % of its open water; the Steg's firm start moves by les
 Gallery and review use the Settings paper frame and typography. Gallery cards contain only portrait/name; review overview cards omit curriculum codes and use general competence headings. Details retain curriculum references. Saved general comments clear the entry field while remaining in history; unsaved drafts remain available. The developer controls have a distinct inset subsection. Fisch has a visible character filter and remains available for future puzzle assignment. [The change record](../docs/PUZZLE-REVIEW-ITERATIONS-2026-11-18.md) describes the per-iteration historical compatibility proof and thirty-day analysis logs. No new artwork is introduced.
 
 [Phone/tablet evidence](evidence/2026-11-18-adult-menus/README.md) and computed-style checks compare the three menu frames directly. Real review checks pass all 130 previously adjusted iterations, native mouse/touch for all 31 games, retries, rejection, celebration, partial queues and offline restoration. The gameplay-log browser check passes real answers, placements, handwriting, timing, export and developer-mode isolation.
+
+## Consistent edges, scale and placement in the image library — 18 November 2026, 9.3.95
+
+The audit compared all 238 library images with the canonical animal and object paintings. Twenty subjects were redrawn, including the lynx, marten and four rhyme pictures with prominent cutout artifacts. The remaining 69 corrected subjects use the original painted strokes, with faint background haze removed and missing edges recovered where the original sheet still contains them. Both seated cat IDs use the same tabby drawing. Corrected subjects are centred at 80% of the cell on their longest side, with their original proportions and soft edges.
+
+Pixel comparisons against 9.3.94 confirm that 149 images are identical. Fine edges and the original atlas grid are preserved in lossless downloads. Gallery previews and PNG downloads use the same sheet version. The 796 iterations with identical presentation retain their revisions. The 162 revised iterations display corrected art. A read-only check of the GitHub review ledger verified current approvals, later comments and restrictions, and recovery on a fresh device.
+
+All 151 model tests and the phone and tablet rendering checks for all 31 puzzles passed. The gallery check verified the pixels and transparency of 129 PNG exports, including five full browser downloads. The side-by-side crops, dark-background checks and real puzzle screenshots are available in the [image library evidence](evidence/2026-11-18-image-library/README.md).
