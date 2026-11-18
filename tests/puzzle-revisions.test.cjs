@@ -47,9 +47,10 @@ test('approvals from the former shared leaf cannot approve the redrawn gallery a
  const v36=releases.find(r=>r.commit.startsWith('9379fcd')),v37=releases.find(r=>r.commit.startsWith('719a907'));
  for(const g of FK.friendsLibrary.catalogue())for(const release of [v36,v37])for(const it of FK.puzzleCatalogue.iterations(g.id))assert.equal(FK.puzzleCatalogue.acceptsRevision(g.id,it.id,release.iterations[it.id]?.revision),false,it.id+' has new shared artwork');
 });
-test('modern historical revisions recover only verified unchanged puzzles with their complete implementation token',()=>{
- const {FK}=require('../tools/puzzle-catalogue.cjs').setup(),C=FK.puzzleCatalogue;
+test('the iteration recovery release retained verified historical decisions with their complete implementation token',()=>{
  const {environment}=require('../tools/puzzle-environment.cjs'),{snapshotReader}=require('../tools/puzzle-review-build.cjs');
+ const release=environment({read:snapshotReader('b7c77ec0a318ac52e36ad5e1fcfdac9e249d4467').read,review:false});release.execute('js/friends/puzzle-implementation.js');
+ const {FK}=release,C=FK.puzzleCatalogue;
  const old=environment({read:snapshotReader('d030f8d0919c980ecf7fc49b80f9785ded68e09b').read,review:false});old.execute('js/friends/puzzle-implementation.js');
  const changed=new Set(['friends-squirrel','friends-hedgehog','friends-deer','friends-badger','trace-numbers']);
  for(const game of FK.friendsLibrary.catalogue()){

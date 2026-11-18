@@ -2,12 +2,13 @@
 'use strict';
 (async()=>{
  const byId=id=>document.getElementById(id),grid=byId('images'),search=byId('search'),sheetFilter=byId('sheet'),used=byId('used'),more=byId('more'),count=byId('count'),message=byId('message');
- const response=await fetch('library.json');if(!response.ok)throw Error('Die Bildübersicht konnte nicht geladen werden.');const data=await response.json();
+ const response=await fetch('library.json',{cache:'no-cache'});if(!response.ok)throw Error('Die Bildübersicht konnte nicht geladen werden.');const data=await response.json();
  const sheets=new Map(data.sheets.map(s=>[s.id,s])),loaded=new Map();let limit=60;
  const node=(tag,text,cls)=>{const el=document.createElement(tag);if(text!==undefined)el.textContent=text;if(cls)el.className=cls;return el;};
  const fold=text=>text.normalize('NFD').replace(/\p{Diacritic}/gu,'').toLowerCase();
  const notice=text=>message.textContent=text;
- function load(sheet){if(!loaded.has(sheet.file))loaded.set(sheet.file,new Promise((resolve,reject)=>{const img=new Image();img.onload=()=>resolve(img);img.onerror=()=>reject(Error('Der Bildbogen fehlt.'));img.src=sheet.file;}));return loaded.get(sheet.file);}
+ const sheetURL=sheet=>sheet.file+'?v='+sheet.sha256.slice(0,16);
+ function load(sheet){const url=sheetURL(sheet);if(!loaded.has(url))loaded.set(url,new Promise((resolve,reject)=>{const img=new Image();img.onload=()=>resolve(img);img.onerror=()=>reject(Error('Der Bildbogen fehlt.'));img.src=url;}));return loaded.get(url);}
  async function png(entry){
   try{const sheet=sheets.get(entry.sheet),img=await load(sheet),r=entry.sourceRect,canvas=document.createElement('canvas');canvas.width=Math.ceil(r.width);canvas.height=Math.ceil(r.height);canvas.getContext('2d').drawImage(img,r.x,r.y,r.width,r.height,0,0,canvas.width,canvas.height);
    const blob=await new Promise((resolve,reject)=>canvas.toBlob(value=>value?resolve(value):reject(Error('PNG-Export fehlgeschlagen.')),'image/png')),url=URL.createObjectURL(blob),a=node('a');a.href=url;a.download=entry.id+'.png';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);notice(entry.label+' als transparentes PNG heruntergeladen.');
@@ -15,9 +16,9 @@
  }
  function card(entry){
   const sheet=sheets.get(entry.sheet),article=node('article',undefined,'image-card');article.id=entry.id;article.dataset.image=entry.id;
-  const picture=node('span',undefined,'picture');picture.setAttribute('role','img');picture.setAttribute('aria-label',entry.label);picture.style.backgroundImage='url("'+sheet.file+'")';picture.style.backgroundSize=sheet.columns*100+'% '+sheet.rows*100+'%';picture.style.backgroundPosition=entry.column*100/Math.max(1,sheet.columns-1)+'% '+entry.row*100/Math.max(1,sheet.rows-1)+'%';
+  const picture=node('span',undefined,'picture');picture.setAttribute('role','img');picture.setAttribute('aria-label',entry.label);picture.style.backgroundImage='url("'+sheetURL(sheet)+'")';picture.style.backgroundSize=sheet.columns*100+'% '+sheet.rows*100+'%';picture.style.backgroundPosition=entry.column*100/Math.max(1,sheet.columns-1)+'% '+entry.row*100/Math.max(1,sheet.rows-1)+'%';
   const preview=node('div',undefined,'preview');preview.append(picture);const body=node('div',undefined,'card-body');body.append(node('h2',entry.label),node('code',entry.id));
-  const atlas=node('a','Bildbogen: '+sheet.id,'source');atlas.href=sheet.file;body.append(atlas);
+  const atlas=node('a','Bildbogen: '+sheet.id,'source');atlas.href=sheetURL(sheet);body.append(atlas);
   if(entry.usedBy.length){const details=node('details');details.append(node('summary','In '+entry.usedBy.length+' Rätseln'));
    for(const id of entry.usedBy){const link=node('a',data.puzzles[id].title);link.href='https://github.com/MrTolchock/Drawing-App/blob/main/docs/puzzles/'+id+'.md';details.append(link);}body.append(details);
   }else body.append(node('span','Zur Wiederverwendung vorhanden','source'));

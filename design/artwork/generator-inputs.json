@@ -72,7 +72,7 @@
         },
         {
           "path": "assets/waldatelier/forest-actions.webp",
-          "sha256": "d3a67b017d42bd3bea98d1034c0316d3ba11e7575e6bcadda7ae1e7962f74862",
+          "sha256": "25e2c88dd8053e5b5f00375f4f28b06dd2fdb70e391149cbc83a8bef08f479e7",
           "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
           "usage": "composition-only"
         }
@@ -177,7 +177,7 @@
         },
         {
           "path": "assets/waldatelier/forest-wildlife.webp",
-          "sha256": "f152dfbc074a80d29d6fc91a1d7cbef62a3bec70b253d94bbaae60f50a1de1e8",
+          "sha256": "36697977ce1391e1f2960da24545bf9ecc854d5c58d4409bc6adb5ef8e6d0623",
           "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
           "usage": "composition-only"
         }
@@ -247,7 +247,7 @@
         },
         {
           "path": "assets/waldatelier/rhyme-vocabulary.webp",
-          "sha256": "7017fb46ace669eb61fe475135e09f2feb1d87932d4248c7933f48653af943b3",
+          "sha256": "563825738c0c15d8f544ee38a5d0f27c5b49ac9958f5b1926c8418062682957d",
           "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
           "usage": "composition-only"
         }
@@ -779,7 +779,7 @@
         },
         {
           "path": "assets/waldatelier/alphabet.webp",
-          "sha256": "1999236e340fca2aa6cb22a2c48368d9a4b78882b5a5c92867d3df25c64385fb",
+          "sha256": "0d6613bbf5c54cbc51be7bc55d318eff09ce0d6d72388ac35e02471eac56a887",
           "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
           "usage": "composition-only"
         }
@@ -814,7 +814,7 @@
         },
         {
           "path": "assets/waldatelier/animals.webp",
-          "sha256": "f12730079d950dd197225d118d04b049f531cf4d6eec76817f002c589b946a65",
+          "sha256": "bb44764718b87c28864cc51f752bbf9f017203c456892a8111e4d33a85f15295",
           "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
           "usage": "composition-only"
         }
@@ -849,7 +849,7 @@
         },
         {
           "path": "assets/waldatelier/creatures.webp",
-          "sha256": "30e05028bb56dedaf58dd88f0bd52803fee08177cd2c636870a417ef8f0aa0f2",
+          "sha256": "f69145ea994e0aba19a96f1d10635b7c679f46c81119e7092b70f2481cf32c19",
           "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
           "usage": "composition-only"
         }
@@ -884,7 +884,7 @@
         },
         {
           "path": "assets/waldatelier/discovery.webp",
-          "sha256": "ebe641587a934c61e80feeb5fd33afdf5a212f1856586634ec75aae7cc7928f9",
+          "sha256": "41b72e4e03b709761134693f584507eebb5913c59edbc75dab5dfc92d617e22a",
           "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
           "usage": "composition-only"
         }
@@ -919,7 +919,7 @@
         },
         {
           "path": "assets/waldatelier/menu.webp",
-          "sha256": "b2289b40f87df596cbd23fa87476408b34b656f4f447f41a1548637d41a411d6",
+          "sha256": "789580134bc958fc4e741c822414545c3a9e94625a20e37681e4706ef9b5a429",
           "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
           "usage": "composition-only"
         }
@@ -954,7 +954,7 @@
         },
         {
           "path": "assets/waldatelier/navigation.webp",
-          "sha256": "023c726e535602c27b5d0669609350a234dac1f45a1927c4e196f66a7ccd263b",
+          "sha256": "41e6333c35fded3de2a6055262b8992533a3a90cc5f3a5dea841c2ae39fedd50",
           "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
           "usage": "composition-only"
         }
@@ -989,7 +989,7 @@
         },
         {
           "path": "assets/waldatelier/people.webp",
-          "sha256": "b059d4b45ec043f6056f657a07e03b1d6c32d22e4a6b6324c41047d96e4dfc54",
+          "sha256": "f718a68c558c538d1a7fa6fa4232744d58c80dd52b3aad4c13b4cd80cbe08224",
           "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
           "usage": "composition-only"
         }
@@ -1024,7 +1024,7 @@
         },
         {
           "path": "assets/waldatelier/puzzle-vocabulary.webp",
-          "sha256": "962a04b4c023de932e78059147cfc56f4775eb38c7bf3f0ab366dd25fcee932f",
+          "sha256": "f60a27e0c270e405b1aa12bc0ee0e4814ee906bfd5f33ba26fc748ee29b4c2b1",
           "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
           "usage": "composition-only"
         }
@@ -1059,7 +1059,7 @@
         },
         {
           "path": "assets/waldatelier/words-one.webp",
-          "sha256": "15ad880d4339f2d21981a3645603d15cf4abbc15441560599c2935154b8c57fa",
+          "sha256": "0e4ebd1508d7b0379c259c08e57b87e0f1579805a966c1019a03f3d68dfd554e",
           "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
           "usage": "composition-only"
         }
@@ -1094,7 +1094,7 @@
         },
         {
           "path": "assets/waldatelier/words-three.webp",
-          "sha256": "e2c6a2c0d0fb7de51b550ff2fd398f74fe408071f719a03d4429f83cde2c5f71",
+          "sha256": "7583528cec5cc5e03fc5213adcba5dcfca93f5c3270a95b3532f99ed649546bb",
           "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
           "usage": "composition-only"
         }
@@ -1257,6 +1257,7 @@
       "recordKind": "original-brief",
       "historicalPromptId": "alphabet",
       "requestId": "alphabet",
+      "cellRepair": "design/illustrations/library-repair-2026-11-18.json",
       "file": "assets/waldatelier/alphabet.webp",
       "columns": 4,
       "rows": 4,
@@ -1603,17 +1604,42 @@
           ]
         }
       ],
-      "preparationNote": "No original packing manifest is retained. For a new PNG, create an atlas manifest with this exact grid and ordered subject list; see GENERATOR-INPUTS.md.",
       "kind": "learning-sheet",
       "files": [
         {
           "path": "assets/waldatelier/alphabet.webp",
-          "sha256": "1999236e340fca2aa6cb22a2c48368d9a4b78882b5a5c92867d3df25c64385fb",
+          "sha256": "0d6613bbf5c54cbc51be7bc55d318eff09ce0d6d72388ac35e02471eac56a887",
           "width": 1254,
           "height": 1254,
           "hasAlpha": true
         }
-      ]
+      ],
+      "preparation": {
+        "manifest": "design/illustrations/library-repair-2026-11-18.json",
+        "baseCommit": "b7c77ec0a318ac52e36ad5e1fcfdac9e249d4467",
+        "framing": {
+          "longestSideRatio": 0.8,
+          "centre": [
+            0.5,
+            0.5
+          ],
+          "matteAlphaCore": 100,
+          "generatedAlphaCore": 70
+        },
+        "affectedSubjects": [
+          "badger",
+          "giraffe",
+          "jacket",
+          "monkey",
+          "whale"
+        ],
+        "redrawRecords": [],
+        "command": "node tools/illustrations/prepare-library-repair.cjs design/illustrations/library-repair-2026-11-18.json assets/waldatelier alphabet"
+      },
+      "source": {
+        "path": "assets/waldatelier/alphabet.webp",
+        "commit": "b7c77ec0a318ac52e36ad5e1fcfdac9e249d4467"
+      }
     },
     {
       "id": "animals",
@@ -1623,6 +1649,7 @@
       "recordKind": "original-brief",
       "historicalPromptId": "animals",
       "requestId": "animals",
+      "cellRepair": "design/illustrations/library-repair-2026-11-18.json",
       "file": "assets/waldatelier/animals.webp",
       "columns": 4,
       "rows": 4,
@@ -2012,17 +2039,41 @@
           ]
         }
       ],
-      "preparationNote": "No original packing manifest is retained. For a new PNG, create an atlas manifest with this exact grid and ordered subject list; see GENERATOR-INPUTS.md.",
       "kind": "learning-sheet",
       "files": [
         {
           "path": "assets/waldatelier/animals.webp",
-          "sha256": "f12730079d950dd197225d118d04b049f531cf4d6eec76817f002c589b946a65",
+          "sha256": "bb44764718b87c28864cc51f752bbf9f017203c456892a8111e4d33a85f15295",
           "width": 1254,
           "height": 1254,
           "hasAlpha": true
         }
-      ]
+      ],
+      "preparation": {
+        "manifest": "design/illustrations/library-repair-2026-11-18.json",
+        "baseCommit": "b7c77ec0a318ac52e36ad5e1fcfdac9e249d4467",
+        "framing": {
+          "longestSideRatio": 0.8,
+          "centre": [
+            0.5,
+            0.5
+          ],
+          "matteAlphaCore": 100,
+          "generatedAlphaCore": 70
+        },
+        "affectedSubjects": [
+          "cat",
+          "dog",
+          "fox-animal",
+          "rabbit"
+        ],
+        "redrawRecords": [],
+        "command": "node tools/illustrations/prepare-library-repair.cjs design/illustrations/library-repair-2026-11-18.json assets/waldatelier animals"
+      },
+      "source": {
+        "path": "assets/waldatelier/animals.webp",
+        "commit": "b7c77ec0a318ac52e36ad5e1fcfdac9e249d4467"
+      }
     },
     {
       "id": "creatures",
@@ -2032,6 +2083,7 @@
       "recordKind": "original-brief",
       "historicalPromptId": "creatures",
       "requestId": "creatures",
+      "cellRepair": "design/illustrations/library-repair-2026-11-18.json",
       "file": "assets/waldatelier/creatures.webp",
       "columns": 4,
       "rows": 4,
@@ -2362,17 +2414,39 @@
           "usedBy": []
         }
       ],
-      "preparationNote": "No original packing manifest is retained. For a new PNG, create an atlas manifest with this exact grid and ordered subject list; see GENERATOR-INPUTS.md.",
       "kind": "learning-sheet",
       "files": [
         {
           "path": "assets/waldatelier/creatures.webp",
-          "sha256": "30e05028bb56dedaf58dd88f0bd52803fee08177cd2c636870a417ef8f0aa0f2",
+          "sha256": "f69145ea994e0aba19a96f1d10635b7c679f46c81119e7092b70f2481cf32c19",
           "width": 1254,
           "height": 1254,
           "hasAlpha": true
         }
-      ]
+      ],
+      "preparation": {
+        "manifest": "design/illustrations/library-repair-2026-11-18.json",
+        "baseCommit": "b7c77ec0a318ac52e36ad5e1fcfdac9e249d4467",
+        "framing": {
+          "longestSideRatio": 0.8,
+          "centre": [
+            0.5,
+            0.5
+          ],
+          "matteAlphaCore": 100,
+          "generatedAlphaCore": 70
+        },
+        "affectedSubjects": [
+          "mouse",
+          "penguin"
+        ],
+        "redrawRecords": [],
+        "command": "node tools/illustrations/prepare-library-repair.cjs design/illustrations/library-repair-2026-11-18.json assets/waldatelier creatures"
+      },
+      "source": {
+        "path": "assets/waldatelier/creatures.webp",
+        "commit": "b7c77ec0a318ac52e36ad5e1fcfdac9e249d4467"
+      }
     },
     {
       "id": "discovery",
@@ -2382,6 +2456,7 @@
       "recordKind": "original-brief",
       "historicalPromptId": "discovery",
       "requestId": "discovery",
+      "cellRepair": "design/illustrations/library-repair-2026-11-18.json",
       "file": "assets/waldatelier/discovery.webp",
       "columns": 4,
       "rows": 4,
@@ -2740,17 +2815,41 @@
           "usedBy": []
         }
       ],
-      "preparationNote": "No original packing manifest is retained. For a new PNG, create an atlas manifest with this exact grid and ordered subject list; see GENERATOR-INPUTS.md.",
       "kind": "learning-sheet",
       "files": [
         {
           "path": "assets/waldatelier/discovery.webp",
-          "sha256": "ebe641587a934c61e80feeb5fd33afdf5a212f1856586634ec75aae7cc7928f9",
+          "sha256": "41b72e4e03b709761134693f584507eebb5913c59edbc75dab5dfc92d617e22a",
           "width": 1254,
           "height": 1254,
           "hasAlpha": true
         }
-      ]
+      ],
+      "preparation": {
+        "manifest": "design/illustrations/library-repair-2026-11-18.json",
+        "baseCommit": "b7c77ec0a318ac52e36ad5e1fcfdac9e249d4467",
+        "framing": {
+          "longestSideRatio": 0.8,
+          "centre": [
+            0.5,
+            0.5
+          ],
+          "matteAlphaCore": 100,
+          "generatedAlphaCore": 70
+        },
+        "affectedSubjects": [
+          "bean",
+          "seedling",
+          "sunset",
+          "water"
+        ],
+        "redrawRecords": [],
+        "command": "node tools/illustrations/prepare-library-repair.cjs design/illustrations/library-repair-2026-11-18.json assets/waldatelier discovery"
+      },
+      "source": {
+        "path": "assets/waldatelier/discovery.webp",
+        "commit": "b7c77ec0a318ac52e36ad5e1fcfdac9e249d4467"
+      }
     },
     {
       "id": "forest-actions",
@@ -2759,6 +2858,7 @@
       "historicalRecord": "legacy/design-history/2026-11-16-before-style-contract/design/illustrations/forest-actions.json",
       "recordKind": "generation-record",
       "requestId": "forest-actions",
+      "cellRepair": "design/illustrations/library-repair-2026-11-18.json",
       "file": "assets/waldatelier/forest-actions.webp",
       "columns": 4,
       "rows": 4,
@@ -3092,111 +3192,38 @@
           ]
         }
       ],
-      "manifest": "design/illustrations/forest-actions.json",
+      "priorPreparationManifest": "design/illustrations/forest-actions.json",
       "kind": "learning-sheet",
       "files": [
         {
           "path": "assets/waldatelier/forest-actions.webp",
-          "sha256": "d3a67b017d42bd3bea98d1034c0316d3ba11e7575e6bcadda7ae1e7962f74862",
+          "sha256": "25e2c88dd8053e5b5f00375f4f28b06dd2fdb70e391149cbc83a8bef08f479e7",
           "width": 1280,
           "height": 1280,
           "hasAlpha": true
         }
       ],
       "preparation": {
-        "manifest": "design/illustrations/forest-actions.json",
-        "pathsRelativeTo": "design/illustrations",
-        "settings": {
-          "format": "waldpost-illustration-atlas",
-          "version": 1,
-          "source": "sources/forest-actions-style.png",
-          "output": "../../assets/waldatelier/forest-actions.webp",
-          "columns": 4,
-          "rows": 4,
-          "cellPixels": 320,
-          "subjectPixels": 256,
-          "alphaThresholdPercent": 15,
-          "provenance": {
-            "date": "2026-11-16",
-            "tool": "ChatGPT hosted image-generation tool",
-            "sourceSha256": "f027b4ed1b2d7e9fc727220736fd00945e707e2cf20e46770e55b8e91d432e8b",
-            "generationRecord": "../../legacy/design-history/2026-11-16-before-style-contract/design/illustrations/forest-actions.json",
-            "styleContract": "style.json",
-            "forwardPrompt": "prompts/forest-actions.txt",
-            "note": "The archived record describes the existing asset. New generations use the current style contract and forward prompt."
-          },
-          "subjects": [
-            {
-              "id": "mouse-sit",
-              "label": "Maus sitzt"
-            },
-            {
-              "id": "mouse-run",
-              "label": "Maus rennt"
-            },
-            {
-              "id": "mouse-sleep",
-              "label": "Maus schläft"
-            },
-            {
-              "id": "bird-fly",
-              "label": "Vogel fliegt"
-            },
-            {
-              "id": "bird-sit",
-              "label": "Vogel sitzt"
-            },
-            {
-              "id": "fish-swim",
-              "label": "Fisch schwimmt"
-            },
-            {
-              "id": "hare-run",
-              "label": "Hase rennt"
-            },
-            {
-              "id": "hare-sit",
-              "label": "Hase sitzt"
-            },
-            {
-              "id": "fox-sleep",
-              "label": "Fuchs schläft"
-            },
-            {
-              "id": "fox-run",
-              "label": "Fuchs rennt"
-            },
-            {
-              "id": "cat-sleep",
-              "label": "Katze schläft"
-            },
-            {
-              "id": "cat-sit",
-              "label": "Katze sitzt"
-            },
-            {
-              "id": "dog-run",
-              "label": "Hund rennt"
-            },
-            {
-              "id": "dog-sleep",
-              "label": "Hund schläft"
-            },
-            {
-              "id": "duck-swim",
-              "label": "Ente schwimmt"
-            },
-            {
-              "id": "duck-fly",
-              "label": "Ente fliegt"
-            }
-          ]
+        "manifest": "design/illustrations/library-repair-2026-11-18.json",
+        "baseCommit": "b7c77ec0a318ac52e36ad5e1fcfdac9e249d4467",
+        "framing": {
+          "longestSideRatio": 0.8,
+          "centre": [
+            0.5,
+            0.5
+          ],
+          "matteAlphaCore": 100,
+          "generatedAlphaCore": 70
         },
-        "command": "node tools/illustrations/pack-atlas.cjs design/illustrations/forest-actions.json"
+        "affectedSubjects": [
+          "cat-sit"
+        ],
+        "redrawRecords": [],
+        "command": "node tools/illustrations/prepare-library-repair.cjs design/illustrations/library-repair-2026-11-18.json assets/waldatelier forest-actions"
       },
       "source": {
-        "path": "design/illustrations/sources/forest-actions-style.png",
-        "sha256": "f027b4ed1b2d7e9fc727220736fd00945e707e2cf20e46770e55b8e91d432e8b"
+        "path": "assets/waldatelier/forest-actions.webp",
+        "commit": "b7c77ec0a318ac52e36ad5e1fcfdac9e249d4467"
       }
     },
     {
@@ -3834,6 +3861,7 @@
       "historicalRecord": "legacy/design-history/2026-11-16-before-style-contract/design/illustrations/forest-wildlife.json",
       "recordKind": "generation-record",
       "requestId": "forest-wildlife",
+      "cellRepair": "design/illustrations/library-repair-2026-11-18.json",
       "file": "assets/waldatelier/forest-wildlife.webp",
       "columns": 4,
       "rows": 4,
@@ -4132,111 +4160,58 @@
           ]
         }
       ],
-      "manifest": "design/illustrations/forest-wildlife.json",
+      "priorPreparationManifest": "design/illustrations/forest-wildlife.json",
       "kind": "learning-sheet",
       "files": [
         {
           "path": "assets/waldatelier/forest-wildlife.webp",
-          "sha256": "f152dfbc074a80d29d6fc91a1d7cbef62a3bec70b253d94bbaae60f50a1de1e8",
+          "sha256": "36697977ce1391e1f2960da24545bf9ecc854d5c58d4409bc6adb5ef8e6d0623",
           "width": 1280,
           "height": 1280,
           "hasAlpha": true
         }
       ],
       "preparation": {
-        "manifest": "design/illustrations/forest-wildlife.json",
-        "pathsRelativeTo": "design/illustrations",
-        "settings": {
-          "format": "waldpost-illustration-atlas",
-          "version": 1,
-          "source": "sources/forest-wildlife-padded.png",
-          "output": "../../assets/waldatelier/forest-wildlife.webp",
-          "columns": 4,
-          "rows": 4,
-          "cellPixels": 320,
-          "subjectPixels": 256,
-          "alphaThresholdPercent": 15,
-          "provenance": {
-            "date": "2026-11-14",
-            "tool": "ChatGPT hosted image-generation tool",
-            "sourceSha256": "6747767174eea7a29e1a57bbda20f027c8d33f4419c1bec9e8470ceae5c7ecb6",
-            "generationRecord": "../../legacy/design-history/2026-11-16-before-style-contract/design/illustrations/forest-wildlife.json",
-            "styleContract": "style.json",
-            "forwardPrompt": "prompts/forest-wildlife.txt",
-            "note": "The archived record describes the existing asset. New generations use the current style contract and forward prompt."
-          },
-          "subjects": [
-            {
-              "id": "squirrel-sit",
-              "label": "Eichhörnchen sitzt"
-            },
-            {
-              "id": "squirrel-run",
-              "label": "Eichhörnchen rennt"
-            },
-            {
-              "id": "hedgehog-walk",
-              "label": "Igel läuft"
-            },
-            {
-              "id": "hedgehog-sleep",
-              "label": "Igel schläft"
-            },
-            {
-              "id": "badger-walk",
-              "label": "Dachs läuft"
-            },
-            {
-              "id": "badger-sleep",
-              "label": "Dachs schläft"
-            },
-            {
-              "id": "roe-stand",
-              "label": "Reh steht"
-            },
-            {
-              "id": "roe-run",
-              "label": "Reh rennt"
-            },
-            {
-              "id": "frog-sit",
-              "label": "Frosch sitzt"
-            },
-            {
-              "id": "frog-jump",
-              "label": "Frosch springt"
-            },
-            {
-              "id": "forest-woodpecker",
-              "label": "Buntspecht"
-            },
-            {
-              "id": "forest-bat",
-              "label": "Fledermaus"
-            },
-            {
-              "id": "forest-owl",
-              "label": "Waldkauz"
-            },
-            {
-              "id": "forest-robin",
-              "label": "Rotkehlchen"
-            },
-            {
-              "id": "forest-lynx",
-              "label": "Luchs"
-            },
-            {
-              "id": "forest-marten",
-              "label": "Baummarder"
-            }
-          ]
+        "manifest": "design/illustrations/library-repair-2026-11-18.json",
+        "baseCommit": "b7c77ec0a318ac52e36ad5e1fcfdac9e249d4467",
+        "framing": {
+          "longestSideRatio": 0.8,
+          "centre": [
+            0.5,
+            0.5
+          ],
+          "matteAlphaCore": 100,
+          "generatedAlphaCore": 70
         },
-        "command": "node tools/illustrations/pack-atlas.cjs design/illustrations/forest-wildlife.json"
+        "affectedSubjects": [
+          "badger-sleep",
+          "badger-walk",
+          "forest-bat",
+          "forest-lynx",
+          "forest-marten",
+          "forest-owl",
+          "forest-robin",
+          "forest-woodpecker",
+          "frog-jump",
+          "frog-sit",
+          "hedgehog-sleep",
+          "hedgehog-walk",
+          "roe-run",
+          "roe-stand",
+          "squirrel-run",
+          "squirrel-sit"
+        ],
+        "redrawRecords": [
+          "design/artwork/generation-records/wildlife-squirrel-hedgehog-2026-11-18.json",
+          "design/artwork/generation-records/wildlife-badger-deer-2026-11-18.json",
+          "design/artwork/generation-records/wildlife-frogs-woodpecker-bat-2026-11-18.json",
+          "design/artwork/generation-records/wildlife-lynx-and-neighbours-2026-11-18.json"
+        ],
+        "command": "node tools/illustrations/prepare-library-repair.cjs design/illustrations/library-repair-2026-11-18.json assets/waldatelier forest-wildlife"
       },
       "source": {
-        "path": "design/illustrations/sources/forest-wildlife-padded.png",
-        "sha256": "6747767174eea7a29e1a57bbda20f027c8d33f4419c1bec9e8470ceae5c7ecb6"
+        "path": "assets/waldatelier/forest-wildlife.webp",
+        "commit": "b7c77ec0a318ac52e36ad5e1fcfdac9e249d4467"
       }
     },
     {
@@ -4246,6 +4221,7 @@
       "historicalRecord": "legacy/design-history/2026-11-16-before-style-contract/design/artwork/assets.json",
       "recordKind": "inventory-only",
       "requestId": "menu",
+      "cellRepair": "design/illustrations/library-repair-2026-11-18.json",
       "file": "assets/waldatelier/menu.webp",
       "columns": 3,
       "rows": 2,
@@ -4350,17 +4326,39 @@
           "usedBy": []
         }
       ],
-      "preparationNote": "No original packing manifest is retained. For a new PNG, create an atlas manifest with this exact grid and ordered subject list; see GENERATOR-INPUTS.md.",
       "kind": "learning-sheet",
       "files": [
         {
           "path": "assets/waldatelier/menu.webp",
-          "sha256": "b2289b40f87df596cbd23fa87476408b34b656f4f447f41a1548637d41a411d6",
+          "sha256": "789580134bc958fc4e741c822414545c3a9e94625a20e37681e4706ef9b5a429",
           "width": 1536,
           "height": 1024,
           "hasAlpha": true
         }
-      ]
+      ],
+      "preparation": {
+        "manifest": "design/illustrations/library-repair-2026-11-18.json",
+        "baseCommit": "b7c77ec0a318ac52e36ad5e1fcfdac9e249d4467",
+        "framing": {
+          "longestSideRatio": 0.8,
+          "centre": [
+            0.5,
+            0.5
+          ],
+          "matteAlphaCore": 100,
+          "generatedAlphaCore": 70
+        },
+        "affectedSubjects": [
+          "hand-mirror",
+          "neighbour-houses"
+        ],
+        "redrawRecords": [],
+        "command": "node tools/illustrations/prepare-library-repair.cjs design/illustrations/library-repair-2026-11-18.json assets/waldatelier menu"
+      },
+      "source": {
+        "path": "assets/waldatelier/menu.webp",
+        "commit": "b7c77ec0a318ac52e36ad5e1fcfdac9e249d4467"
+      }
     },
     {
       "id": "navigation",
@@ -4370,6 +4368,7 @@
       "recordKind": "original-brief",
       "historicalPromptId": "navigation",
       "requestId": "navigation",
+      "cellRepair": "design/illustrations/library-repair-2026-11-18.json",
       "file": "assets/waldatelier/navigation.webp",
       "columns": 4,
       "rows": 4,
@@ -4678,17 +4677,38 @@
           "usedBy": []
         }
       ],
-      "preparationNote": "No original packing manifest is retained. For a new PNG, create an atlas manifest with this exact grid and ordered subject list; see GENERATOR-INPUTS.md.",
       "kind": "learning-sheet",
       "files": [
         {
           "path": "assets/waldatelier/navigation.webp",
-          "sha256": "023c726e535602c27b5d0669609350a234dac1f45a1927c4e196f66a7ccd263b",
+          "sha256": "41e6333c35fded3de2a6055262b8992533a3a90cc5f3a5dea841c2ae39fedd50",
           "width": 1254,
           "height": 1254,
           "hasAlpha": true
         }
-      ]
+      ],
+      "preparation": {
+        "manifest": "design/illustrations/library-repair-2026-11-18.json",
+        "baseCommit": "b7c77ec0a318ac52e36ad5e1fcfdac9e249d4467",
+        "framing": {
+          "longestSideRatio": 0.8,
+          "centre": [
+            0.5,
+            0.5
+          ],
+          "matteAlphaCore": 100,
+          "generatedAlphaCore": 70
+        },
+        "affectedSubjects": [
+          "fox"
+        ],
+        "redrawRecords": [],
+        "command": "node tools/illustrations/prepare-library-repair.cjs design/illustrations/library-repair-2026-11-18.json assets/waldatelier navigation"
+      },
+      "source": {
+        "path": "assets/waldatelier/navigation.webp",
+        "commit": "b7c77ec0a318ac52e36ad5e1fcfdac9e249d4467"
+      }
     },
     {
       "id": "people",
@@ -4698,6 +4718,7 @@
       "recordKind": "original-brief",
       "historicalPromptId": "people",
       "requestId": "people",
+      "cellRepair": "design/illustrations/library-repair-2026-11-18.json",
       "file": "assets/waldatelier/people.webp",
       "columns": 4,
       "rows": 4,
@@ -4998,17 +5019,41 @@
           "usedBy": []
         }
       ],
-      "preparationNote": "No original packing manifest is retained. For a new PNG, create an atlas manifest with this exact grid and ordered subject list; see GENERATOR-INPUTS.md.",
       "kind": "learning-sheet",
       "files": [
         {
           "path": "assets/waldatelier/people.webp",
-          "sha256": "b059d4b45ec043f6056f657a07e03b1d6c32d22e4a6b6324c41047d96e4dfc54",
+          "sha256": "f718a68c558c538d1a7fa6fa4232744d58c80dd52b3aad4c13b4cd80cbe08224",
           "width": 1254,
           "height": 1254,
           "hasAlpha": true
         }
-      ]
+      ],
+      "preparation": {
+        "manifest": "design/illustrations/library-repair-2026-11-18.json",
+        "baseCommit": "b7c77ec0a318ac52e36ad5e1fcfdac9e249d4467",
+        "framing": {
+          "longestSideRatio": 0.8,
+          "centre": [
+            0.5,
+            0.5
+          ],
+          "matteAlphaCore": 100,
+          "generatedAlphaCore": 70
+        },
+        "affectedSubjects": [
+          "canoe",
+          "grandma",
+          "judo",
+          "llama"
+        ],
+        "redrawRecords": [],
+        "command": "node tools/illustrations/prepare-library-repair.cjs design/illustrations/library-repair-2026-11-18.json assets/waldatelier people"
+      },
+      "source": {
+        "path": "assets/waldatelier/people.webp",
+        "commit": "b7c77ec0a318ac52e36ad5e1fcfdac9e249d4467"
+      }
     },
     {
       "id": "puzzle-flowers",
@@ -5203,6 +5248,7 @@
       "recordKind": "inventory-only",
       "requestId": "puzzle-vocabulary",
       "generationRecord": "design/artwork/generation-records/puzzle-vocabulary-feedback-2026-11-17.json",
+      "cellRepair": "design/illustrations/library-repair-2026-11-18.json",
       "file": "assets/waldatelier/puzzle-vocabulary.webp",
       "columns": 4,
       "rows": 5,
@@ -5584,49 +5630,57 @@
           ]
         }
       ],
-      "manifest": "design/illustrations/puzzle-vocabulary.json",
+      "priorPreparationManifest": "design/illustrations/puzzle-vocabulary.json",
       "kind": "learning-sheet",
       "files": [
         {
           "path": "assets/waldatelier/puzzle-vocabulary.webp",
-          "sha256": "962a04b4c023de932e78059147cfc56f4775eb38c7bf3f0ab366dd25fcee932f",
+          "sha256": "f60a27e0c270e405b1aa12bc0ee0e4814ee906bfd5f33ba26fc748ee29b4c2b1",
           "width": 1120,
           "height": 1400,
           "hasAlpha": true
         }
       ],
       "preparation": {
-        "manifest": "design/illustrations/puzzle-vocabulary.json",
-        "pathsRelativeTo": "design/illustrations",
-        "settings": {
-          "format": "waldpost-illustration-image",
-          "version": 1,
-          "source": "sources/puzzle-vocabulary-feedback-2026-11-17.png",
-          "output": "../../assets/waldatelier/puzzle-vocabulary.webp",
-          "width": 1120,
-          "height": 1400,
-          "fit": "contain",
-          "transparent": true,
-          "quality": 100,
-          "preservePixels": true,
-          "columns": 4,
-          "rows": 5,
-          "cellPixels": 280,
-          "provenance": {
-            "date": "2026-11-17",
-            "tool": "ChatGPT image_gen.imagegen",
-            "sourceSha256": "9538d11748e44243bd983986f71be4be842a0ec4a5571dee42a1c889695d0827",
-            "generationRecord": "../artwork/generation-records/puzzle-vocabulary-feedback-2026-11-17.json",
-            "styleContract": "style.json",
-            "forwardPrompt": "prompts/puzzle-vocabulary.txt",
-            "note": "Only the first stable subject cell was replaced from the retained generator output. All other atlas cells keep their original visible RGBA pixels. The editable source is the already packed composite; export without per-cell renormalization."
-          }
+        "manifest": "design/illustrations/library-repair-2026-11-18.json",
+        "baseCommit": "b7c77ec0a318ac52e36ad5e1fcfdac9e249d4467",
+        "framing": {
+          "longestSideRatio": 0.8,
+          "centre": [
+            0.5,
+            0.5
+          ],
+          "matteAlphaCore": 100,
+          "generatedAlphaCore": 70
         },
-        "command": "node tools/illustrations/prepare-image.cjs design/illustrations/puzzle-vocabulary.json"
+        "affectedSubjects": [
+          "vocab-arrow",
+          "vocab-bench",
+          "vocab-cloth",
+          "vocab-cup",
+          "vocab-hand",
+          "vocab-head",
+          "vocab-house",
+          "vocab-leg",
+          "vocab-pot",
+          "vocab-rope",
+          "vocab-sand",
+          "vocab-scarf",
+          "vocab-seed",
+          "vocab-shoe",
+          "vocab-stone",
+          "vocab-table",
+          "vocab-till",
+          "vocab-tower",
+          "vocab-wardrobe",
+          "vocab-worm"
+        ],
+        "redrawRecords": [],
+        "command": "node tools/illustrations/prepare-library-repair.cjs design/illustrations/library-repair-2026-11-18.json assets/waldatelier puzzle-vocabulary"
       },
       "source": {
-        "path": "design/illustrations/sources/puzzle-vocabulary-feedback-2026-11-17.png",
-        "sha256": "9538d11748e44243bd983986f71be4be842a0ec4a5571dee42a1c889695d0827"
+        "path": "assets/waldatelier/puzzle-vocabulary.webp",
+        "commit": "b7c77ec0a318ac52e36ad5e1fcfdac9e249d4467"
       }
     },
     {
@@ -5757,6 +5811,7 @@
       "historicalRecord": "legacy/design-history/2026-11-16-before-style-contract/design/illustrations/rhyme-vocabulary.json",
       "recordKind": "generation-record",
       "requestId": "rhyme-vocabulary",
+      "cellRepair": "design/illustrations/library-repair-2026-11-18.json",
       "file": "assets/waldatelier/rhyme-vocabulary.webp",
       "columns": 4,
       "rows": 4,
@@ -5942,87 +5997,49 @@
           ]
         }
       ],
-      "manifest": "design/illustrations/rhyme-vocabulary.json",
+      "priorPreparationManifest": "design/illustrations/rhyme-vocabulary.json",
       "kind": "learning-sheet",
       "files": [
         {
           "path": "assets/waldatelier/rhyme-vocabulary.webp",
-          "sha256": "7017fb46ace669eb61fe475135e09f2feb1d87932d4248c7933f48653af943b3",
+          "sha256": "563825738c0c15d8f544ee38a5d0f27c5b49ac9958f5b1926c8418062682957d",
           "width": 1280,
           "height": 1280,
           "hasAlpha": true
         }
       ],
       "preparation": {
-        "manifest": "design/illustrations/rhyme-vocabulary.json",
-        "pathsRelativeTo": "design/illustrations",
-        "settings": {
-          "format": "waldpost-illustration-atlas",
-          "version": 1,
-          "source": "sources/rhyme-vocabulary-padded.png",
-          "output": "../../assets/waldatelier/rhyme-vocabulary.webp",
-          "columns": 4,
-          "rows": 4,
-          "cellPixels": 320,
-          "subjectPixels": 256,
-          "alphaThresholdPercent": 15,
-          "provenance": {
-            "date": "2026-11-14",
-            "tool": "ChatGPT hosted image-generation tool",
-            "sourceSha256": "66429d3dd450da10e647592e2c6ff9daaa2c2b7d8f25178ae00593404fda8ec9",
-            "generationRecord": "../../legacy/design-history/2026-11-16-before-style-contract/design/illustrations/rhyme-vocabulary.json",
-            "styleContract": "style.json",
-            "forwardPrompt": "prompts/rhyme-vocabulary.txt",
-            "note": "The archived record describes the existing asset. New generations use the current style contract and forward prompt."
-          },
-          "subjects": [
-            {
-              "id": "rhyme-bread",
-              "label": "Brot"
-            },
-            {
-              "id": "rhyme-rail",
-              "label": "Schiene"
-            },
-            {
-              "id": "rhyme-blanket",
-              "label": "Decke"
-            },
-            {
-              "id": "rhyme-bin",
-              "label": "Tonne"
-            },
-            {
-              "id": "rhyme-jug",
-              "label": "Kanne"
-            },
-            {
-              "id": "rhyme-mouth",
-              "label": "Mund"
-            },
-            {
-              "id": "rhyme-roof",
-              "label": "Dach"
-            },
-            {
-              "id": "rhyme-brook",
-              "label": "Bach"
-            },
-            {
-              "id": "rhyme-goat",
-              "label": "Ziege"
-            },
-            {
-              "id": "rhyme-fly",
-              "label": "Fliege"
-            }
-          ]
+        "manifest": "design/illustrations/library-repair-2026-11-18.json",
+        "baseCommit": "b7c77ec0a318ac52e36ad5e1fcfdac9e249d4467",
+        "framing": {
+          "longestSideRatio": 0.8,
+          "centre": [
+            0.5,
+            0.5
+          ],
+          "matteAlphaCore": 100,
+          "generatedAlphaCore": 70
         },
-        "command": "node tools/illustrations/pack-atlas.cjs design/illustrations/rhyme-vocabulary.json"
+        "affectedSubjects": [
+          "rhyme-bin",
+          "rhyme-blanket",
+          "rhyme-bread",
+          "rhyme-brook",
+          "rhyme-fly",
+          "rhyme-goat",
+          "rhyme-jug",
+          "rhyme-mouth",
+          "rhyme-rail",
+          "rhyme-roof"
+        ],
+        "redrawRecords": [
+          "design/artwork/generation-records/rhyme-cutout-repair-2026-11-18.json"
+        ],
+        "command": "node tools/illustrations/prepare-library-repair.cjs design/illustrations/library-repair-2026-11-18.json assets/waldatelier rhyme-vocabulary"
       },
       "source": {
-        "path": "design/illustrations/sources/rhyme-vocabulary-padded.png",
-        "sha256": "66429d3dd450da10e647592e2c6ff9daaa2c2b7d8f25178ae00593404fda8ec9"
+        "path": "assets/waldatelier/rhyme-vocabulary.webp",
+        "commit": "b7c77ec0a318ac52e36ad5e1fcfdac9e249d4467"
       }
     },
     {
@@ -6033,6 +6050,7 @@
       "recordKind": "original-brief",
       "historicalPromptId": "words-one",
       "requestId": "words-one",
+      "cellRepair": "design/illustrations/library-repair-2026-11-18.json",
       "file": "assets/waldatelier/words-one.webp",
       "columns": 4,
       "rows": 4,
@@ -6364,17 +6382,43 @@
           ]
         }
       ],
-      "preparationNote": "No original packing manifest is retained. For a new PNG, create an atlas manifest with this exact grid and ordered subject list; see GENERATOR-INPUTS.md.",
       "kind": "learning-sheet",
       "files": [
         {
           "path": "assets/waldatelier/words-one.webp",
-          "sha256": "15ad880d4339f2d21981a3645603d15cf4abbc15441560599c2935154b8c57fa",
+          "sha256": "0e4ebd1508d7b0379c259c08e57b87e0f1579805a966c1019a03f3d68dfd554e",
           "width": 1254,
           "height": 1254,
           "hasAlpha": true
         }
-      ]
+      ],
+      "preparation": {
+        "manifest": "design/illustrations/library-repair-2026-11-18.json",
+        "baseCommit": "b7c77ec0a318ac52e36ad5e1fcfdac9e249d4467",
+        "framing": {
+          "longestSideRatio": 0.8,
+          "centre": [
+            0.5,
+            0.5
+          ],
+          "matteAlphaCore": 100,
+          "generatedAlphaCore": 70
+        },
+        "affectedSubjects": [
+          "bicycle",
+          "kiwi",
+          "nose",
+          "rose",
+          "sofa",
+          "tin"
+        ],
+        "redrawRecords": [],
+        "command": "node tools/illustrations/prepare-library-repair.cjs design/illustrations/library-repair-2026-11-18.json assets/waldatelier words-one"
+      },
+      "source": {
+        "path": "assets/waldatelier/words-one.webp",
+        "commit": "b7c77ec0a318ac52e36ad5e1fcfdac9e249d4467"
+      }
     },
     {
       "id": "words-three",
@@ -6384,6 +6428,7 @@
       "recordKind": "original-brief",
       "historicalPromptId": "words-three",
       "requestId": "words-three",
+      "cellRepair": "design/illustrations/library-repair-2026-11-18.json",
       "file": "assets/waldatelier/words-three.webp",
       "columns": 4,
       "rows": 4,
@@ -6721,17 +6766,51 @@
           "usedBy": []
         }
       ],
-      "preparationNote": "No original packing manifest is retained. For a new PNG, create an atlas manifest with this exact grid and ordered subject list; see GENERATOR-INPUTS.md.",
       "kind": "learning-sheet",
       "files": [
         {
           "path": "assets/waldatelier/words-three.webp",
-          "sha256": "e2c6a2c0d0fb7de51b550ff2fd398f74fe408071f719a03d4429f83cde2c5f71",
+          "sha256": "7583528cec5cc5e03fc5213adcba5dcfca93f5c3270a95b3532f99ed649546bb",
           "width": 1254,
           "height": 1254,
           "hasAlpha": true
         }
-      ]
+      ],
+      "preparation": {
+        "manifest": "design/illustrations/library-repair-2026-11-18.json",
+        "baseCommit": "b7c77ec0a318ac52e36ad5e1fcfdac9e249d4467",
+        "framing": {
+          "longestSideRatio": 0.8,
+          "centre": [
+            0.5,
+            0.5
+          ],
+          "matteAlphaCore": 100,
+          "generatedAlphaCore": 70
+        },
+        "affectedSubjects": [
+          "ball",
+          "bed",
+          "boat",
+          "book",
+          "cake",
+          "clock",
+          "grapes",
+          "hat",
+          "heart",
+          "icecream",
+          "pear",
+          "robot-word",
+          "snowman",
+          "tree"
+        ],
+        "redrawRecords": [],
+        "command": "node tools/illustrations/prepare-library-repair.cjs design/illustrations/library-repair-2026-11-18.json assets/waldatelier words-three"
+      },
+      "source": {
+        "path": "assets/waldatelier/words-three.webp",
+        "commit": "b7c77ec0a318ac52e36ad5e1fcfdac9e249d4467"
+      }
     },
     {
       "id": "words-two",

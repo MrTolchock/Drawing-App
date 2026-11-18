@@ -30,7 +30,7 @@ node tests/puzzle-feedback-browser.cjs
 node tests/artwork-browser.cjs
 node tests/drawn-map-browser.cjs   # compact map, no header icons, outside tap/Escape/focus, pan safety; all 13 named pins and real routes at phone/tablet/landscape
 node tests/swamp-navigation-browser.cjs   # real Steg journeys in both directions, Frosch arrival, steering collision and no off-deck frames at phone/tablet sizes
-node tests/gallery-images-browser.cjs   # all 41 redrawn pictures: real PNG exports, source-cell match, alpha and phone layout
+node tests/gallery-images-browser.cjs   # actual PNG exports, atlas match, transparency and framing for repaired pictures, plus phone layout
 ```
 
 Browser suites require Playwright and Chromium. Set `PLAYWRIGHT_MODULE`, `CHROMIUM_PATH` and optionally `FARBTUPF_BASE_URL` for your installation. The review suite solves all 958 exact iterations, exercises native touch/mouse input for every puzzle, and checks whole-pool approval/rejection, gesture cancellation, persistence and offline review. The design suite compares review and child-play paper/writing dimensions for all 31 puzzles at phone/tablet sizes; `FARBTUPF_GAMES=add,trace,trace-numbers` limits its content pass during targeted work. Letter sessions checks Settings, real invitations, access restrictions, ten actual answers, mailman, home, sleep, reload/offline and adult restart. The design suite checks asset/font roles and current entry points. Screenshots go to `/tmp` unless an output path is set.

@@ -1,0 +1,46 @@
+{
+  "format": "waldpost-image-generation-record",
+  "version": 1,
+  "id": "wildlife-squirrel-hedgehog",
+  "style": "waldpost-watercolour-pencil-v1",
+  "date": "2026-11-18",
+  "tool": "ChatGPT image_gen.imagegen",
+  "source": "design/illustrations/sources/2026-11-18-library/wildlife-squirrel-hedgehog.png",
+  "sourceSha256": "5d1564021129a10e569652088736b0d1c904aa7d1d58b21da2d885392fa04456",
+  "request": {
+    "prompt": "WALDPOST CANONICAL ILLUSTRATION STYLE — waldpost-watercolour-pencil-v1\n\nUse the supplied canonical animals.png and objects.png reference images as the authority for drawing technique. They show the predominant style of the current Waldpost gallery. Match their actual pixels, not an imagined style suggested by a filename.\n\nDraw warm children's picture-book watercolour finished with visible coloured-pencil strokes. Use light, gently uneven washes, organic sepia contours, delicate hatching, softly irregular edges and modest drawn shading. Surfaces look painted and pencilled, with paper grain within the illustration. Keep the warmth of cream, honey brown, restrained sage and blue, while preserving every exact colour required by a task. Subjects remain friendly, recognizable and anatomically believable.\n\nDo not turn the drawing into a 3D render, plush toy, clay or felt craft, photograph, glossy object, embossed surface or studio-lit miniature. Avoid deep ambient-occlusion shadows, inflated forms and realistic material microtexture. Do not mix in another illustration technique or use historical artwork as a style reference.\n\nThe role instructions below set the necessary detail and composition within this one style. Learning pictures retain fine drawn contours; small navigation symbols use the approved simpler, broader shapes and flat fills in the same palette. Keep the existing rendered game-character identities separate from image-generated learning subjects. Exact geometry and handwriting remain authored paths.\n\nPreserve subject identity, counted quantities, exact answer colours and action differences. Use real alpha for isolated pictures and stationery, and an opaque canvas only when the selected role requires a scene or branding image. No accidental background, halo, visible grid, labels or extra objects.\n\nROLE: learning\nMatch the canonical watercolour and coloured-pencil technique closely: fine organic contours, uneven washes and gentle drawn volume. Keep accurate species, action contrasts, one counted object per item and exact answer colours. Use transparent square cells, generous gutters and complete silhouettes.\n\nATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:\n1. design/illustrations/references/watercolour-pencil-v1/animals.png — canonical-style: canonical drawing technique for animals; fixed majority-style pixels\n2. design/illustrations/references/watercolour-pencil-v1/objects.png — canonical-style: canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels\n3. assets/waldatelier/forest-wildlife.webp — composition-only: current animal markings and poses only, mapped to the four requested positions\n\nSUBJECT AND LAYOUT BRIEF:\nRepaint these four current woodland learning pictures in the reference medium. Each description identifies the same stable subject in the supplied current wildlife sheet.\n\nUse a square 2 by 2 sheet with equal square cells and exactly the four specified subjects in row-major order. Put the entire silhouette of each subject at its cell centre with the same scale as a group, at most 70 percent of a cell along its longer axis. Separate subjects with generous true alpha gutters. Finish every tuft, toe, feather and tail. Paint each animal directly as an isolated silhouette with crisp but softly organic pencil edges. All space outside each animal (and its explicitly mentioned twig) must have zero alpha. No floor, ground shadows, paper panels, vignette, cream fringe, faded spray, solid colour backdrop, captions or grid. Keep illuminated cheeks and cream fur clearly drawn with delicate sepia pencil edges. Think in uneven hand-painted pigment and fine hatch marks even on the darkest feathers or fur. Match the actual dog, rabbit, hedgehog, bird, and fox drawings in references one and two. Treat reference three as pose, markings and anatomy information only.\n\nUpper left (squirrel-sit): a Swiss red squirrel sits on its haunches facing right. Orange-red fur, warm cream bib, pointed tufted ears, bushy arched tail. Both forepaws rest lightly at the chest, with empty paws.\nUpper right (squirrel-run): the very same red squirrel bounds low towards the right with forelegs visibly extended, back feet trailing and the full bushy tail behind. Keep the same cream bib and orange markings.\nLower left (hedgehog-walk): a European hedgehog walks right. Use the pointed beige nose, low ears and sepia and cream pencilled spines of the reference hedgehog. Four tiny feet support the complete animal.\nLower right (hedgehog-sleep): the same hedgehog curls into a rounded ball with closed eyes and nose tucked in. Keep a recognisable head and the spines fully inside the silhouette.\n\nSTYLE PRIORITY: The brief changes subjects and layout only. Keep waldpost-watercolour-pencil-v1 and the supplied canonical reference technique throughout; do not import the style of a composition-only reference.\n",
+    "referenced_image_paths": [
+      "design/illustrations/references/watercolour-pencil-v1/animals.png",
+      "design/illustrations/references/watercolour-pencil-v1/objects.png",
+      "assets/waldatelier/forest-wildlife.webp"
+    ],
+    "transparent_background": true
+  },
+  "references": [
+    {
+      "path": "design/illustrations/references/watercolour-pencil-v1/animals.png",
+      "sha256": "65867082294d157ab4ffbe33926857272625ef3c25cdb7cab81c2a4ea73d9316",
+      "purpose": "canonical drawing technique for animals; fixed majority-style pixels",
+      "usage": "canonical-style"
+    },
+    {
+      "path": "design/illustrations/references/watercolour-pencil-v1/objects.png",
+      "sha256": "0bb37d6fc82c75034eddf30da2cc57c546dd8bc70d246aeeda85b637bd87dd80",
+      "purpose": "canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels",
+      "usage": "canonical-style"
+    },
+    {
+      "path": "assets/waldatelier/forest-wildlife.webp",
+      "sha256": "f152dfbc074a80d29d6fc91a1d7cbef62a3bec70b253d94bbaae60f50a1de1e8",
+      "usage": "composition-only",
+      "purpose": "current animal markings and poses only, mapped to the four requested positions",
+      "preservedAt": "design/evidence/2026-11-18-image-library/forest-wildlife-before.webp"
+    }
+  ],
+  "subjects": [
+    "squirrel-sit",
+    "squirrel-run",
+    "hedgehog-walk",
+    "hedgehog-sleep"
+  ]
+}

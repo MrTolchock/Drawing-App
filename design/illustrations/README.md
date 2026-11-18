@@ -41,3 +41,9 @@ node tools/check-design.cjs
 Follow the relevant checks in [Development](../../docs/DEVELOPMENT.md). Current final sources and packing manifests are editable preparation inputs. Their archived `generationRecord` is provenance only; use `forwardPrompt` for new work. [Historical records](../../legacy/design-history/2026-11-16-before-style-contract/README.md) retain all original prompts, old styles and drafts without presenting them as current instructions.
 
 For a correction to one cell of an existing packed atlas, keep the other visible RGBA pixels and cell positions unchanged. The current corrected puzzle-vocabulary and portrait manifests retain already packed composite PNGs with `preservePixels: true`. Export them with `node tools/illustrations/prepare-image.cjs <manifest>`; this mode requires the exact output dimensions and writes profiled lossless WebP without resizing/repacking unaffected cells. Actual generator output and the original base commit/hash are recorded separately in each generation record.
+
+The 9.3.95 library repair uses the previous release as its packed source and adds the recorded redraws to specific cells. To reproduce the atlases, install the locked dependencies with `npm ci --prefix tools` and run the command below in a checkout with the 9.3.94 commit available. Add a sheet ID at the end to prepare one sheet. The [repair record](library-repair-2026-11-18.json) lists each corrected ID, the framing values and the retained generator inputs.
+
+```sh
+node tools/illustrations/prepare-library-repair.cjs design/illustrations/library-repair-2026-11-18.json /tmp/waldpost-library
+```
