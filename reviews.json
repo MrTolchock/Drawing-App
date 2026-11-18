@@ -9285,10 +9285,10 @@
       "key": "puzzle:friends-kingfisher",
       "revision": "7618c3f3b133167f",
       "status": "approved",
-      "note": "",
-      "at": "2026-11-17T20:11:35.596Z",
+      "note": "Hier auch markierung entfernen wenn man dinge zählt. Kommt so sonst niegends vor, nur bei nüsse zählen noch und dort funktion auch entfernen",
+      "at": "2026-11-18T07:53:36.028Z",
       "seen": true,
-      "operation": "27974767-59c8-4997-8517-81b7d616a9f2"
+      "operation": "74740f7b-2477-4622-bb9a-67961adf11de"
     },
     "friends-frog/animal-0@2faee59a7a721558": {
       "key": "friends-frog/animal-0",
@@ -12540,6 +12540,15 @@
       "at": "2026-11-18T07:50:40.265Z",
       "seen": true,
       "operation": "39175d19-c463-4844-8344-39a9ff9edaf4"
+    },
+    {
+      "key": "puzzle:friends-kingfisher",
+      "revision": "7618c3f3b133167f",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T20:11:35.596Z",
+      "seen": true,
+      "operation": "27974767-59c8-4997-8517-81b7d616a9f2"
     }
   ],
   "deletedNotes": [
