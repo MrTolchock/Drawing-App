@@ -15028,11 +15028,11 @@
     "puzzle:picnic@c7d492adf0c97485": {
       "key": "puzzle:picnic",
       "revision": "c7d492adf0c97485",
-      "status": "improve",
+      "status": "approved",
       "note": "Nehme tastaturteil aus vorlesetext heraus. Generell im ganzen spiel verwende keine tastatur, nirgends.",
-      "at": "2026-11-18T20:08:52.120Z",
+      "at": "2026-11-18T20:12:44.632Z",
       "seen": true,
-      "operation": "ad56a4db-f58f-48be-ab56-780c625f126b"
+      "operation": "85c9117f-e39c-49f3-b0c5-534203d4fead"
     },
     "picnic/2-1@5792de7821d8d8de": {
       "key": "picnic/2-1",
@@ -15240,6 +15240,24 @@
       "at": "2026-11-18T20:12:30.708Z",
       "seen": true,
       "operation": "5e9e5f2e-3c7d-498a-a3c2-cec2904862f7"
+    },
+    "picnic/started-3-2@2fce1a498b2e490b": {
+      "key": "picnic/started-3-2",
+      "revision": "2fce1a498b2e490b",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T20:12:35.672Z",
+      "seen": true,
+      "operation": "9fd5983d-d785-42da-ada4-8855e50119a9"
+    },
+    "picnic/started-4-2@e613d804d1cb4098": {
+      "key": "picnic/started-4-2",
+      "revision": "e613d804d1cb4098",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T20:12:41.478Z",
+      "seen": true,
+      "operation": "d0117231-3bf2-4165-b62f-467ec297b7c4"
     }
   },
   "history": [
@@ -15422,6 +15440,15 @@
       "at": "2026-11-18T20:04:54.717Z",
       "seen": true,
       "operation": "7cb2cd46-1e52-447b-9651-f614390e1df4"
+    },
+    {
+      "key": "puzzle:picnic",
+      "revision": "c7d492adf0c97485",
+      "status": "improve",
+      "note": "Nehme tastaturteil aus vorlesetext heraus. Generell im ganzen spiel verwende keine tastatur, nirgends.",
+      "at": "2026-11-18T20:08:52.120Z",
+      "seen": true,
+      "operation": "ad56a4db-f58f-48be-ab56-780c625f126b"
     }
   ],
   "deletedNotes": [
