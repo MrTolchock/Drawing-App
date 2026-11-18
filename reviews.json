@@ -15015,6 +15015,15 @@
       "at": "2026-11-18T20:07:43.241Z",
       "seen": true,
       "operation": "0b98402b-713d-41c2-8b89-2bad312803a9"
+    },
+    "puzzle:rocket@604d487a335c77b4": {
+      "key": "puzzle:rocket",
+      "revision": "604d487a335c77b4",
+      "status": "approved",
+      "note": "Satz: Hier sollen x leuchten auf jeder Iteration entfernen. Glühwürmchen sind nicht richtig illustriert, anpassen.",
+      "at": "2026-11-18T20:07:46.405Z",
+      "seen": true,
+      "operation": "ffc5b352-d080-4c06-88c8-b4d83913d8a2"
     }
   },
   "history": [
@@ -15394,6 +15403,11 @@
       "key": "puzzle:friends-squirrel",
       "note": "Nüsse rückgängig machen, die waren besser vorher. Leerer korb bei der zahl 0 war das problem, dieser passt nicht",
       "at": "2026-11-18T07:43:37.226Z"
+    },
+    {
+      "key": "puzzle:rocket",
+      "note": "Satz: Hier sollen x leuchten auf jeder Iteration entfernen. Glühwürmchen sind nicht richtig illustriert, anpassen.",
+      "at": "2026-11-18T20:07:49.202Z"
     },
     {
       "key": "robot/0-3",
