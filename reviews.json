@@ -12052,6 +12052,78 @@
       "at": "2026-11-18T07:48:09.670Z",
       "seen": true,
       "operation": "1ca9518c-db20-4ab1-b575-db5b07bc12f0"
+    },
+    "friends-mouse/word-6@66ff07c684270d0a": {
+      "key": "friends-mouse/word-6",
+      "revision": "66ff07c684270d0a",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:48:12.002Z",
+      "seen": true,
+      "operation": "684a1367-7f5e-45fd-ba86-ecd1088829b0"
+    },
+    "friends-mouse/word-7@533af063920b588b": {
+      "key": "friends-mouse/word-7",
+      "revision": "533af063920b588b",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:48:14.311Z",
+      "seen": true,
+      "operation": "c00cd655-a60c-448a-8386-49a456643043"
+    },
+    "friends-mouse/word-8@67985e39a4df6ab1": {
+      "key": "friends-mouse/word-8",
+      "revision": "67985e39a4df6ab1",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:48:16.203Z",
+      "seen": true,
+      "operation": "ae04fc42-e613-4525-be35-ef3f22ff9423"
+    },
+    "friends-mouse/word-9@386623d76dc1703b": {
+      "key": "friends-mouse/word-9",
+      "revision": "386623d76dc1703b",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:48:18.134Z",
+      "seen": true,
+      "operation": "83266a90-3254-40ce-a3c0-deeeb6e4cfce"
+    },
+    "friends-mouse/word-10@c43ae2614fbe3729": {
+      "key": "friends-mouse/word-10",
+      "revision": "c43ae2614fbe3729",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:48:20.004Z",
+      "seen": true,
+      "operation": "83490a9f-dca3-49c8-985f-678103770584"
+    },
+    "friends-mouse/word-11@fb04985bc6ce0785": {
+      "key": "friends-mouse/word-11",
+      "revision": "fb04985bc6ce0785",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:48:21.903Z",
+      "seen": true,
+      "operation": "3711f3d5-896c-4953-8b70-4c19d1ec4045"
+    },
+    "friends-mouse/word-12@369c960160ad719f": {
+      "key": "friends-mouse/word-12",
+      "revision": "369c960160ad719f",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:48:23.633Z",
+      "seen": true,
+      "operation": "5f6c2747-cfad-4b7b-a72f-da3c528d7b37"
+    },
+    "friends-mouse/word-13@ed7cb99a8fe9b7dc": {
+      "key": "friends-mouse/word-13",
+      "revision": "ed7cb99a8fe9b7dc",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:48:25.653Z",
+      "seen": true,
+      "operation": "571d421c-496b-4a77-9c45-d5bde8216c85"
     }
   },
   "history": [
