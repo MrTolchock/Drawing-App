@@ -15024,6 +15024,15 @@
       "at": "2026-11-18T20:07:46.405Z",
       "seen": true,
       "operation": "ffc5b352-d080-4c06-88c8-b4d83913d8a2"
+    },
+    "puzzle:picnic@c7d492adf0c97485": {
+      "key": "puzzle:picnic",
+      "revision": "c7d492adf0c97485",
+      "status": "improve",
+      "note": "Nehme tastaturteil aus vorlesetext heraus. Generell im ganzen spiel verwende keine tastatur, nirgends.",
+      "at": "2026-11-18T20:08:52.120Z",
+      "seen": true,
+      "operation": "ad56a4db-f58f-48be-ab56-780c625f126b"
     }
   },
   "history": [
