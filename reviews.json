@@ -13197,6 +13197,15 @@
       "at": "2026-11-18T08:14:35.825Z",
       "seen": true,
       "operation": "860e824a-3343-4a88-b314-27780a454d67"
+    },
+    "sequence/story-1@21975aa75ccfff5f": {
+      "key": "sequence/story-1",
+      "revision": "21975aa75ccfff5f",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T08:15:01.673Z",
+      "seen": true,
+      "operation": "e8c1985e-ef4a-4f43-b67c-fdf94deaf268"
     }
   },
   "history": [
