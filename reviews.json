@@ -16819,11 +16819,11 @@
     "puzzle:vowels@3701f8b954e9ecad": {
       "key": "puzzle:vowels",
       "revision": "3701f8b954e9ecad",
-      "status": "improve",
-      "note": "Gleiche aufgabe wie wörter und bilder. Lösche dieses rätsel aber füge diese iterationen hier in puzzle wörter und bilder ein",
-      "at": "2026-11-18T20:34:47.916Z",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T20:40:50.073Z",
       "seen": true,
-      "operation": "02ee29c3-a5d4-4e9d-9ba9-39ff4d6835c2"
+      "operation": "5abecf46-f482-42d6-80ec-ef1300791d1c"
     },
     "read-puzzle/word-0@93d235aa87ed532c": {
       "key": "read-puzzle/word-0",
@@ -17357,6 +17357,15 @@
       "at": "2026-11-18T20:01:59.087Z",
       "seen": true,
       "operation": "0e0da3d2-45e3-4557-a34c-c08f0824b307"
+    },
+    {
+      "key": "puzzle:vowels",
+      "revision": "3701f8b954e9ecad",
+      "status": "improve",
+      "note": "Gleiche aufgabe wie wörter und bilder. Lösche dieses rätsel aber füge diese iterationen hier in puzzle wörter und bilder ein",
+      "at": "2026-11-18T20:34:47.916Z",
+      "seen": true,
+      "operation": "02ee29c3-a5d4-4e9d-9ba9-39ff4d6835c2"
     }
   ],
   "deletedNotes": [
