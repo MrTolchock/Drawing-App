@@ -15722,6 +15722,11 @@
       "at": "2026-11-18T20:07:49.202Z"
     },
     {
+      "key": "puzzle:sequence",
+      "note": "Revert button braucht es nicht. Wenn kachel hochgezogen wird soll sie gleich aussehen wie kachel unten, nicht mit gestricheltem rand und seiterhin hell, nicht abgedunkelt",
+      "at": "2026-11-18T20:15:35.891Z"
+    },
+    {
       "key": "puzzle:syllable",
       "note": "Add iterations with four and five syllables",
       "at": "2026-11-18T20:13:22.221Z"
