@@ -12007,6 +12007,51 @@
       "at": "2026-11-18T07:47:57.557Z",
       "seen": true,
       "operation": "e2d458a5-b8fc-401e-9c58-e5093167422c"
+    },
+    "friends-mouse/word-1@549e66f38c20e83b": {
+      "key": "friends-mouse/word-1",
+      "revision": "549e66f38c20e83b",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:48:00.710Z",
+      "seen": true,
+      "operation": "454ef156-1896-47df-b01d-b1d6fcf6d176"
+    },
+    "friends-mouse/word-2@2e66012314c82f21": {
+      "key": "friends-mouse/word-2",
+      "revision": "2e66012314c82f21",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:48:02.793Z",
+      "seen": true,
+      "operation": "87c27d32-eec5-4a66-a135-769364653ed6"
+    },
+    "friends-mouse/word-3@6210d787832e0a37": {
+      "key": "friends-mouse/word-3",
+      "revision": "6210d787832e0a37",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:48:05.035Z",
+      "seen": true,
+      "operation": "67d95500-bd5f-469c-b588-0b53b11ef8a2"
+    },
+    "friends-mouse/word-4@b74d3537c06a4c19": {
+      "key": "friends-mouse/word-4",
+      "revision": "b74d3537c06a4c19",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:48:06.985Z",
+      "seen": true,
+      "operation": "e972ff66-6f8a-4068-b295-cddb9c3733bd"
+    },
+    "friends-mouse/word-5@54e9ad5d97fcaa31": {
+      "key": "friends-mouse/word-5",
+      "revision": "54e9ad5d97fcaa31",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:48:09.670Z",
+      "seen": true,
+      "operation": "1ca9518c-db20-4ab1-b575-db5b07bc12f0"
     }
   },
   "history": [
