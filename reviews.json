@@ -15267,6 +15267,15 @@
       "at": "2026-11-18T20:13:36.897Z",
       "seen": true,
       "operation": "1d6c2ee6-def2-495a-8197-faa61a2861b7"
+    },
+    "puzzle:syllable@82764fb66d9cb7a8": {
+      "key": "puzzle:syllable",
+      "revision": "82764fb66d9cb7a8",
+      "status": "improve",
+      "note": "Gebe nur drei auswahlmöglichkeiten für antworten",
+      "at": "2026-11-18T20:14:05.491Z",
+      "seen": true,
+      "operation": "01049b05-5c6e-45ee-90ce-d35922987d21"
     }
   },
   "history": [
