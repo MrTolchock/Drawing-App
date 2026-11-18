@@ -13206,6 +13206,15 @@
       "at": "2026-11-18T08:15:01.673Z",
       "seen": true,
       "operation": "e8c1985e-ef4a-4f43-b67c-fdf94deaf268"
+    },
+    "sequence/story-2@197989ba11081b6a": {
+      "key": "sequence/story-2",
+      "revision": "197989ba11081b6a",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T08:15:09.239Z",
+      "seen": true,
+      "operation": "ed3d3a54-c08d-4971-b465-9377ab29ac35"
     }
   },
   "history": [
