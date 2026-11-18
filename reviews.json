@@ -15375,6 +15375,15 @@
       "at": "2026-11-18T20:16:32.302Z",
       "seen": true,
       "operation": "a1a9babb-8bd2-42b6-a6b6-a1d062c8cdc2"
+    },
+    "puzzle:sequence@9794d4b525da761d": {
+      "key": "puzzle:sequence",
+      "revision": "9794d4b525da761d",
+      "status": "improve",
+      "note": "Spiel ist noch zu wenig intuitiv. Bilder müssen ohne text auskommen.",
+      "at": "2026-11-18T20:17:28.681Z",
+      "seen": true,
+      "operation": "418dd6e2-09bb-425c-92a1-584905ba169c"
     }
   },
   "history": [
