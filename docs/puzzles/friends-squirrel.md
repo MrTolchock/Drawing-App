@@ -7,7 +7,7 @@
 - Related competence: **MA.1.A.2.a** — Mengen zählen
 - Difficulty: 0–20 Nüsse; Vierer- und Fünferstruktur
 - Pool: 25 explicit iterations; a round selects five.
-- Review: solve every unconfirmed iteration to approve it; × rejects with an optional note. The final celebration approves the puzzle only when all iterations passed. Exact revisions gate release; changes require review again.
+- Review: solve every unconfirmed iteration to approve it; × rejects with an optional note. The puzzle is released when all current iterations passed. Exact per-iteration revisions gate release; only affected iterations require review after changes.
 
 ## Mapping to the blueprint
 

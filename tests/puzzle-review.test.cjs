@@ -3,7 +3,7 @@ const {setup,check}=require('../tools/puzzle-catalogue.cjs');
 const plain=v=>JSON.parse(JSON.stringify(v));
 // Component fixture for a release whose picture cells were verified unchanged.
 // Current production art may legitimately have no compatible historical release.
-function compatibleSetup(saved){const env=setup(saved);env.FK.puzzleLegacyImplementations['friends-squirrel']=['test-only-identical-pictures'];return env;}
+function compatibleSetup(saved){return setup(saved);}
 function approve(FK,id){const V=FK.puzzleReview,C=FK.puzzleCatalogue;for(const it of C.iterations(id)){assert.ok(V.seen(id,it.id));assert.ok(V.decide(id,it.id,'approved'));}assert.ok(V.decide(id,null,'approved'));}
 test('every active puzzle has at least 25 unique finite definitions, competence and real artwork',()=>{
  const {FK,ctx}=setup();FK.STICKERS=[];ctx.MutationObserver=class{observe(){}};ctx.document={body:{}};vm.runInContext(fs.readFileSync('js/ui/waldatelier.js','utf8'),ctx);
@@ -163,13 +163,13 @@ test('review snapshots every unconfirmed item once, including rejected and stale
  const next=V.previewSession('add');assert.ok(next.iterationIds.includes(pool[1].id));
  FK.puzzleImplementation='new-interaction';assert.equal(V.previewSession('add').questions.length,pool.length);
 });
-test('correct review completion approves only seen (shown or answered) items and the puzzle after the entire queue',()=>{
+test('a puzzle becomes approved when every seen or answered iteration is approved',()=>{
  const {FK,memory}=setup(),V=owner(FK),s=V.previewSession('add');
  assert.equal(V.finishSession(s),false);
  // answering the task on screen counts as having seen it, even if the mark from showing it was lost
  assert.equal(V.status('add',s.iterationIds[0]).seen,false);assert.ok(V.sessionDecision(s,'approved'));assert.equal(V.status('add',s.iterationIds[0]).seen,true);s.round++;
  for(;s.round<s.questions.length;s.round++){assert.ok(V.visit(s));assert.ok(V.sessionDecision(s,'approved'));}
- assert.equal(V.status('add').status,'pending');assert.ok(V.finishSession(s));assert.ok(V.ready('add'));
+ assert.equal(V.status('add').status,'approved');assert.ok(V.ready('add'));assert.ok(V.finishSession(s));
  assert.ok(setup(memory).FK.puzzleReview.ready('add'));assert.equal(memory.has('farbtupf.puzzles.v1'),false,'review does not create a child round');
  assert.equal(V.previewSession('add').questions.length,0);assert.ok(V.finishSession(V.previewSession('add')),'an interrupted final celebration can be completed');
  const inspect=V.previewSession('add',s.iterationIds[0]);assert.equal(inspect.questions.length,1,'explicit reinspection remains possible');
@@ -185,9 +185,8 @@ test('rejection, a failed save, an unvisited queue or changed revision never gra
 });
 test('generated GitHub pages and revision reflect the exact runtime',()=>assert.deepEqual(check(),[]));
 test('verified unchanged historical reviews remain valid without rewriting decisions or inspection evidence',()=>{
- const {FK,memory}=compatibleSetup(),C=FK.puzzleCatalogue,id='friends-squirrel',items=C.iterations(id),now=FK.puzzleImplementation,map=FK.puzzleImplementations;
- FK.puzzleImplementation=FK.puzzleLegacyImplementations[id][0];delete FK.puzzleImplementations;approve(FK,id);
- const before=JSON.stringify([...memory]);FK.puzzleImplementation=now;FK.puzzleImplementations=map;
+ const {environment}=require('../tools/puzzle-environment.cjs'),{snapshotReader}=require('../tools/puzzle-review-build.cjs'),old=environment({read:snapshotReader('073657f32f87daa47739910df090e4250289cc55').read});old.execute('js/friends/puzzle-implementation.js');approve(old.FK,'friends-squirrel');
+ const memory=old.memory,before=JSON.stringify([...memory]),{FK}=compatibleSetup(memory),C=FK.puzzleCatalogue,id='friends-squirrel',items=C.iterations(id);
  assert.equal(FK.puzzleReview.status(id,items[0].id).status,'approved');assert.equal(FK.puzzleReview.status(id,items[0].id).seen,true);assert.ok(FK.puzzleReview.ready(id));
  assert.equal(JSON.stringify([...memory]),before,'read-only recovery preserves timestamps, notes and history');
  const key=memory.keys().next().value,raw=JSON.parse(memory.get(key));raw.decisions[items[1].id].revision='0000000000000000';memory.set(key,JSON.stringify(raw));
@@ -208,6 +207,18 @@ test('general puzzle comments persist without changing release status or revivin
  assert.ok(V.comment('add','Bilder passen.'));assert.ok(V.ready('add'));assert.ok(V.approveAll('add'));assert.equal(V.status('add').decision.note,'Bilder passen.');
  const revision=V.status('add').decision.revision;FK.puzzleImplementation='changed';assert.ok(V.comment('add','Nach Änderung neu prüfen.'));assert.equal(V.status('add').decision.revision,revision);assert.equal(V.status('add').stale,true);assert.equal(V.ready('add'),false);
  assert.ok(V.comment('add',''));assert.equal(V.status('add').decision.note,'');
+});
+test('one changed iteration leaves all other approvals intact and the puzzle opens until that item passes',()=>{
+ const {FK,execute}=setup(),id='friends-hedgehog';approve(FK,id);const before=plain(FK.puzzleReview.exportData().decisions);
+ execute('js/friends/puzzle-catalogue.js',source=>source.replace('Wer hält eine Nuss?','Wer trägt eine Nuss?'));execute('js/friends/puzzle-review.js');
+ const C=FK.puzzleCatalogue,V=owner(FK),key=id+'/riddle-10';assert.equal(V.progress(id).approved,24);assert.equal(V.status(id).status,'pending');assert.equal(V.ready(id),false);
+ assert.deepEqual(plain(V.previewSession(id).iterationIds),[key]);
+ for(const it of C.iterations(id))if(it.id!==key){assert.equal(V.status(id,it.id).status,'approved');assert.deepEqual(plain(V.status(id,it.id).decision),before[it.id]);}
+ assert.ok(V.seen(id,key));assert.ok(V.decide(id,key,'approved'));assert.equal(V.ready(id),true);assert.equal(V.status(id).status,'approved','no unrelated whole-puzzle sign-off is required');
+});
+test('an unrelated iteration change cannot invalidate the task currently being inspected',()=>{
+ const {FK}=setup(),V=owner(FK),id='friends-hedgehog',session=V.previewSession(id),changed=id+'/riddle-10';FK.puzzleIterationImplementations[changed]='changed-rendering';
+ assert.ok(V.sessionDecision(session,'approved'),'the unchanged task on screen can still be confirmed');session.round=session.iterationIds.indexOf(changed);assert.equal(V.sessionDecision(session,'approved'),false,'the changed task itself requires a fresh preview');assert.match(V.error,/geändert/);
 });
 
 test('deleting a displayed comment removes every older duplicate but preserves all decisions and inspection evidence',()=>{

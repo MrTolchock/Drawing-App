@@ -7,7 +7,7 @@
 - Related competence: **MA.2.A.2.a** — Wiederholungsmuster fortsetzen und ergänzen
 - Difficulty: AAB, ABB, ABC, ABAC, AABC mit Stein, Tanne und Blume; Lücke am Ende oder in der zweiten Gruppe
 - Pool: 30 explicit iterations; a round selects five.
-- Review: solve every unconfirmed iteration to approve it; × rejects with an optional note. The final celebration approves the puzzle only when all iterations passed. Exact revisions gate release; changes require review again.
+- Review: solve every unconfirmed iteration to approve it; × rejects with an optional note. The puzzle is released when all current iterations passed. Exact per-iteration revisions gate release; only affected iterations require review after changes.
 
 ## Mapping to the blueprint
 

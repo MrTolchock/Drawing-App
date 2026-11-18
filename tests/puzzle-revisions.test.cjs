@@ -30,6 +30,7 @@ test('only actual image cells affect a puzzle, including shared-atlas changes',a
  const basketBytes=await sharp(basket.data,{raw:basket.info}).png().toBuffer(),basketChange=build({...reader,read:name=>name===basketFile?basketBytes:reader.read(name)});
  for(const id of ['friends-squirrel','trace-numbers'])different(base,basketChange,id);
  for(const id of ['friends-beaver','friends-kingfisher','count','add','trace'])same(base,basketChange,id);
+ assert.deepEqual(Object.keys(base.iterations).filter(key=>base.iterations[key].presentation!==basketChange.iterations[key].presentation),['friends-squirrel/count-0',...['forest-nut','forest-apple','forest-feather'].map(item=>'trace-numbers/digit-0-'+item)]);
 });
 test('registered but unused artwork does not reopen existing puzzles',()=>{
  const unused=changed('js/ui/waldatelier.js',s=>s.replace('const sheets = {','const sheets = { unused:["unused-subject"],'));
@@ -44,7 +45,7 @@ test('the actual shared text helper invalidates reading tasks without reopening 
 test('approvals from the former shared leaf cannot approve the redrawn gallery artwork',()=>{
  const {FK}=require('../tools/puzzle-catalogue.cjs').setup(),releases=JSON.parse(fs.readFileSync(path.join(__dirname,'../tools/puzzle-review-baselines.json'))).releases;
  const v36=releases.find(r=>r.commit.startsWith('9379fcd')),v37=releases.find(r=>r.commit.startsWith('719a907'));
- for(const g of FK.friendsLibrary.catalogue())for(const release of [v36,v37])assert.equal(FK.puzzleLegacyImplementations[g.id].includes(release.implementation),false,g.id+' has new shared artwork');
+ for(const g of FK.friendsLibrary.catalogue())for(const release of [v36,v37])for(const it of FK.puzzleCatalogue.iterations(g.id))assert.equal(FK.puzzleCatalogue.acceptsRevision(g.id,it.id,release.iterations[it.id]?.revision),false,it.id+' has new shared artwork');
 });
 test('modern historical revisions recover only verified unchanged puzzles with their complete implementation token',()=>{
  const {FK}=require('../tools/puzzle-catalogue.cjs').setup(),C=FK.puzzleCatalogue;
@@ -55,7 +56,19 @@ test('modern historical revisions recover only verified unchanged puzzles with t
   assert.equal(C.acceptsRevision(game.id,null,old.FK.puzzleCatalogue.puzzleRevision(game.id)),!changed.has(game.id),game.id+' puzzle');
   for(const item of C.iterations(game.id)){
    const earlier=old.FK.puzzleCatalogue.iterations(game.id).find(it=>it.id===item.id);
-   assert.equal(C.acceptsRevision(game.id,item.id,old.FK.puzzleCatalogue.iterationRevision(game.id,earlier)),!changed.has(game.id),item.id);
+   const questionChanged=JSON.stringify(item.question)!==JSON.stringify(earlier.question),basketChanged=item.question.kind==='nuts'&&item.question.count===0||item.question.quantity?.count===0;
+   assert.equal(C.acceptsRevision(game.id,item.id,old.FK.puzzleCatalogue.iterationRevision(game.id,earlier)),!questionChanged&&!basketChanged,item.id);
   }
  }
+});
+test('one edited question reopens only its iteration while menu text and summaries retain all approvals',()=>{
+ const question=changed('js/friends/puzzle-catalogue.js',s=>s.replace('Wer hält eine Nuss?','Wer trägt eine Nuss?'));
+ const affected=built=>Object.keys(base.iterations).filter(key=>JSON.stringify(base.iterations[key])!==JSON.stringify(built.iterations[key]));
+ assert.deepEqual(affected(question),['friends-hedgehog/riddle-10']);
+ const summary=changed('js/friends/puzzle-catalogue.js',s=>s.replace("'Mengen zählen'","'Anzahlen bestimmen'"));assert.deepEqual(affected(summary),[]);
+ const menu=changed('css/puzzle-review.css',s=>s+'\n.review-grid{gap:31px}\n');assert.deepEqual(affected(menu),[]);
+});
+test('a handwriting path change preserves all other glyph approvals when their shared frame is unchanged',()=>{
+ const glyph=changed('js/learn/glyphs.js',s=>s.replace('M7 100 L44 0 L81 100','M9 100 L44 0 L81 100'));
+ assert.deepEqual(Object.keys(base.iterations).filter(key=>base.iterations[key].presentation!==glyph.iterations[key].presentation),['trace/letter-A']);
 });

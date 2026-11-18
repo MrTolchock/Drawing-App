@@ -56,7 +56,9 @@ The export includes the question definitions and interpretation guide, so the AI
 
 The existing device-local key `farbtupf.friends.v1.log` is upgraded compatibly. Development/alternate-world namespaces remain separate. The log survives refresh/offline use in that browser. A different browser or deleting site data starts with a different local log; only an exported file remains after deleting local data.
 
-Records are bounded to **7 days, 10,000 events and 750,000 storage characters** (about 1.5 MB in UTF-16 localStorage). Oldest observations and unused definitions are removed when a limit is reached. The export reports truncation and dropped counts so missing coverage is not mistaken for success or failure. Key puzzle outcomes persist immediately; routine actions are batched briefly and flushed on page hide/export. Storage failures never roll back gameplay; memory observations remain exportable and Settings reports the storage issue.
+Records are bounded to **30 days, 10,000 events and 750,000 storage characters** (about 1.5 MB in UTF-16 localStorage). Oldest observations and unused definitions are removed when a limit is reached. The thirty-day boundary is inclusive and also applies after refresh or idle export. The export reports truncation and dropped counts so missing coverage is not mistaken for success or failure. Key puzzle outcomes persist immediately; routine actions are batched briefly and flushed on page hide/export. Storage failures never roll back gameplay; memory observations remain exportable and Settings reports the storage issue.
+
+Each observed task retains its original question and exact iteration revision, so later puzzle edits cannot relabel historical answers. Iteration revisions follow the actual question/rendering rather than changes elsewhere in the puzzle. Current text-case context uses the active text mode, not a dormant historical setting. Retiring or reassigning a puzzle does not rewrite existing log definitions or outcomes.
 
 **Protokoll löschen** clears only observations, after confirmation. It does not restart the journey, alter parent limits, clear unfinished questions or change GitHub puzzle approvals.
 

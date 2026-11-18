@@ -22,8 +22,26 @@ test('feedback is excluded and repeated redraws do not restart or duplicate an i
  assert.equal(data.events.filter(e=>e.event==='iteration_presented').length,2);assert.equal(data.events.find(e=>e.event==='puzzle_completed').visitActiveMs,2500);assert.deepEqual(data.summary.iterations.map(i=>i.medianActiveMs),[1000,1500]);
 });
 test('retention bounds time, event count and storage size and removes unused definitions',()=>{
- const f=fixture();f.log.record('iteration_presented',{taskKey:'old',definition:{question:'old'}});f.advance(8*86400000);f.log.flush();assert.equal(JSON.parse(f.map.get('log')).events.length,0,'idle records also expire durably without another event');f.log.record('new');
+ const f=fixture();f.log.record('iteration_presented',{taskKey:'old',definition:{question:'old'}});f.advance(31*86400000);f.log.flush();assert.equal(JSON.parse(f.map.get('log')).events.length,0,'idle records also expire durably without another event');f.log.record('new');
  for(let i=0;i<11000;i++)f.log.record('sample',{value:'x'.repeat(80),i});const data=f.log.exportData();assert.ok(data.events.length>0&&data.events.length<=10000);assert.ok(f.map.get('log').length<=750000);assert.equal(data.retention.truncated,true);assert.ok(data.retention.droppedEvents>0);assert.equal(data.definitions.old,undefined);assert.ok(data.events.every(e=>e.timestamp===f.now()));
+});
+test('the complete thirty-day window survives refresh and expires only after its boundary',()=>{
+ const f=fixture();f.log.record('iteration_presented',{taskKey:'retained',definition:{question:'Original definition'}});f.advance(29*86400000);f.log.flush();
+ const restored=createRecorder(f.options);assert.equal(restored.exportData().retention.days,30);assert.equal(restored.exportData().events.length,1);assert.equal(restored.exportData().definitions.retained.question,'Original definition');
+ f.advance(86400000);assert.equal(restored.exportData().events.length,1,'the exact thirty-day boundary is retained');f.advance(1);restored.flush();assert.equal(JSON.parse(f.map.get('log')).events.length,0);assert.deepEqual(restored.exportData().definitions,{});
+});
+test('every current iteration produces an attributable definition and outcome after content changes',()=>{
+ const {FK}=require('../tools/puzzle-catalogue.cjs').setup(),C=FK.puzzleCatalogue,plain=v=>JSON.parse(JSON.stringify(v));
+ let checked=0;
+ for(const game of FK.friendsLibrary.catalogue()){
+  const f=fixture(),p=C.puzzle(game.id),items=C.iterations(game.id),session={id:game.id,round:0,work:{},solved:false,questions:items.map(it=>plain(it.question)),iterationIds:items.map(it=>it.id)};
+  const run=createVisit({session,puzzle:{host:p.host,revision:C.puzzleRevision(game.id)},record:f.log.record,now:f.now,id:()=>String(++f.sequence),definition:key=>{const it=items.find(it=>it.id===key);return {puzzleId:game.id,iterationId:key,revision:C.iterationRevision(game.id,it),question:plain(it.question),...(it.question.kind==='trace'?{authoredStrokes:plain(FK.glyphs.data[it.question.glyph].strokes)}:{})};}});
+  for(const it of items){run.show(plain(it.question));f.advance(100);run.answer(it.question.answer??it.question.glyph??{completed:true},true);session.round++;}
+  run.finish();run.stop();const data=f.log.exportData();
+  for(const it of items){const key=it.id+'@'+C.iterationRevision(game.id,it),definition=data.definitions[key];assert.deepEqual(definition.question,plain(it.question),it.id);assert.equal(data.events.filter(e=>e.event==='puzzle_attempt'&&e.taskKey===key&&e.correct).length,1,it.id+' outcome');assert.ok(data.summary.iterations.some(row=>row.iterationId===it.id&&row.completedRuns===1));checked++;}
+  assert.equal(data.storage.persisted,true);assert.equal(data.summary.unattributedPuzzleEvents,0);
+ }
+ assert.equal(checked,958);
 });
 test('failed log storage retains an export and never blocks gameplay state transactions',()=>{
  const f=fixture();f.log.record('session_start');const prior=f.map.get('log');f.storage.setItem=()=>{throw Error('quota');};f.log.record('puzzle_attempt',{correct:false});const data=f.log.exportData();assert.equal(data.storage.persisted,false);assert.match(data.storage.error,/nicht/);assert.equal(data.events.length,2);assert.equal(f.map.get('log'),prior);

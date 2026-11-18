@@ -1,7 +1,8 @@
 const {test}=require('node:test');
 const assert=require('node:assert/strict');
 const content=require('../js/friends/content.js');
-const {create}=require('../js/friends/state.js');
+const {create:createState}=require('../js/friends/state.js');
+const create=options=>createState({puzzleHosts:()=>Object.keys(content.hosts).filter(id=>id!=='fish'),...options});
 function fixture(){const map=new Map(),storage={getItem:k=>map.get(k)??null,setItem:(k,v)=>map.set(k,v),removeItem:k=>map.delete(k)};return {storage,state:create({storage,content})};}
 function finishRound(state,host){assert.ok(state.start(host));for(let i=0;i<5;i++){const r=state.round(host);assert.ok(state.answer(host,r.tasks[r.index].answer));if(i<4)assert.ok(state.advance(host));}}
 

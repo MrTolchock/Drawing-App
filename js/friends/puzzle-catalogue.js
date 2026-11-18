@@ -5,13 +5,13 @@
   const FK=window.FK,R=FK.puzzleRounds,C=window.FriendsContent;
   const meta={
     'friends-squirrel':['MA.1.A.2.a','Mengen zählen','0–20 Nüsse; Vierer- und Fünferstruktur'],
-    'friends-bird':['D.2.A.1.b; D.1.A.1.b','Wörter lesen und Reime erkennen','25 verschiedene Reimpaare ohne vertauschte Doppelungen; eingeführte Buchstaben'],
+    'friends-bird':['D.2.A.1.b; D.1.A.1.b','Reime erkennen','25 verschiedene Reimpaare ohne vertauschte Doppelungen; eingeführte Buchstaben'],
     'friends-owl':['D.2.A.1.b; D.2.B.1.b','Kurze Sätze verstehen','Ein kurzer Satz über ein Tier; immer zwei Bildantworten'],
     'friends-beaver':['MA.2.A.1.a','Formenmengen in einer Matrix erkennen','Zwei gleiche und eine andere Form je Reihe; das Muster der ersten zwei Reihen ergänzen'],
     'friends-mouse':['D.2.A.1.b','Wörter mit Bildern verbinden','25 vertraute Nomen; eingeführte Buchstaben'],
     'friends-hedgehog':['NMG.2.4.a; D.2.B.1.b','Tiermerkmale erkennen und Fragen lesen','25 kurze Fragen zu sichtbaren Tiermerkmalen; zwei Bildantworten'],
     'friends-deer':['NMG.2.1.a; D.2.B.1.b','Lebensräume und Nahrung zuordnen','25 kurze Naturfragen; drei Bildantworten'],
-    'friends-kingfisher':['MA.1.A.2.a','Dinge am Bach zählen','2–20; sechs verschiedene Gegenstände'],
+    'friends-kingfisher':['MA.1.A.2.a','Mengen zählen','2–20; sechs verschiedene Gegenstände'],
     'friends-frog':['D.2.A.1.b','Tierwörter lesen','25 Tiernamen; ausschliesslich Tierbilder'],
     'friends-badger':['NMG.2.3.a; D.2.B.1.b','Wachstum und Naturveränderungen erkennen','25 kurze Fragen zu Wetter, Pflanzen und Entwicklung'],
     'friends-ibex':['MA.2.A.2.a','Wiederholungsmuster fortsetzen und ergänzen','AAB, ABB, ABC, ABAC, AABC mit Stein, Tanne und Blume; Lücke am Ende oder in der zweiten Gruppe'],
@@ -30,7 +30,7 @@
     mirror:['MA.2.A.2.c','Ein Muster spiegeln','3 × 3; drei bis fünf Blätter; senkrechte Spiegelachse'],
     vowels:['D.4.A.1.c (Unterstützung)','Einen Vokal ergänzen','Bildwörter; keine Lücke innerhalb von au/ei/ie/eu/äu'],
     'read-puzzle':['D.2.A.1.b','Silben zu Wörtern verbinden','28 Bildwörter; zwei bis drei Silben; ein Ablenker'],
-    'read-word':['D.2.A.1.b','Waldwörter lesen','Mindestens 25 konkrete Bildwörter'],
+    'read-word':['D.2.A.1.b','Wörter lesen','Mindestens 25 konkrete Bildwörter'],
     'read-leaves':['D.2.A.1.b (Übung)','Silben visuell unterscheiden','32 Silben: m/l/s/n/r/f/t/p mit a/i/o/u'],
     'read-colours':['D.2.A.1.b/c','Farbsätze genau lesen','Fünf Farben; ein Satz oder zwei Sätze mit links/rechts'],
     trace:['D.4.A.1.c','Buchstabenformen nachfahren','A–Z und ÄÖÜ, gross und klein; 58 Formen; keine Handschriftbeurteilung'],
@@ -226,12 +226,13 @@
   function puzzle(id){const g=FK.friendsLibrary.catalogue().find(g=>g.id===id),m=meta[id];return g&&m?{...g,hostName:C.hosts[g.host].name,reference:m[0],competence:m[1],difficulty:m[2],instruction:R.instructions[id]}:null;}
   const iterations=id=>clone(pools[id]||[]);
   const implementation=id=>(FK.puzzleImplementation||'unbuilt')+(FK.puzzleImplementations?':'+(FK.puzzleImplementations[id]||'unbuilt'):'');
-  const iterationRevision=(id,item)=>hash({blueprint:1,implementation:implementation(id),puzzle:puzzle(id),item});
-  const puzzleRevision=id=>hash({blueprint:1,implementation:implementation(id),puzzle:puzzle(id),items:iterations(id)});
+  const reviewContract=id=>{const p=puzzle(id);return p?{id:p.id,host:p.host,screen:p.screen,instruction:p.instruction,difficulty:p.difficulty}:null;};
+  const iterationRevision=(id,item)=>FK.puzzleIterationImplementations?hash({blueprint:2,implementation:(FK.puzzleImplementation||'unbuilt')+':'+(FK.puzzleIterationImplementations[item.id]||'unbuilt'),puzzle:reviewContract(id),item:{id:item.id,question:item.question}}):hash({blueprint:1,implementation:implementation(id),puzzle:puzzle(id),item});
+  const puzzleRevision=id=>FK.puzzleIterationImplementations?hash({blueprint:2,puzzle:reviewContract(id),items:iterations(id).map(item=>[item.id,iterationRevision(id,item)])}):hash({blueprint:1,implementation:implementation(id),puzzle:puzzle(id),items:iterations(id)});
   // Build-time verification proves these older releases have identical puzzle definitions and presentation.
   const former=id=>FK.puzzleLegacyImplementations?.[id]||[];
-  const formerIterationRevisions=(id,item)=>former(id).map(impl=>hash({blueprint:1,implementation:impl,puzzle:puzzle(id),item}));
-  const formerPuzzleRevisions=id=>{const p=puzzle(id),items=iterations(id);return former(id).map(impl=>hash({blueprint:1,implementation:impl,puzzle:p,items}));};
+  const formerIterationRevisions=(id,item)=>{if(FK.puzzleReviewCompatibility){const proof=FK.puzzleReviewCompatibility.iterations[item.id];return proof?.current===iterationRevision(id,item)?proof.former:[];}return former(id).map(impl=>hash({blueprint:1,implementation:impl,puzzle:puzzle(id),item}));};
+  const formerPuzzleRevisions=id=>{if(FK.puzzleReviewCompatibility){const proof=FK.puzzleReviewCompatibility.puzzles[id];return proof?.current===puzzleRevision(id)?proof.former:[];}const p=puzzle(id),items=iterations(id);return former(id).map(impl=>hash({blueprint:1,implementation:impl,puzzle:p,items}));};
   const iterationRevisions=(id,item)=>[iterationRevision(id,item),...formerIterationRevisions(id,item)];
   const puzzleRevisions=id=>[puzzleRevision(id),...formerPuzzleRevisions(id)];
   function acceptsRevision(id,iteration,revision){const it=iteration?pools[id]?.find(it=>it.id===iteration):null;return !!revision&&(!iteration||!!it)&&(it?iterationRevisions(id,it):puzzleRevisions(id)).includes(revision);}

@@ -225,7 +225,7 @@
         let latest;for(const revision of accepted){const entry=base[key+'@'+revision];if(entry&&(!latest||later(entry,latest)))latest=entry;}
         return latest?.status==='approved'&&(key.startsWith('puzzle:')||latest.seen)&&!Object.values(base).some(entry=>entry.key===key&&entry.status!=='approved'&&later(entry,latest));
       };
-      return okay('puzzle:'+id,revisions(id))&&catalogue.iterations(id).every(item=>okay(item.id,revisions(id,item)));
+      return read().decisions['puzzle:'+id]?.status!=='improve'&&catalogue.iterations(id).every(item=>okay(item.id,revisions(id,item)));
     }
     function refresh(){return run(!!token);}
     function resume(){if(Date.now()-lastPull>60000||pendingCount())return refresh();return Promise.resolve(true);}
