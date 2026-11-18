@@ -14596,11 +14596,11 @@
     "nature/clue-18@1eb9abcf6b2bc94d": {
       "key": "nature/clue-18",
       "revision": "1eb9abcf6b2bc94d",
-      "status": "approved",
-      "note": "",
-      "at": "2026-11-18T20:04:54.717Z",
+      "status": "improve",
+      "note": "Schlechtes deutsch, anpassen",
+      "at": "2026-11-18T20:05:38.898Z",
       "seen": true,
-      "operation": "7cb2cd46-1e52-447b-9651-f614390e1df4"
+      "operation": "fe50d24e-9d63-4129-b96f-c548227e0bc5"
     },
     "nature/clue-19@08ab447868adaa5c": {
       "key": "nature/clue-19",
@@ -14837,6 +14837,15 @@
       "at": "2026-11-18T19:43:45.181Z",
       "seen": true,
       "operation": "5582c99f-c61b-4e3a-add6-a16f678df18c"
+    },
+    {
+      "key": "nature/clue-18",
+      "revision": "1eb9abcf6b2bc94d",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T20:04:54.717Z",
+      "seen": true,
+      "operation": "7cb2cd46-1e52-447b-9651-f614390e1df4"
     }
   ],
   "deletedNotes": [
