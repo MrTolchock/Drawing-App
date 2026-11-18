@@ -1,6 +1,6 @@
 # Current visual consistency audit
 
-Current game art is **Waldpost 9.3.96**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal and object reference pixels and **37** complete forward image-generation prompts.
+Current game art is **Waldpost 9.3.97**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal and object reference pixels and **37** complete forward image-generation prompts.
 
 ## Stay on the Steg in Frosch's swamp — 9.3.87
 
@@ -129,3 +129,5 @@ All current prompts include the shared centring, visible size and clean-alpha ch
 The 16 current feedback notes are accounted for in the [review follow-up](../docs/PUZZLE-FEEDBACK-2026-11-18.md). General comments reopen a puzzle with its iteration decisions intact. Waldmuster restores the two original approvals from verified GitHub evidence. Review queues complete automatically. The live review branch is the authoritative record.
 
 The phone and tablet design check passed for all 31 puzzles. Gallery checks verified 131 transparent PNG exports, including eight browser downloads. The read-only GitHub snapshot test restored the three eligible puzzles on fresh devices, including Waldmuster. It also confirmed later restrictions and comment deletions.
+
+Version 9.3.97 installs the reviewed puzzle update and the woodland audio update together in a fresh offline cache. Both updates were merged with the same initial version number.
