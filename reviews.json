@@ -12308,11 +12308,11 @@
     "friends-hedgehog/riddle-18@49f98a28f947b708": {
       "key": "friends-hedgehog/riddle-18",
       "revision": "49f98a28f947b708",
-      "status": "approved",
-      "note": "",
-      "at": "2026-11-18T07:50:40.265Z",
+      "status": "improve",
+      "note": "Die frage ist schlechtes deutsch",
+      "at": "2026-11-18T07:51:27.301Z",
       "seen": true,
-      "operation": "39175d19-c463-4844-8344-39a9ff9edaf4"
+      "operation": "8b6c4249-3e31-4d1b-8d1c-e48b6318a9e2"
     },
     "friends-hedgehog/riddle-19@87607d0ead6a7160": {
       "key": "friends-hedgehog/riddle-19",
@@ -12450,6 +12450,15 @@
       "at": "2026-11-17T20:25:32.414Z",
       "seen": true,
       "operation": "36acc3a7-8bc1-46eb-9354-b7d266763556"
+    },
+    {
+      "key": "friends-hedgehog/riddle-18",
+      "revision": "49f98a28f947b708",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:50:40.265Z",
+      "seen": true,
+      "operation": "39175d19-c463-4844-8344-39a9ff9edaf4"
     }
   ],
   "deletedNotes": [
