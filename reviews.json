@@ -11004,10 +11004,10 @@
       "key": "puzzle:count",
       "revision": "2e076128b0c78e60",
       "status": "approved",
-      "note": "",
-      "at": "2026-11-17T20:46:41.431Z",
+      "note": "Auch hier markierungen für käfer entfernen, wenn man draufklickt",
+      "at": "2026-11-18T07:57:56.014Z",
       "seen": true,
-      "operation": "1bf6bd04-3a91-441e-ad4e-d90f23c128be"
+      "operation": "cc94c646-be4b-47b0-887a-47d0981fe192"
     },
     "add/1-1@a91525523ba0d7dc": {
       "key": "add/1-1",
@@ -12819,6 +12819,15 @@
       "at": "2026-11-18T07:56:25.129Z",
       "seen": true,
       "operation": "56b77e53-38ee-4682-9590-7c4358971efe"
+    },
+    {
+      "key": "puzzle:count",
+      "revision": "2e076128b0c78e60",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-17T20:46:41.431Z",
+      "seen": true,
+      "operation": "1bf6bd04-3a91-441e-ad4e-d90f23c128be"
     }
   ],
   "deletedNotes": [
