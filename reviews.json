@@ -12774,6 +12774,15 @@
       "at": "2026-11-18T08:04:50.281Z",
       "seen": true,
       "operation": "3f01e77a-5b5e-4de8-a53f-da4283233732"
+    },
+    "puzzle:rocket@7088487b9290e193": {
+      "key": "puzzle:rocket",
+      "revision": "7088487b9290e193",
+      "status": "pending",
+      "note": "Satz: Hier sollen x leuchten auf jeder Iteration entfernen. Glühwürmchen sind nicht richtig illustriert, anpassen.",
+      "at": "2026-11-18T08:07:39.129Z",
+      "seen": true,
+      "operation": "6b1820e1-5168-4a77-9bd4-b88355ac3d2d"
     }
   },
   "history": [
