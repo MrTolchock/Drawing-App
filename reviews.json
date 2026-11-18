@@ -12765,6 +12765,15 @@
       "at": "2026-11-18T08:02:53.180Z",
       "seen": true,
       "operation": "97b157dd-094a-471a-993b-69fffe464b4a"
+    },
+    "puzzle:nature@311e650691267996": {
+      "key": "puzzle:nature",
+      "revision": "311e650691267996",
+      "status": "pending",
+      "note": "Nehme nur einen satz pro rätsel, nicht zwei.",
+      "at": "2026-11-18T08:04:50.281Z",
+      "seen": true,
+      "operation": "3f01e77a-5b5e-4de8-a53f-da4283233732"
     }
   },
   "history": [
