@@ -15658,6 +15658,11 @@
       "at": "2026-11-18T20:07:49.202Z"
     },
     {
+      "key": "puzzle:syllable",
+      "note": "Add iterations with four and five syllables",
+      "at": "2026-11-18T20:13:22.221Z"
+    },
+    {
       "key": "robot/0-3",
       "note": "Revert pfeil braucht es nicht. Pfeile sehen nicht identisch aus auf tasten, einige sind dünner. Tasten etwas grösser machen",
       "at": "2026-11-18T08:12:39.481Z"
