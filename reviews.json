@@ -13535,10 +13535,10 @@
       "key": "friends-squirrel/count-5",
       "revision": "eb1d74abebad51db",
       "status": "approved",
-      "note": "",
-      "at": "2026-11-18T19:43:47.281Z",
+      "note": "Alle Iterationen zusammen bestätigt",
+      "at": "2026-11-18T19:52:19.926Z",
       "seen": true,
-      "operation": "20b258f3-f8be-44ab-b8c4-38c9f0311b34"
+      "operation": "c67d82e2-3f54-44aa-b1eb-486a62fd614d"
     },
     "friends-squirrel/count-6@f4e29d49508347fb": {
       "key": "friends-squirrel/count-6",
@@ -13865,6 +13865,15 @@
       "at": "2026-11-18T08:13:51.815Z",
       "seen": true,
       "operation": "29fbc6b3-a4c9-45d3-8e16-63f468e9ca63"
+    },
+    {
+      "key": "friends-squirrel/count-5",
+      "revision": "eb1d74abebad51db",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T19:43:47.281Z",
+      "seen": true,
+      "operation": "20b258f3-f8be-44ab-b8c4-38c9f0311b34"
     }
   ],
   "deletedNotes": [
