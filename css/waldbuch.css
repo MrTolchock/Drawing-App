@@ -358,6 +358,10 @@
 .friends-interface .ff-overlay{background:radial-gradient(ellipse at 50% 48%,#3a24127a,#2a180bcc)}
 .friends-interface .ff-overlay.ff-postcard-overlay{background:radial-gradient(ellipse at 50% 48%,#3a24127a,#2a180bcc)}
 
+.ff-letter-with-voice{position:relative}
+.ff-letter-with-voice .play-listen{position:absolute;right:12%;bottom:18%;z-index:1}
+.ff-letter-with-voice .play-listen[aria-pressed="true"]{outline:3px solid var(--wb-focus)}
+
 /* ---------- Drawn letter: one paper asset, with the current sender's painted portrait ---------- */
 .friends-interface .ff-postcard-overlay .ff-letter-paper{
   position:relative;display:block;width:min(720px,92vw,106.66dvh);height:auto;aspect-ratio:4/3;min-width:0;min-height:0;max-height:none;margin:0;padding:0;

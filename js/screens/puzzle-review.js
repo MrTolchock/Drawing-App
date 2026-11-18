@@ -66,7 +66,12 @@
     }
     const p=C.puzzle(selected),progress=V.progress(selected);
     const speechStatus=h('p',{class:'review-speech-status',role:'status','aria-live':'polite'});
-    const speech=FK.ui.btn({icon:'sound',label:'Spielerklärung anhören',onClick:()=>{speechStatus.textContent=FK.forestVoice.explain(p.instruction)?'Spielerklärung wird vorgelesen.':'Die Sprachausgabe ist auf diesem Gerät nicht verfügbar.';}});
+    const messages={loading:'',playing:'Spielerklärung wird vorgelesen.',stopped:'Vorlesen gestoppt.',ended:'',error:'Die Sprachausgabe ist auf diesem Gerät nicht verfügbar.'};
+    const speech=FK.ui.btn({icon:'sound',label:'Spielerklärung anhören',onClick:()=>FK.forestVoice.explain(p.instruction,state=>{
+      speechStatus.textContent=messages[state];
+      speech.setAttribute('aria-pressed',String(state==='loading'||state==='playing'));
+    })});
+    speech.setAttribute('aria-pressed','false');
     body.append(message(),h('h2',{text:p.title}),h('section',{class:'review-competence'},h('h3',{text:'Geübte Kompetenz: '+p.competence}),h('p',{text:competences[selected]}),h('p',{text:'Lehrplanbezug: '+p.reference})),h('p',{text:'Schwierigkeit: '+p.difficulty}),h('p',{text:progress.approved+' / '+progress.total+' freigegeben · '+progress.improve+' verbessern · '+progress.pending+' offen'}),h('section',{class:'review-speech'},h('h3',{text:'Spielerklärung'}),h('p',{text:p.instruction}),speech,speechStatus));
     const id=selected,note=h('textarea',{'aria-label':'Allgemeiner Kommentar zum Puzzle',maxlength:4000,rows:4,placeholder:'Was möchtest du zum gesamten Puzzle festhalten?',text:drafts.get(id)??''});
     const saved=h('p',{class:'review-notice',role:'status','aria-live':'polite'});

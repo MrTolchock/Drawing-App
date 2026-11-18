@@ -35,8 +35,14 @@ function showLetter(fromMailman){
   const id=state.mail().host;
   overlay.classList.add('ff-postcard-overlay');
   const letter=h('button',{type:'button',class:'ff-letter-paper','data-host':id,'aria-label':'Zum Freund gehen','aria-description':'Ein Brief von '+C.hosts[id].name,onclick:()=>go('forest')},letterPortrait(id));
-  overlay.append(letter);requestAnimationFrame(()=>letter.focus());
-  say('Ein Brief von '+C.hosts[id].name+'! Schau auf das Bild. Draussen zeigt dir der Pfeil den Weg.');
+  const article = ['bird','mouse'].includes(id) ? 'die' : ['squirrel','deer'].includes(id) ? 'das' : 'der';
+  const greeting = 'Hallo! Ich bin '+article+' '+C.hosts[id].name+'. Ich habe ein Rätsel für dich. Der Pfeil zeigt dir den Weg zu mir.';
+  const listen = h('button',{type:'button',class:'play-listen','aria-label':'Brief vorlesen','aria-pressed':'false'},FK.icons.element('speaker'));
+  listen.addEventListener('click',()=>FK.forestVoice.explain(greeting,state=>{
+    listen.setAttribute('aria-pressed',String(state==='playing'||state==='loading'));
+  }));
+  overlay.append(h('div',{class:'ff-letter-with-voice'},letter,listen));
+  requestAnimationFrame(()=>letter.focus());
 }
 function letterPortrait(id){
  const pic=FK.friendsArt.letterPortrait(id);pic.classList.add('ff-letter-friend');pic.removeAttribute('aria-hidden');pic.setAttribute('role','img');pic.setAttribute('aria-label',C.hosts[id].name);pic.dataset.friend=id;return pic;

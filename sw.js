@@ -1,10 +1,54 @@
 /* Farbtupf – Service Worker: keeps the whole app on the device so it runs without internet. */
-const CACHE = 'farbtupf-v9.3.95-waldpost';
+const CACHE = 'farbtupf-v9.3.96-waldpost';
 const SCOPE=self.registration.scope;
 const INDEX=new URL('index.html',SCOPE).href;
 const ACTIVE_MARKER=new URL('.farbtupf-active-cache',SCOPE).href;
 const ASSETS = [
   './assets/audio/credits.html',
+  './assets/audio/narration/add.mp3',
+  './assets/audio/narration/clips.js',
+  './assets/audio/narration/compare.mp3',
+  './assets/audio/narration/count.mp3',
+  './assets/audio/narration/friends-badger.mp3',
+  './assets/audio/narration/friends-beaver.mp3',
+  './assets/audio/narration/friends-bird.mp3',
+  './assets/audio/narration/friends-frog.mp3',
+  './assets/audio/narration/friends-hedgehog.mp3',
+  './assets/audio/narration/friends-ibex.mp3',
+  './assets/audio/narration/friends-kingfisher.mp3',
+  './assets/audio/narration/friends-mouse.mp3',
+  './assets/audio/narration/friends-owl.mp3',
+  './assets/audio/narration/friends-squirrel.mp3',
+  './assets/audio/narration/letter-badger.mp3',
+  './assets/audio/narration/letter-beaver.mp3',
+  './assets/audio/narration/letter-bird.mp3',
+  './assets/audio/narration/letter-deer.mp3',
+  './assets/audio/narration/letter-fish.mp3',
+  './assets/audio/narration/letter-frog.mp3',
+  './assets/audio/narration/letter-hedgehog.mp3',
+  './assets/audio/narration/letter-ibex.mp3',
+  './assets/audio/narration/letter-kingfisher.mp3',
+  './assets/audio/narration/letter-mouse.mp3',
+  './assets/audio/narration/letter-owl.mp3',
+  './assets/audio/narration/letter-squirrel.mp3',
+  './assets/audio/narration/mirror.mp3',
+  './assets/audio/narration/nature.mp3',
+  './assets/audio/narration/neighbours.mp3',
+  './assets/audio/narration/pattern.mp3',
+  './assets/audio/narration/picnic.mp3',
+  './assets/audio/narration/read-colours.mp3',
+  './assets/audio/narration/read-leaves.mp3',
+  './assets/audio/narration/read-puzzle.mp3',
+  './assets/audio/narration/read-word.mp3',
+  './assets/audio/narration/robot.mp3',
+  './assets/audio/narration/rocket.mp3',
+  './assets/audio/narration/sequence.mp3',
+  './assets/audio/narration/syllable.mp3',
+  './assets/audio/narration/trace-numbers.mp3',
+  './assets/audio/narration/trace-stroke.mp3',
+  './assets/audio/narration/trace.mp3',
+  './assets/audio/narration/treasure.mp3',
+  './assets/audio/narration/vowels.mp3',
   './assets/audio/blackbird.mp3',
   './assets/audio/blackcap.mp3',
   './assets/audio/blueTit.mp3',
@@ -220,6 +264,21 @@ self.addEventListener('activate', (event) => {
   );
 });
 
+// Safari asks for byte ranges even for short audio files. Supply them from the
+// complete installed copy so a narration clip can start without a connection.
+async function audioRange(hit, range) {
+  const match = /^bytes=(\d*)-(\d*)$/.exec(range);
+  if (!match || (!match[1] && !match[2])) return hit;
+  const blob = await hit.blob(), size = blob.size;
+  const start = match[1] ? Number(match[1]) : Math.max(0, size - Number(match[2]));
+  const end = match[1] && match[2] ? Math.min(size - 1, Number(match[2])) : size - 1;
+  if (start > end) return new Response(null, {status:416, headers:{'Content-Range':'bytes */'+size}});
+  return new Response(blob.slice(start, end + 1), {status:206, headers:{
+    'Content-Type':blob.type || 'audio/mpeg', 'Accept-Ranges':'bytes',
+    'Content-Length':String(end - start + 1), 'Content-Range':'bytes '+start+'-'+end+'/'+size
+  }});
+}
+
 self.addEventListener('fetch', (event) => {
   const req = event.request;
   if (req.method !== 'GET' || new URL(req.url).origin !== self.location.origin) return;
@@ -227,10 +286,13 @@ self.addEventListener('fetch', (event) => {
   if(new URL(req.url).pathname===new URL('update.html',SCOPE).pathname){event.respondWith(fetch(req,{cache:'no-store'}));return;}
   event.respondWith(
     caches.open(CACHE).then(c=>c.match(req, { ignoreSearch: true })).then((hit) => {
-      if (hit) return hit;
+      if (hit) {
+        const range = req.headers.get('Range');
+        return range && new URL(req.url).pathname.endsWith('.mp3') ? audioRange(hit, range) : hit;
+      }
       return fetch(req)
         .then((res) => {
-          if (res.ok) {
+          if (res.ok && res.status !== 206) {
             const copy = res.clone();
             caches.open(CACHE).then((c) => c.put(req, copy));
           }
