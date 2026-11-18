@@ -15123,6 +15123,24 @@
       "at": "2026-11-18T20:10:31.758Z",
       "seen": true,
       "operation": "27f2e006-8d10-4ae9-b748-c8cef553616f"
+    },
+    "picnic/3-1@7ebb478dcaf7b1bf": {
+      "key": "picnic/3-1",
+      "revision": "7ebb478dcaf7b1bf",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T20:10:35.455Z",
+      "seen": true,
+      "operation": "02d37a4f-facd-4fd4-82c0-08113c401b05"
+    },
+    "picnic/3-2@451929b384992839": {
+      "key": "picnic/3-2",
+      "revision": "451929b384992839",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T20:10:40.739Z",
+      "seen": true,
+      "operation": "26c5e4e6-6621-4aaa-bf45-c479bc8eba33"
     }
   },
   "history": [
