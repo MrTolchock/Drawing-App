@@ -16878,6 +16878,24 @@
       "at": "2026-11-18T20:28:07.407Z",
       "seen": true,
       "operation": "ef429de3-e17f-42f3-ac8a-addd19629e4f"
+    },
+    "read-puzzle/word-6@4ffe8d14b7c75e68": {
+      "key": "read-puzzle/word-6",
+      "revision": "4ffe8d14b7c75e68",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T20:28:10.297Z",
+      "seen": true,
+      "operation": "9685eb92-13b9-40da-a6c3-344f5e8fd160"
+    },
+    "read-puzzle/word-7@85b89b118498b779": {
+      "key": "read-puzzle/word-7",
+      "revision": "85b89b118498b779",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T20:28:13.032Z",
+      "seen": true,
+      "operation": "72830f7c-26de-443a-bed8-d91660f819e0"
     }
   },
   "history": [
