@@ -15681,6 +15681,15 @@
       "at": "2026-11-18T20:19:40.495Z",
       "seen": true,
       "operation": "492a747f-0119-4ae4-ae79-f1151f441aa2"
+    },
+    "neighbours/1-both@0835287bc3c00fff": {
+      "key": "neighbours/1-both",
+      "revision": "0835287bc3c00fff",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T20:20:18.219Z",
+      "seen": true,
+      "operation": "e0ebccde-4335-40bf-86a5-7744ff90d65a"
     }
   },
   "history": [
