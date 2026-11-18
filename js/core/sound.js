@@ -15,7 +15,25 @@
 
   const enabled = () => !FK.settings || FK.settings.get('sound') !== false;
 
+  // A closed context, or one whose clock stopped although it says "running" (WebKit after an interruption), is
+  // silent for good: drop it so the next tap builds a new one.
+  let lastClock = -1, lastCheck = 0;
+  function healthy() {
+    if (!ac) return false;
+    if (ac.state === 'closed') return false;
+    if (ac.state !== 'running' || document.hidden) { lastClock = -1; return true; }
+    const now = performance.now();
+    if (ac.currentTime !== lastClock) { lastClock = ac.currentTime; lastCheck = now; return true; }
+    return now - lastCheck < 1500;
+  }
+  function drop() {
+    if (scribble) { try { scribble.s.stop(); } catch (e) { /* already stopped */ } scribble = null; }
+    if (ac && ac.state !== 'closed') ac.close().catch(() => {});
+    ac = null; master = null; lastClock = -1;
+  }
+
   function ensure() {
+    if (ac && !healthy()) drop();
     if (ac) return ac;
     const AC = window.AudioContext || window.webkitAudioContext;
     if (!AC) return null;
@@ -38,7 +56,8 @@
     return ac;
   }
 
-  // iOS starts audio only from touchend/click. Called from those events (see app.js).
+  // iOS starts audio only from touchend/click. Called from those events (see app.js). Also wakes a context that
+  // iOS suspended or "interrupted" (screen lock, a call, Siri, other audio, speech), which never resumes by itself.
   function unlock() {
     const c = ensure();
     if (!c || c.state === 'running') return;
@@ -223,5 +242,9 @@
     },
   };
 
+  document.addEventListener('visibilitychange', () => {
+    lastClock = -1;
+    if (!document.hidden && ac && ac.state !== 'running' && ac.state !== 'closed') ac.resume().catch(() => {});
+  });
   if (FK.on) FK.on('settings', (e) => { if (e.key === 'sound' && !e.value) FK.sound.scribbleStop(); });
 })();

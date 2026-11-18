@@ -10,7 +10,8 @@ const doorSVG=`<svg viewBox="0 0 1448 1086" preserveAspectRatio="none"><defs><li
 function syncMail(){
   if(!world||!state||!doorScene)return;
   const m=state.mail();root.dataset.mail=m.phase;
-  doorScene.hidden=area!=='den';denEnvelope.hidden=area!=='den'||m.phase!=='den-letter'||!!panel;
+  const arriving=denEnvelope.hidden;doorScene.hidden=area!=='den';denEnvelope.hidden=area!=='den'||m.phase!=='den-letter'||!!panel;
+  if(arriving&&!denEnvelope.hidden)audio?.cue({type:'letterbox',pan:.55});   // the letter comes through the flap (timed to its animation)
   world.mailTarget(area==='forest'?(m.phase==='to-friend'?m.host:m.phase==='to-mailman'?'mailman':['return-home','den-letter'].includes(m.phase)?'home':null):null);
   // The day follows the journey: morning for the first letter, golden afternoon in the middle, dusk on the way home.
   const j=m.session||{limit:1,completed:0};world.timeOfDay?.(['return-home','sleeping','finished'].includes(m.phase)?1:j.limit>1?Math.min(1,j.completed/(j.limit-1))*.55:0);
@@ -67,8 +68,8 @@ function open(kind){clearTimeout(feedbackTimer);backdropTap=null;panel=kind;worl
 function go(next,restore=false){
   if(next!=='den'&&['sleeping','finished'].includes(state.mail().phase))return;
   close({restoreFocus:false});if(!restore&&next==='forest'&&area==='den')state.position(exitPoints.den.x,exitPoints.den.z);
-  area=next;root.dataset.area=next;if(fader){fader.classList.remove('on');void fader.offsetWidth;fader.classList.add('on');}
-  world.setArea(next);audio.setArea(next);state.record('area_transition',{area:next});renderNav();renderHotspots();caption.hidden=true;syncMail();
+  const from=area;area=next;root.dataset.area=next;if(fader){fader.classList.remove('on');void fader.offsetWidth;fader.classList.add('on');}
+  world.setArea(next);audio.setArea(next);if(!restore&&from!==next)audio.cue({type:'door',pan:.5});state.record('area_transition',{area:next});renderNav();renderHotspots();caption.hidden=true;syncMail();
   if(next==='den'&&state.mail().phase==='return-home'){if(state.beginSleep())sequence('sleep',true);else saveStatus();return;}
   if(next==='den'&&state.mail().phase==='sleeping'){sequence('sleep',true);return;}
   if(state.mail().phase==='finished'){showSessionEnd();return;}
@@ -164,7 +165,7 @@ FK.screen('friends',{
     FK.on('settings',event=>{if(event.key==='developerMode')renderNav();});
     audio=createAudio(()=>state.audioSettings(),()=>world?.soundscape);FK.friendsAudio=audio;
     world=createWorld(canvas,{position:()=>state.get().world,onPosition:(x,z,region)=>state.position(x,z,region),onMove:e=>state.record(e.event,e),onNear:()=>{},onAction:act,onAnimationEnd:()=>endSequence(false),onProject:items=>{positionDoor();for(const p of items){const b=hotspots.querySelector(`[data-place="${p.id}"]`);if(b){b.hidden=!p.visible;b.style.left=p.x+'px';b.style.top=p.y+'px';}}}});
-    FK.friendsView=()=>world.diagnostics;renderNav();renderHotspots();saveStatus();
+    FK.friendsView=()=>({...world.diagnostics,soundscape:world.soundscape});renderNav();renderHotspots();saveStatus();
     const interrupted=state.get().animation;if(interrupted)state.finishAnimation(true);
     if(['return-home','sleeping','finished'].includes(state.mail().phase)){go('den',true);}
     else say(state.mail().phase==='den-letter'?'Oh, ein Brief! Er kommt durch die Briefklappe. Tippe auf den Umschlag.':'Dein Brief wartet auf dich. Er zeigt dir, wen du besuchen kannst.');

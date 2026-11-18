@@ -18,6 +18,7 @@ export function makeNoise(ctx, colour, seconds) {
   } return buffer;
 }
 const done = (...nodes) => () => nodes.forEach(n => n.disconnect());
+const filter = (ctx, type, frequency, q = .5) => { const f = ctx.createBiquadFilter(); f.type = type; f.frequency.value = frequency; f.Q.value = q; return f; };
 // One sung or struck tone: glides from f to f1, soft start, soft end.
 function tone(ctx, out, {t, dur, f, f1 = f, gain, type = 'sine', attack = .012, release = dur * .55, harm = 0}) {
   const o = ctx.createOscillator(), g = ctx.createGain(); o.type = type; o.frequency.setValueAtTime(f, t); if (f1 !== f) o.frequency.exponentialRampToValueAtTime(f1, t + dur);
@@ -120,6 +121,7 @@ export function footstep(ctx, out, noise, ground, t, level = 1) {
   else if (ground === 'wet') { hiss(ctx, out, noise, {t, dur: .12, gain: .2 * v, type: 'lowpass', f: 1250 * w, f1: 450, attack: .012}); tone(ctx, out, {t: t + .05, dur: .05, f: 420 * w, f1: 760 * w, gain: .02 * v, attack: .006}); }
   else if (ground === 'snow') { hiss(ctx, out, noise, {t, dur: .11, gain: .2 * v, type: 'lowpass', f: 2100 * w, f1: 900, attack: .012}); hiss(ctx, out, noise, {t: t + .035, dur: .05, gain: .09 * v, f: 3400 * w, q: 1.2, attack: .008}); }   // a soft crunch
   else if (ground === 'meadow') { hiss(ctx, out, noise, {t, dur: .12, gain: .17 * v, f: 3100 * w, q: .6, attack: .02}); thump(190, .012); }
+  else if (ground === 'den') { hiss(ctx, out, noise, {t, dur: .07, gain: .15 * v, type: 'lowpass', f: 900 * w, attack: .01}); hiss(ctx, out, noise, {t: t + .015, dur: .03, gain: .04 * v, f: 2400 * w, q: 1.2, attack: .006}); thump(170, .02); }   // a soft paw on the den's packed earth
   else if (ground === 'needles') { hiss(ctx, out, noise, {t, dur: .085, gain: .2 * v, f: 1400 * w, q: .7, attack: .008}); thump(185, .02); }
   else { hiss(ctx, out, noise, {t, dur: .075, gain: .2 * v, f: 2400 * w, q: .8, attack: .006}); thump(195, .016); }   // grass
 }
@@ -146,17 +148,53 @@ export const details = {
   echo(ctx, out, noise, t, level = 1) { const call = (at, g, bright) => { tone(ctx, out, {t: at, dur: .2, f: 620 * bright, f1: 760 * bright, gain: g, attack: .02, harm: .3}); tone(ctx, out, {t: at + .22, dur: .28, f: 760 * bright, f1: 560 * bright, gain: g, attack: .02, harm: .3}); };
     call(t, .07 * level, 1); for (let k = 1; k <= 3; k++) call(t + k * .55, .07 * level * Math.pow(.42, k), 1 - k * .03); },
   twig(ctx, out, noise, t, level) { for (let k = 0; k < 2 + (Math.random() < .5); k++) hiss(ctx, out, noise, {t: t + k * r(.025, .05), dur: .016, gain: .2 * level * r(.6, 1), f: 2600, q: .7, attack: .001}); },
+  /* ---- inside the den ---- */
+  // the old tree the den is dug under gives a slow, soft creak now and then
+  creak(ctx, out, noise, t, level = 1) { const dur = r(.5, 1.1), o = ctx.createOscillator(), bp = filter(ctx, 'bandpass', r(650, 1050), 5), g = ctx.createGain(), f = r(28, 42);
+    o.type = 'sawtooth'; o.frequency.setValueAtTime(f, t); o.frequency.linearRampToValueAtTime(f * r(1.4, 1.9), t + dur * .6); o.frequency.linearRampToValueAtTime(f * r(1, 1.3), t + dur);
+    g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(.2 * level, t + dur * .25); g.gain.linearRampToValueAtTime(.14 * level, t + dur * .7); g.gain.linearRampToValueAtTime(0, t + dur);
+    o.connect(bp); bp.connect(g); g.connect(out); o.start(t); o.stop(t + dur + .02); o.onended = done(o, bp, g); },
+  // a few crumbs of earth trickle from the roots in the ceiling
+  trickle(ctx, out, noise, t, level = 1) { for (let k = Math.floor(r(5, 10)); k > 0; k--) { t += r(.03, .11); hiss(ctx, out, noise, {t, dur: r(.008, .02), gain: r(.02, .05) * level, f: r(1800, 4200), q: r(1, 2.5), attack: .001}); } },
+  // the letter comes through the flap in the door: the lid squeaks open, the envelope slides through, the lid
+  // claps shut and the letter lands on the floor (timed to the den-letter animation in css/friends.css)
+  letterbox(ctx, out, noise, t, level = 1) {
+    syllable(ctx, out, {t: t + .5, dur: .22, path: [[0, 1900], [.6, 2300], [1, 2150]], gain: .012 * level});
+    hiss(ctx, out, noise, {t: t + .85, dur: .65, gain: .06 * level, f: 2600, f1: 1500, q: .8, attack: .12});
+    for (const [at, f, g] of [[1.72, 1250, .07], [1.78, 1650, .035]]) { tone(ctx, out, {t: t + at, dur: .07, f, f1: f * .92, gain: g * level, attack: .002, harm: .6}); hiss(ctx, out, noise, {t: t + at, dur: .025, gain: g * 1.4 * level, f: 3400, q: 1.5, attack: .001}); }
+    hiss(ctx, out, noise, {t: t + 2.2, dur: .12, gain: .07 * level, type: 'lowpass', f: 1600, f1: 700, attack: .006}); },
+  // the round door: the latch, a short creak and the door falling to
+  door(ctx, out, noise, t, level = 1) { tone(ctx, out, {t, dur: .05, f: 900, f1: 760, gain: .028 * level, attack: .002, harm: .5}); hiss(ctx, out, noise, {t, dur: .02, gain: .04 * level, f: 2800, q: 1.5, attack: .001});
+    details.creak(ctx, out, noise, t + .12, .6 * level);
+    tone(ctx, out, {t: t + .95, dur: .16, f: 120, f1: 85, gain: .06 * level, attack: .003, harm: .4}); hiss(ctx, out, noise, {t: t + .95, dur: .06, gain: .045 * level, type: 'lowpass', f: 1100}); },
+  // Fuchs bites the apple: a crisp crunch, then a little chewing
+  crunch(ctx, out, noise, t, level = 1) { for (let k = 0; k < 9; k++) hiss(ctx, out, noise, {t: t + k * r(.012, .022), dur: r(.012, .03), gain: r(.09, .19) * level * (1 - k / 12), f: r(2200, 4800), q: r(1.2, 3), attack: .001});
+    for (let k = 0; k < 3; k++) hiss(ctx, out, noise, {t: t + .35 + k * r(.2, .26), dur: .07, gain: .03 * level, type: 'lowpass', f: 1300, attack: .01}); },
+  // in the bath tub: water sloshing and a few bubbles
+  splash(ctx, out, noise, t, level = 1) { hiss(ctx, out, noise, {t, dur: .5, gain: .12 * level, type: 'lowpass', f: 2600, f1: 700, attack: .05}); hiss(ctx, out, noise, {t: t + .08, dur: .3, gain: .05 * level, f: 4200, f1: 2000, q: .8, attack: .02});
+    for (let k = Math.floor(r(3, 6)); k > 0; k--) { const f = r(500, 1300); tone(ctx, out, {t: t + r(.2, .9), dur: r(.04, .08), f, f1: f * r(1.5, 2.2), gain: .025 * level, attack: .005}); } },
+  // Fuchs asleep: one slow, soft breath in and out
+  breath(ctx, out, noise, t, level = 1) { const s = ctx.createBufferSource(), f = ctx.createBiquadFilter(), g = ctx.createGain(), inn = r(1.2, 1.5), out2 = r(1.6, 2); s.buffer = noise; f.type = 'bandpass'; f.Q.value = .7;
+    f.frequency.setValueAtTime(700, t); f.frequency.linearRampToValueAtTime(1100, t + inn); f.frequency.linearRampToValueAtTime(520, t + inn + out2);
+    g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(.032 * level, t + inn * .8); g.gain.linearRampToValueAtTime(.01 * level, t + inn); g.gain.linearRampToValueAtTime(.04 * level, t + inn + .3); g.gain.linearRampToValueAtTime(0, t + inn + out2);
+    s.connect(f); f.connect(g); g.connect(out); s.start(t, Math.random() * Math.max(.1, noise.duration - inn - out2 - .3), inn + out2 + .1); s.onended = done(s, f, g); },
   bubble(ctx, out, noise, t, level) { const f = r(480, 1500), dur = r(.035, .09); tone(ctx, out, {t, dur, f, f1: f * r(1.4, 2.1), gain: r(.008, .026) * level, attack: .006}); },
   plop(ctx, out, noise, t, level) { const f = r(260, 420); tone(ctx, out, {t, dur: .09, f, f1: f * 2.2, gain: .05 * level, attack: .006}); hiss(ctx, out, noise, {t: t + .02, dur: .08, gain: .02 * level, type: 'lowpass', f: 1200, f1: 500}); },
 };
 /* ---------- the game's sound ---------- */
+/* Outside sounds go through `room`: open in the forest, and in the den the wood is heard through the round
+   window and the walls. Sounds inside the den (Fuchs' paws, the letter flap, the door, the apple, the bath, his
+   breathing in his sleep, the tree creaking) go through `near` and stay clear.
+   The context is kept alive: every tap, click or key wakes it if the browser suspended or interrupted it (iOS does
+   this after the screen locks, a call, Siri, another app's sound or speech), it is woken again when the page comes
+   back, and a context that is closed or stopped running is replaced on the next tap. */
 export function createAudio(settings, environment = () => null) {
-  let ctx, ambience, room, analyser, timer, area = 'den', speaking = false, birdCalls = 0, steps = 0, noise, beds = null, director;
-  const sources = [];
+  let ctx, ambience, room, near, analyser, timer, area = 'den', speaking = false, speechFrom = 0, speechQuiet = 0, birdCalls = 0, steps = 0, cues = 0, noise, beds = null, director;
+  let lastClock = -1, clockMoved = 0, stalled = 0, recoveries = 0, sources = [];
   function gain(node, value) { node.gain.cancelScheduledValues(ctx.currentTime); if (document.hidden) node.gain.setValueAtTime(0, ctx.currentTime); else node.gain.setTargetAtTime(value, ctx.currentTime, .3); }
   function update() { if (!ctx || ctx.state === 'closed') return; const s = settings(), audible = !document.hidden;
-    gain(ambience, s.ambience && audible ? (area === 'forest' ? 1.4 : .6) * (speaking ? .3 : 1) : 0);
-    room.frequency.setTargetAtTime(area === 'forest' ? 16000 : 750, ctx.currentTime, .35); }                // in the den the wood is heard through the wall
+    gain(ambience, s.ambience && audible ? (area === 'forest' ? 1.4 : 1) * (speaking ? .3 : 1) : 0);
+    room.frequency.setTargetAtTime(area === 'forest' ? 16000 : 2000, ctx.currentTime, .35); }               // in the den the wood is heard through the window and the walls
   const loop = (buffer, rate) => { const s = ctx.createBufferSource(); s.buffer = buffer; s.loop = true; s.playbackRate.value = rate; s.start(0, Math.random() * buffer.duration); sources.push(s); return s; };
   const filter = (type, frequency, q = .5) => { const f = ctx.createBiquadFilter(); f.type = type; f.frequency.value = frequency; f.Q.value = q; return f; };
   const level = (value = 0) => { const g = ctx.createGain(); g.gain.value = value; return g; };
@@ -176,17 +214,23 @@ export function createAudio(settings, environment = () => null) {
     to(beds.brook.out.gain, .5 * b.brook ** 1.5, .5); for (const band of beds.brook.bands) to(band.node.frequency, band.f * r(.84, 1.18), .12);   // the bands wander: babbling
     to(beds.falls.out.gain, .17 * b.falls ** 1.7, .6); if (beds.falls.pan) to(beds.falls.pan.pan, b.fallsPan * .7, .6);
   }
-  // A place in the wood for one voice: further away is quieter and duller.
-  function place(pan, far, lasts) { const g = level(1.1 * (1 - .68 * far)), lp = filter('lowpass', 9500 - 6000 * far, .3), p = ctx.createStereoPanner?.(); if (p) { p.pan.value = pan; chain(g, lp, p, room); } else chain(g, lp, room);
+  // A place in the wood for one voice: further away is quieter and duller. `bus` is room (outside) or near (in the den).
+  function place(pan, far, lasts, bus = room) { const g = level(1.1 * (1 - .68 * far)), lp = filter('lowpass', 9500 - 6000 * far, .3), p = ctx.createStereoPanner?.(); if (p) { p.pan.value = pan; chain(g, lp, p, bus); } else chain(g, lp, bus);
     setTimeout(() => { g.disconnect(); lp.disconnect(); p?.disconnect(); }, (lasts + 1) * 1000); return g; }
+  const inside = () => area !== 'forest';
   function play(e) { const t = Math.max(e.at, ctx.currentTime + .01);
     if (e.type === 'call') { const out = level(e.level), end = voices[e.kind](ctx, out, t, noise); out.connect(place(e.pan, e.far, end - ctx.currentTime)); setTimeout(() => out.disconnect(), (end - ctx.currentTime + 2) * 1000); birdCalls++;
       // by the Rock: the same phrase comes back off the cliff, later, softer, duller and from the other side
       if (e.echo) { const d = ctx.createDelay(1), lp = filter('lowpass', 2400, .4), g = level(e.echo); d.delayTime.value = e.echoDelay || .4; chain(out, d, lp, g, place(-e.pan * .6, 1, end - ctx.currentTime + 1)); setTimeout(() => { d.disconnect(); lp.disconnect(); g.disconnect(); }, (end - ctx.currentTime + 2) * 1000); } }
-    else if (e.type === 'step') { footstep(ctx, place(e.side * .07, 0, .4), noise, e.ground, t, e.level * .3); steps++; /* steps stay well under the birds and the water */
-      if (e.cave > .3) footstep(ctx, place(-e.side * .3, .8, .8), noise, e.ground, t + .16, e.level * .11 * e.cave); }   // in the cave each step rings back
-    else details[e.type]?.(ctx, place(e.pan || 0, e.far ?? .2, e.lasts || 1.5), noise, t, e.level);
+    else if (e.type === 'step') { if (inside()) footstep(ctx, place(e.side * .05 + (e.pan || 0), .1, .4, near), noise, e.ground, t, e.level * .22);   // Fuchs pottering about the den
+      else { footstep(ctx, place(e.side * .07, 0, .4), noise, e.ground, t, e.level * .3); /* steps stay well under the birds and the water */
+        if (e.cave > .3) footstep(ctx, place(-e.side * .3, .8, .8), noise, e.ground, t + .16, e.level * .11 * e.cave); }   // in the cave each step rings back
+      steps++; }
+    else details[e.type]?.(ctx, place(e.pan || 0, e.far ?? .2, e.lasts || 1.5, e.near && inside() ? near : room), noise, t, e.level);
   }
+  // A single sound right now (the letter flap, the door, what Fuchs does): clear in the den, placed outside in the forest.
+  function cue(c) { if (!ctx || ctx.state !== 'running' || document.hidden || !settings().ambience || !details[c.type]) return false;
+    details[c.type](ctx, place(c.pan || 0, c.far ?? 0, c.lasts || 3.5, inside() ? near : room), noise, ctx.currentTime + .02, c.level ?? 1); cues++; return true; }
   /* The patter: single drops on leaves (short, bright, each a little different), now and then a heavier drip
      from a branch. Up to about thirty a second in a full shower, scattered left, centre and right. */
   let rainNow = 0;
@@ -196,32 +240,50 @@ export function createAudio(settings, environment = () => null) {
       if (Math.random() < .07) { const f = r(700, 1300); tone(ctx, bus, {t, dur: .06, f, f1: f * r(1.5, 2.2), gain: .03 * v, attack: .004}); }
       else hiss(ctx, bus, noise, {t, dur: r(.008, .02), gain: .07 * v, f: r(2200, 6500), q: r(1.5, 4), attack: .001}); }
   }
+  // Speech ducks the wood. Some browsers (iOS) never report the end of an utterance, or keep one pending for ever;
+  // then the wood comes back by itself once the voice is quiet, and after a minute at most.
+  function checkSpeech(now) { if (!speaking) return; const synth = window.speechSynthesis, quiet = !synth || !(synth.speaking || synth.pending);
+    if (!quiet) speechQuiet = now;
+    if (now - speechQuiet > 1500 || now - speechFrom > 60000) { speaking = false; update(); } }
+  // A context that says "running" but whose clock stands still makes no sound (WebKit after an interruption): replace it on the next tap.
+  function watchClock(now) { if (ctx.currentTime !== lastClock) { lastClock = ctx.currentTime; clockMoved = now; } stalled = (now - clockMoved) / 1000; }
   function tick() {
-    if (!ctx || document.hidden || ctx.state !== 'running') return; const s = settings();
-    const here = environment() || {}, {beds: b, events} = director.step(ctx.currentTime, {...here, indoors: area !== 'forest'});
-    rainNow = here.rain || 0; if (!s.ambience) return;
+    if (!ctx || document.hidden) return; const now = performance.now(); checkSpeech(now);
+    if (ctx.state !== 'running') { clockMoved = now; if (ctx.state !== 'closed') ctx.resume().catch(() => {}); return; }
+    watchClock(now); const s = settings();
+    const here = environment() || {}, {beds: b, events} = director.step(ctx.currentTime, {...here, indoors: inside()});
+    rainNow = here.rain || 0; if (!s.ambience) { here.cues?.splice(0); return; }
     setBeds(b); for (const e of events) play(e); rainDrops(rainNow, .1);
-    if (here.cues?.length) for (const c of here.cues.splice(0)) details[c.type]?.(ctx, place(c.pan || 0, 0, 3.5), noise, ctx.currentTime + .02, c.level ?? 1);
+    if (here.cues?.length) for (const c of here.cues.splice(0)) cue(c);
   }
-  function unlock() {
-    if (ctx) { if (ctx.state === 'suspended') ctx.resume().catch(() => {}); return; }
+  function teardown() { clearInterval(timer); timer = null; sources.forEach(s => { try { s.stop(); } catch { /* already stopped */ } }); sources = []; const old = ctx; ctx = null; beds = null; if (old && old.state !== 'closed') old.close().catch(() => {}); if (old) old.onstatechange = null; }
+  function build() {
     const Audio = window.AudioContext || window.webkitAudioContext; if (!Audio || document.hidden) return;
     try {
       ctx = new Audio(); const master = ctx.createGain(), limiter = ctx.createDynamicsCompressor(); master.gain.value = .55; limiter.threshold.value = -14; limiter.ratio.value = 6; limiter.attack.value = .004; limiter.release.value = .25;
       analyser = ctx.createAnalyser(); analyser.fftSize = 1024; chain(master, limiter, analyser, ctx.destination);
       ambience = ctx.createGain(); ambience.gain.value = 0; ambience.connect(master);
-      room = filter('lowpass', 750, .3); room.connect(ambience);
-      noise = makeNoise(ctx, 'white', 5); beds = buildBeds(makeNoise(ctx, 'brown', 7), noise); director = createDirector();
-      timer = setInterval(tick, 100); update(); ctx.resume().catch(() => {});
-    } catch { ctx?.close().catch(() => {}); ctx = null; }
+      room = filter('lowpass', 2000, .3); room.connect(ambience); near = level(1); near.connect(ambience);
+      noise = makeNoise(ctx, 'white', 5); beds = buildBeds(makeNoise(ctx, 'brown', 7), noise); director = createDirector();   // a new clock starts at zero, so the director starts afresh too
+      ctx.onstatechange = () => { if (ctx?.state === 'running') { stalled = 0; clockMoved = performance.now(); update(); } };
+      lastClock = -1; clockMoved = performance.now(); stalled = 0; timer = setInterval(tick, 100); update(); ctx.resume().catch(() => {});
+    } catch { teardown(); }
+  }
+  // Called from every tap, click and key: start the sound, or wake it if the browser stopped it.
+  function unlock() {
+    if (ctx && (ctx.state === 'closed' || stalled > 1.5)) { teardown(); recoveries++; }
+    if (!ctx) { build(); return; }
+    if (ctx.state !== 'running') ctx.resume().then(update, () => {});
   }
   const key = e => { if (e.key === 'Enter' || e.key === ' ') unlock(); };
-  const visibility = () => { update(); if (document.hidden) window.FK.forestVoice.cancel(); };
-  document.addEventListener('pointerdown', unlock, {passive: true}); document.addEventListener('keydown', key); document.addEventListener('visibilitychange', visibility);
-  const offSettings = window.FK.on('friends-audio', () => { unlock(); update(); }), offSpeech = window.FK.on('speech', event => { speaking = event.active; update(); });
-  return {unlock, update, setArea(value) { area = value; update(); },
-    get diagnostics() { const data = new Float32Array(analyser?.fftSize || 0); analyser?.getFloatTimeDomainData(data);
-      return {state: ctx?.state || 'locked', area, layers: beds ? Object.keys(beds).length : 0, birdCalls, steps, audible: !!ambience && ambience.gain.value > .01, ambience: settings().ambience, rms: data.length ? Math.sqrt(data.reduce((n, v) => n + v * v, 0) / data.length) : 0}; },
-    dispose() { clearInterval(timer); offSettings(); offSpeech(); document.removeEventListener('pointerdown', unlock); document.removeEventListener('keydown', key); document.removeEventListener('visibilitychange', visibility); sources.forEach(s => s.stop()); ctx?.close(); }
+  const gestures = ['pointerdown', 'pointerup', 'touchend', 'click'];
+  const visibility = () => { if (!document.hidden && ctx && ctx.state !== 'running' && ctx.state !== 'closed') ctx.resume().catch(() => {}); stalled = 0; lastClock = -1; clockMoved = performance.now(); update(); if (document.hidden) window.FK.forestVoice.cancel(); };
+  for (const type of gestures) document.addEventListener(type, unlock, {passive: true, capture: true});
+  document.addEventListener('keydown', key); document.addEventListener('visibilitychange', visibility); window.addEventListener('pageshow', visibility);
+  const offSettings = window.FK.on('friends-audio', () => { unlock(); update(); }), offSpeech = window.FK.on('speech', event => { speaking = event.active; speechFrom = speechQuiet = performance.now(); update(); if (!event.active && ctx && ctx.state !== 'running') ctx.resume().catch(() => {}); });
+  return {unlock, update, cue, setArea(value) { area = value; update(); }, get context() { return ctx; },
+    get diagnostics() { const data = new Float32Array(analyser?.fftSize || 0); if (ctx) analyser?.getFloatTimeDomainData(data);
+      return {state: ctx?.state || 'locked', area, layers: beds ? Object.keys(beds).length : 0, birdCalls, steps, cues, recoveries, speaking, audible: !!ctx && !!ambience && ambience.gain.value > .01, ambience: settings().ambience, rms: data.length ? Math.sqrt(data.reduce((n, v) => n + v * v, 0) / data.length) : 0}; },
+    dispose() { teardown(); offSettings(); offSpeech(); for (const type of gestures) document.removeEventListener(type, unlock, {capture: true}); document.removeEventListener('keydown', key); document.removeEventListener('visibilitychange', visibility); window.removeEventListener('pageshow', visibility); }
   };
 }

@@ -9,6 +9,7 @@
   document.addEventListener('touchstart', () => {}, { passive: true });
   document.addEventListener('touchend', () => FK.sound.unlock(), { passive: true });
   document.addEventListener('click', () => FK.sound.unlock(), true);
+  document.addEventListener('keydown', () => FK.sound.unlock(), true);
 
   // Keep iOS from zooming, scrolling the page or showing callouts while children play.
   document.addEventListener('gesturestart', (e) => e.preventDefault());
