@@ -16491,6 +16491,24 @@
       "at": "2026-11-18T20:26:10.935Z",
       "seen": true,
       "operation": "ee9e445e-ad02-478c-a02e-2953972e79cc"
+    },
+    "vowels/word-19-1@70f738836ef250ab": {
+      "key": "vowels/word-19-1",
+      "revision": "70f738836ef250ab",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T20:26:13.836Z",
+      "seen": true,
+      "operation": "721f80e3-8a74-457a-b11f-9953c1bc1791"
+    },
+    "vowels/word-19-4@ba8b2f1febcbb1e7": {
+      "key": "vowels/word-19-4",
+      "revision": "ba8b2f1febcbb1e7",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T20:26:15.634Z",
+      "seen": true,
+      "operation": "797a60e7-6d6f-4b7b-abc9-a6cd4379747a"
     }
   },
   "history": [
