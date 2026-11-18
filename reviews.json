@@ -7584,10 +7584,10 @@
       "key": "puzzle:friends-squirrel",
       "revision": "5c30ff4f4facfdd7",
       "status": "approved",
-      "note": "Nüsse rückgängig machen, die waren besser vorher. Leerer korb bei der zahl 0 war das problem, dieser passt nicht",
-      "at": "2026-11-17T20:25:32.414Z",
+      "note": "Im ganzen rätsel, entferne die markierung beim nüsse zählen. Dies ist das einzige spiel wo das geht, darum aus harmonisierung feature entfernen",
+      "at": "2026-11-18T07:43:32.292Z",
       "seen": true,
-      "operation": "36acc3a7-8bc1-46eb-9354-b7d266763556"
+      "operation": "90d7469b-1382-4fc8-892e-def6f37af6a1"
     },
     "friends-squirrel/count-0@aa68c72410f06a78": {
       "key": "friends-squirrel/count-0",
@@ -11611,6 +11611,393 @@
       "at": "2026-11-17T20:55:37.928Z",
       "seen": true,
       "operation": "31b90cb5-637c-4cd7-8e35-59ad14b84367"
+    },
+    "friends-squirrel/count-0@1095c1c2f5c156f2": {
+      "key": "friends-squirrel/count-0",
+      "revision": "1095c1c2f5c156f2",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:42:33.304Z",
+      "seen": true,
+      "operation": "286e7fa7-3e8e-455f-ae70-68ed599ee9d2"
+    },
+    "friends-squirrel/count-1@ee66123402f641c2": {
+      "key": "friends-squirrel/count-1",
+      "revision": "ee66123402f641c2",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:42:37.949Z",
+      "seen": true,
+      "operation": "19bc6823-20aa-4386-928c-7df18f4fda1d"
+    },
+    "friends-squirrel/count-2@7e4d5126b267e722": {
+      "key": "friends-squirrel/count-2",
+      "revision": "7e4d5126b267e722",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:42:39.720Z",
+      "seen": true,
+      "operation": "44b099e8-446d-4cf7-a04f-33f459de3826"
+    },
+    "friends-squirrel/count-3@c445d92ce1d1f606": {
+      "key": "friends-squirrel/count-3",
+      "revision": "c445d92ce1d1f606",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:42:41.834Z",
+      "seen": true,
+      "operation": "d5e88603-ba4e-46c8-b8ba-25ba733b465f"
+    },
+    "friends-bird/rhyme-0@8517b6041d4adf76": {
+      "key": "friends-bird/rhyme-0",
+      "revision": "8517b6041d4adf76",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:44:01.922Z",
+      "seen": true,
+      "operation": "6fccff4a-79b8-475a-8b92-36175f7c0a2c"
+    },
+    "friends-bird/rhyme-1@0018f72740ab85d9": {
+      "key": "friends-bird/rhyme-1",
+      "revision": "0018f72740ab85d9",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:44:04.573Z",
+      "seen": true,
+      "operation": "5c0f5a86-094a-4edd-a317-0aa52832ee50"
+    },
+    "friends-bird/rhyme-2@5b654531de2598b7": {
+      "key": "friends-bird/rhyme-2",
+      "revision": "5b654531de2598b7",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:44:07.172Z",
+      "seen": true,
+      "operation": "d10bbbfe-36de-49b3-aaa8-ec35da7db0b9"
+    },
+    "friends-bird/rhyme-3@5dd322e593030d95": {
+      "key": "friends-bird/rhyme-3",
+      "revision": "5dd322e593030d95",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:44:09.442Z",
+      "seen": true,
+      "operation": "96949204-ca70-43d9-9aea-f1d2e8affda2"
+    },
+    "friends-bird/rhyme-4@ebb4a31bb4d2cebb": {
+      "key": "friends-bird/rhyme-4",
+      "revision": "ebb4a31bb4d2cebb",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:44:11.756Z",
+      "seen": true,
+      "operation": "83d767ba-e1b3-4c4d-8bb0-6efe14ed5c43"
+    },
+    "friends-bird/rhyme-5@65d656508fc0047c": {
+      "key": "friends-bird/rhyme-5",
+      "revision": "65d656508fc0047c",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:44:13.958Z",
+      "seen": true,
+      "operation": "0a420d27-bb01-4b49-a6a7-dee7f1c9a1a7"
+    },
+    "friends-bird/rhyme-6@84d62c66978be464": {
+      "key": "friends-bird/rhyme-6",
+      "revision": "84d62c66978be464",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:44:16.344Z",
+      "seen": true,
+      "operation": "462cd6d3-a40c-4d81-a90d-75ed87503b42"
+    },
+    "friends-bird/rhyme-7@4c4c305970692d6d": {
+      "key": "friends-bird/rhyme-7",
+      "revision": "4c4c305970692d6d",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:44:21.021Z",
+      "seen": true,
+      "operation": "4caa7a00-6029-41d4-a291-efef798589d0"
+    },
+    "friends-bird/rhyme-8@c1f47b5f95762acd": {
+      "key": "friends-bird/rhyme-8",
+      "revision": "c1f47b5f95762acd",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:44:23.088Z",
+      "seen": true,
+      "operation": "5b49d140-55da-4140-85a6-8f993349e3c6"
+    },
+    "friends-bird/rhyme-9@d4363b81872e2aa9": {
+      "key": "friends-bird/rhyme-9",
+      "revision": "d4363b81872e2aa9",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:44:25.339Z",
+      "seen": true,
+      "operation": "d1997e54-e711-45c7-8542-7b71d917450e"
+    },
+    "friends-bird/rhyme-10@21bb8e932514aded": {
+      "key": "friends-bird/rhyme-10",
+      "revision": "21bb8e932514aded",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:44:27.520Z",
+      "seen": true,
+      "operation": "82b4e5e3-4012-4d36-b198-2ef1b25426af"
+    },
+    "friends-bird/rhyme-11@7dfe312ee5e513c2": {
+      "key": "friends-bird/rhyme-11",
+      "revision": "7dfe312ee5e513c2",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:44:29.721Z",
+      "seen": true,
+      "operation": "3aeed510-73f2-4641-87b6-e353e893fd37"
+    },
+    "friends-bird/rhyme-12@246b9954d099981a": {
+      "key": "friends-bird/rhyme-12",
+      "revision": "246b9954d099981a",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:44:32.269Z",
+      "seen": true,
+      "operation": "d9388314-eee4-44ef-b4e0-c5d1788f0e3f"
+    },
+    "friends-bird/rhyme-13@dfc0be3b9e02e7cd": {
+      "key": "friends-bird/rhyme-13",
+      "revision": "dfc0be3b9e02e7cd",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:44:35.103Z",
+      "seen": true,
+      "operation": "1c91de0a-f04e-4193-91fc-6eee076d347d"
+    },
+    "friends-bird/rhyme-14@4cb7f1771295ee99": {
+      "key": "friends-bird/rhyme-14",
+      "revision": "4cb7f1771295ee99",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:44:38.087Z",
+      "seen": true,
+      "operation": "2df4ae36-7d14-4529-a1b0-b0503917868d"
+    },
+    "friends-bird/rhyme-15@0a8e097aaed04d78": {
+      "key": "friends-bird/rhyme-15",
+      "revision": "0a8e097aaed04d78",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:44:40.608Z",
+      "seen": true,
+      "operation": "71e4b9f0-1f60-46c0-8dcb-510049de51d0"
+    },
+    "friends-bird/rhyme-16@e86f3b5ef182344c": {
+      "key": "friends-bird/rhyme-16",
+      "revision": "e86f3b5ef182344c",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:44:43.220Z",
+      "seen": true,
+      "operation": "7a09f946-0999-4ebb-9ee6-0db991c6e617"
+    },
+    "friends-bird/rhyme-17@50eccd83745448d9": {
+      "key": "friends-bird/rhyme-17",
+      "revision": "50eccd83745448d9",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:44:45.736Z",
+      "seen": true,
+      "operation": "ecacd30e-1483-404b-82f6-3a733242b8db"
+    },
+    "friends-bird/rhyme-18@df2a62c01386ca26": {
+      "key": "friends-bird/rhyme-18",
+      "revision": "df2a62c01386ca26",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:44:47.837Z",
+      "seen": true,
+      "operation": "b01467c7-c28a-4d0b-a94e-be8930aa8835"
+    },
+    "friends-bird/rhyme-19@4bc75c28321a04b0": {
+      "key": "friends-bird/rhyme-19",
+      "revision": "4bc75c28321a04b0",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:44:49.935Z",
+      "seen": true,
+      "operation": "7a3430ee-9d3e-4044-993c-ab1277c9b087"
+    },
+    "friends-bird/rhyme-20@3800f239559f20ab": {
+      "key": "friends-bird/rhyme-20",
+      "revision": "3800f239559f20ab",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:44:52.687Z",
+      "seen": true,
+      "operation": "6523fe9b-2c88-4858-a3e2-2dc886c6e4dd"
+    },
+    "friends-bird/rhyme-21@11a68c060e2cb100": {
+      "key": "friends-bird/rhyme-21",
+      "revision": "11a68c060e2cb100",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:44:55.252Z",
+      "seen": true,
+      "operation": "babff488-62f7-4dab-95cb-c3d0da314d30"
+    },
+    "friends-bird/rhyme-22@e65944a25aaed3a8": {
+      "key": "friends-bird/rhyme-22",
+      "revision": "e65944a25aaed3a8",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:44:57.602Z",
+      "seen": true,
+      "operation": "a4e73562-25be-4e84-90ef-98939a4b1a49"
+    },
+    "friends-bird/rhyme-23@3aeaa6221b1b3d58": {
+      "key": "friends-bird/rhyme-23",
+      "revision": "3aeaa6221b1b3d58",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:45:00.002Z",
+      "seen": true,
+      "operation": "5dd8e330-4046-4c2e-bb0a-37198e0bafc0"
+    },
+    "friends-bird/rhyme-24@7bdfcb1fba75e9cf": {
+      "key": "friends-bird/rhyme-24",
+      "revision": "7bdfcb1fba75e9cf",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:45:02.404Z",
+      "seen": true,
+      "operation": "8b23a19c-58b4-4cac-98f6-a379e847db23"
+    },
+    "puzzle:friends-bird@cf0641715c27afaf": {
+      "key": "puzzle:friends-bird",
+      "revision": "cf0641715c27afaf",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:45:05.548Z",
+      "seen": true,
+      "operation": "86fb41e9-37e1-4b04-8115-69626453f132"
+    },
+    "friends-owl/sentence-9@db70fb342ec64480": {
+      "key": "friends-owl/sentence-9",
+      "revision": "db70fb342ec64480",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:46:15.780Z",
+      "seen": true,
+      "operation": "4cee9031-76a0-415e-b530-742eca34c52a"
+    },
+    "friends-owl/sentence-10@f596a88b919e875b": {
+      "key": "friends-owl/sentence-10",
+      "revision": "f596a88b919e875b",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:46:18.046Z",
+      "seen": true,
+      "operation": "4e2f2778-20e1-4c05-9504-e43b75b34453"
+    },
+    "friends-owl/pair-0@194848f3cb3705c1": {
+      "key": "friends-owl/pair-0",
+      "revision": "194848f3cb3705c1",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:46:20.561Z",
+      "seen": true,
+      "operation": "6bf9bd4e-fd91-4269-90b8-59178af40a63"
+    },
+    "friends-owl/pair-1@5019419c79eb0344": {
+      "key": "friends-owl/pair-1",
+      "revision": "5019419c79eb0344",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:46:22.295Z",
+      "seen": true,
+      "operation": "97ca0518-1f98-49b1-b03b-0f35e8161302"
+    },
+    "friends-owl/pair-2@0697ba530db1dabf": {
+      "key": "friends-owl/pair-2",
+      "revision": "0697ba530db1dabf",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:46:24.745Z",
+      "seen": true,
+      "operation": "61847867-ee38-4c55-a33e-e1944fe16c0c"
+    },
+    "friends-owl/pair-3@bb787abd3533204d": {
+      "key": "friends-owl/pair-3",
+      "revision": "bb787abd3533204d",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:46:26.345Z",
+      "seen": true,
+      "operation": "7d8626e4-d557-4a79-af93-f8188a85357f"
+    },
+    "friends-owl/pair-4@de44de0d8814feeb": {
+      "key": "friends-owl/pair-4",
+      "revision": "de44de0d8814feeb",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:46:29.681Z",
+      "seen": true,
+      "operation": "2a834838-8350-4338-845f-a97133877f7e"
+    },
+    "friends-owl/pair-5@c4c06f7556e802f9": {
+      "key": "friends-owl/pair-5",
+      "revision": "c4c06f7556e802f9",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:46:33.182Z",
+      "seen": true,
+      "operation": "6153efca-8918-453d-9777-1653e84a60ee"
+    },
+    "friends-owl/pair-6@9ab79ba6d8c0f1f8": {
+      "key": "friends-owl/pair-6",
+      "revision": "9ab79ba6d8c0f1f8",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:46:35.680Z",
+      "seen": true,
+      "operation": "f5ee2481-db16-42f2-872f-0951af64a72c"
+    },
+    "friends-owl/pair-7@1b9814194025c261": {
+      "key": "friends-owl/pair-7",
+      "revision": "1b9814194025c261",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:46:37.698Z",
+      "seen": true,
+      "operation": "1388d7e5-4110-4679-bb43-b26e75680be7"
+    },
+    "friends-owl/pair-8@806edee8706e6986": {
+      "key": "friends-owl/pair-8",
+      "revision": "806edee8706e6986",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:46:40.759Z",
+      "seen": true,
+      "operation": "4445b42e-6a9a-4873-bbc7-42e374c7cb56"
+    },
+    "friends-owl/pair-9@dffced34785507ee": {
+      "key": "friends-owl/pair-9",
+      "revision": "dffced34785507ee",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:46:42.863Z",
+      "seen": true,
+      "operation": "d3293017-4b3f-4c33-b652-e1c1151c642d"
+    },
+    "puzzle:friends-owl@e749f62902d2d191": {
+      "key": "puzzle:friends-owl",
+      "revision": "e749f62902d2d191",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:46:46.009Z",
+      "seen": true,
+      "operation": "b39d90d4-b6a7-4ac4-8853-8dec579dc24d"
     }
   },
   "history": [
@@ -11685,6 +12072,15 @@
       "at": "2026-11-16T12:09:58.771Z",
       "seen": true,
       "operation": "d3f857b8-f200-46ea-9cc3-e929ff69f20f"
+    },
+    {
+      "key": "puzzle:friends-squirrel",
+      "revision": "5c30ff4f4facfdd7",
+      "status": "approved",
+      "note": "Nüsse rückgängig machen, die waren besser vorher. Leerer korb bei der zahl 0 war das problem, dieser passt nicht",
+      "at": "2026-11-17T20:25:32.414Z",
+      "seen": true,
+      "operation": "36acc3a7-8bc1-46eb-9354-b7d266763556"
     }
   ],
   "deletedNotes": [
@@ -11707,6 +12103,11 @@
       "key": "friends-beaver/matrix-3",
       "note": "For all make more clear that there are three rows. Now looks like block of 9",
       "at": "2026-11-17T20:28:25.862Z"
+    },
+    {
+      "key": "friends-bird/rhyme-15",
+      "note": "Haus ist perspektivisch falsch beim Fenster; neu zeichnen",
+      "at": "2026-11-18T07:46:01.515Z"
     },
     {
       "key": "friends-bird/rhyme-16",
@@ -11767,6 +12168,11 @@
       "key": "friends-squirrel/count-0",
       "note": "Illustration passt nicht zu anderen gemalten Bildern",
       "at": "2026-11-17T20:24:48.801Z"
+    },
+    {
+      "key": "puzzle:friends-squirrel",
+      "note": "Nüsse rückgängig machen, die waren besser vorher. Leerer korb bei der zahl 0 war das problem, dieser passt nicht",
+      "at": "2026-11-18T07:43:37.226Z"
     }
   ]
 }
