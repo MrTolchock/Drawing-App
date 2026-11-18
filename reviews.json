@@ -17601,6 +17601,11 @@
       "at": "2026-11-18T20:17:52.396Z"
     },
     {
+      "key": "puzzle:vowels",
+      "note": "Gleiche aufgabe wie wörter und bilder. Lösche dieses rätsel aber füge diese iterationen hier in puzzle wörter und bilder ein",
+      "at": "2026-11-18T20:40:32.940Z"
+    },
+    {
       "key": "robot/0-3",
       "note": "Revert pfeil braucht es nicht. Pfeile sehen nicht identisch aus auf tasten, einige sind dünner. Tasten etwas grösser machen",
       "at": "2026-11-18T08:12:39.481Z"
