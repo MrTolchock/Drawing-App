@@ -16285,6 +16285,11 @@
       "at": "2026-11-17T20:24:48.801Z"
     },
     {
+      "key": "mirror/grid-146",
+      "note": "Angeklickte felder sollten gleich aussehen, jetzt haben aber nur diese links ein blatt drauf und rechts nicht",
+      "at": "2026-11-18T20:22:50.035Z"
+    },
+    {
       "key": "nature/clue-11",
       "note": "Plötzlich vergangenheitsform, bleibe bei präsens",
       "at": "2026-11-18T08:01:47.025Z"
