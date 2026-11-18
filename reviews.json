@@ -15105,6 +15105,15 @@
       "at": "2026-11-18T20:10:02.777Z",
       "seen": true,
       "operation": "65125604-ba6d-4947-b759-618dee97697b"
+    },
+    "picnic/2-9@d3d0b361e9bb5eed": {
+      "key": "picnic/2-9",
+      "revision": "d3d0b361e9bb5eed",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T20:10:17.109Z",
+      "seen": true,
+      "operation": "8a68c673-bc04-4f43-8959-5c5f1e7c31dd"
     }
   },
   "history": [
