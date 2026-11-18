@@ -12677,11 +12677,11 @@
     "friends-badger/riddle-22@23523c40aedeac10": {
       "key": "friends-badger/riddle-22",
       "revision": "23523c40aedeac10",
-      "status": "approved",
-      "note": "",
-      "at": "2026-11-18T07:56:25.129Z",
+      "status": "improve",
+      "note": "Besser wäre: giesskanne",
+      "at": "2026-11-18T07:56:54.055Z",
       "seen": true,
-      "operation": "56b77e53-38ee-4682-9590-7c4358971efe"
+      "operation": "6568dc93-30d0-42c6-bc14-f471e79d1527"
     }
   },
   "history": [
@@ -12792,6 +12792,15 @@
       "at": "2026-11-18T07:55:04.363Z",
       "seen": true,
       "operation": "44cdda6c-e7c1-48ab-af80-cd7d298bb4c1"
+    },
+    {
+      "key": "friends-badger/riddle-22",
+      "revision": "23523c40aedeac10",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:56:25.129Z",
+      "seen": true,
+      "operation": "56b77e53-38ee-4682-9590-7c4358971efe"
     }
   ],
   "deletedNotes": [
