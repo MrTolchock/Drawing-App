@@ -16320,6 +16320,24 @@
       "at": "2026-11-18T20:25:32.786Z",
       "seen": true,
       "operation": "ca33f6e4-bcc1-4607-b287-19601b4bfccd"
+    },
+    "vowels/word-4-3@16e68fa8c59f356e": {
+      "key": "vowels/word-4-3",
+      "revision": "16e68fa8c59f356e",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T20:25:34.905Z",
+      "seen": true,
+      "operation": "d83bbb0d-cc80-41d0-b381-42cd5861d418"
+    },
+    "vowels/word-5-1@6d323cf75cafade7": {
+      "key": "vowels/word-5-1",
+      "revision": "6d323cf75cafade7",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T20:25:36.853Z",
+      "seen": true,
+      "operation": "3f8266ce-741d-46a7-8771-b9463b3cc7dc"
     }
   },
   "history": [
