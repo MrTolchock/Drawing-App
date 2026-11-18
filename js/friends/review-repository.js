@@ -9,7 +9,7 @@
   const clone=value=>JSON.parse(JSON.stringify(value));
   const canonical=value=>Array.isArray(value)?'['+value.map(canonical).join(',')+']':value&&typeof value==='object'?'{'+Object.keys(value).sort().map(k=>JSON.stringify(k)+':'+canonical(value[k])).join(',')+'}':JSON.stringify(value);
   const same=(a,b)=>canonical(a??null)===canonical(b??null);
-  const equivalent=(a,b)=>!!a&&!!b&&['key','revision','status','note','seen'].every(key=>same(a[key],b[key]));
+  const equivalent=(a,b)=>!!a&&!!b&&['key','revision','status','note','seen','legacyStatus'].every(key=>same(a[key],b[key]));
   const address=entry=>entry.key+'@'+entry.revision;
   const empty=()=>({format:'farbtupf-review-ledger',version:1,entries:{},history:[]});
   const isObject=value=>!!value&&typeof value==='object'&&!Array.isArray(value);
@@ -89,6 +89,16 @@
     const revisions=(id,item)=>catalogue.revisions?catalogue.revisions(id,item):[item?catalogue.iterationRevision(id,item):catalogue.puzzleRevision(id)];
     // Equivalent historical revisions share a decision stream. A later rejection must beat an older approval.
     const later=(entry,old)=>Date.parse(entry.at)>Date.parse(old.at)||Date.parse(entry.at)===Date.parse(old.at)&&({approved:0,pending:1,improve:2}[entry.status]>{approved:0,pending:1,improve:2}[old.status]);
+    // Previous clients could upload an explicit approval as pending when its seen mark belonged to a compatible revision.
+    // A later signed-off compatible puzzle proves that the approved iteration was inspected.
+    function recoverApproval(entry,entries){
+      if(entry?.legacyStatus!=='approved')return entry;
+      const id=entry.key.split('/')[0],signoff=revisions(id).some(revision=>{
+        const proof=entries['puzzle:'+id+'@'+revision];
+        return proof?.status==='approved'&&proof.seen&&Date.parse(proof.at)>=Date.parse(entry.at);
+      });
+      return signoff?{...entry,status:'approved',seen:true}:entry;
+    }
     function apply(ledger){
       validate(ledger);observed=ledger;const data=read(),m=clone(meta(data)),next=clone(data),wanted=currentIds();
       const deleted=mergeDeletedNotes(data.deletedNotes||[],ledger.deletedNotes||[]);if(deleted.length)next.deletedNotes=deleted;
@@ -96,12 +106,13 @@
       for(const [id,change]of Object.entries(pending))if(equivalent(ledger.entries[id],change.entry)||ledger.entries[id]?.operation===change.entry.operation)delete pending[id];
       for(const [id,change]of Object.entries(pending))if(ledger.entries[id]?.operation&&Array.isArray(change.ancestors)&&change.ancestors.includes(ledger.entries[id].operation))change.base=clone(ledger.entries[id]);
       const selected={};
-      for(const entry of Object.values(ledger.entries)){
+      const entries=Object.values(ledger.entries).map(entry=>wanted.has(address(entry))?recoverApproval(entry,ledger.entries):entry);
+      for(const entry of entries){
         const old=selected[entry.key],preferred=wanted.has(address(entry));
         if(!old||preferred&&!wanted.has(address(old))||preferred===wanted.has(address(old))&&later(entry,old))selected[entry.key]=entry;
       }
       // An older compatible approval must never hide a later flag or explicit withdrawal on this stable task.
-      for(const entry of Object.values(ledger.entries))if(entry.status!=='approved'&&later(entry,selected[entry.key]))selected[entry.key]=entry;
+      for(const entry of entries)if(entry.status!=='approved'&&later(entry,selected[entry.key]))selected[entry.key]=entry;
       for(const [key,decision]of Object.entries(data.decisions))if(m.base[key+'@'+decision.revision]&&!selected[key]&&!Object.values(pending).some(change=>change.entry.key===key))delete next.decisions[key];
       // GitHub's current record wins unless this device has an explicit unsaved edit for that revision.
       for(const [key,entry]of Object.entries(selected))next.decisions[key]={key,revision:entry.revision,status:entry.status,note:entry.note,at:entry.at};
@@ -114,7 +125,7 @@
       const remembered=new Set(next.history.map(canonical));
       const remember=decision=>{const signature=canonical(decision);if(!remembered.has(signature)){next.history.push(clone(decision));remembered.add(signature);}};
       for(const [key,decision]of Object.entries(data.decisions))if(!same(decision,next.decisions[key]))remember(decision);
-      for(const entry of [...Object.values(ledger.entries),...ledger.history]){
+      for(const entry of [...entries,...ledger.history]){
         const decision={key:entry.key,revision:entry.revision,status:entry.status,note:entry.note,at:entry.at};
         if(entry.note.trim()&&!same(decision,next.decisions[entry.key]))remember(decision);
       }
@@ -222,8 +233,8 @@
       const m=meta(read()),base=observed?.entries||m.base;
       if(!m.checked&&!observed)return false;
       const okay=(key,accepted)=>{
-        let latest;for(const revision of accepted){const entry=base[key+'@'+revision];if(entry&&(!latest||later(entry,latest)))latest=entry;}
-        return latest?.status==='approved'&&(key.startsWith('puzzle:')||latest.seen)&&!Object.values(base).some(entry=>entry.key===key&&entry.status!=='approved'&&later(entry,latest));
+        let latest;for(const revision of accepted){const entry=recoverApproval(base[key+'@'+revision],base);if(entry&&(!latest||later(entry,latest)))latest=entry;}
+        return latest?.status==='approved'&&latest.seen&&!Object.values(base).some(entry=>entry.key===key&&later(entry,latest)&&(accepted.includes(entry.revision)?recoverApproval(entry,base):entry).status!=='approved');
       };
       return read().decisions['puzzle:'+id]?.status!=='improve'&&catalogue.iterations(id).every(item=>okay(item.id,revisions(id,item)));
     }

@@ -137,6 +137,7 @@
     return say(text, {explicit: true, onState});
   }
   FK.forestVoice = {say, explain, cancel, repeat: () => last ? say(last.text, last.options) : false,
+    get playingClip() { return !!active?.audio && !active.audio.paused; },
     get available() { return !!(FK.narrationClips?.size || voice()); },
     get voiceName() { return voice()?.name || null; }};
   FK.on('settings', e => { if (e.key === 'sound' && !e.value) cancel(); });

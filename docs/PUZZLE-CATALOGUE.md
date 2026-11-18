@@ -1,6 +1,6 @@
 # Puzzle catalogue and competence map
 
-The active library contains **31 puzzles and 958 individually reviewable iterations**. Each play is five randomly selected, distinct iterations. Children start puzzles only at the friend on their current letter; the full gallery is in adult Settings. [Parent letter limits](LETTER-SESSIONS.md) end the journey at the den after sleeping.
+The active library contains **31 puzzles and 962 individually reviewable iterations**. Each play is five randomly selected, distinct iterations. Children start puzzles only at the friend on their current letter; the full gallery is in adult Settings. [Parent letter limits](LETTER-SESSIONS.md) end the journey at the den after sleeping.
 
 Generated from the runtime catalogue with `node tools/puzzle-catalogue.cjs`. Every linked puzzle page lists all iteration IDs, content and expected solutions. No generated item is automatically approved.
 
@@ -24,10 +24,10 @@ Competences below are bounded practice references to [Zürich Zyklus 1](CURRICUL
 | [Waldkäfer zählen](puzzles/count.md) | Eichhörnchen | MA.1.A.2.a — Gezielt Mengen zählen | 6–15 Marienkäfer zwischen Bienen und Schnecken | 30 |
 | [Äpfel rechnen](puzzles/add.md) | Eichhörnchen | MA.1.A.3.a — Sichtbare Gruppen addieren | Zwei positive Summanden; Summe höchstens 10 | 36 |
 | [Waldmuster](puzzles/pattern.md) | Waldkauz | MA.2.A.2.a — Wiederholungsmuster fortsetzen | AAB, ABB, ABC, ABAC, AABC; zwei sichtbare Einheiten | 30 |
-| [Naturdetektive](puzzles/nature.md) | Blaumeise | D.2.B.1.b; NMG.2.4.a — Naturhinweise lesend verstehen | 25 Rätsel; zwei kurze Merkmale | 25 |
+| [Naturdetektive](puzzles/nature.md) | Blaumeise | D.2.B.1.b; NMG.2.4.a — Naturhinweise lesend verstehen | 25 Rätsel mit je einem kurzen Satz | 25 |
 | [Glühwürmchen sammeln](puzzles/rocket.md) | Eichhörnchen | MA.1.A.4.b — Mengen ergänzen | Gesamtmenge 5–10; besetzte und freie Plätze | 39 |
 | [Waldpicknick](puzzles/picnic.md) | Eichhörnchen | MA.1.A.4.a (Übung) — Eins zu eins gerecht verteilen | 2–4 Freunde; 1–10 Beeren je Freund; insgesamt höchstens 20 | 25 |
-| [Silben zählen](puzzles/syllable.md) | Blaumeise | D.1.A.1.b — Wörter in Silben zerlegen | 1–3 Silben; vertraute Bildwörter | 35 |
+| [Silben zählen](puzzles/syllable.md) | Blaumeise | D.1.A.1.b — Wörter in Silben zerlegen | 1–5 Silben; vertraute Bildwörter | 39 |
 | [Waldpost](puzzles/robot.md) | Biber | MA.2.A.1.c (Unterstützung) — Benachbarte Schritte im Raum planen | 4 × 4; sichtbares Ziel und gesperrte Hecken | 30 |
 | [Was kommt zuerst?](puzzles/sequence.md) | Waldkauz | D.2.B.1.b (beim Lesen) — Zeitliche Abfolgen ordnen | 25 Bildgeschichten mit drei beschrifteten Schritten | 25 |
 | [Waldschatz](puzzles/treasure.md) | Waldkauz | Optionale Gedächtnisübung — Gegenstände wiedererkennen | Vier Dinge, eines fehlt; kein Zeitlimit; erneut anschauen möglich | 32 |

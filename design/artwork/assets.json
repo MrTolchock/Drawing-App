@@ -10,7 +10,8 @@
       "historicalRecord": "legacy/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
       "recordKind": "original-brief",
       "historicalPromptId": "alphabet",
-      "requestId": "alphabet"
+      "requestId": "alphabet",
+      "cellRepair": "design/illustrations/library-repair-2026-11-18.json"
     },
     "animals": {
       "style": "waldpost-watercolour-pencil-v1",
@@ -18,7 +19,8 @@
       "historicalRecord": "legacy/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
       "recordKind": "original-brief",
       "historicalPromptId": "animals",
-      "requestId": "animals"
+      "requestId": "animals",
+      "cellRepair": "design/illustrations/library-repair-2026-11-18.json"
     },
     "creatures": {
       "style": "waldpost-watercolour-pencil-v1",
@@ -26,7 +28,8 @@
       "historicalRecord": "legacy/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
       "recordKind": "original-brief",
       "historicalPromptId": "creatures",
-      "requestId": "creatures"
+      "requestId": "creatures",
+      "cellRepair": "design/illustrations/library-repair-2026-11-18.json"
     },
     "discovery": {
       "style": "waldpost-watercolour-pencil-v1",
@@ -34,14 +37,16 @@
       "historicalRecord": "legacy/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
       "recordKind": "original-brief",
       "historicalPromptId": "discovery",
-      "requestId": "discovery"
+      "requestId": "discovery",
+      "cellRepair": "design/illustrations/library-repair-2026-11-18.json"
     },
     "forest-actions": {
       "style": "waldpost-watercolour-pencil-v1",
       "forwardPrompt": "design/illustrations/prompts/forest-actions.txt",
       "historicalRecord": "legacy/design-history/2026-11-16-before-style-contract/design/illustrations/forest-actions.json",
       "recordKind": "generation-record",
-      "requestId": "forest-actions"
+      "requestId": "forest-actions",
+      "cellRepair": "design/illustrations/library-repair-2026-11-18.json"
     },
     "forest-fox": {
       "style": "waldpost-watercolour-pencil-v1",
@@ -55,21 +60,24 @@
       "forwardPrompt": "design/illustrations/prompts/forest-objects.txt",
       "historicalRecord": "legacy/design-history/2026-11-16-before-style-contract/design/illustrations/forest-objects.json",
       "recordKind": "generation-record",
-      "requestId": "forest-objects"
+      "requestId": "forest-objects",
+      "cellRepair": "design/illustrations/rose-repair-2026-11-18.json"
     },
     "forest-wildlife": {
       "style": "waldpost-watercolour-pencil-v1",
       "forwardPrompt": "design/illustrations/prompts/forest-wildlife.txt",
       "historicalRecord": "legacy/design-history/2026-11-16-before-style-contract/design/illustrations/forest-wildlife.json",
       "recordKind": "generation-record",
-      "requestId": "forest-wildlife"
+      "requestId": "forest-wildlife",
+      "cellRepair": "design/illustrations/library-repair-2026-11-18.json"
     },
     "menu": {
       "style": "waldpost-watercolour-pencil-v1",
       "forwardPrompt": "design/illustrations/prompts/menu.txt",
       "historicalRecord": "legacy/design-history/2026-11-16-before-style-contract/design/artwork/assets.json",
       "recordKind": "inventory-only",
-      "requestId": "menu"
+      "requestId": "menu",
+      "cellRepair": "design/illustrations/library-repair-2026-11-18.json"
     },
     "navigation": {
       "style": "waldpost-watercolour-pencil-v1",
@@ -77,7 +85,8 @@
       "historicalRecord": "legacy/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
       "recordKind": "original-brief",
       "historicalPromptId": "navigation",
-      "requestId": "navigation"
+      "requestId": "navigation",
+      "cellRepair": "design/illustrations/library-repair-2026-11-18.json"
     },
     "people": {
       "style": "waldpost-watercolour-pencil-v1",
@@ -85,7 +94,8 @@
       "historicalRecord": "legacy/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
       "recordKind": "original-brief",
       "historicalPromptId": "people",
-      "requestId": "people"
+      "requestId": "people",
+      "cellRepair": "design/illustrations/library-repair-2026-11-18.json"
     },
     "puzzle-flowers": {
       "style": "waldpost-watercolour-pencil-v1",
@@ -100,14 +110,16 @@
       "historicalRecord": "legacy/design-history/2026-11-16-before-style-contract/design/artwork/assets.json",
       "recordKind": "inventory-only",
       "requestId": "puzzle-vocabulary",
-      "generationRecord": "design/artwork/generation-records/puzzle-vocabulary-feedback-2026-11-17.json"
+      "generationRecord": "design/artwork/generation-records/puzzle-vocabulary-feedback-2026-11-17.json",
+      "cellRepair": "design/illustrations/library-repair-2026-11-18.json"
     },
     "rhyme-vocabulary": {
       "style": "waldpost-watercolour-pencil-v1",
       "forwardPrompt": "design/illustrations/prompts/rhyme-vocabulary.txt",
       "historicalRecord": "legacy/design-history/2026-11-16-before-style-contract/design/illustrations/rhyme-vocabulary.json",
       "recordKind": "generation-record",
-      "requestId": "rhyme-vocabulary"
+      "requestId": "rhyme-vocabulary",
+      "cellRepair": "design/illustrations/library-repair-2026-11-18.json"
     },
     "words-one": {
       "style": "waldpost-watercolour-pencil-v1",
@@ -115,7 +127,8 @@
       "historicalRecord": "legacy/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
       "recordKind": "original-brief",
       "historicalPromptId": "words-one",
-      "requestId": "words-one"
+      "requestId": "words-one",
+      "cellRepair": "design/illustrations/library-repair-2026-11-18.json"
     },
     "words-three": {
       "style": "waldpost-watercolour-pencil-v1",
@@ -123,7 +136,8 @@
       "historicalRecord": "legacy/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json",
       "recordKind": "original-brief",
       "historicalPromptId": "words-three",
-      "requestId": "words-three"
+      "requestId": "words-three",
+      "cellRepair": "design/illustrations/library-repair-2026-11-18.json"
     },
     "words-two": {
       "style": "waldpost-watercolour-pencil-v1",
@@ -139,6 +153,13 @@
       "historicalRecord": "design/artwork/generation-records/review-nature.json",
       "recordKind": "generation-record",
       "requestId": "review-nature"
+    },
+    "puzzle-garden": {
+      "historicalRecord": "design/artwork/generation-records/puzzle-garden-2026-11-18.json",
+      "recordKind": "retained-generation-record",
+      "requestId": "puzzle-garden",
+      "forwardPrompt": "design/illustrations/prompts/puzzle-garden.txt",
+      "role": "learning"
     }
   },
   "currentGenerated": [

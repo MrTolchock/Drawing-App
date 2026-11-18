@@ -5,8 +5,8 @@
 - Stable puzzle ID: `syllable`
 - Host: bird
 - Related competence: **D.1.A.1.b** — Wörter in Silben zerlegen
-- Difficulty: 1–3 Silben; vertraute Bildwörter
-- Pool: 35 explicit iterations; a round selects five.
+- Difficulty: 1–5 Silben; vertraute Bildwörter
+- Pool: 39 explicit iterations; a round selects five.
 - Review: solve every unconfirmed iteration to approve it; × rejects with an optional note. The puzzle is released when all current iterations passed. Exact per-iteration revisions gate release; only affected iterations require review after changes.
 
 ## Mapping to the blueprint
@@ -61,6 +61,10 @@
 | `syllable/word-32` | Regen — Regen | 2 |
 | `syllable/word-33` | Vogel — Vogel | 2 |
 | `syllable/word-34` | Schnecke — Schnecke | 2 |
+| `syllable/word-35` | Schokolade — Schokolade | 4 |
+| `syllable/word-36` | Eisenbahnzug — Eisenbahnzug | 4 |
+| `syllable/word-37` | Wassermelone — Wassermelone | 5 |
+| `syllable/word-38` | Feuerwehrauto — Feuerwehrauto | 5 |
 
 ## Exact definitions
 
@@ -84,7 +88,9 @@ These definitions are the same finite data used by the game and review previews.
       "choices": [
         1,
         2,
-        3
+        3,
+        4,
+        5
       ]
     }
   },
@@ -104,7 +110,9 @@ These definitions are the same finite data used by the game and review previews.
       "choices": [
         1,
         2,
-        3
+        3,
+        4,
+        5
       ]
     }
   },
@@ -124,7 +132,9 @@ These definitions are the same finite data used by the game and review previews.
       "choices": [
         1,
         2,
-        3
+        3,
+        4,
+        5
       ]
     }
   },
@@ -144,7 +154,9 @@ These definitions are the same finite data used by the game and review previews.
       "choices": [
         1,
         2,
-        3
+        3,
+        4,
+        5
       ]
     }
   },
@@ -164,7 +176,9 @@ These definitions are the same finite data used by the game and review previews.
       "choices": [
         1,
         2,
-        3
+        3,
+        4,
+        5
       ]
     }
   },
@@ -184,7 +198,9 @@ These definitions are the same finite data used by the game and review previews.
       "choices": [
         1,
         2,
-        3
+        3,
+        4,
+        5
       ]
     }
   },
@@ -204,7 +220,9 @@ These definitions are the same finite data used by the game and review previews.
       "choices": [
         1,
         2,
-        3
+        3,
+        4,
+        5
       ]
     }
   },
@@ -224,7 +242,9 @@ These definitions are the same finite data used by the game and review previews.
       "choices": [
         1,
         2,
-        3
+        3,
+        4,
+        5
       ]
     }
   },
@@ -244,7 +264,9 @@ These definitions are the same finite data used by the game and review previews.
       "choices": [
         1,
         2,
-        3
+        3,
+        4,
+        5
       ]
     }
   },
@@ -264,7 +286,9 @@ These definitions are the same finite data used by the game and review previews.
       "choices": [
         1,
         2,
-        3
+        3,
+        4,
+        5
       ]
     }
   },
@@ -284,7 +308,9 @@ These definitions are the same finite data used by the game and review previews.
       "choices": [
         1,
         2,
-        3
+        3,
+        4,
+        5
       ]
     }
   },
@@ -304,7 +330,9 @@ These definitions are the same finite data used by the game and review previews.
       "choices": [
         1,
         2,
-        3
+        3,
+        4,
+        5
       ]
     }
   },
@@ -323,7 +351,9 @@ These definitions are the same finite data used by the game and review previews.
       "choices": [
         1,
         2,
-        3
+        3,
+        4,
+        5
       ]
     }
   },
@@ -342,7 +372,9 @@ These definitions are the same finite data used by the game and review previews.
       "choices": [
         1,
         2,
-        3
+        3,
+        4,
+        5
       ]
     }
   },
@@ -361,7 +393,9 @@ These definitions are the same finite data used by the game and review previews.
       "choices": [
         1,
         2,
-        3
+        3,
+        4,
+        5
       ]
     }
   },
@@ -380,7 +414,9 @@ These definitions are the same finite data used by the game and review previews.
       "choices": [
         1,
         2,
-        3
+        3,
+        4,
+        5
       ]
     }
   },
@@ -399,7 +435,9 @@ These definitions are the same finite data used by the game and review previews.
       "choices": [
         1,
         2,
-        3
+        3,
+        4,
+        5
       ]
     }
   },
@@ -418,7 +456,9 @@ These definitions are the same finite data used by the game and review previews.
       "choices": [
         1,
         2,
-        3
+        3,
+        4,
+        5
       ]
     }
   },
@@ -437,7 +477,9 @@ These definitions are the same finite data used by the game and review previews.
       "choices": [
         1,
         2,
-        3
+        3,
+        4,
+        5
       ]
     }
   },
@@ -457,7 +499,9 @@ These definitions are the same finite data used by the game and review previews.
       "choices": [
         1,
         2,
-        3
+        3,
+        4,
+        5
       ]
     }
   },
@@ -478,7 +522,9 @@ These definitions are the same finite data used by the game and review previews.
       "choices": [
         1,
         2,
-        3
+        3,
+        4,
+        5
       ]
     }
   },
@@ -499,7 +545,9 @@ These definitions are the same finite data used by the game and review previews.
       "choices": [
         1,
         2,
-        3
+        3,
+        4,
+        5
       ]
     }
   },
@@ -520,7 +568,9 @@ These definitions are the same finite data used by the game and review previews.
       "choices": [
         1,
         2,
-        3
+        3,
+        4,
+        5
       ]
     }
   },
@@ -541,7 +591,9 @@ These definitions are the same finite data used by the game and review previews.
       "choices": [
         1,
         2,
-        3
+        3,
+        4,
+        5
       ]
     }
   },
@@ -562,7 +614,9 @@ These definitions are the same finite data used by the game and review previews.
       "choices": [
         1,
         2,
-        3
+        3,
+        4,
+        5
       ]
     }
   },
@@ -582,7 +636,9 @@ These definitions are the same finite data used by the game and review previews.
       "choices": [
         1,
         2,
-        3
+        3,
+        4,
+        5
       ]
     }
   },
@@ -602,7 +658,9 @@ These definitions are the same finite data used by the game and review previews.
       "choices": [
         1,
         2,
-        3
+        3,
+        4,
+        5
       ]
     }
   },
@@ -622,7 +680,9 @@ These definitions are the same finite data used by the game and review previews.
       "choices": [
         1,
         2,
-        3
+        3,
+        4,
+        5
       ]
     }
   },
@@ -643,7 +703,9 @@ These definitions are the same finite data used by the game and review previews.
       "choices": [
         1,
         2,
-        3
+        3,
+        4,
+        5
       ]
     }
   },
@@ -663,7 +725,9 @@ These definitions are the same finite data used by the game and review previews.
       "choices": [
         1,
         2,
-        3
+        3,
+        4,
+        5
       ]
     }
   },
@@ -683,7 +747,9 @@ These definitions are the same finite data used by the game and review previews.
       "choices": [
         1,
         2,
-        3
+        3,
+        4,
+        5
       ]
     }
   },
@@ -703,7 +769,9 @@ These definitions are the same finite data used by the game and review previews.
       "choices": [
         1,
         2,
-        3
+        3,
+        4,
+        5
       ]
     }
   },
@@ -723,7 +791,9 @@ These definitions are the same finite data used by the game and review previews.
       "choices": [
         1,
         2,
-        3
+        3,
+        4,
+        5
       ]
     }
   },
@@ -743,7 +813,9 @@ These definitions are the same finite data used by the game and review previews.
       "choices": [
         1,
         2,
-        3
+        3,
+        4,
+        5
       ]
     }
   },
@@ -763,7 +835,107 @@ These definitions are the same finite data used by the game and review previews.
       "choices": [
         1,
         2,
-        3
+        3,
+        4,
+        5
+      ]
+    }
+  },
+  {
+    "id": "syllable/word-35",
+    "label": "Schokolade",
+    "question": {
+      "kind": "syllable",
+      "prompt": "Wie viele Silben hat das Wort?",
+      "word": "Schokolade",
+      "picture": "chocolate",
+      "parts": [
+        "Scho",
+        "ko",
+        "la",
+        "de"
+      ],
+      "answer": 4,
+      "choices": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    }
+  },
+  {
+    "id": "syllable/word-36",
+    "label": "Eisenbahnzug",
+    "question": {
+      "kind": "syllable",
+      "prompt": "Wie viele Silben hat das Wort?",
+      "word": "Eisenbahnzug",
+      "picture": "steam-train",
+      "parts": [
+        "Ei",
+        "sen",
+        "bahn",
+        "zug"
+      ],
+      "answer": 4,
+      "choices": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    }
+  },
+  {
+    "id": "syllable/word-37",
+    "label": "Wassermelone",
+    "question": {
+      "kind": "syllable",
+      "prompt": "Wie viele Silben hat das Wort?",
+      "word": "Wassermelone",
+      "picture": "watermelon",
+      "parts": [
+        "Was",
+        "ser",
+        "me",
+        "lo",
+        "ne"
+      ],
+      "answer": 5,
+      "choices": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    }
+  },
+  {
+    "id": "syllable/word-38",
+    "label": "Feuerwehrauto",
+    "question": {
+      "kind": "syllable",
+      "prompt": "Wie viele Silben hat das Wort?",
+      "word": "Feuerwehrauto",
+      "picture": "fire-engine",
+      "parts": [
+        "Feu",
+        "er",
+        "wehr",
+        "au",
+        "to"
+      ],
+      "answer": 5,
+      "choices": [
+        1,
+        2,
+        3,
+        4,
+        5
       ]
     }
   }

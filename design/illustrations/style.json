@@ -7,6 +7,7 @@
   "basedOn": "3fff5b516fa9b0c9a22baa2aeae389d7a251ad34",
   "styleBlock": "design/illustrations/STYLE.txt",
   "styleBlockSha256": "2a00ce3fe3e14c55cae91fd86b9066da2ef13eab68017e23d86f92859ecf82ca",
+  "framingGuidance": "Compare related pictures side by side at the size used in the game. For square cells, draw the complete silhouette with enough transparent space to pack it centred on both axes, with its longest visible side about 80% of the cell. Keep its proportions and use comparable visual weight for neighbouring answers. Reuse the same painting when a subject and pose recur. Leave genuine alpha around every isolated subject and retain the soft pencil edges. Inspect on light and dark backgrounds for pale matte, clipped outlines, stray pixels and neighbouring subjects. In a cell repair, preserve the pixels and positions of the other cells. Scenes and irregular layouts follow their role and brief.",
   "references": [
     {
       "path": "design/illustrations/references/watercolour-pencil-v1/animals.png",
@@ -55,7 +56,7 @@
       "instruction": "Use the canonical watercolour-and-coloured-pencil medium for the shared game-character portraits on letters, map pins, puzzle pages, menus, companions and celebrations. Reuse the approved painted identities, natural friendly proportions, species markings and accessories. Complete silhouettes, real transparency and generous square-cell margins. Keep the live 3D world as its own model pipeline; do not substitute these identity portraits for scored learning pictures."
     },
     "map-landmark": {
-      "instruction": "Use the canonical watercolour-and-coloured-pencil medium for a single map destination landmark, matching the painted character portraits in finish and detail. Keep the silhouette compact and recognizable at 40\u201350 pixels, with broad simple forms, organic sepia contours, gentle washes and restrained pencil shading. Genuine transparency, generous square padding and complete edges. No miniature realistic scenery or material microdetail. Actual map buttons, names and click behaviour remain code."
+      "instruction": "Use the canonical watercolour-and-coloured-pencil medium for a single map destination landmark, matching the painted character portraits in finish and detail. Keep the silhouette compact and recognizable at 40–50 pixels, with broad simple forms, organic sepia contours, gentle washes and restrained pencil shading. Genuine transparency, generous square padding and complete edges. No miniature realistic scenery or material microdetail. Actual map buttons, names and click behaviour remain code."
     }
   },
   "prompts": [
@@ -75,7 +76,7 @@
       "references": [
         {
           "path": "assets/waldatelier/forest-actions.webp",
-          "sha256": "d3a67b017d42bd3bea98d1034c0316d3ba11e7575e6bcadda7ae1e7962f74862",
+          "sha256": "25e2c88dd8053e5b5f00375f4f28b06dd2fdb70e391149cbc83a8bef08f479e7",
           "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
           "usage": "composition-only"
         }
@@ -90,7 +91,7 @@
       "references": [
         {
           "path": "assets/waldatelier/forest-objects.webp",
-          "sha256": "aeb5cdd3aef93cc3f55e63f2323770b83b5eea90e190f0948d243828fc5aab83",
+          "sha256": "ebccfde4ff973c0736012ee2380e9b8654d1e06ec2ead4b03acacd1e83571f65",
           "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
           "usage": "composition-only"
         }
@@ -120,7 +121,7 @@
       "references": [
         {
           "path": "assets/waldatelier/forest-wildlife.webp",
-          "sha256": "f152dfbc074a80d29d6fc91a1d7cbef62a3bec70b253d94bbaae60f50a1de1e8",
+          "sha256": "36697977ce1391e1f2960da24545bf9ecc854d5c58d4409bc6adb5ef8e6d0623",
           "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
           "usage": "composition-only"
         }
@@ -150,7 +151,7 @@
       "references": [
         {
           "path": "assets/waldatelier/rhyme-vocabulary.webp",
-          "sha256": "7017fb46ace669eb61fe475135e09f2feb1d87932d4248c7933f48653af943b3",
+          "sha256": "563825738c0c15d8f544ee38a5d0f27c5b49ac9958f5b1926c8418062682957d",
           "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
           "usage": "composition-only"
         }
@@ -334,7 +335,7 @@
       "references": [
         {
           "path": "assets/waldatelier/alphabet.webp",
-          "sha256": "1999236e340fca2aa6cb22a2c48368d9a4b78882b5a5c92867d3df25c64385fb",
+          "sha256": "0d6613bbf5c54cbc51be7bc55d318eff09ce0d6d72388ac35e02471eac56a887",
           "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
           "usage": "composition-only"
         }
@@ -349,7 +350,7 @@
       "references": [
         {
           "path": "assets/waldatelier/animals.webp",
-          "sha256": "f12730079d950dd197225d118d04b049f531cf4d6eec76817f002c589b946a65",
+          "sha256": "bb44764718b87c28864cc51f752bbf9f017203c456892a8111e4d33a85f15295",
           "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
           "usage": "composition-only"
         }
@@ -364,7 +365,7 @@
       "references": [
         {
           "path": "assets/waldatelier/creatures.webp",
-          "sha256": "30e05028bb56dedaf58dd88f0bd52803fee08177cd2c636870a417ef8f0aa0f2",
+          "sha256": "f69145ea994e0aba19a96f1d10635b7c679f46c81119e7092b70f2481cf32c19",
           "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
           "usage": "composition-only"
         }
@@ -379,7 +380,7 @@
       "references": [
         {
           "path": "assets/waldatelier/discovery.webp",
-          "sha256": "ebe641587a934c61e80feeb5fd33afdf5a212f1856586634ec75aae7cc7928f9",
+          "sha256": "41b72e4e03b709761134693f584507eebb5913c59edbc75dab5dfc92d617e22a",
           "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
           "usage": "composition-only"
         }
@@ -394,7 +395,7 @@
       "references": [
         {
           "path": "assets/waldatelier/menu.webp",
-          "sha256": "b2289b40f87df596cbd23fa87476408b34b656f4f447f41a1548637d41a411d6",
+          "sha256": "789580134bc958fc4e741c822414545c3a9e94625a20e37681e4706ef9b5a429",
           "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
           "usage": "composition-only"
         }
@@ -409,7 +410,7 @@
       "references": [
         {
           "path": "assets/waldatelier/navigation.webp",
-          "sha256": "023c726e535602c27b5d0669609350a234dac1f45a1927c4e196f66a7ccd263b",
+          "sha256": "41e6333c35fded3de2a6055262b8992533a3a90cc5f3a5dea841c2ae39fedd50",
           "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
           "usage": "composition-only"
         }
@@ -424,7 +425,7 @@
       "references": [
         {
           "path": "assets/waldatelier/people.webp",
-          "sha256": "b059d4b45ec043f6056f657a07e03b1d6c32d22e4a6b6324c41047d96e4dfc54",
+          "sha256": "f718a68c558c538d1a7fa6fa4232744d58c80dd52b3aad4c13b4cd80cbe08224",
           "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
           "usage": "composition-only"
         }
@@ -439,7 +440,7 @@
       "references": [
         {
           "path": "assets/waldatelier/puzzle-vocabulary.webp",
-          "sha256": "962a04b4c023de932e78059147cfc56f4775eb38c7bf3f0ab366dd25fcee932f",
+          "sha256": "f60a27e0c270e405b1aa12bc0ee0e4814ee906bfd5f33ba26fc748ee29b4c2b1",
           "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
           "usage": "composition-only"
         }
@@ -454,7 +455,7 @@
       "references": [
         {
           "path": "assets/waldatelier/words-one.webp",
-          "sha256": "15ad880d4339f2d21981a3645603d15cf4abbc15441560599c2935154b8c57fa",
+          "sha256": "0e4ebd1508d7b0379c259c08e57b87e0f1579805a966c1019a03f3d68dfd554e",
           "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
           "usage": "composition-only"
         }
@@ -469,7 +470,7 @@
       "references": [
         {
           "path": "assets/waldatelier/words-three.webp",
-          "sha256": "e2c6a2c0d0fb7de51b550ff2fd398f74fe408071f719a03d4429f83cde2c5f71",
+          "sha256": "7583528cec5cc5e03fc5213adcba5dcfca93f5c3270a95b3532f99ed649546bb",
           "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
           "usage": "composition-only"
         }
@@ -486,6 +487,21 @@
           "path": "assets/waldatelier/words-two.webp",
           "sha256": "2371914cdcdf4f3ab0584174729b2257f331a69088cf2df75832e13150df4c85",
           "purpose": "current subject identities, action poses and fixed cell order only; canonical references define drawing technique",
+          "usage": "composition-only"
+        }
+      ]
+    },
+    {
+      "id": "puzzle-garden",
+      "role": "learning",
+      "path": "design/illustrations/prompts/puzzle-garden.txt",
+      "brief": "design/illustrations/briefs/puzzle-garden.txt",
+      "transparent": true,
+      "references": [
+        {
+          "path": "assets/waldatelier/puzzle-garden.webp",
+          "sha256": "ea3bc51d0772b62ab344abfc4ba3f40d26ba1f8159870040179edffdcb8d57d9",
+          "purpose": "current subject identities and fixed cell order only; canonical references define drawing technique",
           "usage": "composition-only"
         }
       ]
@@ -559,7 +575,8 @@
     "design/artwork/den-marker.json",
     "design/artwork/exit-symbol.json",
     "design/illustrations/puzzle-vocabulary.json",
-    "design/illustrations/review-nature.json"
+    "design/illustrations/review-nature.json",
+    "design/illustrations/puzzle-garden.json"
   ],
   "history": "legacy/design-history/2026-11-16-before-style-contract",
   "preview": {

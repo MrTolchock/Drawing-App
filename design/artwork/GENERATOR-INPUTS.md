@@ -23,7 +23,7 @@ The repository prepares inputs; it does not include a hosted image model, API ke
 
 ## Puzzle pictures: all 238 subjects
 
-Each of the 18 atlases has its own complete prompt and ordered stable IDs. No sheet below requires filling the generic `subject-sheet` template. Cell indices are zero-based in JSON; prompt rows are one-based, left to right then top to bottom. Empty trailing cells remain transparent. Current atlases are attached as composition-only inputs after the canonical style pair.
+Each of the 19 atlases has its own complete prompt and ordered stable IDs. Cell indices are zero-based in JSON. Prompt rows are one-based, left to right then top to bottom. Empty trailing cells remain transparent. Current atlases are attached as composition-only inputs after the canonical style pair.
 
 | Request ID / sheet | Grid | Complete prompt |
 | --- | --- | --- |
@@ -39,6 +39,7 @@ Each of the 18 atlases has its own complete prompt and ordered stable IDs. No sh
 | `navigation` | 4 × 4 | [Learning/menu motifs](../illustrations/prompts/navigation.txt) |
 | `people` | 4 × 4 | [People and vocabulary](../illustrations/prompts/people.txt) |
 | `puzzle-flowers` | 3 × 2 | [Six scored flower colours](../illustrations/prompts/puzzle-flowers.txt) |
+| `puzzle-garden` | 2 × 2 with two occupied cells | [Firefly and watering can](../illustrations/prompts/puzzle-garden.txt) |
 | `puzzle-vocabulary` | 4 × 5 | [Twenty puzzle nouns](../illustrations/prompts/puzzle-vocabulary.txt) |
 | `review-nature` | 2 × 2; three occupied | [Empty basket, swimming habitat and squirrel with nut](../illustrations/prompts/review-nature.txt) |
 | `rhyme-vocabulary` | 4 × 4; ten occupied | [Rhyme nouns](../illustrations/prompts/rhyme-vocabulary.txt) |

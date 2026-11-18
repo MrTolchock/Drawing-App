@@ -60,7 +60,7 @@ function closure(module,roots,options={}){
 }
 function capture(env,file,statement){env.execute(file,source=>{const end=source.lastIndexOf('})();');if(end<0)throw Error('Cannot inspect '+file);return source.slice(0,end)+statement+'\n'+source.slice(end);});}
 function strings(value,out=new Set()){if(typeof value==='string')out.add(value);else if(value&&typeof value==='object')for(const v of Object.values(value))strings(v,out);return out;}
-function cssFor(source,classes,game){
+function cssFor(source,classes,game,{typography=true}={}){
  const possible=selector=>{
   for(const node of selector.nodes||[]){
    if(node.type==='class'&&!classes.has(node.value)&&!node.value.startsWith('wb-')&&!node.value.startsWith('is-'))return false;
@@ -72,7 +72,11 @@ function cssFor(source,classes,game){
  const selected=selector=>selectors().astSync(selector).nodes.some(possible),animations=new Set(),ast=typeof source==='string'?postcss.parse(source):source;
  const filter=node=>{
   if(node.type==='comment')return null;
-  if(node.type==='decl'){if(/animation/.test(node.prop))for(const name of node.value.match(/[\w-]+/g)||[])animations.add(name);return [node.prop,node.value,node.important||false];}
+  if(node.type==='decl'){
+   if(!typography&&/^(font(?:-.*)?|line-height|letter-spacing|word-spacing|overflow-wrap)$/.test(node.prop))return null;
+   if(/animation/.test(node.prop))for(const name of node.value.match(/[\w-]+/g)||[])animations.add(name);
+   return [node.prop,node.value,node.important||false];
+  }
   if(node.type==='rule'&&!selected(node.selector))return null;
   if(node.type==='atrule'&&/keyframes/.test(node.name))return null;
   if(node.type==='atrule'&&node.name==='font-face'&&!node.toString().includes('Andika'))return null;
@@ -147,24 +151,40 @@ function build(reader=currentReader(),{includeResources=false}={}){
   let code=compile();for(const value of code.staticRefs)refs.add(value);
   for(const value of [...refs,...code.literals].filter(x=>typeof x==='string'))for(const token of tokens)if(value.includes(token))refs.add(token);
   code=compile();
-  for(const value of code.literals)if(ctx.window.FriendsContent.hosts[value])portraits.add(value);
+  for(const value of code.literals)if(value==='mailman'||ctx.window.FriendsContent.hosts[value])portraits.add(value);
   const pictures=[...refs].filter(x=>typeof x==='string').sort().flatMap(pictureResource),ids=[],portraitIndices={};
   for(const id of portraits){const portrait=FK.friendsArt.portrait(id),[x,y]=portrait.attrs.style.backgroundPosition.split(' ').map(parseFloat),index=Math.round(y*3/100)*4+Math.round(x*3/100);ids.push(index);portraitIndices[id]=index;}
   atlas('assets/forest-friends/character-portraits.webp',4,4);
   const classes=new Set([...states,game.screen==='trace'?'screen-trace':'screen-puzzle']);for(const value of code.literals)for(const name of value.match(/[a-z][a-z0-9]*(?:-[a-z0-9]+)*/g)||[])classes.add(name);
-  const cssKey=game.id+':'+[...classes].sort().join(',');if(!cssCache.has(cssKey))cssCache.set(cssKey,css.map(([file,source])=>[file,cssFor(source,classes,game)]).filter(([,rules])=>rules.length));
-  const selectedCSS=cssCache.get(cssKey);
+  const cssKey=game.id+':'+[...classes].sort().join(',');
+  if(!cssCache.has(cssKey))cssCache.set(cssKey,{
+   presentation:css.map(([file,source])=>[file,cssFor(source,classes,game)]).filter(([,rules])=>rules.length),
+   review:css.map(([file,source])=>[file,cssFor(source,classes,game,{typography:false})]).filter(([,rules])=>rules.length)
+  });
+  const selectedCSS=cssCache.get(cssKey).presentation;
   let progress='0% 0%';const progressCell=node=>{if(!Array.isArray(node))return;if(node[0]==='--wb-item')progress=node[1];else node.forEach(progressCell);};progressCell(selectedCSS);
   const [px,py]=progress.split(' ').map(parseFloat),index=Math.round(py*3/100)*4+Math.round(px*3/100),key='assets/waldatelier/forest-objects.webp';atlas(key,4,4);pictures.push({key,index,role:'progress'});
-  const extra={dom};if(code.readsText)extra.text=textHelper;if(kinds.includes('robot'))extra.routes=hash(read('js/learn/routes.js'));if(kinds.includes('trace'))extra.glyphs=items.filter(q=>q.kind==='trace').map(q=>[q.glyph,FK.glyphs.data[q.glyph],FK.__reviewTraceFrame(q.glyph)]);if(kinds.includes('fireflies'))extra.firefly=hash(normal(moduleOf(read('js/friends/puzzles.js').toString()).bindings.get('firefly')));
+  const extra={dom};if(code.readsText)extra.text=textHelper;if(kinds.includes('robot'))extra.routes=hash(read('js/learn/routes.js'));if(kinds.includes('trace'))extra.glyphs=items.filter(q=>q.kind==='trace').map(q=>[q.glyph,FK.glyphs.data[q.glyph],FK.__reviewTraceFrame(q.glyph)]);
+  if(kinds.includes('fireflies')){
+   const legacyFirefly=moduleOf(read('js/friends/puzzles.js').toString()).bindings.get('firefly');
+   if(legacyFirefly)extra.firefly=hash(normal(legacyFirefly));
+  }
   const portraitCode={art:hash(closure(portraitModule,[portraitModule.bindings.get('portrait')],{special:{ids:portraitIndices}})),wrapper:hash(closure(libraryModule,[libraryModule.bindings.get('portrait')]))};
-  return {definition:hash({puzzle:contract(C.puzzle(game.id)),items:pool.map(task)}),structure:hash({code:code.digest,tables:{aliases:selectData(FK.__pictureData.aliases),labels:selectData(FK.__pictureData.labels),...Object.fromEntries(Object.entries(FK.__visualData).map(([name,table])=>[name,selectData(table)]))},controls,selection,rendering,portraitCode,css:hash(selectedCSS),extra,wordArt:items.filter(q=>q.kind==='rhyme').map(q=>[q.text,...q.choices].map(w=>[w,FK.puzzleRounds.wordArt[w]])),shared}),pictures,portraitCells:ids.sort((a,b)=>a-b)};
+  const structure={code:code.digest,tables:{aliases:selectData(FK.__pictureData.aliases),labels:selectData(FK.__pictureData.labels),...Object.fromEntries(Object.entries(FK.__visualData).map(([name,table])=>[name,selectData(table)]))},controls,selection,rendering,portraitCode,css:hash(selectedCSS),extra,wordArt:items.filter(q=>q.kind==='rhyme').map(q=>[q.text,...q.choices].map(w=>[w,FK.puzzleRounds.wordArt[w]])),shared};
+  return {
+   definition:hash({puzzle:contract(C.puzzle(game.id)),items:pool.map(task)}),
+   structure:hash(structure),
+   reviewStructure:hash({...structure,css:hash(cssCache.get(cssKey).review)}),
+   pictures,portraitCells:ids.sort((a,b)=>a-b)
+  };
  }
  const games=FK.friendsLibrary.catalogue();for(const game of games){const pool=C.iterations(game.id);all[game.id]=scope(game,pool);for(const it of pool)all[it.id]=scope(game,[it]);}
  const decoded=spawnSync(process.execPath,[path.join(__dirname,'puzzle-pixels.cjs')],{input:JSON.stringify([...atlases.values()]),encoding:'utf8',maxBuffer:8*1024*1024});
  if(decoded.status!==0)throw Error('Cannot fingerprint picture cells: '+(decoded.stderr||decoded.error));const pixels=JSON.parse(decoded.stdout),puzzles={},iterations={};
  for(const [id,data]of Object.entries(all)){
-  const {definition,structure,pictures,portraitCells}=data,value={definition,presentation:hash({structure,pictures:pictures.map(({key,index,...rec})=>({...rec,pixels:pixels[key][index]})),portraits:portraitCells.map(i=>pixels['assets/forest-friends/character-portraits.webp'][i])})};
+  const {definition,structure,reviewStructure,pictures,portraitCells}=data;
+  const artwork={pictures:pictures.map(({key,index,...rec})=>({...rec,pixels:pixels[key][index]})),portraits:portraitCells.map(i=>pixels['assets/forest-friends/character-portraits.webp'][i])};
+  const value={definition,presentation:hash({structure,...artwork}),reviewPresentation:hash({structure:reviewStructure,...artwork})};
   (id.includes('/')?iterations:puzzles)[id]=value;
  }
  const result={schema:SCHEMA,puzzles,iterations};

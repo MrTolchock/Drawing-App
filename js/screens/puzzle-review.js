@@ -2,7 +2,7 @@
 (function(){
   'use strict';
   const FK=window.FK,h=FK.h,C=FK.puzzleCatalogue,V=FK.puzzleReview;
-  let body,backButton,selected=null,filter='all',notice='',displayedNotes='';
+  let body,backButton,selected=null,filter='all',notice='',displayedNotes='',displayedRelease='';
   const drafts=new Map();
   // Describe the bounded practice in this puzzle; these are explanations, not curriculum quotations.
   const competences={
@@ -20,7 +20,7 @@
     count:'Das Kind unterscheidet Marienkäfer von anderen kleinen Tieren und zählt gezielt nur die gesuchte Menge.',
     add:'Das Kind fasst zwei sichtbare Gruppen zu einer Gesamtmenge zusammen und bestimmt ihre Summe bis 10.',
     pattern:'Das Kind erkennt die wiederkehrende Einheit eines Musters und setzt die Folge nach derselben Regel fort.',
-    nature:'Das Kind liest zwei kurze Hinweise, verbindet deren Bedeutung und erschliesst daraus das gesuchte Tier oder Naturding.',
+    nature:'Das Kind liest einen kurzen Hinweis und findet das passende Tierbild.',
     rocket:'Das Kind vergleicht besetzte mit freien Plätzen und bestimmt, wie viele bis zur Gesamtmenge von 5 bis 10 fehlen.',
     picnic:'Das Kind verteilt Beeren einzeln auf zwei bis vier Freunde, bis alle gleich viele erhalten haben.',
     syllable:'Das Kind erkennt die Sprechsilben eines vertrauten Bildworts und bestimmt, ob das Wort eine, zwei oder drei Silben hat.',
@@ -49,19 +49,23 @@
     notice=V.approveAll(id)?'Alle Iterationen von «'+p.title+'» bestätigt. '+(FK.reviewRepository?'Bitte den GitHub-Speicherstatus unten beachten.':''):(V.error||'Bestätigen fehlgeschlagen.');draw();
   }
   function message(){return h('p',{class:'review-notice',role:'status','aria-live':'polite',text:V.error||notice,hidden:!(V.error||notice)});}
+  const releasedPuzzles=()=>FK.friendsLibrary.catalogue().filter(g=>V.ready(g.id)).map(g=>g.id);
   function draw(){
     FK.forestVoice.cancel();
     const games=FK.friendsLibrary.catalogue();
-    const total=games.reduce((a,g)=>a+C.iterations(g.id).length,0),ready=games.filter(g=>V.ready(g.id)).length;
+    const total=games.reduce((a,g)=>a+C.iterations(g.id).length,0),ready=new Set(releasedPuzzles());
+    displayedRelease=[...ready].join();
     backButton.setAttribute('aria-label',selected?'Zur Puzzle-Übersicht':'Zurück zu Einstellungen');
     body.replaceChildren();
     if(!selected){
       displayedNotes='';
-      body.append(h('p',{class:'review-intro',text:ready+' / '+games.length+' Puzzles freigegeben · '+total+' einzelne Iterationen. Nur auf GitHub gespeicherte Freigaben sind spielbar. Vorschauen verändern keinen Spielstand.'}),FK.reviewConnection.panel(),message());
+      body.append(h('p',{class:'review-intro',text:ready.size+' / '+games.length+' Puzzles freigegeben · '+total+' einzelne Iterationen. Nur auf GitHub gespeicherte Freigaben sind spielbar. Vorschauen verändern keinen Spielstand.'}),FK.reviewConnection.panel(),message());
       const grid=h('div',{class:'review-grid'});
       for(const g of games){const p=C.puzzle(g.id),progress=V.progress(g.id);
         const card=btn(g.title,()=>{selected=g.id;filter='all';draw();toTop();});card.classList.add('review-puzzle');card.dataset.puzzle=g.id;
-        card.replaceChildren(FK.friendsLibrary.portrait(g.host),h('b',{text:g.title}),h('span',{text:p.competence}),h('span',{class:'review-status '+V.status(g.id).status,text:V.ready(g.id)?'Freigegeben':statusText(V.status(g.id))}),h('small',{text:progress.approved+' / '+progress.total+' Iterationen · '+progress.improve+' verbessern'}));grid.append(card);
+        const state=V.status(g.id),released=ready.has(g.id);
+        const label=released?'Freigegeben':state.status==='approved'?'Freigabe wartet auf GitHub':'Offen';
+        card.replaceChildren(FK.friendsLibrary.portrait(g.host),h('b',{text:g.title}),h('span',{text:p.competence}),h('span',{class:'review-status '+(released?'approved':'pending'),text:label}),h('small',{text:progress.approved+' / '+progress.total+' Iterationen · '+progress.improve+' verbessern'}));grid.append(card);
       }body.append(grid);return;
     }
     const p=C.puzzle(selected),progress=V.progress(selected);
@@ -72,12 +76,12 @@
       speech.setAttribute('aria-pressed',String(state==='loading'||state==='playing'));
     })});
     speech.setAttribute('aria-pressed','false');
-    body.append(message(),h('h2',{text:p.title}),h('section',{class:'review-competence'},h('h3',{text:'Geübte Kompetenz: '+p.competence}),h('p',{text:competences[selected]}),h('p',{text:'Lehrplanbezug: '+p.reference})),h('p',{text:'Schwierigkeit: '+p.difficulty}),h('p',{text:progress.approved+' / '+progress.total+' freigegeben · '+progress.improve+' verbessern · '+progress.pending+' offen'}),h('section',{class:'review-speech'},h('h3',{text:'Spielerklärung'}),h('p',{text:p.instruction}),speech,speechStatus));
+    body.append(message(),h('h2',{text:p.title}),h('section',{class:'review-competence'},h('h3',{text:'Geübte Kompetenz: '+p.competence}),h('p',{text:competences[selected]}),h('p',{text:'Lehrplanbezug: '+p.reference})),h('p',{text:'Schwierigkeit: '+p.difficulty}),h('p',{text:progress.approved+' / '+progress.total+' freigegeben · '+progress.improve+' verbessern · '+progress.pending+' offen'}),V.status(selected).status==='improve'?h('p',{class:'review-status pending',text:'Puzzle offen · allgemeiner Hinweis'}):null,h('section',{class:'review-speech'},h('h3',{text:'Spielerklärung'}),h('p',{text:p.instruction}),speech,speechStatus));
     const id=selected,note=h('textarea',{'aria-label':'Allgemeiner Kommentar zum Puzzle',maxlength:4000,rows:4,placeholder:'Was möchtest du zum gesamten Puzzle festhalten?',text:drafts.get(id)??''});
     const saved=h('p',{class:'review-notice',role:'status','aria-live':'polite'});
     note.addEventListener('input',()=>{drafts.set(id,note.value);saved.textContent='Noch nicht gespeichert.';});
     body.append(h('section',{class:'review-comment'},h('h3',{text:'Allgemeiner Kommentar zum Puzzle'}),h('label',{},'Kommentar (optional)',note),btn('Kommentar speichern',()=>{
-      if(V.comment(id,note.value)){drafts.delete(id);notice='Kommentar gespeichert.';draw();}else saved.textContent=V.error;
+      if(V.comment(id,note.value)){drafts.delete(id);notice='Kommentar gespeichert. Das Puzzle ist wieder offen.';draw();}else saved.textContent=V.error;
     }),saved));
     const notes=V.feedback(id);
     displayedNotes=C.canonical(notes);
@@ -97,7 +101,8 @@
     const tabs=h('nav',{class:'review-actions','aria-label':'Aufgaben filtern'});
     for(const [value,label]of Object.entries({all:'Alle Iterationen',pending:'Offen',improve:'Verbessern',approved:'Freigegeben',stale:'Geändert'})){const b=btn(label,()=>{filter=value;draw();});b.setAttribute('aria-pressed',String(value===filter));tabs.append(b);}
     const all=btn('Alle bestätigen',()=>approveAll(selected));all.classList.add('review-approve-all');all.disabled=V.ready(selected)||(progress.approved===progress.total&&V.status(selected).status==='approved');
-    body.append(h('div',{class:'review-start'},btn(progress.approved===progress.total?'Prüfung abschliessen und feiern':'Offene Iterationen prüfen ('+(progress.total-progress.approved)+')',()=>V.start(selected)),all),h('p',{class:'review-flow-help',text:'Richtig lösen gibt die Iteration frei und führt automatisch weiter. × öffnet eine optionale Notiz zum Ablehnen. Alle offenen und zu verbessernden Aufgaben kommen einmal dran; danach feiern wir. Sind alle freigegeben, wird auch das Puzzle freigegeben. «Alle bestätigen» gibt alle Iterationen dieses Puzzles auf einmal frei.'}),tabs);
+    const open=progress.total-progress.approved;
+    body.append(h('div',{class:'review-start'},open?btn('Offene Iterationen prüfen ('+open+')',()=>V.start(selected)):null,all),h('p',{class:'review-flow-help',text:'Richtig lösen gibt die Iteration frei und führt automatisch weiter. Mit × lehnst du die Iteration ab. Ein allgemeiner Kommentar öffnet das Puzzle wieder. «Alle bestätigen» gibt alle Iterationen dieses Puzzles auf einmal frei.'}),tabs);
     const list=h('ol',{class:'review-iterations'});
     for(const it of C.iterations(selected)){
       const s=V.status(selected,it.id);if(filter!=='all'&&(filter==='stale'?!s.stale:s.status!==filter))continue;
@@ -135,14 +140,15 @@
   }
   function finishPreview(session){
     const all=V.progress(session.id);
-    if(!session.reviewResults.includes('improve')&&all.approved===all.total&&!V.finishSession(session)){saveFailure(()=>finishPreview(session));return;}
-    notice=all.approved===all.total?'Alle Iterationen geprüft. Puzzle-Freigabe lokal gespeichert. '+(FK.reviewRepository?'Bitte den GitHub-Speicherstatus unten beachten.':''):(all.total-all.approved)+' Iterationen bleiben zur Verbesserung oder Prüfung offen.';
+    if(session.questions.length&&!session.reviewResults.includes('improve')&&all.approved===all.total&&!V.finishSession(session)){saveFailure(()=>finishPreview(session));return;}
+    notice=all.approved===all.total?(V.status(session.id).status==='improve'?'Das Puzzle ist wegen eines allgemeinen Hinweises offen.':'Alle Iterationen geprüft. '+(FK.reviewRepository?'Bitte den GitHub-Speicherstatus unten beachten.':'Das Puzzle ist freigegeben.')):(all.total-all.approved)+' Iterationen bleiben zur Verbesserung oder Prüfung offen.';
     returnToGallery(session.id);
   }
   V.attachPreview=attachPreview;V.saveFailure=saveFailure;V.finishPreview=finishPreview;
   let queuedRefresh=false;
   FK.on('puzzle-review-change',event=>{
-    if(event?.source!=='github'||(!event.changed&&(selected?C.canonical(V.feedback(selected)):'')===displayedNotes)||queuedRefresh)return;
+    if(event?.source!=='github'||FK.current()!=='puzzle-review'||queuedRefresh)return;
+    if(!event.changed&&(selected?C.canonical(V.feedback(selected)):'')===displayedNotes&&releasedPuzzles().join()===displayedRelease)return;
     queuedRefresh=true;requestAnimationFrame(()=>{
       queuedRefresh=false;
       // A remote update must not erase an optional note that is still being typed.

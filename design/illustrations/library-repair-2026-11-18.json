@@ -1,0 +1,213 @@
+{
+  "format": "waldpost-library-cell-repair",
+  "version": 1,
+  "date": "2026-11-18",
+  "baseCommit": "b7c77ec0a318ac52e36ad5e1fcfdac9e249d4467",
+  "framing": {
+    "longestSideRatio": 0.8,
+    "centre": [
+      0.5,
+      0.5
+    ],
+    "matteAlphaCore": 100,
+    "generatedAlphaCore": 70
+  },
+  "redraws": [
+    "design/artwork/generation-records/wildlife-squirrel-hedgehog-2026-11-18.json",
+    "design/artwork/generation-records/wildlife-badger-deer-2026-11-18.json",
+    "design/artwork/generation-records/wildlife-frogs-woodpecker-bat-2026-11-18.json",
+    "design/artwork/generation-records/wildlife-lynx-and-neighbours-2026-11-18.json",
+    "design/artwork/generation-records/rhyme-cutout-repair-2026-11-18.json"
+  ],
+  "reuse": {
+    "cat-sit": "cat"
+  },
+  "sourceRectAdjustments": {
+    "vocab-wardrobe": {
+      "top": -24,
+      "height": 24
+    },
+    "snowman": {
+      "height": 16
+    },
+    "vocab-leg": {
+      "height": 16
+    },
+    "vocab-arrow": {
+      "height": -20
+    },
+    "clock": {
+      "top": 20,
+      "height": -20
+    }
+  },
+  "sheets": {
+    "alphabet": {
+      "width": 1254,
+      "height": 1254,
+      "ids": [
+        "badger",
+        "giraffe",
+        "jacket",
+        "monkey",
+        "whale"
+      ]
+    },
+    "animals": {
+      "width": 1254,
+      "height": 1254,
+      "ids": [
+        "cat",
+        "dog",
+        "fox-animal",
+        "rabbit"
+      ]
+    },
+    "creatures": {
+      "width": 1254,
+      "height": 1254,
+      "ids": [
+        "mouse",
+        "penguin"
+      ]
+    },
+    "discovery": {
+      "width": 1254,
+      "height": 1254,
+      "ids": [
+        "bean",
+        "seedling",
+        "sunset",
+        "water"
+      ]
+    },
+    "forest-actions": {
+      "width": 1280,
+      "height": 1280,
+      "ids": [
+        "cat-sit"
+      ]
+    },
+    "forest-wildlife": {
+      "width": 1280,
+      "height": 1280,
+      "ids": [
+        "badger-sleep",
+        "badger-walk",
+        "forest-bat",
+        "forest-lynx",
+        "forest-marten",
+        "forest-owl",
+        "forest-robin",
+        "forest-woodpecker",
+        "frog-jump",
+        "frog-sit",
+        "hedgehog-sleep",
+        "hedgehog-walk",
+        "roe-run",
+        "roe-stand",
+        "squirrel-run",
+        "squirrel-sit"
+      ]
+    },
+    "menu": {
+      "width": 1536,
+      "height": 1024,
+      "ids": [
+        "hand-mirror",
+        "neighbour-houses"
+      ]
+    },
+    "navigation": {
+      "width": 1254,
+      "height": 1254,
+      "ids": [
+        "fox"
+      ]
+    },
+    "people": {
+      "width": 1254,
+      "height": 1254,
+      "ids": [
+        "canoe",
+        "grandma",
+        "judo",
+        "llama"
+      ]
+    },
+    "puzzle-vocabulary": {
+      "width": 1120,
+      "height": 1400,
+      "ids": [
+        "vocab-arrow",
+        "vocab-bench",
+        "vocab-cloth",
+        "vocab-cup",
+        "vocab-hand",
+        "vocab-head",
+        "vocab-house",
+        "vocab-leg",
+        "vocab-pot",
+        "vocab-rope",
+        "vocab-sand",
+        "vocab-scarf",
+        "vocab-seed",
+        "vocab-shoe",
+        "vocab-stone",
+        "vocab-table",
+        "vocab-till",
+        "vocab-tower",
+        "vocab-wardrobe",
+        "vocab-worm"
+      ]
+    },
+    "rhyme-vocabulary": {
+      "width": 1280,
+      "height": 1280,
+      "ids": [
+        "rhyme-bin",
+        "rhyme-blanket",
+        "rhyme-bread",
+        "rhyme-brook",
+        "rhyme-fly",
+        "rhyme-goat",
+        "rhyme-jug",
+        "rhyme-mouth",
+        "rhyme-rail",
+        "rhyme-roof"
+      ]
+    },
+    "words-one": {
+      "width": 1254,
+      "height": 1254,
+      "ids": [
+        "bicycle",
+        "kiwi",
+        "nose",
+        "rose",
+        "sofa",
+        "tin"
+      ]
+    },
+    "words-three": {
+      "width": 1254,
+      "height": 1254,
+      "ids": [
+        "ball",
+        "bed",
+        "boat",
+        "book",
+        "cake",
+        "clock",
+        "grapes",
+        "hat",
+        "heart",
+        "icecream",
+        "pear",
+        "robot-word",
+        "snowman",
+        "tree"
+      ]
+    }
+  }
+}

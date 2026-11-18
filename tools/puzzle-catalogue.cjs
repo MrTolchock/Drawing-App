@@ -11,11 +11,11 @@ function outputs(){
  if(baselines.version!==3||baselines.generatorSha256!==generatorFingerprint())throw Error('Regenerate verified review baselines after changing the fingerprint builder.');
  for(const [id,value]of Object.entries(built.puzzles)){
   implementations[id]=value.presentation;
-  legacyPuzzles[id]=[...new Set(baselines.releases.filter(r=>r.puzzles[id]?.definition===value.definition&&r.puzzles[id]?.presentation===value.presentation).map(r=>r.puzzles[id].revision))];
+  legacyPuzzles[id]=[...new Set(baselines.releases.filter(r=>r.puzzles[id]?.definition===value.definition&&r.puzzles[id]?.reviewPresentation===value.reviewPresentation).map(r=>r.puzzles[id].revision))];
  }
  for(const [key,value]of Object.entries(built.iterations)){
   iterationImplementations[key]=value.presentation;
-  legacyIterations[key]=[...new Set(baselines.releases.filter(r=>r.iterations[key]?.definition===value.definition&&r.iterations[key]?.presentation===value.presentation).map(r=>r.iterations[key].revision))];
+  legacyIterations[key]=[...new Set(baselines.releases.filter(r=>r.iterations[key]?.definition===value.definition&&r.iterations[key]?.reviewPresentation===value.reviewPresentation).map(r=>r.iterations[key].revision))];
  }
  const fields={puzzleImplementation:SCHEMA,puzzleImplementations:implementations,puzzleIterationImplementations:iterationImplementations};
  const {FK}=environment({fields}),C=FK.puzzleCatalogue,games=FK.friendsLibrary.catalogue(),files={};

@@ -26,36 +26,36 @@
 
 | Stable iteration ID | Content / configuration | Expected answer or solution |
 | --- | --- | --- |
-| `robot/0-0` | Weg 1 / 1 — Bring den Brief zum Briefkasten. | 0 → 15 (freie Nachbarschritte) |
-| `robot/0-1` | Weg 1 / 2 — Bring den Brief zum Briefkasten. | 12 → 3 (freie Nachbarschritte) |
-| `robot/0-2` | Weg 1 / 3 — Bring den Brief zum Briefkasten. | 3 → 12 (freie Nachbarschritte) |
-| `robot/0-3` | Weg 1 / 4 — Bring den Brief zum Briefkasten. | 15 → 0 (freie Nachbarschritte) |
-| `robot/0-4` | Weg 1 / 5 — Bring den Brief zum Briefkasten. | 0 → 3 (freie Nachbarschritte) |
-| `robot/0-5` | Weg 1 / 6 — Bring den Brief zum Briefkasten. | 12 → 15 (freie Nachbarschritte) |
-| `robot/1-0` | Weg 2 / 1 — Bring den Brief zum Briefkasten. | 0 → 15 (freie Nachbarschritte) |
-| `robot/1-1` | Weg 2 / 2 — Bring den Brief zum Briefkasten. | 12 → 3 (freie Nachbarschritte) |
-| `robot/1-2` | Weg 2 / 3 — Bring den Brief zum Briefkasten. | 3 → 12 (freie Nachbarschritte) |
-| `robot/1-3` | Weg 2 / 4 — Bring den Brief zum Briefkasten. | 15 → 0 (freie Nachbarschritte) |
-| `robot/1-4` | Weg 2 / 5 — Bring den Brief zum Briefkasten. | 0 → 3 (freie Nachbarschritte) |
-| `robot/1-5` | Weg 2 / 6 — Bring den Brief zum Briefkasten. | 12 → 15 (freie Nachbarschritte) |
-| `robot/2-0` | Weg 3 / 1 — Bring den Brief zum Briefkasten. | 0 → 15 (freie Nachbarschritte) |
-| `robot/2-1` | Weg 3 / 2 — Bring den Brief zum Briefkasten. | 12 → 3 (freie Nachbarschritte) |
-| `robot/2-2` | Weg 3 / 3 — Bring den Brief zum Briefkasten. | 3 → 12 (freie Nachbarschritte) |
-| `robot/2-3` | Weg 3 / 4 — Bring den Brief zum Briefkasten. | 15 → 0 (freie Nachbarschritte) |
-| `robot/2-4` | Weg 3 / 5 — Bring den Brief zum Briefkasten. | 0 → 3 (freie Nachbarschritte) |
-| `robot/2-5` | Weg 3 / 6 — Bring den Brief zum Briefkasten. | 12 → 15 (freie Nachbarschritte) |
-| `robot/3-0` | Weg 4 / 1 — Bring den Brief zum Briefkasten. | 0 → 15 (freie Nachbarschritte) |
-| `robot/3-1` | Weg 4 / 2 — Bring den Brief zum Briefkasten. | 12 → 3 (freie Nachbarschritte) |
-| `robot/3-2` | Weg 4 / 3 — Bring den Brief zum Briefkasten. | 3 → 12 (freie Nachbarschritte) |
-| `robot/3-3` | Weg 4 / 4 — Bring den Brief zum Briefkasten. | 15 → 0 (freie Nachbarschritte) |
-| `robot/3-4` | Weg 4 / 5 — Bring den Brief zum Briefkasten. | 0 → 3 (freie Nachbarschritte) |
-| `robot/3-5` | Weg 4 / 6 — Bring den Brief zum Briefkasten. | 12 → 15 (freie Nachbarschritte) |
-| `robot/4-0` | Weg 5 / 1 — Bring den Brief zum Briefkasten. | 0 → 15 (freie Nachbarschritte) |
-| `robot/4-1` | Weg 5 / 2 — Bring den Brief zum Briefkasten. | 12 → 3 (freie Nachbarschritte) |
-| `robot/4-2` | Weg 5 / 3 — Bring den Brief zum Briefkasten. | 3 → 12 (freie Nachbarschritte) |
-| `robot/4-3` | Weg 5 / 4 — Bring den Brief zum Briefkasten. | 15 → 0 (freie Nachbarschritte) |
-| `robot/4-4` | Weg 5 / 5 — Bring den Brief zum Briefkasten. | 0 → 3 (freie Nachbarschritte) |
-| `robot/4-5` | Weg 5 / 6 — Bring den Brief zum Briefkasten. | 12 → 15 (freie Nachbarschritte) |
+| `robot/0-0` | Weg 1 / 1 — Führe den Hasen zum Briefkasten. | 0 → 15 (freie Nachbarschritte) |
+| `robot/0-1` | Weg 1 / 2 — Führe den Hasen zum Briefkasten. | 12 → 3 (freie Nachbarschritte) |
+| `robot/0-2` | Weg 1 / 3 — Führe den Hasen zum Briefkasten. | 3 → 12 (freie Nachbarschritte) |
+| `robot/0-3` | Weg 1 / 4 — Führe den Hasen zum Briefkasten. | 15 → 0 (freie Nachbarschritte) |
+| `robot/0-4` | Weg 1 / 5 — Führe den Hasen zum Briefkasten. | 0 → 3 (freie Nachbarschritte) |
+| `robot/0-5` | Weg 1 / 6 — Führe den Hasen zum Briefkasten. | 12 → 15 (freie Nachbarschritte) |
+| `robot/1-0` | Weg 2 / 1 — Führe den Hasen zum Briefkasten. | 0 → 15 (freie Nachbarschritte) |
+| `robot/1-1` | Weg 2 / 2 — Führe den Hasen zum Briefkasten. | 12 → 3 (freie Nachbarschritte) |
+| `robot/1-2` | Weg 2 / 3 — Führe den Hasen zum Briefkasten. | 3 → 12 (freie Nachbarschritte) |
+| `robot/1-3` | Weg 2 / 4 — Führe den Hasen zum Briefkasten. | 15 → 0 (freie Nachbarschritte) |
+| `robot/1-4` | Weg 2 / 5 — Führe den Hasen zum Briefkasten. | 0 → 3 (freie Nachbarschritte) |
+| `robot/1-5` | Weg 2 / 6 — Führe den Hasen zum Briefkasten. | 12 → 15 (freie Nachbarschritte) |
+| `robot/2-0` | Weg 3 / 1 — Führe den Hasen zum Briefkasten. | 0 → 15 (freie Nachbarschritte) |
+| `robot/2-1` | Weg 3 / 2 — Führe den Hasen zum Briefkasten. | 12 → 3 (freie Nachbarschritte) |
+| `robot/2-2` | Weg 3 / 3 — Führe den Hasen zum Briefkasten. | 3 → 12 (freie Nachbarschritte) |
+| `robot/2-3` | Weg 3 / 4 — Führe den Hasen zum Briefkasten. | 15 → 0 (freie Nachbarschritte) |
+| `robot/2-4` | Weg 3 / 5 — Führe den Hasen zum Briefkasten. | 0 → 3 (freie Nachbarschritte) |
+| `robot/2-5` | Weg 3 / 6 — Führe den Hasen zum Briefkasten. | 12 → 15 (freie Nachbarschritte) |
+| `robot/3-0` | Weg 4 / 1 — Führe den Hasen zum Briefkasten. | 0 → 15 (freie Nachbarschritte) |
+| `robot/3-1` | Weg 4 / 2 — Führe den Hasen zum Briefkasten. | 12 → 3 (freie Nachbarschritte) |
+| `robot/3-2` | Weg 4 / 3 — Führe den Hasen zum Briefkasten. | 3 → 12 (freie Nachbarschritte) |
+| `robot/3-3` | Weg 4 / 4 — Führe den Hasen zum Briefkasten. | 15 → 0 (freie Nachbarschritte) |
+| `robot/3-4` | Weg 4 / 5 — Führe den Hasen zum Briefkasten. | 0 → 3 (freie Nachbarschritte) |
+| `robot/3-5` | Weg 4 / 6 — Führe den Hasen zum Briefkasten. | 12 → 15 (freie Nachbarschritte) |
+| `robot/4-0` | Weg 5 / 1 — Führe den Hasen zum Briefkasten. | 0 → 15 (freie Nachbarschritte) |
+| `robot/4-1` | Weg 5 / 2 — Führe den Hasen zum Briefkasten. | 12 → 3 (freie Nachbarschritte) |
+| `robot/4-2` | Weg 5 / 3 — Führe den Hasen zum Briefkasten. | 3 → 12 (freie Nachbarschritte) |
+| `robot/4-3` | Weg 5 / 4 — Führe den Hasen zum Briefkasten. | 15 → 0 (freie Nachbarschritte) |
+| `robot/4-4` | Weg 5 / 5 — Führe den Hasen zum Briefkasten. | 0 → 3 (freie Nachbarschritte) |
+| `robot/4-5` | Weg 5 / 6 — Führe den Hasen zum Briefkasten. | 12 → 15 (freie Nachbarschritte) |
 
 ## Exact definitions
 
@@ -69,7 +69,7 @@ These definitions are the same finite data used by the game and review previews.
     "question": {
       "kind": "robot",
       "mode": "route",
-      "prompt": "Bring den Brief zum Briefkasten.",
+      "prompt": "Führe den Hasen zum Briefkasten.",
       "size": 4,
       "start": 0,
       "goal": 15,
@@ -85,7 +85,7 @@ These definitions are the same finite data used by the game and review previews.
     "question": {
       "kind": "robot",
       "mode": "route",
-      "prompt": "Bring den Brief zum Briefkasten.",
+      "prompt": "Führe den Hasen zum Briefkasten.",
       "size": 4,
       "start": 12,
       "goal": 3,
@@ -101,7 +101,7 @@ These definitions are the same finite data used by the game and review previews.
     "question": {
       "kind": "robot",
       "mode": "route",
-      "prompt": "Bring den Brief zum Briefkasten.",
+      "prompt": "Führe den Hasen zum Briefkasten.",
       "size": 4,
       "start": 3,
       "goal": 12,
@@ -117,7 +117,7 @@ These definitions are the same finite data used by the game and review previews.
     "question": {
       "kind": "robot",
       "mode": "route",
-      "prompt": "Bring den Brief zum Briefkasten.",
+      "prompt": "Führe den Hasen zum Briefkasten.",
       "size": 4,
       "start": 15,
       "goal": 0,
@@ -133,7 +133,7 @@ These definitions are the same finite data used by the game and review previews.
     "question": {
       "kind": "robot",
       "mode": "route",
-      "prompt": "Bring den Brief zum Briefkasten.",
+      "prompt": "Führe den Hasen zum Briefkasten.",
       "size": 4,
       "start": 0,
       "goal": 3,
@@ -149,7 +149,7 @@ These definitions are the same finite data used by the game and review previews.
     "question": {
       "kind": "robot",
       "mode": "route",
-      "prompt": "Bring den Brief zum Briefkasten.",
+      "prompt": "Führe den Hasen zum Briefkasten.",
       "size": 4,
       "start": 12,
       "goal": 15,
@@ -165,7 +165,7 @@ These definitions are the same finite data used by the game and review previews.
     "question": {
       "kind": "robot",
       "mode": "route",
-      "prompt": "Bring den Brief zum Briefkasten.",
+      "prompt": "Führe den Hasen zum Briefkasten.",
       "size": 4,
       "start": 0,
       "goal": 15,
@@ -181,7 +181,7 @@ These definitions are the same finite data used by the game and review previews.
     "question": {
       "kind": "robot",
       "mode": "route",
-      "prompt": "Bring den Brief zum Briefkasten.",
+      "prompt": "Führe den Hasen zum Briefkasten.",
       "size": 4,
       "start": 12,
       "goal": 3,
@@ -197,7 +197,7 @@ These definitions are the same finite data used by the game and review previews.
     "question": {
       "kind": "robot",
       "mode": "route",
-      "prompt": "Bring den Brief zum Briefkasten.",
+      "prompt": "Führe den Hasen zum Briefkasten.",
       "size": 4,
       "start": 3,
       "goal": 12,
@@ -213,7 +213,7 @@ These definitions are the same finite data used by the game and review previews.
     "question": {
       "kind": "robot",
       "mode": "route",
-      "prompt": "Bring den Brief zum Briefkasten.",
+      "prompt": "Führe den Hasen zum Briefkasten.",
       "size": 4,
       "start": 15,
       "goal": 0,
@@ -229,7 +229,7 @@ These definitions are the same finite data used by the game and review previews.
     "question": {
       "kind": "robot",
       "mode": "route",
-      "prompt": "Bring den Brief zum Briefkasten.",
+      "prompt": "Führe den Hasen zum Briefkasten.",
       "size": 4,
       "start": 0,
       "goal": 3,
@@ -245,7 +245,7 @@ These definitions are the same finite data used by the game and review previews.
     "question": {
       "kind": "robot",
       "mode": "route",
-      "prompt": "Bring den Brief zum Briefkasten.",
+      "prompt": "Führe den Hasen zum Briefkasten.",
       "size": 4,
       "start": 12,
       "goal": 15,
@@ -261,7 +261,7 @@ These definitions are the same finite data used by the game and review previews.
     "question": {
       "kind": "robot",
       "mode": "route",
-      "prompt": "Bring den Brief zum Briefkasten.",
+      "prompt": "Führe den Hasen zum Briefkasten.",
       "size": 4,
       "start": 0,
       "goal": 15,
@@ -277,7 +277,7 @@ These definitions are the same finite data used by the game and review previews.
     "question": {
       "kind": "robot",
       "mode": "route",
-      "prompt": "Bring den Brief zum Briefkasten.",
+      "prompt": "Führe den Hasen zum Briefkasten.",
       "size": 4,
       "start": 12,
       "goal": 3,
@@ -293,7 +293,7 @@ These definitions are the same finite data used by the game and review previews.
     "question": {
       "kind": "robot",
       "mode": "route",
-      "prompt": "Bring den Brief zum Briefkasten.",
+      "prompt": "Führe den Hasen zum Briefkasten.",
       "size": 4,
       "start": 3,
       "goal": 12,
@@ -309,7 +309,7 @@ These definitions are the same finite data used by the game and review previews.
     "question": {
       "kind": "robot",
       "mode": "route",
-      "prompt": "Bring den Brief zum Briefkasten.",
+      "prompt": "Führe den Hasen zum Briefkasten.",
       "size": 4,
       "start": 15,
       "goal": 0,
@@ -325,7 +325,7 @@ These definitions are the same finite data used by the game and review previews.
     "question": {
       "kind": "robot",
       "mode": "route",
-      "prompt": "Bring den Brief zum Briefkasten.",
+      "prompt": "Führe den Hasen zum Briefkasten.",
       "size": 4,
       "start": 0,
       "goal": 3,
@@ -341,7 +341,7 @@ These definitions are the same finite data used by the game and review previews.
     "question": {
       "kind": "robot",
       "mode": "route",
-      "prompt": "Bring den Brief zum Briefkasten.",
+      "prompt": "Führe den Hasen zum Briefkasten.",
       "size": 4,
       "start": 12,
       "goal": 15,
@@ -357,7 +357,7 @@ These definitions are the same finite data used by the game and review previews.
     "question": {
       "kind": "robot",
       "mode": "route",
-      "prompt": "Bring den Brief zum Briefkasten.",
+      "prompt": "Führe den Hasen zum Briefkasten.",
       "size": 4,
       "start": 0,
       "goal": 15,
@@ -373,7 +373,7 @@ These definitions are the same finite data used by the game and review previews.
     "question": {
       "kind": "robot",
       "mode": "route",
-      "prompt": "Bring den Brief zum Briefkasten.",
+      "prompt": "Führe den Hasen zum Briefkasten.",
       "size": 4,
       "start": 12,
       "goal": 3,
@@ -389,7 +389,7 @@ These definitions are the same finite data used by the game and review previews.
     "question": {
       "kind": "robot",
       "mode": "route",
-      "prompt": "Bring den Brief zum Briefkasten.",
+      "prompt": "Führe den Hasen zum Briefkasten.",
       "size": 4,
       "start": 3,
       "goal": 12,
@@ -405,7 +405,7 @@ These definitions are the same finite data used by the game and review previews.
     "question": {
       "kind": "robot",
       "mode": "route",
-      "prompt": "Bring den Brief zum Briefkasten.",
+      "prompt": "Führe den Hasen zum Briefkasten.",
       "size": 4,
       "start": 15,
       "goal": 0,
@@ -421,7 +421,7 @@ These definitions are the same finite data used by the game and review previews.
     "question": {
       "kind": "robot",
       "mode": "route",
-      "prompt": "Bring den Brief zum Briefkasten.",
+      "prompt": "Führe den Hasen zum Briefkasten.",
       "size": 4,
       "start": 0,
       "goal": 3,
@@ -437,7 +437,7 @@ These definitions are the same finite data used by the game and review previews.
     "question": {
       "kind": "robot",
       "mode": "route",
-      "prompt": "Bring den Brief zum Briefkasten.",
+      "prompt": "Führe den Hasen zum Briefkasten.",
       "size": 4,
       "start": 12,
       "goal": 15,
@@ -453,7 +453,7 @@ These definitions are the same finite data used by the game and review previews.
     "question": {
       "kind": "robot",
       "mode": "route",
-      "prompt": "Bring den Brief zum Briefkasten.",
+      "prompt": "Führe den Hasen zum Briefkasten.",
       "size": 4,
       "start": 0,
       "goal": 15,
@@ -470,7 +470,7 @@ These definitions are the same finite data used by the game and review previews.
     "question": {
       "kind": "robot",
       "mode": "route",
-      "prompt": "Bring den Brief zum Briefkasten.",
+      "prompt": "Führe den Hasen zum Briefkasten.",
       "size": 4,
       "start": 12,
       "goal": 3,
@@ -487,7 +487,7 @@ These definitions are the same finite data used by the game and review previews.
     "question": {
       "kind": "robot",
       "mode": "route",
-      "prompt": "Bring den Brief zum Briefkasten.",
+      "prompt": "Führe den Hasen zum Briefkasten.",
       "size": 4,
       "start": 3,
       "goal": 12,
@@ -504,7 +504,7 @@ These definitions are the same finite data used by the game and review previews.
     "question": {
       "kind": "robot",
       "mode": "route",
-      "prompt": "Bring den Brief zum Briefkasten.",
+      "prompt": "Führe den Hasen zum Briefkasten.",
       "size": 4,
       "start": 15,
       "goal": 0,
@@ -521,7 +521,7 @@ These definitions are the same finite data used by the game and review previews.
     "question": {
       "kind": "robot",
       "mode": "route",
-      "prompt": "Bring den Brief zum Briefkasten.",
+      "prompt": "Führe den Hasen zum Briefkasten.",
       "size": 4,
       "start": 0,
       "goal": 3,
@@ -538,7 +538,7 @@ These definitions are the same finite data used by the game and review previews.
     "question": {
       "kind": "robot",
       "mode": "route",
-      "prompt": "Bring den Brief zum Briefkasten.",
+      "prompt": "Führe den Hasen zum Briefkasten.",
       "size": 4,
       "start": 12,
       "goal": 15,

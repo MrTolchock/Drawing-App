@@ -76,3 +76,23 @@ test('crossing the brook moves the babble to the other ear and changes paws from
   assert.ok(walk.of('step').some(s => s.ground === 'water'));
   assert.ok(walk.of('step').every(s => s.ground === (s.now < 10 ? 'water' : 'earth')));
 });
+
+test('the den has its own quiet sounds: the tree creaks, earth trickles, paws pad and Fuchs breathes asleep', async () => {
+  const den = await play({indoors: true}, 20), forest = await play(WOOD, 20);
+  const creaks = den.of('creak'), trickles = den.of('trickle');
+  assert.ok(creaks.length >= 12 && creaks.length <= 45, 'the tree creaks now and then: ' + creaks.length);
+  assert.ok(trickles.length >= 6 && trickles.length <= 24, 'crumbs trickle rarely: ' + trickles.length);
+  assert.ok(Math.min(...gaps(creaks)) >= 25, 'creaks are never close together'); const cg = gaps(creaks); assert.ok(Math.max(...cg) - Math.min(...cg) > 10, 'not on a beat');
+  assert.ok([...creaks, ...trickles].every(e => e.near), 'the den sounds are heard inside, not through the wall');
+  assert.equal(forest.of('creak').length + forest.of('trickle').length + forest.of('breath').length, 0, 'only in the den');
+  assert.equal(den.of('breath').length, 0, 'no breathing while awake');
+  // Fuchs potters about: soft paws on the den floor, only while he walks
+  const potter = await play(t => ({indoors: true, moving: t % 20 < 6, speed: 3, ground: 'den'}), 2), paws = potter.of('step');
+  assert.ok(paws.length > 30 && paws.every(s => s.ground === 'den' && s.now % 20 < 6.3), 'paws only while walking: ' + paws.length);
+  // asleep: a slow breath every four seconds or so, fewer birds, no paws
+  const sleep = await play({indoors: true, sleeping: true, moving: true, ground: 'den'}, 5), breaths = sleep.of('breath');
+  assert.ok(breaths.length >= 65 && breaths.length <= 85, 'breaths in five minutes: ' + breaths.length);
+  assert.ok(gaps(breaths).every(g => g >= 3.5 && g <= 4.6), 'slow and even');
+  assert.equal(sleep.of('step').length, 0, 'no paws in his sleep');
+  assert.ok(sleep.of('call').length < (await play({indoors: true}, 5)).of('call').length, 'the birds are quieter while he sleeps');
+});

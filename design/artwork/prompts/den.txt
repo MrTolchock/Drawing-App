@@ -13,6 +13,9 @@ Preserve subject identity, counted quantities, exact answer colours and action d
 ROLE: scene
 Apply the canonical watercolour/pencil medium at landscape scale: broad quiet washes, restrained drawn detail at the edges, matte natural colours and soft organic contours. The scene is opaque. Keep the centre pale and calm for real panels and preserve required camera/layout anchors. Existing scene references define composition only; the canonical pair defines technique. Do not paint UI panels, text or characters into backgrounds.
 
+FRAMING AND EDGE QUALITY:
+Compare related pictures side by side at the size used in the game. For square cells, draw the complete silhouette with enough transparent space to pack it centred on both axes, with its longest visible side about 80% of the cell. Keep its proportions and use comparable visual weight for neighbouring answers. Reuse the same painting when a subject and pose recur. Leave genuine alpha around every isolated subject and retain the soft pencil edges. Inspect on light and dark backgrounds for pale matte, clipped outlines, stray pixels and neighbouring subjects. In a cell repair, preserve the pixels and positions of the other cells. Scenes and irregular layouts follow their role and brief.
+
 ATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:
 1. design/illustrations/references/watercolour-pencil-v1/animals.png — canonical-style: canonical drawing technique for animals; fixed majority-style pixels
 2. design/illustrations/references/watercolour-pencil-v1/objects.png — canonical-style: canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels

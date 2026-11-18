@@ -41,6 +41,5 @@
     return q;
   }
   function title(id,fallback){return FK.friendsLibrary?.active?(names[id]||fallback):fallback;}
-  function firefly(){return FK.h('span',{class:'puzzle-firefly','aria-hidden':'true',html:'<svg viewBox="0 0 64 64"><ellipse cx="23" cy="24" rx="10" ry="15" fill="#e3e9ce" stroke="#8e9b6b" transform="rotate(-28 23 24)"/><ellipse cx="41" cy="24" rx="10" ry="15" fill="#e3e9ce" stroke="#8e9b6b" transform="rotate(28 41 24)"/><ellipse cx="32" cy="39" rx="11" ry="16" fill="#e7c35f" stroke="#947647" stroke-width="2"/><circle cx="32" cy="20" r="8" fill="#80633c"/><ellipse cx="30" cy="42" rx="5" ry="8" fill="#fff0a9"/></svg>'});}
-  FK.puzzles={names,reading,words,phrases,pictures,actions,question,title,firefly,icons};
+  FK.puzzles={names,reading,words,phrases,pictures,actions,question,title,icons};
 })();

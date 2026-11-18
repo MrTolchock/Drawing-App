@@ -1,6 +1,6 @@
 # Current visual consistency audit
 
-Current game art: **Waldpost 9.3.92**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal/object reference pixels and **35** complete forward image-generation prompts.
+Current game art is **Waldpost 9.3.98**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal and object reference pixels and **37** complete forward image-generation prompts.
 
 ## Stay on the Steg in Frosch's swamp — 9.3.87
 
@@ -114,6 +114,30 @@ Gallery and review use the Settings paper frame and typography. Gallery cards co
 
 [Phone/tablet evidence](evidence/2026-11-18-adult-menus/README.md) and computed-style checks compare the three menu frames directly. Real review checks pass all 130 previously adjusted iterations, native mouse/touch for all 31 games, retries, rejection, celebration, partial queues and offline restoration. The gameplay-log browser check passes real answers, placements, handwriting, timing, export and developer-mode isolation.
 
-## Read-aloud controls — 18 November 2026, 9.3.96
+## Consistent edges, scale and placement in the image library — 18 November 2026, 9.3.95
+
+The audit compared all 238 library images with the canonical animal and object paintings. Twenty subjects were redrawn, including the lynx, marten and four rhyme pictures with prominent cutout artifacts. The remaining 69 corrected subjects use the original painted strokes, with faint background haze removed and missing edges recovered where the original sheet still contains them. Both seated cat IDs use the same tabby drawing. Corrected subjects are centred at 80% of the cell on their longest side, with their original proportions and soft edges.
+
+Pixel comparisons against 9.3.94 confirm that 149 images are identical. Fine edges and the original atlas grid are preserved in lossless downloads. Gallery previews and PNG downloads use the same sheet version. The 796 iterations with identical presentation retain their revisions. The 162 revised iterations display corrected art. A read-only check of the GitHub review ledger verified current approvals, later comments and restrictions, and recovery on a fresh device.
+
+All 151 model tests and the phone and tablet rendering checks for all 31 puzzles passed. The gallery check verified the pixels and transparency of 129 PNG exports, including five full browser downloads. The side-by-side crops, dark-background checks and real puzzle screenshots are available in the [image library evidence](evidence/2026-11-18-image-library/README.md).
+
+## Illustration guidance, puzzle type and review feedback — 18 November 2026, 9.3.96
+
+All current prompts include the shared centring, visible size and clean-alpha checks. The forest rose now uses the existing layered red rose painting. The two new garden pictures have retained generator inputs and transparent crops. The puzzle blueprint specifies Andika sizes for prompts, answers, controls, context and captions. [Puzzle and illustration checks](evidence/2026-11-18-review-feedback/README.md)
+
+The 16 current feedback notes are accounted for in the [review follow-up](../docs/PUZZLE-FEEDBACK-2026-11-18.md). General comments reopen a puzzle with its iteration decisions intact. Waldmuster restores the two original approvals from verified GitHub evidence. Review queues complete automatically. The live review branch is the authoritative record.
+
+The phone and tablet design check passed for all 31 puzzles. Gallery checks verified 131 transparent PNG exports, including eight browser downloads. The read-only GitHub snapshot test restored the three eligible puzzles on fresh devices, including Waldmuster. It also confirmed later restrictions and comment deletions.
+
+Version 9.3.97 installs the reviewed puzzle update and the woodland audio update together in a fresh offline cache. Both updates were merged with the same initial version number.
+
+## Preserve approvals after typography corrections — 18 November 2026, 9.3.98
+
+The 9.3.96 comparison treated the requested text-size corrections as fresh review requirements. Of the 727 revised iterations, 350 have matching tasks, interaction and pictures once typography is excluded. The compatibility comparison now excludes font declarations, line height, letter and word spacing, and text wrapping. Exact display revisions still include them. Questions, answers, difficulty, rules, interaction, picture pixels and the remaining layout properties continue to control review compatibility.
+
+Against the GitHub snapshot at data commit `dc9d88d6dcf203ca4f44a95ae061922b3da874dc`, the corrected comparison restores 199 recorded approvals. Seven puzzles are eligible, including Lies und zeig, Wer wohnt wo?, Tierwörter lesen and Äpfel rechnen. The review source contains 1,498 entries, 16 history records and 40 deletion markers. Recovery keeps the original dates, notes and later restrictions, with zero uploads. All 962 exact current iteration revisions are preserved.
+
+## Read-aloud controls — 18 November 2026, 9.3.99
 
 The letter has a separate speaker button on the paper. Opening the letter, listening to the sender and setting off for the forest remain distinct actions. The speaker uses the existing utility symbol and has a 48 px or larger touch target on phone, tablet and landscape layouts. The puzzle overview reports when narration plays, stops or fails. The catalogue check preserves existing puzzle revisions.
