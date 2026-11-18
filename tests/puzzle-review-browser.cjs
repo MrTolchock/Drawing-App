@@ -15,7 +15,7 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
  const entries=await page.evaluate(()=>FK.friendsLibrary.catalogue());
  // The gallery itself is now behind the adult gate; child access is covered by letter-sessions-browser.cjs.
  const task=await page.locator('.gate-task').textContent(),[a,b]=task.match(/\d+/g).map(Number);await page.getByLabel('Deine Antwort',{exact:true}).fill(String(a*b));await page.locator('.gate-submit').click();
- await page.waitForFunction(()=>FK.current()==='puzzle-review');await page.evaluate(()=>FK.reviewRepository.connect('test-review-token'));assert.equal(await page.locator('.review-puzzle').count(),31);await page.evaluate(()=>{window.menuSounds={tick:0,open:0};for(const name of ['tick','open']){const fn=FK.sound[name];FK.sound[name]=(...args)=>{menuSounds[name]++;return fn(...args);};}});
+ await page.waitForFunction(()=>FK.current()==='puzzle-review');await page.evaluate(()=>FK.reviewRepository.connect('test-review-token'));assert.equal(await page.locator('.review-puzzle').count(),24);await page.evaluate(()=>{window.menuSounds={tick:0,open:0};for(const name of ['tick','open']){const fn=FK.sound[name];FK.sound[name]=(...args)=>{menuSounds[name]++;return fn(...args);};}});
  assert.equal(await page.locator('.review-puzzle').evaluateAll(nodes=>nodes.some(n=>n.scrollWidth>n.clientWidth+2)),false,'review card contents fit');
  await page.screenshot({path:shots+'/review-catalogue-tablet.png'});
  // One shared spoken rule is tested on each puzzle overview, never per iteration.
@@ -29,7 +29,7 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
   await page.waitForFunction(()=>document.querySelector('.review-speech-status')?.textContent==='Spielerklärung wird vorgelesen.');
   assert.equal(await page.evaluate(()=>reviewSpeechRequests.at(-1)),await page.evaluate(id=>FK.puzzleCatalogue.puzzle(id).instruction,g.id),g.id+' spoken rule');
  }
- assert.equal(await page.evaluate(()=>reviewSpeechRequests.length),31);console.log('PASS one spoken rule on each of 31 puzzle overviews');assert.deepEqual(await page.evaluate(()=>menuSounds),{tick:0,open:0},'menu navigation and speech controls do not click');
+ assert.equal(await page.evaluate(()=>reviewSpeechRequests.length),24);console.log('PASS one spoken rule on each of 24 puzzle overviews');assert.deepEqual(await page.evaluate(()=>menuSounds),{tick:0,open:0},'menu navigation and speech controls do not click');
 
  const active=()=>page.locator('.screen:not([hidden])');
  const preview=async(id,iteration)=>page.evaluate(({id,iteration})=>FK.puzzleReview.preview(id,iteration),{id,iteration});
@@ -75,10 +75,10 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
   else if(q.kind==='build'){for(const target of q.holes){const p=q.parts[target];await activate(page.locator('.puzzle-answer[data-shape="'+p[0]+'"][data-rotation="'+p[5]+'"]'));}}
   else if(q.kind==='robot'){
    const route=await page.evaluate(q=>{const queue=[[q.start]],seen=new Set([q.start]);for(const path of queue){const p=path.at(-1);if(p===q.goal)return path.slice(1);for(const [dx,dy]of [[0,-1],[-1,0],[0,1],[1,0]]){const x=p%q.size+dx,y=Math.floor(p/q.size)+dy,n=y*q.size+x;if(x<0||x>=q.size||y<0||y>=q.size||q.obstacles.includes(n)||seen.has(n))continue;seen.add(n);queue.push([...path,n]);}}},q);
-   for(const cell of route)await activate(page.locator('.puzzle-route-cell[data-cell="'+cell+'"]'));
+   let prev=q.start;for(const cell of route){const delta=cell-prev,label=delta===1?'Nach rechts':delta===-1?'Nach links':delta>0?'Nach unten':'Nach oben';await activate(page.getByRole('button',{name:label,exact:true}));prev=cell;}
   }else if(q.kind==='order'){for(const n of [0,1,2]){await activate(page.locator('.puzzle-story-card[data-order="'+n+'"]'));await activate(page.locator('[data-story-slot="'+n+'"]'));}}
   else if(q.kind==='treasure'){await activate(page.getByRole('button',{name:'Ich habe sie mir gemerkt',exact:true}));await answer(q.answer);}
-  else if(q.kind==='neighbours'){if(!q.given)await answer(q.answer[0]);await answer(q.answer[1]);}
+  else if(q.kind==='neighbours'){for(const pos of q.given?[1]:[0,1])await active().locator('[data-answer="'+q.answer[pos]+'"]').dragTo(active().locator('[data-neighbour-slot="'+pos+'"]'));}
   else if(q.kind==='mirror'){for(const n of q.answer)await activate(page.locator('.puzzle-mirror-grid button[data-cell="'+n+'"]'));}
   else if(q.kind==='syllables'){for(const part of q.parts)await activate(page.locator('.puzzle-syllable-chip:not(:disabled)[data-part="'+part+'"]').first());}
   else await answer(q.answer);
@@ -118,14 +118,14 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
     assert.equal(await active().locator('.puzzle-picture-composite').count(),0,it.id+' one animal per picture');
    }
    if(it.question.kind==='matrix'){
-    const rows=active().getByRole('row');assert.equal(await rows.count(),3,it.id+' three separate rows');
+    assert.equal(await active().locator('.puzzle-matrix .puzzle-picture').count(),8);const rows=active().getByRole('row');assert.equal(await rows.count(),3,it.id+' three separate rows');
     for(let row=0;row<3;row++)assert.equal(await rows.nth(row).getByRole('cell').count(),3,it.id+' three cells per row');
-    assert.equal(await rows.evaluateAll(nodes=>nodes.every(row=>{const r=row.getBoundingClientRect();return [...row.querySelectorAll('.puzzle-shape')].every(shape=>{const s=shape.getBoundingClientRect();return s.top>=r.top&&s.bottom<=r.bottom&&s.left>=r.left&&s.right<=r.right;});})),true,it.id+' shapes stay inside their row');
+    assert.equal(await rows.evaluateAll(nodes=>nodes.every(row=>{const r=row.getBoundingClientRect();return [...row.querySelectorAll('.puzzle-picture')].every(shape=>{const s=shape.getBoundingClientRect();return s.top>=r.top&&s.bottom<=r.bottom&&s.left>=r.left&&s.right<=r.right;});})),true,it.id+' shapes stay inside their row');
    }
    await solve(it.question);assert.equal(await page.evaluate(({id,it})=>FK.puzzleReview.status(id,it).status,{id:g.id,it:it.id}),'approved',it.id+' auto approval');checked++;
   }console.log('PASS every iteration:',g.id,pool.length);
  }
- if(!process.env.FARBTUPF_GAMES)assert.equal(checked,962);assert.deepEqual(await snapshot(),before,'review leaves child saves unchanged');
+ if(!process.env.FARBTUPF_GAMES)assert.equal(checked,776);assert.deepEqual(await snapshot(),before,'review leaves child saves unchanged');
  // All puzzle types accept real taps, including SVG/image descendants and redrawing controls.
  for(const width of [1080,390]){
   await page.setViewportSize({width,height:width===390?844:810});nativeInput=width===390?'mouse':true;
@@ -159,20 +159,20 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
  await page.evaluate(()=>{window.reviewWrite=Storage.prototype.setItem;Storage.prototype.setItem=function(k,v){if(k===FK.puzzleReview.key)throw Error('quota');return reviewWrite.call(this,k,v);};});
  await answer(addPool.find(i=>i.id===reopen).question.answer);await page.getByRole('dialog',{name:'Prüfung nicht gespeichert',exact:true}).waitFor();assert.equal(await page.evaluate(id=>FK.puzzleReview.status('add',id).status,reopen),'improve');await page.evaluate(()=>Storage.prototype.setItem=reviewWrite);await page.getByRole('button',{name:'Erneut versuchen',exact:true}).click();await active().locator('.puzzle-completion').waitFor({state:'visible'});await page.waitForFunction(()=>FK.current()==='puzzle-review');
  await page.evaluate(()=>FK.reviewRepository.refresh());assert.equal(await page.evaluate(()=>FK.puzzleReview.ready('add')),true);
- // Writing uses the same open-item queue beyond five, including rejection and its next pass.
- const childBeforeWriting=await snapshot();nativeInput=false;
- const writing=await page.evaluate(()=>{
-  const pool=FK.puzzleCatalogue.iterations('trace');
-  for(const it of pool)if(FK.puzzleReview.status('trace',it.id).status!=='approved'){FK.puzzleReview.seen('trace',it.id);FK.puzzleReview.decide('trace',it.id,'approved');}
-  const open=pool.slice(0,7);for(const it of open)FK.puzzleReview.decide('trace',it.id,'pending');FK.puzzleReview.decide('trace',null,'pending');FK.puzzleReview.start('trace');return open;
+ // Syllables uses the same open-item queue beyond five, including rejection and its next pass.
+ const childBeforeSyllables=await snapshot();nativeInput=false;
+ const syllables=await page.evaluate(()=>{
+  const pool=FK.puzzleCatalogue.iterations('syllable');
+  for(const it of pool)if(FK.puzzleReview.status('syllable',it.id).status!=='approved'){FK.puzzleReview.seen('syllable',it.id);FK.puzzleReview.decide('syllable',it.id,'approved');}
+  const open=pool.slice(0,7);for(const it of open)FK.puzzleReview.decide('syllable',it.id,'pending');FK.puzzleReview.decide('syllable',null,'pending');FK.puzzleReview.start('syllable');return open;
  });
- for(let n=0;n<writing.length;n++){
+ for(let n=0;n<syllables.length;n++){
   assert.equal(await active().locator('.puzzle-round').textContent(),(n+1)+' / 7');const id=await currentId();
-  if(n===2){await reject('Schreibspur prüfen');assert.equal(await page.evaluate(id=>FK.puzzleReview.status('trace',id).status,id),'improve');}
-  else {await solve(writing[n].question);if(n<writing.length-1)await page.waitForFunction(id=>document.querySelector('.screen-trace').dataset.reviewIteration!==id,id);}
+  if(n===2){await reject('Silben prüfen');assert.equal(await page.evaluate(id=>FK.puzzleReview.status('syllable',id).status,id),'improve');}
+  else {await solve(syllables[n].question);if(n<syllables.length-1)await page.waitForFunction(id=>document.querySelector('.screen:not([hidden])').dataset.reviewIteration!==id,id);}
  }
- await active().locator('.puzzle-completion').waitFor();await page.waitForFunction(()=>FK.current()==='puzzle-review');assert.equal(await page.evaluate(()=>FK.puzzleReview.status('trace').status),'pending');
- await page.evaluate(()=>FK.puzzleReview.start('trace'));assert.equal(await active().locator('.puzzle-round').textContent(),'1 / 1');await solve(writing[2].question);await active().locator('.puzzle-completion').waitFor();await page.waitForFunction(()=>FK.current()==='puzzle-review');assert.equal(await page.evaluate(()=>FK.puzzleReview.status('trace').status),'approved');assert.deepEqual(await snapshot(),childBeforeWriting,'writing review leaves child saves unchanged');
+ await active().locator('.puzzle-completion').waitFor();await page.waitForFunction(()=>FK.current()==='puzzle-review');assert.equal(await page.evaluate(()=>FK.puzzleReview.status('syllable').status),'pending');
+ await page.evaluate(()=>FK.puzzleReview.start('syllable'));assert.equal(await active().locator('.puzzle-round').textContent(),'1 / 1');await solve(syllables[2].question);await active().locator('.puzzle-completion').waitFor();await page.waitForFunction(()=>FK.current()==='puzzle-review');assert.equal(await page.evaluate(()=>FK.puzzleReview.status('syllable').status),'approved');assert.deepEqual(await snapshot(),childBeforeSyllables,'syllables review leaves child saves unchanged');
  // Flagging survives refresh and offline use; a fresh review resumes only unconfirmed items.
  await page.evaluate(id=>FK.puzzleReview.decide('add',id,'improve','Check image'),reopen);await page.reload();await page.waitForFunction(()=>!!window.FK?.puzzleReview);assert.equal(await page.evaluate(()=>FK.puzzleReview.ready('add')),false);
  await page.evaluate(()=>navigator.serviceWorker.ready);await page.waitForFunction(()=>!!navigator.serviceWorker.controller);await context.setOffline(true);await page.reload();await page.waitForFunction(()=>!!window.FK?.puzzleReview);assert.equal(await page.evaluate(id=>FK.puzzleReview.status('add',id).status,reopen),'improve');assert.equal(await page.evaluate(()=>window.reviewSpeechRequests?.length||0),0);

@@ -15,16 +15,16 @@ test('unrelated content and renderer changes keep counting approvals valid',()=>
 });
 test('zero-basket rendering only reopens puzzles that can display an empty basket',()=>{
  const basket=changed('js/screens/puzzle.js',s=>s.replace("function picture(id,label='') {","function picture(id,label='') { if(id==='empty-basket')return h('span',{class:'puzzle-basket-fixture'},'Korb');"));
- for(const id of ['friends-squirrel','trace-numbers'])different(base,basket,id);
- for(const id of ['friends-bird','friends-beaver','friends-kingfisher','count','add','trace'])same(base,basket,id);
+ for(const id of ['friends-squirrel'])different(base,basket,id);
+ for(const id of ['friends-bird','friends-beaver','count','add','rocket'])same(base,basket,id);
 });
 test('puzzle-specific CSS stays scoped; shared progress CSS invalidates affected puzzles',()=>{
  const matrix=changed('css/puzzle-rounds.css',s=>s+'\n.puzzle-matrix{row-gap:27px}\n');same(base,matrix,'friends-squirrel');different(base,matrix,'friends-beaver');
- const common=changed('css/puzzle-rounds.css',s=>s+'\n.puzzle-progress{gap:27px}\n');different(base,common,'friends-squirrel');different(base,common,'friends-bird');different(base,common,'trace');
+ const common=changed('css/puzzle-rounds.css',s=>s+'\n.puzzle-progress{gap:27px}\n');different(base,common,'friends-squirrel');different(base,common,'friends-bird');different(base,common,'rocket');
 });
 test('typography corrections retain review compatibility while exact rendered revisions still change',()=>{
  const typography=changed('css/puzzle-rounds.css',s=>s+'\n.puzzle-read-text{font-size:32px;font-weight:700;line-height:1.4;letter-spacing:0;overflow-wrap:anywhere}\n');
- for(const id of ['friends-owl','friends-mouse','friends-hedgehog','friends-deer','friends-frog']){
+ for(const id of ['friends-owl','friends-mouse','friends-hedgehog','friends-deer']){
   assert.notEqual(base.puzzles[id].presentation,typography.puzzles[id].presentation,id+' retains its exact display revision');
   assert.equal(base.puzzles[id].reviewPresentation,typography.puzzles[id].reviewPresentation,id+' keeps its content approval');
   assert.equal(base.puzzles[id].definition,typography.puzzles[id].definition);
@@ -34,16 +34,17 @@ test('typography corrections retain review compatibility while exact rendered re
 });
 test('the previous release stays review-compatible only for typography corrections and the same answer pictures',()=>{
  const {snapshotReader}=require('../tools/puzzle-review-build.cjs');
+ const reference=build(snapshotReader('12511e417e384f8e912be4a62496fce2c234c1e8'));
  const previous=build(snapshotReader('94948722951a6196b39524b3ffe804cbb724e637'));
  for(const id of ['friends-owl','friends-deer','friends-frog','add','read-leaves','read-colours']){
-  assert.equal(previous.puzzles[id].definition,base.puzzles[id].definition,id);
-  assert.equal(previous.puzzles[id].reviewPresentation,base.puzzles[id].reviewPresentation,id);
+  assert.equal(previous.puzzles[id].definition,reference.puzzles[id].definition,id);
+  assert.equal(previous.puzzles[id].reviewPresentation,reference.puzzles[id].reviewPresentation,id);
  }
  for(const key of ['friends-hedgehog/riddle-16','friends-hedgehog/riddle-18','friends-badger/riddle-14','friends-badger/riddle-22']){
-  assert.notEqual(previous.iterations[key].definition,base.iterations[key].definition,key+' has changed content');
+  assert.notEqual(previous.iterations[key].definition,reference.iterations[key].definition,key+' has changed content');
  }
  for(const id of ['friends-bird','friends-mouse']){
-  assert.notEqual(previous.puzzles[id].reviewPresentation,base.puzzles[id].reviewPresentation,id+' contains the new rose');
+  assert.notEqual(previous.puzzles[id].reviewPresentation,reference.puzzles[id].reviewPresentation,id+' contains the new rose');
  }
 });
 test('only actual image cells affect a puzzle, including shared-atlas changes',async()=>{
@@ -55,9 +56,9 @@ test('only actual image cells affect a puzzle, including shared-atlas changes',a
  const basketFile='assets/waldatelier/review-nature.webp',basket=await sharp(reader.read(basketFile)).ensureAlpha().raw().toBuffer({resolveWithObject:true});
  basket.data.set([255,0,255,255],(Math.floor(basket.info.height/4)*basket.info.width+Math.floor(basket.info.width/4))*4);
  const basketBytes=await sharp(basket.data,{raw:basket.info}).png().toBuffer(),basketChange=build({...reader,read:name=>name===basketFile?basketBytes:reader.read(name)});
- for(const id of ['friends-squirrel','trace-numbers'])different(base,basketChange,id);
- for(const id of ['friends-beaver','friends-kingfisher','count','add','trace'])same(base,basketChange,id);
- assert.deepEqual(Object.keys(base.iterations).filter(key=>base.iterations[key].presentation!==basketChange.iterations[key].presentation),['friends-squirrel/count-0',...['forest-nut','forest-apple','forest-feather'].map(item=>'trace-numbers/digit-0-'+item)]);
+ for(const id of ['friends-squirrel'])different(base,basketChange,id);
+ for(const id of ['friends-beaver','count','add','rocket'])same(base,basketChange,id);
+ assert.deepEqual(Object.keys(base.iterations).filter(key=>base.iterations[key].presentation!==basketChange.iterations[key].presentation),['friends-squirrel/count-0']);
 });
 test('registered but unused artwork does not reopen existing puzzles',()=>{
  const unused=changed('js/ui/waldatelier.js',s=>s.replace('const sheets = {','const sheets = { unused:["unused-subject"],'));
@@ -96,7 +97,7 @@ test('one edited question reopens only its iteration while menu text and summari
  const summary=changed('js/friends/puzzle-catalogue.js',s=>s.replace("'Mengen zählen'","'Anzahlen bestimmen'"));assert.deepEqual(affected(summary),[]);
  const menu=changed('css/puzzle-review.css',s=>s+'\n.review-grid{gap:31px}\n');assert.deepEqual(affected(menu),[]);
 });
-test('a handwriting path change preserves all other glyph approvals when their shared frame is unchanged',()=>{
+test('retired handwriting paths do not affect active puzzles',()=>{
  const glyph=changed('js/learn/glyphs.js',s=>s.replace('M7 100 L44 0 L81 100','M9 100 L44 0 L81 100'));
- assert.deepEqual(Object.keys(base.iterations).filter(key=>base.iterations[key].presentation!==glyph.iterations[key].presentation),['trace/letter-A']);
+ assert.deepEqual(Object.keys(base.iterations).filter(key=>base.iterations[key].presentation!==glyph.iterations[key].presentation),[]);
 });

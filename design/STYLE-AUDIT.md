@@ -1,6 +1,12 @@
 # Current visual consistency audit
 
-Current game art is **Waldpost 9.3.98**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal and object reference pixels and **37** complete forward image-generation prompts.
+Current game art is **Waldpost 9.4.0**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal and object reference pixels and **37** complete forward image-generation prompts.
+
+## Birdsong, audio credits and puzzle feedback — 9.4.0
+
+The audio credits open inside adult Settings with the shared illustrated back arrow. Bird phrases have been filtered to reduce flutter, with quieter leaf and footstep layers. Five updated spoken puzzle rules are bundled offline.
+
+The review ledger at `192c28881b433fad0fab1113f23e1ff4be88b3b8` informed this pass. Beaver rows use painted nuts, leaves and feathers. The hare follows the four arrow controls. Children drag numbers into the spaces around a neighbour, choose from three syllable counts and arrange picture-only stories. Nature clues use one sentence. Seven redundant puzzles left the active catalogue, and the mouse now offers the distinct words from all three former reading pools.
 
 ## Stay on the Steg in Frosch's swamp — 9.3.87
 

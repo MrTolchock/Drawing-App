@@ -17,6 +17,13 @@
   function download(name,data){const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));h('a',{href:url,download:name}).click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
   function toggle(label,checked,onChange){const input=h('input',{type:'checkbox','aria-label':label});input.checked=checked;input.addEventListener('change',()=>onChange(input));return h('label',{class:'ff-setting-toggle'},h('span',{text:label}),input);}
   const heading=(title,description)=>h('div',{class:'setting-head'},h('h2',{text:title}),description?h('p',{text:description}):null);
+  FK.screen('audio-credits',{
+    build(root){
+      root.classList.add('ff-settings-screen');
+      const cards=h('div',{class:'ff-settings-body'},document.getElementById('audio-credits-content').content.cloneNode(true));
+      root.append(FK.ui.topbar({title:'Tonaufnahmen und Lizenzen',stars:false}),h('div',{class:'scroll'},cards));
+    }
+  });
   FK.screen('settings',{
     build(root){root.classList.add('ff-settings-screen');body=h('div',{class:'ff-settings-body'});root.append(FK.ui.topbar({title:'Einstellungen',stars:false}),h('div',{class:'scroll'},body));FK.on('updates',showUpdate);},
     enter(){
@@ -24,7 +31,7 @@
       const sounds=h('section',{class:'setting-card'},heading('Klänge im Wald','Vögel, Blätter und Bach begleiten das Spiel.'));
       for(const [name,label]of [['ambience','Waldgeräusche']])sounds.append(toggle(label,s.get().settings[name],input=>{if(!s.setting(name,input.checked))input.checked=s.get().settings[name];FK.emit('friends-audio');}));
       sounds.append(toggle('Spielklänge',FK.settings.get('sound')!==false,input=>FK.settings.set('sound',input.checked)),h('p',{class:'ff-setting-note',text:'Tippe auf den Lautsprecher, um einen Brief oder eine Spielerklärung zu hören. Tippe nochmals, um das Vorlesen zu stoppen.'}));
-      sounds.append(h('a',{href:'assets/audio/credits.html',target:'_blank',rel:'noopener',text:'Tonaufnahmen und Lizenzen'}));
+      sounds.append(FK.ui.btn({label:'Tonaufnahmen und Lizenzen',onClick:()=>FK.go('audio-credits')}));
       // Letters per journey: a slider from 1 to 10 (a journey saved with more keeps its own limit until changed).
       const count=h('input',{type:'range',min:1,max:10,step:1,value:Math.min(10,s.get().settings.letterLimit),'aria-label':'Anzahl Briefe',class:'ff-letter-slider'}),countValue=h('output',{class:'ff-letter-count','aria-hidden':'true',text:String(count.value)});
       const sessionStatus=h('p',{class:'ff-letter-session-status',role:'status','aria-live':'polite'});

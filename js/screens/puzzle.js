@@ -151,16 +151,16 @@
     scene.append(basket,places,groupResult());redraw();
   }
   function renderMatrix(q) {
-    const matrix=h('div',{class:'puzzle-matrix',role:'table','aria-label':'Drei Reihen mit je drei Formen'});
+    const matrix=h('div',{class:'puzzle-matrix',role:'table','aria-label':'Drei Reihen mit je drei Waldgegenständen'});
     for(let row=0;row<3;row++){
       const line=h('div',{class:'puzzle-matrix-row',role:'row','aria-label':'Reihe '+(row+1)});
       for(let col=0;col<3;col++){
         const i=row*3+col;
-        line.append(h('span',{class:i===q.gap?'gap':'',role:'cell','aria-label':i===q.gap?'Fehlende Form':R.shapeNames[q.matrix[i]]},i===q.gap?'?':shape(q.matrix[i])));
+        line.append(h('span',{class:i===q.gap?'gap':'',role:'cell','aria-label':i===q.gap?'Fehlender Gegenstand':pictureName(q.matrix[i])},i===q.gap?'?':picture(q.matrix[i])));
       }
       matrix.append(line);
     }
-    scene.append(matrix);q.choices.forEach(id=>option(id,shape(id),R.shapeNames[id]));
+    scene.append(matrix);q.choices.forEach(id=>option(id,picture(id),pictureName(id)));
   }
   function renderSyllable(q) {
     scene.append(picture(q.picture),h('p',{class:'puzzle-read-text',text:FK.text.word(q.word)}));numeric();
@@ -180,11 +180,9 @@
     function move(dx,dy,node){if(locked)return;const next=FK.routes.move(model,route,dx,dy);if(!next){fail(node,'Hier ist kein freier Weg.');return;}route=next;work().route=route;persist();redraw();if(route.answered)solved(board);}
     function redraw(){board.replaceChildren();for(let i=0;i<q.size*q.size;i++){
       const blocked=q.obstacles.includes(i),current=route.position===i,goal=q.goal===i;
-      const cell=button(blocked?'Hecke':current?'Hier ist der Hasenbriefträger':goal?'Briefkasten':'Freies Feld',()=>{
-        const dx=i%q.size-route.position%q.size,dy=Math.floor(i/q.size)-Math.floor(route.position/q.size);
-        if(Math.abs(dx)+Math.abs(dy)!==1){fail(cell,'Tippe ein Nachbarfeld an.');return;}move(dx,dy,cell);
-      },'puzzle-route-cell'+(current?' post':'')+(goal?' goal':'')+(blocked?' hedge':''),blocked?picture('forest-fir'):current?FK.friendsLibrary.portrait('mailman'):goal?picture('postbox'):route.history.includes(i)?h('span',{text:'·'}):'');
-      cell.dataset.cell=i;cell.disabled=blocked;board.append(cell);
+      const label=blocked?'Hecke':current?'Hier ist der Hasenbriefträger':goal?'Briefkasten':'Freies Feld';
+      const cell=h('span',{class:'puzzle-route-cell'+(current?' post':'')+(goal?' goal':'')+(blocked?' hedge':''),role:'img','aria-label':label},blocked?picture('forest-fir'):current?FK.friendsLibrary.portrait('mailman'):goal?picture('postbox'):route.history.includes(i)?'·':'');
+      cell.dataset.cell=i;board.append(cell);
     }}
     for(const [dx,dy,turn,label]of [[0,-1,-90,'Nach oben'],[-1,0,180,'Nach links'],[1,0,0,'Nach rechts'],[0,1,90,'Nach unten']])arrows.append(button(label,()=>move(dx,dy,board),'puzzle-arrow',h('span',{'aria-hidden':'true',style:{transform:'rotate('+turn+'deg)'},html:'<svg viewBox="0 0 48 48"><path d="M8 24h30M25 11l13 13-13 13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>'})));
     scene.append(board);answerArea.append(arrows);redraw();
@@ -193,8 +191,7 @@
     const saved=Array.isArray(work().order)?work().order:[];
     let order=Array.from({length:3},(_,i)=>Number.isInteger(saved[i])&&saved[i]>=0&&saved[i]<3&&saved.indexOf(saved[i])===i?saved[i]:null),selected=null;
     const slots=h('div',{class:'puzzle-story-slots'}),cards=h('div',{class:'puzzle-story-cards'});
-    const caption=text=>text.replace(/Schmetterling|Sonnenblume|Erdbeerpflanze|Apfelblüte|Birnenblüte/g,word=>({Schmetterling:'Schmetter\u00adling',Sonnenblume:'Sonnen\u00adblume',Erdbeerpflanze:'Erdbeer\u00adpflanze',Apfelblüte:'Apfel\u00adblüte',Birnenblüte:'Birnen\u00adblüte'}[word]));
-    const tile=value=>h('span',{},picture(q.items[value][0]),h('small',{text:caption(q.items[value][1])}));
+    const tile=value=>picture(q.items[value][0]);
     const select=value=>{selected=selected===value?null:value;scene.querySelectorAll('[data-story-value]').forEach(node=>{const active=Number(node.dataset.storyValue)===selected;node.classList.toggle('active',active);node.setAttribute('aria-pressed',String(active));});};
     function place(value,index){
       if(locked)return;const from=order.indexOf(value),displaced=order[index];if(from!==-1)order[from]=displaced;order[index]=value;FK.playLog?.place?.('story',{item:value,from,to:index,order:order.slice()});selected=null;update();
@@ -224,17 +221,30 @@
     else {body.querySelector('.puzzle-prompt').textContent='Welcher Waldschatz fehlt?';q.choices.forEach(v=>option(v,picture(v),'Diesen Waldschatz wählen: '+pictureName(v)));answerArea.append(button('Nochmals anschauen',()=>{if(locked)return;work().hidden=false;persist();draw();},'puzzle-look-again puzzle-memory-button'));}
   }
   function renderNeighbours(q) {
-    let selected=work().neighbours||(q.given==='left'?[q.n-1,null]:[null,null]),slot=selected[0]===null?0:1;const row=h('div',{class:'puzzle-neighbours'}),nodes=[];
+    const saved=work().neighbours;
+    const values=[0,1].map(i=>q.choices.includes(saved?.[i])?saved[i]:null);
+    if(q.given==='left')values[0]=q.n-1;
+    const row=h('div',{class:'puzzle-neighbours'}),slots=[];
     for(let i=0;i<3;i++){
-      if(i===1)row.append(h('div',{class:'puzzle-number-card middle'},h('b',{text:q.n})));
-      else {const pos=i===0?0:1,node=button(pos===0?'Zahl davor ändern':'Zahl danach ändern',()=>{if(locked)return;slot=pos;nodes.forEach((b,j)=>b.classList.toggle('active',j===slot));},'puzzle-number-card'+(pos===slot?' active':''),h('b',{text:selected[pos]??'?'}));nodes.push(node);row.append(node);}
+      if(i===1){row.append(h('div',{class:'puzzle-number-card middle'},h('b',{text:q.n})));continue;}
+      const pos=i===0?0:1, fixed=pos===0 && q.given==='left';
+      const slot=h('div',{class:'puzzle-number-card','aria-label':pos===0?'Zahl davor':'Zahl danach'},h('b',{text:values[pos]??'?'}));
+      if(!fixed)slot.dataset.neighbourSlot=pos;
+      row.append(slot);slots[pos]=slot;
     }
-    scene.append(row,groupResult());q.choices.forEach(value=>{let node;node=button(String(value),()=>{
-      if(locked)return;selected[slot]=value;work().neighbours=selected;persist();nodes[slot].querySelector('b').textContent=value;
-      if(selected.every(v=>v!==null)){
-        if(selected.every((v,i)=>v===q.answer[i]))solved(row);else fail(row,'Zähle einen Schritt zurück und einen Schritt weiter.');
-      }else {slot=selected[0]===null?0:1;nodes.forEach((b,j)=>b.classList.toggle('active',j===slot));}
-    },'puzzle-answer');node.dataset.answer=value;answerArea.append(node);});
+    function place(value,pos){
+      values[pos]=value;work().neighbours=values;persist();slots[pos].firstChild.textContent=value;
+      FK.playLog?.place?.('neighbour',{value,pos});
+      if(values.every(v=>v!==null)){
+        if(values.every((v,i)=>v===q.answer[i]))solved(row);
+        else fail(row,'Zähle einen Schritt zurück und einen Schritt weiter.');
+      }
+    }
+    scene.append(row,groupResult());
+    for(const value of q.choices){
+      const tile=h('span',{class:'puzzle-answer puzzle-neighbour-tile','data-answer':value},String(value));
+      answerArea.append(draggable(tile,'[data-neighbour-slot]',target=>place(value,Number(target.dataset.neighbourSlot))));
+    }
   }
   function renderCompare(q) {
     const pair=h('div',{class:'puzzle-compare'});

@@ -53,7 +53,7 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
  await a.page.getByRole('button',{name:'Alle bestätigen',exact:true}).click();
  await a.page.locator('.modal').getByRole('button',{name:'Alle bestätigen',exact:true}).click();
  await a.page.evaluate(()=>FK.reviewRepository.refresh());await a.page.waitForFunction(()=>FK.reviewRepository.state.pending===0&&FK.puzzleReview.ready('add'));
- await b.page.evaluate(()=>FK.reviewRepository.refresh());assert.equal(await b.page.evaluate(()=>FK.puzzleReview.ready('add')),true);await b.page.waitForFunction(()=>document.querySelector('.review-intro')?.textContent.startsWith('1 / 31'));
+ await b.page.evaluate(()=>FK.reviewRepository.refresh());assert.equal(await b.page.evaluate(()=>FK.puzzleReview.ready('add')),true);await b.page.waitForFunction(()=>document.querySelector('.review-intro')?.textContent.startsWith('1 / 24'));
  // A flagged offline decision blocks this device immediately, persists and later conflicts safely.
  await a.context.setOffline(true);await a.page.evaluate(()=>FK.puzzleReview.decide('add','add/1-1','improve'));assert.equal(await a.page.evaluate(()=>FK.puzzleReview.ready('add')),false);await a.page.evaluate(()=>FK.reviewRepository.refresh());assert.equal(await a.page.evaluate(()=>FK.reviewRepository.state.pending),1);
  await connect(b.page);await b.page.evaluate(()=>FK.puzzleReview.decide('add','add/1-1','pending'));await b.page.evaluate(()=>FK.reviewRepository.refresh());

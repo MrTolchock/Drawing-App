@@ -473,3 +473,5 @@
 
 .ff-den-envelope>.ff-hud-picture{display:grid;place-items:center}.ff-den-envelope .ff-hud-art{width:auto;height:100%;aspect-ratio:1}
 .ff-map-invitation>.ff-hud-art{width:100%;height:100%}
+
+.screen-audio-credits .setting-card a{overflow-wrap:anywhere}

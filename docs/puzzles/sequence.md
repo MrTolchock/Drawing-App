@@ -4,8 +4,8 @@
 
 - Stable puzzle ID: `sequence`
 - Host: owl
-- Related competence: **D.2.B.1.b (beim Lesen)** — Zeitliche Abfolgen ordnen
-- Difficulty: 25 Bildgeschichten mit drei beschrifteten Schritten
+- Related competence: **NMG.9.1.a (Übung)** — Zeitliche Abfolgen ordnen
+- Difficulty: 25 Bildgeschichten mit drei bebilderten Schritten
 - Pool: 25 explicit iterations; a round selects five.
 - Review: solve every unconfirmed iteration to approve it; × rejects with an optional note. The puzzle is released when all current iterations passed. Exact per-iteration revisions gate release; only affected iterations require review after changes.
 
@@ -32,11 +32,11 @@
 | `sequence/story-3` | Der Apfelbaum blüht → Ein Apfel wird reif → Wir ernten den Apfel — Ziehe die Bilder in die richtige Reihenfolge. | [0,1,2] |
 | `sequence/story-4` | Wir schreiben einen Brief → Wir werfen ihn ein → Der Brief kommt an — Ziehe die Bilder in die richtige Reihenfolge. | [0,1,2] |
 | `sequence/story-5` | Wolken sammeln sich → Regen fällt → Die Pflanze bekommt Wasser — Ziehe die Bilder in die richtige Reihenfolge. | [0,1,2] |
-| `sequence/story-6` | Eine Nuss liegt im Wald → Das Eichhörnchen findet sie → Es sammelt sie ein — Ziehe die Bilder in die richtige Reihenfolge. | [0,1,2] |
+| `sequence/story-6` | Eine Nuss liegt im Wald → Das Eichhörnchen kommt → Es hält die Nuss — Ziehe die Bilder in die richtige Reihenfolge. | [0,1,2] |
 | `sequence/story-7` | Der Tag ist hell → Die Sonne geht unter → Die Nacht kommt — Ziehe die Bilder in die richtige Reihenfolge. | [0,1,2] |
 | `sequence/story-8` | Ein Apfel hängt am Baum → Wir pflücken ihn → Nach dem Essen bleiben Kerne — Ziehe die Bilder in die richtige Reihenfolge. | [0,1,2] |
 | `sequence/story-9` | Eine junge Pflanze wächst → Eine Blüte öffnet sich → Eine Biene besucht sie — Ziehe die Bilder in die richtige Reihenfolge. | [0,1,2] |
-| `sequence/story-10` | Ein Blatt hängt am Ast → Es fällt zu Boden → Der Igel nutzt das Laub — Ziehe die Bilder in die richtige Reihenfolge. | [0,1,2] |
+| `sequence/story-10` | Ein Blatt hängt am Ast → Der Igel findet das Blatt → Der Igel schläft — Ziehe die Bilder in die richtige Reihenfolge. | [0,1,2] |
 | `sequence/story-11` | Wir nehmen einen Samen → Wir graben ein Loch → Wir giessen den Samen — Ziehe die Bilder in die richtige Reihenfolge. | [0,1,2] |
 | `sequence/story-12` | Beeren werden reif → Wir sammeln sie → Wir teilen sie auf — Ziehe die Bilder in die richtige Reihenfolge. | [0,1,2] |
 | `sequence/story-13` | Ein Ast liegt am Boden → Ein Vogel holt ihn → Er baut ein Nest — Ziehe die Bilder in die richtige Reihenfolge. | [0,1,2] |
@@ -170,7 +170,7 @@ These definitions are the same finite data used by the game and review previews.
           "Ein Apfel wird reif"
         ],
         [
-          "forest-basket",
+          "scene:forest-basket+forest-apple",
           "Wir ernten den Apfel"
         ]
       ],
@@ -252,7 +252,7 @@ These definitions are the same finite data used by the game and review previews.
   },
   {
     "id": "sequence/story-6",
-    "label": "Eine Nuss liegt im Wald → Das Eichhörnchen findet sie → Es sammelt sie ein",
+    "label": "Eine Nuss liegt im Wald → Das Eichhörnchen kommt → Es hält die Nuss",
     "question": {
       "kind": "order",
       "prompt": "Ziehe die Bilder in die richtige Reihenfolge.",
@@ -262,12 +262,12 @@ These definitions are the same finite data used by the game and review previews.
           "Eine Nuss liegt im Wald"
         ],
         [
-          "squirrel",
-          "Das Eichhörnchen findet sie"
+          "squirrel-run",
+          "Das Eichhörnchen kommt"
         ],
         [
-          "forest-basket",
-          "Es sammelt sie ein"
+          "squirrel-nut",
+          "Es hält die Nuss"
         ]
       ],
       "order": [
@@ -326,7 +326,7 @@ These definitions are the same finite data used by the game and review previews.
           "Ein Apfel hängt am Baum"
         ],
         [
-          "forest-basket",
+          "scene:forest-basket+forest-apple",
           "Wir pflücken ihn"
         ],
         [
@@ -362,7 +362,7 @@ These definitions are the same finite data used by the game and review previews.
           "Eine Blüte öffnet sich"
         ],
         [
-          "bee",
+          "scene:bee+flower",
           "Eine Biene besucht sie"
         ]
       ],
@@ -380,7 +380,7 @@ These definitions are the same finite data used by the game and review previews.
   },
   {
     "id": "sequence/story-10",
-    "label": "Ein Blatt hängt am Ast → Es fällt zu Boden → Der Igel nutzt das Laub",
+    "label": "Ein Blatt hängt am Ast → Der Igel findet das Blatt → Der Igel schläft",
     "question": {
       "kind": "order",
       "prompt": "Ziehe die Bilder in die richtige Reihenfolge.",
@@ -390,12 +390,12 @@ These definitions are the same finite data used by the game and review previews.
           "Ein Blatt hängt am Ast"
         ],
         [
-          "leaf",
-          "Es fällt zu Boden"
+          "scene:hedgehog+forest-leaf",
+          "Der Igel findet das Blatt"
         ],
         [
-          "hedgehog",
-          "Der Igel nutzt das Laub"
+          "hedgehog-sleep",
+          "Der Igel schläft"
         ]
       ],
       "order": [
@@ -454,11 +454,11 @@ These definitions are the same finite data used by the game and review previews.
           "Beeren werden reif"
         ],
         [
-          "forest-basket",
+          "scene:forest-basket+forest-berry",
           "Wir sammeln sie"
         ],
         [
-          "bowl",
+          "scene:bowl+forest-berry",
           "Wir teilen sie auf"
         ]
       ],
@@ -486,7 +486,7 @@ These definitions are the same finite data used by the game and review previews.
           "Ein Ast liegt am Boden"
         ],
         [
-          "bird-sit",
+          "scene:bird-sit+forest-branch",
           "Ein Vogel holt ihn"
         ],
         [
@@ -554,7 +554,7 @@ These definitions are the same finite data used by the game and review previews.
           "Eine Karotte wächst"
         ],
         [
-          "forest-basket",
+          "scene:forest-basket+carrot",
           "Wir ernten sie"
         ]
       ],
@@ -586,7 +586,7 @@ These definitions are the same finite data used by the game and review previews.
           "Eine Birne wächst"
         ],
         [
-          "bowl",
+          "scene:bowl+pear",
           "Wir legen sie in die Schale"
         ]
       ],
@@ -650,7 +650,7 @@ These definitions are the same finite data used by the game and review previews.
           "Ihre Kerne sind reif"
         ],
         [
-          "bird-sit",
+          "scene:bird-sit+vocab-seed",
           "Ein Vogel frisst die Kerne"
         ]
       ],
@@ -746,7 +746,7 @@ These definitions are the same finite data used by the game and review previews.
           "Wir waschen ihn"
         ],
         [
-          "bowl",
+          "scene:bowl+forest-apple",
           "Wir legen ihn in die Schale"
         ]
       ],

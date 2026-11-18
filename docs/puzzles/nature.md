@@ -44,7 +44,7 @@
 | `nature/clue-15` | Mit meinem buschigen Schwanz balanciere ich auf Ästen. — Mit meinem buschigen Schwanz balanciere ich auf Ästen. | "squirrel" |
 | `nature/clue-16` | Mit dem Rüssel trinke ich. — Mit dem Rüssel trinke ich. | "elephant" |
 | `nature/clue-17` | Mein Hals ist sehr lang. — Mein Hals ist sehr lang. | "giraffe" |
-| `nature/clue-18` | Mein Kopf hat eine Mähne. — Mein Kopf hat eine Mähne. | "lion" |
+| `nature/clue-18` | Ich habe eine Mähne. — Ich habe eine Mähne. | "lion" |
 | `nature/clue-19` | Mein Fell ist schwarz-weiss gestreift. — Mein Fell ist schwarz-weiss gestreift. | "zebra" |
 | `nature/clue-20` | Auf dem Rücken habe ich Höcker. — Auf dem Rücken habe ich Höcker. | "camel" |
 | `nature/clue-21` | Mein orangefarbenes Fell hat schwarze Streifen. — Mein orangefarbenes Fell hat schwarze Streifen. | "tiger" |
@@ -63,7 +63,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Ich trage Stacheln auf dem Rücken.",
     "question": {
       "kind": "reading",
-      "prompt": "Welches Tier passt?",
+      "prompt": "",
       "text": "Ich trage Stacheln auf dem Rücken.",
       "answer": "hedgehog",
       "choices": [
@@ -78,7 +78,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Mit meinen Flossen schwimme ich.",
     "question": {
       "kind": "reading",
-      "prompt": "Welches Tier passt?",
+      "prompt": "",
       "text": "Mit meinen Flossen schwimme ich.",
       "answer": "fish",
       "choices": [
@@ -93,7 +93,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Am Teich quake ich.",
     "question": {
       "kind": "reading",
-      "prompt": "Welches Tier passt?",
+      "prompt": "",
       "text": "Am Teich quake ich.",
       "answer": "frog",
       "choices": [
@@ -108,7 +108,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Aus Nektar mache ich Honig.",
     "question": {
       "kind": "reading",
-      "prompt": "Welches Tier passt?",
+      "prompt": "",
       "text": "Aus Nektar mache ich Honig.",
       "answer": "bee",
       "choices": [
@@ -123,7 +123,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Ich belle.",
     "question": {
       "kind": "reading",
-      "prompt": "Welches Tier passt?",
+      "prompt": "",
       "text": "Ich belle.",
       "answer": "dog",
       "choices": [
@@ -138,7 +138,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Ich miaue.",
     "question": {
       "kind": "reading",
-      "prompt": "Welches Tier passt?",
+      "prompt": "",
       "text": "Ich miaue.",
       "answer": "cat",
       "choices": [
@@ -153,7 +153,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Ich gebe Milch.",
     "question": {
       "kind": "reading",
-      "prompt": "Welches Tier passt?",
+      "prompt": "",
       "text": "Ich gebe Milch.",
       "answer": "cow",
       "choices": [
@@ -168,7 +168,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Ich baue ein Netz.",
     "question": {
       "kind": "reading",
-      "prompt": "Welches Tier passt?",
+      "prompt": "",
       "text": "Ich baue ein Netz.",
       "answer": "spider",
       "choices": [
@@ -183,7 +183,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Mein Haus trage ich mit.",
     "question": {
       "kind": "reading",
-      "prompt": "Welches Tier passt?",
+      "prompt": "",
       "text": "Mein Haus trage ich mit.",
       "answer": "snail",
       "choices": [
@@ -198,7 +198,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Mein Panzer schützt mich.",
     "question": {
       "kind": "reading",
-      "prompt": "Welches Tier passt?",
+      "prompt": "",
       "text": "Mein Panzer schützt mich.",
       "answer": "tortoise",
       "choices": [
@@ -213,7 +213,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Ich hüpfe mit langen Ohren über die Wiese.",
     "question": {
       "kind": "reading",
-      "prompt": "Welches Tier passt?",
+      "prompt": "",
       "text": "Ich hüpfe mit langen Ohren über die Wiese.",
       "answer": "rabbit",
       "choices": [
@@ -228,7 +228,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Aus einer Raupe werde ich zum Falter.",
     "question": {
       "kind": "reading",
-      "prompt": "Welches Tier passt?",
+      "prompt": "",
       "text": "Aus einer Raupe werde ich zum Falter.",
       "answer": "butterfly",
       "choices": [
@@ -243,7 +243,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Mein Nest ist im Baum.",
     "question": {
       "kind": "reading",
-      "prompt": "Welches Tier passt?",
+      "prompt": "",
       "text": "Mein Nest ist im Baum.",
       "answer": "bird",
       "choices": [
@@ -258,7 +258,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Mein roter Rücken hat schwarze Punkte.",
     "question": {
       "kind": "reading",
-      "prompt": "Welches Tier passt?",
+      "prompt": "",
       "text": "Mein roter Rücken hat schwarze Punkte.",
       "answer": "ladybird",
       "choices": [
@@ -273,7 +273,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Ich habe weiche Wolle.",
     "question": {
       "kind": "reading",
-      "prompt": "Welches Tier passt?",
+      "prompt": "",
       "text": "Ich habe weiche Wolle.",
       "answer": "sheep",
       "choices": [
@@ -288,7 +288,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Mit meinem buschigen Schwanz balanciere ich auf Ästen.",
     "question": {
       "kind": "reading",
-      "prompt": "Welches Tier passt?",
+      "prompt": "",
       "text": "Mit meinem buschigen Schwanz balanciere ich auf Ästen.",
       "answer": "squirrel",
       "choices": [
@@ -303,7 +303,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Mit dem Rüssel trinke ich.",
     "question": {
       "kind": "reading",
-      "prompt": "Welches Tier passt?",
+      "prompt": "",
       "text": "Mit dem Rüssel trinke ich.",
       "answer": "elephant",
       "choices": [
@@ -318,7 +318,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Mein Hals ist sehr lang.",
     "question": {
       "kind": "reading",
-      "prompt": "Welches Tier passt?",
+      "prompt": "",
       "text": "Mein Hals ist sehr lang.",
       "answer": "giraffe",
       "choices": [
@@ -330,11 +330,11 @@ These definitions are the same finite data used by the game and review previews.
   },
   {
     "id": "nature/clue-18",
-    "label": "Mein Kopf hat eine Mähne.",
+    "label": "Ich habe eine Mähne.",
     "question": {
       "kind": "reading",
-      "prompt": "Welches Tier passt?",
-      "text": "Mein Kopf hat eine Mähne.",
+      "prompt": "",
+      "text": "Ich habe eine Mähne.",
       "answer": "lion",
       "choices": [
         "lion",
@@ -348,7 +348,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Mein Fell ist schwarz-weiss gestreift.",
     "question": {
       "kind": "reading",
-      "prompt": "Welches Tier passt?",
+      "prompt": "",
       "text": "Mein Fell ist schwarz-weiss gestreift.",
       "answer": "zebra",
       "choices": [
@@ -363,7 +363,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Auf dem Rücken habe ich Höcker.",
     "question": {
       "kind": "reading",
-      "prompt": "Welches Tier passt?",
+      "prompt": "",
       "text": "Auf dem Rücken habe ich Höcker.",
       "answer": "camel",
       "choices": [
@@ -378,7 +378,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Mein orangefarbenes Fell hat schwarze Streifen.",
     "question": {
       "kind": "reading",
-      "prompt": "Welches Tier passt?",
+      "prompt": "",
       "text": "Mein orangefarbenes Fell hat schwarze Streifen.",
       "answer": "tiger",
       "choices": [
@@ -393,7 +393,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Ich bin ein Vogel, der schwimmt und taucht.",
     "question": {
       "kind": "reading",
-      "prompt": "Welches Tier passt?",
+      "prompt": "",
       "text": "Ich bin ein Vogel, der schwimmt und taucht.",
       "answer": "penguin",
       "choices": [
@@ -408,7 +408,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Mein Gesicht hat schwarze und weisse Streifen.",
     "question": {
       "kind": "reading",
-      "prompt": "Welches Tier passt?",
+      "prompt": "",
       "text": "Mein Gesicht hat schwarze und weisse Streifen.",
       "answer": "badger",
       "choices": [
@@ -423,7 +423,7 @@ These definitions are the same finite data used by the game and review previews.
     "label": "Mit Ästen baue ich einen Damm.",
     "question": {
       "kind": "reading",
-      "prompt": "Welches Tier passt?",
+      "prompt": "",
       "text": "Mit Ästen baue ich einen Damm.",
       "answer": "beaver",
       "choices": [

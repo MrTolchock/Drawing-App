@@ -1,11 +1,11 @@
-# Welche Form fehlt?
+# Was fehlt im Wald?
 
 [All puzzles](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 
 - Stable puzzle ID: `friends-beaver`
 - Host: beaver
-- Related competence: **MA.2.A.1.a** — Formenmengen in einer Matrix erkennen
-- Difficulty: Zwei gleiche und eine andere Form je Reihe; das Muster der ersten zwei Reihen ergänzen
+- Related competence: **MA.2.A.1.a** — Mengen von Waldgegenständen vergleichen
+- Difficulty: Zwei gleiche und ein anderer Gegenstand je Reihe; das Muster der ersten zwei Reihen ergänzen
 - Pool: 25 explicit iterations; a round selects five.
 - Review: solve every unconfirmed iteration to approve it; × rejects with an optional note. The puzzle is released when all current iterations passed. Exact per-iteration revisions gate release; only affected iterations require review after changes.
 
@@ -26,31 +26,31 @@
 
 | Stable iteration ID | Content / configuration | Expected answer or solution |
 | --- | --- | --- |
-| `friends-beaver/matrix-0` | Formenreihe 1 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "triangle" |
-| `friends-beaver/matrix-1` | Formenreihe 2 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "square" |
-| `friends-beaver/matrix-2` | Formenreihe 3 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "circle" |
-| `friends-beaver/matrix-3` | Formenreihe 4 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "square" |
-| `friends-beaver/matrix-4` | Formenreihe 5 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "circle" |
-| `friends-beaver/matrix-5` | Formenreihe 6 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "triangle" |
-| `friends-beaver/matrix-6` | Formenreihe 7 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "triangle" |
-| `friends-beaver/matrix-7` | Formenreihe 8 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "square" |
-| `friends-beaver/matrix-8` | Formenreihe 9 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "circle" |
-| `friends-beaver/matrix-9` | Formenreihe 10 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "square" |
-| `friends-beaver/matrix-10` | Formenreihe 11 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "circle" |
-| `friends-beaver/matrix-11` | Formenreihe 12 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "triangle" |
-| `friends-beaver/matrix-12` | Formenreihe 13 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "triangle" |
-| `friends-beaver/matrix-13` | Formenreihe 14 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "square" |
-| `friends-beaver/matrix-14` | Formenreihe 15 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "circle" |
-| `friends-beaver/matrix-15` | Formenreihe 16 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "square" |
-| `friends-beaver/matrix-16` | Formenreihe 17 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "circle" |
-| `friends-beaver/matrix-17` | Formenreihe 18 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "triangle" |
-| `friends-beaver/matrix-18` | Formenreihe 19 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "triangle" |
-| `friends-beaver/matrix-19` | Formenreihe 20 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "square" |
-| `friends-beaver/matrix-20` | Formenreihe 21 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "circle" |
-| `friends-beaver/matrix-21` | Formenreihe 22 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "square" |
-| `friends-beaver/matrix-22` | Formenreihe 23 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "circle" |
-| `friends-beaver/matrix-23` | Formenreihe 24 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "triangle" |
-| `friends-beaver/matrix-24` | Formenreihe 25 — Jede Reihe hat dieselben Formen gleich oft. Welche fehlt? | "triangle" |
+| `friends-beaver/matrix-0` | Waldreihe 1 — Welcher Waldgegenstand fehlt? | "forest-nut" |
+| `friends-beaver/matrix-1` | Waldreihe 2 — Welcher Waldgegenstand fehlt? | "forest-feather" |
+| `friends-beaver/matrix-2` | Waldreihe 3 — Welcher Waldgegenstand fehlt? | "forest-leaf" |
+| `friends-beaver/matrix-3` | Waldreihe 4 — Welcher Waldgegenstand fehlt? | "forest-feather" |
+| `friends-beaver/matrix-4` | Waldreihe 5 — Welcher Waldgegenstand fehlt? | "forest-leaf" |
+| `friends-beaver/matrix-5` | Waldreihe 6 — Welcher Waldgegenstand fehlt? | "forest-nut" |
+| `friends-beaver/matrix-6` | Waldreihe 7 — Welcher Waldgegenstand fehlt? | "forest-nut" |
+| `friends-beaver/matrix-7` | Waldreihe 8 — Welcher Waldgegenstand fehlt? | "forest-feather" |
+| `friends-beaver/matrix-8` | Waldreihe 9 — Welcher Waldgegenstand fehlt? | "forest-leaf" |
+| `friends-beaver/matrix-9` | Waldreihe 10 — Welcher Waldgegenstand fehlt? | "forest-feather" |
+| `friends-beaver/matrix-10` | Waldreihe 11 — Welcher Waldgegenstand fehlt? | "forest-leaf" |
+| `friends-beaver/matrix-11` | Waldreihe 12 — Welcher Waldgegenstand fehlt? | "forest-nut" |
+| `friends-beaver/matrix-12` | Waldreihe 13 — Welcher Waldgegenstand fehlt? | "forest-nut" |
+| `friends-beaver/matrix-13` | Waldreihe 14 — Welcher Waldgegenstand fehlt? | "forest-feather" |
+| `friends-beaver/matrix-14` | Waldreihe 15 — Welcher Waldgegenstand fehlt? | "forest-leaf" |
+| `friends-beaver/matrix-15` | Waldreihe 16 — Welcher Waldgegenstand fehlt? | "forest-feather" |
+| `friends-beaver/matrix-16` | Waldreihe 17 — Welcher Waldgegenstand fehlt? | "forest-leaf" |
+| `friends-beaver/matrix-17` | Waldreihe 18 — Welcher Waldgegenstand fehlt? | "forest-nut" |
+| `friends-beaver/matrix-18` | Waldreihe 19 — Welcher Waldgegenstand fehlt? | "forest-nut" |
+| `friends-beaver/matrix-19` | Waldreihe 20 — Welcher Waldgegenstand fehlt? | "forest-feather" |
+| `friends-beaver/matrix-20` | Waldreihe 21 — Welcher Waldgegenstand fehlt? | "forest-leaf" |
+| `friends-beaver/matrix-21` | Waldreihe 22 — Welcher Waldgegenstand fehlt? | "forest-feather" |
+| `friends-beaver/matrix-22` | Waldreihe 23 — Welcher Waldgegenstand fehlt? | "forest-leaf" |
+| `friends-beaver/matrix-23` | Waldreihe 24 — Welcher Waldgegenstand fehlt? | "forest-nut" |
+| `friends-beaver/matrix-24` | Waldreihe 25 — Welcher Waldgegenstand fehlt? | "forest-nut" |
 
 ## Exact definitions
 
@@ -60,651 +60,651 @@ These definitions are the same finite data used by the game and review previews.
 [
   {
     "id": "friends-beaver/matrix-0",
-    "label": "Formenreihe 1",
+    "label": "Waldreihe 1",
     "question": {
       "kind": "matrix",
-      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
+      "prompt": "Welcher Waldgegenstand fehlt?",
       "matrix": [
-        "circle",
-        "circle",
-        "triangle",
-        "circle",
-        "triangle",
-        "circle",
-        "triangle",
-        "circle",
-        "circle"
+        "forest-leaf",
+        "forest-leaf",
+        "forest-nut",
+        "forest-leaf",
+        "forest-nut",
+        "forest-leaf",
+        "forest-nut",
+        "forest-leaf",
+        "forest-leaf"
       ],
       "gap": 6,
-      "answer": "triangle",
+      "answer": "forest-nut",
       "choices": [
-        "circle",
-        "triangle",
-        "square"
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather"
       ]
     }
   },
   {
     "id": "friends-beaver/matrix-1",
-    "label": "Formenreihe 2",
+    "label": "Waldreihe 2",
     "question": {
       "kind": "matrix",
-      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
+      "prompt": "Welcher Waldgegenstand fehlt?",
       "matrix": [
-        "circle",
-        "circle",
-        "square",
-        "circle",
-        "square",
-        "circle",
-        "square",
-        "circle",
-        "circle"
+        "forest-leaf",
+        "forest-leaf",
+        "forest-feather",
+        "forest-leaf",
+        "forest-feather",
+        "forest-leaf",
+        "forest-feather",
+        "forest-leaf",
+        "forest-leaf"
       ],
       "gap": 6,
-      "answer": "square",
+      "answer": "forest-feather",
       "choices": [
-        "circle",
-        "triangle",
-        "square"
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather"
       ]
     }
   },
   {
     "id": "friends-beaver/matrix-2",
-    "label": "Formenreihe 3",
+    "label": "Waldreihe 3",
     "question": {
       "kind": "matrix",
-      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
+      "prompt": "Welcher Waldgegenstand fehlt?",
       "matrix": [
-        "triangle",
-        "triangle",
-        "circle",
-        "triangle",
-        "circle",
-        "triangle",
-        "circle",
-        "triangle",
-        "triangle"
+        "forest-nut",
+        "forest-nut",
+        "forest-leaf",
+        "forest-nut",
+        "forest-leaf",
+        "forest-nut",
+        "forest-leaf",
+        "forest-nut",
+        "forest-nut"
       ],
       "gap": 6,
-      "answer": "circle",
+      "answer": "forest-leaf",
       "choices": [
-        "circle",
-        "triangle",
-        "square"
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather"
       ]
     }
   },
   {
     "id": "friends-beaver/matrix-3",
-    "label": "Formenreihe 4",
+    "label": "Waldreihe 4",
     "question": {
       "kind": "matrix",
-      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
+      "prompt": "Welcher Waldgegenstand fehlt?",
       "matrix": [
-        "triangle",
-        "triangle",
-        "square",
-        "triangle",
-        "square",
-        "triangle",
-        "square",
-        "triangle",
-        "triangle"
+        "forest-nut",
+        "forest-nut",
+        "forest-feather",
+        "forest-nut",
+        "forest-feather",
+        "forest-nut",
+        "forest-feather",
+        "forest-nut",
+        "forest-nut"
       ],
       "gap": 6,
-      "answer": "square",
+      "answer": "forest-feather",
       "choices": [
-        "circle",
-        "triangle",
-        "square"
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather"
       ]
     }
   },
   {
     "id": "friends-beaver/matrix-4",
-    "label": "Formenreihe 5",
+    "label": "Waldreihe 5",
     "question": {
       "kind": "matrix",
-      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
+      "prompt": "Welcher Waldgegenstand fehlt?",
       "matrix": [
-        "square",
-        "square",
-        "circle",
-        "square",
-        "circle",
-        "square",
-        "circle",
-        "square",
-        "square"
+        "forest-feather",
+        "forest-feather",
+        "forest-leaf",
+        "forest-feather",
+        "forest-leaf",
+        "forest-feather",
+        "forest-leaf",
+        "forest-feather",
+        "forest-feather"
       ],
       "gap": 6,
-      "answer": "circle",
+      "answer": "forest-leaf",
       "choices": [
-        "circle",
-        "triangle",
-        "square"
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather"
       ]
     }
   },
   {
     "id": "friends-beaver/matrix-5",
-    "label": "Formenreihe 6",
+    "label": "Waldreihe 6",
     "question": {
       "kind": "matrix",
-      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
+      "prompt": "Welcher Waldgegenstand fehlt?",
       "matrix": [
-        "square",
-        "square",
-        "triangle",
-        "square",
-        "triangle",
-        "square",
-        "triangle",
-        "square",
-        "square"
+        "forest-feather",
+        "forest-feather",
+        "forest-nut",
+        "forest-feather",
+        "forest-nut",
+        "forest-feather",
+        "forest-nut",
+        "forest-feather",
+        "forest-feather"
       ],
       "gap": 6,
-      "answer": "triangle",
+      "answer": "forest-nut",
       "choices": [
-        "circle",
-        "triangle",
-        "square"
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather"
       ]
     }
   },
   {
     "id": "friends-beaver/matrix-6",
-    "label": "Formenreihe 7",
+    "label": "Waldreihe 7",
     "question": {
       "kind": "matrix",
-      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
+      "prompt": "Welcher Waldgegenstand fehlt?",
       "matrix": [
-        "circle",
-        "circle",
-        "triangle",
-        "triangle",
-        "circle",
-        "circle",
-        "circle",
-        "triangle",
-        "circle"
+        "forest-leaf",
+        "forest-leaf",
+        "forest-nut",
+        "forest-nut",
+        "forest-leaf",
+        "forest-leaf",
+        "forest-leaf",
+        "forest-nut",
+        "forest-leaf"
       ],
       "gap": 7,
-      "answer": "triangle",
+      "answer": "forest-nut",
       "choices": [
-        "circle",
-        "triangle",
-        "square"
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather"
       ]
     }
   },
   {
     "id": "friends-beaver/matrix-7",
-    "label": "Formenreihe 8",
+    "label": "Waldreihe 8",
     "question": {
       "kind": "matrix",
-      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
+      "prompt": "Welcher Waldgegenstand fehlt?",
       "matrix": [
-        "circle",
-        "circle",
-        "square",
-        "square",
-        "circle",
-        "circle",
-        "circle",
-        "square",
-        "circle"
+        "forest-leaf",
+        "forest-leaf",
+        "forest-feather",
+        "forest-feather",
+        "forest-leaf",
+        "forest-leaf",
+        "forest-leaf",
+        "forest-feather",
+        "forest-leaf"
       ],
       "gap": 7,
-      "answer": "square",
+      "answer": "forest-feather",
       "choices": [
-        "circle",
-        "triangle",
-        "square"
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather"
       ]
     }
   },
   {
     "id": "friends-beaver/matrix-8",
-    "label": "Formenreihe 9",
+    "label": "Waldreihe 9",
     "question": {
       "kind": "matrix",
-      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
+      "prompt": "Welcher Waldgegenstand fehlt?",
       "matrix": [
-        "triangle",
-        "triangle",
-        "circle",
-        "circle",
-        "triangle",
-        "triangle",
-        "triangle",
-        "circle",
-        "triangle"
+        "forest-nut",
+        "forest-nut",
+        "forest-leaf",
+        "forest-leaf",
+        "forest-nut",
+        "forest-nut",
+        "forest-nut",
+        "forest-leaf",
+        "forest-nut"
       ],
       "gap": 7,
-      "answer": "circle",
+      "answer": "forest-leaf",
       "choices": [
-        "circle",
-        "triangle",
-        "square"
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather"
       ]
     }
   },
   {
     "id": "friends-beaver/matrix-9",
-    "label": "Formenreihe 10",
+    "label": "Waldreihe 10",
     "question": {
       "kind": "matrix",
-      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
+      "prompt": "Welcher Waldgegenstand fehlt?",
       "matrix": [
-        "triangle",
-        "triangle",
-        "square",
-        "square",
-        "triangle",
-        "triangle",
-        "triangle",
-        "square",
-        "triangle"
+        "forest-nut",
+        "forest-nut",
+        "forest-feather",
+        "forest-feather",
+        "forest-nut",
+        "forest-nut",
+        "forest-nut",
+        "forest-feather",
+        "forest-nut"
       ],
       "gap": 7,
-      "answer": "square",
+      "answer": "forest-feather",
       "choices": [
-        "circle",
-        "triangle",
-        "square"
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather"
       ]
     }
   },
   {
     "id": "friends-beaver/matrix-10",
-    "label": "Formenreihe 11",
+    "label": "Waldreihe 11",
     "question": {
       "kind": "matrix",
-      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
+      "prompt": "Welcher Waldgegenstand fehlt?",
       "matrix": [
-        "square",
-        "square",
-        "circle",
-        "circle",
-        "square",
-        "square",
-        "square",
-        "circle",
-        "square"
+        "forest-feather",
+        "forest-feather",
+        "forest-leaf",
+        "forest-leaf",
+        "forest-feather",
+        "forest-feather",
+        "forest-feather",
+        "forest-leaf",
+        "forest-feather"
       ],
       "gap": 7,
-      "answer": "circle",
+      "answer": "forest-leaf",
       "choices": [
-        "circle",
-        "triangle",
-        "square"
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather"
       ]
     }
   },
   {
     "id": "friends-beaver/matrix-11",
-    "label": "Formenreihe 12",
+    "label": "Waldreihe 12",
     "question": {
       "kind": "matrix",
-      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
+      "prompt": "Welcher Waldgegenstand fehlt?",
       "matrix": [
-        "square",
-        "square",
-        "triangle",
-        "triangle",
-        "square",
-        "square",
-        "square",
-        "triangle",
-        "square"
+        "forest-feather",
+        "forest-feather",
+        "forest-nut",
+        "forest-nut",
+        "forest-feather",
+        "forest-feather",
+        "forest-feather",
+        "forest-nut",
+        "forest-feather"
       ],
       "gap": 7,
-      "answer": "triangle",
+      "answer": "forest-nut",
       "choices": [
-        "circle",
-        "triangle",
-        "square"
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather"
       ]
     }
   },
   {
     "id": "friends-beaver/matrix-12",
-    "label": "Formenreihe 13",
+    "label": "Waldreihe 13",
     "question": {
       "kind": "matrix",
-      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
+      "prompt": "Welcher Waldgegenstand fehlt?",
       "matrix": [
-        "circle",
-        "triangle",
-        "circle",
-        "triangle",
-        "circle",
-        "circle",
-        "circle",
-        "circle",
-        "triangle"
+        "forest-leaf",
+        "forest-nut",
+        "forest-leaf",
+        "forest-nut",
+        "forest-leaf",
+        "forest-leaf",
+        "forest-leaf",
+        "forest-leaf",
+        "forest-nut"
       ],
       "gap": 8,
-      "answer": "triangle",
+      "answer": "forest-nut",
       "choices": [
-        "circle",
-        "triangle",
-        "square"
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather"
       ]
     }
   },
   {
     "id": "friends-beaver/matrix-13",
-    "label": "Formenreihe 14",
+    "label": "Waldreihe 14",
     "question": {
       "kind": "matrix",
-      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
+      "prompt": "Welcher Waldgegenstand fehlt?",
       "matrix": [
-        "circle",
-        "square",
-        "circle",
-        "square",
-        "circle",
-        "circle",
-        "circle",
-        "circle",
-        "square"
+        "forest-leaf",
+        "forest-feather",
+        "forest-leaf",
+        "forest-feather",
+        "forest-leaf",
+        "forest-leaf",
+        "forest-leaf",
+        "forest-leaf",
+        "forest-feather"
       ],
       "gap": 8,
-      "answer": "square",
+      "answer": "forest-feather",
       "choices": [
-        "circle",
-        "triangle",
-        "square"
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather"
       ]
     }
   },
   {
     "id": "friends-beaver/matrix-14",
-    "label": "Formenreihe 15",
+    "label": "Waldreihe 15",
     "question": {
       "kind": "matrix",
-      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
+      "prompt": "Welcher Waldgegenstand fehlt?",
       "matrix": [
-        "triangle",
-        "circle",
-        "triangle",
-        "circle",
-        "triangle",
-        "triangle",
-        "triangle",
-        "triangle",
-        "circle"
+        "forest-nut",
+        "forest-leaf",
+        "forest-nut",
+        "forest-leaf",
+        "forest-nut",
+        "forest-nut",
+        "forest-nut",
+        "forest-nut",
+        "forest-leaf"
       ],
       "gap": 8,
-      "answer": "circle",
+      "answer": "forest-leaf",
       "choices": [
-        "circle",
-        "triangle",
-        "square"
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather"
       ]
     }
   },
   {
     "id": "friends-beaver/matrix-15",
-    "label": "Formenreihe 16",
+    "label": "Waldreihe 16",
     "question": {
       "kind": "matrix",
-      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
+      "prompt": "Welcher Waldgegenstand fehlt?",
       "matrix": [
-        "triangle",
-        "square",
-        "triangle",
-        "square",
-        "triangle",
-        "triangle",
-        "triangle",
-        "triangle",
-        "square"
+        "forest-nut",
+        "forest-feather",
+        "forest-nut",
+        "forest-feather",
+        "forest-nut",
+        "forest-nut",
+        "forest-nut",
+        "forest-nut",
+        "forest-feather"
       ],
       "gap": 8,
-      "answer": "square",
+      "answer": "forest-feather",
       "choices": [
-        "circle",
-        "triangle",
-        "square"
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather"
       ]
     }
   },
   {
     "id": "friends-beaver/matrix-16",
-    "label": "Formenreihe 17",
+    "label": "Waldreihe 17",
     "question": {
       "kind": "matrix",
-      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
+      "prompt": "Welcher Waldgegenstand fehlt?",
       "matrix": [
-        "square",
-        "circle",
-        "square",
-        "circle",
-        "square",
-        "square",
-        "square",
-        "square",
-        "circle"
+        "forest-feather",
+        "forest-leaf",
+        "forest-feather",
+        "forest-leaf",
+        "forest-feather",
+        "forest-feather",
+        "forest-feather",
+        "forest-feather",
+        "forest-leaf"
       ],
       "gap": 8,
-      "answer": "circle",
+      "answer": "forest-leaf",
       "choices": [
-        "circle",
-        "triangle",
-        "square"
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather"
       ]
     }
   },
   {
     "id": "friends-beaver/matrix-17",
-    "label": "Formenreihe 18",
+    "label": "Waldreihe 18",
     "question": {
       "kind": "matrix",
-      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
+      "prompt": "Welcher Waldgegenstand fehlt?",
       "matrix": [
-        "square",
-        "triangle",
-        "square",
-        "triangle",
-        "square",
-        "square",
-        "square",
-        "square",
-        "triangle"
+        "forest-feather",
+        "forest-nut",
+        "forest-feather",
+        "forest-nut",
+        "forest-feather",
+        "forest-feather",
+        "forest-feather",
+        "forest-feather",
+        "forest-nut"
       ],
       "gap": 8,
-      "answer": "triangle",
+      "answer": "forest-nut",
       "choices": [
-        "circle",
-        "triangle",
-        "square"
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather"
       ]
     }
   },
   {
     "id": "friends-beaver/matrix-18",
-    "label": "Formenreihe 19",
+    "label": "Waldreihe 19",
     "question": {
       "kind": "matrix",
-      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
+      "prompt": "Welcher Waldgegenstand fehlt?",
       "matrix": [
-        "circle",
-        "triangle",
-        "circle",
-        "circle",
-        "circle",
-        "triangle",
-        "triangle",
-        "circle",
-        "circle"
+        "forest-leaf",
+        "forest-nut",
+        "forest-leaf",
+        "forest-leaf",
+        "forest-leaf",
+        "forest-nut",
+        "forest-nut",
+        "forest-leaf",
+        "forest-leaf"
       ],
       "gap": 6,
-      "answer": "triangle",
+      "answer": "forest-nut",
       "choices": [
-        "circle",
-        "triangle",
-        "square"
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather"
       ]
     }
   },
   {
     "id": "friends-beaver/matrix-19",
-    "label": "Formenreihe 20",
+    "label": "Waldreihe 20",
     "question": {
       "kind": "matrix",
-      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
+      "prompt": "Welcher Waldgegenstand fehlt?",
       "matrix": [
-        "circle",
-        "square",
-        "circle",
-        "circle",
-        "circle",
-        "square",
-        "square",
-        "circle",
-        "circle"
+        "forest-leaf",
+        "forest-feather",
+        "forest-leaf",
+        "forest-leaf",
+        "forest-leaf",
+        "forest-feather",
+        "forest-feather",
+        "forest-leaf",
+        "forest-leaf"
       ],
       "gap": 6,
-      "answer": "square",
+      "answer": "forest-feather",
       "choices": [
-        "circle",
-        "triangle",
-        "square"
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather"
       ]
     }
   },
   {
     "id": "friends-beaver/matrix-20",
-    "label": "Formenreihe 21",
+    "label": "Waldreihe 21",
     "question": {
       "kind": "matrix",
-      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
+      "prompt": "Welcher Waldgegenstand fehlt?",
       "matrix": [
-        "triangle",
-        "circle",
-        "triangle",
-        "triangle",
-        "triangle",
-        "circle",
-        "circle",
-        "triangle",
-        "triangle"
+        "forest-nut",
+        "forest-leaf",
+        "forest-nut",
+        "forest-nut",
+        "forest-nut",
+        "forest-leaf",
+        "forest-leaf",
+        "forest-nut",
+        "forest-nut"
       ],
       "gap": 6,
-      "answer": "circle",
+      "answer": "forest-leaf",
       "choices": [
-        "circle",
-        "triangle",
-        "square"
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather"
       ]
     }
   },
   {
     "id": "friends-beaver/matrix-21",
-    "label": "Formenreihe 22",
+    "label": "Waldreihe 22",
     "question": {
       "kind": "matrix",
-      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
+      "prompt": "Welcher Waldgegenstand fehlt?",
       "matrix": [
-        "triangle",
-        "square",
-        "triangle",
-        "triangle",
-        "triangle",
-        "square",
-        "square",
-        "triangle",
-        "triangle"
+        "forest-nut",
+        "forest-feather",
+        "forest-nut",
+        "forest-nut",
+        "forest-nut",
+        "forest-feather",
+        "forest-feather",
+        "forest-nut",
+        "forest-nut"
       ],
       "gap": 6,
-      "answer": "square",
+      "answer": "forest-feather",
       "choices": [
-        "circle",
-        "triangle",
-        "square"
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather"
       ]
     }
   },
   {
     "id": "friends-beaver/matrix-22",
-    "label": "Formenreihe 23",
+    "label": "Waldreihe 23",
     "question": {
       "kind": "matrix",
-      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
+      "prompt": "Welcher Waldgegenstand fehlt?",
       "matrix": [
-        "square",
-        "circle",
-        "square",
-        "square",
-        "square",
-        "circle",
-        "circle",
-        "square",
-        "square"
+        "forest-feather",
+        "forest-leaf",
+        "forest-feather",
+        "forest-feather",
+        "forest-feather",
+        "forest-leaf",
+        "forest-leaf",
+        "forest-feather",
+        "forest-feather"
       ],
       "gap": 6,
-      "answer": "circle",
+      "answer": "forest-leaf",
       "choices": [
-        "circle",
-        "triangle",
-        "square"
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather"
       ]
     }
   },
   {
     "id": "friends-beaver/matrix-23",
-    "label": "Formenreihe 24",
+    "label": "Waldreihe 24",
     "question": {
       "kind": "matrix",
-      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
+      "prompt": "Welcher Waldgegenstand fehlt?",
       "matrix": [
-        "square",
-        "triangle",
-        "square",
-        "square",
-        "square",
-        "triangle",
-        "triangle",
-        "square",
-        "square"
+        "forest-feather",
+        "forest-nut",
+        "forest-feather",
+        "forest-feather",
+        "forest-feather",
+        "forest-nut",
+        "forest-nut",
+        "forest-feather",
+        "forest-feather"
       ],
       "gap": 6,
-      "answer": "triangle",
+      "answer": "forest-nut",
       "choices": [
-        "circle",
-        "triangle",
-        "square"
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather"
       ]
     }
   },
   {
     "id": "friends-beaver/matrix-24",
-    "label": "Formenreihe 25",
+    "label": "Waldreihe 25",
     "question": {
       "kind": "matrix",
-      "prompt": "Jede Reihe hat dieselben Formen gleich oft. Welche fehlt?",
+      "prompt": "Welcher Waldgegenstand fehlt?",
       "matrix": [
-        "triangle",
-        "circle",
-        "circle",
-        "circle",
-        "circle",
-        "triangle",
-        "circle",
-        "triangle",
-        "circle"
+        "forest-nut",
+        "forest-leaf",
+        "forest-leaf",
+        "forest-leaf",
+        "forest-leaf",
+        "forest-nut",
+        "forest-leaf",
+        "forest-nut",
+        "forest-leaf"
       ],
       "gap": 7,
-      "answer": "triangle",
+      "answer": "forest-nut",
       "choices": [
-        "circle",
-        "triangle",
-        "square"
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather"
       ]
     }
   }

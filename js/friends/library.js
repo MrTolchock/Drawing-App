@@ -27,8 +27,8 @@ const games=[
   {
     "id": "friends-beaver",
     "host": "beaver",
-    "title": "Welche Form fehlt?",
-    "picture": "shapes",
+    "title": "Was fehlt im Wald?",
+    "picture": "forest-leaf",
     "screen": "puzzle"
   },
   {
@@ -50,20 +50,6 @@ const games=[
     "host": "deer",
     "title": "Wer wohnt wo?",
     "picture": "nest",
-    "screen": "puzzle"
-  },
-  {
-    "id": "friends-kingfisher",
-    "host": "kingfisher",
-    "title": "Am Bach zählen",
-    "picture": "forest-feather",
-    "screen": "puzzle"
-  },
-  {
-    "id": "friends-frog",
-    "host": "frog",
-    "title": "Tierwörter lesen",
-    "picture": "frog",
     "screen": "puzzle"
   },
   {
@@ -184,41 +170,6 @@ const games=[
     "title": "Silben-Puzzle",
     "picture": "words",
     "screen": "puzzle"
-  },
-  {
-    "id": "read-word",
-    "host": "mouse",
-    "title": "Wort und Waldbild",
-    "picture": "mouse",
-    "screen": "puzzle"
-  },
-  {
-    "id": "read-leaves",
-    "host": "mouse",
-    "title": "Silbenblätter",
-    "picture": "leaf",
-    "screen": "puzzle"
-  },
-  {
-    "id": "read-colours",
-    "host": "mouse",
-    "title": "Farben lesen",
-    "picture": "flower",
-    "screen": "puzzle"
-  },
-  {
-    "id": "trace",
-    "host": "mouse",
-    "title": "Schreibspuren",
-    "picture": "pencil",
-    "screen": "trace"
-  },
-  {
-    "id": "trace-numbers",
-    "host": "mouse",
-    "title": "Zahlenspuren",
-    "picture": "numbers",
-    "screen": "trace"
   }
 ];
 const hosts=Object.fromEntries(games.map(g=>[g.id,g.host]));

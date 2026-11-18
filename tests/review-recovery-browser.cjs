@@ -5,11 +5,13 @@ const {setup}=require('../tools/puzzle-catalogue.cjs'),{environment}=require('..
 const {snapshotReader}=require('../tools/puzzle-review-build.cjs'),R=require('../js/friends/review-repository.js');
 const {remoteServer,installRemote}=require('./review-repository-support.cjs');
 const {FK}=setup(),C=FK.puzzleCatalogue,games=FK.friendsLibrary.catalogue();
-const changed=new Set(['friends-squirrel','friends-hedgehog','friends-deer','friends-badger','trace-numbers']);
+const syntheticReady=[];
 const snapshot=process.env.WALDPOST_REVIEW_SNAPSHOT,ledger=snapshot?JSON.parse(fs.readFileSync(snapshot)):R.empty();
 if(!snapshot){
  const old=environment({read:snapshotReader('d030f8d0919c980ecf7fc49b80f9785ded68e09b').read,review:false});old.execute('js/friends/puzzle-implementation.js');
  for(const game of games){
+  const previous=old.FK.puzzleCatalogue;
+  if(C.acceptsRevision(game.id,null,previous.puzzleRevision(game.id))&&C.iterations(game.id).every(it=>previous.iterations(game.id).some(p=>p.id===it.id&&C.acceptsRevision(game.id,it.id,previous.iterationRevision(game.id,p)))))syntheticReady.push(game.id);
   for(const item of [null,...old.FK.puzzleCatalogue.iterations(game.id)]){
    const key=item?.id||'puzzle:'+game.id,revision=item?old.FK.puzzleCatalogue.iterationRevision(game.id,item):old.FK.puzzleCatalogue.puzzleRevision(game.id);
    ledger.entries[key+'@'+revision]={key,revision,status:'approved',note:item?'':'Ursprünglicher Kommentar.',at:'2026-11-17T20:00:00Z',seen:true};
@@ -19,7 +21,7 @@ if(!snapshot){
  ledger.deletedNotes=[{key:'puzzle:friends-beaver',note:'Ursprünglicher Kommentar.',at:'2026-11-17T21:00:00Z'}];
 }
 const expected=snapshot?JSON.parse(fs.readFileSync(process.env.WALDPOST_REVIEW_EXPECTED)).rows:null;
-const initialReady=expected?expected.filter(r=>r.ready).map(r=>r.id):Array.from(games.filter(g=>!changed.has(g.id)),g=>g.id);
+const initialReady=expected?expected.filter(r=>r.ready).map(r=>r.id):syntheticReady;
 (async()=>{
  const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||'/usr/bin/chromium',args:['--no-sandbox','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
  try{

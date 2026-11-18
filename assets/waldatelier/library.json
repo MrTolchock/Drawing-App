@@ -27,7 +27,7 @@
       "host": "owl"
     },
     "friends-beaver": {
-      "title": "Welche Form fehlt?",
+      "title": "Was fehlt im Wald?",
       "host": "beaver"
     },
     "friends-mouse": {
@@ -41,14 +41,6 @@
     "friends-deer": {
       "title": "Wer wohnt wo?",
       "host": "deer"
-    },
-    "friends-kingfisher": {
-      "title": "Am Bach zählen",
-      "host": "kingfisher"
-    },
-    "friends-frog": {
-      "title": "Tierwörter lesen",
-      "host": "frog"
     },
     "friends-badger": {
       "title": "Naturrätsel",
@@ -116,26 +108,6 @@
     },
     "read-puzzle": {
       "title": "Silben-Puzzle",
-      "host": "mouse"
-    },
-    "read-word": {
-      "title": "Wort und Waldbild",
-      "host": "mouse"
-    },
-    "read-leaves": {
-      "title": "Silbenblätter",
-      "host": "mouse"
-    },
-    "read-colours": {
-      "title": "Farben lesen",
-      "host": "mouse"
-    },
-    "trace": {
-      "title": "Schreibspuren",
-      "host": "mouse"
-    },
-    "trace-numbers": {
-      "title": "Zahlenspuren",
       "host": "mouse"
     }
   },
@@ -533,13 +505,12 @@
         "🐜"
       ],
       "usedBy": [
+        "friends-mouse",
         "friends-hedgehog",
-        "friends-frog",
         "nature",
         "syllable",
         "vowels",
-        "read-puzzle",
-        "read-word"
+        "read-puzzle"
       ]
     },
     {
@@ -561,8 +532,7 @@
       ],
       "usedBy": [
         "friends-deer",
-        "friends-badger",
-        "trace-numbers"
+        "friends-badger"
       ]
     },
     {
@@ -582,7 +552,7 @@
         "🦡"
       ],
       "usedBy": [
-        "friends-frog",
+        "friends-mouse",
         "friends-badger",
         "nature"
       ]
@@ -661,9 +631,7 @@
       "tokens": [
         "🎈"
       ],
-      "usedBy": [
-        "trace-numbers"
-      ]
+      "usedBy": []
     },
     {
       "id": "banana",
@@ -682,11 +650,10 @@
         "🍌"
       ],
       "usedBy": [
+        "friends-mouse",
         "syllable",
         "vowels",
-        "read-puzzle",
-        "read-word",
-        "trace"
+        "read-puzzle"
       ]
     },
     {
@@ -726,8 +693,7 @@
         "🐻"
       ],
       "usedBy": [
-        "friends-frog",
-        "trace"
+        "friends-mouse"
       ]
     },
     {
@@ -747,12 +713,12 @@
         "🦫"
       ],
       "usedBy": [
+        "friends-mouse",
         "friends-hedgehog",
         "nature",
         "syllable",
         "vowels",
-        "read-puzzle",
-        "read-word"
+        "read-puzzle"
       ]
     },
     {
@@ -793,17 +759,16 @@
       ],
       "usedBy": [
         "friends-bird",
+        "friends-mouse",
         "friends-hedgehog",
         "friends-deer",
-        "friends-frog",
         "friends-badger",
         "count",
         "nature",
         "syllable",
         "sequence",
         "vowels",
-        "read-puzzle",
-        "read-word"
+        "read-puzzle"
       ]
     },
     {
@@ -823,10 +788,10 @@
         "🔔"
       ],
       "usedBy": [
+        "friends-mouse",
         "syllable",
         "vowels",
-        "read-puzzle",
-        "read-word"
+        "read-puzzle"
       ]
     },
     {
@@ -879,9 +844,7 @@
       "tokens": [
         "🐦"
       ],
-      "usedBy": [
-        "trace"
-      ]
+      "usedBy": []
     },
     {
       "id": "bird-fly",
@@ -917,6 +880,7 @@
       "tokens": [],
       "usedBy": [
         "friends-owl",
+        "friends-mouse",
         "friends-hedgehog",
         "friends-deer",
         "friends-badger",
@@ -924,9 +888,7 @@
         "syllable",
         "sequence",
         "vowels",
-        "read-puzzle",
-        "read-word",
-        "trace"
+        "read-puzzle"
       ]
     },
     {
@@ -945,9 +907,7 @@
       "tokens": [
         "🍪"
       ],
-      "usedBy": [
-        "trace-numbers"
-      ]
+      "usedBy": []
     },
     {
       "id": "blue-tit",
@@ -1106,15 +1066,14 @@
         "🦋"
       ],
       "usedBy": [
+        "friends-mouse",
         "friends-hedgehog",
         "friends-badger",
         "nature",
         "syllable",
         "sequence",
         "vowels",
-        "read-puzzle",
-        "read-word",
-        "trace-numbers"
+        "read-puzzle"
       ]
     },
     {
@@ -1134,10 +1093,10 @@
         "🍰"
       ],
       "usedBy": [
+        "friends-mouse",
         "syllable",
         "vowels",
-        "read-puzzle",
-        "read-word"
+        "read-puzzle"
       ]
     },
     {
@@ -1158,7 +1117,7 @@
         "🐪"
       ],
       "usedBy": [
-        "friends-frog",
+        "friends-mouse",
         "nature"
       ]
     },
@@ -1179,10 +1138,10 @@
         "📷"
       ],
       "usedBy": [
+        "friends-mouse",
         "syllable",
         "vowels",
-        "read-puzzle",
-        "read-word"
+        "read-puzzle"
       ]
     },
     {
@@ -1238,14 +1197,13 @@
         "🥕"
       ],
       "usedBy": [
+        "friends-mouse",
         "friends-deer",
         "friends-badger",
         "syllable",
         "sequence",
         "vowels",
-        "read-puzzle",
-        "read-word",
-        "trace"
+        "read-puzzle"
       ]
     },
     {
@@ -1266,7 +1224,7 @@
         "🐈"
       ],
       "usedBy": [
-        "friends-frog",
+        "friends-mouse",
         "nature"
       ]
     },
@@ -1286,7 +1244,7 @@
       "tokens": [],
       "usedBy": [
         "friends-owl",
-        "friends-frog",
+        "friends-mouse",
         "nature"
       ]
     },
@@ -1325,14 +1283,13 @@
         "🐛"
       ],
       "usedBy": [
+        "friends-mouse",
         "friends-hedgehog",
         "friends-deer",
-        "friends-frog",
         "syllable",
         "sequence",
         "vowels",
-        "read-puzzle",
-        "read-word"
+        "read-puzzle"
       ]
     },
     {
@@ -1376,8 +1333,7 @@
       ],
       "usedBy": [
         "friends-badger",
-        "sequence",
-        "trace-numbers"
+        "sequence"
       ]
     },
     {
@@ -1436,13 +1392,13 @@
         "☁️"
       ],
       "usedBy": [
+        "friends-mouse",
         "friends-deer",
         "friends-badger",
         "syllable",
         "sequence",
         "vowels",
-        "read-puzzle",
-        "read-word"
+        "read-puzzle"
       ]
     },
     {
@@ -1462,9 +1418,7 @@
         "🤡",
         "🎪"
       ],
-      "usedBy": [
-        "trace"
-      ]
+      "usedBy": []
     },
     {
       "id": "cocoon",
@@ -1527,8 +1481,7 @@
         "friends-mouse",
         "friends-deer",
         "nature",
-        "sequence",
-        "trace"
+        "sequence"
       ]
     },
     {
@@ -1602,9 +1555,7 @@
         "🦕",
         "🦖"
       ],
-      "usedBy": [
-        "trace"
-      ]
+      "usedBy": []
     },
     {
       "id": "dog",
@@ -1625,9 +1576,8 @@
       ],
       "usedBy": [
         "friends-bird",
-        "friends-frog",
-        "nature",
-        "trace"
+        "friends-mouse",
+        "nature"
       ]
     },
     {
@@ -1665,9 +1615,8 @@
       "usedBy": [
         "friends-bird",
         "friends-owl",
-        "friends-frog",
-        "nature",
-        "trace"
+        "friends-mouse",
+        "nature"
       ]
     },
     {
@@ -1740,7 +1689,7 @@
       "tokens": [],
       "usedBy": [
         "friends-owl",
-        "friends-frog"
+        "friends-mouse"
       ]
     },
     {
@@ -1759,9 +1708,7 @@
       "tokens": [
         "👂"
       ],
-      "usedBy": [
-        "trace"
-      ]
+      "usedBy": []
     },
     {
       "id": "egg",
@@ -1802,9 +1749,8 @@
         "🐘"
       ],
       "usedBy": [
-        "friends-frog",
-        "nature",
-        "trace"
+        "friends-mouse",
+        "nature"
       ]
     },
     {
@@ -1822,8 +1768,7 @@
       },
       "tokens": [],
       "usedBy": [
-        "friends-squirrel",
-        "trace-numbers"
+        "friends-squirrel"
       ]
     },
     {
@@ -1919,9 +1864,7 @@
         "🐟",
         "🐠"
       ],
-      "usedBy": [
-        "trace"
-      ]
+      "usedBy": []
     },
     {
       "id": "fish-swim",
@@ -1945,9 +1888,7 @@
         "friends-badger",
         "nature",
         "syllable",
-        "vowels",
-        "read-word",
-        "trace"
+        "vowels"
       ]
     },
     {
@@ -1970,8 +1911,7 @@
       "usedBy": [
         "friends-deer",
         "friends-badger",
-        "sequence",
-        "trace-numbers"
+        "sequence"
       ]
     },
     {
@@ -1989,6 +1929,7 @@
       },
       "tokens": [],
       "usedBy": [
+        "friends-mouse",
         "friends-deer",
         "friends-badger",
         "add",
@@ -1996,9 +1937,7 @@
         "sequence",
         "treasure",
         "vowels",
-        "read-puzzle",
-        "read-word",
-        "trace-numbers"
+        "read-puzzle"
       ]
     },
     {
@@ -2056,8 +1995,6 @@
         "friends-mouse",
         "friends-hedgehog",
         "friends-deer",
-        "friends-kingfisher",
-        "friends-frog",
         "friends-badger",
         "picnic",
         "syllable",
@@ -2065,12 +2002,7 @@
         "treasure",
         "compare",
         "vowels",
-        "read-puzzle",
-        "read-word",
-        "read-leaves",
-        "read-colours",
-        "trace",
-        "trace-numbers"
+        "read-puzzle"
       ]
     },
     {
@@ -2110,15 +2042,14 @@
       "tokens": [],
       "usedBy": [
         "friends-bird",
-        "friends-kingfisher",
+        "friends-beaver",
+        "friends-mouse",
         "pattern",
         "nature",
         "syllable",
         "treasure",
         "vowels",
-        "read-puzzle",
-        "read-word",
-        "trace-numbers"
+        "read-puzzle"
       ]
     },
     {
@@ -2137,13 +2068,13 @@
       "tokens": [],
       "usedBy": [
         "friends-bird",
+        "friends-mouse",
         "friends-badger",
         "friends-ibex",
         "syllable",
         "robot",
         "vowels",
-        "read-puzzle",
-        "read-word"
+        "read-puzzle"
       ]
     },
     {
@@ -2168,8 +2099,6 @@
         "friends-mouse",
         "friends-hedgehog",
         "friends-deer",
-        "friends-kingfisher",
-        "friends-frog",
         "friends-badger",
         "friends-ibex",
         "count",
@@ -2186,12 +2115,7 @@
         "compare",
         "mirror",
         "vowels",
-        "read-puzzle",
-        "read-word",
-        "read-leaves",
-        "read-colours",
-        "trace",
-        "trace-numbers"
+        "read-puzzle"
       ]
     },
     {
@@ -2209,8 +2133,8 @@
       },
       "tokens": [],
       "usedBy": [
-        "friends-hedgehog",
-        "friends-frog"
+        "friends-mouse",
+        "friends-hedgehog"
       ]
     },
     {
@@ -2250,8 +2174,7 @@
         "friends-owl",
         "pattern",
         "sequence",
-        "treasure",
-        "trace"
+        "treasure"
       ]
     },
     {
@@ -2276,8 +2199,6 @@
         "friends-mouse",
         "friends-hedgehog",
         "friends-deer",
-        "friends-kingfisher",
-        "friends-frog",
         "friends-badger",
         "friends-ibex",
         "count",
@@ -2294,12 +2215,7 @@
         "compare",
         "mirror",
         "vowels",
-        "read-puzzle",
-        "read-word",
-        "read-leaves",
-        "read-colours",
-        "trace",
-        "trace-numbers"
+        "read-puzzle"
       ]
     },
     {
@@ -2353,13 +2269,12 @@
       },
       "tokens": [],
       "usedBy": [
+        "friends-mouse",
         "friends-deer",
-        "friends-kingfisher",
         "syllable",
         "sequence",
         "treasure",
-        "vowels",
-        "read-word"
+        "vowels"
       ]
     },
     {
@@ -2381,6 +2296,7 @@
       "usedBy": [
         "friends-squirrel",
         "friends-bird",
+        "friends-beaver",
         "friends-mouse",
         "friends-deer",
         "friends-badger",
@@ -2395,9 +2311,7 @@
         "treasure",
         "neighbours",
         "compare",
-        "vowels",
-        "read-word",
-        "trace-numbers"
+        "vowels"
       ]
     },
     {
@@ -2474,8 +2388,7 @@
         "friends-badger",
         "syllable",
         "vowels",
-        "read-puzzle",
-        "read-word"
+        "read-puzzle"
       ]
     },
     {
@@ -2509,7 +2422,6 @@
       },
       "tokens": [],
       "usedBy": [
-        "friends-kingfisher",
         "friends-ibex",
         "treasure"
       ]
@@ -2549,11 +2461,11 @@
         "🍴"
       ],
       "usedBy": [
+        "friends-mouse",
         "friends-badger",
         "syllable",
         "vowels",
-        "read-puzzle",
-        "read-word"
+        "read-puzzle"
       ]
     },
     {
@@ -2643,7 +2555,7 @@
         "🐸"
       ],
       "usedBy": [
-        "friends-frog",
+        "friends-mouse",
         "nature"
       ]
     },
@@ -2701,9 +2613,8 @@
         "🦒"
       ],
       "usedBy": [
-        "friends-frog",
-        "nature",
-        "trace"
+        "friends-mouse",
+        "nature"
       ]
     },
     {
@@ -2836,8 +2747,7 @@
         "nature",
         "syllable",
         "vowels",
-        "read-puzzle",
-        "read-word"
+        "read-puzzle"
       ]
     },
     {
@@ -2899,15 +2809,13 @@
         "🦔"
       ],
       "usedBy": [
+        "friends-mouse",
         "friends-hedgehog",
-        "friends-frog",
         "nature",
         "syllable",
         "sequence",
         "vowels",
-        "read-puzzle",
-        "read-word",
-        "trace"
+        "read-puzzle"
       ]
     },
     {
@@ -2925,7 +2833,8 @@
       },
       "tokens": [],
       "usedBy": [
-        "friends-owl"
+        "friends-owl",
+        "sequence"
       ]
     },
     {
@@ -3001,9 +2910,7 @@
       "tokens": [
         "🧥"
       ],
-      "usedBy": [
-        "trace"
-      ]
+      "usedBy": []
     },
     {
       "id": "judo",
@@ -3058,11 +2965,10 @@
         "🐞"
       ],
       "usedBy": [
+        "friends-mouse",
         "friends-hedgehog",
-        "friends-frog",
         "count",
-        "nature",
-        "trace-numbers"
+        "nature"
       ]
     },
     {
@@ -3086,8 +2992,7 @@
       ],
       "usedBy": [
         "friends-deer",
-        "friends-badger",
-        "sequence"
+        "friends-badger"
       ]
     },
     {
@@ -3147,9 +3052,8 @@
         "🦁"
       ],
       "usedBy": [
-        "friends-frog",
-        "nature",
-        "trace"
+        "friends-mouse",
+        "nature"
       ]
     },
     {
@@ -3204,10 +3108,10 @@
         "🔍"
       ],
       "usedBy": [
+        "friends-mouse",
         "syllable",
         "vowels",
-        "read-puzzle",
-        "read-word"
+        "read-puzzle"
       ]
     },
     {
@@ -3247,9 +3151,7 @@
         "🐒",
         "🐵"
       ],
-      "usedBy": [
-        "trace"
-      ]
+      "usedBy": []
     },
     {
       "id": "moon",
@@ -3346,9 +3248,7 @@
         "friends-owl",
         "friends-mouse",
         "friends-hedgehog",
-        "syllable",
-        "read-word",
-        "trace"
+        "syllable"
       ]
     },
     {
@@ -3438,10 +3338,10 @@
         "🪡"
       ],
       "usedBy": [
+        "friends-mouse",
         "syllable",
         "vowels",
-        "read-puzzle",
-        "read-word"
+        "read-puzzle"
       ]
     },
     {
@@ -3477,12 +3377,12 @@
         "🪺"
       ],
       "usedBy": [
+        "friends-mouse",
         "friends-deer",
         "friends-badger",
         "syllable",
         "sequence",
-        "vowels",
-        "read-word"
+        "vowels"
       ]
     },
     {
@@ -3503,8 +3403,7 @@
       ],
       "usedBy": [
         "friends-bird",
-        "friends-mouse",
-        "trace"
+        "friends-mouse"
       ]
     },
     {
@@ -3640,9 +3539,8 @@
         "🐧"
       ],
       "usedBy": [
-        "friends-frog",
-        "nature",
-        "trace"
+        "friends-mouse",
+        "nature"
       ]
     },
     {
@@ -3700,8 +3598,8 @@
         "🐷"
       ],
       "usedBy": [
+        "friends-mouse",
         "friends-deer",
-        "friends-frog",
         "friends-badger",
         "nature"
       ]
@@ -3780,9 +3678,7 @@
         "height": 320
       },
       "tokens": [],
-      "usedBy": [
-        "read-colours"
-      ]
+      "usedBy": []
     },
     {
       "id": "puzzle-flower-gelb",
@@ -3798,9 +3694,7 @@
         "height": 320
       },
       "tokens": [],
-      "usedBy": [
-        "read-colours"
-      ]
+      "usedBy": []
     },
     {
       "id": "puzzle-flower-lila",
@@ -3832,9 +3726,7 @@
         "height": 320
       },
       "tokens": [],
-      "usedBy": [
-        "read-colours"
-      ]
+      "usedBy": []
     },
     {
       "id": "puzzle-flower-rot",
@@ -3850,9 +3742,7 @@
         "height": 320
       },
       "tokens": [],
-      "usedBy": [
-        "read-colours"
-      ]
+      "usedBy": []
     },
     {
       "id": "puzzle-flower-weiss",
@@ -3868,9 +3758,7 @@
         "height": 320
       },
       "tokens": [],
-      "usedBy": [
-        "read-colours"
-      ]
+      "usedBy": []
     },
     {
       "id": "rabbit",
@@ -3926,12 +3814,12 @@
         "🌧️"
       ],
       "usedBy": [
+        "friends-mouse",
         "friends-badger",
         "syllable",
         "sequence",
         "vowels",
-        "read-puzzle",
-        "read-word"
+        "read-puzzle"
       ]
     },
     {
@@ -4184,9 +4072,7 @@
       "tokens": [
         "🚀"
       ],
-      "usedBy": [
-        "trace"
-      ]
+      "usedBy": []
     },
     {
       "id": "rocket-word",
@@ -4334,7 +4220,7 @@
         "🐑"
       ],
       "usedBy": [
-        "friends-frog",
+        "friends-mouse",
         "friends-badger",
         "nature"
       ]
@@ -4357,16 +4243,14 @@
       ],
       "usedBy": [
         "friends-bird",
+        "friends-mouse",
         "friends-hedgehog",
         "friends-deer",
-        "friends-frog",
         "count",
         "nature",
         "syllable",
         "vowels",
-        "read-puzzle",
-        "read-word",
-        "trace-numbers"
+        "read-puzzle"
       ]
     },
     {
@@ -4422,12 +4306,12 @@
       },
       "tokens": [],
       "usedBy": [
+        "friends-mouse",
         "friends-badger",
         "syllable",
         "sequence",
         "vowels",
-        "read-puzzle",
-        "read-word"
+        "read-puzzle"
       ]
     },
     {
@@ -4447,9 +4331,9 @@
         "🕷️"
       ],
       "usedBy": [
+        "friends-mouse",
         "friends-hedgehog",
         "friends-deer",
-        "friends-frog",
         "nature"
       ]
     },
@@ -4470,8 +4354,7 @@
         "🥄"
       ],
       "usedBy": [
-        "friends-badger",
-        "trace"
+        "friends-badger"
       ]
     },
     {
@@ -4507,8 +4390,7 @@
       },
       "tokens": [],
       "usedBy": [
-        "nature",
-        "sequence"
+        "nature"
       ]
     },
     {
@@ -4526,7 +4408,8 @@
       },
       "tokens": [],
       "usedBy": [
-        "friends-hedgehog"
+        "friends-hedgehog",
+        "sequence"
       ]
     },
     {
@@ -4544,7 +4427,8 @@
       },
       "tokens": [],
       "usedBy": [
-        "friends-owl"
+        "friends-owl",
+        "sequence"
       ]
     },
     {
@@ -4563,8 +4447,8 @@
       "tokens": [],
       "usedBy": [
         "friends-owl",
-        "friends-hedgehog",
-        "friends-frog"
+        "friends-mouse",
+        "friends-hedgehog"
       ]
     },
     {
@@ -4587,9 +4471,7 @@
       ],
       "usedBy": [
         "friends-bird",
-        "friends-mouse",
-        "trace",
-        "trace-numbers"
+        "friends-mouse"
       ]
     },
     {
@@ -4627,8 +4509,7 @@
         "🍓"
       ],
       "usedBy": [
-        "friends-badger",
-        "trace-numbers"
+        "friends-badger"
       ]
     },
     {
@@ -4649,14 +4530,13 @@
       ],
       "usedBy": [
         "friends-bird",
+        "friends-mouse",
         "friends-deer",
         "friends-badger",
         "syllable",
         "sequence",
         "vowels",
-        "read-puzzle",
-        "read-word",
-        "trace"
+        "read-puzzle"
       ]
     },
     {
@@ -4718,9 +4598,7 @@
       "tokens": [
         "🚕"
       ],
-      "usedBy": [
-        "trace"
-      ]
+      "usedBy": []
     },
     {
       "id": "teddy",
@@ -4738,9 +4616,7 @@
       "tokens": [
         "🧸"
       ],
-      "usedBy": [
-        "trace"
-      ]
+      "usedBy": []
     },
     {
       "id": "tiger",
@@ -4759,9 +4635,8 @@
         "🐯"
       ],
       "usedBy": [
-        "friends-frog",
-        "nature",
-        "trace"
+        "friends-mouse",
+        "nature"
       ]
     },
     {
@@ -4802,10 +4677,10 @@
         "🍅"
       ],
       "usedBy": [
+        "friends-mouse",
         "syllable",
         "vowels",
-        "read-puzzle",
-        "read-word"
+        "read-puzzle"
       ]
     },
     {
@@ -4825,7 +4700,7 @@
         "🐢"
       ],
       "usedBy": [
-        "friends-frog",
+        "friends-mouse",
         "nature"
       ]
     },
@@ -4886,8 +4761,7 @@
         "friends-mouse",
         "friends-deer",
         "friends-badger",
-        "syllable",
-        "read-word"
+        "syllable"
       ]
     },
     {
@@ -4927,9 +4801,7 @@
       "tokens": [
         "🛸"
       ],
-      "usedBy": [
-        "trace"
-      ]
+      "usedBy": []
     },
     {
       "id": "unicorn",
@@ -5402,8 +5274,7 @@
         "🐳"
       ],
       "usedBy": [
-        "friends-bird",
-        "trace"
+        "friends-bird"
       ]
     },
     {
@@ -5441,9 +5312,8 @@
         "🦓"
       ],
       "usedBy": [
-        "friends-frog",
-        "nature",
-        "trace"
+        "friends-mouse",
+        "nature"
       ]
     }
   ]

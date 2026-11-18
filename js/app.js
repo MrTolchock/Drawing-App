@@ -51,6 +51,7 @@
     document.getElementById('screens').textContent = 'Der Wald konnte nicht geöffnet werden. Bitte lade die Seite neu.';
   });
 
+  if(entry==='audio-credits')started.then(()=>FK.go('audio-credits'));
   if(entry==='puzzle-review'||entry==='hub')started.then(()=>FK.puzzleReview.open());
 
   if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {

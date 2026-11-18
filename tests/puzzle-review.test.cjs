@@ -29,7 +29,7 @@ test('every active puzzle has at least 25 unique finite definitions, competence 
    if(q.kind==='survey'&&q.task==='most'){const max=Math.max(...q.counts);assert.equal(q.counts.filter(n=>n===max).length,1);assert.equal(q.answer,q.fruit[q.counts.indexOf(max)]);}
   }
  }
- assert.equal(total,962);
+ assert.equal(total,776);
 });
 test('rhyme pairs are distinct even when their word order is ignored',()=>{
  const pool=setup().FK.puzzleCatalogue.iterations('friends-bird'),pairs=pool.map(it=>[it.question.text,it.question.answer].map(w=>w.toLocaleLowerCase('de-CH')).sort().join('/'));
@@ -55,7 +55,7 @@ test('owl reading uses one sentence and two pictures; beaver needs the upper row
  assert.equal(new Set(beaver.map(it=>C.canonical(it.question))).size,25);
  for(const it of beaver){
   const q=it.question;
-  assert.deepEqual([...q.choices].sort(),['circle','square','triangle']);
+  assert.deepEqual([...q.choices].sort(),['forest-feather','forest-leaf','forest-nut']);
   const expected=[...q.matrix.slice(0,3)].sort(),counts=q.choices.map(s=>expected.filter(v=>v===s).length).sort();
   assert.deepEqual([...counts],[0,1,2],it.id+' has two of one shape and one of another, not a fixed set of all three');
   for(let row=1;row<3;row++)assert.deepEqual([...q.matrix.slice(row*3,row*3+3)].sort(),expected,it.id+' row '+row+' preserves the first row quantities');
@@ -75,15 +75,16 @@ test('hedgehog riddles and every distractor use Swiss forest wildlife',()=>{
 });
 test('latest review fixes apply throughout the relevant pools and retire the requested puzzles',()=>{
  const {FK}=setup(),C=FK.puzzleCatalogue;
- for(const id of ['double','shapes','survey','friends-fish']){assert.equal(C.puzzle(id),null);assert.equal(C.iterations(id).length,0);assert.equal(FK.puzzleRounds.instructions[id],undefined);}
+ for(const id of ['double','shapes','survey','friends-fish','trace','trace-numbers','friends-frog','friends-kingfisher','read-colours','read-leaves','read-word']){assert.equal(C.puzzle(id),null);assert.equal(C.iterations(id).length,0);assert.equal(FK.puzzleRounds.instructions[id],undefined);}
  const animalPictures=new Set(['frog','hedgehog','bee','snail','dog','cat','spider','caterpillar','bear','sheep','pig','forest-fox','duck-swim','ant','ladybird','tortoise','squirrel-sit','zebra','lion','penguin','camel','tiger','elephant','giraffe','badger']);
- for(const it of C.iterations('friends-frog'))assert.ok(it.question.choices.every(id=>animalPictures.has(id)),it.id+' has only animals');
+ const mouse=C.iterations('friends-mouse');assert.equal(new Set(mouse.map(it=>it.question.text)).size,mouse.length);assert.ok(mouse.some(it=>it.id.includes('friends-frog-animal-'))&&mouse.some(it=>it.id.includes('read-word-word-')));
+ for(const it of mouse.filter(it=>it.id.includes('friends-frog-animal-')))assert.ok(it.question.choices.every(id=>animalPictures.has(id)),it.id+' has only animals');
  const nature=C.iterations('nature');
  for(const it of nature)assert.match(it.question.text,/^[^.!?]+\.$/,it.id+' has one sentence');
  assert.equal(C.iterations('friends-badger')[16].question.text,'Was braucht eine Pflanze zum Wachsen?');
  assert.equal(C.iterations('friends-badger')[24].question.text,'Was ernten wir vom Birnbaum?');
  assert.equal(C.iterations('friends-badger')[22].question.answer,'watering-can');
- for(const it of C.iterations('syllable')){assert.equal(it.question.prompt,'Wie viele Silben hat das Wort?');assert.equal(it.question.answer,it.question.parts.length);}
+ for(const it of C.iterations('syllable')){assert.equal(it.question.prompt,'Wie viele Silben hat das Wort?');assert.equal(it.question.answer,it.question.parts.length);assert.equal(it.question.choices.length,3);}
  assert.ok(C.iterations('syllable').some(it=>it.question.answer===4));assert.ok(C.iterations('syllable').some(it=>it.question.answer===5));
  for(const {question} of C.iterations('treasure'))assert.ok(question.choices.every(choice=>choice===question.answer||!question.objects.includes(choice)));
 });
@@ -189,7 +190,7 @@ test('rejection, a failed save, an unvisited queue or changed revision never gra
 });
 test('generated GitHub pages and revision reflect the exact runtime',()=>assert.deepEqual(check(),[]));
 test('verified unchanged historical reviews remain valid without rewriting decisions or inspection evidence',()=>{
- const id='friends-beaver',{environment}=require('../tools/puzzle-environment.cjs'),{snapshotReader}=require('../tools/puzzle-review-build.cjs'),old=environment({read:snapshotReader('073657f32f87daa47739910df090e4250289cc55').read});old.execute('js/friends/puzzle-implementation.js');approve(old.FK,id);
+ const id='add',{environment}=require('../tools/puzzle-environment.cjs'),{snapshotReader}=require('../tools/puzzle-review-build.cjs'),old=environment({read:snapshotReader('073657f32f87daa47739910df090e4250289cc55').read});old.execute('js/friends/puzzle-implementation.js');approve(old.FK,id);
  const memory=old.memory,before=JSON.stringify([...memory]),{FK}=compatibleSetup(memory),C=FK.puzzleCatalogue,items=C.iterations(id);
  assert.equal(FK.puzzleReview.status(id,items[0].id).status,'approved');assert.equal(FK.puzzleReview.status(id,items[0].id).seen,true);assert.ok(FK.puzzleReview.ready(id));
  assert.equal(JSON.stringify([...memory]),before,'read-only recovery preserves timestamps, notes and history');
@@ -198,8 +199,15 @@ test('verified unchanged historical reviews remain valid without rewriting decis
  const key=memory.keys().next().value,raw=JSON.parse(memory.get(key));raw.decisions[items[1].id].revision='0000000000000000';memory.set(key,JSON.stringify(raw));
  const restored=compatibleSetup(memory).FK.puzzleReview;assert.equal(restored.status(id,items[0].id).status,'approved');assert.equal(restored.status(id,items[1].id).status,'pending');assert.equal(restored.ready(id),false);
 });
+test('the expanded mouse reading pool keeps approval for all 25 original word cards',()=>{
+ const {environment}=require('../tools/puzzle-environment.cjs'),{snapshotReader}=require('../tools/puzzle-review-build.cjs');
+ const old=environment({read:snapshotReader('12511e417e384f8e912be4a62496fce2c234c1e8').read});old.execute('js/friends/puzzle-implementation.js');
+ const id='friends-mouse',former=old.FK.puzzleCatalogue,current=compatibleSetup().FK.puzzleCatalogue,items=former.iterations(id);
+ assert.equal(items.length,25);assert.ok(current.iterations(id).length>items.length);
+ for(const item of items)assert.ok(current.acceptsRevision(id,item.id,former.iterationRevision(id,item)),item.id);
+});
 test('verified unchanged partial rounds resume verbatim; changed questions remain archived',()=>{
- const {FK,memory}=compatibleSetup(),id='friends-beaver',s=FK.puzzleRounds.start(id);s.round=2;s.work={};s.catalogueRevision=FK.puzzleCatalogue.formerPuzzleRevisions(id)[0];FK.puzzleRounds.save(s);
+ const {FK,memory}=compatibleSetup(),id='add',s=FK.puzzleRounds.start(id);s.round=2;s.work={};s.catalogueRevision=FK.puzzleCatalogue.formerPuzzleRevisions(id)[0];FK.puzzleRounds.save(s);
  assert.deepEqual(plain(compatibleSetup(memory).FK.puzzleRounds.start(id)),plain(s));
  s.questions[0].count=99;FK.puzzleRounds.save(s);const restored=compatibleSetup(memory),next=restored.FK.puzzleRounds.start(id);assert.equal(next.round,0);assert.equal(JSON.parse(restored.memory.get('farbtupf.puzzles.v1')).legacy[id].questions[0].count,99,'the earlier snapshot is archived');
 });

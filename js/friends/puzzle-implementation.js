@@ -4,12 +4,10 @@ window.FK.puzzleImplementations = {
   "friends-squirrel": "138dfad7b4a5e40ce65ca56f351817476d99ca40485f2d724b25a5fab7cac0cd",
   "friends-bird": "eedb4e2f905f3e0525f9900fb3c31e658ee395b6c8e29e8d1c494adc38635ca3",
   "friends-owl": "8635f80936e405dc93c5574ba7cb25b2b9cdfa08396dc439c6a3558ff3d0e9c2",
-  "friends-beaver": "700522284c189b31fa14b30a16b1695796e9f7cb0bedded9993394eaec75602c",
-  "friends-mouse": "209bdc7b2479bbc6b3e6738a8ebe5df50dcef3c98e7f8fc4ecb7bdcc52696c61",
+  "friends-beaver": "33854e6251a31c9e7355f4e05276c985ba6edc31790ecc39c7972f8ccd6bc62d",
+  "friends-mouse": "ba1360a884a667959082bf1ff9ba3f5f654b414426e9b9880a3eba03a29ec1e2",
   "friends-hedgehog": "5a7aa5f92bca28f694cc7d0553707ef5ff37b4a20e62e11f3450f76dcf347ac8",
   "friends-deer": "58936b3e430ee50685a799b7b5a9de351eada110365d0a96b0edd15fc3535e8e",
-  "friends-kingfisher": "a218b3b818a03ee255c438d2625e3de7db5e3a7746cf66922b5ae4ec7566190d",
-  "friends-frog": "58b48cece3e55bc399f13288ecf40d29d69d7c6751978948371880486a77af5b",
   "friends-badger": "a3c33779cac34062a05bea835a381a554ae5876eeac97e2d61c96ca6c75b0014",
   "friends-ibex": "f0b6f800c9fb13ad063662878329355d68ce43a085752daa94d58de368c06dad",
   "count": "5955c98d2fb19acac61466948cfaf8adc8bdb965f10b8e6cece8eb9006d09fdc",
@@ -19,19 +17,14 @@ window.FK.puzzleImplementations = {
   "rocket": "7e92a6772349abfa2c436f8ed5fd90ee3f43d6355a7a38c45bbce03e12a2da9a",
   "picnic": "6b5b9b5a7b99532433cd9781d37cd2cf0b601d0257bab1e641f2e7efff4806a2",
   "syllable": "8a34cf75e670974031de76553ad8d0e68d65bbea977bec472071fde774e74915",
-  "robot": "6701e66360a279329b2afeed6febcea6cb86b3d8a36655715ee2a59d763283e1",
-  "sequence": "425ee311dfb5ffb9cff4438e777d903232f27f9ff2150adcc418e982568e0fee",
+  "robot": "44f07d3b252ad287f09f2f06515e3f0365647bae866f489026571c955016b62c",
+  "sequence": "cbb8691823d3243411b30cf39735272da2e85e413811dbc086c26172453680e4",
   "treasure": "1f3befcb3aa9b1cb3e8fe3a06404bef3d2843a4be4511e9af184643e8556da71",
-  "neighbours": "02b1f853a91b6cbfd87d580f787ac2d14c9d25e38600b00203397f312e918aa0",
+  "neighbours": "eec3a1323789c73ca89d4c9981229ec42a59985e4e82ce6751182edbff9f0855",
   "compare": "b89170f02a514644a31a75b9703c0f1fc26452d635bdbcc80936904abb1fc6ac",
   "mirror": "5819892b8bf12f9b465a65e1145bc1b10407267321f79df7496948e54b98e006",
   "vowels": "18833395ef8c0a54c4a00ee3b177bc1f2d7b43745139d19ae352fe1ca8ed8370",
-  "read-puzzle": "a04cd938edf9112f8a953020e4dd4ec42042a7ecf0f9d0105c5c017084f4cecd",
-  "read-word": "a42ff05d2cfa8df87349b3822d013fdde4fa5244e2de277646d98a811fd64065",
-  "read-leaves": "2cc707caa738cce6aaba39cf2c815e24b847ce04be0a088bc9480140230a000f",
-  "read-colours": "77e5e587e12f3829cd067a446327fba74cdc92b61b90c29091aa39bc9a43d4f9",
-  "trace": "49c5b3722467287f31df84a24ca7786fc152d2bfd3e3f0ee4d0c8ed02467332b",
-  "trace-numbers": "9872f813982fc87cc394e40e74c3d72d69b29985cd608fafaf416350485e4824"
+  "read-puzzle": "a04cd938edf9112f8a953020e4dd4ec42042a7ecf0f9d0105c5c017084f4cecd"
 };
 window.FK.puzzleIterationImplementations = {
   "friends-squirrel/count-0": "138dfad7b4a5e40ce65ca56f351817476d99ca40485f2d724b25a5fab7cac0cd",
@@ -109,31 +102,31 @@ window.FK.puzzleIterationImplementations = {
   "friends-owl/pair-7": "33f0b182b25473d893a54447dd7823aa3dcd6f224c7e9de5d4c0bbcaba0e20b5",
   "friends-owl/pair-8": "b1fe967a78173befa4aac78110d90226c918c43569b17fe19bed9e24a685a479",
   "friends-owl/pair-9": "b1fe967a78173befa4aac78110d90226c918c43569b17fe19bed9e24a685a479",
-  "friends-beaver/matrix-0": "700522284c189b31fa14b30a16b1695796e9f7cb0bedded9993394eaec75602c",
-  "friends-beaver/matrix-1": "700522284c189b31fa14b30a16b1695796e9f7cb0bedded9993394eaec75602c",
-  "friends-beaver/matrix-2": "700522284c189b31fa14b30a16b1695796e9f7cb0bedded9993394eaec75602c",
-  "friends-beaver/matrix-3": "700522284c189b31fa14b30a16b1695796e9f7cb0bedded9993394eaec75602c",
-  "friends-beaver/matrix-4": "700522284c189b31fa14b30a16b1695796e9f7cb0bedded9993394eaec75602c",
-  "friends-beaver/matrix-5": "700522284c189b31fa14b30a16b1695796e9f7cb0bedded9993394eaec75602c",
-  "friends-beaver/matrix-6": "700522284c189b31fa14b30a16b1695796e9f7cb0bedded9993394eaec75602c",
-  "friends-beaver/matrix-7": "700522284c189b31fa14b30a16b1695796e9f7cb0bedded9993394eaec75602c",
-  "friends-beaver/matrix-8": "700522284c189b31fa14b30a16b1695796e9f7cb0bedded9993394eaec75602c",
-  "friends-beaver/matrix-9": "700522284c189b31fa14b30a16b1695796e9f7cb0bedded9993394eaec75602c",
-  "friends-beaver/matrix-10": "700522284c189b31fa14b30a16b1695796e9f7cb0bedded9993394eaec75602c",
-  "friends-beaver/matrix-11": "700522284c189b31fa14b30a16b1695796e9f7cb0bedded9993394eaec75602c",
-  "friends-beaver/matrix-12": "700522284c189b31fa14b30a16b1695796e9f7cb0bedded9993394eaec75602c",
-  "friends-beaver/matrix-13": "700522284c189b31fa14b30a16b1695796e9f7cb0bedded9993394eaec75602c",
-  "friends-beaver/matrix-14": "700522284c189b31fa14b30a16b1695796e9f7cb0bedded9993394eaec75602c",
-  "friends-beaver/matrix-15": "700522284c189b31fa14b30a16b1695796e9f7cb0bedded9993394eaec75602c",
-  "friends-beaver/matrix-16": "700522284c189b31fa14b30a16b1695796e9f7cb0bedded9993394eaec75602c",
-  "friends-beaver/matrix-17": "700522284c189b31fa14b30a16b1695796e9f7cb0bedded9993394eaec75602c",
-  "friends-beaver/matrix-18": "700522284c189b31fa14b30a16b1695796e9f7cb0bedded9993394eaec75602c",
-  "friends-beaver/matrix-19": "700522284c189b31fa14b30a16b1695796e9f7cb0bedded9993394eaec75602c",
-  "friends-beaver/matrix-20": "700522284c189b31fa14b30a16b1695796e9f7cb0bedded9993394eaec75602c",
-  "friends-beaver/matrix-21": "700522284c189b31fa14b30a16b1695796e9f7cb0bedded9993394eaec75602c",
-  "friends-beaver/matrix-22": "700522284c189b31fa14b30a16b1695796e9f7cb0bedded9993394eaec75602c",
-  "friends-beaver/matrix-23": "700522284c189b31fa14b30a16b1695796e9f7cb0bedded9993394eaec75602c",
-  "friends-beaver/matrix-24": "700522284c189b31fa14b30a16b1695796e9f7cb0bedded9993394eaec75602c",
+  "friends-beaver/matrix-0": "33854e6251a31c9e7355f4e05276c985ba6edc31790ecc39c7972f8ccd6bc62d",
+  "friends-beaver/matrix-1": "33854e6251a31c9e7355f4e05276c985ba6edc31790ecc39c7972f8ccd6bc62d",
+  "friends-beaver/matrix-2": "33854e6251a31c9e7355f4e05276c985ba6edc31790ecc39c7972f8ccd6bc62d",
+  "friends-beaver/matrix-3": "33854e6251a31c9e7355f4e05276c985ba6edc31790ecc39c7972f8ccd6bc62d",
+  "friends-beaver/matrix-4": "33854e6251a31c9e7355f4e05276c985ba6edc31790ecc39c7972f8ccd6bc62d",
+  "friends-beaver/matrix-5": "33854e6251a31c9e7355f4e05276c985ba6edc31790ecc39c7972f8ccd6bc62d",
+  "friends-beaver/matrix-6": "33854e6251a31c9e7355f4e05276c985ba6edc31790ecc39c7972f8ccd6bc62d",
+  "friends-beaver/matrix-7": "33854e6251a31c9e7355f4e05276c985ba6edc31790ecc39c7972f8ccd6bc62d",
+  "friends-beaver/matrix-8": "33854e6251a31c9e7355f4e05276c985ba6edc31790ecc39c7972f8ccd6bc62d",
+  "friends-beaver/matrix-9": "33854e6251a31c9e7355f4e05276c985ba6edc31790ecc39c7972f8ccd6bc62d",
+  "friends-beaver/matrix-10": "33854e6251a31c9e7355f4e05276c985ba6edc31790ecc39c7972f8ccd6bc62d",
+  "friends-beaver/matrix-11": "33854e6251a31c9e7355f4e05276c985ba6edc31790ecc39c7972f8ccd6bc62d",
+  "friends-beaver/matrix-12": "33854e6251a31c9e7355f4e05276c985ba6edc31790ecc39c7972f8ccd6bc62d",
+  "friends-beaver/matrix-13": "33854e6251a31c9e7355f4e05276c985ba6edc31790ecc39c7972f8ccd6bc62d",
+  "friends-beaver/matrix-14": "33854e6251a31c9e7355f4e05276c985ba6edc31790ecc39c7972f8ccd6bc62d",
+  "friends-beaver/matrix-15": "33854e6251a31c9e7355f4e05276c985ba6edc31790ecc39c7972f8ccd6bc62d",
+  "friends-beaver/matrix-16": "33854e6251a31c9e7355f4e05276c985ba6edc31790ecc39c7972f8ccd6bc62d",
+  "friends-beaver/matrix-17": "33854e6251a31c9e7355f4e05276c985ba6edc31790ecc39c7972f8ccd6bc62d",
+  "friends-beaver/matrix-18": "33854e6251a31c9e7355f4e05276c985ba6edc31790ecc39c7972f8ccd6bc62d",
+  "friends-beaver/matrix-19": "33854e6251a31c9e7355f4e05276c985ba6edc31790ecc39c7972f8ccd6bc62d",
+  "friends-beaver/matrix-20": "33854e6251a31c9e7355f4e05276c985ba6edc31790ecc39c7972f8ccd6bc62d",
+  "friends-beaver/matrix-21": "33854e6251a31c9e7355f4e05276c985ba6edc31790ecc39c7972f8ccd6bc62d",
+  "friends-beaver/matrix-22": "33854e6251a31c9e7355f4e05276c985ba6edc31790ecc39c7972f8ccd6bc62d",
+  "friends-beaver/matrix-23": "33854e6251a31c9e7355f4e05276c985ba6edc31790ecc39c7972f8ccd6bc62d",
+  "friends-beaver/matrix-24": "33854e6251a31c9e7355f4e05276c985ba6edc31790ecc39c7972f8ccd6bc62d",
   "friends-mouse/word-0": "df0e3beeedb58ab09ea0cf46934393ee82311299c1d6bb8466320ebf823bfc11",
   "friends-mouse/word-1": "7df51a464a0a1ff914b63a97b8d60e0a49455dd73c5392f48bfba83ed45eaf95",
   "friends-mouse/word-2": "13d655abdb6fca4a1d65f733bfeafdaadfa318f8c046566bef48e884d57c46a0",
@@ -159,6 +152,55 @@ window.FK.puzzleIterationImplementations = {
   "friends-mouse/word-22": "62e6e3a370d5490038e769f31e6e0d6f327aa678c220aa13a8bc509605dea33d",
   "friends-mouse/word-23": "52dd5b2516c178c4e8b83f198deaa813ac6e903930290b90e27c11c906174714",
   "friends-mouse/word-24": "7133b7140c27f2d24941f224ce4925203ffebe977284325af7bd5306419b4396",
+  "friends-mouse/friends-frog-animal-0": "d29111768c09ebba41b7e110084b0549192ad8400ffe5f8297f9634978ade853",
+  "friends-mouse/friends-frog-animal-1": "3567dff9af31c3d67eadead188173bc66ef189fab8a2e55ee191ca10ffac2d2d",
+  "friends-mouse/friends-frog-animal-2": "147512862bbe7ef7c70dc15718ff15bfc998d9964d9ec51b9ddaac54c10bc1b5",
+  "friends-mouse/friends-frog-animal-3": "c95e194aa87f542e6ad18f03dc5bd8d137a857acb875667574d4fee709664a7e",
+  "friends-mouse/friends-frog-animal-4": "4c5f069a27820d8a361b10cfbc0b3d706573edb1190e9a14f14d113c7aca520a",
+  "friends-mouse/friends-frog-animal-5": "330a3a82daf8c973ab70bf50787dff15bca544eb0c33545bf7b654b8a9d5f148",
+  "friends-mouse/friends-frog-animal-6": "8086f4da491dc9250d35eac579abf48931c150bed326a6417c2717b54204d932",
+  "friends-mouse/friends-frog-animal-7": "2e1ec3c2acd44c48cdc69e31fa32c363d7817f5024fd049c7220dc88c17e814f",
+  "friends-mouse/friends-frog-animal-8": "aaa6a941ff92fdeffd29ef26ddf129fd32b86d25a1bb894227636a13b2dc670d",
+  "friends-mouse/friends-frog-animal-9": "52f22854d716ece71bd5647ac66fff3f7a000aa6ee40b6d143cf354c98ea49b0",
+  "friends-mouse/friends-frog-animal-10": "071078ef57ed260738b45768468661aebf9169ca80b136216eb615803b7376ab",
+  "friends-mouse/friends-frog-animal-11": "05c09638d3070640021189bf03583fcb909e504d8ac6db30c056683925ed9492",
+  "friends-mouse/friends-frog-animal-12": "bf1017d6cd553777f344a48cf8f741efd694238438e3a3edd1ec3dc2568bd9de",
+  "friends-mouse/friends-frog-animal-13": "44eca27007d0c4d33a2ef223383f34c0683943da2ef80ce67ba77f4b444dd731",
+  "friends-mouse/friends-frog-animal-14": "9d22420a1e75452e3b2b25f6dd7fee241851218af5630874522850afa04c8d41",
+  "friends-mouse/friends-frog-animal-15": "ba6c96f99f0847efad170dcfcf0e31acf7b3850a55d81b93570c4d8d2aa4a9dd",
+  "friends-mouse/friends-frog-animal-16": "ec7c32ba2340a643f67a9eacdcad2004738c14d2c4403ade9b339ea3bbce9fd2",
+  "friends-mouse/friends-frog-animal-17": "5b0f33ccefcce0be5d3e920058cb11011047e094606236ea380948c6e4ce099d",
+  "friends-mouse/friends-frog-animal-18": "ef15557077aa68eb76eced533da2560495a43dfc376bb9d01da7da23e117bdc1",
+  "friends-mouse/friends-frog-animal-19": "dceee339f5a7b0f87d1eaad8b83a9125b7f798bf303422cfd4b3ba399be0aa3f",
+  "friends-mouse/friends-frog-animal-20": "e6651d663381670906ca2136660fe7f3c4a553aa3b1b8539eda2704347287ff7",
+  "friends-mouse/friends-frog-animal-21": "6f659247ef539cb0d16bbe28f9bb910f5f1dce10aa0629ec82f4f4a938b59217",
+  "friends-mouse/friends-frog-animal-22": "47577aa14704a76f3c646158da576f7adbb5683d5f3dcd92f328ea63c5902511",
+  "friends-mouse/friends-frog-animal-23": "ebe141f08915d32fb8e4f67486cddfe8db6dc50c86ba9bde36f09fe3d3b7d0af",
+  "friends-mouse/friends-frog-animal-24": "a97765c256b529e58be6b457004c76afda0f1f8ae3a816f8549c2110036e51e5",
+  "friends-mouse/read-word-word-1": "85acb5d652bdb4f5613a7b61e4a02fe57335179b8f9d954d4d8541139e6693eb",
+  "friends-mouse/read-word-word-3": "d4975f2ead3530cefdb1bcbd3ded2715d501653354b1c49a847c3de781d73c01",
+  "friends-mouse/read-word-word-5": "4489888eaad7d3f7d11244b0d1a593678a7097eb47263129201be0704edb954c",
+  "friends-mouse/read-word-word-6": "0fb28bca0aae20842aea3a3fa837e99fa32c2c158aab4c8ae4da229806b84219",
+  "friends-mouse/read-word-word-7": "66258cf21f47a4862ac15b4977374b10e0ac8588454a08530abc2c8cf42a99f7",
+  "friends-mouse/read-word-word-8": "176ec6b887e25268954ec347c6b518cc03b6d2310d8347a49b7756ddbcfcd5b2",
+  "friends-mouse/read-word-word-10": "b8ed99bcfcaac4a6c7e6a37b5c8700f353dea5525eda210240d92ebb96664467",
+  "friends-mouse/read-word-word-14": "682d1798f2c1fb30ce86559a7bf91fa7c01e74177c34e80d2de021924f3ba399",
+  "friends-mouse/read-word-word-17": "738b4c03e63cfcf2d35fc57632092c6cd70e42b2c68a428a510f9b6003d1715e",
+  "friends-mouse/read-word-word-18": "fae9536bf4af3851c5a6d38bff87ea12f74ea01ef72abbab7d5c1ec6aac6467f",
+  "friends-mouse/read-word-word-19": "9788b9d4132afea859b40c9a6b4bafb01166d0a35a5ac0e74a7c7faee31aa2c0",
+  "friends-mouse/read-word-word-20": "dcc96a5c856c0bcccc267859ba62312281ad789d0ebf616180cd8ff45773dc9c",
+  "friends-mouse/read-word-word-22": "5ac9e646063ce3f564d0af6e5b4f3a48e922ec3496f6854ba5ab3d9ef1d7923e",
+  "friends-mouse/read-word-word-23": "6fa05a06293dfe352234b7ed4aa96024eaeaf4347f3cf9f50afea6c9844f909a",
+  "friends-mouse/read-word-word-24": "a79abbaa08ffa5864352e3f7adec3b4c9a3e7b582b4cc7a0b2299f536baac3a1",
+  "friends-mouse/read-word-word-25": "ab42ebbdc06d969a6b3b2835f3a692eb23d1a49e92f58e5b7ff08f5328cc11d9",
+  "friends-mouse/read-word-word-26": "2ad01b090aca3d6db85f30a4bce0925e3d1e62fc0600aefbf19f81ce5df864d4",
+  "friends-mouse/read-word-word-27": "38dd42dd18302543038c22899cff378f6b7052d2023acbb14bca67ace224e8f6",
+  "friends-mouse/read-word-word-28": "1f9c150abf8fecad27c9ea4a9cf02503a569991d6c24456a3571b2d67279becf",
+  "friends-mouse/read-word-word-29": "ae2b97ea3fc3735fa6bc6ca6b69da6eeeb5c90bbe3c176cd6b7b3fcd322b24d6",
+  "friends-mouse/read-word-word-30": "ff7bd7720db6841c67fb5fada73c555fea83f1c45590f4ec16ef4bac21895af7",
+  "friends-mouse/read-word-word-31": "4847c317503a112f738a3ec42c33067153d365398198fedfe742a7c921471d1d",
+  "friends-mouse/read-word-word-32": "012d965ca4936701a7dc986dc250f61cc9ca1597c5f14f96bbccc07fe7b2ec11",
+  "friends-mouse/read-word-word-33": "d8e067c41178f6b97c328abcdb512c5dc638bdc0f13ac0ac9131c146c09de177",
   "friends-hedgehog/riddle-0": "baa3a22408d1f7529d37884dbab123693db4729287e9d5ae856f8a47b712e4f3",
   "friends-hedgehog/riddle-1": "7fa0c1dbbe6503f5041de8bd666c23ecbd22f2fb869daffa5d3cd67eb904266e",
   "friends-hedgehog/riddle-2": "88ee1cd7cb3175bde9a3a4db68b0a382f38edb48ac55b9e49c5cf3422af43424",
@@ -209,61 +251,6 @@ window.FK.puzzleIterationImplementations = {
   "friends-deer/riddle-22": "ee96f272e2a79c47b7fdc853f2d8f7b6658e0d3a5aad34267604103246123109",
   "friends-deer/riddle-23": "3c69c1206392859790c5985d31e2c7a420378b6b4bc9d5f00f12079bfaccbf7a",
   "friends-deer/riddle-24": "f0ef2a379a5b17726334f4c830c8f0ceb56e8f912c7a1f96419e4ca00200975f",
-  "friends-kingfisher/forest-feather-2": "3c224f60fb62b70f9b64f624f73266d0cefb39e295f3edf2ae5ce2e95838ab9f",
-  "friends-kingfisher/forest-feather-5": "3c224f60fb62b70f9b64f624f73266d0cefb39e295f3edf2ae5ce2e95838ab9f",
-  "friends-kingfisher/forest-feather-9": "3c224f60fb62b70f9b64f624f73266d0cefb39e295f3edf2ae5ce2e95838ab9f",
-  "friends-kingfisher/forest-feather-14": "3c224f60fb62b70f9b64f624f73266d0cefb39e295f3edf2ae5ce2e95838ab9f",
-  "friends-kingfisher/forest-feather-20": "3c224f60fb62b70f9b64f624f73266d0cefb39e295f3edf2ae5ce2e95838ab9f",
-  "friends-kingfisher/forest-leaf-2": "5b032a3c675e00746b25a394511821ca1e4566cec7f4e9d7ebbc80017a411390",
-  "friends-kingfisher/forest-leaf-5": "5b032a3c675e00746b25a394511821ca1e4566cec7f4e9d7ebbc80017a411390",
-  "friends-kingfisher/forest-leaf-9": "5b032a3c675e00746b25a394511821ca1e4566cec7f4e9d7ebbc80017a411390",
-  "friends-kingfisher/forest-leaf-14": "5b032a3c675e00746b25a394511821ca1e4566cec7f4e9d7ebbc80017a411390",
-  "friends-kingfisher/forest-leaf-20": "5b032a3c675e00746b25a394511821ca1e4566cec7f4e9d7ebbc80017a411390",
-  "friends-kingfisher/forest-stone-2": "df1bb97a477f26de6273e43c000d615e7c8a8dd86d5abe19ac1d6040a0c1fe47",
-  "friends-kingfisher/forest-stone-5": "df1bb97a477f26de6273e43c000d615e7c8a8dd86d5abe19ac1d6040a0c1fe47",
-  "friends-kingfisher/forest-stone-9": "df1bb97a477f26de6273e43c000d615e7c8a8dd86d5abe19ac1d6040a0c1fe47",
-  "friends-kingfisher/forest-stone-14": "df1bb97a477f26de6273e43c000d615e7c8a8dd86d5abe19ac1d6040a0c1fe47",
-  "friends-kingfisher/forest-stone-20": "df1bb97a477f26de6273e43c000d615e7c8a8dd86d5abe19ac1d6040a0c1fe47",
-  "friends-kingfisher/forest-flower-2": "5b032a3c675e00746b25a394511821ca1e4566cec7f4e9d7ebbc80017a411390",
-  "friends-kingfisher/forest-flower-5": "5b032a3c675e00746b25a394511821ca1e4566cec7f4e9d7ebbc80017a411390",
-  "friends-kingfisher/forest-flower-9": "5b032a3c675e00746b25a394511821ca1e4566cec7f4e9d7ebbc80017a411390",
-  "friends-kingfisher/forest-flower-14": "5b032a3c675e00746b25a394511821ca1e4566cec7f4e9d7ebbc80017a411390",
-  "friends-kingfisher/forest-flower-20": "5b032a3c675e00746b25a394511821ca1e4566cec7f4e9d7ebbc80017a411390",
-  "friends-kingfisher/forest-berry-2": "f8b683450af5d5ca306a8f548801f20b66ad27a9bb79187bd5c137403bec7f9c",
-  "friends-kingfisher/forest-berry-5": "f8b683450af5d5ca306a8f548801f20b66ad27a9bb79187bd5c137403bec7f9c",
-  "friends-kingfisher/forest-berry-9": "f8b683450af5d5ca306a8f548801f20b66ad27a9bb79187bd5c137403bec7f9c",
-  "friends-kingfisher/forest-berry-14": "f8b683450af5d5ca306a8f548801f20b66ad27a9bb79187bd5c137403bec7f9c",
-  "friends-kingfisher/forest-berry-20": "f8b683450af5d5ca306a8f548801f20b66ad27a9bb79187bd5c137403bec7f9c",
-  "friends-kingfisher/forest-mushroom-2": "3c8ccc3cca339bceea5ac5c1342449909f0662f42e0b770085d132ccc06af480",
-  "friends-kingfisher/forest-mushroom-5": "3c8ccc3cca339bceea5ac5c1342449909f0662f42e0b770085d132ccc06af480",
-  "friends-kingfisher/forest-mushroom-9": "3c8ccc3cca339bceea5ac5c1342449909f0662f42e0b770085d132ccc06af480",
-  "friends-kingfisher/forest-mushroom-14": "3c8ccc3cca339bceea5ac5c1342449909f0662f42e0b770085d132ccc06af480",
-  "friends-kingfisher/forest-mushroom-20": "3c8ccc3cca339bceea5ac5c1342449909f0662f42e0b770085d132ccc06af480",
-  "friends-frog/animal-0": "8ce7c943bd052559c9dec807f4dceab8666b8b608e9dc4cb80e834466a78aee3",
-  "friends-frog/animal-1": "608b39e12e7c18436865f6a387d4c080229634c9626afca92bf6a5e4adc3f444",
-  "friends-frog/animal-2": "eda0941f6f6d1afad9dcec7ff23ffae48cfe4802cdfac1d4afb0704215e1cd9b",
-  "friends-frog/animal-3": "26766736d410555bc963f20245bf7c0bd9c8dba68983fdb2713869339aa04117",
-  "friends-frog/animal-4": "8b612243fdb1c7e9057bb64a7e5fb7d7e2d85334e2a195ede9a53314d4564f56",
-  "friends-frog/animal-5": "8a46987051967a33316ea5a713ffcd9509862572ce667c731ab3179f87b9e551",
-  "friends-frog/animal-6": "abecd1ff59c05a92ba7c3a8ce55769ea6f4fd9b08329e8412e6d75775464953b",
-  "friends-frog/animal-7": "ce6049a9f5ee27a37ff8baccc05301b1abb010c8f7f90c323b6ce73d270947f9",
-  "friends-frog/animal-8": "d53ff0ccd129ffc1a98a960a5d7fcac98868ede2680aa6b551b9fe6a14b3d301",
-  "friends-frog/animal-9": "41d34e820d256763f7d1319a7934ffa7c6e173326ff0b0c04970535b4c87b9f8",
-  "friends-frog/animal-10": "9fc286b367c01ccf3cdca87175bcc676f09c1203f5350a40170b95aa528b263d",
-  "friends-frog/animal-11": "83d2d0542108bfe29a199ef5151662b5473c45e6ccaa13cb143b7b3ee8092ab6",
-  "friends-frog/animal-12": "797a7893a376ea9a4a1ba2463862cae6987c52199c70642db2433ab86a413335",
-  "friends-frog/animal-13": "e694cd3db5be08344da094b54a3dc783e03061da0a9e853a937e1f09bf3d9d33",
-  "friends-frog/animal-14": "b12585b2046d957274d040eb0b670d68b6eec74ef0f2178ca4a9d18ff9491f10",
-  "friends-frog/animal-15": "55d14029157ec595a9aedafba96533bc0683b022c844212159ff2b28ec9d98be",
-  "friends-frog/animal-16": "abf2332a2d396ac1a10b7e011831356bd9f6eebc6eb5e3a770118f00ab202d77",
-  "friends-frog/animal-17": "ec523c8bd3d219af278da2db715394d82cacc40d302e8303db6858c05c96a7ca",
-  "friends-frog/animal-18": "7bf790ec67b4102a982d93053deb9d5be51c04cb8ee192cec92c10f331bacc76",
-  "friends-frog/animal-19": "a1b4df76e27d1611da77d58ea42108b7487340d0fb62ad164ad95788fbd20604",
-  "friends-frog/animal-20": "1133ce5213425ab80c1667a102fd1f7fc5241732288a0991d7b5e6dd953b00d5",
-  "friends-frog/animal-21": "5e309ce2421baad00ad632fe1c690ee1d0ccb81ad8f91df2434ecb4b8a0cb805",
-  "friends-frog/animal-22": "b25a050dc2df45ddcd2508753d5889eb11b3452833be519ef0199d824d5559de",
-  "friends-frog/animal-23": "071d6291603c8085c81fbbfb07aae65bb03a3ab349349c6fae6d7d0c15420759",
-  "friends-frog/animal-24": "7afcc3c4a77d8910d56a4370ee1dbcd986b3068296df68f9e619f57f4888ccfd",
   "friends-badger/riddle-0": "b5b7ed9a60153e3ba18c84707b79a088039473ad6e1009b630dd13bb5abdf809",
   "friends-badger/riddle-1": "c6f30f27bc017473bc0a18a90d51530646cf7f487ded565e4603a1833d469ac2",
   "friends-badger/riddle-2": "75884a77ec0429d5a6e2b937718c43b054c0ebbc961649d3284a40c04b846d42",
@@ -543,61 +530,61 @@ window.FK.puzzleIterationImplementations = {
   "syllable/word-36": "959a72deea8c413c9531536561e8bba3e6e45d5b5bf91b67061c8b530fd1ef41",
   "syllable/word-37": "853bbc0f1a0453d93343b3d5d5cc52a64a7a589f7d5ce190245613a29c386927",
   "syllable/word-38": "d9f2955bf1492c692e0e0115bd7e1328b5edea8f0c71dcbe72ea4eea722854c7",
-  "robot/0-0": "6701e66360a279329b2afeed6febcea6cb86b3d8a36655715ee2a59d763283e1",
-  "robot/0-1": "6701e66360a279329b2afeed6febcea6cb86b3d8a36655715ee2a59d763283e1",
-  "robot/0-2": "6701e66360a279329b2afeed6febcea6cb86b3d8a36655715ee2a59d763283e1",
-  "robot/0-3": "6701e66360a279329b2afeed6febcea6cb86b3d8a36655715ee2a59d763283e1",
-  "robot/0-4": "6701e66360a279329b2afeed6febcea6cb86b3d8a36655715ee2a59d763283e1",
-  "robot/0-5": "6701e66360a279329b2afeed6febcea6cb86b3d8a36655715ee2a59d763283e1",
-  "robot/1-0": "6701e66360a279329b2afeed6febcea6cb86b3d8a36655715ee2a59d763283e1",
-  "robot/1-1": "6701e66360a279329b2afeed6febcea6cb86b3d8a36655715ee2a59d763283e1",
-  "robot/1-2": "6701e66360a279329b2afeed6febcea6cb86b3d8a36655715ee2a59d763283e1",
-  "robot/1-3": "6701e66360a279329b2afeed6febcea6cb86b3d8a36655715ee2a59d763283e1",
-  "robot/1-4": "6701e66360a279329b2afeed6febcea6cb86b3d8a36655715ee2a59d763283e1",
-  "robot/1-5": "6701e66360a279329b2afeed6febcea6cb86b3d8a36655715ee2a59d763283e1",
-  "robot/2-0": "6701e66360a279329b2afeed6febcea6cb86b3d8a36655715ee2a59d763283e1",
-  "robot/2-1": "6701e66360a279329b2afeed6febcea6cb86b3d8a36655715ee2a59d763283e1",
-  "robot/2-2": "6701e66360a279329b2afeed6febcea6cb86b3d8a36655715ee2a59d763283e1",
-  "robot/2-3": "6701e66360a279329b2afeed6febcea6cb86b3d8a36655715ee2a59d763283e1",
-  "robot/2-4": "6701e66360a279329b2afeed6febcea6cb86b3d8a36655715ee2a59d763283e1",
-  "robot/2-5": "6701e66360a279329b2afeed6febcea6cb86b3d8a36655715ee2a59d763283e1",
-  "robot/3-0": "6701e66360a279329b2afeed6febcea6cb86b3d8a36655715ee2a59d763283e1",
-  "robot/3-1": "6701e66360a279329b2afeed6febcea6cb86b3d8a36655715ee2a59d763283e1",
-  "robot/3-2": "6701e66360a279329b2afeed6febcea6cb86b3d8a36655715ee2a59d763283e1",
-  "robot/3-3": "6701e66360a279329b2afeed6febcea6cb86b3d8a36655715ee2a59d763283e1",
-  "robot/3-4": "6701e66360a279329b2afeed6febcea6cb86b3d8a36655715ee2a59d763283e1",
-  "robot/3-5": "6701e66360a279329b2afeed6febcea6cb86b3d8a36655715ee2a59d763283e1",
-  "robot/4-0": "6701e66360a279329b2afeed6febcea6cb86b3d8a36655715ee2a59d763283e1",
-  "robot/4-1": "6701e66360a279329b2afeed6febcea6cb86b3d8a36655715ee2a59d763283e1",
-  "robot/4-2": "6701e66360a279329b2afeed6febcea6cb86b3d8a36655715ee2a59d763283e1",
-  "robot/4-3": "6701e66360a279329b2afeed6febcea6cb86b3d8a36655715ee2a59d763283e1",
-  "robot/4-4": "6701e66360a279329b2afeed6febcea6cb86b3d8a36655715ee2a59d763283e1",
-  "robot/4-5": "6701e66360a279329b2afeed6febcea6cb86b3d8a36655715ee2a59d763283e1",
-  "sequence/story-0": "5ce11cc774744b480344259c2c2a8a9a807c63554ac090392954361ab63b2f4b",
-  "sequence/story-1": "099a004bf4035ae082181eecb58b3060c21a2178c3681ce9d3e0e901e904c988",
-  "sequence/story-2": "3e4b702a87d8865e7e910d292130a3f6e0e0740e761cbea06070b35aa17dc3a1",
-  "sequence/story-3": "e4141dad78daf182bdbbce9c459c05c00b6b7ff1fbd46418e2b5bf72a077f03a",
-  "sequence/story-4": "44f54a6dc34c6c8853b1f6e33647679710981a2bd156e9320ccbba6c96d289ba",
-  "sequence/story-5": "d4694959d64cac849544492d845bfc4fb0df29192763b517a9eb0e5da68fc651",
-  "sequence/story-6": "3e9bff8e0d47903d7498d4f17be0fbc17d83cbbee15926354980e94f1cb1b9e2",
-  "sequence/story-7": "05139f4ec4e14094a5892b972e83db8bf76a1ff4baf62d622cc362d8ce8ebbe8",
-  "sequence/story-8": "cd6a7b0d7eba0df7b35dc560dc3ef7c2b7c4cb9399cb9d785234f97e2642fecf",
-  "sequence/story-9": "8e597173cffb99cd63bbc939916fdae66fd86c0fece668cd749d8dc90ae7e130",
-  "sequence/story-10": "4ea5351c094e3f8846ae37a75a84def2251b0ffb1d41ecd56e7e723d8df00ce9",
-  "sequence/story-11": "99b55e6cf917eae2264e50d313987d0feab3e014a089df2da457b6facfecacc4",
-  "sequence/story-12": "9d1ab94679404fe471b2065ada8899fa2998125f9d8ab1822bb227ab3e735654",
-  "sequence/story-13": "a4c9cb369dbdd59b7e0267965fd019346ef9865f129bb0abef6bb2b06f05ce6d",
-  "sequence/story-14": "33a33af78e9c9910526b3e30afdad7b7240c4e802f953dec518c960c04798501",
-  "sequence/story-15": "56491ccece87a63f6c40313c0854b4b5eb6ccf50831672162533b5288d298ff6",
-  "sequence/story-16": "c541c0572cc9bdd2318bda5f6333098f8624abb2fec6d76f0732c07ecf8452f4",
-  "sequence/story-17": "0c27bedb7cbb32fbcfa7dcacf64fdea9a211b68799f5053497105b5da2abfe48",
-  "sequence/story-18": "748af304140968d1b8fc3b46fc307128f2270ecc4ae50203589a1243621d00b6",
-  "sequence/story-19": "c4a87287e141f31329121209d8ec16a7186c0da59870192848476ce4dbf9a66a",
-  "sequence/story-20": "dfe44c1a5bdfc82b7809c0868b01eb0be37f45244e23607f287edfc99c0d3df6",
-  "sequence/story-21": "761f17511f601d58677a84c98f6dd886334831cae741588485b5aa294c9ec45d",
-  "sequence/story-22": "99d7886c9206317c16725d57b293a3169e085d2474ab8903c18402e73d1edd83",
-  "sequence/story-23": "e1d45dc4ab47326f57691dc4c6c3318a09d1736433d8363853250bd6111b5cea",
-  "sequence/story-24": "fdd62b7c9298764d3db0f09f403c05fc4c4ad95f6c3c4036b854ac1a163df025",
+  "robot/0-0": "44f07d3b252ad287f09f2f06515e3f0365647bae866f489026571c955016b62c",
+  "robot/0-1": "44f07d3b252ad287f09f2f06515e3f0365647bae866f489026571c955016b62c",
+  "robot/0-2": "44f07d3b252ad287f09f2f06515e3f0365647bae866f489026571c955016b62c",
+  "robot/0-3": "44f07d3b252ad287f09f2f06515e3f0365647bae866f489026571c955016b62c",
+  "robot/0-4": "44f07d3b252ad287f09f2f06515e3f0365647bae866f489026571c955016b62c",
+  "robot/0-5": "44f07d3b252ad287f09f2f06515e3f0365647bae866f489026571c955016b62c",
+  "robot/1-0": "44f07d3b252ad287f09f2f06515e3f0365647bae866f489026571c955016b62c",
+  "robot/1-1": "44f07d3b252ad287f09f2f06515e3f0365647bae866f489026571c955016b62c",
+  "robot/1-2": "44f07d3b252ad287f09f2f06515e3f0365647bae866f489026571c955016b62c",
+  "robot/1-3": "44f07d3b252ad287f09f2f06515e3f0365647bae866f489026571c955016b62c",
+  "robot/1-4": "44f07d3b252ad287f09f2f06515e3f0365647bae866f489026571c955016b62c",
+  "robot/1-5": "44f07d3b252ad287f09f2f06515e3f0365647bae866f489026571c955016b62c",
+  "robot/2-0": "44f07d3b252ad287f09f2f06515e3f0365647bae866f489026571c955016b62c",
+  "robot/2-1": "44f07d3b252ad287f09f2f06515e3f0365647bae866f489026571c955016b62c",
+  "robot/2-2": "44f07d3b252ad287f09f2f06515e3f0365647bae866f489026571c955016b62c",
+  "robot/2-3": "44f07d3b252ad287f09f2f06515e3f0365647bae866f489026571c955016b62c",
+  "robot/2-4": "44f07d3b252ad287f09f2f06515e3f0365647bae866f489026571c955016b62c",
+  "robot/2-5": "44f07d3b252ad287f09f2f06515e3f0365647bae866f489026571c955016b62c",
+  "robot/3-0": "44f07d3b252ad287f09f2f06515e3f0365647bae866f489026571c955016b62c",
+  "robot/3-1": "44f07d3b252ad287f09f2f06515e3f0365647bae866f489026571c955016b62c",
+  "robot/3-2": "44f07d3b252ad287f09f2f06515e3f0365647bae866f489026571c955016b62c",
+  "robot/3-3": "44f07d3b252ad287f09f2f06515e3f0365647bae866f489026571c955016b62c",
+  "robot/3-4": "44f07d3b252ad287f09f2f06515e3f0365647bae866f489026571c955016b62c",
+  "robot/3-5": "44f07d3b252ad287f09f2f06515e3f0365647bae866f489026571c955016b62c",
+  "robot/4-0": "44f07d3b252ad287f09f2f06515e3f0365647bae866f489026571c955016b62c",
+  "robot/4-1": "44f07d3b252ad287f09f2f06515e3f0365647bae866f489026571c955016b62c",
+  "robot/4-2": "44f07d3b252ad287f09f2f06515e3f0365647bae866f489026571c955016b62c",
+  "robot/4-3": "44f07d3b252ad287f09f2f06515e3f0365647bae866f489026571c955016b62c",
+  "robot/4-4": "44f07d3b252ad287f09f2f06515e3f0365647bae866f489026571c955016b62c",
+  "robot/4-5": "44f07d3b252ad287f09f2f06515e3f0365647bae866f489026571c955016b62c",
+  "sequence/story-0": "318adb9d987d5ec1b4e5e71094cc20ea66b26415872a10b3a7aec2c9e811f32f",
+  "sequence/story-1": "339d2ce1b7d3c12502ec3964194c23af728a391c82948da28f1cb589b4b3c87b",
+  "sequence/story-2": "834688bd0d06047fbb829aebff34552a46e9c5f22562abe7f070ee8679239fff",
+  "sequence/story-3": "3102fb13675595b505a81b75d42f725401083a4e4d894029aa9e484dd19b841f",
+  "sequence/story-4": "45b5d9e39e56ae47f15216dbc9ec66a239a587bd78c87bf77bbe503623b6d5d5",
+  "sequence/story-5": "fc5e1affdde1da6934ac048727f775bd2ab2a2a025c65f8c4ed3531b74efa421",
+  "sequence/story-6": "4dfea2de6fb604c608049d06810d3dac4fa4565aacb48396d3e19f5a65f60eda",
+  "sequence/story-7": "610c333d012ddd30ac0b27f5643bbf31937880a37ad4fcfcb9a05f889c6ba2ac",
+  "sequence/story-8": "04764ecf81bab44e7d2dc2e819e1f7fdb5bb2782567f3e490058c79c7c2d11cb",
+  "sequence/story-9": "ebb600ed2509bd7481b1c54bae6bba93a8a2f6c443baf821fc0fc3249dd3c739",
+  "sequence/story-10": "6664e8212a9b111d63926f7e30622dd2bc9b27b045714665593b4356e8e29352",
+  "sequence/story-11": "b56c7e7094b32520a1fd0355ed2205f8c099b99ef02a2cc47cafb25de7c7d0ff",
+  "sequence/story-12": "c146e89c79a65f3f207ce7432b928203ef4560948dff6d2f351367dc6c7388cf",
+  "sequence/story-13": "fe2b3120907bc7ea3c35facdb93dcf4c67dc380b3a1e413e53ca9edec8558fa4",
+  "sequence/story-14": "89f0a29ae5de6d41ccbe6546ca1745a24649d8bf72832a26b39beca8d9de5d6e",
+  "sequence/story-15": "6208adb946fbb859b096d99f1515072063ccfcaed12b89d2dfea4127bf5c619e",
+  "sequence/story-16": "ef188845793178e3dcc11c60d63c91d893c84ee6fc6573e1519916e0cfa291be",
+  "sequence/story-17": "8309c7521019c4f1aa71dccbb0a90c1ae2f1302c6186824dc8cf1f8b6aca71f0",
+  "sequence/story-18": "41461fbdbb53ccc0e0d6df8d9014d538c164f86bf33b5ea8e65c76e24a9d7dae",
+  "sequence/story-19": "ef099f9f91c4574148931668579a0580bc28a03cebfb2431eb6ff9289000a7aa",
+  "sequence/story-20": "8450ac59689c344dd0cf1b21369c201942ba997729571c4e8ec459f0f71ca2b7",
+  "sequence/story-21": "f0b9ecd380810fe90729c8da326f39d83cefcd651f3f1811e4be6679c9a10073",
+  "sequence/story-22": "ced0e68313cfa69ca5f601a9d714aafcf7263303a94552f2f2e6c2c746bd02b6",
+  "sequence/story-23": "c0acd9cebe027a9fe135a69522b2970057130c017e1931be2b29d917ac44b79f",
+  "sequence/story-24": "88caa1079ff750d8167276f4d6c4956c6427a995463cbaa7e2ef51f20ef88ee0",
   "treasure/0-0": "295c6ce0596bebeb2b44ae1de20a18815676673c743c7bda528ee44ce3b99c22",
   "treasure/0-1": "e39af6937b0edc324bc04d6e2b3f4a0afcb4d5fffdd247f0ab9ec69a494df2d2",
   "treasure/0-2": "9b3f7ae3e5b14b28dd65cc1ef6377051bc49183c053c7ce6880a171c6a04a108",
@@ -630,42 +617,42 @@ window.FK.puzzleIterationImplementations = {
   "treasure/7-1": "2decffd313810434cc26407e26fe5268a61841198643ad899545218168a7f6df",
   "treasure/7-2": "01576cac28ef254d7d1c75dce5a2e0fe7b136fa523e09443b4684dff044f48b3",
   "treasure/7-3": "9b3f7ae3e5b14b28dd65cc1ef6377051bc49183c053c7ce6880a171c6a04a108",
-  "neighbours/1-both": "02b1f853a91b6cbfd87d580f787ac2d14c9d25e38600b00203397f312e918aa0",
-  "neighbours/1-left": "02b1f853a91b6cbfd87d580f787ac2d14c9d25e38600b00203397f312e918aa0",
-  "neighbours/2-both": "02b1f853a91b6cbfd87d580f787ac2d14c9d25e38600b00203397f312e918aa0",
-  "neighbours/2-left": "02b1f853a91b6cbfd87d580f787ac2d14c9d25e38600b00203397f312e918aa0",
-  "neighbours/3-both": "02b1f853a91b6cbfd87d580f787ac2d14c9d25e38600b00203397f312e918aa0",
-  "neighbours/3-left": "02b1f853a91b6cbfd87d580f787ac2d14c9d25e38600b00203397f312e918aa0",
-  "neighbours/4-both": "02b1f853a91b6cbfd87d580f787ac2d14c9d25e38600b00203397f312e918aa0",
-  "neighbours/4-left": "02b1f853a91b6cbfd87d580f787ac2d14c9d25e38600b00203397f312e918aa0",
-  "neighbours/5-both": "02b1f853a91b6cbfd87d580f787ac2d14c9d25e38600b00203397f312e918aa0",
-  "neighbours/5-left": "02b1f853a91b6cbfd87d580f787ac2d14c9d25e38600b00203397f312e918aa0",
-  "neighbours/6-both": "02b1f853a91b6cbfd87d580f787ac2d14c9d25e38600b00203397f312e918aa0",
-  "neighbours/6-left": "02b1f853a91b6cbfd87d580f787ac2d14c9d25e38600b00203397f312e918aa0",
-  "neighbours/7-both": "02b1f853a91b6cbfd87d580f787ac2d14c9d25e38600b00203397f312e918aa0",
-  "neighbours/7-left": "02b1f853a91b6cbfd87d580f787ac2d14c9d25e38600b00203397f312e918aa0",
-  "neighbours/8-both": "02b1f853a91b6cbfd87d580f787ac2d14c9d25e38600b00203397f312e918aa0",
-  "neighbours/8-left": "02b1f853a91b6cbfd87d580f787ac2d14c9d25e38600b00203397f312e918aa0",
-  "neighbours/9-both": "02b1f853a91b6cbfd87d580f787ac2d14c9d25e38600b00203397f312e918aa0",
-  "neighbours/9-left": "02b1f853a91b6cbfd87d580f787ac2d14c9d25e38600b00203397f312e918aa0",
-  "neighbours/10-both": "02b1f853a91b6cbfd87d580f787ac2d14c9d25e38600b00203397f312e918aa0",
-  "neighbours/10-left": "02b1f853a91b6cbfd87d580f787ac2d14c9d25e38600b00203397f312e918aa0",
-  "neighbours/11-both": "02b1f853a91b6cbfd87d580f787ac2d14c9d25e38600b00203397f312e918aa0",
-  "neighbours/11-left": "02b1f853a91b6cbfd87d580f787ac2d14c9d25e38600b00203397f312e918aa0",
-  "neighbours/12-both": "02b1f853a91b6cbfd87d580f787ac2d14c9d25e38600b00203397f312e918aa0",
-  "neighbours/12-left": "02b1f853a91b6cbfd87d580f787ac2d14c9d25e38600b00203397f312e918aa0",
-  "neighbours/13-both": "02b1f853a91b6cbfd87d580f787ac2d14c9d25e38600b00203397f312e918aa0",
-  "neighbours/13-left": "02b1f853a91b6cbfd87d580f787ac2d14c9d25e38600b00203397f312e918aa0",
-  "neighbours/14-both": "02b1f853a91b6cbfd87d580f787ac2d14c9d25e38600b00203397f312e918aa0",
-  "neighbours/14-left": "02b1f853a91b6cbfd87d580f787ac2d14c9d25e38600b00203397f312e918aa0",
-  "neighbours/15-both": "02b1f853a91b6cbfd87d580f787ac2d14c9d25e38600b00203397f312e918aa0",
-  "neighbours/15-left": "02b1f853a91b6cbfd87d580f787ac2d14c9d25e38600b00203397f312e918aa0",
-  "neighbours/16-both": "02b1f853a91b6cbfd87d580f787ac2d14c9d25e38600b00203397f312e918aa0",
-  "neighbours/16-left": "02b1f853a91b6cbfd87d580f787ac2d14c9d25e38600b00203397f312e918aa0",
-  "neighbours/17-both": "02b1f853a91b6cbfd87d580f787ac2d14c9d25e38600b00203397f312e918aa0",
-  "neighbours/17-left": "02b1f853a91b6cbfd87d580f787ac2d14c9d25e38600b00203397f312e918aa0",
-  "neighbours/18-both": "02b1f853a91b6cbfd87d580f787ac2d14c9d25e38600b00203397f312e918aa0",
-  "neighbours/18-left": "02b1f853a91b6cbfd87d580f787ac2d14c9d25e38600b00203397f312e918aa0",
+  "neighbours/1-both": "eec3a1323789c73ca89d4c9981229ec42a59985e4e82ce6751182edbff9f0855",
+  "neighbours/1-left": "eec3a1323789c73ca89d4c9981229ec42a59985e4e82ce6751182edbff9f0855",
+  "neighbours/2-both": "eec3a1323789c73ca89d4c9981229ec42a59985e4e82ce6751182edbff9f0855",
+  "neighbours/2-left": "eec3a1323789c73ca89d4c9981229ec42a59985e4e82ce6751182edbff9f0855",
+  "neighbours/3-both": "eec3a1323789c73ca89d4c9981229ec42a59985e4e82ce6751182edbff9f0855",
+  "neighbours/3-left": "eec3a1323789c73ca89d4c9981229ec42a59985e4e82ce6751182edbff9f0855",
+  "neighbours/4-both": "eec3a1323789c73ca89d4c9981229ec42a59985e4e82ce6751182edbff9f0855",
+  "neighbours/4-left": "eec3a1323789c73ca89d4c9981229ec42a59985e4e82ce6751182edbff9f0855",
+  "neighbours/5-both": "eec3a1323789c73ca89d4c9981229ec42a59985e4e82ce6751182edbff9f0855",
+  "neighbours/5-left": "eec3a1323789c73ca89d4c9981229ec42a59985e4e82ce6751182edbff9f0855",
+  "neighbours/6-both": "eec3a1323789c73ca89d4c9981229ec42a59985e4e82ce6751182edbff9f0855",
+  "neighbours/6-left": "eec3a1323789c73ca89d4c9981229ec42a59985e4e82ce6751182edbff9f0855",
+  "neighbours/7-both": "eec3a1323789c73ca89d4c9981229ec42a59985e4e82ce6751182edbff9f0855",
+  "neighbours/7-left": "eec3a1323789c73ca89d4c9981229ec42a59985e4e82ce6751182edbff9f0855",
+  "neighbours/8-both": "eec3a1323789c73ca89d4c9981229ec42a59985e4e82ce6751182edbff9f0855",
+  "neighbours/8-left": "eec3a1323789c73ca89d4c9981229ec42a59985e4e82ce6751182edbff9f0855",
+  "neighbours/9-both": "eec3a1323789c73ca89d4c9981229ec42a59985e4e82ce6751182edbff9f0855",
+  "neighbours/9-left": "eec3a1323789c73ca89d4c9981229ec42a59985e4e82ce6751182edbff9f0855",
+  "neighbours/10-both": "eec3a1323789c73ca89d4c9981229ec42a59985e4e82ce6751182edbff9f0855",
+  "neighbours/10-left": "eec3a1323789c73ca89d4c9981229ec42a59985e4e82ce6751182edbff9f0855",
+  "neighbours/11-both": "eec3a1323789c73ca89d4c9981229ec42a59985e4e82ce6751182edbff9f0855",
+  "neighbours/11-left": "eec3a1323789c73ca89d4c9981229ec42a59985e4e82ce6751182edbff9f0855",
+  "neighbours/12-both": "eec3a1323789c73ca89d4c9981229ec42a59985e4e82ce6751182edbff9f0855",
+  "neighbours/12-left": "eec3a1323789c73ca89d4c9981229ec42a59985e4e82ce6751182edbff9f0855",
+  "neighbours/13-both": "eec3a1323789c73ca89d4c9981229ec42a59985e4e82ce6751182edbff9f0855",
+  "neighbours/13-left": "eec3a1323789c73ca89d4c9981229ec42a59985e4e82ce6751182edbff9f0855",
+  "neighbours/14-both": "eec3a1323789c73ca89d4c9981229ec42a59985e4e82ce6751182edbff9f0855",
+  "neighbours/14-left": "eec3a1323789c73ca89d4c9981229ec42a59985e4e82ce6751182edbff9f0855",
+  "neighbours/15-both": "eec3a1323789c73ca89d4c9981229ec42a59985e4e82ce6751182edbff9f0855",
+  "neighbours/15-left": "eec3a1323789c73ca89d4c9981229ec42a59985e4e82ce6751182edbff9f0855",
+  "neighbours/16-both": "eec3a1323789c73ca89d4c9981229ec42a59985e4e82ce6751182edbff9f0855",
+  "neighbours/16-left": "eec3a1323789c73ca89d4c9981229ec42a59985e4e82ce6751182edbff9f0855",
+  "neighbours/17-both": "eec3a1323789c73ca89d4c9981229ec42a59985e4e82ce6751182edbff9f0855",
+  "neighbours/17-left": "eec3a1323789c73ca89d4c9981229ec42a59985e4e82ce6751182edbff9f0855",
+  "neighbours/18-both": "eec3a1323789c73ca89d4c9981229ec42a59985e4e82ce6751182edbff9f0855",
+  "neighbours/18-left": "eec3a1323789c73ca89d4c9981229ec42a59985e4e82ce6751182edbff9f0855",
   "compare/1-1": "b89170f02a514644a31a75b9703c0f1fc26452d635bdbcc80936904abb1fc6ac",
   "compare/1-3": "b89170f02a514644a31a75b9703c0f1fc26452d635bdbcc80936904abb1fc6ac",
   "compare/2-2": "b89170f02a514644a31a75b9703c0f1fc26452d635bdbcc80936904abb1fc6ac",
@@ -815,187 +802,7 @@ window.FK.puzzleIterationImplementations = {
   "read-puzzle/word-31": "bd0981d31ffea2a5400abeca8a83601a80f9b63dd4c96742326cb158fd56c0f0",
   "read-puzzle/word-32": "5b01129ba6314f10a96ac5ff1b9de1eb8af7243eab8976b0e1af736251f30da8",
   "read-puzzle/word-33": "5f63983ee44c474cf9523d0624d26da1a1048cc36396298b44b91f8620be6d64",
-  "read-puzzle/word-34": "3869d053c1d33f60afaf7704bf4192760db462f8c30216479f76a41feb0e65e6",
-  "read-word/word-0": "2955361532bf7cb7f32ebe399c65d61b89da4e95e645b96afa8d85e8a6ee2234",
-  "read-word/word-1": "85acb5d652bdb4f5613a7b61e4a02fe57335179b8f9d954d4d8541139e6693eb",
-  "read-word/word-2": "9d2a8b1502288ecbcf4d997d75cdca4fdd05d2dd248ffc030363b1be6734906e",
-  "read-word/word-3": "d4975f2ead3530cefdb1bcbd3ded2715d501653354b1c49a847c3de781d73c01",
-  "read-word/word-4": "c31327769a45d8c9e479c8b03a6e7911c9505e958808065a29055f674882cdcd",
-  "read-word/word-5": "4489888eaad7d3f7d11244b0d1a593678a7097eb47263129201be0704edb954c",
-  "read-word/word-6": "0fb28bca0aae20842aea3a3fa837e99fa32c2c158aab4c8ae4da229806b84219",
-  "read-word/word-7": "66258cf21f47a4862ac15b4977374b10e0ac8588454a08530abc2c8cf42a99f7",
-  "read-word/word-8": "176ec6b887e25268954ec347c6b518cc03b6d2310d8347a49b7756ddbcfcd5b2",
-  "read-word/word-9": "7e4a2542345c944721d5ed634552b2b93b70494d1bdd4214e3026b96b9781a6b",
-  "read-word/word-10": "b8ed99bcfcaac4a6c7e6a37b5c8700f353dea5525eda210240d92ebb96664467",
-  "read-word/word-11": "168868b3c19c5d1fc71a917a5368e612da5e2e682d96b9d6505c4b249714da50",
-  "read-word/word-12": "410e1bc0d34c051e9027d99b6c97066597eea28339883403ffbc77e80ae09476",
-  "read-word/word-13": "4dc185216e7d2591ae4525239dfed486036ef9aab854267e57f25565d2ce0a0a",
-  "read-word/word-14": "682d1798f2c1fb30ce86559a7bf91fa7c01e74177c34e80d2de021924f3ba399",
-  "read-word/word-15": "b42d06c249a866dc64ac293dfd8cf4c0b2e317057c1abae50fe0b47f4156d1b3",
-  "read-word/word-16": "12e5d8609b5acbd191af139332b74167ee0fe430fdeeca7dc2b75385fbd8d95b",
-  "read-word/word-17": "738b4c03e63cfcf2d35fc57632092c6cd70e42b2c68a428a510f9b6003d1715e",
-  "read-word/word-18": "fae9536bf4af3851c5a6d38bff87ea12f74ea01ef72abbab7d5c1ec6aac6467f",
-  "read-word/word-19": "9788b9d4132afea859b40c9a6b4bafb01166d0a35a5ac0e74a7c7faee31aa2c0",
-  "read-word/word-20": "dcc96a5c856c0bcccc267859ba62312281ad789d0ebf616180cd8ff45773dc9c",
-  "read-word/word-21": "279432935593ef4559db8b4e12965b55c2a30b18e62fb536df6881101dcfe410",
-  "read-word/word-22": "5ac9e646063ce3f564d0af6e5b4f3a48e922ec3496f6854ba5ab3d9ef1d7923e",
-  "read-word/word-23": "6fa05a06293dfe352234b7ed4aa96024eaeaf4347f3cf9f50afea6c9844f909a",
-  "read-word/word-24": "a79abbaa08ffa5864352e3f7adec3b4c9a3e7b582b4cc7a0b2299f536baac3a1",
-  "read-word/word-25": "ab42ebbdc06d969a6b3b2835f3a692eb23d1a49e92f58e5b7ff08f5328cc11d9",
-  "read-word/word-26": "2ad01b090aca3d6db85f30a4bce0925e3d1e62fc0600aefbf19f81ce5df864d4",
-  "read-word/word-27": "38dd42dd18302543038c22899cff378f6b7052d2023acbb14bca67ace224e8f6",
-  "read-word/word-28": "1f9c150abf8fecad27c9ea4a9cf02503a569991d6c24456a3571b2d67279becf",
-  "read-word/word-29": "ae2b97ea3fc3735fa6bc6ca6b69da6eeeb5c90bbe3c176cd6b7b3fcd322b24d6",
-  "read-word/word-30": "ff7bd7720db6841c67fb5fada73c555fea83f1c45590f4ec16ef4bac21895af7",
-  "read-word/word-31": "4847c317503a112f738a3ec42c33067153d365398198fedfe742a7c921471d1d",
-  "read-word/word-32": "012d965ca4936701a7dc986dc250f61cc9ca1597c5f14f96bbccc07fe7b2ec11",
-  "read-word/word-33": "d8e067c41178f6b97c328abcdb512c5dc638bdc0f13ac0ac9131c146c09de177",
-  "read-word/word-34": "cd53151ecd126ba21b0f82ddb50eaa58b0d9f6b44862cfd1cf03260e23a0436a",
-  "read-leaves/ma": "2cc707caa738cce6aaba39cf2c815e24b847ce04be0a088bc9480140230a000f",
-  "read-leaves/mi": "2cc707caa738cce6aaba39cf2c815e24b847ce04be0a088bc9480140230a000f",
-  "read-leaves/mo": "2cc707caa738cce6aaba39cf2c815e24b847ce04be0a088bc9480140230a000f",
-  "read-leaves/mu": "2cc707caa738cce6aaba39cf2c815e24b847ce04be0a088bc9480140230a000f",
-  "read-leaves/la": "2cc707caa738cce6aaba39cf2c815e24b847ce04be0a088bc9480140230a000f",
-  "read-leaves/li": "2cc707caa738cce6aaba39cf2c815e24b847ce04be0a088bc9480140230a000f",
-  "read-leaves/lo": "2cc707caa738cce6aaba39cf2c815e24b847ce04be0a088bc9480140230a000f",
-  "read-leaves/lu": "2cc707caa738cce6aaba39cf2c815e24b847ce04be0a088bc9480140230a000f",
-  "read-leaves/sa": "2cc707caa738cce6aaba39cf2c815e24b847ce04be0a088bc9480140230a000f",
-  "read-leaves/si": "2cc707caa738cce6aaba39cf2c815e24b847ce04be0a088bc9480140230a000f",
-  "read-leaves/so": "2cc707caa738cce6aaba39cf2c815e24b847ce04be0a088bc9480140230a000f",
-  "read-leaves/su": "2cc707caa738cce6aaba39cf2c815e24b847ce04be0a088bc9480140230a000f",
-  "read-leaves/na": "2cc707caa738cce6aaba39cf2c815e24b847ce04be0a088bc9480140230a000f",
-  "read-leaves/ni": "2cc707caa738cce6aaba39cf2c815e24b847ce04be0a088bc9480140230a000f",
-  "read-leaves/no": "2cc707caa738cce6aaba39cf2c815e24b847ce04be0a088bc9480140230a000f",
-  "read-leaves/nu": "2cc707caa738cce6aaba39cf2c815e24b847ce04be0a088bc9480140230a000f",
-  "read-leaves/ra": "2cc707caa738cce6aaba39cf2c815e24b847ce04be0a088bc9480140230a000f",
-  "read-leaves/ri": "2cc707caa738cce6aaba39cf2c815e24b847ce04be0a088bc9480140230a000f",
-  "read-leaves/ro": "2cc707caa738cce6aaba39cf2c815e24b847ce04be0a088bc9480140230a000f",
-  "read-leaves/ru": "2cc707caa738cce6aaba39cf2c815e24b847ce04be0a088bc9480140230a000f",
-  "read-leaves/fa": "2cc707caa738cce6aaba39cf2c815e24b847ce04be0a088bc9480140230a000f",
-  "read-leaves/fi": "2cc707caa738cce6aaba39cf2c815e24b847ce04be0a088bc9480140230a000f",
-  "read-leaves/fo": "2cc707caa738cce6aaba39cf2c815e24b847ce04be0a088bc9480140230a000f",
-  "read-leaves/fu": "2cc707caa738cce6aaba39cf2c815e24b847ce04be0a088bc9480140230a000f",
-  "read-leaves/ta": "2cc707caa738cce6aaba39cf2c815e24b847ce04be0a088bc9480140230a000f",
-  "read-leaves/ti": "2cc707caa738cce6aaba39cf2c815e24b847ce04be0a088bc9480140230a000f",
-  "read-leaves/to": "2cc707caa738cce6aaba39cf2c815e24b847ce04be0a088bc9480140230a000f",
-  "read-leaves/tu": "2cc707caa738cce6aaba39cf2c815e24b847ce04be0a088bc9480140230a000f",
-  "read-leaves/pa": "2cc707caa738cce6aaba39cf2c815e24b847ce04be0a088bc9480140230a000f",
-  "read-leaves/pi": "2cc707caa738cce6aaba39cf2c815e24b847ce04be0a088bc9480140230a000f",
-  "read-leaves/po": "2cc707caa738cce6aaba39cf2c815e24b847ce04be0a088bc9480140230a000f",
-  "read-leaves/pu": "2cc707caa738cce6aaba39cf2c815e24b847ce04be0a088bc9480140230a000f",
-  "read-colours/rot": "00b70eb046c316a5cc1198f3399b1a60fd1917f2bac4edb5acd16d46eac6333e",
-  "read-colours/rot-gelb": "52167c1b8656aba16e05ed6af58b818806f57dd2d938af102b9d51097f659d55",
-  "read-colours/rot-blau": "e6dbac11892454c032480f481ebe1b5787cd71f6745159189901f6b965a85692",
-  "read-colours/rot-rosa": "ce1597b1eb46b92f5a1d9f1d08fe2bdf165c4e9b3d2f01482fe8c7d073b9f57e",
-  "read-colours/rot-weiss": "566459a9a13a0f3c8a6edee213c816d9ef6387aa29a99d01ee114250e10d7b70",
-  "read-colours/gelb": "afbd0b5f4729b2a8b71618b5e610f4c51d3adbc832cc5c001580e0ffc6cb8afc",
-  "read-colours/gelb-rot": "52167c1b8656aba16e05ed6af58b818806f57dd2d938af102b9d51097f659d55",
-  "read-colours/gelb-blau": "1a6f74fcc66b9b0412b99fad7e6df1a24766c22ad3cb9e251723f962c0976b9a",
-  "read-colours/gelb-rosa": "e56aea30d23eab08ca1fdb311d9fccf7b0caa11be0f36c97338e27743a02d6f7",
-  "read-colours/gelb-weiss": "be4fd1313b0dc26d59c26fc26b8c7c8eb701453f99e77e31e193f0d9c9d0723c",
-  "read-colours/blau": "ed9d04c4b640e85cae697771d10d3089746f23d67fcb6c7cc1c53c6598522729",
-  "read-colours/blau-rot": "e6dbac11892454c032480f481ebe1b5787cd71f6745159189901f6b965a85692",
-  "read-colours/blau-gelb": "1a6f74fcc66b9b0412b99fad7e6df1a24766c22ad3cb9e251723f962c0976b9a",
-  "read-colours/blau-rosa": "c4729416870738e0714bf9f139c7996fdfca075102ddece5e31fdaeb9a8c4257",
-  "read-colours/blau-weiss": "636a5d20311b19413634e1d936c7718b45cdbfead75c8ca92fd28ce91370e385",
-  "read-colours/rosa": "29580ffcf10deb478cc32e9685fa89cd1d782945e4f2b4e6198f79d4f21a2f54",
-  "read-colours/rosa-rot": "ce1597b1eb46b92f5a1d9f1d08fe2bdf165c4e9b3d2f01482fe8c7d073b9f57e",
-  "read-colours/rosa-gelb": "e56aea30d23eab08ca1fdb311d9fccf7b0caa11be0f36c97338e27743a02d6f7",
-  "read-colours/rosa-blau": "c4729416870738e0714bf9f139c7996fdfca075102ddece5e31fdaeb9a8c4257",
-  "read-colours/rosa-weiss": "98fb9e170d97f2204aef45732fa7f7c5fecfcc33d02dc802a5d963264476baaf",
-  "read-colours/weiss": "9e0d798e07a4a04d6c472ca127ef66bc4b3fc4524238838d5ebe5864e5055ea7",
-  "read-colours/weiss-rot": "566459a9a13a0f3c8a6edee213c816d9ef6387aa29a99d01ee114250e10d7b70",
-  "read-colours/weiss-gelb": "be4fd1313b0dc26d59c26fc26b8c7c8eb701453f99e77e31e193f0d9c9d0723c",
-  "read-colours/weiss-blau": "636a5d20311b19413634e1d936c7718b45cdbfead75c8ca92fd28ce91370e385",
-  "read-colours/weiss-rosa": "98fb9e170d97f2204aef45732fa7f7c5fecfcc33d02dc802a5d963264476baaf",
-  "trace/letter-A": "8ca5c01a4aeef79793049c058377b66405826c9562fbd8eb21368216ab604af6",
-  "trace/letter-B": "1b944ea4f519821c549b59f546eaed48ce5ed5ae8ee549b7af6f99a93266a6f7",
-  "trace/letter-C": "84099562542a4d582e56c7a3198063c8e37ffdb89670d63573933496eeb45e2f",
-  "trace/letter-D": "30cb57a5efaea8448f1f3d2e9ba027d30f0d29daa3eaec348a76b6e32257d2b5",
-  "trace/letter-E": "fccb2464135989fe480f72cbdb5fe80eb0d56d0798f6e1acc16697689434e119",
-  "trace/letter-F": "23bf3dc98bf9dea8d429a7e728860b13227be16e39bd71fba38069c1609d29da",
-  "trace/letter-G": "b73221bb31a8b4a251a922fc558f6f39f9dca373aaca395404070f056d654237",
-  "trace/letter-H": "b3cc6c464b61013d8bba6df05b127198b46e36d0af3c6108776f35b93447d3ef",
-  "trace/letter-I": "da9db3f4d91f927c6182d18c8279af58fe4202de5739ab11a99d4fe60dba895a",
-  "trace/letter-J": "deeee9cacd7b04d810ad725e86ffb295f11b64be8a2f1a29340e6a54071cb3a0",
-  "trace/letter-K": "3188c0f571cb5e600707659cac22b71f174457c5550fc5df091502c2235abcba",
-  "trace/letter-L": "2266ffc151bef6954c003ba549c0188c10d815464a49eca84268bf117c38d07d",
-  "trace/letter-M": "1951bf44ff863c5b258ec64d0b5770a9c93d0c3bfdcc37459bc65eac82c45210",
-  "trace/letter-N": "33685e501e97f6c886a060f4b906d02757d7bfd36a9abb1116ad4e4cb7e6b6d9",
-  "trace/letter-O": "78ab1aea298af8d26806c3c487a43435023393c7b9978df263837f86acd7daab",
-  "trace/letter-P": "f67c01d587ae3762b87541ecfc9f0cb143bdb3019311c2a7a793ce8eccc7086d",
-  "trace/letter-Q": "1d98ed7f43da8d53999bf993befba75dd2466c7b630b0cad5ec85230862fe07a",
-  "trace/letter-R": "ecfabb25bd7c77346afb21c4daf5ed441f0474f82a25a4222b4fec29ba6969b7",
-  "trace/letter-S": "e0b41aca9b7a71a85220f47901f58e868a58f63620106dd224341c0cbc968d7b",
-  "trace/letter-T": "4ae79384ed2f0448f59263aff4b3a331008bce7a9e32023cb855eefbe0a68606",
-  "trace/letter-U": "8e9c1e251e3cdc563efe7fc4f6eed3a9ffc388292f2cc1fc8d5a4e89e4b67996",
-  "trace/letter-V": "eebc105ac908865d4332486c24e96c75af03e43de162e5e2086e7299e720e7cb",
-  "trace/letter-W": "bb84e2d681512c2dbc9bec316e7150cfc6fcfd36ba92833bd441b56debfd2bce",
-  "trace/letter-X": "8abfaf3d29220ad8cfd2fa254602916b6556d016fd752f6bd90c95760cea866f",
-  "trace/letter-Y": "c4c674f0e9282b788a6f16c5e6a3f9dd24d6cf7b7248f4e1008a0babe9ab871f",
-  "trace/letter-Z": "fa3560975e83bff62c11a8bebdc5f845fb89b1776945ac37c4960ce49572ec0e",
-  "trace/letter-Ä": "87ef9ecd1f55c9f4184acd5a5a5e8c7c2454255e4a3a977e8ecbf5289b466fbb",
-  "trace/letter-Ö": "04809028f94ef892fdfb0ab0428824726b803b650dd9dd1c5d716547f2609272",
-  "trace/letter-Ü": "7c679fa5dec49d4a62e8f599d07ce697af88c9140ab0f761643b45df9d0854d7",
-  "trace/letter-a": "8c83f6e873fe97c3dae6a1a40d8d6da810f4960f27b641a2d37d73f3b91fb8d8",
-  "trace/letter-b": "43a0b40a03821fa504d2fb84ba0c187f0fbb2915fc954290258721e10aadd9c0",
-  "trace/letter-c": "6831fb9bbfd634f74fdd6c25c45a8301b0b1227dc57b7a6201ac65bf2065671d",
-  "trace/letter-d": "7d37b4b3a984984ef722a07ac91caea69d0e0d5131431cffd9540397143d8e4a",
-  "trace/letter-e": "573a98c0f5c2544d64bbeeec88979557b8ea89e6c3114dd7b02e5dc01b41f4ec",
-  "trace/letter-f": "30d4c7e4a2052c043db937ec452d5545b92a11ae01570876a150f793e3dfa20f",
-  "trace/letter-g": "6b8704cefb03d5d3b3449beeb98cec0b0f7893d8e5b13d174e06a52ba0d8abbe",
-  "trace/letter-h": "abb25d9811972631545d885680d97da3a9a7c3bd976f15d1c284cf09aa06f4ce",
-  "trace/letter-i": "70f73af6769fe61a3c56d471ccab66052fb735be902c6ae27a30605742375566",
-  "trace/letter-j": "0c6497293c3ed6c84bed28b661638c8615b71d0c9c9d20cfc72b13c7d04c1b89",
-  "trace/letter-k": "03d7e4c72230d9ca1e09c6dbd84639716b0e4800b7ab1d7d1e305d4101166b45",
-  "trace/letter-l": "5cbdf201ab16a302043e337477a051b9cbd3fbb48a680744e7ae4f068017ce34",
-  "trace/letter-m": "ba282803ab13a88e181e83098eed3c8639a454d5be52f96b3a1e27e5224b0516",
-  "trace/letter-n": "536abd581bea388448149eeaaee506e3c0c9303f69ccdadcca6b3d20c13806e8",
-  "trace/letter-o": "f60df534ec4d50e756981a8bfa37cdeeee032fb20a579a9b99b9373415b5f29d",
-  "trace/letter-p": "7d38d1298815cc4b0ecb212e3bc3447e67c29f26a8a5e883643ac2df7aef7db9",
-  "trace/letter-q": "4108e50a149944abadf73fa688764c2f342930937e2fe3d67777a214cd07b8dd",
-  "trace/letter-r": "f1febe5c702ea59eb9f013f46a154c782e418bed54c20eabcc50e14960c3081c",
-  "trace/letter-s": "2b30b1304dce7d16b93cd84203e654107e8178fae91b52061a2f59a39089646a",
-  "trace/letter-t": "a74946d75b322d28b39930624cd385c237ccaa999abdde1d1ecb188a9570f269",
-  "trace/letter-u": "9cf84a72f5ce49ba1225ea986345dd1f5accf1f8bdc42368efb8d6b32f36cda8",
-  "trace/letter-v": "ca8cb00cb4094b7f6edd70a1585b5380c09089d4440b89379bb0956d692e5ca8",
-  "trace/letter-w": "bddbb04ab8a81033bddc3e6a78edc6a109b855d27c3fc644cd5545eb1044a833",
-  "trace/letter-x": "81098f3712d61d411d847b655190df91700c5b69b86ce0133d8b4f64d4f3175f",
-  "trace/letter-y": "abb9be13d2a3d200428510a4b650a93d35f89c3cffd64ec1eafcea063a6e9af4",
-  "trace/letter-z": "cf24673a0d5b32204f80209f3dce24d82df2fbf2ce65b9bdc0bcb21d9085ff5c",
-  "trace/letter-ä": "d12ea5579fa1f6da13f41c8a9bb5b274207711aaa09426b882ea96f8b02784bb",
-  "trace/letter-ö": "47e8c04e423f0f67fd047a0d56e09021da71d55e3cc5c1c4719237770eef2645",
-  "trace/letter-ü": "6bc5fbd3e4288e61fd1d5e7c6cb4e44262c1d078b099bf7448aaee7e5402fa4f",
-  "trace-numbers/digit-0-forest-nut": "99d54ec1a6547991a0aef7adad7dbb9d8c477ab74042cb1a263b32cc905a25fc",
-  "trace-numbers/digit-1-forest-nut": "6953767ff929898c11ae6f768cf2655f91710e1dcdaf150d10e1f401c8957ec1",
-  "trace-numbers/digit-2-forest-nut": "6855d10ad77922e83126a97dae13a530b4bb5cf98cb06eb53dbec209cb2faddb",
-  "trace-numbers/digit-3-forest-nut": "ce8308d212a9ea8ca6fb21fc6c4055dae310a37fc387742d12cc0ffe5b7aee0e",
-  "trace-numbers/digit-4-forest-nut": "6180355239a2a5b02a4c4446d7e0e7048188dfab067d47d77dc90b3c4cf7c8b0",
-  "trace-numbers/digit-5-forest-nut": "2d21fe9131b2eca2a9dd09c255235305090b7100649e5eaa4596b0c56b09dfbc",
-  "trace-numbers/digit-6-forest-nut": "0a72c33c1bc42411cdbdae117627ac36668e9ccae575884e90081171075ad190",
-  "trace-numbers/digit-7-forest-nut": "81fb197697c5eca0db09236904115817b96731468bd9c96d7d58b6fe76a521a0",
-  "trace-numbers/digit-8-forest-nut": "6d0d1f559d9da3cd091570a6402281bf092e1636cf7891a205dac0f4c310d4e4",
-  "trace-numbers/digit-9-forest-nut": "c90726ddd6df4b3bfaadc25a8c35c307478f69f7096b9f8f8bc149194f3ee4a7",
-  "trace-numbers/digit-0-forest-apple": "fd4ea8b8b55e009f29cdc1d5192edd447bac28ea73e496ff24f12738c089c2bf",
-  "trace-numbers/digit-1-forest-apple": "5d869900f1d442fedb0233a5363ba2a89051cf9e4a1385a0cae5cd2c6c038cc9",
-  "trace-numbers/digit-2-forest-apple": "d9c35595aca2e248f1094ac04b45b8b56990b4506df9216111d1a930a4e1e2ba",
-  "trace-numbers/digit-3-forest-apple": "c8340f7546120530447877c813909f21e9063a3aee46d205e58b4408a2264a2a",
-  "trace-numbers/digit-4-forest-apple": "d9be4981724cb9df53b9510fe0ae0f2774419b2f6bca7ad89e91a616a97f20c8",
-  "trace-numbers/digit-5-forest-apple": "f7a6e65877861b318e0a724f4a840574ff60a6b96d3eb9ba2570c2920bf892c2",
-  "trace-numbers/digit-6-forest-apple": "66a28f15db49f1a76e243c000392157d1dbd8fce835d78662c3774c2eda91e12",
-  "trace-numbers/digit-7-forest-apple": "d06ea71ac78347fa940be6c5e2697d22d5d2c425874d0ec1219bdf553c97bae9",
-  "trace-numbers/digit-8-forest-apple": "22a20753a6e90475e2efec248bd125f23ebb5ebf4949bab0f9a0c66e5d8d4d09",
-  "trace-numbers/digit-9-forest-apple": "95f888a805fb4e6260d38dcfe9b0e11b28c4c6be825bb1310f8684e481de4276",
-  "trace-numbers/digit-0-forest-feather": "61e22f2531f4e3d1d73146532b4d388963791d8dcbacc52c0ed13facf7483703",
-  "trace-numbers/digit-1-forest-feather": "1555fbbad70dab7e632919d26d23a8e684f2051f7b92bbf7448211e4b992629d",
-  "trace-numbers/digit-2-forest-feather": "8bf815cd7cf2a5feb2fede28ad1deb6895a4bedb548606f4ea114791a97b1b67",
-  "trace-numbers/digit-3-forest-feather": "9e755d923333f80845f1eb6819604f00a50f40f8bfeeb5e5c234d748b5011802",
-  "trace-numbers/digit-4-forest-feather": "c5b58fc5741916b0481f48e0d9fb166064b77c6dcf4fa92da5dba2acf755c74d",
-  "trace-numbers/digit-5-forest-feather": "859612972bc795fdf2a3eecf05a46e371b20fb360ac82835cbb7df070de2af41",
-  "trace-numbers/digit-6-forest-feather": "faef3737a61e5c872482adefd50848255fd77957464bdb41e58b65f53f46f06b",
-  "trace-numbers/digit-7-forest-feather": "e1f50ebb1e8078e22b89e5f82684e2ac6ddace0df3de5b0716cbe5d6175b6fbc",
-  "trace-numbers/digit-8-forest-feather": "e88de93e2411d27bbc18f1f687fb216cbb26b8ab2c435695f9264702fb8ad8eb",
-  "trace-numbers/digit-9-forest-feather": "167af705662336a89d23448dbae4f5d20c307a09c2a1d6626b139d93410e4576"
+  "read-puzzle/word-34": "3869d053c1d33f60afaf7704bf4192760db462f8c30216479f76a41feb0e65e6"
 };
 window.FK.puzzleReviewCompatibility = {
   "puzzles": {
@@ -1019,18 +826,12 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "friends-beaver": {
-      "current": "fb6c6c9fc5dc67a9",
-      "former": [
-        "20e2a66074ef2876",
-        "609cd6d0f0679f26",
-        "fb6c6c9fc5dc67a9"
-      ]
+      "current": "61e3a0869fd148bc",
+      "former": []
     },
     "friends-mouse": {
-      "current": "2625145ef7664756",
-      "former": [
-        "2625145ef7664756"
-      ]
+      "current": "da668879caf11043",
+      "former": []
     },
     "friends-hedgehog": {
       "current": "f1ce43cf06aa29eb",
@@ -1043,19 +844,6 @@ window.FK.puzzleReviewCompatibility = {
       "former": [
         "11cf75540d9dbe22",
         "3a589c003530280c"
-      ]
-    },
-    "friends-kingfisher": {
-      "current": "b4925a1cc20b89b8",
-      "former": [
-        "b4925a1cc20b89b8"
-      ]
-    },
-    "friends-frog": {
-      "current": "fcf4d6ca183c7aa2",
-      "former": [
-        "b87abe2b2a3ecbdf",
-        "fcf4d6ca183c7aa2"
       ]
     },
     "friends-badger": {
@@ -1098,10 +886,8 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "nature": {
-      "current": "79d907262447a13c",
-      "former": [
-        "79d907262447a13c"
-      ]
+      "current": "e823f2d8993a65d0",
+      "former": []
     },
     "rocket": {
       "current": "604d487a335c77b4",
@@ -1110,28 +896,20 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "picnic": {
-      "current": "c7d492adf0c97485",
-      "former": [
-        "c7d492adf0c97485"
-      ]
+      "current": "b7c3cf5d80ba4033",
+      "former": []
     },
     "syllable": {
-      "current": "82764fb66d9cb7a8",
-      "former": [
-        "82764fb66d9cb7a8"
-      ]
+      "current": "185a95d86c6d9722",
+      "former": []
     },
     "robot": {
-      "current": "e1c7c181d53d6187",
-      "former": [
-        "e1c7c181d53d6187"
-      ]
+      "current": "6c1c66df24fd3957",
+      "former": []
     },
     "sequence": {
-      "current": "9794d4b525da761d",
-      "former": [
-        "9794d4b525da761d"
-      ]
+      "current": "57f306c1f5a44033",
+      "former": []
     },
     "treasure": {
       "current": "ae676afdbecf0839",
@@ -1140,10 +918,8 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "neighbours": {
-      "current": "f41cacdd10dc021f",
-      "former": [
-        "f41cacdd10dc021f"
-      ]
+      "current": "b9cbff48b2fb41f2",
+      "former": []
     },
     "compare": {
       "current": "245d7180798d4c3a",
@@ -1171,45 +947,6 @@ window.FK.puzzleReviewCompatibility = {
       "current": "695149d9c2e77cf5",
       "former": [
         "695149d9c2e77cf5"
-      ]
-    },
-    "read-word": {
-      "current": "704d7d27ee87670f",
-      "former": [
-        "704d7d27ee87670f"
-      ]
-    },
-    "read-leaves": {
-      "current": "a252dc10551f323c",
-      "former": [
-        "513b8650ceabf362",
-        "98e6eaedc5295c07",
-        "3063144f7dc1de07",
-        "a252dc10551f323c"
-      ]
-    },
-    "read-colours": {
-      "current": "fa549131ea6e7c21",
-      "former": [
-        "0efb3e9d9246580b",
-        "3e5f4d2cf4808b10",
-        "efa56defb9754e37",
-        "3e57f72f8f5deb0d",
-        "fa549131ea6e7c21"
-      ]
-    },
-    "trace": {
-      "current": "897420ed86828ad3",
-      "former": [
-        "897420ed86828ad3"
-      ]
-    },
-    "trace-numbers": {
-      "current": "b50862e4b89583e8",
-      "former": [
-        "24b3319ba2df1e89",
-        "6f8c9c36d8dd36c6",
-        "b50862e4b89583e8"
       ]
     }
   },
@@ -1750,204 +1487,104 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "friends-beaver/matrix-0": {
-      "current": "fb38bf60d5204092",
-      "former": [
-        "b09a90f61042bd74",
-        "fc58382628628ba4",
-        "fb38bf60d5204092"
-      ]
+      "current": "e032ea99998703ef",
+      "former": []
     },
     "friends-beaver/matrix-1": {
-      "current": "6ec419e790e1d0d3",
-      "former": [
-        "625390702738d536",
-        "84541aa02b020466",
-        "6ec419e790e1d0d3"
-      ]
+      "current": "0b6208aa3288a56e",
+      "former": []
     },
     "friends-beaver/matrix-2": {
-      "current": "0565566aea9f2710",
-      "former": [
-        "9755ef6a2499cb74",
-        "5758911ab14544a4",
-        "0565566aea9f2710"
-      ]
+      "current": "456aa397df303d2d",
+      "former": []
     },
     "friends-beaver/matrix-3": {
-      "current": "21efda656bec9bd1",
-      "former": [
-        "55cf2814c2c59a32",
-        "3ad1f3044e102662",
-        "21efda656bec9bd1"
-      ]
+      "current": "ff121d9abc71b5cc",
+      "former": []
     },
     "friends-beaver/matrix-4": {
-      "current": "ead209e86dfaad96",
-      "former": [
-        "a8f1db623a0f2274",
-        "40cf489245edc0a4",
-        "ead209e86dfaad96"
-      ]
+      "current": "23ef655540cf812b",
+      "former": []
     },
     "friends-beaver/matrix-5": {
-      "current": "2cf2cff7fd8ce517",
-      "former": [
-        "a86d6a4c568975f6",
-        "dfaa8c7cc7413e26",
-        "2cf2cff7fd8ce517"
-      ]
+      "current": "20d2ff100a7b8b4a",
+      "former": []
     },
     "friends-beaver/matrix-6": {
-      "current": "f91ea9054b711915",
-      "former": [
-        "a5999da7bef85095",
-        "baaf55d727b9a3c5",
-        "f91ea9054b711915"
-      ]
+      "current": "1be5fcc2966a1f48",
+      "former": []
     },
     "friends-beaver/matrix-7": {
-      "current": "8f582ed267954e94",
-      "former": [
-        "dfbaf7f16d822d9b",
-        "70a871a193c7e4cb",
-        "8f582ed267954e94"
-      ]
+      "current": "6b0e6e2d621246c9",
+      "former": []
     },
     "friends-beaver/matrix-8": {
-      "current": "92746a7bdd9bac9b",
-      "former": [
-        "756baccfe5393295",
-        "62d1f87f4b92e4c5",
-        "92746a7bdd9bac9b"
-      ]
+      "current": "589d2e2a148f67a6",
+      "former": []
     },
     "friends-beaver/matrix-9": {
-      "current": "70a680903e6b3e9a",
-      "former": [
-        "53eb55225f7dd94c",
-        "e895fe121898029c",
-        "70a680903e6b3e9a"
-      ]
+      "current": "f6accb45a4192667",
+      "former": []
     },
     "friends-beaver/matrix-10": {
-      "current": "9680b97856f9f562",
-      "former": [
-        "d8bc7779ff9871b5",
-        "add99ca9940cd9e5",
-        "9680b97856f9f562"
-      ]
+      "current": "306903175f6ded7f",
+      "former": []
     },
     "friends-beaver/matrix-11": {
-      "current": "279af71b5aa892e3",
-      "former": [
-        "217aa029ead7be57",
-        "04932899d46bd887",
-        "279af71b5aa892e3"
-      ]
+      "current": "9cef369ca451473e",
+      "former": []
     },
     "friends-beaver/matrix-12": {
-      "current": "19ce67e78b4eb2af",
-      "former": [
-        "f89884aa9ddbbf5a",
-        "ae46de9a4401f98a",
-        "19ce67e78b4eb2af"
-      ]
+      "current": "ac9a79704ffac232",
+      "former": []
     },
     "friends-beaver/matrix-13": {
-      "current": "8af0a7383bc9fcee",
-      "former": [
-        "bdbd2b861f110abc",
-        "e05ded364893fdec",
-        "8af0a7383bc9fcee"
-      ]
+      "current": "9bdbdd575836ae33",
+      "former": []
     },
     "friends-beaver/matrix-14": {
-      "current": "b90d1f8d394b79a9",
-      "former": [
-        "5b02ca6ab5c5909a",
-        "8136b91a446c30ca",
-        "b90d1f8d394b79a9"
-      ]
+      "current": "9dc30226cc999e74",
+      "former": []
     },
     "friends-beaver/matrix-15": {
-      "current": "e7b93f92ed74abe8",
-      "former": [
-        "c57aca2258b9df78",
-        "5a961752945109a8",
-        "e7b93f92ed74abe8"
-      ]
+      "current": "96a70117d5cbb255",
+      "former": []
     },
     "friends-beaver/matrix-16": {
-      "current": "3f266f9f868a8eeb",
-      "former": [
-        "b8cb95d6582f3f1a",
-        "b6557cc60557944a",
-        "3f266f9f868a8eeb"
-      ]
+      "current": "6afc94a881d443f6",
+      "former": []
     },
     "friends-beaver/matrix-17": {
-      "current": "990bd420c28e136a",
-      "former": [
-        "3dc470823cb92ab4",
-        "02368132460e21e4",
-        "990bd420c28e136a"
-      ]
+      "current": "58dac73d47fb8157",
+      "former": []
     },
     "friends-beaver/matrix-18": {
-      "current": "26c5abb7a11118ab",
-      "former": [
-        "a69172fca93dde54",
-        "9fe4bfec44b05684",
-        "26c5abb7a11118ab"
-      ]
+      "current": "6c2c2f18dc2e7276",
+      "former": []
     },
     "friends-beaver/matrix-19": {
-      "current": "fc79f874556e60ea",
-      "former": [
-        "6e172af34dc65cff",
-        "e33496e35952fc2f",
-        "fc79f874556e60ea"
-      ]
+      "current": "dd69b717424b0af7",
+      "former": []
     },
     "friends-beaver/matrix-20": {
-      "current": "4409af38e8734280",
-      "former": [
-        "0e8b784e77409cb4",
-        "fe7752bef8603de4",
-        "4409af38e8734280"
-      ]
+      "current": "ac2a119b24eb7a5d",
+      "former": []
     },
     "friends-beaver/matrix-21": {
-      "current": "6797857f6bf972c1",
-      "former": [
-        "e119e6de76ccf496",
-        "9b2cf40ef7cae6c6",
-        "6797857f6bf972c1"
-      ]
+      "current": "ae9c38aa7892ef7c",
+      "former": []
     },
     "friends-beaver/matrix-22": {
-      "current": "ebec46c63b012342",
-      "former": [
-        "a22c0e8ac7967834",
-        "c4186c3a6da68c64",
-        "ebec46c63b012342"
-      ]
+      "current": "9feea905d2e2ea5f",
+      "former": []
     },
     "friends-beaver/matrix-23": {
-      "current": "83f0b085d65a9ac3",
-      "former": [
-        "72436cfa6fcab652",
-        "5a727bea58e4fd82",
-        "83f0b085d65a9ac3"
-      ]
+      "current": "67ee9334d304ae7e",
+      "former": []
     },
     "friends-beaver/matrix-24": {
-      "current": "047add833dff6485",
-      "former": [
-        "11ccb2b36de41555",
-        "a760f7235e8d6085",
-        "047add833dff6485"
-      ]
+      "current": "b443d11eaf3bd678",
+      "former": []
     },
     "friends-mouse/word-0": {
       "current": "365707ce9d556a9a",
@@ -2120,6 +1757,202 @@ window.FK.puzzleReviewCompatibility = {
         "a2c57472e3c867fa",
         "a55431712d6becbf"
       ]
+    },
+    "friends-mouse/friends-frog-animal-0": {
+      "current": "3e79d97b2d65790b",
+      "former": []
+    },
+    "friends-mouse/friends-frog-animal-1": {
+      "current": "2f1caaa1893e6773",
+      "former": []
+    },
+    "friends-mouse/friends-frog-animal-2": {
+      "current": "9b953d709e5a34d0",
+      "former": []
+    },
+    "friends-mouse/friends-frog-animal-3": {
+      "current": "365476cc904d68b4",
+      "former": []
+    },
+    "friends-mouse/friends-frog-animal-4": {
+      "current": "223aad715e39f447",
+      "former": []
+    },
+    "friends-mouse/friends-frog-animal-5": {
+      "current": "1e9d24242acbfc1a",
+      "former": []
+    },
+    "friends-mouse/friends-frog-animal-6": {
+      "current": "5fba33bb8e0435af",
+      "former": []
+    },
+    "friends-mouse/friends-frog-animal-7": {
+      "current": "9497964a5c3ad9ac",
+      "former": []
+    },
+    "friends-mouse/friends-frog-animal-8": {
+      "current": "cd1292c81b501caa",
+      "former": []
+    },
+    "friends-mouse/friends-frog-animal-9": {
+      "current": "d9ca6587995904b9",
+      "former": []
+    },
+    "friends-mouse/friends-frog-animal-10": {
+      "current": "fbb8267161b0acb9",
+      "former": []
+    },
+    "friends-mouse/friends-frog-animal-11": {
+      "current": "7fca12eacab8cc82",
+      "former": []
+    },
+    "friends-mouse/friends-frog-animal-12": {
+      "current": "7e663872f584baee",
+      "former": []
+    },
+    "friends-mouse/friends-frog-animal-13": {
+      "current": "1d7d24fcbc24c546",
+      "former": []
+    },
+    "friends-mouse/friends-frog-animal-14": {
+      "current": "44c47cb2e01685b4",
+      "former": []
+    },
+    "friends-mouse/friends-frog-animal-15": {
+      "current": "d367d211054c4d71",
+      "former": []
+    },
+    "friends-mouse/friends-frog-animal-16": {
+      "current": "b647b8bdb98850d5",
+      "former": []
+    },
+    "friends-mouse/friends-frog-animal-17": {
+      "current": "862d64cec4dfbefc",
+      "former": []
+    },
+    "friends-mouse/friends-frog-animal-18": {
+      "current": "f91bdcbdaa729851",
+      "former": []
+    },
+    "friends-mouse/friends-frog-animal-19": {
+      "current": "5d3731f847ef7c74",
+      "former": []
+    },
+    "friends-mouse/friends-frog-animal-20": {
+      "current": "ecc1f3c18e05bdf9",
+      "former": []
+    },
+    "friends-mouse/friends-frog-animal-21": {
+      "current": "8716f06447943214",
+      "former": []
+    },
+    "friends-mouse/friends-frog-animal-22": {
+      "current": "1cbb4bd087ddb8b8",
+      "former": []
+    },
+    "friends-mouse/friends-frog-animal-23": {
+      "current": "c0a17205a1c70b77",
+      "former": []
+    },
+    "friends-mouse/friends-frog-animal-24": {
+      "current": "0c71932ba16c89eb",
+      "former": []
+    },
+    "friends-mouse/read-word-word-1": {
+      "current": "1acec1faebfc46bc",
+      "former": []
+    },
+    "friends-mouse/read-word-word-3": {
+      "current": "3da0a3fae0729586",
+      "former": []
+    },
+    "friends-mouse/read-word-word-5": {
+      "current": "dacf6ef439b00e40",
+      "former": []
+    },
+    "friends-mouse/read-word-word-6": {
+      "current": "811b1b4931032bd1",
+      "former": []
+    },
+    "friends-mouse/read-word-word-7": {
+      "current": "c07fdac646b6f872",
+      "former": []
+    },
+    "friends-mouse/read-word-word-8": {
+      "current": "9c20b8042ccc3cba",
+      "former": []
+    },
+    "friends-mouse/read-word-word-10": {
+      "current": "c5823e5e8befc82c",
+      "former": []
+    },
+    "friends-mouse/read-word-word-14": {
+      "current": "592d03a88ede4d10",
+      "former": []
+    },
+    "friends-mouse/read-word-word-17": {
+      "current": "c1377491f33d54a1",
+      "former": []
+    },
+    "friends-mouse/read-word-word-18": {
+      "current": "a6e4ec506657b5d8",
+      "former": []
+    },
+    "friends-mouse/read-word-word-19": {
+      "current": "8f4d5fbc62c26832",
+      "former": []
+    },
+    "friends-mouse/read-word-word-20": {
+      "current": "8d2492c51ef6d709",
+      "former": []
+    },
+    "friends-mouse/read-word-word-22": {
+      "current": "4687db1d9dce2559",
+      "former": []
+    },
+    "friends-mouse/read-word-word-23": {
+      "current": "c498a85323497b03",
+      "former": []
+    },
+    "friends-mouse/read-word-word-24": {
+      "current": "5eecbeb7c085cf47",
+      "former": []
+    },
+    "friends-mouse/read-word-word-25": {
+      "current": "4ae7efb4376fbf54",
+      "former": []
+    },
+    "friends-mouse/read-word-word-26": {
+      "current": "5b00562dba732859",
+      "former": []
+    },
+    "friends-mouse/read-word-word-27": {
+      "current": "770e6f35da0127d9",
+      "former": []
+    },
+    "friends-mouse/read-word-word-28": {
+      "current": "fcad26c1db35770b",
+      "former": []
+    },
+    "friends-mouse/read-word-word-29": {
+      "current": "90b949533e645773",
+      "former": []
+    },
+    "friends-mouse/read-word-word-30": {
+      "current": "62814fddac6afef3",
+      "former": []
+    },
+    "friends-mouse/read-word-word-31": {
+      "current": "e2546a5a72f6f8a0",
+      "former": []
+    },
+    "friends-mouse/read-word-word-32": {
+      "current": "0149b2ca8d200c6a",
+      "former": []
+    },
+    "friends-mouse/read-word-word-33": {
+      "current": "66b7207b48c4f115",
+      "former": []
     },
     "friends-hedgehog/riddle-0": {
       "current": "9cfe1e4747d58537",
@@ -2569,391 +2402,6 @@ window.FK.puzzleReviewCompatibility = {
       "former": [
         "fa892a14ca5e51dc",
         "08e9c2261fbc42e0"
-      ]
-    },
-    "friends-kingfisher/forest-feather-2": {
-      "current": "4c47cb63970dd41f",
-      "former": [
-        "4c47cb63970dd41f"
-      ]
-    },
-    "friends-kingfisher/forest-feather-5": {
-      "current": "64d539c9f9c2dd7f",
-      "former": [
-        "64d539c9f9c2dd7f"
-      ]
-    },
-    "friends-kingfisher/forest-feather-9": {
-      "current": "e86f8da0df781e84",
-      "former": [
-        "e86f8da0df781e84"
-      ]
-    },
-    "friends-kingfisher/forest-feather-14": {
-      "current": "c75062b3482eb55b",
-      "former": [
-        "c75062b3482eb55b"
-      ]
-    },
-    "friends-kingfisher/forest-feather-20": {
-      "current": "cc2064aa7027dddc",
-      "former": [
-        "cc2064aa7027dddc"
-      ]
-    },
-    "friends-kingfisher/forest-leaf-2": {
-      "current": "612471dfb7ccc24b",
-      "former": [
-        "612471dfb7ccc24b"
-      ]
-    },
-    "friends-kingfisher/forest-leaf-5": {
-      "current": "726f0a2dcad227ab",
-      "former": [
-        "726f0a2dcad227ab"
-      ]
-    },
-    "friends-kingfisher/forest-leaf-9": {
-      "current": "88d7962cca166710",
-      "former": [
-        "88d7962cca166710"
-      ]
-    },
-    "friends-kingfisher/forest-leaf-14": {
-      "current": "543e7e43924c624f",
-      "former": [
-        "543e7e43924c624f"
-      ]
-    },
-    "friends-kingfisher/forest-leaf-20": {
-      "current": "35f7f9ec62948fa8",
-      "former": [
-        "35f7f9ec62948fa8"
-      ]
-    },
-    "friends-kingfisher/forest-stone-2": {
-      "current": "9685eb3e3fe32e18",
-      "former": [
-        "9685eb3e3fe32e18"
-      ]
-    },
-    "friends-kingfisher/forest-stone-5": {
-      "current": "156c8ad8c1ba4238",
-      "former": [
-        "156c8ad8c1ba4238"
-      ]
-    },
-    "friends-kingfisher/forest-stone-9": {
-      "current": "28299afbac200763",
-      "former": [
-        "28299afbac200763"
-      ]
-    },
-    "friends-kingfisher/forest-stone-14": {
-      "current": "9f7815aa076ca39c",
-      "former": [
-        "9f7815aa076ca39c"
-      ]
-    },
-    "friends-kingfisher/forest-stone-20": {
-      "current": "acc1ca030524da1b",
-      "former": [
-        "acc1ca030524da1b"
-      ]
-    },
-    "friends-kingfisher/forest-flower-2": {
-      "current": "aaddda770d31a58b",
-      "former": [
-        "aaddda770d31a58b"
-      ]
-    },
-    "friends-kingfisher/forest-flower-5": {
-      "current": "c10ae2f17456abab",
-      "former": [
-        "c10ae2f17456abab"
-      ]
-    },
-    "friends-kingfisher/forest-flower-9": {
-      "current": "a03a05a60aa03df0",
-      "former": [
-        "a03a05a60aa03df0"
-      ]
-    },
-    "friends-kingfisher/forest-flower-14": {
-      "current": "29cd184f555492cf",
-      "former": [
-        "29cd184f555492cf"
-      ]
-    },
-    "friends-kingfisher/forest-flower-20": {
-      "current": "352679a8509ff0a8",
-      "former": [
-        "352679a8509ff0a8"
-      ]
-    },
-    "friends-kingfisher/forest-berry-2": {
-      "current": "8f630c998e84992b",
-      "former": [
-        "8f630c998e84992b"
-      ]
-    },
-    "friends-kingfisher/forest-berry-5": {
-      "current": "8e66b6a30ec1a1cb",
-      "former": [
-        "8e66b6a30ec1a1cb"
-      ]
-    },
-    "friends-kingfisher/forest-berry-9": {
-      "current": "0ca190842d3acc90",
-      "former": [
-        "0ca190842d3acc90"
-      ]
-    },
-    "friends-kingfisher/forest-berry-14": {
-      "current": "630ea7458fab3daf",
-      "former": [
-        "630ea7458fab3daf"
-      ]
-    },
-    "friends-kingfisher/forest-berry-20": {
-      "current": "3b6780608ac9b068",
-      "former": [
-        "3b6780608ac9b068"
-      ]
-    },
-    "friends-kingfisher/forest-mushroom-2": {
-      "current": "71459b0dfea2013b",
-      "former": [
-        "71459b0dfea2013b"
-      ]
-    },
-    "friends-kingfisher/forest-mushroom-5": {
-      "current": "f1ccc6274a27d01b",
-      "former": [
-        "f1ccc6274a27d01b"
-      ]
-    },
-    "friends-kingfisher/forest-mushroom-9": {
-      "current": "7cf4c55e6ce9f860",
-      "former": [
-        "7cf4c55e6ce9f860"
-      ]
-    },
-    "friends-kingfisher/forest-mushroom-14": {
-      "current": "a3087b193f74293f",
-      "former": [
-        "a3087b193f74293f"
-      ]
-    },
-    "friends-kingfisher/forest-mushroom-20": {
-      "current": "bf1d7cc68bfd9998",
-      "former": [
-        "bf1d7cc68bfd9998"
-      ]
-    },
-    "friends-frog/animal-0": {
-      "current": "ff90f101945e8691",
-      "former": [
-        "e146a44cc3b4fad6",
-        "ff90f101945e8691"
-      ]
-    },
-    "friends-frog/animal-1": {
-      "current": "c4f0d6916efd8415",
-      "former": [
-        "302a0543cfedf529",
-        "c4f0d6916efd8415"
-      ]
-    },
-    "friends-frog/animal-2": {
-      "current": "6e357d43dcd60073",
-      "former": [
-        "8bf8a22390feff21",
-        "67c8b81941b7b711",
-        "10afcc7398ecf8ed",
-        "ed63896e3848d464",
-        "6e357d43dcd60073"
-      ]
-    },
-    "friends-frog/animal-3": {
-      "current": "0b4d5c3f6ff972e9",
-      "former": [
-        "451e3349095da723",
-        "a141ba83edf43c93",
-        "42d32619acda34ef",
-        "c75991cb21ef70cb",
-        "0b4d5c3f6ff972e9"
-      ]
-    },
-    "friends-frog/animal-4": {
-      "current": "1864e7394d78e807",
-      "former": [
-        "3da84c084318e3c8",
-        "1864e7394d78e807"
-      ]
-    },
-    "friends-frog/animal-5": {
-      "current": "2bde8eec2cc56c92",
-      "former": [
-        "36da2a12ed7da09c",
-        "2bde8eec2cc56c92"
-      ]
-    },
-    "friends-frog/animal-6": {
-      "current": "e8b63c72fd9ff3e0",
-      "former": [
-        "5e3a14021ed29e4a",
-        "32a2c75009a3577a",
-        "78edd532ff310c86",
-        "785d0ab366d69363",
-        "e8b63c72fd9ff3e0"
-      ]
-    },
-    "friends-frog/animal-7": {
-      "current": "d3d705d262d227f8",
-      "former": [
-        "17c50ec8b4c237ba",
-        "d3d705d262d227f8"
-      ]
-    },
-    "friends-frog/animal-8": {
-      "current": "ad76591a844d16f0",
-      "former": [
-        "b7b93c3f3cb4dcad",
-        "337e07e5d817199d",
-        "11b0470f66a89861",
-        "9e70ca83b26484c1",
-        "ad76591a844d16f0"
-      ]
-    },
-    "friends-frog/animal-9": {
-      "current": "80299d94efcfbc52",
-      "former": [
-        "ff158575e0e8d929",
-        "556499af35976459",
-        "775cfea5ead21265",
-        "367978cd9c5ed1ff",
-        "80299d94efcfbc52"
-      ]
-    },
-    "friends-frog/animal-10": {
-      "current": "4f1b900f977cc72f",
-      "former": [
-        "ad6cac7e93e359a4",
-        "4f1b900f977cc72f"
-      ]
-    },
-    "friends-frog/animal-11": {
-      "current": "c3e1d7eafe68c628",
-      "former": [
-        "b7067524e0526fa4",
-        "e966efda56c28c94",
-        "5946cdf42356eb68",
-        "3fd0c9262c472ce4",
-        "c3e1d7eafe68c628"
-      ]
-    },
-    "friends-frog/animal-12": {
-      "current": "ab0a74ea53fa89f2",
-      "former": [
-        "5787d5f33e84302d",
-        "ab0a74ea53fa89f2"
-      ]
-    },
-    "friends-frog/animal-13": {
-      "current": "cae09d331dfe5c7d",
-      "former": [
-        "abfb32da18e7e30c",
-        "86bc97982914d07c",
-        "22773e6ad529e3c0",
-        "6194d6ccc354ee92",
-        "cae09d331dfe5c7d"
-      ]
-    },
-    "friends-frog/animal-14": {
-      "current": "c3facd8187e61eb1",
-      "former": [
-        "0524a9a11e7d1e61",
-        "c3facd8187e61eb1"
-      ]
-    },
-    "friends-frog/animal-15": {
-      "current": "af6252a1a2c073b5",
-      "former": [
-        "c324940d68fe91c3",
-        "af6252a1a2c073b5"
-      ]
-    },
-    "friends-frog/animal-16": {
-      "current": "35ebf88efcc483fa",
-      "former": [
-        "d5841566b864e788",
-        "35ebf88efcc483fa"
-      ]
-    },
-    "friends-frog/animal-17": {
-      "current": "636e305805c50d90",
-      "former": [
-        "f890219556ad54af",
-        "7a710a973f7b6d1f",
-        "eff3e5e55d584a63",
-        "31cb84cf39a9811d",
-        "636e305805c50d90"
-      ]
-    },
-    "friends-frog/animal-18": {
-      "current": "eb06836f6ac87d6d",
-      "former": [
-        "c1fc7efdad278beb",
-        "66ff807ff20f56db",
-        "66238e4db97819a7",
-        "40cae5b0f47dbf9e",
-        "eb06836f6ac87d6d"
-      ]
-    },
-    "friends-frog/animal-19": {
-      "current": "01c851b6d34896be",
-      "former": [
-        "9e2ea6dae4ea5e50",
-        "01c851b6d34896be"
-      ]
-    },
-    "friends-frog/animal-20": {
-      "current": "a382f4a236559470",
-      "former": [
-        "3e259da44bd26bf6",
-        "a382f4a236559470"
-      ]
-    },
-    "friends-frog/animal-21": {
-      "current": "a68955018510bedf",
-      "former": [
-        "8d0664e77f9d6381",
-        "a68955018510bedf"
-      ]
-    },
-    "friends-frog/animal-22": {
-      "current": "2b6cafae80b3fe72",
-      "former": [
-        "adfabcb9e3b83dfd",
-        "b1ad70f340e9f88d",
-        "155f5b09dc5cebb1",
-        "82fe3744285ec0da",
-        "2b6cafae80b3fe72"
-      ]
-    },
-    "friends-frog/animal-23": {
-      "current": "dbd24ef7aca0e7db",
-      "former": [
-        "4349bcab20f81775",
-        "dbd24ef7aca0e7db"
-      ]
-    },
-    "friends-frog/animal-24": {
-      "current": "03ce6b1be5eac981",
-      "former": [
-        "3c3dcc6165e2ad29",
-        "03ce6b1be5eac981"
       ]
     },
     "friends-badger/riddle-0": {
@@ -4221,154 +3669,104 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "nature/clue-0": {
-      "current": "17208b9b531c2109",
-      "former": [
-        "17208b9b531c2109"
-      ]
+      "current": "e5e5f42ac63718ba",
+      "former": []
     },
     "nature/clue-1": {
-      "current": "7238ad89f4b52fc9",
-      "former": [
-        "7238ad89f4b52fc9"
-      ]
+      "current": "405d30b6d7245f9a",
+      "former": []
     },
     "nature/clue-2": {
-      "current": "2fa0771460403906",
-      "former": [
-        "2fa0771460403906"
-      ]
+      "current": "b971e5f1c0e6a6f5",
+      "former": []
     },
     "nature/clue-3": {
-      "current": "b86f1e4751089707",
-      "former": [
-        "b86f1e4751089707"
-      ]
+      "current": "4f21022a03eb0cf4",
+      "former": []
     },
     "nature/clue-4": {
-      "current": "a6853e4c37597542",
-      "former": [
-        "a6853e4c37597542"
-      ]
+      "current": "5883c7d397e8a751",
+      "former": []
     },
     "nature/clue-5": {
-      "current": "8f74d6202b82c482",
-      "former": [
-        "8f74d6202b82c482"
-      ]
+      "current": "0d1e5781251b8031",
+      "former": []
     },
     "nature/clue-6": {
-      "current": "ed2179f6df0d5fb6",
-      "former": [
-        "ed2179f6df0d5fb6"
-      ]
+      "current": "a0aef863f56af005",
+      "former": []
     },
     "nature/clue-7": {
-      "current": "a1849aefaa958d87",
-      "former": [
-        "a1849aefaa958d87"
-      ]
+      "current": "788e69d2d80a72b4",
+      "former": []
     },
     "nature/clue-8": {
-      "current": "f9be49486cec865a",
-      "former": [
-        "f9be49486cec865a"
-      ]
+      "current": "331a711d5dd3f269",
+      "former": []
     },
     "nature/clue-9": {
-      "current": "631d0f636622effd",
-      "former": [
-        "631d0f636622effd"
-      ]
+      "current": "a7d80e885cc09a6e",
+      "former": []
     },
     "nature/clue-10": {
-      "current": "c8bca35fb9af76ab",
-      "former": [
-        "c8bca35fb9af76ab"
-      ]
+      "current": "2dfc79e28175d798",
+      "former": []
     },
     "nature/clue-11": {
-      "current": "061d2f68e73cbd86",
-      "former": [
-        "061d2f68e73cbd86"
-      ]
+      "current": "097b30c907f9e0f5",
+      "former": []
     },
     "nature/clue-12": {
-      "current": "7c813cbb6a9ce123",
-      "former": [
-        "7c813cbb6a9ce123"
-      ]
+      "current": "7ca028eae18f3c90",
+      "former": []
     },
     "nature/clue-13": {
-      "current": "e6c226c74acfa853",
-      "former": [
-        "e6c226c74acfa853"
-      ]
+      "current": "e0236124de597100",
+      "former": []
     },
     "nature/clue-14": {
-      "current": "ac97e24d5b5ed9af",
-      "former": [
-        "ac97e24d5b5ed9af"
-      ]
+      "current": "31374d987b788e1c",
+      "former": []
     },
     "nature/clue-15": {
-      "current": "929d073491f15238",
-      "former": [
-        "929d073491f15238"
-      ]
+      "current": "ac1ff0e56e4e398b",
+      "former": []
     },
     "nature/clue-16": {
-      "current": "be50794dd51bcaf7",
-      "former": [
-        "be50794dd51bcaf7"
-      ]
+      "current": "f0a447c0babb2f04",
+      "former": []
     },
     "nature/clue-17": {
-      "current": "c0cf4b24d411e23c",
-      "former": [
-        "c0cf4b24d411e23c"
-      ]
+      "current": "db4ffe9104653a4f",
+      "former": []
     },
     "nature/clue-18": {
-      "current": "1eb9abcf6b2bc94d",
-      "former": [
-        "1eb9abcf6b2bc94d"
-      ]
+      "current": "a7fda254cc203652",
+      "former": []
     },
     "nature/clue-19": {
-      "current": "08ab447868adaa5c",
-      "former": [
-        "08ab447868adaa5c"
-      ]
+      "current": "01f2c20d2aa4982f",
+      "former": []
     },
     "nature/clue-20": {
-      "current": "6b7dd86016986fe4",
-      "former": [
-        "6b7dd86016986fe4"
-      ]
+      "current": "bc231385d29b9a17",
+      "former": []
     },
     "nature/clue-21": {
-      "current": "bfa41add7a35673d",
-      "former": [
-        "bfa41add7a35673d"
-      ]
+      "current": "53f8dae6c452782e",
+      "former": []
     },
     "nature/clue-22": {
-      "current": "29ef623f035d5b99",
-      "former": [
-        "29ef623f035d5b99"
-      ]
+      "current": "b9f913feb87394ea",
+      "former": []
     },
     "nature/clue-23": {
-      "current": "33127b8470dd79b6",
-      "former": [
-        "33127b8470dd79b6"
-      ]
+      "current": "0174cfc507491a05",
+      "former": []
     },
     "nature/clue-24": {
-      "current": "1e5925b406f3429a",
-      "former": [
-        "1e5925b406f3429a"
-      ]
+      "current": "5cf86169e73b4b29",
+      "former": []
     },
     "rocket/5-1": {
       "current": "ccbaefe6c9594bde",
@@ -4605,718 +4003,480 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "picnic/2-1": {
-      "current": "5792de7821d8d8de",
-      "former": [
-        "5792de7821d8d8de"
-      ]
+      "current": "98c25dfc3ecd73c2",
+      "former": []
     },
     "picnic/2-2": {
-      "current": "1667f3bf7cb4f01b",
-      "former": [
-        "1667f3bf7cb4f01b"
-      ]
+      "current": "8dabf97be201d947",
+      "former": []
     },
     "picnic/2-3": {
-      "current": "2f13a256b56c5a58",
-      "former": [
-        "2f13a256b56c5a58"
-      ]
+      "current": "7d0f5f2297658b44",
+      "former": []
     },
     "picnic/2-4": {
-      "current": "b509a1c11ba8e091",
-      "former": [
-        "b509a1c11ba8e091"
-      ]
+      "current": "22435325252781cd",
+      "former": []
     },
     "picnic/2-5": {
-      "current": "8ad66165d81d2e69",
-      "former": [
-        "8ad66165d81d2e69"
-      ]
+      "current": "5df64d51e0dd84b5",
+      "former": []
     },
     "picnic/2-6": {
-      "current": "feef8a64a7b22a08",
-      "former": [
-        "feef8a64a7b22a08"
-      ]
+      "current": "29a48f3030400094",
+      "former": []
     },
     "picnic/2-7": {
-      "current": "0fcea5d381b7cdaf",
-      "former": [
-        "0fcea5d381b7cdaf"
-      ]
+      "current": "f0fb9f67249ec973",
+      "former": []
     },
     "picnic/2-8": {
-      "current": "190907ce6b456742",
-      "former": [
-        "190907ce6b456742"
-      ]
+      "current": "2678872a637b935e",
+      "former": []
     },
     "picnic/2-9": {
-      "current": "d3d0b361e9bb5eed",
-      "former": [
-        "d3d0b361e9bb5eed"
-      ]
+      "current": "fbb376c515f64e31",
+      "former": []
     },
     "picnic/2-10": {
-      "current": "ac73f5228fe93efe",
-      "former": [
-        "ac73f5228fe93efe"
-      ]
+      "current": "7ce616a6137f7fe2",
+      "former": []
     },
     "picnic/3-1": {
-      "current": "7ebb478dcaf7b1bf",
-      "former": [
-        "7ebb478dcaf7b1bf"
-      ]
+      "current": "f1341ac9b51eed63",
+      "former": []
     },
     "picnic/3-2": {
-      "current": "451929b384992839",
-      "former": [
-        "451929b384992839"
-      ]
+      "current": "14b67a47f30460e5",
+      "former": []
     },
     "picnic/3-3": {
-      "current": "3b2d04f950165237",
-      "former": [
-        "3b2d04f950165237"
-      ]
+      "current": "3b6e1dcd8bab58eb",
+      "former": []
     },
     "picnic/3-4": {
-      "current": "bc1ec4ac259a992a",
-      "former": [
-        "bc1ec4ac259a992a"
-      ]
+      "current": "79a3a268ea3506b6",
+      "former": []
     },
     "picnic/3-5": {
-      "current": "8623d280bbc7958c",
-      "former": [
-        "8623d280bbc7958c"
-      ]
+      "current": "2b9ee0941f128510",
+      "former": []
     },
     "picnic/3-6": {
-      "current": "be8a66c8251aa862",
-      "former": [
-        "be8a66c8251aa862"
-      ]
+      "current": "323b246c5864fa7e",
+      "former": []
     },
     "picnic/4-1": {
-      "current": "d69cad9e87904718",
-      "former": [
-        "d69cad9e87904718"
-      ]
+      "current": "f8a04cda85e1dd84",
+      "former": []
     },
     "picnic/4-2": {
-      "current": "5141f1bfb6e74757",
-      "former": [
-        "5141f1bfb6e74757"
-      ]
+      "current": "d174177b230a6d0b",
+      "former": []
     },
     "picnic/4-3": {
-      "current": "9edb13ed16e2a56d",
-      "former": [
-        "9edb13ed16e2a56d"
-      ]
+      "current": "1f1593a96c8a33b1",
+      "former": []
     },
     "picnic/4-4": {
-      "current": "b5f4039ee869200e",
-      "former": [
-        "b5f4039ee869200e"
-      ]
+      "current": "45a842da02e4d692",
+      "former": []
     },
     "picnic/4-5": {
-      "current": "1fef2db61aa7b24a",
-      "former": [
-        "1fef2db61aa7b24a"
-      ]
+      "current": "fe53de02972a7456",
+      "former": []
     },
     "picnic/started-2-3": {
-      "current": "33455572fc76ef96",
-      "former": [
-        "33455572fc76ef96"
-      ]
+      "current": "0e35771674db310a",
+      "former": []
     },
     "picnic/started-2-4": {
-      "current": "84ca0aacab07665c",
-      "former": [
-        "84ca0aacab07665c"
-      ]
+      "current": "333088689e3d9140",
+      "former": []
     },
     "picnic/started-3-2": {
-      "current": "2fce1a498b2e490b",
-      "former": [
-        "2fce1a498b2e490b"
-      ]
+      "current": "74ed29fdd4bc7257",
+      "former": []
     },
     "picnic/started-4-2": {
-      "current": "e613d804d1cb4098",
-      "former": [
-        "e613d804d1cb4098"
-      ]
+      "current": "8ae7cbd0dd8ff604",
+      "former": []
     },
     "syllable/word-0": {
-      "current": "5b8c0731479ff673",
-      "former": [
-        "5b8c0731479ff673"
-      ]
+      "current": "2bc8a448a9bb4e12",
+      "former": []
     },
     "syllable/word-1": {
-      "current": "88c8c98ebbfc899c",
-      "former": [
-        "88c8c98ebbfc899c"
-      ]
+      "current": "35ec825bbbf22c7d",
+      "former": []
     },
     "syllable/word-2": {
-      "current": "d28c47e503b170c9",
-      "former": [
-        "d28c47e503b170c9"
-      ]
+      "current": "78899e0898ea3868",
+      "former": []
     },
     "syllable/word-3": {
-      "current": "99d37efee1cbb548",
-      "former": [
-        "99d37efee1cbb548"
-      ]
+      "current": "b9a3784f482341a9",
+      "former": []
     },
     "syllable/word-4": {
-      "current": "ce1e8d7846e18c80",
-      "former": [
-        "ce1e8d7846e18c80"
-      ]
+      "current": "b604c1074fc2c981",
+      "former": []
     },
     "syllable/word-5": {
-      "current": "72dddfddceb69861",
-      "former": [
-        "72dddfddceb69861"
-      ]
+      "current": "5fe9be3e8f34de60",
+      "former": []
     },
     "syllable/word-6": {
-      "current": "0a8b8c56813f822c",
-      "former": [
-        "0a8b8c56813f822c"
-      ]
+      "current": "012ee189cb619bad",
+      "former": []
     },
     "syllable/word-7": {
-      "current": "7ac24da507e96cc1",
-      "former": [
-        "7ac24da507e96cc1"
-      ]
+      "current": "58dc012095385d20",
+      "former": []
     },
     "syllable/word-8": {
-      "current": "0f097c89387a0663",
-      "former": [
-        "0f097c89387a0663"
-      ]
+      "current": "33487330375d5582",
+      "former": []
     },
     "syllable/word-9": {
-      "current": "d1a514f511408465",
-      "former": [
-        "d1a514f511408465"
-      ]
+      "current": "f467be02e25f9ae4",
+      "former": []
     },
     "syllable/word-10": {
-      "current": "124a2ca781d05e23",
-      "former": [
-        "124a2ca781d05e23"
-      ]
+      "current": "d7b15496fff16502",
+      "former": []
     },
     "syllable/word-11": {
-      "current": "ee4d1a743978548e",
-      "former": [
-        "ee4d1a743978548e"
-      ]
+      "current": "0f35bc4b4c28364f",
+      "former": []
     },
     "syllable/word-12": {
-      "current": "c0a326bcb4eee7a2",
-      "former": [
-        "c0a326bcb4eee7a2"
-      ]
+      "current": "bf72c3b1f6e8c383",
+      "former": []
     },
     "syllable/word-13": {
-      "current": "6841a6b464a0d7f0",
-      "former": [
-        "6841a6b464a0d7f0"
-      ]
+      "current": "fad0f573c9955571",
+      "former": []
     },
     "syllable/word-14": {
-      "current": "7da1ef2ad8bad1f4",
-      "former": [
-        "7da1ef2ad8bad1f4"
-      ]
+      "current": "659b22d39fd29dd5",
+      "former": []
     },
     "syllable/word-15": {
-      "current": "48be9cd66522c17a",
-      "former": [
-        "48be9cd66522c17a"
-      ]
+      "current": "5274eee1e2296efb",
+      "former": []
     },
     "syllable/word-16": {
-      "current": "ce89da1600ed6b0e",
-      "former": [
-        "ce89da1600ed6b0e"
-      ]
+      "current": "996e470b484e7bef",
+      "former": []
     },
     "syllable/word-17": {
-      "current": "9e32b56926d5ee45",
-      "former": [
-        "9e32b56926d5ee45"
-      ]
+      "current": "186d968204395744",
+      "former": []
     },
     "syllable/word-18": {
-      "current": "1e510631b15a0117",
-      "former": [
-        "1e510631b15a0117"
-      ]
+      "current": "ccf7d17c6ab7b3b6",
+      "former": []
     },
     "syllable/word-19": {
-      "current": "627b4f2a7be374d0",
-      "former": [
-        "627b4f2a7be374d0"
-      ]
+      "current": "84a78f1d3245fc11",
+      "former": []
     },
     "syllable/word-20": {
-      "current": "99129091e68a6b31",
-      "former": [
-        "99129091e68a6b31"
-      ]
+      "current": "94ffe65d9620a735",
+      "former": []
     },
     "syllable/word-21": {
-      "current": "e15f3b256b28da6d",
-      "former": [
-        "e15f3b256b28da6d"
-      ]
+      "current": "a4228b69e6ff9a69",
+      "former": []
     },
     "syllable/word-22": {
-      "current": "cf3d553f4340c18b",
-      "former": [
-        "cf3d553f4340c18b"
-      ]
+      "current": "c4814b63aaf7d98f",
+      "former": []
     },
     "syllable/word-23": {
-      "current": "139cf07f61d2c787",
-      "former": [
-        "139cf07f61d2c787"
-      ]
+      "current": "399a389b85dddd83",
+      "former": []
     },
     "syllable/word-24": {
-      "current": "b546ed269440d154",
-      "former": [
-        "b546ed269440d154"
-      ]
+      "current": "57b5f9323a551bd0",
+      "former": []
     },
     "syllable/word-25": {
-      "current": "c67e1c1407b74aa6",
-      "former": [
-        "c67e1c1407b74aa6"
-      ]
+      "current": "f326ed7dc17990c7",
+      "former": []
     },
     "syllable/word-26": {
-      "current": "c5d5be9a72bfba3c",
-      "former": [
-        "c5d5be9a72bfba3c"
-      ]
+      "current": "31138f4fd176bc1d",
+      "former": []
     },
     "syllable/word-27": {
-      "current": "6846630d18d9f657",
-      "former": [
-        "6846630d18d9f657"
-      ]
+      "current": "33c4b8ac8e824d36",
+      "former": []
     },
     "syllable/word-28": {
-      "current": "a8770445ce04a501",
-      "former": [
-        "a8770445ce04a501"
-      ]
+      "current": "7c901f39ce07f385",
+      "former": []
     },
     "syllable/word-29": {
-      "current": "9221fcd47386e406",
-      "former": [
-        "9221fcd47386e406"
-      ]
+      "current": "320fc8f737ec8387",
+      "former": []
     },
     "syllable/word-30": {
-      "current": "c368076fb9000ab5",
-      "former": [
-        "c368076fb9000ab5"
-      ]
+      "current": "ddfe409cad5c7134",
+      "former": []
     },
     "syllable/word-31": {
-      "current": "fa5a2e3166c30ee1",
-      "former": [
-        "fa5a2e3166c30ee1"
-      ]
+      "current": "9e1c69706b33c780",
+      "former": []
     },
     "syllable/word-32": {
-      "current": "a2d2aa5493d82654",
-      "former": [
-        "a2d2aa5493d82654"
-      ]
+      "current": "154fe701310948b5",
+      "former": []
     },
     "syllable/word-33": {
-      "current": "7cd081d9cf9601b5",
-      "former": [
-        "7cd081d9cf9601b5"
-      ]
+      "current": "319c6aa8eb7e5614",
+      "former": []
     },
     "syllable/word-34": {
-      "current": "d10d0a13fe3a244b",
-      "former": [
-        "d10d0a13fe3a244b"
-      ]
+      "current": "03c4b6648d55320a",
+      "former": []
     },
     "syllable/word-35": {
-      "current": "5101df636200ad3d",
-      "former": [
-        "5101df636200ad3d"
-      ]
+      "current": "ae771462e3175a7e",
+      "former": []
     },
     "syllable/word-36": {
-      "current": "d45a317018b864d2",
-      "former": [
-        "d45a317018b864d2"
-      ]
+      "current": "f65253c527704bd1",
+      "former": []
     },
     "syllable/word-37": {
-      "current": "7e9b56eb8fa26dc3",
-      "former": [
-        "7e9b56eb8fa26dc3"
-      ]
+      "current": "41ba785a290ebf00",
+      "former": []
     },
     "syllable/word-38": {
-      "current": "127c8bfbbf3b71d9",
-      "former": [
-        "127c8bfbbf3b71d9"
-      ]
+      "current": "7a52fe2830be093a",
+      "former": []
     },
     "robot/0-0": {
-      "current": "7c7ad784a6f089a2",
-      "former": [
-        "7c7ad784a6f089a2"
-      ]
+      "current": "c6fd19c767c85ebd",
+      "former": []
     },
     "robot/0-1": {
-      "current": "501aa965fe6a6a87",
-      "former": [
-        "501aa965fe6a6a87"
-      ]
+      "current": "af3250c297d25458",
+      "former": []
     },
     "robot/0-2": {
-      "current": "643490d86d570ec4",
-      "former": [
-        "643490d86d570ec4"
-      ]
+      "current": "4a66631b09638b5b",
+      "former": []
     },
     "robot/0-3": {
-      "current": "dd322ecb2a9db141",
-      "former": [
-        "dd322ecb2a9db141"
-      ]
+      "current": "59d28b5031ca4a9e",
+      "former": []
     },
     "robot/0-4": {
-      "current": "4ea33acd3f78aed1",
-      "former": [
-        "4ea33acd3f78aed1"
-      ]
+      "current": "d6bf4674da5d28ae",
+      "former": []
     },
     "robot/0-5": {
-      "current": "4fe5c5dc0f3868f4",
-      "former": [
-        "4fe5c5dc0f3868f4"
-      ]
+      "current": "d83c34e5d4ead90b",
+      "former": []
     },
     "robot/1-0": {
-      "current": "cda8a1a290bc546c",
-      "former": [
-        "cda8a1a290bc546c"
-      ]
+      "current": "6196fb45adc1f773",
+      "former": []
     },
     "robot/1-1": {
-      "current": "bcacddad4fcd1ce9",
-      "former": [
-        "bcacddad4fcd1ce9"
-      ]
+      "current": "142bd2dad8066cb6",
+      "former": []
     },
     "robot/1-2": {
-      "current": "3e5a1d8613b6b9ca",
-      "former": [
-        "3e5a1d8613b6b9ca"
-      ]
+      "current": "7962190941577d55",
+      "former": []
     },
     "robot/1-3": {
-      "current": "4750f883bf0cadef",
-      "former": [
-        "4750f883bf0cadef"
-      ]
+      "current": "5ad2223864744b30",
+      "former": []
     },
     "robot/1-4": {
-      "current": "d1342ea571faee7f",
-      "former": [
-        "d1342ea571faee7f"
-      ]
+      "current": "70546a5c281a3940",
+      "former": []
     },
     "robot/1-5": {
-      "current": "9e031f124394dc7a",
-      "former": [
-        "9e031f124394dc7a"
-      ]
+      "current": "a4dc4de3093be185",
+      "former": []
     },
     "robot/2-0": {
-      "current": "1a3700fa306a5e14",
-      "former": [
-        "1a3700fa306a5e14"
-      ]
+      "current": "75bcd353a5921a2b",
+      "former": []
     },
     "robot/2-1": {
-      "current": "00aa39b359958e71",
-      "former": [
-        "00aa39b359958e71"
-      ]
+      "current": "09ed1562e08efcce",
+      "former": []
     },
     "robot/2-2": {
-      "current": "4cc27c1010fddf92",
-      "former": [
-        "4cc27c1010fddf92"
-      ]
+      "current": "c480e1b111839f2d",
+      "former": []
     },
     "robot/2-3": {
-      "current": "c1c12c139897f657",
-      "former": [
-        "c1c12c139897f657"
-      ]
+      "current": "0f3994da4d9b1ca8",
+      "former": []
     },
     "robot/2-4": {
-      "current": "fd341d1d473cab07",
-      "former": [
-        "fd341d1d473cab07"
-      ]
+      "current": "2c87d64a63853058",
+      "former": []
     },
     "robot/2-5": {
-      "current": "a86754f82e898922",
-      "former": [
-        "a86754f82e898922"
-      ]
+      "current": "0cbbd16b76b8053d",
+      "former": []
     },
     "robot/3-0": {
-      "current": "bfc470003e41881a",
-      "former": [
-        "bfc470003e41881a"
-      ]
+      "current": "45c285a107c998a5",
+      "former": []
     },
     "robot/3-1": {
-      "current": "f235e8ff897167df",
-      "former": [
-        "f235e8ff897167df"
-      ]
+      "current": "93ef42d68880c820",
+      "former": []
     },
     "robot/3-2": {
-      "current": "b4bf11be9fbe195c",
-      "former": [
-        "b4bf11be9fbe195c"
-      ]
+      "current": "783e5cf7900b3b63",
+      "former": []
     },
     "robot/3-3": {
-      "current": "3a7d0bf78b1b1b79",
-      "former": [
-        "3a7d0bf78b1b1b79"
-      ]
+      "current": "f59d7bf6700fa7c6",
+      "former": []
     },
     "robot/3-4": {
-      "current": "5e5442d14d0ae6a9",
-      "former": [
-        "5e5442d14d0ae6a9"
-      ]
+      "current": "44085dc6bdc79076",
+      "former": []
     },
     "robot/3-5": {
-      "current": "4b2f213eeeb6126c",
-      "former": [
-        "4b2f213eeeb6126c"
-      ]
+      "current": "f2134411af484ff3",
+      "former": []
     },
     "robot/4-0": {
-      "current": "a9776413fcd1d5f7",
-      "former": [
-        "a9776413fcd1d5f7"
-      ]
+      "current": "ca6faa100a5409e8",
+      "former": []
     },
     "robot/4-1": {
-      "current": "79c1d368e73466f2",
-      "former": [
-        "79c1d368e73466f2"
-      ]
+      "current": "9c7e82b77d3699ad",
+      "former": []
     },
     "robot/4-2": {
-      "current": "efb65f2737fab391",
-      "former": [
-        "efb65f2737fab391"
-      ]
+      "current": "4cf1561c0336688e",
+      "former": []
     },
     "robot/4-3": {
-      "current": "1779f7d6c5b886f4",
-      "former": [
-        "1779f7d6c5b886f4"
-      ]
+      "current": "8e3819352a0e97ab",
+      "former": []
     },
     "robot/4-4": {
-      "current": "b0735abe3213a784",
-      "former": [
-        "b0735abe3213a784"
-      ]
+      "current": "742b5cbba7773bfb",
+      "former": []
     },
     "robot/4-5": {
-      "current": "a53ed4b938401b81",
-      "former": [
-        "a53ed4b938401b81"
-      ]
+      "current": "7d7f6ea8b56f753e",
+      "former": []
     },
     "sequence/story-0": {
-      "current": "ede07f8548ebd737",
-      "former": [
-        "ede07f8548ebd737"
-      ]
+      "current": "aa7eda2e8728072a",
+      "former": []
     },
     "sequence/story-1": {
-      "current": "c4a530c3f35e887d",
-      "former": [
-        "c4a530c3f35e887d"
-      ]
+      "current": "cc739dd332e3117d",
+      "former": []
     },
     "sequence/story-2": {
-      "current": "baf592a43b11f36c",
-      "former": [
-        "baf592a43b11f36c"
-      ]
+      "current": "7ea0fdb948fd6145",
+      "former": []
     },
     "sequence/story-3": {
-      "current": "5a643461e2486989",
-      "former": [
-        "5a643461e2486989"
-      ]
+      "current": "5632e0eed8d709ce",
+      "former": []
     },
     "sequence/story-4": {
-      "current": "11f183ab58dcbdd3",
-      "former": [
-        "11f183ab58dcbdd3"
-      ]
+      "current": "c96009a1e15587ab",
+      "former": []
     },
     "sequence/story-5": {
-      "current": "ba7f6c8a62c9c5f8",
-      "former": [
-        "ba7f6c8a62c9c5f8"
-      ]
+      "current": "dfc943e722161127",
+      "former": []
     },
     "sequence/story-6": {
-      "current": "b85c6834038c89cc",
-      "former": [
-        "b85c6834038c89cc"
-      ]
+      "current": "756b25123d2b35ee",
+      "former": []
     },
     "sequence/story-7": {
-      "current": "bec2e2db3cb38c17",
-      "former": [
-        "bec2e2db3cb38c17"
-      ]
+      "current": "5206cf620cf05772",
+      "former": []
     },
     "sequence/story-8": {
-      "current": "cbc307f1acb22ca1",
-      "former": [
-        "cbc307f1acb22ca1"
-      ]
+      "current": "9ed7b31b9ff187e5",
+      "former": []
     },
     "sequence/story-9": {
-      "current": "573ddf59b41678e3",
-      "former": [
-        "573ddf59b41678e3"
-      ]
+      "current": "00ebc6d4c97c018c",
+      "former": []
     },
     "sequence/story-10": {
-      "current": "a86c857fc864b287",
-      "former": [
-        "a86c857fc864b287"
-      ]
+      "current": "57b24a82f6892628",
+      "former": []
     },
     "sequence/story-11": {
-      "current": "c9b486bb3d2449f5",
-      "former": [
-        "c9b486bb3d2449f5"
-      ]
+      "current": "aaa508acf3de0786",
+      "former": []
     },
     "sequence/story-12": {
-      "current": "70d7bf38a0227cd6",
-      "former": [
-        "70d7bf38a0227cd6"
-      ]
+      "current": "f149dc65c8ee37ab",
+      "former": []
     },
     "sequence/story-13": {
-      "current": "488585f691b6cd5e",
-      "former": [
-        "488585f691b6cd5e"
-      ]
+      "current": "78cd192cf71ac6ee",
+      "former": []
     },
     "sequence/story-14": {
-      "current": "fda3b49ce695e27e",
-      "former": [
-        "fda3b49ce695e27e"
-      ]
+      "current": "f565c4ddc7665c4f",
+      "former": []
     },
     "sequence/story-15": {
-      "current": "fbf1a84b74cccff3",
-      "former": [
-        "fbf1a84b74cccff3"
-      ]
+      "current": "e35e9e62368ec22a",
+      "former": []
     },
     "sequence/story-16": {
-      "current": "7c0d80990e34f167",
-      "former": [
-        "7c0d80990e34f167"
-      ]
+      "current": "cb4bc5c811d511b6",
+      "former": []
     },
     "sequence/story-17": {
-      "current": "354389e7d6260d35",
-      "former": [
-        "354389e7d6260d35"
-      ]
+      "current": "0fb1a3488ecdd37c",
+      "former": []
     },
     "sequence/story-18": {
-      "current": "81645fc8ae289016",
-      "former": [
-        "81645fc8ae289016"
-      ]
+      "current": "a96981c868d142c8",
+      "former": []
     },
     "sequence/story-19": {
-      "current": "f34f520a9322b8e4",
-      "former": [
-        "f34f520a9322b8e4"
-      ]
+      "current": "c7766bbcc06b2654",
+      "former": []
     },
     "sequence/story-20": {
-      "current": "d39525032583c3b9",
-      "former": [
-        "d39525032583c3b9"
-      ]
+      "current": "b4beb11ba9d344e9",
+      "former": []
     },
     "sequence/story-21": {
-      "current": "34b7c7d07af64390",
-      "former": [
-        "34b7c7d07af64390"
-      ]
+      "current": "5cea8e7c3e0074e4",
+      "former": []
     },
     "sequence/story-22": {
-      "current": "c667fee441c2eb54",
-      "former": [
-        "c667fee441c2eb54"
-      ]
+      "current": "22f1c7236ae8d2d9",
+      "former": []
     },
     "sequence/story-23": {
-      "current": "e6cb7a29b6fd06ab",
-      "former": [
-        "e6cb7a29b6fd06ab"
-      ]
+      "current": "e378482c0aae759e",
+      "former": []
     },
     "sequence/story-24": {
-      "current": "a8e1b7586f9ea206",
-      "former": [
-        "a8e1b7586f9ea206"
-      ]
+      "current": "0da7075c07de8506",
+      "former": []
     },
     "treasure/0-0": {
       "current": "927174e75d02bdad",
@@ -5511,220 +4671,148 @@ window.FK.puzzleReviewCompatibility = {
       ]
     },
     "neighbours/1-both": {
-      "current": "0835287bc3c00fff",
-      "former": [
-        "0835287bc3c00fff"
-      ]
+      "current": "60365f0478f55d7e",
+      "former": []
     },
     "neighbours/1-left": {
-      "current": "c3d8c20f6549e8d5",
-      "former": [
-        "c3d8c20f6549e8d5"
-      ]
+      "current": "007228f83eb4f354",
+      "former": []
     },
     "neighbours/2-both": {
-      "current": "bfcfa3be4cf02e64",
-      "former": [
-        "bfcfa3be4cf02e64"
-      ]
+      "current": "d56ac18101dbb9e5",
+      "former": []
     },
     "neighbours/2-left": {
-      "current": "922d613e018ee24e",
-      "former": [
-        "922d613e018ee24e"
-      ]
+      "current": "768374515ed4ebcf",
+      "former": []
     },
     "neighbours/3-both": {
-      "current": "710284be81ce88e4",
-      "former": [
-        "710284be81ce88e4"
-      ]
+      "current": "039d17411e37f865",
+      "former": []
     },
     "neighbours/3-left": {
-      "current": "dcf11046402e060e",
-      "former": [
-        "dcf11046402e060e"
-      ]
+      "current": "3ff4df89ff86ef8f",
+      "former": []
     },
     "neighbours/4-both": {
-      "current": "4bfdf78677492564",
-      "former": [
-        "4bfdf78677492564"
-      ]
+      "current": "37c8ba39a20ae0e5",
+      "former": []
     },
     "neighbours/4-left": {
-      "current": "429cef026994e24e",
-      "former": [
-        "429cef026994e24e"
-      ]
+      "current": "4fc2e255398504cf",
+      "former": []
     },
     "neighbours/5-both": {
-      "current": "5c42bc16afd2d3e4",
-      "former": [
-        "5c42bc16afd2d3e4"
-      ]
+      "current": "6ee92a4997caae65",
+      "former": []
     },
     "neighbours/5-left": {
-      "current": "fa978ada7d68fa0e",
-      "former": [
-        "fa978ada7d68fa0e"
-      ]
+      "current": "41a4aefd0a73b98f",
+      "former": []
     },
     "neighbours/6-both": {
-      "current": "b99f5546114c806c",
-      "former": [
-        "b99f5546114c806c"
-      ]
+      "current": "49c0a489d0cc57ed",
+      "former": []
     },
     "neighbours/6-left": {
-      "current": "cf360706cc6ba646",
-      "former": [
-        "cf360706cc6ba646"
-      ]
+      "current": "7b80fe99be5627c7",
+      "former": []
     },
     "neighbours/7-both": {
-      "current": "17244ff6b94c72ec",
-      "former": [
-        "17244ff6b94c72ec"
-      ]
+      "current": "61af44192fa7f26d",
+      "former": []
     },
     "neighbours/7-left": {
-      "current": "17ce95fe038ee606",
-      "former": [
-        "17ce95fe038ee606"
-      ]
+      "current": "f1f2448157a58387",
+      "former": []
     },
     "neighbours/8-both": {
-      "current": "237388ddecd6c1f7",
-      "former": [
-        "237388ddecd6c1f7"
-      ]
+      "current": "ae3f023251cb0176",
+      "former": []
     },
     "neighbours/8-left": {
-      "current": "cf036ba5c3f811dd",
-      "former": [
-        "cf036ba5c3f811dd"
-      ]
+      "current": "9b60545a3f3fbc5c",
+      "former": []
     },
     "neighbours/9-both": {
-      "current": "e03be265a19ba737",
-      "former": [
-        "e03be265a19ba737"
-      ]
+      "current": "104e2eea42dfc6b6",
+      "former": []
     },
     "neighbours/9-left": {
-      "current": "3897e1dde702055d",
-      "former": [
-        "3897e1dde702055d"
-      ]
+      "current": "50b14322f84d84dc",
+      "former": []
     },
     "neighbours/10-both": {
-      "current": "6387b3e31237365b",
-      "former": [
-        "6387b3e31237365b"
-      ]
+      "current": "d613eb2c85d7b75a",
+      "former": []
     },
     "neighbours/10-left": {
-      "current": "d5b89e47c73deef1",
-      "former": [
-        "d5b89e47c73deef1"
-      ]
+      "current": "1cf32f3038ed0c70",
+      "former": []
     },
     "neighbours/11-both": {
-      "current": "0c3d95f3968c70db",
-      "former": [
-        "0c3d95f3968c70db"
-      ]
+      "current": "2f85f55c3600fada",
+      "former": []
     },
     "neighbours/11-left": {
-      "current": "8d7c7547dbba2631",
-      "former": [
-        "8d7c7547dbba2631"
-      ]
+      "current": "8f17297084d161b0",
+      "former": []
     },
     "neighbours/12-both": {
-      "current": "5cc8441411514b84",
-      "former": [
-        "5cc8441411514b84"
-      ]
+      "current": "337016738e734185",
+      "former": []
     },
     "neighbours/12-left": {
-      "current": "93a28630fb76aeae",
-      "former": [
-        "93a28630fb76aeae"
-      ]
+      "current": "18444a6f6ebf802f",
+      "former": []
     },
     "neighbours/13-both": {
-      "current": "6c9996147ccddbc4",
-      "former": [
-        "6c9996147ccddbc4"
-      ]
+      "current": "5684c6f3fde6fdc5",
+      "former": []
     },
     "neighbours/13-left": {
-      "current": "72ad4900af2e192e",
-      "former": [
-        "72ad4900af2e192e"
-      ]
+      "current": "736f67ff6bdddeaf",
+      "former": []
     },
     "neighbours/14-both": {
-      "current": "5d8866bc5b0bd384",
-      "former": [
-        "5d8866bc5b0bd384"
-      ]
+      "current": "a7aacd8b94b5fb85",
+      "former": []
     },
     "neighbours/14-left": {
-      "current": "0386ea0c95c4d2ae",
-      "former": [
-        "0386ea0c95c4d2ae"
-      ]
+      "current": "d19ed56b4192be2f",
+      "former": []
     },
     "neighbours/15-both": {
-      "current": "b597b7fcd7348444",
-      "former": [
-        "b597b7fcd7348444"
-      ]
+      "current": "d54b0e0ba9df1545",
+      "former": []
     },
     "neighbours/15-left": {
-      "current": "2b9edd8c890f98ae",
-      "former": [
-        "2b9edd8c890f98ae"
-      ]
+      "current": "8b3019ebb1ae7d2f",
+      "former": []
     },
     "neighbours/16-both": {
-      "current": "d67b75c4a2343f8c",
-      "former": [
-        "d67b75c4a2343f8c"
-      ]
+      "current": "ffebdf535a233f8d",
+      "former": []
     },
     "neighbours/16-left": {
-      "current": "c97c7b505fbe72a6",
-      "former": [
-        "c97c7b505fbe72a6"
-      ]
+      "current": "8d35cc5fc081fe27",
+      "former": []
     },
     "neighbours/17-both": {
-      "current": "a9629fe45d14c4cc",
-      "former": [
-        "a9629fe45d14c4cc"
-      ]
+      "current": "018cd893dc0f76cd",
+      "former": []
     },
     "neighbours/17-left": {
-      "current": "e02751b0ff655826",
-      "former": [
-        "e02751b0ff655826"
-      ]
+      "current": "8f6ce89fffadd1a7",
+      "former": []
     },
     "neighbours/18-both": {
-      "current": "e5bdf073af138405",
-      "former": [
-        "e5bdf073af138405"
-      ]
+      "current": "ec078dbc2bf7bb84",
+      "former": []
     },
     "neighbours/18-left": {
-      "current": "842838df2e54e7ef",
-      "former": [
-        "842838df2e54e7ef"
-      ]
+      "current": "9b133b986b526cee",
+      "former": []
     },
     "compare/1-1": {
       "current": "df4c0baa25f0d0a4",
@@ -6982,1624 +6070,6 @@ window.FK.puzzleReviewCompatibility = {
       "current": "a221de0db93ab7f1",
       "former": [
         "a221de0db93ab7f1"
-      ]
-    },
-    "read-word/word-0": {
-      "current": "cbcc8167141e410b",
-      "former": [
-        "cbcc8167141e410b"
-      ]
-    },
-    "read-word/word-1": {
-      "current": "639aa0169f7b99e2",
-      "former": [
-        "14f37a05232f2aab",
-        "ddafaba85716a0f4",
-        "80110e877fefd60f",
-        "90f0e9218c9ecc85",
-        "de07b8e50a9406c5",
-        "639aa0169f7b99e2"
-      ]
-    },
-    "read-word/word-2": {
-      "current": "c6e4c0d58e15fb67",
-      "former": [
-        "42bc3acf7071c205",
-        "24b14cc02317a17a",
-        "8e1dc7713e096221",
-        "75908b6b1f1fe5eb",
-        "7e976a9eeb6890fe",
-        "c6e4c0d58e15fb67"
-      ]
-    },
-    "read-word/word-3": {
-      "current": "d0409a76e5d8aa18",
-      "former": [
-        "b00eac7263c0345c",
-        "ff079717924d0743",
-        "a056efc8c2d36b38",
-        "453c8a3606a762b2",
-        "61161621d9abe685",
-        "d0409a76e5d8aa18"
-      ]
-    },
-    "read-word/word-4": {
-      "current": "a639147f2046bfc3",
-      "former": [
-        "a639147f2046bfc3"
-      ]
-    },
-    "read-word/word-5": {
-      "current": "b29d53cc68f01c1e",
-      "former": [
-        "bbfd3e844d06cfb2",
-        "52a257ffb1a3e98d",
-        "871e92c2d70dfc56",
-        "a4e63a08d3e5321c",
-        "81c377268cd69858",
-        "b29d53cc68f01c1e"
-      ]
-    },
-    "read-word/word-6": {
-      "current": "789c8f9776314a6f",
-      "former": [
-        "99e698efc35311e3",
-        "524775883a9f3c5c",
-        "4f8dfe8d8bfb7287",
-        "d9d387f3ccbb0ecd",
-        "f8334745138037ad",
-        "789c8f9776314a6f"
-      ]
-    },
-    "read-word/word-7": {
-      "current": "23b6d4863541396c",
-      "former": [
-        "14ff209a6a541d28",
-        "6d80b265c00ee8d7",
-        "991f21944c03784c",
-        "298f0f2ea3564286",
-        "6e7b15e10fc4fe71",
-        "23b6d4863541396c"
-      ]
-    },
-    "read-word/word-8": {
-      "current": "de4ed6788f040d64",
-      "former": [
-        "299a114a050188b2",
-        "12d42887da5a446d",
-        "9928551cea687a16",
-        "eb1d0fe637a9e29c",
-        "c7f0301fd815f013",
-        "de4ed6788f040d64"
-      ]
-    },
-    "read-word/word-9": {
-      "current": "8a7afbfd25d2b745",
-      "former": [
-        "67ca2cd792b4965b",
-        "8a7afbfd25d2b745"
-      ]
-    },
-    "read-word/word-10": {
-      "current": "f217baea311b3332",
-      "former": [
-        "b33e8f9f384312a5",
-        "d3906c7268e710fa",
-        "6fa5f7652941c981",
-        "e3d550c38b69680b",
-        "0dabb40dd48de8c1",
-        "f217baea311b3332"
-      ]
-    },
-    "read-word/word-11": {
-      "current": "2cb5f1bcaf57e1d8",
-      "former": [
-        "5182255687c4ecec",
-        "86fa60f95a6219d3",
-        "98686df8c6897e08",
-        "72f83cc2283aad42",
-        "2f3fd4b11c76f943",
-        "2cb5f1bcaf57e1d8"
-      ]
-    },
-    "read-word/word-12": {
-      "current": "a47e67e959daee87",
-      "former": [
-        "3225ad89200b7b45",
-        "8804b424a71c119a",
-        "65d2c197ba813521",
-        "71841abdf376902b",
-        "d858e358819896be",
-        "a47e67e959daee87"
-      ]
-    },
-    "read-word/word-13": {
-      "current": "64f5220e16bfcf24",
-      "former": [
-        "f7cc31cf4d34cd91",
-        "64f5220e16bfcf24"
-      ]
-    },
-    "read-word/word-14": {
-      "current": "e27f7b1c6e81fdce",
-      "former": [
-        "9aefbf45d3a95f57",
-        "2c87f432d7e7c568",
-        "13e8f2bb830c1f73",
-        "f4f42ea1d422c4b9",
-        "c11defcdd79e272f",
-        "e27f7b1c6e81fdce"
-      ]
-    },
-    "read-word/word-15": {
-      "current": "fd8009dd0f86436f",
-      "former": [
-        "815398c3f3774c11",
-        "e5d10ca00f34636e",
-        "29754ef53ddf3eb5",
-        "12359c877a2a947f",
-        "87ae12d503b1d5af",
-        "fd8009dd0f86436f"
-      ]
-    },
-    "read-word/word-16": {
-      "current": "b2a736e68e593f9a",
-      "former": [
-        "f249db7b33024033",
-        "3187c3684d48a98c",
-        "d1e35b89cd150457",
-        "0c0009ef5fec731d",
-        "9a8f3dee761818a0",
-        "b2a736e68e593f9a"
-      ]
-    },
-    "read-word/word-17": {
-      "current": "a3b506e3b19d959f",
-      "former": [
-        "2253b555360f06a9",
-        "4d487eca1c00eed6",
-        "3da12bbf5bd9d84d",
-        "fa9868c95500ea87",
-        "f6f6638e34bd9104",
-        "a3b506e3b19d959f"
-      ]
-    },
-    "read-word/word-18": {
-      "current": "f76abd7044bee306",
-      "former": [
-        "6e92e77b2108a8e9",
-        "7102552ac374b1f6",
-        "2e623ea99db2e34d",
-        "e143d737d0394ac7",
-        "d981b8b3cce34175",
-        "f76abd7044bee306"
-      ]
-    },
-    "read-word/word-19": {
-      "current": "2bbaed48a00231ec",
-      "former": [
-        "0ce7cbe73f570779",
-        "2ec1f8f6016aa5e6",
-        "d40ab5cdb0c8bedd",
-        "f561705359bd5cd7",
-        "b5f337ae456c8e66",
-        "2bbaed48a00231ec"
-      ]
-    },
-    "read-word/word-20": {
-      "current": "0d617573bad3be77",
-      "former": [
-        "4085800644185dce",
-        "f74f1f414f9d3471",
-        "5a2fab6c735b00ea",
-        "bbb08c72f2d14e20",
-        "97a1e9d6608b00ca",
-        "0d617573bad3be77"
-      ]
-    },
-    "read-word/word-21": {
-      "current": "b269f194d6d48878",
-      "former": [
-        "828c51d960704f47",
-        "a8a86eba728f62f8",
-        "9216f87f179160e3",
-        "99c1ec850146aca9",
-        "63f730110473f251",
-        "b269f194d6d48878"
-      ]
-    },
-    "read-word/word-22": {
-      "current": "fb516547df9afc27",
-      "former": [
-        "a387f1365f8c0e46",
-        "fb516547df9afc27"
-      ]
-    },
-    "read-word/word-23": {
-      "current": "3fc2e5d1f788d6fd",
-      "former": [
-        "393d9dca95708476",
-        "4538c54b99f49fa9",
-        "2db06d145f8673d2",
-        "ec6cef3efb5b0dd8",
-        "e4656bab7de45695",
-        "3fc2e5d1f788d6fd"
-      ]
-    },
-    "read-word/word-24": {
-      "current": "8bb3e01dc790b239",
-      "former": [
-        "210a8c53729ecc25",
-        "f4bd8fae967f2cfa",
-        "e2e590c10d13a081",
-        "97d487f7bd58a48b",
-        "979666ec3e46aff2",
-        "8bb3e01dc790b239"
-      ]
-    },
-    "read-word/word-25": {
-      "current": "164cccf055cd6fca",
-      "former": [
-        "c6d2a7dd1fc7436b",
-        "c1ff6924474ea534",
-        "800b110f3ff2a64f",
-        "ca90add94ac87045",
-        "7ce01199993c3311",
-        "164cccf055cd6fca"
-      ]
-    },
-    "read-word/word-26": {
-      "current": "09d4757f60bea027",
-      "former": [
-        "e9e0e6066666b7de",
-        "f0cbbb01e6882ea1",
-        "709fa5ece4c934fa",
-        "ed7b80422b29a130",
-        "f1a8cad5314a6631",
-        "09d4757f60bea027"
-      ]
-    },
-    "read-word/word-27": {
-      "current": "a17581b7bb1fb1a7",
-      "former": [
-        "ce35ed5f67493845",
-        "a17581b7bb1fb1a7"
-      ]
-    },
-    "read-word/word-28": {
-      "current": "39c3924f7e351275",
-      "former": [
-        "1908ca1574bcf291",
-        "aba42d64ad1a5e8e",
-        "2d274d6b56e02075",
-        "5380b6a17ca928ff",
-        "a28fc4ebb413c7a1",
-        "39c3924f7e351275"
-      ]
-    },
-    "read-word/word-29": {
-      "current": "94eb79b1cf9d474d",
-      "former": [
-        "5f7b01bec5157f4c",
-        "e031e1dbff2b7713",
-        "7b9b7e64552fe4a8",
-        "883da892682723a2",
-        "ac231c851a8678a7",
-        "94eb79b1cf9d474d"
-      ]
-    },
-    "read-word/word-30": {
-      "current": "e8f43277f27b688d",
-      "former": [
-        "e8f43277f27b688d"
-      ]
-    },
-    "read-word/word-31": {
-      "current": "2a64217635942a7e",
-      "former": [
-        "d29904f08d495252",
-        "2a64217635942a7e"
-      ]
-    },
-    "read-word/word-32": {
-      "current": "156515b2a4de0174",
-      "former": [
-        "44c32e5940c44053",
-        "48ead93e3b4beaac",
-        "a907624f0c959377",
-        "e4e8633db3d753bd",
-        "5072a6bb3f2e26fb",
-        "156515b2a4de0174"
-      ]
-    },
-    "read-word/word-33": {
-      "current": "70bd5865c41ea12b",
-      "former": [
-        "232ffe6c6b244686",
-        "aa098d5d63d72219",
-        "1b122226a60a3e62",
-        "583338d0523f9ee8",
-        "19373822135af84c",
-        "70bd5865c41ea12b"
-      ]
-    },
-    "read-word/word-34": {
-      "current": "ddb769430cd7ee99",
-      "former": [
-        "031c26fa0b3b0b62",
-        "fd0472632738807d",
-        "c1a9b7bcf523d946",
-        "d1e30cd6268702cc",
-        "9ccbfe09bc7b5ccf",
-        "ddb769430cd7ee99"
-      ]
-    },
-    "read-leaves/ma": {
-      "current": "ee7570a76d5459fb",
-      "former": [
-        "86aac72a4bbffefe",
-        "1176772b1872399b",
-        "799045e982928b75",
-        "ee7570a76d5459fb"
-      ]
-    },
-    "read-leaves/mi": {
-      "current": "c7148d7f1d0d9bf3",
-      "former": [
-        "fccc89fab51375fe",
-        "e0c3c80b81c5b09b",
-        "83911011d2d9497d",
-        "c7148d7f1d0d9bf3"
-      ]
-    },
-    "read-leaves/mo": {
-      "current": "b028712d5d19cd35",
-      "former": [
-        "c8eac4a20263c07e",
-        "c0b8438b4693641b",
-        "86767e9b5661e43b",
-        "b028712d5d19cd35"
-      ]
-    },
-    "read-leaves/mu": {
-      "current": "6ebc6037ca10732f",
-      "former": [
-        "8f5d48220417193e",
-        "47141c5f63df22db",
-        "b88ed57151fb0221",
-        "6ebc6037ca10732f"
-      ]
-    },
-    "read-leaves/la": {
-      "current": "ec89bec45d3e103a",
-      "former": [
-        "1b56d2c2eb35bafe",
-        "bca9213bfb85271b",
-        "d14932c6c7a5f7b4",
-        "ec89bec45d3e103a"
-      ]
-    },
-    "read-leaves/li": {
-      "current": "41f7cbdc0cf75232",
-      "former": [
-        "43998dd2548931fe",
-        "260754bb64d89e1b",
-        "2bf8a3de17ecb5bc",
-        "41f7cbdc0cf75232"
-      ]
-    },
-    "read-leaves/lo": {
-      "current": "2b85070e1888de74",
-      "former": [
-        "142cd27e2dbbe07e",
-        "75c5b6d7288a109b",
-        "58be932c75166d7a",
-        "2b85070e1888de74"
-      ]
-    },
-    "read-leaves/lu": {
-      "current": "6de4e604f577006e",
-      "former": [
-        "bfc36faee5b19a3e",
-        "bc020f3b52228b5b",
-        "5d8d5f961a1c1760",
-        "6de4e604f577006e"
-      ]
-    },
-    "read-leaves/sa": {
-      "current": "94e4140107c66765",
-      "former": [
-        "a487dedaf685bbfe",
-        "cd2f26e3a8fa9d9b",
-        "7f8dc22fcc5a30eb",
-        "94e4140107c66765"
-      ]
-    },
-    "read-leaves/si": {
-      "current": "272ab0291fcfe56d",
-      "former": [
-        "a402bf5a796500fe",
-        "42c0c0932bd9e29b",
-        "40304cc7b450b2e3",
-        "272ab0291fcfe56d"
-      ]
-    },
-    "read-leaves/so": {
-      "current": "eebfad6be655cf2b",
-      "former": [
-        "3dc69e8a5bee32fe",
-        "13ee01f3d924af9b",
-        "f21c435db15f9525",
-        "eebfad6be655cf2b"
-      ]
-    },
-    "read-leaves/su": {
-      "current": "38b4bf21a99c5db1",
-      "former": [
-        "c47805dabae588be",
-        "c48c9f87dcb0a35b",
-        "4660247751a162bf",
-        "38b4bf21a99c5db1"
-      ]
-    },
-    "read-leaves/na": {
-      "current": "78f414e20d5d97b8",
-      "former": [
-        "d08e55520631b6fe",
-        "674ec6a3ba63431b",
-        "cd2b25b87386ed36",
-        "78f414e20d5d97b8"
-      ]
-    },
-    "read-leaves/ni": {
-      "current": "3bdd718abd16d9b0",
-      "former": [
-        "405f37f26f852dfe",
-        "7437503323b6ba1b",
-        "c4335990c3cdab3e",
-        "3bdd718abd16d9b0"
-      ]
-    },
-    "read-leaves/no": {
-      "current": "81b23c307e8d8576",
-      "former": [
-        "9d1f72ae37ebbafe",
-        "cde02a9f1882491b",
-        "ac83447a6b124378",
-        "81b23c307e8d8576"
-      ]
-    },
-    "read-leaves/nu": {
-      "current": "c881a3ba1edcc7ec",
-      "former": [
-        "0ba1d5d623a793be",
-        "5c64b44b26a664db",
-        "c223f8604cb6cce2",
-        "c881a3ba1edcc7ec"
-      ]
-    },
-    "read-leaves/ra": {
-      "current": "8162620ec067f5a4",
-      "former": [
-        "aa782acaabdd1cfe",
-        "5269e9db4928d11b",
-        "2544374c00b6bf2a",
-        "8162620ec067f5a4"
-      ]
-    },
-    "read-leaves/ri": {
-      "current": "e8b048e6d87173ac",
-      "former": [
-        "fc281d0a2ebc61fe",
-        "100e79ebcc08161b",
-        "eae9e064e8ad4122",
-        "e8b048e6d87173ac"
-      ]
-    },
-    "read-leaves/ro": {
-      "current": "6ec8991c1cabb86a",
-      "former": [
-        "b5284b86b2adb7fe",
-        "49a9a12f0548dc1b",
-        "9b022f3e0d2e4064",
-        "6ec8991c1cabb86a"
-      ]
-    },
-    "read-leaves/ru": {
-      "current": "7d9565c6121d0cf0",
-      "former": [
-        "941d54363c0c2cbe",
-        "9660dd83b10f93db",
-        "3608549494a94ffe",
-        "7d9565c6121d0cf0"
-      ]
-    },
-    "read-leaves/fa": {
-      "current": "fe88590aa00e5bb0",
-      "former": [
-        "f6d700d2fb6af0fe",
-        "d8be97a3af9c7d1b",
-        "855fe790e0d6293e",
-        "fe88590aa00e5bb0"
-      ]
-    },
-    "read-leaves/fi": {
-      "current": "02011aa2b817d9b8",
-      "former": [
-        "be001f727e4a35fe",
-        "b02c2953327bc21b",
-        "5f52e938c8ccab36",
-        "02011aa2b817d9b8"
-      ]
-    },
-    "read-leaves/fo": {
-      "current": "c132d668798e857e",
-      "former": [
-        "d59888fe46b0c2fe",
-        "ebea53bf2747511b",
-        "2ab1e61270114370",
-        "c132d668798e857e"
-      ]
-    },
-    "read-leaves/fu": {
-      "current": "2f20df22f1838de4",
-      "former": [
-        "c7d510e6673f4fbe",
-        "f575ea1b6a3e20db",
-        "23b367a87a1006ea",
-        "2f20df22f1838de4"
-      ]
-    },
-    "read-leaves/ta": {
-      "current": "ce3da7dc100bec22",
-      "former": [
-        "d4a77732856e34fe",
-        "2bdfd5db95bda11b",
-        "657e65ae55124bac",
-        "ce3da7dc100bec22"
-      ]
-    },
-    "read-leaves/ti": {
-      "current": "854c75c428156a2a",
-      "former": [
-        "332a7582084d79fe",
-        "b5f4805b189ce61b",
-        "2a59f8563d08cda4",
-        "854c75c428156a2a"
-      ]
-    },
-    "read-leaves/to": {
-      "current": "405fd4f633a6f66c",
-      "former": [
-        "5e32b05ee180287e",
-        "6121fb07dc4e589b",
-        "d0ce04b49a328562",
-        "405fd4f633a6f66c"
-      ]
-    },
-    "read-leaves/tu": {
-      "current": "25128f1c65b72a76",
-      "former": [
-        "555fa11e37187e3e",
-        "3f88b65ba3896f5b",
-        "87d8922ee50eb578",
-        "25128f1c65b72a76"
-      ]
-    },
-    "read-leaves/pa": {
-      "current": "758c4da010486e26",
-      "former": [
-        "81f3a3ca90e120fe",
-        "b891e4438a4ab51b",
-        "dee87aaa54d5c9a8",
-        "758c4da010486e26"
-      ]
-    },
-    "read-leaves/pi": {
-      "current": "0a268c782851ec2e",
-      "former": [
-        "04001d5a13c065fe",
-        "21ebb7330d29fa1b",
-        "ead807323ccc4ba0",
-        "0a268c782851ec2e"
-      ]
-    },
-    "read-leaves/po": {
-      "current": "00649b4ab6a71168",
-      "former": [
-        "ad70b626a87ddd7e",
-        "d1721d371550a39b",
-        "0c4a982017326a66",
-        "00649b4ab6a71168"
-      ]
-    },
-    "read-leaves/pu": {
-      "current": "7ff13210e8b74572",
-      "former": [
-        "7e4ee4befe16333e",
-        "3bf16fa3dc8bba5b",
-        "08ec93ea620e9a7c",
-        "7ff13210e8b74572"
-      ]
-    },
-    "read-colours/rot": {
-      "current": "e1b907f11e056bff",
-      "former": [
-        "a2aae19e3206ca0a",
-        "65335b131b5cded1",
-        "3c9330480882b536",
-        "d67f36a82894295a",
-        "e1b907f11e056bff"
-      ]
-    },
-    "read-colours/rot-gelb": {
-      "current": "b0a511ca22eb45a0",
-      "former": [
-        "8f2841fe6740f5b2",
-        "e9da7165aa17cec9",
-        "25cf02640d322c0e",
-        "a0225de7ea1a5dbb",
-        "b0a511ca22eb45a0"
-      ]
-    },
-    "read-colours/rot-blau": {
-      "current": "0ac4f8239ea3f873",
-      "former": [
-        "d7adcd1e03618872",
-        "c9ca4f29c08f9e09",
-        "327d04648f6068ce",
-        "f6d49cb860f32b18",
-        "0ac4f8239ea3f873"
-      ]
-    },
-    "read-colours/rot-rosa": {
-      "current": "9124d693c66e3135",
-      "former": [
-        "e474fdc5e3f92557",
-        "cd557d50f556b44c",
-        "bf23f5df2e56336b",
-        "4fb2dbbcb478f98e",
-        "9124d693c66e3135"
-      ]
-    },
-    "read-colours/rot-weiss": {
-      "current": "c7933f1660cdfa98",
-      "former": [
-        "5226d4545f6ee712",
-        "b09f5883adbc09a9",
-        "cb08567a9468e16e",
-        "e336b75705d46707",
-        "c7933f1660cdfa98"
-      ]
-    },
-    "read-colours/gelb": {
-      "current": "6de7f7c9ae38b201",
-      "former": [
-        "19377f7010794fec",
-        "7768c6afd5bf8617",
-        "c440976ab7868550",
-        "faadd19c2ab68ede",
-        "6de7f7c9ae38b201"
-      ]
-    },
-    "read-colours/gelb-rot": {
-      "current": "95ce75a696bf19e0",
-      "former": [
-        "34414704dfbde552",
-        "4b5b509300dcb4a9",
-        "6f52affac091f72e",
-        "4b8cd71f73f2eafb",
-        "95ce75a696bf19e0"
-      ]
-    },
-    "read-colours/gelb-blau": {
-      "current": "62080ed8c011a51a",
-      "former": [
-        "2e265d52884fe972",
-        "10227c25920077c9",
-        "1ec2b98802e07bce",
-        "4bcec2aeb0a5e9f2",
-        "62080ed8c011a51a"
-      ]
-    },
-    "read-colours/gelb-rosa": {
-      "current": "c1487d2c91043654",
-      "former": [
-        "a649cd59c59f98d7",
-        "9993949449474c0c",
-        "0f9e38735f1f80eb",
-        "91162e1137b81947",
-        "c1487d2c91043654"
-      ]
-    },
-    "read-colours/gelb-weiss": {
-      "current": "89ca9c3e1365bad6",
-      "former": [
-        "a94587e40ab135d2",
-        "13bae5aba463fb29",
-        "0450182a5e857b2e",
-        "f4c7fdccff337d04",
-        "89ca9c3e1365bad6"
-      ]
-    },
-    "read-colours/blau": {
-      "current": "bfda6ca3e7cbbd73",
-      "former": [
-        "03135de34895147b",
-        "680e7fe2f61d3960",
-        "53f6a4754f32ff87",
-        "6ea5eedb67b321b7",
-        "bfda6ca3e7cbbd73"
-      ]
-    },
-    "read-colours/blau-rot": {
-      "current": "4fba3c5b8eee8773",
-      "former": [
-        "0a348134a1c197d2",
-        "f13cfa7b635ff829",
-        "f2a9833aa2d94aae",
-        "71ff9008316c2518",
-        "4fba3c5b8eee8773"
-      ]
-    },
-    "read-colours/blau-gelb": {
-      "current": "fa1204e8f6aa579a",
-      "former": [
-        "f0f7f63643b15b32",
-        "a2c01345e1dda909",
-        "74e3b7ec7ba1a48e",
-        "325800eeb4ffe172",
-        "fa1204e8f6aa579a"
-      ]
-    },
-    "read-colours/blau-rosa": {
-      "current": "d65a837461d55948",
-      "former": [
-        "7ae50e7502f9f3d7",
-        "b74d8f3046bd4e0c",
-        "5b52916f3f9755eb",
-        "14573929e14d9703",
-        "d65a837461d55948"
-      ]
-    },
-    "read-colours/blau-weiss": {
-      "current": "6ca9888027978432",
-      "former": [
-        "22286f6c3549e452",
-        "0518224b4169d7a9",
-        "9d44ebf2754b17ae",
-        "5a39f8ccee467358",
-        "6ca9888027978432"
-      ]
-    },
-    "read-colours/rosa": {
-      "current": "f98f153521d535c5",
-      "former": [
-        "27ba982eff5816c8",
-        "0a24d87946d6b933",
-        "babf77b870ece434",
-        "129a9d086f63ffb8",
-        "f98f153521d535c5"
-      ]
-    },
-    "read-colours/rosa-rot": {
-      "current": "355c62975a66f875",
-      "former": [
-        "31b9e0fb1cecd8b7",
-        "0d2502bef0ef9a6c",
-        "c37760655a472f4b",
-        "ae5a694cffb456ce",
-        "355c62975a66f875"
-      ]
-    },
-    "read-colours/rosa-gelb": {
-      "current": "07d291665e776ff4",
-      "former": [
-        "e306690512292857",
-        "0ae575e0e4e92b0c",
-        "eb2410d7680a666b",
-        "96a90d73394c78a7",
-        "07d291665e776ff4"
-      ]
-    },
-    "read-colours/rosa-blau": {
-      "current": "f90b543636a656a8",
-      "former": [
-        "48d1bbadbc690457",
-        "d9c889f0a507280c",
-        "2444aa0f84fda56b",
-        "57f16d3709d57aa3",
-        "f90b543636a656a8"
-      ]
-    },
-    "read-colours/rosa-weiss": {
-      "current": "aa13d1a90af2eaf7",
-      "former": [
-        "9fe18d439d4d6f77",
-        "6cabc13ae0bec5ac",
-        "ab5cb705bade9b8b",
-        "b8e1fccdb740fac1",
-        "aa13d1a90af2eaf7"
-      ]
-    },
-    "read-colours/weiss": {
-      "current": "9a8b38ccdca4180c",
-      "former": [
-        "90fa291bdd2eec4b",
-        "822812f8f79e3c30",
-        "b37b78510a68d1b7",
-        "09fe9d6ff71ff6d5",
-        "9a8b38ccdca4180c"
-      ]
-    },
-    "read-colours/weiss-rot": {
-      "current": "4cd7f95add6df218",
-      "former": [
-        "0b9f9ed849260ed2",
-        "13c816c77b1ef169",
-        "22b9624e476b51ae",
-        "e88ae2d31f4cd407",
-        "4cd7f95add6df218"
-      ]
-    },
-    "read-colours/weiss-gelb": {
-      "current": "cbccf5f6e61089d6",
-      "former": [
-        "48e66d66dcb852f2",
-        "4ead20fdb510b509",
-        "87ced5d46ebc1d4e",
-        "8c64a27c79721784",
-        "cbccf5f6e61089d6"
-      ]
-    },
-    "read-colours/weiss-blau": {
-      "current": "b23a124062f27a72",
-      "former": [
-        "31d539361cea36b2",
-        "3d0719412e6bf649",
-        "26aa4c14be0bc40e",
-        "a8d4014c6fb25998",
-        "b23a124062f27a72"
-      ]
-    },
-    "read-colours/weiss-rosa": {
-      "current": "91a7489df431daf7",
-      "former": [
-        "b37d30e501a7f097",
-        "9584dce020080c8c",
-        "f2d87bf71105c5ab",
-        "a35c4df13df97ac1",
-        "91a7489df431daf7"
-      ]
-    },
-    "trace/letter-A": {
-      "current": "992afec6f3b23914",
-      "former": [
-        "992afec6f3b23914"
-      ]
-    },
-    "trace/letter-B": {
-      "current": "938ee1372bdcf6b1",
-      "former": [
-        "d32a72875894c7af",
-        "e1e6d91554806783",
-        "938ee1372bdcf6b1"
-      ]
-    },
-    "trace/letter-C": {
-      "current": "64fbcddbac242aa1",
-      "former": [
-        "515e0942ceee864e",
-        "812924b0fa0dffa2",
-        "64fbcddbac242aa1"
-      ]
-    },
-    "trace/letter-D": {
-      "current": "28d7f329bbb9f481",
-      "former": [
-        "e1b5e08d67ccb369",
-        "0a45c61f812bef45",
-        "28d7f329bbb9f481"
-      ]
-    },
-    "trace/letter-E": {
-      "current": "1cedbb9eea271262",
-      "former": [
-        "24fff498dc646508",
-        "2ee887daab3a9064",
-        "1cedbb9eea271262"
-      ]
-    },
-    "trace/letter-F": {
-      "current": "7e0aaeaefb018308",
-      "former": [
-        "7bc6087be779922b",
-        "28862441072d1b07",
-        "7e0aaeaefb018308"
-      ]
-    },
-    "trace/letter-G": {
-      "current": "e90d676e1ecefe08",
-      "former": [
-        "e90d676e1ecefe08"
-      ]
-    },
-    "trace/letter-H": {
-      "current": "c29237a452200086",
-      "former": [
-        "c29237a452200086"
-      ]
-    },
-    "trace/letter-I": {
-      "current": "af560a3294185d50",
-      "former": [
-        "961c088c5a9cb584",
-        "f0ca20562d023fe8",
-        "af560a3294185d50"
-      ]
-    },
-    "trace/letter-J": {
-      "current": "fe4433643d8cf6e8",
-      "former": [
-        "fe4433643d8cf6e8"
-      ]
-    },
-    "trace/letter-K": {
-      "current": "46b2f4fb3824a20b",
-      "former": [
-        "a728baeaf022a346",
-        "ce331c58d8d9e2aa",
-        "46b2f4fb3824a20b"
-      ]
-    },
-    "trace/letter-L": {
-      "current": "3e99052d261995e3",
-      "former": [
-        "9b318ad58900d061",
-        "4e1a22075ff7d24d",
-        "3e99052d261995e3"
-      ]
-    },
-    "trace/letter-M": {
-      "current": "43f1d03e79997d26",
-      "former": [
-        "fdbc4040fd988200",
-        "cf85f2428a06736c",
-        "43f1d03e79997d26"
-      ]
-    },
-    "trace/letter-N": {
-      "current": "a9dbe779bb020833",
-      "former": [
-        "a9dbe779bb020833"
-      ]
-    },
-    "trace/letter-O": {
-      "current": "234fa719a2c7b2c9",
-      "former": [
-        "8901716e3d75efc2",
-        "05eae1748b86962e",
-        "234fa719a2c7b2c9"
-      ]
-    },
-    "trace/letter-P": {
-      "current": "ef157d511781b1b3",
-      "former": [
-        "ef157d511781b1b3"
-      ]
-    },
-    "trace/letter-Q": {
-      "current": "edd5cb69091e2c0d",
-      "former": [
-        "4d68ba949ec8ae9c",
-        "5a5599deafaeb2f0",
-        "edd5cb69091e2c0d"
-      ]
-    },
-    "trace/letter-R": {
-      "current": "d0ae4dd5a124704d",
-      "former": [
-        "37dba137bdf4ddbf",
-        "4b519a05b9e07d93",
-        "d0ae4dd5a124704d"
-      ]
-    },
-    "trace/letter-S": {
-      "current": "62d8bdee5a7d3362",
-      "former": [
-        "c435b3b23066dc5e",
-        "cf58b7a0579e95b2",
-        "62d8bdee5a7d3362"
-      ]
-    },
-    "trace/letter-T": {
-      "current": "c09c9d24b110f17c",
-      "former": [
-        "9baa7e3dc9450979",
-        "f15808cfe2a44555",
-        "c09c9d24b110f17c"
-      ]
-    },
-    "trace/letter-U": {
-      "current": "5a340189cd535e55",
-      "former": [
-        "4484364841c47b18",
-        "7ab50d8a0cb2e674",
-        "5a340189cd535e55"
-      ]
-    },
-    "trace/letter-V": {
-      "current": "d39a6a9d5d332afb",
-      "former": [
-        "954f352b4cd9a83b",
-        "f29b91716c8d3117",
-        "d39a6a9d5d332afb"
-      ]
-    },
-    "trace/letter-W": {
-      "current": "75223dda7fd11c76",
-      "former": [
-        "75223dda7fd11c76"
-      ]
-    },
-    "trace/letter-X": {
-      "current": "3b006a894af65ac5",
-      "former": [
-        "02ff81a19d25d9f5",
-        "e3fdef1b22da76d9",
-        "3b006a894af65ac5"
-      ]
-    },
-    "trace/letter-Y": {
-      "current": "8d0029a276051784",
-      "former": [
-        "f4a1ea3cbffccb94",
-        "b23c7a868e7a95f8",
-        "8d0029a276051784"
-      ]
-    },
-    "trace/letter-Z": {
-      "current": "1ea8d482e4cc9240",
-      "former": [
-        "ec3694bfdf28fab7",
-        "8272462d98ac609b",
-        "1ea8d482e4cc9240"
-      ]
-    },
-    "trace/letter-Ä": {
-      "current": "a29ec521fe7c9c33",
-      "former": [
-        "7898d00d8a84e1e9",
-        "351c069f063480c5",
-        "a29ec521fe7c9c33"
-      ]
-    },
-    "trace/letter-Ö": {
-      "current": "d4039924964228d2",
-      "former": [
-        "cebeb5ab8947d8bb",
-        "103f00f182374097",
-        "d4039924964228d2"
-      ]
-    },
-    "trace/letter-Ü": {
-      "current": "3926171d5095f015",
-      "former": [
-        "7e0c92050d3154f1",
-        "5150f9f74678b9dd",
-        "3926171d5095f015"
-      ]
-    },
-    "trace/letter-a": {
-      "current": "92bcc022ad75f13e",
-      "former": [
-        "92bcc022ad75f13e"
-      ]
-    },
-    "trace/letter-b": {
-      "current": "14f07d711a2a312b",
-      "former": [
-        "95eaa767ed7e468f",
-        "1a9cb1f56c9d89a3",
-        "14f07d711a2a312b"
-      ]
-    },
-    "trace/letter-c": {
-      "current": "5087d42a3b856bd0",
-      "former": [
-        "7e891c6245347dae",
-        "ce3fd1d02399e942",
-        "5087d42a3b856bd0"
-      ]
-    },
-    "trace/letter-d": {
-      "current": "9e37316d96ec1dc5",
-      "former": [
-        "64ebf7adce9ce749",
-        "2266f8ff991b5c65",
-        "9e37316d96ec1dc5"
-      ]
-    },
-    "trace/letter-e": {
-      "current": "7a3c51d9f72baef7",
-      "former": [
-        "3a2387381abca768",
-        "7ec3293a523d6f04",
-        "7a3c51d9f72baef7"
-      ]
-    },
-    "trace/letter-f": {
-      "current": "7ed0d5329ebbe28c",
-      "former": [
-        "8611931b907a130b",
-        "4f0edca10b333b27",
-        "7ed0d5329ebbe28c"
-      ]
-    },
-    "trace/letter-g": {
-      "current": "bf535ab5c62051d9",
-      "former": [
-        "bf535ab5c62051d9"
-      ]
-    },
-    "trace/letter-h": {
-      "current": "e7e85ddcda77c2a0",
-      "former": [
-        "e7e85ddcda77c2a0"
-      ]
-    },
-    "trace/letter-i": {
-      "current": "6a75f01393d1d7b9",
-      "former": [
-        "045fb72cee9d77e4",
-        "a737f7767e5c9e88",
-        "6a75f01393d1d7b9"
-      ]
-    },
-    "trace/letter-j": {
-      "current": "cb665425d9d57a89",
-      "former": [
-        "cb665425d9d57a89"
-      ]
-    },
-    "trace/letter-k": {
-      "current": "5122c422885d3f80",
-      "former": [
-        "6baa654a66689aa6",
-        "d43be2380265cc4a",
-        "5122c422885d3f80"
-      ]
-    },
-    "trace/letter-l": {
-      "current": "19e9174f19249b4f",
-      "former": [
-        "7d631275efd10441",
-        "14d1942777e73f6d",
-        "19e9174f19249b4f"
-      ]
-    },
-    "trace/letter-m": {
-      "current": "33265cfdf3a627a3",
-      "former": [
-        "92b7a3e03bf0c460",
-        "7e2ef5a23109520c",
-        "33265cfdf3a627a3"
-      ]
-    },
-    "trace/letter-n": {
-      "current": "92aece62793b3554",
-      "former": [
-        "92aece62793b3554"
-      ]
-    },
-    "trace/letter-o": {
-      "current": "aca52f562c19bed0",
-      "former": [
-        "d270f98e09646722",
-        "ac5fead45f69ffce",
-        "aca52f562c19bed0"
-      ]
-    },
-    "trace/letter-p": {
-      "current": "2c737899762ab391",
-      "former": [
-        "2c737899762ab391"
-      ]
-    },
-    "trace/letter-q": {
-      "current": "318c9bcd9d26f5cd",
-      "former": [
-        "a271c37432c970fc",
-        "bdfc36befd215190",
-        "318c9bcd9d26f5cd"
-      ]
-    },
-    "trace/letter-r": {
-      "current": "ef5c2d0442d8376c",
-      "former": [
-        "1333c9174ef69c9f",
-        "af119265ca2e1fb3",
-        "ef5c2d0442d8376c"
-      ]
-    },
-    "trace/letter-s": {
-      "current": "c5c932c6994da3e2",
-      "former": [
-        "25210e52a6acd3be",
-        "85bd27c085123f52",
-        "c5c932c6994da3e2"
-      ]
-    },
-    "trace/letter-t": {
-      "current": "1eb94ac3dad246a9",
-      "former": [
-        "cc93b35d33fcfd59",
-        "96e5db2ffe7b7275",
-        "1eb94ac3dad246a9"
-      ]
-    },
-    "trace/letter-u": {
-      "current": "5b545fdb791a4a13",
-      "former": [
-        "e0a82a68801cbd78",
-        "427c896aafce0514",
-        "5b545fdb791a4a13"
-      ]
-    },
-    "trace/letter-v": {
-      "current": "15a38c887cb5f9b4",
-      "former": [
-        "5bb773cbf1f2691b",
-        "0836b7d168c3d137",
-        "15a38c887cb5f9b4"
-      ]
-    },
-    "trace/letter-w": {
-      "current": "69157e061400e23e",
-      "former": [
-        "69157e061400e23e"
-      ]
-    },
-    "trace/letter-x": {
-      "current": "d315204421a10052",
-      "former": [
-        "69293b01c64c4fd5",
-        "05ad7d3b804321f9",
-        "d315204421a10052"
-      ]
-    },
-    "trace/letter-y": {
-      "current": "485562893cc0571d",
-      "former": [
-        "cb2bcd5c53fd8df4",
-        "fd1380a6dbed3498",
-        "485562893cc0571d"
-      ]
-    },
-    "trace/letter-z": {
-      "current": "89d1ccf7f769738b",
-      "former": [
-        "584e731f702ab997",
-        "58eed84da8fa02bb",
-        "89d1ccf7f769738b"
-      ]
-    },
-    "trace/letter-ä": {
-      "current": "ce1db5d8ecd93a96",
-      "former": [
-        "a8913b2dafc397c9",
-        "062afb7f5fb56be5",
-        "ce1db5d8ecd93a96"
-      ]
-    },
-    "trace/letter-ö": {
-      "current": "8ab641abbf47f283",
-      "former": [
-        "f960f04b1a49979b",
-        "5edd59519284e2b7",
-        "8ab641abbf47f283"
-      ]
-    },
-    "trace/letter-ü": {
-      "current": "e5d8b48f7a59769f",
-      "former": [
-        "6ea0d7a53657cad1",
-        "3aa63997a3e164fd",
-        "e5d8b48f7a59769f"
-      ]
-    },
-    "trace-numbers/digit-0-forest-nut": {
-      "current": "d516b0e9ad5096df",
-      "former": [
-        "714baf516b62fb01",
-        "768177aef27047ee",
-        "d516b0e9ad5096df"
-      ]
-    },
-    "trace-numbers/digit-1-forest-nut": {
-      "current": "acc1c20979e3cd07",
-      "former": [
-        "33655e6c199705e0",
-        "a75b4641fc2e5ac1",
-        "2a9c2eb75834a021",
-        "39dd1568fe3a45ce",
-        "acc1c20979e3cd07"
-      ]
-    },
-    "trace-numbers/digit-2-forest-nut": {
-      "current": "e7b03fa090cbd00c",
-      "former": [
-        "04355bf6584c50c0",
-        "dc4c12c373e5ca61",
-        "d389635945e68741",
-        "8e5aaa528422d6ae",
-        "e7b03fa090cbd00c"
-      ]
-    },
-    "trace-numbers/digit-3-forest-nut": {
-      "current": "9748e6570296d85d",
-      "former": [
-        "8d3069f4b9f88620",
-        "2fc7d71de2e74201",
-        "7c0e0c2b76db7061",
-        "892a1a4003874e8e",
-        "9748e6570296d85d"
-      ]
-    },
-    "trace-numbers/digit-4-forest-nut": {
-      "current": "5840cdbeb460a25e",
-      "former": [
-        "7c889c1ab96b6d00",
-        "0e39b8736dc007a1",
-        "a9a3c709a18b0c81",
-        "1bce2dc688c8766e",
-        "5840cdbeb460a25e"
-      ]
-    },
-    "trace-numbers/digit-5-forest-nut": {
-      "current": "3c7a5461cbc4492d",
-      "former": [
-        "aed8be6490fc1360",
-        "f6da8ff1e9e56c41",
-        "16e48aff2e432fa1",
-        "7d003c509162f44e",
-        "3c7a5461cbc4492d"
-      ]
-    },
-    "trace-numbers/digit-6-forest-nut": {
-      "current": "f13aff4c5e502a0c",
-      "former": [
-        "483d9e96c6e32240",
-        "1f2582cb49f459e1",
-        "e7a4ccc11bf516c1",
-        "290fd7b2cd1b052e",
-        "f13aff4c5e502a0c"
-      ]
-    },
-    "trace-numbers/digit-7-forest-nut": {
-      "current": "d605941590c97ead",
-      "former": [
-        "c598cf5ca7af97a0",
-        "71bb0ff599ef1381",
-        "8190cc3b4b2a7fe1",
-        "02d1943899df7d0e",
-        "d605941590c97ead"
-      ]
-    },
-    "trace-numbers/digit-8-forest-nut": {
-      "current": "f4163a18aea199d0",
-      "former": [
-        "6423fec2c5cb7880",
-        "461e351b7f0f1321",
-        "fddfc251d0215601",
-        "2e951e8e8db1ecee",
-        "f4163a18aea199d0"
-      ]
-    },
-    "trace-numbers/digit-9-forest-nut": {
-      "current": "32d1ace51eb4668f",
-      "former": [
-        "312bdccc8014e0e0",
-        "7d5bf7b160ecb5c1",
-        "29b404873dd2bb21",
-        "0c592638997beace",
-        "32d1ace51eb4668f"
-      ]
-    },
-    "trace-numbers/digit-0-forest-apple": {
-      "current": "cfc138d106447e57",
-      "former": [
-        "99d3c30642339426",
-        "e9eb4625b19ad5c9",
-        "cfc138d106447e57"
-      ]
-    },
-    "trace-numbers/digit-1-forest-apple": {
-      "current": "43f76c0073e79a6a",
-      "former": [
-        "34f0a6c3ab61d687",
-        "be38a692428f5126",
-        "ebe3d5f4b3f14f06",
-        "2ef2d7578589b7e9",
-        "43f76c0073e79a6a"
-      ]
-    },
-    "trace-numbers/digit-2-forest-apple": {
-      "current": "61da8feae74caa78",
-      "former": [
-        "98c4d76159ade227",
-        "c43df810c49bbe06",
-        "e1d9ecdaac98f766",
-        "06fef6a53a694289",
-        "61da8feae74caa78"
-      ]
-    },
-    "trace-numbers/digit-3-forest-apple": {
-      "current": "c0debab73dc97be3",
-      "former": [
-        "e193adb710909ac7",
-        "a26274c2a773b066",
-        "f3e5f4740b5b9046",
-        "aaa21b4bc1eadfa9",
-        "c0debab73dc97be3"
-      ]
-    },
-    "trace-numbers/digit-4-forest-apple": {
-      "current": "237c49edcfd31c69",
-      "former": [
-        "f8784b19c3d68f67",
-        "b5da2bc48c19e346",
-        "a6c2b84e96639ca6",
-        "6e34c93dbf43cf49",
-        "237c49edcfd31c69"
-      ]
-    },
-    "trace-numbers/digit-5-forest-apple": {
-      "current": "15a7f104e4d36388",
-      "former": [
-        "5f2148eba0e85d07",
-        "80c1e13a96bf59a6",
-        "77f9c03cbc80d786",
-        "71d09dcf91733169",
-        "15a7f104e4d36388"
-      ]
-    },
-    "trace-numbers/digit-6-forest-apple": {
-      "current": "518dbb9c4da5d05c",
-      "former": [
-        "929d2039e31d2aa7",
-        "f4c483484e0b0686",
-        "cffd2c1a36083fe6",
-        "e47bc5cd65597a09",
-        "518dbb9c4da5d05c"
-      ]
-    },
-    "trace-numbers/digit-7-forest-apple": {
-      "current": "fd77870c0e785fcc",
-      "former": [
-        "9a561f477939a547",
-        "6884893a30e2f8e6",
-        "73c0f2cc963ad8c6",
-        "2426d9bbcdd45929",
-        "fd77870c0e785fcc"
-      ]
-    },
-    "trace-numbers/digit-8-forest-apple": {
-      "current": "4e86c042836cba64",
-      "former": [
-        "3d8d2181c5f605e7",
-        "bf5a619421d29bc6",
-        "ea295fc6cc02d326",
-        "eafcb2e527cb96c9",
-        "4e86c042836cba64"
-      ]
-    },
-    "trace-numbers/digit-9-forest-apple": {
-      "current": "3a21da6492d492aa",
-      "former": [
-        "d977a88335311587",
-        "92a28292cc5e9026",
-        "4ce392643dc08e06",
-        "ee91e007fbba78e9",
-        "3a21da6492d492aa"
-      ]
-    },
-    "trace-numbers/digit-0-forest-feather": {
-      "current": "da406336b56dc070",
-      "former": [
-        "a1c708c9edccd267",
-        "c04ead32e64d8588",
-        "da406336b56dc070"
-      ]
-    },
-    "trace-numbers/digit-1-forest-feather": {
-      "current": "da1216229eccadde",
-      "former": [
-        "95bef0b87a804dc6",
-        "1d87308521f631e7",
-        "c1154bdf39f476c7",
-        "a199925c61094228",
-        "da1216229eccadde"
-      ]
-    },
-    "trace-numbers/digit-2-forest-feather": {
-      "current": "a8ad19e2b0c23834",
-      "former": [
-        "c372491ee19b83e6",
-        "e042151b09d6ec47",
-        "785291ddbc5b7aa7",
-        "5eed58a25697fc48",
-        "a8ad19e2b0c23834"
-      ]
-    },
-    "trace-numbers/digit-3-forest-feather": {
-      "current": "9ccd36cd3eb5fba9",
-      "former": [
-        "37cec3bcade51306",
-        "d24d33f524809c27",
-        "16329c4fed5edc07",
-        "5f0c8b0072dfb7e8",
-        "9ccd36cd3eb5fba9"
-      ]
-    },
-    "trace-numbers/digit-4-forest-feather": {
-      "current": "c8ea4a65bf876b03",
-      "former": [
-        "4c7b004edb57dc26",
-        "fc21d4d714931987",
-        "9fb8d709b9b227e7",
-        "9b4ab092075f2e08",
-        "c8ea4a65bf876b03"
-      ]
-    },
-    "trace-numbers/digit-5-forest-feather": {
-      "current": "7db077c4e4f802f6",
-      "former": [
-        "bb724048c415e346",
-        "7234d2458004c967",
-        "a86e56cf78fc5047",
-        "2889214c98536ca8",
-        "7db077c4e4f802f6"
-      ]
-    },
-    "trace-numbers/digit-6-forest-feather": {
-      "current": "d4be358c1d0871c0",
-      "former": [
-        "ef58c81ead80d966",
-        "9fbc119bf4c2ffc7",
-        "8f5e54858840d027",
-        "a31476e2f559e4c8",
-        "d4be358c1d0871c0"
-      ]
-    },
-    "trace-numbers/digit-7-forest-feather": {
-      "current": "6cdb2c6a3a48cac2",
-      "former": [
-        "cabf5e248b13ea86",
-        "89d8fc15828f33a7",
-        "6df5e31f4b6d7387",
-        "e113b4d8b4b79e68",
-        "6cdb2c6a3a48cac2"
-      ]
-    },
-    "trace-numbers/digit-8-forest-feather": {
-      "current": "c9b05052864c81f8",
-      "former": [
-        "a78ec89e8188a5a6",
-        "0012188fdb3aa107",
-        "f7adb92914427167",
-        "71a9e322bfd7e688",
-        "c9b05052864c81f8"
-      ]
-    },
-    "trace-numbers/digit-9-forest-feather": {
-      "current": "856bef4750fbdcbb",
-      "former": [
-        "27f21268a0f5ecc6",
-        "bdd7aa35486bd0e7",
-        "18e41b3f5eaa95c7",
-        "ba8c9a2c3c532328",
-        "856bef4750fbdcbb"
       ]
     }
   }

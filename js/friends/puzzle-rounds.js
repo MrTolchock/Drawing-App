@@ -3,39 +3,32 @@
 (function () {
   'use strict';
   const FK=window.FK;
-  const base={squirrel:'Nüsse zählen',bird:'Reimpaare lesen',owl:'Lies und zeig',beaver:'Welche Form fehlt?',mouse:'Wörter und Bilder',hedgehog:'Tierrätsel',fish:'Fische zählen',deer:'Wer wohnt wo?',kingfisher:'Am Bach zählen',frog:'Tierwörter lesen',badger:'Naturrätsel',ibex:'Bergmuster'};
+  const base={squirrel:'Nüsse zählen',bird:'Reimpaare lesen',owl:'Lies und zeig',beaver:'Was fehlt im Wald?',mouse:'Wörter und Bilder',hedgehog:'Tierrätsel',fish:'Fische zählen',deer:'Wer wohnt wo?',kingfisher:'Am Bach zählen',frog:'Tierwörter lesen',badger:'Naturrätsel',ibex:'Bergmuster'};
   const instructions={
     'friends-squirrel':'Zähle die Nüsse. Tippe auf die passende Zahl.',
     'friends-badger':'Lies die Frage. Tippe auf das passende Bild.',
     'friends-ibex':'Stein, Tanne und Blume wiederholen sich in Gruppen. Suche die Gruppe. Welches Bild gehört in die Lücke?',
-    'friends-kingfisher':'Zähle die Bilder. Tippe auf die passende Zahl.',
     'friends-hedgehog':'Lies die Frage. Tippe auf das Tier, das gemeint ist.',
     'friends-deer':'Lies die Frage. Tippe auf das passende Bild.',
-    'friends-frog':'Lies das Wort. Tippe auf das passende Tier.',
     'friends-bird':'Lies das Wort und die Wörter bei den Bildern. Wähle das Wort, das sich reimt.',
     'friends-owl':'Lies den Satz. Wähle das passende Bild.',
-    'friends-beaver':'Schau die ersten zwei Reihen an. In jeder Reihe sind dieselben Formen gleich oft zu sehen. Welche Form fehlt in der dritten Reihe?',
+    'friends-beaver':'In jeder Reihe liegen gleich viele Blätter, Nüsse und Federn wie in der ersten Reihe. Welches Bild fehlt?',
     'friends-mouse':'Lies das Wort. Wähle das passende Bild.',
     count:'Zähle nur die roten Marienkäfer zwischen den anderen Waldbewohnern. Wähle dann die Zahl.',
     add:'Zähle die Äpfel in beiden Gruppen zusammen und wähle das Ergebnis.',
     pattern:'Suche die Bildgruppe, die sich wiederholt. Welches Bild gehört in die Lücke?',
     nature:'Lies den kleinen Hinweis. Welches Tier passt dazu?',
     rocket:'Jedes Glühwürmchen hat einen Platz. Zähle die freien Plätze.',
-    picnic:'Ziehe die Beeren zu den Freunden, bis alle gleich viele haben. Du kannst Beeren zurück oder zu einem anderen Freund ziehen. Mit der Tastatur wählst du zuerst eine Beere und dann einen Freund.',
+    picnic:'Ziehe die Beeren zu den Freunden, bis alle gleich viele haben. Du kannst Beeren zurück oder zu einem anderen Freund ziehen.',
     syllable:'Sprich das Bildwort langsam. Zähle seine Silben und wähle die passende Zahl.',
-    robot:'Führe den Hasen zum Briefkasten. Tippe ein freies Nachbarfeld oder einen Pfeil an, um einen Schritt zu gehen. Hecken sind gesperrt.',
-    sequence:'Ziehe die Bilder von links nach rechts in die richtige Reihenfolge. Du kannst sie umlegen. Mit der Tastatur wählst du zuerst ein Bild und dann seinen Platz.',
+    robot:'Führe den Hasen zum Briefkasten. Tippe auf die Pfeile. Um die Hecken musst du herumgehen.',
+    sequence:'Was passiert zuerst? Ziehe die drei Bilder der Reihe nach von links nach rechts.',
     treasure:'Merke dir die Dinge im Korb. Wenn du bereit bist, tippe auf «Ich habe sie mir gemerkt». Welches Ding fehlt danach?',
-    neighbours:'Zähle einen Schritt zurück und einen Schritt weiter. Ergänze die Zahl vor und die Zahl nach der Mitte.',
+    neighbours:'Ziehe die Zahl davor nach links und die Zahl danach nach rechts.',
     compare:'Vergleiche die beiden Beerengruppen. Tippe auf die mit mehr Beeren. Sind es gleich viele, wähle «Gleich viele».',
     mirror:'Ergänze rechts das Spiegelbild. Felder in derselben Reihe liegen gleich weit von der Spiegellinie entfernt. Ein zweites Tippen leert ein Feld wieder.',
     vowels:'Lies das Bildwort. Welcher Buchstabe fehlt in der Lücke?',
     'read-puzzle':'Das Bild zeigt ein Wort. Tippe seine Silben in der richtigen Reihenfolge an.',
-    'read-word':'Lies das Wort. Wähle das passende Waldbild.',
-    'read-leaves':'Lies die Silbe oben. Finde das Blatt mit genau derselben Silbe.',
-    'read-colours':'Lies den Satz. Welches Bild hat die passende Farbe?',
-    trace:'Fahre fünf Buchstaben nach. Beginne am grünen Punkt und folge den Pfeilen.',
-    'trace-numbers':'Fahre fünf Zahlen nach. Beginne am grünen Punkt und folge den Pfeilen.'
   };
   const title=id=>id.startsWith('friends-')?base[id.slice(8)]:id==='trace-numbers'?'Zahlenspuren':FK.puzzles.names[id];
   const wordArt={...window.FriendsContent.words,Haus:'vocab-house',Tisch:'vocab-table',Schuh:'vocab-shoe',Bein:'vocab-leg',Stein:'vocab-stone',Tuch:'vocab-cloth',Turm:'vocab-tower',Wurm:'vocab-worm',Topf:'vocab-pot',Kopf:'vocab-head',Hand:'vocab-hand',Sand:'vocab-sand',Schal:'vocab-scarf',Seil:'vocab-rope',Pfeil:'vocab-arrow',Tasse:'vocab-cup',Kasse:'vocab-till',Bank:'vocab-bench',Schrank:'vocab-wardrobe',Kern:'vocab-seed',Ast:'forest-branch',

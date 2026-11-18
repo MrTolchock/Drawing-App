@@ -131,7 +131,7 @@ export function createBirdPlayer(ctx) {
     source.buffer = song.buffer;
     const length = song.buffer.duration / 2;
     source.playbackRate.value = r(.982, 1.018);
-    gain.gain.value = .32;
+    gain.gain.value = .38;
     source.connect(gain);
     gain.connect(out);
     source.onended = done(source, gain);
@@ -148,7 +148,7 @@ export function footstep(ctx, out, noise, ground, t, level = 1, foliage) {
   const thump = (f, gain, dur = .05) => tone(ctx, out, {t, dur, f, f1: f * .6, gain: gain * v, attack: .004});
   // The lift of the paw brushes real foliage after the weight has landed.
   if (foliage && ['needles', 'grass', 'meadow', 'sticks'].includes(ground)) {
-    hiss(ctx, out, foliage, {t: t + r(.035, .075), dur: r(.07, .15), gain: .52 * v,
+    hiss(ctx, out, foliage, {t: t + r(.035, .075), dur: r(.07, .15), gain: .22 * v,
       type: 'lowpass', f: (ground === 'needles' ? 2600 : 4100) * w, attack: .013});
   }
   // (small loudspeakers carry little below 200 Hz, so a step is mostly its rustle; the thump only rounds it off)
@@ -176,8 +176,8 @@ export const details = {
     s.connect(f); f.connect(g); g.connect(out); s.start(t, Math.random() * Math.max(.1, noise.duration - dur - .3), dur + .1); s.onended = done(s, f, g); },
   // a drop falling into the cave's pool, and the rock giving it back twice
   drip(ctx, out, noise, t, level = 1) { const f = r(1300, 2300); for (let k = 0; k < 3; k++) { const g = .045 * level * Math.pow(.38, k); syllable(ctx, out, {t: t + k * .23, dur: .07, path: [[0, f * .82], [.5, f * 1.15], [1, f * 1.3]], gain: g}); } },
-  // the bats wake in the cave: a flurry of soft wing beats that swells and thins out, and a few thin squeaks
-  bats(ctx, out, noise, t, level = 1) { for (let k = 0; k < 26; k++) { const u = k / 26, at = t + u * 2.6 + r(0, .08); hiss(ctx, out, noise, {t: at, dur: r(.035, .06), gain: .085 * level * Math.sin(Math.PI * Math.min(1, u * 1.25)) ** .7, type: 'bandpass', f: r(700, 1500), q: .8, attack: .01}); }
+  // A few distant squeaks as the bats leave the cave.
+  bats(ctx, out, noise, t, level = 1) {
     for (let k = 0; k < 5; k++) { const f = r(5200, 6800), at = t + .3 + k * r(.28, .5); syllable(ctx, out, {t: at, dur: .05, path: [[0, f], [.5, f * 1.08], [1, f * .9]], gain: .012 * level}); } },
   // the mailman's whistle when a new letter is ready: a short note and a long rising one, a little off-key
   whistle(ctx, out, noise, t, level = 1) { const f = r(1650, 1800); syllable(ctx, out, {t, dur: .16, path: [[0, f * .9], [.6, f * 1.05], [1, f]], gain: .08 * level, vib: .004}); syllable(ctx, out, {t: t + .24, dur: .5, path: [[0, f], [.35, f * 1.33], [1, f * 1.38]], gain: .085 * level, vib: .01}); },
@@ -253,7 +253,7 @@ export function createAudio(settings, environment = () => null) {
     // Gradually bring in the recorded texture while keeping a little of the
     // procedural motion. The place and weather still control both together.
     const owner = ctx;
-    for (const [name, bed, volume] of [['leaves', leaves, 2.2], ['brook', brook, .8]]) {
+    for (const [name, bed, volume] of [['leaves', leaves, 1.05], ['brook', brook, .8]]) {
       readRecording(ctx, name).then(buffer => {
         if (ctx !== owner || owner.state === 'closed') return;
         if (name === 'leaves') foliage = buffer;

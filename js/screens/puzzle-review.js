@@ -9,7 +9,7 @@
     'friends-squirrel':'Das Kind zählt abgebildete Nüsse bis 20 und nutzt Vierer- oder Fünferreihen, um Mengen zu überblicken.',
     'friends-bird':'Das Kind liest vertraute Wörter und erkennt an ihrem Klang, welche Wörter sich reimen.',
     'friends-owl':'Das Kind liest einen kurzen Satz, versteht die beschriebene Handlung und wählt das passende Tierbild.',
-    'friends-beaver':'Das Kind vergleicht die ersten zwei Reihen: Jede enthält zwei gleiche und eine andere Form. Es ergänzt die dritte Reihe so, dass jede Form dort gleich oft vorkommt.',
+    'friends-beaver':'Das Kind vergleicht die ersten zwei Reihen: Jede enthält zwei gleiche Waldgegenstände und einen anderen. Es ergänzt die dritte Reihe so, dass die Mengen wieder stimmen.',
     'friends-mouse':'Das Kind liest ein vertrautes Nomen und verbindet das gelesene Wort mit dem passenden Bild.',
     'friends-hedgehog':'Das Kind versteht eine kurze gelesene Frage und ordnet sichtbare Merkmale dem passenden Tier zu.',
     'friends-deer':'Das Kind liest Naturfragen und ordnet Tieren passende Lebensräume oder Nahrung zu.',
@@ -25,7 +25,7 @@
     picnic:'Das Kind verteilt Beeren einzeln auf zwei bis vier Freunde, bis alle gleich viele erhalten haben.',
     syllable:'Das Kind erkennt die Sprechsilben eines vertrauten Bildworts und bestimmt, ob das Wort eine, zwei oder drei Silben hat.',
     robot:'Das Kind plant eine Folge benachbarter Schritte auf einem Raster, um ein sichtbares Ziel zu erreichen und Hindernisse zu umgehen.',
-    sequence:'Das Kind erkennt den zeitlichen Zusammenhang dreier beschrifteter Bilder und ordnet sie zu einer sinnvollen Geschichte.',
+    sequence:'Das Kind erkennt den zeitlichen Zusammenhang dreier Bilder und ordnet sie zu einer sinnvollen Geschichte.',
     treasure:'Das Kind merkt sich vier abgebildete Gegenstände und erkennt nach dem Vergleich, welcher Gegenstand fehlt. Dies ist eine ergänzende Gedächtnisübung ohne Lehrplancode.',
     neighbours:'Das Kind orientiert sich in der Zahlenfolge und bestimmt die Zahl unmittelbar vor oder nach einer gegebenen Zahl.',
     compare:'Das Kind vergleicht zwei sichtbare Mengen bis 10 und entscheidet, wo mehr oder ob gleich viele Beeren liegen.',
@@ -76,7 +76,7 @@
       speech.setAttribute('aria-pressed',String(state==='loading'||state==='playing'));
     })});
     speech.setAttribute('aria-pressed','false');
-    body.append(message(),h('h2',{text:p.title}),h('section',{class:'review-competence'},h('h3',{text:'Geübte Kompetenz: '+p.competence}),h('p',{text:competences[selected]}),h('p',{text:'Lehrplanbezug: '+p.reference})),h('p',{text:'Schwierigkeit: '+p.difficulty}),h('p',{text:progress.approved+' / '+progress.total+' freigegeben · '+progress.improve+' verbessern · '+progress.pending+' offen'}),V.status(selected).status==='improve'?h('p',{class:'review-status pending',text:'Puzzle offen · allgemeiner Hinweis'}):null,h('section',{class:'review-speech'},h('h3',{text:'Spielerklärung'}),h('p',{text:p.instruction}),speech,speechStatus));
+    body.append(message(),h('h2',{text:p.title}),h('section',{class:'review-competence'},h('h3',{text:'Geübte Kompetenz: '+p.competence}),h('p',{text:competences[selected]}),h('p',{text:'Lehrplanbezug: '+p.reference})),h('p',{text:'Schwierigkeit: '+p.displayDifficulty}),h('p',{text:progress.approved+' / '+progress.total+' freigegeben · '+progress.improve+' verbessern · '+progress.pending+' offen'}),V.status(selected).status==='improve'?h('p',{class:'review-status pending',text:'Puzzle offen · allgemeiner Hinweis'}):null,h('section',{class:'review-speech'},h('h3',{text:'Spielerklärung'}),h('p',{text:p.instruction}),speech,speechStatus));
     const id=selected,note=h('textarea',{'aria-label':'Allgemeiner Kommentar zum Puzzle',maxlength:4000,rows:4,placeholder:'Was möchtest du zum gesamten Puzzle festhalten?',text:drafts.get(id)??''});
     const saved=h('p',{class:'review-notice',role:'status','aria-live':'polite'});
     note.addEventListener('input',()=>{drafts.set(id,note.value);saved.textContent='Noch nicht gespeichert.';});

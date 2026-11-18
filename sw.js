@@ -1,5 +1,5 @@
 /* Farbtupf – Service Worker: keeps the whole app on the device so it runs without internet. */
-const CACHE = 'farbtupf-v9.3.99-waldpost';
+const CACHE = 'farbtupf-v9.4.0-waldpost';
 const SCOPE=self.registration.scope;
 const INDEX=new URL('index.html',SCOPE).href;
 const ACTIVE_MARKER=new URL('.farbtupf-active-cache',SCOPE).href;
@@ -12,10 +12,8 @@ const ASSETS = [
   './assets/audio/narration/friends-badger.mp3',
   './assets/audio/narration/friends-beaver.mp3',
   './assets/audio/narration/friends-bird.mp3',
-  './assets/audio/narration/friends-frog.mp3',
   './assets/audio/narration/friends-hedgehog.mp3',
   './assets/audio/narration/friends-ibex.mp3',
-  './assets/audio/narration/friends-kingfisher.mp3',
   './assets/audio/narration/friends-mouse.mp3',
   './assets/audio/narration/friends-owl.mp3',
   './assets/audio/narration/friends-squirrel.mp3',
@@ -36,17 +34,11 @@ const ASSETS = [
   './assets/audio/narration/neighbours.mp3',
   './assets/audio/narration/pattern.mp3',
   './assets/audio/narration/picnic.mp3',
-  './assets/audio/narration/read-colours.mp3',
-  './assets/audio/narration/read-leaves.mp3',
   './assets/audio/narration/read-puzzle.mp3',
-  './assets/audio/narration/read-word.mp3',
   './assets/audio/narration/robot.mp3',
   './assets/audio/narration/rocket.mp3',
   './assets/audio/narration/sequence.mp3',
   './assets/audio/narration/syllable.mp3',
-  './assets/audio/narration/trace-numbers.mp3',
-  './assets/audio/narration/trace-stroke.mp3',
-  './assets/audio/narration/trace.mp3',
   './assets/audio/narration/treasure.mp3',
   './assets/audio/narration/vowels.mp3',
   './assets/audio/blackbird.mp3',

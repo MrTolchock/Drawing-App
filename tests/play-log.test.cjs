@@ -41,7 +41,7 @@ test('every current iteration produces an attributable definition and outcome af
   for(const it of items){const key=it.id+'@'+C.iterationRevision(game.id,it),definition=data.definitions[key];assert.deepEqual(definition.question,plain(it.question),it.id);assert.equal(data.events.filter(e=>e.event==='puzzle_attempt'&&e.taskKey===key&&e.correct).length,1,it.id+' outcome');assert.ok(data.summary.iterations.some(row=>row.iterationId===it.id&&row.completedRuns===1));checked++;}
   assert.equal(data.storage.persisted,true);assert.equal(data.summary.unattributedPuzzleEvents,0);
  }
- assert.equal(checked,962);
+ assert.equal(checked,776);
 });
 test('failed log storage retains an export and never blocks gameplay state transactions',()=>{
  const f=fixture();f.log.record('session_start');const prior=f.map.get('log');f.storage.setItem=()=>{throw Error('quota');};f.log.record('puzzle_attempt',{correct:false});const data=f.log.exportData();assert.equal(data.storage.persisted,false);assert.match(data.storage.error,/nicht/);assert.equal(data.events.length,2);assert.equal(f.map.get('log'),prior);
