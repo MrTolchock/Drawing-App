@@ -131,9 +131,9 @@ export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,o
   }
   function animateTreat(dt){
     anim.elapsed+=dt;const t=anim.elapsed,reduced=window.FK.reduced,h=anim.item==='sleep'?sleepH:denH,base=foxPos.clone();
-    if(anim.item==='apple'){
+    if(anim.item==='apple'){for(const at of [.5,1.9,2.9])denCue(at,'crunch');
       apple.visible=t<3.8;apple.scale.setScalar(t<2?1:t<3?.72:.42);fox.position.copy(base);foxRig.update(dt,{action:t<3.8?'eat':'happy',reduced});
-    }else if(anim.item==='bath'){
+    }else if(anim.item==='bath'){for(const at of [.15,1.7,3.3])denCue(at,'splash');
       tub.visible=true;tub.position.copy(base);fox.position.copy(base).addScaledVector(new THREE.Vector3(0,1,0),-h*.12);foxRig.update(dt,{action:'bath',reduced});
       bubbles.forEach((b,i)=>{const k=reduced?.4:((t*.32+i*.137)%1);b.userData.on=true;b.position.copy(base).addScaledVector(up,h*(.48+k*.55)).addScaledVector(side,h*(-.38+(i/8)*.76+Math.sin(t*1.6+i)*.03));size(b,h*(.05+(i%3)*.02));b.material.opacity=1-k*.8;});
     }else{
@@ -144,14 +144,17 @@ export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,o
     }
     if(t>=5&&!anim.finished){if(anim.hold)anim.finished=true;else{anim=null;finishProps();foxPos.copy(spots[0]);fox.position.copy(foxPos);}onAnimationEnd();}
   }
-  function potter(dt){const reduced=window.FK.reduced;let moving=false,speed=0;
+  function potter(dt){const reduced=window.FK.reduced;let moving=false,speed=0;denSound.moving=false;
     if(idle.greet>0){idle.greet-=dt;foxRig.update(dt,{action:'wave',reduced});return;}
     if(!idle.target&&!reduced){idle.wait-=dt;if(idle.wait<0){const choices=spots.filter(s=>s.distanceTo(foxPos)>1);idle.target=choices[Math.floor(Math.random()*choices.length)].clone();}}
     if(idle.target){const dx=idle.target.x-foxPos.x,dz=idle.target.z-foxPos.z,d=Math.hypot(dx,dz),step=Math.min(d,denH*.75*dt);
       if(d<.05){idle.target=null;idle.wait=6+Math.random()*7;}else{foxPos.x+=dx/d*step;foxPos.z+=dz/d*step;moving=true;speed=3;const want=Math.atan2(dx,dz);let diff=want-fox.rotation.y;diff=Math.atan2(Math.sin(diff),Math.cos(diff));fox.rotation.y+=diff*Math.min(1,dt*8);}}
     else{let diff=idle.turn-fox.rotation.y;diff=Math.atan2(Math.sin(diff),Math.cos(diff));fox.rotation.y+=diff*Math.min(1,dt*3);}
-    fox.position.copy(foxPos);foxRig.update(dt,{moving,speed,reduced});}
+    fox.position.copy(foxPos);foxRig.update(dt,{moving,speed,reduced});denSound.moving=moving;denSound.speed=speed;}
   let denFrame=0;
+  // What the den sounds like (js/friends/audio.js): Fuchs' paws while he potters, what he does in a treat, his sleep.
+  const denSound={cues:[],moving:false,speed:0};
+  function denCue(at,type){if(anim.elapsed>=at&&!anim.cued.has(at)){anim.cued.add(at);denSound.cues.push({type,pan:-.1});if(denSound.cues.length>4)denSound.cues.shift();}}
   function frame(now){raf=requestAnimationFrame(frame);const elapsed=Math.max(0,(now-last)/1000),dt=Math.min(.25,elapsed);last=now;
     perf.frame(elapsed*1000,now,!document.hidden&&!lost&&(!paused||!!anim));
     if(document.hidden||lost)return;
@@ -171,9 +174,9 @@ export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,o
     onProject((pinList[area]||[]).map(p=>({id:p.id,...project(p.point)})));
   }
   setArea('den');raf=requestAnimationFrame(frame);
-  return {setArea(next){setArea(next);},get soundscape(){if(paused)return null;const w=weather.state;return {...(area==='forest'?forest.soundscape:{}),rain:w.rain,fresh:w.fresh};},route(id){if(area==='forest')forest.route(id);},visit(id,toward){if(area==='forest')forest.visit(id,toward);},frame(id){return area==='forest'?forest.frame(id):0;},timeOfDay(v,snap){forest.timeOfDay(v,snap);},mailTarget(id){forest.mailTarget(id);},summonMailman(){forest.summonMailman();},get mailman(){return forest.mailman;},pause(value){paused=value;if(value){blur();if(area==='forest')onPosition(forest.position.x,forest.position.z,forest.region);}},
+  return {setArea(next){setArea(next);},get soundscape(){const w=weather.state;if(area!=='forest')return {ground:'den',trees:.5,moving:!paused&&!anim&&denSound.moving,speed:denSound.speed,sleeping:anim?.item==='sleep',cues:denSound.cues,rain:w.rain,fresh:w.fresh};if(paused)return null;return {...forest.soundscape,rain:w.rain,fresh:w.fresh};},route(id){if(area==='forest')forest.route(id);},visit(id,toward){if(area==='forest')forest.visit(id,toward);},frame(id){return area==='forest'?forest.frame(id):0;},timeOfDay(v,snap){forest.timeOfDay(v,snap);},mailTarget(id){forest.mailTarget(id);},summonMailman(){forest.summonMailman();},get mailman(){return forest.mailman;},pause(value){paused=value;if(value){blur();if(area==='forest')onPosition(forest.position.x,forest.position.z,forest.region);}},
     steer(x,z){stick={x,z};if(!x&&!z&&area==='forest')onPosition(forest.position.x,forest.position.z,forest.region);},
-    sequence(item,{hold=false}={}){anim={item,elapsed:0,hold};idle.target=null;fox.rotation.set(0,.35,0);foxPos.copy(item==='sleep'?ground(bedSpot.u,bedSpot.v):spots[0]);fox.position.copy(foxPos);if(item==='sleep'){fox.scale.setScalar(sleepH/denH);fox.rotation.set(-.12,.2,0);foxRig.update(0,{action:'sleep',reduced:window.FK.reduced});fitSleepingFox();}},
+    sequence(item,{hold=false}={}){anim={item,elapsed:0,hold,cued:new Set()};denSound.moving=false;idle.target=null;fox.rotation.set(0,.35,0);foxPos.copy(item==='sleep'?ground(bedSpot.u,bedSpot.v):spots[0]);fox.position.copy(foxPos);if(item==='sleep'){fox.scale.setScalar(sleepH/denH);fox.rotation.set(-.12,.2,0);foxRig.update(0,{action:'sleep',reduced:window.FK.reduced});fitSleepingFox();}},
     skip(){anim=null;finishProps();foxPos.copy(spots[0]);fox.position.copy(foxPos);},
     get diagnostics(){const p=area==='forest'?forest.position:{x:foxPos.x,z:foxPos.z};return {area,paused,time,animation:anim?.item||null,foxBounds:area==='den'?projectedBounds():null,sleepBounds:anim?.item==='sleep'?projectedBounds():null,keys:[...keys],destination:area==='forest'?forest.destination?.toArray():undefined,position:p,mailTarget:forest.guideTarget,mailman:forest.mailman,painted:true};},get area(){return area;},get position(){return area==='forest'?forest.position:{x:foxPos.x,z:foxPos.z};},
     dispose(){cancelAnimationFrame(raf);observer.disconnect();perf.dispose();canvas.removeEventListener('webglcontextlost',contextLost);canvas.removeEventListener('webglcontextrestored',contextRestored);canvas.removeEventListener('pointerdown',down);canvas.removeEventListener('pointermove',move);canvas.removeEventListener('pointercancel',up);canvas.removeEventListener('wheel',wheel);canvas.removeEventListener('pointerup',pick);document.removeEventListener('visibilitychange',visibility);document.removeEventListener('keydown',keydown);document.removeEventListener('keyup',keyup);window.removeEventListener('blur',blur);fill.remove();night.remove();renderer.dispose();},
