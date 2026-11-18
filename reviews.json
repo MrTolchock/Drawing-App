@@ -15690,6 +15690,15 @@
       "at": "2026-11-18T20:20:18.219Z",
       "seen": true,
       "operation": "e0ebccde-4335-40bf-86a5-7744ff90d65a"
+    },
+    "neighbours/1-left@c3d8c20f6549e8d5": {
+      "key": "neighbours/1-left",
+      "revision": "c3d8c20f6549e8d5",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T20:20:24.503Z",
+      "seen": true,
+      "operation": "03b7f5dd-10fc-4271-9e3f-257f545d567a"
     }
   },
   "history": [
