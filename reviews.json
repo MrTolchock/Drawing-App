@@ -12641,11 +12641,11 @@
     "friends-badger/riddle-14@a0d2f8c2792a26d6": {
       "key": "friends-badger/riddle-14",
       "revision": "a0d2f8c2792a26d6",
-      "status": "approved",
-      "note": "",
-      "at": "2026-11-18T07:55:04.363Z",
+      "status": "improve",
+      "note": "Sonnenblume ist kein baum, anpassen",
+      "at": "2026-11-18T07:55:59.458Z",
       "seen": true,
-      "operation": "44cdda6c-e7c1-48ab-af80-cd7d298bb4c1"
+      "operation": "62b30d97-383d-4a8f-ac44-d7caa07a4b54"
     }
   },
   "history": [
@@ -12747,6 +12747,15 @@
       "at": "2026-11-17T20:11:35.596Z",
       "seen": true,
       "operation": "27974767-59c8-4997-8517-81b7d616a9f2"
+    },
+    {
+      "key": "friends-badger/riddle-14",
+      "revision": "a0d2f8c2792a26d6",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:55:04.363Z",
+      "seen": true,
+      "operation": "44cdda6c-e7c1-48ab-af80-cd7d298bb4c1"
     }
   ],
   "deletedNotes": [
