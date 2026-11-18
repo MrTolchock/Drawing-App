@@ -13440,6 +13440,15 @@
       "at": "2026-11-18T08:18:05.584Z",
       "seen": true,
       "operation": "9a4616c7-202b-497a-b0d1-bce605b83036"
+    },
+    "puzzle:treasure@0f6962f54b1e342d": {
+      "key": "puzzle:treasure",
+      "revision": "0f6962f54b1e342d",
+      "status": "pending",
+      "note": "Button für nochmals anzeigen ist in anderem format als button für habe es mir gemerkt, anpassen. Besser auch wenn bilder unten nicht bilder sind die oben schon drin sind, dann ist klar das immer das fehlt, was oben nicht sichtbar ist. Zb nuss oben drin, dann ist es unten nicht die nuss option. Besser neue bilder nehmen unten die in oberer zeile nicht drin sind",
+      "at": "2026-11-18T08:20:02.379Z",
+      "seen": true,
+      "operation": "a21b9fc7-b185-446f-aa1a-4f333b1c4a4a"
     }
   },
   "history": [
