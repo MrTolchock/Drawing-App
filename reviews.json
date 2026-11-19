@@ -18138,6 +18138,24 @@
       "at": "2026-11-19T20:33:49.360Z",
       "seen": true,
       "operation": "b1923632-a555-46ad-8d8d-058db7788029"
+    },
+    "syllable/word-36@f65253c527704bd1": {
+      "key": "syllable/word-36",
+      "revision": "f65253c527704bd1",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-19T20:33:55.778Z",
+      "seen": true,
+      "operation": "ff74df14-96f6-4463-b708-13afe2ff1aa8"
+    },
+    "syllable/word-37@41ba785a290ebf00": {
+      "key": "syllable/word-37",
+      "revision": "41ba785a290ebf00",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-19T20:33:59.727Z",
+      "seen": true,
+      "operation": "6cffed5b-93d4-4752-840d-e7f8672583ea"
     }
   },
   "history": [
