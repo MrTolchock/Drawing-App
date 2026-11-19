@@ -17607,6 +17607,24 @@
       "at": "2026-11-19T20:27:22.600Z",
       "seen": true,
       "operation": "e6aaa607-6a7e-4a9e-a74d-19b763e39369"
+    },
+    "picnic/2-4@22435325252781cd": {
+      "key": "picnic/2-4",
+      "revision": "22435325252781cd",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-19T20:27:28.041Z",
+      "seen": true,
+      "operation": "d5d407c8-6274-494a-921d-86afc49a7ac0"
+    },
+    "picnic/2-5@5df64d51e0dd84b5": {
+      "key": "picnic/2-5",
+      "revision": "5df64d51e0dd84b5",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-19T20:27:33.603Z",
+      "seen": true,
+      "operation": "df8041e8-83e5-425a-b245-c396e9db1c00"
     }
   },
   "history": [
