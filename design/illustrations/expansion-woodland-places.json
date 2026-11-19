@@ -1,0 +1,81 @@
+{
+  "format": "waldpost-illustration-atlas",
+  "version": 1,
+  "source": "sources/expansion-2026-11-19/expansion-woodland-places-cutout.png",
+  "output": "../../assets/waldatelier/expansion-woodland-places.webp",
+  "columns": 4,
+  "rows": 4,
+  "cellPixels": 320,
+  "subjectPixels": 256,
+  "alphaThresholdPercent": 8,
+  "provenance": {
+    "date": "2026-11-19",
+    "tool": "ChatGPT image_gen.imagegen",
+    "sourceSha256": "cc38faf2d130d491c95f101585069300c7aed47703333d12eabddf1f0cdf129c",
+    "generationRecord": "../artwork/generation-records/expansion-woodland-places-cutout-2026-11-19.json",
+    "styleContract": "style.json",
+    "forwardPrompt": "prompts/expansion-woodland-places.txt"
+  },
+  "subjects": [
+    {
+      "id": "woodland-bridge",
+      "label": "Holzbrücke"
+    },
+    {
+      "id": "woodland-bench",
+      "label": "Waldbank"
+    },
+    {
+      "id": "fallen-log",
+      "label": "Baumstamm"
+    },
+    {
+      "id": "tree-stump",
+      "label": "Baumstrunk"
+    },
+    {
+      "id": "hollow-tree",
+      "label": "Höhlenbaum"
+    },
+    {
+      "id": "fox-den-entrance",
+      "label": "Fuchsbau"
+    },
+    {
+      "id": "badger-sett",
+      "label": "Dachsbau"
+    },
+    {
+      "id": "ant-hill",
+      "label": "Ameisenhaufen"
+    },
+    {
+      "id": "beaver-lodge",
+      "label": "Biberburg"
+    },
+    {
+      "id": "bird-nest-empty",
+      "label": "Leeres Vogelnest"
+    },
+    {
+      "id": "reed-clump",
+      "label": "Schilf"
+    },
+    {
+      "id": "pond-lily",
+      "label": "Seerose"
+    },
+    {
+      "id": "stream-stones",
+      "label": "Bachsteine"
+    },
+    {
+      "id": "footpath-sign",
+      "label": "Wegweiser"
+    },
+    {
+      "id": "woodland-gate",
+      "label": "Gartentor"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+Create a NEW extension sheet for the Waldpost woodland learning-picture library. Match the two supplied canonical reference images in their warm watercolour and visible coloured-pencil finish. These are isolated learning pictures, suitable for later vocabulary, sorting, matching, observation and sequence puzzles. No labels, text, numerals, frames, badges, faces on objects or decorative extras.
+
+LAYOUT: a square canvas divided into EXACTLY 4 equal columns and 4 equal rows (16 equal square cells). Draw exactly 15 independent complete subjects in row-major order below. Leave row 4 column 4 completely transparent. Each subject stays inside its own square with at least 12% clear space on each side. Centre each subject in its cell; keep every ear, root, handle, tail and wing intact. No overlapping cells, ground plane or backdrop. Genuine alpha zero around all paintings, including open handles; no painted checkerboard or paper rectangle. Gentle pencil texture remains inside the subject.
+
+Row 1, column 1: teapot (Teekanne) — one small sage-green teapot with spout, lid and a handle with a transparent opening.
+Row 1, column 2: thermos (Thermosflasche) — one blue thermos flask with closed cream cup lid.
+Row 1, column 3: drinking-bottle (Trinkflasche) — one muted blue reusable drinking bottle with closed lid.
+Row 1, column 4: lunchbox (Znünibox) — one ochre lunchbox with its attached lid opened, empty inside.
+Row 2, column 1: wooden-plate (Teller) — one round cream plate seen slightly from above.
+Row 2, column 2: napkin (Serviette) — one folded blue check cloth napkin.
+Row 2, column 3: pretzel (Brezel) — one golden pretzel with three open transparent holes.
+Row 2, column 4: bread-roll (Brötchen) — one round golden bread roll with a cross score.
+Row 3, column 1: sandwich (Sandwich) — one triangular sandwich with visible cheese and green lettuce between bread slices.
+Row 3, column 2: milk-jug (Milchkrug) — one small cream milk jug with a handle and spout.
+Row 3, column 3: wooden-chair (Stuhl) — one simple honey-brown wooden chair.
+Row 3, column 4: stool (Hocker) — one three-legged wooden stool.
+Row 4, column 1: wooden-key (Schlüssel) — one plain old brass key with one loop and a toothed end.
+Row 4, column 2: broom (Besen) — one straw broom with wooden handle.
+Row 4, column 3: candle-holder (Kerze) — one unlit cream candle in a simple brown saucer holder.
+
+Row 4, column 4: EMPTY, fully transparent. Use a consistent woodland picture-book scale; keep shapes clear and recognizable at 80–120 pixels. All names and IDs above are instructions only and must never be drawn.

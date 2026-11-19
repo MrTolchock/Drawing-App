@@ -1,0 +1,81 @@
+{
+  "format": "waldpost-illustration-atlas",
+  "version": 1,
+  "source": "sources/expansion-2026-11-19/expansion-nature-cycles.png",
+  "output": "../../assets/waldatelier/expansion-nature-cycles.webp",
+  "columns": 4,
+  "rows": 4,
+  "cellPixels": 320,
+  "subjectPixels": 256,
+  "alphaThresholdPercent": 8,
+  "provenance": {
+    "date": "2026-11-19",
+    "tool": "ChatGPT image_gen.imagegen",
+    "sourceSha256": "bac270fa35b8df20d9f9e0f1d40a1575ad1e56a4a832882d7b52596a57a06c1c",
+    "generationRecord": "../artwork/generation-records/expansion-nature-cycles-2026-11-19.json",
+    "styleContract": "style.json",
+    "forwardPrompt": "prompts/expansion-nature-cycles.txt"
+  },
+  "subjects": [
+    {
+      "id": "oak-sprouting-acorn",
+      "label": "Eichel keimt"
+    },
+    {
+      "id": "oak-seedling",
+      "label": "Junge Eiche"
+    },
+    {
+      "id": "oak-sapling",
+      "label": "Eichenbäumchen"
+    },
+    {
+      "id": "bean-dry-seed",
+      "label": "Bohnensamen"
+    },
+    {
+      "id": "bean-rooting-seed",
+      "label": "Bohne keimt"
+    },
+    {
+      "id": "bean-first-leaves",
+      "label": "Bohnentrieb"
+    },
+    {
+      "id": "bean-flowering",
+      "label": "Bohne blüht"
+    },
+    {
+      "id": "bean-with-pods",
+      "label": "Bohnenpflanze"
+    },
+    {
+      "id": "butterfly-eggs",
+      "label": "Schmetterlingseier"
+    },
+    {
+      "id": "butterfly-chrysalis",
+      "label": "Schmetterlingspuppe"
+    },
+    {
+      "id": "tadpole",
+      "label": "Kaulquappe"
+    },
+    {
+      "id": "tadpole-hindlegs",
+      "label": "Kaulquappe mit Hinterbeinen"
+    },
+    {
+      "id": "froglet",
+      "label": "Jungfrosch"
+    },
+    {
+      "id": "apple-blossom",
+      "label": "Apfelblüte"
+    },
+    {
+      "id": "apple-unripe",
+      "label": "Unreifer Apfel"
+    }
+  ]
+}

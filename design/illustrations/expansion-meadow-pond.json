@@ -1,0 +1,81 @@
+{
+  "format": "waldpost-illustration-atlas",
+  "version": 1,
+  "source": "sources/expansion-2026-11-19/expansion-meadow-pond.png",
+  "output": "../../assets/waldatelier/expansion-meadow-pond.webp",
+  "columns": 4,
+  "rows": 4,
+  "cellPixels": 320,
+  "subjectPixels": 256,
+  "alphaThresholdPercent": 8,
+  "provenance": {
+    "date": "2026-11-19",
+    "tool": "ChatGPT image_gen.imagegen",
+    "sourceSha256": "8c5245df519da4617b4f20cd237f55c1611e8b0e1aaa32a8f611d4151d6b1859",
+    "generationRecord": "../artwork/generation-records/expansion-meadow-pond-2026-11-19.json",
+    "styleContract": "style.json",
+    "forwardPrompt": "prompts/expansion-meadow-pond.txt"
+  },
+  "subjects": [
+    {
+      "id": "dragonfly",
+      "label": "Libelle"
+    },
+    {
+      "id": "grasshopper",
+      "label": "Heuschrecke"
+    },
+    {
+      "id": "stag-beetle",
+      "label": "Hirschkäfer"
+    },
+    {
+      "id": "bumblebee",
+      "label": "Hummel"
+    },
+    {
+      "id": "moth",
+      "label": "Nachtfalter"
+    },
+    {
+      "id": "earthworm",
+      "label": "Regenwurm"
+    },
+    {
+      "id": "woodlouse",
+      "label": "Assel"
+    },
+    {
+      "id": "newt",
+      "label": "Molch"
+    },
+    {
+      "id": "fire-salamander",
+      "label": "Feuersalamander"
+    },
+    {
+      "id": "toad",
+      "label": "Kröte"
+    },
+    {
+      "id": "duckling",
+      "label": "Entenküken"
+    },
+    {
+      "id": "heron",
+      "label": "Reiher"
+    },
+    {
+      "id": "stork",
+      "label": "Storch"
+    },
+    {
+      "id": "dipper",
+      "label": "Wasseramsel"
+    },
+    {
+      "id": "otter",
+      "label": "Fischotter"
+    }
+  ]
+}

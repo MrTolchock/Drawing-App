@@ -1,0 +1,21 @@
+Create a NEW extension sheet for the Waldpost woodland learning-picture library. Match the two supplied canonical reference images in their warm watercolour and visible coloured-pencil finish. These are isolated learning pictures, suitable for later vocabulary, sorting, matching, observation and sequence puzzles. No labels, text, numerals, frames, badges, faces on objects or decorative extras.
+
+LAYOUT: a square canvas divided into EXACTLY 4 equal columns and 4 equal rows (16 equal square cells). Draw exactly 15 independent complete subjects in row-major order below. Leave row 4 column 4 completely transparent. Each subject stays inside its own square with at least 12% clear space on each side. Centre each subject in its cell; keep every ear, root, handle, tail and wing intact. No overlapping cells, ground plane or backdrop. Genuine alpha zero around all paintings, including open handles; no painted checkerboard or paper rectangle. Gentle pencil texture remains inside the subject.
+
+Row 1, column 1: oak-leaf (Eichenblatt) — one lobed green oak leaf.
+Row 1, column 2: beech-leaf (Buchenblatt) — one oval green beech leaf with gently wavy edge.
+Row 1, column 3: birch-leaf (Birkenblatt) — one triangular serrated birch leaf.
+Row 1, column 4: maple-leaf (Ahornblatt) — one red-orange five-lobed maple leaf.
+Row 2, column 1: willow-leaf (Weidenblatt) — one long narrow green willow leaf.
+Row 2, column 2: horse-chestnut-leaf (Kastanienblatt) — one palmate horse chestnut leaf with five attached leaflets.
+Row 2, column 3: acorn (Eichel) — one brown acorn in its textured cup.
+Row 2, column 4: pine-cone (Tannzapfen) — one brown open woody pine cone.
+Row 3, column 1: horse-chestnut (Kastanie) — one shiny brown horse chestnut with pale oval scar, no spiky case.
+Row 3, column 2: beech-nut (Buchecker) — one triangular brown beech nut beside its single opened prickly husk, one botanical specimen.
+Row 3, column 3: sycamore-seed (Ahornsamen) — one paired winged sycamore seed with attached V-shaped wings.
+Row 3, column 4: rose-hip (Hagebutte) — one oval red rose hip with dark dried sepals and short stalk.
+Row 4, column 1: blackberry (Brombeere) — one ripe dark-purple blackberry.
+Row 4, column 2: raspberry (Himbeere) — one ripe red raspberry.
+Row 4, column 3: dandelion-seedhead (Pusteblume) — one whole white dandelion seed head on a short stem, airy visible seed spokes.
+
+Row 4, column 4: EMPTY, fully transparent. Use a consistent woodland picture-book scale; keep shapes clear and recognizable at 80–120 pixels. All names and IDs above are instructions only and must never be drawn.

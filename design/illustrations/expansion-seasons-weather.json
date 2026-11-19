@@ -1,0 +1,81 @@
+{
+  "format": "waldpost-illustration-atlas",
+  "version": 1,
+  "source": "sources/expansion-2026-11-19/expansion-seasons-weather-clean-cutout.png",
+  "output": "../../assets/waldatelier/expansion-seasons-weather.webp",
+  "columns": 4,
+  "rows": 4,
+  "cellPixels": 320,
+  "subjectPixels": 256,
+  "alphaThresholdPercent": 8,
+  "provenance": {
+    "date": "2026-11-19",
+    "tool": "ChatGPT image_gen.imagegen",
+    "sourceSha256": "ce079f001874076c8089c619c13ed87bd36ad97d41ba23e2849ae424685e6472",
+    "generationRecord": "../artwork/generation-records/expansion-seasons-weather-clean-cutout-2026-11-19.json",
+    "styleContract": "style.json",
+    "forwardPrompt": "prompts/expansion-seasons-weather.txt"
+  },
+  "subjects": [
+    {
+      "id": "umbrella",
+      "label": "Regenschirm"
+    },
+    {
+      "id": "rain-boot",
+      "label": "Gummistiefel"
+    },
+    {
+      "id": "raincoat",
+      "label": "Regenmantel"
+    },
+    {
+      "id": "mitten",
+      "label": "Fausthandschuh"
+    },
+    {
+      "id": "woolly-hat",
+      "label": "Wollmütze"
+    },
+    {
+      "id": "woolly-sock",
+      "label": "Wollsocke"
+    },
+    {
+      "id": "sun-hat",
+      "label": "Sonnenhut"
+    },
+    {
+      "id": "sunglasses",
+      "label": "Sonnenbrille"
+    },
+    {
+      "id": "snowflake",
+      "label": "Schneeflocke"
+    },
+    {
+      "id": "icicle",
+      "label": "Eiszapfen"
+    },
+    {
+      "id": "snowball",
+      "label": "Schneeball"
+    },
+    {
+      "id": "puddle",
+      "label": "Pfütze"
+    },
+    {
+      "id": "rainbow-arch",
+      "label": "Regenbogen"
+    },
+    {
+      "id": "wind-leaves",
+      "label": "Wind"
+    },
+    {
+      "id": "frost-leaf",
+      "label": "Raureif"
+    }
+  ]
+}

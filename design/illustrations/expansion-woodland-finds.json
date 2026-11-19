@@ -1,0 +1,81 @@
+{
+  "format": "waldpost-illustration-atlas",
+  "version": 1,
+  "source": "sources/expansion-2026-11-19/expansion-woodland-finds.png",
+  "output": "../../assets/waldatelier/expansion-woodland-finds.webp",
+  "columns": 4,
+  "rows": 4,
+  "cellPixels": 320,
+  "subjectPixels": 256,
+  "alphaThresholdPercent": 8,
+  "provenance": {
+    "date": "2026-11-19",
+    "tool": "ChatGPT image_gen.imagegen",
+    "sourceSha256": "300904ad057b01b32012dc5a70fc5aba7e755607d6457a97e6ed48b86431f4c9",
+    "generationRecord": "../artwork/generation-records/expansion-woodland-finds-2026-11-19.json",
+    "styleContract": "style.json",
+    "forwardPrompt": "prompts/expansion-woodland-finds.txt"
+  },
+  "subjects": [
+    {
+      "id": "oak-leaf",
+      "label": "Eichenblatt"
+    },
+    {
+      "id": "beech-leaf",
+      "label": "Buchenblatt"
+    },
+    {
+      "id": "birch-leaf",
+      "label": "Birkenblatt"
+    },
+    {
+      "id": "maple-leaf",
+      "label": "Ahornblatt"
+    },
+    {
+      "id": "willow-leaf",
+      "label": "Weidenblatt"
+    },
+    {
+      "id": "horse-chestnut-leaf",
+      "label": "Kastanienblatt"
+    },
+    {
+      "id": "acorn",
+      "label": "Eichel"
+    },
+    {
+      "id": "pine-cone",
+      "label": "Tannzapfen"
+    },
+    {
+      "id": "horse-chestnut",
+      "label": "Kastanie"
+    },
+    {
+      "id": "beech-nut",
+      "label": "Buchecker"
+    },
+    {
+      "id": "sycamore-seed",
+      "label": "Ahornsamen"
+    },
+    {
+      "id": "rose-hip",
+      "label": "Hagebutte"
+    },
+    {
+      "id": "blackberry",
+      "label": "Brombeere"
+    },
+    {
+      "id": "raspberry",
+      "label": "Himbeere"
+    },
+    {
+      "id": "dandelion-seedhead",
+      "label": "Pusteblume"
+    }
+  ]
+}

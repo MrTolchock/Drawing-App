@@ -21,9 +21,9 @@ node tools/illustrations/style.cjs --request puzzle-vocabulary > /tmp/waldpost-v
 
 The repository prepares inputs; it does not include a hosted image model, API key or deterministic seed. Earlier model identifiers and seeds were not retained/exposed. These are usable reconstruction/edit recipes; a different model will not reproduce identical pixels. Actual historical generation records remain separately linked as provenance and do not override the current style.
 
-## Puzzle pictures: all 238 subjects
+## Puzzle pictures: all 390 subjects
 
-Each of the 19 atlases has its own complete prompt and ordered stable IDs. Cell indices are zero-based in JSON. Prompt rows are one-based, left to right then top to bottom. Empty trailing cells remain transparent. Current atlases are attached as composition-only inputs after the canonical style pair.
+Each of the 29 atlases has its own complete prompt and ordered stable IDs. Cell indices are zero-based in JSON. Prompt rows are one-based, left to right then top to bottom. Empty trailing cells remain transparent. Existing atlases may be attached as composition-only inputs after the canonical style pair. The ten expansion sheets use the same canonical pair and their own concrete subject briefs.
 
 | Request ID / sheet | Grid | Complete prompt |
 | --- | --- | --- |
@@ -46,6 +46,16 @@ Each of the 19 atlases has its own complete prompt and ordered stable IDs. Cell 
 | `words-one` | 4 × 4 | [Vocabulary 1](../illustrations/prompts/words-one.txt) |
 | `words-two` | 4 × 4 | [Vocabulary 2](../illustrations/prompts/words-two.txt) |
 | `words-three` | 4 × 4 | [Vocabulary 3](../illustrations/prompts/words-three.txt) |
+| `expansion-woodland-trees` | 4 × 4; fifteen occupied | [Bäume und Waldpflanzen](../illustrations/prompts/expansion-woodland-trees.txt) |
+| `expansion-woodland-finds` | 4 × 4; fifteen occupied | [Blätter und Waldschätze](../illustrations/prompts/expansion-woodland-finds.txt) |
+| `expansion-meadow-pond` | 4 × 4; fifteen occupied | [Tiere an Wiese und Bach](../illustrations/prompts/expansion-meadow-pond.txt) |
+| `expansion-garden-harvest` | 4 × 4; fifteen occupied | [Garten und Ernte](../illustrations/prompts/expansion-garden-harvest.txt) |
+| `expansion-woodland-equipment` | 4 × 4; fifteen occupied | [Entdecken und Gärtnern](../illustrations/prompts/expansion-woodland-equipment.txt) |
+| `expansion-picnic-home` | 4 × 4; fifteen occupied | [Picknick und Alltag](../illustrations/prompts/expansion-picnic-home.txt) |
+| `expansion-seasons-weather` | 4 × 4; fifteen occupied | [Wetter und Jahreszeiten](../illustrations/prompts/expansion-seasons-weather.txt) |
+| `expansion-woodland-actions` | 4 × 4; fifteen occupied | [Tiere in Bewegung](../illustrations/prompts/expansion-woodland-actions.txt) |
+| `expansion-nature-cycles` | 4 × 4; fifteen occupied | [Wachsen und Verwandeln](../illustrations/prompts/expansion-nature-cycles.txt) |
+| `expansion-woodland-places` | 4 × 4; fifteen occupied | [Orte und Lebensräume](../illustrations/prompts/expansion-woodland-places.txt) |
 
 For each sheet, `assets` in the JSON records its exact runtime filename, width/height, columns/rows and ordered `subjects`, including stable IDs, source rectangles, labels, tokens and puzzle usage. [library.json](../../assets/waldatelier/library.json) is the picture-level catalogue. Preserve IDs and ordering when replacing artwork; English IDs are metadata, not text to paint into the image. Exact answer colours, quantities, species and action contrasts are functional content.
 
