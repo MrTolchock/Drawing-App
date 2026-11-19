@@ -17814,6 +17814,24 @@
       "at": "2026-11-19T20:31:10.026Z",
       "seen": true,
       "operation": "424552e6-4fe2-4a16-875e-61d2a245edbe"
+    },
+    "syllable/word-0@2bc8a448a9bb4e12": {
+      "key": "syllable/word-0",
+      "revision": "2bc8a448a9bb4e12",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-19T20:32:33.486Z",
+      "seen": true,
+      "operation": "36bf9d2d-610e-4f52-8add-0ab09885d380"
+    },
+    "syllable/word-1@35ec825bbbf22c7d": {
+      "key": "syllable/word-1",
+      "revision": "35ec825bbbf22c7d",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-19T20:32:36.550Z",
+      "seen": true,
+      "operation": "d3e5ab2b-ec9a-45b2-bf64-cd6aaea612da"
     }
   },
   "history": [
