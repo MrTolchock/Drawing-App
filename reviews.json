@@ -18448,11 +18448,11 @@
     "puzzle:robot@6c1c66df24fd3957": {
       "key": "puzzle:robot",
       "revision": "6c1c66df24fd3957",
-      "status": "approved",
-      "note": "",
-      "at": "2026-11-19T20:36:46.482Z",
+      "status": "improve",
+      "note": "Verwende und zeichne neues bild für briefkasten. Gelber briefkasten wie in der schweiz üblich",
+      "at": "2026-11-19T20:37:16.860Z",
       "seen": true,
-      "operation": "e1843dd1-3a98-438a-8ca7-c2a805083a6d"
+      "operation": "6cdd1d60-3a16-4380-b79f-5aff92ad72c0"
     }
   },
   "history": [
@@ -18689,6 +18689,15 @@
       "at": "2026-11-19T20:30:23.528Z",
       "seen": true,
       "operation": "8fbf2f0e-ba3a-44d2-ae78-ef3b8a3d6320"
+    },
+    {
+      "key": "puzzle:robot",
+      "revision": "6c1c66df24fd3957",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-19T20:36:46.482Z",
+      "seen": true,
+      "operation": "e1843dd1-3a98-438a-8ca7-c2a805083a6d"
     }
   ],
   "deletedNotes": [
