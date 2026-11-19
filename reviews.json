@@ -18660,6 +18660,11 @@
     },
     {
       "key": "puzzle:robot",
+      "note": "Erlaube nur bewegung über pfeiltasten, nicht in feld klicken",
+      "at": "2026-11-19T20:34:38.387Z"
+    },
+    {
+      "key": "puzzle:robot",
       "note": "Mache pfeilbuttons grösser",
       "at": "2026-11-18T20:14:32.532Z"
     },
