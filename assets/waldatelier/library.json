@@ -15,99 +15,99 @@
   "runtimeRegistry": "js/ui/waldatelier.js",
   "puzzles": {
     "friends-squirrel": {
-      "title": "Nüsse zählen",
+      "title": "Mengen zählen",
       "host": "squirrel"
     },
     "friends-bird": {
-      "title": "Reimpaare lesen",
+      "title": "Reime erkennen",
       "host": "bird"
     },
     "friends-owl": {
-      "title": "Lies und zeig",
+      "title": "Kurze Sätze verstehen",
       "host": "owl"
     },
     "friends-beaver": {
-      "title": "Was fehlt im Wald?",
+      "title": "Mengen von Waldgegenständen vergleichen",
       "host": "beaver"
     },
     "friends-mouse": {
-      "title": "Wörter und Bilder",
+      "title": "Wörter mit Bildern verbinden",
       "host": "mouse"
     },
     "friends-hedgehog": {
-      "title": "Tierrätsel",
+      "title": "Tiermerkmale erkennen und Fragen lesen",
       "host": "hedgehog"
     },
     "friends-deer": {
-      "title": "Wer wohnt wo?",
+      "title": "Lebensräume und Nahrung zuordnen",
       "host": "deer"
     },
     "friends-badger": {
-      "title": "Naturrätsel",
+      "title": "Wachstum und Naturveränderungen erkennen",
       "host": "badger"
     },
     "friends-ibex": {
-      "title": "Bergmuster",
+      "title": "Wiederholungsmuster fortsetzen und ergänzen",
       "host": "ibex"
     },
     "count": {
-      "title": "Waldkäfer zählen",
+      "title": "Gezielt Mengen zählen",
       "host": "squirrel"
     },
     "add": {
-      "title": "Äpfel rechnen",
+      "title": "Sichtbare Gruppen addieren",
       "host": "squirrel"
     },
     "pattern": {
-      "title": "Waldmuster",
+      "title": "Wiederholungsmuster fortsetzen",
       "host": "owl"
     },
     "nature": {
-      "title": "Naturdetektive",
+      "title": "Naturhinweise lesend verstehen",
       "host": "bird"
     },
     "rocket": {
-      "title": "Glühwürmchen sammeln",
+      "title": "Mengen ergänzen",
       "host": "squirrel"
     },
     "picnic": {
-      "title": "Waldpicknick",
+      "title": "Eins zu eins gerecht verteilen",
       "host": "squirrel"
     },
     "syllable": {
-      "title": "Silben zählen",
+      "title": "Wörter in Silben zerlegen",
       "host": "bird"
     },
     "robot": {
-      "title": "Waldpost",
+      "title": "Benachbarte Schritte im Raum planen",
       "host": "beaver"
     },
     "sequence": {
-      "title": "Was kommt zuerst?",
+      "title": "Zeitliche Abfolgen ordnen",
       "host": "owl"
     },
     "treasure": {
-      "title": "Waldschatz",
+      "title": "Gegenstände wiedererkennen",
       "host": "owl"
     },
     "neighbours": {
-      "title": "Zahlennachbarn",
+      "title": "Zahlennachbarn bestimmen",
       "host": "squirrel"
     },
     "compare": {
-      "title": "Beeren vergleichen",
+      "title": "Mengen vergleichen",
       "host": "squirrel"
     },
     "mirror": {
-      "title": "Waldspiegel",
+      "title": "Ein Muster spiegeln",
       "host": "beaver"
     },
     "vowels": {
-      "title": "Waldwörter ergänzen",
+      "title": "Einen Vokal ergänzen",
       "host": "mouse"
     },
     "read-puzzle": {
-      "title": "Silben-Puzzle",
+      "title": "Silben zu Wörtern verbinden",
       "host": "mouse"
     }
   },

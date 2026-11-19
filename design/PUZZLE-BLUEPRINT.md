@@ -26,7 +26,7 @@ Give longer words and captions room to wrap. Keep the same touch area for equiva
 
 | Rule | Every active puzzle |
 | --- | --- |
-| Identity | One stable puzzle ID, title, host, explicit difficulty and bounded competence. A puzzle is not a difficulty ladder. |
+| Identity | One stable puzzle ID, competence title (no separate decorative title/subtitle), host, explicit difficulty and bounded competence. A puzzle is not a difficulty ladder. |
 | Pictures | Drawn woodland illustrations for scored subjects; the common painted cast for character identity. Exact SVG geometry, arrows and handwriting strokes where those are the subject. See the visual-style asset table. No emoji, stock-photo or text substitute for a missing picture. |
 | Page | Cream stitched Waldbuch paper, woodland clearing, matching wooden answer cards, Andika for scored text, one host portrait and five progress leaves. |
 | Round | A random sample of five distinct iterations from the finite, inspectable pool. Prefer items not in the last completed round. Keep the selected questions and partial work stable on return/reload. |
@@ -64,8 +64,7 @@ Physical iPad/Safari, sound comfort and child suitability still need the owner's
 ## Required anatomy
 
 ```text
-┌ Back ───────────────────────── Puzzle title ┐
-│ Host portrait · context        Explain rule │
+┌ Back · Host portrait · context · Explain ──┐
 │                 five progress leaves        │
 │                   prompt                    │
 │          drawn subject / exact board        │
@@ -74,12 +73,12 @@ Physical iPad/Safari, sound comfort and child suitability still need the owner's
 └─────────────────────────────────────────────┘
 ```
 
-Use `js/screens/puzzle.js` and `css/puzzle-rounds.css`. Writing uses the existing stroke engine in `js/screens/trace.js` inside the same page shell. The context portrait, five leaves, topbar, guidance, feedback and celebration are shared. Adult review uses the same sized task region, with a small rejection × in the usual speech-control slot and no review strip. The counter shows the full review queue; five leaves represent its overall progress. The speech test belongs to the puzzle overview; children keep the shared “Spiel erklären” control during normal play.
+Use `js/screens/puzzle.js` and `css/puzzle-rounds.css`. Writing uses the existing stroke engine in `js/screens/trace.js` inside the same page shell. The inline return arrow, context portrait, five leaves, guidance, feedback and celebration are shared. Active puzzles have no separate title bar; the task prompt is the visible heading. Adult review uses the same sized task region, with a small rejection × in the usual speech-control slot and no review strip. The counter shows the full review queue; five leaves represent its overall progress. The speech test belongs to the puzzle overview; children keep the shared “Spiel erklären” control during normal play.
 
 - Cream stitched paper and quiet woodland background; one main task per page. Cards use the shared wood/cream treatment, soft brown borders and sage selected states. Feedback adds a visible mark and accessible status, never colour alone.
 - Use the typography roles above in the shared puzzle and tracing layouts.
-- Touch controls are at least 48 × 48 CSS px. On a narrow screen wrap answers or scroll the task region; do not shrink letters or targets until they become hard to use. Keep the topbar and back button reachable. Honour safe areas, visible keyboard focus and reduced motion.
-- Nouns/verbs use drawn artwork through `FK.visual`; companions and voters use the same painted identity API `FK.friendsArt.portrait`. An identity portrait must never substitute for a pictured vocabulary answer. Task utility controls use `FK.icons`; the header back uses the shared `FK.ui.topbar` navigation arrow, matching menus and the map.
+- Touch controls are at least 48 × 48 CSS px. On a narrow screen wrap answers or scroll the task region; do not shrink letters or targets until they become hard to use. Keep the inline back button reachable. On iPad, all task variants and answers fit without scrolling; compact surrounding spacing and boards rather than scored text or touch targets. Honour safe areas, visible keyboard focus and reduced motion.
+- Nouns/verbs use drawn artwork through `FK.visual`; companions and voters use the same painted identity API `FK.friendsArt.portrait`. An identity portrait must never substitute for a pictured vocabulary answer. Task utility controls use `FK.icons`; the inline back uses the shared `FK.ui.topbar` navigation arrow, matching menus and the map.
 
 ## Adding or revising a puzzle
 

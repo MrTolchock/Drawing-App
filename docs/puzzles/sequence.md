@@ -1,4 +1,4 @@
-# Was kommt zuerst?
+# Zeitliche Abfolgen ordnen
 
 [All puzzles](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 

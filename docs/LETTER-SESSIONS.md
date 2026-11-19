@@ -4,6 +4,8 @@ Open **Einstellungen → Briefe pro Spielrunde** through the adult gate. Choose 
 
 Before the first letter is opened, changing the number updates that new journey. Once a journey has started, its limit stays fixed; a changed selection is saved for the next one. **Neue Briefreise starten** is the parent-only way to begin a fresh journey, including after game over. It starts in the den with an arriving letter. Existing drawing records, puzzle reviews and interrupted puzzle work remain saved.
 
+The world toolbar shows completed letters as **0/3**, **1/3**, etc., using the current journey’s fixed limit. This is a status, not a letter button. Open arriving letters at the den/courier; letters have no voice playback control. The map shows the fox’s location with the pulsating ring alone.
+
 The child loop is:
 
 1. Start in the den and open the pictured letter.

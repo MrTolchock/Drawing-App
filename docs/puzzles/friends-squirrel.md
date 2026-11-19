@@ -1,4 +1,4 @@
-# Nüsse zählen
+# Mengen zählen
 
 [All puzzles](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 

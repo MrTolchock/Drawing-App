@@ -1,4 +1,4 @@
-# Was fehlt im Wald?
+# Mengen von Waldgegenständen vergleichen
 
 [All puzzles](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 

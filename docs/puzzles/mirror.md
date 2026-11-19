@@ -1,4 +1,4 @@
-# Waldspiegel
+# Ein Muster spiegeln
 
 [All puzzles](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 

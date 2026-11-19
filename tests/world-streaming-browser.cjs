@@ -9,7 +9,7 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000';
   const page=await (await browser.newContext({viewport:{width:1080,height:810},serviceWorkers:'block'})).newPage(),errors=[];
   page.on('pageerror',e=>errors.push(e.message));page.setDefaultTimeout(300000);
   await page.goto(base+'/?dev=1');await page.waitForFunction(()=>!!window.FK?.friendsForest&&!!FK.friendsView,null,{timeout:180000});
-  await page.getByRole('button',{name:'Dein Brief',exact:true}).click();await page.getByRole('button',{name:'Zum Freund gehen',exact:true}).click();
+  await page.getByRole('button',{name:'Brief öffnen',exact:true}).click();await page.getByRole('button',{name:'Zum Freund gehen',exact:true}).click();
   await page.waitForFunction(()=>FK.friendsView().area==='forest');
   await page.getByRole('button',{name:'Bildkarte',exact:true}).click();   // pauses the live loop: the test steps the forest itself
   const s=await page.evaluate(async()=>{

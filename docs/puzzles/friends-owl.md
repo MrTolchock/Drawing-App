@@ -1,4 +1,4 @@
-# Lies und zeig
+# Kurze Sätze verstehen
 
 [All puzzles](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 

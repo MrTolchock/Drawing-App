@@ -1,4 +1,4 @@
-# Glühwürmchen sammeln
+# Mengen ergänzen
 
 [All puzzles](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 

@@ -1,4 +1,4 @@
-# Naturrätsel
+# Wachstum und Naturveränderungen erkennen
 
 [All puzzles](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 

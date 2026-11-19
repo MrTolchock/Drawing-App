@@ -7,7 +7,7 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',out=process.en
  const context=await browser.newContext({viewport:{width:1080,height:810},hasTouch:true,reducedMotion:'reduce',serviceWorkers:'block'}),remote=await installRemote(context),page=await context.newPage(),errors=[];
  page.on('pageerror',e=>errors.push(e.message));page.setDefaultTimeout(60000);
  await page.goto(base+'/?software=1');await page.waitForFunction(()=>!!window.FK?.friendsForest&&!!FK.friendsView,null,{timeout:120000});
- await page.getByRole('button',{name:'Dein Brief',exact:true}).click();await page.getByRole('button',{name:'Zum Freund gehen',exact:true}).click();await page.waitForFunction(()=>FK.friendsView().area==='forest');
+ await page.getByRole('button',{name:'Brief öffnen',exact:true}).click();await page.getByRole('button',{name:'Zum Freund gehen',exact:true}).click();await page.waitForFunction(()=>FK.friendsView().area==='forest');
  await page.evaluate(()=>{
   FK.friendsForest.weather(false);window.swampSamples=[];window.swampFailures=[];
   const record=FK.friends.record;FK.friends.record=function(event,data){if(event==='route_failure')swampFailures.push(data);return record.call(this,event,data);};

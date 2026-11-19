@@ -6,168 +6,168 @@ const games=[
   {
     "id": "friends-squirrel",
     "host": "squirrel",
-    "title": "Nüsse zählen",
+    "title": "Mengen zählen",
     "picture": "forest-nut",
     "screen": "puzzle"
   },
   {
     "id": "friends-bird",
     "host": "bird",
-    "title": "Reimpaare lesen",
+    "title": "Reime erkennen",
     "picture": "words",
     "screen": "puzzle"
   },
   {
     "id": "friends-owl",
     "host": "owl",
-    "title": "Lies und zeig",
+    "title": "Kurze Sätze verstehen",
     "picture": "book",
     "screen": "puzzle"
   },
   {
     "id": "friends-beaver",
     "host": "beaver",
-    "title": "Was fehlt im Wald?",
+    "title": "Mengen von Waldgegenständen vergleichen",
     "picture": "forest-leaf",
     "screen": "puzzle"
   },
   {
     "id": "friends-mouse",
     "host": "mouse",
-    "title": "Wörter und Bilder",
+    "title": "Wörter mit Bildern verbinden",
     "picture": "mouse-sit",
     "screen": "puzzle"
   },
   {
     "id": "friends-hedgehog",
     "host": "hedgehog",
-    "title": "Tierrätsel",
+    "title": "Tiermerkmale erkennen und Fragen lesen",
     "picture": "hedgehog",
     "screen": "puzzle"
   },
   {
     "id": "friends-deer",
     "host": "deer",
-    "title": "Wer wohnt wo?",
+    "title": "Lebensräume und Nahrung zuordnen",
     "picture": "nest",
     "screen": "puzzle"
   },
   {
     "id": "friends-badger",
     "host": "badger",
-    "title": "Naturrätsel",
+    "title": "Wachstum und Naturveränderungen erkennen",
     "picture": "seedling",
     "screen": "puzzle"
   },
   {
     "id": "friends-ibex",
     "host": "ibex",
-    "title": "Bergmuster",
+    "title": "Wiederholungsmuster fortsetzen und ergänzen",
     "picture": "forest-fir",
     "screen": "puzzle"
   },
   {
     "id": "count",
     "host": "squirrel",
-    "title": "Waldkäfer zählen",
+    "title": "Gezielt Mengen zählen",
     "picture": "ladybird",
     "screen": "puzzle"
   },
   {
     "id": "add",
     "host": "squirrel",
-    "title": "Äpfel rechnen",
+    "title": "Sichtbare Gruppen addieren",
     "picture": "add",
     "screen": "puzzle"
   },
   {
     "id": "pattern",
     "host": "owl",
-    "title": "Waldmuster",
+    "title": "Wiederholungsmuster fortsetzen",
     "picture": "forest-leaf",
     "screen": "puzzle"
   },
   {
     "id": "nature",
     "host": "bird",
-    "title": "Naturdetektive",
+    "title": "Naturhinweise lesend verstehen",
     "picture": "seedling",
     "screen": "puzzle"
   },
   {
     "id": "rocket",
     "host": "squirrel",
-    "title": "Glühwürmchen sammeln",
+    "title": "Mengen ergänzen",
     "picture": "forest-lantern",
     "screen": "puzzle"
   },
   {
     "id": "picnic",
     "host": "squirrel",
-    "title": "Waldpicknick",
+    "title": "Eins zu eins gerecht verteilen",
     "picture": "forest-basket",
     "screen": "puzzle"
   },
   {
     "id": "syllable",
     "host": "bird",
-    "title": "Silben zählen",
+    "title": "Wörter in Silben zerlegen",
     "picture": "forest-branch",
     "screen": "puzzle"
   },
   {
     "id": "robot",
     "host": "beaver",
-    "title": "Waldpost",
+    "title": "Benachbarte Schritte im Raum planen",
     "picture": "forest-post",
     "screen": "puzzle"
   },
   {
     "id": "sequence",
     "host": "owl",
-    "title": "Was kommt zuerst?",
+    "title": "Zeitliche Abfolgen ordnen",
     "picture": "sprout",
     "screen": "puzzle"
   },
   {
     "id": "treasure",
     "host": "owl",
-    "title": "Waldschatz",
+    "title": "Gegenstände wiedererkennen",
     "picture": "forest-basket",
     "screen": "puzzle"
   },
   {
     "id": "neighbours",
     "host": "squirrel",
-    "title": "Zahlennachbarn",
+    "title": "Zahlennachbarn bestimmen",
     "picture": "neighbours",
     "screen": "puzzle"
   },
   {
     "id": "compare",
     "host": "squirrel",
-    "title": "Beeren vergleichen",
+    "title": "Mengen vergleichen",
     "picture": "forest-berry",
     "screen": "puzzle"
   },
   {
     "id": "mirror",
     "host": "beaver",
-    "title": "Waldspiegel",
+    "title": "Ein Muster spiegeln",
     "picture": "mirror",
     "screen": "puzzle"
   },
   {
     "id": "vowels",
     "host": "mouse",
-    "title": "Waldwörter ergänzen",
+    "title": "Einen Vokal ergänzen",
     "picture": "words",
     "screen": "puzzle"
   },
   {
     "id": "read-puzzle",
     "host": "mouse",
-    "title": "Silben-Puzzle",
+    "title": "Silben zu Wörtern verbinden",
     "picture": "words",
     "screen": "puzzle"
   }

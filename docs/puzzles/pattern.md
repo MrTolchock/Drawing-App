@@ -1,4 +1,4 @@
-# Waldmuster
+# Wiederholungsmuster fortsetzen
 
 [All puzzles](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 

@@ -343,9 +343,6 @@
 .friends-interface .ff-nav{gap:10px;padding:8px;border-radius:28px;background:#fff8e8e6;border:2px solid #e2c99a;box-shadow:var(--wb-lift)}
 .friends-interface .ff-nav .ff-button{width:64px;height:64px;min-width:64px;min-height:64px;border-radius:18px;background:var(--wb-paper);border:2px solid #e8d4ab;box-shadow:0 4px 0 #e2c995}
 .friends-interface .ff-nav .ff-button .ff-picture,.friends-interface .ff-nav .ff-ui-art{width:46px;height:46px}
-.friends-interface .ff-game[data-mail=den-letter] .ff-nav [aria-label="Dein Brief"]::after{
-  content:"";position:absolute;top:-6px;right:-6px;width:22px;height:22px;border-radius:50%;background:var(--wb-fox);border:3px solid var(--wb-paper);
-}
 .friends-interface .ff-hotspot{background:radial-gradient(circle,#fffaf0 0 62%,#fff6dc 63%);border:3px solid #f2cf7e;box-shadow:0 0 0 7px #ffe3a040,var(--wb-lift)}
 .friends-interface .ff-hotspot::before{border-color:#ffe3a080}
 @media (max-width:600px){
@@ -357,10 +354,6 @@
 /* ---------- Overlays: a static vignette instead of blur; 3D is paused underneath (4.2, P3, P4) ---------- */
 .friends-interface .ff-overlay{background:radial-gradient(ellipse at 50% 48%,#3a24127a,#2a180bcc)}
 .friends-interface .ff-overlay.ff-postcard-overlay{background:radial-gradient(ellipse at 50% 48%,#3a24127a,#2a180bcc)}
-
-.ff-letter-with-voice{position:relative}
-.ff-letter-with-voice .play-listen{position:absolute;right:12%;bottom:18%;z-index:1}
-.ff-letter-with-voice .play-listen[aria-pressed="true"]{outline:3px solid var(--wb-focus)}
 
 /* ---------- Drawn letter: one paper asset, with the current sender's painted portrait ---------- */
 .friends-interface .ff-postcard-overlay .ff-letter-paper{
@@ -462,3 +455,6 @@
 
 /* Phase 4: the invited friend's bubble in the forest wears a gold ring (fireflies lead there). */
 .friends-interface .ff-hotspot.ff-invited{border-color:#e0a92c;box-shadow:0 0 0 5px #f6cf62,0 0 0 12px #ffd76a55,var(--wb-lift)}
+
+/* Completed letters in the current journey; informational, never a button. */
+.ff-letter-status{align-self:center;display:grid;place-items:center;min-width:64px;min-height:54px;padding:8px 12px;border:1px solid #bda482;border-radius:18px;background:#fffaf0ef;color:#4b3b2d;font:700 22px/1.3 var(--read);font-variant-numeric:tabular-nums}

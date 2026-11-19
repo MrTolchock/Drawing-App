@@ -3,7 +3,7 @@
 (function () {
   'use strict';
   const FK=window.FK,h=FK.h,R=FK.puzzleRounds;
-  let root,bar,body,title,session,game,host,origin,question,locked=false,timer=0,alive=false,status,scene,answerArea;
+  let root,backButton,body,session,game,host,origin,question,locked=false,timer=0,alive=false,status,scene,answerArea;
   const aliases={house:'vocab-house',table:'vocab-table',shoe:'vocab-shoe',leg:'vocab-leg',stone:'vocab-stone',cloth:'vocab-cloth',tower:'vocab-tower',worm:'vocab-worm',pot:'vocab-pot',head:'vocab-head',hand:'vocab-hand',sand:'vocab-sand',scarf:'vocab-scarf',rope:'vocab-rope',arrow:'vocab-arrow',cup:'vocab-cup',till:'vocab-till',bench:'vocab-bench',wardrobe:'vocab-wardrobe',seeds:'vocab-seed',hare:'hare-sit',mouse:'mouse-sit',bird:'bird-sit',fish:'fish-swim',tin:'tin',nut:'forest-nut',feathers:'forest-feather'};
   const labels={...Object.fromEntries(Object.entries(R.wordArt).map(([word,pic])=>[pic,word])),...Object.fromEntries(R.words.map(([word,pic])=>[pic,word.replaceAll('-','')])),
     'mouse-sit':'Maus sitzt','mouse-run':'Maus rennt','mouse-sleep':'Maus schläft','bird-fly':'Vogel fliegt','bird-sit':'Vogel sitzt','fish-swim':'Fisch schwimmt','hare-run':'Hase rennt','hare-sit':'Hase sitzt','fox-sleep':'Fuchs schläft','fox-run':'Fuchs rennt','cat-sleep':'Katze schläft','cat-sit':'Katze sitzt','dog-run':'Hund rennt','dog-sleep':'Hund schläft','duck-swim':'Ente schwimmt','duck-fly':'Ente fliegt','forest-stone':'Stein','forest-apple':'Apfel','forest-feather':'Feder','forest-flower':'Blume','forest-nut':'Nuss','forest-leaf':'Blatt','forest-berry':'Beere'};
@@ -23,7 +23,7 @@
     return h('span',{class:'puzzle-shape',role:'img','aria-label':R.shapeNames[id]+(rotation?' gedreht':''),html:'<svg viewBox="0 0 100 100"'+(fitted?' preserveAspectRatio="none"':'')+'><g transform="rotate('+rotation+' 50 50)" fill="'+(outline?'none':'#d8b987')+'" stroke="#8d6b45" stroke-width="3" '+(outline?'stroke-dasharray="5 4"':'')+'>'+(fitted?pieces[id]:paths[id])+'</g></svg>'});
   }
   function progress(round,total=5) {const leaves=total?Math.floor(5*round/total):5;return h('div',{class:'puzzle-progress','aria-label':round+' von '+total+' Aufgaben geschafft'},Array.from({length:5},(_,i)=>h('span',{class:i<leaves?'done':i===leaves?'current':'','aria-hidden':'true'},FK.visual.art('forest-leaf'))));}
-  function context(owner,round,instruction,{explain=true,total=5}={}) {return h('div',{class:'puzzle-context'},FK.friendsLibrary.portrait(owner),h('span',{text:window.FriendsContent.hosts[owner].name+' spielt mit dir'}),h('b',{class:'puzzle-round',text:(round+1)+' / '+total}),explain?button('Spiel erklären',()=>FK.forestVoice.explain(instruction),'puzzle-listen',FK.icons.element('speaker')):null);}
+  function context(owner,round,instruction,{explain=true,total=5,back=null}={}) {return h('div',{class:'puzzle-context'},back,FK.friendsLibrary.portrait(owner),h('span',{text:window.FriendsContent.hosts[owner].name+' spielt mit dir'}),h('b',{class:'puzzle-round',text:(round+1)+' / '+total}),explain?button('Spiel erklären',()=>FK.forestVoice.explain(instruction),'puzzle-listen',FK.icons.element('speaker')):null);}
   function later(fn,delay=900) {
     clearTimeout(timer);
     timer=setTimeout(()=>{if(!alive)return;if(document.hidden||document.querySelector('.modal')){later(fn,250);return;}fn();},delay);
@@ -43,7 +43,7 @@
     root.querySelector('.review-reject')?.setAttribute('disabled','');
     body.querySelectorAll('.is-retry').forEach(el=>el.classList.remove('is-retry'));
     (node||scene).classList.add('is-correct');
-    body.querySelectorAll('button:not(.puzzle-listen)').forEach(b=>b.disabled=true);
+    body.querySelectorAll('button:not(.puzzle-listen):not(.btn-back)').forEach(b=>b.disabled=true);
     FK.sound.right();announcement('Das passt!');
     FK.waldbuch?.celebrate(node||scene);
     if(!session.review)FK.playLog?.answer(value===undefined?{work:session.work}:value,true);
@@ -284,21 +284,23 @@
     if(session.round===session.questions.length){finish();return;}question=R.current(session);
     root.dataset.game=game;root.dataset.host=host;
     if(!session.review)FK.playLog?.show(question);
-    body.replaceChildren(context(host,session.round,R.instructions[game],{explain:!session.review,total:session.questions.length}),progress(session.round,session.questions.length),h('h2',{class:'puzzle-prompt',text:question.prompt}));
+    body.replaceChildren(context(host,session.round,R.instructions[game],{explain:!session.review,total:session.questions.length,back:backButton}),progress(session.round,session.questions.length),h('h2',{class:'puzzle-prompt',text:question.prompt}));
     scene=h('div',{class:'puzzle-scene'});answerArea=h('div',{class:'puzzle-answers'});status=h('p',{class:'puzzle-status sr-only',role:'status','aria-live':'polite'});body.append(scene,answerArea,status);
     const renderers={nuts:renderCount,count:renderCount,reading:renderReading,rhyme:renderReading,add:renderAdd,pattern:renderPattern,fireflies:renderFireflies,picnic:renderPicnic,matrix:renderMatrix,syllable:renderSyllable,robot:renderRobot,order:renderOrder,treasure:renderTreasure,neighbours:renderNeighbours,compare:renderCompare,mirror:renderMirror,vowels:renderVowels,syllables:renderSyllables,colours:renderColours,leaves:renderLeaves};
     renderers[question.kind](question);body.scrollTop=0;
     if(session.review)FK.puzzleReview.attachPreview(root,session,advance);
     // Restore a pending correct transition without accepting the same answer twice.
-    if(session.solved){locked=true;scene.classList.add('is-correct');body.querySelectorAll('button:not(.puzzle-listen)').forEach(b=>b.disabled=true);later(advance);}
+    if(session.solved){locked=true;scene.classList.add('is-correct');body.querySelectorAll('button:not(.puzzle-listen):not(.btn-back)').forEach(b=>b.disabled=true);later(advance);}
     const heading=body.querySelector('h2');heading.tabIndex=-1;heading.focus({preventScroll:true});
   }
   function advance() {
     session.round++;session.solved=false;session.work={};persist();draw();
   }
   function finish() {
-    if(session.review){delete root.dataset.reviewIteration;FK.puzzleUI.completion(body,host,()=>FK.puzzleReview.finishPreview(session),{total:session.questions.length,review:true});return;}
-    if(session.gallery){FK.puzzleUI.completion(body,host,()=>FK.go('puzzle-gallery'),{total:session.questions.length});return;}   // a gallery round leaves no trace
+    // Keep return navigation available throughout the celebration.
+    const complete=(...args)=>{FK.puzzleUI.completion(body,...args);body.prepend(backButton);};
+    if(session.review){delete root.dataset.reviewIteration;complete(host,()=>FK.puzzleReview.finishPreview(session),{total:session.questions.length,review:true});return;}
+    if(session.gallery){complete(host,()=>FK.go('puzzle-gallery'),{total:session.questions.length});return;}   // a gallery round leaves no trace
     if(origin==='friends'&&FK.friends?.mail().host===host&&FK.friends.mail().phase==='to-friend'&&!FK.friends.completeMail(host)){
       announcement(FK.friends.error||'Bitte nochmals versuchen.');return;
     }
@@ -306,12 +308,12 @@
     R.complete(game);
     FK.progress.finish('puzzle',game+':1',0);
     FK.friendsLibrary.complete(host,game);
-    FK.puzzleUI.completion(body,host,()=>{
+    complete(host,()=>{
       FK.playLog?.celebration();
       if(origin==='forest-book')FK.go('forest-book');else FK.friendsPuzzleCompleted(host);
     });
   }
-  function blocked(){FK.playLog?.stop('review_required');body.replaceChildren(h('section',{class:'puzzle-review-blocked'},FK.friendsLibrary.portrait(host),h('h2',{text:'Dieses Puzzle wartet auf Freigabe.'}),h('p',{text:'Eine erwachsene Person prüft zuerst alle Aufgaben.'})));}
+  function blocked(){FK.playLog?.stop('review_required');body.replaceChildren(backButton,h('section',{class:'puzzle-review-blocked'},FK.friendsLibrary.portrait(host),h('h2',{text:'Dieses Puzzle wartet auf Freigabe.'}),h('p',{text:'Eine erwachsene Person prüft zuerst alle Aufgaben.'})));}
   function completion(container,owner,done,{total=5,review=false}={}) {
     const card=h('section',{class:'puzzle-completion',role:'status'},
       h('div',{class:'puzzle-completion-wreath'},Array.from({length:8},(_,i)=>h('span',{style:{'--i':i}},FK.visual.art(i%3?'forest-leaf':'forest-flower'))),FK.friendsLibrary.portrait(owner)),
@@ -328,12 +330,12 @@
   FK.puzzleUI={picture,shape,progress,context,completion:(...args)=>{cancelCompletion();cancelCompletion=completion(...args);return cancelCompletion;}};
   FK.screen('puzzle',{
     build(el){
-      root=el;bar=FK.ui.topbar({title:'Waldspiel',stars:false,onBack:()=>FK.go(origin,session?.review?{reviewPuzzle:game}:{},{isBack:true})});title=bar.querySelector('.title');body=h('div',{class:'puzzle-paper scroll'});root.append(bar,body);FK.play.bindTouch(root);FK.on('puzzle-review-change',()=>{if(alive&&session&&!session.review&&!FK.puzzleReview.ready(game)){clearTimeout(timer);locked=true;blocked();}});
+      root=el;backButton=FK.ui.topbar({stars:false,onBack:()=>FK.go(origin,session?.review?{reviewPuzzle:game}:{},{isBack:true})}).querySelector('.btn-back');body=h('div',{class:'puzzle-paper scroll'});root.append(body);FK.play.bindTouch(root);FK.on('puzzle-review-change',()=>{if(alive&&session&&!session.review&&!FK.puzzleReview.ready(game)){clearTimeout(timer);locked=true;blocked();}});
     },
     enter(params){
       alive=true;root.scrollTop=0;game=params.game;const entry=FK.friendsLibrary.catalogue().find(g=>g.id===game);
       if(!entry||entry.screen!=='puzzle'){FK.go('forest-book');return;}
-      origin=['forest-book','puzzle-review','puzzle-gallery'].includes(params.returnTo)?params.returnTo:'friends';host=entry.host;title.textContent=entry.title;
+      origin=['forest-book','puzzle-review','puzzle-gallery'].includes(params.returnTo)?params.returnTo:'friends';host=entry.host;root.setAttribute('aria-label',entry.title);
       session=null;root.querySelector('.review-reject')?.remove();delete root.dataset.reviewIteration;
       if(params.reviewIteration||params.reviewQueue||params.reviewRound)session=FK.puzzleReview.previewSession(game,params.reviewIteration);
       else if(params.gallery){session=FK.puzzleReview.gallerySession(game);if(!session){FK.go('puzzle-gallery');return;}}

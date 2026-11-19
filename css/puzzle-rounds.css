@@ -167,3 +167,36 @@
 .puzzle-number-card.is-drop-target{background:#e0eccf}
 .puzzle-story-slot{position:relative}
 .puzzle-story-slot:not(:last-child)::after{content:"›";position:absolute;left:100%;width:10px;color:#766649;font-size:18px}
+
+/* Use the iPad's height for the task, with navigation in the host row.
+   Keep scored type and touch targets intact; compact the space around them. */
+@media(min-width:601px) and (max-height:850px){
+ .friends-interface .puzzle-paper{padding:12px 20px 16px}
+ .puzzle-context{padding-bottom:8px}
+ .puzzle-progress{margin:10px auto 6px}
+ .puzzle-prompt{margin:8px auto 12px}
+ .puzzle-scene{padding:12px;margin-bottom:12px}
+ .puzzle-nuts{max-width:320px}
+ .puzzle-meadow{max-width:340px}
+ .puzzle-matrix{gap:12px}
+ .puzzle-route{max-width:300px}
+ .puzzle-answer>.puzzle-picture,.puzzle-word-answer>.puzzle-picture{width:120px;height:120px}
+}
+/* Celebration/blocked pages retain the same return control after the host row leaves. */
+.puzzle-paper>.btn-back{display:grid;margin:0 0 8px}
+.puzzle-context>span:not(.forest-portrait){min-width:0;flex:1}
+@media(min-width:601px) and (max-height:700px){
+ .puzzle-reading>.puzzle-picture{width:120px;height:120px}
+ .puzzle-meadow{max-width:300px}
+ .puzzle-route{max-width:270px}
+ .puzzle-matrix-row>span{height:56px}
+}
+@media(min-width:601px) and (max-height:700px){
+ .puzzle-nuts{max-width:300px}
+ .puzzle-picnic-bank{margin-bottom:8px;padding:4px}
+ .puzzle-picnic-friends{gap:8px}
+ .puzzle-picnic-place{padding:4px}
+ .puzzle-picnic-friend{width:56px;height:56px}
+ .puzzle-picnic-friend>.forest-portrait{width:52px;height:52px}
+}
+.puzzle-paper>.puzzle-completion{height:calc(100% - 64px);min-height:0}

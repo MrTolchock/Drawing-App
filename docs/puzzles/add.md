@@ -1,4 +1,4 @@
-# Äpfel rechnen
+# Sichtbare Gruppen addieren
 
 [All puzzles](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 

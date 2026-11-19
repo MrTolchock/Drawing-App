@@ -30,7 +30,7 @@
     vowels:'Lies das Bildwort. Welcher Buchstabe fehlt in der Lücke?',
     'read-puzzle':'Das Bild zeigt ein Wort. Tippe seine Silben in der richtigen Reihenfolge an.',
   };
-  const title=id=>id.startsWith('friends-')?base[id.slice(8)]:id==='trace-numbers'?'Zahlenspuren':FK.puzzles.names[id];
+  const title=id=>FK.friendsLibrary?.catalogue().find(g=>g.id===id)?.title||(id.startsWith('friends-')?base[id.slice(8)]:id==='trace-numbers'?'Zahlenspuren':FK.puzzles.names[id]);
   const wordArt={...window.FriendsContent.words,Haus:'vocab-house',Tisch:'vocab-table',Schuh:'vocab-shoe',Bein:'vocab-leg',Stein:'vocab-stone',Tuch:'vocab-cloth',Turm:'vocab-tower',Wurm:'vocab-worm',Topf:'vocab-pot',Kopf:'vocab-head',Hand:'vocab-hand',Sand:'vocab-sand',Schal:'vocab-scarf',Seil:'vocab-rope',Pfeil:'vocab-arrow',Tasse:'vocab-cup',Kasse:'vocab-till',Bank:'vocab-bench',Schrank:'vocab-wardrobe',Kern:'vocab-seed',Ast:'forest-branch',
     Bus:'bus',Biene:'bee',Schnecke:'snail',Sonne:'sun',Tanne:'forest-fir',Hund:'dog',
     Brot:'rhyme-bread',Schiene:'rhyme-rail',Decke:'rhyme-blanket',Tonne:'rhyme-bin',Kanne:'rhyme-jug',Mund:'rhyme-mouth',Dach:'rhyme-roof',Bach:'rhyme-brook',Ziege:'rhyme-goat',Fliege:'rhyme-fly'};

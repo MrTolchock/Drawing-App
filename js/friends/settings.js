@@ -30,7 +30,7 @@
       const s=state();body.replaceChildren();
       const sounds=h('section',{class:'setting-card'},heading('Klänge im Wald','Vögel, Blätter und Bach begleiten das Spiel.'));
       for(const [name,label]of [['ambience','Waldgeräusche']])sounds.append(toggle(label,s.get().settings[name],input=>{if(!s.setting(name,input.checked))input.checked=s.get().settings[name];FK.emit('friends-audio');}));
-      sounds.append(toggle('Spielklänge',FK.settings.get('sound')!==false,input=>FK.settings.set('sound',input.checked)),h('p',{class:'ff-setting-note',text:'Tippe auf den Lautsprecher, um einen Brief oder eine Spielerklärung zu hören. Tippe nochmals, um das Vorlesen zu stoppen.'}));
+      sounds.append(toggle('Spielklänge',FK.settings.get('sound')!==false,input=>FK.settings.set('sound',input.checked)),h('p',{class:'ff-setting-note',text:'Tippe im Puzzle auf den Lautsprecher, um eine Spielerklärung zu hören. Tippe nochmals, um das Vorlesen zu stoppen.'}));
       sounds.append(FK.ui.btn({label:'Tonaufnahmen und Lizenzen',onClick:()=>FK.go('audio-credits')}));
       // Letters per journey: a slider from 1 to 10 (a journey saved with more keeps its own limit until changed).
       const count=h('input',{type:'range',min:1,max:10,step:1,value:Math.min(10,s.get().settings.letterLimit),'aria-label':'Anzahl Briefe',class:'ff-letter-slider'}),countValue=h('output',{class:'ff-letter-count','aria-hidden':'true',text:String(count.value)});

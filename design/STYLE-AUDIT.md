@@ -2,6 +2,14 @@
 
 Current game art is **Waldpost 9.4.3**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal and object reference pixels and **37** complete forward image-generation prompts.
 
+## iPad puzzle space and simpler world controls — 9.4.7
+
+The return arrow now sits directly left of the small host portrait inside the puzzle paper. The separate title bar is removed. Competence subtitles become the sole catalogue/gallery titles (for example, «Mengen zählen»); stable IDs, task prompts, questions, answers, rule explanations, difficulty, artwork and partial-work fields stay unchanged. iPad layouts compact margins and boards while keeping scored text sizes and touch targets. The map keeps just the position pulse; completed letters appear as a non-interactive `completed/limit` status in place of the toolbar letter button. Invitation letters have no speech control.
+
+The owner explicitly requested keeping puzzle releases. `tools/puzzle-layout-compatibility.json` records the exact before/after definition and review-presentation hashes for this migration, with the prior code commit as a verified baseline. Compatibility applies only to those exact pairs with identical definitions. It grants no decisions, writes no review ledger and cannot accept subsequent question, rule, interaction, picture or layout changes. Existing rejection/comment/deletion precedence remains in force.
+
+Validation covers all 776 finite tasks at iPad landscape and portrait sizes, memory phases and distributed berries, phone width, keyboard return, existing navigation/letter flows and historical review recovery. The [real-renderer evidence](evidence/2026-11-19-ipad-layout/README.md) uses disposable storage and intercepted review APIs. Physical Safari testing remains an owner check.
+
 ## Lighter haze, distant land and no loading pops — 9.4.3
 
 The forest's haze is lighter and less yellow: it begins about 36 m from the camera in the wood (24 m before) and covers the ground only towards the top of the view, where the land beyond the tiles is now a sunlit mesh of woods, meadows, rock and snow fading into the same haze instead of a flat cream band. The haze that stands close for a moment when Fuchs walks into an open area lifts from much less. Tiles, detail changes and landmarks dissolve instead of popping, and tree shadows arrive with their trees and fade out with distance instead of ending at a moving edge. The mailman now waits 10–13 m away, usually ahead where the camera sees him, so reaching him is a short walk. Character art, painted UI, map, learning pictures and all puzzle definitions and presentation revisions are unchanged; no puzzle needs new review.

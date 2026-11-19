@@ -1,4 +1,4 @@
-# Silben zählen
+# Wörter in Silben zerlegen
 
 [All puzzles](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 

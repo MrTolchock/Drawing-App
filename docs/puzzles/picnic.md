@@ -1,4 +1,4 @@
-# Waldpicknick
+# Eins zu eins gerecht verteilen
 
 [All puzzles](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 

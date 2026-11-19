@@ -1,4 +1,4 @@
-# Naturdetektive
+# Naturhinweise lesend verstehen
 
 [All puzzles](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 
