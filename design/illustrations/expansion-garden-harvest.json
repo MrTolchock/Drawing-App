@@ -1,0 +1,81 @@
+{
+  "format": "waldpost-illustration-atlas",
+  "version": 1,
+  "source": "sources/expansion-2026-11-19/expansion-garden-harvest.png",
+  "output": "../../assets/waldatelier/expansion-garden-harvest.webp",
+  "columns": 4,
+  "rows": 4,
+  "cellPixels": 320,
+  "subjectPixels": 256,
+  "alphaThresholdPercent": 8,
+  "provenance": {
+    "date": "2026-11-19",
+    "tool": "ChatGPT image_gen.imagegen",
+    "sourceSha256": "d54d285f102649b4129b0cae21e99299593918a0a3748409d6bfce6a184ac771",
+    "generationRecord": "../artwork/generation-records/expansion-garden-harvest-2026-11-19.json",
+    "styleContract": "style.json",
+    "forwardPrompt": "prompts/expansion-garden-harvest.txt"
+  },
+  "subjects": [
+    {
+      "id": "pumpkin",
+      "label": "Kürbis"
+    },
+    {
+      "id": "cucumber",
+      "label": "Gurke"
+    },
+    {
+      "id": "radish",
+      "label": "Radieschen"
+    },
+    {
+      "id": "beetroot",
+      "label": "Rande"
+    },
+    {
+      "id": "potato",
+      "label": "Kartoffel"
+    },
+    {
+      "id": "onion",
+      "label": "Zwiebel"
+    },
+    {
+      "id": "leek",
+      "label": "Lauch"
+    },
+    {
+      "id": "red-pepper",
+      "label": "Peperoni"
+    },
+    {
+      "id": "pea-pod",
+      "label": "Erbsenschote"
+    },
+    {
+      "id": "lettuce",
+      "label": "Salat"
+    },
+    {
+      "id": "cherry",
+      "label": "Kirsche"
+    },
+    {
+      "id": "plum",
+      "label": "Zwetschge"
+    },
+    {
+      "id": "apricot",
+      "label": "Aprikose"
+    },
+    {
+      "id": "lemon",
+      "label": "Zitrone"
+    },
+    {
+      "id": "walnut",
+      "label": "Baumnuss"
+    }
+  ]
+}

@@ -160,6 +160,76 @@
       "requestId": "puzzle-garden",
       "forwardPrompt": "design/illustrations/prompts/puzzle-garden.txt",
       "role": "learning"
+    },
+    "expansion-woodland-trees": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/expansion-woodland-trees.txt",
+      "historicalRecord": "design/artwork/generation-records/expansion-woodland-trees-cutout-2026-11-19.json",
+      "recordKind": "generation-record",
+      "requestId": "expansion-woodland-trees"
+    },
+    "expansion-woodland-finds": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/expansion-woodland-finds.txt",
+      "historicalRecord": "design/artwork/generation-records/expansion-woodland-finds-2026-11-19.json",
+      "recordKind": "generation-record",
+      "requestId": "expansion-woodland-finds"
+    },
+    "expansion-meadow-pond": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/expansion-meadow-pond.txt",
+      "historicalRecord": "design/artwork/generation-records/expansion-meadow-pond-2026-11-19.json",
+      "recordKind": "generation-record",
+      "requestId": "expansion-meadow-pond"
+    },
+    "expansion-garden-harvest": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/expansion-garden-harvest.txt",
+      "historicalRecord": "design/artwork/generation-records/expansion-garden-harvest-2026-11-19.json",
+      "recordKind": "generation-record",
+      "requestId": "expansion-garden-harvest"
+    },
+    "expansion-woodland-equipment": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/expansion-woodland-equipment.txt",
+      "historicalRecord": "design/artwork/generation-records/expansion-woodland-equipment-2026-11-19.json",
+      "recordKind": "generation-record",
+      "requestId": "expansion-woodland-equipment"
+    },
+    "expansion-picnic-home": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/expansion-picnic-home.txt",
+      "historicalRecord": "design/artwork/generation-records/expansion-picnic-home-2026-11-19.json",
+      "recordKind": "generation-record",
+      "requestId": "expansion-picnic-home"
+    },
+    "expansion-seasons-weather": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/expansion-seasons-weather.txt",
+      "historicalRecord": "design/artwork/generation-records/expansion-seasons-weather-clean-cutout-2026-11-19.json",
+      "recordKind": "generation-record",
+      "requestId": "expansion-seasons-weather"
+    },
+    "expansion-woodland-actions": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/expansion-woodland-actions.txt",
+      "historicalRecord": "design/artwork/generation-records/expansion-woodland-actions-cutout-2026-11-19.json",
+      "recordKind": "generation-record",
+      "requestId": "expansion-woodland-actions"
+    },
+    "expansion-nature-cycles": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/expansion-nature-cycles.txt",
+      "historicalRecord": "design/artwork/generation-records/expansion-nature-cycles-2026-11-19.json",
+      "recordKind": "generation-record",
+      "requestId": "expansion-nature-cycles"
+    },
+    "expansion-woodland-places": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/expansion-woodland-places.txt",
+      "historicalRecord": "design/artwork/generation-records/expansion-woodland-places-cutout-2026-11-19.json",
+      "recordKind": "generation-record",
+      "requestId": "expansion-woodland-places"
     }
   },
   "currentGenerated": [

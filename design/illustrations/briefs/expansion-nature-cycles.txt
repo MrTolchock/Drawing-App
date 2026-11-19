@@ -1,0 +1,21 @@
+Create a NEW extension sheet for the Waldpost woodland learning-picture library. Match the two supplied canonical reference images in their warm watercolour and visible coloured-pencil finish. These are isolated learning pictures, suitable for later vocabulary, sorting, matching, observation and sequence puzzles. No labels, text, numerals, frames, badges, faces on objects or decorative extras.
+
+LAYOUT: a square canvas divided into EXACTLY 4 equal columns and 4 equal rows (16 equal square cells). Draw exactly 15 independent complete subjects in row-major order below. Leave row 4 column 4 completely transparent. Each subject stays inside its own square with at least 12% clear space on each side. Centre each subject in its cell; keep every ear, root, handle, tail and wing intact. No overlapping cells, ground plane or backdrop. Genuine alpha zero around all paintings, including open handles; no painted checkerboard or paper rectangle. Gentle pencil texture remains inside the subject.
+
+Row 1, column 1: oak-sprouting-acorn (Eichel keimt) — one sprouting acorn with split shell and small white root, isolated botanical specimen.
+Row 1, column 2: oak-seedling (Junge Eiche) — one young oak seedling with two lobed green leaves and acorn at its base, tiny soil patch.
+Row 1, column 3: oak-sapling (Eichenbäumchen) — one knee-high oak sapling with slender woody stem and several lobed leaves.
+Row 1, column 4: bean-dry-seed (Bohnensamen) — one dry mottled brown kidney-bean seed, no face.
+Row 2, column 1: bean-rooting-seed (Bohne keimt) — one split bean seed with one white root and curved pale-green shoot.
+Row 2, column 2: bean-first-leaves (Bohnentrieb) — one young bean shoot with two opened green seed leaves above a tiny soil patch.
+Row 2, column 3: bean-flowering (Bohne blüht) — one compact bean plant with green leaves and two small white flowers, tiny soil patch.
+Row 2, column 4: bean-with-pods (Bohnenpflanze) — one compact bean plant with green leaves and two hanging green pods, tiny soil patch.
+Row 3, column 1: butterfly-eggs (Schmetterlingseier) — one green leaf bearing a small cluster of pale butterfly eggs, one life-cycle specimen.
+Row 3, column 2: butterfly-chrysalis (Schmetterlingspuppe) — one green butterfly chrysalis hanging from a short twig.
+Row 3, column 3: tadpole (Kaulquappe) — one dark tadpole with round head and a long finned tail, no legs.
+Row 3, column 4: tadpole-hindlegs (Kaulquappe mit Hinterbeinen) — one tadpole with exactly two newly grown hind legs and a long tail.
+Row 4, column 1: froglet (Jungfrosch) — one tiny green froglet with four legs and a short remaining tail.
+Row 4, column 2: apple-blossom (Apfelblüte) — one apple twig bearing one five-petalled pale pink blossom.
+Row 4, column 3: apple-unripe (Unreifer Apfel) — one small unripe green apple attached to a short twig and leaf.
+
+Row 4, column 4: EMPTY, fully transparent. Use a consistent woodland picture-book scale; keep shapes clear and recognizable at 80–120 pixels. All names and IDs above are instructions only and must never be drawn.

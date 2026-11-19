@@ -1,0 +1,81 @@
+{
+  "format": "waldpost-illustration-atlas",
+  "version": 1,
+  "source": "sources/expansion-2026-11-19/expansion-woodland-equipment.png",
+  "output": "../../assets/waldatelier/expansion-woodland-equipment.webp",
+  "columns": 4,
+  "rows": 4,
+  "cellPixels": 320,
+  "subjectPixels": 256,
+  "alphaThresholdPercent": 8,
+  "provenance": {
+    "date": "2026-11-19",
+    "tool": "ChatGPT image_gen.imagegen",
+    "sourceSha256": "a0e3de5f00808c402d8eb35e3788d3eb014fe61e88f36f47cbd83ed42067d5dd",
+    "generationRecord": "../artwork/generation-records/expansion-woodland-equipment-2026-11-19.json",
+    "styleContract": "style.json",
+    "forwardPrompt": "prompts/expansion-woodland-equipment.txt"
+  },
+  "subjects": [
+    {
+      "id": "hand-rake",
+      "label": "Handrechen"
+    },
+    {
+      "id": "garden-trowel",
+      "label": "Pflanzschaufel"
+    },
+    {
+      "id": "wheelbarrow",
+      "label": "Schubkarre"
+    },
+    {
+      "id": "plant-pot",
+      "label": "Blumentopf"
+    },
+    {
+      "id": "seed-packet",
+      "label": "Samentütchen"
+    },
+    {
+      "id": "birdhouse",
+      "label": "Vogelhaus"
+    },
+    {
+      "id": "bird-feeder",
+      "label": "Futterhäuschen"
+    },
+    {
+      "id": "insect-hotel",
+      "label": "Insektenhotel"
+    },
+    {
+      "id": "binoculars",
+      "label": "Fernglas"
+    },
+    {
+      "id": "compass",
+      "label": "Kompass"
+    },
+    {
+      "id": "field-notebook",
+      "label": "Notizbuch"
+    },
+    {
+      "id": "pencil-case",
+      "label": "Etui"
+    },
+    {
+      "id": "measuring-tape",
+      "label": "Massband"
+    },
+    {
+      "id": "backpack",
+      "label": "Rucksack"
+    },
+    {
+      "id": "walking-stick",
+      "label": "Wanderstock"
+    }
+  ]
+}

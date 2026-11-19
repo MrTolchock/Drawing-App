@@ -556,6 +556,158 @@
           "usage": "composition-only"
         }
       ]
+    },
+    {
+      "id": "expansion-woodland-trees",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-woodland-trees.txt",
+      "brief": "design/illustrations/briefs/expansion-woodland-trees.txt",
+      "transparent": true
+    },
+    {
+      "id": "expansion-woodland-finds",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-woodland-finds.txt",
+      "brief": "design/illustrations/briefs/expansion-woodland-finds.txt",
+      "transparent": true
+    },
+    {
+      "id": "expansion-meadow-pond",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-meadow-pond.txt",
+      "brief": "design/illustrations/briefs/expansion-meadow-pond.txt",
+      "transparent": true
+    },
+    {
+      "id": "expansion-garden-harvest",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-garden-harvest.txt",
+      "brief": "design/illustrations/briefs/expansion-garden-harvest.txt",
+      "transparent": true
+    },
+    {
+      "id": "expansion-woodland-equipment",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-woodland-equipment.txt",
+      "brief": "design/illustrations/briefs/expansion-woodland-equipment.txt",
+      "transparent": true
+    },
+    {
+      "id": "expansion-picnic-home",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-picnic-home.txt",
+      "brief": "design/illustrations/briefs/expansion-picnic-home.txt",
+      "transparent": true
+    },
+    {
+      "id": "expansion-seasons-weather",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-seasons-weather.txt",
+      "brief": "design/illustrations/briefs/expansion-seasons-weather.txt",
+      "transparent": true
+    },
+    {
+      "id": "expansion-woodland-actions",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-woodland-actions.txt",
+      "brief": "design/illustrations/briefs/expansion-woodland-actions.txt",
+      "transparent": true
+    },
+    {
+      "id": "expansion-nature-cycles",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-nature-cycles.txt",
+      "brief": "design/illustrations/briefs/expansion-nature-cycles.txt",
+      "transparent": true
+    },
+    {
+      "id": "expansion-woodland-places",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-woodland-places.txt",
+      "brief": "design/illustrations/briefs/expansion-woodland-places.txt",
+      "transparent": true
+    },
+    {
+      "id": "expansion-woodland-trees-cutout",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-woodland-trees-cutout.txt",
+      "brief": "design/illustrations/briefs/expansion-woodland-trees-cutout.txt",
+      "transparent": true,
+      "references": [
+        {
+          "path": "design/illustrations/sources/expansion-2026-11-19/expansion-woodland-trees-original.png",
+          "sha256": "939b4665a978f6493dc53746acfb6ce21092528016b1bfc22cc1dde65a525b11",
+          "purpose": "current 15 subjects and exact 4 by 4 cell order only; remove the accidental semitransparent white background",
+          "usage": "composition-only"
+        }
+      ]
+    },
+    {
+      "id": "expansion-seasons-weather-cutout",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-seasons-weather-cutout.txt",
+      "brief": "design/illustrations/briefs/expansion-seasons-weather-cutout.txt",
+      "transparent": true,
+      "references": [
+        {
+          "path": "design/illustrations/sources/expansion-2026-11-19/expansion-seasons-weather-original.png",
+          "sha256": "49c0f4a196b73e2a39fcac6b6d089ac9e2066d00f4cc987478c1f7ad6e73a0a4",
+          "purpose": "current 15 subjects and exact 4 by 4 cell order only; remove the accidental semitransparent white background",
+          "usage": "composition-only"
+        }
+      ]
+    },
+    {
+      "id": "expansion-woodland-places-cutout",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-woodland-places-cutout.txt",
+      "brief": "design/illustrations/briefs/expansion-woodland-places-cutout.txt",
+      "transparent": true,
+      "references": [
+        {
+          "path": "design/illustrations/sources/expansion-2026-11-19/expansion-woodland-places-original.png",
+          "sha256": "07e8dd3b9833aca96536a1537ccf2a0c04f73874c6fd506e086e03dcb7c90330",
+          "purpose": "current 15 subjects and exact 4 by 4 cell order only; remove the accidental semitransparent white background",
+          "usage": "composition-only"
+        }
+      ]
+    },
+    {
+      "id": "expansion-woodland-actions-cutout",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-woodland-actions-cutout.txt",
+      "brief": "design/illustrations/briefs/expansion-woodland-actions-cutout.txt",
+      "transparent": true,
+      "references": [
+        {
+          "path": "design/illustrations/sources/expansion-2026-11-19/expansion-woodland-actions-original.png",
+          "sha256": "1b4681465a1d51b605eab8611426f3ab47997872bd5f8a460c69be9d8b59d3ff",
+          "purpose": "current 15 subjects and exact 4 by 4 cell order only; remove the accidental semitransparent white background",
+          "usage": "composition-only"
+        }
+      ]
+    },
+    {
+      "id": "expansion-seasons-weather-clean",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-seasons-weather-clean.txt",
+      "brief": "design/illustrations/briefs/expansion-seasons-weather-clean.txt",
+      "transparent": true
+    },
+    {
+      "id": "expansion-seasons-weather-clean-cutout",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-seasons-weather-clean-cutout.txt",
+      "brief": "design/illustrations/briefs/expansion-seasons-weather-clean-cutout.txt",
+      "transparent": true,
+      "references": [
+        {
+          "path": "design/illustrations/sources/expansion-2026-11-19/expansion-seasons-weather-clean-original.png",
+          "sha256": "69e35df4b8b6635bd970db47700face0f8f541070590bf63190c803709497e72",
+          "purpose": "current 15 subjects and exact 4 by 4 cell order only; remove the accidental semitransparent white background",
+          "usage": "composition-only"
+        }
+      ]
     }
   ],
   "preparationManifests": [
@@ -576,7 +728,17 @@
     "design/artwork/exit-symbol.json",
     "design/illustrations/puzzle-vocabulary.json",
     "design/illustrations/review-nature.json",
-    "design/illustrations/puzzle-garden.json"
+    "design/illustrations/puzzle-garden.json",
+    "design/illustrations/expansion-woodland-trees.json",
+    "design/illustrations/expansion-woodland-finds.json",
+    "design/illustrations/expansion-meadow-pond.json",
+    "design/illustrations/expansion-garden-harvest.json",
+    "design/illustrations/expansion-woodland-equipment.json",
+    "design/illustrations/expansion-picnic-home.json",
+    "design/illustrations/expansion-seasons-weather.json",
+    "design/illustrations/expansion-woodland-actions.json",
+    "design/illustrations/expansion-nature-cycles.json",
+    "design/illustrations/expansion-woodland-places.json"
   ],
   "history": "legacy/design-history/2026-11-16-before-style-contract",
   "preview": {

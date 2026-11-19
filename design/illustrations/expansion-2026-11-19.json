@@ -1,0 +1,818 @@
+{
+  "format": "waldpost-expansion-plan",
+  "date": "2026-11-19",
+  "count": 150,
+  "style": "waldpost-watercolour-pencil-v1",
+  "sheets": [
+    {
+      "id": "expansion-woodland-trees",
+      "label": "Bäume und Waldpflanzen",
+      "subjects": [
+        {
+          "id": "oak-tree",
+          "label": "Eiche",
+          "description": "one mature oak tree, broad rounded canopy and sturdy branching trunk"
+        },
+        {
+          "id": "beech-tree",
+          "label": "Buche",
+          "description": "one mature beech tree, smooth pale-grey trunk and oval green crown"
+        },
+        {
+          "id": "birch-tree",
+          "label": "Birke",
+          "description": "one birch tree with white black-marked trunk and delicate light-green crown"
+        },
+        {
+          "id": "willow-tree",
+          "label": "Weide",
+          "description": "one willow tree with long drooping leafy branches"
+        },
+        {
+          "id": "larch-tree",
+          "label": "Lärche",
+          "description": "one larch tree with soft feathery green needles, open conical crown"
+        },
+        {
+          "id": "pine-tree",
+          "label": "Kiefer",
+          "description": "one Scots pine tree, warm orange-brown upper trunk and irregular high crown"
+        },
+        {
+          "id": "hazel-shrub",
+          "label": "Haselstrauch",
+          "description": "one compact hazel shrub with round green leaves"
+        },
+        {
+          "id": "elder-shrub",
+          "label": "Holunder",
+          "description": "one compact elder shrub with creamy flat flower clusters"
+        },
+        {
+          "id": "fern-frond",
+          "label": "Farn",
+          "description": "one unfurling green fern frond with distinct leaflets"
+        },
+        {
+          "id": "moss-cushion",
+          "label": "Moos",
+          "description": "one small rounded cushion of green woodland moss"
+        },
+        {
+          "id": "ivy-sprig",
+          "label": "Efeu",
+          "description": "one short ivy sprig with three clearly lobed leaves"
+        },
+        {
+          "id": "wood-sorrel",
+          "label": "Sauerklee",
+          "description": "one wood-sorrel plant, three heart-shaped leaflets and a small white flower"
+        },
+        {
+          "id": "snowdrop",
+          "label": "Schneeglöckchen",
+          "description": "one snowdrop plant with a bowed white bell flower and narrow leaves"
+        },
+        {
+          "id": "violet-flower",
+          "label": "Veilchen",
+          "description": "one purple woodland violet plant with heart-shaped leaves"
+        },
+        {
+          "id": "dandelion-flower",
+          "label": "Löwenzahn",
+          "description": "one yellow dandelion plant with toothed leaves and one flower"
+        }
+      ]
+    },
+    {
+      "id": "expansion-woodland-finds",
+      "label": "Blätter und Waldschätze",
+      "subjects": [
+        {
+          "id": "oak-leaf",
+          "label": "Eichenblatt",
+          "description": "one lobed green oak leaf"
+        },
+        {
+          "id": "beech-leaf",
+          "label": "Buchenblatt",
+          "description": "one oval green beech leaf with gently wavy edge"
+        },
+        {
+          "id": "birch-leaf",
+          "label": "Birkenblatt",
+          "description": "one triangular serrated birch leaf"
+        },
+        {
+          "id": "maple-leaf",
+          "label": "Ahornblatt",
+          "description": "one red-orange five-lobed maple leaf"
+        },
+        {
+          "id": "willow-leaf",
+          "label": "Weidenblatt",
+          "description": "one long narrow green willow leaf"
+        },
+        {
+          "id": "horse-chestnut-leaf",
+          "label": "Kastanienblatt",
+          "description": "one palmate horse chestnut leaf with five attached leaflets"
+        },
+        {
+          "id": "acorn",
+          "label": "Eichel",
+          "description": "one brown acorn in its textured cup"
+        },
+        {
+          "id": "pine-cone",
+          "label": "Tannzapfen",
+          "description": "one brown open woody pine cone"
+        },
+        {
+          "id": "horse-chestnut",
+          "label": "Kastanie",
+          "description": "one shiny brown horse chestnut with pale oval scar, no spiky case"
+        },
+        {
+          "id": "beech-nut",
+          "label": "Buchecker",
+          "description": "one triangular brown beech nut beside its single opened prickly husk, one botanical specimen"
+        },
+        {
+          "id": "sycamore-seed",
+          "label": "Ahornsamen",
+          "description": "one paired winged sycamore seed with attached V-shaped wings"
+        },
+        {
+          "id": "rose-hip",
+          "label": "Hagebutte",
+          "description": "one oval red rose hip with dark dried sepals and short stalk"
+        },
+        {
+          "id": "blackberry",
+          "label": "Brombeere",
+          "description": "one ripe dark-purple blackberry"
+        },
+        {
+          "id": "raspberry",
+          "label": "Himbeere",
+          "description": "one ripe red raspberry"
+        },
+        {
+          "id": "dandelion-seedhead",
+          "label": "Pusteblume",
+          "description": "one whole white dandelion seed head on a short stem, airy visible seed spokes"
+        }
+      ]
+    },
+    {
+      "id": "expansion-meadow-pond",
+      "label": "Tiere an Wiese und Bach",
+      "subjects": [
+        {
+          "id": "dragonfly",
+          "label": "Libelle",
+          "description": "one blue dragonfly with four clear wings and six slender legs"
+        },
+        {
+          "id": "grasshopper",
+          "label": "Heuschrecke",
+          "description": "one green grasshopper with two strong folded hind legs"
+        },
+        {
+          "id": "stag-beetle",
+          "label": "Hirschkäfer",
+          "description": "one chestnut stag beetle with branched mandibles and six legs"
+        },
+        {
+          "id": "bumblebee",
+          "label": "Hummel",
+          "description": "one round golden-black bumblebee with six legs and delicate wings"
+        },
+        {
+          "id": "moth",
+          "label": "Nachtfalter",
+          "description": "one warm brown moth resting with broad triangular wings"
+        },
+        {
+          "id": "earthworm",
+          "label": "Regenwurm",
+          "description": "one pink-brown earthworm in a gentle S curve with segmented body"
+        },
+        {
+          "id": "woodlouse",
+          "label": "Assel",
+          "description": "one grey woodlouse with oval segmented shell and tiny legs"
+        },
+        {
+          "id": "newt",
+          "label": "Molch",
+          "description": "one small brown newt with four legs and a long curved tail"
+        },
+        {
+          "id": "fire-salamander",
+          "label": "Feuersalamander",
+          "description": "one black fire salamander with unmistakable yellow patches and four legs"
+        },
+        {
+          "id": "toad",
+          "label": "Kröte",
+          "description": "one squat brown toad with subtly bumpy pencilled skin and four legs"
+        },
+        {
+          "id": "duckling",
+          "label": "Entenküken",
+          "description": "one fluffy yellow duckling with orange webbed feet"
+        },
+        {
+          "id": "heron",
+          "label": "Reiher",
+          "description": "one grey heron standing with long thin legs, folded wings and long pointed bill"
+        },
+        {
+          "id": "stork",
+          "label": "Storch",
+          "description": "one white stork with black wing patches, long red bill and red legs"
+        },
+        {
+          "id": "dipper",
+          "label": "Wasseramsel",
+          "description": "one round dark-brown dipper bird with bright white chest, perched without scenery"
+        },
+        {
+          "id": "otter",
+          "label": "Fischotter",
+          "description": "one friendly brown European otter with pale muzzle, long tapered tail and four paws"
+        }
+      ]
+    },
+    {
+      "id": "expansion-garden-harvest",
+      "label": "Garten und Ernte",
+      "subjects": [
+        {
+          "id": "pumpkin",
+          "label": "Kürbis",
+          "description": "one round orange pumpkin with short green stem"
+        },
+        {
+          "id": "cucumber",
+          "label": "Gurke",
+          "description": "one whole dark-green cucumber"
+        },
+        {
+          "id": "radish",
+          "label": "Radieschen",
+          "description": "one red radish with white root tip and attached green leaves"
+        },
+        {
+          "id": "beetroot",
+          "label": "Rande",
+          "description": "one purple beetroot with tapering root and attached reddish-green leaves"
+        },
+        {
+          "id": "potato",
+          "label": "Kartoffel",
+          "description": "one whole ochre potato with a few visible eyes"
+        },
+        {
+          "id": "onion",
+          "label": "Zwiebel",
+          "description": "one golden-brown onion with dried papery neck"
+        },
+        {
+          "id": "leek",
+          "label": "Lauch",
+          "description": "one leek with white stem and long dark-green leaves"
+        },
+        {
+          "id": "red-pepper",
+          "label": "Peperoni",
+          "description": "one red bell pepper with green stalk"
+        },
+        {
+          "id": "pea-pod",
+          "label": "Erbsenschote",
+          "description": "one opened green pea pod with peas still attached inside, a single specimen"
+        },
+        {
+          "id": "lettuce",
+          "label": "Salat",
+          "description": "one whole green lettuce head"
+        },
+        {
+          "id": "cherry",
+          "label": "Kirsche",
+          "description": "one red cherry with a single long green stem"
+        },
+        {
+          "id": "plum",
+          "label": "Zwetschge",
+          "description": "one ripe oval purple plum"
+        },
+        {
+          "id": "apricot",
+          "label": "Aprikose",
+          "description": "one orange apricot with clear centre seam"
+        },
+        {
+          "id": "lemon",
+          "label": "Zitrone",
+          "description": "one whole yellow lemon"
+        },
+        {
+          "id": "walnut",
+          "label": "Baumnuss",
+          "description": "one whole walnut in its ridged brown shell"
+        }
+      ]
+    },
+    {
+      "id": "expansion-woodland-equipment",
+      "label": "Entdecken und Gärtnern",
+      "subjects": [
+        {
+          "id": "hand-rake",
+          "label": "Handrechen",
+          "description": "one small wooden-handled garden hand rake with three metal tines"
+        },
+        {
+          "id": "garden-trowel",
+          "label": "Pflanzschaufel",
+          "description": "one short wooden-handled garden trowel with a pointed metal blade"
+        },
+        {
+          "id": "wheelbarrow",
+          "label": "Schubkarre",
+          "description": "one sage-green wheelbarrow with exactly one wheel and two handles"
+        },
+        {
+          "id": "plant-pot",
+          "label": "Blumentopf",
+          "description": "one empty terracotta flowerpot with open top"
+        },
+        {
+          "id": "seed-packet",
+          "label": "Samentütchen",
+          "description": "one closed cream paper seed packet with a small flower illustration but no writing"
+        },
+        {
+          "id": "birdhouse",
+          "label": "Vogelhaus",
+          "description": "one wooden nest box with pitched roof and round entrance hole"
+        },
+        {
+          "id": "bird-feeder",
+          "label": "Futterhäuschen",
+          "description": "one wooden open-sided bird feeder with pitched roof and a few seeds in its tray"
+        },
+        {
+          "id": "insect-hotel",
+          "label": "Insektenhotel",
+          "description": "one small wooden insect hotel, roof above neatly grouped hollow stems"
+        },
+        {
+          "id": "binoculars",
+          "label": "Fernglas",
+          "description": "one pair of muted blue binoculars"
+        },
+        {
+          "id": "compass",
+          "label": "Kompass",
+          "description": "one round brass pocket compass with a needle and simple unlettered direction ticks"
+        },
+        {
+          "id": "field-notebook",
+          "label": "Notizbuch",
+          "description": "one closed sage-green field notebook with a small leaf drawing, no text"
+        },
+        {
+          "id": "pencil-case",
+          "label": "Etui",
+          "description": "one partly open cream-and-blue pencil case containing three coloured pencils"
+        },
+        {
+          "id": "measuring-tape",
+          "label": "Massband",
+          "description": "one loosely curled cream measuring tape with simple ticks and no numerals"
+        },
+        {
+          "id": "backpack",
+          "label": "Rucksack",
+          "description": "one honey-brown woodland backpack with a flap and two shoulder straps"
+        },
+        {
+          "id": "walking-stick",
+          "label": "Wanderstock",
+          "description": "one simple natural wooden walking stick with a gently curved handle"
+        }
+      ]
+    },
+    {
+      "id": "expansion-picnic-home",
+      "label": "Picknick und Alltag",
+      "subjects": [
+        {
+          "id": "teapot",
+          "label": "Teekanne",
+          "description": "one small sage-green teapot with spout, lid and a handle with a transparent opening"
+        },
+        {
+          "id": "thermos",
+          "label": "Thermosflasche",
+          "description": "one blue thermos flask with closed cream cup lid"
+        },
+        {
+          "id": "drinking-bottle",
+          "label": "Trinkflasche",
+          "description": "one muted blue reusable drinking bottle with closed lid"
+        },
+        {
+          "id": "lunchbox",
+          "label": "Znünibox",
+          "description": "one ochre lunchbox with its attached lid opened, empty inside"
+        },
+        {
+          "id": "wooden-plate",
+          "label": "Teller",
+          "description": "one round cream plate seen slightly from above"
+        },
+        {
+          "id": "napkin",
+          "label": "Serviette",
+          "description": "one folded blue check cloth napkin"
+        },
+        {
+          "id": "pretzel",
+          "label": "Brezel",
+          "description": "one golden pretzel with three open transparent holes"
+        },
+        {
+          "id": "bread-roll",
+          "label": "Brötchen",
+          "description": "one round golden bread roll with a cross score"
+        },
+        {
+          "id": "sandwich",
+          "label": "Sandwich",
+          "description": "one triangular sandwich with visible cheese and green lettuce between bread slices"
+        },
+        {
+          "id": "milk-jug",
+          "label": "Milchkrug",
+          "description": "one small cream milk jug with a handle and spout"
+        },
+        {
+          "id": "wooden-chair",
+          "label": "Stuhl",
+          "description": "one simple honey-brown wooden chair"
+        },
+        {
+          "id": "stool",
+          "label": "Hocker",
+          "description": "one three-legged wooden stool"
+        },
+        {
+          "id": "wooden-key",
+          "label": "Schlüssel",
+          "description": "one plain old brass key with one loop and a toothed end"
+        },
+        {
+          "id": "broom",
+          "label": "Besen",
+          "description": "one straw broom with wooden handle"
+        },
+        {
+          "id": "candle-holder",
+          "label": "Kerze",
+          "description": "one unlit cream candle in a simple brown saucer holder"
+        }
+      ]
+    },
+    {
+      "id": "expansion-seasons-weather",
+      "label": "Wetter und Jahreszeiten",
+      "subjects": [
+        {
+          "id": "umbrella",
+          "label": "Regenschirm",
+          "description": "one open blue umbrella with curved wooden handle"
+        },
+        {
+          "id": "rain-boot",
+          "label": "Gummistiefel",
+          "description": "one single yellow rain boot"
+        },
+        {
+          "id": "raincoat",
+          "label": "Regenmantel",
+          "description": "one yellow hooded raincoat shown empty, front view"
+        },
+        {
+          "id": "mitten",
+          "label": "Fausthandschuh",
+          "description": "one red mitten with a single thumb"
+        },
+        {
+          "id": "woolly-hat",
+          "label": "Wollmütze",
+          "description": "one sage-green woolly hat with a small pompom"
+        },
+        {
+          "id": "woolly-sock",
+          "label": "Wollsocke",
+          "description": "one red striped woolly sock"
+        },
+        {
+          "id": "sun-hat",
+          "label": "Sonnenhut",
+          "description": "one cream broad-brimmed sun hat with a sage ribbon"
+        },
+        {
+          "id": "sunglasses",
+          "label": "Sonnenbrille",
+          "description": "one pair of brown round sunglasses"
+        },
+        {
+          "id": "snowflake",
+          "label": "Schneeflocke",
+          "description": "one pale blue six-armed snowflake with pencilled delicate branches"
+        },
+        {
+          "id": "icicle",
+          "label": "Eiszapfen",
+          "description": "one pale blue pointed icicle"
+        },
+        {
+          "id": "snowball",
+          "label": "Schneeball",
+          "description": "one round white snowball with gentle pale-blue pencilled shading"
+        },
+        {
+          "id": "puddle",
+          "label": "Pfütze",
+          "description": "one small blue rain puddle with a soft irregular outline, no scenery"
+        },
+        {
+          "id": "rainbow-arch",
+          "label": "Regenbogen",
+          "description": "one complete pastel rainbow arch, red outer band through violet inner band, transparent centre"
+        },
+        {
+          "id": "wind-leaves",
+          "label": "Wind",
+          "description": "one small gust represented by three curled sepia pencil air lines carrying three autumn leaves"
+        },
+        {
+          "id": "frost-leaf",
+          "label": "Raureif",
+          "description": "one green leaf edged with fine white and pale-blue frost crystals"
+        }
+      ]
+    },
+    {
+      "id": "expansion-woodland-actions",
+      "label": "Tiere in Bewegung",
+      "subjects": [
+        {
+          "id": "squirrel-dig",
+          "label": "Eichhörnchen gräbt",
+          "description": "one red squirrel digging a small shallow hole with its forepaws, tail raised, a tiny earth patch only"
+        },
+        {
+          "id": "squirrel-climb",
+          "label": "Eichhörnchen klettert",
+          "description": "one red squirrel climbing vertically on a short isolated tree trunk segment"
+        },
+        {
+          "id": "hedgehog-curl",
+          "label": "Igel rollt sich ein",
+          "description": "one hedgehog curled into a closed prickly ball, no face or legs visible"
+        },
+        {
+          "id": "hedgehog-sniff",
+          "label": "Igel schnuppert",
+          "description": "one hedgehog with nose lowered close to one leaf, four paws grounded"
+        },
+        {
+          "id": "badger-dig",
+          "label": "Dachs gräbt",
+          "description": "one black-and-white European badger digging with its front paws, tiny earth patch only"
+        },
+        {
+          "id": "roe-graze",
+          "label": "Reh frisst Gras",
+          "description": "one roe deer with head lowered to a tiny tuft of grass"
+        },
+        {
+          "id": "roe-rest",
+          "label": "Reh ruht",
+          "description": "one roe deer lying down with legs folded beneath its body and head upright"
+        },
+        {
+          "id": "frog-swim",
+          "label": "Frosch schwimmt",
+          "description": "one green frog seen from above swimming with hind legs extended and forelegs forward, no water background"
+        },
+        {
+          "id": "owl-fly",
+          "label": "Eule fliegt",
+          "description": "one tawny owl in flight with wings outstretched symmetrically"
+        },
+        {
+          "id": "robin-sing",
+          "label": "Rotkehlchen singt",
+          "description": "one robin singing with its beak visibly open and chest raised, no musical notes"
+        },
+        {
+          "id": "woodpecker-peck",
+          "label": "Specht klopft",
+          "description": "one great spotted woodpecker holding onto a short isolated trunk segment, bill touching bark"
+        },
+        {
+          "id": "beaver-gnaw",
+          "label": "Biber nagt",
+          "description": "one beaver gnawing a short wooden branch held between forepaws, broad flat tail visible"
+        },
+        {
+          "id": "otter-swim",
+          "label": "Fischotter schwimmt",
+          "description": "one European otter swimming horizontally with long tail extended, two small water ripples only"
+        },
+        {
+          "id": "duck-dive",
+          "label": "Ente taucht",
+          "description": "one mallard dabbling head-down, rump and orange webbed feet above two small water ripples"
+        },
+        {
+          "id": "fox-listen",
+          "label": "Fuchs lauscht",
+          "description": "one red fox standing still, ears pricked and head tilted attentively, no accessories"
+        }
+      ]
+    },
+    {
+      "id": "expansion-nature-cycles",
+      "label": "Wachsen und Verwandeln",
+      "subjects": [
+        {
+          "id": "oak-sprouting-acorn",
+          "label": "Eichel keimt",
+          "description": "one sprouting acorn with split shell and small white root, isolated botanical specimen"
+        },
+        {
+          "id": "oak-seedling",
+          "label": "Junge Eiche",
+          "description": "one young oak seedling with two lobed green leaves and acorn at its base, tiny soil patch"
+        },
+        {
+          "id": "oak-sapling",
+          "label": "Eichenbäumchen",
+          "description": "one knee-high oak sapling with slender woody stem and several lobed leaves"
+        },
+        {
+          "id": "bean-dry-seed",
+          "label": "Bohnensamen",
+          "description": "one dry mottled brown kidney-bean seed, no face"
+        },
+        {
+          "id": "bean-rooting-seed",
+          "label": "Bohne keimt",
+          "description": "one split bean seed with one white root and curved pale-green shoot"
+        },
+        {
+          "id": "bean-first-leaves",
+          "label": "Bohnentrieb",
+          "description": "one young bean shoot with two opened green seed leaves above a tiny soil patch"
+        },
+        {
+          "id": "bean-flowering",
+          "label": "Bohne blüht",
+          "description": "one compact bean plant with green leaves and two small white flowers, tiny soil patch"
+        },
+        {
+          "id": "bean-with-pods",
+          "label": "Bohnenpflanze",
+          "description": "one compact bean plant with green leaves and two hanging green pods, tiny soil patch"
+        },
+        {
+          "id": "butterfly-eggs",
+          "label": "Schmetterlingseier",
+          "description": "one green leaf bearing a small cluster of pale butterfly eggs, one life-cycle specimen"
+        },
+        {
+          "id": "butterfly-chrysalis",
+          "label": "Schmetterlingspuppe",
+          "description": "one green butterfly chrysalis hanging from a short twig"
+        },
+        {
+          "id": "tadpole",
+          "label": "Kaulquappe",
+          "description": "one dark tadpole with round head and a long finned tail, no legs"
+        },
+        {
+          "id": "tadpole-hindlegs",
+          "label": "Kaulquappe mit Hinterbeinen",
+          "description": "one tadpole with exactly two newly grown hind legs and a long tail"
+        },
+        {
+          "id": "froglet",
+          "label": "Jungfrosch",
+          "description": "one tiny green froglet with four legs and a short remaining tail"
+        },
+        {
+          "id": "apple-blossom",
+          "label": "Apfelblüte",
+          "description": "one apple twig bearing one five-petalled pale pink blossom"
+        },
+        {
+          "id": "apple-unripe",
+          "label": "Unreifer Apfel",
+          "description": "one small unripe green apple attached to a short twig and leaf"
+        }
+      ]
+    },
+    {
+      "id": "expansion-woodland-places",
+      "label": "Orte und Lebensräume",
+      "subjects": [
+        {
+          "id": "woodland-bridge",
+          "label": "Holzbrücke",
+          "description": "one small simple arched wooden footbridge, isolated, no landscape"
+        },
+        {
+          "id": "woodland-bench",
+          "label": "Waldbank",
+          "description": "one rustic bench made from a split log and two wooden supports"
+        },
+        {
+          "id": "fallen-log",
+          "label": "Baumstamm",
+          "description": "one fallen tree log with visible cut end and bark"
+        },
+        {
+          "id": "tree-stump",
+          "label": "Baumstrunk",
+          "description": "one low tree stump with visible annual rings and small roots"
+        },
+        {
+          "id": "hollow-tree",
+          "label": "Höhlenbaum",
+          "description": "one upright old trunk segment with one dark oval tree hollow"
+        },
+        {
+          "id": "fox-den-entrance",
+          "label": "Fuchsbau",
+          "description": "one small earth mound with a dark burrow entrance and a little grass, isolated cutout"
+        },
+        {
+          "id": "badger-sett",
+          "label": "Dachsbau",
+          "description": "one cutaway earth mound with one short tunnel leading to one sleeping chamber, empty, compact educational vignette"
+        },
+        {
+          "id": "ant-hill",
+          "label": "Ameisenhaufen",
+          "description": "one brown woodland ant mound made of tiny pine needles, a few minute ants on its surface"
+        },
+        {
+          "id": "beaver-lodge",
+          "label": "Biberburg",
+          "description": "one compact beaver lodge of interwoven sticks, a small blue water base only"
+        },
+        {
+          "id": "bird-nest-empty",
+          "label": "Leeres Vogelnest",
+          "description": "one empty circular nest woven of twigs, open interior visible"
+        },
+        {
+          "id": "reed-clump",
+          "label": "Schilf",
+          "description": "one small clump of green reed stems with two brown reed heads"
+        },
+        {
+          "id": "pond-lily",
+          "label": "Seerose",
+          "description": "one white water-lily blossom attached to one green floating lily pad"
+        },
+        {
+          "id": "stream-stones",
+          "label": "Bachsteine",
+          "description": "one compact stream vignette with three smooth stones in a narrow ribbon of pale-blue water"
+        },
+        {
+          "id": "footpath-sign",
+          "label": "Wegweiser",
+          "description": "one wooden post with two blank direction boards pointing left and right, no text"
+        },
+        {
+          "id": "woodland-gate",
+          "label": "Gartentor",
+          "description": "one closed simple wooden garden gate between two short posts, isolated"
+        }
+      ]
+    }
+  ]
+}

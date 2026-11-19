@@ -1,0 +1,81 @@
+{
+  "format": "waldpost-illustration-atlas",
+  "version": 1,
+  "source": "sources/expansion-2026-11-19/expansion-picnic-home.png",
+  "output": "../../assets/waldatelier/expansion-picnic-home.webp",
+  "columns": 4,
+  "rows": 4,
+  "cellPixels": 320,
+  "subjectPixels": 256,
+  "alphaThresholdPercent": 8,
+  "provenance": {
+    "date": "2026-11-19",
+    "tool": "ChatGPT image_gen.imagegen",
+    "sourceSha256": "34e652fb0e022569bbc0b0d13c74d7adfc0328721ce73179df972d660f619413",
+    "generationRecord": "../artwork/generation-records/expansion-picnic-home-2026-11-19.json",
+    "styleContract": "style.json",
+    "forwardPrompt": "prompts/expansion-picnic-home.txt"
+  },
+  "subjects": [
+    {
+      "id": "teapot",
+      "label": "Teekanne"
+    },
+    {
+      "id": "thermos",
+      "label": "Thermosflasche"
+    },
+    {
+      "id": "drinking-bottle",
+      "label": "Trinkflasche"
+    },
+    {
+      "id": "lunchbox",
+      "label": "Znünibox"
+    },
+    {
+      "id": "wooden-plate",
+      "label": "Teller"
+    },
+    {
+      "id": "napkin",
+      "label": "Serviette"
+    },
+    {
+      "id": "pretzel",
+      "label": "Brezel"
+    },
+    {
+      "id": "bread-roll",
+      "label": "Brötchen"
+    },
+    {
+      "id": "sandwich",
+      "label": "Sandwich"
+    },
+    {
+      "id": "milk-jug",
+      "label": "Milchkrug"
+    },
+    {
+      "id": "wooden-chair",
+      "label": "Stuhl"
+    },
+    {
+      "id": "stool",
+      "label": "Hocker"
+    },
+    {
+      "id": "wooden-key",
+      "label": "Schlüssel"
+    },
+    {
+      "id": "broom",
+      "label": "Besen"
+    },
+    {
+      "id": "candle-holder",
+      "label": "Kerze"
+    }
+  ]
+}

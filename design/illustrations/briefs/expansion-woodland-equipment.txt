@@ -1,0 +1,21 @@
+Create a NEW extension sheet for the Waldpost woodland learning-picture library. Match the two supplied canonical reference images in their warm watercolour and visible coloured-pencil finish. These are isolated learning pictures, suitable for later vocabulary, sorting, matching, observation and sequence puzzles. No labels, text, numerals, frames, badges, faces on objects or decorative extras.
+
+LAYOUT: a square canvas divided into EXACTLY 4 equal columns and 4 equal rows (16 equal square cells). Draw exactly 15 independent complete subjects in row-major order below. Leave row 4 column 4 completely transparent. Each subject stays inside its own square with at least 12% clear space on each side. Centre each subject in its cell; keep every ear, root, handle, tail and wing intact. No overlapping cells, ground plane or backdrop. Genuine alpha zero around all paintings, including open handles; no painted checkerboard or paper rectangle. Gentle pencil texture remains inside the subject.
+
+Row 1, column 1: hand-rake (Handrechen) — one small wooden-handled garden hand rake with three metal tines.
+Row 1, column 2: garden-trowel (Pflanzschaufel) — one short wooden-handled garden trowel with a pointed metal blade.
+Row 1, column 3: wheelbarrow (Schubkarre) — one sage-green wheelbarrow with exactly one wheel and two handles.
+Row 1, column 4: plant-pot (Blumentopf) — one empty terracotta flowerpot with open top.
+Row 2, column 1: seed-packet (Samentütchen) — one closed cream paper seed packet with a small flower illustration but no writing.
+Row 2, column 2: birdhouse (Vogelhaus) — one wooden nest box with pitched roof and round entrance hole.
+Row 2, column 3: bird-feeder (Futterhäuschen) — one wooden open-sided bird feeder with pitched roof and a few seeds in its tray.
+Row 2, column 4: insect-hotel (Insektenhotel) — one small wooden insect hotel, roof above neatly grouped hollow stems.
+Row 3, column 1: binoculars (Fernglas) — one pair of muted blue binoculars.
+Row 3, column 2: compass (Kompass) — one round brass pocket compass with a needle and simple unlettered direction ticks.
+Row 3, column 3: field-notebook (Notizbuch) — one closed sage-green field notebook with a small leaf drawing, no text.
+Row 3, column 4: pencil-case (Etui) — one partly open cream-and-blue pencil case containing three coloured pencils.
+Row 4, column 1: measuring-tape (Massband) — one loosely curled cream measuring tape with simple ticks and no numerals.
+Row 4, column 2: backpack (Rucksack) — one honey-brown woodland backpack with a flap and two shoulder straps.
+Row 4, column 3: walking-stick (Wanderstock) — one simple natural wooden walking stick with a gently curved handle.
+
+Row 4, column 4: EMPTY, fully transparent. Use a consistent woodland picture-book scale; keep shapes clear and recognizable at 80–120 pixels. All names and IDs above are instructions only and must never be drawn.

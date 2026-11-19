@@ -24,6 +24,16 @@
     'rhyme-vocabulary':['rhyme-bread','rhyme-rail','rhyme-blanket','rhyme-bin','rhyme-jug','rhyme-mouth','rhyme-roof','rhyme-brook','rhyme-goat','rhyme-fly'],
     'puzzle-vocabulary':['vocab-house','vocab-table','vocab-shoe','vocab-leg','vocab-stone','vocab-cloth','vocab-tower','vocab-worm','vocab-pot','vocab-head','vocab-hand','vocab-sand','vocab-scarf','vocab-rope','vocab-arrow','vocab-cup','vocab-till','vocab-bench','vocab-wardrobe','vocab-seed'],
     'puzzle-flowers':['puzzle-flower-rot','puzzle-flower-gelb','puzzle-flower-blau','puzzle-flower-rosa','puzzle-flower-weiss','puzzle-flower-lila'],
+    'expansion-woodland-trees':['oak-tree','beech-tree','birch-tree','willow-tree','larch-tree','pine-tree','hazel-shrub','elder-shrub','fern-frond','moss-cushion','ivy-sprig','wood-sorrel','snowdrop','violet-flower','dandelion-flower'],
+    'expansion-woodland-finds':['oak-leaf','beech-leaf','birch-leaf','maple-leaf','willow-leaf','horse-chestnut-leaf','acorn','pine-cone','horse-chestnut','beech-nut','sycamore-seed','rose-hip','blackberry','raspberry','dandelion-seedhead'],
+    'expansion-meadow-pond':['dragonfly','grasshopper','stag-beetle','bumblebee','moth','earthworm','woodlouse','newt','fire-salamander','toad','duckling','heron','stork','dipper','otter'],
+    'expansion-garden-harvest':['pumpkin','cucumber','radish','beetroot','potato','onion','leek','red-pepper','pea-pod','lettuce','cherry','plum','apricot','lemon','walnut'],
+    'expansion-woodland-equipment':['hand-rake','garden-trowel','wheelbarrow','plant-pot','seed-packet','birdhouse','bird-feeder','insect-hotel','binoculars','compass','field-notebook','pencil-case','measuring-tape','backpack','walking-stick'],
+    'expansion-picnic-home':['teapot','thermos','drinking-bottle','lunchbox','wooden-plate','napkin','pretzel','bread-roll','sandwich','milk-jug','wooden-chair','stool','wooden-key','broom','candle-holder'],
+    'expansion-seasons-weather':['umbrella','rain-boot','raincoat','mitten','woolly-hat','woolly-sock','sun-hat','sunglasses','snowflake','icicle','snowball','puddle','rainbow-arch','wind-leaves','frost-leaf'],
+    'expansion-woodland-actions':['squirrel-dig','squirrel-climb','hedgehog-curl','hedgehog-sniff','badger-dig','roe-graze','roe-rest','frog-swim','owl-fly','robin-sing','woodpecker-peck','beaver-gnaw','otter-swim','duck-dive','fox-listen'],
+    'expansion-nature-cycles':['oak-sprouting-acorn','oak-seedling','oak-sapling','bean-dry-seed','bean-rooting-seed','bean-first-leaves','bean-flowering','bean-with-pods','butterfly-eggs','butterfly-chrysalis','tadpole','tadpole-hindlegs','froglet','apple-blossom','apple-unripe'],
+    'expansion-woodland-places':['woodland-bridge','woodland-bench','fallen-log','tree-stump','hollow-tree','fox-den-entrance','badger-sett','ant-hill','beaver-lodge','bird-nest-empty','reed-clump','pond-lily','stream-stones','footpath-sign','woodland-gate'],
   };
   const grid = { 'review-nature':[2,2], 'puzzle-garden':[2,2], 'forest-fox':[2,2], menu:[3,2], 'puzzle-vocabulary':[4,5], 'puzzle-flowers':[3,2] };
   const source = sheet => 'assets/waldatelier/' + sheet + '.webp';

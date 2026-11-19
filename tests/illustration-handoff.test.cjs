@@ -6,8 +6,8 @@ test('generator handoff covers shipped artwork with portable inputs and specific
  const data=await bundle();
  assert.equal(JSON.stringify(data,null,2)+'\n',fs.readFileSync(path.join(root,'design/artwork/generator-inputs.json'),'utf8'));
  const sheets=data.assets.filter(asset=>asset.kind==='learning-sheet');
- assert.equal(sheets.length,19);
- assert.equal(sheets.reduce((count,sheet)=>count+sheet.subjects.length,0),240);
+ assert.equal(sheets.length,29);
+ assert.equal(sheets.reduce((count,sheet)=>count+sheet.subjects.length,0),390);
  for(const sheet of sheets){
   const packet=data.requests[sheet.requestId];
   assert.equal(packet.requiresBriefCustomization,false,sheet.id);

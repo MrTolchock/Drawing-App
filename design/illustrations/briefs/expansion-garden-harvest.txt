@@ -1,0 +1,21 @@
+Create a NEW extension sheet for the Waldpost woodland learning-picture library. Match the two supplied canonical reference images in their warm watercolour and visible coloured-pencil finish. These are isolated learning pictures, suitable for later vocabulary, sorting, matching, observation and sequence puzzles. No labels, text, numerals, frames, badges, faces on objects or decorative extras.
+
+LAYOUT: a square canvas divided into EXACTLY 4 equal columns and 4 equal rows (16 equal square cells). Draw exactly 15 independent complete subjects in row-major order below. Leave row 4 column 4 completely transparent. Each subject stays inside its own square with at least 12% clear space on each side. Centre each subject in its cell; keep every ear, root, handle, tail and wing intact. No overlapping cells, ground plane or backdrop. Genuine alpha zero around all paintings, including open handles; no painted checkerboard or paper rectangle. Gentle pencil texture remains inside the subject.
+
+Row 1, column 1: pumpkin (Kürbis) — one round orange pumpkin with short green stem.
+Row 1, column 2: cucumber (Gurke) — one whole dark-green cucumber.
+Row 1, column 3: radish (Radieschen) — one red radish with white root tip and attached green leaves.
+Row 1, column 4: beetroot (Rande) — one purple beetroot with tapering root and attached reddish-green leaves.
+Row 2, column 1: potato (Kartoffel) — one whole ochre potato with a few visible eyes.
+Row 2, column 2: onion (Zwiebel) — one golden-brown onion with dried papery neck.
+Row 2, column 3: leek (Lauch) — one leek with white stem and long dark-green leaves.
+Row 2, column 4: red-pepper (Peperoni) — one red bell pepper with green stalk.
+Row 3, column 1: pea-pod (Erbsenschote) — one opened green pea pod with peas still attached inside, a single specimen.
+Row 3, column 2: lettuce (Salat) — one whole green lettuce head.
+Row 3, column 3: cherry (Kirsche) — one red cherry with a single long green stem.
+Row 3, column 4: plum (Zwetschge) — one ripe oval purple plum.
+Row 4, column 1: apricot (Aprikose) — one orange apricot with clear centre seam.
+Row 4, column 2: lemon (Zitrone) — one whole yellow lemon.
+Row 4, column 3: walnut (Baumnuss) — one whole walnut in its ridged brown shell.
+
+Row 4, column 4: EMPTY, fully transparent. Use a consistent woodland picture-book scale; keep shapes clear and recognizable at 80–120 pixels. All names and IDs above are instructions only and must never be drawn.

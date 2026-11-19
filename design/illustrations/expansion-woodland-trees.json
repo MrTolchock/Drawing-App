@@ -1,0 +1,81 @@
+{
+  "format": "waldpost-illustration-atlas",
+  "version": 1,
+  "source": "sources/expansion-2026-11-19/expansion-woodland-trees-cutout.png",
+  "output": "../../assets/waldatelier/expansion-woodland-trees.webp",
+  "columns": 4,
+  "rows": 4,
+  "cellPixels": 320,
+  "subjectPixels": 256,
+  "alphaThresholdPercent": 8,
+  "provenance": {
+    "date": "2026-11-19",
+    "tool": "ChatGPT image_gen.imagegen",
+    "sourceSha256": "96f44126101e5d79f839fd69e573d22a4191f5b3e969ed37ccddd00a41bf2ac6",
+    "generationRecord": "../artwork/generation-records/expansion-woodland-trees-cutout-2026-11-19.json",
+    "styleContract": "style.json",
+    "forwardPrompt": "prompts/expansion-woodland-trees.txt"
+  },
+  "subjects": [
+    {
+      "id": "oak-tree",
+      "label": "Eiche"
+    },
+    {
+      "id": "beech-tree",
+      "label": "Buche"
+    },
+    {
+      "id": "birch-tree",
+      "label": "Birke"
+    },
+    {
+      "id": "willow-tree",
+      "label": "Weide"
+    },
+    {
+      "id": "larch-tree",
+      "label": "Lärche"
+    },
+    {
+      "id": "pine-tree",
+      "label": "Kiefer"
+    },
+    {
+      "id": "hazel-shrub",
+      "label": "Haselstrauch"
+    },
+    {
+      "id": "elder-shrub",
+      "label": "Holunder"
+    },
+    {
+      "id": "fern-frond",
+      "label": "Farn"
+    },
+    {
+      "id": "moss-cushion",
+      "label": "Moos"
+    },
+    {
+      "id": "ivy-sprig",
+      "label": "Efeu"
+    },
+    {
+      "id": "wood-sorrel",
+      "label": "Sauerklee"
+    },
+    {
+      "id": "snowdrop",
+      "label": "Schneeglöckchen"
+    },
+    {
+      "id": "violet-flower",
+      "label": "Veilchen"
+    },
+    {
+      "id": "dandelion-flower",
+      "label": "Löwenzahn"
+    }
+  ]
+}

@@ -193,6 +193,196 @@
       }
     },
     {
+      "id": "expansion-garden-harvest",
+      "file": "expansion-garden-harvest.webp",
+      "width": 1280,
+      "height": 1280,
+      "columns": 4,
+      "rows": 4,
+      "sha256": "76453daa32428d367f6f7a3c2bd92a37a2aa8746d38ea1176129d1c947857c77",
+      "provenance": {
+        "status": "historical-record",
+        "record": "design/artwork/generation-records/expansion-garden-harvest-2026-11-19.json",
+        "recordKind": "generation-record",
+        "manifest": "design/illustrations/expansion-garden-harvest.json",
+        "styleContract": "design/illustrations/style.json",
+        "requestId": "expansion-garden-harvest",
+        "forwardPrompt": "design/illustrations/prompts/expansion-garden-harvest.txt",
+        "guide": "design/illustrations/STYLE.md"
+      }
+    },
+    {
+      "id": "expansion-meadow-pond",
+      "file": "expansion-meadow-pond.webp",
+      "width": 1280,
+      "height": 1280,
+      "columns": 4,
+      "rows": 4,
+      "sha256": "b89baa9f88098ad607528fb9bfde1b19e9f504bb8eb399e38ec5834f46130dc1",
+      "provenance": {
+        "status": "historical-record",
+        "record": "design/artwork/generation-records/expansion-meadow-pond-2026-11-19.json",
+        "recordKind": "generation-record",
+        "manifest": "design/illustrations/expansion-meadow-pond.json",
+        "styleContract": "design/illustrations/style.json",
+        "requestId": "expansion-meadow-pond",
+        "forwardPrompt": "design/illustrations/prompts/expansion-meadow-pond.txt",
+        "guide": "design/illustrations/STYLE.md"
+      }
+    },
+    {
+      "id": "expansion-nature-cycles",
+      "file": "expansion-nature-cycles.webp",
+      "width": 1280,
+      "height": 1280,
+      "columns": 4,
+      "rows": 4,
+      "sha256": "56fb344dcf6716a61460cba6edaa8759bd4631d960eb8e02d89a5380b22ce309",
+      "provenance": {
+        "status": "historical-record",
+        "record": "design/artwork/generation-records/expansion-nature-cycles-2026-11-19.json",
+        "recordKind": "generation-record",
+        "manifest": "design/illustrations/expansion-nature-cycles.json",
+        "styleContract": "design/illustrations/style.json",
+        "requestId": "expansion-nature-cycles",
+        "forwardPrompt": "design/illustrations/prompts/expansion-nature-cycles.txt",
+        "guide": "design/illustrations/STYLE.md"
+      }
+    },
+    {
+      "id": "expansion-picnic-home",
+      "file": "expansion-picnic-home.webp",
+      "width": 1280,
+      "height": 1280,
+      "columns": 4,
+      "rows": 4,
+      "sha256": "def89c337accee1bd2d7cdcc973a878a5d9e540d811f5cb1118f6dc418aff12a",
+      "provenance": {
+        "status": "historical-record",
+        "record": "design/artwork/generation-records/expansion-picnic-home-2026-11-19.json",
+        "recordKind": "generation-record",
+        "manifest": "design/illustrations/expansion-picnic-home.json",
+        "styleContract": "design/illustrations/style.json",
+        "requestId": "expansion-picnic-home",
+        "forwardPrompt": "design/illustrations/prompts/expansion-picnic-home.txt",
+        "guide": "design/illustrations/STYLE.md"
+      }
+    },
+    {
+      "id": "expansion-seasons-weather",
+      "file": "expansion-seasons-weather.webp",
+      "width": 1280,
+      "height": 1280,
+      "columns": 4,
+      "rows": 4,
+      "sha256": "40b3c510aff5b728a2cb2bc231410872875d0055c4b865a82c1a0edffc32ed7a",
+      "provenance": {
+        "status": "historical-record",
+        "record": "design/artwork/generation-records/expansion-seasons-weather-clean-cutout-2026-11-19.json",
+        "recordKind": "generation-record",
+        "manifest": "design/illustrations/expansion-seasons-weather.json",
+        "styleContract": "design/illustrations/style.json",
+        "requestId": "expansion-seasons-weather",
+        "forwardPrompt": "design/illustrations/prompts/expansion-seasons-weather.txt",
+        "guide": "design/illustrations/STYLE.md"
+      }
+    },
+    {
+      "id": "expansion-woodland-actions",
+      "file": "expansion-woodland-actions.webp",
+      "width": 1280,
+      "height": 1280,
+      "columns": 4,
+      "rows": 4,
+      "sha256": "05fca0ffabc21a06f083299185a115cdad5d38091304f5b686095937800e82ac",
+      "provenance": {
+        "status": "historical-record",
+        "record": "design/artwork/generation-records/expansion-woodland-actions-cutout-2026-11-19.json",
+        "recordKind": "generation-record",
+        "manifest": "design/illustrations/expansion-woodland-actions.json",
+        "styleContract": "design/illustrations/style.json",
+        "requestId": "expansion-woodland-actions",
+        "forwardPrompt": "design/illustrations/prompts/expansion-woodland-actions.txt",
+        "guide": "design/illustrations/STYLE.md"
+      }
+    },
+    {
+      "id": "expansion-woodland-equipment",
+      "file": "expansion-woodland-equipment.webp",
+      "width": 1280,
+      "height": 1280,
+      "columns": 4,
+      "rows": 4,
+      "sha256": "7cca5d019bd09f7e5b893f9c2977c50684b69b57ff1cf5165cadf31adc79b877",
+      "provenance": {
+        "status": "historical-record",
+        "record": "design/artwork/generation-records/expansion-woodland-equipment-2026-11-19.json",
+        "recordKind": "generation-record",
+        "manifest": "design/illustrations/expansion-woodland-equipment.json",
+        "styleContract": "design/illustrations/style.json",
+        "requestId": "expansion-woodland-equipment",
+        "forwardPrompt": "design/illustrations/prompts/expansion-woodland-equipment.txt",
+        "guide": "design/illustrations/STYLE.md"
+      }
+    },
+    {
+      "id": "expansion-woodland-finds",
+      "file": "expansion-woodland-finds.webp",
+      "width": 1280,
+      "height": 1280,
+      "columns": 4,
+      "rows": 4,
+      "sha256": "c2fc098a25f9ace321aa60c903d7e6b8687cc811f008a02fa991936213b4e4e5",
+      "provenance": {
+        "status": "historical-record",
+        "record": "design/artwork/generation-records/expansion-woodland-finds-2026-11-19.json",
+        "recordKind": "generation-record",
+        "manifest": "design/illustrations/expansion-woodland-finds.json",
+        "styleContract": "design/illustrations/style.json",
+        "requestId": "expansion-woodland-finds",
+        "forwardPrompt": "design/illustrations/prompts/expansion-woodland-finds.txt",
+        "guide": "design/illustrations/STYLE.md"
+      }
+    },
+    {
+      "id": "expansion-woodland-places",
+      "file": "expansion-woodland-places.webp",
+      "width": 1280,
+      "height": 1280,
+      "columns": 4,
+      "rows": 4,
+      "sha256": "a72361022744521a3d40c6268cdbae2daef7262c70a375ea7067b3144a87cb42",
+      "provenance": {
+        "status": "historical-record",
+        "record": "design/artwork/generation-records/expansion-woodland-places-cutout-2026-11-19.json",
+        "recordKind": "generation-record",
+        "manifest": "design/illustrations/expansion-woodland-places.json",
+        "styleContract": "design/illustrations/style.json",
+        "requestId": "expansion-woodland-places",
+        "forwardPrompt": "design/illustrations/prompts/expansion-woodland-places.txt",
+        "guide": "design/illustrations/STYLE.md"
+      }
+    },
+    {
+      "id": "expansion-woodland-trees",
+      "file": "expansion-woodland-trees.webp",
+      "width": 1280,
+      "height": 1280,
+      "columns": 4,
+      "rows": 4,
+      "sha256": "40687075bdee2a9f68a0e7fa5cd4e5ca7a4fa0dccc57cda4ef7dd3aed4975faa",
+      "provenance": {
+        "status": "historical-record",
+        "record": "design/artwork/generation-records/expansion-woodland-trees-cutout-2026-11-19.json",
+        "recordKind": "generation-record",
+        "manifest": "design/illustrations/expansion-woodland-trees.json",
+        "styleContract": "design/illustrations/style.json",
+        "requestId": "expansion-woodland-trees",
+        "forwardPrompt": "design/illustrations/prompts/expansion-woodland-trees.txt",
+        "guide": "design/illustrations/STYLE.md"
+      }
+    },
+    {
       "id": "forest-actions",
       "file": "forest-actions.webp",
       "width": 1280,
@@ -489,6 +679,22 @@
   ],
   "images": [
     {
+      "id": "acorn",
+      "label": "Eichel",
+      "sheet": "expansion-woodland-finds",
+      "index": 6,
+      "column": 2,
+      "row": 1,
+      "sourceRect": {
+        "x": 640,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "ant",
       "label": "Ameise",
       "sheet": "alphabet",
@@ -514,6 +720,22 @@
       ]
     },
     {
+      "id": "ant-hill",
+      "label": "Ameisenhaufen",
+      "sheet": "expansion-woodland-places",
+      "index": 7,
+      "column": 3,
+      "row": 1,
+      "sourceRect": {
+        "x": 960,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "apple",
       "label": "apple",
       "sheet": "words-two",
@@ -536,6 +758,70 @@
       ]
     },
     {
+      "id": "apple-blossom",
+      "label": "Apfelblüte",
+      "sheet": "expansion-nature-cycles",
+      "index": 13,
+      "column": 1,
+      "row": 3,
+      "sourceRect": {
+        "x": 320,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "apple-unripe",
+      "label": "Unreifer Apfel",
+      "sheet": "expansion-nature-cycles",
+      "index": 14,
+      "column": 2,
+      "row": 3,
+      "sourceRect": {
+        "x": 640,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "apricot",
+      "label": "Aprikose",
+      "sheet": "expansion-garden-harvest",
+      "index": 12,
+      "column": 0,
+      "row": 3,
+      "sourceRect": {
+        "x": 0,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "backpack",
+      "label": "Rucksack",
+      "sheet": "expansion-woodland-equipment",
+      "index": 13,
+      "column": 1,
+      "row": 3,
+      "sourceRect": {
+        "x": 320,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "badger",
       "label": "badger",
       "sheet": "alphabet",
@@ -556,6 +842,38 @@
         "friends-badger",
         "nature"
       ]
+    },
+    {
+      "id": "badger-dig",
+      "label": "Dachs gräbt",
+      "sheet": "expansion-woodland-actions",
+      "index": 4,
+      "column": 0,
+      "row": 1,
+      "sourceRect": {
+        "x": 0,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "badger-sett",
+      "label": "Dachsbau",
+      "sheet": "expansion-woodland-places",
+      "index": 6,
+      "column": 2,
+      "row": 1,
+      "sourceRect": {
+        "x": 640,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
     },
     {
       "id": "badger-sleep",
@@ -677,6 +995,86 @@
       ]
     },
     {
+      "id": "bean-dry-seed",
+      "label": "Bohnensamen",
+      "sheet": "expansion-nature-cycles",
+      "index": 3,
+      "column": 3,
+      "row": 0,
+      "sourceRect": {
+        "x": 960,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "bean-first-leaves",
+      "label": "Bohnentrieb",
+      "sheet": "expansion-nature-cycles",
+      "index": 5,
+      "column": 1,
+      "row": 1,
+      "sourceRect": {
+        "x": 320,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "bean-flowering",
+      "label": "Bohne blüht",
+      "sheet": "expansion-nature-cycles",
+      "index": 6,
+      "column": 2,
+      "row": 1,
+      "sourceRect": {
+        "x": 640,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "bean-rooting-seed",
+      "label": "Bohne keimt",
+      "sheet": "expansion-nature-cycles",
+      "index": 4,
+      "column": 0,
+      "row": 1,
+      "sourceRect": {
+        "x": 0,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "bean-with-pods",
+      "label": "Bohnenpflanze",
+      "sheet": "expansion-nature-cycles",
+      "index": 7,
+      "column": 3,
+      "row": 1,
+      "sourceRect": {
+        "x": 960,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "bear",
       "label": "bear",
       "sheet": "creatures",
@@ -720,6 +1118,38 @@
         "vowels",
         "read-puzzle"
       ]
+    },
+    {
+      "id": "beaver-gnaw",
+      "label": "Biber nagt",
+      "sheet": "expansion-woodland-actions",
+      "index": 11,
+      "column": 3,
+      "row": 2,
+      "sourceRect": {
+        "x": 960,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "beaver-lodge",
+      "label": "Biberburg",
+      "sheet": "expansion-woodland-places",
+      "index": 8,
+      "column": 0,
+      "row": 2,
+      "sourceRect": {
+        "x": 0,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
     },
     {
       "id": "bed",
@@ -770,6 +1200,70 @@
         "vowels",
         "read-puzzle"
       ]
+    },
+    {
+      "id": "beech-leaf",
+      "label": "Buchenblatt",
+      "sheet": "expansion-woodland-finds",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 320,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "beech-nut",
+      "label": "Buchecker",
+      "sheet": "expansion-woodland-finds",
+      "index": 9,
+      "column": 1,
+      "row": 2,
+      "sourceRect": {
+        "x": 320,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "beech-tree",
+      "label": "Buche",
+      "sheet": "expansion-woodland-trees",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 320,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "beetroot",
+      "label": "Rande",
+      "sheet": "expansion-garden-harvest",
+      "index": 3,
+      "column": 3,
+      "row": 0,
+      "sourceRect": {
+        "x": 960,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
     },
     {
       "id": "bell",
@@ -829,6 +1323,54 @@
       "usedBy": []
     },
     {
+      "id": "binoculars",
+      "label": "Fernglas",
+      "sheet": "expansion-woodland-equipment",
+      "index": 8,
+      "column": 0,
+      "row": 2,
+      "sourceRect": {
+        "x": 0,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "birch-leaf",
+      "label": "Birkenblatt",
+      "sheet": "expansion-woodland-finds",
+      "index": 2,
+      "column": 2,
+      "row": 0,
+      "sourceRect": {
+        "x": 640,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "birch-tree",
+      "label": "Birke",
+      "sheet": "expansion-woodland-trees",
+      "index": 2,
+      "column": 2,
+      "row": 0,
+      "sourceRect": {
+        "x": 640,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "bird",
       "label": "bird",
       "sheet": "animals",
@@ -844,6 +1386,22 @@
       "tokens": [
         "🐦"
       ],
+      "usedBy": []
+    },
+    {
+      "id": "bird-feeder",
+      "label": "Futterhäuschen",
+      "sheet": "expansion-woodland-equipment",
+      "index": 6,
+      "column": 2,
+      "row": 1,
+      "sourceRect": {
+        "x": 640,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
       "usedBy": []
     },
     {
@@ -863,6 +1421,22 @@
       "usedBy": [
         "friends-owl"
       ]
+    },
+    {
+      "id": "bird-nest-empty",
+      "label": "Leeres Vogelnest",
+      "sheet": "expansion-woodland-places",
+      "index": 9,
+      "column": 1,
+      "row": 2,
+      "sourceRect": {
+        "x": 320,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
     },
     {
       "id": "bird-sit",
@@ -892,6 +1466,22 @@
       ]
     },
     {
+      "id": "birdhouse",
+      "label": "Vogelhaus",
+      "sheet": "expansion-woodland-equipment",
+      "index": 5,
+      "column": 1,
+      "row": 1,
+      "sourceRect": {
+        "x": 320,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "biscuit",
       "label": "biscuit",
       "sheet": "words-two",
@@ -907,6 +1497,22 @@
       "tokens": [
         "🍪"
       ],
+      "usedBy": []
+    },
+    {
+      "id": "blackberry",
+      "label": "Brombeere",
+      "sheet": "expansion-woodland-finds",
+      "index": 12,
+      "column": 0,
+      "row": 3,
+      "sourceRect": {
+        "x": 0,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
       "usedBy": []
     },
     {
@@ -1008,6 +1614,38 @@
       ]
     },
     {
+      "id": "bread-roll",
+      "label": "Brötchen",
+      "sheet": "expansion-picnic-home",
+      "index": 7,
+      "column": 3,
+      "row": 1,
+      "sourceRect": {
+        "x": 960,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "broom",
+      "label": "Besen",
+      "sheet": "expansion-picnic-home",
+      "index": 13,
+      "column": 1,
+      "row": 3,
+      "sourceRect": {
+        "x": 320,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "bucket",
       "label": "bucket",
       "sheet": "discovery",
@@ -1027,6 +1665,22 @@
         "friends-badger",
         "sequence"
       ]
+    },
+    {
+      "id": "bumblebee",
+      "label": "Hummel",
+      "sheet": "expansion-meadow-pond",
+      "index": 3,
+      "column": 3,
+      "row": 0,
+      "sourceRect": {
+        "x": 960,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
     },
     {
       "id": "bus",
@@ -1075,6 +1729,38 @@
         "vowels",
         "read-puzzle"
       ]
+    },
+    {
+      "id": "butterfly-chrysalis",
+      "label": "Schmetterlingspuppe",
+      "sheet": "expansion-nature-cycles",
+      "index": 9,
+      "column": 1,
+      "row": 2,
+      "sourceRect": {
+        "x": 320,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "butterfly-eggs",
+      "label": "Schmetterlingseier",
+      "sheet": "expansion-nature-cycles",
+      "index": 8,
+      "column": 0,
+      "row": 2,
+      "sourceRect": {
+        "x": 0,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
     },
     {
       "id": "cake",
@@ -1143,6 +1829,22 @@
         "vowels",
         "read-puzzle"
       ]
+    },
+    {
+      "id": "candle-holder",
+      "label": "Kerze",
+      "sheet": "expansion-picnic-home",
+      "index": 14,
+      "column": 2,
+      "row": 3,
+      "sourceRect": {
+        "x": 640,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
     },
     {
       "id": "canoe",
@@ -1315,6 +2017,22 @@
       ]
     },
     {
+      "id": "cherry",
+      "label": "Kirsche",
+      "sheet": "expansion-garden-harvest",
+      "index": 10,
+      "column": 2,
+      "row": 2,
+      "sourceRect": {
+        "x": 640,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "chick",
       "label": "chick",
       "sheet": "discovery",
@@ -1460,6 +2178,22 @@
       "usedBy": []
     },
     {
+      "id": "compass",
+      "label": "Kompass",
+      "sheet": "expansion-woodland-equipment",
+      "index": 9,
+      "column": 1,
+      "row": 2,
+      "sourceRect": {
+        "x": 320,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "cow",
       "label": "Kuh",
       "sheet": "animals",
@@ -1521,6 +2255,22 @@
       "usedBy": []
     },
     {
+      "id": "cucumber",
+      "label": "Gurke",
+      "sheet": "expansion-garden-harvest",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 320,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "daddy",
       "label": "daddy",
       "sheet": "people",
@@ -1536,6 +2286,38 @@
       "tokens": [
         "👨‍👧"
       ],
+      "usedBy": []
+    },
+    {
+      "id": "dandelion-flower",
+      "label": "Löwenzahn",
+      "sheet": "expansion-woodland-trees",
+      "index": 14,
+      "column": 2,
+      "row": 3,
+      "sourceRect": {
+        "x": 640,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "dandelion-seedhead",
+      "label": "Pusteblume",
+      "sheet": "expansion-woodland-finds",
+      "index": 14,
+      "column": 2,
+      "row": 3,
+      "sourceRect": {
+        "x": 640,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
       "usedBy": []
     },
     {
@@ -1555,6 +2337,22 @@
         "🦕",
         "🦖"
       ],
+      "usedBy": []
+    },
+    {
+      "id": "dipper",
+      "label": "Wasseramsel",
+      "sheet": "expansion-meadow-pond",
+      "index": 13,
+      "column": 1,
+      "row": 3,
+      "sourceRect": {
+        "x": 320,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
       "usedBy": []
     },
     {
@@ -1638,6 +2436,38 @@
       "usedBy": []
     },
     {
+      "id": "dragonfly",
+      "label": "Libelle",
+      "sheet": "expansion-meadow-pond",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "drinking-bottle",
+      "label": "Trinkflasche",
+      "sheet": "expansion-picnic-home",
+      "index": 2,
+      "column": 2,
+      "row": 0,
+      "sourceRect": {
+        "x": 640,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "drum",
       "label": "drum",
       "sheet": "navigation",
@@ -1653,6 +2483,22 @@
       "tokens": [
         "🥁"
       ],
+      "usedBy": []
+    },
+    {
+      "id": "duck-dive",
+      "label": "Ente taucht",
+      "sheet": "expansion-woodland-actions",
+      "index": 13,
+      "column": 1,
+      "row": 3,
+      "sourceRect": {
+        "x": 320,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
       "usedBy": []
     },
     {
@@ -1693,6 +2539,22 @@
       ]
     },
     {
+      "id": "duckling",
+      "label": "Entenküken",
+      "sheet": "expansion-meadow-pond",
+      "index": 10,
+      "column": 2,
+      "row": 2,
+      "sourceRect": {
+        "x": 640,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "ear",
       "label": "ear",
       "sheet": "alphabet",
@@ -1708,6 +2570,22 @@
       "tokens": [
         "👂"
       ],
+      "usedBy": []
+    },
+    {
+      "id": "earthworm",
+      "label": "Regenwurm",
+      "sheet": "expansion-meadow-pond",
+      "index": 5,
+      "column": 1,
+      "row": 1,
+      "sourceRect": {
+        "x": 320,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
       "usedBy": []
     },
     {
@@ -1731,6 +2609,22 @@
         "friends-badger",
         "sequence"
       ]
+    },
+    {
+      "id": "elder-shrub",
+      "label": "Holunder",
+      "sheet": "expansion-woodland-trees",
+      "index": 7,
+      "column": 3,
+      "row": 1,
+      "sourceRect": {
+        "x": 960,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
     },
     {
       "id": "elephant",
@@ -1772,6 +2666,22 @@
       ]
     },
     {
+      "id": "fallen-log",
+      "label": "Baumstamm",
+      "sheet": "expansion-woodland-places",
+      "index": 2,
+      "column": 2,
+      "row": 0,
+      "sourceRect": {
+        "x": 640,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "feather",
       "label": "feather",
       "sheet": "words-one",
@@ -1787,6 +2697,38 @@
       "tokens": [
         "🪶"
       ],
+      "usedBy": []
+    },
+    {
+      "id": "fern-frond",
+      "label": "Farn",
+      "sheet": "expansion-woodland-trees",
+      "index": 8,
+      "column": 0,
+      "row": 2,
+      "sourceRect": {
+        "x": 0,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "field-notebook",
+      "label": "Notizbuch",
+      "sheet": "expansion-woodland-equipment",
+      "index": 10,
+      "column": 2,
+      "row": 2,
+      "sourceRect": {
+        "x": 640,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
       "usedBy": []
     },
     {
@@ -1828,6 +2770,22 @@
       "usedBy": [
         "syllable"
       ]
+    },
+    {
+      "id": "fire-salamander",
+      "label": "Feuersalamander",
+      "sheet": "expansion-meadow-pond",
+      "index": 8,
+      "column": 0,
+      "row": 2,
+      "sourceRect": {
+        "x": 0,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
     },
     {
       "id": "firefly",
@@ -1913,6 +2871,22 @@
         "friends-badger",
         "sequence"
       ]
+    },
+    {
+      "id": "footpath-sign",
+      "label": "Wegweiser",
+      "sheet": "expansion-woodland-places",
+      "index": 13,
+      "column": 1,
+      "row": 3,
+      "sourceRect": {
+        "x": 320,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
     },
     {
       "id": "forest-apple",
@@ -2503,6 +3477,38 @@
       "usedBy": []
     },
     {
+      "id": "fox-den-entrance",
+      "label": "Fuchsbau",
+      "sheet": "expansion-woodland-places",
+      "index": 5,
+      "column": 1,
+      "row": 1,
+      "sourceRect": {
+        "x": 320,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "fox-listen",
+      "label": "Fuchs lauscht",
+      "sheet": "expansion-woodland-actions",
+      "index": 14,
+      "column": 2,
+      "row": 3,
+      "sourceRect": {
+        "x": 640,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "fox-run",
       "label": "Fuchs rennt",
       "sheet": "forest-actions",
@@ -2597,6 +3603,70 @@
       ]
     },
     {
+      "id": "frog-swim",
+      "label": "Frosch schwimmt",
+      "sheet": "expansion-woodland-actions",
+      "index": 7,
+      "column": 3,
+      "row": 1,
+      "sourceRect": {
+        "x": 960,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "froglet",
+      "label": "Jungfrosch",
+      "sheet": "expansion-nature-cycles",
+      "index": 12,
+      "column": 0,
+      "row": 3,
+      "sourceRect": {
+        "x": 0,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "frost-leaf",
+      "label": "Raureif",
+      "sheet": "expansion-seasons-weather",
+      "index": 14,
+      "column": 2,
+      "row": 3,
+      "sourceRect": {
+        "x": 640,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "garden-trowel",
+      "label": "Pflanzschaufel",
+      "sheet": "expansion-woodland-equipment",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 320,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "giraffe",
       "label": "giraffe",
       "sheet": "alphabet",
@@ -2674,6 +3744,22 @@
       ]
     },
     {
+      "id": "grasshopper",
+      "label": "Heuschrecke",
+      "sheet": "expansion-meadow-pond",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 320,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "habitat-pond",
       "label": "Teich",
       "sheet": "review-nature",
@@ -2703,6 +3789,22 @@
         "y": 512,
         "width": 512,
         "height": 512
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "hand-rake",
+      "label": "Handrechen",
+      "sheet": "expansion-woodland-equipment",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 320
       },
       "tokens": [],
       "usedBy": []
@@ -2774,6 +3876,22 @@
       ]
     },
     {
+      "id": "hazel-shrub",
+      "label": "Haselstrauch",
+      "sheet": "expansion-woodland-trees",
+      "index": 6,
+      "column": 2,
+      "row": 1,
+      "sourceRect": {
+        "x": 640,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "heart",
       "label": "heart",
       "sheet": "words-three",
@@ -2819,6 +3937,22 @@
       ]
     },
     {
+      "id": "hedgehog-curl",
+      "label": "Igel rollt sich ein",
+      "sheet": "expansion-woodland-actions",
+      "index": 2,
+      "column": 2,
+      "row": 0,
+      "sourceRect": {
+        "x": 640,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "hedgehog-sleep",
       "label": "Igel schläft",
       "sheet": "forest-wildlife",
@@ -2838,6 +3972,22 @@
       ]
     },
     {
+      "id": "hedgehog-sniff",
+      "label": "Igel schnuppert",
+      "sheet": "expansion-woodland-actions",
+      "index": 3,
+      "column": 3,
+      "row": 0,
+      "sourceRect": {
+        "x": 960,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "hedgehog-walk",
       "label": "Igel läuft",
       "sheet": "forest-wildlife",
@@ -2854,6 +4004,38 @@
       "usedBy": [
         "friends-owl"
       ]
+    },
+    {
+      "id": "heron",
+      "label": "Reiher",
+      "sheet": "expansion-meadow-pond",
+      "index": 11,
+      "column": 3,
+      "row": 2,
+      "sourceRect": {
+        "x": 960,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "hollow-tree",
+      "label": "Höhlenbaum",
+      "sheet": "expansion-woodland-places",
+      "index": 4,
+      "column": 0,
+      "row": 1,
+      "sourceRect": {
+        "x": 0,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
     },
     {
       "id": "honey",
@@ -2877,6 +4059,38 @@
       ]
     },
     {
+      "id": "horse-chestnut",
+      "label": "Kastanie",
+      "sheet": "expansion-woodland-finds",
+      "index": 8,
+      "column": 0,
+      "row": 2,
+      "sourceRect": {
+        "x": 0,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "horse-chestnut-leaf",
+      "label": "Kastanienblatt",
+      "sheet": "expansion-woodland-finds",
+      "index": 5,
+      "column": 1,
+      "row": 1,
+      "sourceRect": {
+        "x": 320,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "icecream",
       "label": "icecream",
       "sheet": "words-three",
@@ -2892,6 +4106,54 @@
       "tokens": [
         "🍦"
       ],
+      "usedBy": []
+    },
+    {
+      "id": "icicle",
+      "label": "Eiszapfen",
+      "sheet": "expansion-seasons-weather",
+      "index": 9,
+      "column": 1,
+      "row": 2,
+      "sourceRect": {
+        "x": 320,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "insect-hotel",
+      "label": "Insektenhotel",
+      "sheet": "expansion-woodland-equipment",
+      "index": 7,
+      "column": 3,
+      "row": 1,
+      "sourceRect": {
+        "x": 960,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "ivy-sprig",
+      "label": "Efeu",
+      "sheet": "expansion-woodland-trees",
+      "index": 10,
+      "column": 2,
+      "row": 2,
+      "sourceRect": {
+        "x": 640,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
       "usedBy": []
     },
     {
@@ -2972,6 +4234,22 @@
       ]
     },
     {
+      "id": "larch-tree",
+      "label": "Lärche",
+      "sheet": "expansion-woodland-trees",
+      "index": 4,
+      "column": 0,
+      "row": 1,
+      "sourceRect": {
+        "x": 0,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "leaf",
       "label": "leaf",
       "sheet": "discovery",
@@ -2994,6 +4272,38 @@
         "friends-deer",
         "friends-badger"
       ]
+    },
+    {
+      "id": "leek",
+      "label": "Lauch",
+      "sheet": "expansion-garden-harvest",
+      "index": 6,
+      "column": 2,
+      "row": 1,
+      "sourceRect": {
+        "x": 640,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "lemon",
+      "label": "Zitrone",
+      "sheet": "expansion-garden-harvest",
+      "index": 13,
+      "column": 1,
+      "row": 3,
+      "sourceRect": {
+        "x": 320,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
     },
     {
       "id": "lemonade",
@@ -3036,6 +4346,22 @@
       ]
     },
     {
+      "id": "lettuce",
+      "label": "Salat",
+      "sheet": "expansion-garden-harvest",
+      "index": 9,
+      "column": 1,
+      "row": 2,
+      "sourceRect": {
+        "x": 320,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "lion",
       "label": "lion",
       "sheet": "creatures",
@@ -3072,6 +4398,22 @@
       "tokens": [
         "🦙"
       ],
+      "usedBy": []
+    },
+    {
+      "id": "lunchbox",
+      "label": "Znünibox",
+      "sheet": "expansion-picnic-home",
+      "index": 3,
+      "column": 3,
+      "row": 0,
+      "sourceRect": {
+        "x": 960,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
       "usedBy": []
     },
     {
@@ -3135,6 +4477,70 @@
       ]
     },
     {
+      "id": "maple-leaf",
+      "label": "Ahornblatt",
+      "sheet": "expansion-woodland-finds",
+      "index": 3,
+      "column": 3,
+      "row": 0,
+      "sourceRect": {
+        "x": 960,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "measuring-tape",
+      "label": "Massband",
+      "sheet": "expansion-woodland-equipment",
+      "index": 12,
+      "column": 0,
+      "row": 3,
+      "sourceRect": {
+        "x": 0,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "milk-jug",
+      "label": "Milchkrug",
+      "sheet": "expansion-picnic-home",
+      "index": 9,
+      "column": 1,
+      "row": 2,
+      "sourceRect": {
+        "x": 320,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "mitten",
+      "label": "Fausthandschuh",
+      "sheet": "expansion-seasons-weather",
+      "index": 3,
+      "column": 3,
+      "row": 0,
+      "sourceRect": {
+        "x": 960,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "monkey",
       "label": "monkey",
       "sheet": "alphabet",
@@ -3191,6 +4597,38 @@
       "tokens": [
         "🛵"
       ],
+      "usedBy": []
+    },
+    {
+      "id": "moss-cushion",
+      "label": "Moos",
+      "sheet": "expansion-woodland-trees",
+      "index": 9,
+      "column": 1,
+      "row": 2,
+      "sourceRect": {
+        "x": 320,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "moth",
+      "label": "Nachtfalter",
+      "sheet": "expansion-meadow-pond",
+      "index": 4,
+      "column": 0,
+      "row": 1,
+      "sourceRect": {
+        "x": 0,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
       "usedBy": []
     },
     {
@@ -3306,6 +4744,22 @@
       "usedBy": []
     },
     {
+      "id": "napkin",
+      "label": "Serviette",
+      "sheet": "expansion-picnic-home",
+      "index": 5,
+      "column": 1,
+      "row": 1,
+      "sourceRect": {
+        "x": 320,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "nature",
       "label": "nature",
       "sheet": "navigation",
@@ -3386,6 +4840,22 @@
       ]
     },
     {
+      "id": "newt",
+      "label": "Molch",
+      "sheet": "expansion-meadow-pond",
+      "index": 7,
+      "column": 3,
+      "row": 1,
+      "sourceRect": {
+        "x": 960,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "nose",
       "label": "Nase",
       "sheet": "words-one",
@@ -3422,6 +4892,150 @@
       "tokens": [
         "🔢"
       ],
+      "usedBy": []
+    },
+    {
+      "id": "oak-leaf",
+      "label": "Eichenblatt",
+      "sheet": "expansion-woodland-finds",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "oak-sapling",
+      "label": "Eichenbäumchen",
+      "sheet": "expansion-nature-cycles",
+      "index": 2,
+      "column": 2,
+      "row": 0,
+      "sourceRect": {
+        "x": 640,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "oak-seedling",
+      "label": "Junge Eiche",
+      "sheet": "expansion-nature-cycles",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 320,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "oak-sprouting-acorn",
+      "label": "Eichel keimt",
+      "sheet": "expansion-nature-cycles",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "oak-tree",
+      "label": "Eiche",
+      "sheet": "expansion-woodland-trees",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "onion",
+      "label": "Zwiebel",
+      "sheet": "expansion-garden-harvest",
+      "index": 5,
+      "column": 1,
+      "row": 1,
+      "sourceRect": {
+        "x": 320,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "otter",
+      "label": "Fischotter",
+      "sheet": "expansion-meadow-pond",
+      "index": 14,
+      "column": 2,
+      "row": 3,
+      "sourceRect": {
+        "x": 640,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "otter-swim",
+      "label": "Fischotter schwimmt",
+      "sheet": "expansion-woodland-actions",
+      "index": 12,
+      "column": 0,
+      "row": 3,
+      "sourceRect": {
+        "x": 0,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "owl-fly",
+      "label": "Eule fliegt",
+      "sheet": "expansion-woodland-actions",
+      "index": 8,
+      "column": 0,
+      "row": 2,
+      "sourceRect": {
+        "x": 0,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
       "usedBy": []
     },
     {
@@ -3480,6 +5094,22 @@
       "usedBy": []
     },
     {
+      "id": "pea-pod",
+      "label": "Erbsenschote",
+      "sheet": "expansion-garden-harvest",
+      "index": 8,
+      "column": 0,
+      "row": 2,
+      "sourceRect": {
+        "x": 0,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "pear",
       "label": "pear",
       "sheet": "words-three",
@@ -3521,6 +5151,22 @@
       "usedBy": [
         "sequence"
       ]
+    },
+    {
+      "id": "pencil-case",
+      "label": "Etui",
+      "sheet": "expansion-woodland-equipment",
+      "index": 11,
+      "column": 3,
+      "row": 2,
+      "sourceRect": {
+        "x": 960,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
     },
     {
       "id": "penguin",
@@ -3623,6 +5269,38 @@
       "usedBy": []
     },
     {
+      "id": "pine-cone",
+      "label": "Tannzapfen",
+      "sheet": "expansion-woodland-finds",
+      "index": 7,
+      "column": 3,
+      "row": 1,
+      "sourceRect": {
+        "x": 960,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "pine-tree",
+      "label": "Kiefer",
+      "sheet": "expansion-woodland-trees",
+      "index": 5,
+      "column": 1,
+      "row": 1,
+      "sourceRect": {
+        "x": 320,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "plant",
       "label": "plant",
       "sheet": "discovery",
@@ -3644,6 +5322,54 @@
       ]
     },
     {
+      "id": "plant-pot",
+      "label": "Blumentopf",
+      "sheet": "expansion-woodland-equipment",
+      "index": 3,
+      "column": 3,
+      "row": 0,
+      "sourceRect": {
+        "x": 960,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "plum",
+      "label": "Zwetschge",
+      "sheet": "expansion-garden-harvest",
+      "index": 11,
+      "column": 3,
+      "row": 2,
+      "sourceRect": {
+        "x": 960,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "pond-lily",
+      "label": "Seerose",
+      "sheet": "expansion-woodland-places",
+      "index": 11,
+      "column": 3,
+      "row": 2,
+      "sourceRect": {
+        "x": 960,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "postbox",
       "label": "postbox",
       "sheet": "discovery",
@@ -3663,6 +5389,70 @@
         "robot",
         "sequence"
       ]
+    },
+    {
+      "id": "potato",
+      "label": "Kartoffel",
+      "sheet": "expansion-garden-harvest",
+      "index": 4,
+      "column": 0,
+      "row": 1,
+      "sourceRect": {
+        "x": 0,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "pretzel",
+      "label": "Brezel",
+      "sheet": "expansion-picnic-home",
+      "index": 6,
+      "column": 2,
+      "row": 1,
+      "sourceRect": {
+        "x": 640,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "puddle",
+      "label": "Pfütze",
+      "sheet": "expansion-seasons-weather",
+      "index": 11,
+      "column": 3,
+      "row": 2,
+      "sourceRect": {
+        "x": 960,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "pumpkin",
+      "label": "Kürbis",
+      "sheet": "expansion-garden-harvest",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
     },
     {
       "id": "puzzle-flower-blau",
@@ -3798,6 +5588,22 @@
       "usedBy": []
     },
     {
+      "id": "radish",
+      "label": "Radieschen",
+      "sheet": "expansion-garden-harvest",
+      "index": 2,
+      "column": 2,
+      "row": 0,
+      "sourceRect": {
+        "x": 640,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "rain",
       "label": "rain",
       "sheet": "discovery",
@@ -3823,6 +5629,70 @@
       ]
     },
     {
+      "id": "rain-boot",
+      "label": "Gummistiefel",
+      "sheet": "expansion-seasons-weather",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 320,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "rainbow-arch",
+      "label": "Regenbogen",
+      "sheet": "expansion-seasons-weather",
+      "index": 12,
+      "column": 0,
+      "row": 3,
+      "sourceRect": {
+        "x": 0,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "raincoat",
+      "label": "Regenmantel",
+      "sheet": "expansion-seasons-weather",
+      "index": 2,
+      "column": 2,
+      "row": 0,
+      "sourceRect": {
+        "x": 640,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "raspberry",
+      "label": "Himbeere",
+      "sheet": "expansion-woodland-finds",
+      "index": 13,
+      "column": 1,
+      "row": 3,
+      "sourceRect": {
+        "x": 320,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "reader",
       "label": "reader",
       "sheet": "people",
@@ -3839,6 +5709,38 @@
       "usedBy": [
         "sequence"
       ]
+    },
+    {
+      "id": "red-pepper",
+      "label": "Peperoni",
+      "sheet": "expansion-garden-harvest",
+      "index": 7,
+      "column": 3,
+      "row": 1,
+      "sourceRect": {
+        "x": 960,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "reed-clump",
+      "label": "Schilf",
+      "sheet": "expansion-woodland-places",
+      "index": 10,
+      "column": 2,
+      "row": 2,
+      "sourceRect": {
+        "x": 640,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
     },
     {
       "id": "rhyme-bin",
@@ -4021,6 +5923,22 @@
       ]
     },
     {
+      "id": "robin-sing",
+      "label": "Rotkehlchen singt",
+      "sheet": "expansion-woodland-actions",
+      "index": 9,
+      "column": 1,
+      "row": 2,
+      "sourceRect": {
+        "x": 320,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "robot",
       "label": "robot",
       "sheet": "navigation",
@@ -4091,6 +6009,38 @@
       "usedBy": []
     },
     {
+      "id": "roe-graze",
+      "label": "Reh frisst Gras",
+      "sheet": "expansion-woodland-actions",
+      "index": 5,
+      "column": 1,
+      "row": 1,
+      "sourceRect": {
+        "x": 320,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "roe-rest",
+      "label": "Reh ruht",
+      "sheet": "expansion-woodland-actions",
+      "index": 6,
+      "column": 2,
+      "row": 1,
+      "sourceRect": {
+        "x": 640,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "roe-run",
       "label": "Reh rennt",
       "sheet": "forest-wildlife",
@@ -4149,6 +6099,38 @@
       ]
     },
     {
+      "id": "rose-hip",
+      "label": "Hagebutte",
+      "sheet": "expansion-woodland-finds",
+      "index": 11,
+      "column": 3,
+      "row": 2,
+      "sourceRect": {
+        "x": 960,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "sandwich",
+      "label": "Sandwich",
+      "sheet": "expansion-picnic-home",
+      "index": 8,
+      "column": 0,
+      "row": 2,
+      "sourceRect": {
+        "x": 0,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "scooter",
       "label": "scooter",
       "sheet": "words-two",
@@ -4164,6 +6146,22 @@
       "tokens": [
         "🛴"
       ],
+      "usedBy": []
+    },
+    {
+      "id": "seed-packet",
+      "label": "Samentütchen",
+      "sheet": "expansion-woodland-equipment",
+      "index": 4,
+      "column": 0,
+      "row": 1,
+      "sourceRect": {
+        "x": 0,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
       "usedBy": []
     },
     {
@@ -4252,6 +6250,54 @@
         "vowels",
         "read-puzzle"
       ]
+    },
+    {
+      "id": "snowball",
+      "label": "Schneeball",
+      "sheet": "expansion-seasons-weather",
+      "index": 10,
+      "column": 2,
+      "row": 2,
+      "sourceRect": {
+        "x": 640,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "snowdrop",
+      "label": "Schneeglöckchen",
+      "sheet": "expansion-woodland-trees",
+      "index": 12,
+      "column": 0,
+      "row": 3,
+      "sourceRect": {
+        "x": 0,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "snowflake",
+      "label": "Schneeflocke",
+      "sheet": "expansion-seasons-weather",
+      "index": 8,
+      "column": 0,
+      "row": 2,
+      "sourceRect": {
+        "x": 0,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
     },
     {
       "id": "snowman",
@@ -4394,6 +6440,38 @@
       ]
     },
     {
+      "id": "squirrel-climb",
+      "label": "Eichhörnchen klettert",
+      "sheet": "expansion-woodland-actions",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 320,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "squirrel-dig",
+      "label": "Eichhörnchen gräbt",
+      "sheet": "expansion-woodland-actions",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "squirrel-nut",
       "label": "Eichhörnchen mit Nuss",
       "sheet": "review-nature",
@@ -4452,6 +6530,22 @@
       ]
     },
     {
+      "id": "stag-beetle",
+      "label": "Hirschkäfer",
+      "sheet": "expansion-meadow-pond",
+      "index": 2,
+      "column": 2,
+      "row": 0,
+      "sourceRect": {
+        "x": 640,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "star",
       "label": "Stern",
       "sheet": "navigation",
@@ -4493,6 +6587,38 @@
       ]
     },
     {
+      "id": "stool",
+      "label": "Hocker",
+      "sheet": "expansion-picnic-home",
+      "index": 11,
+      "column": 3,
+      "row": 2,
+      "sourceRect": {
+        "x": 960,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "stork",
+      "label": "Storch",
+      "sheet": "expansion-meadow-pond",
+      "index": 12,
+      "column": 0,
+      "row": 3,
+      "sourceRect": {
+        "x": 0,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "strawberry",
       "label": "strawberry",
       "sheet": "words-three",
@@ -4511,6 +6637,22 @@
       "usedBy": [
         "friends-badger"
       ]
+    },
+    {
+      "id": "stream-stones",
+      "label": "Bachsteine",
+      "sheet": "expansion-woodland-places",
+      "index": 12,
+      "column": 0,
+      "row": 3,
+      "sourceRect": {
+        "x": 0,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
     },
     {
       "id": "sun",
@@ -4540,6 +6682,22 @@
       ]
     },
     {
+      "id": "sun-hat",
+      "label": "Sonnenhut",
+      "sheet": "expansion-seasons-weather",
+      "index": 6,
+      "column": 2,
+      "row": 1,
+      "sourceRect": {
+        "x": 640,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "sunflower",
       "label": "sunflower",
       "sheet": "alphabet",
@@ -4559,6 +6717,22 @@
         "friends-badger",
         "sequence"
       ]
+    },
+    {
+      "id": "sunglasses",
+      "label": "Sonnenbrille",
+      "sheet": "expansion-seasons-weather",
+      "index": 7,
+      "column": 3,
+      "row": 1,
+      "sourceRect": {
+        "x": 960,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
     },
     {
       "id": "sunset",
@@ -4583,6 +6757,54 @@
       ]
     },
     {
+      "id": "sycamore-seed",
+      "label": "Ahornsamen",
+      "sheet": "expansion-woodland-finds",
+      "index": 10,
+      "column": 2,
+      "row": 2,
+      "sourceRect": {
+        "x": 640,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "tadpole",
+      "label": "Kaulquappe",
+      "sheet": "expansion-nature-cycles",
+      "index": 10,
+      "column": 2,
+      "row": 2,
+      "sourceRect": {
+        "x": 640,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "tadpole-hindlegs",
+      "label": "Kaulquappe mit Hinterbeinen",
+      "sheet": "expansion-nature-cycles",
+      "index": 11,
+      "column": 3,
+      "row": 2,
+      "sourceRect": {
+        "x": 960,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "taxi",
       "label": "taxi",
       "sheet": "alphabet",
@@ -4601,6 +6823,22 @@
       "usedBy": []
     },
     {
+      "id": "teapot",
+      "label": "Teekanne",
+      "sheet": "expansion-picnic-home",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "teddy",
       "label": "teddy",
       "sheet": "alphabet",
@@ -4616,6 +6854,22 @@
       "tokens": [
         "🧸"
       ],
+      "usedBy": []
+    },
+    {
+      "id": "thermos",
+      "label": "Thermosflasche",
+      "sheet": "expansion-picnic-home",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 320,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
       "usedBy": []
     },
     {
@@ -4659,6 +6913,22 @@
         "friends-bird",
         "friends-mouse"
       ]
+    },
+    {
+      "id": "toad",
+      "label": "Kröte",
+      "sheet": "expansion-meadow-pond",
+      "index": 9,
+      "column": 1,
+      "row": 2,
+      "sourceRect": {
+        "x": 320,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
     },
     {
       "id": "tomato",
@@ -4765,6 +7035,22 @@
       ]
     },
     {
+      "id": "tree-stump",
+      "label": "Baumstrunk",
+      "sheet": "expansion-woodland-places",
+      "index": 3,
+      "column": 3,
+      "row": 0,
+      "sourceRect": {
+        "x": 960,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "trousers",
       "label": "Hose",
       "sheet": "words-one",
@@ -4804,6 +7090,22 @@
       "usedBy": []
     },
     {
+      "id": "umbrella",
+      "label": "Regenschirm",
+      "sheet": "expansion-seasons-weather",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "unicorn",
       "label": "unicorn",
       "sheet": "creatures",
@@ -4819,6 +7121,22 @@
       "tokens": [
         "🦄"
       ],
+      "usedBy": []
+    },
+    {
+      "id": "violet-flower",
+      "label": "Veilchen",
+      "sheet": "expansion-woodland-trees",
+      "index": 13,
+      "column": 1,
+      "row": 3,
+      "sourceRect": {
+        "x": 320,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
       "usedBy": []
     },
     {
@@ -5198,6 +7516,38 @@
       ]
     },
     {
+      "id": "walking-stick",
+      "label": "Wanderstock",
+      "sheet": "expansion-woodland-equipment",
+      "index": 14,
+      "column": 2,
+      "row": 3,
+      "sourceRect": {
+        "x": 640,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "walnut",
+      "label": "Baumnuss",
+      "sheet": "expansion-garden-harvest",
+      "index": 14,
+      "column": 2,
+      "row": 3,
+      "sourceRect": {
+        "x": 640,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "water",
       "label": "water",
       "sheet": "discovery",
@@ -5276,6 +7626,246 @@
       "usedBy": [
         "friends-bird"
       ]
+    },
+    {
+      "id": "wheelbarrow",
+      "label": "Schubkarre",
+      "sheet": "expansion-woodland-equipment",
+      "index": 2,
+      "column": 2,
+      "row": 0,
+      "sourceRect": {
+        "x": 640,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "willow-leaf",
+      "label": "Weidenblatt",
+      "sheet": "expansion-woodland-finds",
+      "index": 4,
+      "column": 0,
+      "row": 1,
+      "sourceRect": {
+        "x": 0,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "willow-tree",
+      "label": "Weide",
+      "sheet": "expansion-woodland-trees",
+      "index": 3,
+      "column": 3,
+      "row": 0,
+      "sourceRect": {
+        "x": 960,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "wind-leaves",
+      "label": "Wind",
+      "sheet": "expansion-seasons-weather",
+      "index": 13,
+      "column": 1,
+      "row": 3,
+      "sourceRect": {
+        "x": 320,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "wood-sorrel",
+      "label": "Sauerklee",
+      "sheet": "expansion-woodland-trees",
+      "index": 11,
+      "column": 3,
+      "row": 2,
+      "sourceRect": {
+        "x": 960,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "wooden-chair",
+      "label": "Stuhl",
+      "sheet": "expansion-picnic-home",
+      "index": 10,
+      "column": 2,
+      "row": 2,
+      "sourceRect": {
+        "x": 640,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "wooden-key",
+      "label": "Schlüssel",
+      "sheet": "expansion-picnic-home",
+      "index": 12,
+      "column": 0,
+      "row": 3,
+      "sourceRect": {
+        "x": 0,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "wooden-plate",
+      "label": "Teller",
+      "sheet": "expansion-picnic-home",
+      "index": 4,
+      "column": 0,
+      "row": 1,
+      "sourceRect": {
+        "x": 0,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "woodland-bench",
+      "label": "Waldbank",
+      "sheet": "expansion-woodland-places",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 320,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "woodland-bridge",
+      "label": "Holzbrücke",
+      "sheet": "expansion-woodland-places",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "woodland-gate",
+      "label": "Gartentor",
+      "sheet": "expansion-woodland-places",
+      "index": 14,
+      "column": 2,
+      "row": 3,
+      "sourceRect": {
+        "x": 640,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "woodlouse",
+      "label": "Assel",
+      "sheet": "expansion-meadow-pond",
+      "index": 6,
+      "column": 2,
+      "row": 1,
+      "sourceRect": {
+        "x": 640,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "woodpecker-peck",
+      "label": "Specht klopft",
+      "sheet": "expansion-woodland-actions",
+      "index": 10,
+      "column": 2,
+      "row": 2,
+      "sourceRect": {
+        "x": 640,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "woolly-hat",
+      "label": "Wollmütze",
+      "sheet": "expansion-seasons-weather",
+      "index": 4,
+      "column": 0,
+      "row": 1,
+      "sourceRect": {
+        "x": 0,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "woolly-sock",
+      "label": "Wollsocke",
+      "sheet": "expansion-seasons-weather",
+      "index": 5,
+      "column": 1,
+      "row": 1,
+      "sourceRect": {
+        "x": 320,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
     },
     {
       "id": "words",
