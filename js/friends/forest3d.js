@@ -345,9 +345,11 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   function placeCamera(k) { const base = narrow ? [0, 10, 14.4] : [0, 9, 14], e = shotK(), z = zoomUser * zoomAuto * lerp(1, .58, e), ck = caveEase(), off = [0, lerp(base[1] * z * lerp(1, .82, e), 2.7 * zoomUser, ck), lerp(base[2] * z, (narrow ? 7.4 : 6.6) * zoomUser, ck)]; camera.position.lerp(new THREE.Vector3(focus.x + off[0], focus.y + off[1], focus.z + off[2]), k); if (ck < .98) camera.position.y = Math.max(camera.position.y, WORLD.ground(camera.position.x, camera.position.z) + lerp(3.5, 1.4, ck)); camera.lookAt(focus.x, focus.y + lerp(1.4, 1.25, ck), focus.z - lerp(3.2, 2.4, ck)); camera.updateMatrixWorld(); foxView.value.set(pos.x, groundY(pos.x, pos.z) + .9, pos.z).applyMatrix4(camera.matrixWorldInverse); fill.position.copy(camera.position).add(new THREE.Vector3(0, 4, 0)); fill.target.position.copy(focus); fill.target.updateMatrixWorld(); horizon.position.set(camera.position.x, camera.position.y - 4, camera.position.z - 20); }
   function publishMailPosition() { const p = forestPlaces.mailman; p.x = mailPos.x; p.z = mailPos.z; p.pu = THREE.MathUtils.clamp(.5 + mailPos.x * .023, .07, .93); p.pv = THREE.MathUtils.clamp(.49 + mailPos.z * .025, .1, .9); }
   function summonMailman() {
-    let chosen = null; for (const radius of [5.4, 6, 6.6, 7.2]) { for (let i = 0; i < 32; i++) { const a = -.5 + i / 32 * TAU, candidate = new THREE.Vector3(pos.x + Math.cos(a) * radius, 0, pos.z + Math.sin(a) * radius); if (walkable(candidate.x, candidate.z) && clear(pos, candidate, true)) { chosen = candidate; break; } } if (chosen) break; }
-    // A bend or a narrow crossing may need a routed approach instead of a straight one.
-    if (!chosen) for (const radius of [5.4, 6.6, 8]) { for (let i = 0; i < 16; i++) { const a = i / 16 * TAU, candidate = nearestWalkable(new THREE.Vector3(pos.x + Math.cos(a) * radius, 0, pos.z + Math.sin(a) * radius)), distance = candidate.distanceTo(pos); if (distance >= 4.5 && distance <= 9 && plan(candidate)) { chosen = candidate; break; } } if (chosen) break; }
+    // He stands a short walk away (10–13 m), preferably ahead of Fuchs where the camera sees him (north), on a straight
+    // clear way; a bend or a narrow crossing may need a routed approach instead.
+    const ANGLES = Array.from({length: 32}, (_, i) => -Math.PI / 2 + (i % 2 ? 1 : -1) * Math.ceil(i / 2) * TAU / 32);
+    let chosen = null; for (const radius of [11, 12, 10, 13]) { for (const a of ANGLES) { const candidate = new THREE.Vector3(pos.x + Math.cos(a) * radius, 0, pos.z + Math.sin(a) * radius); if (walkable(candidate.x, candidate.z) && clear(pos, candidate, true)) { chosen = candidate; break; } } if (chosen) break; }
+    if (!chosen) for (const radius of [11, 13, 10]) { for (const a of ANGLES.filter((_, i) => i % 2 === 0)) { const candidate = nearestWalkable(new THREE.Vector3(pos.x + Math.cos(a) * radius, 0, pos.z + Math.sin(a) * radius)), distance = candidate.distanceTo(pos); if (distance >= 9 && distance <= 15 && plan(candidate)) { chosen = candidate; break; } } if (chosen) break; }
     if (chosen) mailPos.copy(chosen);
     courierGoal = null; courierPath = []; courierWait = 20; publishMailPosition(); courier.position.set(mailPos.x, groundY(mailPos.x, mailPos.z), mailPos.z); guidePoints = []; guideNext = 0;
   }
@@ -571,7 +573,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     mailTarget(id) { const was = guideTarget; guideTarget = forestPlaces[id] ? id : null; guidePoints = []; guideNext = 0;
       // a new letter is ready: the mailman whistles once from where he is, then comes over
       if (id === 'mailman' && was !== 'mailman') { sound.cues.push({type: 'whistle', pan: THREE.MathUtils.clamp((mailPos.x - pos.x) / 10, -.9, .9)}); if (sound.cues.length > 4) sound.cues.shift(); }
-      if (id === 'mailman' && mailPos.distanceTo(pos) > 9) summonMailman(); }, summonMailman,
+      if (id === 'mailman' && mailPos.distanceTo(pos) > 15) summonMailman(); }, summonMailman,
     pick(x, y) {
       raycaster.setFromCamera(new THREE.Vector2(x, y), camera);
       if (raycaster.intersectObject(courier, true).length) { courierGoal = null; courierPath = []; courierWait = 20; if (mailPos.distanceTo(pos) < 3.2) onAction('mailman'); else walkTo(mailPos.clone(), 'mailman'); return; }
