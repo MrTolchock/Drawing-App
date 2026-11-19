@@ -26,8 +26,8 @@
   }
 
   // A closed context, or one whose clock stopped although it says "running" (WebKit after an interruption), is
-  // silent for good: drop it so the next tap builds a new one.
-  let lastClock = -1, lastCheck = 0;
+  // silent for good: discard it so the next tap builds a new one.
+  let lastClock = -1, lastCheck = 0, waking = 0;
   function healthy() {
     if (!ac) return false;
     if (ac.state === 'closed') return false;
@@ -36,14 +36,17 @@
     if (ac.currentTime !== lastClock) { lastClock = ac.currentTime; lastCheck = now; return true; }
     return now - lastCheck < 1500;
   }
-  function drop() {
+  // Not named drop(): the water-drop sound below has that name, and the later declaration would replace this one.
+  // ensure() then called the sound, which called ensure() again until the stack overflowed, so every sound and
+  // every puzzle answer (its tap plays a sound first) failed after iOS stopped the context.
+  function discard() {
     if (scribble) { try { scribble.s.stop(); } catch (e) { /* already stopped */ } scribble = null; }
     if (ac && ac.state !== 'closed') ac.close().catch(() => {});
-    ac = null; master = null; lastClock = -1;
+    ac = null; master = null; lastClock = -1; waking = 0;
   }
 
   function ensure() {
-    if (ac && !healthy()) drop();
+    if (ac && !healthy()) discard();
     if (ac) return ac;
     const AC = window.AudioContext || window.webkitAudioContext;
     if (!AC) return null;
@@ -68,9 +71,13 @@
 
   // iOS starts audio only from touchend/click. Called from those events (see app.js). Also wakes a context that
   // iOS suspended or "interrupted" (screen lock, a call, Siri, other audio, speech), which never resumes by itself.
+  // One that still has not started two seconds after a tap asked it to is replaced on the next tap.
   function unlock() {
+    if (ac && ac.state !== 'running' && waking && performance.now() - waking > 2000) discard();
     const c = ensure();
-    if (!c || c.state === 'running') return;
+    if (!c) return;
+    if (c.state === 'running') { waking = 0; return; }
+    if (!waking) waking = performance.now();
     c.resume().catch(() => {});
     try {
       const b = c.createBuffer(1, 1, 22050);
@@ -239,6 +246,12 @@
       try { s.stop(ac.currentTime + 0.25); } catch (e) { /* already stopped */ }
     },
   };
+  // Sounds are feedback only. A Web Audio failure must never stop the button, answer or puzzle that plays one.
+  for (const [name, play] of Object.entries(FK.sound)) {
+    FK.sound[name] = function () {
+      try { return play.apply(this, arguments); } catch (e) { return undefined; }
+    };
+  }
 
   if (FK.on) {
     FK.on('settings', e => {
