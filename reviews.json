@@ -17760,6 +17760,15 @@
       "at": "2026-11-19T20:29:41.846Z",
       "seen": true,
       "operation": "6af92c76-d0cc-471b-bf96-e012776122d3"
+    },
+    "picnic/4-5@fe53de02972a7456": {
+      "key": "picnic/4-5",
+      "revision": "fe53de02972a7456",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-19T20:29:55.846Z",
+      "seen": true,
+      "operation": "b474ee8b-0859-4610-8b7a-f4df6afc9ee7"
     }
   },
   "history": [
