@@ -139,6 +139,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     { const ck = caveEase(); if (ck > 0) { sun.intensity *= 1 - .9 * ck; hemi.intensity *= 1 - .58 * ck; fill.intensity *= 1 + .5 * ck; skyU.top.value.multiplyScalar(1 - ck); skyU.horizon.value.multiplyScalar(1 - ck); skyU.glow.value *= 1 - ck; }
       fill.color.copy(FILL).lerp(CAVE_FILL, ck); horizon.visible = ck < .97; r *= 1 - ck;
       caveLight.time.value = reduced ? 0 : time; caveLight.day.value.copy(todBase.sun).multiplyScalar(todBase.si / 2.6 * (1 - .55 * w.rain)); }
+    sound.storm = w.rain;
     sound.rain = r;
     sound.fresh = w.fresh;
     sound.dusk = dusk();

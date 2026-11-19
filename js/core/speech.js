@@ -6,6 +6,8 @@
   const synth = window.speechSynthesis;
   let active = null, last = null;
 
+  // Web Speech supplies names and languages but no standard gender field.
+  const female = v => /\b(female|weiblich|anna|amelie|petra|helena|hedda|katja|amala|seraphina|ingrid|liesl|vicki|marlene|birgit|gunda|elke)(?:Neural)?\b/i.test(v?.name || '');
   function voice() {
     const voices = (synth?.getVoices() || []).filter(v =>
       /^de(?:[-_]|$)/i.test(v.lang) && (navigator.onLine !== false || v.localService !== false));
@@ -13,7 +15,7 @@
       let rating = /^de[-_]CH\b/i.test(v.lang) ? 8 : 0;
       if (/premium|enhanced|natural|neural|wavenet|studio|siri/i.test(v.name)) rating += 4;
       if (/compact|espeak|mbrola|festival|pico/i.test(v.name)) rating -= 6;
-      return rating + (v.localService ? 2 : 0) + (v.default ? .5 : 0);
+      return (female(v) ? 30 : 0) + rating + (v.localService ? 2 : 0) + (v.default ? .5 : 0);
     }
     return voices.sort((a, b) => score(b) - score(a))[0] || null;
   }
@@ -125,7 +127,7 @@
       }
       next();
     }
-    if (clip && (!native || !/^de[-_]CH\b/i.test(selected?.lang || '') ||
+    if (clip && (!native || !female(selected) ||
         /espeak|mbrola|festival|pico/i.test(selected.name))) playClip();
     else if (native) read();
     else finish(request, 'error');

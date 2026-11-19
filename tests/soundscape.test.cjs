@@ -96,3 +96,16 @@ test('the den has its own quiet sounds: the tree creaks, earth trickles, paws pa
   assert.equal(sleep.of('step').length, 0, 'no paws in his sleep');
   assert.ok(sleep.of('call').length < (await play({indoors: true}, 5)).of('call').length, 'the birds are quieter while he sleeps');
 });
+
+test('at night meadow crickets and swamp frogs replace the daylight chorus, while the cave shelters both', async () => {
+  for (const [biome, kind] of [['meadow', 'cricket'], ['swamp', 'frog']]) {
+    const run = await play({...WOOD, [biome]: 1, dusk: 1});
+    assert.ok(run.events.some(e => e.kind === kind));
+    assert.ok(run.events.filter(e => e.type === 'call').every(e => ['owl', 'frog', 'cricket'].includes(e.kind)));
+  }
+  const hill = {...WOOD, rock: 1, brook: 1, dusk: 1};
+  assert.ok((await play(hill, 1)).beds.every(b => b.wind > 0));
+  const cave = await play({...hill, cave: 1}, 1);
+  assert.ok(cave.beds.every(b => b.wind === 0 && b.brook === 0));
+  assert.ok(cave.of('drip').length && !cave.of('call').length);
+});

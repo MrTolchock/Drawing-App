@@ -95,6 +95,13 @@ export const voices = {
     for (let k = 0; k < 4; k++) t = syllable(ctx, out, {t, dur: .04, path: [[0, f * (.7 + k * .08)], [1, f * (.78 + k * .08)]], gain: .014}) + .01; return t; },
   // Eichelhäher, now and then and far: a hoarse screech
   jay(ctx, out, t, noise) { for (let k = Math.floor(r(1, 3)); k > 0; k--) { for (let p = 0; p < 7; p++) hiss(ctx, out, noise, {t: t + p * .028, dur: .03, gain: .09 * (1 - p / 9), f: r(1700, 2400), q: 2.5, attack: .003}); t += .45; } return t; },
+  owl(ctx, out, t) {
+    const f = r(325, 405);
+    for (const [offset, dur] of [[0, .19], [.37, .65]]) {
+      syllable(ctx, out, {t: t + offset, dur, path: [[0, f * .9], [.35, f], [1, f * .86]], gain: .085, attack: .06});
+    }
+    return t + 1.1;
+  },
   // Frosch: two to four short, purring croaks
   frog(ctx, out, t) { const f = r(430, 560);
     for (let k = Math.floor(r(2, 5)); k > 0; k--) { const dur = r(.2, .3); for (let p = 0; p * .036 < dur; p++) tone(ctx, out, {t: t + p * .036, dur: .03, f: f * (1 + .25 * Math.sin(p * .5)), f1: f * .8, gain: .06, attack: .004, harm: .3}); t += dur + r(.16, .3); }
@@ -241,6 +248,10 @@ export function createAudio(settings, environment = () => null) {
   const level = (value = 0) => { const g = ctx.createGain(); g.gain.value = value; return g; };
   const chain = (...nodes) => { for (let i = 0; i < nodes.length - 1; i++) nodes[i].connect(nodes[i + 1]); return nodes; };
   function buildBeds(brown, white) {
+    const wind = level(), grass = level(), reeds = level();
+    chain(loop(brown, .82), filter('bandpass', 460, .65), wind, room);
+    chain(loop(white, .76), filter('bandpass', 3200, .65), grass, room);
+    chain(loop(brown, 1.24), filter('bandpass', 1250, 1.6), reeds, room);
     const leaves = {synthetic: level(1), tone: filter('bandpass', 3400, .5), out: level()}; chain(loop(white, .87), filter('highpass', 1500, .4), leaves.tone, leaves.synthetic, leaves.out, room);
     const brook = {synthetic: level(1), pan: ctx.createStereoPanner?.(), bands: [[700, 2.2, 1], [1750, 1.6, .7], [2900, 1.2, .35]].map(([f, q, g]) => ({f, node: filter('bandpass', f, q), g: level(g)})), out: level()}, water = loop(white, 1.19);
     for (const b of brook.bands) chain(water, b.node, b.g, brook.synthetic);
@@ -263,9 +274,12 @@ export function createAudio(settings, environment = () => null) {
         bed.synthetic.gain.setTargetAtTime(.18, ctx.currentTime, .45);
       }).catch(() => {});
     }
-    return {leaves, brook, falls, rain};
+    return {leaves, brook, falls, rain, wind, grass, reeds};
   }
-  function setBeds(b) { const t = ctx.currentTime, to = (param, value, tc = .5) => param.setTargetAtTime(value, t, tc); to(beds.rain.out.gain, .055 * rainNow ** 1.4, 1.5);
+  function setBeds(b) { const t = ctx.currentTime, to = (param, value, tc = .5) => param.setTargetAtTime(value, t, tc); to(beds.rain.out.gain, .125 * rainNow ** 1.35 * (.78 + .4 * b.gust), 1.5);
+    to(beds.wind.gain, .85 * b.wind, .8);
+    to(beds.grass.gain, .045 * b.grass, .45);
+    to(beds.reeds.gain, .36 * b.reeds, .6);
     to(beds.leaves.out.gain, .11 * b.leaves, .22); to(beds.leaves.tone.frequency, 2500 + 1900 * b.bright, 1.5);
     if (beds.brook.pan) to(beds.brook.pan.pan, b.brookPan * .75, .45);
     to(beds.brook.out.gain, .5 * b.brook ** 1.5, .5); for (const band of beds.brook.bands) to(band.node.frequency, band.f * r(.84, 1.18), .12);   // the bands wander: babbling
@@ -291,11 +305,12 @@ export function createAudio(settings, environment = () => null) {
   /* The patter: single drops on leaves (short, bright, each a little different), now and then a heavier drip
      from a branch. Up to about thirty a second in a full shower, scattered left, centre and right. */
   let rainNow = 0;
-  function rainDrops(rain, span) {
+  function rainDrops(rain, span, here) {
     if (rain < .02) return; const t0 = ctx.currentTime + .02;
     for (let n = Math.floor(rain * 30 * span + Math.random()); n > 0; n--) { const t = t0 + Math.random() * span, bus = beds.rain.pans[Math.floor(Math.random() * 3)], v = (.25 + .75 * Math.random()) * rain;
-      if (Math.random() < .07) { const f = r(700, 1300); tone(ctx, bus, {t, dur: .06, f, f1: f * r(1.5, 2.2), gain: .03 * v, attack: .004}); }
-      else hiss(ctx, bus, noise, {t, dur: r(.008, .02), gain: .07 * v, f: r(2200, 6500), q: r(1.5, 4), attack: .001}); }
+      const water = here.swamp || 0, open = here.meadow || 0;
+      if (Math.random() < .06 + .36 * water) { const f = r(490, 1050); tone(ctx, bus, {t, dur: .06, f, f1: f * r(1.5, 2.2), gain: .03 * v, attack: .004}); }
+      else hiss(ctx, bus, noise, {t, dur: r(.014, .044), gain: .08 * v, f: r(1650, 4700) * (1 - .35 * open), f1: r(700, 1500), q: r(.65, 1.65), attack: .001}); }
   }
   // Speech ducks the wood. Some browsers (iOS) never report the end of an utterance, or keep one pending for ever;
   // then the wood comes back by itself once the voice is quiet, and after a minute at most.
@@ -310,7 +325,7 @@ export function createAudio(settings, environment = () => null) {
     watchClock(now); const s = settings();
     const here = environment() || {}, {beds: b, events} = director.step(ctx.currentTime, {...here, indoors: inside()});
     rainNow = (here.rain || 0) * (1 - (here.snow || 0)); if (!s.ambience) { here.cues?.splice(0); return; }
-    setBeds(b); for (const e of events) play(e); rainDrops(rainNow, .1);
+    setBeds(b); for (const e of events) play(e); rainDrops(rainNow, .1, here);
     if (here.cues?.length) for (const c of here.cues.splice(0)) cue(c);
   }
   function teardown() { clearInterval(timer); timer = null; sources.forEach(s => { try { s.stop(); } catch { /* already stopped */ } }); sources = []; const old = ctx; ctx = null; beds = null; birds = null; foliage = null; if (old && old.state !== 'closed') old.close().catch(() => {}); if (old) old.onstatechange = null; }

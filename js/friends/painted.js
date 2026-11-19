@@ -153,7 +153,7 @@ export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,o
     fox.position.copy(foxPos);foxRig.update(dt,{moving,speed,reduced});denSound.moving=moving;denSound.speed=speed;}
   let denFrame=0;
   // What the den sounds like (js/friends/audio.js): Fuchs' paws while he potters, what he does in a treat, his sleep.
-  const denSound={cues:[],moving:false,speed:0};
+  const denSound={dusk:0,cues:[],moving:false,speed:0};
   function denCue(at,type){if(anim.elapsed>=at&&!anim.cued.has(at)){anim.cued.add(at);denSound.cues.push({type,pan:-.1});if(denSound.cues.length>4)denSound.cues.shift();}}
   function frame(now){raf=requestAnimationFrame(frame);const elapsed=Math.max(0,(now-last)/1000),dt=Math.min(.25,elapsed);last=now;
     perf.frame(elapsed*1000,now,!document.hidden&&!lost&&(!paused||!!anim));
@@ -174,7 +174,7 @@ export function createPaintedWorld(canvas,{position,onPosition,onNear,onAction,o
     onProject((pinList[area]||[]).map(p=>({id:p.id,...project(p.point)})));
   }
   setArea('den');raf=requestAnimationFrame(frame);
-  return {setArea(next){setArea(next);},get soundscape(){const w=weather.state;if(area!=='forest')return {ground:'den',trees:.5,moving:!paused&&!anim&&denSound.moving,speed:denSound.speed,sleeping:anim?.item==='sleep',cues:denSound.cues,rain:w.rain,fresh:w.fresh};if(paused)return null;return forest.soundscape;},route(id){if(area==='forest')forest.route(id);},visit(id,toward){if(area==='forest')forest.visit(id,toward);},frame(id){return area==='forest'?forest.frame(id):0;},timeOfDay(v,snap){forest.timeOfDay(v,snap);},mailTarget(id){forest.mailTarget(id);},summonMailman(){forest.summonMailman();},get mailman(){return forest.mailman;},pause(value){paused=value;if(value){blur();if(area==='forest')onPosition(forest.position.x,forest.position.z,forest.region);}},
+  return {setArea(next){setArea(next);},get soundscape(){const w=weather.state;if(area!=='forest')return {ground:'den',dusk:denSound.dusk,trees:.5,moving:!paused&&!anim&&denSound.moving,speed:denSound.speed,sleeping:anim?.item==='sleep',cues:denSound.cues,rain:w.rain,fresh:w.fresh};if(paused)return null;return forest.soundscape;},route(id){if(area==='forest')forest.route(id);},visit(id,toward){if(area==='forest')forest.visit(id,toward);},frame(id){return area==='forest'?forest.frame(id):0;},timeOfDay(v,snap){denSound.dusk=THREE.MathUtils.smoothstep(v,.62,1);forest.timeOfDay(v,snap);},mailTarget(id){forest.mailTarget(id);},summonMailman(){forest.summonMailman();},get mailman(){return forest.mailman;},pause(value){paused=value;if(value){blur();if(area==='forest')onPosition(forest.position.x,forest.position.z,forest.region);}},
     steer(x,z){stick={x,z};if(!x&&!z&&area==='forest')onPosition(forest.position.x,forest.position.z,forest.region);},
     sequence(item,{hold=false}={}){anim={item,elapsed:0,hold,cued:new Set()};denSound.moving=false;idle.target=null;fox.rotation.set(0,.35,0);foxPos.copy(item==='sleep'?ground(bedSpot.u,bedSpot.v):spots[0]);fox.position.copy(foxPos);if(item==='sleep'){fox.scale.setScalar(sleepH/denH);fox.rotation.set(-.12,.2,0);foxRig.update(0,{action:'sleep',reduced:window.FK.reduced});fitSleepingFox();}},
     skip(){anim=null;finishProps();foxPos.copy(spots[0]);fox.position.copy(foxPos);},

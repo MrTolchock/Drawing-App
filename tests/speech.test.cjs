@@ -81,3 +81,16 @@ test('every current puzzle instruction has an exact recording in the installed g
     assert.ok(fs.existsSync(path.join(root, file)) && worker.includes("'./"+file+"'"), file);
   }
 });
+
+test('a female German reader wins over a male Swiss default, with a recorded fallback for fixed text', () => {
+  const male = {lang:'de-CH',name:'Martin',default:true,localService:true};
+  const female = {lang:'de-DE',name:'Microsoft Katja',localService:true};
+  const native = fixture([male, female]);
+  native.voice.explain(native.rule);
+  assert.equal(native.spoken[0].voice, female);
+  native.voice.cancel();
+  const offline = fixture([male], false);
+  offline.voice.explain(offline.rule);
+  assert.equal(offline.clips.length, 1);
+  offline.voice.cancel();
+});
