@@ -1,0 +1,81 @@
+{
+  "format": "waldpost-illustration-atlas",
+  "version": 1,
+  "source": "sources/expansion-two-2026-11-19/expansion-woodland-crafts.png",
+  "output": "../../assets/waldatelier/expansion-woodland-crafts.webp",
+  "columns": 4,
+  "rows": 4,
+  "cellPixels": 320,
+  "subjectPixels": 256,
+  "alphaThresholdPercent": 8,
+  "provenance": {
+    "date": "2026-11-19",
+    "tool": "ChatGPT image_gen.imagegen",
+    "sourceSha256": "b4a3a34a20fcbef6bc4ac77f6cf799b9f55d513065542fc9f0dae0a1f25cad84",
+    "generationRecord": "../artwork/generation-records/expansion-woodland-crafts-2026-11-19.json",
+    "styleContract": "style.json",
+    "forwardPrompt": "prompts/expansion-woodland-crafts.txt"
+  },
+  "subjects": [
+    {
+      "id": "wooden-button",
+      "label": "Holzknopf"
+    },
+    {
+      "id": "thread-spool",
+      "label": "Fadenspule"
+    },
+    {
+      "id": "yarn-ball",
+      "label": "Wollknäuel"
+    },
+    {
+      "id": "knitting-needles",
+      "label": "Stricknadeln"
+    },
+    {
+      "id": "crochet-hook",
+      "label": "Häkelnadel"
+    },
+    {
+      "id": "craft-scissors",
+      "label": "Bastelschere"
+    },
+    {
+      "id": "paintbrush",
+      "label": "Pinsel"
+    },
+    {
+      "id": "glue-pot",
+      "label": "Leimtopf"
+    },
+    {
+      "id": "wooden-ruler",
+      "label": "Lineal"
+    },
+    {
+      "id": "kite",
+      "label": "Drachen zum Spielen"
+    },
+    {
+      "id": "spinning-top",
+      "label": "Kreisel"
+    },
+    {
+      "id": "wooden-whistle",
+      "label": "Holzpfeife"
+    },
+    {
+      "id": "xylophone",
+      "label": "Xylophon"
+    },
+    {
+      "id": "woven-mat",
+      "label": "Geflochtene Matte"
+    },
+    {
+      "id": "fabric-pouch",
+      "label": "Stoffbeutel"
+    }
+  ]
+}

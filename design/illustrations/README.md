@@ -15,9 +15,11 @@ node tools/illustrations/style.cjs --request layout-repair
 
 The JSON output contains the complete prompt, absolute paths of the actual reference images, and `transparent_background`. Supply these to the available image-generation/editing service. It is a local request-preparation tool, not an image model or service client. Keep the two canonical images first when adding a current edit target. No archived artwork is a generation-style input.
 
-Every existing atlas has a specific request with the same ID as the sheet, including the older vocabulary, animal and menu sheets. The [complete generator-input index](../artwork/GENERATOR-INPUTS.md) lists all 29 and supplies portable full requests for any AI model. Use `subject-sheet` only as a template for new subjects; `layout-repair` and `transparency-repair` need an explicit current target. Read the subject/layout brief, fill any generic placeholders and regenerate complete prompts before use. Change subjects/layout in `briefs/`, not the generated `prompts/` files. Every request retains the current style and final style-priority instruction.
+Every existing atlas has a specific request with the same ID as the sheet, including the older vocabulary, animal and menu sheets. The [complete generator-input index](../artwork/GENERATOR-INPUTS.md) lists all 39 and supplies portable full requests for any AI model. Use `subject-sheet` only as a template for new subjects; `layout-repair` and `transparency-repair` need an explicit current target. Read the subject/layout brief, fill any generic placeholders and regenerate complete prompts before use. Change subjects/layout in `briefs/`, not the generated `prompts/` files. Every request retains the current style and final style-priority instruction.
 
 The [150-picture woodland expansion](EXPANSION-2026-11-19.md) adds ten reusable sets for later puzzles, with German labels, stable IDs and complete source records.
+
+A [second 150-picture expansion](EXPANSION-TWO-2026-11-19.md) adds birds, mammals, undergrowth, flowers, produce, crafts, play, kitchen tools, household objects and animal behaviours. The library now has 540 pictures.
 
 ## Prepare and integrate
 
@@ -30,6 +32,8 @@ node tools/illustrations/pack-atlas.cjs design/illustrations/forest-actions.json
 Manifest source/output paths are relative to the manifest. `--output` is relative to the working directory; `--icc-profile`, `WALDPOST_SRGB_PROFILE` and `WALDPOST_MAGICK` override local tool/profile locations. Packing finds subject bounds above the recorded alpha threshold, preserves aspect ratio and edge alpha, centres each picture and writes a profiled lossless WebP. Current sheets use 320 px cells and 256 px subject bounds; unused trailing cells stay transparent. A single registered subject uses a 2 × 2 atlas to preserve the renderer's grid contract.
 
 Set `sourceCellPixels` when the generator supplies fewer trailing rows than the output grid. Each declared subject still has a complete square source cell. The packer fills the unused output cells with transparency.
+
+For a source sheet whose complete drawings cross an imaginary grid line, a manifest may supply optional `sourceRects`, keyed by stable subject ID. Each rectangle uses integer source-pixel `x`, `y`, `width` and `height` within the actual PNG. Select crop boundaries in empty alpha gutters so the whole subject is retained without neighbouring fragments. Unlisted subjects keep the existing equal-cell crop. Cropping preserves the original painted pixels before the normal proportional resize; it does not repair a missing part or semantic drawing error. The final runtime grid and all existing cells remain unchanged.
 
 Inspect every picture against its intended answer and canonical references. Register ordered IDs and any grid override in `js/ui/waldatelier.js`, preserve accessible labels and exact quantities, and add new runtime dependencies to `sw.js`. Runtime art changes require app/cache version updates, generated fingerprints and normal adult review.
 

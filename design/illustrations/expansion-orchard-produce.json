@@ -1,0 +1,81 @@
+{
+  "format": "waldpost-illustration-atlas",
+  "version": 1,
+  "source": "sources/expansion-two-2026-11-19/expansion-orchard-produce-cutout.png",
+  "output": "../../assets/waldatelier/expansion-orchard-produce.webp",
+  "columns": 4,
+  "rows": 4,
+  "cellPixels": 320,
+  "subjectPixels": 256,
+  "alphaThresholdPercent": 8,
+  "provenance": {
+    "date": "2026-11-19",
+    "tool": "ChatGPT image_gen.imagegen",
+    "sourceSha256": "dd6603f5a54ed6528ebd8eb38e93253af40775b7d4b96f2b06271900ee1442ab",
+    "generationRecord": "../artwork/generation-records/expansion-orchard-produce-cutout-2026-11-19.json",
+    "styleContract": "style.json",
+    "forwardPrompt": "prompts/expansion-orchard-produce.txt"
+  },
+  "subjects": [
+    {
+      "id": "peach",
+      "label": "Pfirsich"
+    },
+    {
+      "id": "orange-fruit",
+      "label": "Orange"
+    },
+    {
+      "id": "mandarin",
+      "label": "Mandarine"
+    },
+    {
+      "id": "quince",
+      "label": "Quitte"
+    },
+    {
+      "id": "fig",
+      "label": "Feige"
+    },
+    {
+      "id": "gooseberry",
+      "label": "Stachelbeere"
+    },
+    {
+      "id": "redcurrant-sprig",
+      "label": "Johannisbeeren"
+    },
+    {
+      "id": "blackcurrant-sprig",
+      "label": "Schwarze Johannisbeeren"
+    },
+    {
+      "id": "elderberry-sprig",
+      "label": "Holunderbeeren"
+    },
+    {
+      "id": "rowan-sprig",
+      "label": "Vogelbeeren"
+    },
+    {
+      "id": "juniper-berry",
+      "label": "Wacholderbeere"
+    },
+    {
+      "id": "sloe",
+      "label": "Schlehe"
+    },
+    {
+      "id": "sweetcorn",
+      "label": "Maiskolben"
+    },
+    {
+      "id": "broccoli",
+      "label": "Broccoli"
+    },
+    {
+      "id": "cauliflower",
+      "label": "Blumenkohl"
+    }
+  ]
+}

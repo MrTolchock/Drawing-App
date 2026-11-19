@@ -1,0 +1,81 @@
+{
+  "format": "waldpost-illustration-atlas",
+  "version": 1,
+  "source": "sources/expansion-two-2026-11-19/expansion-undergrowth-cutout.png",
+  "output": "../../assets/waldatelier/expansion-undergrowth.webp",
+  "columns": 4,
+  "rows": 4,
+  "cellPixels": 320,
+  "subjectPixels": 256,
+  "alphaThresholdPercent": 8,
+  "provenance": {
+    "date": "2026-11-19",
+    "tool": "ChatGPT image_gen.imagegen",
+    "sourceSha256": "afcb85eff85ef3d171f106019d6e3fcb86e94e8eeb00cc672a40adb3d5031472",
+    "generationRecord": "../artwork/generation-records/expansion-undergrowth-cutout-2026-11-19.json",
+    "styleContract": "style.json",
+    "forwardPrompt": "prompts/expansion-undergrowth.txt"
+  },
+  "subjects": [
+    {
+      "id": "chanterelle",
+      "label": "Eierschwamm"
+    },
+    {
+      "id": "porcini",
+      "label": "Steinpilz"
+    },
+    {
+      "id": "morel",
+      "label": "Morchel"
+    },
+    {
+      "id": "parasol-mushroom",
+      "label": "Parasol"
+    },
+    {
+      "id": "puffball",
+      "label": "Stäubling"
+    },
+    {
+      "id": "bracket-fungus",
+      "label": "Baumpilz"
+    },
+    {
+      "id": "shaggy-inkcap",
+      "label": "Schopftintling"
+    },
+    {
+      "id": "saffron-milkcap",
+      "label": "Edelreizker"
+    },
+    {
+      "id": "lichen-twig",
+      "label": "Flechte"
+    },
+    {
+      "id": "bramble-sprig",
+      "label": "Brombeerzweig"
+    },
+    {
+      "id": "nettle",
+      "label": "Brennnessel"
+    },
+    {
+      "id": "burdock",
+      "label": "Klette"
+    },
+    {
+      "id": "thistle",
+      "label": "Distel"
+    },
+    {
+      "id": "bluebell",
+      "label": "Hasenglöckchen"
+    },
+    {
+      "id": "wild-garlic",
+      "label": "Bärlauch"
+    }
+  ]
+}

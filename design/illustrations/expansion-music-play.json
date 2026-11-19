@@ -1,0 +1,81 @@
+{
+  "format": "waldpost-illustration-atlas",
+  "version": 1,
+  "source": "sources/expansion-two-2026-11-19/expansion-music-play.png",
+  "output": "../../assets/waldatelier/expansion-music-play.webp",
+  "columns": 4,
+  "rows": 4,
+  "cellPixels": 320,
+  "subjectPixels": 256,
+  "alphaThresholdPercent": 8,
+  "provenance": {
+    "date": "2026-11-19",
+    "tool": "ChatGPT image_gen.imagegen",
+    "sourceSha256": "cbb2e7913458dd04af7420db1751f15813be4267cfead76710a60bb29b660d7a",
+    "generationRecord": "../artwork/generation-records/expansion-music-play-2026-11-19.json",
+    "styleContract": "style.json",
+    "forwardPrompt": "prompts/expansion-music-play.txt"
+  },
+  "subjects": [
+    {
+      "id": "recorder",
+      "label": "Blockflöte"
+    },
+    {
+      "id": "tambourine",
+      "label": "Tamburin"
+    },
+    {
+      "id": "musical-triangle",
+      "label": "Triangel"
+    },
+    {
+      "id": "maraca",
+      "label": "Rassel"
+    },
+    {
+      "id": "harmonica",
+      "label": "Mundharmonika"
+    },
+    {
+      "id": "panpipes",
+      "label": "Panflöte"
+    },
+    {
+      "id": "violin",
+      "label": "Geige"
+    },
+    {
+      "id": "guitar",
+      "label": "Gitarre"
+    },
+    {
+      "id": "accordion",
+      "label": "Akkordeon"
+    },
+    {
+      "id": "castanets",
+      "label": "Kastagnetten"
+    },
+    {
+      "id": "mouse-puppet",
+      "label": "Maus-Handpuppe"
+    },
+    {
+      "id": "skipping-rope",
+      "label": "Springseil"
+    },
+    {
+      "id": "beanbag",
+      "label": "Säckchen"
+    },
+    {
+      "id": "play-hoop",
+      "label": "Reifen"
+    },
+    {
+      "id": "wooden-skittle",
+      "label": "Kegel"
+    }
+  ]
+}

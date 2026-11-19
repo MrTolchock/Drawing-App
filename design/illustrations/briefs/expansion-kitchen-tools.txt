@@ -1,0 +1,22 @@
+Create a NEW woodland picture-book learning atlas in the same drawing technique as the supplied canonical references. Paint exactly fifteen independent subjects, each a complete cutout. Do not copy the opaque cream canvas of the references: match ONLY their drawing technique.
+
+SQUARE 4 × 4 GRID: exactly four equal columns and four equal rows. Keep the fifteen subjects in the exact cell order below. The final cell (row 4, column 4) stays empty. Each drawing occupies at most 65% of its square cell and is centred; generous empty transparent gutters on ALL sides. Keep every tail, antler, handle, wing and stem entirely inside its cell. No crossing or touching cell edges. Do not paint any grid, frame, labels or writing.
+
+Row 1, column 1: rolling-pin (Wallholz) — one plain wooden rolling pin with two short handles.
+Row 1, column 2: wooden-ladle (Schöpfkelle) — one wooden ladle with deep rounded bowl and long handle.
+Row 1, column 3: whisk (Schwingbesen) — one metal wire whisk with wooden handle, transparent spaces between wires.
+Row 1, column 4: sieve (Sieb) — one small metal kitchen sieve with wooden handle and fine pale mesh.
+Row 2, column 1: cutting-board (Schneidebrett) — one honey-brown cutting board with short handle and a transparent hanging hole.
+Row 2, column 2: colander (Abtropfsieb) — one sage-green colander with two small handles and visible drainage holes.
+Row 2, column 3: star-biscuit-cutter (Ausstechform) — one star-shaped metal biscuit cutter, oblique view showing its hollow interior.
+Row 2, column 4: oven-mitt (Topfhandschuh) — one blue check quilted oven mitt with a thumb.
+Row 3, column 1: kitchen-apron (Schürze) — one cream apron with sage edging, one front pocket and complete tied straps.
+Row 3, column 2: bread-knife (Brotmesser) — one round-ended serrated bread knife with wooden handle.
+Row 3, column 3: butter-dish (Butterdose) — one cream butter dish with its small covered lid in place.
+Row 3, column 4: jam-jar (Konfitüre) — one glass jar of red jam with blue check cloth tied over the lid, no writing.
+Row 4, column 1: salt-cellar (Salzstreuer) — one small wooden salt shaker with a plain perforated top.
+Row 4, column 2: measuring-jug (Messbecher) — one cream measuring jug with blue tick marks but no numerals, visible spout and handle.
+Row 4, column 3: corkscrew (Zapfenzieher) — one simple wooden T-handled corkscrew with complete metal spiral.
+Row 4, column 4: EMPTY.
+
+TRANSPARENT EXPORT: All space outside actual subject contours is alpha zero, including the whole perimeter, gutters, final empty cell and openings in handles. No white matte, paper rectangle, glow, drop shadow, aura or feathered coloured haze. Stop colour at the fine natural pencil contour. Preserve opaque white paint inside white subjects. Keep watercolour/pencil texture INSIDE each drawing and its soft natural edge, but nothing behind or around it. No faces on objects. Complete believable anatomy and clearly recognizable silhouettes at 100 px. Names and IDs above are instructions only and never appear in the picture.

@@ -1,0 +1,820 @@
+{
+  "format": "waldpost-expansion-plan",
+  "date": "2026-11-19",
+  "batch": 2,
+  "baseCommit": "283815b7b0c836bba657bb34ba09ee4e63a5ca93",
+  "count": 150,
+  "style": "waldpost-watercolour-pencil-v1",
+  "sheets": [
+    {
+      "id": "expansion-woodland-birds",
+      "label": "Vögel des Waldes",
+      "subjects": [
+        {
+          "id": "blackbird",
+          "label": "Amsel",
+          "description": "one male blackbird, warm black plumage, orange-yellow beak and eye ring"
+        },
+        {
+          "id": "chaffinch",
+          "label": "Buchfink",
+          "description": "one male chaffinch, rusty pink chest, blue-grey head and white wing bars"
+        },
+        {
+          "id": "goldfinch",
+          "label": "Distelfink",
+          "description": "one European goldfinch, red face, black-white head and yellow wing stripe"
+        },
+        {
+          "id": "nuthatch",
+          "label": "Kleiber",
+          "description": "one nuthatch, blue-grey back, warm buff underside and black eye stripe"
+        },
+        {
+          "id": "treecreeper",
+          "label": "Baumläufer",
+          "description": "one treecreeper, mottled brown back, white belly and slender down-curved bill"
+        },
+        {
+          "id": "jay",
+          "label": "Eichelhäher",
+          "description": "one Eurasian jay, pinkish brown body and small blue-black barred wing panel"
+        },
+        {
+          "id": "magpie",
+          "label": "Elster",
+          "description": "one black and white magpie with a long complete dark tail"
+        },
+        {
+          "id": "carrion-crow",
+          "label": "Rabenkrähe",
+          "description": "one all-black carrion crow with sturdy beak"
+        },
+        {
+          "id": "cuckoo",
+          "label": "Kuckuck",
+          "description": "one grey cuckoo with pale barred belly and long complete tail"
+        },
+        {
+          "id": "wren",
+          "label": "Zaunkönig",
+          "description": "one tiny warm brown wren with short upturned tail"
+        },
+        {
+          "id": "white-wagtail",
+          "label": "Bachstelze",
+          "description": "one black-white-grey white wagtail with long narrow complete tail"
+        },
+        {
+          "id": "barn-swallow",
+          "label": "Rauchschwalbe",
+          "description": "one barn swallow perched, blue-black back, rusty throat, cream belly, long forked tail"
+        },
+        {
+          "id": "great-tit",
+          "label": "Kohlmeise",
+          "description": "one great tit, black head, white cheeks and yellow belly with a dark central stripe"
+        },
+        {
+          "id": "greenfinch",
+          "label": "Grünfink",
+          "description": "one olive-green greenfinch with yellow wing edges and stout pale bill"
+        },
+        {
+          "id": "wood-pigeon",
+          "label": "Ringeltaube",
+          "description": "one grey wood pigeon with pink breast and white neck patch"
+        }
+      ]
+    },
+    {
+      "id": "expansion-woodland-mammals",
+      "label": "Säugetiere und Bergtiere",
+      "subjects": [
+        {
+          "id": "wild-boar",
+          "label": "Wildschwein",
+          "description": "one adult brown-grey wild boar with sturdy body, short legs and elongated snout"
+        },
+        {
+          "id": "boar-piglet",
+          "label": "Frischling",
+          "description": "one small wild boar piglet with clear cream lengthwise stripes on its brown body"
+        },
+        {
+          "id": "red-deer-stag",
+          "label": "Rothirsch",
+          "description": "one adult red deer stag with large branching antlers and rich brown coat"
+        },
+        {
+          "id": "red-deer-doe",
+          "label": "Hirschkuh",
+          "description": "one adult female red deer with reddish-brown coat, long ears and no antlers"
+        },
+        {
+          "id": "red-deer-fawn",
+          "label": "Hirschkalb",
+          "description": "one small red deer fawn with white spots and no antlers"
+        },
+        {
+          "id": "dormouse",
+          "label": "Haselmaus",
+          "description": "one golden dormouse with round ears, large dark eyes and softly furry complete tail"
+        },
+        {
+          "id": "mole",
+          "label": "Maulwurf",
+          "description": "one dark-grey mole with pink nose and two broad outward-facing digging forepaws"
+        },
+        {
+          "id": "shrew",
+          "label": "Spitzmaus",
+          "description": "one small brown shrew with distinctly long pointed snout, tiny eyes and slender tail"
+        },
+        {
+          "id": "weasel",
+          "label": "Mauswiesel",
+          "description": "one slender chestnut weasel with white underside and short brown tail, no black tail tip"
+        },
+        {
+          "id": "polecat",
+          "label": "Iltis",
+          "description": "one European polecat with dark brown fur, pale face and dark eye mask"
+        },
+        {
+          "id": "winter-stoat",
+          "label": "Hermelin im Winter",
+          "description": "one white winter stoat, slender body and a clearly black tail tip"
+        },
+        {
+          "id": "chamois",
+          "label": "Gämse",
+          "description": "one brown chamois with dark facial stripes and two short backwards-hooked horns"
+        },
+        {
+          "id": "alpine-ibex",
+          "label": "Steinbock",
+          "description": "one male Alpine ibex with two long ridged backward-curving horns and grey-brown coat"
+        },
+        {
+          "id": "alpine-marmot",
+          "label": "Murmeltier",
+          "description": "one stout brown Alpine marmot sitting upright, short rounded ears and bushy short tail"
+        },
+        {
+          "id": "field-vole",
+          "label": "Feldmaus",
+          "description": "one small brown field vole with blunt muzzle, small rounded ears and a short tail"
+        }
+      ]
+    },
+    {
+      "id": "expansion-undergrowth",
+      "label": "Pilze und Unterholz",
+      "subjects": [
+        {
+          "id": "chanterelle",
+          "label": "Eierschwamm",
+          "description": "one golden-yellow chanterelle mushroom with gently wavy funnel cap"
+        },
+        {
+          "id": "porcini",
+          "label": "Steinpilz",
+          "description": "one porcini mushroom with chestnut cap and stout pale stem"
+        },
+        {
+          "id": "morel",
+          "label": "Morchel",
+          "description": "one morel mushroom with honeycomb-patterned brown cap and pale stem"
+        },
+        {
+          "id": "parasol-mushroom",
+          "label": "Parasol",
+          "description": "one parasol mushroom with broad pale cap, small brown scales and slender ringed stem"
+        },
+        {
+          "id": "puffball",
+          "label": "Stäubling",
+          "description": "one small cream puffball mushroom with softly stippled round body"
+        },
+        {
+          "id": "bracket-fungus",
+          "label": "Baumpilz",
+          "description": "one semicircular brown bracket fungus attached to a short isolated piece of bark"
+        },
+        {
+          "id": "shaggy-inkcap",
+          "label": "Schopftintling",
+          "description": "one shaggy inkcap mushroom with tall white oval cap, small sepia scales and narrow stem"
+        },
+        {
+          "id": "saffron-milkcap",
+          "label": "Edelreizker",
+          "description": "one orange milkcap mushroom with concentric cap rings, side and top visible"
+        },
+        {
+          "id": "lichen-twig",
+          "label": "Flechte",
+          "description": "one short woodland twig bearing grey-green branching lichen"
+        },
+        {
+          "id": "bramble-sprig",
+          "label": "Brombeerzweig",
+          "description": "one short thorny bramble sprig with serrated green leaves and one small white blossom"
+        },
+        {
+          "id": "nettle",
+          "label": "Brennnessel",
+          "description": "one nettle shoot with pointed serrated leaves, no pot or landscape"
+        },
+        {
+          "id": "burdock",
+          "label": "Klette",
+          "description": "one small burdock stem with a broad green leaf and one rounded hooked burr"
+        },
+        {
+          "id": "thistle",
+          "label": "Distel",
+          "description": "one thistle stem with spiky leaves and one purple flower head"
+        },
+        {
+          "id": "bluebell",
+          "label": "Hasenglöckchen",
+          "description": "one bluebell plant with bowed blue bell flowers and narrow green leaves"
+        },
+        {
+          "id": "wild-garlic",
+          "label": "Bärlauch",
+          "description": "one wild garlic plant with broad green leaves and a round cluster of white star flowers"
+        }
+      ]
+    },
+    {
+      "id": "expansion-meadow-flowers",
+      "label": "Wiesen- und Bergblumen",
+      "subjects": [
+        {
+          "id": "daisy",
+          "label": "Gänseblümchen",
+          "description": "one small daisy plant with a yellow centre, white pink-tipped petals and a low leaf rosette"
+        },
+        {
+          "id": "buttercup",
+          "label": "Hahnenfuss",
+          "description": "one buttercup plant with one yellow five-petalled flower and lobed leaves"
+        },
+        {
+          "id": "poppy",
+          "label": "Mohnblume",
+          "description": "one red field poppy with a dark centre and slender green stem"
+        },
+        {
+          "id": "cornflower",
+          "label": "Kornblume",
+          "description": "one blue cornflower on a slender stem with narrow leaves"
+        },
+        {
+          "id": "red-clover",
+          "label": "Rotklee",
+          "description": "one red clover plant with one pink round flower and three-part leaves with pale chevrons"
+        },
+        {
+          "id": "white-clover",
+          "label": "Weissklee",
+          "description": "one white clover plant with one cream round flower and three-part leaves"
+        },
+        {
+          "id": "yarrow",
+          "label": "Schafgarbe",
+          "description": "one yarrow sprig with finely divided leaves and a flat white flower cluster"
+        },
+        {
+          "id": "chamomile",
+          "label": "Kamille",
+          "description": "one chamomile stem with one white-rayed yellow-centred flower and feathery leaves"
+        },
+        {
+          "id": "oxeye-daisy",
+          "label": "Margerite",
+          "description": "one tall oxeye daisy stem with large white petals, yellow centre and narrow toothed leaves"
+        },
+        {
+          "id": "plantain",
+          "label": "Spitzwegerich",
+          "description": "one ribwort plantain with narrow strongly veined leaves and one brown flower spike"
+        },
+        {
+          "id": "cowslip",
+          "label": "Schlüsselblume",
+          "description": "one cowslip plant with a small bunch of drooping yellow flowers and wrinkled leaf rosette"
+        },
+        {
+          "id": "blue-gentian",
+          "label": "Enzian",
+          "description": "one deep-blue trumpet gentian with broad green basal leaves"
+        },
+        {
+          "id": "edelweiss",
+          "label": "Edelweiss",
+          "description": "one edelweiss plant with white star-shaped bracts and small golden centres"
+        },
+        {
+          "id": "crocus",
+          "label": "Krokus",
+          "description": "one purple crocus with a yellow-orange stigma and narrow leaves"
+        },
+        {
+          "id": "daffodil",
+          "label": "Osterglocke",
+          "description": "one yellow daffodil flower with trumpet centre and long green leaves"
+        }
+      ]
+    },
+    {
+      "id": "expansion-orchard-produce",
+      "label": "Obst und Gartenvorrat",
+      "subjects": [
+        {
+          "id": "peach",
+          "label": "Pfirsich",
+          "description": "one whole peach with warm red-yellow skin, a visible centre seam and one small leaf"
+        },
+        {
+          "id": "orange-fruit",
+          "label": "Orange",
+          "description": "one whole round orange fruit with a small green leaf"
+        },
+        {
+          "id": "mandarin",
+          "label": "Mandarine",
+          "description": "one whole small flattened orange mandarin with a short green stem"
+        },
+        {
+          "id": "quince",
+          "label": "Quitte",
+          "description": "one whole golden-yellow pear-shaped quince with a small green leaf"
+        },
+        {
+          "id": "fig",
+          "label": "Feige",
+          "description": "one whole purple fig with tear-drop silhouette and short stem"
+        },
+        {
+          "id": "gooseberry",
+          "label": "Stachelbeere",
+          "description": "one pale green gooseberry with visible light vertical veins and dried flower tip"
+        },
+        {
+          "id": "redcurrant-sprig",
+          "label": "Johannisbeeren",
+          "description": "one short hanging sprig of redcurrants attached to one green stalk, a single botanical specimen"
+        },
+        {
+          "id": "blackcurrant-sprig",
+          "label": "Schwarze Johannisbeeren",
+          "description": "one short sprig of dark-purple blackcurrants and one lobed green leaf, a single botanical specimen"
+        },
+        {
+          "id": "elderberry-sprig",
+          "label": "Holunderbeeren",
+          "description": "one small flat branching elderberry cluster on reddish stems, a single botanical specimen"
+        },
+        {
+          "id": "rowan-sprig",
+          "label": "Vogelbeeren",
+          "description": "one small rowan sprig with orange-red berries and a short pinnate leaf, a single botanical specimen"
+        },
+        {
+          "id": "juniper-berry",
+          "label": "Wacholderbeere",
+          "description": "one round blue-grey juniper berry with a tiny three-point scar"
+        },
+        {
+          "id": "sloe",
+          "label": "Schlehe",
+          "description": "one round blue-black sloe with powdery bloom and a short stem"
+        },
+        {
+          "id": "sweetcorn",
+          "label": "Maiskolben",
+          "description": "one golden corn cob partly wrapped in green husk"
+        },
+        {
+          "id": "broccoli",
+          "label": "Broccoli",
+          "description": "one compact green broccoli head with a short thick stem"
+        },
+        {
+          "id": "cauliflower",
+          "label": "Blumenkohl",
+          "description": "one cream cauliflower head cupped in green leaves"
+        }
+      ]
+    },
+    {
+      "id": "expansion-woodland-crafts",
+      "label": "Basteln und Handarbeit",
+      "subjects": [
+        {
+          "id": "wooden-button",
+          "label": "Holzknopf",
+          "description": "one round honey-brown wooden button with exactly four holes"
+        },
+        {
+          "id": "thread-spool",
+          "label": "Fadenspule",
+          "description": "one wooden spool wound with muted blue thread, one short loose thread end"
+        },
+        {
+          "id": "yarn-ball",
+          "label": "Wollknäuel",
+          "description": "one sage-green ball of yarn with one short loose strand"
+        },
+        {
+          "id": "knitting-needles",
+          "label": "Stricknadeln",
+          "description": "one pair of simple wooden knitting needles crossed neatly"
+        },
+        {
+          "id": "crochet-hook",
+          "label": "Häkelnadel",
+          "description": "one wooden crochet hook with a clearly visible hook at one end"
+        },
+        {
+          "id": "craft-scissors",
+          "label": "Bastelschere",
+          "description": "one pair of small blue-handled round-tipped craft scissors, slightly open, transparent finger holes"
+        },
+        {
+          "id": "paintbrush",
+          "label": "Pinsel",
+          "description": "one wooden-handled paintbrush with natural brown bristles and a blue paint tip"
+        },
+        {
+          "id": "glue-pot",
+          "label": "Leimtopf",
+          "description": "one small closed cream glue pot with a plain ochre lid, no writing"
+        },
+        {
+          "id": "wooden-ruler",
+          "label": "Lineal",
+          "description": "one short wooden ruler with simple sepia ticks and no numerals or text"
+        },
+        {
+          "id": "kite",
+          "label": "Drachen zum Spielen",
+          "description": "one small diamond-shaped blue-and-ochre kite with a complete short ribbon tail, no flying landscape"
+        },
+        {
+          "id": "spinning-top",
+          "label": "Kreisel",
+          "description": "one simple turned wooden spinning top with restrained red and blue painted bands"
+        },
+        {
+          "id": "wooden-whistle",
+          "label": "Holzpfeife",
+          "description": "one small plain wooden whistle with a visible mouthpiece and sound hole"
+        },
+        {
+          "id": "xylophone",
+          "label": "Xylophon",
+          "description": "one small wooden xylophone with five muted coloured bars and one attached mallet alongside"
+        },
+        {
+          "id": "woven-mat",
+          "label": "Geflochtene Matte",
+          "description": "one small oval woven straw mat"
+        },
+        {
+          "id": "fabric-pouch",
+          "label": "Stoffbeutel",
+          "description": "one closed sage cloth drawstring pouch with its cord bow and no contents"
+        }
+      ]
+    },
+    {
+      "id": "expansion-music-play",
+      "label": "Musik und Bewegung",
+      "subjects": [
+        {
+          "id": "recorder",
+          "label": "Blockflöte",
+          "description": "one honey-brown wooden recorder with visible finger holes"
+        },
+        {
+          "id": "tambourine",
+          "label": "Tamburin",
+          "description": "one wooden tambourine with cream drumhead and small metal jingles"
+        },
+        {
+          "id": "musical-triangle",
+          "label": "Triangel",
+          "description": "one metal triangle instrument with its short wooden-handled beater alongside, a single instrument set"
+        },
+        {
+          "id": "maraca",
+          "label": "Rassel",
+          "description": "one ochre-and-blue wooden maraca with a short handle"
+        },
+        {
+          "id": "harmonica",
+          "label": "Mundharmonika",
+          "description": "one small blue-and-cream harmonica with visible row of air slots"
+        },
+        {
+          "id": "panpipes",
+          "label": "Panflöte",
+          "description": "one small panpipe instrument made of five graduated hollow bamboo tubes tied together"
+        },
+        {
+          "id": "violin",
+          "label": "Geige",
+          "description": "one small wooden violin with its bow alongside, complete neck and scroll, single instrument set"
+        },
+        {
+          "id": "guitar",
+          "label": "Gitarre",
+          "description": "one warm wooden acoustic guitar with complete neck and visible strings"
+        },
+        {
+          "id": "accordion",
+          "label": "Akkordeon",
+          "description": "one small red-and-cream accordion with folded brown bellows, keys and buttons"
+        },
+        {
+          "id": "castanets",
+          "label": "Kastagnetten",
+          "description": "one connected pair of wooden shell castanets"
+        },
+        {
+          "id": "mouse-puppet",
+          "label": "Maus-Handpuppe",
+          "description": "one cloth hand puppet shaped like a friendly grey mouse, empty open wrist cuff clearly visible"
+        },
+        {
+          "id": "skipping-rope",
+          "label": "Springseil",
+          "description": "one complete curved skipping rope with two honey-brown wooden handles"
+        },
+        {
+          "id": "beanbag",
+          "label": "Säckchen",
+          "description": "one small square red cloth beanbag with visible stitched seams"
+        },
+        {
+          "id": "play-hoop",
+          "label": "Reifen",
+          "description": "one simple wooden play hoop, complete circular ring with transparent centre"
+        },
+        {
+          "id": "wooden-skittle",
+          "label": "Kegel",
+          "description": "one upright wooden bowling skittle with narrow neck and rounded head"
+        }
+      ]
+    },
+    {
+      "id": "expansion-kitchen-tools",
+      "label": "Küche und Backen",
+      "subjects": [
+        {
+          "id": "rolling-pin",
+          "label": "Wallholz",
+          "description": "one plain wooden rolling pin with two short handles"
+        },
+        {
+          "id": "wooden-ladle",
+          "label": "Schöpfkelle",
+          "description": "one wooden ladle with deep rounded bowl and long handle"
+        },
+        {
+          "id": "whisk",
+          "label": "Schwingbesen",
+          "description": "one metal wire whisk with wooden handle, transparent spaces between wires"
+        },
+        {
+          "id": "sieve",
+          "label": "Sieb",
+          "description": "one small metal kitchen sieve with wooden handle and fine pale mesh"
+        },
+        {
+          "id": "cutting-board",
+          "label": "Schneidebrett",
+          "description": "one honey-brown cutting board with short handle and a transparent hanging hole"
+        },
+        {
+          "id": "colander",
+          "label": "Abtropfsieb",
+          "description": "one sage-green colander with two small handles and visible drainage holes"
+        },
+        {
+          "id": "star-biscuit-cutter",
+          "label": "Ausstechform",
+          "description": "one star-shaped metal biscuit cutter, oblique view showing its hollow interior"
+        },
+        {
+          "id": "oven-mitt",
+          "label": "Topfhandschuh",
+          "description": "one blue check quilted oven mitt with a thumb"
+        },
+        {
+          "id": "kitchen-apron",
+          "label": "Schürze",
+          "description": "one cream apron with sage edging, one front pocket and complete tied straps"
+        },
+        {
+          "id": "bread-knife",
+          "label": "Brotmesser",
+          "description": "one round-ended serrated bread knife with wooden handle"
+        },
+        {
+          "id": "butter-dish",
+          "label": "Butterdose",
+          "description": "one cream butter dish with its small covered lid in place"
+        },
+        {
+          "id": "jam-jar",
+          "label": "Konfitüre",
+          "description": "one glass jar of red jam with blue check cloth tied over the lid, no writing"
+        },
+        {
+          "id": "salt-cellar",
+          "label": "Salzstreuer",
+          "description": "one small wooden salt shaker with a plain perforated top"
+        },
+        {
+          "id": "measuring-jug",
+          "label": "Messbecher",
+          "description": "one cream measuring jug with blue tick marks but no numerals, visible spout and handle"
+        },
+        {
+          "id": "corkscrew",
+          "label": "Zapfenzieher",
+          "description": "one simple wooden T-handled corkscrew with complete metal spiral"
+        }
+      ]
+    },
+    {
+      "id": "expansion-woodland-household",
+      "label": "Dinge im Waldhaus",
+      "subjects": [
+        {
+          "id": "wooden-door",
+          "label": "Tür",
+          "description": "one closed honey-brown wooden door in a simple narrow frame, round brass handle"
+        },
+        {
+          "id": "wooden-window",
+          "label": "Fenster",
+          "description": "one four-pane wooden window in a plain frame, pale-blue glass, no scenery"
+        },
+        {
+          "id": "curtain",
+          "label": "Vorhang",
+          "description": "one single sage-green cloth curtain hanging from a short wooden rod"
+        },
+        {
+          "id": "doormat",
+          "label": "Fussmatte",
+          "description": "one oval coir doormat with a plain woven texture, no writing"
+        },
+        {
+          "id": "coat-hook",
+          "label": "Kleiderhaken",
+          "description": "one simple curved wooden wall hook on a small backing plate"
+        },
+        {
+          "id": "boot-brush",
+          "label": "Schuhbürste",
+          "description": "one low wooden boot brush with dense brown bristles facing upward"
+        },
+        {
+          "id": "clothes-peg",
+          "label": "Wäscheklammer",
+          "description": "one single spring wooden clothes peg, slightly open"
+        },
+        {
+          "id": "soap-bar",
+          "label": "Seife",
+          "description": "one cream oval bar of soap, no embossed writing, no bubbles"
+        },
+        {
+          "id": "toothbrush",
+          "label": "Zahnbürste",
+          "description": "one wooden toothbrush with cream bristles and blue painted handle end"
+        },
+        {
+          "id": "hairbrush",
+          "label": "Haarbürste",
+          "description": "one oval wooden hairbrush with short handle and a bed of brown bristles"
+        },
+        {
+          "id": "wooden-comb",
+          "label": "Kamm",
+          "description": "one simple honey-brown comb with clearly spaced teeth"
+        },
+        {
+          "id": "wash-tub",
+          "label": "Waschzuber",
+          "description": "one empty round wooden washing tub with two handles and open interior"
+        },
+        {
+          "id": "scrubbing-brush",
+          "label": "Schrubber",
+          "description": "one hand scrubbing brush with arched wooden handle above a broad bristled base"
+        },
+        {
+          "id": "washboard",
+          "label": "Waschbrett",
+          "description": "one small old-fashioned washboard with wooden frame and ribbed metal centre"
+        },
+        {
+          "id": "hand-towel",
+          "label": "Handtuch",
+          "description": "one folded cream hand towel with two muted blue edge stripes"
+        }
+      ]
+    },
+    {
+      "id": "expansion-animal-behaviours",
+      "label": "Tiere beim Entdecken",
+      "subjects": [
+        {
+          "id": "blackbird-worm",
+          "label": "Amsel mit Regenwurm",
+          "description": "one blackbird holding one short worm in its beak, standing still"
+        },
+        {
+          "id": "squirrel-crack-nut",
+          "label": "Eichhörnchen knackt eine Nuss",
+          "description": "one red squirrel holding one nut directly to its front teeth with both forepaws, clearly nibbling"
+        },
+        {
+          "id": "rabbit-eat-carrot",
+          "label": "Kaninchen frisst eine Karotte",
+          "description": "one brown rabbit with one carrot at its mouth, both forepaws holding the carrot"
+        },
+        {
+          "id": "mole-dig",
+          "label": "Maulwurf gräbt",
+          "description": "one dark mole pushing earth aside with two broad pink forepaws, tiny soil patch only"
+        },
+        {
+          "id": "fox-drink",
+          "label": "Fuchs trinkt",
+          "description": "one red fox with head lowered, tongue touching a tiny blue pool, no scarf or landscape"
+        },
+        {
+          "id": "roe-jump",
+          "label": "Reh springt",
+          "description": "one roe deer in a clear leap, all four hooves off the ground, no scenery"
+        },
+        {
+          "id": "badger-sniff",
+          "label": "Dachs schnuppert",
+          "description": "one European badger with black-white face, nose lowered to one small leaf"
+        },
+        {
+          "id": "owl-stretch",
+          "label": "Eule streckt einen Flügel",
+          "description": "one tawny owl standing and stretching one wing sideways while its other wing remains folded"
+        },
+        {
+          "id": "frog-croak",
+          "label": "Frosch quakt",
+          "description": "one green frog with a visibly rounded inflated throat sac, sitting still, no sound symbols"
+        },
+        {
+          "id": "duck-walk",
+          "label": "Ente läuft",
+          "description": "one mallard walking on land, one orange webbed foot lifted, no water"
+        },
+        {
+          "id": "snail-retracted",
+          "label": "Schnecke zieht sich zurück",
+          "description": "one brown spiral snail shell with the snail retracted fully inside, empty dark opening visible and no head outside"
+        },
+        {
+          "id": "butterfly-closed",
+          "label": "Schmetterling klappt die Flügel zusammen",
+          "description": "one butterfly resting in side view with both wings held upright together, antennae and slender legs visible"
+        },
+        {
+          "id": "bee-on-flower",
+          "label": "Biene auf einer Blüte",
+          "description": "one golden-black bee resting on the centre of one simple pink flower on a short green stem"
+        },
+        {
+          "id": "caterpillar-eat-leaf",
+          "label": "Raupe frisst ein Blatt",
+          "description": "one green caterpillar nibbling one leaf, a small bite notch visible at its mouth"
+        },
+        {
+          "id": "beaver-carry-stick",
+          "label": "Biber trägt einen Ast",
+          "description": "one brown beaver walking and carrying one short branch sideways in its mouth, broad flat tail fully visible"
+        }
+      ]
+    }
+  ]
+}

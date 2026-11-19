@@ -1,0 +1,5 @@
+Edit Reference 3 into a clean transparent 4 by 4 atlas. Keep its fifteen existing drawings, colours, identities, complete silhouettes and exact cell positions. Keep the final cell empty.
+
+BACKGROUND REMOVAL: erase ALL coloured drop shadows, glows, haze, feathered auras and almost-white matte outside the actual drawn object contours. The ONLY foreground is the fifteen actual subject paintings. Stop colour at the fine sepia/blue pencil contour. Retain watercolour/pencil texture inside each drawing. Every space around and between the subjects must have alpha exactly ZERO, including the whole perimeter, gutters, empty final cell and open handles. Transparent space is not pale cream, partly transparent white or a printed checker pattern. Keep white paint ONLY INSIDE white subject contours. No white border, no shadow, no halo, no surface behind the drawings.
+
+Remove the continuous pale coloured background between the plants, including the small soft auras around leaves and petals. Preserve each flower species and the fifteen-cell layout. White petals remain opaque inside their actual outlines; all gaps between stems and leaves become fully transparent.

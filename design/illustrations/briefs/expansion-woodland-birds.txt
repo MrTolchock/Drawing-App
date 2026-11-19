@@ -1,0 +1,22 @@
+Create a NEW woodland picture-book learning atlas in the same drawing technique as the supplied canonical references. Paint exactly fifteen independent subjects, each a complete cutout. Do not copy the opaque cream canvas of the references: match ONLY their drawing technique.
+
+SQUARE 4 × 4 GRID: exactly four equal columns and four equal rows. Keep the fifteen subjects in the exact cell order below. The final cell (row 4, column 4) stays empty. Each drawing occupies at most 65% of its square cell and is centred; generous empty transparent gutters on ALL sides. Keep every tail, antler, handle, wing and stem entirely inside its cell. No crossing or touching cell edges. Do not paint any grid, frame, labels or writing.
+
+Row 1, column 1: blackbird (Amsel) — one male blackbird, warm black plumage, orange-yellow beak and eye ring.
+Row 1, column 2: chaffinch (Buchfink) — one male chaffinch, rusty pink chest, blue-grey head and white wing bars.
+Row 1, column 3: goldfinch (Distelfink) — one European goldfinch, red face, black-white head and yellow wing stripe.
+Row 1, column 4: nuthatch (Kleiber) — one nuthatch, blue-grey back, warm buff underside and black eye stripe.
+Row 2, column 1: treecreeper (Baumläufer) — one treecreeper, mottled brown back, white belly and slender down-curved bill.
+Row 2, column 2: jay (Eichelhäher) — one Eurasian jay, pinkish brown body and small blue-black barred wing panel.
+Row 2, column 3: magpie (Elster) — one black and white magpie with a long complete dark tail.
+Row 2, column 4: carrion-crow (Rabenkrähe) — one all-black carrion crow with sturdy beak.
+Row 3, column 1: cuckoo (Kuckuck) — one grey cuckoo with pale barred belly and long complete tail.
+Row 3, column 2: wren (Zaunkönig) — one tiny warm brown wren with short upturned tail.
+Row 3, column 3: white-wagtail (Bachstelze) — one black-white-grey white wagtail with long narrow complete tail.
+Row 3, column 4: barn-swallow (Rauchschwalbe) — one barn swallow perched, blue-black back, rusty throat, cream belly, long forked tail.
+Row 4, column 1: great-tit (Kohlmeise) — one great tit, black head, white cheeks and yellow belly with a dark central stripe.
+Row 4, column 2: greenfinch (Grünfink) — one olive-green greenfinch with yellow wing edges and stout pale bill.
+Row 4, column 3: wood-pigeon (Ringeltaube) — one grey wood pigeon with pink breast and white neck patch.
+Row 4, column 4: EMPTY.
+
+TRANSPARENT EXPORT: All space outside actual subject contours is alpha zero, including the whole perimeter, gutters, final empty cell and openings in handles. No white matte, paper rectangle, glow, drop shadow, aura or feathered coloured haze. Stop colour at the fine natural pencil contour. Preserve opaque white paint inside white subjects. Keep watercolour/pencil texture INSIDE each drawing and its soft natural edge, but nothing behind or around it. No faces on objects. Complete believable anatomy and clearly recognizable silhouettes at 100 px. Names and IDs above are instructions only and never appear in the picture.

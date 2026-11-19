@@ -21,9 +21,9 @@ node tools/illustrations/style.cjs --request puzzle-vocabulary > /tmp/waldpost-v
 
 The repository prepares inputs; it does not include a hosted image model, API key or deterministic seed. Earlier model identifiers and seeds were not retained/exposed. These are usable reconstruction/edit recipes; a different model will not reproduce identical pixels. Actual historical generation records remain separately linked as provenance and do not override the current style.
 
-## Puzzle pictures: all 390 subjects
+## Puzzle pictures: all 540 subjects
 
-Each of the 29 atlases has its own complete prompt and ordered stable IDs. Cell indices are zero-based in JSON. Prompt rows are one-based, left to right then top to bottom. Empty trailing cells remain transparent. Existing atlases may be attached as composition-only inputs after the canonical style pair. The ten expansion sheets use the same canonical pair and their own concrete subject briefs.
+Each of the 39 atlases has its own complete prompt and ordered stable IDs. Cell indices are zero-based in JSON. Prompt rows are one-based, left to right then top to bottom. Empty trailing cells remain transparent. Existing atlases may be attached as composition-only inputs after the canonical style pair. The twenty expansion sheets use the same canonical pair and their own concrete subject briefs.
 
 | Request ID / sheet | Grid | Complete prompt |
 | --- | --- | --- |
@@ -56,6 +56,16 @@ Each of the 29 atlases has its own complete prompt and ordered stable IDs. Cell 
 | `expansion-woodland-actions` | 4 × 4; fifteen occupied | [Tiere in Bewegung](../illustrations/prompts/expansion-woodland-actions.txt) |
 | `expansion-nature-cycles` | 4 × 4; fifteen occupied | [Wachsen und Verwandeln](../illustrations/prompts/expansion-nature-cycles.txt) |
 | `expansion-woodland-places` | 4 × 4; fifteen occupied | [Orte und Lebensräume](../illustrations/prompts/expansion-woodland-places.txt) |
+| `expansion-woodland-birds` | 4 × 4; fifteen occupied | [Vögel des Waldes](../illustrations/prompts/expansion-woodland-birds.txt) |
+| `expansion-woodland-mammals` | 4 × 4; fifteen occupied | [Säugetiere und Bergtiere](../illustrations/prompts/expansion-woodland-mammals.txt) |
+| `expansion-undergrowth` | 4 × 4; fifteen occupied | [Pilze und Unterholz](../illustrations/prompts/expansion-undergrowth.txt) |
+| `expansion-meadow-flowers` | 4 × 4; fifteen occupied | [Wiesen- und Bergblumen](../illustrations/prompts/expansion-meadow-flowers.txt) |
+| `expansion-orchard-produce` | 4 × 4; fifteen occupied | [Obst und Gartenvorrat](../illustrations/prompts/expansion-orchard-produce.txt) |
+| `expansion-woodland-crafts` | 4 × 4; fifteen occupied | [Basteln und Handarbeit](../illustrations/prompts/expansion-woodland-crafts.txt) |
+| `expansion-music-play` | 4 × 4; fifteen occupied | [Musik und Bewegung](../illustrations/prompts/expansion-music-play.txt) |
+| `expansion-kitchen-tools` | 4 × 4; fifteen occupied | [Küche und Backen](../illustrations/prompts/expansion-kitchen-tools.txt) |
+| `expansion-woodland-household` | 4 × 4; fifteen occupied | [Dinge im Waldhaus](../illustrations/prompts/expansion-woodland-household.txt) |
+| `expansion-animal-behaviours` | 4 × 4; fifteen occupied | [Tiere beim Entdecken](../illustrations/prompts/expansion-animal-behaviours.txt) |
 
 For each sheet, `assets` in the JSON records its exact runtime filename, width/height, columns/rows and ordered `subjects`, including stable IDs, source rectangles, labels, tokens and puzzle usage. [library.json](../../assets/waldatelier/library.json) is the picture-level catalogue. Preserve IDs and ordering when replacing artwork; English IDs are metadata, not text to paint into the image. Exact answer colours, quantities, species and action contrasts are functional content.
 

@@ -1,0 +1,22 @@
+Create a NEW woodland picture-book learning atlas in the same drawing technique as the supplied canonical references. Paint exactly fifteen independent subjects, each a complete cutout. Do not copy the opaque cream canvas of the references: match ONLY their drawing technique.
+
+SQUARE 4 × 4 GRID: exactly four equal columns and four equal rows. Keep the fifteen subjects in the exact cell order below. The final cell (row 4, column 4) stays empty. Each drawing occupies at most 65% of its square cell and is centred; generous empty transparent gutters on ALL sides. Keep every tail, antler, handle, wing and stem entirely inside its cell. No crossing or touching cell edges. Do not paint any grid, frame, labels or writing.
+
+Row 1, column 1: daisy (Gänseblümchen) — one small daisy plant with a yellow centre, white pink-tipped petals and a low leaf rosette.
+Row 1, column 2: buttercup (Hahnenfuss) — one buttercup plant with one yellow five-petalled flower and lobed leaves.
+Row 1, column 3: poppy (Mohnblume) — one red field poppy with a dark centre and slender green stem.
+Row 1, column 4: cornflower (Kornblume) — one blue cornflower on a slender stem with narrow leaves.
+Row 2, column 1: red-clover (Rotklee) — one red clover plant with one pink round flower and three-part leaves with pale chevrons.
+Row 2, column 2: white-clover (Weissklee) — one white clover plant with one cream round flower and three-part leaves.
+Row 2, column 3: yarrow (Schafgarbe) — one yarrow sprig with finely divided leaves and a flat white flower cluster.
+Row 2, column 4: chamomile (Kamille) — one chamomile stem with one white-rayed yellow-centred flower and feathery leaves.
+Row 3, column 1: oxeye-daisy (Margerite) — one tall oxeye daisy stem with large white petals, yellow centre and narrow toothed leaves.
+Row 3, column 2: plantain (Spitzwegerich) — one ribwort plantain with narrow strongly veined leaves and one brown flower spike.
+Row 3, column 3: cowslip (Schlüsselblume) — one cowslip plant with a small bunch of drooping yellow flowers and wrinkled leaf rosette.
+Row 3, column 4: blue-gentian (Enzian) — one deep-blue trumpet gentian with broad green basal leaves.
+Row 4, column 1: edelweiss (Edelweiss) — one edelweiss plant with white star-shaped bracts and small golden centres.
+Row 4, column 2: crocus (Krokus) — one purple crocus with a yellow-orange stigma and narrow leaves.
+Row 4, column 3: daffodil (Osterglocke) — one yellow daffodil flower with trumpet centre and long green leaves.
+Row 4, column 4: EMPTY.
+
+TRANSPARENT EXPORT: All space outside actual subject contours is alpha zero, including the whole perimeter, gutters, final empty cell and openings in handles. No white matte, paper rectangle, glow, drop shadow, aura or feathered coloured haze. Stop colour at the fine natural pencil contour. Preserve opaque white paint inside white subjects. Keep watercolour/pencil texture INSIDE each drawing and its soft natural edge, but nothing behind or around it. No faces on objects. Complete believable anatomy and clearly recognizable silhouettes at 100 px. Names and IDs above are instructions only and never appear in the picture.

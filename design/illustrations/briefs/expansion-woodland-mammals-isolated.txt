@@ -1,0 +1,7 @@
+BACKGROUND REMOVAL ONLY for Reference 3. The desired foreground consists ONLY of the fifteen subjects, each as a separate complete CUTOUT. Keep their identities, colours, order and 4 by 4 cell positions. Reduce the subjects by about 15% inside their own cells so all all extremities have a generous transparent margin. Final cell remains empty.
+
+ERASE every pale white, grey, cream, green or coloured area OUTSIDE the actual pencil contour of each subject: those areas are all BACKGROUND, even where they resemble a gentle watercolour wash. Replace them with alpha exactly ZERO. Erase ALL exterior shadows, glows, halos, haze and feathered auras. No paper canvas and no background tint of any kind. Keep opaque white paint ONLY INSIDE white painted areas. Keep watercolour/pencil grain ONLY INSIDE the actual subject silhouettes. Every gap between stems and leaves and every gutter is fully transparent.
+
+Produce actual clean transparent alpha, not a faintly translucent background. A fine natural pencil outline defines each cutout; no sticker border, no aura, no drop shadow. The existing subject drawings remain in their exact cells.
+
+Reduce ALL fifteen animals by 20% inside their own cells. Keep the complete wild boar snout, piglet tail, shrew nose and whiskers, chamois muzzle and horns entirely within their respective cells, with clear empty gutters. Never extend a nose, whisker or tail across a cell boundary. The dormouse keeps a gently furry golden tail, smaller and less bushy than a squirrel tail.

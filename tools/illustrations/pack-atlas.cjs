@@ -3,6 +3,19 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path'),os=require('node:os'),{spawnSync}=require('node:child_process');
 const usage='Usage: node tools/illustrations/pack-atlas.cjs <manifest.json> [--output <atlas.webp>] [--icc-profile <sRGB.icc>]';
+// A generated stem or handle can cross an imaginary grid line while remaining
+// separate from its neighbours. Explicit source crops retain that complete art.
+function sourceRectangles(m,width,height,sourceHeight=height){
+ const overrides=m.sourceRects;
+ if(overrides!==undefined&&(!overrides||Array.isArray(overrides)||typeof overrides!=='object'))throw Error('sourceRects must map subject IDs to source pixel rectangles.');
+ for(const id of Object.keys(overrides||{}))if(!m.subjects.some(s=>s.id===id))throw Error('Unknown source crop subject: '+id);
+ return m.subjects.map((subject,i)=>{
+  const col=i%m.columns,row=Math.floor(i/m.columns),x=Math.floor(col*width/m.columns),y=Math.floor(row*sourceHeight/m.rows);
+  const rect=overrides&&Object.hasOwn(overrides,subject.id)?overrides[subject.id]:{x,y,width:Math.floor((col+1)*width/m.columns)-x,height:Math.floor((row+1)*sourceHeight/m.rows)-y};
+  if(!rect||!['x','y','width','height'].every(k=>Number.isInteger(rect[k]))||rect.x<0||rect.y<0||rect.width<1||rect.height<1||rect.x+rect.width>width||rect.y+rect.height>height)throw Error('Source crop must fit within the image: '+subject.id);
+  return rect;
+ });
+}
 function main(){
  const args=process.argv.slice(2);
  if(args[0]==='--help'){console.log(usage);return;}
@@ -39,14 +52,14 @@ function main(){
  const requiredHeight=sourceHeight*Math.ceil(m.subjects.length/m.columns)/m.rows;
  if(!positive(width)||!positive(height)||width<m.columns||height<requiredHeight||height>sourceHeight||Math.abs(width/m.columns-sourceHeight/m.rows)>1)throw Error('The source must contain equal square cells for all declared subjects.');
  if(run(['identify','-format','%[opaque]',source]).toLowerCase()==='true')throw Error('The source is opaque; generate a genuinely transparent image before packing.');
+ const regions=sourceRectangles(m,width,height,sourceHeight);
  const temporary=fs.mkdtempSync(path.join(os.tmpdir(),'waldpost-illustrations-'));
  try{
   const tiles=[];
   for(let i=0;i<m.columns*m.rows;i++){
    const tile=path.join(temporary,String(i).padStart(3,'0')+'.png');tiles.push(tile);
    if(i>=m.subjects.length){run(['-size',m.cellPixels+'x'+m.cellPixels,'xc:none',tile]);continue;}
-   const col=i%m.columns,row=Math.floor(i/m.columns),x=Math.floor(col*width/m.columns),y=Math.floor(row*sourceHeight/m.rows);
-   const w=Math.floor((col+1)*width/m.columns)-x,h=Math.floor((row+1)*sourceHeight/m.rows)-y,cell=path.join(temporary,'source.png');
+   const {x,y,width:w,height:h}=regions[i],cell=path.join(temporary,'source.png');
    run([source,'-crop',w+'x'+h+'+'+x+'+'+y,'+repage',cell]);
    const bounds=run([cell,'-alpha','extract','-threshold',m.alphaThresholdPercent+'%','-format','%@','info:']);
    if(!/^[1-9]\d*x[1-9]\d*\+\d+\+\d+$/.test(bounds))throw Error('Empty subject cell: '+m.subjects[i].id);
@@ -62,4 +75,5 @@ function main(){
   console.log('Packed '+m.subjects.length+' subjects into '+(m.columns*m.cellPixels)+' × '+(m.rows*m.cellPixels)+': '+output);
  }finally{fs.rmSync(temporary,{recursive:true,force:true});}
 }
-try{main();}catch(error){console.error(error.message);process.exitCode=1;}
+module.exports={sourceRectangles};
+if(require.main===module)try{main();}catch(error){console.error(error.message);process.exitCode=1;}

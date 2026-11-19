@@ -1,5 +1,5 @@
 /* Farbtupf – Service Worker: keeps the whole app on the device so it runs without internet. */
-const CACHE = 'farbtupf-v9.4.2-waldpost';
+const CACHE = 'farbtupf-v9.4.3-waldpost';
 const SCOPE=self.registration.scope;
 const INDEX=new URL('index.html',SCOPE).href;
 const ACTIVE_MARKER=new URL('.farbtupf-active-cache',SCOPE).href;
@@ -83,6 +83,16 @@ const ASSETS = [
   './assets/waldatelier/forest-objects.webp',
   './assets/waldatelier/review-nature.webp',
   './assets/waldatelier/puzzle-garden.webp',
+  './assets/waldatelier/expansion-woodland-birds.webp',
+  './assets/waldatelier/expansion-woodland-mammals.webp',
+  './assets/waldatelier/expansion-undergrowth.webp',
+  './assets/waldatelier/expansion-meadow-flowers.webp',
+  './assets/waldatelier/expansion-orchard-produce.webp',
+  './assets/waldatelier/expansion-woodland-crafts.webp',
+  './assets/waldatelier/expansion-music-play.webp',
+  './assets/waldatelier/expansion-kitchen-tools.webp',
+  './assets/waldatelier/expansion-woodland-household.webp',
+  './assets/waldatelier/expansion-animal-behaviours.webp',
   './assets/waldatelier/expansion-woodland-trees.webp',
   './assets/waldatelier/expansion-woodland-finds.webp',
   './assets/waldatelier/expansion-meadow-pond.webp',

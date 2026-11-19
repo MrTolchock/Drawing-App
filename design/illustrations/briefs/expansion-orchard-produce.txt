@@ -1,0 +1,22 @@
+Create a NEW woodland picture-book learning atlas in the same drawing technique as the supplied canonical references. Paint exactly fifteen independent subjects, each a complete cutout. Do not copy the opaque cream canvas of the references: match ONLY their drawing technique.
+
+SQUARE 4 × 4 GRID: exactly four equal columns and four equal rows. Keep the fifteen subjects in the exact cell order below. The final cell (row 4, column 4) stays empty. Each drawing occupies at most 65% of its square cell and is centred; generous empty transparent gutters on ALL sides. Keep every tail, antler, handle, wing and stem entirely inside its cell. No crossing or touching cell edges. Do not paint any grid, frame, labels or writing.
+
+Row 1, column 1: peach (Pfirsich) — one whole peach with warm red-yellow skin, a visible centre seam and one small leaf.
+Row 1, column 2: orange-fruit (Orange) — one whole round orange fruit with a small green leaf.
+Row 1, column 3: mandarin (Mandarine) — one whole small flattened orange mandarin with a short green stem.
+Row 1, column 4: quince (Quitte) — one whole golden-yellow pear-shaped quince with a small green leaf.
+Row 2, column 1: fig (Feige) — one whole purple fig with tear-drop silhouette and short stem.
+Row 2, column 2: gooseberry (Stachelbeere) — one pale green gooseberry with visible light vertical veins and dried flower tip.
+Row 2, column 3: redcurrant-sprig (Johannisbeeren) — one short hanging sprig of redcurrants attached to one green stalk, a single botanical specimen.
+Row 2, column 4: blackcurrant-sprig (Schwarze Johannisbeeren) — one short sprig of dark-purple blackcurrants and one lobed green leaf, a single botanical specimen.
+Row 3, column 1: elderberry-sprig (Holunderbeeren) — one small flat branching elderberry cluster on reddish stems, a single botanical specimen.
+Row 3, column 2: rowan-sprig (Vogelbeeren) — one small rowan sprig with orange-red berries and a short pinnate leaf, a single botanical specimen.
+Row 3, column 3: juniper-berry (Wacholderbeere) — one round blue-grey juniper berry with a tiny three-point scar.
+Row 3, column 4: sloe (Schlehe) — one round blue-black sloe with powdery bloom and a short stem.
+Row 4, column 1: sweetcorn (Maiskolben) — one golden corn cob partly wrapped in green husk.
+Row 4, column 2: broccoli (Broccoli) — one compact green broccoli head with a short thick stem.
+Row 4, column 3: cauliflower (Blumenkohl) — one cream cauliflower head cupped in green leaves.
+Row 4, column 4: EMPTY.
+
+TRANSPARENT EXPORT: All space outside actual subject contours is alpha zero, including the whole perimeter, gutters, final empty cell and openings in handles. No white matte, paper rectangle, glow, drop shadow, aura or feathered coloured haze. Stop colour at the fine natural pencil contour. Preserve opaque white paint inside white subjects. Keep watercolour/pencil texture INSIDE each drawing and its soft natural edge, but nothing behind or around it. No faces on objects. Complete believable anatomy and clearly recognizable silhouettes at 100 px. Names and IDs above are instructions only and never appear in the picture.

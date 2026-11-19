@@ -34,6 +34,16 @@
     'expansion-woodland-actions':['squirrel-dig','squirrel-climb','hedgehog-curl','hedgehog-sniff','badger-dig','roe-graze','roe-rest','frog-swim','owl-fly','robin-sing','woodpecker-peck','beaver-gnaw','otter-swim','duck-dive','fox-listen'],
     'expansion-nature-cycles':['oak-sprouting-acorn','oak-seedling','oak-sapling','bean-dry-seed','bean-rooting-seed','bean-first-leaves','bean-flowering','bean-with-pods','butterfly-eggs','butterfly-chrysalis','tadpole','tadpole-hindlegs','froglet','apple-blossom','apple-unripe'],
     'expansion-woodland-places':['woodland-bridge','woodland-bench','fallen-log','tree-stump','hollow-tree','fox-den-entrance','badger-sett','ant-hill','beaver-lodge','bird-nest-empty','reed-clump','pond-lily','stream-stones','footpath-sign','woodland-gate'],
+    'expansion-woodland-birds':['blackbird','chaffinch','goldfinch','nuthatch','treecreeper','jay','magpie','carrion-crow','cuckoo','wren','white-wagtail','barn-swallow','great-tit','greenfinch','wood-pigeon'],
+    'expansion-woodland-mammals':['wild-boar','boar-piglet','red-deer-stag','red-deer-doe','red-deer-fawn','dormouse','mole','shrew','weasel','polecat','winter-stoat','chamois','alpine-ibex','alpine-marmot','field-vole'],
+    'expansion-undergrowth':['chanterelle','porcini','morel','parasol-mushroom','puffball','bracket-fungus','shaggy-inkcap','saffron-milkcap','lichen-twig','bramble-sprig','nettle','burdock','thistle','bluebell','wild-garlic'],
+    'expansion-meadow-flowers':['daisy','buttercup','poppy','cornflower','red-clover','white-clover','yarrow','chamomile','oxeye-daisy','plantain','cowslip','blue-gentian','edelweiss','crocus','daffodil'],
+    'expansion-orchard-produce':['peach','orange-fruit','mandarin','quince','fig','gooseberry','redcurrant-sprig','blackcurrant-sprig','elderberry-sprig','rowan-sprig','juniper-berry','sloe','sweetcorn','broccoli','cauliflower'],
+    'expansion-woodland-crafts':['wooden-button','thread-spool','yarn-ball','knitting-needles','crochet-hook','craft-scissors','paintbrush','glue-pot','wooden-ruler','kite','spinning-top','wooden-whistle','xylophone','woven-mat','fabric-pouch'],
+    'expansion-music-play':['recorder','tambourine','musical-triangle','maraca','harmonica','panpipes','violin','guitar','accordion','castanets','mouse-puppet','skipping-rope','beanbag','play-hoop','wooden-skittle'],
+    'expansion-kitchen-tools':['rolling-pin','wooden-ladle','whisk','sieve','cutting-board','colander','star-biscuit-cutter','oven-mitt','kitchen-apron','bread-knife','butter-dish','jam-jar','salt-cellar','measuring-jug','corkscrew'],
+    'expansion-woodland-household':['wooden-door','wooden-window','curtain','doormat','coat-hook','boot-brush','clothes-peg','soap-bar','toothbrush','hairbrush','wooden-comb','wash-tub','scrubbing-brush','washboard','hand-towel'],
+    'expansion-animal-behaviours':['blackbird-worm','squirrel-crack-nut','rabbit-eat-carrot','mole-dig','fox-drink','roe-jump','badger-sniff','owl-stretch','frog-croak','duck-walk','snail-retracted','butterfly-closed','bee-on-flower','caterpillar-eat-leaf','beaver-carry-stick'],
   };
   const grid = { 'review-nature':[2,2], 'puzzle-garden':[2,2], 'forest-fox':[2,2], menu:[3,2], 'puzzle-vocabulary':[4,5], 'puzzle-flowers':[3,2] };
   const source = sheet => 'assets/waldatelier/' + sheet + '.webp';

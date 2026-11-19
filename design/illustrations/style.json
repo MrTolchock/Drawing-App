@@ -708,6 +708,196 @@
           "usage": "composition-only"
         }
       ]
+    },
+    {
+      "id": "expansion-woodland-birds",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-woodland-birds.txt",
+      "brief": "design/illustrations/briefs/expansion-woodland-birds.txt",
+      "transparent": true
+    },
+    {
+      "id": "expansion-woodland-mammals",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-woodland-mammals.txt",
+      "brief": "design/illustrations/briefs/expansion-woodland-mammals.txt",
+      "transparent": true
+    },
+    {
+      "id": "expansion-undergrowth",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-undergrowth.txt",
+      "brief": "design/illustrations/briefs/expansion-undergrowth.txt",
+      "transparent": true
+    },
+    {
+      "id": "expansion-meadow-flowers",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-meadow-flowers.txt",
+      "brief": "design/illustrations/briefs/expansion-meadow-flowers.txt",
+      "transparent": true
+    },
+    {
+      "id": "expansion-orchard-produce",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-orchard-produce.txt",
+      "brief": "design/illustrations/briefs/expansion-orchard-produce.txt",
+      "transparent": true
+    },
+    {
+      "id": "expansion-woodland-crafts",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-woodland-crafts.txt",
+      "brief": "design/illustrations/briefs/expansion-woodland-crafts.txt",
+      "transparent": true
+    },
+    {
+      "id": "expansion-music-play",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-music-play.txt",
+      "brief": "design/illustrations/briefs/expansion-music-play.txt",
+      "transparent": true
+    },
+    {
+      "id": "expansion-kitchen-tools",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-kitchen-tools.txt",
+      "brief": "design/illustrations/briefs/expansion-kitchen-tools.txt",
+      "transparent": true
+    },
+    {
+      "id": "expansion-woodland-household",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-woodland-household.txt",
+      "brief": "design/illustrations/briefs/expansion-woodland-household.txt",
+      "transparent": true
+    },
+    {
+      "id": "expansion-animal-behaviours",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-animal-behaviours.txt",
+      "brief": "design/illustrations/briefs/expansion-animal-behaviours.txt",
+      "transparent": true
+    },
+    {
+      "id": "expansion-orchard-produce-cutout",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-orchard-produce-cutout.txt",
+      "brief": "design/illustrations/briefs/expansion-orchard-produce-cutout.txt",
+      "transparent": true,
+      "references": [
+        {
+          "path": "design/illustrations/sources/expansion-two-2026-11-19/expansion-orchard-produce.png",
+          "sha256": "424076b0108108ba680e925c4abfa922f566555a96ffe3268e6dbd7f08cacc20",
+          "purpose": "current fifteen subjects and exact cell order only; remove accidental background or repair the specified drawing while retaining canonical technique",
+          "usage": "composition-only"
+        }
+      ]
+    },
+    {
+      "id": "expansion-meadow-flowers-cutout",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-meadow-flowers-cutout.txt",
+      "brief": "design/illustrations/briefs/expansion-meadow-flowers-cutout.txt",
+      "transparent": true,
+      "references": [
+        {
+          "path": "design/illustrations/sources/expansion-two-2026-11-19/expansion-meadow-flowers.png",
+          "sha256": "c40ff1beea2019eeceb74bf2bef6925ea74dd7f36c587cb0b1968ae87cc97398",
+          "purpose": "current fifteen subjects and exact cell order only; remove accidental background or repair the specified drawing while retaining canonical technique",
+          "usage": "composition-only"
+        }
+      ]
+    },
+    {
+      "id": "expansion-woodland-mammals-cutout",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-woodland-mammals-cutout.txt",
+      "brief": "design/illustrations/briefs/expansion-woodland-mammals-cutout.txt",
+      "transparent": true,
+      "references": [
+        {
+          "path": "design/illustrations/sources/expansion-two-2026-11-19/expansion-woodland-mammals.png",
+          "sha256": "25fdd6eccb43fd5ba363363750b041516811eff9424a2ddc37aaa3343eef43cb",
+          "purpose": "current fifteen subjects and exact cell order only; remove accidental background or repair the specified drawing while retaining canonical technique",
+          "usage": "composition-only"
+        }
+      ]
+    },
+    {
+      "id": "expansion-undergrowth-cutout",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-undergrowth-cutout.txt",
+      "brief": "design/illustrations/briefs/expansion-undergrowth-cutout.txt",
+      "transparent": true,
+      "references": [
+        {
+          "path": "design/illustrations/sources/expansion-two-2026-11-19/expansion-undergrowth.png",
+          "sha256": "fa5fbd0db823f594c2f2338b9d1ea05545a84307229ce59436b9014921e58845",
+          "purpose": "current fifteen subjects and exact cell order only; remove accidental background or repair the specified drawing while retaining canonical technique",
+          "usage": "composition-only"
+        }
+      ]
+    },
+    {
+      "id": "expansion-meadow-flowers-isolated",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-meadow-flowers-isolated.txt",
+      "brief": "design/illustrations/briefs/expansion-meadow-flowers-isolated.txt",
+      "transparent": true,
+      "references": [
+        {
+          "path": "design/illustrations/sources/expansion-two-2026-11-19/expansion-meadow-flowers-cutout.png",
+          "sha256": "16fa86333bd298a24019b1756e55e502317ddde9ab822849a94ad4c9b835cc8c",
+          "purpose": "current subject identities and cell positions only; discard the continuous pale coloured background and all auras",
+          "usage": "composition-only"
+        }
+      ]
+    },
+    {
+      "id": "expansion-woodland-mammals-isolated",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-woodland-mammals-isolated.txt",
+      "brief": "design/illustrations/briefs/expansion-woodland-mammals-isolated.txt",
+      "transparent": true,
+      "references": [
+        {
+          "path": "design/illustrations/sources/expansion-two-2026-11-19/expansion-woodland-mammals-cutout.png",
+          "sha256": "c2d469e7f8f559459c367e2d2ff060e0cb29f4aa671f9d6811cad33353efabc4",
+          "purpose": "current subject identities and cell positions only; discard the continuous pale coloured background and all auras",
+          "usage": "composition-only"
+        }
+      ]
+    },
+    {
+      "id": "expansion-kitchen-tools-cutout",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-kitchen-tools-cutout.txt",
+      "brief": "design/illustrations/briefs/expansion-kitchen-tools-cutout.txt",
+      "transparent": true,
+      "references": [
+        {
+          "path": "design/illustrations/sources/expansion-two-2026-11-19/expansion-kitchen-tools.png",
+          "sha256": "195d638cdd8b77488c8138c55e12ae74a9ce01b4a6bb323188e1fae923f39b2d",
+          "purpose": "current fifteen subjects and exact cell order only; remove accidental background or repair the specified drawing while retaining canonical technique",
+          "usage": "composition-only"
+        }
+      ]
+    },
+    {
+      "id": "expansion-woodland-mammals-transparent",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-woodland-mammals-transparent.txt",
+      "brief": "design/illustrations/briefs/expansion-woodland-mammals-transparent.txt",
+      "transparent": true,
+      "references": [
+        {
+          "path": "design/illustrations/sources/expansion-two-2026-11-19/expansion-woodland-mammals-isolated.png",
+          "sha256": "e2747edf3af2608d02e62e6894bfdcdb40c47ef82cc785fe95ad8235e80a633e",
+          "purpose": "current fifteen complete animal drawings and cell positions only; remove the white matte and all exterior shadows",
+          "usage": "composition-only"
+        }
+      ]
     }
   ],
   "preparationManifests": [
@@ -738,7 +928,17 @@
     "design/illustrations/expansion-seasons-weather.json",
     "design/illustrations/expansion-woodland-actions.json",
     "design/illustrations/expansion-nature-cycles.json",
-    "design/illustrations/expansion-woodland-places.json"
+    "design/illustrations/expansion-woodland-places.json",
+    "design/illustrations/expansion-woodland-birds.json",
+    "design/illustrations/expansion-woodland-mammals.json",
+    "design/illustrations/expansion-undergrowth.json",
+    "design/illustrations/expansion-meadow-flowers.json",
+    "design/illustrations/expansion-orchard-produce.json",
+    "design/illustrations/expansion-woodland-crafts.json",
+    "design/illustrations/expansion-music-play.json",
+    "design/illustrations/expansion-kitchen-tools.json",
+    "design/illustrations/expansion-woodland-household.json",
+    "design/illustrations/expansion-animal-behaviours.json"
   ],
   "history": "legacy/design-history/2026-11-16-before-style-contract",
   "preview": {

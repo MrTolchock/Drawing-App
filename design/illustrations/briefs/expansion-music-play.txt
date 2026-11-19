@@ -1,0 +1,22 @@
+Create a NEW woodland picture-book learning atlas in the same drawing technique as the supplied canonical references. Paint exactly fifteen independent subjects, each a complete cutout. Do not copy the opaque cream canvas of the references: match ONLY their drawing technique.
+
+SQUARE 4 × 4 GRID: exactly four equal columns and four equal rows. Keep the fifteen subjects in the exact cell order below. The final cell (row 4, column 4) stays empty. Each drawing occupies at most 65% of its square cell and is centred; generous empty transparent gutters on ALL sides. Keep every tail, antler, handle, wing and stem entirely inside its cell. No crossing or touching cell edges. Do not paint any grid, frame, labels or writing.
+
+Row 1, column 1: recorder (Blockflöte) — one honey-brown wooden recorder with visible finger holes.
+Row 1, column 2: tambourine (Tamburin) — one wooden tambourine with cream drumhead and small metal jingles.
+Row 1, column 3: musical-triangle (Triangel) — one metal triangle instrument with its short wooden-handled beater alongside, a single instrument set.
+Row 1, column 4: maraca (Rassel) — one ochre-and-blue wooden maraca with a short handle.
+Row 2, column 1: harmonica (Mundharmonika) — one small blue-and-cream harmonica with visible row of air slots.
+Row 2, column 2: panpipes (Panflöte) — one small panpipe instrument made of five graduated hollow bamboo tubes tied together.
+Row 2, column 3: violin (Geige) — one small wooden violin with its bow alongside, complete neck and scroll, single instrument set.
+Row 2, column 4: guitar (Gitarre) — one warm wooden acoustic guitar with complete neck and visible strings.
+Row 3, column 1: accordion (Akkordeon) — one small red-and-cream accordion with folded brown bellows, keys and buttons.
+Row 3, column 2: castanets (Kastagnetten) — one connected pair of wooden shell castanets.
+Row 3, column 3: mouse-puppet (Maus-Handpuppe) — one cloth hand puppet shaped like a friendly grey mouse, empty open wrist cuff clearly visible.
+Row 3, column 4: skipping-rope (Springseil) — one complete curved skipping rope with two honey-brown wooden handles.
+Row 4, column 1: beanbag (Säckchen) — one small square red cloth beanbag with visible stitched seams.
+Row 4, column 2: play-hoop (Reifen) — one simple wooden play hoop, complete circular ring with transparent centre.
+Row 4, column 3: wooden-skittle (Kegel) — one upright wooden bowling skittle with narrow neck and rounded head.
+Row 4, column 4: EMPTY.
+
+TRANSPARENT EXPORT: All space outside actual subject contours is alpha zero, including the whole perimeter, gutters, final empty cell and openings in handles. No white matte, paper rectangle, glow, drop shadow, aura or feathered coloured haze. Stop colour at the fine natural pencil contour. Preserve opaque white paint inside white subjects. Keep watercolour/pencil texture INSIDE each drawing and its soft natural edge, but nothing behind or around it. No faces on objects. Complete believable anatomy and clearly recognizable silhouettes at 100 px. Names and IDs above are instructions only and never appear in the picture.

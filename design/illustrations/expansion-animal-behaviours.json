@@ -1,0 +1,174 @@
+{
+  "format": "waldpost-illustration-atlas",
+  "version": 1,
+  "source": "sources/expansion-two-2026-11-19/expansion-animal-behaviours.png",
+  "output": "../../assets/waldatelier/expansion-animal-behaviours.webp",
+  "columns": 4,
+  "rows": 4,
+  "cellPixels": 320,
+  "subjectPixels": 256,
+  "alphaThresholdPercent": 8,
+  "provenance": {
+    "date": "2026-11-19",
+    "tool": "ChatGPT image_gen.imagegen",
+    "sourceSha256": "f7b9a1ed939ab50bddd5702a9bbbccf88b1a0580f6b4fcd33161be5d27dcd5f3",
+    "generationRecord": "../artwork/generation-records/expansion-animal-behaviours-2026-11-19.json",
+    "styleContract": "style.json",
+    "forwardPrompt": "prompts/expansion-animal-behaviours.txt",
+    "cropNote": "Source gutters selected within empty alpha gaps to retain complete stems, handles and tails; pixels are unchanged before the standard proportional crop/resize."
+  },
+  "subjects": [
+    {
+      "id": "blackbird-worm",
+      "label": "Amsel mit Regenwurm"
+    },
+    {
+      "id": "squirrel-crack-nut",
+      "label": "Eichhörnchen knackt eine Nuss"
+    },
+    {
+      "id": "rabbit-eat-carrot",
+      "label": "Kaninchen frisst eine Karotte"
+    },
+    {
+      "id": "mole-dig",
+      "label": "Maulwurf gräbt"
+    },
+    {
+      "id": "fox-drink",
+      "label": "Fuchs trinkt"
+    },
+    {
+      "id": "roe-jump",
+      "label": "Reh springt"
+    },
+    {
+      "id": "badger-sniff",
+      "label": "Dachs schnuppert"
+    },
+    {
+      "id": "owl-stretch",
+      "label": "Eule streckt einen Flügel"
+    },
+    {
+      "id": "frog-croak",
+      "label": "Frosch quakt"
+    },
+    {
+      "id": "duck-walk",
+      "label": "Ente läuft"
+    },
+    {
+      "id": "snail-retracted",
+      "label": "Schnecke zieht sich zurück"
+    },
+    {
+      "id": "butterfly-closed",
+      "label": "Schmetterling klappt die Flügel zusammen"
+    },
+    {
+      "id": "bee-on-flower",
+      "label": "Biene auf einer Blüte"
+    },
+    {
+      "id": "caterpillar-eat-leaf",
+      "label": "Raupe frisst ein Blatt"
+    },
+    {
+      "id": "beaver-carry-stick",
+      "label": "Biber trägt einen Ast"
+    }
+  ],
+  "sourceRects": {
+    "blackbird-worm": {
+      "x": 0,
+      "y": 0,
+      "width": 313,
+      "height": 313
+    },
+    "squirrel-crack-nut": {
+      "x": 313,
+      "y": 0,
+      "width": 300,
+      "height": 313
+    },
+    "rabbit-eat-carrot": {
+      "x": 613,
+      "y": 0,
+      "width": 336,
+      "height": 313
+    },
+    "mole-dig": {
+      "x": 949,
+      "y": 0,
+      "width": 305,
+      "height": 313
+    },
+    "fox-drink": {
+      "x": 0,
+      "y": 313,
+      "width": 313,
+      "height": 314
+    },
+    "roe-jump": {
+      "x": 313,
+      "y": 313,
+      "width": 300,
+      "height": 314
+    },
+    "badger-sniff": {
+      "x": 613,
+      "y": 313,
+      "width": 336,
+      "height": 314
+    },
+    "owl-stretch": {
+      "x": 949,
+      "y": 313,
+      "width": 305,
+      "height": 314
+    },
+    "frog-croak": {
+      "x": 0,
+      "y": 627,
+      "width": 313,
+      "height": 313
+    },
+    "duck-walk": {
+      "x": 313,
+      "y": 627,
+      "width": 300,
+      "height": 313
+    },
+    "snail-retracted": {
+      "x": 613,
+      "y": 627,
+      "width": 336,
+      "height": 313
+    },
+    "butterfly-closed": {
+      "x": 949,
+      "y": 627,
+      "width": 305,
+      "height": 313
+    },
+    "bee-on-flower": {
+      "x": 0,
+      "y": 940,
+      "width": 313,
+      "height": 314
+    },
+    "caterpillar-eat-leaf": {
+      "x": 313,
+      "y": 940,
+      "width": 300,
+      "height": 314
+    },
+    "beaver-carry-stick": {
+      "x": 613,
+      "y": 940,
+      "width": 336,
+      "height": 314
+    }
+  }
+}

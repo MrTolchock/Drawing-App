@@ -1,0 +1,22 @@
+Create a NEW woodland picture-book learning atlas in the same drawing technique as the supplied canonical references. Paint exactly fifteen independent subjects, each a complete cutout. Do not copy the opaque cream canvas of the references: match ONLY their drawing technique.
+
+SQUARE 4 × 4 GRID: exactly four equal columns and four equal rows. Keep the fifteen subjects in the exact cell order below. The final cell (row 4, column 4) stays empty. Each drawing occupies at most 65% of its square cell and is centred; generous empty transparent gutters on ALL sides. Keep every tail, antler, handle, wing and stem entirely inside its cell. No crossing or touching cell edges. Do not paint any grid, frame, labels or writing.
+
+Row 1, column 1: wooden-door (Tür) — one closed honey-brown wooden door in a simple narrow frame, round brass handle.
+Row 1, column 2: wooden-window (Fenster) — one four-pane wooden window in a plain frame, pale-blue glass, no scenery.
+Row 1, column 3: curtain (Vorhang) — one single sage-green cloth curtain hanging from a short wooden rod.
+Row 1, column 4: doormat (Fussmatte) — one oval coir doormat with a plain woven texture, no writing.
+Row 2, column 1: coat-hook (Kleiderhaken) — one simple curved wooden wall hook on a small backing plate.
+Row 2, column 2: boot-brush (Schuhbürste) — one low wooden boot brush with dense brown bristles facing upward.
+Row 2, column 3: clothes-peg (Wäscheklammer) — one single spring wooden clothes peg, slightly open.
+Row 2, column 4: soap-bar (Seife) — one cream oval bar of soap, no embossed writing, no bubbles.
+Row 3, column 1: toothbrush (Zahnbürste) — one wooden toothbrush with cream bristles and blue painted handle end.
+Row 3, column 2: hairbrush (Haarbürste) — one oval wooden hairbrush with short handle and a bed of brown bristles.
+Row 3, column 3: wooden-comb (Kamm) — one simple honey-brown comb with clearly spaced teeth.
+Row 3, column 4: wash-tub (Waschzuber) — one empty round wooden washing tub with two handles and open interior.
+Row 4, column 1: scrubbing-brush (Schrubber) — one hand scrubbing brush with arched wooden handle above a broad bristled base.
+Row 4, column 2: washboard (Waschbrett) — one small old-fashioned washboard with wooden frame and ribbed metal centre.
+Row 4, column 3: hand-towel (Handtuch) — one folded cream hand towel with two muted blue edge stripes.
+Row 4, column 4: EMPTY.
+
+TRANSPARENT EXPORT: All space outside actual subject contours is alpha zero, including the whole perimeter, gutters, final empty cell and openings in handles. No white matte, paper rectangle, glow, drop shadow, aura or feathered coloured haze. Stop colour at the fine natural pencil contour. Preserve opaque white paint inside white subjects. Keep watercolour/pencil texture INSIDE each drawing and its soft natural edge, but nothing behind or around it. No faces on objects. Complete believable anatomy and clearly recognizable silhouettes at 100 px. Names and IDs above are instructions only and never appear in the picture.

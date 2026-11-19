@@ -1,0 +1,174 @@
+{
+  "format": "waldpost-illustration-atlas",
+  "version": 1,
+  "source": "sources/expansion-two-2026-11-19/expansion-kitchen-tools-cutout.png",
+  "output": "../../assets/waldatelier/expansion-kitchen-tools.webp",
+  "columns": 4,
+  "rows": 4,
+  "cellPixels": 320,
+  "subjectPixels": 256,
+  "alphaThresholdPercent": 8,
+  "provenance": {
+    "date": "2026-11-19",
+    "tool": "ChatGPT image_gen.imagegen",
+    "sourceSha256": "71f5d8ce1a8296f2c9cd7ea58cdddb11fc358f3e148f84fa6b1762ec68cadb19",
+    "generationRecord": "../artwork/generation-records/expansion-kitchen-tools-cutout-2026-11-19.json",
+    "styleContract": "style.json",
+    "forwardPrompt": "prompts/expansion-kitchen-tools.txt",
+    "cropNote": "Source gutters selected within empty alpha gaps to retain complete stems, handles and tails; pixels are unchanged before the standard proportional crop/resize."
+  },
+  "subjects": [
+    {
+      "id": "rolling-pin",
+      "label": "Wallholz"
+    },
+    {
+      "id": "wooden-ladle",
+      "label": "Schöpfkelle"
+    },
+    {
+      "id": "whisk",
+      "label": "Schwingbesen"
+    },
+    {
+      "id": "sieve",
+      "label": "Sieb"
+    },
+    {
+      "id": "cutting-board",
+      "label": "Schneidebrett"
+    },
+    {
+      "id": "colander",
+      "label": "Abtropfsieb"
+    },
+    {
+      "id": "star-biscuit-cutter",
+      "label": "Ausstechform"
+    },
+    {
+      "id": "oven-mitt",
+      "label": "Topfhandschuh"
+    },
+    {
+      "id": "kitchen-apron",
+      "label": "Schürze"
+    },
+    {
+      "id": "bread-knife",
+      "label": "Brotmesser"
+    },
+    {
+      "id": "butter-dish",
+      "label": "Butterdose"
+    },
+    {
+      "id": "jam-jar",
+      "label": "Konfitüre"
+    },
+    {
+      "id": "salt-cellar",
+      "label": "Salzstreuer"
+    },
+    {
+      "id": "measuring-jug",
+      "label": "Messbecher"
+    },
+    {
+      "id": "corkscrew",
+      "label": "Zapfenzieher"
+    }
+  ],
+  "sourceRects": {
+    "rolling-pin": {
+      "x": 0,
+      "y": 0,
+      "width": 313,
+      "height": 328
+    },
+    "wooden-ladle": {
+      "x": 313,
+      "y": 0,
+      "width": 314,
+      "height": 328
+    },
+    "whisk": {
+      "x": 627,
+      "y": 0,
+      "width": 313,
+      "height": 328
+    },
+    "sieve": {
+      "x": 940,
+      "y": 0,
+      "width": 314,
+      "height": 328
+    },
+    "cutting-board": {
+      "x": 0,
+      "y": 328,
+      "width": 313,
+      "height": 302
+    },
+    "colander": {
+      "x": 313,
+      "y": 328,
+      "width": 314,
+      "height": 302
+    },
+    "star-biscuit-cutter": {
+      "x": 627,
+      "y": 328,
+      "width": 313,
+      "height": 302
+    },
+    "oven-mitt": {
+      "x": 940,
+      "y": 328,
+      "width": 314,
+      "height": 302
+    },
+    "kitchen-apron": {
+      "x": 0,
+      "y": 630,
+      "width": 313,
+      "height": 314
+    },
+    "bread-knife": {
+      "x": 313,
+      "y": 630,
+      "width": 314,
+      "height": 314
+    },
+    "butter-dish": {
+      "x": 627,
+      "y": 630,
+      "width": 313,
+      "height": 314
+    },
+    "jam-jar": {
+      "x": 940,
+      "y": 630,
+      "width": 314,
+      "height": 314
+    },
+    "salt-cellar": {
+      "x": 0,
+      "y": 944,
+      "width": 313,
+      "height": 310
+    },
+    "measuring-jug": {
+      "x": 313,
+      "y": 944,
+      "width": 314,
+      "height": 310
+    },
+    "corkscrew": {
+      "x": 627,
+      "y": 944,
+      "width": 313,
+      "height": 310
+    }
+  }
+}

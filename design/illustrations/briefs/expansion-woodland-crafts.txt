@@ -1,0 +1,22 @@
+Create a NEW woodland picture-book learning atlas in the same drawing technique as the supplied canonical references. Paint exactly fifteen independent subjects, each a complete cutout. Do not copy the opaque cream canvas of the references: match ONLY their drawing technique.
+
+SQUARE 4 × 4 GRID: exactly four equal columns and four equal rows. Keep the fifteen subjects in the exact cell order below. The final cell (row 4, column 4) stays empty. Each drawing occupies at most 65% of its square cell and is centred; generous empty transparent gutters on ALL sides. Keep every tail, antler, handle, wing and stem entirely inside its cell. No crossing or touching cell edges. Do not paint any grid, frame, labels or writing.
+
+Row 1, column 1: wooden-button (Holzknopf) — one round honey-brown wooden button with exactly four holes.
+Row 1, column 2: thread-spool (Fadenspule) — one wooden spool wound with muted blue thread, one short loose thread end.
+Row 1, column 3: yarn-ball (Wollknäuel) — one sage-green ball of yarn with one short loose strand.
+Row 1, column 4: knitting-needles (Stricknadeln) — one pair of simple wooden knitting needles crossed neatly.
+Row 2, column 1: crochet-hook (Häkelnadel) — one wooden crochet hook with a clearly visible hook at one end.
+Row 2, column 2: craft-scissors (Bastelschere) — one pair of small blue-handled round-tipped craft scissors, slightly open, transparent finger holes.
+Row 2, column 3: paintbrush (Pinsel) — one wooden-handled paintbrush with natural brown bristles and a blue paint tip.
+Row 2, column 4: glue-pot (Leimtopf) — one small closed cream glue pot with a plain ochre lid, no writing.
+Row 3, column 1: wooden-ruler (Lineal) — one short wooden ruler with simple sepia ticks and no numerals or text.
+Row 3, column 2: kite (Drachen zum Spielen) — one small diamond-shaped blue-and-ochre kite with a complete short ribbon tail, no flying landscape.
+Row 3, column 3: spinning-top (Kreisel) — one simple turned wooden spinning top with restrained red and blue painted bands.
+Row 3, column 4: wooden-whistle (Holzpfeife) — one small plain wooden whistle with a visible mouthpiece and sound hole.
+Row 4, column 1: xylophone (Xylophon) — one small wooden xylophone with five muted coloured bars and one attached mallet alongside.
+Row 4, column 2: woven-mat (Geflochtene Matte) — one small oval woven straw mat.
+Row 4, column 3: fabric-pouch (Stoffbeutel) — one closed sage cloth drawstring pouch with its cord bow and no contents.
+Row 4, column 4: EMPTY.
+
+TRANSPARENT EXPORT: All space outside actual subject contours is alpha zero, including the whole perimeter, gutters, final empty cell and openings in handles. No white matte, paper rectangle, glow, drop shadow, aura or feathered coloured haze. Stop colour at the fine natural pencil contour. Preserve opaque white paint inside white subjects. Keep watercolour/pencil texture INSIDE each drawing and its soft natural edge, but nothing behind or around it. No faces on objects. Complete believable anatomy and clearly recognizable silhouettes at 100 px. Names and IDs above are instructions only and never appear in the picture.

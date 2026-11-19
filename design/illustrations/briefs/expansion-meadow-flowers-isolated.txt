@@ -1,0 +1,5 @@
+BACKGROUND REMOVAL ONLY for Reference 3. The desired foreground consists ONLY of the fifteen plants, each as a separate complete CUTOUT. Keep their identities, colours, order and 4 by 4 cell positions. Reduce the plants by about 15% inside their own cells so all roots, leaves, stems and petals have a generous transparent margin. Final cell remains empty.
+
+ERASE every pale white, grey, cream, green or coloured area OUTSIDE the actual pencil contour of each plant: those areas are all BACKGROUND, even where they resemble a gentle watercolour wash. Replace them with alpha exactly ZERO. Erase ALL exterior shadows, glows, halos, haze and feathered auras. No paper canvas and no background tint of any kind. Keep opaque white paint ONLY INSIDE white petals and bracts. Keep watercolour/pencil grain ONLY INSIDE the actual plant silhouettes. Every gap between stems and leaves and every gutter is fully transparent.
+
+Produce actual clean transparent alpha, not a faintly translucent background. A fine natural pencil outline defines each cutout; no sticker border, no aura, no drop shadow. The existing plant drawings remain in their exact cells.

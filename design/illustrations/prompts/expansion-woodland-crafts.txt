@@ -1,0 +1,47 @@
+WALDPOST CANONICAL ILLUSTRATION STYLE — waldpost-watercolour-pencil-v1
+
+Use the supplied canonical animals.png and objects.png reference images as the authority for drawing technique. They show the predominant style of the current Waldpost gallery. Match their actual pixels, not an imagined style suggested by a filename.
+
+Draw warm children's picture-book watercolour finished with visible coloured-pencil strokes. Use light, gently uneven washes, organic sepia contours, delicate hatching, softly irregular edges and modest drawn shading. Surfaces look painted and pencilled, with paper grain within the illustration. Keep the warmth of cream, honey brown, restrained sage and blue, while preserving every exact colour required by a task. Subjects remain friendly, recognizable and anatomically believable.
+
+Do not turn the drawing into a 3D render, plush toy, clay or felt craft, photograph, glossy object, embossed surface or studio-lit miniature. Avoid deep ambient-occlusion shadows, inflated forms and realistic material microtexture. Do not mix in another illustration technique or use historical artwork as a style reference.
+
+The role instructions below set the necessary detail and composition within this one style. Learning pictures retain fine drawn contours; small navigation symbols use the approved simpler, broader shapes and flat fills in the same palette. Keep the existing rendered game-character identities separate from image-generated learning subjects. Exact geometry and handwriting remain authored paths.
+
+Preserve subject identity, counted quantities, exact answer colours and action differences. Use real alpha for isolated pictures and stationery, and an opaque canvas only when the selected role requires a scene or branding image. No accidental background, halo, visible grid, labels or extra objects.
+
+ROLE: learning
+Match the canonical watercolour and coloured-pencil technique closely: fine organic contours, uneven washes and gentle drawn volume. Keep accurate species, action contrasts, one counted object per item and exact answer colours. Use transparent square cells, generous gutters and complete silhouettes.
+
+FRAMING AND EDGE QUALITY:
+Compare related pictures side by side at the size used in the game. For square cells, draw the complete silhouette with enough transparent space to pack it centred on both axes, with its longest visible side about 80% of the cell. Keep its proportions and use comparable visual weight for neighbouring answers. Reuse the same painting when a subject and pose recur. Leave genuine alpha around every isolated subject and retain the soft pencil edges. Inspect on light and dark backgrounds for pale matte, clipped outlines, stray pixels and neighbouring subjects. In a cell repair, preserve the pixels and positions of the other cells. Scenes and irregular layouts follow their role and brief.
+
+ATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:
+1. design/illustrations/references/watercolour-pencil-v1/animals.png — canonical-style: canonical drawing technique for animals; fixed majority-style pixels
+2. design/illustrations/references/watercolour-pencil-v1/objects.png — canonical-style: canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels
+
+SUBJECT AND LAYOUT BRIEF:
+Create a NEW woodland picture-book learning atlas in the same drawing technique as the supplied canonical references. Paint exactly fifteen independent subjects, each a complete cutout. Do not copy the opaque cream canvas of the references: match ONLY their drawing technique.
+
+SQUARE 4 × 4 GRID: exactly four equal columns and four equal rows. Keep the fifteen subjects in the exact cell order below. The final cell (row 4, column 4) stays empty. Each drawing occupies at most 65% of its square cell and is centred; generous empty transparent gutters on ALL sides. Keep every tail, antler, handle, wing and stem entirely inside its cell. No crossing or touching cell edges. Do not paint any grid, frame, labels or writing.
+
+Row 1, column 1: wooden-button (Holzknopf) — one round honey-brown wooden button with exactly four holes.
+Row 1, column 2: thread-spool (Fadenspule) — one wooden spool wound with muted blue thread, one short loose thread end.
+Row 1, column 3: yarn-ball (Wollknäuel) — one sage-green ball of yarn with one short loose strand.
+Row 1, column 4: knitting-needles (Stricknadeln) — one pair of simple wooden knitting needles crossed neatly.
+Row 2, column 1: crochet-hook (Häkelnadel) — one wooden crochet hook with a clearly visible hook at one end.
+Row 2, column 2: craft-scissors (Bastelschere) — one pair of small blue-handled round-tipped craft scissors, slightly open, transparent finger holes.
+Row 2, column 3: paintbrush (Pinsel) — one wooden-handled paintbrush with natural brown bristles and a blue paint tip.
+Row 2, column 4: glue-pot (Leimtopf) — one small closed cream glue pot with a plain ochre lid, no writing.
+Row 3, column 1: wooden-ruler (Lineal) — one short wooden ruler with simple sepia ticks and no numerals or text.
+Row 3, column 2: kite (Drachen zum Spielen) — one small diamond-shaped blue-and-ochre kite with a complete short ribbon tail, no flying landscape.
+Row 3, column 3: spinning-top (Kreisel) — one simple turned wooden spinning top with restrained red and blue painted bands.
+Row 3, column 4: wooden-whistle (Holzpfeife) — one small plain wooden whistle with a visible mouthpiece and sound hole.
+Row 4, column 1: xylophone (Xylophon) — one small wooden xylophone with five muted coloured bars and one attached mallet alongside.
+Row 4, column 2: woven-mat (Geflochtene Matte) — one small oval woven straw mat.
+Row 4, column 3: fabric-pouch (Stoffbeutel) — one closed sage cloth drawstring pouch with its cord bow and no contents.
+Row 4, column 4: EMPTY.
+
+TRANSPARENT EXPORT: All space outside actual subject contours is alpha zero, including the whole perimeter, gutters, final empty cell and openings in handles. No white matte, paper rectangle, glow, drop shadow, aura or feathered coloured haze. Stop colour at the fine natural pencil contour. Preserve opaque white paint inside white subjects. Keep watercolour/pencil texture INSIDE each drawing and its soft natural edge, but nothing behind or around it. No faces on objects. Complete believable anatomy and clearly recognizable silhouettes at 100 px. Names and IDs above are instructions only and never appear in the picture.
+
+STYLE PRIORITY: The brief changes subjects and layout only. Keep waldpost-watercolour-pencil-v1 and the supplied canonical reference technique throughout; do not import the style of a composition-only reference.

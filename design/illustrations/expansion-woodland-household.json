@@ -1,0 +1,81 @@
+{
+  "format": "waldpost-illustration-atlas",
+  "version": 1,
+  "source": "sources/expansion-two-2026-11-19/expansion-woodland-household.png",
+  "output": "../../assets/waldatelier/expansion-woodland-household.webp",
+  "columns": 4,
+  "rows": 4,
+  "cellPixels": 320,
+  "subjectPixels": 256,
+  "alphaThresholdPercent": 8,
+  "provenance": {
+    "date": "2026-11-19",
+    "tool": "ChatGPT image_gen.imagegen",
+    "sourceSha256": "fde791ba0087add6925613202a7d74e312527605e75fbd884209eaba94d43128",
+    "generationRecord": "../artwork/generation-records/expansion-woodland-household-2026-11-19.json",
+    "styleContract": "style.json",
+    "forwardPrompt": "prompts/expansion-woodland-household.txt"
+  },
+  "subjects": [
+    {
+      "id": "wooden-door",
+      "label": "Tür"
+    },
+    {
+      "id": "wooden-window",
+      "label": "Fenster"
+    },
+    {
+      "id": "curtain",
+      "label": "Vorhang"
+    },
+    {
+      "id": "doormat",
+      "label": "Fussmatte"
+    },
+    {
+      "id": "coat-hook",
+      "label": "Kleiderhaken"
+    },
+    {
+      "id": "boot-brush",
+      "label": "Schuhbürste"
+    },
+    {
+      "id": "clothes-peg",
+      "label": "Wäscheklammer"
+    },
+    {
+      "id": "soap-bar",
+      "label": "Seife"
+    },
+    {
+      "id": "toothbrush",
+      "label": "Zahnbürste"
+    },
+    {
+      "id": "hairbrush",
+      "label": "Haarbürste"
+    },
+    {
+      "id": "wooden-comb",
+      "label": "Kamm"
+    },
+    {
+      "id": "wash-tub",
+      "label": "Waschzuber"
+    },
+    {
+      "id": "scrubbing-brush",
+      "label": "Schrubber"
+    },
+    {
+      "id": "washboard",
+      "label": "Waschbrett"
+    },
+    {
+      "id": "hand-towel",
+      "label": "Handtuch"
+    }
+  ]
+}

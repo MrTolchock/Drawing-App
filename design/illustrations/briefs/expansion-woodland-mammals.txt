@@ -1,0 +1,22 @@
+Create a NEW woodland picture-book learning atlas in the same drawing technique as the supplied canonical references. Paint exactly fifteen independent subjects, each a complete cutout. Do not copy the opaque cream canvas of the references: match ONLY their drawing technique.
+
+SQUARE 4 × 4 GRID: exactly four equal columns and four equal rows. Keep the fifteen subjects in the exact cell order below. The final cell (row 4, column 4) stays empty. Each drawing occupies at most 65% of its square cell and is centred; generous empty transparent gutters on ALL sides. Keep every tail, antler, handle, wing and stem entirely inside its cell. No crossing or touching cell edges. Do not paint any grid, frame, labels or writing.
+
+Row 1, column 1: wild-boar (Wildschwein) — one adult brown-grey wild boar with sturdy body, short legs and elongated snout.
+Row 1, column 2: boar-piglet (Frischling) — one small wild boar piglet with clear cream lengthwise stripes on its brown body.
+Row 1, column 3: red-deer-stag (Rothirsch) — one adult red deer stag with large branching antlers and rich brown coat.
+Row 1, column 4: red-deer-doe (Hirschkuh) — one adult female red deer with reddish-brown coat, long ears and no antlers.
+Row 2, column 1: red-deer-fawn (Hirschkalb) — one small red deer fawn with white spots and no antlers.
+Row 2, column 2: dormouse (Haselmaus) — one golden dormouse with round ears, large dark eyes and softly furry complete tail.
+Row 2, column 3: mole (Maulwurf) — one dark-grey mole with pink nose and two broad outward-facing digging forepaws.
+Row 2, column 4: shrew (Spitzmaus) — one small brown shrew with distinctly long pointed snout, tiny eyes and slender tail.
+Row 3, column 1: weasel (Mauswiesel) — one slender chestnut weasel with white underside and short brown tail, no black tail tip.
+Row 3, column 2: polecat (Iltis) — one European polecat with dark brown fur, pale face and dark eye mask.
+Row 3, column 3: winter-stoat (Hermelin im Winter) — one white winter stoat, slender body and a clearly black tail tip.
+Row 3, column 4: chamois (Gämse) — one brown chamois with dark facial stripes and two short backwards-hooked horns.
+Row 4, column 1: alpine-ibex (Steinbock) — one male Alpine ibex with two long ridged backward-curving horns and grey-brown coat.
+Row 4, column 2: alpine-marmot (Murmeltier) — one stout brown Alpine marmot sitting upright, short rounded ears and bushy short tail.
+Row 4, column 3: field-vole (Feldmaus) — one small brown field vole with blunt muzzle, small rounded ears and a short tail.
+Row 4, column 4: EMPTY.
+
+TRANSPARENT EXPORT: All space outside actual subject contours is alpha zero, including the whole perimeter, gutters, final empty cell and openings in handles. No white matte, paper rectangle, glow, drop shadow, aura or feathered coloured haze. Stop colour at the fine natural pencil contour. Preserve opaque white paint inside white subjects. Keep watercolour/pencil texture INSIDE each drawing and its soft natural edge, but nothing behind or around it. No faces on objects. Complete believable anatomy and clearly recognizable silhouettes at 100 px. Names and IDs above are instructions only and never appear in the picture.

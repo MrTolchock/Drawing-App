@@ -1,0 +1,22 @@
+Create a NEW woodland picture-book learning atlas in the same drawing technique as the supplied canonical references. Paint exactly fifteen independent subjects, each a complete cutout. Do not copy the opaque cream canvas of the references: match ONLY their drawing technique.
+
+SQUARE 4 × 4 GRID: exactly four equal columns and four equal rows. Keep the fifteen subjects in the exact cell order below. The final cell (row 4, column 4) stays empty. Each drawing occupies at most 65% of its square cell and is centred; generous empty transparent gutters on ALL sides. Keep every tail, antler, handle, wing and stem entirely inside its cell. No crossing or touching cell edges. Do not paint any grid, frame, labels or writing.
+
+Row 1, column 1: chanterelle (Eierschwamm) — one golden-yellow chanterelle mushroom with gently wavy funnel cap.
+Row 1, column 2: porcini (Steinpilz) — one porcini mushroom with chestnut cap and stout pale stem.
+Row 1, column 3: morel (Morchel) — one morel mushroom with honeycomb-patterned brown cap and pale stem.
+Row 1, column 4: parasol-mushroom (Parasol) — one parasol mushroom with broad pale cap, small brown scales and slender ringed stem.
+Row 2, column 1: puffball (Stäubling) — one small cream puffball mushroom with softly stippled round body.
+Row 2, column 2: bracket-fungus (Baumpilz) — one semicircular brown bracket fungus attached to a short isolated piece of bark.
+Row 2, column 3: shaggy-inkcap (Schopftintling) — one shaggy inkcap mushroom with tall white oval cap, small sepia scales and narrow stem.
+Row 2, column 4: saffron-milkcap (Edelreizker) — one orange milkcap mushroom with concentric cap rings, side and top visible.
+Row 3, column 1: lichen-twig (Flechte) — one short woodland twig bearing grey-green branching lichen.
+Row 3, column 2: bramble-sprig (Brombeerzweig) — one short thorny bramble sprig with serrated green leaves and one small white blossom.
+Row 3, column 3: nettle (Brennnessel) — one nettle shoot with pointed serrated leaves, no pot or landscape.
+Row 3, column 4: burdock (Klette) — one small burdock stem with a broad green leaf and one rounded hooked burr.
+Row 4, column 1: thistle (Distel) — one thistle stem with spiky leaves and one purple flower head.
+Row 4, column 2: bluebell (Hasenglöckchen) — one bluebell plant with bowed blue bell flowers and narrow green leaves.
+Row 4, column 3: wild-garlic (Bärlauch) — one wild garlic plant with broad green leaves and a round cluster of white star flowers.
+Row 4, column 4: EMPTY.
+
+TRANSPARENT EXPORT: All space outside actual subject contours is alpha zero, including the whole perimeter, gutters, final empty cell and openings in handles. No white matte, paper rectangle, glow, drop shadow, aura or feathered coloured haze. Stop colour at the fine natural pencil contour. Preserve opaque white paint inside white subjects. Keep watercolour/pencil texture INSIDE each drawing and its soft natural edge, but nothing behind or around it. No faces on objects. Complete believable anatomy and clearly recognizable silhouettes at 100 px. Names and IDs above are instructions only and never appear in the picture.

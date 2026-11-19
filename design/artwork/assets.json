@@ -230,6 +230,76 @@
       "historicalRecord": "design/artwork/generation-records/expansion-woodland-places-cutout-2026-11-19.json",
       "recordKind": "generation-record",
       "requestId": "expansion-woodland-places"
+    },
+    "expansion-woodland-birds": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/expansion-woodland-birds.txt",
+      "historicalRecord": "design/artwork/generation-records/expansion-woodland-birds-2026-11-19.json",
+      "recordKind": "generation-record",
+      "requestId": "expansion-woodland-birds"
+    },
+    "expansion-woodland-mammals": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/expansion-woodland-mammals.txt",
+      "historicalRecord": "design/artwork/generation-records/expansion-woodland-mammals-transparent-2026-11-19.json",
+      "recordKind": "generation-record",
+      "requestId": "expansion-woodland-mammals"
+    },
+    "expansion-undergrowth": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/expansion-undergrowth.txt",
+      "historicalRecord": "design/artwork/generation-records/expansion-undergrowth-cutout-2026-11-19.json",
+      "recordKind": "generation-record",
+      "requestId": "expansion-undergrowth"
+    },
+    "expansion-meadow-flowers": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/expansion-meadow-flowers.txt",
+      "historicalRecord": "design/artwork/generation-records/expansion-meadow-flowers-isolated-2026-11-19.json",
+      "recordKind": "generation-record",
+      "requestId": "expansion-meadow-flowers"
+    },
+    "expansion-orchard-produce": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/expansion-orchard-produce.txt",
+      "historicalRecord": "design/artwork/generation-records/expansion-orchard-produce-cutout-2026-11-19.json",
+      "recordKind": "generation-record",
+      "requestId": "expansion-orchard-produce"
+    },
+    "expansion-woodland-crafts": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/expansion-woodland-crafts.txt",
+      "historicalRecord": "design/artwork/generation-records/expansion-woodland-crafts-2026-11-19.json",
+      "recordKind": "generation-record",
+      "requestId": "expansion-woodland-crafts"
+    },
+    "expansion-music-play": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/expansion-music-play.txt",
+      "historicalRecord": "design/artwork/generation-records/expansion-music-play-2026-11-19.json",
+      "recordKind": "generation-record",
+      "requestId": "expansion-music-play"
+    },
+    "expansion-kitchen-tools": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/expansion-kitchen-tools.txt",
+      "historicalRecord": "design/artwork/generation-records/expansion-kitchen-tools-cutout-2026-11-19.json",
+      "recordKind": "generation-record",
+      "requestId": "expansion-kitchen-tools"
+    },
+    "expansion-woodland-household": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/expansion-woodland-household.txt",
+      "historicalRecord": "design/artwork/generation-records/expansion-woodland-household-2026-11-19.json",
+      "recordKind": "generation-record",
+      "requestId": "expansion-woodland-household"
+    },
+    "expansion-animal-behaviours": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/expansion-animal-behaviours.txt",
+      "historicalRecord": "design/artwork/generation-records/expansion-animal-behaviours-2026-11-19.json",
+      "recordKind": "generation-record",
+      "requestId": "expansion-animal-behaviours"
     }
   },
   "currentGenerated": [

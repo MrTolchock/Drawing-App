@@ -193,6 +193,25 @@
       }
     },
     {
+      "id": "expansion-animal-behaviours",
+      "file": "expansion-animal-behaviours.webp",
+      "width": 1280,
+      "height": 1280,
+      "columns": 4,
+      "rows": 4,
+      "sha256": "f0872115ee9b8edae07730e2d795ca478e945e00c14f7321b0fe446785fad561",
+      "provenance": {
+        "status": "historical-record",
+        "record": "design/artwork/generation-records/expansion-animal-behaviours-2026-11-19.json",
+        "recordKind": "generation-record",
+        "manifest": "design/illustrations/expansion-animal-behaviours.json",
+        "styleContract": "design/illustrations/style.json",
+        "requestId": "expansion-animal-behaviours",
+        "forwardPrompt": "design/illustrations/prompts/expansion-animal-behaviours.txt",
+        "guide": "design/illustrations/STYLE.md"
+      }
+    },
+    {
       "id": "expansion-garden-harvest",
       "file": "expansion-garden-harvest.webp",
       "width": 1280,
@@ -208,6 +227,44 @@
         "styleContract": "design/illustrations/style.json",
         "requestId": "expansion-garden-harvest",
         "forwardPrompt": "design/illustrations/prompts/expansion-garden-harvest.txt",
+        "guide": "design/illustrations/STYLE.md"
+      }
+    },
+    {
+      "id": "expansion-kitchen-tools",
+      "file": "expansion-kitchen-tools.webp",
+      "width": 1280,
+      "height": 1280,
+      "columns": 4,
+      "rows": 4,
+      "sha256": "f550a2cc09dd5a9a267b5f955c1510eefff01e99f69cb2902199f711f1ebf761",
+      "provenance": {
+        "status": "historical-record",
+        "record": "design/artwork/generation-records/expansion-kitchen-tools-cutout-2026-11-19.json",
+        "recordKind": "generation-record",
+        "manifest": "design/illustrations/expansion-kitchen-tools.json",
+        "styleContract": "design/illustrations/style.json",
+        "requestId": "expansion-kitchen-tools",
+        "forwardPrompt": "design/illustrations/prompts/expansion-kitchen-tools.txt",
+        "guide": "design/illustrations/STYLE.md"
+      }
+    },
+    {
+      "id": "expansion-meadow-flowers",
+      "file": "expansion-meadow-flowers.webp",
+      "width": 1280,
+      "height": 1280,
+      "columns": 4,
+      "rows": 4,
+      "sha256": "c77ec9590d0a48f75643a6e37a1995b84de0e6b84c9acf0acd63f37417fa15bc",
+      "provenance": {
+        "status": "historical-record",
+        "record": "design/artwork/generation-records/expansion-meadow-flowers-isolated-2026-11-19.json",
+        "recordKind": "generation-record",
+        "manifest": "design/illustrations/expansion-meadow-flowers.json",
+        "styleContract": "design/illustrations/style.json",
+        "requestId": "expansion-meadow-flowers",
+        "forwardPrompt": "design/illustrations/prompts/expansion-meadow-flowers.txt",
         "guide": "design/illustrations/STYLE.md"
       }
     },
@@ -231,6 +288,25 @@
       }
     },
     {
+      "id": "expansion-music-play",
+      "file": "expansion-music-play.webp",
+      "width": 1280,
+      "height": 1280,
+      "columns": 4,
+      "rows": 4,
+      "sha256": "21f6af74ca161e501cd22467b5f8f7bf5c539e295aa7eac4ff9df1a72dac5318",
+      "provenance": {
+        "status": "historical-record",
+        "record": "design/artwork/generation-records/expansion-music-play-2026-11-19.json",
+        "recordKind": "generation-record",
+        "manifest": "design/illustrations/expansion-music-play.json",
+        "styleContract": "design/illustrations/style.json",
+        "requestId": "expansion-music-play",
+        "forwardPrompt": "design/illustrations/prompts/expansion-music-play.txt",
+        "guide": "design/illustrations/STYLE.md"
+      }
+    },
+    {
       "id": "expansion-nature-cycles",
       "file": "expansion-nature-cycles.webp",
       "width": 1280,
@@ -246,6 +322,25 @@
         "styleContract": "design/illustrations/style.json",
         "requestId": "expansion-nature-cycles",
         "forwardPrompt": "design/illustrations/prompts/expansion-nature-cycles.txt",
+        "guide": "design/illustrations/STYLE.md"
+      }
+    },
+    {
+      "id": "expansion-orchard-produce",
+      "file": "expansion-orchard-produce.webp",
+      "width": 1280,
+      "height": 1280,
+      "columns": 4,
+      "rows": 4,
+      "sha256": "788bcba3490ec6318dda9d1f4a8d3b5894935acbfc97fa68ea22b3c398ea8409",
+      "provenance": {
+        "status": "historical-record",
+        "record": "design/artwork/generation-records/expansion-orchard-produce-cutout-2026-11-19.json",
+        "recordKind": "generation-record",
+        "manifest": "design/illustrations/expansion-orchard-produce.json",
+        "styleContract": "design/illustrations/style.json",
+        "requestId": "expansion-orchard-produce",
+        "forwardPrompt": "design/illustrations/prompts/expansion-orchard-produce.txt",
         "guide": "design/illustrations/STYLE.md"
       }
     },
@@ -288,6 +383,25 @@
       }
     },
     {
+      "id": "expansion-undergrowth",
+      "file": "expansion-undergrowth.webp",
+      "width": 1280,
+      "height": 1280,
+      "columns": 4,
+      "rows": 4,
+      "sha256": "d1d84025033542cb24a477b967fe723c8ad586235687585a88cfc22944547fcf",
+      "provenance": {
+        "status": "historical-record",
+        "record": "design/artwork/generation-records/expansion-undergrowth-cutout-2026-11-19.json",
+        "recordKind": "generation-record",
+        "manifest": "design/illustrations/expansion-undergrowth.json",
+        "styleContract": "design/illustrations/style.json",
+        "requestId": "expansion-undergrowth",
+        "forwardPrompt": "design/illustrations/prompts/expansion-undergrowth.txt",
+        "guide": "design/illustrations/STYLE.md"
+      }
+    },
+    {
       "id": "expansion-woodland-actions",
       "file": "expansion-woodland-actions.webp",
       "width": 1280,
@@ -303,6 +417,44 @@
         "styleContract": "design/illustrations/style.json",
         "requestId": "expansion-woodland-actions",
         "forwardPrompt": "design/illustrations/prompts/expansion-woodland-actions.txt",
+        "guide": "design/illustrations/STYLE.md"
+      }
+    },
+    {
+      "id": "expansion-woodland-birds",
+      "file": "expansion-woodland-birds.webp",
+      "width": 1280,
+      "height": 1280,
+      "columns": 4,
+      "rows": 4,
+      "sha256": "b08d662afd97fe3b13b19046498834d5e7d3ef47baf21b7b396b7a951786b6dd",
+      "provenance": {
+        "status": "historical-record",
+        "record": "design/artwork/generation-records/expansion-woodland-birds-2026-11-19.json",
+        "recordKind": "generation-record",
+        "manifest": "design/illustrations/expansion-woodland-birds.json",
+        "styleContract": "design/illustrations/style.json",
+        "requestId": "expansion-woodland-birds",
+        "forwardPrompt": "design/illustrations/prompts/expansion-woodland-birds.txt",
+        "guide": "design/illustrations/STYLE.md"
+      }
+    },
+    {
+      "id": "expansion-woodland-crafts",
+      "file": "expansion-woodland-crafts.webp",
+      "width": 1280,
+      "height": 1280,
+      "columns": 4,
+      "rows": 4,
+      "sha256": "5623628724e2e5a67252aa28aaac96ee6da0c7b47e1baf1ff5cdce3982660aa0",
+      "provenance": {
+        "status": "historical-record",
+        "record": "design/artwork/generation-records/expansion-woodland-crafts-2026-11-19.json",
+        "recordKind": "generation-record",
+        "manifest": "design/illustrations/expansion-woodland-crafts.json",
+        "styleContract": "design/illustrations/style.json",
+        "requestId": "expansion-woodland-crafts",
+        "forwardPrompt": "design/illustrations/prompts/expansion-woodland-crafts.txt",
         "guide": "design/illustrations/STYLE.md"
       }
     },
@@ -341,6 +493,44 @@
         "styleContract": "design/illustrations/style.json",
         "requestId": "expansion-woodland-finds",
         "forwardPrompt": "design/illustrations/prompts/expansion-woodland-finds.txt",
+        "guide": "design/illustrations/STYLE.md"
+      }
+    },
+    {
+      "id": "expansion-woodland-household",
+      "file": "expansion-woodland-household.webp",
+      "width": 1280,
+      "height": 1280,
+      "columns": 4,
+      "rows": 4,
+      "sha256": "09a4c0da650ae10d8f44d54035695150142cec9a1c7c80a8257284e51e7ca308",
+      "provenance": {
+        "status": "historical-record",
+        "record": "design/artwork/generation-records/expansion-woodland-household-2026-11-19.json",
+        "recordKind": "generation-record",
+        "manifest": "design/illustrations/expansion-woodland-household.json",
+        "styleContract": "design/illustrations/style.json",
+        "requestId": "expansion-woodland-household",
+        "forwardPrompt": "design/illustrations/prompts/expansion-woodland-household.txt",
+        "guide": "design/illustrations/STYLE.md"
+      }
+    },
+    {
+      "id": "expansion-woodland-mammals",
+      "file": "expansion-woodland-mammals.webp",
+      "width": 1280,
+      "height": 1280,
+      "columns": 4,
+      "rows": 4,
+      "sha256": "49013b2b2d36b572012486177ccb3a46b9448bebb6d05bb350b9f55cac78f948",
+      "provenance": {
+        "status": "historical-record",
+        "record": "design/artwork/generation-records/expansion-woodland-mammals-transparent-2026-11-19.json",
+        "recordKind": "generation-record",
+        "manifest": "design/illustrations/expansion-woodland-mammals.json",
+        "styleContract": "design/illustrations/style.json",
+        "requestId": "expansion-woodland-mammals",
+        "forwardPrompt": "design/illustrations/prompts/expansion-woodland-mammals.txt",
         "guide": "design/illustrations/STYLE.md"
       }
     },
@@ -679,6 +869,22 @@
   ],
   "images": [
     {
+      "id": "accordion",
+      "label": "Akkordeon",
+      "sheet": "expansion-music-play",
+      "index": 8,
+      "column": 0,
+      "row": 2,
+      "sourceRect": {
+        "x": 0,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "acorn",
       "label": "Eichel",
       "sheet": "expansion-woodland-finds",
@@ -688,6 +894,38 @@
       "sourceRect": {
         "x": 640,
         "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "alpine-ibex",
+      "label": "Steinbock",
+      "sheet": "expansion-woodland-mammals",
+      "index": 12,
+      "column": 0,
+      "row": 3,
+      "sourceRect": {
+        "x": 0,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "alpine-marmot",
+      "label": "Murmeltier",
+      "sheet": "expansion-woodland-mammals",
+      "index": 13,
+      "column": 1,
+      "row": 3,
+      "sourceRect": {
+        "x": 320,
+        "y": 960,
         "width": 320,
         "height": 320
       },
@@ -894,6 +1132,22 @@
       ]
     },
     {
+      "id": "badger-sniff",
+      "label": "Dachs schnuppert",
+      "sheet": "expansion-animal-behaviours",
+      "index": 6,
+      "column": 2,
+      "row": 1,
+      "sourceRect": {
+        "x": 640,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "badger-walk",
       "label": "Dachs läuft",
       "sheet": "forest-wildlife",
@@ -973,6 +1227,22 @@
         "vowels",
         "read-puzzle"
       ]
+    },
+    {
+      "id": "barn-swallow",
+      "label": "Rauchschwalbe",
+      "sheet": "expansion-woodland-birds",
+      "index": 11,
+      "column": 3,
+      "row": 2,
+      "sourceRect": {
+        "x": 960,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
     },
     {
       "id": "bean",
@@ -1075,6 +1345,22 @@
       "usedBy": []
     },
     {
+      "id": "beanbag",
+      "label": "Säckchen",
+      "sheet": "expansion-music-play",
+      "index": 12,
+      "column": 0,
+      "row": 3,
+      "sourceRect": {
+        "x": 0,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "bear",
       "label": "bear",
       "sheet": "creatures",
@@ -1118,6 +1404,22 @@
         "vowels",
         "read-puzzle"
       ]
+    },
+    {
+      "id": "beaver-carry-stick",
+      "label": "Biber trägt einen Ast",
+      "sheet": "expansion-animal-behaviours",
+      "index": 14,
+      "column": 2,
+      "row": 3,
+      "sourceRect": {
+        "x": 640,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
     },
     {
       "id": "beaver-gnaw",
@@ -1200,6 +1502,22 @@
         "vowels",
         "read-puzzle"
       ]
+    },
+    {
+      "id": "bee-on-flower",
+      "label": "Biene auf einer Blüte",
+      "sheet": "expansion-animal-behaviours",
+      "index": 12,
+      "column": 0,
+      "row": 3,
+      "sourceRect": {
+        "x": 0,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
     },
     {
       "id": "beech-leaf",
@@ -1516,6 +1834,70 @@
       "usedBy": []
     },
     {
+      "id": "blackbird",
+      "label": "Amsel",
+      "sheet": "expansion-woodland-birds",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "blackbird-worm",
+      "label": "Amsel mit Regenwurm",
+      "sheet": "expansion-animal-behaviours",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "blackcurrant-sprig",
+      "label": "Schwarze Johannisbeeren",
+      "sheet": "expansion-orchard-produce",
+      "index": 7,
+      "column": 3,
+      "row": 1,
+      "sourceRect": {
+        "x": 960,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "blue-gentian",
+      "label": "Enzian",
+      "sheet": "expansion-meadow-flowers",
+      "index": 11,
+      "column": 3,
+      "row": 2,
+      "sourceRect": {
+        "x": 960,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "blue-tit",
       "label": "blue tit",
       "sheet": "menu",
@@ -1532,6 +1914,22 @@
       "usedBy": []
     },
     {
+      "id": "bluebell",
+      "label": "Hasenglöckchen",
+      "sheet": "expansion-undergrowth",
+      "index": 13,
+      "column": 1,
+      "row": 3,
+      "sourceRect": {
+        "x": 320,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "blueberries",
       "label": "blueberries",
       "sheet": "people",
@@ -1543,6 +1941,22 @@
         "y": 940.5,
         "width": 313.5,
         "height": 313.5
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "boar-piglet",
+      "label": "Frischling",
+      "sheet": "expansion-woodland-mammals",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 320,
+        "y": 0,
+        "width": 320,
+        "height": 320
       },
       "tokens": [],
       "usedBy": []
@@ -1594,6 +2008,22 @@
       ]
     },
     {
+      "id": "boot-brush",
+      "label": "Schuhbürste",
+      "sheet": "expansion-woodland-household",
+      "index": 5,
+      "column": 1,
+      "row": 1,
+      "sourceRect": {
+        "x": 320,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "bowl",
       "label": "bowl",
       "sheet": "alphabet",
@@ -1614,6 +2044,54 @@
       ]
     },
     {
+      "id": "bracket-fungus",
+      "label": "Baumpilz",
+      "sheet": "expansion-undergrowth",
+      "index": 5,
+      "column": 1,
+      "row": 1,
+      "sourceRect": {
+        "x": 320,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "bramble-sprig",
+      "label": "Brombeerzweig",
+      "sheet": "expansion-undergrowth",
+      "index": 9,
+      "column": 1,
+      "row": 2,
+      "sourceRect": {
+        "x": 320,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "bread-knife",
+      "label": "Brotmesser",
+      "sheet": "expansion-kitchen-tools",
+      "index": 9,
+      "column": 1,
+      "row": 2,
+      "sourceRect": {
+        "x": 320,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "bread-roll",
       "label": "Brötchen",
       "sheet": "expansion-picnic-home",
@@ -1623,6 +2101,22 @@
       "sourceRect": {
         "x": 960,
         "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "broccoli",
+      "label": "Broccoli",
+      "sheet": "expansion-orchard-produce",
+      "index": 13,
+      "column": 1,
+      "row": 3,
+      "sourceRect": {
+        "x": 320,
+        "y": 960,
         "width": 320,
         "height": 320
       },
@@ -1683,6 +2177,22 @@
       "usedBy": []
     },
     {
+      "id": "burdock",
+      "label": "Klette",
+      "sheet": "expansion-undergrowth",
+      "index": 11,
+      "column": 3,
+      "row": 2,
+      "sourceRect": {
+        "x": 960,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "bus",
       "label": "Bus",
       "sheet": "creatures",
@@ -1702,6 +2212,38 @@
         "friends-bird",
         "friends-mouse"
       ]
+    },
+    {
+      "id": "butter-dish",
+      "label": "Butterdose",
+      "sheet": "expansion-kitchen-tools",
+      "index": 10,
+      "column": 2,
+      "row": 2,
+      "sourceRect": {
+        "x": 640,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "buttercup",
+      "label": "Hahnenfuss",
+      "sheet": "expansion-meadow-flowers",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 320,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
     },
     {
       "id": "butterfly",
@@ -1739,6 +2281,22 @@
       "row": 2,
       "sourceRect": {
         "x": 320,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "butterfly-closed",
+      "label": "Schmetterling klappt die Flügel zusammen",
+      "sheet": "expansion-animal-behaviours",
+      "index": 11,
+      "column": 3,
+      "row": 2,
+      "sourceRect": {
+        "x": 960,
         "y": 640,
         "width": 320,
         "height": 320
@@ -1883,6 +2441,22 @@
       "usedBy": []
     },
     {
+      "id": "carrion-crow",
+      "label": "Rabenkrähe",
+      "sheet": "expansion-woodland-birds",
+      "index": 7,
+      "column": 3,
+      "row": 1,
+      "sourceRect": {
+        "x": 960,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "carrot",
       "label": "carrot",
       "sheet": "words-two",
@@ -1907,6 +2481,22 @@
         "vowels",
         "read-puzzle"
       ]
+    },
+    {
+      "id": "castanets",
+      "label": "Kastagnetten",
+      "sheet": "expansion-music-play",
+      "index": 9,
+      "column": 1,
+      "row": 2,
+      "sourceRect": {
+        "x": 320,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
     },
     {
       "id": "cat",
@@ -1993,6 +2583,102 @@
         "vowels",
         "read-puzzle"
       ]
+    },
+    {
+      "id": "caterpillar-eat-leaf",
+      "label": "Raupe frisst ein Blatt",
+      "sheet": "expansion-animal-behaviours",
+      "index": 13,
+      "column": 1,
+      "row": 3,
+      "sourceRect": {
+        "x": 320,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "cauliflower",
+      "label": "Blumenkohl",
+      "sheet": "expansion-orchard-produce",
+      "index": 14,
+      "column": 2,
+      "row": 3,
+      "sourceRect": {
+        "x": 640,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "chaffinch",
+      "label": "Buchfink",
+      "sheet": "expansion-woodland-birds",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 320,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "chamois",
+      "label": "Gämse",
+      "sheet": "expansion-woodland-mammals",
+      "index": 11,
+      "column": 3,
+      "row": 2,
+      "sourceRect": {
+        "x": 960,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "chamomile",
+      "label": "Kamille",
+      "sheet": "expansion-meadow-flowers",
+      "index": 7,
+      "column": 3,
+      "row": 1,
+      "sourceRect": {
+        "x": 960,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "chanterelle",
+      "label": "Eierschwamm",
+      "sheet": "expansion-undergrowth",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
     },
     {
       "id": "cheese",
@@ -2094,6 +2780,22 @@
       "usedBy": []
     },
     {
+      "id": "clothes-peg",
+      "label": "Wäscheklammer",
+      "sheet": "expansion-woodland-household",
+      "index": 6,
+      "column": 2,
+      "row": 1,
+      "sourceRect": {
+        "x": 640,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "cloud",
       "label": "cloud",
       "sheet": "discovery",
@@ -2139,6 +2841,22 @@
       "usedBy": []
     },
     {
+      "id": "coat-hook",
+      "label": "Kleiderhaken",
+      "sheet": "expansion-woodland-household",
+      "index": 4,
+      "column": 0,
+      "row": 1,
+      "sourceRect": {
+        "x": 0,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "cocoon",
       "label": "cocoon",
       "sheet": "discovery",
@@ -2158,6 +2876,22 @@
         "friends-badger",
         "sequence"
       ]
+    },
+    {
+      "id": "colander",
+      "label": "Abtropfsieb",
+      "sheet": "expansion-kitchen-tools",
+      "index": 5,
+      "column": 1,
+      "row": 1,
+      "sourceRect": {
+        "x": 320,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
     },
     {
       "id": "comet",
@@ -2194,6 +2928,38 @@
       "usedBy": []
     },
     {
+      "id": "corkscrew",
+      "label": "Zapfenzieher",
+      "sheet": "expansion-kitchen-tools",
+      "index": 14,
+      "column": 2,
+      "row": 3,
+      "sourceRect": {
+        "x": 640,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "cornflower",
+      "label": "Kornblume",
+      "sheet": "expansion-meadow-flowers",
+      "index": 3,
+      "column": 3,
+      "row": 0,
+      "sourceRect": {
+        "x": 960,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "cow",
       "label": "Kuh",
       "sheet": "animals",
@@ -2217,6 +2983,70 @@
         "nature",
         "sequence"
       ]
+    },
+    {
+      "id": "cowslip",
+      "label": "Schlüsselblume",
+      "sheet": "expansion-meadow-flowers",
+      "index": 10,
+      "column": 2,
+      "row": 2,
+      "sourceRect": {
+        "x": 640,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "craft-scissors",
+      "label": "Bastelschere",
+      "sheet": "expansion-woodland-crafts",
+      "index": 5,
+      "column": 1,
+      "row": 1,
+      "sourceRect": {
+        "x": 320,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "crochet-hook",
+      "label": "Häkelnadel",
+      "sheet": "expansion-woodland-crafts",
+      "index": 4,
+      "column": 0,
+      "row": 1,
+      "sourceRect": {
+        "x": 0,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "crocus",
+      "label": "Krokus",
+      "sheet": "expansion-meadow-flowers",
+      "index": 13,
+      "column": 1,
+      "row": 3,
+      "sourceRect": {
+        "x": 320,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
     },
     {
       "id": "croissant",
@@ -2255,6 +3085,22 @@
       "usedBy": []
     },
     {
+      "id": "cuckoo",
+      "label": "Kuckuck",
+      "sheet": "expansion-woodland-birds",
+      "index": 8,
+      "column": 0,
+      "row": 2,
+      "sourceRect": {
+        "x": 0,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "cucumber",
       "label": "Gurke",
       "sheet": "expansion-garden-harvest",
@@ -2264,6 +3110,38 @@
       "sourceRect": {
         "x": 320,
         "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "curtain",
+      "label": "Vorhang",
+      "sheet": "expansion-woodland-household",
+      "index": 2,
+      "column": 2,
+      "row": 0,
+      "sourceRect": {
+        "x": 640,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "cutting-board",
+      "label": "Schneidebrett",
+      "sheet": "expansion-kitchen-tools",
+      "index": 4,
+      "column": 0,
+      "row": 1,
+      "sourceRect": {
+        "x": 0,
+        "y": 320,
         "width": 320,
         "height": 320
       },
@@ -2286,6 +3164,38 @@
       "tokens": [
         "👨‍👧"
       ],
+      "usedBy": []
+    },
+    {
+      "id": "daffodil",
+      "label": "Osterglocke",
+      "sheet": "expansion-meadow-flowers",
+      "index": 14,
+      "column": 2,
+      "row": 3,
+      "sourceRect": {
+        "x": 640,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "daisy",
+      "label": "Gänseblümchen",
+      "sheet": "expansion-meadow-flowers",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
       "usedBy": []
     },
     {
@@ -2418,6 +3328,38 @@
       ]
     },
     {
+      "id": "doormat",
+      "label": "Fussmatte",
+      "sheet": "expansion-woodland-household",
+      "index": 3,
+      "column": 3,
+      "row": 0,
+      "sourceRect": {
+        "x": 960,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "dormouse",
+      "label": "Haselmaus",
+      "sheet": "expansion-woodland-mammals",
+      "index": 5,
+      "column": 1,
+      "row": 1,
+      "sourceRect": {
+        "x": 320,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "dragon",
       "label": "dragon",
       "sheet": "creatures",
@@ -2539,6 +3481,22 @@
       ]
     },
     {
+      "id": "duck-walk",
+      "label": "Ente läuft",
+      "sheet": "expansion-animal-behaviours",
+      "index": 9,
+      "column": 1,
+      "row": 2,
+      "sourceRect": {
+        "x": 320,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "duckling",
       "label": "Entenküken",
       "sheet": "expansion-meadow-pond",
@@ -2589,6 +3547,22 @@
       "usedBy": []
     },
     {
+      "id": "edelweiss",
+      "label": "Edelweiss",
+      "sheet": "expansion-meadow-flowers",
+      "index": 12,
+      "column": 0,
+      "row": 3,
+      "sourceRect": {
+        "x": 0,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "egg",
       "label": "egg",
       "sheet": "words-two",
@@ -2620,6 +3594,22 @@
       "sourceRect": {
         "x": 960,
         "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "elderberry-sprig",
+      "label": "Holunderbeeren",
+      "sheet": "expansion-orchard-produce",
+      "index": 8,
+      "column": 0,
+      "row": 2,
+      "sourceRect": {
+        "x": 0,
+        "y": 640,
         "width": 320,
         "height": 320
       },
@@ -2664,6 +3654,22 @@
       "usedBy": [
         "friends-squirrel"
       ]
+    },
+    {
+      "id": "fabric-pouch",
+      "label": "Stoffbeutel",
+      "sheet": "expansion-woodland-crafts",
+      "index": 14,
+      "column": 2,
+      "row": 3,
+      "sourceRect": {
+        "x": 640,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
     },
     {
       "id": "fallen-log",
@@ -2725,6 +3731,38 @@
       "sourceRect": {
         "x": 640,
         "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "field-vole",
+      "label": "Feldmaus",
+      "sheet": "expansion-woodland-mammals",
+      "index": 14,
+      "column": 2,
+      "row": 3,
+      "sourceRect": {
+        "x": 640,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "fig",
+      "label": "Feige",
+      "sheet": "expansion-orchard-produce",
+      "index": 4,
+      "column": 0,
+      "row": 1,
+      "sourceRect": {
+        "x": 0,
+        "y": 320,
         "width": 320,
         "height": 320
       },
@@ -3493,6 +4531,22 @@
       "usedBy": []
     },
     {
+      "id": "fox-drink",
+      "label": "Fuchs trinkt",
+      "sheet": "expansion-animal-behaviours",
+      "index": 4,
+      "column": 0,
+      "row": 1,
+      "sourceRect": {
+        "x": 0,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "fox-listen",
       "label": "Fuchs lauscht",
       "sheet": "expansion-woodland-actions",
@@ -3564,6 +4618,22 @@
         "friends-mouse",
         "nature"
       ]
+    },
+    {
+      "id": "frog-croak",
+      "label": "Frosch quakt",
+      "sheet": "expansion-animal-behaviours",
+      "index": 8,
+      "column": 0,
+      "row": 2,
+      "sourceRect": {
+        "x": 0,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
     },
     {
       "id": "frog-jump",
@@ -3688,6 +4758,54 @@
       ]
     },
     {
+      "id": "glue-pot",
+      "label": "Leimtopf",
+      "sheet": "expansion-woodland-crafts",
+      "index": 7,
+      "column": 3,
+      "row": 1,
+      "sourceRect": {
+        "x": 960,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "goldfinch",
+      "label": "Distelfink",
+      "sheet": "expansion-woodland-birds",
+      "index": 2,
+      "column": 2,
+      "row": 0,
+      "sourceRect": {
+        "x": 640,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "gooseberry",
+      "label": "Stachelbeere",
+      "sheet": "expansion-orchard-produce",
+      "index": 5,
+      "column": 1,
+      "row": 1,
+      "sourceRect": {
+        "x": 320,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "grandma",
       "label": "grandma",
       "sheet": "people",
@@ -3760,6 +4878,54 @@
       "usedBy": []
     },
     {
+      "id": "great-tit",
+      "label": "Kohlmeise",
+      "sheet": "expansion-woodland-birds",
+      "index": 12,
+      "column": 0,
+      "row": 3,
+      "sourceRect": {
+        "x": 0,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "greenfinch",
+      "label": "Grünfink",
+      "sheet": "expansion-woodland-birds",
+      "index": 13,
+      "column": 1,
+      "row": 3,
+      "sourceRect": {
+        "x": 320,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "guitar",
+      "label": "Gitarre",
+      "sheet": "expansion-music-play",
+      "index": 7,
+      "column": 3,
+      "row": 1,
+      "sourceRect": {
+        "x": 960,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "habitat-pond",
       "label": "Teich",
       "sheet": "review-nature",
@@ -3776,6 +4942,22 @@
       "usedBy": [
         "friends-deer"
       ]
+    },
+    {
+      "id": "hairbrush",
+      "label": "Haarbürste",
+      "sheet": "expansion-woodland-household",
+      "index": 9,
+      "column": 1,
+      "row": 2,
+      "sourceRect": {
+        "x": 320,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
     },
     {
       "id": "hand-mirror",
@@ -3803,6 +4985,22 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "hand-towel",
+      "label": "Handtuch",
+      "sheet": "expansion-woodland-household",
+      "index": 14,
+      "column": 2,
+      "row": 3,
+      "sourceRect": {
+        "x": 640,
+        "y": 960,
         "width": 320,
         "height": 320
       },
@@ -3851,6 +5049,22 @@
         "vowels",
         "read-puzzle"
       ]
+    },
+    {
+      "id": "harmonica",
+      "label": "Mundharmonika",
+      "sheet": "expansion-music-play",
+      "index": 4,
+      "column": 0,
+      "row": 1,
+      "sourceRect": {
+        "x": 0,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
     },
     {
       "id": "hat",
@@ -4175,6 +5389,38 @@
       "usedBy": []
     },
     {
+      "id": "jam-jar",
+      "label": "Konfitüre",
+      "sheet": "expansion-kitchen-tools",
+      "index": 11,
+      "column": 3,
+      "row": 2,
+      "sourceRect": {
+        "x": 960,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "jay",
+      "label": "Eichelhäher",
+      "sheet": "expansion-woodland-birds",
+      "index": 5,
+      "column": 1,
+      "row": 1,
+      "sourceRect": {
+        "x": 320,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "judo",
       "label": "judo",
       "sheet": "people",
@@ -4193,6 +5439,54 @@
       "usedBy": []
     },
     {
+      "id": "juniper-berry",
+      "label": "Wacholderbeere",
+      "sheet": "expansion-orchard-produce",
+      "index": 10,
+      "column": 2,
+      "row": 2,
+      "sourceRect": {
+        "x": 640,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "kitchen-apron",
+      "label": "Schürze",
+      "sheet": "expansion-kitchen-tools",
+      "index": 8,
+      "column": 0,
+      "row": 2,
+      "sourceRect": {
+        "x": 0,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "kite",
+      "label": "Drachen zum Spielen",
+      "sheet": "expansion-woodland-crafts",
+      "index": 9,
+      "column": 1,
+      "row": 2,
+      "sourceRect": {
+        "x": 320,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "kiwi",
       "label": "kiwi",
       "sheet": "words-one",
@@ -4208,6 +5502,22 @@
       "tokens": [
         "🥝"
       ],
+      "usedBy": []
+    },
+    {
+      "id": "knitting-needles",
+      "label": "Stricknadeln",
+      "sheet": "expansion-woodland-crafts",
+      "index": 3,
+      "column": 3,
+      "row": 0,
+      "sourceRect": {
+        "x": 960,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
       "usedBy": []
     },
     {
@@ -4362,6 +5672,22 @@
       "usedBy": []
     },
     {
+      "id": "lichen-twig",
+      "label": "Flechte",
+      "sheet": "expansion-undergrowth",
+      "index": 8,
+      "column": 0,
+      "row": 2,
+      "sourceRect": {
+        "x": 0,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "lion",
       "label": "lion",
       "sheet": "creatures",
@@ -4457,6 +5783,22 @@
       ]
     },
     {
+      "id": "magpie",
+      "label": "Elster",
+      "sheet": "expansion-woodland-birds",
+      "index": 6,
+      "column": 2,
+      "row": 1,
+      "sourceRect": {
+        "x": 640,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "mailbox",
       "label": "mailbox",
       "sheet": "discovery",
@@ -4477,6 +5819,22 @@
       ]
     },
     {
+      "id": "mandarin",
+      "label": "Mandarine",
+      "sheet": "expansion-orchard-produce",
+      "index": 2,
+      "column": 2,
+      "row": 0,
+      "sourceRect": {
+        "x": 640,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "maple-leaf",
       "label": "Ahornblatt",
       "sheet": "expansion-woodland-finds",
@@ -4486,6 +5844,38 @@
       "sourceRect": {
         "x": 960,
         "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "maraca",
+      "label": "Rassel",
+      "sheet": "expansion-music-play",
+      "index": 3,
+      "column": 3,
+      "row": 0,
+      "sourceRect": {
+        "x": 960,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "measuring-jug",
+      "label": "Messbecher",
+      "sheet": "expansion-kitchen-tools",
+      "index": 13,
+      "column": 1,
+      "row": 3,
+      "sourceRect": {
+        "x": 320,
+        "y": 960,
         "width": 320,
         "height": 320
       },
@@ -4528,6 +5918,38 @@
       "id": "mitten",
       "label": "Fausthandschuh",
       "sheet": "expansion-seasons-weather",
+      "index": 3,
+      "column": 3,
+      "row": 0,
+      "sourceRect": {
+        "x": 960,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "mole",
+      "label": "Maulwurf",
+      "sheet": "expansion-woodland-mammals",
+      "index": 6,
+      "column": 2,
+      "row": 1,
+      "sourceRect": {
+        "x": 640,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "mole-dig",
+      "label": "Maulwurf gräbt",
+      "sheet": "expansion-animal-behaviours",
       "index": 3,
       "column": 3,
       "row": 0,
@@ -4600,6 +6022,22 @@
       "usedBy": []
     },
     {
+      "id": "morel",
+      "label": "Morchel",
+      "sheet": "expansion-undergrowth",
+      "index": 2,
+      "column": 2,
+      "row": 0,
+      "sourceRect": {
+        "x": 640,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "moss-cushion",
       "label": "Moos",
       "sheet": "expansion-woodland-trees",
@@ -4647,6 +6085,22 @@
       "tokens": [
         "🐭"
       ],
+      "usedBy": []
+    },
+    {
+      "id": "mouse-puppet",
+      "label": "Maus-Handpuppe",
+      "sheet": "expansion-music-play",
+      "index": 10,
+      "column": 2,
+      "row": 2,
+      "sourceRect": {
+        "x": 640,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
       "usedBy": []
     },
     {
@@ -4741,6 +6195,22 @@
       "tokens": [
         "🍄"
       ],
+      "usedBy": []
+    },
+    {
+      "id": "musical-triangle",
+      "label": "Triangel",
+      "sheet": "expansion-music-play",
+      "index": 2,
+      "column": 2,
+      "row": 0,
+      "sourceRect": {
+        "x": 640,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
       "usedBy": []
     },
     {
@@ -4840,6 +6310,22 @@
       ]
     },
     {
+      "id": "nettle",
+      "label": "Brennnessel",
+      "sheet": "expansion-undergrowth",
+      "index": 10,
+      "column": 2,
+      "row": 2,
+      "sourceRect": {
+        "x": 640,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "newt",
       "label": "Molch",
       "sheet": "expansion-meadow-pond",
@@ -4892,6 +6378,22 @@
       "tokens": [
         "🔢"
       ],
+      "usedBy": []
+    },
+    {
+      "id": "nuthatch",
+      "label": "Kleiber",
+      "sheet": "expansion-woodland-birds",
+      "index": 3,
+      "column": 3,
+      "row": 0,
+      "sourceRect": {
+        "x": 960,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
       "usedBy": []
     },
     {
@@ -4991,6 +6493,22 @@
       "usedBy": []
     },
     {
+      "id": "orange-fruit",
+      "label": "Orange",
+      "sheet": "expansion-orchard-produce",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 320,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "otter",
       "label": "Fischotter",
       "sheet": "expansion-meadow-pond",
@@ -5023,6 +6541,22 @@
       "usedBy": []
     },
     {
+      "id": "oven-mitt",
+      "label": "Topfhandschuh",
+      "sheet": "expansion-kitchen-tools",
+      "index": 7,
+      "column": 3,
+      "row": 1,
+      "sourceRect": {
+        "x": 960,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "owl-fly",
       "label": "Eule fliegt",
       "sheet": "expansion-woodland-actions",
@@ -5032,6 +6566,54 @@
       "sourceRect": {
         "x": 0,
         "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "owl-stretch",
+      "label": "Eule streckt einen Flügel",
+      "sheet": "expansion-animal-behaviours",
+      "index": 7,
+      "column": 3,
+      "row": 1,
+      "sourceRect": {
+        "x": 960,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "oxeye-daisy",
+      "label": "Margerite",
+      "sheet": "expansion-meadow-flowers",
+      "index": 8,
+      "column": 0,
+      "row": 2,
+      "sourceRect": {
+        "x": 0,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "paintbrush",
+      "label": "Pinsel",
+      "sheet": "expansion-woodland-crafts",
+      "index": 6,
+      "column": 2,
+      "row": 1,
+      "sourceRect": {
+        "x": 640,
+        "y": 320,
         "width": 320,
         "height": 320
       },
@@ -5075,6 +6657,38 @@
       "usedBy": []
     },
     {
+      "id": "panpipes",
+      "label": "Panflöte",
+      "sheet": "expansion-music-play",
+      "index": 5,
+      "column": 1,
+      "row": 1,
+      "sourceRect": {
+        "x": 320,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "parasol-mushroom",
+      "label": "Parasol",
+      "sheet": "expansion-undergrowth",
+      "index": 3,
+      "column": 3,
+      "row": 0,
+      "sourceRect": {
+        "x": 960,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "parcel",
       "label": "parcel",
       "sheet": "words-two",
@@ -5103,6 +6717,22 @@
       "sourceRect": {
         "x": 0,
         "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "peach",
+      "label": "Pfirsich",
+      "sheet": "expansion-orchard-produce",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
         "width": 320,
         "height": 320
       },
@@ -5338,6 +6968,38 @@
       "usedBy": []
     },
     {
+      "id": "plantain",
+      "label": "Spitzwegerich",
+      "sheet": "expansion-meadow-flowers",
+      "index": 9,
+      "column": 1,
+      "row": 2,
+      "sourceRect": {
+        "x": 320,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "play-hoop",
+      "label": "Reifen",
+      "sheet": "expansion-music-play",
+      "index": 13,
+      "column": 1,
+      "row": 3,
+      "sourceRect": {
+        "x": 320,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "plum",
       "label": "Zwetschge",
       "sheet": "expansion-garden-harvest",
@@ -5346,6 +7008,22 @@
       "row": 2,
       "sourceRect": {
         "x": 960,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "polecat",
+      "label": "Iltis",
+      "sheet": "expansion-woodland-mammals",
+      "index": 9,
+      "column": 1,
+      "row": 2,
+      "sourceRect": {
+        "x": 320,
         "y": 640,
         "width": 320,
         "height": 320
@@ -5363,6 +7041,38 @@
       "sourceRect": {
         "x": 960,
         "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "poppy",
+      "label": "Mohnblume",
+      "sheet": "expansion-meadow-flowers",
+      "index": 2,
+      "column": 2,
+      "row": 0,
+      "sourceRect": {
+        "x": 640,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "porcini",
+      "label": "Steinpilz",
+      "sheet": "expansion-undergrowth",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 320,
+        "y": 0,
         "width": 320,
         "height": 320
       },
@@ -5432,6 +7142,22 @@
       "sourceRect": {
         "x": 960,
         "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "puffball",
+      "label": "Stäubling",
+      "sheet": "expansion-undergrowth",
+      "index": 4,
+      "column": 0,
+      "row": 1,
+      "sourceRect": {
+        "x": 0,
+        "y": 320,
         "width": 320,
         "height": 320
       },
@@ -5551,6 +7277,22 @@
       "usedBy": []
     },
     {
+      "id": "quince",
+      "label": "Quitte",
+      "sheet": "expansion-orchard-produce",
+      "index": 3,
+      "column": 3,
+      "row": 0,
+      "sourceRect": {
+        "x": 960,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "rabbit",
       "label": "rabbit",
       "sheet": "animals",
@@ -5567,6 +7309,22 @@
         "🐰",
         "🐇"
       ],
+      "usedBy": []
+    },
+    {
+      "id": "rabbit-eat-carrot",
+      "label": "Kaninchen frisst eine Karotte",
+      "sheet": "expansion-animal-behaviours",
+      "index": 2,
+      "column": 2,
+      "row": 0,
+      "sourceRect": {
+        "x": 640,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
       "usedBy": []
     },
     {
@@ -5711,6 +7469,86 @@
       ]
     },
     {
+      "id": "recorder",
+      "label": "Blockflöte",
+      "sheet": "expansion-music-play",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "red-clover",
+      "label": "Rotklee",
+      "sheet": "expansion-meadow-flowers",
+      "index": 4,
+      "column": 0,
+      "row": 1,
+      "sourceRect": {
+        "x": 0,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "red-deer-doe",
+      "label": "Hirschkuh",
+      "sheet": "expansion-woodland-mammals",
+      "index": 3,
+      "column": 3,
+      "row": 0,
+      "sourceRect": {
+        "x": 960,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "red-deer-fawn",
+      "label": "Hirschkalb",
+      "sheet": "expansion-woodland-mammals",
+      "index": 4,
+      "column": 0,
+      "row": 1,
+      "sourceRect": {
+        "x": 0,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "red-deer-stag",
+      "label": "Rothirsch",
+      "sheet": "expansion-woodland-mammals",
+      "index": 2,
+      "column": 2,
+      "row": 0,
+      "sourceRect": {
+        "x": 640,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "red-pepper",
       "label": "Peperoni",
       "sheet": "expansion-garden-harvest",
@@ -5719,6 +7557,22 @@
       "row": 1,
       "sourceRect": {
         "x": 960,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "redcurrant-sprig",
+      "label": "Johannisbeeren",
+      "sheet": "expansion-orchard-produce",
+      "index": 6,
+      "column": 2,
+      "row": 1,
+      "sourceRect": {
+        "x": 640,
         "y": 320,
         "width": 320,
         "height": 320
@@ -6025,6 +7879,22 @@
       "usedBy": []
     },
     {
+      "id": "roe-jump",
+      "label": "Reh springt",
+      "sheet": "expansion-animal-behaviours",
+      "index": 5,
+      "column": 1,
+      "row": 1,
+      "sourceRect": {
+        "x": 320,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "roe-rest",
       "label": "Reh ruht",
       "sheet": "expansion-woodland-actions",
@@ -6078,6 +7948,22 @@
       ]
     },
     {
+      "id": "rolling-pin",
+      "label": "Wallholz",
+      "sheet": "expansion-kitchen-tools",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "rose",
       "label": "Rose",
       "sheet": "words-one",
@@ -6108,6 +7994,54 @@
       "sourceRect": {
         "x": 960,
         "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "rowan-sprig",
+      "label": "Vogelbeeren",
+      "sheet": "expansion-orchard-produce",
+      "index": 9,
+      "column": 1,
+      "row": 2,
+      "sourceRect": {
+        "x": 320,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "saffron-milkcap",
+      "label": "Edelreizker",
+      "sheet": "expansion-undergrowth",
+      "index": 7,
+      "column": 3,
+      "row": 1,
+      "sourceRect": {
+        "x": 960,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "salt-cellar",
+      "label": "Salzstreuer",
+      "sheet": "expansion-kitchen-tools",
+      "index": 12,
+      "column": 0,
+      "row": 3,
+      "sourceRect": {
+        "x": 0,
+        "y": 960,
         "width": 320,
         "height": 320
       },
@@ -6149,6 +8083,22 @@
       "usedBy": []
     },
     {
+      "id": "scrubbing-brush",
+      "label": "Schrubber",
+      "sheet": "expansion-woodland-household",
+      "index": 12,
+      "column": 0,
+      "row": 3,
+      "sourceRect": {
+        "x": 0,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "seed-packet",
       "label": "Samentütchen",
       "sheet": "expansion-woodland-equipment",
@@ -6182,6 +8132,22 @@
         "friends-badger",
         "sequence"
       ]
+    },
+    {
+      "id": "shaggy-inkcap",
+      "label": "Schopftintling",
+      "sheet": "expansion-undergrowth",
+      "index": 6,
+      "column": 2,
+      "row": 1,
+      "sourceRect": {
+        "x": 640,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
     },
     {
       "id": "shapes",
@@ -6224,6 +8190,70 @@
       ]
     },
     {
+      "id": "shrew",
+      "label": "Spitzmaus",
+      "sheet": "expansion-woodland-mammals",
+      "index": 7,
+      "column": 3,
+      "row": 1,
+      "sourceRect": {
+        "x": 960,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "sieve",
+      "label": "Sieb",
+      "sheet": "expansion-kitchen-tools",
+      "index": 3,
+      "column": 3,
+      "row": 0,
+      "sourceRect": {
+        "x": 960,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "skipping-rope",
+      "label": "Springseil",
+      "sheet": "expansion-music-play",
+      "index": 11,
+      "column": 3,
+      "row": 2,
+      "sourceRect": {
+        "x": 960,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "sloe",
+      "label": "Schlehe",
+      "sheet": "expansion-orchard-produce",
+      "index": 11,
+      "column": 3,
+      "row": 2,
+      "sourceRect": {
+        "x": 960,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "snail",
       "label": "Schnecke",
       "sheet": "animals",
@@ -6250,6 +8280,22 @@
         "vowels",
         "read-puzzle"
       ]
+    },
+    {
+      "id": "snail-retracted",
+      "label": "Schnecke zieht sich zurück",
+      "sheet": "expansion-animal-behaviours",
+      "index": 10,
+      "column": 2,
+      "row": 2,
+      "sourceRect": {
+        "x": 640,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
     },
     {
       "id": "snowball",
@@ -6320,6 +8366,22 @@
       ]
     },
     {
+      "id": "soap-bar",
+      "label": "Seife",
+      "sheet": "expansion-woodland-household",
+      "index": 7,
+      "column": 3,
+      "row": 1,
+      "sourceRect": {
+        "x": 960,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "sofa",
       "label": "sofa",
       "sheet": "words-one",
@@ -6384,6 +8446,22 @@
       ]
     },
     {
+      "id": "spinning-top",
+      "label": "Kreisel",
+      "sheet": "expansion-woodland-crafts",
+      "index": 10,
+      "column": 2,
+      "row": 2,
+      "sourceRect": {
+        "x": 640,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "spoon",
       "label": "spoon",
       "sheet": "alphabet",
@@ -6443,6 +8521,22 @@
       "id": "squirrel-climb",
       "label": "Eichhörnchen klettert",
       "sheet": "expansion-woodland-actions",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 320,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "squirrel-crack-nut",
+      "label": "Eichhörnchen knackt eine Nuss",
+      "sheet": "expansion-animal-behaviours",
       "index": 1,
       "column": 1,
       "row": 0,
@@ -6567,6 +8661,22 @@
         "friends-bird",
         "friends-mouse"
       ]
+    },
+    {
+      "id": "star-biscuit-cutter",
+      "label": "Ausstechform",
+      "sheet": "expansion-kitchen-tools",
+      "index": 6,
+      "column": 2,
+      "row": 1,
+      "sourceRect": {
+        "x": 640,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
     },
     {
       "id": "steam-train",
@@ -6757,6 +8867,22 @@
       ]
     },
     {
+      "id": "sweetcorn",
+      "label": "Maiskolben",
+      "sheet": "expansion-orchard-produce",
+      "index": 12,
+      "column": 0,
+      "row": 3,
+      "sourceRect": {
+        "x": 0,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "sycamore-seed",
       "label": "Ahornsamen",
       "sheet": "expansion-woodland-finds",
@@ -6798,6 +8924,22 @@
       "sourceRect": {
         "x": 960,
         "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "tambourine",
+      "label": "Tamburin",
+      "sheet": "expansion-music-play",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 320,
+        "y": 0,
         "width": 320,
         "height": 320
       },
@@ -6860,6 +9002,38 @@
       "id": "thermos",
       "label": "Thermosflasche",
       "sheet": "expansion-picnic-home",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 320,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "thistle",
+      "label": "Distel",
+      "sheet": "expansion-undergrowth",
+      "index": 12,
+      "column": 0,
+      "row": 3,
+      "sourceRect": {
+        "x": 0,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "thread-spool",
+      "label": "Fadenspule",
+      "sheet": "expansion-woodland-crafts",
       "index": 1,
       "column": 1,
       "row": 0,
@@ -6952,6 +9126,22 @@
         "vowels",
         "read-puzzle"
       ]
+    },
+    {
+      "id": "toothbrush",
+      "label": "Zahnbürste",
+      "sheet": "expansion-woodland-household",
+      "index": 8,
+      "column": 0,
+      "row": 2,
+      "sourceRect": {
+        "x": 0,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
     },
     {
       "id": "tortoise",
@@ -7051,6 +9241,22 @@
       "usedBy": []
     },
     {
+      "id": "treecreeper",
+      "label": "Baumläufer",
+      "sheet": "expansion-woodland-birds",
+      "index": 4,
+      "column": 0,
+      "row": 1,
+      "sourceRect": {
+        "x": 0,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "trousers",
       "label": "Hose",
       "sheet": "words-one",
@@ -7133,6 +9339,22 @@
       "sourceRect": {
         "x": 320,
         "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "violin",
+      "label": "Geige",
+      "sheet": "expansion-music-play",
+      "index": 6,
+      "column": 2,
+      "row": 1,
+      "sourceRect": {
+        "x": 640,
+        "y": 320,
         "width": 320,
         "height": 320
       },
@@ -7548,6 +9770,38 @@
       "usedBy": []
     },
     {
+      "id": "wash-tub",
+      "label": "Waschzuber",
+      "sheet": "expansion-woodland-household",
+      "index": 11,
+      "column": 3,
+      "row": 2,
+      "sourceRect": {
+        "x": 960,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "washboard",
+      "label": "Waschbrett",
+      "sheet": "expansion-woodland-household",
+      "index": 13,
+      "column": 1,
+      "row": 3,
+      "sourceRect": {
+        "x": 320,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "water",
       "label": "water",
       "sheet": "discovery",
@@ -7608,6 +9862,22 @@
       ]
     },
     {
+      "id": "weasel",
+      "label": "Mauswiesel",
+      "sheet": "expansion-woodland-mammals",
+      "index": 8,
+      "column": 0,
+      "row": 2,
+      "sourceRect": {
+        "x": 0,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "whale",
       "label": "Wal",
       "sheet": "alphabet",
@@ -7637,6 +9907,86 @@
       "sourceRect": {
         "x": 640,
         "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "whisk",
+      "label": "Schwingbesen",
+      "sheet": "expansion-kitchen-tools",
+      "index": 2,
+      "column": 2,
+      "row": 0,
+      "sourceRect": {
+        "x": 640,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "white-clover",
+      "label": "Weissklee",
+      "sheet": "expansion-meadow-flowers",
+      "index": 5,
+      "column": 1,
+      "row": 1,
+      "sourceRect": {
+        "x": 320,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "white-wagtail",
+      "label": "Bachstelze",
+      "sheet": "expansion-woodland-birds",
+      "index": 10,
+      "column": 2,
+      "row": 2,
+      "sourceRect": {
+        "x": 640,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "wild-boar",
+      "label": "Wildschwein",
+      "sheet": "expansion-woodland-mammals",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "wild-garlic",
+      "label": "Bärlauch",
+      "sheet": "expansion-undergrowth",
+      "index": 14,
+      "column": 2,
+      "row": 3,
+      "sourceRect": {
+        "x": 640,
+        "y": 960,
         "width": 320,
         "height": 320
       },
@@ -7692,6 +10042,38 @@
       "usedBy": []
     },
     {
+      "id": "winter-stoat",
+      "label": "Hermelin im Winter",
+      "sheet": "expansion-woodland-mammals",
+      "index": 10,
+      "column": 2,
+      "row": 2,
+      "sourceRect": {
+        "x": 640,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "wood-pigeon",
+      "label": "Ringeltaube",
+      "sheet": "expansion-woodland-birds",
+      "index": 14,
+      "column": 2,
+      "row": 3,
+      "sourceRect": {
+        "x": 640,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "wood-sorrel",
       "label": "Sauerklee",
       "sheet": "expansion-woodland-trees",
@@ -7701,6 +10083,22 @@
       "sourceRect": {
         "x": 960,
         "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "wooden-button",
+      "label": "Holzknopf",
+      "sheet": "expansion-woodland-crafts",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
         "width": 320,
         "height": 320
       },
@@ -7724,6 +10122,38 @@
       "usedBy": []
     },
     {
+      "id": "wooden-comb",
+      "label": "Kamm",
+      "sheet": "expansion-woodland-household",
+      "index": 10,
+      "column": 2,
+      "row": 2,
+      "sourceRect": {
+        "x": 640,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "wooden-door",
+      "label": "Tür",
+      "sheet": "expansion-woodland-household",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "wooden-key",
       "label": "Schlüssel",
       "sheet": "expansion-picnic-home",
@@ -7740,6 +10170,22 @@
       "usedBy": []
     },
     {
+      "id": "wooden-ladle",
+      "label": "Schöpfkelle",
+      "sheet": "expansion-kitchen-tools",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 320,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "wooden-plate",
       "label": "Teller",
       "sheet": "expansion-picnic-home",
@@ -7749,6 +10195,70 @@
       "sourceRect": {
         "x": 0,
         "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "wooden-ruler",
+      "label": "Lineal",
+      "sheet": "expansion-woodland-crafts",
+      "index": 8,
+      "column": 0,
+      "row": 2,
+      "sourceRect": {
+        "x": 0,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "wooden-skittle",
+      "label": "Kegel",
+      "sheet": "expansion-music-play",
+      "index": 14,
+      "column": 2,
+      "row": 3,
+      "sourceRect": {
+        "x": 640,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "wooden-whistle",
+      "label": "Holzpfeife",
+      "sheet": "expansion-woodland-crafts",
+      "index": 11,
+      "column": 3,
+      "row": 2,
+      "sourceRect": {
+        "x": 960,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "wooden-window",
+      "label": "Fenster",
+      "sheet": "expansion-woodland-household",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 320,
+        "y": 0,
         "width": 320,
         "height": 320
       },
@@ -7883,6 +10393,86 @@
       "tokens": [
         "🔤"
       ],
+      "usedBy": []
+    },
+    {
+      "id": "woven-mat",
+      "label": "Geflochtene Matte",
+      "sheet": "expansion-woodland-crafts",
+      "index": 13,
+      "column": 1,
+      "row": 3,
+      "sourceRect": {
+        "x": 320,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "wren",
+      "label": "Zaunkönig",
+      "sheet": "expansion-woodland-birds",
+      "index": 9,
+      "column": 1,
+      "row": 2,
+      "sourceRect": {
+        "x": 320,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "xylophone",
+      "label": "Xylophon",
+      "sheet": "expansion-woodland-crafts",
+      "index": 12,
+      "column": 0,
+      "row": 3,
+      "sourceRect": {
+        "x": 0,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "yarn-ball",
+      "label": "Wollknäuel",
+      "sheet": "expansion-woodland-crafts",
+      "index": 2,
+      "column": 2,
+      "row": 0,
+      "sourceRect": {
+        "x": 640,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "yarrow",
+      "label": "Schafgarbe",
+      "sheet": "expansion-meadow-flowers",
+      "index": 6,
+      "column": 2,
+      "row": 1,
+      "sourceRect": {
+        "x": 640,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
       "usedBy": []
     },
     {

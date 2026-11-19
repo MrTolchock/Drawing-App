@@ -1,0 +1,174 @@
+{
+  "format": "waldpost-illustration-atlas",
+  "version": 1,
+  "source": "sources/expansion-two-2026-11-19/expansion-meadow-flowers-isolated.png",
+  "output": "../../assets/waldatelier/expansion-meadow-flowers.webp",
+  "columns": 4,
+  "rows": 4,
+  "cellPixels": 320,
+  "subjectPixels": 256,
+  "alphaThresholdPercent": 8,
+  "provenance": {
+    "date": "2026-11-19",
+    "tool": "ChatGPT image_gen.imagegen",
+    "sourceSha256": "3006b245ad2e5d55308ba2d210120ba4180015e437cd65f796faa35af6f483c3",
+    "generationRecord": "../artwork/generation-records/expansion-meadow-flowers-isolated-2026-11-19.json",
+    "styleContract": "style.json",
+    "forwardPrompt": "prompts/expansion-meadow-flowers.txt",
+    "cropNote": "Source gutters selected within empty alpha gaps to retain complete stems, handles and tails; pixels are unchanged before the standard proportional crop/resize."
+  },
+  "subjects": [
+    {
+      "id": "daisy",
+      "label": "Gänseblümchen"
+    },
+    {
+      "id": "buttercup",
+      "label": "Hahnenfuss"
+    },
+    {
+      "id": "poppy",
+      "label": "Mohnblume"
+    },
+    {
+      "id": "cornflower",
+      "label": "Kornblume"
+    },
+    {
+      "id": "red-clover",
+      "label": "Rotklee"
+    },
+    {
+      "id": "white-clover",
+      "label": "Weissklee"
+    },
+    {
+      "id": "yarrow",
+      "label": "Schafgarbe"
+    },
+    {
+      "id": "chamomile",
+      "label": "Kamille"
+    },
+    {
+      "id": "oxeye-daisy",
+      "label": "Margerite"
+    },
+    {
+      "id": "plantain",
+      "label": "Spitzwegerich"
+    },
+    {
+      "id": "cowslip",
+      "label": "Schlüsselblume"
+    },
+    {
+      "id": "blue-gentian",
+      "label": "Enzian"
+    },
+    {
+      "id": "edelweiss",
+      "label": "Edelweiss"
+    },
+    {
+      "id": "crocus",
+      "label": "Krokus"
+    },
+    {
+      "id": "daffodil",
+      "label": "Osterglocke"
+    }
+  ],
+  "sourceRects": {
+    "daisy": {
+      "x": 0,
+      "y": 0,
+      "width": 313,
+      "height": 340
+    },
+    "buttercup": {
+      "x": 313,
+      "y": 0,
+      "width": 314,
+      "height": 340
+    },
+    "poppy": {
+      "x": 627,
+      "y": 0,
+      "width": 313,
+      "height": 340
+    },
+    "cornflower": {
+      "x": 940,
+      "y": 0,
+      "width": 314,
+      "height": 340
+    },
+    "red-clover": {
+      "x": 0,
+      "y": 340,
+      "width": 313,
+      "height": 277
+    },
+    "white-clover": {
+      "x": 313,
+      "y": 340,
+      "width": 314,
+      "height": 277
+    },
+    "yarrow": {
+      "x": 627,
+      "y": 340,
+      "width": 313,
+      "height": 277
+    },
+    "chamomile": {
+      "x": 940,
+      "y": 340,
+      "width": 314,
+      "height": 277
+    },
+    "oxeye-daisy": {
+      "x": 0,
+      "y": 617,
+      "width": 313,
+      "height": 290
+    },
+    "plantain": {
+      "x": 313,
+      "y": 617,
+      "width": 314,
+      "height": 290
+    },
+    "cowslip": {
+      "x": 627,
+      "y": 617,
+      "width": 313,
+      "height": 290
+    },
+    "blue-gentian": {
+      "x": 940,
+      "y": 617,
+      "width": 314,
+      "height": 290
+    },
+    "edelweiss": {
+      "x": 0,
+      "y": 907,
+      "width": 313,
+      "height": 347
+    },
+    "crocus": {
+      "x": 313,
+      "y": 907,
+      "width": 314,
+      "height": 347
+    },
+    "daffodil": {
+      "x": 627,
+      "y": 907,
+      "width": 313,
+      "height": 347
+    }
+  }
+}

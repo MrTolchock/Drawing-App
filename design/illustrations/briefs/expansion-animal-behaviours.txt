@@ -1,0 +1,22 @@
+Create a NEW woodland picture-book learning atlas in the same drawing technique as the supplied canonical references. Paint exactly fifteen independent subjects, each a complete cutout. Do not copy the opaque cream canvas of the references: match ONLY their drawing technique.
+
+SQUARE 4 × 4 GRID: exactly four equal columns and four equal rows. Keep the fifteen subjects in the exact cell order below. The final cell (row 4, column 4) stays empty. Each drawing occupies at most 65% of its square cell and is centred; generous empty transparent gutters on ALL sides. Keep every tail, antler, handle, wing and stem entirely inside its cell. No crossing or touching cell edges. Do not paint any grid, frame, labels or writing.
+
+Row 1, column 1: blackbird-worm (Amsel mit Regenwurm) — one blackbird holding one short worm in its beak, standing still.
+Row 1, column 2: squirrel-crack-nut (Eichhörnchen knackt eine Nuss) — one red squirrel holding one nut directly to its front teeth with both forepaws, clearly nibbling.
+Row 1, column 3: rabbit-eat-carrot (Kaninchen frisst eine Karotte) — one brown rabbit with one carrot at its mouth, both forepaws holding the carrot.
+Row 1, column 4: mole-dig (Maulwurf gräbt) — one dark mole pushing earth aside with two broad pink forepaws, tiny soil patch only.
+Row 2, column 1: fox-drink (Fuchs trinkt) — one red fox with head lowered, tongue touching a tiny blue pool, no scarf or landscape.
+Row 2, column 2: roe-jump (Reh springt) — one roe deer in a clear leap, all four hooves off the ground, no scenery.
+Row 2, column 3: badger-sniff (Dachs schnuppert) — one European badger with black-white face, nose lowered to one small leaf.
+Row 2, column 4: owl-stretch (Eule streckt einen Flügel) — one tawny owl standing and stretching one wing sideways while its other wing remains folded.
+Row 3, column 1: frog-croak (Frosch quakt) — one green frog with a visibly rounded inflated throat sac, sitting still, no sound symbols.
+Row 3, column 2: duck-walk (Ente läuft) — one mallard walking on land, one orange webbed foot lifted, no water.
+Row 3, column 3: snail-retracted (Schnecke zieht sich zurück) — one brown spiral snail shell with the snail retracted fully inside, empty dark opening visible and no head outside.
+Row 3, column 4: butterfly-closed (Schmetterling klappt die Flügel zusammen) — one butterfly resting in side view with both wings held upright together, antennae and slender legs visible.
+Row 4, column 1: bee-on-flower (Biene auf einer Blüte) — one golden-black bee resting on the centre of one simple pink flower on a short green stem.
+Row 4, column 2: caterpillar-eat-leaf (Raupe frisst ein Blatt) — one green caterpillar nibbling one leaf, a small bite notch visible at its mouth.
+Row 4, column 3: beaver-carry-stick (Biber trägt einen Ast) — one brown beaver walking and carrying one short branch sideways in its mouth, broad flat tail fully visible.
+Row 4, column 4: EMPTY.
+
+TRANSPARENT EXPORT: All space outside actual subject contours is alpha zero, including the whole perimeter, gutters, final empty cell and openings in handles. No white matte, paper rectangle, glow, drop shadow, aura or feathered coloured haze. Stop colour at the fine natural pencil contour. Preserve opaque white paint inside white subjects. Keep watercolour/pencil texture INSIDE each drawing and its soft natural edge, but nothing behind or around it. No faces on objects. Complete believable anatomy and clearly recognizable silhouettes at 100 px. Names and IDs above are instructions only and never appear in the picture.

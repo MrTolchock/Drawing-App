@@ -1,0 +1,81 @@
+{
+  "format": "waldpost-illustration-atlas",
+  "version": 1,
+  "source": "sources/expansion-two-2026-11-19/expansion-woodland-mammals-transparent.png",
+  "output": "../../assets/waldatelier/expansion-woodland-mammals.webp",
+  "columns": 4,
+  "rows": 4,
+  "cellPixels": 320,
+  "subjectPixels": 256,
+  "alphaThresholdPercent": 8,
+  "provenance": {
+    "date": "2026-11-19",
+    "tool": "ChatGPT image_gen.imagegen",
+    "sourceSha256": "c8e75d3f32c6426846be641be9de3b5799095eb7cfed68d373311f208408defb",
+    "generationRecord": "../artwork/generation-records/expansion-woodland-mammals-transparent-2026-11-19.json",
+    "styleContract": "style.json",
+    "forwardPrompt": "prompts/expansion-woodland-mammals.txt"
+  },
+  "subjects": [
+    {
+      "id": "wild-boar",
+      "label": "Wildschwein"
+    },
+    {
+      "id": "boar-piglet",
+      "label": "Frischling"
+    },
+    {
+      "id": "red-deer-stag",
+      "label": "Rothirsch"
+    },
+    {
+      "id": "red-deer-doe",
+      "label": "Hirschkuh"
+    },
+    {
+      "id": "red-deer-fawn",
+      "label": "Hirschkalb"
+    },
+    {
+      "id": "dormouse",
+      "label": "Haselmaus"
+    },
+    {
+      "id": "mole",
+      "label": "Maulwurf"
+    },
+    {
+      "id": "shrew",
+      "label": "Spitzmaus"
+    },
+    {
+      "id": "weasel",
+      "label": "Mauswiesel"
+    },
+    {
+      "id": "polecat",
+      "label": "Iltis"
+    },
+    {
+      "id": "winter-stoat",
+      "label": "Hermelin im Winter"
+    },
+    {
+      "id": "chamois",
+      "label": "Gämse"
+    },
+    {
+      "id": "alpine-ibex",
+      "label": "Steinbock"
+    },
+    {
+      "id": "alpine-marmot",
+      "label": "Murmeltier"
+    },
+    {
+      "id": "field-vole",
+      "label": "Feldmaus"
+    }
+  ]
+}
