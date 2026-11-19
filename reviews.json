@@ -17080,11 +17080,11 @@
     "puzzle:read-puzzle@695149d9c2e77cf5": {
       "key": "puzzle:read-puzzle",
       "revision": "695149d9c2e77cf5",
-      "status": "approved",
-      "note": "",
-      "at": "2026-11-18T20:29:20.025Z",
+      "status": "improve",
+      "note": "Schreibe alle buchstaben gross in diesem rätsel anstatt alle klein",
+      "at": "2026-11-19T20:41:17.884Z",
       "seen": true,
-      "operation": "c475b6e0-8d10-4689-880d-4316902ecc20"
+      "operation": "fd76b045-107e-4494-b785-feebdb53397b"
     },
     "read-word/word-0@cbcc8167141e410b": {
       "key": "read-word/word-0",
@@ -18743,6 +18743,15 @@
       "at": "2026-11-18T20:19:40.495Z",
       "seen": true,
       "operation": "492a747f-0119-4ae4-ae79-f1151f441aa2"
+    },
+    {
+      "key": "puzzle:read-puzzle",
+      "revision": "695149d9c2e77cf5",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T20:29:20.025Z",
+      "seen": true,
+      "operation": "c475b6e0-8d10-4689-880d-4316902ecc20"
     }
   ],
   "deletedNotes": [
