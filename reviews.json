@@ -17733,6 +17733,15 @@
       "at": "2026-11-19T20:29:16.188Z",
       "seen": true,
       "operation": "d77165e5-b7d1-49b8-836b-8c8135a5043a"
+    },
+    "picnic/4-2@d174177b230a6d0b": {
+      "key": "picnic/4-2",
+      "revision": "d174177b230a6d0b",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-19T20:29:23.229Z",
+      "seen": true,
+      "operation": "4506c6e5-bc44-4b12-be1c-0107a0bf0308"
     }
   },
   "history": [
