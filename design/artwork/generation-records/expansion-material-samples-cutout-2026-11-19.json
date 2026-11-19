@@ -1,0 +1,58 @@
+{
+  "format": "waldpost-image-generation-record",
+  "version": 1,
+  "id": "expansion-material-samples-cutout",
+  "style": "waldpost-watercolour-pencil-v1",
+  "date": "2026-11-19",
+  "tool": "ChatGPT image_gen.imagegen",
+  "source": "design/illustrations/sources/expansion-three-2026-11-19/expansion-material-samples-cutout.png",
+  "sourceSha256": "082abb7747944a0cc2a302366bcdb673d52839db592b37bc8b253012b45253fe",
+  "request": {
+    "prompt": "WALDPOST CANONICAL ILLUSTRATION STYLE — waldpost-watercolour-pencil-v1\n\nUse the supplied canonical animals.png and objects.png reference images as the authority for drawing technique. They show the predominant style of the current Waldpost gallery. Match their actual pixels, not an imagined style suggested by a filename.\n\nDraw warm children's picture-book watercolour finished with visible coloured-pencil strokes. Use light, gently uneven washes, organic sepia contours, delicate hatching, softly irregular edges and modest drawn shading. Surfaces look painted and pencilled, with paper grain within the illustration. Keep the warmth of cream, honey brown, restrained sage and blue, while preserving every exact colour required by a task. Subjects remain friendly, recognizable and anatomically believable.\n\nDo not turn the drawing into a 3D render, plush toy, clay or felt craft, photograph, glossy object, embossed surface or studio-lit miniature. Avoid deep ambient-occlusion shadows, inflated forms and realistic material microtexture. Do not mix in another illustration technique or use historical artwork as a style reference.\n\nThe role instructions below set the necessary detail and composition within this one style. Learning pictures retain fine drawn contours; small navigation symbols use the approved simpler, broader shapes and flat fills in the same palette. Keep the existing rendered game-character identities separate from image-generated learning subjects. Exact geometry and handwriting remain authored paths.\n\nPreserve subject identity, counted quantities, exact answer colours and action differences. Use real alpha for isolated pictures and stationery, and an opaque canvas only when the selected role requires a scene or branding image. No accidental background, halo, visible grid, labels or extra objects.\n\nROLE: learning\nMatch the canonical watercolour and coloured-pencil technique closely: fine organic contours, uneven washes and gentle drawn volume. Keep accurate species, action contrasts, one counted object per item and exact answer colours. Use transparent square cells, generous gutters and complete silhouettes.\n\nFRAMING AND EDGE QUALITY:\nCompare related pictures side by side at the size used in the game. For square cells, draw the complete silhouette with enough transparent space to pack it centred on both axes, with its longest visible side about 80% of the cell. Keep its proportions and use comparable visual weight for neighbouring answers. Reuse the same painting when a subject and pose recur. Leave genuine alpha around every isolated subject and retain the soft pencil edges. Inspect on light and dark backgrounds for pale matte, clipped outlines, stray pixels and neighbouring subjects. In a cell repair, preserve the pixels and positions of the other cells. Scenes and irregular layouts follow their role and brief.\n\nATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:\n1. design/illustrations/references/watercolour-pencil-v1/animals.png — canonical-style: canonical drawing technique for animals; fixed majority-style pixels\n2. design/illustrations/references/watercolour-pencil-v1/objects.png — canonical-style: canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels\n3. design/illustrations/sources/expansion-three-2026-11-19/expansion-material-samples.png — composition-only: current fifteen subjects and exact cell order only; remove accidental background or repair the specified drawing while retaining canonical technique\n\nSUBJECT AND LAYOUT BRIEF:\nEdit Reference 3 into a clean transparent 4 by 4 atlas. Keep its fifteen existing drawings, colours, identities, complete silhouettes and exact cell positions. Keep the final cell empty.\n\nBACKGROUND REMOVAL: erase ALL coloured drop shadows, glows, haze, feathered auras and almost-white matte outside the actual drawn object contours. The ONLY foreground is the fifteen actual subject paintings. Stop colour at the fine sepia/blue pencil contour. Retain watercolour/pencil texture inside each drawing. Every space around and between the subjects must have alpha exactly ZERO, including the whole perimeter, gutters, empty final cell and open handles. Transparent space is not pale cream, partly transparent white or a printed checker pattern. Keep white paint ONLY INSIDE white subject contours. No white border, no shadow, no halo, no surface behind the drawings.\n\nRemove the continuous pale canvas and every glow surrounding the material specimens. Retain the actual rectangular cloth and metal samples themselves: those are the foreground objects, not a backdrop. Keep opaque white paint inside the wool tuft and cotton boll. The rubber-band centre is a real transparent hole. Preserve all fifteen materials and cell positions.\n\nSTYLE PRIORITY: The brief changes subjects and layout only. Keep waldpost-watercolour-pencil-v1 and the supplied canonical reference technique throughout; do not import the style of a composition-only reference.\n",
+    "referenced_image_paths": [
+      "/workspace/Drawing-App/design/illustrations/references/watercolour-pencil-v1/animals.png",
+      "/workspace/Drawing-App/design/illustrations/references/watercolour-pencil-v1/objects.png",
+      "/workspace/Drawing-App/design/illustrations/sources/expansion-three-2026-11-19/expansion-material-samples.png"
+    ],
+    "transparent_background": true
+  },
+  "references": [
+    {
+      "path": "design/illustrations/references/watercolour-pencil-v1/animals.png",
+      "sha256": "65867082294d157ab4ffbe33926857272625ef3c25cdb7cab81c2a4ea73d9316",
+      "purpose": "canonical drawing technique for animals; fixed majority-style pixels",
+      "usage": "canonical-style"
+    },
+    {
+      "path": "design/illustrations/references/watercolour-pencil-v1/objects.png",
+      "sha256": "0bb37d6fc82c75034eddf30da2cc57c546dd8bc70d246aeeda85b637bd87dd80",
+      "purpose": "canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels",
+      "usage": "canonical-style"
+    },
+    {
+      "path": "design/illustrations/sources/expansion-three-2026-11-19/expansion-material-samples.png",
+      "sha256": "9cf77584c229cbb4912dcb111e7e9f4356ae9ea683a3d9c25271b97a9b8b740a",
+      "purpose": "current fifteen subjects and exact cell order only; remove accidental background or repair the specified drawing while retaining canonical technique",
+      "usage": "composition-only"
+    }
+  ],
+  "subjects": [
+    "material-wood-slice",
+    "material-bark-strip",
+    "material-cork-stopper",
+    "material-wool-tuft",
+    "material-linen-swatch",
+    "material-leather-swatch",
+    "material-felt-swatch",
+    "material-cardboard",
+    "material-glass-marble",
+    "material-copper-sheet",
+    "material-slate",
+    "material-clay",
+    "material-cotton-boll",
+    "material-rubber-band",
+    "material-straw-bundle"
+  ],
+  "preparation": "design/illustrations/expansion-material-samples.json",
+  "editedFrom": "design/artwork/generation-records/expansion-material-samples-2026-11-19.json"
+}

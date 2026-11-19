@@ -1,0 +1,174 @@
+{
+  "format": "waldpost-illustration-atlas",
+  "version": 1,
+  "source": "sources/expansion-three-2026-11-19/expansion-outdoor-journeys-transparent.png",
+  "output": "../../assets/waldatelier/expansion-outdoor-journeys.webp",
+  "columns": 4,
+  "rows": 4,
+  "cellPixels": 320,
+  "subjectPixels": 256,
+  "alphaThresholdPercent": 8,
+  "provenance": {
+    "date": "2026-11-19",
+    "tool": "ChatGPT image_gen.imagegen",
+    "sourceSha256": "24f7499ebe012c346761b2acdeea3f77171f22a71a118142b4176ef82cd4721f",
+    "generationRecord": "../artwork/generation-records/expansion-outdoor-journeys-transparent-2026-11-19.json",
+    "styleContract": "style.json",
+    "forwardPrompt": "prompts/expansion-outdoor-journeys.txt",
+    "cropNote": "Source crop boundaries selected in empty alpha gutters preserve complete pull ropes and equipment edges; proportions and final square-cell framing are unchanged."
+  },
+  "subjects": [
+    {
+      "id": "journey-tent",
+      "label": "Zelt"
+    },
+    {
+      "id": "journey-sleeping-bag",
+      "label": "Schlafsack"
+    },
+    {
+      "id": "journey-hammock",
+      "label": "Hängematte"
+    },
+    {
+      "id": "journey-campfire",
+      "label": "Lagerfeuer"
+    },
+    {
+      "id": "journey-folded-map",
+      "label": "Wanderkarte"
+    },
+    {
+      "id": "journey-cairn",
+      "label": "Steinmännchen"
+    },
+    {
+      "id": "journey-rope-ladder",
+      "label": "Strickleiter"
+    },
+    {
+      "id": "journey-wooden-ladder",
+      "label": "Holzleiter"
+    },
+    {
+      "id": "journey-rope-bridge",
+      "label": "Seilbrücke"
+    },
+    {
+      "id": "journey-log-raft",
+      "label": "Floss"
+    },
+    {
+      "id": "journey-oar",
+      "label": "Ruder"
+    },
+    {
+      "id": "journey-handcart",
+      "label": "Bollerwagen"
+    },
+    {
+      "id": "journey-sled",
+      "label": "Schlitten"
+    },
+    {
+      "id": "journey-hiking-boot",
+      "label": "Wanderschuh"
+    },
+    {
+      "id": "journey-torch",
+      "label": "Taschenlampe"
+    }
+  ],
+  "sourceRects": {
+    "journey-tent": {
+      "x": 0,
+      "y": 0,
+      "width": 317,
+      "height": 315
+    },
+    "journey-sleeping-bag": {
+      "x": 317,
+      "y": 0,
+      "width": 312,
+      "height": 315
+    },
+    "journey-hammock": {
+      "x": 629,
+      "y": 0,
+      "width": 305,
+      "height": 315
+    },
+    "journey-campfire": {
+      "x": 934,
+      "y": 0,
+      "width": 320,
+      "height": 315
+    },
+    "journey-folded-map": {
+      "x": 0,
+      "y": 315,
+      "width": 317,
+      "height": 324
+    },
+    "journey-cairn": {
+      "x": 317,
+      "y": 315,
+      "width": 312,
+      "height": 324
+    },
+    "journey-rope-ladder": {
+      "x": 629,
+      "y": 315,
+      "width": 305,
+      "height": 324
+    },
+    "journey-wooden-ladder": {
+      "x": 934,
+      "y": 315,
+      "width": 320,
+      "height": 324
+    },
+    "journey-rope-bridge": {
+      "x": 0,
+      "y": 639,
+      "width": 317,
+      "height": 311
+    },
+    "journey-log-raft": {
+      "x": 317,
+      "y": 639,
+      "width": 312,
+      "height": 311
+    },
+    "journey-oar": {
+      "x": 629,
+      "y": 639,
+      "width": 305,
+      "height": 311
+    },
+    "journey-handcart": {
+      "x": 934,
+      "y": 639,
+      "width": 320,
+      "height": 311
+    },
+    "journey-sled": {
+      "x": 0,
+      "y": 950,
+      "width": 317,
+      "height": 304
+    },
+    "journey-hiking-boot": {
+      "x": 317,
+      "y": 950,
+      "width": 312,
+      "height": 304
+    },
+    "journey-torch": {
+      "x": 629,
+      "y": 950,
+      "width": 305,
+      "height": 304
+    }
+  }
+}

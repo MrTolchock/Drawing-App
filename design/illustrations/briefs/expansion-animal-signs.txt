@@ -1,0 +1,22 @@
+Create a NEW Waldpost woodland learning-picture atlas in the exact watercolour and coloured-pencil technique of the two canonical references. These pictures support future animal to trace matching, observation, inference puzzles. Match the DRAWING TECHNIQUE only, never the opaque cream background of the reference sheets.
+
+SQUARE 4 by 4 GRID: exactly sixteen equal square cells, four columns and four rows. Paint the fifteen complete independent subjects in the precise row-major positions listed below. Row 4 column 4 is empty. Each complete drawing or vignette occupies at most 65% of its cell; centre it with generous transparent margins on all sides. No part crosses a cell boundary. No text, labels, numerals, arrows, frame or visible grid.
+
+Row 1, column 1: sign-fox-paw (Fuchspfote) — one single fox paw print viewed from above: four small toe pads and one central paw pad, simple sepia impression with no ground rectangle.
+Row 1, column 2: sign-deer-hoof (Rehspur) — one single deer hoof print viewed from above: two narrow pointed cloven halves, sepia impression only.
+Row 1, column 3: sign-bird-foot (Vogelspur) — one single small bird footprint viewed from above: three slender toes forward and one small rear toe, sepia impression only.
+Row 1, column 4: sign-duck-foot (Entenspur) — one single duck footprint viewed from above: three forward toes joined by clear webbing, sepia impression only.
+Row 2, column 1: sign-handprint (Handabdruck) — one simple warm sepia human handprint with exactly five fingers and palm, viewed flat, no backing surface.
+Row 2, column 2: sign-rabbit-tracks (Hasenspuren) — one compact rabbit track pattern viewed from above: two long hind-foot impressions ahead of two smaller forefoot impressions, no animal or ground rectangle.
+Row 2, column 3: sign-gnawed-cone (Benagter Zapfen) — one pine cone gnawed down to a narrow central core with a few scales remaining at the tip.
+Row 2, column 4: sign-nut-shell (Geknackte Nussschale) — one opened hazelnut shell with a small round gnawed opening clearly visible.
+Row 3, column 1: sign-nibbled-leaf (Angeknabbertes Blatt) — one green leaf with several clear bite notches along its edge.
+Row 3, column 2: sign-eggshell (Leere Eierschale) — one empty half of a pale speckled bird eggshell with a jagged top edge.
+Row 3, column 3: sign-shed-antler (Abwurfstange) — one naturally shed branching deer antler on its own, complete silhouette, no skull or animal.
+Row 3, column 4: sign-snake-skin (Schlangenhaut) — one short curled empty shed snake skin, pale cream and faintly patterned, clearly a hollow skin not a living snake.
+Row 4, column 1: sign-spider-web (Spinnennetz) — one small complete delicate sepia spider web attached between two short twig tips, no spider.
+Row 4, column 2: sign-snail-trail (Schneckenspur) — one green leaf bearing one silvery curved snail trail, no snail or extra objects.
+Row 4, column 3: sign-beaver-log (Vom Biber benagtes Holz) — one short wooden log gnawed into a distinct hourglass notch with visible pencilled tooth marks, no beaver.
+Row 4, column 4: EMPTY and fully transparent.
+
+TRANSPARENT CUTOUTS: The ONLY visible pixels are the subject paintings, including the expressly requested parts of a vignette. Every surrounding pixel, gutter, outer perimeter and final empty cell must have alpha ZERO. No continuous paper canvas, pale white matte, coloured haze, aura, drop shadow, or glow outside the fine natural pencil contour. Paint texture stays INSIDE the subjects. Keep white areas opaque inside their actual contours. Open handles, webs, rings and gaps between separate objects are genuinely transparent. Friendly, recognizable complete silhouettes; believable anatomy and precise stated quantities and states.

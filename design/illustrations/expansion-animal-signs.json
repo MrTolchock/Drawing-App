@@ -1,0 +1,81 @@
+{
+  "format": "waldpost-illustration-atlas",
+  "version": 1,
+  "source": "sources/expansion-three-2026-11-19/expansion-animal-signs.png",
+  "output": "../../assets/waldatelier/expansion-animal-signs.webp",
+  "columns": 4,
+  "rows": 4,
+  "cellPixels": 320,
+  "subjectPixels": 256,
+  "alphaThresholdPercent": 8,
+  "provenance": {
+    "date": "2026-11-19",
+    "tool": "ChatGPT image_gen.imagegen",
+    "sourceSha256": "716212b9951ba19109cebe71fd718070829920e43ae84c06c1f0d25b3b020fab",
+    "generationRecord": "../artwork/generation-records/expansion-animal-signs-2026-11-19.json",
+    "styleContract": "style.json",
+    "forwardPrompt": "prompts/expansion-animal-signs.txt"
+  },
+  "subjects": [
+    {
+      "id": "sign-fox-paw",
+      "label": "Fuchspfote"
+    },
+    {
+      "id": "sign-deer-hoof",
+      "label": "Rehspur"
+    },
+    {
+      "id": "sign-bird-foot",
+      "label": "Vogelspur"
+    },
+    {
+      "id": "sign-duck-foot",
+      "label": "Entenspur"
+    },
+    {
+      "id": "sign-handprint",
+      "label": "Handabdruck"
+    },
+    {
+      "id": "sign-rabbit-tracks",
+      "label": "Hasenspuren"
+    },
+    {
+      "id": "sign-gnawed-cone",
+      "label": "Benagter Zapfen"
+    },
+    {
+      "id": "sign-nut-shell",
+      "label": "Geknackte Nussschale"
+    },
+    {
+      "id": "sign-nibbled-leaf",
+      "label": "Angeknabbertes Blatt"
+    },
+    {
+      "id": "sign-eggshell",
+      "label": "Leere Eierschale"
+    },
+    {
+      "id": "sign-shed-antler",
+      "label": "Abwurfstange"
+    },
+    {
+      "id": "sign-snake-skin",
+      "label": "Schlangenhaut"
+    },
+    {
+      "id": "sign-spider-web",
+      "label": "Spinnennetz"
+    },
+    {
+      "id": "sign-snail-trail",
+      "label": "Schneckenspur"
+    },
+    {
+      "id": "sign-beaver-log",
+      "label": "Vom Biber benagtes Holz"
+    }
+  ]
+}

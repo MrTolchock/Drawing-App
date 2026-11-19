@@ -1,0 +1,81 @@
+{
+  "format": "waldpost-illustration-atlas",
+  "version": 1,
+  "source": "sources/expansion-three-2026-11-19/expansion-object-states.png",
+  "output": "../../assets/waldatelier/expansion-object-states.webp",
+  "columns": 4,
+  "rows": 4,
+  "cellPixels": 320,
+  "subjectPixels": 256,
+  "alphaThresholdPercent": 8,
+  "provenance": {
+    "date": "2026-11-19",
+    "tool": "ChatGPT image_gen.imagegen",
+    "sourceSha256": "bf0c71be398f6eae836c4e813957d4d51b2d10ecc0d228750ea932ff0e54444d",
+    "generationRecord": "../artwork/generation-records/expansion-object-states-2026-11-19.json",
+    "styleContract": "style.json",
+    "forwardPrompt": "prompts/expansion-object-states.txt"
+  },
+  "subjects": [
+    {
+      "id": "state-parcel-open",
+      "label": "Offenes Päckchen"
+    },
+    {
+      "id": "state-parcel-closed",
+      "label": "Geschlossenes Päckchen"
+    },
+    {
+      "id": "state-bucket-full",
+      "label": "Voller Eimer"
+    },
+    {
+      "id": "state-bucket-empty",
+      "label": "Leerer Eimer"
+    },
+    {
+      "id": "state-chest-open",
+      "label": "Offene Truhe"
+    },
+    {
+      "id": "state-chest-closed",
+      "label": "Geschlossene Truhe"
+    },
+    {
+      "id": "state-boot-clean",
+      "label": "Sauberer Stiefel"
+    },
+    {
+      "id": "state-boot-muddy",
+      "label": "Schmutziger Stiefel"
+    },
+    {
+      "id": "state-padlock-open",
+      "label": "Offenes Schloss"
+    },
+    {
+      "id": "state-padlock-closed",
+      "label": "Geschlossenes Schloss"
+    },
+    {
+      "id": "state-umbrella-folded",
+      "label": "Zusammengeklappter Schirm"
+    },
+    {
+      "id": "state-jug-whole",
+      "label": "Ganzer Krug"
+    },
+    {
+      "id": "state-jug-broken",
+      "label": "Zerbrochener Krug"
+    },
+    {
+      "id": "state-paper-folded",
+      "label": "Gefaltetes Papier"
+    },
+    {
+      "id": "state-paper-crumpled",
+      "label": "Zerknülltes Papier"
+    }
+  ]
+}

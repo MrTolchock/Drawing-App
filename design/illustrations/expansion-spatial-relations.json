@@ -1,0 +1,81 @@
+{
+  "format": "waldpost-illustration-atlas",
+  "version": 1,
+  "source": "sources/expansion-three-2026-11-19/expansion-spatial-relations.png",
+  "output": "../../assets/waldatelier/expansion-spatial-relations.webp",
+  "columns": 4,
+  "rows": 4,
+  "cellPixels": 320,
+  "subjectPixels": 256,
+  "alphaThresholdPercent": 8,
+  "provenance": {
+    "date": "2026-11-19",
+    "tool": "ChatGPT image_gen.imagegen",
+    "sourceSha256": "90fb8dfc5e5ea304d16ad17bdb57e8b9edfb0a26880b7e41fd9f99f0df30100d",
+    "generationRecord": "../artwork/generation-records/expansion-spatial-relations-2026-11-19.json",
+    "styleContract": "style.json",
+    "forwardPrompt": "prompts/expansion-spatial-relations.txt"
+  },
+  "subjects": [
+    {
+      "id": "relation-apple-in-basket",
+      "label": "Apfel im Korb"
+    },
+    {
+      "id": "relation-apple-above-basket",
+      "label": "Apfel über dem Korb"
+    },
+    {
+      "id": "relation-apple-beside-basket",
+      "label": "Apfel neben dem Korb"
+    },
+    {
+      "id": "relation-apple-on-bench",
+      "label": "Apfel auf der Bank"
+    },
+    {
+      "id": "relation-apple-under-bench",
+      "label": "Apfel unter der Bank"
+    },
+    {
+      "id": "relation-apple-left-stump",
+      "label": "Apfel links vom Baumstrunk"
+    },
+    {
+      "id": "relation-apple-right-stump",
+      "label": "Apfel rechts vom Baumstrunk"
+    },
+    {
+      "id": "relation-apple-front-stump",
+      "label": "Apfel vor dem Baumstrunk"
+    },
+    {
+      "id": "relation-apple-behind-stump",
+      "label": "Apfel hinter dem Baumstrunk"
+    },
+    {
+      "id": "relation-apple-between-stones",
+      "label": "Apfel zwischen Steinen"
+    },
+    {
+      "id": "relation-ball-in-box",
+      "label": "Ball in der Kiste"
+    },
+    {
+      "id": "relation-ball-beside-box",
+      "label": "Ball neben der Kiste"
+    },
+    {
+      "id": "relation-ball-front-box",
+      "label": "Ball vor der Kiste"
+    },
+    {
+      "id": "relation-ball-behind-box",
+      "label": "Ball hinter der Kiste"
+    },
+    {
+      "id": "relation-ball-between-boxes",
+      "label": "Ball zwischen Kisten"
+    }
+  ]
+}

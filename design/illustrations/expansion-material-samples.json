@@ -1,0 +1,174 @@
+{
+  "format": "waldpost-illustration-atlas",
+  "version": 1,
+  "source": "sources/expansion-three-2026-11-19/expansion-material-samples-cutout.png",
+  "output": "../../assets/waldatelier/expansion-material-samples.webp",
+  "columns": 4,
+  "rows": 4,
+  "cellPixels": 320,
+  "subjectPixels": 256,
+  "alphaThresholdPercent": 8,
+  "provenance": {
+    "date": "2026-11-19",
+    "tool": "ChatGPT image_gen.imagegen",
+    "sourceSha256": "082abb7747944a0cc2a302366bcdb673d52839db592b37bc8b253012b45253fe",
+    "generationRecord": "../artwork/generation-records/expansion-material-samples-cutout-2026-11-19.json",
+    "styleContract": "style.json",
+    "forwardPrompt": "prompts/expansion-material-samples.txt",
+    "cropNote": "Source crop boundaries lie in verified empty alpha gutters, preserving every complete subject without neighbour fragments before the normal proportional resize."
+  },
+  "subjects": [
+    {
+      "id": "material-wood-slice",
+      "label": "Holzscheibe"
+    },
+    {
+      "id": "material-bark-strip",
+      "label": "Rindenstück"
+    },
+    {
+      "id": "material-cork-stopper",
+      "label": "Korken"
+    },
+    {
+      "id": "material-wool-tuft",
+      "label": "Wollbüschel"
+    },
+    {
+      "id": "material-linen-swatch",
+      "label": "Leinen"
+    },
+    {
+      "id": "material-leather-swatch",
+      "label": "Leder"
+    },
+    {
+      "id": "material-felt-swatch",
+      "label": "Filz"
+    },
+    {
+      "id": "material-cardboard",
+      "label": "Wellkarton"
+    },
+    {
+      "id": "material-glass-marble",
+      "label": "Glasmurmel"
+    },
+    {
+      "id": "material-copper-sheet",
+      "label": "Kupferblech"
+    },
+    {
+      "id": "material-slate",
+      "label": "Schiefer"
+    },
+    {
+      "id": "material-clay",
+      "label": "Ton"
+    },
+    {
+      "id": "material-cotton-boll",
+      "label": "Baumwolle"
+    },
+    {
+      "id": "material-rubber-band",
+      "label": "Gummiband"
+    },
+    {
+      "id": "material-straw-bundle",
+      "label": "Strohbündel"
+    }
+  ],
+  "sourceRects": {
+    "material-wood-slice": {
+      "x": 0,
+      "y": 0,
+      "width": 311,
+      "height": 330
+    },
+    "material-bark-strip": {
+      "x": 311,
+      "y": 0,
+      "width": 310,
+      "height": 330
+    },
+    "material-cork-stopper": {
+      "x": 621,
+      "y": 0,
+      "width": 301,
+      "height": 330
+    },
+    "material-wool-tuft": {
+      "x": 922,
+      "y": 0,
+      "width": 332,
+      "height": 330
+    },
+    "material-linen-swatch": {
+      "x": 0,
+      "y": 330,
+      "width": 311,
+      "height": 305
+    },
+    "material-leather-swatch": {
+      "x": 311,
+      "y": 330,
+      "width": 310,
+      "height": 305
+    },
+    "material-felt-swatch": {
+      "x": 621,
+      "y": 330,
+      "width": 301,
+      "height": 305
+    },
+    "material-cardboard": {
+      "x": 922,
+      "y": 330,
+      "width": 332,
+      "height": 305
+    },
+    "material-glass-marble": {
+      "x": 0,
+      "y": 635,
+      "width": 311,
+      "height": 292
+    },
+    "material-copper-sheet": {
+      "x": 311,
+      "y": 635,
+      "width": 310,
+      "height": 292
+    },
+    "material-slate": {
+      "x": 621,
+      "y": 635,
+      "width": 301,
+      "height": 292
+    },
+    "material-clay": {
+      "x": 922,
+      "y": 635,
+      "width": 332,
+      "height": 292
+    },
+    "material-cotton-boll": {
+      "x": 0,
+      "y": 927,
+      "width": 311,
+      "height": 327
+    },
+    "material-rubber-band": {
+      "x": 311,
+      "y": 927,
+      "width": 310,
+      "height": 327
+    },
+    "material-straw-bundle": {
+      "x": 621,
+      "y": 927,
+      "width": 301,
+      "height": 327
+    }
+  }
+}

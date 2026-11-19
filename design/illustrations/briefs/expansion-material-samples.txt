@@ -1,0 +1,22 @@
+Create a NEW Waldpost woodland learning-picture atlas in the exact watercolour and coloured-pencil technique of the two canonical references. These pictures support future material sorting, texture matching, origin and product puzzles. Match the DRAWING TECHNIQUE only, never the opaque cream background of the reference sheets.
+
+SQUARE 4 by 4 GRID: exactly sixteen equal square cells, four columns and four rows. Paint the fifteen complete independent subjects in the precise row-major positions listed below. Row 4 column 4 is empty. Each complete drawing or vignette occupies at most 65% of its cell; centre it with generous transparent margins on all sides. No part crosses a cell boundary. No text, labels, numerals, arrows, frame or visible grid.
+
+Row 1, column 1: material-wood-slice (Holzscheibe) — one thin round wood slice with bark rim and visible concentric growth rings.
+Row 1, column 2: material-bark-strip (Rindenstück) — one curled strip of brown tree bark with simple pencil ridges.
+Row 1, column 3: material-cork-stopper (Korken) — one plain cylindrical cork stopper with restrained pencil speckles.
+Row 1, column 4: material-wool-tuft (Wollbüschel) — one loose cream tuft of raw sheep wool, airy pencilled strands and irregular silhouette.
+Row 2, column 1: material-linen-swatch (Leinen) — one small beige linen swatch with a frayed edge and simple drawn woven lines.
+Row 2, column 2: material-leather-swatch (Leder) — one irregular warm brown leather sample with a clean cut edge, matte watercolour and pencil.
+Row 2, column 3: material-felt-swatch (Filz) — one small sage-green felt swatch with a softly irregular edge and light pencil texture.
+Row 2, column 4: material-cardboard (Wellkarton) — one small torn piece of corrugated brown cardboard with its wavy inner layer visible along one edge.
+Row 3, column 1: material-glass-marble (Glasmurmel) — one round pale-blue glass marble with a small cream highlight and a subtle internal blue swirl, drawn not rendered.
+Row 3, column 2: material-copper-sheet (Kupferblech) — one small softly bent copper-coloured metal sheet, warm reddish wash and pencil edges, no mirror gloss.
+Row 3, column 3: material-slate (Schiefer) — one flat dark-grey slate fragment with visible thin layered edges.
+Row 3, column 4: material-clay (Ton) — one irregular soft terracotta clay lump with one shallow thumb indentation.
+Row 4, column 1: material-cotton-boll (Baumwolle) — one open cotton boll with white cotton lobes and dry brown pointed husk.
+Row 4, column 2: material-rubber-band (Gummiband) — one single muted red rubber band lying in a loose oval, transparent middle.
+Row 4, column 3: material-straw-bundle (Strohbündel) — one small bundle of dry golden straw tied once with simple string.
+Row 4, column 4: EMPTY and fully transparent.
+
+TRANSPARENT CUTOUTS: The ONLY visible pixels are the subject paintings, including the expressly requested parts of a vignette. Every surrounding pixel, gutter, outer perimeter and final empty cell must have alpha ZERO. No continuous paper canvas, pale white matte, coloured haze, aura, drop shadow, or glow outside the fine natural pencil contour. Paint texture stays INSIDE the subjects. Keep white areas opaque inside their actual contours. Open handles, webs, rings and gaps between separate objects are genuinely transparent. Friendly, recognizable complete silhouettes; believable anatomy and precise stated quantities and states.

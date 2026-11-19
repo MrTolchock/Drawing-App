@@ -212,6 +212,44 @@
       }
     },
     {
+      "id": "expansion-animal-signs",
+      "file": "expansion-animal-signs.webp",
+      "width": 1280,
+      "height": 1280,
+      "columns": 4,
+      "rows": 4,
+      "sha256": "2be849413d3554f645e2201ab53582f41b5716715e19dba35607094a472675d9",
+      "provenance": {
+        "status": "historical-record",
+        "record": "design/artwork/generation-records/expansion-animal-signs-2026-11-19.json",
+        "recordKind": "generation-record",
+        "manifest": "design/illustrations/expansion-animal-signs.json",
+        "styleContract": "design/illustrations/style.json",
+        "requestId": "expansion-animal-signs",
+        "forwardPrompt": "design/illustrations/prompts/expansion-animal-signs.txt",
+        "guide": "design/illustrations/STYLE.md"
+      }
+    },
+    {
+      "id": "expansion-counting-groups",
+      "file": "expansion-counting-groups.webp",
+      "width": 1280,
+      "height": 1280,
+      "columns": 4,
+      "rows": 4,
+      "sha256": "c1c2776da2877715e2fb2f9dbfccf53229b4a4c5d91569f39c23af3132c74577",
+      "provenance": {
+        "status": "historical-record",
+        "record": "design/artwork/generation-records/expansion-counting-groups-2026-11-19.json",
+        "recordKind": "generation-record",
+        "manifest": "design/illustrations/expansion-counting-groups.json",
+        "styleContract": "design/illustrations/style.json",
+        "requestId": "expansion-counting-groups",
+        "forwardPrompt": "design/illustrations/prompts/expansion-counting-groups.txt",
+        "guide": "design/illustrations/STYLE.md"
+      }
+    },
+    {
       "id": "expansion-garden-harvest",
       "file": "expansion-garden-harvest.webp",
       "width": 1280,
@@ -246,6 +284,44 @@
         "styleContract": "design/illustrations/style.json",
         "requestId": "expansion-kitchen-tools",
         "forwardPrompt": "design/illustrations/prompts/expansion-kitchen-tools.txt",
+        "guide": "design/illustrations/STYLE.md"
+      }
+    },
+    {
+      "id": "expansion-making-sequences",
+      "file": "expansion-making-sequences.webp",
+      "width": 1280,
+      "height": 1280,
+      "columns": 4,
+      "rows": 4,
+      "sha256": "890357e122bf16258b58babd4f39cff4a4afb122639dc58ee45a0be3663a40e1",
+      "provenance": {
+        "status": "historical-record",
+        "record": "design/artwork/generation-records/expansion-making-sequences-2026-11-19.json",
+        "recordKind": "generation-record",
+        "manifest": "design/illustrations/expansion-making-sequences.json",
+        "styleContract": "design/illustrations/style.json",
+        "requestId": "expansion-making-sequences",
+        "forwardPrompt": "design/illustrations/prompts/expansion-making-sequences.txt",
+        "guide": "design/illustrations/STYLE.md"
+      }
+    },
+    {
+      "id": "expansion-material-samples",
+      "file": "expansion-material-samples.webp",
+      "width": 1280,
+      "height": 1280,
+      "columns": 4,
+      "rows": 4,
+      "sha256": "ef2d3da681c274203395bca72a6dafa42bf687a5c603c2a521fcdf1e8f37449f",
+      "provenance": {
+        "status": "historical-record",
+        "record": "design/artwork/generation-records/expansion-material-samples-cutout-2026-11-19.json",
+        "recordKind": "generation-record",
+        "manifest": "design/illustrations/expansion-material-samples.json",
+        "styleContract": "design/illustrations/style.json",
+        "requestId": "expansion-material-samples",
+        "forwardPrompt": "design/illustrations/prompts/expansion-material-samples.txt",
         "guide": "design/illustrations/STYLE.md"
       }
     },
@@ -326,6 +402,44 @@
       }
     },
     {
+      "id": "expansion-nature-parts",
+      "file": "expansion-nature-parts.webp",
+      "width": 1280,
+      "height": 1280,
+      "columns": 4,
+      "rows": 4,
+      "sha256": "6b950ea963f56a1ab48ad040f7c99ad44fd3f57ef2b93d28b1802386755be355",
+      "provenance": {
+        "status": "historical-record",
+        "record": "design/artwork/generation-records/expansion-nature-parts-cutout-2026-11-19.json",
+        "recordKind": "generation-record",
+        "manifest": "design/illustrations/expansion-nature-parts.json",
+        "styleContract": "design/illustrations/style.json",
+        "requestId": "expansion-nature-parts",
+        "forwardPrompt": "design/illustrations/prompts/expansion-nature-parts.txt",
+        "guide": "design/illustrations/STYLE.md"
+      }
+    },
+    {
+      "id": "expansion-object-states",
+      "file": "expansion-object-states.webp",
+      "width": 1280,
+      "height": 1280,
+      "columns": 4,
+      "rows": 4,
+      "sha256": "d09f8969fd74fe5d75cb748e8d2efb087d816b80d5056d1fd73a5c5ace66d7c3",
+      "provenance": {
+        "status": "historical-record",
+        "record": "design/artwork/generation-records/expansion-object-states-2026-11-19.json",
+        "recordKind": "generation-record",
+        "manifest": "design/illustrations/expansion-object-states.json",
+        "styleContract": "design/illustrations/style.json",
+        "requestId": "expansion-object-states",
+        "forwardPrompt": "design/illustrations/prompts/expansion-object-states.txt",
+        "guide": "design/illustrations/STYLE.md"
+      }
+    },
+    {
       "id": "expansion-orchard-produce",
       "file": "expansion-orchard-produce.webp",
       "width": 1280,
@@ -341,6 +455,44 @@
         "styleContract": "design/illustrations/style.json",
         "requestId": "expansion-orchard-produce",
         "forwardPrompt": "design/illustrations/prompts/expansion-orchard-produce.txt",
+        "guide": "design/illustrations/STYLE.md"
+      }
+    },
+    {
+      "id": "expansion-outdoor-journeys",
+      "file": "expansion-outdoor-journeys.webp",
+      "width": 1280,
+      "height": 1280,
+      "columns": 4,
+      "rows": 4,
+      "sha256": "a3b57978d2a4738771eb77b0784bc413160ee224c6e22c52dc2aa54112468c6e",
+      "provenance": {
+        "status": "historical-record",
+        "record": "design/artwork/generation-records/expansion-outdoor-journeys-transparent-2026-11-19.json",
+        "recordKind": "generation-record",
+        "manifest": "design/illustrations/expansion-outdoor-journeys.json",
+        "styleContract": "design/illustrations/style.json",
+        "requestId": "expansion-outdoor-journeys",
+        "forwardPrompt": "design/illustrations/prompts/expansion-outdoor-journeys.txt",
+        "guide": "design/illustrations/STYLE.md"
+      }
+    },
+    {
+      "id": "expansion-patterns-seasons",
+      "file": "expansion-patterns-seasons.webp",
+      "width": 1280,
+      "height": 1280,
+      "columns": 4,
+      "rows": 4,
+      "sha256": "8f7f6918fa7fb30fe4b80c67b4885e4381b5ca959a8a8e237b5794a920f94b62",
+      "provenance": {
+        "status": "historical-record",
+        "record": "design/artwork/generation-records/expansion-patterns-seasons-2026-11-19.json",
+        "recordKind": "generation-record",
+        "manifest": "design/illustrations/expansion-patterns-seasons.json",
+        "styleContract": "design/illustrations/style.json",
+        "requestId": "expansion-patterns-seasons",
+        "forwardPrompt": "design/illustrations/prompts/expansion-patterns-seasons.txt",
         "guide": "design/illustrations/STYLE.md"
       }
     },
@@ -379,6 +531,25 @@
         "styleContract": "design/illustrations/style.json",
         "requestId": "expansion-seasons-weather",
         "forwardPrompt": "design/illustrations/prompts/expansion-seasons-weather.txt",
+        "guide": "design/illustrations/STYLE.md"
+      }
+    },
+    {
+      "id": "expansion-spatial-relations",
+      "file": "expansion-spatial-relations.webp",
+      "width": 1280,
+      "height": 1280,
+      "columns": 4,
+      "rows": 4,
+      "sha256": "affcd07943e0be5330cd67599d07e3751ebf9ac29f70c9237cdecac51ab92b05",
+      "provenance": {
+        "status": "historical-record",
+        "record": "design/artwork/generation-records/expansion-spatial-relations-2026-11-19.json",
+        "recordKind": "generation-record",
+        "manifest": "design/illustrations/expansion-spatial-relations.json",
+        "styleContract": "design/illustrations/style.json",
+        "requestId": "expansion-spatial-relations",
+        "forwardPrompt": "design/illustrations/prompts/expansion-spatial-relations.txt",
         "guide": "design/illustrations/STYLE.md"
       }
     },
@@ -569,6 +740,25 @@
         "styleContract": "design/illustrations/style.json",
         "requestId": "expansion-woodland-trees",
         "forwardPrompt": "design/illustrations/prompts/expansion-woodland-trees.txt",
+        "guide": "design/illustrations/STYLE.md"
+      }
+    },
+    {
+      "id": "expansion-workshop-tools",
+      "file": "expansion-workshop-tools.webp",
+      "width": 1280,
+      "height": 1280,
+      "columns": 4,
+      "rows": 4,
+      "sha256": "25844e26c203cf921a15a6953303b1c6d5de09353efc0ef359ba7567b2793e5f",
+      "provenance": {
+        "status": "historical-record",
+        "record": "design/artwork/generation-records/expansion-workshop-tools-2026-11-19.json",
+        "recordKind": "generation-record",
+        "manifest": "design/illustrations/expansion-workshop-tools.json",
+        "styleContract": "design/illustrations/style.json",
+        "requestId": "expansion-workshop-tools",
+        "forwardPrompt": "design/illustrations/prompts/expansion-workshop-tools.txt",
         "guide": "design/illustrations/STYLE.md"
       }
     },
@@ -2960,6 +3150,246 @@
       "usedBy": []
     },
     {
+      "id": "count-acorns-2",
+      "label": "2 Eicheln",
+      "sheet": "expansion-counting-groups",
+      "index": 5,
+      "column": 1,
+      "row": 1,
+      "sourceRect": {
+        "x": 320,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "count-acorns-3",
+      "label": "3 Eicheln",
+      "sheet": "expansion-counting-groups",
+      "index": 6,
+      "column": 2,
+      "row": 1,
+      "sourceRect": {
+        "x": 640,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "count-acorns-4",
+      "label": "4 Eicheln",
+      "sheet": "expansion-counting-groups",
+      "index": 7,
+      "column": 3,
+      "row": 1,
+      "sourceRect": {
+        "x": 960,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "count-acorns-5",
+      "label": "5 Eicheln",
+      "sheet": "expansion-counting-groups",
+      "index": 8,
+      "column": 0,
+      "row": 2,
+      "sourceRect": {
+        "x": 0,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "count-acorns-6",
+      "label": "6 Eicheln",
+      "sheet": "expansion-counting-groups",
+      "index": 9,
+      "column": 1,
+      "row": 2,
+      "sourceRect": {
+        "x": 320,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "count-buttons-2",
+      "label": "2 Knöpfe",
+      "sheet": "expansion-counting-groups",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "count-buttons-3",
+      "label": "3 Knöpfe",
+      "sheet": "expansion-counting-groups",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 320,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "count-buttons-4",
+      "label": "4 Knöpfe",
+      "sheet": "expansion-counting-groups",
+      "index": 2,
+      "column": 2,
+      "row": 0,
+      "sourceRect": {
+        "x": 640,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "count-buttons-5",
+      "label": "5 Knöpfe",
+      "sheet": "expansion-counting-groups",
+      "index": 3,
+      "column": 3,
+      "row": 0,
+      "sourceRect": {
+        "x": 960,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "count-buttons-6",
+      "label": "6 Knöpfe",
+      "sheet": "expansion-counting-groups",
+      "index": 4,
+      "column": 0,
+      "row": 1,
+      "sourceRect": {
+        "x": 0,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "count-leaves-2",
+      "label": "2 Blätter",
+      "sheet": "expansion-counting-groups",
+      "index": 10,
+      "column": 2,
+      "row": 2,
+      "sourceRect": {
+        "x": 640,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "count-leaves-3",
+      "label": "3 Blätter",
+      "sheet": "expansion-counting-groups",
+      "index": 11,
+      "column": 3,
+      "row": 2,
+      "sourceRect": {
+        "x": 960,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "count-leaves-4",
+      "label": "4 Blätter",
+      "sheet": "expansion-counting-groups",
+      "index": 12,
+      "column": 0,
+      "row": 3,
+      "sourceRect": {
+        "x": 0,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "count-leaves-5",
+      "label": "5 Blätter",
+      "sheet": "expansion-counting-groups",
+      "index": 13,
+      "column": 1,
+      "row": 3,
+      "sourceRect": {
+        "x": 320,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "count-leaves-6",
+      "label": "6 Blätter",
+      "sheet": "expansion-counting-groups",
+      "index": 14,
+      "column": 2,
+      "row": 3,
+      "sourceRect": {
+        "x": 640,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "cow",
       "label": "Kuh",
       "sheet": "animals",
@@ -4926,6 +5356,70 @@
       "usedBy": []
     },
     {
+      "id": "habitat-alpine-rocks",
+      "label": "Bergfelsen",
+      "sheet": "expansion-patterns-seasons",
+      "index": 12,
+      "column": 0,
+      "row": 3,
+      "sourceRect": {
+        "x": 0,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "habitat-deadwood",
+      "label": "Totholz",
+      "sheet": "expansion-patterns-seasons",
+      "index": 13,
+      "column": 1,
+      "row": 3,
+      "sourceRect": {
+        "x": 320,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "habitat-flower-meadow",
+      "label": "Blumenwiese",
+      "sheet": "expansion-patterns-seasons",
+      "index": 10,
+      "column": 2,
+      "row": 2,
+      "sourceRect": {
+        "x": 640,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "habitat-hedgerow",
+      "label": "Hecke",
+      "sheet": "expansion-patterns-seasons",
+      "index": 14,
+      "column": 2,
+      "row": 3,
+      "sourceRect": {
+        "x": 640,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "habitat-pond",
       "label": "Teich",
       "sheet": "review-nature",
@@ -4942,6 +5436,22 @@
       "usedBy": [
         "friends-deer"
       ]
+    },
+    {
+      "id": "habitat-riverbank",
+      "label": "Bachufer",
+      "sheet": "expansion-patterns-seasons",
+      "index": 11,
+      "column": 3,
+      "row": 2,
+      "sourceRect": {
+        "x": 960,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
     },
     {
       "id": "hairbrush",
@@ -5421,6 +5931,246 @@
       "usedBy": []
     },
     {
+      "id": "journey-cairn",
+      "label": "Steinmännchen",
+      "sheet": "expansion-outdoor-journeys",
+      "index": 5,
+      "column": 1,
+      "row": 1,
+      "sourceRect": {
+        "x": 320,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "journey-campfire",
+      "label": "Lagerfeuer",
+      "sheet": "expansion-outdoor-journeys",
+      "index": 3,
+      "column": 3,
+      "row": 0,
+      "sourceRect": {
+        "x": 960,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "journey-folded-map",
+      "label": "Wanderkarte",
+      "sheet": "expansion-outdoor-journeys",
+      "index": 4,
+      "column": 0,
+      "row": 1,
+      "sourceRect": {
+        "x": 0,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "journey-hammock",
+      "label": "Hängematte",
+      "sheet": "expansion-outdoor-journeys",
+      "index": 2,
+      "column": 2,
+      "row": 0,
+      "sourceRect": {
+        "x": 640,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "journey-handcart",
+      "label": "Bollerwagen",
+      "sheet": "expansion-outdoor-journeys",
+      "index": 11,
+      "column": 3,
+      "row": 2,
+      "sourceRect": {
+        "x": 960,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "journey-hiking-boot",
+      "label": "Wanderschuh",
+      "sheet": "expansion-outdoor-journeys",
+      "index": 13,
+      "column": 1,
+      "row": 3,
+      "sourceRect": {
+        "x": 320,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "journey-log-raft",
+      "label": "Floss",
+      "sheet": "expansion-outdoor-journeys",
+      "index": 9,
+      "column": 1,
+      "row": 2,
+      "sourceRect": {
+        "x": 320,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "journey-oar",
+      "label": "Ruder",
+      "sheet": "expansion-outdoor-journeys",
+      "index": 10,
+      "column": 2,
+      "row": 2,
+      "sourceRect": {
+        "x": 640,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "journey-rope-bridge",
+      "label": "Seilbrücke",
+      "sheet": "expansion-outdoor-journeys",
+      "index": 8,
+      "column": 0,
+      "row": 2,
+      "sourceRect": {
+        "x": 0,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "journey-rope-ladder",
+      "label": "Strickleiter",
+      "sheet": "expansion-outdoor-journeys",
+      "index": 6,
+      "column": 2,
+      "row": 1,
+      "sourceRect": {
+        "x": 640,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "journey-sled",
+      "label": "Schlitten",
+      "sheet": "expansion-outdoor-journeys",
+      "index": 12,
+      "column": 0,
+      "row": 3,
+      "sourceRect": {
+        "x": 0,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "journey-sleeping-bag",
+      "label": "Schlafsack",
+      "sheet": "expansion-outdoor-journeys",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 320,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "journey-tent",
+      "label": "Zelt",
+      "sheet": "expansion-outdoor-journeys",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "journey-torch",
+      "label": "Taschenlampe",
+      "sheet": "expansion-outdoor-journeys",
+      "index": 14,
+      "column": 2,
+      "row": 3,
+      "sourceRect": {
+        "x": 640,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "journey-wooden-ladder",
+      "label": "Holzleiter",
+      "sheet": "expansion-outdoor-journeys",
+      "index": 7,
+      "column": 3,
+      "row": 1,
+      "sourceRect": {
+        "x": 960,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "judo",
       "label": "judo",
       "sheet": "people",
@@ -5819,6 +6569,246 @@
       ]
     },
     {
+      "id": "making-berries-crushed",
+      "label": "Zerdrückte Beeren",
+      "sheet": "expansion-making-sequences",
+      "index": 13,
+      "column": 1,
+      "row": 3,
+      "sourceRect": {
+        "x": 320,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "making-berries-washed",
+      "label": "Gewaschene Beeren",
+      "sheet": "expansion-making-sequences",
+      "index": 12,
+      "column": 0,
+      "row": 3,
+      "sourceRect": {
+        "x": 0,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "making-birdhouse-half",
+      "label": "Halbfertiges Vogelhaus",
+      "sheet": "expansion-making-sequences",
+      "index": 11,
+      "column": 3,
+      "row": 2,
+      "sourceRect": {
+        "x": 960,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "making-braided-loaf",
+      "label": "Gebackener Zopf",
+      "sheet": "expansion-making-sequences",
+      "index": 2,
+      "column": 2,
+      "row": 0,
+      "sourceRect": {
+        "x": 640,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "making-bread-dough",
+      "label": "Brotteig",
+      "sheet": "expansion-making-sequences",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 320,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "making-bread-flour",
+      "label": "Mehl in der Schüssel",
+      "sheet": "expansion-making-sequences",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "making-jam-pot",
+      "label": "Konfitüre im Topf",
+      "sheet": "expansion-making-sequences",
+      "index": 14,
+      "column": 2,
+      "row": 3,
+      "sourceRect": {
+        "x": 640,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "making-knitting-finished",
+      "label": "Fertiger Strickschal",
+      "sheet": "expansion-making-sequences",
+      "index": 8,
+      "column": 0,
+      "row": 2,
+      "sourceRect": {
+        "x": 0,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "making-knitting-half",
+      "label": "Halbfertige Strickarbeit",
+      "sheet": "expansion-making-sequences",
+      "index": 7,
+      "column": 3,
+      "row": 1,
+      "sourceRect": {
+        "x": 960,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "making-knitting-start",
+      "label": "Wolle und Nadeln",
+      "sheet": "expansion-making-sequences",
+      "index": 6,
+      "column": 2,
+      "row": 1,
+      "sourceRect": {
+        "x": 640,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "making-paper-boat",
+      "label": "Papierschiff",
+      "sheet": "expansion-making-sequences",
+      "index": 5,
+      "column": 1,
+      "row": 1,
+      "sourceRect": {
+        "x": 320,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "making-paper-fold",
+      "label": "Papier wird gefaltet",
+      "sheet": "expansion-making-sequences",
+      "index": 4,
+      "column": 0,
+      "row": 1,
+      "sourceRect": {
+        "x": 0,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "making-paper-sheet",
+      "label": "Papierbogen",
+      "sheet": "expansion-making-sequences",
+      "index": 3,
+      "column": 3,
+      "row": 0,
+      "sourceRect": {
+        "x": 960,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "making-wood-cut",
+      "label": "Zugeschnittene Bretter",
+      "sheet": "expansion-making-sequences",
+      "index": 10,
+      "column": 2,
+      "row": 2,
+      "sourceRect": {
+        "x": 640,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "making-wood-marked",
+      "label": "Angezeichnetes Brett",
+      "sheet": "expansion-making-sequences",
+      "index": 9,
+      "column": 1,
+      "row": 2,
+      "sourceRect": {
+        "x": 320,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "mandarin",
       "label": "Mandarine",
       "sheet": "expansion-orchard-produce",
@@ -5854,6 +6844,246 @@
       "id": "maraca",
       "label": "Rassel",
       "sheet": "expansion-music-play",
+      "index": 3,
+      "column": 3,
+      "row": 0,
+      "sourceRect": {
+        "x": 960,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "material-bark-strip",
+      "label": "Rindenstück",
+      "sheet": "expansion-material-samples",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 320,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "material-cardboard",
+      "label": "Wellkarton",
+      "sheet": "expansion-material-samples",
+      "index": 7,
+      "column": 3,
+      "row": 1,
+      "sourceRect": {
+        "x": 960,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "material-clay",
+      "label": "Ton",
+      "sheet": "expansion-material-samples",
+      "index": 11,
+      "column": 3,
+      "row": 2,
+      "sourceRect": {
+        "x": 960,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "material-copper-sheet",
+      "label": "Kupferblech",
+      "sheet": "expansion-material-samples",
+      "index": 9,
+      "column": 1,
+      "row": 2,
+      "sourceRect": {
+        "x": 320,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "material-cork-stopper",
+      "label": "Korken",
+      "sheet": "expansion-material-samples",
+      "index": 2,
+      "column": 2,
+      "row": 0,
+      "sourceRect": {
+        "x": 640,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "material-cotton-boll",
+      "label": "Baumwolle",
+      "sheet": "expansion-material-samples",
+      "index": 12,
+      "column": 0,
+      "row": 3,
+      "sourceRect": {
+        "x": 0,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "material-felt-swatch",
+      "label": "Filz",
+      "sheet": "expansion-material-samples",
+      "index": 6,
+      "column": 2,
+      "row": 1,
+      "sourceRect": {
+        "x": 640,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "material-glass-marble",
+      "label": "Glasmurmel",
+      "sheet": "expansion-material-samples",
+      "index": 8,
+      "column": 0,
+      "row": 2,
+      "sourceRect": {
+        "x": 0,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "material-leather-swatch",
+      "label": "Leder",
+      "sheet": "expansion-material-samples",
+      "index": 5,
+      "column": 1,
+      "row": 1,
+      "sourceRect": {
+        "x": 320,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "material-linen-swatch",
+      "label": "Leinen",
+      "sheet": "expansion-material-samples",
+      "index": 4,
+      "column": 0,
+      "row": 1,
+      "sourceRect": {
+        "x": 0,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "material-rubber-band",
+      "label": "Gummiband",
+      "sheet": "expansion-material-samples",
+      "index": 13,
+      "column": 1,
+      "row": 3,
+      "sourceRect": {
+        "x": 320,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "material-slate",
+      "label": "Schiefer",
+      "sheet": "expansion-material-samples",
+      "index": 10,
+      "column": 2,
+      "row": 2,
+      "sourceRect": {
+        "x": 640,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "material-straw-bundle",
+      "label": "Strohbündel",
+      "sheet": "expansion-material-samples",
+      "index": 14,
+      "column": 2,
+      "row": 3,
+      "sourceRect": {
+        "x": 640,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "material-wood-slice",
+      "label": "Holzscheibe",
+      "sheet": "expansion-material-samples",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "material-wool-tuft",
+      "label": "Wollbüschel",
+      "sheet": "expansion-material-samples",
       "index": 3,
       "column": 3,
       "row": 0,
@@ -6705,6 +7935,342 @@
         "📦",
         "🎁"
       ],
+      "usedBy": []
+    },
+    {
+      "id": "part-acorn-cap",
+      "label": "Eichelhütchen",
+      "sheet": "expansion-nature-parts",
+      "index": 3,
+      "column": 3,
+      "row": 0,
+      "sourceRect": {
+        "x": 960,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "part-apple-seed",
+      "label": "Apfelkern",
+      "sheet": "expansion-nature-parts",
+      "index": 6,
+      "column": 2,
+      "row": 1,
+      "sourceRect": {
+        "x": 640,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "part-budding-twig",
+      "label": "Knospenzweig",
+      "sheet": "expansion-nature-parts",
+      "index": 12,
+      "column": 0,
+      "row": 3,
+      "sourceRect": {
+        "x": 0,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "part-cherry-stone",
+      "label": "Kirschstein",
+      "sheet": "expansion-nature-parts",
+      "index": 7,
+      "column": 3,
+      "row": 1,
+      "sourceRect": {
+        "x": 960,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "part-chestnut-husk",
+      "label": "Kastanienhülle",
+      "sheet": "expansion-nature-parts",
+      "index": 14,
+      "column": 2,
+      "row": 3,
+      "sourceRect": {
+        "x": 640,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "part-cone-scale",
+      "label": "Zapfenschuppe",
+      "sheet": "expansion-nature-parts",
+      "index": 5,
+      "column": 1,
+      "row": 1,
+      "sourceRect": {
+        "x": 320,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "part-empty-pea-pod",
+      "label": "Leere Erbsenschote",
+      "sheet": "expansion-nature-parts",
+      "index": 10,
+      "column": 2,
+      "row": 2,
+      "sourceRect": {
+        "x": 640,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "part-flower-petal",
+      "label": "Blütenblatt",
+      "sheet": "expansion-nature-parts",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "part-flower-stamen",
+      "label": "Staubblatt",
+      "sheet": "expansion-nature-parts",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 320,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "part-leaf-skeleton",
+      "label": "Blattgerippe",
+      "sheet": "expansion-nature-parts",
+      "index": 2,
+      "column": 2,
+      "row": 0,
+      "sourceRect": {
+        "x": 640,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "part-pea-seed",
+      "label": "Erbse",
+      "sheet": "expansion-nature-parts",
+      "index": 9,
+      "column": 1,
+      "row": 2,
+      "sourceRect": {
+        "x": 320,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "part-sunflower-seed",
+      "label": "Sonnenblumenkern",
+      "sheet": "expansion-nature-parts",
+      "index": 8,
+      "column": 0,
+      "row": 2,
+      "sourceRect": {
+        "x": 0,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "part-tree-roots",
+      "label": "Wurzeln",
+      "sheet": "expansion-nature-parts",
+      "index": 11,
+      "column": 3,
+      "row": 2,
+      "sourceRect": {
+        "x": 960,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "part-walnut-kernel",
+      "label": "Nusskern",
+      "sheet": "expansion-nature-parts",
+      "index": 4,
+      "column": 0,
+      "row": 1,
+      "sourceRect": {
+        "x": 0,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "part-walnut-shell",
+      "label": "Halbe Nussschale",
+      "sheet": "expansion-nature-parts",
+      "index": 13,
+      "column": 1,
+      "row": 3,
+      "sourceRect": {
+        "x": 320,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "pattern-scarf-checked",
+      "label": "Karierter Schal",
+      "sheet": "expansion-patterns-seasons",
+      "index": 3,
+      "column": 3,
+      "row": 0,
+      "sourceRect": {
+        "x": 960,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "pattern-scarf-dotted",
+      "label": "Gepunkteter Schal",
+      "sheet": "expansion-patterns-seasons",
+      "index": 2,
+      "column": 2,
+      "row": 0,
+      "sourceRect": {
+        "x": 640,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "pattern-scarf-leaves",
+      "label": "Schal mit Blattmuster",
+      "sheet": "expansion-patterns-seasons",
+      "index": 5,
+      "column": 1,
+      "row": 1,
+      "sourceRect": {
+        "x": 320,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "pattern-scarf-plain",
+      "label": "Einfarbiger Schal",
+      "sheet": "expansion-patterns-seasons",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "pattern-scarf-striped",
+      "label": "Gestreifter Schal",
+      "sheet": "expansion-patterns-seasons",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 320,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "pattern-scarf-zigzag",
+      "label": "Schal mit Zickzackmuster",
+      "sheet": "expansion-patterns-seasons",
+      "index": 4,
+      "column": 0,
+      "row": 1,
+      "sourceRect": {
+        "x": 0,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
       "usedBy": []
     },
     {
@@ -7597,6 +9163,246 @@
       "usedBy": []
     },
     {
+      "id": "relation-apple-above-basket",
+      "label": "Apfel über dem Korb",
+      "sheet": "expansion-spatial-relations",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 320,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "relation-apple-behind-stump",
+      "label": "Apfel hinter dem Baumstrunk",
+      "sheet": "expansion-spatial-relations",
+      "index": 8,
+      "column": 0,
+      "row": 2,
+      "sourceRect": {
+        "x": 0,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "relation-apple-beside-basket",
+      "label": "Apfel neben dem Korb",
+      "sheet": "expansion-spatial-relations",
+      "index": 2,
+      "column": 2,
+      "row": 0,
+      "sourceRect": {
+        "x": 640,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "relation-apple-between-stones",
+      "label": "Apfel zwischen Steinen",
+      "sheet": "expansion-spatial-relations",
+      "index": 9,
+      "column": 1,
+      "row": 2,
+      "sourceRect": {
+        "x": 320,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "relation-apple-front-stump",
+      "label": "Apfel vor dem Baumstrunk",
+      "sheet": "expansion-spatial-relations",
+      "index": 7,
+      "column": 3,
+      "row": 1,
+      "sourceRect": {
+        "x": 960,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "relation-apple-in-basket",
+      "label": "Apfel im Korb",
+      "sheet": "expansion-spatial-relations",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "relation-apple-left-stump",
+      "label": "Apfel links vom Baumstrunk",
+      "sheet": "expansion-spatial-relations",
+      "index": 5,
+      "column": 1,
+      "row": 1,
+      "sourceRect": {
+        "x": 320,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "relation-apple-on-bench",
+      "label": "Apfel auf der Bank",
+      "sheet": "expansion-spatial-relations",
+      "index": 3,
+      "column": 3,
+      "row": 0,
+      "sourceRect": {
+        "x": 960,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "relation-apple-right-stump",
+      "label": "Apfel rechts vom Baumstrunk",
+      "sheet": "expansion-spatial-relations",
+      "index": 6,
+      "column": 2,
+      "row": 1,
+      "sourceRect": {
+        "x": 640,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "relation-apple-under-bench",
+      "label": "Apfel unter der Bank",
+      "sheet": "expansion-spatial-relations",
+      "index": 4,
+      "column": 0,
+      "row": 1,
+      "sourceRect": {
+        "x": 0,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "relation-ball-behind-box",
+      "label": "Ball hinter der Kiste",
+      "sheet": "expansion-spatial-relations",
+      "index": 13,
+      "column": 1,
+      "row": 3,
+      "sourceRect": {
+        "x": 320,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "relation-ball-beside-box",
+      "label": "Ball neben der Kiste",
+      "sheet": "expansion-spatial-relations",
+      "index": 11,
+      "column": 3,
+      "row": 2,
+      "sourceRect": {
+        "x": 960,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "relation-ball-between-boxes",
+      "label": "Ball zwischen Kisten",
+      "sheet": "expansion-spatial-relations",
+      "index": 14,
+      "column": 2,
+      "row": 3,
+      "sourceRect": {
+        "x": 640,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "relation-ball-front-box",
+      "label": "Ball vor der Kiste",
+      "sheet": "expansion-spatial-relations",
+      "index": 12,
+      "column": 0,
+      "row": 3,
+      "sourceRect": {
+        "x": 0,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "relation-ball-in-box",
+      "label": "Ball in der Kiste",
+      "sheet": "expansion-spatial-relations",
+      "index": 10,
+      "column": 2,
+      "row": 2,
+      "sourceRect": {
+        "x": 640,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "rhyme-bin",
       "label": "Tonne",
       "sheet": "rhyme-vocabulary",
@@ -8099,6 +9905,70 @@
       "usedBy": []
     },
     {
+      "id": "season-apple-autumn",
+      "label": "Apfelbaum im Herbst",
+      "sheet": "expansion-patterns-seasons",
+      "index": 8,
+      "column": 0,
+      "row": 2,
+      "sourceRect": {
+        "x": 0,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "season-apple-spring",
+      "label": "Apfelbaum im Frühling",
+      "sheet": "expansion-patterns-seasons",
+      "index": 6,
+      "column": 2,
+      "row": 1,
+      "sourceRect": {
+        "x": 640,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "season-apple-summer",
+      "label": "Apfelbaum im Sommer",
+      "sheet": "expansion-patterns-seasons",
+      "index": 7,
+      "column": 3,
+      "row": 1,
+      "sourceRect": {
+        "x": 960,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "season-apple-winter",
+      "label": "Apfelbaum im Winter",
+      "sheet": "expansion-patterns-seasons",
+      "index": 9,
+      "column": 1,
+      "row": 2,
+      "sourceRect": {
+        "x": 320,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
       "id": "seed-packet",
       "label": "Samentütchen",
       "sheet": "expansion-woodland-equipment",
@@ -8215,6 +10085,246 @@
       "sourceRect": {
         "x": 960,
         "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "sign-beaver-log",
+      "label": "Vom Biber benagtes Holz",
+      "sheet": "expansion-animal-signs",
+      "index": 14,
+      "column": 2,
+      "row": 3,
+      "sourceRect": {
+        "x": 640,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "sign-bird-foot",
+      "label": "Vogelspur",
+      "sheet": "expansion-animal-signs",
+      "index": 2,
+      "column": 2,
+      "row": 0,
+      "sourceRect": {
+        "x": 640,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "sign-deer-hoof",
+      "label": "Rehspur",
+      "sheet": "expansion-animal-signs",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 320,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "sign-duck-foot",
+      "label": "Entenspur",
+      "sheet": "expansion-animal-signs",
+      "index": 3,
+      "column": 3,
+      "row": 0,
+      "sourceRect": {
+        "x": 960,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "sign-eggshell",
+      "label": "Leere Eierschale",
+      "sheet": "expansion-animal-signs",
+      "index": 9,
+      "column": 1,
+      "row": 2,
+      "sourceRect": {
+        "x": 320,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "sign-fox-paw",
+      "label": "Fuchspfote",
+      "sheet": "expansion-animal-signs",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "sign-gnawed-cone",
+      "label": "Benagter Zapfen",
+      "sheet": "expansion-animal-signs",
+      "index": 6,
+      "column": 2,
+      "row": 1,
+      "sourceRect": {
+        "x": 640,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "sign-handprint",
+      "label": "Handabdruck",
+      "sheet": "expansion-animal-signs",
+      "index": 4,
+      "column": 0,
+      "row": 1,
+      "sourceRect": {
+        "x": 0,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "sign-nibbled-leaf",
+      "label": "Angeknabbertes Blatt",
+      "sheet": "expansion-animal-signs",
+      "index": 8,
+      "column": 0,
+      "row": 2,
+      "sourceRect": {
+        "x": 0,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "sign-nut-shell",
+      "label": "Geknackte Nussschale",
+      "sheet": "expansion-animal-signs",
+      "index": 7,
+      "column": 3,
+      "row": 1,
+      "sourceRect": {
+        "x": 960,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "sign-rabbit-tracks",
+      "label": "Hasenspuren",
+      "sheet": "expansion-animal-signs",
+      "index": 5,
+      "column": 1,
+      "row": 1,
+      "sourceRect": {
+        "x": 320,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "sign-shed-antler",
+      "label": "Abwurfstange",
+      "sheet": "expansion-animal-signs",
+      "index": 10,
+      "column": 2,
+      "row": 2,
+      "sourceRect": {
+        "x": 640,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "sign-snail-trail",
+      "label": "Schneckenspur",
+      "sheet": "expansion-animal-signs",
+      "index": 13,
+      "column": 1,
+      "row": 3,
+      "sourceRect": {
+        "x": 320,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "sign-snake-skin",
+      "label": "Schlangenhaut",
+      "sheet": "expansion-animal-signs",
+      "index": 11,
+      "column": 3,
+      "row": 2,
+      "sourceRect": {
+        "x": 960,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "sign-spider-web",
+      "label": "Spinnennetz",
+      "sheet": "expansion-animal-signs",
+      "index": 12,
+      "column": 0,
+      "row": 3,
+      "sourceRect": {
+        "x": 0,
+        "y": 960,
         "width": 320,
         "height": 320
       },
@@ -8672,6 +10782,246 @@
       "sourceRect": {
         "x": 640,
         "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "state-boot-clean",
+      "label": "Sauberer Stiefel",
+      "sheet": "expansion-object-states",
+      "index": 6,
+      "column": 2,
+      "row": 1,
+      "sourceRect": {
+        "x": 640,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "state-boot-muddy",
+      "label": "Schmutziger Stiefel",
+      "sheet": "expansion-object-states",
+      "index": 7,
+      "column": 3,
+      "row": 1,
+      "sourceRect": {
+        "x": 960,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "state-bucket-empty",
+      "label": "Leerer Eimer",
+      "sheet": "expansion-object-states",
+      "index": 3,
+      "column": 3,
+      "row": 0,
+      "sourceRect": {
+        "x": 960,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "state-bucket-full",
+      "label": "Voller Eimer",
+      "sheet": "expansion-object-states",
+      "index": 2,
+      "column": 2,
+      "row": 0,
+      "sourceRect": {
+        "x": 640,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "state-chest-closed",
+      "label": "Geschlossene Truhe",
+      "sheet": "expansion-object-states",
+      "index": 5,
+      "column": 1,
+      "row": 1,
+      "sourceRect": {
+        "x": 320,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "state-chest-open",
+      "label": "Offene Truhe",
+      "sheet": "expansion-object-states",
+      "index": 4,
+      "column": 0,
+      "row": 1,
+      "sourceRect": {
+        "x": 0,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "state-jug-broken",
+      "label": "Zerbrochener Krug",
+      "sheet": "expansion-object-states",
+      "index": 12,
+      "column": 0,
+      "row": 3,
+      "sourceRect": {
+        "x": 0,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "state-jug-whole",
+      "label": "Ganzer Krug",
+      "sheet": "expansion-object-states",
+      "index": 11,
+      "column": 3,
+      "row": 2,
+      "sourceRect": {
+        "x": 960,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "state-padlock-closed",
+      "label": "Geschlossenes Schloss",
+      "sheet": "expansion-object-states",
+      "index": 9,
+      "column": 1,
+      "row": 2,
+      "sourceRect": {
+        "x": 320,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "state-padlock-open",
+      "label": "Offenes Schloss",
+      "sheet": "expansion-object-states",
+      "index": 8,
+      "column": 0,
+      "row": 2,
+      "sourceRect": {
+        "x": 0,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "state-paper-crumpled",
+      "label": "Zerknülltes Papier",
+      "sheet": "expansion-object-states",
+      "index": 14,
+      "column": 2,
+      "row": 3,
+      "sourceRect": {
+        "x": 640,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "state-paper-folded",
+      "label": "Gefaltetes Papier",
+      "sheet": "expansion-object-states",
+      "index": 13,
+      "column": 1,
+      "row": 3,
+      "sourceRect": {
+        "x": 320,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "state-parcel-closed",
+      "label": "Geschlossenes Päckchen",
+      "sheet": "expansion-object-states",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 320,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "state-parcel-open",
+      "label": "Offenes Päckchen",
+      "sheet": "expansion-object-states",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "state-umbrella-folded",
+      "label": "Zusammengeklappter Schirm",
+      "sheet": "expansion-object-states",
+      "index": 10,
+      "column": 2,
+      "row": 2,
+      "sourceRect": {
+        "x": 640,
+        "y": 640,
         "width": 320,
         "height": 320
       },
@@ -10393,6 +12743,246 @@
       "tokens": [
         "🔤"
       ],
+      "usedBy": []
+    },
+    {
+      "id": "workshop-bolt",
+      "label": "Schraubenbolzen",
+      "sheet": "expansion-workshop-tools",
+      "index": 9,
+      "column": 1,
+      "row": 2,
+      "sourceRect": {
+        "x": 320,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "workshop-funnel",
+      "label": "Trichter",
+      "sheet": "expansion-workshop-tools",
+      "index": 13,
+      "column": 1,
+      "row": 3,
+      "sourceRect": {
+        "x": 320,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "workshop-hammer",
+      "label": "Hammer",
+      "sheet": "expansion-workshop-tools",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "workshop-hand-drill",
+      "label": "Handbohrer",
+      "sheet": "expansion-workshop-tools",
+      "index": 10,
+      "column": 2,
+      "row": 2,
+      "sourceRect": {
+        "x": 640,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "workshop-handsaw",
+      "label": "Handsäge",
+      "sheet": "expansion-workshop-tools",
+      "index": 4,
+      "column": 0,
+      "row": 1,
+      "sourceRect": {
+        "x": 0,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "workshop-mallet",
+      "label": "Holzhammer",
+      "sheet": "expansion-workshop-tools",
+      "index": 5,
+      "column": 1,
+      "row": 1,
+      "sourceRect": {
+        "x": 320,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "workshop-mortar-pestle",
+      "label": "Mörser und Stössel",
+      "sheet": "expansion-workshop-tools",
+      "index": 14,
+      "column": 2,
+      "row": 3,
+      "sourceRect": {
+        "x": 640,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "workshop-nail",
+      "label": "Nagel",
+      "sheet": "expansion-workshop-tools",
+      "index": 1,
+      "column": 1,
+      "row": 0,
+      "sourceRect": {
+        "x": 320,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "workshop-nut",
+      "label": "Schraubenmutter",
+      "sheet": "expansion-workshop-tools",
+      "index": 8,
+      "column": 0,
+      "row": 2,
+      "sourceRect": {
+        "x": 0,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "workshop-pliers",
+      "label": "Zange",
+      "sheet": "expansion-workshop-tools",
+      "index": 6,
+      "column": 2,
+      "row": 1,
+      "sourceRect": {
+        "x": 640,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "workshop-sandpaper",
+      "label": "Schleifpapier",
+      "sheet": "expansion-workshop-tools",
+      "index": 11,
+      "column": 3,
+      "row": 2,
+      "sourceRect": {
+        "x": 960,
+        "y": 640,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "workshop-screw",
+      "label": "Schraube",
+      "sheet": "expansion-workshop-tools",
+      "index": 2,
+      "column": 2,
+      "row": 0,
+      "sourceRect": {
+        "x": 640,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "workshop-screwdriver",
+      "label": "Schraubenzieher",
+      "sheet": "expansion-workshop-tools",
+      "index": 3,
+      "column": 3,
+      "row": 0,
+      "sourceRect": {
+        "x": 960,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "workshop-spirit-level",
+      "label": "Wasserwaage",
+      "sheet": "expansion-workshop-tools",
+      "index": 12,
+      "column": 0,
+      "row": 3,
+      "sourceRect": {
+        "x": 0,
+        "y": 960,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": []
+    },
+    {
+      "id": "workshop-wrench",
+      "label": "Schraubenschlüssel",
+      "sheet": "expansion-workshop-tools",
+      "index": 7,
+      "column": 3,
+      "row": 1,
+      "sourceRect": {
+        "x": 960,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
       "usedBy": []
     },
     {

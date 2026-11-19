@@ -898,6 +898,136 @@
           "usage": "composition-only"
         }
       ]
+    },
+    {
+      "id": "expansion-spatial-relations",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-spatial-relations.txt",
+      "brief": "design/illustrations/briefs/expansion-spatial-relations.txt",
+      "transparent": true
+    },
+    {
+      "id": "expansion-object-states",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-object-states.txt",
+      "brief": "design/illustrations/briefs/expansion-object-states.txt",
+      "transparent": true
+    },
+    {
+      "id": "expansion-making-sequences",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-making-sequences.txt",
+      "brief": "design/illustrations/briefs/expansion-making-sequences.txt",
+      "transparent": true
+    },
+    {
+      "id": "expansion-material-samples",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-material-samples.txt",
+      "brief": "design/illustrations/briefs/expansion-material-samples.txt",
+      "transparent": true
+    },
+    {
+      "id": "expansion-workshop-tools",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-workshop-tools.txt",
+      "brief": "design/illustrations/briefs/expansion-workshop-tools.txt",
+      "transparent": true
+    },
+    {
+      "id": "expansion-outdoor-journeys",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-outdoor-journeys.txt",
+      "brief": "design/illustrations/briefs/expansion-outdoor-journeys.txt",
+      "transparent": true
+    },
+    {
+      "id": "expansion-animal-signs",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-animal-signs.txt",
+      "brief": "design/illustrations/briefs/expansion-animal-signs.txt",
+      "transparent": true
+    },
+    {
+      "id": "expansion-nature-parts",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-nature-parts.txt",
+      "brief": "design/illustrations/briefs/expansion-nature-parts.txt",
+      "transparent": true
+    },
+    {
+      "id": "expansion-counting-groups",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-counting-groups.txt",
+      "brief": "design/illustrations/briefs/expansion-counting-groups.txt",
+      "transparent": true
+    },
+    {
+      "id": "expansion-patterns-seasons",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-patterns-seasons.txt",
+      "brief": "design/illustrations/briefs/expansion-patterns-seasons.txt",
+      "transparent": true
+    },
+    {
+      "id": "expansion-material-samples-cutout",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-material-samples-cutout.txt",
+      "brief": "design/illustrations/briefs/expansion-material-samples-cutout.txt",
+      "transparent": true,
+      "references": [
+        {
+          "path": "design/illustrations/sources/expansion-three-2026-11-19/expansion-material-samples.png",
+          "sha256": "9cf77584c229cbb4912dcb111e7e9f4356ae9ea683a3d9c25271b97a9b8b740a",
+          "purpose": "current fifteen subjects and exact cell order only; remove accidental background or repair the specified drawing while retaining canonical technique",
+          "usage": "composition-only"
+        }
+      ]
+    },
+    {
+      "id": "expansion-nature-parts-cutout",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-nature-parts-cutout.txt",
+      "brief": "design/illustrations/briefs/expansion-nature-parts-cutout.txt",
+      "transparent": true,
+      "references": [
+        {
+          "path": "design/illustrations/sources/expansion-three-2026-11-19/expansion-nature-parts.png",
+          "sha256": "c6cce673983b1f8e03e0d029ab8b09ae5de1460ef370d1a8c5e72e31faad0829",
+          "purpose": "current fifteen subjects and exact cell order only; remove accidental background or repair the specified drawing while retaining canonical technique",
+          "usage": "composition-only"
+        }
+      ]
+    },
+    {
+      "id": "expansion-outdoor-journeys-cutout",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-outdoor-journeys-cutout.txt",
+      "brief": "design/illustrations/briefs/expansion-outdoor-journeys-cutout.txt",
+      "transparent": true,
+      "references": [
+        {
+          "path": "design/illustrations/sources/expansion-three-2026-11-19/expansion-outdoor-journeys.png",
+          "sha256": "28fd016385423fe63de48273d2c185b4340a7c147369e4b2cd6fdf052da64353",
+          "purpose": "current fifteen subjects and exact cell order only; remove accidental background or repair the specified drawing while retaining canonical technique",
+          "usage": "composition-only"
+        }
+      ]
+    },
+    {
+      "id": "expansion-outdoor-journeys-transparent",
+      "role": "learning",
+      "path": "design/illustrations/prompts/expansion-outdoor-journeys-transparent.txt",
+      "brief": "design/illustrations/briefs/expansion-outdoor-journeys-transparent.txt",
+      "transparent": true,
+      "references": [
+        {
+          "path": "design/illustrations/sources/expansion-three-2026-11-19/expansion-outdoor-journeys-cutout.png",
+          "sha256": "3c79e20f44c8b84188d38356cd658c86d40d1fc77a5dc7fd6bfba1a4f33ba0d9",
+          "purpose": "current fifteen subject paintings and positions only; discard all accidental exterior background and shadows",
+          "usage": "composition-only"
+        }
+      ]
     }
   ],
   "preparationManifests": [
@@ -938,7 +1068,17 @@
     "design/illustrations/expansion-music-play.json",
     "design/illustrations/expansion-kitchen-tools.json",
     "design/illustrations/expansion-woodland-household.json",
-    "design/illustrations/expansion-animal-behaviours.json"
+    "design/illustrations/expansion-animal-behaviours.json",
+    "design/illustrations/expansion-spatial-relations.json",
+    "design/illustrations/expansion-object-states.json",
+    "design/illustrations/expansion-making-sequences.json",
+    "design/illustrations/expansion-material-samples.json",
+    "design/illustrations/expansion-workshop-tools.json",
+    "design/illustrations/expansion-outdoor-journeys.json",
+    "design/illustrations/expansion-animal-signs.json",
+    "design/illustrations/expansion-nature-parts.json",
+    "design/illustrations/expansion-counting-groups.json",
+    "design/illustrations/expansion-patterns-seasons.json"
   ],
   "history": "legacy/design-history/2026-11-16-before-style-contract",
   "preview": {

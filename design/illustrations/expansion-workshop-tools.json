@@ -1,0 +1,81 @@
+{
+  "format": "waldpost-illustration-atlas",
+  "version": 1,
+  "source": "sources/expansion-three-2026-11-19/expansion-workshop-tools.png",
+  "output": "../../assets/waldatelier/expansion-workshop-tools.webp",
+  "columns": 4,
+  "rows": 4,
+  "cellPixels": 320,
+  "subjectPixels": 256,
+  "alphaThresholdPercent": 8,
+  "provenance": {
+    "date": "2026-11-19",
+    "tool": "ChatGPT image_gen.imagegen",
+    "sourceSha256": "05e88c19ed86e90f45c70147aa83b974b4c422511d8c888a8524bbb6aa042a1d",
+    "generationRecord": "../artwork/generation-records/expansion-workshop-tools-2026-11-19.json",
+    "styleContract": "style.json",
+    "forwardPrompt": "prompts/expansion-workshop-tools.txt"
+  },
+  "subjects": [
+    {
+      "id": "workshop-hammer",
+      "label": "Hammer"
+    },
+    {
+      "id": "workshop-nail",
+      "label": "Nagel"
+    },
+    {
+      "id": "workshop-screw",
+      "label": "Schraube"
+    },
+    {
+      "id": "workshop-screwdriver",
+      "label": "Schraubenzieher"
+    },
+    {
+      "id": "workshop-handsaw",
+      "label": "Handsäge"
+    },
+    {
+      "id": "workshop-mallet",
+      "label": "Holzhammer"
+    },
+    {
+      "id": "workshop-pliers",
+      "label": "Zange"
+    },
+    {
+      "id": "workshop-wrench",
+      "label": "Schraubenschlüssel"
+    },
+    {
+      "id": "workshop-nut",
+      "label": "Schraubenmutter"
+    },
+    {
+      "id": "workshop-bolt",
+      "label": "Schraubenbolzen"
+    },
+    {
+      "id": "workshop-hand-drill",
+      "label": "Handbohrer"
+    },
+    {
+      "id": "workshop-sandpaper",
+      "label": "Schleifpapier"
+    },
+    {
+      "id": "workshop-spirit-level",
+      "label": "Wasserwaage"
+    },
+    {
+      "id": "workshop-funnel",
+      "label": "Trichter"
+    },
+    {
+      "id": "workshop-mortar-pestle",
+      "label": "Mörser und Stössel"
+    }
+  ]
+}

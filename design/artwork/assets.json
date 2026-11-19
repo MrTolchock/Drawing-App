@@ -300,6 +300,76 @@
       "historicalRecord": "design/artwork/generation-records/expansion-animal-behaviours-2026-11-19.json",
       "recordKind": "generation-record",
       "requestId": "expansion-animal-behaviours"
+    },
+    "expansion-spatial-relations": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/expansion-spatial-relations.txt",
+      "historicalRecord": "design/artwork/generation-records/expansion-spatial-relations-2026-11-19.json",
+      "recordKind": "generation-record",
+      "requestId": "expansion-spatial-relations"
+    },
+    "expansion-object-states": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/expansion-object-states.txt",
+      "historicalRecord": "design/artwork/generation-records/expansion-object-states-2026-11-19.json",
+      "recordKind": "generation-record",
+      "requestId": "expansion-object-states"
+    },
+    "expansion-making-sequences": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/expansion-making-sequences.txt",
+      "historicalRecord": "design/artwork/generation-records/expansion-making-sequences-2026-11-19.json",
+      "recordKind": "generation-record",
+      "requestId": "expansion-making-sequences"
+    },
+    "expansion-material-samples": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/expansion-material-samples.txt",
+      "historicalRecord": "design/artwork/generation-records/expansion-material-samples-cutout-2026-11-19.json",
+      "recordKind": "generation-record",
+      "requestId": "expansion-material-samples"
+    },
+    "expansion-workshop-tools": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/expansion-workshop-tools.txt",
+      "historicalRecord": "design/artwork/generation-records/expansion-workshop-tools-2026-11-19.json",
+      "recordKind": "generation-record",
+      "requestId": "expansion-workshop-tools"
+    },
+    "expansion-outdoor-journeys": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/expansion-outdoor-journeys.txt",
+      "historicalRecord": "design/artwork/generation-records/expansion-outdoor-journeys-transparent-2026-11-19.json",
+      "recordKind": "generation-record",
+      "requestId": "expansion-outdoor-journeys"
+    },
+    "expansion-animal-signs": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/expansion-animal-signs.txt",
+      "historicalRecord": "design/artwork/generation-records/expansion-animal-signs-2026-11-19.json",
+      "recordKind": "generation-record",
+      "requestId": "expansion-animal-signs"
+    },
+    "expansion-nature-parts": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/expansion-nature-parts.txt",
+      "historicalRecord": "design/artwork/generation-records/expansion-nature-parts-cutout-2026-11-19.json",
+      "recordKind": "generation-record",
+      "requestId": "expansion-nature-parts"
+    },
+    "expansion-counting-groups": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/expansion-counting-groups.txt",
+      "historicalRecord": "design/artwork/generation-records/expansion-counting-groups-2026-11-19.json",
+      "recordKind": "generation-record",
+      "requestId": "expansion-counting-groups"
+    },
+    "expansion-patterns-seasons": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/expansion-patterns-seasons.txt",
+      "historicalRecord": "design/artwork/generation-records/expansion-patterns-seasons-2026-11-19.json",
+      "recordKind": "generation-record",
+      "requestId": "expansion-patterns-seasons"
     }
   },
   "currentGenerated": [

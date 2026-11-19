@@ -1,0 +1,22 @@
+Create a NEW Waldpost woodland learning-picture atlas in the exact watercolour and coloured-pencil technique of the two canonical references. These pictures support future opposites, state matching, causal stories puzzles. Match the DRAWING TECHNIQUE only, never the opaque cream background of the reference sheets.
+
+SQUARE 4 by 4 GRID: exactly sixteen equal square cells, four columns and four rows. Paint the fifteen complete independent subjects in the precise row-major positions listed below. Row 4 column 4 is empty. Each complete drawing or vignette occupies at most 65% of its cell; centre it with generous transparent margins on all sides. No part crosses a cell boundary. No text, labels, numerals, arrows, frame or visible grid.
+
+Row 1, column 1: state-parcel-open (Offenes Päckchen) — one small brown paper parcel with its top flaps clearly OPEN and empty interior visible, loose string alongside.
+Row 1, column 2: state-parcel-closed (Geschlossenes Päckchen) — one small brown paper parcel clearly CLOSED and tied with a neat string bow.
+Row 1, column 3: state-bucket-full (Voller Eimer) — one small wooden bucket filled to the rim with blue water, open top visible.
+Row 1, column 4: state-bucket-empty (Leerer Eimer) — one matching small wooden bucket completely EMPTY, interior wooden bottom clearly visible.
+Row 2, column 1: state-chest-open (Offene Truhe) — one small honey-brown wooden treasure chest with its hinged lid upright and empty interior visible.
+Row 2, column 2: state-chest-closed (Geschlossene Truhe) — one matching honey-brown wooden treasure chest with its lid completely closed.
+Row 2, column 3: state-boot-clean (Sauberer Stiefel) — one clean ochre lace-up walking boot with cream sole and no dirt.
+Row 2, column 4: state-boot-muddy (Schmutziger Stiefel) — one matching ochre lace-up walking boot, visibly covered with brown mud patches and muddy sole.
+Row 3, column 1: state-padlock-open (Offenes Schloss) — one small brass padlock with its shackle raised OPEN, one end clearly detached.
+Row 3, column 2: state-padlock-closed (Geschlossenes Schloss) — one matching brass padlock with its shackle fully CLOSED into the body.
+Row 3, column 3: state-umbrella-folded (Zusammengeklappter Schirm) — one closed folded blue umbrella with a curved wooden handle and narrow wrapped canopy.
+Row 3, column 4: state-jug-whole (Ganzer Krug) — one complete intact simple terracotta jug with handle and spout.
+Row 4, column 1: state-jug-broken (Zerbrochener Krug) — one terracotta jug broken into three clearly separated large pieces that together suggest the matching jug, no tiny shards.
+Row 4, column 2: state-paper-folded (Gefaltetes Papier) — one cream sheet of paper neatly folded into a compact rectangle, fold edges clearly visible.
+Row 4, column 3: state-paper-crumpled (Zerknülltes Papier) — one cream paper sheet crumpled into an irregular ball with clear pencil-drawn creases.
+Row 4, column 4: EMPTY and fully transparent.
+
+TRANSPARENT CUTOUTS: The ONLY visible pixels are the subject paintings, including the expressly requested parts of a vignette. Every surrounding pixel, gutter, outer perimeter and final empty cell must have alpha ZERO. No continuous paper canvas, pale white matte, coloured haze, aura, drop shadow, or glow outside the fine natural pencil contour. Paint texture stays INSIDE the subjects. Keep white areas opaque inside their actual contours. Open handles, webs, rings and gaps between separate objects are genuinely transparent. Friendly, recognizable complete silhouettes; believable anatomy and precise stated quantities and states.

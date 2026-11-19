@@ -1,0 +1,81 @@
+{
+  "format": "waldpost-illustration-atlas",
+  "version": 1,
+  "source": "sources/expansion-three-2026-11-19/expansion-patterns-seasons.png",
+  "output": "../../assets/waldatelier/expansion-patterns-seasons.webp",
+  "columns": 4,
+  "rows": 4,
+  "cellPixels": 320,
+  "subjectPixels": 256,
+  "alphaThresholdPercent": 8,
+  "provenance": {
+    "date": "2026-11-19",
+    "tool": "ChatGPT image_gen.imagegen",
+    "sourceSha256": "4f4e19eeb9b6a11cf1136a98c9ec04d02829a36c5ca13d0bbeae7b086e04f643",
+    "generationRecord": "../artwork/generation-records/expansion-patterns-seasons-2026-11-19.json",
+    "styleContract": "style.json",
+    "forwardPrompt": "prompts/expansion-patterns-seasons.txt"
+  },
+  "subjects": [
+    {
+      "id": "pattern-scarf-plain",
+      "label": "Einfarbiger Schal"
+    },
+    {
+      "id": "pattern-scarf-striped",
+      "label": "Gestreifter Schal"
+    },
+    {
+      "id": "pattern-scarf-dotted",
+      "label": "Gepunkteter Schal"
+    },
+    {
+      "id": "pattern-scarf-checked",
+      "label": "Karierter Schal"
+    },
+    {
+      "id": "pattern-scarf-zigzag",
+      "label": "Schal mit Zickzackmuster"
+    },
+    {
+      "id": "pattern-scarf-leaves",
+      "label": "Schal mit Blattmuster"
+    },
+    {
+      "id": "season-apple-spring",
+      "label": "Apfelbaum im Frühling"
+    },
+    {
+      "id": "season-apple-summer",
+      "label": "Apfelbaum im Sommer"
+    },
+    {
+      "id": "season-apple-autumn",
+      "label": "Apfelbaum im Herbst"
+    },
+    {
+      "id": "season-apple-winter",
+      "label": "Apfelbaum im Winter"
+    },
+    {
+      "id": "habitat-flower-meadow",
+      "label": "Blumenwiese"
+    },
+    {
+      "id": "habitat-riverbank",
+      "label": "Bachufer"
+    },
+    {
+      "id": "habitat-alpine-rocks",
+      "label": "Bergfelsen"
+    },
+    {
+      "id": "habitat-deadwood",
+      "label": "Totholz"
+    },
+    {
+      "id": "habitat-hedgerow",
+      "label": "Hecke"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+Create a NEW Waldpost woodland learning-picture atlas in the exact watercolour and coloured-pencil technique of the two canonical references. These pictures support future spatial language, matching, following instructions puzzles. Match the DRAWING TECHNIQUE only, never the opaque cream background of the reference sheets.
+
+SQUARE 4 by 4 GRID: exactly sixteen equal square cells, four columns and four rows. Paint the fifteen complete independent subjects in the precise row-major positions listed below. Row 4 column 4 is empty. Each complete drawing or vignette occupies at most 65% of its cell; centre it with generous transparent margins on all sides. No part crosses a cell boundary. No text, labels, numerals, arrows, frame or visible grid.
+
+Row 1, column 1: relation-apple-in-basket (Apfel im Korb) — one red apple sitting INSIDE one low empty wicker basket, apple visible above its rim.
+Row 1, column 2: relation-apple-above-basket (Apfel über dem Korb) — one red apple floating directly ABOVE one empty low wicker basket, with a large clear transparent gap.
+Row 1, column 3: relation-apple-beside-basket (Apfel neben dem Korb) — one red apple standing immediately BESIDE one empty low wicker basket, separate silhouettes at the same baseline.
+Row 1, column 4: relation-apple-on-bench (Apfel auf der Bank) — one red apple resting ON TOP of the seat of one small simple wooden bench.
+Row 2, column 1: relation-apple-under-bench (Apfel unter der Bank) — one red apple BELOW the seat and BETWEEN the legs of one small wooden bench, fully visible.
+Row 2, column 2: relation-apple-left-stump (Apfel links vom Baumstrunk) — one red apple to the VIEWER LEFT of one low wooden tree stump, a visible transparent gap.
+Row 2, column 3: relation-apple-right-stump (Apfel rechts vom Baumstrunk) — one red apple to the VIEWER RIGHT of one low wooden tree stump, a visible transparent gap.
+Row 2, column 4: relation-apple-front-stump (Apfel vor dem Baumstrunk) — one red apple visibly IN FRONT OF one low tree stump, apple overlaps and occludes its lower front edge.
+Row 3, column 1: relation-apple-behind-stump (Apfel hinter dem Baumstrunk) — one red apple BEHIND one low tree stump, the stump occludes the lower half of the apple and its red upper half remains visible.
+Row 3, column 2: relation-apple-between-stones (Apfel zwischen Steinen) — one red apple BETWEEN exactly two small grey stones, all three aligned left-to-right with clear gaps.
+Row 3, column 3: relation-ball-in-box (Ball in der Kiste) — one plain ochre ball INSIDE one low open blue wooden box, upper half of ball visible.
+Row 3, column 4: relation-ball-beside-box (Ball neben der Kiste) — one plain ochre ball BESIDE one empty low open blue wooden box, separate silhouettes and same baseline.
+Row 4, column 1: relation-ball-front-box (Ball vor der Kiste) — one plain ochre ball IN FRONT OF one low blue wooden box, the ball occludes the lower front of the box.
+Row 4, column 2: relation-ball-behind-box (Ball hinter der Kiste) — one plain ochre ball BEHIND one low blue wooden box, only the upper half of the ball visible above the far edge.
+Row 4, column 3: relation-ball-between-boxes (Ball zwischen Kisten) — one plain ochre ball BETWEEN exactly two low blue wooden boxes, all three aligned left-to-right with clear gaps.
+Row 4, column 4: EMPTY and fully transparent.
+
+RELATIONS ARE THE SUBJECT. Use the same simple red apple, ochre ball and matching props across cells. Left/right are from the viewer perspective. In front/behind must use clear occlusion exactly as specified. All space between separate objects is transparent. Do not add arrows, ground lines or unrelated props.
+
+TRANSPARENT CUTOUTS: The ONLY visible pixels are the subject paintings, including the expressly requested parts of a vignette. Every surrounding pixel, gutter, outer perimeter and final empty cell must have alpha ZERO. No continuous paper canvas, pale white matte, coloured haze, aura, drop shadow, or glow outside the fine natural pencil contour. Paint texture stays INSIDE the subjects. Keep white areas opaque inside their actual contours. Open handles, webs, rings and gaps between separate objects are genuinely transparent. Friendly, recognizable complete silhouettes; believable anatomy and precise stated quantities and states.

@@ -1,0 +1,50 @@
+{
+  "format": "waldpost-image-generation-record",
+  "version": 1,
+  "id": "expansion-animal-signs",
+  "style": "waldpost-watercolour-pencil-v1",
+  "date": "2026-11-19",
+  "tool": "ChatGPT image_gen.imagegen",
+  "source": "design/illustrations/sources/expansion-three-2026-11-19/expansion-animal-signs.png",
+  "sourceSha256": "716212b9951ba19109cebe71fd718070829920e43ae84c06c1f0d25b3b020fab",
+  "request": {
+    "prompt": "WALDPOST CANONICAL ILLUSTRATION STYLE — waldpost-watercolour-pencil-v1\n\nUse the supplied canonical animals.png and objects.png reference images as the authority for drawing technique. They show the predominant style of the current Waldpost gallery. Match their actual pixels, not an imagined style suggested by a filename.\n\nDraw warm children's picture-book watercolour finished with visible coloured-pencil strokes. Use light, gently uneven washes, organic sepia contours, delicate hatching, softly irregular edges and modest drawn shading. Surfaces look painted and pencilled, with paper grain within the illustration. Keep the warmth of cream, honey brown, restrained sage and blue, while preserving every exact colour required by a task. Subjects remain friendly, recognizable and anatomically believable.\n\nDo not turn the drawing into a 3D render, plush toy, clay or felt craft, photograph, glossy object, embossed surface or studio-lit miniature. Avoid deep ambient-occlusion shadows, inflated forms and realistic material microtexture. Do not mix in another illustration technique or use historical artwork as a style reference.\n\nThe role instructions below set the necessary detail and composition within this one style. Learning pictures retain fine drawn contours; small navigation symbols use the approved simpler, broader shapes and flat fills in the same palette. Keep the existing rendered game-character identities separate from image-generated learning subjects. Exact geometry and handwriting remain authored paths.\n\nPreserve subject identity, counted quantities, exact answer colours and action differences. Use real alpha for isolated pictures and stationery, and an opaque canvas only when the selected role requires a scene or branding image. No accidental background, halo, visible grid, labels or extra objects.\n\nROLE: learning\nMatch the canonical watercolour and coloured-pencil technique closely: fine organic contours, uneven washes and gentle drawn volume. Keep accurate species, action contrasts, one counted object per item and exact answer colours. Use transparent square cells, generous gutters and complete silhouettes.\n\nFRAMING AND EDGE QUALITY:\nCompare related pictures side by side at the size used in the game. For square cells, draw the complete silhouette with enough transparent space to pack it centred on both axes, with its longest visible side about 80% of the cell. Keep its proportions and use comparable visual weight for neighbouring answers. Reuse the same painting when a subject and pose recur. Leave genuine alpha around every isolated subject and retain the soft pencil edges. Inspect on light and dark backgrounds for pale matte, clipped outlines, stray pixels and neighbouring subjects. In a cell repair, preserve the pixels and positions of the other cells. Scenes and irregular layouts follow their role and brief.\n\nATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:\n1. design/illustrations/references/watercolour-pencil-v1/animals.png — canonical-style: canonical drawing technique for animals; fixed majority-style pixels\n2. design/illustrations/references/watercolour-pencil-v1/objects.png — canonical-style: canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels\n\nSUBJECT AND LAYOUT BRIEF:\nCreate a NEW Waldpost woodland learning-picture atlas in the exact watercolour and coloured-pencil technique of the two canonical references. These pictures support future animal to trace matching, observation, inference puzzles. Match the DRAWING TECHNIQUE only, never the opaque cream background of the reference sheets.\n\nSQUARE 4 by 4 GRID: exactly sixteen equal square cells, four columns and four rows. Paint the fifteen complete independent subjects in the precise row-major positions listed below. Row 4 column 4 is empty. Each complete drawing or vignette occupies at most 65% of its cell; centre it with generous transparent margins on all sides. No part crosses a cell boundary. No text, labels, numerals, arrows, frame or visible grid.\n\nRow 1, column 1: sign-fox-paw (Fuchspfote) — one single fox paw print viewed from above: four small toe pads and one central paw pad, simple sepia impression with no ground rectangle.\nRow 1, column 2: sign-deer-hoof (Rehspur) — one single deer hoof print viewed from above: two narrow pointed cloven halves, sepia impression only.\nRow 1, column 3: sign-bird-foot (Vogelspur) — one single small bird footprint viewed from above: three slender toes forward and one small rear toe, sepia impression only.\nRow 1, column 4: sign-duck-foot (Entenspur) — one single duck footprint viewed from above: three forward toes joined by clear webbing, sepia impression only.\nRow 2, column 1: sign-handprint (Handabdruck) — one simple warm sepia human handprint with exactly five fingers and palm, viewed flat, no backing surface.\nRow 2, column 2: sign-rabbit-tracks (Hasenspuren) — one compact rabbit track pattern viewed from above: two long hind-foot impressions ahead of two smaller forefoot impressions, no animal or ground rectangle.\nRow 2, column 3: sign-gnawed-cone (Benagter Zapfen) — one pine cone gnawed down to a narrow central core with a few scales remaining at the tip.\nRow 2, column 4: sign-nut-shell (Geknackte Nussschale) — one opened hazelnut shell with a small round gnawed opening clearly visible.\nRow 3, column 1: sign-nibbled-leaf (Angeknabbertes Blatt) — one green leaf with several clear bite notches along its edge.\nRow 3, column 2: sign-eggshell (Leere Eierschale) — one empty half of a pale speckled bird eggshell with a jagged top edge.\nRow 3, column 3: sign-shed-antler (Abwurfstange) — one naturally shed branching deer antler on its own, complete silhouette, no skull or animal.\nRow 3, column 4: sign-snake-skin (Schlangenhaut) — one short curled empty shed snake skin, pale cream and faintly patterned, clearly a hollow skin not a living snake.\nRow 4, column 1: sign-spider-web (Spinnennetz) — one small complete delicate sepia spider web attached between two short twig tips, no spider.\nRow 4, column 2: sign-snail-trail (Schneckenspur) — one green leaf bearing one silvery curved snail trail, no snail or extra objects.\nRow 4, column 3: sign-beaver-log (Vom Biber benagtes Holz) — one short wooden log gnawed into a distinct hourglass notch with visible pencilled tooth marks, no beaver.\nRow 4, column 4: EMPTY and fully transparent.\n\nTRANSPARENT CUTOUTS: The ONLY visible pixels are the subject paintings, including the expressly requested parts of a vignette. Every surrounding pixel, gutter, outer perimeter and final empty cell must have alpha ZERO. No continuous paper canvas, pale white matte, coloured haze, aura, drop shadow, or glow outside the fine natural pencil contour. Paint texture stays INSIDE the subjects. Keep white areas opaque inside their actual contours. Open handles, webs, rings and gaps between separate objects are genuinely transparent. Friendly, recognizable complete silhouettes; believable anatomy and precise stated quantities and states.\n\nSTYLE PRIORITY: The brief changes subjects and layout only. Keep waldpost-watercolour-pencil-v1 and the supplied canonical reference technique throughout; do not import the style of a composition-only reference.\n",
+    "referenced_image_paths": [
+      "/workspace/Drawing-App/design/illustrations/references/watercolour-pencil-v1/animals.png",
+      "/workspace/Drawing-App/design/illustrations/references/watercolour-pencil-v1/objects.png"
+    ],
+    "transparent_background": true
+  },
+  "references": [
+    {
+      "path": "design/illustrations/references/watercolour-pencil-v1/animals.png",
+      "sha256": "65867082294d157ab4ffbe33926857272625ef3c25cdb7cab81c2a4ea73d9316",
+      "purpose": "canonical drawing technique for animals; fixed majority-style pixels",
+      "usage": "canonical-style"
+    },
+    {
+      "path": "design/illustrations/references/watercolour-pencil-v1/objects.png",
+      "sha256": "0bb37d6fc82c75034eddf30da2cc57c546dd8bc70d246aeeda85b637bd87dd80",
+      "purpose": "canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels",
+      "usage": "canonical-style"
+    }
+  ],
+  "subjects": [
+    "sign-fox-paw",
+    "sign-deer-hoof",
+    "sign-bird-foot",
+    "sign-duck-foot",
+    "sign-handprint",
+    "sign-rabbit-tracks",
+    "sign-gnawed-cone",
+    "sign-nut-shell",
+    "sign-nibbled-leaf",
+    "sign-eggshell",
+    "sign-shed-antler",
+    "sign-snake-skin",
+    "sign-spider-web",
+    "sign-snail-trail",
+    "sign-beaver-log"
+  ],
+  "preparation": "design/illustrations/expansion-animal-signs.json"
+}

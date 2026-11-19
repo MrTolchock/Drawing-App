@@ -1,0 +1,22 @@
+Create a NEW Waldpost woodland learning-picture atlas in the exact watercolour and coloured-pencil technique of the two canonical references. These pictures support future part to whole matching, plant anatomy, classification puzzles. Match the DRAWING TECHNIQUE only, never the opaque cream background of the reference sheets.
+
+SQUARE 4 by 4 GRID: exactly sixteen equal square cells, four columns and four rows. Paint the fifteen complete independent subjects in the precise row-major positions listed below. Row 4 column 4 is empty. Each complete drawing or vignette occupies at most 65% of its cell; centre it with generous transparent margins on all sides. No part crosses a cell boundary. No text, labels, numerals, arrows, frame or visible grid.
+
+Row 1, column 1: part-flower-petal (Blütenblatt) — one single pink flower petal with softly curved edge and a narrow base.
+Row 1, column 2: part-flower-stamen (Staubblatt) — one single flower stamen with a pale slender filament and a golden pollen-bearing anther.
+Row 1, column 3: part-leaf-skeleton (Blattgerippe) — one delicate golden leaf skeleton showing central vein and branching veins, transparent gaps between the veins.
+Row 1, column 4: part-acorn-cap (Eichelhütchen) — one empty textured brown acorn cup with a short stalk, open interior visible.
+Row 2, column 1: part-walnut-kernel (Nusskern) — one whole cream-gold walnut kernel with its distinctive two-lobed wrinkled shape, no shell.
+Row 2, column 2: part-cone-scale (Zapfenschuppe) — one single brown woody pine-cone scale with a broad rounded end and narrow base.
+Row 2, column 3: part-apple-seed (Apfelkern) — one single small dark-brown apple seed with a pointed end and rounded base.
+Row 2, column 4: part-cherry-stone (Kirschstein) — one single round tan cherry stone with a shallow seam.
+Row 3, column 1: part-sunflower-seed (Sonnenblumenkern) — one single elongated black-and-cream striped sunflower seed in its shell.
+Row 3, column 2: part-pea-seed (Erbse) — one single round fresh green pea with a small pale seed scar.
+Row 3, column 3: part-empty-pea-pod (Leere Erbsenschote) — one opened empty green pea pod showing both attached halves and no peas.
+Row 3, column 4: part-tree-roots (Wurzeln) — one small tree root system with a short trunk base and several tapering branching roots, no soil rectangle.
+Row 4, column 1: part-budding-twig (Knospenzweig) — one short brown twig with three clearly visible closed green buds.
+Row 4, column 2: part-walnut-shell (Halbe Nussschale) — one empty half walnut shell, inner hollow visible, no kernel.
+Row 4, column 3: part-chestnut-husk (Kastanienhülle) — one empty opened green spiky horse-chestnut husk, no chestnut inside.
+Row 4, column 4: EMPTY and fully transparent.
+
+TRANSPARENT CUTOUTS: The ONLY visible pixels are the subject paintings, including the expressly requested parts of a vignette. Every surrounding pixel, gutter, outer perimeter and final empty cell must have alpha ZERO. No continuous paper canvas, pale white matte, coloured haze, aura, drop shadow, or glow outside the fine natural pencil contour. Paint texture stays INSIDE the subjects. Keep white areas opaque inside their actual contours. Open handles, webs, rings and gaps between separate objects are genuinely transparent. Friendly, recognizable complete silhouettes; believable anatomy and precise stated quantities and states.

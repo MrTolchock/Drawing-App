@@ -1,0 +1,22 @@
+Create a NEW Waldpost woodland learning-picture atlas in the exact watercolour and coloured-pencil technique of the two canonical references. These pictures support future pattern discrimination, season sequencing, habitat matching puzzles. Match the DRAWING TECHNIQUE only, never the opaque cream background of the reference sheets.
+
+SQUARE 4 by 4 GRID: exactly sixteen equal square cells, four columns and four rows. Paint the fifteen complete independent subjects in the precise row-major positions listed below. Row 4 column 4 is empty. Each complete drawing or vignette occupies at most 65% of its cell; centre it with generous transparent margins on all sides. No part crosses a cell boundary. No text, labels, numerals, arrows, frame or visible grid.
+
+Row 1, column 1: pattern-scarf-plain (Einfarbiger Schal) — one short blue scarf with fringed ends and NO pattern, same scarf silhouette as the other five scarf cells.
+Row 1, column 2: pattern-scarf-striped (Gestreifter Schal) — one matching blue scarf with clearly visible broad cream STRIPES and fringed ends.
+Row 1, column 3: pattern-scarf-dotted (Gepunkteter Schal) — one matching blue scarf with clearly visible separate cream POLKA DOTS and fringed ends.
+Row 1, column 4: pattern-scarf-checked (Karierter Schal) — one matching blue scarf with a clearly visible cream-and-blue CHECK pattern and fringed ends.
+Row 2, column 1: pattern-scarf-zigzag (Schal mit Zickzackmuster) — one matching blue scarf with clearly visible cream ZIGZAG bands and fringed ends.
+Row 2, column 2: pattern-scarf-leaves (Schal mit Blattmuster) — one matching blue scarf with a simple repeated cream LEAF PRINT and fringed ends.
+Row 2, column 3: season-apple-spring (Apfelbaum im Frühling) — one small apple tree in SPRING: brown branching trunk, pale-pink blossoms and a few small green leaves, no fruit.
+Row 2, column 4: season-apple-summer (Apfelbaum im Sommer) — one matching apple tree in SUMMER: full green canopy and a few clearly green unripe apples.
+Row 3, column 1: season-apple-autumn (Apfelbaum im Herbst) — one matching apple tree in AUTUMN: orange-yellow leaves and a few ripe red apples.
+Row 3, column 2: season-apple-winter (Apfelbaum im Winter) — one matching apple tree in WINTER: bare branching brown crown and small patches of white snow on branches, no leaves or fruit.
+Row 3, column 3: habitat-flower-meadow (Blumenwiese) — one compact isolated habitat vignette of low meadow grasses and a few simple colourful wildflowers, no animals or sky.
+Row 3, column 4: habitat-riverbank (Bachufer) — one compact isolated habitat vignette of a curved blue stream edge, a few grey stones and green reeds, no animals or sky.
+Row 4, column 1: habitat-alpine-rocks (Bergfelsen) — one compact isolated habitat vignette of two grey alpine rocks, sparse short grasses and one tiny edelweiss, no animals or sky.
+Row 4, column 2: habitat-deadwood (Totholz) — one compact isolated habitat vignette of a fallen rotting log with moss and a few small bracket fungi, no animals or sky.
+Row 4, column 3: habitat-hedgerow (Hecke) — one compact isolated habitat vignette of a dense low leafy hedge with thorny twigs and a few red berries, no animals or sky.
+Row 4, column 4: EMPTY and fully transparent.
+
+TRANSPARENT CUTOUTS: The ONLY visible pixels are the subject paintings, including the expressly requested parts of a vignette. Every surrounding pixel, gutter, outer perimeter and final empty cell must have alpha ZERO. No continuous paper canvas, pale white matte, coloured haze, aura, drop shadow, or glow outside the fine natural pencil contour. Paint texture stays INSIDE the subjects. Keep white areas opaque inside their actual contours. Open handles, webs, rings and gaps between separate objects are genuinely transparent. Friendly, recognizable complete silhouettes; believable anatomy and precise stated quantities and states.

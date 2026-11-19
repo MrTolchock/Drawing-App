@@ -1,0 +1,15 @@
+{"id":"count-buttons-2","expected":2,"detected":2,"areas":[10711,10164]}
+{"id":"count-buttons-3","expected":3,"detected":3,"areas":[8444,8351,8128]}
+{"id":"count-buttons-4","expected":4,"detected":4,"areas":[7885,7768,7682,7532]}
+{"id":"count-buttons-5","expected":5,"detected":5,"areas":[5623,5543,5512,5483,5329]}
+{"id":"count-buttons-6","expected":6,"detected":6,"areas":[5091,5091,5078,5014,5011,4972]}
+{"id":"count-acorns-2","expected":2,"detected":2,"areas":[10539,10043]}
+{"id":"count-acorns-3","expected":3,"detected":3,"areas":[7207,6994,6949]}
+{"id":"count-acorns-4","expected":4,"detected":4,"areas":[6724,6724,6681,6673]}
+{"id":"count-acorns-5","expected":5,"detected":5,"areas":[4890,4817,4718,4701,4528]}
+{"id":"count-acorns-6","expected":6,"detected":6,"areas":[4843,4667,4635,4446,4407,4364]}
+{"id":"count-leaves-2","expected":2,"detected":2,"areas":[9133,8905]}
+{"id":"count-leaves-3","expected":3,"detected":3,"areas":[7724,7499,7453]}
+{"id":"count-leaves-4","expected":4,"detected":4,"areas":[6261,6193,6092,5978]}
+{"id":"count-leaves-5","expected":5,"detected":5,"areas":[4747,4718,4671,4610,4230]}
+{"id":"count-leaves-6","expected":6,"detected":6,"areas":[3817,3793,3780,3774,3738,3660]}

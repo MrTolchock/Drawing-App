@@ -1,0 +1,47 @@
+WALDPOST CANONICAL ILLUSTRATION STYLE — waldpost-watercolour-pencil-v1
+
+Use the supplied canonical animals.png and objects.png reference images as the authority for drawing technique. They show the predominant style of the current Waldpost gallery. Match their actual pixels, not an imagined style suggested by a filename.
+
+Draw warm children's picture-book watercolour finished with visible coloured-pencil strokes. Use light, gently uneven washes, organic sepia contours, delicate hatching, softly irregular edges and modest drawn shading. Surfaces look painted and pencilled, with paper grain within the illustration. Keep the warmth of cream, honey brown, restrained sage and blue, while preserving every exact colour required by a task. Subjects remain friendly, recognizable and anatomically believable.
+
+Do not turn the drawing into a 3D render, plush toy, clay or felt craft, photograph, glossy object, embossed surface or studio-lit miniature. Avoid deep ambient-occlusion shadows, inflated forms and realistic material microtexture. Do not mix in another illustration technique or use historical artwork as a style reference.
+
+The role instructions below set the necessary detail and composition within this one style. Learning pictures retain fine drawn contours; small navigation symbols use the approved simpler, broader shapes and flat fills in the same palette. Keep the existing rendered game-character identities separate from image-generated learning subjects. Exact geometry and handwriting remain authored paths.
+
+Preserve subject identity, counted quantities, exact answer colours and action differences. Use real alpha for isolated pictures and stationery, and an opaque canvas only when the selected role requires a scene or branding image. No accidental background, halo, visible grid, labels or extra objects.
+
+ROLE: learning
+Match the canonical watercolour and coloured-pencil technique closely: fine organic contours, uneven washes and gentle drawn volume. Keep accurate species, action contrasts, one counted object per item and exact answer colours. Use transparent square cells, generous gutters and complete silhouettes.
+
+FRAMING AND EDGE QUALITY:
+Compare related pictures side by side at the size used in the game. For square cells, draw the complete silhouette with enough transparent space to pack it centred on both axes, with its longest visible side about 80% of the cell. Keep its proportions and use comparable visual weight for neighbouring answers. Reuse the same painting when a subject and pose recur. Leave genuine alpha around every isolated subject and retain the soft pencil edges. Inspect on light and dark backgrounds for pale matte, clipped outlines, stray pixels and neighbouring subjects. In a cell repair, preserve the pixels and positions of the other cells. Scenes and irregular layouts follow their role and brief.
+
+ATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:
+1. design/illustrations/references/watercolour-pencil-v1/animals.png — canonical-style: canonical drawing technique for animals; fixed majority-style pixels
+2. design/illustrations/references/watercolour-pencil-v1/objects.png — canonical-style: canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels
+
+SUBJECT AND LAYOUT BRIEF:
+Create a NEW Waldpost woodland learning-picture atlas in the exact watercolour and coloured-pencil technique of the two canonical references. These pictures support future opposites, state matching, causal stories puzzles. Match the DRAWING TECHNIQUE only, never the opaque cream background of the reference sheets.
+
+SQUARE 4 by 4 GRID: exactly sixteen equal square cells, four columns and four rows. Paint the fifteen complete independent subjects in the precise row-major positions listed below. Row 4 column 4 is empty. Each complete drawing or vignette occupies at most 65% of its cell; centre it with generous transparent margins on all sides. No part crosses a cell boundary. No text, labels, numerals, arrows, frame or visible grid.
+
+Row 1, column 1: state-parcel-open (Offenes Päckchen) — one small brown paper parcel with its top flaps clearly OPEN and empty interior visible, loose string alongside.
+Row 1, column 2: state-parcel-closed (Geschlossenes Päckchen) — one small brown paper parcel clearly CLOSED and tied with a neat string bow.
+Row 1, column 3: state-bucket-full (Voller Eimer) — one small wooden bucket filled to the rim with blue water, open top visible.
+Row 1, column 4: state-bucket-empty (Leerer Eimer) — one matching small wooden bucket completely EMPTY, interior wooden bottom clearly visible.
+Row 2, column 1: state-chest-open (Offene Truhe) — one small honey-brown wooden treasure chest with its hinged lid upright and empty interior visible.
+Row 2, column 2: state-chest-closed (Geschlossene Truhe) — one matching honey-brown wooden treasure chest with its lid completely closed.
+Row 2, column 3: state-boot-clean (Sauberer Stiefel) — one clean ochre lace-up walking boot with cream sole and no dirt.
+Row 2, column 4: state-boot-muddy (Schmutziger Stiefel) — one matching ochre lace-up walking boot, visibly covered with brown mud patches and muddy sole.
+Row 3, column 1: state-padlock-open (Offenes Schloss) — one small brass padlock with its shackle raised OPEN, one end clearly detached.
+Row 3, column 2: state-padlock-closed (Geschlossenes Schloss) — one matching brass padlock with its shackle fully CLOSED into the body.
+Row 3, column 3: state-umbrella-folded (Zusammengeklappter Schirm) — one closed folded blue umbrella with a curved wooden handle and narrow wrapped canopy.
+Row 3, column 4: state-jug-whole (Ganzer Krug) — one complete intact simple terracotta jug with handle and spout.
+Row 4, column 1: state-jug-broken (Zerbrochener Krug) — one terracotta jug broken into three clearly separated large pieces that together suggest the matching jug, no tiny shards.
+Row 4, column 2: state-paper-folded (Gefaltetes Papier) — one cream sheet of paper neatly folded into a compact rectangle, fold edges clearly visible.
+Row 4, column 3: state-paper-crumpled (Zerknülltes Papier) — one cream paper sheet crumpled into an irregular ball with clear pencil-drawn creases.
+Row 4, column 4: EMPTY and fully transparent.
+
+TRANSPARENT CUTOUTS: The ONLY visible pixels are the subject paintings, including the expressly requested parts of a vignette. Every surrounding pixel, gutter, outer perimeter and final empty cell must have alpha ZERO. No continuous paper canvas, pale white matte, coloured haze, aura, drop shadow, or glow outside the fine natural pencil contour. Paint texture stays INSIDE the subjects. Keep white areas opaque inside their actual contours. Open handles, webs, rings and gaps between separate objects are genuinely transparent. Friendly, recognizable complete silhouettes; believable anatomy and precise stated quantities and states.
+
+STYLE PRIORITY: The brief changes subjects and layout only. Keep waldpost-watercolour-pencil-v1 and the supplied canonical reference technique throughout; do not import the style of a composition-only reference.

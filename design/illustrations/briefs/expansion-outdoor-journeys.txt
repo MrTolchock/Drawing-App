@@ -1,0 +1,22 @@
+Create a NEW Waldpost woodland learning-picture atlas in the exact watercolour and coloured-pencil technique of the two canonical references. These pictures support future equipment matching, transport, planning and vocabulary puzzles. Match the DRAWING TECHNIQUE only, never the opaque cream background of the reference sheets.
+
+SQUARE 4 by 4 GRID: exactly sixteen equal square cells, four columns and four rows. Paint the fifteen complete independent subjects in the precise row-major positions listed below. Row 4 column 4 is empty. Each complete drawing or vignette occupies at most 65% of its cell; centre it with generous transparent margins on all sides. No part crosses a cell boundary. No text, labels, numerals, arrows, frame or visible grid.
+
+Row 1, column 1: journey-tent (Zelt) — one small sage canvas tent with open entrance and two complete visible supports, isolated without landscape.
+Row 1, column 2: journey-sleeping-bag (Schlafsack) — one blue sleeping bag partly unrolled with its hood visible.
+Row 1, column 3: journey-hammock (Hängematte) — one empty cream woven hammock with two wooden spreader bars and complete short end ropes, no trees.
+Row 1, column 4: journey-campfire (Lagerfeuer) — one compact campfire of a few brown logs with simple warm orange watercolour flames, no exterior glow or smoke.
+Row 2, column 1: journey-folded-map (Wanderkarte) — one partly unfolded cream paper map with a simple blue stream and a brown dotted path, no letters or numerals.
+Row 2, column 2: journey-cairn (Steinmännchen) — one small cairn made of three grey stones stacked vertically.
+Row 2, column 3: journey-rope-ladder (Strickleiter) — one short rope ladder with two complete side ropes and five wooden rungs.
+Row 2, column 4: journey-wooden-ladder (Holzleiter) — one simple wooden ladder with two rails and five rungs, full silhouette.
+Row 3, column 1: journey-rope-bridge (Seilbrücke) — one small complete rope footbridge with wooden planks and two end posts, isolated miniature without landscape.
+Row 3, column 2: journey-log-raft (Floss) — one compact raft of six parallel wooden logs tied with two ropes, no water or people.
+Row 3, column 3: journey-oar (Ruder) — one long wooden rowing oar with a broad flat blade and complete handle.
+Row 3, column 4: journey-handcart (Bollerwagen) — one small wooden handcart with four wheels and a complete pull handle, no contents.
+Row 4, column 1: journey-sled (Schlitten) — one traditional wooden sled with curved runners and a short pull rope.
+Row 4, column 2: journey-hiking-boot (Wanderschuh) — one sturdy brown hiking boot with blue laces and a dark treaded sole, no dirt.
+Row 4, column 3: journey-torch (Taschenlampe) — one small muted blue pocket torch with a cream lens, switched off, no beam or glow.
+Row 4, column 4: EMPTY and fully transparent.
+
+TRANSPARENT CUTOUTS: The ONLY visible pixels are the subject paintings, including the expressly requested parts of a vignette. Every surrounding pixel, gutter, outer perimeter and final empty cell must have alpha ZERO. No continuous paper canvas, pale white matte, coloured haze, aura, drop shadow, or glow outside the fine natural pencil contour. Paint texture stays INSIDE the subjects. Keep white areas opaque inside their actual contours. Open handles, webs, rings and gaps between separate objects are genuinely transparent. Friendly, recognizable complete silhouettes; believable anatomy and precise stated quantities and states.

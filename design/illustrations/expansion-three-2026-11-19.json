@@ -1,0 +1,903 @@
+{
+  "format": "waldpost-expansion-plan",
+  "date": "2026-11-19",
+  "batch": 3,
+  "baseCommit": "2d3868b0dfa2244dae3dbeccad171281ecd40fd8",
+  "count": 150,
+  "style": "waldpost-watercolour-pencil-v1",
+  "sheets": [
+    {
+      "id": "expansion-spatial-relations",
+      "label": "Lage und Raum",
+      "puzzleUses": [
+        "spatial language",
+        "matching",
+        "following instructions"
+      ],
+      "subjects": [
+        {
+          "id": "relation-apple-in-basket",
+          "label": "Apfel im Korb",
+          "description": "one red apple sitting INSIDE one low empty wicker basket, apple visible above its rim"
+        },
+        {
+          "id": "relation-apple-above-basket",
+          "label": "Apfel über dem Korb",
+          "description": "one red apple floating directly ABOVE one empty low wicker basket, with a large clear transparent gap"
+        },
+        {
+          "id": "relation-apple-beside-basket",
+          "label": "Apfel neben dem Korb",
+          "description": "one red apple standing immediately BESIDE one empty low wicker basket, separate silhouettes at the same baseline"
+        },
+        {
+          "id": "relation-apple-on-bench",
+          "label": "Apfel auf der Bank",
+          "description": "one red apple resting ON TOP of the seat of one small simple wooden bench"
+        },
+        {
+          "id": "relation-apple-under-bench",
+          "label": "Apfel unter der Bank",
+          "description": "one red apple BELOW the seat and BETWEEN the legs of one small wooden bench, fully visible"
+        },
+        {
+          "id": "relation-apple-left-stump",
+          "label": "Apfel links vom Baumstrunk",
+          "description": "one red apple to the VIEWER LEFT of one low wooden tree stump, a visible transparent gap"
+        },
+        {
+          "id": "relation-apple-right-stump",
+          "label": "Apfel rechts vom Baumstrunk",
+          "description": "one red apple to the VIEWER RIGHT of one low wooden tree stump, a visible transparent gap"
+        },
+        {
+          "id": "relation-apple-front-stump",
+          "label": "Apfel vor dem Baumstrunk",
+          "description": "one red apple visibly IN FRONT OF one low tree stump, apple overlaps and occludes its lower front edge"
+        },
+        {
+          "id": "relation-apple-behind-stump",
+          "label": "Apfel hinter dem Baumstrunk",
+          "description": "one red apple BEHIND one low tree stump, the stump occludes the lower half of the apple and its red upper half remains visible"
+        },
+        {
+          "id": "relation-apple-between-stones",
+          "label": "Apfel zwischen Steinen",
+          "description": "one red apple BETWEEN exactly two small grey stones, all three aligned left-to-right with clear gaps"
+        },
+        {
+          "id": "relation-ball-in-box",
+          "label": "Ball in der Kiste",
+          "description": "one plain ochre ball INSIDE one low open blue wooden box, upper half of ball visible"
+        },
+        {
+          "id": "relation-ball-beside-box",
+          "label": "Ball neben der Kiste",
+          "description": "one plain ochre ball BESIDE one empty low open blue wooden box, separate silhouettes and same baseline"
+        },
+        {
+          "id": "relation-ball-front-box",
+          "label": "Ball vor der Kiste",
+          "description": "one plain ochre ball IN FRONT OF one low blue wooden box, the ball occludes the lower front of the box"
+        },
+        {
+          "id": "relation-ball-behind-box",
+          "label": "Ball hinter der Kiste",
+          "description": "one plain ochre ball BEHIND one low blue wooden box, only the upper half of the ball visible above the far edge"
+        },
+        {
+          "id": "relation-ball-between-boxes",
+          "label": "Ball zwischen Kisten",
+          "description": "one plain ochre ball BETWEEN exactly two low blue wooden boxes, all three aligned left-to-right with clear gaps"
+        }
+      ]
+    },
+    {
+      "id": "expansion-object-states",
+      "label": "Zustände und Gegensätze",
+      "puzzleUses": [
+        "opposites",
+        "state matching",
+        "causal stories"
+      ],
+      "subjects": [
+        {
+          "id": "state-parcel-open",
+          "label": "Offenes Päckchen",
+          "description": "one small brown paper parcel with its top flaps clearly OPEN and empty interior visible, loose string alongside"
+        },
+        {
+          "id": "state-parcel-closed",
+          "label": "Geschlossenes Päckchen",
+          "description": "one small brown paper parcel clearly CLOSED and tied with a neat string bow"
+        },
+        {
+          "id": "state-bucket-full",
+          "label": "Voller Eimer",
+          "description": "one small wooden bucket filled to the rim with blue water, open top visible"
+        },
+        {
+          "id": "state-bucket-empty",
+          "label": "Leerer Eimer",
+          "description": "one matching small wooden bucket completely EMPTY, interior wooden bottom clearly visible"
+        },
+        {
+          "id": "state-chest-open",
+          "label": "Offene Truhe",
+          "description": "one small honey-brown wooden treasure chest with its hinged lid upright and empty interior visible"
+        },
+        {
+          "id": "state-chest-closed",
+          "label": "Geschlossene Truhe",
+          "description": "one matching honey-brown wooden treasure chest with its lid completely closed"
+        },
+        {
+          "id": "state-boot-clean",
+          "label": "Sauberer Stiefel",
+          "description": "one clean ochre lace-up walking boot with cream sole and no dirt"
+        },
+        {
+          "id": "state-boot-muddy",
+          "label": "Schmutziger Stiefel",
+          "description": "one matching ochre lace-up walking boot, visibly covered with brown mud patches and muddy sole"
+        },
+        {
+          "id": "state-padlock-open",
+          "label": "Offenes Schloss",
+          "description": "one small brass padlock with its shackle raised OPEN, one end clearly detached"
+        },
+        {
+          "id": "state-padlock-closed",
+          "label": "Geschlossenes Schloss",
+          "description": "one matching brass padlock with its shackle fully CLOSED into the body"
+        },
+        {
+          "id": "state-umbrella-folded",
+          "label": "Zusammengeklappter Schirm",
+          "description": "one closed folded blue umbrella with a curved wooden handle and narrow wrapped canopy"
+        },
+        {
+          "id": "state-jug-whole",
+          "label": "Ganzer Krug",
+          "description": "one complete intact simple terracotta jug with handle and spout"
+        },
+        {
+          "id": "state-jug-broken",
+          "label": "Zerbrochener Krug",
+          "description": "one terracotta jug broken into three clearly separated large pieces that together suggest the matching jug, no tiny shards"
+        },
+        {
+          "id": "state-paper-folded",
+          "label": "Gefaltetes Papier",
+          "description": "one cream sheet of paper neatly folded into a compact rectangle, fold edges clearly visible"
+        },
+        {
+          "id": "state-paper-crumpled",
+          "label": "Zerknülltes Papier",
+          "description": "one cream paper sheet crumpled into an irregular ball with clear pencil-drawn creases"
+        }
+      ]
+    },
+    {
+      "id": "expansion-making-sequences",
+      "label": "Herstellen und Verändern",
+      "puzzleUses": [
+        "sequencing",
+        "before and after",
+        "materials to products"
+      ],
+      "subjects": [
+        {
+          "id": "making-bread-flour",
+          "label": "Mehl in der Schüssel",
+          "description": "one simple wooden mixing bowl containing a mound of flour, no spoon or other props"
+        },
+        {
+          "id": "making-bread-dough",
+          "label": "Brotteig",
+          "description": "one smooth rounded mound of kneaded dough on its own, a few pencilled fold lines"
+        },
+        {
+          "id": "making-braided-loaf",
+          "label": "Gebackener Zopf",
+          "description": "one baked golden braided bread loaf with clearly interwoven strands, no plate"
+        },
+        {
+          "id": "making-paper-sheet",
+          "label": "Papierbogen",
+          "description": "one flat square cream paper sheet in slight perspective, no marks or writing"
+        },
+        {
+          "id": "making-paper-fold",
+          "label": "Papier wird gefaltet",
+          "description": "one cream paper sheet halfway folded diagonally, one triangular flap raised so the fold is obvious"
+        },
+        {
+          "id": "making-paper-boat",
+          "label": "Papierschiff",
+          "description": "one completed cream origami paper boat with clear folds and pointed ends, no water"
+        },
+        {
+          "id": "making-knitting-start",
+          "label": "Wolle und Nadeln",
+          "description": "one small blue yarn ball next to a pair of wooden knitting needles with just a few cast-on loops, one compact knitting project"
+        },
+        {
+          "id": "making-knitting-half",
+          "label": "Halbfertige Strickarbeit",
+          "description": "one partly knitted blue scarf still attached to two wooden needles with a short yarn strand"
+        },
+        {
+          "id": "making-knitting-finished",
+          "label": "Fertiger Strickschal",
+          "description": "one finished blue knitted scarf with fringed ends, no needles or yarn ball"
+        },
+        {
+          "id": "making-wood-marked",
+          "label": "Angezeichnetes Brett",
+          "description": "one short wooden plank with one simple sepia cut guide line, no letters or numerals"
+        },
+        {
+          "id": "making-wood-cut",
+          "label": "Zugeschnittene Bretter",
+          "description": "one compact stack of three cut wooden boards with clean cut ends, one preparation bundle"
+        },
+        {
+          "id": "making-birdhouse-half",
+          "label": "Halbfertiges Vogelhaus",
+          "description": "one half-assembled wooden birdhouse: floor, back and two side walls joined, roof boards still absent, no tools"
+        },
+        {
+          "id": "making-berries-washed",
+          "label": "Gewaschene Beeren",
+          "description": "one small green colander containing red berries with two small blue droplets beneath, a single preparation vignette"
+        },
+        {
+          "id": "making-berries-crushed",
+          "label": "Zerdrückte Beeren",
+          "description": "one small cream bowl containing visibly crushed red berries and one short wooden spoon resting inside"
+        },
+        {
+          "id": "making-jam-pot",
+          "label": "Konfitüre im Topf",
+          "description": "one open small blue cooking pot containing thick red berry jam, no flame, no stove, no steam or glow"
+        }
+      ]
+    },
+    {
+      "id": "expansion-material-samples",
+      "label": "Materialien",
+      "puzzleUses": [
+        "material sorting",
+        "texture matching",
+        "origin and product"
+      ],
+      "subjects": [
+        {
+          "id": "material-wood-slice",
+          "label": "Holzscheibe",
+          "description": "one thin round wood slice with bark rim and visible concentric growth rings"
+        },
+        {
+          "id": "material-bark-strip",
+          "label": "Rindenstück",
+          "description": "one curled strip of brown tree bark with simple pencil ridges"
+        },
+        {
+          "id": "material-cork-stopper",
+          "label": "Korken",
+          "description": "one plain cylindrical cork stopper with restrained pencil speckles"
+        },
+        {
+          "id": "material-wool-tuft",
+          "label": "Wollbüschel",
+          "description": "one loose cream tuft of raw sheep wool, airy pencilled strands and irregular silhouette"
+        },
+        {
+          "id": "material-linen-swatch",
+          "label": "Leinen",
+          "description": "one small beige linen swatch with a frayed edge and simple drawn woven lines"
+        },
+        {
+          "id": "material-leather-swatch",
+          "label": "Leder",
+          "description": "one irregular warm brown leather sample with a clean cut edge, matte watercolour and pencil"
+        },
+        {
+          "id": "material-felt-swatch",
+          "label": "Filz",
+          "description": "one small sage-green felt swatch with a softly irregular edge and light pencil texture"
+        },
+        {
+          "id": "material-cardboard",
+          "label": "Wellkarton",
+          "description": "one small torn piece of corrugated brown cardboard with its wavy inner layer visible along one edge"
+        },
+        {
+          "id": "material-glass-marble",
+          "label": "Glasmurmel",
+          "description": "one round pale-blue glass marble with a small cream highlight and a subtle internal blue swirl, drawn not rendered"
+        },
+        {
+          "id": "material-copper-sheet",
+          "label": "Kupferblech",
+          "description": "one small softly bent copper-coloured metal sheet, warm reddish wash and pencil edges, no mirror gloss"
+        },
+        {
+          "id": "material-slate",
+          "label": "Schiefer",
+          "description": "one flat dark-grey slate fragment with visible thin layered edges"
+        },
+        {
+          "id": "material-clay",
+          "label": "Ton",
+          "description": "one irregular soft terracotta clay lump with one shallow thumb indentation"
+        },
+        {
+          "id": "material-cotton-boll",
+          "label": "Baumwolle",
+          "description": "one open cotton boll with white cotton lobes and dry brown pointed husk"
+        },
+        {
+          "id": "material-rubber-band",
+          "label": "Gummiband",
+          "description": "one single muted red rubber band lying in a loose oval, transparent middle"
+        },
+        {
+          "id": "material-straw-bundle",
+          "label": "Strohbündel",
+          "description": "one small bundle of dry golden straw tied once with simple string"
+        }
+      ]
+    },
+    {
+      "id": "expansion-workshop-tools",
+      "label": "Werkzeuge und Verbindungen",
+      "puzzleUses": [
+        "tool function",
+        "association pairs",
+        "construction stories"
+      ],
+      "subjects": [
+        {
+          "id": "workshop-hammer",
+          "label": "Hammer",
+          "description": "one small claw hammer with wooden handle and matte grey metal head"
+        },
+        {
+          "id": "workshop-nail",
+          "label": "Nagel",
+          "description": "one single straight iron nail with a round flat head"
+        },
+        {
+          "id": "workshop-screw",
+          "label": "Schraube",
+          "description": "one single brass-coloured wood screw with clearly drawn spiral thread and slotted head"
+        },
+        {
+          "id": "workshop-screwdriver",
+          "label": "Schraubenzieher",
+          "description": "one straight slot screwdriver with honey-brown wooden handle and grey metal shaft"
+        },
+        {
+          "id": "workshop-handsaw",
+          "label": "Handsäge",
+          "description": "one small traditional hand saw with wooden closed handle and a complete toothed blade"
+        },
+        {
+          "id": "workshop-mallet",
+          "label": "Holzhammer",
+          "description": "one simple wooden mallet with a rectangular honey-brown head and wooden handle"
+        },
+        {
+          "id": "workshop-pliers",
+          "label": "Zange",
+          "description": "one pair of small grey pliers with blue grips and jaws slightly open"
+        },
+        {
+          "id": "workshop-wrench",
+          "label": "Schraubenschlüssel",
+          "description": "one adjustable wrench with grey metal body and small visible adjustment wheel"
+        },
+        {
+          "id": "workshop-nut",
+          "label": "Schraubenmutter",
+          "description": "one single hexagonal metal nut in slight perspective, transparent central hole"
+        },
+        {
+          "id": "workshop-bolt",
+          "label": "Schraubenbolzen",
+          "description": "one single short metal bolt with hexagonal head and threaded end"
+        },
+        {
+          "id": "workshop-hand-drill",
+          "label": "Handbohrer",
+          "description": "one simple manual hand drill with wooden handle, side crank and short drill bit"
+        },
+        {
+          "id": "workshop-sandpaper",
+          "label": "Schleifpapier",
+          "description": "one small folded ochre sandpaper sheet with light drawn speckling and no writing"
+        },
+        {
+          "id": "workshop-spirit-level",
+          "label": "Wasserwaage",
+          "description": "one short wooden spirit level with one small green bubble window, no numerals or writing"
+        },
+        {
+          "id": "workshop-funnel",
+          "label": "Trichter",
+          "description": "one plain blue metal funnel with open cone, narrow spout and small side loop"
+        },
+        {
+          "id": "workshop-mortar-pestle",
+          "label": "Mörser und Stössel",
+          "description": "one small grey stone mortar with one matching pestle resting inside, a single tool set"
+        }
+      ]
+    },
+    {
+      "id": "expansion-outdoor-journeys",
+      "label": "Unterwegs im Wald",
+      "puzzleUses": [
+        "equipment matching",
+        "transport",
+        "planning and vocabulary"
+      ],
+      "subjects": [
+        {
+          "id": "journey-tent",
+          "label": "Zelt",
+          "description": "one small sage canvas tent with open entrance and two complete visible supports, isolated without landscape"
+        },
+        {
+          "id": "journey-sleeping-bag",
+          "label": "Schlafsack",
+          "description": "one blue sleeping bag partly unrolled with its hood visible"
+        },
+        {
+          "id": "journey-hammock",
+          "label": "Hängematte",
+          "description": "one empty cream woven hammock with two wooden spreader bars and complete short end ropes, no trees"
+        },
+        {
+          "id": "journey-campfire",
+          "label": "Lagerfeuer",
+          "description": "one compact campfire of a few brown logs with simple warm orange watercolour flames, no exterior glow or smoke"
+        },
+        {
+          "id": "journey-folded-map",
+          "label": "Wanderkarte",
+          "description": "one partly unfolded cream paper map with a simple blue stream and a brown dotted path, no letters or numerals"
+        },
+        {
+          "id": "journey-cairn",
+          "label": "Steinmännchen",
+          "description": "one small cairn made of three grey stones stacked vertically"
+        },
+        {
+          "id": "journey-rope-ladder",
+          "label": "Strickleiter",
+          "description": "one short rope ladder with two complete side ropes and five wooden rungs"
+        },
+        {
+          "id": "journey-wooden-ladder",
+          "label": "Holzleiter",
+          "description": "one simple wooden ladder with two rails and five rungs, full silhouette"
+        },
+        {
+          "id": "journey-rope-bridge",
+          "label": "Seilbrücke",
+          "description": "one small complete rope footbridge with wooden planks and two end posts, isolated miniature without landscape"
+        },
+        {
+          "id": "journey-log-raft",
+          "label": "Floss",
+          "description": "one compact raft of six parallel wooden logs tied with two ropes, no water or people",
+          "parts": {
+            "logs": 6
+          }
+        },
+        {
+          "id": "journey-oar",
+          "label": "Ruder",
+          "description": "one long wooden rowing oar with a broad flat blade and complete handle"
+        },
+        {
+          "id": "journey-handcart",
+          "label": "Bollerwagen",
+          "description": "one small wooden handcart with four wheels and a complete pull handle, no contents"
+        },
+        {
+          "id": "journey-sled",
+          "label": "Schlitten",
+          "description": "one traditional wooden sled with curved runners and a short pull rope"
+        },
+        {
+          "id": "journey-hiking-boot",
+          "label": "Wanderschuh",
+          "description": "one sturdy brown hiking boot with blue laces and a dark treaded sole, no dirt"
+        },
+        {
+          "id": "journey-torch",
+          "label": "Taschenlampe",
+          "description": "one small muted blue pocket torch with a cream lens, switched off, no beam or glow"
+        }
+      ]
+    },
+    {
+      "id": "expansion-animal-signs",
+      "label": "Tierspuren und Waldzeichen",
+      "puzzleUses": [
+        "animal to trace matching",
+        "observation",
+        "inference"
+      ],
+      "subjects": [
+        {
+          "id": "sign-fox-paw",
+          "label": "Fuchspfote",
+          "description": "one single fox paw print viewed from above: four small toe pads and one central paw pad, simple sepia impression with no ground rectangle"
+        },
+        {
+          "id": "sign-deer-hoof",
+          "label": "Rehspur",
+          "description": "one single deer hoof print viewed from above: two narrow pointed cloven halves, sepia impression only"
+        },
+        {
+          "id": "sign-bird-foot",
+          "label": "Vogelspur",
+          "description": "one single small bird footprint viewed from above: three slender toes forward and one small rear toe, sepia impression only"
+        },
+        {
+          "id": "sign-duck-foot",
+          "label": "Entenspur",
+          "description": "one single duck footprint viewed from above: three forward toes joined by clear webbing, sepia impression only"
+        },
+        {
+          "id": "sign-handprint",
+          "label": "Handabdruck",
+          "description": "one simple warm sepia human handprint with exactly five fingers and palm, viewed flat, no backing surface"
+        },
+        {
+          "id": "sign-rabbit-tracks",
+          "label": "Hasenspuren",
+          "description": "one compact rabbit track pattern viewed from above: two long hind-foot impressions ahead of two smaller forefoot impressions, no animal or ground rectangle"
+        },
+        {
+          "id": "sign-gnawed-cone",
+          "label": "Benagter Zapfen",
+          "description": "one pine cone gnawed down to a narrow central core with a few scales remaining at the tip"
+        },
+        {
+          "id": "sign-nut-shell",
+          "label": "Geknackte Nussschale",
+          "description": "one opened hazelnut shell with a small round gnawed opening clearly visible"
+        },
+        {
+          "id": "sign-nibbled-leaf",
+          "label": "Angeknabbertes Blatt",
+          "description": "one green leaf with several clear bite notches along its edge"
+        },
+        {
+          "id": "sign-eggshell",
+          "label": "Leere Eierschale",
+          "description": "one empty half of a pale speckled bird eggshell with a jagged top edge"
+        },
+        {
+          "id": "sign-shed-antler",
+          "label": "Abwurfstange",
+          "description": "one naturally shed branching deer antler on its own, complete silhouette, no skull or animal"
+        },
+        {
+          "id": "sign-snake-skin",
+          "label": "Schlangenhaut",
+          "description": "one short curled empty shed snake skin, pale cream and faintly patterned, clearly a hollow skin not a living snake"
+        },
+        {
+          "id": "sign-spider-web",
+          "label": "Spinnennetz",
+          "description": "one small complete delicate sepia spider web attached between two short twig tips, no spider"
+        },
+        {
+          "id": "sign-snail-trail",
+          "label": "Schneckenspur",
+          "description": "one green leaf bearing one silvery curved snail trail, no snail or extra objects"
+        },
+        {
+          "id": "sign-beaver-log",
+          "label": "Vom Biber benagtes Holz",
+          "description": "one short wooden log gnawed into a distinct hourglass notch with visible pencilled tooth marks, no beaver"
+        }
+      ]
+    },
+    {
+      "id": "expansion-nature-parts",
+      "label": "Teile und Ganzes",
+      "puzzleUses": [
+        "part to whole matching",
+        "plant anatomy",
+        "classification"
+      ],
+      "subjects": [
+        {
+          "id": "part-flower-petal",
+          "label": "Blütenblatt",
+          "description": "one single pink flower petal with softly curved edge and a narrow base"
+        },
+        {
+          "id": "part-flower-stamen",
+          "label": "Staubblatt",
+          "description": "one single flower stamen with a pale slender filament and a golden pollen-bearing anther"
+        },
+        {
+          "id": "part-leaf-skeleton",
+          "label": "Blattgerippe",
+          "description": "one delicate golden leaf skeleton showing central vein and branching veins, transparent gaps between the veins"
+        },
+        {
+          "id": "part-acorn-cap",
+          "label": "Eichelhütchen",
+          "description": "one empty textured brown acorn cup with a short stalk, open interior visible"
+        },
+        {
+          "id": "part-walnut-kernel",
+          "label": "Nusskern",
+          "description": "one whole cream-gold walnut kernel with its distinctive two-lobed wrinkled shape, no shell"
+        },
+        {
+          "id": "part-cone-scale",
+          "label": "Zapfenschuppe",
+          "description": "one single brown woody pine-cone scale with a broad rounded end and narrow base"
+        },
+        {
+          "id": "part-apple-seed",
+          "label": "Apfelkern",
+          "description": "one single small dark-brown apple seed with a pointed end and rounded base"
+        },
+        {
+          "id": "part-cherry-stone",
+          "label": "Kirschstein",
+          "description": "one single round tan cherry stone with a shallow seam"
+        },
+        {
+          "id": "part-sunflower-seed",
+          "label": "Sonnenblumenkern",
+          "description": "one single elongated black-and-cream striped sunflower seed in its shell"
+        },
+        {
+          "id": "part-pea-seed",
+          "label": "Erbse",
+          "description": "one single round fresh green pea with a small pale seed scar"
+        },
+        {
+          "id": "part-empty-pea-pod",
+          "label": "Leere Erbsenschote",
+          "description": "one opened empty green pea pod showing both attached halves and no peas"
+        },
+        {
+          "id": "part-tree-roots",
+          "label": "Wurzeln",
+          "description": "one small tree root system with a short trunk base and several tapering branching roots, no soil rectangle"
+        },
+        {
+          "id": "part-budding-twig",
+          "label": "Knospenzweig",
+          "description": "one short brown twig with three clearly visible closed green buds"
+        },
+        {
+          "id": "part-walnut-shell",
+          "label": "Halbe Nussschale",
+          "description": "one empty half walnut shell, inner hollow visible, no kernel"
+        },
+        {
+          "id": "part-chestnut-husk",
+          "label": "Kastanienhülle",
+          "description": "one empty opened green spiky horse-chestnut husk, no chestnut inside"
+        }
+      ]
+    },
+    {
+      "id": "expansion-counting-groups",
+      "label": "Mengen von zwei bis sechs",
+      "puzzleUses": [
+        "counting",
+        "quantity matching",
+        "addition and comparison"
+      ],
+      "subjects": [
+        {
+          "id": "count-buttons-2",
+          "label": "2 Knöpfe",
+          "description": "one quantity group containing EXACTLY 2 separate identical muted-blue round wooden buttons; arrange in a tidy loose group with generous gaps, every object complete and independently countable, no overlap or other objects",
+          "family": "buttons",
+          "quantity": 2
+        },
+        {
+          "id": "count-buttons-3",
+          "label": "3 Knöpfe",
+          "description": "one quantity group containing EXACTLY 3 separate identical muted-blue round wooden buttons; arrange in a tidy loose group with generous gaps, every object complete and independently countable, no overlap or other objects",
+          "family": "buttons",
+          "quantity": 3
+        },
+        {
+          "id": "count-buttons-4",
+          "label": "4 Knöpfe",
+          "description": "one quantity group containing EXACTLY 4 separate identical muted-blue round wooden buttons; arrange in a tidy loose group with generous gaps, every object complete and independently countable, no overlap or other objects",
+          "family": "buttons",
+          "quantity": 4
+        },
+        {
+          "id": "count-buttons-5",
+          "label": "5 Knöpfe",
+          "description": "one quantity group containing EXACTLY 5 separate identical muted-blue round wooden buttons; arrange in a tidy loose group with generous gaps, every object complete and independently countable, no overlap or other objects",
+          "family": "buttons",
+          "quantity": 5
+        },
+        {
+          "id": "count-buttons-6",
+          "label": "6 Knöpfe",
+          "description": "one quantity group containing EXACTLY 6 separate identical muted-blue round wooden buttons; arrange in a tidy loose group with generous gaps, every object complete and independently countable, no overlap or other objects",
+          "family": "buttons",
+          "quantity": 6
+        },
+        {
+          "id": "count-acorns-2",
+          "label": "2 Eicheln",
+          "description": "one quantity group containing EXACTLY 2 separate identical brown acorns in their cups; arrange in a tidy loose group with generous gaps, every object complete and independently countable, no overlap or other objects",
+          "family": "acorns",
+          "quantity": 2
+        },
+        {
+          "id": "count-acorns-3",
+          "label": "3 Eicheln",
+          "description": "one quantity group containing EXACTLY 3 separate identical brown acorns in their cups; arrange in a tidy loose group with generous gaps, every object complete and independently countable, no overlap or other objects",
+          "family": "acorns",
+          "quantity": 3
+        },
+        {
+          "id": "count-acorns-4",
+          "label": "4 Eicheln",
+          "description": "one quantity group containing EXACTLY 4 separate identical brown acorns in their cups; arrange in a tidy loose group with generous gaps, every object complete and independently countable, no overlap or other objects",
+          "family": "acorns",
+          "quantity": 4
+        },
+        {
+          "id": "count-acorns-5",
+          "label": "5 Eicheln",
+          "description": "one quantity group containing EXACTLY 5 separate identical brown acorns in their cups; arrange in a tidy loose group with generous gaps, every object complete and independently countable, no overlap or other objects",
+          "family": "acorns",
+          "quantity": 5
+        },
+        {
+          "id": "count-acorns-6",
+          "label": "6 Eicheln",
+          "description": "one quantity group containing EXACTLY 6 separate identical brown acorns in their cups; arrange in a tidy loose group with generous gaps, every object complete and independently countable, no overlap or other objects",
+          "family": "acorns",
+          "quantity": 6
+        },
+        {
+          "id": "count-leaves-2",
+          "label": "2 Blätter",
+          "description": "one quantity group containing EXACTLY 2 separate identical red-orange maple leaves; arrange in a tidy loose group with generous gaps, every object complete and independently countable, no overlap or other objects",
+          "family": "leaves",
+          "quantity": 2
+        },
+        {
+          "id": "count-leaves-3",
+          "label": "3 Blätter",
+          "description": "one quantity group containing EXACTLY 3 separate identical red-orange maple leaves; arrange in a tidy loose group with generous gaps, every object complete and independently countable, no overlap or other objects",
+          "family": "leaves",
+          "quantity": 3
+        },
+        {
+          "id": "count-leaves-4",
+          "label": "4 Blätter",
+          "description": "one quantity group containing EXACTLY 4 separate identical red-orange maple leaves; arrange in a tidy loose group with generous gaps, every object complete and independently countable, no overlap or other objects",
+          "family": "leaves",
+          "quantity": 4
+        },
+        {
+          "id": "count-leaves-5",
+          "label": "5 Blätter",
+          "description": "one quantity group containing EXACTLY 5 separate identical red-orange maple leaves; arrange in a tidy loose group with generous gaps, every object complete and independently countable, no overlap or other objects",
+          "family": "leaves",
+          "quantity": 5
+        },
+        {
+          "id": "count-leaves-6",
+          "label": "6 Blätter",
+          "description": "one quantity group containing EXACTLY 6 separate identical red-orange maple leaves; arrange in a tidy loose group with generous gaps, every object complete and independently countable, no overlap or other objects",
+          "family": "leaves",
+          "quantity": 6
+        }
+      ]
+    },
+    {
+      "id": "expansion-patterns-seasons",
+      "label": "Muster, Jahreszeiten und Lebensräume",
+      "puzzleUses": [
+        "pattern discrimination",
+        "season sequencing",
+        "habitat matching"
+      ],
+      "subjects": [
+        {
+          "id": "pattern-scarf-plain",
+          "label": "Einfarbiger Schal",
+          "description": "one short blue scarf with fringed ends and NO pattern, same scarf silhouette as the other five scarf cells"
+        },
+        {
+          "id": "pattern-scarf-striped",
+          "label": "Gestreifter Schal",
+          "description": "one matching blue scarf with clearly visible broad cream STRIPES and fringed ends"
+        },
+        {
+          "id": "pattern-scarf-dotted",
+          "label": "Gepunkteter Schal",
+          "description": "one matching blue scarf with clearly visible separate cream POLKA DOTS and fringed ends"
+        },
+        {
+          "id": "pattern-scarf-checked",
+          "label": "Karierter Schal",
+          "description": "one matching blue scarf with a clearly visible cream-and-blue CHECK pattern and fringed ends"
+        },
+        {
+          "id": "pattern-scarf-zigzag",
+          "label": "Schal mit Zickzackmuster",
+          "description": "one matching blue scarf with clearly visible cream ZIGZAG bands and fringed ends"
+        },
+        {
+          "id": "pattern-scarf-leaves",
+          "label": "Schal mit Blattmuster",
+          "description": "one matching blue scarf with a simple repeated cream LEAF PRINT and fringed ends"
+        },
+        {
+          "id": "season-apple-spring",
+          "label": "Apfelbaum im Frühling",
+          "description": "one small apple tree in SPRING: brown branching trunk, pale-pink blossoms and a few small green leaves, no fruit"
+        },
+        {
+          "id": "season-apple-summer",
+          "label": "Apfelbaum im Sommer",
+          "description": "one matching apple tree in SUMMER: full green canopy and a few clearly green unripe apples"
+        },
+        {
+          "id": "season-apple-autumn",
+          "label": "Apfelbaum im Herbst",
+          "description": "one matching apple tree in AUTUMN: orange-yellow leaves and a few ripe red apples"
+        },
+        {
+          "id": "season-apple-winter",
+          "label": "Apfelbaum im Winter",
+          "description": "one matching apple tree in WINTER: bare branching brown crown and small patches of white snow on branches, no leaves or fruit"
+        },
+        {
+          "id": "habitat-flower-meadow",
+          "label": "Blumenwiese",
+          "description": "one compact isolated habitat vignette of low meadow grasses and a few simple colourful wildflowers, no animals or sky"
+        },
+        {
+          "id": "habitat-riverbank",
+          "label": "Bachufer",
+          "description": "one compact isolated habitat vignette of a curved blue stream edge, a few grey stones and green reeds, no animals or sky"
+        },
+        {
+          "id": "habitat-alpine-rocks",
+          "label": "Bergfelsen",
+          "description": "one compact isolated habitat vignette of two grey alpine rocks, sparse short grasses and one tiny edelweiss, no animals or sky"
+        },
+        {
+          "id": "habitat-deadwood",
+          "label": "Totholz",
+          "description": "one compact isolated habitat vignette of a fallen rotting log with moss and a few small bracket fungi, no animals or sky"
+        },
+        {
+          "id": "habitat-hedgerow",
+          "label": "Hecke",
+          "description": "one compact isolated habitat vignette of a dense low leafy hedge with thorny twigs and a few red berries, no animals or sky"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "format": "waldpost-illustration-atlas",
+  "version": 1,
+  "source": "sources/expansion-three-2026-11-19/expansion-counting-groups.png",
+  "output": "../../assets/waldatelier/expansion-counting-groups.webp",
+  "columns": 4,
+  "rows": 4,
+  "cellPixels": 320,
+  "subjectPixels": 256,
+  "alphaThresholdPercent": 8,
+  "provenance": {
+    "date": "2026-11-19",
+    "tool": "ChatGPT image_gen.imagegen",
+    "sourceSha256": "b2918b493df3dc926fe27de65ca044e6257b455f2c54aa256ede4503876fab95",
+    "generationRecord": "../artwork/generation-records/expansion-counting-groups-2026-11-19.json",
+    "styleContract": "style.json",
+    "forwardPrompt": "prompts/expansion-counting-groups.txt"
+  },
+  "subjects": [
+    {
+      "id": "count-buttons-2",
+      "label": "2 Knöpfe"
+    },
+    {
+      "id": "count-buttons-3",
+      "label": "3 Knöpfe"
+    },
+    {
+      "id": "count-buttons-4",
+      "label": "4 Knöpfe"
+    },
+    {
+      "id": "count-buttons-5",
+      "label": "5 Knöpfe"
+    },
+    {
+      "id": "count-buttons-6",
+      "label": "6 Knöpfe"
+    },
+    {
+      "id": "count-acorns-2",
+      "label": "2 Eicheln"
+    },
+    {
+      "id": "count-acorns-3",
+      "label": "3 Eicheln"
+    },
+    {
+      "id": "count-acorns-4",
+      "label": "4 Eicheln"
+    },
+    {
+      "id": "count-acorns-5",
+      "label": "5 Eicheln"
+    },
+    {
+      "id": "count-acorns-6",
+      "label": "6 Eicheln"
+    },
+    {
+      "id": "count-leaves-2",
+      "label": "2 Blätter"
+    },
+    {
+      "id": "count-leaves-3",
+      "label": "3 Blätter"
+    },
+    {
+      "id": "count-leaves-4",
+      "label": "4 Blätter"
+    },
+    {
+      "id": "count-leaves-5",
+      "label": "5 Blätter"
+    },
+    {
+      "id": "count-leaves-6",
+      "label": "6 Blätter"
+    }
+  ]
+}

@@ -1,0 +1,174 @@
+{
+  "format": "waldpost-illustration-atlas",
+  "version": 1,
+  "source": "sources/expansion-three-2026-11-19/expansion-nature-parts-cutout.png",
+  "output": "../../assets/waldatelier/expansion-nature-parts.webp",
+  "columns": 4,
+  "rows": 4,
+  "cellPixels": 320,
+  "subjectPixels": 256,
+  "alphaThresholdPercent": 8,
+  "provenance": {
+    "date": "2026-11-19",
+    "tool": "ChatGPT image_gen.imagegen",
+    "sourceSha256": "76fcb8a8661b2009ce8b08a1cde4559b8fe437dd9a7871f55f7aaa298c3718f1",
+    "generationRecord": "../artwork/generation-records/expansion-nature-parts-cutout-2026-11-19.json",
+    "styleContract": "style.json",
+    "forwardPrompt": "prompts/expansion-nature-parts.txt",
+    "cropNote": "Source crop boundaries lie in verified empty alpha gutters, preserving every complete subject without neighbour fragments before the normal proportional resize."
+  },
+  "subjects": [
+    {
+      "id": "part-flower-petal",
+      "label": "Blütenblatt"
+    },
+    {
+      "id": "part-flower-stamen",
+      "label": "Staubblatt"
+    },
+    {
+      "id": "part-leaf-skeleton",
+      "label": "Blattgerippe"
+    },
+    {
+      "id": "part-acorn-cap",
+      "label": "Eichelhütchen"
+    },
+    {
+      "id": "part-walnut-kernel",
+      "label": "Nusskern"
+    },
+    {
+      "id": "part-cone-scale",
+      "label": "Zapfenschuppe"
+    },
+    {
+      "id": "part-apple-seed",
+      "label": "Apfelkern"
+    },
+    {
+      "id": "part-cherry-stone",
+      "label": "Kirschstein"
+    },
+    {
+      "id": "part-sunflower-seed",
+      "label": "Sonnenblumenkern"
+    },
+    {
+      "id": "part-pea-seed",
+      "label": "Erbse"
+    },
+    {
+      "id": "part-empty-pea-pod",
+      "label": "Leere Erbsenschote"
+    },
+    {
+      "id": "part-tree-roots",
+      "label": "Wurzeln"
+    },
+    {
+      "id": "part-budding-twig",
+      "label": "Knospenzweig"
+    },
+    {
+      "id": "part-walnut-shell",
+      "label": "Halbe Nussschale"
+    },
+    {
+      "id": "part-chestnut-husk",
+      "label": "Kastanienhülle"
+    }
+  ],
+  "sourceRects": {
+    "part-flower-petal": {
+      "x": 0,
+      "y": 0,
+      "width": 321,
+      "height": 335
+    },
+    "part-flower-stamen": {
+      "x": 321,
+      "y": 0,
+      "width": 288,
+      "height": 335
+    },
+    "part-leaf-skeleton": {
+      "x": 609,
+      "y": 0,
+      "width": 322,
+      "height": 335
+    },
+    "part-acorn-cap": {
+      "x": 931,
+      "y": 0,
+      "width": 323,
+      "height": 335
+    },
+    "part-walnut-kernel": {
+      "x": 0,
+      "y": 335,
+      "width": 321,
+      "height": 292
+    },
+    "part-cone-scale": {
+      "x": 321,
+      "y": 335,
+      "width": 288,
+      "height": 292
+    },
+    "part-apple-seed": {
+      "x": 609,
+      "y": 335,
+      "width": 322,
+      "height": 292
+    },
+    "part-cherry-stone": {
+      "x": 931,
+      "y": 335,
+      "width": 323,
+      "height": 292
+    },
+    "part-sunflower-seed": {
+      "x": 0,
+      "y": 627,
+      "width": 321,
+      "height": 306
+    },
+    "part-pea-seed": {
+      "x": 321,
+      "y": 627,
+      "width": 288,
+      "height": 306
+    },
+    "part-empty-pea-pod": {
+      "x": 609,
+      "y": 627,
+      "width": 322,
+      "height": 306
+    },
+    "part-tree-roots": {
+      "x": 931,
+      "y": 627,
+      "width": 323,
+      "height": 306
+    },
+    "part-budding-twig": {
+      "x": 0,
+      "y": 933,
+      "width": 321,
+      "height": 321
+    },
+    "part-walnut-shell": {
+      "x": 321,
+      "y": 933,
+      "width": 288,
+      "height": 321
+    },
+    "part-chestnut-husk": {
+      "x": 609,
+      "y": 933,
+      "width": 322,
+      "height": 321
+    }
+  }
+}

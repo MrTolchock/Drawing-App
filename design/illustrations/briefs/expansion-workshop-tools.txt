@@ -1,0 +1,22 @@
+Create a NEW Waldpost woodland learning-picture atlas in the exact watercolour and coloured-pencil technique of the two canonical references. These pictures support future tool function, association pairs, construction stories puzzles. Match the DRAWING TECHNIQUE only, never the opaque cream background of the reference sheets.
+
+SQUARE 4 by 4 GRID: exactly sixteen equal square cells, four columns and four rows. Paint the fifteen complete independent subjects in the precise row-major positions listed below. Row 4 column 4 is empty. Each complete drawing or vignette occupies at most 65% of its cell; centre it with generous transparent margins on all sides. No part crosses a cell boundary. No text, labels, numerals, arrows, frame or visible grid.
+
+Row 1, column 1: workshop-hammer (Hammer) — one small claw hammer with wooden handle and matte grey metal head.
+Row 1, column 2: workshop-nail (Nagel) — one single straight iron nail with a round flat head.
+Row 1, column 3: workshop-screw (Schraube) — one single brass-coloured wood screw with clearly drawn spiral thread and slotted head.
+Row 1, column 4: workshop-screwdriver (Schraubenzieher) — one straight slot screwdriver with honey-brown wooden handle and grey metal shaft.
+Row 2, column 1: workshop-handsaw (Handsäge) — one small traditional hand saw with wooden closed handle and a complete toothed blade.
+Row 2, column 2: workshop-mallet (Holzhammer) — one simple wooden mallet with a rectangular honey-brown head and wooden handle.
+Row 2, column 3: workshop-pliers (Zange) — one pair of small grey pliers with blue grips and jaws slightly open.
+Row 2, column 4: workshop-wrench (Schraubenschlüssel) — one adjustable wrench with grey metal body and small visible adjustment wheel.
+Row 3, column 1: workshop-nut (Schraubenmutter) — one single hexagonal metal nut in slight perspective, transparent central hole.
+Row 3, column 2: workshop-bolt (Schraubenbolzen) — one single short metal bolt with hexagonal head and threaded end.
+Row 3, column 3: workshop-hand-drill (Handbohrer) — one simple manual hand drill with wooden handle, side crank and short drill bit.
+Row 3, column 4: workshop-sandpaper (Schleifpapier) — one small folded ochre sandpaper sheet with light drawn speckling and no writing.
+Row 4, column 1: workshop-spirit-level (Wasserwaage) — one short wooden spirit level with one small green bubble window, no numerals or writing.
+Row 4, column 2: workshop-funnel (Trichter) — one plain blue metal funnel with open cone, narrow spout and small side loop.
+Row 4, column 3: workshop-mortar-pestle (Mörser und Stössel) — one small grey stone mortar with one matching pestle resting inside, a single tool set.
+Row 4, column 4: EMPTY and fully transparent.
+
+TRANSPARENT CUTOUTS: The ONLY visible pixels are the subject paintings, including the expressly requested parts of a vignette. Every surrounding pixel, gutter, outer perimeter and final empty cell must have alpha ZERO. No continuous paper canvas, pale white matte, coloured haze, aura, drop shadow, or glow outside the fine natural pencil contour. Paint texture stays INSIDE the subjects. Keep white areas opaque inside their actual contours. Open handles, webs, rings and gaps between separate objects are genuinely transparent. Friendly, recognizable complete silhouettes; believable anatomy and precise stated quantities and states.

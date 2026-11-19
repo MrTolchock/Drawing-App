@@ -1,0 +1,81 @@
+{
+  "format": "waldpost-illustration-atlas",
+  "version": 1,
+  "source": "sources/expansion-three-2026-11-19/expansion-making-sequences.png",
+  "output": "../../assets/waldatelier/expansion-making-sequences.webp",
+  "columns": 4,
+  "rows": 4,
+  "cellPixels": 320,
+  "subjectPixels": 256,
+  "alphaThresholdPercent": 8,
+  "provenance": {
+    "date": "2026-11-19",
+    "tool": "ChatGPT image_gen.imagegen",
+    "sourceSha256": "4258f45d477eda5a8150b8189cc667c1f4c73327e9ce648bcf5f07f9affa4e70",
+    "generationRecord": "../artwork/generation-records/expansion-making-sequences-2026-11-19.json",
+    "styleContract": "style.json",
+    "forwardPrompt": "prompts/expansion-making-sequences.txt"
+  },
+  "subjects": [
+    {
+      "id": "making-bread-flour",
+      "label": "Mehl in der Schüssel"
+    },
+    {
+      "id": "making-bread-dough",
+      "label": "Brotteig"
+    },
+    {
+      "id": "making-braided-loaf",
+      "label": "Gebackener Zopf"
+    },
+    {
+      "id": "making-paper-sheet",
+      "label": "Papierbogen"
+    },
+    {
+      "id": "making-paper-fold",
+      "label": "Papier wird gefaltet"
+    },
+    {
+      "id": "making-paper-boat",
+      "label": "Papierschiff"
+    },
+    {
+      "id": "making-knitting-start",
+      "label": "Wolle und Nadeln"
+    },
+    {
+      "id": "making-knitting-half",
+      "label": "Halbfertige Strickarbeit"
+    },
+    {
+      "id": "making-knitting-finished",
+      "label": "Fertiger Strickschal"
+    },
+    {
+      "id": "making-wood-marked",
+      "label": "Angezeichnetes Brett"
+    },
+    {
+      "id": "making-wood-cut",
+      "label": "Zugeschnittene Bretter"
+    },
+    {
+      "id": "making-birdhouse-half",
+      "label": "Halbfertiges Vogelhaus"
+    },
+    {
+      "id": "making-berries-washed",
+      "label": "Gewaschene Beeren"
+    },
+    {
+      "id": "making-berries-crushed",
+      "label": "Zerdrückte Beeren"
+    },
+    {
+      "id": "making-jam-pot",
+      "label": "Konfitüre im Topf"
+    }
+  ]
+}
