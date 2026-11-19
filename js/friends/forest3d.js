@@ -118,7 +118,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     {sun: '#ffdca4', si: 2.6, fill: .55, sky: '#e4f0ff', ground: '#8a7444', hi: 1.35, top: '#a9d3c6', hor: '#f4e0ac', fog: [1.02, .99, .93], glow: 1.05, dir: [-.55, .62, -.56]},
     {sun: '#ff9554', si: 1.4, fill: .4, sky: '#b4a8cc', ground: '#5d4b3a', hi: .92, top: '#6e7aa8', hor: '#f4a26a', fog: [.96, .78, .72], glow: 1.6, dir: [-.78, .24, -.58]}];
   const todBase = {sun: new THREE.Color(), sky: new THREE.Color(), ground: new THREE.Color(), top: new THREE.Color(), hor: new THREE.Color(), fog: new THREE.Color(), dir: new THREE.Vector3(), si: 0, fill: 0, hi: 0, glow: 0}, todA = new THREE.Color(), todB = new THREE.Color();
-  let tod = 0, todTo = 0, todSet = false, sunAt = -1;
+  let tod = 0, todTo = 0, todSet = false, sunAt = -1, moodSnap = false;
   function blendTod() {
     const k = Math.min(1.999, tod * 2), i = Math.floor(k), u = k - i, a = TOD[i], b = TOD[i + 1];
     for (const key of ['sun', 'sky', 'ground', 'top', 'hor']) todBase[key].copy(todA.set(a[key])).lerp(todB.set(b[key]), u);
@@ -159,7 +159,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     moodC.set(MOODS.wood[0]); moodT.r += moodC.r * rest; moodT.g += moodC.g * rest; moodT.b += moodC.b * rest; near += MOODS.wood[1] * rest; far += MOODS.wood[2] * rest;
     moodT.multiply(todBase.fog);
     const rain = weather.state.rain; if (rain > 0) { moodT.lerp(RAINY, rain * .6); near *= 1 - .4 * rain; far *= 1 - .28 * rain; }
-    const k = 1 - Math.exp(-dt * .9); mood.colour.lerp(moodT, k); mood.near += (near - mood.near) * k; mood.far += (far - mood.far) * k;
+    const k = moodSnap ? 1 : 1 - Math.exp(-dt * .9); moodSnap = false; mood.colour.lerp(moodT, k); mood.near += (near - mood.near) * k; mood.far += (far - mood.far) * k;
     // in the cave the rock is night: everything beyond its own light fades to black
     const ck = caveEase(); WORLD.fog.color.copy(mood.colour).lerp(CAVE_DARK, ck);
     const lift = reveal * reveal * (3 - 2 * reveal); scene.fog.near = lerp(mood.near * lerp(.75, 1, lift), 8, ck); scene.fog.far = lerp(mood.far * lerp(.85, 1, lift), 32, ck); backdrop.material.uniforms.uFog.value.set(scene.fog.near, scene.fog.far);
@@ -346,11 +346,11 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   function placeCamera(k) { const base = narrow ? [0, 10, 14.4] : [0, 9, 14], e = shotK(), z = zoomUser * zoomAuto * lerp(1, .58, e), ck = caveEase(), off = [0, lerp(base[1] * z * lerp(1, .82, e), 2.7 * zoomUser, ck), lerp(base[2] * z, (narrow ? 7.4 : 6.6) * zoomUser, ck)]; camera.position.lerp(new THREE.Vector3(focus.x + off[0], focus.y + off[1], focus.z + off[2]), k); if (ck < .98) camera.position.y = Math.max(camera.position.y, WORLD.ground(camera.position.x, camera.position.z) + lerp(3.5, 1.4, ck)); camera.lookAt(focus.x, focus.y + lerp(1.4, 1.25, ck), focus.z - lerp(3.2, 2.4, ck)); camera.updateMatrixWorld(); foxView.value.set(pos.x, groundY(pos.x, pos.z) + .9, pos.z).applyMatrix4(camera.matrixWorldInverse); fill.position.copy(camera.position).add(new THREE.Vector3(0, 4, 0)); fill.target.position.copy(focus); fill.target.updateMatrixWorld(); horizon.position.set(camera.position.x, camera.position.y - 4, camera.position.z - 20); }
   function publishMailPosition() { const p = forestPlaces.mailman; p.x = mailPos.x; p.z = mailPos.z; p.pu = THREE.MathUtils.clamp(.5 + mailPos.x * .023, .07, .93); p.pv = THREE.MathUtils.clamp(.49 + mailPos.z * .025, .1, .9); }
   function summonMailman() {
-    // He stands a short walk away (10–13 m), preferably ahead of Fuchs where the camera sees him (north), on a straight
-    // clear way; a bend or a narrow crossing may need a routed approach instead.
+    // He stands a real walk away (18–22 m), preferably ahead of Fuchs where the camera sees him (north), on a straight
+    // clear way; a bend or a narrow crossing may need a routed approach (16–25 m) instead.
     const ANGLES = Array.from({length: 32}, (_, i) => -Math.PI / 2 + (i % 2 ? 1 : -1) * Math.ceil(i / 2) * TAU / 32);
-    let chosen = null; for (const radius of [11, 12, 10, 13]) { for (const a of ANGLES) { const candidate = new THREE.Vector3(pos.x + Math.cos(a) * radius, 0, pos.z + Math.sin(a) * radius); if (walkable(candidate.x, candidate.z) && clear(pos, candidate, true)) { chosen = candidate; break; } } if (chosen) break; }
-    if (!chosen) for (const radius of [11, 13, 10]) { for (const a of ANGLES.filter((_, i) => i % 2 === 0)) { const candidate = nearestWalkable(new THREE.Vector3(pos.x + Math.cos(a) * radius, 0, pos.z + Math.sin(a) * radius)), distance = candidate.distanceTo(pos); if (distance >= 9 && distance <= 15 && plan(candidate)) { chosen = candidate; break; } } if (chosen) break; }
+    let chosen = null; for (const radius of [20, 19, 21, 18, 22]) { for (const a of ANGLES) { const candidate = new THREE.Vector3(pos.x + Math.cos(a) * radius, 0, pos.z + Math.sin(a) * radius); if (walkable(candidate.x, candidate.z) && clear(pos, candidate, true)) { chosen = candidate; break; } } if (chosen) break; }
+    if (!chosen) for (const radius of [20, 22, 18]) { for (const a of ANGLES.filter((_, i) => i % 2 === 0)) { const candidate = nearestWalkable(new THREE.Vector3(pos.x + Math.cos(a) * radius, 0, pos.z + Math.sin(a) * radius)), distance = candidate.distanceTo(pos); if (distance >= 16 && distance <= 25 && plan(candidate)) { chosen = candidate; break; } } if (chosen) break; }
     if (chosen) mailPos.copy(chosen);
     courierGoal = null; courierPath = []; courierWait = 20; publishMailPosition(); courier.position.set(mailPos.x, groundY(mailPos.x, mailPos.z), mailPos.z); guidePoints = []; guideNext = 0;
   }
@@ -406,8 +406,9 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
       farProbe.set(pos.x + Math.sin(a) * R, gy, pos.z - Math.cos(a) * R); farSeen.copy(farProbe).project(camera); if (farSeen.z > 1 || Math.abs(farSeen.x) > 1.02 || Math.abs(farSeen.y) > 1.02) continue;
       least = Math.min(least, THREE.MathUtils.smoothstep(-farProbe.applyMatrix4(camera.matrixWorldInverse).z, mood.near, mood.far)); } return least; };
     let lo = 52, hi = 116; for (let k = 0; k < 7; k++) { const mid = (lo + hi) / 2; if (hazeAt(mid - 11) >= .9) hi = mid; else lo = mid; }   // 11 m: a tile's half diagonal
-    const wide = Math.tan(Math.min(1.45, Math.atan(Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.aspect) + .2));
-    streamer.setView({back: 24, tan: wide, far: Math.ceil(hi / 4) * 4});
+    // the picture's half-width per metre: the far ring a good deal wider, the near ring (full detail) just over it
+    const half = Math.atan(Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.aspect), wide = Math.tan(Math.min(1.45, half + .2));
+    streamer.setView({back: 24, tan: wide, near: Math.tan(Math.min(.68, half + .06)), far: Math.ceil(hi / 4) * 4});
   }
 
   /* ---------- the sun's shadow map (see above) ---------- */
@@ -504,7 +505,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     const base = feetY(pos.x, pos.z, .2), doing = react(dt, moving) || moods(dt, time, moving, base, reduced); fox.position.set(pos.x, base + hopY(dt, time, moving, reduced), pos.z); foxRig.update(dt, {moving, speed, reduced, ...(doing || {})});
     foxShadow.position.set(pos.x, base + .04, pos.z);
     { const g = sound.ground, soft = g === 'earth' || g === 'grass' || g === 'meadow' || g === 'needles', where = g === 'snow' ? 'snow' : g === 'wet' || (sound.bank && soft) ? 'mud' : soft && weather.state.wet > .25 ? 'wet' : null;
-      prints.update(dt, pos, fox.rotation.y, moving ? where : null, reduced); }
+      prints.update(dt, pos, fox.rotation.y, moving ? where : null, reduced, sliding && where === 'snow'); }
     // Only characters in the near ring are drawn; at most six are animated (Fuchs always).
     const others = [...Object.entries(friends).map(([id, f]) => ({id, f, d: Math.hypot(f.x - pos.x, f.z - pos.z)})), {id: 'mailman', d: mailPos.distanceTo(pos)}].sort((a, b) => a.d - b.d);
     let animated = 1;
@@ -574,7 +575,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     mailTarget(id) { const was = guideTarget; guideTarget = forestPlaces[id] ? id : null; guidePoints = []; guideNext = 0;
       // a new letter is ready: the mailman whistles once from where he is, then comes over
       if (id === 'mailman' && was !== 'mailman') { sound.cues.push({type: 'whistle', pan: THREE.MathUtils.clamp((mailPos.x - pos.x) / 10, -.9, .9)}); if (sound.cues.length > 4) sound.cues.shift(); }
-      if (id === 'mailman' && mailPos.distanceTo(pos) > 15) summonMailman(); }, summonMailman,
+      if (id === 'mailman' && mailPos.distanceTo(pos) > 25) summonMailman(); }, summonMailman,
     pick(x, y) {
       raycaster.setFromCamera(new THREE.Vector2(x, y), camera);
       if (raycaster.intersectObject(courier, true).length) { courierGoal = null; courierPath = []; courierWait = 20; if (mailPos.distanceTo(pos) < 3.2) onAction('mailman'); else walkTo(mailPos.clone(), 'mailman'); return; }
@@ -591,11 +592,13 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     restored() { renderer.shadowMap.needsUpdate = true; },
     get life() { return life.counts; },
     get prints() { return prints.count; },
+    get slideMarks() { return prints.slides; },
     get ambience() { return {...ambience.counts, timeOfDay: tod}; },
     get shadows() { return cast ? cast.count : 0; },
     get cave() { return {...bats.counts, inside: caveK}; },
-    /** The time of day: 0 morning, .5 afternoon, 1 dusk; it eases there unless `snap`. */
-    timeOfDay(v, snap = false) { todTo = THREE.MathUtils.clamp(v, 0, 1); if (snap || !todSet) { tod = todTo; todSet = true; } },
+    /** The time of day: 0 morning, .5 afternoon, 1 dusk; it eases there unless `snap` (then the light, the haze and
+        the sun's shadows are drawn in the new hour at once, with a single shadow redraw). */
+    timeOfDay(v, snap = false) { v = THREE.MathUtils.clamp(v, 0, 1); todTo = v; if ((snap && tod !== v) || !todSet) { tod = v; todSet = true; moodSnap = true; } },
     budget() { const c = streamer.counts, g = streamer.gaps(); return {liveTiles: c.near, farTiles: c.far, animated: animatedCount, holes: g.holes, plain: g.plain, jobs: c.jobs, slowestStep: streamer.slowest.kind, slowestStepMs: streamer.slowest.ms, dissolving: fades.count, shadowDraws: shadow.draws, shadowRefits: shadow.refits, shadowReach: shadow.reach, farReach: streamer.far}; },
     set speed(k) { speedScale = k; },
     pins() { return [...pins, {id: 'mailman', point: new THREE.Vector3(mailPos.x, groundY(mailPos.x, mailPos.z) + 2.2, mailPos.z)}].map(p => { const q = p.point.clone().project(camera); return {id: p.id, x: (q.x * .5 + .5) * width, y: (-q.y * .5 + .5) * height, visible: q.z < 1 && Math.abs(q.x) < 1.02 && q.y > -1.02 && q.y < 1.12 && p.point.distanceTo(pos) < NEAR}; }); },

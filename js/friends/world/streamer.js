@@ -1,14 +1,19 @@
-/* Tile streaming (blueprint 7A): tiles enter and leave the near ring (tile centre ≤ 40 m from Fuchs) and the far ring
-   as Fuchs moves. The camera always looks north from behind Fuchs, so the far ring only holds the tiles it can see: a
-   wedge opening northwards from behind the camera (`setView`), out to where the haze has (almost) covered the ground.
-   Building is time-sliced, tiles ahead of Fuchs are built first, freed tiles dispose their geometry and the last 8
-   freed tiles are kept for quick returns. A tile that appears, changes its detail (near ↔ far) or leaves dissolves
+/* Tile streaming (blueprint 7A): tiles enter and leave the near ring and the far ring as Fuchs moves. The camera always
+   looks north from behind Fuchs, so both rings are shaped by what it can see. The near ring (full detail) is everything
+   within CORE m of Fuchs and, ahead of him, the ground in the camera's view out to REACH m: a wedge as wide as the
+   picture (`setView` near), from NEAR_BACK m behind Fuchs. The far ring holds the tiles in a wider wedge out to where the
+   haze has (almost) covered the ground. So the detail reaches well past the top of the picture, and no full-detail tile
+   is built behind the camera where nothing of it would be seen.
+   Building is time-sliced, tiles in view ahead of Fuchs are built first, freed tiles dispose their geometry and the last
+   8 freed tiles are kept for quick returns. A tile that appears, changes its detail (near ↔ far) or leaves dissolves
    (fade.js) instead of popping; landmarks are built hidden and dissolve in once they are complete and their shaders
    compiled (`prepare`). Materials and textures are shared and never disposed. Region landmarks load with their region. */
 import {THREE} from '../../scene/materials.js';
 import {templates, TILE} from './tiles.js';
 
+// NEAR: characters are drawn and region landmarks built within it (and the near ring is round before the view is known)
 export const NEAR = 40, FAR = 64, SLACK = 2;
+const CORE = 22, REACH = 50, NEAR_BACK = 20, VIEW_AHEAD = 14;
 const centreDistance = (x, z, i, j) => Math.hypot((i + .5) * TILE - x, (j + .5) * TILE - z);
 
 export function createStreamer(world, look, scene, options = {}) {
@@ -19,7 +24,7 @@ export function createStreamer(world, look, scene, options = {}) {
   const all = world.tiles(), live = new Map(), leaving = new Map(), cache = [], jobs = [], regionGroups = new Map(), landmarks = {};
   const root = new THREE.Group(); root.name = 'world'; scene.add(root);
   let lookSteps = [...look.steps, () => templates()], focus = {x: 0, z: 0, ahead: {x: 0, z: 0}}, planned = null, instant = !fades;
-  let far = FAR, view = null;   // view: the camera's wedge, its apex `back` m south of Fuchs, its half-width `tan` per metre
+  let far = FAR, view = null;   // view: the camera's wedges: the far one's apex `back` m south of Fuchs, its half-width `tan` per metre; the near one's `near`
   const key = (i, j, ring) => i + ',' + j + ',' + ring;
   function dispose(group) { group.traverse(o => { if (o.isMesh || o.isPoints) { if (!o.userData.shared) o.geometry.dispose(); if (o.isInstancedMesh) o.dispose(); } }); group.removeFromParent(); }
   /** Can the camera see any of the tile? (`widen` > 1 keeps a tile that is already there a little longer.) */
@@ -28,6 +33,17 @@ export function createStreamer(world, look, scene, options = {}) {
     const ax = focus.x, az = focus.z + view.back, t = view.tan * widen, m = widen > 1 ? 4 : 0;
     for (const cx of [i * TILE, (i + 1) * TILE]) for (const cz of [j * TILE, (j + 1) * TILE]) { const dz = az - cz; if (dz > 0 && Math.abs(cx - ax) < dz * t + m) return true; }
     return ax >= i * TILE && ax < (i + 1) * TILE && az >= j * TILE && az < (j + 1) * TILE;
+  }
+  /** Does the tile belong in the near ring? Within CORE m of Fuchs, or ahead of him in the picture (out to REACH m).
+      `m` widens (a tile that is already near stays a little longer) or narrows it. */
+  function nearWanted(i, j, m = 0) {
+    const d = centreDistance(focus.x, focus.z, i, j);
+    if (!view) return d < NEAR + m;
+    if (d < CORE + m) return true;
+    if (focus.z - (j + .5) * TILE > REACH + m) return false;
+    const ax = focus.x, az = focus.z + NEAR_BACK, t = view.near;
+    for (const cx of [i * TILE, (i + 1) * TILE]) for (const cz of [j * TILE, (j + 1) * TILE]) { const dz = az - cz; if (dz > 0 && Math.abs(cx - ax) < dz * t + m) return true; }
+    return false;
   }
   /* ---------- showing and hiding: a dissolve, or at once while everything is finished in one go ---------- */
   function hide(entry) { entry.group.visible = false; cache.push(entry); while (cache.length > 8) dispose(cache.shift().group); }
@@ -46,11 +62,12 @@ export function createStreamer(world, look, scene, options = {}) {
   function want() {
     const out = new Map(), {x, z, ahead} = focus, building = new Map(jobs.map(b => [b.i + ',' + b.j, b.ring]));
     for (const [i, j] of all) {
-      const d = centreDistance(x, z, i, j), priority = Math.min(d, centreDistance(ahead.x, ahead.z, i, j));
+      // what the camera sees first: round Fuchs, where he is heading and the middle of the picture ahead of him
+      const d = centreDistance(x, z, i, j), priority = Math.min(d, centreDistance(ahead.x, ahead.z, i, j), view ? centreDistance(x, z - VIEW_AHEAD, i, j) : Infinity);
       // Hysteresis also holds for a tile still being built, so a job is not dropped and restarted at a ring edge.
       const current = building.get(i + ',' + j) || live.get(i + ',' + j)?.ring;
-      const nearLimit = current === 'near' ? NEAR + SLACK : NEAR, farLimit = current ? far + SLACK : far;
-      if (d < nearLimit) out.set(i + ',' + j, {i, j, ring: 'near', d: priority});
+      const farLimit = current ? far + SLACK : far;
+      if (nearWanted(i, j, current === 'near' ? SLACK : 0)) out.set(i + ',' + j, {i, j, ring: 'near', d: priority});
       else if (d < farLimit && seen(i, j, current ? 1.12 : 1)) out.set(i + ',' + j, {i, j, ring: 'far', d: priority});
     }
     return out;
@@ -127,8 +144,8 @@ export function createStreamer(world, look, scene, options = {}) {
     },
     /** What the camera can see: the far ring reaches `far` m within the wedge (apex `back` m behind Fuchs, `tan` wide). */
     setView(next) {
-      const same = view && next && Math.abs(view.back - next.back) < .5 && Math.abs(view.tan - next.tan) < .02 && Math.abs(far - next.far) < 1;
-      if (same) return; view = next ? {back: next.back, tan: next.tan} : null; far = next?.far || FAR; planned = null;
+      const same = view && next && Math.abs(view.back - next.back) < .5 && Math.abs(view.tan - next.tan) < .02 && Math.abs(view.near - (next.near ?? next.tan)) < .02 && Math.abs(far - next.far) < 1;
+      if (same) return; view = next ? {back: next.back, tan: next.tan, near: next.near ?? next.tan} : null; far = next?.far || FAR; planned = null;
     },
     get far() { return far; },
     work, pending,
@@ -143,13 +160,18 @@ export function createStreamer(world, look, scene, options = {}) {
       return performance.now() - t0;
     },
     get counts() { let near = 0, farTiles = 0; for (const e of live.values()) e.ring === 'near' ? near++ : farTiles++; return {near, far: farTiles, jobs: jobs.length, leaving: leaving.size}; },
-    /** How far streaming is behind at Fuchs' place: tiles that should be drawn (well inside the far ring) with nothing drawn
-        (holes) and tiles within `inner` m still without their full version (plain ground). Both are 0 when streaming keeps up. */
-    gaps(inner = NEAR - TILE) {
+    /** How far streaming is behind at Fuchs' place: tiles that should be drawn (well inside the rings) with nothing drawn
+        (holes) and tiles `inner` m inside the near ring (or near Fuchs) still without their full version (plain ground).
+        Both are 0 when streaming keeps up. */
+    gaps(inner = TILE) {
       let holes = 0, plain = 0;
-      for (const [i, j] of all) { const d = centreDistance(focus.x, focus.z, i, j), e = live.get(i + ',' + j); if (!e && (d < NEAR - TILE / 2 || (d < far - TILE / 2 && seen(i, j)))) holes++; if (d < inner && e?.ring !== 'near') plain++; }
+      for (const [i, j] of all) { const d = centreDistance(focus.x, focus.z, i, j), e = live.get(i + ',' + j);
+        if (!e && (nearWanted(i, j, -TILE / 2) || (d < far - TILE / 2 && seen(i, j)))) holes++;
+        if (e?.ring !== 'near' && (nearWanted(i, j, -inner) || (d < NEAR - inner && nearWanted(i, j)))) plain++; }
       return {holes, plain};
     },
+    /** Development and tests: is the tile meant to have its full detail now? */
+    nearWanted: (i, j) => nearWanted(i, j),
     terrain() { const out = []; for (const e of live.values()) if (e.ring === 'near') e.group.traverse(o => { if (o.userData.terrain) out.push(o); }); return out; },
   };
 }

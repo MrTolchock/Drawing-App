@@ -44,6 +44,28 @@ export function createTerrain() {
     const scree = sstep(-14, 0, rk.d) * 1.6 * (1 - ramp * .7);
     return scree + body * R.top + body * ((fbm(x * .09 + 3, z * .09) - .5) * 1.6 + (fbm(x * .3, z * .3 + 8) - .5) * .5) + pk;
   }
+  /* Ramps (layout RAMPS): each straight leg between the trail's points carries the height of the way walked so far;
+     where two legs come close (the hairpin) the nearer one decides, and the bank between them is smooth. */
+  const ramps = L.RAMPS.map(r => {
+    const pts = L.TRAILS.find(t => t.id === r.trail).pts.slice(0, L.TRAILS.find(t => t.id === r.trail).ramp), legs = []; let run = 0;
+    for (let i = 0; i < pts.length - 1; i++) { const [ax, az] = pts[i], [bx, bz] = pts[i + 1], len = Math.hypot(bx - ax, bz - az); legs.push({ax, az, bx, bz, s0: run, len}); run += len; }
+    const reach = r.w / 2 + Math.max(r.bank, r.cut ?? r.bank), xs = pts.map(p => p[0]), zs = pts.map(p => p[1]);
+    return {...r, pts, legs, total: run, reach, box: [Math.min(...xs) - reach, Math.max(...xs) + reach, Math.min(...zs) - reach, Math.max(...zs) + reach], h0: null, h1: null};
+  });
+  const rampSeg = {d: 0, t: 0};
+  function ramp(x, z, h) {
+    for (const r of ramps) {
+      if (x < r.box[0] || x > r.box[1] || z < r.box[2] || z > r.box[3]) continue;
+      if (r.h0 === null) { r.h0 = Infinity; const a = rawHill(...r.pts[0]), b = rawHill(...r.pts[r.pts.length - 1]); r.h0 = a; r.h1 = b; }   // the hillside's own heights at the ends
+      if (r.h0 === Infinity) continue;   // (while those are being measured)
+      let most = 0, sum = 0, weights = 0;
+      for (const g of r.legs) { segment(x, z, g.ax, g.az, g.bx, g.bz, rampSeg); if (rampSeg.d >= r.reach) continue;
+        const at = lerp(r.h0, r.h1, (g.s0 + rampSeg.t * g.len) / r.total), w = sstep(r.w / 2 + (h > at ? r.cut ?? r.bank : r.bank), r.w / 2, rampSeg.d); if (w <= 0) continue;
+        const k = w * Math.exp(-4 * rampSeg.d * rampSeg.d) + 1e-9; sum += k * at; weights += k; most = Math.max(most, w); }
+      if (most > 0) h = lerp(h, sum / weights, most);
+    }
+    return h;
+  }
   const meadow = (x, z) => sstep(1.05, .72, Math.hypot((x + 72) / 41, (z + 4) / 37) + (fbm(x * .045 + 11, z * .045 + 3) - .5) * .45);
   /** How far out in the swamp a spot is: 1 at the bog's wobbly outer edge. */
   const swampQ = (x, z) => Math.hypot((x - S.x) / S.rx, (z - S.z) / S.rz) + (fbm(x * .05 + 20, z * .05) - .5) * .35;
@@ -99,7 +121,7 @@ export function createTerrain() {
     const q = swampQ(x, z), sw = sstep(1, .6, q);
     if (q < 1.6) { const bank = sstep(.86, .97, q) * sstep(1.6, 1.15, q); if (bank > 0) h = Math.max(h, lerp(h, S.level + .2, bank)); }
     if (sw > 0) h = lerp(h, S.level + (fbm(x * .085 + 5, z * .085 + 9) - .49) * 1.9 + (fbm(x * .4, z * .4) - .5) * .14, sw);
-    return h;
+    return ramp(x, z, h);
   }
 
   /* ---------- the waterfall: where the Rock's cliff meets the spring ---------- */

@@ -11,7 +11,7 @@ The child loop is:
 1. Start in the den and open the pictured letter.
 2. Walk to the friend on that letter. Only that character can open an approved puzzle. Other characters can be visited but give no puzzle. Direct puzzle routes and the former free-play gallery cannot open extra child rounds.
 3. Solve the five iterations and celebrate. A completed puzzle spends exactly one letter; incorrect answers or reopening unfinished work do not.
-4. If letters remain, walk a short distance (10–13 m, usually ahead in view) to the waiting courier for the next invitation and walk to its friend.
+4. If letters remain, walk a real distance (18–22 m, usually ahead in view; a routed approach 16–25 m where the way bends) to the waiting courier for the next invitation and walk to its friend.
 5. After the final puzzle, the guide points to the den. No more letters or puzzles are available. Walk home; Fuchs lies down to sleep and the game ends.
 
 The sleeping end screen offers only adult settings. Escape, back navigation, refresh and offline reopening cannot grant another letter or restart the game. A parent must start the next journey. Every launch begins inside the den; reopening an unfinished journey retains its existing invitation and remaining allowance.
