@@ -12724,11 +12724,11 @@
     "puzzle:pattern@09b7d16f27da749d": {
       "key": "puzzle:pattern",
       "revision": "09b7d16f27da749d",
-      "status": "approved",
-      "note": "",
-      "at": "2026-11-18T07:59:18.427Z",
+      "status": "improve",
+      "note": "Mit bergmuster zusammenlegen und dem steinbock zuordnen. Rätsel dann hier löschen",
+      "at": "2026-11-19T20:21:24.350Z",
       "seen": true,
-      "operation": "a117d2e2-0d92-499f-b544-178355bbce01"
+      "operation": "49adb340-2f93-46b3-82bb-bf24164decde"
     },
     "nature/clue-0@2691a4b5ea820511": {
       "key": "nature/clue-0",
@@ -17328,6 +17328,258 @@
       "at": "2026-11-18T20:44:54.166Z",
       "seen": true,
       "operation": "5a3210a4-aacb-487a-9b2b-d0ef0527d81c"
+    },
+    "friends-beaver/matrix-0@e032ea99998703ef": {
+      "key": "friends-beaver/matrix-0",
+      "revision": "e032ea99998703ef",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-19T20:16:00.804Z",
+      "seen": true,
+      "operation": "3a1cf5ba-875d-4627-ad43-a68bfb1ded69"
+    },
+    "friends-beaver/matrix-1@0b6208aa3288a56e": {
+      "key": "friends-beaver/matrix-1",
+      "revision": "0b6208aa3288a56e",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-19T20:16:03.599Z",
+      "seen": true,
+      "operation": "8b54ebb9-b8c3-4756-a849-7e3073b3f0b5"
+    },
+    "friends-beaver/matrix-2@456aa397df303d2d": {
+      "key": "friends-beaver/matrix-2",
+      "revision": "456aa397df303d2d",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-19T20:16:06.649Z",
+      "seen": true,
+      "operation": "1c701e7b-cfd9-4666-8c1a-e89e4d79079c"
+    },
+    "friends-beaver/matrix-3@ff121d9abc71b5cc": {
+      "key": "friends-beaver/matrix-3",
+      "revision": "ff121d9abc71b5cc",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-19T20:16:09.847Z",
+      "seen": true,
+      "operation": "5816c736-4a1e-45c9-b041-23dd523bbbeb"
+    },
+    "friends-beaver/matrix-4@23ef655540cf812b": {
+      "key": "friends-beaver/matrix-4",
+      "revision": "23ef655540cf812b",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-19T20:16:14.436Z",
+      "seen": true,
+      "operation": "be22b3ba-a769-452d-b63f-1ed4f24ab7b2"
+    },
+    "friends-beaver/matrix-5@20d2ff100a7b8b4a": {
+      "key": "friends-beaver/matrix-5",
+      "revision": "20d2ff100a7b8b4a",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-19T20:16:16.696Z",
+      "seen": true,
+      "operation": "e630917a-c944-46fa-8345-78c14f4e00a5"
+    },
+    "friends-beaver/matrix-6@1be5fcc2966a1f48": {
+      "key": "friends-beaver/matrix-6",
+      "revision": "1be5fcc2966a1f48",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-19T20:16:19.946Z",
+      "seen": true,
+      "operation": "83095bb7-afcb-4591-a898-fe1a84d4bdd0"
+    },
+    "friends-beaver/matrix-7@6b0e6e2d621246c9": {
+      "key": "friends-beaver/matrix-7",
+      "revision": "6b0e6e2d621246c9",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-19T20:16:22.296Z",
+      "seen": true,
+      "operation": "e4437708-2d31-4a92-8844-453b0a54b610"
+    },
+    "friends-beaver/matrix-8@589d2e2a148f67a6": {
+      "key": "friends-beaver/matrix-8",
+      "revision": "589d2e2a148f67a6",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-19T20:16:25.797Z",
+      "seen": true,
+      "operation": "7e611d53-0991-4072-aa81-802d5e5da210"
+    },
+    "friends-beaver/matrix-9@f6accb45a4192667": {
+      "key": "friends-beaver/matrix-9",
+      "revision": "f6accb45a4192667",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-19T20:16:27.847Z",
+      "seen": true,
+      "operation": "c6b2afdf-e1ab-41de-9cfe-aee320c661f6"
+    },
+    "friends-beaver/matrix-10@306903175f6ded7f": {
+      "key": "friends-beaver/matrix-10",
+      "revision": "306903175f6ded7f",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-19T20:16:30.997Z",
+      "seen": true,
+      "operation": "b2c8998f-92bb-4426-b331-b74cc22f549a"
+    },
+    "friends-beaver/matrix-11@9cef369ca451473e": {
+      "key": "friends-beaver/matrix-11",
+      "revision": "9cef369ca451473e",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-19T20:16:33.031Z",
+      "seen": true,
+      "operation": "5e66315b-76f5-4a9f-9b5c-71f06225b35f"
+    },
+    "friends-beaver/matrix-12@ac9a79704ffac232": {
+      "key": "friends-beaver/matrix-12",
+      "revision": "ac9a79704ffac232",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-19T20:16:35.745Z",
+      "seen": true,
+      "operation": "26eb7516-0afd-474a-b2b1-3998de1b1988"
+    },
+    "friends-beaver/matrix-13@9bdbdd575836ae33": {
+      "key": "friends-beaver/matrix-13",
+      "revision": "9bdbdd575836ae33",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-19T20:16:38.471Z",
+      "seen": true,
+      "operation": "f3c435d0-ac12-4396-a8ad-4099ea05e2b2"
+    },
+    "friends-beaver/matrix-14@9dc30226cc999e74": {
+      "key": "friends-beaver/matrix-14",
+      "revision": "9dc30226cc999e74",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-19T20:16:40.629Z",
+      "seen": true,
+      "operation": "4d09a40e-e095-4f98-9502-77f3893b7de1"
+    },
+    "friends-beaver/matrix-15@96a70117d5cbb255": {
+      "key": "friends-beaver/matrix-15",
+      "revision": "96a70117d5cbb255",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-19T20:16:42.779Z",
+      "seen": true,
+      "operation": "4d33186d-bbdf-48e7-a5d6-0ad3ac306577"
+    },
+    "friends-beaver/matrix-16@6afc94a881d443f6": {
+      "key": "friends-beaver/matrix-16",
+      "revision": "6afc94a881d443f6",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-19T20:16:46.060Z",
+      "seen": true,
+      "operation": "92e7f5bd-f3bd-4194-97d1-d06bde1d2198"
+    },
+    "friends-beaver/matrix-17@58dac73d47fb8157": {
+      "key": "friends-beaver/matrix-17",
+      "revision": "58dac73d47fb8157",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-19T20:16:48.181Z",
+      "seen": true,
+      "operation": "be92f52f-2a8c-4b19-9fc8-358c961455a7"
+    },
+    "friends-beaver/matrix-18@6c2c2f18dc2e7276": {
+      "key": "friends-beaver/matrix-18",
+      "revision": "6c2c2f18dc2e7276",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-19T20:16:51.462Z",
+      "seen": true,
+      "operation": "027a92de-2e07-4a33-9f9e-a1912d492914"
+    },
+    "friends-beaver/matrix-19@dd69b717424b0af7": {
+      "key": "friends-beaver/matrix-19",
+      "revision": "dd69b717424b0af7",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-19T20:16:53.594Z",
+      "seen": true,
+      "operation": "0aee0341-12f9-4452-adc4-735e26b06671"
+    },
+    "friends-beaver/matrix-20@ac2a119b24eb7a5d": {
+      "key": "friends-beaver/matrix-20",
+      "revision": "ac2a119b24eb7a5d",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-19T20:16:55.842Z",
+      "seen": true,
+      "operation": "4e2fa4c6-f7d8-4893-af9c-b932783b70fe"
+    },
+    "friends-beaver/matrix-21@ae9c38aa7892ef7c": {
+      "key": "friends-beaver/matrix-21",
+      "revision": "ae9c38aa7892ef7c",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-19T20:17:00.811Z",
+      "seen": true,
+      "operation": "0d1b95ae-1fbc-4316-8ec1-9bfd3fa36303"
+    },
+    "friends-beaver/matrix-22@9feea905d2e2ea5f": {
+      "key": "friends-beaver/matrix-22",
+      "revision": "9feea905d2e2ea5f",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-19T20:17:04.076Z",
+      "seen": true,
+      "operation": "070abfc7-c5d7-48cf-95c3-92d6583d228c"
+    },
+    "friends-beaver/matrix-23@67ee9334d304ae7e": {
+      "key": "friends-beaver/matrix-23",
+      "revision": "67ee9334d304ae7e",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-19T20:17:06.325Z",
+      "seen": true,
+      "operation": "1423be54-8cee-419b-aff3-532e047d7cfe"
+    },
+    "friends-beaver/matrix-24@b443d11eaf3bd678": {
+      "key": "friends-beaver/matrix-24",
+      "revision": "b443d11eaf3bd678",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-19T20:17:09.329Z",
+      "seen": true,
+      "operation": "db4c4278-3a25-4f11-bf3e-70a634d39a5f"
+    },
+    "puzzle:friends-beaver@61e3a0869fd148bc": {
+      "key": "puzzle:friends-beaver",
+      "revision": "61e3a0869fd148bc",
+      "status": "improve",
+      "note": "Pro zeile werden immer nur zwei verschiedene gegenstände verwendet. Füge variation bei den iterationen ein, das es auch solche gibt mit drei gegenständen pro zeile",
+      "at": "2026-11-19T20:18:06.771Z",
+      "seen": true,
+      "operation": "9e9374b5-ce0a-4216-9fc9-0fd6e5cb1fdf"
+    },
+    "puzzle:friends-mouse@da668879caf11043": {
+      "key": "puzzle:friends-mouse",
+      "revision": "da668879caf11043",
+      "status": "improve",
+      "note": "Nummierung von iterationen falsch, es steht 1/50 bei erster iteration, obwohl es 74 iterationen sind",
+      "at": "2026-11-19T20:19:11.487Z",
+      "seen": true,
+      "operation": "936b90c0-5450-4e84-b6dd-0a4b76364a69"
+    },
+    "puzzle:nature@e823f2d8993a65d0": {
+      "key": "puzzle:nature",
+      "revision": "e823f2d8993a65d0",
+      "status": "improve",
+      "note": "In fragen umwandeln und zu tierrätsel hinzufügen als iterationen. Dann rätsel löschen",
+      "at": "2026-11-19T20:25:09.929Z",
+      "seen": true,
+      "operation": "03b34a5c-5f38-454e-909f-2b0214929ee9"
     }
   },
   "history": [
@@ -17546,9 +17798,23 @@
       "at": "2026-11-18T20:34:47.916Z",
       "seen": true,
       "operation": "02ee29c3-a5d4-4e9d-9ba9-39ff4d6835c2"
+    },
+    {
+      "key": "puzzle:pattern",
+      "revision": "09b7d16f27da749d",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-18T07:59:18.427Z",
+      "seen": true,
+      "operation": "a117d2e2-0d92-499f-b544-178355bbce01"
     }
   ],
   "deletedNotes": [
+    {
+      "key": "add/1-2",
+      "note": "Entferne tiere auf feldern jeweils und setze äpfel ins zentrum",
+      "at": "2026-11-19T20:22:11.429Z"
+    },
     {
       "key": "compare/1-1",
       "note": "Hier sind mehr text braucht es nicht",
@@ -17630,9 +17896,19 @@
       "at": "2026-11-17T20:32:32.887Z"
     },
     {
+      "key": "friends-hedgehog/riddle-16",
+      "note": "Change dachs, im not sure maybe has white tipped tail as well",
+      "at": "2026-11-19T20:19:26.294Z"
+    },
+    {
       "key": "friends-hedgehog/riddle-17",
       "note": "Use only swiss forest animals not elephant and stuff",
       "at": "2026-11-17T20:32:30.138Z"
+    },
+    {
+      "key": "friends-hedgehog/riddle-18",
+      "note": "Die frage ist schlechtes deutsch",
+      "at": "2026-11-19T20:19:28.316Z"
     },
     {
       "key": "friends-hedgehog/riddle-24",
@@ -17705,6 +17981,11 @@
       "at": "2026-11-18T08:01:45.411Z"
     },
     {
+      "key": "nature/clue-18",
+      "note": "Schlechtes deutsch, anpassen",
+      "at": "2026-11-19T20:22:37.827Z"
+    },
+    {
       "key": "nature/clue-20",
       "note": "Nicht ohne wasser auskommen, sondern ohne zu trinken",
       "at": "2026-11-18T08:01:44.877Z"
@@ -17735,6 +18016,11 @@
       "at": "2026-11-18T08:09:24.583Z"
     },
     {
+      "key": "puzzle:count",
+      "note": "Auch hier markierungen für käfer entfernen, wenn man draufklickt",
+      "at": "2026-11-19T20:21:45.552Z"
+    },
+    {
       "key": "puzzle:friends-beaver",
       "note": "Reihen sind immer kreis, dreieck und quadrat. Beim fehlenden zeichen muss man gar nicht wissen, was erste zwei reihen zeigen. Besser wäre ein muster in ersten zwei reihen das in dritter weitergeführt wird, bsw. Immer zwei dreiecke und ein kreis, in unterschiedlichen reihenfolgen, und in letzter zeile muss ergänzt werden",
       "at": "2026-11-18T07:47:44.321Z"
@@ -17755,9 +18041,19 @@
       "at": "2026-11-18T07:43:37.226Z"
     },
     {
+      "key": "puzzle:nature",
+      "note": "Nehme nur einen satz pro rätsel, nicht zwei.",
+      "at": "2026-11-19T20:22:39.462Z"
+    },
+    {
       "key": "puzzle:picnic",
       "note": "Ist cooles rätsel. Passe aber green check mark an bei erfolg, passt dort wo es ist irgendwie nicht richtig hin, weil es auf das rechte bild referenziert",
       "at": "2026-11-18T20:12:49.624Z"
+    },
+    {
+      "key": "puzzle:picnic",
+      "note": "Nehme tastaturteil aus vorlesetext heraus. Generell im ganzen spiel verwende keine tastatur, nirgends.",
+      "at": "2026-11-19T20:26:06.049Z"
     },
     {
       "key": "puzzle:robot",
