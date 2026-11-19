@@ -18462,6 +18462,15 @@
       "at": "2026-11-19T20:37:49.842Z",
       "seen": true,
       "operation": "d8d1cb5a-6d56-4345-a31f-d494be38aed3"
+    },
+    "neighbours/1-left@007228f83eb4f354": {
+      "key": "neighbours/1-left",
+      "revision": "007228f83eb4f354",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-19T20:37:56.707Z",
+      "seen": true,
+      "operation": "4abb3155-50c5-4fb3-af4c-68868dc85ec6"
     }
   },
   "history": [
