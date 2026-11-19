@@ -18453,6 +18453,15 @@
       "at": "2026-11-19T20:37:16.860Z",
       "seen": true,
       "operation": "6cdd1d60-3a16-4380-b79f-5aff92ad72c0"
+    },
+    "neighbours/1-both@60365f0478f55d7e": {
+      "key": "neighbours/1-both",
+      "revision": "60365f0478f55d7e",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-19T20:37:49.842Z",
+      "seen": true,
+      "operation": "d8d1cb5a-6d56-4345-a31f-d494be38aed3"
     }
   },
   "history": [
