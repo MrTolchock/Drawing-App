@@ -32,6 +32,9 @@ function solid(buf, geo, colour) {
   buf.n += p.count; geo.dispose();
 }
 const BIRCH = C('#f1ece0'), BIRCH_D = C('#3b352d'), SNAG = C('#9a9384'), SNAG_D = C('#6c6659'), SPRUCE_BARK = C('#c9a58a');
+/* What the near ring's plants look like from afar, for the far ring's ground: the grass's sunny blades, the meadow's
+   warm tall grass, and its drifts of flowers (the same drifts as in the near ring: kind, colour) as soft patches. */
+const COVER = {grass: C('#a6c45a'), meadow: C('#cdc479')}, FAR_FLOWERS = [[0, C('#f3efe2')], [1, C('#e7c53c')], [2, C('#8d7cd0')], [3, C('#d77fa6')], [4, C('#d8452e')], [5, C('#4b6bd2')]];
 
 /* ---------- the water material: flowing streams and still pools in one shader ---------- */
 export function waterMaterial(look, fog) {
@@ -346,6 +349,15 @@ export function* buildBigTile(world, look, i, j, ring) {
   }
 
   /* ---------- the far ring: one mesh ---------- */
+  // The ground takes on the colour of what grows on it in the near ring (not on paths, water or snow), so the land
+  // beyond it does not look bare and the two rings meet without a seam of plain green.
+  function farCover(x, z) {
+    const s0 = T.site(x, z); if (s0.pd < s0.pw / 2 + .3 || s0.sd - s0.sw / 2 < .5 || s0.still - s0.h > -.03 || T.cave(x, z).k > .05) return;
+    T.biome(x, z, bm); if (bm.snow > .05) return;
+    const md = bm.meadow, grass = Math.max(0, 1 - bm.spruce * .62 - bm.rock * .8 - bm.swamp * .35);
+    tone.lerp(COVER.grass, .32 * grass * (1 - md)).lerp(COVER.meadow, .5 * md);
+    if (md > .05) for (const [kind, c] of FAR_FLOWERS) { if (kind > 3 && md < .3) continue; const drift = fbm(x * .16 + kind * 7.1, z * .16 - kind * 3.3) - lerp(.58, .47, md); if (drift > 0) tone.lerp(c, Math.min(.42, drift * 2.6) * md); }
+  }
   function* farTile() {
     const far = new Buffer(), N = FAR_GRID + 1, W = N + 2, step = TILE / FAR_GRID, H = new Float32Array(W * W), dim = .9;
     for (let r = -1; r <= N; r++) for (let k = -1; k <= N; k++) H[(r + 1) * W + k + 1] = T.ground(x0 + k * step, z0 + r * step);
@@ -353,7 +365,7 @@ export function* buildBigTile(world, look, i, j, ring) {
     const base = far.n; far.grow(base + N * N + 4 * N, far.ni + FAR_GRID * FAR_GRID * 6 + 4 * FAR_GRID * 6);
     for (let r = 0; r < N; r++) for (let k = 0; k < N; k++) {
       const x = x0 + k * step, z = z0 + r * step, hx = H[(r + 1) * W + k + 2] - H[(r + 1) * W + k], hz = H[(r + 2) * W + k + 1] - H[r * W + k + 1], l = Math.hypot(hx, 2 * step, hz), v = base + r * N + k, up = 2 * step / l;
-      T.colour(x, z, tone); T.cliff(x, z, up, tone);
+      T.colour(x, z, tone); farCover(x, z); T.cliff(x, z, up, tone);
       far.pos[v * 3] = x; far.pos[v * 3 + 1] = H[(r + 1) * W + k + 1]; far.pos[v * 3 + 2] = z; far.nor[v * 3] = -hx / l; far.nor[v * 3 + 1] = up; far.nor[v * 3 + 2] = -hz / l; far.uv[v * 2] = WHITE_UV[0]; far.uv[v * 2 + 1] = WHITE_UV[1]; far.col[v * 3] = tone.r * dim; far.col[v * 3 + 1] = tone.g * dim; far.col[v * 3 + 2] = tone.b * dim;
     }
     for (let r = 0; r < FAR_GRID; r++) for (let k = 0; k < FAR_GRID; k++) { const a = base + r * N + k, b = a + 1, d = a + N, e = d + 1; far.idx[far.ni++] = a; far.idx[far.ni++] = d; far.idx[far.ni++] = b; far.idx[far.ni++] = b; far.idx[far.ni++] = d; far.idx[far.ni++] = e; }

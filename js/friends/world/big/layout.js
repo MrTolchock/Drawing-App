@@ -74,7 +74,15 @@ export const TRAILS = [
   {id: 'owl-falls', pts: [[84.5, -4.5], [80, -22], [71, -35], [62.5, -41], [58.6, -42.6]], w: .75},
   {id: 'cave', pts: [[80, -22], [83.5, -33], [87, -44], [88, -53.5]], w: .7},
   {id: 'ibex', pts: [[73.6, -61.65], [72.9, -59.4], [71.5, -57], [71.6, -54.8], [73, -53.9], [74.4, -53.8]], w: .7},   // from the bridging stone round the Steinbock's crag to the rim in front of it
+  // up from the cave's path, a few steps before its mouth: a ledge across the Rock's face with one hairpin, to the rim beside
+  // the Steinbock's crag (the first `ramp` points are graded into the slope, see RAMPS)
+  {id: 'ibex-cave', pts: [[86.7, -47.3], [71.6, -50.5], [79.6, -53.1], [77.4, -54.5], [74.4, -53.8]], w: .7, ramp: 4},
 ];
+/* Trails graded into steep ground so that Fuchs can climb it: along the first `ramp` points of the trail the ground
+   rises evenly (by the way walked) from its own height at the first point to its own height at the last, `w` metres
+   wide. Below the way it is built up and meets the hillside over `bank` metres; above it the way is cut into the rock,
+   which stands steeply over it (`cut` metres), so the rim above stays as it was. */
+export const RAMPS = [{trail: 'ibex-cave', w: 2, bank: 1.8, cut: .9}];
 
 /* Ways across water. `at` is snapped to the named stream; boardwalk planks are given end to end. */
 export const CROSSINGS = [
