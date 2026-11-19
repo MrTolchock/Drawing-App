@@ -1,0 +1,51 @@
+{
+  "format": "waldpost-image-generation-record",
+  "version": 1,
+  "id": "expansion-nature-cycles",
+  "style": "waldpost-watercolour-pencil-v1",
+  "date": "2026-11-19",
+  "tool": "ChatGPT image_gen.imagegen",
+  "source": "design/illustrations/sources/expansion-2026-11-19/expansion-nature-cycles.png",
+  "sourceSha256": "bac270fa35b8df20d9f9e0f1d40a1575ad1e56a4a832882d7b52596a57a06c1c",
+  "request": {
+    "prompt": "WALDPOST CANONICAL ILLUSTRATION STYLE — waldpost-watercolour-pencil-v1\n\nUse the supplied canonical animals.png and objects.png reference images as the authority for drawing technique. They show the predominant style of the current Waldpost gallery. Match their actual pixels, not an imagined style suggested by a filename.\n\nDraw warm children's picture-book watercolour finished with visible coloured-pencil strokes. Use light, gently uneven washes, organic sepia contours, delicate hatching, softly irregular edges and modest drawn shading. Surfaces look painted and pencilled, with paper grain within the illustration. Keep the warmth of cream, honey brown, restrained sage and blue, while preserving every exact colour required by a task. Subjects remain friendly, recognizable and anatomically believable.\n\nDo not turn the drawing into a 3D render, plush toy, clay or felt craft, photograph, glossy object, embossed surface or studio-lit miniature. Avoid deep ambient-occlusion shadows, inflated forms and realistic material microtexture. Do not mix in another illustration technique or use historical artwork as a style reference.\n\nThe role instructions below set the necessary detail and composition within this one style. Learning pictures retain fine drawn contours; small navigation symbols use the approved simpler, broader shapes and flat fills in the same palette. Keep the existing rendered game-character identities separate from image-generated learning subjects. Exact geometry and handwriting remain authored paths.\n\nPreserve subject identity, counted quantities, exact answer colours and action differences. Use real alpha for isolated pictures and stationery, and an opaque canvas only when the selected role requires a scene or branding image. No accidental background, halo, visible grid, labels or extra objects.\n\nROLE: learning\nMatch the canonical watercolour and coloured-pencil technique closely: fine organic contours, uneven washes and gentle drawn volume. Keep accurate species, action contrasts, one counted object per item and exact answer colours. Use transparent square cells, generous gutters and complete silhouettes.\n\nFRAMING AND EDGE QUALITY:\nCompare related pictures side by side at the size used in the game. For square cells, draw the complete silhouette with enough transparent space to pack it centred on both axes, with its longest visible side about 80% of the cell. Keep its proportions and use comparable visual weight for neighbouring answers. Reuse the same painting when a subject and pose recur. Leave genuine alpha around every isolated subject and retain the soft pencil edges. Inspect on light and dark backgrounds for pale matte, clipped outlines, stray pixels and neighbouring subjects. In a cell repair, preserve the pixels and positions of the other cells. Scenes and irregular layouts follow their role and brief.\n\nATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:\n1. design/illustrations/references/watercolour-pencil-v1/animals.png — canonical-style: canonical drawing technique for animals; fixed majority-style pixels\n2. design/illustrations/references/watercolour-pencil-v1/objects.png — canonical-style: canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels\n\nSUBJECT AND LAYOUT BRIEF:\nCreate a NEW extension sheet for the Waldpost woodland learning-picture library. Match the two supplied canonical reference images in their warm watercolour and visible coloured-pencil finish. These are isolated learning pictures, suitable for later vocabulary, sorting, matching, observation and sequence puzzles. No labels, text, numerals, frames, badges, faces on objects or decorative extras.\n\nLAYOUT: a square canvas divided into EXACTLY 4 equal columns and 4 equal rows (16 equal square cells). Draw exactly 15 independent complete subjects in row-major order below. Leave row 4 column 4 completely transparent. Each subject stays inside its own square with at least 12% clear space on each side. Centre each subject in its cell; keep every ear, root, handle, tail and wing intact. No overlapping cells, ground plane or backdrop. Genuine alpha zero around all paintings, including open handles; no painted checkerboard or paper rectangle. Gentle pencil texture remains inside the subject.\n\nRow 1, column 1: oak-sprouting-acorn (Eichel keimt) — one sprouting acorn with split shell and small white root, isolated botanical specimen.\nRow 1, column 2: oak-seedling (Junge Eiche) — one young oak seedling with two lobed green leaves and acorn at its base, tiny soil patch.\nRow 1, column 3: oak-sapling (Eichenbäumchen) — one knee-high oak sapling with slender woody stem and several lobed leaves.\nRow 1, column 4: bean-dry-seed (Bohnensamen) — one dry mottled brown kidney-bean seed, no face.\nRow 2, column 1: bean-rooting-seed (Bohne keimt) — one split bean seed with one white root and curved pale-green shoot.\nRow 2, column 2: bean-first-leaves (Bohnentrieb) — one young bean shoot with two opened green seed leaves above a tiny soil patch.\nRow 2, column 3: bean-flowering (Bohne blüht) — one compact bean plant with green leaves and two small white flowers, tiny soil patch.\nRow 2, column 4: bean-with-pods (Bohnenpflanze) — one compact bean plant with green leaves and two hanging green pods, tiny soil patch.\nRow 3, column 1: butterfly-eggs (Schmetterlingseier) — one green leaf bearing a small cluster of pale butterfly eggs, one life-cycle specimen.\nRow 3, column 2: butterfly-chrysalis (Schmetterlingspuppe) — one green butterfly chrysalis hanging from a short twig.\nRow 3, column 3: tadpole (Kaulquappe) — one dark tadpole with round head and a long finned tail, no legs.\nRow 3, column 4: tadpole-hindlegs (Kaulquappe mit Hinterbeinen) — one tadpole with exactly two newly grown hind legs and a long tail.\nRow 4, column 1: froglet (Jungfrosch) — one tiny green froglet with four legs and a short remaining tail.\nRow 4, column 2: apple-blossom (Apfelblüte) — one apple twig bearing one five-petalled pale pink blossom.\nRow 4, column 3: apple-unripe (Unreifer Apfel) — one small unripe green apple attached to a short twig and leaf.\n\nRow 4, column 4: EMPTY, fully transparent. Use a consistent woodland picture-book scale; keep shapes clear and recognizable at 80–120 pixels. All names and IDs above are instructions only and must never be drawn.\n\nSTYLE PRIORITY: The brief changes subjects and layout only. Keep waldpost-watercolour-pencil-v1 and the supplied canonical reference technique throughout; do not import the style of a composition-only reference.\n",
+    "referenced_image_paths": [
+      "/workspace/Drawing-App/design/illustrations/references/watercolour-pencil-v1/animals.png",
+      "/workspace/Drawing-App/design/illustrations/references/watercolour-pencil-v1/objects.png"
+    ],
+    "transparent_background": true
+  },
+  "references": [
+    {
+      "path": "design/illustrations/references/watercolour-pencil-v1/animals.png",
+      "sha256": "65867082294d157ab4ffbe33926857272625ef3c25cdb7cab81c2a4ea73d9316",
+      "purpose": "canonical drawing technique for animals; fixed majority-style pixels",
+      "usage": "canonical-style"
+    },
+    {
+      "path": "design/illustrations/references/watercolour-pencil-v1/objects.png",
+      "sha256": "0bb37d6fc82c75034eddf30da2cc57c546dd8bc70d246aeeda85b637bd87dd80",
+      "purpose": "canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels",
+      "usage": "canonical-style"
+    }
+  ],
+  "subjects": [
+    "oak-sprouting-acorn",
+    "oak-seedling",
+    "oak-sapling",
+    "bean-dry-seed",
+    "bean-rooting-seed",
+    "bean-first-leaves",
+    "bean-flowering",
+    "bean-with-pods",
+    "butterfly-eggs",
+    "butterfly-chrysalis",
+    "tadpole",
+    "tadpole-hindlegs",
+    "froglet",
+    "apple-blossom",
+    "apple-unripe"
+  ],
+  "preparation": "design/illustrations/expansion-nature-cycles.json",
+  "selectedForLibrary": true
+}

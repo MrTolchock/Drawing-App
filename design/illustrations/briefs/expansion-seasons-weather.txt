@@ -1,0 +1,21 @@
+Create a NEW extension sheet for the Waldpost woodland learning-picture library. Match the two supplied canonical reference images in their warm watercolour and visible coloured-pencil finish. These are isolated learning pictures, suitable for later vocabulary, sorting, matching, observation and sequence puzzles. No labels, text, numerals, frames, badges, faces on objects or decorative extras.
+
+LAYOUT: a square canvas divided into EXACTLY 4 equal columns and 4 equal rows (16 equal square cells). Draw exactly 15 independent complete subjects in row-major order below. Leave row 4 column 4 completely transparent. Each subject stays inside its own square with at least 12% clear space on each side. Centre each subject in its cell; keep every ear, root, handle, tail and wing intact. No overlapping cells, ground plane or backdrop. Genuine alpha zero around all paintings, including open handles; no painted checkerboard or paper rectangle. Gentle pencil texture remains inside the subject.
+
+Row 1, column 1: umbrella (Regenschirm) — one open blue umbrella with curved wooden handle.
+Row 1, column 2: rain-boot (Gummistiefel) — one single yellow rain boot.
+Row 1, column 3: raincoat (Regenmantel) — one yellow hooded raincoat shown empty, front view.
+Row 1, column 4: mitten (Fausthandschuh) — one red mitten with a single thumb.
+Row 2, column 1: woolly-hat (Wollmütze) — one sage-green woolly hat with a small pompom.
+Row 2, column 2: woolly-sock (Wollsocke) — one red striped woolly sock.
+Row 2, column 3: sun-hat (Sonnenhut) — one cream broad-brimmed sun hat with a sage ribbon.
+Row 2, column 4: sunglasses (Sonnenbrille) — one pair of brown round sunglasses.
+Row 3, column 1: snowflake (Schneeflocke) — one pale blue six-armed snowflake with pencilled delicate branches.
+Row 3, column 2: icicle (Eiszapfen) — one pale blue pointed icicle.
+Row 3, column 3: snowball (Schneeball) — one round white snowball with gentle pale-blue pencilled shading.
+Row 3, column 4: puddle (Pfütze) — one small blue rain puddle with a soft irregular outline, no scenery.
+Row 4, column 1: rainbow-arch (Regenbogen) — one complete pastel rainbow arch, red outer band through violet inner band, transparent centre.
+Row 4, column 2: wind-leaves (Wind) — one small gust represented by three curled sepia pencil air lines carrying three autumn leaves.
+Row 4, column 3: frost-leaf (Raureif) — one green leaf edged with fine white and pale-blue frost crystals.
+
+Row 4, column 4: EMPTY, fully transparent. Use a consistent woodland picture-book scale; keep shapes clear and recognizable at 80–120 pixels. All names and IDs above are instructions only and must never be drawn.

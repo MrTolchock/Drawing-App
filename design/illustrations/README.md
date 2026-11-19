@@ -15,7 +15,9 @@ node tools/illustrations/style.cjs --request layout-repair
 
 The JSON output contains the complete prompt, absolute paths of the actual reference images, and `transparent_background`. Supply these to the available image-generation/editing service. It is a local request-preparation tool, not an image model or service client. Keep the two canonical images first when adding a current edit target. No archived artwork is a generation-style input.
 
-Every existing atlas has a specific request with the same ID as the sheet, including the older vocabulary, animal and menu sheets. The [complete generator-input index](../artwork/GENERATOR-INPUTS.md) lists all 18 and supplies portable full requests for any AI model. Use `subject-sheet` only as a template for new subjects; `layout-repair` and `transparency-repair` need an explicit current target. Read the subject/layout brief, fill any generic placeholders and regenerate complete prompts before use. Change subjects/layout in `briefs/`, not the generated `prompts/` files. Every request retains the current style and final style-priority instruction.
+Every existing atlas has a specific request with the same ID as the sheet, including the older vocabulary, animal and menu sheets. The [complete generator-input index](../artwork/GENERATOR-INPUTS.md) lists all 29 and supplies portable full requests for any AI model. Use `subject-sheet` only as a template for new subjects; `layout-repair` and `transparency-repair` need an explicit current target. Read the subject/layout brief, fill any generic placeholders and regenerate complete prompts before use. Change subjects/layout in `briefs/`, not the generated `prompts/` files. Every request retains the current style and final style-priority instruction.
+
+The [150-picture woodland expansion](EXPANSION-2026-11-19.md) adds ten reusable sets for later puzzles, with German labels, stable IDs and complete source records.
 
 ## Prepare and integrate
 

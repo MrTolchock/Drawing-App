@@ -1,0 +1,3097 @@
+{
+  "images": [
+    {
+      "id": "badger",
+      "meanPixelError": 0.337532286637727,
+      "corners": 0,
+      "visible": 28924,
+      "extent": 0.802547770700637,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "giraffe",
+      "meanPixelError": 0.197881590869136,
+      "corners": 0,
+      "visible": 15631,
+      "extent": 0.802547770700637,
+      "centre": [
+        0.4984076433121019,
+        0.5
+      ]
+    },
+    {
+      "id": "jacket",
+      "meanPixelError": 0.3697749739678418,
+      "corners": 0,
+      "visible": 34897,
+      "extent": 0.7993630573248408,
+      "centre": [
+        0.5015923566878981,
+        0.5015923566878981
+      ]
+    },
+    {
+      "id": "monkey",
+      "meanPixelError": 0.4340034078461601,
+      "corners": 0,
+      "visible": 38036,
+      "extent": 0.7993630573248408,
+      "centre": [
+        0.5,
+        0.4984076433121019
+      ]
+    },
+    {
+      "id": "whale",
+      "meanPixelError": 0.23450917549055406,
+      "corners": 0,
+      "visible": 21274,
+      "extent": 0.802547770700637,
+      "centre": [
+        0.5,
+        0.4984076433121019
+      ]
+    },
+    {
+      "id": "cat",
+      "meanPixelError": 0.31468822264594914,
+      "corners": 0,
+      "visible": 26704,
+      "extent": 0.7993630573248408,
+      "centre": [
+        0.5015923566878981,
+        0.5015923566878981
+      ]
+    },
+    {
+      "id": "dog",
+      "meanPixelError": 0.39871461993049073,
+      "corners": 0,
+      "visible": 34666,
+      "extent": 0.7993630573248408,
+      "centre": [
+        0.5,
+        0.5015923566878981
+      ]
+    },
+    {
+      "id": "fox-animal",
+      "meanPixelError": 0.36773297091159884,
+      "corners": 0,
+      "visible": 32239,
+      "extent": 0.7993630573248408,
+      "centre": [
+        0.4984076433121019,
+        0.5015923566878981
+      ]
+    },
+    {
+      "id": "rabbit",
+      "meanPixelError": 0.2724451296198629,
+      "corners": 0,
+      "visible": 25865,
+      "extent": 0.7993630573248408,
+      "centre": [
+        0.5015923566878981,
+        0.5015923566878981
+      ]
+    },
+    {
+      "id": "mouse",
+      "meanPixelError": 0.3471033307639255,
+      "corners": 0,
+      "visible": 31307,
+      "extent": 0.7993630573248408,
+      "centre": [
+        0.5,
+        0.4984076433121019
+      ]
+    },
+    {
+      "id": "penguin",
+      "meanPixelError": 0.27829391320810853,
+      "corners": 0,
+      "visible": 28070,
+      "extent": 0.7961783439490446,
+      "centre": [
+        0.4984076433121019,
+        0.5
+      ]
+    },
+    {
+      "id": "bean",
+      "meanPixelError": 0.38323731862009275,
+      "corners": 0,
+      "visible": 35933,
+      "extent": 0.7993630573248408,
+      "centre": [
+        0.4984076433121019,
+        0.5
+      ]
+    },
+    {
+      "id": "seedling",
+      "meanPixelError": 0.24107468862834192,
+      "corners": 0,
+      "visible": 21889,
+      "extent": 0.7993630573248408,
+      "centre": [
+        0.5015923566878981,
+        0.5
+      ]
+    },
+    {
+      "id": "sunset",
+      "meanPixelError": 0.3670939997565824,
+      "corners": 0,
+      "visible": 37893,
+      "extent": 0.7961783439490446,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "water",
+      "meanPixelError": 0.27028141777218817,
+      "corners": 0,
+      "visible": 27258,
+      "extent": 0.802547770700637,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "apricot",
+      "meanPixelError": 0.217578125,
+      "corners": 0,
+      "visible": 50211,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "beetroot",
+      "meanPixelError": 0.13241861979166666,
+      "corners": 0,
+      "visible": 29272,
+      "extent": 0.8,
+      "centre": [
+        0.4984375,
+        0.5
+      ]
+    },
+    {
+      "id": "cherry",
+      "meanPixelError": 0.09574544270833334,
+      "corners": 0,
+      "visible": 16206,
+      "extent": 0.8,
+      "centre": [
+        0.5015625,
+        0.5
+      ]
+    },
+    {
+      "id": "cucumber",
+      "meanPixelError": 0.12279296875,
+      "corners": 0,
+      "visible": 23388,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "leek",
+      "meanPixelError": 0.09045247395833333,
+      "corners": 0,
+      "visible": 20299,
+      "extent": 0.8,
+      "centre": [
+        0.4984375,
+        0.5
+      ]
+    },
+    {
+      "id": "lemon",
+      "meanPixelError": 0.16452799479166666,
+      "corners": 0,
+      "visible": 38247,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "lettuce",
+      "meanPixelError": 0.2238671875,
+      "corners": 0,
+      "visible": 39195,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.4984375
+      ]
+    },
+    {
+      "id": "onion",
+      "meanPixelError": 0.1294140625,
+      "corners": 0,
+      "visible": 29396,
+      "extent": 0.8,
+      "centre": [
+        0.4984375,
+        0.5
+      ]
+    },
+    {
+      "id": "pea-pod",
+      "meanPixelError": 0.13008138020833335,
+      "corners": 0,
+      "visible": 22951,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "plum",
+      "meanPixelError": 0.15728190104166667,
+      "corners": 0,
+      "visible": 34935,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "potato",
+      "meanPixelError": 0.16543619791666667,
+      "corners": 0,
+      "visible": 37276,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "pumpkin",
+      "meanPixelError": 0.213173828125,
+      "corners": 0,
+      "visible": 43058,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.4984375
+      ]
+    },
+    {
+      "id": "radish",
+      "meanPixelError": 0.119990234375,
+      "corners": 0,
+      "visible": 24422,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "red-pepper",
+      "meanPixelError": 0.21375325520833333,
+      "corners": 0,
+      "visible": 37704,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "walnut",
+      "meanPixelError": 0.22037434895833333,
+      "corners": 0,
+      "visible": 45898,
+      "extent": 0.796875,
+      "centre": [
+        0.4984375,
+        0.5
+      ]
+    },
+    {
+      "id": "bumblebee",
+      "meanPixelError": 0.166728515625,
+      "corners": 0,
+      "visible": 30931,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.4984375
+      ]
+    },
+    {
+      "id": "dipper",
+      "meanPixelError": 0.10341796875,
+      "corners": 0,
+      "visible": 22134,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.4984375
+      ]
+    },
+    {
+      "id": "dragonfly",
+      "meanPixelError": 0.127861328125,
+      "corners": 0,
+      "visible": 22201,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.4984375
+      ]
+    },
+    {
+      "id": "duckling",
+      "meanPixelError": 0.11168294270833333,
+      "corners": 0,
+      "visible": 27302,
+      "extent": 0.8,
+      "centre": [
+        0.4984375,
+        0.5
+      ]
+    },
+    {
+      "id": "earthworm",
+      "meanPixelError": 0.07050130208333333,
+      "corners": 0,
+      "visible": 15067,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.4984375
+      ]
+    },
+    {
+      "id": "fire-salamander",
+      "meanPixelError": 0.10227864583333333,
+      "corners": 0,
+      "visible": 21686,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "grasshopper",
+      "meanPixelError": 0.108125,
+      "corners": 0,
+      "visible": 19970,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.4984375
+      ]
+    },
+    {
+      "id": "heron",
+      "meanPixelError": 0.08755859375,
+      "corners": 0,
+      "visible": 17045,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "moth",
+      "meanPixelError": 0.13725911458333334,
+      "corners": 0,
+      "visible": 28300,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.4984375
+      ]
+    },
+    {
+      "id": "newt",
+      "meanPixelError": 0.08260416666666667,
+      "corners": 0,
+      "visible": 16949,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.4984375
+      ]
+    },
+    {
+      "id": "otter",
+      "meanPixelError": 0.14069661458333332,
+      "corners": 0,
+      "visible": 28930,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.4984375
+      ]
+    },
+    {
+      "id": "stag-beetle",
+      "meanPixelError": 0.09017252604166667,
+      "corners": 0,
+      "visible": 17507,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "stork",
+      "meanPixelError": 0.08124674479166667,
+      "corners": 0,
+      "visible": 18215,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "toad",
+      "meanPixelError": 0.16105143229166666,
+      "corners": 0,
+      "visible": 34938,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.4984375
+      ]
+    },
+    {
+      "id": "woodlouse",
+      "meanPixelError": 0.08609049479166667,
+      "corners": 0,
+      "visible": 16593,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "apple-blossom",
+      "meanPixelError": 0.16662760416666667,
+      "corners": 0,
+      "visible": 35371,
+      "extent": 0.8,
+      "centre": [
+        0.4984375,
+        0.5
+      ]
+    },
+    {
+      "id": "apple-unripe",
+      "meanPixelError": 0.171005859375,
+      "corners": 0,
+      "visible": 33105,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.4984375
+      ]
+    },
+    {
+      "id": "bean-dry-seed",
+      "meanPixelError": 0.15393880208333333,
+      "corners": 0,
+      "visible": 35199,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "bean-first-leaves",
+      "meanPixelError": 0.10312825520833334,
+      "corners": 0,
+      "visible": 20243,
+      "extent": 0.8,
+      "centre": [
+        0.4984375,
+        0.5
+      ]
+    },
+    {
+      "id": "bean-flowering",
+      "meanPixelError": 0.14408854166666665,
+      "corners": 0,
+      "visible": 27819,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "bean-rooting-seed",
+      "meanPixelError": 0.09264322916666666,
+      "corners": 0,
+      "visible": 19962,
+      "extent": 0.8,
+      "centre": [
+        0.4984375,
+        0.5
+      ]
+    },
+    {
+      "id": "bean-with-pods",
+      "meanPixelError": 0.17261067708333333,
+      "corners": 0,
+      "visible": 32037,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "butterfly-chrysalis",
+      "meanPixelError": 0.09250325520833333,
+      "corners": 0,
+      "visible": 18137,
+      "extent": 0.8,
+      "centre": [
+        0.4984375,
+        0.5
+      ]
+    },
+    {
+      "id": "butterfly-eggs",
+      "meanPixelError": 0.16722005208333332,
+      "corners": 0,
+      "visible": 36221,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.4984375
+      ]
+    },
+    {
+      "id": "froglet",
+      "meanPixelError": 0.108896484375,
+      "corners": 0,
+      "visible": 21578,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.4984375
+      ]
+    },
+    {
+      "id": "oak-sapling",
+      "meanPixelError": 0.11182291666666666,
+      "corners": 0,
+      "visible": 21008,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "oak-seedling",
+      "meanPixelError": 0.13404622395833332,
+      "corners": 0,
+      "visible": 26300,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "oak-sprouting-acorn",
+      "meanPixelError": 0.101513671875,
+      "corners": 0,
+      "visible": 20287,
+      "extent": 0.8,
+      "centre": [
+        0.4984375,
+        0.5
+      ]
+    },
+    {
+      "id": "tadpole",
+      "meanPixelError": 0.06263020833333334,
+      "corners": 0,
+      "visible": 12164,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "tadpole-hindlegs",
+      "meanPixelError": 0.07719075520833334,
+      "corners": 0,
+      "visible": 15235,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "bread-roll",
+      "meanPixelError": 0.17701822916666668,
+      "corners": 0,
+      "visible": 44166,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.4984375
+      ]
+    },
+    {
+      "id": "broom",
+      "meanPixelError": 0.07252278645833334,
+      "corners": 0,
+      "visible": 16468,
+      "extent": 0.8,
+      "centre": [
+        0.4984375,
+        0.5
+      ]
+    },
+    {
+      "id": "candle-holder",
+      "meanPixelError": 0.13447591145833335,
+      "corners": 0,
+      "visible": 30475,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "drinking-bottle",
+      "meanPixelError": 0.12625651041666666,
+      "corners": 0,
+      "visible": 23626,
+      "extent": 0.8,
+      "centre": [
+        0.4984375,
+        0.5
+      ]
+    },
+    {
+      "id": "lunchbox",
+      "meanPixelError": 0.20617838541666667,
+      "corners": 0,
+      "visible": 49625,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.4984375
+      ]
+    },
+    {
+      "id": "milk-jug",
+      "meanPixelError": 0.18659830729166665,
+      "corners": 0,
+      "visible": 46443,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "napkin",
+      "meanPixelError": 0.21196940104166667,
+      "corners": 0,
+      "visible": 37954,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "pretzel",
+      "meanPixelError": 0.19464192708333333,
+      "corners": 0,
+      "visible": 37457,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "sandwich",
+      "meanPixelError": 0.15769856770833332,
+      "corners": 0,
+      "visible": 33886,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "stool",
+      "meanPixelError": 0.16992838541666666,
+      "corners": 0,
+      "visible": 40355,
+      "extent": 0.796875,
+      "centre": [
+        0.5015625,
+        0.4984375
+      ]
+    },
+    {
+      "id": "teapot",
+      "meanPixelError": 0.14817057291666666,
+      "corners": 0,
+      "visible": 32296,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "thermos",
+      "meanPixelError": 0.12958658854166666,
+      "corners": 0,
+      "visible": 26855,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "wooden-chair",
+      "meanPixelError": 0.121201171875,
+      "corners": 0,
+      "visible": 27517,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "wooden-key",
+      "meanPixelError": 0.08578776041666666,
+      "corners": 0,
+      "visible": 18053,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "wooden-plate",
+      "meanPixelError": 0.1353515625,
+      "corners": 0,
+      "visible": 38798,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "frost-leaf",
+      "meanPixelError": 0.18551432291666667,
+      "corners": 0,
+      "visible": 43524,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.4984375
+      ]
+    },
+    {
+      "id": "icicle",
+      "meanPixelError": 0.04939127604166667,
+      "corners": 0,
+      "visible": 15672,
+      "extent": 0.8,
+      "centre": [
+        0.4984375,
+        0.5
+      ]
+    },
+    {
+      "id": "mitten",
+      "meanPixelError": 0.14032877604166666,
+      "corners": 0,
+      "visible": 39228,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "puddle",
+      "meanPixelError": 0.06648763020833333,
+      "corners": 0,
+      "visible": 19413,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.4984375
+      ]
+    },
+    {
+      "id": "rain-boot",
+      "meanPixelError": 0.16913736979166666,
+      "corners": 0,
+      "visible": 35869,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "rainbow-arch",
+      "meanPixelError": 0.112626953125,
+      "corners": 0,
+      "visible": 26147,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.4984375
+      ]
+    },
+    {
+      "id": "raincoat",
+      "meanPixelError": 0.15867838541666668,
+      "corners": 0,
+      "visible": 35371,
+      "extent": 0.8,
+      "centre": [
+        0.4984375,
+        0.5
+      ]
+    },
+    {
+      "id": "snowball",
+      "meanPixelError": 0.08988932291666667,
+      "corners": 0,
+      "visible": 50877,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.4984375
+      ]
+    },
+    {
+      "id": "snowflake",
+      "meanPixelError": 0.13325846354166668,
+      "corners": 0,
+      "visible": 30358,
+      "extent": 0.8,
+      "centre": [
+        0.4984375,
+        0.5
+      ]
+    },
+    {
+      "id": "sun-hat",
+      "meanPixelError": 0.10343098958333333,
+      "corners": 0,
+      "visible": 25081,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "sunglasses",
+      "meanPixelError": 0.07500651041666667,
+      "corners": 0,
+      "visible": 16683,
+      "extent": 0.796875,
+      "centre": [
+        0.5015625,
+        0.4984375
+      ]
+    },
+    {
+      "id": "umbrella",
+      "meanPixelError": 0.12213541666666666,
+      "corners": 0,
+      "visible": 27466,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "wind-leaves",
+      "meanPixelError": 0.08041666666666666,
+      "corners": 0,
+      "visible": 15990,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.4984375
+      ]
+    },
+    {
+      "id": "woolly-hat",
+      "meanPixelError": 0.19441080729166665,
+      "corners": 0,
+      "visible": 42181,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "woolly-sock",
+      "meanPixelError": 0.122490234375,
+      "corners": 0,
+      "visible": 31332,
+      "extent": 0.8,
+      "centre": [
+        0.4984375,
+        0.5
+      ]
+    },
+    {
+      "id": "badger-dig",
+      "meanPixelError": 0.1726953125,
+      "corners": 0,
+      "visible": 38225,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.4984375
+      ]
+    },
+    {
+      "id": "beaver-gnaw",
+      "meanPixelError": 0.12796549479166666,
+      "corners": 0,
+      "visible": 28946,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "duck-dive",
+      "meanPixelError": 0.11554036458333333,
+      "corners": 0,
+      "visible": 26091,
+      "extent": 0.796875,
+      "centre": [
+        0.5015625,
+        0.5
+      ]
+    },
+    {
+      "id": "fox-listen",
+      "meanPixelError": 0.13460611979166667,
+      "corners": 0,
+      "visible": 30016,
+      "extent": 0.796875,
+      "centre": [
+        0.5015625,
+        0.5
+      ]
+    },
+    {
+      "id": "frog-swim",
+      "meanPixelError": 0.060546875,
+      "corners": 0,
+      "visible": 12939,
+      "extent": 0.796875,
+      "centre": [
+        0.5015625,
+        0.5
+      ]
+    },
+    {
+      "id": "hedgehog-curl",
+      "meanPixelError": 0.21855143229166665,
+      "corners": 0,
+      "visible": 47541,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "hedgehog-sniff",
+      "meanPixelError": 0.12266927083333333,
+      "corners": 0,
+      "visible": 26986,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "otter-swim",
+      "meanPixelError": 0.07916015625,
+      "corners": 0,
+      "visible": 16850,
+      "extent": 0.784375,
+      "centre": [
+        0.4953125,
+        0.4984375
+      ]
+    },
+    {
+      "id": "owl-fly",
+      "meanPixelError": 0.11501627604166667,
+      "corners": 0,
+      "visible": 26719,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.4984375
+      ]
+    },
+    {
+      "id": "robin-sing",
+      "meanPixelError": 0.14565104166666668,
+      "corners": 0,
+      "visible": 30484,
+      "extent": 0.796875,
+      "centre": [
+        0.5,
+        0.4984375
+      ]
+    },
+    {
+      "id": "roe-graze",
+      "meanPixelError": 0.15258463541666667,
+      "corners": 0,
+      "visible": 32937,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "roe-rest",
+      "meanPixelError": 0.1358203125,
+      "corners": 0,
+      "visible": 34056,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "squirrel-climb",
+      "meanPixelError": 0.17186197916666668,
+      "corners": 0,
+      "visible": 36725,
+      "extent": 0.8,
+      "centre": [
+        0.4984375,
+        0.5
+      ]
+    },
+    {
+      "id": "squirrel-dig",
+      "meanPixelError": 0.16584635416666665,
+      "corners": 0,
+      "visible": 37100,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.4984375
+      ]
+    },
+    {
+      "id": "woodpecker-peck",
+      "meanPixelError": 0.13815755208333333,
+      "corners": 0,
+      "visible": 33282,
+      "extent": 0.8,
+      "centre": [
+        0.496875,
+        0.5
+      ]
+    },
+    {
+      "id": "backpack",
+      "meanPixelError": 0.23567057291666665,
+      "corners": 0,
+      "visible": 48595,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "binoculars",
+      "meanPixelError": 0.20452799479166667,
+      "corners": 0,
+      "visible": 36527,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.4984375
+      ]
+    },
+    {
+      "id": "bird-feeder",
+      "meanPixelError": 0.14579427083333332,
+      "corners": 0,
+      "visible": 34179,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "birdhouse",
+      "meanPixelError": 0.184189453125,
+      "corners": 0,
+      "visible": 43226,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "compass",
+      "meanPixelError": 0.12667317708333334,
+      "corners": 0,
+      "visible": 34655,
+      "extent": 0.8,
+      "centre": [
+        0.4984375,
+        0.5
+      ]
+    },
+    {
+      "id": "field-notebook",
+      "meanPixelError": 0.266484375,
+      "corners": 0,
+      "visible": 48229,
+      "extent": 0.796875,
+      "centre": [
+        0.5,
+        0.4984375
+      ]
+    },
+    {
+      "id": "garden-trowel",
+      "meanPixelError": 0.10305013020833333,
+      "corners": 0,
+      "visible": 20164,
+      "extent": 0.8,
+      "centre": [
+        0.4984375,
+        0.5
+      ]
+    },
+    {
+      "id": "hand-rake",
+      "meanPixelError": 0.07310872395833333,
+      "corners": 0,
+      "visible": 14649,
+      "extent": 0.8,
+      "centre": [
+        0.4984375,
+        0.5
+      ]
+    },
+    {
+      "id": "insect-hotel",
+      "meanPixelError": 0.19961263020833334,
+      "corners": 0,
+      "visible": 44986,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "measuring-tape",
+      "meanPixelError": 0.12488606770833334,
+      "corners": 0,
+      "visible": 30438,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "pencil-case",
+      "meanPixelError": 0.1503515625,
+      "corners": 0,
+      "visible": 36256,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "plant-pot",
+      "meanPixelError": 0.222158203125,
+      "corners": 0,
+      "visible": 49289,
+      "extent": 0.8,
+      "centre": [
+        0.5015625,
+        0.5
+      ]
+    },
+    {
+      "id": "seed-packet",
+      "meanPixelError": 0.19484700520833334,
+      "corners": 0,
+      "visible": 49115,
+      "extent": 0.8,
+      "centre": [
+        0.4984375,
+        0.5
+      ]
+    },
+    {
+      "id": "walking-stick",
+      "meanPixelError": 0.043642578125,
+      "corners": 0,
+      "visible": 9134,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "wheelbarrow",
+      "meanPixelError": 0.12170572916666667,
+      "corners": 0,
+      "visible": 25769,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "acorn",
+      "meanPixelError": 0.15574869791666668,
+      "corners": 0,
+      "visible": 30280,
+      "extent": 0.8,
+      "centre": [
+        0.4984375,
+        0.5
+      ]
+    },
+    {
+      "id": "beech-leaf",
+      "meanPixelError": 0.22575520833333335,
+      "corners": 0,
+      "visible": 40168,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.4984375
+      ]
+    },
+    {
+      "id": "beech-nut",
+      "meanPixelError": 0.17968098958333334,
+      "corners": 0,
+      "visible": 33762,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "birch-leaf",
+      "meanPixelError": 0.13821614583333333,
+      "corners": 0,
+      "visible": 23866,
+      "extent": 0.8,
+      "centre": [
+        0.4984375,
+        0.5
+      ]
+    },
+    {
+      "id": "blackberry",
+      "meanPixelError": 0.16089518229166666,
+      "corners": 0,
+      "visible": 32071,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "dandelion-seedhead",
+      "meanPixelError": 0.17795572916666666,
+      "corners": 0,
+      "visible": 37932,
+      "extent": 0.796875,
+      "centre": [
+        0.496875,
+        0.5015625
+      ]
+    },
+    {
+      "id": "horse-chestnut",
+      "meanPixelError": 0.236318359375,
+      "corners": 0,
+      "visible": 42296,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.4984375
+      ]
+    },
+    {
+      "id": "horse-chestnut-leaf",
+      "meanPixelError": 0.15707682291666666,
+      "corners": 0,
+      "visible": 29721,
+      "extent": 0.8,
+      "centre": [
+        0.4984375,
+        0.5
+      ]
+    },
+    {
+      "id": "maple-leaf",
+      "meanPixelError": 0.12966145833333334,
+      "corners": 0,
+      "visible": 30423,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "oak-leaf",
+      "meanPixelError": 0.17208333333333334,
+      "corners": 0,
+      "visible": 33265,
+      "extent": 0.796875,
+      "centre": [
+        0.4984375,
+        0.4984375
+      ]
+    },
+    {
+      "id": "pine-cone",
+      "meanPixelError": 0.22248046875,
+      "corners": 0,
+      "visible": 43718,
+      "extent": 0.8,
+      "centre": [
+        0.4984375,
+        0.5
+      ]
+    },
+    {
+      "id": "raspberry",
+      "meanPixelError": 0.15570963541666666,
+      "corners": 0,
+      "visible": 32796,
+      "extent": 0.796875,
+      "centre": [
+        0.5,
+        0.4984375
+      ]
+    },
+    {
+      "id": "rose-hip",
+      "meanPixelError": 0.11068684895833333,
+      "corners": 0,
+      "visible": 21525,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "sycamore-seed",
+      "meanPixelError": 0.091123046875,
+      "corners": 0,
+      "visible": 19336,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "willow-leaf",
+      "meanPixelError": 0.062444661458333335,
+      "corners": 0,
+      "visible": 13789,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "ant-hill",
+      "meanPixelError": 0.110771484375,
+      "corners": 0,
+      "visible": 24488,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "badger-sett",
+      "meanPixelError": 0.16414713541666667,
+      "corners": 0,
+      "visible": 34652,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "beaver-lodge",
+      "meanPixelError": 0.160634765625,
+      "corners": 0,
+      "visible": 33126,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.4984375
+      ]
+    },
+    {
+      "id": "bird-nest-empty",
+      "meanPixelError": 0.16961263020833334,
+      "corners": 0,
+      "visible": 34284,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "fallen-log",
+      "meanPixelError": 0.1134375,
+      "corners": 0,
+      "visible": 25206,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "footpath-sign",
+      "meanPixelError": 0.111650390625,
+      "corners": 0,
+      "visible": 27228,
+      "extent": 0.8,
+      "centre": [
+        0.4984375,
+        0.5
+      ]
+    },
+    {
+      "id": "fox-den-entrance",
+      "meanPixelError": 0.14279622395833333,
+      "corners": 0,
+      "visible": 29014,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "hollow-tree",
+      "meanPixelError": 0.17785807291666667,
+      "corners": 0,
+      "visible": 36887,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "pond-lily",
+      "meanPixelError": 0.11838216145833333,
+      "corners": 0,
+      "visible": 29067,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "reed-clump",
+      "meanPixelError": 0.09921549479166666,
+      "corners": 0,
+      "visible": 19352,
+      "extent": 0.8,
+      "centre": [
+        0.4984375,
+        0.5
+      ]
+    },
+    {
+      "id": "stream-stones",
+      "meanPixelError": 0.11932291666666667,
+      "corners": 0,
+      "visible": 25408,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "tree-stump",
+      "meanPixelError": 0.10953450520833333,
+      "corners": 0,
+      "visible": 25312,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "woodland-bench",
+      "meanPixelError": 0.12376627604166666,
+      "corners": 0,
+      "visible": 30135,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.4984375
+      ]
+    },
+    {
+      "id": "woodland-bridge",
+      "meanPixelError": 0.10811197916666666,
+      "corners": 0,
+      "visible": 24655,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.4984375
+      ]
+    },
+    {
+      "id": "woodland-gate",
+      "meanPixelError": 0.13930338541666668,
+      "corners": 0,
+      "visible": 33507,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "beech-tree",
+      "meanPixelError": 0.191416015625,
+      "corners": 0,
+      "visible": 36644,
+      "extent": 0.8,
+      "centre": [
+        0.4984375,
+        0.5
+      ]
+    },
+    {
+      "id": "birch-tree",
+      "meanPixelError": 0.13806966145833333,
+      "corners": 0,
+      "visible": 24454,
+      "extent": 0.8,
+      "centre": [
+        0.4984375,
+        0.5
+      ]
+    },
+    {
+      "id": "dandelion-flower",
+      "meanPixelError": 0.17511067708333333,
+      "corners": 0,
+      "visible": 32777,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.4984375
+      ]
+    },
+    {
+      "id": "elder-shrub",
+      "meanPixelError": 0.163642578125,
+      "corners": 0,
+      "visible": 34554,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "fern-frond",
+      "meanPixelError": 0.138876953125,
+      "corners": 0,
+      "visible": 24334,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "hazel-shrub",
+      "meanPixelError": 0.18728841145833333,
+      "corners": 0,
+      "visible": 34729,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.4984375
+      ]
+    },
+    {
+      "id": "ivy-sprig",
+      "meanPixelError": 0.12701171875,
+      "corners": 0,
+      "visible": 27253,
+      "extent": 0.796875,
+      "centre": [
+        0.4984375,
+        0.5015625
+      ]
+    },
+    {
+      "id": "larch-tree",
+      "meanPixelError": 0.15113932291666668,
+      "corners": 0,
+      "visible": 26958,
+      "extent": 0.796875,
+      "centre": [
+        0.5015625,
+        0.5015625
+      ]
+    },
+    {
+      "id": "moss-cushion",
+      "meanPixelError": 0.164423828125,
+      "corners": 0,
+      "visible": 29997,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.4984375
+      ]
+    },
+    {
+      "id": "oak-tree",
+      "meanPixelError": 0.18613932291666666,
+      "corners": 0,
+      "visible": 36851,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "pine-tree",
+      "meanPixelError": 0.13161783854166667,
+      "corners": 0,
+      "visible": 24645,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "snowdrop",
+      "meanPixelError": 0.08593098958333334,
+      "corners": 0,
+      "visible": 18018,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "violet-flower",
+      "meanPixelError": 0.17970052083333332,
+      "corners": 0,
+      "visible": 33819,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.4984375
+      ]
+    },
+    {
+      "id": "willow-tree",
+      "meanPixelError": 0.21382161458333335,
+      "corners": 0,
+      "visible": 40660,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "wood-sorrel",
+      "meanPixelError": 0.12508463541666667,
+      "corners": 0,
+      "visible": 25243,
+      "extent": 0.8,
+      "centre": [
+        0.4984375,
+        0.5
+      ]
+    },
+    {
+      "id": "bird-fly",
+      "meanPixelError": 0.14147135416666667,
+      "corners": 0,
+      "visible": 31329,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.4984375
+      ]
+    },
+    {
+      "id": "bird-sit",
+      "meanPixelError": 0.13239908854166665,
+      "corners": 0,
+      "visible": 32016,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "cat-sit",
+      "meanPixelError": 0.12943684895833332,
+      "corners": 0,
+      "visible": 27786,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "cat-sleep",
+      "meanPixelError": 0.14912760416666668,
+      "corners": 0,
+      "visible": 32668,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "dog-run",
+      "meanPixelError": 0.138896484375,
+      "corners": 0,
+      "visible": 31816,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.4984375
+      ]
+    },
+    {
+      "id": "dog-sleep",
+      "meanPixelError": 0.117294921875,
+      "corners": 0,
+      "visible": 30650,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "duck-fly",
+      "meanPixelError": 0.11816080729166667,
+      "corners": 0,
+      "visible": 26360,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.4984375
+      ]
+    },
+    {
+      "id": "duck-swim",
+      "meanPixelError": 0.12130533854166667,
+      "corners": 0,
+      "visible": 26018,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.4984375
+      ]
+    },
+    {
+      "id": "fish-swim",
+      "meanPixelError": 0.10394205729166667,
+      "corners": 0,
+      "visible": 22409,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "fox-run",
+      "meanPixelError": 0.127724609375,
+      "corners": 0,
+      "visible": 27646,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "fox-sleep",
+      "meanPixelError": 0.14411458333333332,
+      "corners": 0,
+      "visible": 35102,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "hare-run",
+      "meanPixelError": 0.10739583333333333,
+      "corners": 0,
+      "visible": 23406,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "hare-sit",
+      "meanPixelError": 0.10790690104166667,
+      "corners": 0,
+      "visible": 25525,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "mouse-run",
+      "meanPixelError": 0.1021484375,
+      "corners": 0,
+      "visible": 20210,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.4984375
+      ]
+    },
+    {
+      "id": "mouse-sit",
+      "meanPixelError": 0.16934895833333333,
+      "corners": 0,
+      "visible": 34265,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "mouse-sleep",
+      "meanPixelError": 0.18124348958333333,
+      "corners": 0,
+      "visible": 35199,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "forest-apple",
+      "meanPixelError": 0.19595052083333334,
+      "corners": 0,
+      "visible": 41799,
+      "extent": 0.8,
+      "centre": [
+        0.4984375,
+        0.5
+      ]
+    },
+    {
+      "id": "forest-basket",
+      "meanPixelError": 0.197216796875,
+      "corners": 0,
+      "visible": 42498,
+      "extent": 0.8,
+      "centre": [
+        0.4984375,
+        0.5
+      ]
+    },
+    {
+      "id": "forest-berry",
+      "meanPixelError": 0.204130859375,
+      "corners": 0,
+      "visible": 47545,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "forest-branch",
+      "meanPixelError": 0.11386067708333333,
+      "corners": 0,
+      "visible": 24211,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.4984375
+      ]
+    },
+    {
+      "id": "forest-feather",
+      "meanPixelError": 0.133662109375,
+      "corners": 0,
+      "visible": 28225,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "forest-fir",
+      "meanPixelError": 0.18689778645833333,
+      "corners": 0,
+      "visible": 32385,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "forest-flower",
+      "meanPixelError": 0.166416015625,
+      "corners": 0,
+      "visible": 33544,
+      "extent": 0.8,
+      "centre": [
+        0.4984375,
+        0.5
+      ]
+    },
+    {
+      "id": "forest-honey",
+      "meanPixelError": 0.216708984375,
+      "corners": 0,
+      "visible": 48813,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "forest-lantern",
+      "meanPixelError": 0.15685872395833333,
+      "corners": 0,
+      "visible": 36343,
+      "extent": 0.8,
+      "centre": [
+        0.4984375,
+        0.5
+      ]
+    },
+    {
+      "id": "forest-leaf",
+      "meanPixelError": 0.19596028645833333,
+      "corners": 0,
+      "visible": 33817,
+      "extent": 0.8,
+      "centre": [
+        0.4984375,
+        0.5
+      ]
+    },
+    {
+      "id": "forest-mushroom",
+      "meanPixelError": 0.19435221354166668,
+      "corners": 0,
+      "visible": 43686,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "forest-nut",
+      "meanPixelError": 0.16527018229166668,
+      "corners": 0,
+      "visible": 35223,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "forest-post",
+      "meanPixelError": 0.20652018229166666,
+      "corners": 0,
+      "visible": 44631,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "forest-rose",
+      "meanPixelError": 0.11702799479166667,
+      "corners": 0,
+      "visible": 21315,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "forest-shapes",
+      "meanPixelError": 0.16818033854166667,
+      "corners": 0,
+      "visible": 40832,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.4984375
+      ]
+    },
+    {
+      "id": "forest-stone",
+      "meanPixelError": 0.2303125,
+      "corners": 0,
+      "visible": 37008,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.4984375
+      ]
+    },
+    {
+      "id": "badger-sleep",
+      "meanPixelError": 0.164521484375,
+      "corners": 0,
+      "visible": 35456,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "badger-walk",
+      "meanPixelError": 0.11517252604166667,
+      "corners": 0,
+      "visible": 24406,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5015625
+      ]
+    },
+    {
+      "id": "forest-bat",
+      "meanPixelError": 0.1393359375,
+      "corners": 0,
+      "visible": 29375,
+      "extent": 0.8,
+      "centre": [
+        0.5015625,
+        0.5
+      ]
+    },
+    {
+      "id": "forest-lynx",
+      "meanPixelError": 0.11475911458333334,
+      "corners": 0,
+      "visible": 27798,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "forest-marten",
+      "meanPixelError": 0.14245442708333333,
+      "corners": 0,
+      "visible": 30358,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "forest-owl",
+      "meanPixelError": 0.15637369791666667,
+      "corners": 0,
+      "visible": 34900,
+      "extent": 0.8,
+      "centre": [
+        0.5015625,
+        0.5
+      ]
+    },
+    {
+      "id": "forest-robin",
+      "meanPixelError": 0.13025390625,
+      "corners": 0,
+      "visible": 26571,
+      "extent": 0.803125,
+      "centre": [
+        0.5015625,
+        0.5015625
+      ]
+    },
+    {
+      "id": "forest-woodpecker",
+      "meanPixelError": 0.13072916666666667,
+      "corners": 0,
+      "visible": 30067,
+      "extent": 0.8,
+      "centre": [
+        0.5015625,
+        0.5
+      ]
+    },
+    {
+      "id": "frog-jump",
+      "meanPixelError": 0.07078125,
+      "corners": 0,
+      "visible": 14025,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5015625
+      ]
+    },
+    {
+      "id": "frog-sit",
+      "meanPixelError": 0.167890625,
+      "corners": 0,
+      "visible": 35585,
+      "extent": 0.803125,
+      "centre": [
+        0.5015625,
+        0.5
+      ]
+    },
+    {
+      "id": "hedgehog-sleep",
+      "meanPixelError": 0.20206380208333333,
+      "corners": 0,
+      "visible": 44173,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5015625
+      ]
+    },
+    {
+      "id": "hedgehog-walk",
+      "meanPixelError": 0.14917317708333333,
+      "corners": 0,
+      "visible": 32658,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5015625
+      ]
+    },
+    {
+      "id": "roe-run",
+      "meanPixelError": 0.060735677083333335,
+      "corners": 0,
+      "visible": 14508,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "roe-stand",
+      "meanPixelError": 0.08270182291666667,
+      "corners": 0,
+      "visible": 20298,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "squirrel-run",
+      "meanPixelError": 0.110107421875,
+      "corners": 0,
+      "visible": 23237,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "squirrel-sit",
+      "meanPixelError": 0.18688151041666667,
+      "corners": 0,
+      "visible": 39614,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "hand-mirror",
+      "meanPixelError": 0.10847981770833333,
+      "corners": 0,
+      "visible": 55784,
+      "extent": 0.80078125,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "neighbour-houses",
+      "meanPixelError": 0.1451441446940104,
+      "corners": 0,
+      "visible": 75859,
+      "extent": 0.80078125,
+      "centre": [
+        0.5,
+        0.5009765625
+      ]
+    },
+    {
+      "id": "fox",
+      "meanPixelError": 0.3486145482575358,
+      "corners": 0,
+      "visible": 31166,
+      "extent": 0.7993630573248408,
+      "centre": [
+        0.5015923566878981,
+        0.4984076433121019
+      ]
+    },
+    {
+      "id": "canoe",
+      "meanPixelError": 0.30351467943256655,
+      "corners": 0,
+      "visible": 24892,
+      "extent": 0.7961783439490446,
+      "centre": [
+        0.5,
+        0.4984076433121019
+      ]
+    },
+    {
+      "id": "grandma",
+      "meanPixelError": 0.48991507430997877,
+      "corners": 0,
+      "visible": 43246,
+      "extent": 0.7993630573248408,
+      "centre": [
+        0.5015923566878981,
+        0.5015923566878981
+      ]
+    },
+    {
+      "id": "judo",
+      "meanPixelError": 0.36764845091754905,
+      "corners": 0,
+      "visible": 28273,
+      "extent": 0.7993630573248408,
+      "centre": [
+        0.5,
+        0.5015923566878981
+      ]
+    },
+    {
+      "id": "llama",
+      "meanPixelError": 0.2894573140222051,
+      "corners": 0,
+      "visible": 24462,
+      "extent": 0.7993630573248408,
+      "centre": [
+        0.5015923566878981,
+        0.4984076433121019
+      ]
+    },
+    {
+      "id": "puzzle-flower-blau",
+      "meanPixelError": 0.13001302083333333,
+      "corners": 0,
+      "visible": 26523,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "puzzle-flower-gelb",
+      "meanPixelError": 0.11681966145833333,
+      "corners": 0,
+      "visible": 26080,
+      "extent": 0.8,
+      "centre": [
+        0.4984375,
+        0.5
+      ]
+    },
+    {
+      "id": "puzzle-flower-lila",
+      "meanPixelError": 0.14060221354166666,
+      "corners": 0,
+      "visible": 26451,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "puzzle-flower-rosa",
+      "meanPixelError": 0.113427734375,
+      "corners": 0,
+      "visible": 26257,
+      "extent": 0.8,
+      "centre": [
+        0.4984375,
+        0.5
+      ]
+    },
+    {
+      "id": "puzzle-flower-rot",
+      "meanPixelError": 0.111923828125,
+      "corners": 0,
+      "visible": 26279,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "puzzle-flower-weiss",
+      "meanPixelError": 0.09547526041666667,
+      "corners": 0,
+      "visible": 26150,
+      "extent": 0.8,
+      "centre": [
+        0.4984375,
+        0.5
+      ]
+    },
+    {
+      "id": "firefly",
+      "meanPixelError": 0.11255859375,
+      "corners": 0,
+      "visible": 24712,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "watering-can",
+      "meanPixelError": 0.16697265625,
+      "corners": 0,
+      "visible": 31289,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "vocab-arrow",
+      "meanPixelError": 0.06565901360544217,
+      "corners": 0,
+      "visible": 9033,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5017857142857143
+      ]
+    },
+    {
+      "id": "vocab-bench",
+      "meanPixelError": 0.1910204081632653,
+      "corners": 0,
+      "visible": 27090,
+      "extent": 0.8035714285714286,
+      "centre": [
+        0.5017857142857143,
+        0.5017857142857143
+      ]
+    },
+    {
+      "id": "vocab-cloth",
+      "meanPixelError": 0.17927295918367347,
+      "corners": 0,
+      "visible": 26476,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5017857142857143
+      ]
+    },
+    {
+      "id": "vocab-cup",
+      "meanPixelError": 0.15762329931972788,
+      "corners": 0,
+      "visible": 26494,
+      "extent": 0.7964285714285714,
+      "centre": [
+        0.5017857142857143,
+        0.5
+      ]
+    },
+    {
+      "id": "vocab-hand",
+      "meanPixelError": 0.14267857142857143,
+      "corners": 0,
+      "visible": 23851,
+      "extent": 0.8,
+      "centre": [
+        0.5017857142857143,
+        0.5
+      ]
+    },
+    {
+      "id": "vocab-head",
+      "meanPixelError": 0.20668367346938776,
+      "corners": 0,
+      "visible": 32880,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "vocab-house",
+      "meanPixelError": 0.18450255102040816,
+      "corners": 0,
+      "visible": 33033,
+      "extent": 0.8035714285714286,
+      "centre": [
+        0.5017857142857143,
+        0.5
+      ]
+    },
+    {
+      "id": "vocab-leg",
+      "meanPixelError": 0.08585034013605441,
+      "corners": 0,
+      "visible": 15180,
+      "extent": 0.8,
+      "centre": [
+        0.5017857142857143,
+        0.5
+      ]
+    },
+    {
+      "id": "vocab-pot",
+      "meanPixelError": 0.1588860544217687,
+      "corners": 0,
+      "visible": 25957,
+      "extent": 0.8035714285714286,
+      "centre": [
+        0.5017857142857143,
+        0.5017857142857143
+      ]
+    },
+    {
+      "id": "vocab-rope",
+      "meanPixelError": 0.18627551020408165,
+      "corners": 0,
+      "visible": 28247,
+      "extent": 0.7964285714285714,
+      "centre": [
+        0.5017857142857143,
+        0.5017857142857143
+      ]
+    },
+    {
+      "id": "vocab-sand",
+      "meanPixelError": 0.10470238095238095,
+      "corners": 0,
+      "visible": 17071,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "vocab-scarf",
+      "meanPixelError": 0.19769132653061225,
+      "corners": 0,
+      "visible": 31482,
+      "extent": 0.8035714285714286,
+      "centre": [
+        0.5017857142857143,
+        0.5017857142857143
+      ]
+    },
+    {
+      "id": "vocab-seed",
+      "meanPixelError": 0.18521683673469388,
+      "corners": 0,
+      "visible": 27657,
+      "extent": 0.8035714285714286,
+      "centre": [
+        0.5,
+        0.5017857142857143
+      ]
+    },
+    {
+      "id": "vocab-shoe",
+      "meanPixelError": 0.16310799319727892,
+      "corners": 0,
+      "visible": 22486,
+      "extent": 0.7964285714285714,
+      "centre": [
+        0.5017857142857143,
+        0.5
+      ]
+    },
+    {
+      "id": "vocab-stone",
+      "meanPixelError": 0.1787202380952381,
+      "corners": 0,
+      "visible": 25894,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "vocab-table",
+      "meanPixelError": 0.14255102040816325,
+      "corners": 0,
+      "visible": 21249,
+      "extent": 0.7964285714285714,
+      "centre": [
+        0.5017857142857143,
+        0.5017857142857143
+      ]
+    },
+    {
+      "id": "vocab-till",
+      "meanPixelError": 0.23374574829931974,
+      "corners": 0,
+      "visible": 36215,
+      "extent": 0.8,
+      "centre": [
+        0.5017857142857143,
+        0.5
+      ]
+    },
+    {
+      "id": "vocab-tower",
+      "meanPixelError": 0.16580357142857144,
+      "corners": 0,
+      "visible": 24513,
+      "extent": 0.8,
+      "centre": [
+        0.5017857142857143,
+        0.5
+      ]
+    },
+    {
+      "id": "vocab-wardrobe",
+      "meanPixelError": 0.17715136054421768,
+      "corners": 0,
+      "visible": 33406,
+      "extent": 0.8035714285714286,
+      "centre": [
+        0.5017857142857143,
+        0.5017857142857143
+      ]
+    },
+    {
+      "id": "vocab-worm",
+      "meanPixelError": 0.09091836734693877,
+      "corners": 0,
+      "visible": 15082,
+      "extent": 0.8035714285714286,
+      "centre": [
+        0.5017857142857143,
+        0.5
+      ]
+    },
+    {
+      "id": "empty-basket",
+      "meanPixelError": 0.17981119791666667,
+      "corners": 0,
+      "visible": 37364,
+      "extent": 0.8,
+      "centre": [
+        0.4984375,
+        0.5
+      ]
+    },
+    {
+      "id": "habitat-pond",
+      "meanPixelError": 0.139765625,
+      "corners": 0,
+      "visible": 26340,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.4984375
+      ]
+    },
+    {
+      "id": "squirrel-nut",
+      "meanPixelError": 0.17974934895833333,
+      "corners": 0,
+      "visible": 41255,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "rhyme-bin",
+      "meanPixelError": 0.20137044270833335,
+      "corners": 0,
+      "visible": 41630,
+      "extent": 0.8,
+      "centre": [
+        0.5015625,
+        0.5
+      ]
+    },
+    {
+      "id": "rhyme-blanket",
+      "meanPixelError": 0.15120768229166667,
+      "corners": 0,
+      "visible": 37182,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "rhyme-bread",
+      "meanPixelError": 0.15792317708333334,
+      "corners": 0,
+      "visible": 37226,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "rhyme-brook",
+      "meanPixelError": 0.279287109375,
+      "corners": 0,
+      "visible": 53145,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "rhyme-fly",
+      "meanPixelError": 0.1535546875,
+      "corners": 0,
+      "visible": 28701,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "rhyme-goat",
+      "meanPixelError": 0.13139322916666665,
+      "corners": 0,
+      "visible": 32268,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "rhyme-jug",
+      "meanPixelError": 0.21942708333333333,
+      "corners": 0,
+      "visible": 43137,
+      "extent": 0.803125,
+      "centre": [
+        0.5,
+        0.5015625
+      ]
+    },
+    {
+      "id": "rhyme-mouth",
+      "meanPixelError": 0.10033528645833334,
+      "corners": 0,
+      "visible": 25057,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5015625
+      ]
+    },
+    {
+      "id": "rhyme-rail",
+      "meanPixelError": 0.1505078125,
+      "corners": 0,
+      "visible": 30209,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5015625
+      ]
+    },
+    {
+      "id": "rhyme-roof",
+      "meanPixelError": 0.09745442708333334,
+      "corners": 0,
+      "visible": 22768,
+      "extent": 0.8,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "bicycle",
+      "meanPixelError": 0.3886263134407075,
+      "corners": 0,
+      "visible": 24442,
+      "extent": 0.7993630573248408,
+      "centre": [
+        0.4984076433121019,
+        0.4984076433121019
+      ]
+    },
+    {
+      "id": "kiwi",
+      "meanPixelError": 0.5170290884011521,
+      "corners": 0,
+      "visible": 47043,
+      "extent": 0.802547770700637,
+      "centre": [
+        0.5,
+        0.4984076433121019
+      ]
+    },
+    {
+      "id": "nose",
+      "meanPixelError": 0.2743079502887203,
+      "corners": 0,
+      "visible": 27192,
+      "extent": 0.7961783439490446,
+      "centre": [
+        0.5015923566878981,
+        0.5
+      ]
+    },
+    {
+      "id": "rose",
+      "meanPixelError": 0.25280606380245313,
+      "corners": 0,
+      "visible": 20552,
+      "extent": 0.7993630573248408,
+      "centre": [
+        0.5,
+        0.5015923566878981
+      ]
+    },
+    {
+      "id": "sofa",
+      "meanPixelError": 0.3550989222010359,
+      "corners": 0,
+      "visible": 30257,
+      "extent": 0.7993630573248408,
+      "centre": [
+        0.5015923566878981,
+        0.4984076433121019
+      ]
+    },
+    {
+      "id": "tin",
+      "meanPixelError": 0.4904526214721355,
+      "corners": 0,
+      "visible": 41832,
+      "extent": 0.7993630573248408,
+      "centre": [
+        0.4984076433121019,
+        0.5015923566878981
+      ]
+    },
+    {
+      "id": "ball",
+      "meanPixelError": 0.490635184659283,
+      "corners": 0,
+      "visible": 49232,
+      "extent": 0.802547770700637,
+      "centre": [
+        0.5015923566878981,
+        0.5
+      ]
+    },
+    {
+      "id": "bed",
+      "meanPixelError": 0.37704707425588596,
+      "corners": 0,
+      "visible": 33774,
+      "extent": 0.7993630573248408,
+      "centre": [
+        0.5015923566878981,
+        0.5
+      ]
+    },
+    {
+      "id": "boat",
+      "meanPixelError": 0.3230218940592587,
+      "corners": 0,
+      "visible": 29948,
+      "extent": 0.7993630573248408,
+      "centre": [
+        0.5,
+        0.5015923566878981
+      ]
+    },
+    {
+      "id": "book",
+      "meanPixelError": 0.3018344219508567,
+      "corners": 0,
+      "visible": 32358,
+      "extent": 0.7993630573248408,
+      "centre": [
+        0.4984076433121019,
+        0.5
+      ]
+    },
+    {
+      "id": "cake",
+      "meanPixelError": 0.43226905756825834,
+      "corners": 0,
+      "visible": 42984,
+      "extent": 0.7961783439490446,
+      "centre": [
+        0.4984076433121019,
+        0.5
+      ]
+    },
+    {
+      "id": "clock",
+      "meanPixelError": 0.43761072119220523,
+      "corners": 0,
+      "visible": 47707,
+      "extent": 0.802547770700637,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "grapes",
+      "meanPixelError": 0.37030914033023654,
+      "corners": 1,
+      "visible": 34011,
+      "extent": 0.7961783439490446,
+      "centre": [
+        0.4984076433121019,
+        0.5
+      ]
+    },
+    {
+      "id": "hat",
+      "meanPixelError": 0.2966212287178655,
+      "corners": 2,
+      "visible": 26825,
+      "extent": 0.7993630573248408,
+      "centre": [
+        0.5015923566878981,
+        0.4984076433121019
+      ]
+    },
+    {
+      "id": "heart",
+      "meanPixelError": 0.34809728589395106,
+      "corners": 0,
+      "visible": 38307,
+      "extent": 0.7993630573248408,
+      "centre": [
+        0.5015923566878981,
+        0.5015923566878981
+      ]
+    },
+    {
+      "id": "icecream",
+      "meanPixelError": 0.23809958483778923,
+      "corners": 1,
+      "visible": 23361,
+      "extent": 0.7993630573248408,
+      "centre": [
+        0.4984076433121019,
+        0.5015923566878981
+      ]
+    },
+    {
+      "id": "pear",
+      "meanPixelError": 0.2973582430659797,
+      "corners": 0,
+      "visible": 29366,
+      "extent": 0.7961783439490446,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "robot-word",
+      "meanPixelError": 0.3086839222686519,
+      "corners": 1,
+      "visible": 24690,
+      "extent": 0.802547770700637,
+      "centre": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "snowman",
+      "meanPixelError": 0.3399056080706452,
+      "corners": 0,
+      "visible": 30529,
+      "extent": 0.802547770700637,
+      "centre": [
+        0.4984076433121019,
+        0.5
+      ]
+    },
+    {
+      "id": "tree",
+      "meanPixelError": 0.3764655766968234,
+      "corners": 0,
+      "visible": 33474,
+      "extent": 0.7961783439490446,
+      "centre": [
+        0.5,
+        0.4984076433121019
+      ]
+    }
+  ],
+  "storageUnchanged": true,
+  "errors": []
+}

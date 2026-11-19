@@ -1,0 +1,81 @@
+{
+  "format": "waldpost-illustration-atlas",
+  "version": 1,
+  "source": "sources/expansion-2026-11-19/expansion-woodland-actions-cutout.png",
+  "output": "../../assets/waldatelier/expansion-woodland-actions.webp",
+  "columns": 4,
+  "rows": 4,
+  "cellPixels": 320,
+  "subjectPixels": 256,
+  "alphaThresholdPercent": 8,
+  "provenance": {
+    "date": "2026-11-19",
+    "tool": "ChatGPT image_gen.imagegen",
+    "sourceSha256": "07bd02319b2b3d9e5d8fca6eb1cfa3075637c9dda3e14a4acbfe44033cd2b137",
+    "generationRecord": "../artwork/generation-records/expansion-woodland-actions-cutout-2026-11-19.json",
+    "styleContract": "style.json",
+    "forwardPrompt": "prompts/expansion-woodland-actions.txt"
+  },
+  "subjects": [
+    {
+      "id": "squirrel-dig",
+      "label": "Eichhörnchen gräbt"
+    },
+    {
+      "id": "squirrel-climb",
+      "label": "Eichhörnchen klettert"
+    },
+    {
+      "id": "hedgehog-curl",
+      "label": "Igel rollt sich ein"
+    },
+    {
+      "id": "hedgehog-sniff",
+      "label": "Igel schnuppert"
+    },
+    {
+      "id": "badger-dig",
+      "label": "Dachs gräbt"
+    },
+    {
+      "id": "roe-graze",
+      "label": "Reh frisst Gras"
+    },
+    {
+      "id": "roe-rest",
+      "label": "Reh ruht"
+    },
+    {
+      "id": "frog-swim",
+      "label": "Frosch schwimmt"
+    },
+    {
+      "id": "owl-fly",
+      "label": "Eule fliegt"
+    },
+    {
+      "id": "robin-sing",
+      "label": "Rotkehlchen singt"
+    },
+    {
+      "id": "woodpecker-peck",
+      "label": "Specht klopft"
+    },
+    {
+      "id": "beaver-gnaw",
+      "label": "Biber nagt"
+    },
+    {
+      "id": "otter-swim",
+      "label": "Fischotter schwimmt"
+    },
+    {
+      "id": "duck-dive",
+      "label": "Ente taucht"
+    },
+    {
+      "id": "fox-listen",
+      "label": "Fuchs lauscht"
+    }
+  ]
+}

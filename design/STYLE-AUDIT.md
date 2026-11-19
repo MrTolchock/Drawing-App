@@ -147,3 +147,9 @@ Against the GitHub snapshot at data commit `dc9d88d6dcf203ca4f44a95ae061922b3da8
 ## Read-aloud controls — 18 November 2026, 9.3.99
 
 The letter has a separate speaker button on the paper. Opening the letter, listening to the sender and setting off for the forest remain distinct actions. The speaker uses the existing utility symbol and has a 48 px or larger touch target on phone, tablet and landscape layouts. The puzzle overview reports when narration plays, stops or fails. The catalogue check preserves existing puzzle revisions.
+
+## Future puzzle image expansion — 19 November 2026, 9.4.2
+
+The central library adds [150 canonical watercolour/pencil drawings](illustrations/EXPANSION-2026-11-19.md) across ten thematic sheets: plants, woodland finds, meadow/pond wildlife, harvest, equipment, picnic/home, weather/clothing, animal actions, life cycles and habitats. All have stable IDs, German search labels, transparent PNG exports and retained actual generator inputs, source hashes and packing manifests. The offline cache includes the new sheets.
+
+The original 240 picture files/cells and existing puzzle uses are unchanged, and regenerating the catalogue leaves all current implementation revisions identical. No puzzle content or editorial decisions are added. Validation covers 161 model tests, all 150 new browser PNG exports, cell framing and responsive library layouts, canonical references/prompts, generator handoff and design/offline inventory.

@@ -1,0 +1,21 @@
+Create a NEW extension sheet for the Waldpost woodland learning-picture library. Match the two supplied canonical reference images in their warm watercolour and visible coloured-pencil finish. These are isolated learning pictures, suitable for later vocabulary, sorting, matching, observation and sequence puzzles. No labels, text, numerals, frames, badges, faces on objects or decorative extras.
+
+LAYOUT: a square canvas divided into EXACTLY 4 equal columns and 4 equal rows (16 equal square cells). Draw exactly 15 independent complete subjects in row-major order below. Leave row 4 column 4 completely transparent. Each subject stays inside its own square with at least 12% clear space on each side. Centre each subject in its cell; keep every ear, root, handle, tail and wing intact. No overlapping cells, ground plane or backdrop. Genuine alpha zero around all paintings, including open handles; no painted checkerboard or paper rectangle. Gentle pencil texture remains inside the subject.
+
+Row 1, column 1: oak-tree (Eiche) — one mature oak tree, broad rounded canopy and sturdy branching trunk.
+Row 1, column 2: beech-tree (Buche) — one mature beech tree, smooth pale-grey trunk and oval green crown.
+Row 1, column 3: birch-tree (Birke) — one birch tree with white black-marked trunk and delicate light-green crown.
+Row 1, column 4: willow-tree (Weide) — one willow tree with long drooping leafy branches.
+Row 2, column 1: larch-tree (Lärche) — one larch tree with soft feathery green needles, open conical crown.
+Row 2, column 2: pine-tree (Kiefer) — one Scots pine tree, warm orange-brown upper trunk and irregular high crown.
+Row 2, column 3: hazel-shrub (Haselstrauch) — one compact hazel shrub with round green leaves.
+Row 2, column 4: elder-shrub (Holunder) — one compact elder shrub with creamy flat flower clusters.
+Row 3, column 1: fern-frond (Farn) — one unfurling green fern frond with distinct leaflets.
+Row 3, column 2: moss-cushion (Moos) — one small rounded cushion of green woodland moss.
+Row 3, column 3: ivy-sprig (Efeu) — one short ivy sprig with three clearly lobed leaves.
+Row 3, column 4: wood-sorrel (Sauerklee) — one wood-sorrel plant, three heart-shaped leaflets and a small white flower.
+Row 4, column 1: snowdrop (Schneeglöckchen) — one snowdrop plant with a bowed white bell flower and narrow leaves.
+Row 4, column 2: violet-flower (Veilchen) — one purple woodland violet plant with heart-shaped leaves.
+Row 4, column 3: dandelion-flower (Löwenzahn) — one yellow dandelion plant with toothed leaves and one flower.
+
+Row 4, column 4: EMPTY, fully transparent. Use a consistent woodland picture-book scale; keep shapes clear and recognizable at 80–120 pixels. All names and IDs above are instructions only and must never be drawn.
