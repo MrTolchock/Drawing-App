@@ -1,12 +1,12 @@
 # Mengen von Waldgegenständen vergleichen
 
-[All puzzles](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
+[Alle Rätsel](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 
-- Stable puzzle ID: `friends-beaver`
+- Stabile Rätsel-ID: `friends-beaver`
 - Host: beaver
 - Related competence: **MA.2.A.1.a** — Mengen von Waldgegenständen vergleichen
-- Difficulty: Zwei gleiche und ein anderer Gegenstand je Reihe; das Muster der ersten zwei Reihen ergänzen
-- Pool: 25 explicit iterations; a round selects five.
+- Difficulty: Zwei oder drei verschiedene Waldgegenstände je Reihe; die Mengen der ersten zwei Reihen ergänzen
+- Pool: 43 Aufgaben; eine Runde enthält fünf.
 - Review: solve every unconfirmed iteration to approve it; × rejects with an optional note. The puzzle is released when all current iterations passed. Exact per-iteration revisions gate release; only affected iterations require review after changes.
 
 ## Mapping to the blueprint
@@ -22,9 +22,9 @@
 | Ending | 900 ms correct feedback, then 2.2 s celebration; reduced motion |
 | Review | Production-sized open-item queue; solve to approve, × to reject, final celebration; puzzle-level speech and revision gate |
 
-## Every iteration
+## Alle Aufgaben
 
-| Stable iteration ID | Content / configuration | Expected answer or solution |
+| Stabile Aufgaben-ID | Inhalt / Konfiguration | Expected answer or solution |
 | --- | --- | --- |
 | `friends-beaver/matrix-0` | Waldreihe 1 — Welcher Waldgegenstand fehlt? | "forest-nut" |
 | `friends-beaver/matrix-1` | Waldreihe 2 — Welcher Waldgegenstand fehlt? | "forest-feather" |
@@ -51,6 +51,24 @@
 | `friends-beaver/matrix-22` | Waldreihe 23 — Welcher Waldgegenstand fehlt? | "forest-leaf" |
 | `friends-beaver/matrix-23` | Waldreihe 24 — Welcher Waldgegenstand fehlt? | "forest-nut" |
 | `friends-beaver/matrix-24` | Waldreihe 25 — Welcher Waldgegenstand fehlt? | "forest-nut" |
+| `friends-beaver/matrix-three-0-6` | Drei Gegenstände / Reihe 1 / Lücke 1 — Welcher Waldgegenstand fehlt? | "forest-feather" |
+| `friends-beaver/matrix-three-0-7` | Drei Gegenstände / Reihe 1 / Lücke 2 — Welcher Waldgegenstand fehlt? | "forest-leaf" |
+| `friends-beaver/matrix-three-0-8` | Drei Gegenstände / Reihe 1 / Lücke 3 — Welcher Waldgegenstand fehlt? | "forest-nut" |
+| `friends-beaver/matrix-three-1-6` | Drei Gegenstände / Reihe 2 / Lücke 1 — Welcher Waldgegenstand fehlt? | "forest-nut" |
+| `friends-beaver/matrix-three-1-7` | Drei Gegenstände / Reihe 2 / Lücke 2 — Welcher Waldgegenstand fehlt? | "forest-leaf" |
+| `friends-beaver/matrix-three-1-8` | Drei Gegenstände / Reihe 2 / Lücke 3 — Welcher Waldgegenstand fehlt? | "forest-feather" |
+| `friends-beaver/matrix-three-2-6` | Drei Gegenstände / Reihe 3 / Lücke 1 — Welcher Waldgegenstand fehlt? | "forest-feather" |
+| `friends-beaver/matrix-three-2-7` | Drei Gegenstände / Reihe 3 / Lücke 2 — Welcher Waldgegenstand fehlt? | "forest-nut" |
+| `friends-beaver/matrix-three-2-8` | Drei Gegenstände / Reihe 3 / Lücke 3 — Welcher Waldgegenstand fehlt? | "forest-leaf" |
+| `friends-beaver/matrix-three-3-6` | Drei Gegenstände / Reihe 4 / Lücke 1 — Welcher Waldgegenstand fehlt? | "forest-leaf" |
+| `friends-beaver/matrix-three-3-7` | Drei Gegenstände / Reihe 4 / Lücke 2 — Welcher Waldgegenstand fehlt? | "forest-nut" |
+| `friends-beaver/matrix-three-3-8` | Drei Gegenstände / Reihe 4 / Lücke 3 — Welcher Waldgegenstand fehlt? | "forest-feather" |
+| `friends-beaver/matrix-three-4-6` | Drei Gegenstände / Reihe 5 / Lücke 1 — Welcher Waldgegenstand fehlt? | "forest-nut" |
+| `friends-beaver/matrix-three-4-7` | Drei Gegenstände / Reihe 5 / Lücke 2 — Welcher Waldgegenstand fehlt? | "forest-feather" |
+| `friends-beaver/matrix-three-4-8` | Drei Gegenstände / Reihe 5 / Lücke 3 — Welcher Waldgegenstand fehlt? | "forest-leaf" |
+| `friends-beaver/matrix-three-5-6` | Drei Gegenstände / Reihe 6 / Lücke 1 — Welcher Waldgegenstand fehlt? | "forest-leaf" |
+| `friends-beaver/matrix-three-5-7` | Drei Gegenstände / Reihe 6 / Lücke 2 — Welcher Waldgegenstand fehlt? | "forest-feather" |
+| `friends-beaver/matrix-three-5-8` | Drei Gegenstände / Reihe 6 / Lücke 3 — Welcher Waldgegenstand fehlt? | "forest-nut" |
 
 ## Exact definitions
 
@@ -700,6 +718,474 @@ These definitions are the same finite data used by the game and review previews.
         "forest-leaf"
       ],
       "gap": 7,
+      "answer": "forest-nut",
+      "choices": [
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather"
+      ]
+    }
+  },
+  {
+    "id": "friends-beaver/matrix-three-0-6",
+    "label": "Drei Gegenstände / Reihe 1 / Lücke 1",
+    "question": {
+      "kind": "matrix",
+      "prompt": "Welcher Waldgegenstand fehlt?",
+      "matrix": [
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather",
+        "forest-nut",
+        "forest-feather",
+        "forest-leaf",
+        "forest-feather",
+        "forest-leaf",
+        "forest-nut"
+      ],
+      "gap": 6,
+      "answer": "forest-feather",
+      "choices": [
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather"
+      ]
+    }
+  },
+  {
+    "id": "friends-beaver/matrix-three-0-7",
+    "label": "Drei Gegenstände / Reihe 1 / Lücke 2",
+    "question": {
+      "kind": "matrix",
+      "prompt": "Welcher Waldgegenstand fehlt?",
+      "matrix": [
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather",
+        "forest-nut",
+        "forest-feather",
+        "forest-leaf",
+        "forest-feather",
+        "forest-leaf",
+        "forest-nut"
+      ],
+      "gap": 7,
+      "answer": "forest-leaf",
+      "choices": [
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather"
+      ]
+    }
+  },
+  {
+    "id": "friends-beaver/matrix-three-0-8",
+    "label": "Drei Gegenstände / Reihe 1 / Lücke 3",
+    "question": {
+      "kind": "matrix",
+      "prompt": "Welcher Waldgegenstand fehlt?",
+      "matrix": [
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather",
+        "forest-nut",
+        "forest-feather",
+        "forest-leaf",
+        "forest-feather",
+        "forest-leaf",
+        "forest-nut"
+      ],
+      "gap": 8,
+      "answer": "forest-nut",
+      "choices": [
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather"
+      ]
+    }
+  },
+  {
+    "id": "friends-beaver/matrix-three-1-6",
+    "label": "Drei Gegenstände / Reihe 2 / Lücke 1",
+    "question": {
+      "kind": "matrix",
+      "prompt": "Welcher Waldgegenstand fehlt?",
+      "matrix": [
+        "forest-leaf",
+        "forest-feather",
+        "forest-nut",
+        "forest-feather",
+        "forest-nut",
+        "forest-leaf",
+        "forest-nut",
+        "forest-leaf",
+        "forest-feather"
+      ],
+      "gap": 6,
+      "answer": "forest-nut",
+      "choices": [
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather"
+      ]
+    }
+  },
+  {
+    "id": "friends-beaver/matrix-three-1-7",
+    "label": "Drei Gegenstände / Reihe 2 / Lücke 2",
+    "question": {
+      "kind": "matrix",
+      "prompt": "Welcher Waldgegenstand fehlt?",
+      "matrix": [
+        "forest-leaf",
+        "forest-feather",
+        "forest-nut",
+        "forest-feather",
+        "forest-nut",
+        "forest-leaf",
+        "forest-nut",
+        "forest-leaf",
+        "forest-feather"
+      ],
+      "gap": 7,
+      "answer": "forest-leaf",
+      "choices": [
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather"
+      ]
+    }
+  },
+  {
+    "id": "friends-beaver/matrix-three-1-8",
+    "label": "Drei Gegenstände / Reihe 2 / Lücke 3",
+    "question": {
+      "kind": "matrix",
+      "prompt": "Welcher Waldgegenstand fehlt?",
+      "matrix": [
+        "forest-leaf",
+        "forest-feather",
+        "forest-nut",
+        "forest-feather",
+        "forest-nut",
+        "forest-leaf",
+        "forest-nut",
+        "forest-leaf",
+        "forest-feather"
+      ],
+      "gap": 8,
+      "answer": "forest-feather",
+      "choices": [
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather"
+      ]
+    }
+  },
+  {
+    "id": "friends-beaver/matrix-three-2-6",
+    "label": "Drei Gegenstände / Reihe 3 / Lücke 1",
+    "question": {
+      "kind": "matrix",
+      "prompt": "Welcher Waldgegenstand fehlt?",
+      "matrix": [
+        "forest-nut",
+        "forest-leaf",
+        "forest-feather",
+        "forest-leaf",
+        "forest-feather",
+        "forest-nut",
+        "forest-feather",
+        "forest-nut",
+        "forest-leaf"
+      ],
+      "gap": 6,
+      "answer": "forest-feather",
+      "choices": [
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather"
+      ]
+    }
+  },
+  {
+    "id": "friends-beaver/matrix-three-2-7",
+    "label": "Drei Gegenstände / Reihe 3 / Lücke 2",
+    "question": {
+      "kind": "matrix",
+      "prompt": "Welcher Waldgegenstand fehlt?",
+      "matrix": [
+        "forest-nut",
+        "forest-leaf",
+        "forest-feather",
+        "forest-leaf",
+        "forest-feather",
+        "forest-nut",
+        "forest-feather",
+        "forest-nut",
+        "forest-leaf"
+      ],
+      "gap": 7,
+      "answer": "forest-nut",
+      "choices": [
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather"
+      ]
+    }
+  },
+  {
+    "id": "friends-beaver/matrix-three-2-8",
+    "label": "Drei Gegenstände / Reihe 3 / Lücke 3",
+    "question": {
+      "kind": "matrix",
+      "prompt": "Welcher Waldgegenstand fehlt?",
+      "matrix": [
+        "forest-nut",
+        "forest-leaf",
+        "forest-feather",
+        "forest-leaf",
+        "forest-feather",
+        "forest-nut",
+        "forest-feather",
+        "forest-nut",
+        "forest-leaf"
+      ],
+      "gap": 8,
+      "answer": "forest-leaf",
+      "choices": [
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather"
+      ]
+    }
+  },
+  {
+    "id": "friends-beaver/matrix-three-3-6",
+    "label": "Drei Gegenstände / Reihe 4 / Lücke 1",
+    "question": {
+      "kind": "matrix",
+      "prompt": "Welcher Waldgegenstand fehlt?",
+      "matrix": [
+        "forest-nut",
+        "forest-feather",
+        "forest-leaf",
+        "forest-feather",
+        "forest-leaf",
+        "forest-nut",
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather"
+      ],
+      "gap": 6,
+      "answer": "forest-leaf",
+      "choices": [
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather"
+      ]
+    }
+  },
+  {
+    "id": "friends-beaver/matrix-three-3-7",
+    "label": "Drei Gegenstände / Reihe 4 / Lücke 2",
+    "question": {
+      "kind": "matrix",
+      "prompt": "Welcher Waldgegenstand fehlt?",
+      "matrix": [
+        "forest-nut",
+        "forest-feather",
+        "forest-leaf",
+        "forest-feather",
+        "forest-leaf",
+        "forest-nut",
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather"
+      ],
+      "gap": 7,
+      "answer": "forest-nut",
+      "choices": [
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather"
+      ]
+    }
+  },
+  {
+    "id": "friends-beaver/matrix-three-3-8",
+    "label": "Drei Gegenstände / Reihe 4 / Lücke 3",
+    "question": {
+      "kind": "matrix",
+      "prompt": "Welcher Waldgegenstand fehlt?",
+      "matrix": [
+        "forest-nut",
+        "forest-feather",
+        "forest-leaf",
+        "forest-feather",
+        "forest-leaf",
+        "forest-nut",
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather"
+      ],
+      "gap": 8,
+      "answer": "forest-feather",
+      "choices": [
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather"
+      ]
+    }
+  },
+  {
+    "id": "friends-beaver/matrix-three-4-6",
+    "label": "Drei Gegenstände / Reihe 5 / Lücke 1",
+    "question": {
+      "kind": "matrix",
+      "prompt": "Welcher Waldgegenstand fehlt?",
+      "matrix": [
+        "forest-feather",
+        "forest-leaf",
+        "forest-nut",
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather",
+        "forest-nut",
+        "forest-feather",
+        "forest-leaf"
+      ],
+      "gap": 6,
+      "answer": "forest-nut",
+      "choices": [
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather"
+      ]
+    }
+  },
+  {
+    "id": "friends-beaver/matrix-three-4-7",
+    "label": "Drei Gegenstände / Reihe 5 / Lücke 2",
+    "question": {
+      "kind": "matrix",
+      "prompt": "Welcher Waldgegenstand fehlt?",
+      "matrix": [
+        "forest-feather",
+        "forest-leaf",
+        "forest-nut",
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather",
+        "forest-nut",
+        "forest-feather",
+        "forest-leaf"
+      ],
+      "gap": 7,
+      "answer": "forest-feather",
+      "choices": [
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather"
+      ]
+    }
+  },
+  {
+    "id": "friends-beaver/matrix-three-4-8",
+    "label": "Drei Gegenstände / Reihe 5 / Lücke 3",
+    "question": {
+      "kind": "matrix",
+      "prompt": "Welcher Waldgegenstand fehlt?",
+      "matrix": [
+        "forest-feather",
+        "forest-leaf",
+        "forest-nut",
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather",
+        "forest-nut",
+        "forest-feather",
+        "forest-leaf"
+      ],
+      "gap": 8,
+      "answer": "forest-leaf",
+      "choices": [
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather"
+      ]
+    }
+  },
+  {
+    "id": "friends-beaver/matrix-three-5-6",
+    "label": "Drei Gegenstände / Reihe 6 / Lücke 1",
+    "question": {
+      "kind": "matrix",
+      "prompt": "Welcher Waldgegenstand fehlt?",
+      "matrix": [
+        "forest-feather",
+        "forest-nut",
+        "forest-leaf",
+        "forest-nut",
+        "forest-leaf",
+        "forest-feather",
+        "forest-leaf",
+        "forest-feather",
+        "forest-nut"
+      ],
+      "gap": 6,
+      "answer": "forest-leaf",
+      "choices": [
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather"
+      ]
+    }
+  },
+  {
+    "id": "friends-beaver/matrix-three-5-7",
+    "label": "Drei Gegenstände / Reihe 6 / Lücke 2",
+    "question": {
+      "kind": "matrix",
+      "prompt": "Welcher Waldgegenstand fehlt?",
+      "matrix": [
+        "forest-feather",
+        "forest-nut",
+        "forest-leaf",
+        "forest-nut",
+        "forest-leaf",
+        "forest-feather",
+        "forest-leaf",
+        "forest-feather",
+        "forest-nut"
+      ],
+      "gap": 7,
+      "answer": "forest-feather",
+      "choices": [
+        "forest-leaf",
+        "forest-nut",
+        "forest-feather"
+      ]
+    }
+  },
+  {
+    "id": "friends-beaver/matrix-three-5-8",
+    "label": "Drei Gegenstände / Reihe 6 / Lücke 3",
+    "question": {
+      "kind": "matrix",
+      "prompt": "Welcher Waldgegenstand fehlt?",
+      "matrix": [
+        "forest-feather",
+        "forest-nut",
+        "forest-leaf",
+        "forest-nut",
+        "forest-leaf",
+        "forest-feather",
+        "forest-leaf",
+        "forest-feather",
+        "forest-nut"
+      ],
+      "gap": 8,
       "answer": "forest-nut",
       "choices": [
         "forest-leaf",

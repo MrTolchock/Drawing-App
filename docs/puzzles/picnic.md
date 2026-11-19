@@ -1,12 +1,12 @@
 # Eins zu eins gerecht verteilen
 
-[All puzzles](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
+[Alle Rätsel](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 
-- Stable puzzle ID: `picnic`
+- Stabile Rätsel-ID: `picnic`
 - Host: squirrel
 - Related competence: **MA.1.A.4.a (Übung)** — Eins zu eins gerecht verteilen
 - Difficulty: 2–4 Freunde; 1–10 Beeren je Freund; insgesamt höchstens 20
-- Pool: 25 explicit iterations; a round selects five.
+- Pool: 25 Aufgaben; eine Runde enthält fünf.
 - Review: solve every unconfirmed iteration to approve it; × rejects with an optional note. The puzzle is released when all current iterations passed. Exact per-iteration revisions gate release; only affected iterations require review after changes.
 
 ## Mapping to the blueprint
@@ -22,9 +22,9 @@
 | Ending | 900 ms correct feedback, then 2.2 s celebration; reduced motion |
 | Review | Production-sized open-item queue; solve to approve, × to reject, final celebration; puzzle-level speech and revision gate |
 
-## Every iteration
+## Alle Aufgaben
 
-| Stable iteration ID | Content / configuration | Expected answer or solution |
+| Stabile Aufgaben-ID | Inhalt / Konfiguration | Expected answer or solution |
 | --- | --- | --- |
 | `picnic/2-1` | 2 Freunde, 2 Beeren — Teile alle Beeren gerecht auf. | 1 |
 | `picnic/2-2` | 2 Freunde, 4 Beeren — Teile alle Beeren gerecht auf. | 2 |

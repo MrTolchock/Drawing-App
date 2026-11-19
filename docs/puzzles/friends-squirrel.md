@@ -1,12 +1,12 @@
 # Mengen zählen
 
-[All puzzles](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
+[Alle Rätsel](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 
-- Stable puzzle ID: `friends-squirrel`
+- Stabile Rätsel-ID: `friends-squirrel`
 - Host: squirrel
 - Related competence: **MA.1.A.2.a** — Mengen zählen
 - Difficulty: 0–20 Nüsse; Vierer- und Fünferstruktur
-- Pool: 25 explicit iterations; a round selects five.
+- Pool: 25 Aufgaben; eine Runde enthält fünf.
 - Review: solve every unconfirmed iteration to approve it; × rejects with an optional note. The puzzle is released when all current iterations passed. Exact per-iteration revisions gate release; only affected iterations require review after changes.
 
 ## Mapping to the blueprint
@@ -22,9 +22,9 @@
 | Ending | 900 ms correct feedback, then 2.2 s celebration; reduced motion |
 | Review | Production-sized open-item queue; solve to approve, × to reject, final celebration; puzzle-level speech and revision gate |
 
-## Every iteration
+## Alle Aufgaben
 
-| Stable iteration ID | Content / configuration | Expected answer or solution |
+| Stabile Aufgaben-ID | Inhalt / Konfiguration | Expected answer or solution |
 | --- | --- | --- |
 | `friends-squirrel/count-0` | Menge 0 — Wie viele Nüsse sind hier? | 0 |
 | `friends-squirrel/count-1` | Menge 1 — Wie viele Nüsse sind hier? | 1 |

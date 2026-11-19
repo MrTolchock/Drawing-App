@@ -1,0 +1,33 @@
+{
+  "format": "waldpost-illustration-atlas",
+  "version": 1,
+  "source": "sources/swiss-postbox.png",
+  "output": "../../assets/waldatelier/swiss-postbox.webp",
+  "columns": 2,
+  "rows": 2,
+  "cellPixels": 320,
+  "subjectPixels": 256,
+  "alphaThresholdPercent": 15,
+  "sourceRects": {
+    "swiss-postbox": {
+      "x": 0,
+      "y": 0,
+      "width": 1254,
+      "height": 1254
+    }
+  },
+  "provenance": {
+    "date": "2026-11-19",
+    "tool": "ChatGPT image_gen.imagegen",
+    "sourceSha256": "c3271c1d35a1cd5481629a21555f43645f8f5a8a5330bc3e01965e816aabf3b2",
+    "generationRecord": "../artwork/generation-records/swiss-postbox.json",
+    "styleContract": "style.json",
+    "forwardPrompt": "prompts/swiss-postbox.txt"
+  },
+  "subjects": [
+    {
+      "id": "swiss-postbox",
+      "label": "Gelber Schweizer Briefkasten"
+    }
+  ]
+}

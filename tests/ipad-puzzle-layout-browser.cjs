@@ -35,7 +35,7 @@ const {installRemote}=require('./review-repository-support.cjs');
  await page.setViewportSize({width:390,height:844});await page.evaluate(()=>FK.puzzleReview.preview('friends-bird','friends-bird/rhyme-2'));
  assert.equal(await page.locator('.screen-puzzle').evaluate(n=>n.scrollWidth>n.clientWidth+1),false);
  await page.locator('.screen-puzzle .btn-back').focus();await page.keyboard.press('Enter');await page.waitForFunction(()=>FK.current()==='puzzle-review');
- await page.getByRole('button',{name:'Zur Puzzle-Übersicht',exact:true}).click();
+ await page.getByRole('button',{name:"Zur Rätsel-Übersicht",exact:true}).click();
  assert.equal(await page.locator('[data-puzzle="friends-squirrel"] b').textContent(),'Mengen zählen');
  assert.equal(await page.locator('[data-puzzle="friends-squirrel"]>span:not(.review-status):not(.forest-portrait)').count(),0,'no duplicate subtitle');
  if(process.env.FARBTUPF_SHOTS){fs.mkdirSync(process.env.FARBTUPF_SHOTS,{recursive:true});await page.setViewportSize({width:1280,height:854});await page.evaluate(()=>FK.puzzleReview.preview('friends-bird','friends-bird/rhyme-2'));await page.screenshot({path:process.env.FARBTUPF_SHOTS+'/ipad-rhyme.png'});}

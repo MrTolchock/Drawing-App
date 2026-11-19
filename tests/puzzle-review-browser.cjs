@@ -15,7 +15,7 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
  const entries=await page.evaluate(()=>FK.friendsLibrary.catalogue());
  // The gallery itself is now behind the adult gate; child access is covered by letter-sessions-browser.cjs.
  const task=await page.locator('.gate-task').textContent(),[a,b]=task.match(/\d+/g).map(Number);await page.getByLabel('Deine Antwort',{exact:true}).fill(String(a*b));await page.locator('.gate-submit').click();
- await page.waitForFunction(()=>FK.current()==='puzzle-review');await page.evaluate(()=>FK.reviewRepository.connect('test-review-token'));assert.equal(await page.locator('.review-puzzle').count(),24);await page.evaluate(()=>{window.menuSounds={tick:0,open:0};for(const name of ['tick','open']){const fn=FK.sound[name];FK.sound[name]=(...args)=>{menuSounds[name]++;return fn(...args);};}});
+ await page.waitForFunction(()=>FK.current()==='puzzle-review');await page.evaluate(()=>FK.reviewRepository.connect('test-review-token'));assert.equal(await page.locator('.review-puzzle').count(),22);await page.evaluate(()=>{window.menuSounds={tick:0,open:0};for(const name of ['tick','open']){const fn=FK.sound[name];FK.sound[name]=(...args)=>{menuSounds[name]++;return fn(...args);};}});
  assert.equal(await page.locator('.review-puzzle').evaluateAll(nodes=>nodes.some(n=>n.scrollWidth>n.clientWidth+2)),false,'review card contents fit');
  await page.screenshot({path:shots+'/review-catalogue-tablet.png'});
  // One shared spoken rule is tested on each puzzle overview, never per iteration.
@@ -29,13 +29,13 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
   await page.waitForFunction(()=>document.querySelector('.review-speech-status')?.textContent==='Spielerklärung wird vorgelesen.');
   assert.equal(await page.evaluate(()=>reviewSpeechRequests.at(-1)),await page.evaluate(id=>FK.puzzleCatalogue.puzzle(id).instruction,g.id),g.id+' spoken rule');
  }
- assert.equal(await page.evaluate(()=>reviewSpeechRequests.length),24);console.log('PASS one spoken rule on each of 24 puzzle overviews');assert.deepEqual(await page.evaluate(()=>menuSounds),{tick:0,open:0},'menu navigation and speech controls do not click');
+ assert.equal(await page.evaluate(()=>reviewSpeechRequests.length),22);console.log('PASS one spoken rule on each of 22 riddle overviews');assert.deepEqual(await page.evaluate(()=>menuSounds),{tick:0,open:0},'menu navigation and speech controls do not click');
 
  const active=()=>page.locator('.screen:not([hidden])');
  const preview=async(id,iteration)=>page.evaluate(({id,iteration})=>FK.puzzleReview.preview(id,iteration),{id,iteration});
  const currentId=()=>active().getAttribute('data-review-iteration');
- const back=()=>active().getByRole('button',{name:'Zur Puzzle-Prüfung',exact:true}).click();
- const reject=async note=>{await active().getByRole('button',{name:'Iteration ablehnen',exact:true}).tap();if(note)await page.getByLabel('Kommentar (optional)',{exact:true}).fill(note);await page.getByRole('button',{name:'Ablehnen und weiter',exact:true}).tap();};
+ const back=()=>active().getByRole('button',{name:"Zur Rätsel-Prüfung",exact:true}).click();
+ const reject=async note=>{await active().getByRole('button',{name:"Aufgabe ablehnen",exact:true}).tap();if(note)await page.getByLabel('Kommentar (optional)',{exact:true}).fill(note);await page.getByRole('button',{name:'Ablehnen und weiter',exact:true}).tap();};
  const snapshot=()=>page.evaluate(()=>Object.fromEntries(Object.entries(localStorage).filter(([k])=>!k.startsWith('farbtupf.puzzle-review.'))));
  let nativeInput=false;
  const touch=await context.newCDPSession(page);
@@ -86,19 +86,20 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
  };
 
  await page.locator('.screen:not([hidden]) .btn-back').click();await page.locator('[data-puzzle="add"]').click();
- assert.equal(await page.getByRole('button',{name:'Puzzle freigeben',exact:true}).count(),0);
+ assert.equal(await page.getByRole('button',{name:"Rätsel freigeben",exact:true}).count(),0);
  await page.screenshot({path:shots+'/puzzle-overview-tablet.png'});
  await page.getByRole('button',{name:/^Offene Iterationen prüfen/}).click();
  const addPool=await page.evaluate(()=>FK.puzzleCatalogue.iterations('add')),total=addPool.length;
- assert.ok(total>5);assert.equal(await active().locator('.puzzle-round').textContent(),'1 / '+total);
+ const reviewCounter=()=>page.evaluate(()=>{const root=document.querySelector('.screen:not([hidden])'),items=FK.puzzleCatalogue.iterations(root.dataset.game);return (items.findIndex(it=>it.id===root.dataset.reviewIteration)+1)+' / '+items.length;});
+ assert.ok(total>5);assert.equal(await active().locator('.puzzle-round').textContent(),await reviewCounter());
  assert.equal(await active().locator('.review-preview,.review-decision,textarea').count(),0);
  assert.equal(await active().getByRole('button',{name:'Spiel erklären',exact:true}).count(),0);
  const first=await currentId(),q1=addPool.find(i=>i.id===first).question;
  nativeInput=true;await answer(q1.choices.find(v=>v!==q1.answer));assert.equal(await page.evaluate(id=>FK.puzzleReview.status('add',id).status,first),'pending');assert.equal(await currentId(),first);
  await solve(q1);assert.equal(await page.evaluate(id=>FK.puzzleReview.status('add',id).status,first),'approved');
- assert.equal(await active().getByRole('button',{name:'Iteration ablehnen',exact:true}).isDisabled(),true);
+ assert.equal(await active().getByRole('button',{name:"Aufgabe ablehnen",exact:true}).isDisabled(),true);
  await page.waitForFunction(id=>document.querySelector('.screen:not([hidden])').dataset.reviewIteration!==id,first);
- const second=await currentId();await active().getByRole('button',{name:'Iteration ablehnen',exact:true}).tap();await page.getByLabel('Kommentar (optional)',{exact:true}).fill('Draft to cancel');await page.getByRole('button',{name:'Weiter prüfen',exact:true}).tap();assert.equal(await currentId(),second);assert.equal(await page.evaluate(id=>FK.puzzleReview.status('add',id).status,second),'pending');
+ const second=await currentId();await active().getByRole('button',{name:"Aufgabe ablehnen",exact:true}).tap();await page.getByLabel('Kommentar (optional)',{exact:true}).fill('Draft to cancel');await page.getByRole('button',{name:'Weiter prüfen',exact:true}).tap();assert.equal(await currentId(),second);assert.equal(await page.evaluate(id=>FK.puzzleReview.status('add',id).status,second),'pending');
  await reject();assert.equal(await page.evaluate(id=>FK.puzzleReview.status('add',id).decision.note,second),'');
  const third=await currentId();await reject('Bitte Bildgrösse prüfen');assert.equal(await page.evaluate(id=>FK.puzzleReview.status('add',id).decision.note,third),'Bitte Bildgrösse prüfen');
  await page.screenshot({path:shots+'/review-gameplay-tablet.png'});await back();
@@ -125,7 +126,7 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
    await solve(it.question);assert.equal(await page.evaluate(({id,it})=>FK.puzzleReview.status(id,it).status,{id:g.id,it:it.id}),'approved',it.id+' auto approval');checked++;
   }console.log('PASS every iteration:',g.id,pool.length);
  }
- if(!process.env.FARBTUPF_GAMES)assert.equal(checked,776);assert.deepEqual(await snapshot(),before,'review leaves child saves unchanged');
+ if(!process.env.FARBTUPF_GAMES)assert.equal(checked,794);assert.deepEqual(await snapshot(),before,'review leaves child saves unchanged');
  // All puzzle types accept real taps, including SVG/image descendants and redrawing controls.
  for(const width of [1080,390]){
   await page.setViewportSize({width,height:width===390?844:810});nativeInput=width===390?'mouse':true;
@@ -143,18 +144,18 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
  await wrongCount.scrollIntoViewIfNeeded();const hit=await wrongCount.boundingBox(),center={x:hit.x+hit.width/2,y:hit.y+hit.height/2,id:1};
  await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[center]});await touch.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{...center,y:center.y-35}]});await touch.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});assert.equal(await page.evaluate(()=>reviewSoundCounts.clicks),12,'drag is not a tap');
  await wrongCount.scrollIntoViewIfNeeded();const fresh=await wrongCount.boundingBox();await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:fresh.x+fresh.width/2,y:fresh.y+fresh.height/2,id:1}]});await touch.send('Input.dispatchTouchEvent',{type:'touchCancel',touchPoints:[]});assert.equal(await page.evaluate(()=>reviewSoundCounts.clicks),12,'cancel is not a tap');await wrongCount.tap();assert.equal(await page.evaluate(()=>reviewSoundCounts.clicks),13);
- await active().getByRole('button',{name:'Iteration ablehnen',exact:true}).tap();await page.locator('.modal-x').tap();await page.evaluate(()=>reviewSoundCounts.clicks=0);await wrongCount.tap();assert.equal(await page.evaluate(()=>reviewSoundCounts.clicks),1,'closing a modal does not eat the next tap');
+ await active().getByRole('button',{name:"Aufgabe ablehnen",exact:true}).tap();await page.locator('.modal-x').tap();await page.evaluate(()=>reviewSoundCounts.clicks=0);await wrongCount.tap();assert.equal(await page.evaluate(()=>reviewSoundCounts.clicks),1,'closing a modal does not eat the next tap');
  // Complete a whole review queue through the actual answers, beyond the normal fifth item.
  await page.evaluate(()=>{for(const it of FK.puzzleCatalogue.iterations('add'))FK.puzzleReview.decide('add',it.id,'pending');FK.puzzleReview.decide('add',null,'pending');FK.puzzleReview.start('add');});
  for(let n=0;n<total;n++){
-  const id=await currentId();assert.equal(await active().locator('.puzzle-round').textContent(),(n+1)+' / '+total);await solve(addPool.find(it=>it.id===id).question);
+  const id=await currentId();assert.equal(await active().locator('.puzzle-round').textContent(),await reviewCounter());await solve(addPool.find(it=>it.id===id).question);
   if(n<total-1)await page.waitForFunction(id=>document.querySelector('.screen:not([hidden])').dataset.reviewIteration!==id,id);
  }
  await active().locator('.puzzle-completion').waitFor({state:'visible'});assert.equal(await page.evaluate(()=>FK.puzzleReview.status('add').status),'approved','all current iterations passed; release follows their GitHub confirmation');assert.equal(await active().locator('.puzzle-completion .done').count(),5);await page.waitForFunction(()=>FK.current()==='puzzle-review');await page.evaluate(()=>FK.reviewRepository.refresh());assert.equal(await page.evaluate(()=>FK.puzzleReview.ready('add')),true);
  // A rejection is not repeated forever; only that item remains for the next run.
  await page.evaluate(ids=>{for(const id of ids)FK.puzzleReview.decide('add',id,'pending');FK.puzzleReview.start('add');},addPool.slice(0,2).map(i=>i.id));
- const reopen=await currentId();await reject('One more look');assert.equal(await active().locator('.puzzle-round').textContent(),'2 / 2');const last=await currentId();await solve(addPool.find(i=>i.id===last).question);await active().locator('.puzzle-completion').waitFor({state:'visible'});await page.waitForFunction(()=>FK.current()==='puzzle-review');assert.equal(await page.evaluate(()=>FK.puzzleReview.ready('add')),false);
- await page.evaluate(()=>FK.puzzleReview.start('add'));assert.equal(await currentId(),reopen);assert.equal(await active().locator('.puzzle-round').textContent(),'1 / 1');
+ const reopen=await currentId();await reject('One more look');assert.equal(await active().locator('.puzzle-round').textContent(),await reviewCounter());const last=await currentId();await solve(addPool.find(i=>i.id===last).question);await active().locator('.puzzle-completion').waitFor({state:'visible'});await page.waitForFunction(()=>FK.current()==='puzzle-review');assert.equal(await page.evaluate(()=>FK.puzzleReview.ready('add')),false);
+ await page.evaluate(()=>FK.puzzleReview.start('add'));assert.equal(await currentId(),reopen);assert.equal(await active().locator('.puzzle-round').textContent(),await reviewCounter());
  // Storage failure must keep the item open and offer a retry, rather than silently approve.
  await page.evaluate(()=>{window.reviewWrite=Storage.prototype.setItem;Storage.prototype.setItem=function(k,v){if(k===FK.puzzleReview.key)throw Error('quota');return reviewWrite.call(this,k,v);};});
  await answer(addPool.find(i=>i.id===reopen).question.answer);await page.getByRole('dialog',{name:'Prüfung nicht gespeichert',exact:true}).waitFor();assert.equal(await page.evaluate(id=>FK.puzzleReview.status('add',id).status,reopen),'improve');await page.evaluate(()=>Storage.prototype.setItem=reviewWrite);await page.getByRole('button',{name:'Erneut versuchen',exact:true}).click();await active().locator('.puzzle-completion').waitFor({state:'visible'});await page.waitForFunction(()=>FK.current()==='puzzle-review');
@@ -167,12 +168,12 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
   const open=pool.slice(0,7);for(const it of open)FK.puzzleReview.decide('syllable',it.id,'pending');FK.puzzleReview.decide('syllable',null,'pending');FK.puzzleReview.start('syllable');return open;
  });
  for(let n=0;n<syllables.length;n++){
-  assert.equal(await active().locator('.puzzle-round').textContent(),(n+1)+' / 7');const id=await currentId();
+  assert.equal(await active().locator('.puzzle-round').textContent(),await reviewCounter());const id=await currentId();
   if(n===2){await reject('Silben prüfen');assert.equal(await page.evaluate(id=>FK.puzzleReview.status('syllable',id).status,id),'improve');}
   else {await solve(syllables[n].question);if(n<syllables.length-1)await page.waitForFunction(id=>document.querySelector('.screen:not([hidden])').dataset.reviewIteration!==id,id);}
  }
  await active().locator('.puzzle-completion').waitFor();await page.waitForFunction(()=>FK.current()==='puzzle-review');assert.equal(await page.evaluate(()=>FK.puzzleReview.status('syllable').status),'pending');
- await page.evaluate(()=>FK.puzzleReview.start('syllable'));assert.equal(await active().locator('.puzzle-round').textContent(),'1 / 1');await solve(syllables[2].question);await active().locator('.puzzle-completion').waitFor();await page.waitForFunction(()=>FK.current()==='puzzle-review');assert.equal(await page.evaluate(()=>FK.puzzleReview.status('syllable').status),'approved');assert.deepEqual(await snapshot(),childBeforeSyllables,'syllables review leaves child saves unchanged');
+ await page.evaluate(()=>FK.puzzleReview.start('syllable'));assert.equal(await active().locator('.puzzle-round').textContent(),await reviewCounter());await solve(syllables[2].question);await active().locator('.puzzle-completion').waitFor();await page.waitForFunction(()=>FK.current()==='puzzle-review');assert.equal(await page.evaluate(()=>FK.puzzleReview.status('syllable').status),'approved');assert.deepEqual(await snapshot(),childBeforeSyllables,'syllables review leaves child saves unchanged');
  // Flagging survives refresh and offline use; a fresh review resumes only unconfirmed items.
  await page.evaluate(id=>FK.puzzleReview.decide('add',id,'improve','Check image'),reopen);await page.reload();await page.waitForFunction(()=>!!window.FK?.puzzleReview);assert.equal(await page.evaluate(()=>FK.puzzleReview.ready('add')),false);
  await page.evaluate(()=>navigator.serviceWorker.ready);await page.waitForFunction(()=>!!navigator.serviceWorker.controller);await context.setOffline(true);await page.reload();await page.waitForFunction(()=>!!window.FK?.puzzleReview);assert.equal(await page.evaluate(id=>FK.puzzleReview.status('add',id).status,reopen),'improve');assert.equal(await page.evaluate(()=>window.reviewSpeechRequests?.length||0),0);

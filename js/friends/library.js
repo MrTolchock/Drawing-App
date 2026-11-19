@@ -81,20 +81,6 @@ const games=[
     "screen": "puzzle"
   },
   {
-    "id": "pattern",
-    "host": "owl",
-    "title": "Wiederholungsmuster fortsetzen",
-    "picture": "forest-leaf",
-    "screen": "puzzle"
-  },
-  {
-    "id": "nature",
-    "host": "bird",
-    "title": "Naturhinweise lesend verstehen",
-    "picture": "seedling",
-    "screen": "puzzle"
-  },
-  {
     "id": "rocket",
     "host": "squirrel",
     "title": "Mengen ergänzen",

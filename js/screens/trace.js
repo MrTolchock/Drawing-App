@@ -1079,7 +1079,7 @@
   FK.screen('trace', {
     build(r) {
       root = r;
-      FK.on('puzzle-review-change',()=>{if(active&&woodlandSession&&!woodlandSession.review&&!woodlandSession.blocked&&!FK.puzzleReview.ready(woodlandGame)){FK.playLog?.stop('review_required');stopActivity();playEl.hidden=true;woodlandContext.hidden=true;woodlandEnd.hidden=false;woodlandEnd.replaceChildren(h('p',{class:'puzzle-review-blocked',text:'Dieses Puzzle wartet auf erneute Freigabe.'}));}});
+      FK.on('puzzle-review-change',()=>{if(active&&woodlandSession&&!woodlandSession.review&&!woodlandSession.blocked&&!FK.puzzleReview.ready(woodlandGame)){FK.playLog?.stop('review_required');stopActivity();playEl.hidden=true;woodlandContext.hidden=true;woodlandEnd.hidden=false;woodlandEnd.replaceChildren(h('p',{class:'puzzle-review-blocked',text:"Dieses Rätsel wartet auf erneute Freigabe."}));}});
       const bar = FK.ui.topbar({
         title: 'Schreiben',
         onBack: () => { if(woodlandSession)FK.go(woodlandOrigin,woodlandSession.review?{reviewPuzzle:woodlandGame}:{},{isBack:true});else if (view === 'play') showOver(); else FK.back(); },
@@ -1117,7 +1117,7 @@
       root.querySelector('.title').textContent=woodlandSession?FK.puzzleRounds.title(woodlandGame):'Schreiben';
       root.querySelector('.topbar .play-listen').hidden=!!woodlandSession;
       root.querySelector('.star-count').hidden=!!woodlandSession;
-      root.querySelector('.btn-back').setAttribute('aria-label',woodlandSession?.review?'Zur Puzzle-Prüfung':woodlandSession?.gallery?'Zur Puzzle-Galerie':woodlandSession?(woodlandOrigin==='forest-book'?'Zurück zu Waldspiele':'Zurück zum Wald'):'Zurück');
+      root.querySelector('.btn-back').setAttribute('aria-label',woodlandSession?.review?"Zur Rätsel-Prüfung":woodlandSession?.gallery?"Zur Rätsel-Galerie":woodlandSession?(woodlandOrigin==='forest-book'?'Zurück zu Waldspiele':'Zurück zum Wald'):'Zurück');
       woodlandContext.hidden=true;woodlandEnd.hidden=true;
       learningStage = params.stage >= 1 && params.stage <= 3 ? params.stage : 1;
       window.addEventListener('resize', onResize);
@@ -1126,7 +1126,7 @@
       document.addEventListener('visibilitychange', onVis);
       if (ro) ro.observe(paperEl);
       if(woodlandSession){
-        if(woodlandSession.blocked){overEl.hidden=true;playEl.hidden=true;woodlandEnd.hidden=false;woodlandEnd.replaceChildren(h('p',{class:'puzzle-review-blocked',text:'Dieses Puzzle wartet auf Freigabe. Eine erwachsene Person prüft zuerst alle Aufgaben.'}));return;}
+        if(woodlandSession.blocked){overEl.hidden=true;playEl.hidden=true;woodlandEnd.hidden=false;woodlandEnd.replaceChildren(h('p',{class:'puzzle-review-blocked',text:"Dieses Rätsel wartet auf Freigabe. Eine erwachsene Person prüft zuerst alle Aufgaben."}));return;}
         FK.playLog?.begin(woodlandSession);woodlandNext();
         return;
       }

@@ -1,12 +1,12 @@
 # Tiermerkmale erkennen und Fragen lesen
 
-[All puzzles](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
+[Alle Rätsel](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 
-- Stable puzzle ID: `friends-hedgehog`
+- Stabile Rätsel-ID: `friends-hedgehog`
 - Host: hedgehog
 - Related competence: **NMG.2.4.a; D.2.B.1.b** — Tiermerkmale erkennen und Fragen lesen
-- Difficulty: 25 kurze Fragen zu sichtbaren Tiermerkmalen; zwei Bildantworten
-- Pool: 25 explicit iterations; a round selects five.
+- Difficulty: 50 kurze Tierfragen; zwei Bildantworten
+- Pool: 50 Aufgaben; eine Runde enthält fünf.
 - Review: solve every unconfirmed iteration to approve it; × rejects with an optional note. The puzzle is released when all current iterations passed. Exact per-iteration revisions gate release; only affected iterations require review after changes.
 
 ## Mapping to the blueprint
@@ -22,9 +22,9 @@
 | Ending | 900 ms correct feedback, then 2.2 s celebration; reduced motion |
 | Review | Production-sized open-item queue; solve to approve, × to reject, final celebration; puzzle-level speech and revision gate |
 
-## Every iteration
+## Alle Aufgaben
 
-| Stable iteration ID | Content / configuration | Expected answer or solution |
+| Stabile Aufgaben-ID | Inhalt / Konfiguration | Expected answer or solution |
 | --- | --- | --- |
 | `friends-hedgehog/riddle-0` | Wer hat Stacheln? — Wer hat Stacheln? | "hedgehog" |
 | `friends-hedgehog/riddle-1` | Wer hat einen blauen Kopf? — Wer hat einen blauen Kopf? | "bird-sit" |
@@ -51,6 +51,31 @@
 | `friends-hedgehog/riddle-22` | Wer hat Flecken im Fell? — Wer hat Flecken im Fell? | "forest-lynx" |
 | `friends-hedgehog/riddle-23` | Wer hat einen hellen Hals? — Wer hat einen hellen Hals? | "forest-marten" |
 | `friends-hedgehog/riddle-24` | Wer hat keine Beine? — Wer hat keine Beine? | "vocab-worm" |
+| `friends-hedgehog/nature-question-0` | Wer trägt Stacheln auf dem Rücken? — Wer trägt Stacheln auf dem Rücken? | "hedgehog" |
+| `friends-hedgehog/nature-question-1` | Wer schwimmt mit Flossen? — Wer schwimmt mit Flossen? | "fish" |
+| `friends-hedgehog/nature-question-2` | Wer quakt am Teich? — Wer quakt am Teich? | "frog" |
+| `friends-hedgehog/nature-question-3` | Wer macht Honig aus Nektar? — Wer macht Honig aus Nektar? | "bee" |
+| `friends-hedgehog/nature-question-4` | Wer bellt? — Wer bellt? | "dog" |
+| `friends-hedgehog/nature-question-5` | Wer miaut? — Wer miaut? | "cat" |
+| `friends-hedgehog/nature-question-6` | Wer gibt uns Milch? — Wer gibt uns Milch? | "cow" |
+| `friends-hedgehog/nature-question-7` | Wer baut ein Netz? — Wer baut ein Netz? | "spider" |
+| `friends-hedgehog/nature-question-8` | Wer trägt sein Haus mit? — Wer trägt sein Haus mit? | "snail" |
+| `friends-hedgehog/nature-question-9` | Wen schützt ein Panzer? — Wen schützt ein Panzer? | "tortoise" |
+| `friends-hedgehog/nature-question-10` | Wer hüpft mit langen Ohren? — Wer hüpft mit langen Ohren? | "rabbit" |
+| `friends-hedgehog/nature-question-11` | Wer wird aus einer Raupe? — Wer wird aus einer Raupe? | "butterfly" |
+| `friends-hedgehog/nature-question-12` | Wer baut ein Nest im Baum? — Wer baut ein Nest im Baum? | "bird" |
+| `friends-hedgehog/nature-question-13` | Wessen roter Rücken hat schwarze Punkte? — Wessen roter Rücken hat schwarze Punkte? | "ladybird" |
+| `friends-hedgehog/nature-question-14` | Wer hat weiche Wolle? — Wer hat weiche Wolle? | "sheep" |
+| `friends-hedgehog/nature-question-15` | Wer balanciert mit buschigem Schwanz? — Wer balanciert mit buschigem Schwanz? | "squirrel" |
+| `friends-hedgehog/nature-question-16` | Wer trinkt mit einem Rüssel? — Wer trinkt mit einem Rüssel? | "elephant" |
+| `friends-hedgehog/nature-question-17` | Wer hat einen sehr langen Hals? — Wer hat einen sehr langen Hals? | "giraffe" |
+| `friends-hedgehog/nature-question-18` | Wer trägt eine Mähne? — Wer trägt eine Mähne? | "lion" |
+| `friends-hedgehog/nature-question-19` | Wessen Fell ist schwarz-weiss gestreift? — Wessen Fell ist schwarz-weiss gestreift? | "zebra" |
+| `friends-hedgehog/nature-question-20` | Wer hat Höcker auf dem Rücken? — Wer hat Höcker auf dem Rücken? | "camel" |
+| `friends-hedgehog/nature-question-21` | Wessen orangefarbenes Fell hat schwarze Streifen? — Wessen orangefarbenes Fell hat schwarze Streifen? | "tiger" |
+| `friends-hedgehog/nature-question-22` | Welcher Vogel schwimmt und taucht? — Welcher Vogel schwimmt und taucht? | "penguin" |
+| `friends-hedgehog/nature-question-23` | Wessen Gesicht ist schwarz-weiss gestreift? — Wessen Gesicht ist schwarz-weiss gestreift? | "badger" |
+| `friends-hedgehog/nature-question-24` | Wer baut einen Damm aus Ästen? — Wer baut einen Damm aus Ästen? | "beaver" |
 
 ## Exact definitions
 
@@ -405,6 +430,356 @@ These definitions are the same finite data used by the game and review previews.
       "choices": [
         "vocab-worm",
         "ant"
+      ]
+    }
+  },
+  {
+    "id": "friends-hedgehog/nature-question-0",
+    "label": "Wer trägt Stacheln auf dem Rücken?",
+    "question": {
+      "kind": "reading",
+      "prompt": "Welches Tier passt?",
+      "text": "Wer trägt Stacheln auf dem Rücken?",
+      "answer": "hedgehog",
+      "choices": [
+        "hedgehog",
+        "fish"
+      ]
+    }
+  },
+  {
+    "id": "friends-hedgehog/nature-question-1",
+    "label": "Wer schwimmt mit Flossen?",
+    "question": {
+      "kind": "reading",
+      "prompt": "Welches Tier passt?",
+      "text": "Wer schwimmt mit Flossen?",
+      "answer": "fish",
+      "choices": [
+        "fish",
+        "dog"
+      ]
+    }
+  },
+  {
+    "id": "friends-hedgehog/nature-question-2",
+    "label": "Wer quakt am Teich?",
+    "question": {
+      "kind": "reading",
+      "prompt": "Welches Tier passt?",
+      "text": "Wer quakt am Teich?",
+      "answer": "frog",
+      "choices": [
+        "frog",
+        "cat"
+      ]
+    }
+  },
+  {
+    "id": "friends-hedgehog/nature-question-3",
+    "label": "Wer macht Honig aus Nektar?",
+    "question": {
+      "kind": "reading",
+      "prompt": "Welches Tier passt?",
+      "text": "Wer macht Honig aus Nektar?",
+      "answer": "bee",
+      "choices": [
+        "bee",
+        "cow"
+      ]
+    }
+  },
+  {
+    "id": "friends-hedgehog/nature-question-4",
+    "label": "Wer bellt?",
+    "question": {
+      "kind": "reading",
+      "prompt": "Welches Tier passt?",
+      "text": "Wer bellt?",
+      "answer": "dog",
+      "choices": [
+        "dog",
+        "frog"
+      ]
+    }
+  },
+  {
+    "id": "friends-hedgehog/nature-question-5",
+    "label": "Wer miaut?",
+    "question": {
+      "kind": "reading",
+      "prompt": "Welches Tier passt?",
+      "text": "Wer miaut?",
+      "answer": "cat",
+      "choices": [
+        "cat",
+        "fish"
+      ]
+    }
+  },
+  {
+    "id": "friends-hedgehog/nature-question-6",
+    "label": "Wer gibt uns Milch?",
+    "question": {
+      "kind": "reading",
+      "prompt": "Welches Tier passt?",
+      "text": "Wer gibt uns Milch?",
+      "answer": "cow",
+      "choices": [
+        "cow",
+        "bee"
+      ]
+    }
+  },
+  {
+    "id": "friends-hedgehog/nature-question-7",
+    "label": "Wer baut ein Netz?",
+    "question": {
+      "kind": "reading",
+      "prompt": "Welches Tier passt?",
+      "text": "Wer baut ein Netz?",
+      "answer": "spider",
+      "choices": [
+        "spider",
+        "bird"
+      ]
+    }
+  },
+  {
+    "id": "friends-hedgehog/nature-question-8",
+    "label": "Wer trägt sein Haus mit?",
+    "question": {
+      "kind": "reading",
+      "prompt": "Welches Tier passt?",
+      "text": "Wer trägt sein Haus mit?",
+      "answer": "snail",
+      "choices": [
+        "snail",
+        "dog"
+      ]
+    }
+  },
+  {
+    "id": "friends-hedgehog/nature-question-9",
+    "label": "Wen schützt ein Panzer?",
+    "question": {
+      "kind": "reading",
+      "prompt": "Welches Tier passt?",
+      "text": "Wen schützt ein Panzer?",
+      "answer": "tortoise",
+      "choices": [
+        "tortoise",
+        "rabbit"
+      ]
+    }
+  },
+  {
+    "id": "friends-hedgehog/nature-question-10",
+    "label": "Wer hüpft mit langen Ohren?",
+    "question": {
+      "kind": "reading",
+      "prompt": "Welches Tier passt?",
+      "text": "Wer hüpft mit langen Ohren?",
+      "answer": "rabbit",
+      "choices": [
+        "rabbit",
+        "fish"
+      ]
+    }
+  },
+  {
+    "id": "friends-hedgehog/nature-question-11",
+    "label": "Wer wird aus einer Raupe?",
+    "question": {
+      "kind": "reading",
+      "prompt": "Welches Tier passt?",
+      "text": "Wer wird aus einer Raupe?",
+      "answer": "butterfly",
+      "choices": [
+        "butterfly",
+        "pig"
+      ]
+    }
+  },
+  {
+    "id": "friends-hedgehog/nature-question-12",
+    "label": "Wer baut ein Nest im Baum?",
+    "question": {
+      "kind": "reading",
+      "prompt": "Welches Tier passt?",
+      "text": "Wer baut ein Nest im Baum?",
+      "answer": "bird",
+      "choices": [
+        "bird",
+        "cow"
+      ]
+    }
+  },
+  {
+    "id": "friends-hedgehog/nature-question-13",
+    "label": "Wessen roter Rücken hat schwarze Punkte?",
+    "question": {
+      "kind": "reading",
+      "prompt": "Welches Tier passt?",
+      "text": "Wessen roter Rücken hat schwarze Punkte?",
+      "answer": "ladybird",
+      "choices": [
+        "ladybird",
+        "sheep"
+      ]
+    }
+  },
+  {
+    "id": "friends-hedgehog/nature-question-14",
+    "label": "Wer hat weiche Wolle?",
+    "question": {
+      "kind": "reading",
+      "prompt": "Welches Tier passt?",
+      "text": "Wer hat weiche Wolle?",
+      "answer": "sheep",
+      "choices": [
+        "sheep",
+        "fish"
+      ]
+    }
+  },
+  {
+    "id": "friends-hedgehog/nature-question-15",
+    "label": "Wer balanciert mit buschigem Schwanz?",
+    "question": {
+      "kind": "reading",
+      "prompt": "Welches Tier passt?",
+      "text": "Wer balanciert mit buschigem Schwanz?",
+      "answer": "squirrel",
+      "choices": [
+        "squirrel",
+        "spider"
+      ]
+    }
+  },
+  {
+    "id": "friends-hedgehog/nature-question-16",
+    "label": "Wer trinkt mit einem Rüssel?",
+    "question": {
+      "kind": "reading",
+      "prompt": "Welches Tier passt?",
+      "text": "Wer trinkt mit einem Rüssel?",
+      "answer": "elephant",
+      "choices": [
+        "elephant",
+        "cat"
+      ]
+    }
+  },
+  {
+    "id": "friends-hedgehog/nature-question-17",
+    "label": "Wer hat einen sehr langen Hals?",
+    "question": {
+      "kind": "reading",
+      "prompt": "Welches Tier passt?",
+      "text": "Wer hat einen sehr langen Hals?",
+      "answer": "giraffe",
+      "choices": [
+        "giraffe",
+        "pig"
+      ]
+    }
+  },
+  {
+    "id": "friends-hedgehog/nature-question-18",
+    "label": "Wer trägt eine Mähne?",
+    "question": {
+      "kind": "reading",
+      "prompt": "Welches Tier passt?",
+      "text": "Wer trägt eine Mähne?",
+      "answer": "lion",
+      "choices": [
+        "lion",
+        "sheep"
+      ]
+    }
+  },
+  {
+    "id": "friends-hedgehog/nature-question-19",
+    "label": "Wessen Fell ist schwarz-weiss gestreift?",
+    "question": {
+      "kind": "reading",
+      "prompt": "Welches Tier passt?",
+      "text": "Wessen Fell ist schwarz-weiss gestreift?",
+      "answer": "zebra",
+      "choices": [
+        "zebra",
+        "dog"
+      ]
+    }
+  },
+  {
+    "id": "friends-hedgehog/nature-question-20",
+    "label": "Wer hat Höcker auf dem Rücken?",
+    "question": {
+      "kind": "reading",
+      "prompt": "Welches Tier passt?",
+      "text": "Wer hat Höcker auf dem Rücken?",
+      "answer": "camel",
+      "choices": [
+        "camel",
+        "cat"
+      ]
+    }
+  },
+  {
+    "id": "friends-hedgehog/nature-question-21",
+    "label": "Wessen orangefarbenes Fell hat schwarze Streifen?",
+    "question": {
+      "kind": "reading",
+      "prompt": "Welches Tier passt?",
+      "text": "Wessen orangefarbenes Fell hat schwarze Streifen?",
+      "answer": "tiger",
+      "choices": [
+        "tiger",
+        "cow"
+      ]
+    }
+  },
+  {
+    "id": "friends-hedgehog/nature-question-22",
+    "label": "Welcher Vogel schwimmt und taucht?",
+    "question": {
+      "kind": "reading",
+      "prompt": "Welches Tier passt?",
+      "text": "Welcher Vogel schwimmt und taucht?",
+      "answer": "penguin",
+      "choices": [
+        "penguin",
+        "bird"
+      ]
+    }
+  },
+  {
+    "id": "friends-hedgehog/nature-question-23",
+    "label": "Wessen Gesicht ist schwarz-weiss gestreift?",
+    "question": {
+      "kind": "reading",
+      "prompt": "Welches Tier passt?",
+      "text": "Wessen Gesicht ist schwarz-weiss gestreift?",
+      "answer": "badger",
+      "choices": [
+        "badger",
+        "pig"
+      ]
+    }
+  },
+  {
+    "id": "friends-hedgehog/nature-question-24",
+    "label": "Wer baut einen Damm aus Ästen?",
+    "question": {
+      "kind": "reading",
+      "prompt": "Welches Tier passt?",
+      "text": "Wer baut einen Damm aus Ästen?",
+      "answer": "beaver",
+      "choices": [
+        "beaver",
+        "cat"
       ]
     }
   }

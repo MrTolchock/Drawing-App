@@ -14,8 +14,8 @@
     tabs.append(tab('all','Alle',FK.visual?.art?.('book')||'',open.length));
     for(const id of hosts)tabs.append(tab(id,window.FriendsContent.hosts[id].name,FK.friendsLibrary.portrait(id),open.filter(g=>g.host===id).length));
     const shown=open.filter(g=>friend==='all'||g.host===friend);
-    body.replaceChildren(h('p',{class:'review-intro',text:open.length+' von '+games.length+' Puzzles sind freigegeben. Ein Puzzle antippen spielt eine Runde mit fünf Aufgaben. Galerie-Runden verändern keinen Spielstand und keinen Brief.'}),tabs);
-    if(!open.length){body.append(h('p',{class:'gallery-empty',text:'Noch kein Puzzle ist freigegeben. Puzzles werden in der Puzzle-Prüfung geprüft und freigegeben.'}),FK.ui.btn({label:'Zur Puzzle-Prüfung',onClick:()=>V.open()}));return;}
+    body.replaceChildren(h('p',{class:'review-intro',text:open.length+' von '+games.length+" Rätsel sind freigegeben. Ein Rätsel antippen spielt eine Runde mit fünf Aufgaben. Galerie-Runden verändern keinen Spielstand und keinen Brief."}),tabs);
+    if(!open.length){body.append(h('p',{class:'gallery-empty',text:"Noch kein Rätsel ist freigegeben. Rätsel werden in der Rätsel-Prüfung geprüft und freigegeben."}),FK.ui.btn({label:"Zur Rätsel-Prüfung",onClick:()=>V.open()}));return;}
     const grid=h('div',{class:'review-grid gallery-grid'});
     for(const g of shown){
       const card=h('button',{type:'button',class:'btn review-puzzle gallery-puzzle','data-puzzle':g.id,'aria-label':g.title+' spielen',onclick:()=>V.play(g.id)},FK.friendsLibrary.portrait(g.host),h('b',{text:g.title}));
@@ -23,7 +23,7 @@
     body.append(grid);
   }
   FK.screen('puzzle-gallery',{
-    build(root){root.classList.add('ff-settings-screen');body=h('div',{class:'ff-settings-body review-body'});root.append(FK.ui.topbar({title:'Puzzle-Galerie',stars:false,onBack:()=>FK.go('settings',{},{isBack:true})}),h('div',{class:'scroll'},body));},
+    build(root){root.classList.add('ff-settings-screen');body=h('div',{class:'ff-settings-body review-body'});root.append(FK.ui.topbar({title:"Rätsel-Galerie",stars:false,onBack:()=>FK.go('settings',{},{isBack:true})}),h('div',{class:'scroll'},body));},
     enter(){if(!V.authorized){FK.go('settings');return;}draw();},
     leave(){FK.forestVoice.cancel();}
   });

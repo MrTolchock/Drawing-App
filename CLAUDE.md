@@ -1,5 +1,7 @@
 # Working agreement
 
+- In every user-facing label, call the games **Rätsel** and their individual tasks **Aufgaben**. Keep internal IDs, routes, save keys and historical review records stable.
+
 - Read [current design](design/README.md), [visual style](design/VISUAL-STYLE.md) and [puzzle blueprint](design/PUZZLE-BLUEPRINT.md) before changing the game.
 - Build on the shared current renderers. Every puzzle uses five distinct iterations, no hints/timer, common feedback/celebration and individual adult review. Do not generate or ship editorial approvals.
 - Keep learning subjects and ALL UI character portraits in the canonical painted style. Letters, puzzle context, map pins, menus, companions and celebrations use the same painted cast through `FK.friendsArt.portrait`; the freely explorable world keeps its 3D models. Task utility controls use the shared SVG family. World controls and all navigation backs use simple illustrated symbols. The map den marker matches the painted animal pins; the exit sign uses the same simple illustrated outlines and flat fills as map/letter/settings (`exit-symbol` prompt), never a geometric SVG substitute. The map dialog has no header icons and closes on an outside tap or Escape; dragging/panning must keep it open. Fonts: Andika for learning/controls/body; Baloo 2 for menu headings.

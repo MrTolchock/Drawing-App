@@ -1,10 +1,18 @@
 # Current visual consistency audit
 
-Current game art is **Waldpost 9.4.9**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal and object reference pixels and **37** complete forward image-generation prompts.
+Current game art is **Waldpost 9.4.10**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal and object reference pixels and **86** complete forward image-generation prompts.
 
-## The way up to the Steinbock can be walked — 9.4.9
+## The way up to the Steinbock can be walked — 9.4.10
 
 On the iPad Fuchs could not go up the new way: a tap up there sent him nowhere or the long way round. The 1 m path grid saw the ledge as broken (too narrow at the hairpin and the top turn, with a step where two parts met), so routes went round by the summit trail (about 100 m). The way now runs along the foot of the face, round a rounded hairpin, back across the face and up onto the rim beside the crag; it is level across, eases into level landings at its turns, and its core counts as walkable like the crossings. The route from the cave's path to the Steinbock is now about 33 m, and taps on the ledge or the rim bring Fuchs up. One small boulder beside the crag moved 1.3 m so that the way along the rim passes it. The look of the zigzag is kept; the drawn map still does not show it.
+
+## Rätsel, Aufgaben und aktuelle Reviews — 9.4.9
+
+Die neun neuen [Review-Hinweise vom 19. November](../docs/RAETSEL-FEEDBACK-2026-11-19.md) sind umgesetzt. Die Sammlung enthält 22 Rätsel mit 794 Aufgaben: 18 zusätzliche Mengenreihen mit drei Gegenständen, zusammengeführte Wald- und Bergmuster beim Steinbock sowie die Naturhinweise als Fragen im Tierrätsel. Der vierte Picknickgast ist ein Reh. Besetzte Zahlenfelder haben durchgezogene Ränder; die Gedächtnisübung verwendet Häkchen und Auge samt passender deutscher Offline-Erklärung. Die Silben zum Zusammensetzen werden gross dargestellt. Der neue gelbe Schweizer Briefkasten hat echte Transparenz und einen vollständigen, kanonischen Generierungsnachweis.
+
+Alle Systembeschriftungen verwenden «Rätsel» und «Aufgaben». Die Prüfnummer zeigt die Position in der vollständigen Sammlung des gewählten Rätsels, unabhängig von der kürzeren offenen Warteschlange. Technische IDs und Original-Review-Daten bleiben bestehen. Eine weitere exakt gebundene Kompatibilitätskante übernimmt 559 unveränderte Aufgaben über die reine Begriffs- und Prüfnummeränderung hinweg. Neue oder tatsächlich geänderte Aufgaben werden nicht freigegeben.
+
+Modellprüfungen und Browsertests decken Zusammenlegungen, Freigabe-Erhalt, alle 4.255 iPad-Aufgabenansichten und Zustände sowie die tatsächliche Bedienung der neuen Elemente auf Tablet und Telefon ab. Die [Bildbelege](evidence/2026-11-19-raetsel-reviews/README.md) stammen aus dem gemeinsamen Renderer mit wegwerfbarem Speicher und abgefangenen Review-APIs.
 
 ## Detail where the camera looks, a still sun, a way up to the Steinbock — 9.4.8
 

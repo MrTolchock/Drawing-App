@@ -1,12 +1,12 @@
 # Einen Vokal ergänzen
 
-[All puzzles](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
+[Alle Rätsel](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 
-- Stable puzzle ID: `vowels`
+- Stabile Rätsel-ID: `vowels`
 - Host: mouse
 - Related competence: **D.4.A.1.c (Unterstützung)** — Einen Vokal ergänzen
 - Difficulty: Bildwörter; keine Lücke innerhalb von au/ei/ie/eu/äu
-- Pool: 64 explicit iterations; a round selects five.
+- Pool: 64 Aufgaben; eine Runde enthält fünf.
 - Review: solve every unconfirmed iteration to approve it; × rejects with an optional note. The puzzle is released when all current iterations passed. Exact per-iteration revisions gate release; only affected iterations require review after changes.
 
 ## Mapping to the blueprint
@@ -22,9 +22,9 @@
 | Ending | 900 ms correct feedback, then 2.2 s celebration; reduced motion |
 | Review | Production-sized open-item queue; solve to approve, × to reject, final celebration; puzzle-level speech and revision gate |
 
-## Every iteration
+## Alle Aufgaben
 
-| Stable iteration ID | Content / configuration | Expected answer or solution |
+| Stabile Aufgaben-ID | Inhalt / Konfiguration | Expected answer or solution |
 | --- | --- | --- |
 | `vowels/word-0-1` | Hase / Lücke 2 — Hase | "a" |
 | `vowels/word-0-3` | Hase / Lücke 4 — Hase | "e" |

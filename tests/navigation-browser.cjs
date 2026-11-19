@@ -21,18 +21,18 @@ const BASE=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000';
    await settings();assert.equal(await page.getByLabel('Stimme zum Vorlesen',{exact:true}).count(),0);assert.equal(await page.locator('.screen:not([hidden]) .review-connection').count(),0);
    await page.getByRole('button',{name:'Tonaufnahmen und Lizenzen',exact:true}).click();await page.waitForFunction(()=>FK.current()==='audio-credits');await page.getByRole('heading',{name:'Feldaufnahmen',exact:true}).waitFor();await back();assert.equal(await current(),'settings');
    // into the review and back, twice, then into a puzzle preview from the review and back
-   for(let k=0;k<2;k++){await page.getByRole('button',{name:'Puzzle-Prüfung öffnen',exact:true}).click();await page.waitForFunction(()=>FK.current()==='puzzle-review');await back();assert.equal(await current(),'settings','review back → settings');}
-   await page.getByRole('button',{name:'Puzzle-Prüfung öffnen',exact:true}).click();await page.waitForFunction(()=>FK.current()==='puzzle-review');
-   assert.equal(await page.locator('.review-puzzle').count(),24);assert.equal(await page.getByRole('button',{name:'Alle Puzzles',exact:true}).count(),0);
+   for(let k=0;k<2;k++){await page.getByRole('button',{name:"Rätsel-Prüfung öffnen",exact:true}).click();await page.waitForFunction(()=>FK.current()==='puzzle-review');await back();assert.equal(await current(),'settings','review back → settings');}
+   await page.getByRole('button',{name:"Rätsel-Prüfung öffnen",exact:true}).click();await page.waitForFunction(()=>FK.current()==='puzzle-review');
+   assert.equal(await page.locator('.review-puzzle').count(),22);assert.equal(await page.getByRole('button',{name:"Alle Rätsel",exact:true}).count(),0);
    const id=round===0?'friends-squirrel':'syllable',it=await page.evaluate(id=>FK.puzzleCatalogue.iterations(id)[0].id,id);
    await page.locator('[data-puzzle="'+id+'"]').click();assert.equal(await page.locator('.screen:not([hidden]) .review-connection').count(),0);assert.ok((await page.locator('.review-competence').innerText()).includes('Das Kind'));
    assert.ok(await page.evaluate(([id,it])=>FK.puzzleReview.preview(id,it),[id,it]),'preview opens');await page.waitForTimeout(400);assert.notEqual(await current(),'puzzle-review');
    await back();assert.equal(await current(),'puzzle-review','puzzle back → review');
-   await back();assert.equal(await current(),'puzzle-review','selected puzzle back → all puzzles');assert.equal(await page.locator('.review-puzzle').count(),24);
+   await back();assert.equal(await current(),'puzzle-review','selected puzzle back → all puzzles');assert.equal(await page.locator('.review-puzzle').count(),22);
    await back();assert.equal(await current(),'settings','review back → settings');
    await back();assert.equal(await current(),'friends','settings back → the game');
   }
-  await settings();await page.getByRole('button',{name:'Puzzle-Galerie öffnen',exact:true}).click();await page.waitForFunction(()=>FK.current()==='puzzle-gallery');await back();assert.equal(await current(),'settings');await back();assert.equal(await current(),'friends');
+  await settings();await page.getByRole('button',{name:"Rätsel-Galerie öffnen",exact:true}).click();await page.waitForFunction(()=>FK.current()==='puzzle-gallery');await back();assert.equal(await current(),'settings');await back();assert.equal(await current(),'friends');
   // the plain way: settings and straight back
   await settings();await back();assert.equal(await current(),'friends');
   await page.setViewportSize({width:390,height:844});await settings();const mobile=page.locator('.screen:not([hidden]) .btn-back');assert.deepEqual(await appearance(mobile),reference);await mobile.focus();await page.keyboard.press('Enter');await page.waitForFunction(()=>FK.current()==='friends');

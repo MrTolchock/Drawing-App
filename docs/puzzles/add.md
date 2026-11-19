@@ -1,12 +1,12 @@
 # Sichtbare Gruppen addieren
 
-[All puzzles](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
+[Alle Rätsel](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 
-- Stable puzzle ID: `add`
+- Stabile Rätsel-ID: `add`
 - Host: squirrel
 - Related competence: **MA.1.A.3.a** — Sichtbare Gruppen addieren
 - Difficulty: Zwei positive Summanden; Summe höchstens 10
-- Pool: 36 explicit iterations; a round selects five.
+- Pool: 36 Aufgaben; eine Runde enthält fünf.
 - Review: solve every unconfirmed iteration to approve it; × rejects with an optional note. The puzzle is released when all current iterations passed. Exact per-iteration revisions gate release; only affected iterations require review after changes.
 
 ## Mapping to the blueprint
@@ -22,9 +22,9 @@
 | Ending | 900 ms correct feedback, then 2.2 s celebration; reduced motion |
 | Review | Production-sized open-item queue; solve to approve, × to reject, final celebration; puzzle-level speech and revision gate |
 
-## Every iteration
+## Alle Aufgaben
 
-| Stable iteration ID | Content / configuration | Expected answer or solution |
+| Stabile Aufgaben-ID | Inhalt / Konfiguration | Expected answer or solution |
 | --- | --- | --- |
 | `add/1-1` | 1 + 1 — Wie viele Äpfel sind es zusammen? | 2 |
 | `add/1-2` | 1 + 2 — Wie viele Äpfel sind es zusammen? | 3 |

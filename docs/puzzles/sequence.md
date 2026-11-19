@@ -1,12 +1,12 @@
 # Zeitliche Abfolgen ordnen
 
-[All puzzles](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
+[Alle Rätsel](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 
-- Stable puzzle ID: `sequence`
+- Stabile Rätsel-ID: `sequence`
 - Host: owl
 - Related competence: **NMG.9.1.a (Übung)** — Zeitliche Abfolgen ordnen
 - Difficulty: 25 Bildgeschichten mit drei bebilderten Schritten
-- Pool: 25 explicit iterations; a round selects five.
+- Pool: 25 Aufgaben; eine Runde enthält fünf.
 - Review: solve every unconfirmed iteration to approve it; × rejects with an optional note. The puzzle is released when all current iterations passed. Exact per-iteration revisions gate release; only affected iterations require review after changes.
 
 ## Mapping to the blueprint
@@ -22,9 +22,9 @@
 | Ending | 900 ms correct feedback, then 2.2 s celebration; reduced motion |
 | Review | Production-sized open-item queue; solve to approve, × to reject, final celebration; puzzle-level speech and revision gate |
 
-## Every iteration
+## Alle Aufgaben
 
-| Stable iteration ID | Content / configuration | Expected answer or solution |
+| Stabile Aufgaben-ID | Inhalt / Konfiguration | Expected answer or solution |
 | --- | --- | --- |
 | `sequence/story-0` | Bohne in die Erde → Die Bohne keimt → Eine Pflanze wächst — Ziehe die Bilder in die richtige Reihenfolge. | [0,1,2] |
 | `sequence/story-1` | Ein Ei liegt im Nest → Ein Küken schlüpft → Der Vogel ist gross — Ziehe die Bilder in die richtige Reihenfolge. | [0,1,2] |
