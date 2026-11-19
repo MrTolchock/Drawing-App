@@ -18471,6 +18471,15 @@
       "at": "2026-11-19T20:37:56.707Z",
       "seen": true,
       "operation": "4abb3155-50c5-4fb3-af4c-68868dc85ec6"
+    },
+    "neighbours/2-both@d56ac18101dbb9e5": {
+      "key": "neighbours/2-both",
+      "revision": "d56ac18101dbb9e5",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-19T20:38:07.122Z",
+      "seen": true,
+      "operation": "8acf5ec7-0539-4305-b881-815c6e7efbb0"
     }
   },
   "history": [
