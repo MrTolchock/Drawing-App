@@ -18937,6 +18937,16 @@
       "at": "2026-11-19T20:22:39.462Z"
     },
     {
+      "key": "puzzle:neighbours",
+      "note": "Grafik mit grünem haken für erfolg sieht komisch aus, verbessern",
+      "at": "2026-11-19T20:37:38.520Z"
+    },
+    {
+      "key": "puzzle:neighbours",
+      "note": "Mache drag and drop anstatt nacheinander klicken",
+      "at": "2026-11-19T20:37:37.811Z"
+    },
+    {
       "key": "puzzle:picnic",
       "note": "Ist cooles rätsel. Passe aber green check mark an bei erfolg, passt dort wo es ist irgendwie nicht richtig hin, weil es auf das rechte bild referenziert",
       "at": "2026-11-18T20:12:49.624Z"
