@@ -1,8 +1,8 @@
 # Current visual consistency audit
 
-Current game art is **Waldpost 9.4.2**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal and object reference pixels and **37** complete forward image-generation prompts.
+Current game art is **Waldpost 9.4.3**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal and object reference pixels and **37** complete forward image-generation prompts.
 
-## Lighter haze, distant land and no loading pops — 9.4.2
+## Lighter haze, distant land and no loading pops — 9.4.3
 
 The forest's haze is lighter and less yellow: it begins about 36 m from the camera in the wood (24 m before) and covers the ground only towards the top of the view, where the land beyond the tiles is now a sunlit mesh of woods, meadows, rock and snow fading into the same haze instead of a flat cream band. The haze that stands close for a moment when Fuchs walks into an open area lifts from much less. Tiles, detail changes and landmarks dissolve instead of popping, and tree shadows arrive with their trees and fade out with distance instead of ending at a moving edge. The mailman now waits 10–13 m away, usually ahead where the camera sees him, so reaching him is a short walk. Character art, painted UI, map, learning pictures and all puzzle definitions and presentation revisions are unchanged; no puzzle needs new review.
 
