@@ -1,4 +1,4 @@
-# Wer wohnt wo?
+# Lebensräume und Nahrung zuordnen
 
 [All puzzles](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 

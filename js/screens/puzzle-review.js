@@ -65,7 +65,7 @@
         const card=btn(g.title,()=>{selected=g.id;filter='all';draw();toTop();});card.classList.add('review-puzzle');card.dataset.puzzle=g.id;
         const state=V.status(g.id),released=ready.has(g.id);
         const label=released?'Freigegeben':state.status==='approved'?'Freigabe wartet auf GitHub':'Offen';
-        card.replaceChildren(FK.friendsLibrary.portrait(g.host),h('b',{text:g.title}),h('span',{text:p.competence}),h('span',{class:'review-status '+(released?'approved':'pending'),text:label}),h('small',{text:progress.approved+' / '+progress.total+' Iterationen · '+progress.improve+' verbessern'}));grid.append(card);
+        card.replaceChildren(FK.friendsLibrary.portrait(g.host),h('b',{text:g.title}),h('span',{class:'review-status '+(released?'approved':'pending'),text:label}),h('small',{text:progress.approved+' / '+progress.total+' Iterationen · '+progress.improve+' verbessern'}));grid.append(card);
       }body.append(grid);return;
     }
     const p=C.puzzle(selected),progress=V.progress(selected);
@@ -76,7 +76,7 @@
       speech.setAttribute('aria-pressed',String(state==='loading'||state==='playing'));
     })});
     speech.setAttribute('aria-pressed','false');
-    body.append(message(),h('h2',{text:p.title}),h('section',{class:'review-competence'},h('h3',{text:'Geübte Kompetenz: '+p.competence}),h('p',{text:competences[selected]}),h('p',{text:'Lehrplanbezug: '+p.reference})),h('p',{text:'Schwierigkeit: '+p.displayDifficulty}),h('p',{text:progress.approved+' / '+progress.total+' freigegeben · '+progress.improve+' verbessern · '+progress.pending+' offen'}),V.status(selected).status==='improve'?h('p',{class:'review-status pending',text:'Puzzle offen · allgemeiner Hinweis'}):null,h('section',{class:'review-speech'},h('h3',{text:'Spielerklärung'}),h('p',{text:p.instruction}),speech,speechStatus));
+    body.append(message(),h('h2',{text:p.title}),h('section',{class:'review-competence'},h('h3',{text:'Geübte Kompetenz'}),h('p',{text:competences[selected]}),h('p',{text:'Lehrplanbezug: '+p.reference})),h('p',{text:'Schwierigkeit: '+p.displayDifficulty}),h('p',{text:progress.approved+' / '+progress.total+' freigegeben · '+progress.improve+' verbessern · '+progress.pending+' offen'}),V.status(selected).status==='improve'?h('p',{class:'review-status pending',text:'Puzzle offen · allgemeiner Hinweis'}):null,h('section',{class:'review-speech'},h('h3',{text:'Spielerklärung'}),h('p',{text:p.instruction}),speech,speechStatus));
     const id=selected,note=h('textarea',{'aria-label':'Allgemeiner Kommentar zum Puzzle',maxlength:4000,rows:4,placeholder:'Was möchtest du zum gesamten Puzzle festhalten?',text:drafts.get(id)??''});
     const saved=h('p',{class:'review-notice',role:'status','aria-live':'polite'});
     note.addEventListener('input',()=>{drafts.set(id,note.value);saved.textContent='Noch nicht gespeichert.';});

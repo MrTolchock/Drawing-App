@@ -2,7 +2,7 @@ import {createWorld,places,exitPoints} from './world.js';
 import {createAudio} from './audio.js';
 import {mapPoint,mapPin,extraMapPlaces} from './map-layout.js';
 const FK=window.FK,h=FK.h,C=window.FriendsContent;
-let root,canvas,world,state,audio,overlay,hotspots,nav,statusBar,nearButton,caption,fader,doorScene,denEnvelope,framing=false,backdropTap=null;
+let root,canvas,world,state,audio,overlay,hotspots,nav,statusBar,nearButton,letterStatus,caption,fader,doorScene,denEnvelope,framing=false,backdropTap=null;
 let area='den',panel=null,host=null,example=false,feedbackTimer=null,activeMs=0,lastTick=performance.now(),returnArea='den',finalSleep=false;
 const actionPictures={outside:'door'};
 const actionNames={outside:'Nach draussen'};
@@ -10,6 +10,7 @@ const doorSVG=`<svg viewBox="0 0 1448 1086" preserveAspectRatio="none"><defs><li
 function syncMail(){
   if(!world||!state||!doorScene)return;
   const m=state.mail();root.dataset.mail=m.phase;
+  if(letterStatus){const {completed,limit}=m.session;letterStatus.textContent=completed+'/'+limit;letterStatus.setAttribute('aria-label',completed+' von '+limit+' Briefen geschafft');}
   const arriving=denEnvelope.hidden;doorScene.hidden=area!=='den';denEnvelope.hidden=area!=='den'||m.phase!=='den-letter'||!!panel;
   if(arriving&&!denEnvelope.hidden)audio?.cue({type:'letterbox',pan:.55});   // the letter comes through the flap (timed to its animation)
   world.mailTarget(area==='forest'?(m.phase==='to-friend'?m.host:m.phase==='to-mailman'?'mailman':['return-home','den-letter'].includes(m.phase)?'home':null):null);
@@ -37,13 +38,7 @@ function showLetter(fromMailman){
   const id=state.mail().host;
   overlay.classList.add('ff-postcard-overlay');
   const letter=h('button',{type:'button',class:'ff-letter-paper','data-host':id,'aria-label':'Zum Freund gehen','aria-description':'Ein Brief von '+C.hosts[id].name,onclick:()=>go('forest')},letterPortrait(id));
-  const article = ['bird','mouse'].includes(id) ? 'die' : ['squirrel','deer'].includes(id) ? 'das' : 'der';
-  const greeting = 'Hallo! Ich bin '+article+' '+C.hosts[id].name+'. Ich habe ein Rätsel für dich. Der Pfeil zeigt dir den Weg zu mir.';
-  const listen = h('button',{type:'button',class:'play-listen','aria-label':'Brief vorlesen','aria-pressed':'false'},FK.icons.element('speaker'));
-  listen.addEventListener('click',()=>FK.forestVoice.explain(greeting,state=>{
-    listen.setAttribute('aria-pressed',String(state==='playing'||state==='loading'));
-  }));
-  overlay.append(h('div',{class:'ff-letter-with-voice'},letter,listen));
+  overlay.append(letter);
   requestAnimationFrame(()=>letter.focus());
 }
 function letterPortrait(id){
@@ -64,7 +59,7 @@ function saveStatus(){if(!statusBar||!state)return;statusBar.hidden=!state.error
 function tick(){const now=performance.now();if(panel==='puzzle'&&!example&&!document.hidden&&state.round(host)?.feedback!=='correct')activeMs+=Math.min(500,now-lastTick);lastTick=now;}
 setInterval(tick,100);
 function close({restoreFocus=true}={}){
-  const returnLabel=restoreFocus?(panel==='map'?'Bildkarte':panel==='letter'?'Dein Brief':null):null;backdropTap=null;
+  const returnLabel=restoreFocus&&['map','letter'].includes(panel)?'Bildkarte':null;backdropTap=null;
   overlay.classList.remove('ff-postcard-overlay','ff-session-end-overlay');
   FK.forestVoice.cancel();
   tick();if(panel==='puzzle'&&host){state.record('task_leave',{host,activeMilliseconds:activeMs});if(activeMs)state.duration(host,activeMs);activeMs=0;}
@@ -85,7 +80,8 @@ function go(next,restore=false){
 function renderNav(){nav.replaceChildren();if(state.development||FK.playLog.development())nav.append(h('strong',{class:'ff-dev',text:'ENTWICKLUNG'}));
   if(!['sleeping','finished'].includes(state.mail().phase)){
     nav.append(button('Bildkarte','map',map));
-    if(['den-letter','to-friend','to-mailman'].includes(state.mail().phase))nav.append(button('Dein Brief','letter',()=>showLetter(false)));
+    const {completed,limit}=state.mail().session;
+    letterStatus=h('span',{class:'ff-letter-status',role:'status','aria-live':'polite',text:completed+'/'+limit,'aria-label':completed+' von '+limit+' Briefen geschafft'});nav.append(letterStatus);
   }
   nav.append(button('Einstellungen für Erwachsene','gear',()=>FK.ui.parentGate(settings)));
 }
@@ -117,11 +113,10 @@ function map(){
     const invited=mail.phase==='to-friend'&&mail.host===id||mail.phase==='return-home'&&id==='home';b.classList.toggle('ff-map-invited',invited);if(invited)b.append(h('span',{class:'ff-map-invitation'},FK.hudArt.element('letter')));
     b.style.left=(pin.x*100)+'%';b.style.top=(pin.y*100)+'%';board.append(b);
   }
-  // Where Fuchs is now: his portrait on a pin with a soft pulse on the spot (in the den: at home).
+  // The pulse alone marks the exact current position (in the den: at home).
   const here=area==='forest'?world.position:places.home,[hx,hy]=mapPoint(here.x,here.z);
-  const me=h('div',{class:'ff-map-here',role:'img','aria-label':'Hier ist Fuchs'},h('span',{class:'ff-map-here-pulse'}),h('span',{class:'ff-map-here-pin'},FK.friendsArt.portrait('fox')));
+  const me=h('div',{class:'ff-map-here',role:'img','aria-label':'Hier ist Fuchs'},h('span',{class:'ff-map-here-pulse'}));
   me.style.left=(hx*100)+'%';me.style.top=(hy*100)+'%';board.append(me);
-  me.style.setProperty('--ff-here-x',hx>.9?'-56px':'12px');me.style.setProperty('--ff-here-y',hy>.88?'-58px':'14px');
   // Keep picture-only 64 px pins separated on phones; the map pans sideways, centred on Fuchs.
   const scroller=h('div',{class:'ff-map-scroll'},board);card.append(scroller);scroller.scrollLeft=Math.max(0,Math.min(scroller.scrollWidth-scroller.clientWidth,hx*scroller.scrollWidth-scroller.clientWidth/2));board.querySelector('button')?.focus({preventScroll:true});
   if(mail.phase==='to-mailman'){

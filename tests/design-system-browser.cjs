@@ -36,7 +36,7 @@ try{
     return {
      overflow:root.scrollWidth>root.clientWidth+2,
      progress:root.querySelectorAll('.puzzle-progress>span').length,
-     font:getComputedStyle(root.querySelector('.title')).fontFamily,
+     font:getComputedStyle(root.querySelector('.puzzle-prompt,.title')).fontFamily,
      portraits:[...root.querySelectorAll('[data-art-role="character"]')].filter(visible).map(e=>getComputedStyle(e).backgroundImage),
      subjects:[...root.querySelectorAll('.wa-illustration')].filter(visible).map(e=>({id:e.dataset.subject,image:e.style.backgroundImage})),
      explain:[...root.querySelectorAll('button')].filter(e=>visible(e)&&e.getAttribute('aria-label')==='Spiel erklären').length,

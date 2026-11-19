@@ -1,4 +1,4 @@
-# Wörter und Bilder
+# Wörter mit Bildern verbinden
 
 [All puzzles](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 

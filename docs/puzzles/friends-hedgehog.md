@@ -1,4 +1,4 @@
-# Tierrätsel
+# Tiermerkmale erkennen und Fragen lesen
 
 [All puzzles](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 

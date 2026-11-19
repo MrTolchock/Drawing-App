@@ -1,4 +1,4 @@
-# Bergmuster
+# Wiederholungsmuster fortsetzen und ergänzen
 
 [All puzzles](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 

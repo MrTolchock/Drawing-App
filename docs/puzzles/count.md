@@ -1,4 +1,4 @@
-# Waldkäfer zählen
+# Gezielt Mengen zählen
 
 [All puzzles](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 

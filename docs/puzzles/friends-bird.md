@@ -1,4 +1,4 @@
-# Reimpaare lesen
+# Reime erkennen
 
 [All puzzles](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 

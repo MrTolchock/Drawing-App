@@ -1,4 +1,4 @@
-# Waldwörter ergänzen
+# Einen Vokal ergänzen
 
 [All puzzles](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 

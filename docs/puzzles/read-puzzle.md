@@ -1,4 +1,4 @@
-# Silben-Puzzle
+# Silben zu Wörtern verbinden
 
 [All puzzles](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 

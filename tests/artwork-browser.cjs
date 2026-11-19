@@ -19,22 +19,13 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',out=process.en
  const states=[];
  for(const [width,height]of [[1080,810],[390,844],[844,390]]){
   await page.setViewportSize({width,height});
-  const nav=active().locator('.ff-nav');for(const label of ['Bildkarte','Dein Brief','Einstellungen für Erwachsene']){
+  const nav=active().locator('.ff-nav');for(const label of ['Bildkarte','Einstellungen für Erwachsene']){
    const button=nav.getByRole('button',{name:label,exact:true});assert.ok(await button.evaluate(n=>{const r=n.getBoundingClientRect();return r.width>=48&&r.height>=48;}));const icon=button.locator('.ff-hud-art');assert.match(await icon.evaluate(n=>getComputedStyle(n).backgroundImage),/assets\/interface\/navigation-symbols.webp/);assert.ok(await icon.evaluate(n=>{const r=n.getBoundingClientRect();return r.width>=34&&r.height>=34&&Math.abs(r.width-r.height)<1;}),label+' has visible square artwork');
   }
-  await page.screenshot({path:out+'/navigation-'+width+'.png'});await nav.getByRole('button',{name:'Dein Brief',exact:true}).click();
+  await page.screenshot({path:out+'/navigation-'+width+'.png'});await page.evaluate(()=>{FK.friendsStartSession(3);document.querySelector('.ff-den-envelope').click();});
   const letter=active().getByRole('button',{name:'Zum Freund gehen',exact:true});assert.match(await letter.evaluate(n=>getComputedStyle(n).backgroundImage),/letter-paper.webp/);
   const host=await page.evaluate(()=>FK.friends.mail().host),portrait=letter.locator('.ff-letter-friend');assert.equal(await portrait.getAttribute('data-friend'),host);assert.match(await portrait.evaluate(n=>getComputedStyle(n).backgroundImage),/character-portraits.webp/);
-  const listen=active().getByRole('button',{name:'Brief vorlesen',exact:true});
-  const speakerBounds=await listen.boundingBox();
-  assert.ok(speakerBounds.width>=48 && speakerBounds.height>=48 && speakerBounds.x>=0 &&
-    speakerBounds.y>=0 && speakerBounds.x+speakerBounds.width<=width && speakerBounds.y+speakerBounds.height<=height);
-  assert.equal(await listen.getAttribute('aria-pressed'),'false');
-  await listen.tap();
-  assert.equal(await listen.getAttribute('aria-pressed'),'true');
-  assert.ok(await letter.isVisible(),'listening keeps the letter open');
-  await listen.tap();
-  assert.equal(await listen.getAttribute('aria-pressed'),'false');
+  assert.equal(await active().getByRole('button',{name:'Brief vorlesen',exact:true}).count(),0);
   const rect=await letter.boundingBox();assert.ok(rect.x>=0&&rect.y>=0&&rect.x+rect.width<=width&&rect.y+rect.height<=height,JSON.stringify({width,height,rect}));assert.ok(await portrait.evaluate(n=>{const r=n.getBoundingClientRect();return r.width>=140&&r.height>=140;}));
   await page.screenshot({path:out+'/letter-'+width+'.png'});states.push({width,height,host,letterFits:true});await letter.click();
   await nav.getByRole('button',{name:'Bildkarte',exact:true}).click();await active().locator('.ff-map-storybook').waitFor();assert.equal(await active().locator('.ff-map-home [data-hud="den"]').count(),1);assert.match(await active().locator('.ff-map-home [data-hud="den"]').evaluate(n=>getComputedStyle(n).backgroundImage),/den-marker.webp/);assert.equal(await active().locator('.ff-map-invitation [data-hud="letter"]').count(),1);assert.equal(await active().locator('.ff-map-card .ff-card-top').count(),0);await page.screenshot({path:out+'/map-'+width+'.png'});const mapRect=await active().locator('.ff-map-card').boundingBox();await page.touchscreen.tap(width/2,mapRect.y/2);await page.waitForFunction(()=>document.querySelector('.ff-overlay').hidden);
