@@ -17809,11 +17809,11 @@
     "puzzle:picnic@b7c3cf5d80ba4033": {
       "key": "puzzle:picnic",
       "revision": "b7c3cf5d80ba4033",
-      "status": "approved",
-      "note": "",
-      "at": "2026-11-19T20:30:23.528Z",
+      "status": "improve",
+      "note": "Wenn es vier freunde sind welchen die beeren verteilt werden müssen, nehme nicht eichhörnchen, weil eichhörnchen der puzzle host ist",
+      "at": "2026-11-19T20:31:10.026Z",
       "seen": true,
-      "operation": "8fbf2f0e-ba3a-44d2-ae78-ef3b8a3d6320"
+      "operation": "424552e6-4fe2-4a16-875e-61d2a245edbe"
     }
   },
   "history": [
@@ -18041,6 +18041,15 @@
       "at": "2026-11-18T07:59:18.427Z",
       "seen": true,
       "operation": "a117d2e2-0d92-499f-b544-178355bbce01"
+    },
+    {
+      "key": "puzzle:picnic",
+      "revision": "b7c3cf5d80ba4033",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-19T20:30:23.528Z",
+      "seen": true,
+      "operation": "8fbf2f0e-ba3a-44d2-ae78-ef3b8a3d6320"
     }
   ],
   "deletedNotes": [
