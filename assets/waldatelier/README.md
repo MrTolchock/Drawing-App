@@ -4,7 +4,7 @@ All drawn puzzle subjects live in this directory. Reuse their stable IDs with `F
 
 [Browse, search and download individual pictures](https://mrtolchock.github.io/Drawing-App/assets/waldatelier/) · [Canonical style and fixed references](../../design/illustrations/STYLE.md) · [All generator inputs and prompts](../../design/artwork/GENERATOR-INPUTS.md) · [Machine-readable catalogue](library.json)
 
-**690 pictures · 49 atlases · 24 active puzzles.** The browser library shows which pictures each puzzle uses, copies stable IDs and exports transparent PNGs from the existing atlas cells. Character portraits and backgrounds have separate roles, documented in the handoff.
+**691 pictures · 50 atlases · 22 active puzzles.** The browser library shows which pictures each puzzle uses, copies stable IDs and exports transparent PNGs from the existing atlas cells. Character portraits and backgrounds have separate roles, documented in the handoff.
 
 New generations use **`waldpost-watercolour-pencil-v1`** and `node tools/illustrations/style.cjs --request <id>`. The complete prompts below include the same canonical style and reference images. Historical records describe existing assets; they are not forward prompts or style inputs.
 
@@ -58,6 +58,7 @@ Generated with `node tools/illustrations/library.cjs`. Edit the runtime registry
 | [puzzle-vocabulary](puzzle-vocabulary.webp) | 20 | [Style-complete prompt](../../design/illustrations/prompts/puzzle-vocabulary.txt) | [Archived record](../../legacy/design-history/2026-11-16-before-style-contract/design/artwork/assets.json) |
 | [review-nature](review-nature.webp) | 3 | [Style-complete prompt](../../design/illustrations/prompts/review-nature.txt) | [Archived record](../../design/artwork/generation-records/review-nature.json) |
 | [rhyme-vocabulary](rhyme-vocabulary.webp) | 10 | [Style-complete prompt](../../design/illustrations/prompts/rhyme-vocabulary.txt) | [Archived record](../../legacy/design-history/2026-11-16-before-style-contract/design/illustrations/rhyme-vocabulary.json) |
+| [swiss-postbox](swiss-postbox.webp) | 1 | [Style-complete prompt](../../design/illustrations/prompts/swiss-postbox.txt) | [Archived record](../../design/artwork/generation-records/swiss-postbox.json) |
 | [words-one](words-one.webp) | 16 | [Style-complete prompt](../../design/illustrations/prompts/words-one.txt) | [Archived record](../../legacy/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json) |
 | [words-three](words-three.webp) | 16 | [Style-complete prompt](../../design/illustrations/prompts/words-three.txt) | [Archived record](../../legacy/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json) |
 | [words-two](words-two.webp) | 16 | [Style-complete prompt](../../design/illustrations/prompts/words-two.txt) | [Archived record](../../legacy/design-history/2026-11-16-before-style-contract/design/artwork/prompts/recorded-waldatelier.json) |

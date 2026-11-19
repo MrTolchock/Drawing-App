@@ -370,6 +370,13 @@
       "historicalRecord": "design/artwork/generation-records/expansion-patterns-seasons-2026-11-19.json",
       "recordKind": "generation-record",
       "requestId": "expansion-patterns-seasons"
+    },
+    "swiss-postbox": {
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/swiss-postbox.txt",
+      "historicalRecord": "design/artwork/generation-records/swiss-postbox.json",
+      "recordKind": "generation-record",
+      "requestId": "swiss-postbox"
     }
   },
   "currentGenerated": [

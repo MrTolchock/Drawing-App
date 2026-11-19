@@ -6,7 +6,7 @@ The repository is public, so review statuses and optional notes are public. Only
 
 ## Connect once to edit
 
-1. Unlock **Einstellungen** with the existing adult calculation. Open **Puzzle-Prüfung → Prüfung auf GitHub → GitHub zum Speichern verbinden** on the all-puzzle overview. There is no additional gallery calculation.
+1. Unlock **Einstellungen** with the existing adult calculation. Open **Rätsel-Prüfung → Prüfung auf GitHub → GitHub zum Speichern verbinden** on the all-puzzle overview. There is no additional gallery calculation.
 2. Use the link to create a **fine-grained GitHub personal access token**. Select only **MrTolchock/Drawing-App** and grant repository **Contents: Read and write**. Choose an expiry that suits your reviewing session.
 3. Paste the token into **GitHub-Zugriffstoken** in the app and press **Mit GitHub verbinden**. Do not put the token in chat, repository files, notes or exports. The app checks the owner's GitHub account.
 4. Solve review tasks to approve them. Use × to flag an iteration with an optional comment, or save a general comment to reopen the whole puzzle. The queue ends automatically. All current approvals must be confirmed on GitHub for release. Changes save locally first and sync to GitHub in batches. **Auf GitHub gespeichert** confirms shared storage. **Nur lokal gesichert** or a pending count indicates an upload is due.
@@ -20,7 +20,7 @@ GitHub Pages is a static host, so it cannot authenticate repository writes itsel
 - Each device keeps the last verified GitHub snapshot and an outbox of unsaved decisions in `farbtupf.puzzle-review.v1`. Offline review remains possible. Reconnecting retries pending changes when the editing connection is available.
 - Only confirmed GitHub approvals for the current exact revision release a puzzle. Flagging an item locally blocks it on that device immediately, even before upload. Other devices receive the flag when they refresh, resume or perform the periodic online check.
 - Wait for **Auf GitHub gespeichert** before deleting/reinstalling an app with pending edits. Unsaved offline work exists only on that device; reconnect and let it upload first.
-- Fresh browser storage restores published records automatically. The Puzzle-Prüfung page no longer offers file export/import; GitHub is the backup.
+- Fresh browser storage restores published records automatically. The Rätsel-Prüfung page no longer offers file export/import; GitHub is the backup.
 - Different-item edits merge. If two browsers change the same revision differently, neither silently overwrites the other. **GitHub behalten** discards that local edit; **Meine Änderung speichern** explicitly replaces the current GitHub decision. Equal decisions are deduplicated.
 
 ## Format and maintenance
@@ -33,7 +33,9 @@ Different revisions coexist: an older app cannot replace a newer content revisio
 
 On every read, notes from older revision entries and ledger history are restored into the device's read-only history, even if the current selected decision has an empty note. Identical records are deduplicated across refreshes. **Bisherige Hinweise** in the puzzle details exposes these notes and links them to current stable iterations. This restoration neither changes the chosen exact-revision decision nor creates an upload; a historical note or approval cannot release changed content.
 
-For releases that used the former global fingerprint, `tools/puzzle-review-baselines.json` records definition and presentation hashes derived from the named Git commits. A historical revision is accepted only when both hashes match the current puzzle. Recovery is read-only: original notes, evidence and timestamps stay intact, with no token, new approval or upload. Across equivalent revisions, the latest published decision wins; rejection wins a timestamp tie. Unknown or changed revisions remain pending. Baselines contain no editorial decisions. To reproduce them, fetch history and run `node tools/puzzle-review-build.cjs` with the recorded full commit IDs, then regenerate the catalogue.
+For releases that used the former global fingerprint, `tools/puzzle-review-baselines.json` records definition and presentation hashes derived from the named Git commits. A historical revision is accepted only when both hashes match the current puzzle. Exact before/after edges in `tools/puzzle-layout-compatibility.json` also retain the owner-requested November 19 layout and terminology-only migrations. These edges require the same task definition and match only the recorded presentation hashes; actual changed questions, rule explanations, controls and artwork are excluded.
+
+Recovery is read-only: original notes, evidence and timestamps stay intact, with no token, new approval or upload. Across equivalent revisions, the latest published decision wins; rejection wins a timestamp tie. Unknown or changed revisions remain pending. Baselines contain no editorial decisions. To reproduce them, fetch history and run `node tools/puzzle-review-build.cjs` with the recorded full commit IDs, then regenerate the catalogue.
 
 Do not clear the data branch when deploying code or merge it into the game branch. Empty initial data ships no approvals.
 

@@ -20,6 +20,7 @@
     'forest-fox':['forest-fox'],
     'review-nature':['empty-basket','habitat-pond','squirrel-nut'],
     'puzzle-garden':['firefly','watering-can'],
+    'swiss-postbox':['swiss-postbox'],
     'forest-wildlife':['squirrel-sit','squirrel-run','hedgehog-walk','hedgehog-sleep','badger-walk','badger-sleep','roe-stand','roe-run','frog-sit','frog-jump','forest-woodpecker','forest-bat','forest-owl','forest-robin','forest-lynx','forest-marten'],
     'rhyme-vocabulary':['rhyme-bread','rhyme-rail','rhyme-blanket','rhyme-bin','rhyme-jug','rhyme-mouth','rhyme-roof','rhyme-brook','rhyme-goat','rhyme-fly'],
     'puzzle-vocabulary':['vocab-house','vocab-table','vocab-shoe','vocab-leg','vocab-stone','vocab-cloth','vocab-tower','vocab-worm','vocab-pot','vocab-head','vocab-hand','vocab-sand','vocab-scarf','vocab-rope','vocab-arrow','vocab-cup','vocab-till','vocab-bench','vocab-wardrobe','vocab-seed'],
@@ -55,7 +56,7 @@
     'expansion-counting-groups':['count-buttons-2','count-buttons-3','count-buttons-4','count-buttons-5','count-buttons-6','count-acorns-2','count-acorns-3','count-acorns-4','count-acorns-5','count-acorns-6','count-leaves-2','count-leaves-3','count-leaves-4','count-leaves-5','count-leaves-6'],
     'expansion-patterns-seasons':['pattern-scarf-plain','pattern-scarf-striped','pattern-scarf-dotted','pattern-scarf-checked','pattern-scarf-zigzag','pattern-scarf-leaves','season-apple-spring','season-apple-summer','season-apple-autumn','season-apple-winter','habitat-flower-meadow','habitat-riverbank','habitat-alpine-rocks','habitat-deadwood','habitat-hedgerow'],
   };
-  const grid = { 'review-nature':[2,2], 'puzzle-garden':[2,2], 'forest-fox':[2,2], menu:[3,2], 'puzzle-vocabulary':[4,5], 'puzzle-flowers':[3,2] };
+  const grid = { 'swiss-postbox':[2,2], 'review-nature':[2,2], 'puzzle-garden':[2,2], 'forest-fox':[2,2], menu:[3,2], 'puzzle-vocabulary':[4,5], 'puzzle-flowers':[3,2] };
   const source = sheet => 'assets/waldatelier/' + sheet + '.webp';
   // Learning subjects are drawn illustrations; character identity uses friendsArt.
   const cast = {fox:'fox-animal',mouse:'mouse-sit',rabbit:'hare-sit'};

@@ -1,12 +1,12 @@
 # Reime erkennen
 
-[All puzzles](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
+[Alle Rätsel](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 
-- Stable puzzle ID: `friends-bird`
+- Stabile Rätsel-ID: `friends-bird`
 - Host: bird
 - Related competence: **D.2.A.1.b; D.1.A.1.b** — Reime erkennen
 - Difficulty: 25 verschiedene Reimpaare ohne vertauschte Doppelungen; eingeführte Buchstaben
-- Pool: 25 explicit iterations; a round selects five.
+- Pool: 25 Aufgaben; eine Runde enthält fünf.
 - Review: solve every unconfirmed iteration to approve it; × rejects with an optional note. The puzzle is released when all current iterations passed. Exact per-iteration revisions gate release; only affected iterations require review after changes.
 
 ## Mapping to the blueprint
@@ -22,9 +22,9 @@
 | Ending | 900 ms correct feedback, then 2.2 s celebration; reduced motion |
 | Review | Production-sized open-item queue; solve to approve, × to reject, final celebration; puzzle-level speech and revision gate |
 
-## Every iteration
+## Alle Aufgaben
 
-| Stable iteration ID | Content / configuration | Expected answer or solution |
+| Stabile Aufgaben-ID | Inhalt / Konfiguration | Expected answer or solution |
 | --- | --- | --- |
 | `friends-bird/rhyme-0` | Tisch – Fisch — Tisch | "Fisch" |
 | `friends-bird/rhyme-1` | Bein – Stein — Bein | "Stein" |

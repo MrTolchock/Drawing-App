@@ -1,12 +1,12 @@
 # Ein Muster spiegeln
 
-[All puzzles](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
+[Alle Rätsel](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 
-- Stable puzzle ID: `mirror`
+- Stabile Rätsel-ID: `mirror`
 - Host: beaver
 - Related competence: **MA.2.A.2.c** — Ein Muster spiegeln
 - Difficulty: 3 × 3; drei bis fünf Blätter; senkrechte Spiegelachse
-- Pool: 30 explicit iterations; a round selects five.
+- Pool: 30 Aufgaben; eine Runde enthält fünf.
 - Review: solve every unconfirmed iteration to approve it; × rejects with an optional note. The puzzle is released when all current iterations passed. Exact per-iteration revisions gate release; only affected iterations require review after changes.
 
 ## Mapping to the blueprint
@@ -22,9 +22,9 @@
 | Ending | 900 ms correct feedback, then 2.2 s celebration; reduced motion |
 | Review | Production-sized open-item queue; solve to approve, × to reject, final celebration; puzzle-level speech and revision gate |
 
-## Every iteration
+## Alle Aufgaben
 
-| Stable iteration ID | Content / configuration | Expected answer or solution |
+| Stabile Aufgaben-ID | Inhalt / Konfiguration | Expected answer or solution |
 | --- | --- | --- |
 | `mirror/grid-7` | Blattmuster 1 — Ergänze rechts das Spiegelbild. | [0,1,2] |
 | `mirror/grid-56` | Blattmuster 2 — Ergänze rechts das Spiegelbild. | [3,4,5] |

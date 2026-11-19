@@ -27,7 +27,7 @@
   function seen(id,iteration){const r=revision(id,iteration);if(!r)return false;const next=clone(data);next.seen[recordKey(id,iteration)]=r;return persist(next);}
   function progress(id){const items=C.iterations(id),approved=items.filter(i=>status(id,i.id).status==='approved').length,improve=items.filter(i=>status(id,i.id).status==='improve').length;return {total:items.length,approved,improve,pending:items.length-approved-improve};}
   function feedback(id){
-    const notes=[...Object.values(data.decisions),...data.history].filter(d=>(d.key==='puzzle:'+id||d.key.startsWith(id+'/'))&&d.note.trim()&&d.note!=='Alle Iterationen zusammen bestätigt'&&!noteDeleted(d)).sort((a,b)=>Date.parse(b.at)-Date.parse(a.at)),unique=new Set();
+    const notes=[...Object.values(data.decisions),...data.history].filter(d=>(d.key==='puzzle:'+id||d.key.startsWith(id+'/'))&&d.note.trim()&&!['Alle Iterationen zusammen bestätigt','Alle Aufgaben zusammen bestätigt'].includes(d.note)&&!noteDeleted(d)).sort((a,b)=>Date.parse(b.at)-Date.parse(a.at)),unique=new Set();
     return notes.filter(d=>{const signature=d.key+'\n'+d.note;if(unique.has(signature))return false;unique.add(signature);return true;}).map(d=>({...clone(d),stale:!C.acceptsRevision(id,d.key.startsWith('puzzle:')?null:d.key,d.revision)}));
   }
   // Delete the displayed note across duplicate revisions, independently of all review decisions.
@@ -42,8 +42,8 @@
     const r=revision(id,iteration);if(!r||!statuses.includes(value)){error='Unbekannte Aufgabe oder Entscheidung.';return false;}
     note=String(note??(!iteration?status(id).decision?.note:'')??'').trim().slice(0,4000);
     if(value==='approved'){
-      if(iteration&&!status(id,iteration).seen){error='Bitte diese Iteration zuerst im Spiel ansehen.';return false;}
-      if(!iteration&&progress(id).approved!==progress(id).total){error='Zuerst jede Iteration ansehen und freigeben.';return false;}
+      if(iteration&&!status(id,iteration).seen){error="Bitte diese Aufgabe zuerst im Spiel ansehen.";return false;}
+      if(!iteration&&progress(id).approved!==progress(id).total){error="Zuerst jede Aufgabe ansehen und freigeben.";return false;}
     }
     const next=clone(data),k=recordKey(id,iteration),old=next.decisions[k];if(old)next.history.push(old);
     // An explicit approval of the displayed task belongs to its exact revision.
@@ -51,7 +51,7 @@
     next.decisions[k]={key:k,revision:r,status:value,note,at:noteTime(k,note)};return persist(next);
   }
   function comment(id,note){
-    if(!authorized||!C.puzzle(id)){error='Bitte die Puzzle-Prüfung öffnen.';return false;}
+    if(!authorized||!C.puzzle(id)){error="Bitte die Rätsel-Prüfung öffnen.";return false;}
     const message=String(note??'').trim();
     if(!message){error='Bitte einen Kommentar eingeben.';return false;}
     return decide(id,null,'improve',message);
@@ -64,7 +64,7 @@
     const next=clone(data);
     for(const [k,v]of Object.entries(d.decisions)){
       const id=k.startsWith('puzzle:')?k.slice(7):k.split('/')[0],iteration=k.startsWith('puzzle:')?null:k;
-      if(!C.puzzle(id)||!revision(id,iteration)){error='Die Prüfdatei enthält unbekannte Puzzle-IDs.';return false;}
+      if(!C.puzzle(id)||!revision(id,iteration)){error="Die Prüfdatei enthält unbekannte Rätsel-IDs.";return false;}
       if(v.status==='approved'&&iteration&&d.seen[k]!==v.revision){error='Die Prüfdatei enthält eine unvollständige Freigabe.';return false;}
       if(next.decisions[k])next.history.push(next.decisions[k]);next.decisions[k]=v;
     }
@@ -119,8 +119,8 @@
   }
   /* An adult may confirm every iteration of one puzzle together (Puzzle-Prüfung: "Alle bestätigen"): each current
      iteration is marked seen and approved, and the puzzle with them, in one save. Earlier decisions stay in history. */
-  function approveAll(id,note='Alle Iterationen zusammen bestätigt'){
-    if(!authorized||!C.puzzle(id)){error='Unbekanntes Puzzle.';return false;}
+  function approveAll(id,note="Alle Aufgaben zusammen bestätigt"){
+    if(!authorized||!C.puzzle(id)){error="Unbekanntes Rätsel.";return false;}
     const next=clone(data),at=new Date().toISOString(),put=(k,r)=>{const old=next.decisions[k];if(old&&old.revision===r&&old.status==='approved'&&(k.startsWith('puzzle:')||data.seen[k]===r))return;if(old)next.history.push(old);next.decisions[k]={key:k,revision:r,status:'approved',note,at};};
     for(const it of C.iterations(id)){const r=C.iterationRevision(id,it);next.seen[it.id]=r;put(it.id,r);}
     put(recordKey(id),C.puzzleRevision(id));next.decisions[recordKey(id)].note=status(id).decision?.note||'';return persist(next);

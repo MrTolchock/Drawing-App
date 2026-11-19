@@ -23,7 +23,7 @@
     return h('span',{class:'puzzle-shape',role:'img','aria-label':R.shapeNames[id]+(rotation?' gedreht':''),html:'<svg viewBox="0 0 100 100"'+(fitted?' preserveAspectRatio="none"':'')+'><g transform="rotate('+rotation+' 50 50)" fill="'+(outline?'none':'#d8b987')+'" stroke="#8d6b45" stroke-width="3" '+(outline?'stroke-dasharray="5 4"':'')+'>'+(fitted?pieces[id]:paths[id])+'</g></svg>'});
   }
   function progress(round,total=5) {const leaves=total?Math.floor(5*round/total):5;return h('div',{class:'puzzle-progress','aria-label':round+' von '+total+' Aufgaben geschafft'},Array.from({length:5},(_,i)=>h('span',{class:i<leaves?'done':i===leaves?'current':'','aria-hidden':'true'},FK.visual.art('forest-leaf'))));}
-  function context(owner,round,instruction,{explain=true,total=5,back=null}={}) {return h('div',{class:'puzzle-context'},back,FK.friendsLibrary.portrait(owner),h('span',{text:window.FriendsContent.hosts[owner].name+' spielt mit dir'}),h('b',{class:'puzzle-round',text:(round+1)+' / '+total}),explain?button('Spiel erklären',()=>FK.forestVoice.explain(instruction),'puzzle-listen',FK.icons.element('speaker')):null);}
+  function context(owner,round,instruction,{explain=true,total=5,back=null,taskNumber=round+1,taskTotal=total}={}) {return h('div',{class:'puzzle-context'},back,FK.friendsLibrary.portrait(owner),h('span',{text:window.FriendsContent.hosts[owner].name+' spielt mit dir'}),h('b',{class:'puzzle-round',text:taskNumber+' / '+taskTotal,'aria-label':'Aufgabe '+taskNumber+' von '+taskTotal}),explain?button('Spiel erklären',()=>FK.forestVoice.explain(instruction),'puzzle-listen',FK.icons.element('speaker')):null);}
   function later(fn,delay=900) {
     clearTimeout(timer);
     timer=setTimeout(()=>{if(!alive)return;if(document.hidden||document.querySelector('.modal')){later(fn,250);return;}fn();},delay);
@@ -143,7 +143,7 @@
       basket.replaceChildren(...Array.from({length:q.total-counts.reduce((a,b)=>a+b,0)},()=>berry('bank')));
       places.replaceChildren();
       for(let i=0;i<q.friends;i++){
-        const friend=button('Beere zu Freund '+(i+1)+' legen',()=>move(selected,i),'puzzle-picnic-friend',FK.friendsLibrary.portrait(['fox','mouse','bird','squirrel'][i]));
+        const friend=button('Beere zu Freund '+(i+1)+' legen',()=>move(selected,i),'puzzle-picnic-friend',FK.friendsLibrary.portrait(['fox','mouse','bird','deer'][i]));
         places.append(h('section',{'data-picnic-target':i,class:'puzzle-picnic-place','aria-label':'Freund '+(i+1)},friend,h('div',{class:'puzzle-picnic-berries'},Array.from({length:counts[i]},()=>berry(i)))));
       }
     };
@@ -181,7 +181,7 @@
     function redraw(){board.replaceChildren();for(let i=0;i<q.size*q.size;i++){
       const blocked=q.obstacles.includes(i),current=route.position===i,goal=q.goal===i;
       const label=blocked?'Hecke':current?'Hier ist der Hasenbriefträger':goal?'Briefkasten':'Freies Feld';
-      const cell=h('span',{class:'puzzle-route-cell'+(current?' post':'')+(goal?' goal':'')+(blocked?' hedge':''),role:'img','aria-label':label},blocked?picture('forest-fir'):current?FK.friendsLibrary.portrait('mailman'):goal?picture('postbox'):route.history.includes(i)?'·':'');
+      const cell=h('span',{class:'puzzle-route-cell'+(current?' post':'')+(goal?' goal':'')+(blocked?' hedge':''),role:'img','aria-label':label},blocked?picture('forest-fir'):current?FK.friendsLibrary.portrait('mailman'):goal?picture('swiss-postbox'):route.history.includes(i)?'·':'');
       cell.dataset.cell=i;board.append(cell);
     }}
     for(const [dx,dy,turn,label]of [[0,-1,-90,'Nach oben'],[-1,0,180,'Nach links'],[1,0,0,'Nach rechts'],[0,1,90,'Nach unten']])arrows.append(button(label,()=>move(dx,dy,board),'puzzle-arrow',h('span',{'aria-hidden':'true',style:{transform:'rotate('+turn+'deg)'},html:'<svg viewBox="0 0 48 48"><path d="M8 24h30M25 11l13 13-13 13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>'})));
@@ -217,8 +217,8 @@
   function renderTreasure(q) {
     const reveal=!!work().hidden,items=h('div',{class:'puzzle-treasures'},q.objects.map((id,i)=>h('span',{class:reveal&&i===q.missing?'gap':''},reveal&&i===q.missing?'?':picture(id))));
     scene.append(items);
-    if(!reveal)answerArea.append(button('Ich habe sie mir gemerkt',()=>{if(locked)return;work().hidden=true;persist();draw();},'puzzle-memory-ready puzzle-memory-button'));
-    else {body.querySelector('.puzzle-prompt').textContent='Welcher Waldschatz fehlt?';q.choices.forEach(v=>option(v,picture(v),'Diesen Waldschatz wählen: '+pictureName(v)));answerArea.append(button('Nochmals anschauen',()=>{if(locked)return;work().hidden=false;persist();draw();},'puzzle-look-again puzzle-memory-button'));}
+    if(!reveal)answerArea.append(button('Ich habe sie mir gemerkt',()=>{if(locked)return;work().hidden=true;persist();draw();},'puzzle-memory-ready puzzle-memory-button',FK.icons.element('check')));
+    else {body.querySelector('.puzzle-prompt').textContent='Welcher Waldschatz fehlt?';q.choices.forEach(v=>option(v,picture(v),'Diesen Waldschatz wählen: '+pictureName(v)));answerArea.append(button('Nochmals anschauen',()=>{if(locked)return;work().hidden=false;persist();draw();},'puzzle-look-again puzzle-memory-button',FK.icons.element('view')));}
   }
   function renderNeighbours(q) {
     const saved=work().neighbours;
@@ -228,12 +228,12 @@
     for(let i=0;i<3;i++){
       if(i===1){row.append(h('div',{class:'puzzle-number-card middle'},h('b',{text:q.n})));continue;}
       const pos=i===0?0:1, fixed=pos===0 && q.given==='left';
-      const slot=h('div',{class:'puzzle-number-card','aria-label':pos===0?'Zahl davor':'Zahl danach'},h('b',{text:values[pos]??'?'}));
+      const slot=h('div',{class:'puzzle-number-card'+(values[pos]!==null?' filled':''),'aria-label':pos===0?'Zahl davor':'Zahl danach'},h('b',{text:values[pos]??'?'}));
       if(!fixed)slot.dataset.neighbourSlot=pos;
       row.append(slot);slots[pos]=slot;
     }
     function place(value,pos){
-      values[pos]=value;work().neighbours=values;persist();slots[pos].firstChild.textContent=value;
+      values[pos]=value;work().neighbours=values;persist();slots[pos].firstChild.textContent=value;slots[pos].classList.add('filled');
       FK.playLog?.place?.('neighbour',{value,pos});
       if(values.every(v=>v!==null)){
         if(values.every((v,i)=>v===q.answer[i]))solved(row);
@@ -268,8 +268,8 @@
   function renderSyllables(q) {
     let picked=Array.isArray(work().syllables)?work().syllables:[];
     const slots=h('div',{class:'puzzle-syllable-slots'}),chips=h('div',{class:'puzzle-syllable-chips'});
-    const redraw=()=>{slots.replaceChildren(...q.parts.map((part,i)=>h('span',{class:'puzzle-syllable-slot'+(i<picked.length?' filled':'')},i<picked.length?FK.text.syllable(part):'___')));chips.replaceChildren();q.order.forEach(i=>{
-      let node;node=button(q.chips[i],()=>{if(locked)return;const expected=q.parts[picked.length];if(q.chips[i]!==expected){fail(node);return;}picked.push(i);work().syllables=picked;persist();redraw();if(picked.length===q.parts.length)solved(slots);},'puzzle-syllable-chip',FK.text.syllable(q.chips[i]));node.disabled=picked.includes(i);node.dataset.part=q.chips[i];chips.append(node);
+    const redraw=()=>{slots.replaceChildren(...q.parts.map((part,i)=>h('span',{class:'puzzle-syllable-slot'+(i<picked.length?' filled':'')},i<picked.length?FK.text.syllable(part).toLocaleUpperCase('de-CH'):'___')));chips.replaceChildren();q.order.forEach(i=>{
+      let node;node=button(q.chips[i].toLocaleUpperCase('de-CH'),()=>{if(locked)return;const expected=q.parts[picked.length];if(q.chips[i]!==expected){fail(node);return;}picked.push(i);work().syllables=picked;persist();redraw();if(picked.length===q.parts.length)solved(slots);},'puzzle-syllable-chip',FK.text.syllable(q.chips[i]).toLocaleUpperCase('de-CH'));node.disabled=picked.includes(i);node.dataset.part=q.chips[i];chips.append(node);
     });};
     scene.append(picture(q.picture),slots);answerArea.append(chips);redraw();
   }
@@ -284,7 +284,7 @@
     if(session.round===session.questions.length){finish();return;}question=R.current(session);
     root.dataset.game=game;root.dataset.host=host;
     if(!session.review)FK.playLog?.show(question);
-    body.replaceChildren(context(host,session.round,R.instructions[game],{explain:!session.review,total:session.questions.length,back:backButton}),progress(session.round,session.questions.length),h('h2',{class:'puzzle-prompt',text:question.prompt}));
+    body.replaceChildren(context(host,session.round,R.instructions[game],{explain:!session.review,total:session.questions.length,back:backButton,...(session.review?{taskNumber:FK.puzzleCatalogue.iterations(game).findIndex(it=>it.id===session.iterationIds[session.round])+1,taskTotal:FK.puzzleCatalogue.iterations(game).length}:{})}),progress(session.round,session.questions.length),h('h2',{class:'puzzle-prompt',text:question.prompt}));
     scene=h('div',{class:'puzzle-scene'});answerArea=h('div',{class:'puzzle-answers'});status=h('p',{class:'puzzle-status sr-only',role:'status','aria-live':'polite'});body.append(scene,answerArea,status);
     const renderers={nuts:renderCount,count:renderCount,reading:renderReading,rhyme:renderReading,add:renderAdd,pattern:renderPattern,fireflies:renderFireflies,picnic:renderPicnic,matrix:renderMatrix,syllable:renderSyllable,robot:renderRobot,order:renderOrder,treasure:renderTreasure,neighbours:renderNeighbours,compare:renderCompare,mirror:renderMirror,vowels:renderVowels,syllables:renderSyllables,colours:renderColours,leaves:renderLeaves};
     renderers[question.kind](question);body.scrollTop=0;
@@ -313,7 +313,7 @@
       if(origin==='forest-book')FK.go('forest-book');else FK.friendsPuzzleCompleted(host);
     });
   }
-  function blocked(){FK.playLog?.stop('review_required');body.replaceChildren(backButton,h('section',{class:'puzzle-review-blocked'},FK.friendsLibrary.portrait(host),h('h2',{text:'Dieses Puzzle wartet auf Freigabe.'}),h('p',{text:'Eine erwachsene Person prüft zuerst alle Aufgaben.'})));}
+  function blocked(){FK.playLog?.stop('review_required');body.replaceChildren(backButton,h('section',{class:'puzzle-review-blocked'},FK.friendsLibrary.portrait(host),h('h2',{text:"Dieses Rätsel wartet auf Freigabe."}),h('p',{text:'Eine erwachsene Person prüft zuerst alle Aufgaben.'})));}
   function completion(container,owner,done,{total=5,review=false}={}) {
     const card=h('section',{class:'puzzle-completion',role:'status'},
       h('div',{class:'puzzle-completion-wreath'},Array.from({length:8},(_,i)=>h('span',{style:{'--i':i}},FK.visual.art(i%3?'forest-leaf':'forest-flower'))),FK.friendsLibrary.portrait(owner)),
@@ -341,7 +341,7 @@
       else if(params.gallery){session=FK.puzzleReview.gallerySession(game);if(!session){FK.go('puzzle-gallery');return;}}
       if(!session){if(!FK.friendsLibrary.canPlay(game)){FK.go('friends');return;}if(!FK.puzzleReview.ready(game)){blocked();return;}session=R.start(game);}
       FK.playLog?.begin(session);draw();
-      root.querySelector('.btn-back').setAttribute('aria-label',session.review?'Zur Puzzle-Prüfung':session.gallery?'Zur Puzzle-Galerie':origin==='forest-book'?'Zurück zu Waldspiele':'Zurück zum Wald');
+      root.querySelector('.btn-back').setAttribute('aria-label',session.review?"Zur Rätsel-Prüfung":session.gallery?"Zur Rätsel-Galerie":origin==='forest-book'?'Zurück zu Waldspiele':'Zurück zum Wald');
     },
     leave(){FK.playLog?.stop();alive=false;clearTimeout(timer);cancelCompletion();FK.forestVoice.cancel();locked=true;}
   });

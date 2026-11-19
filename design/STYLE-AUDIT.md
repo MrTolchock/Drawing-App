@@ -1,6 +1,14 @@
 # Current visual consistency audit
 
-Current game art is **Waldpost 9.4.3**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal and object reference pixels and **37** complete forward image-generation prompts.
+Current game art is **Waldpost 9.4.8**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal and object reference pixels and **86** complete forward image-generation prompts.
+
+## Rätsel, Aufgaben und aktuelle Reviews — 9.4.8
+
+Die neun neuen [Review-Hinweise vom 19. November](../docs/RAETSEL-FEEDBACK-2026-11-19.md) sind umgesetzt. Die Sammlung enthält 22 Rätsel mit 794 Aufgaben: 18 zusätzliche Mengenreihen mit drei Gegenständen, zusammengeführte Wald- und Bergmuster beim Steinbock sowie die Naturhinweise als Fragen im Tierrätsel. Der vierte Picknickgast ist ein Reh. Besetzte Zahlenfelder haben durchgezogene Ränder; die Gedächtnisübung verwendet Häkchen und Auge samt passender deutscher Offline-Erklärung. Die Silben zum Zusammensetzen werden gross dargestellt. Der neue gelbe Schweizer Briefkasten hat echte Transparenz und einen vollständigen, kanonischen Generierungsnachweis.
+
+Alle Systembeschriftungen verwenden «Rätsel» und «Aufgaben». Die Prüfnummer zeigt die Position in der vollständigen Sammlung des gewählten Rätsels, unabhängig von der kürzeren offenen Warteschlange. Technische IDs und Original-Review-Daten bleiben bestehen. Eine weitere exakt gebundene Kompatibilitätskante übernimmt 559 unveränderte Aufgaben über die reine Begriffs- und Prüfnummeränderung hinweg. Neue oder tatsächlich geänderte Aufgaben werden nicht freigegeben.
+
+Modellprüfungen und Browsertests decken Zusammenlegungen, Freigabe-Erhalt, alle 4.255 iPad-Aufgabenansichten und Zustände sowie die tatsächliche Bedienung der neuen Elemente auf Tablet und Telefon ab. Die [Bildbelege](evidence/2026-11-19-raetsel-reviews/README.md) stammen aus dem gemeinsamen Renderer mit wegwerfbarem Speicher und abgefangenen Review-APIs.
 
 ## iPad puzzle space and simpler world controls — 9.4.7
 

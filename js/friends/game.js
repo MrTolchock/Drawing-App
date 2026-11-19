@@ -129,7 +129,7 @@ function meet(id){
     // A visit still shows something: the friend does a little trick and points the way.
     world.visit?.(id,toward);
     FK.ui.toast(m.phase==='return-home'?name+' winkt. Fuchs geht nach Hause schlafen.':m.phase==='to-friend'?name+' zeigt dir den Weg zu '+(C.hosts[m.host]?.name||'deinem Freund')+'.':m.phase==='to-mailman'?name+' zeigt dir den Weg zum Briefträger.':'Dein Brief zeigt dir deinen Freund.');return;}
-  const game=FK.friendsLibrary.pick(id);if(!game){state.record('friend_unavailable',{host:id,reason:'not_reviewed'});FK.ui.toast('Dieses Puzzle wartet noch auf die Freigabe von Erwachsenen.');return;}
+  const game=FK.friendsLibrary.pick(id);if(!game){state.record('friend_unavailable',{host:id,reason:'not_reviewed'});FK.ui.toast("Dieses Rätsel wartet noch auf die Freigabe von Erwachsenen.");return;}
   // a short close shot of the two friends, then the puzzle opens
   if(framing)return;const wait=world.frame?.(id)||0;framing=true;
   setTimeout(()=>{framing=false;if(!state.canPuzzle(id)||panel==='puzzle')return;state.record('friend_visited',{host:id,puzzleId:game.id});if(panel)close();world.pause(true);FK.friendsLibrary.visit(game);},wait*1000);

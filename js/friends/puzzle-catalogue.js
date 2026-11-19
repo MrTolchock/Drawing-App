@@ -7,17 +7,15 @@
     'friends-squirrel':['MA.1.A.2.a','Mengen zählen','0–20 Nüsse; Vierer- und Fünferstruktur'],
     'friends-bird':['D.2.A.1.b; D.1.A.1.b','Reime erkennen','25 verschiedene Reimpaare ohne vertauschte Doppelungen; eingeführte Buchstaben'],
     'friends-owl':['D.2.A.1.b; D.2.B.1.b','Kurze Sätze verstehen','Ein kurzer Satz über ein Tier; immer zwei Bildantworten'],
-    'friends-beaver':['MA.2.A.1.a','Mengen von Waldgegenständen vergleichen','Zwei gleiche und ein anderer Gegenstand je Reihe; das Muster der ersten zwei Reihen ergänzen'],
+    'friends-beaver':['MA.2.A.1.a','Mengen von Waldgegenständen vergleichen','Zwei gleiche und ein anderer Gegenstand je Reihe; das Muster der ersten zwei Reihen ergänzen','Zwei oder drei verschiedene Waldgegenstände je Reihe; die Mengen der ersten zwei Reihen ergänzen'],
     // Keep the original difficulty contract for existing word cards; the fourth field describes the expanded pool.
     'friends-mouse':['D.2.A.1.b','Wörter mit Bildern verbinden','25 vertraute Nomen; eingeführte Buchstaben','Vertraute Nomen und Tiernamen; eingeführte Buchstaben'],
-    'friends-hedgehog':['NMG.2.4.a; D.2.B.1.b','Tiermerkmale erkennen und Fragen lesen','25 kurze Fragen zu sichtbaren Tiermerkmalen; zwei Bildantworten'],
+    'friends-hedgehog':['NMG.2.4.a; D.2.B.1.b','Tiermerkmale erkennen und Fragen lesen','25 kurze Fragen zu sichtbaren Tiermerkmalen; zwei Bildantworten','50 kurze Tierfragen; zwei Bildantworten'],
     'friends-deer':['NMG.2.1.a; D.2.B.1.b','Lebensräume und Nahrung zuordnen','25 kurze Naturfragen; drei Bildantworten'],
     'friends-badger':['NMG.2.3.a; D.2.B.1.b','Wachstum und Naturveränderungen erkennen','25 kurze Fragen zu Wetter, Pflanzen und Entwicklung'],
-    'friends-ibex':['MA.2.A.2.a','Wiederholungsmuster fortsetzen und ergänzen','AAB, ABB, ABC, ABAC, AABC mit Stein, Tanne und Blume; Lücke am Ende oder in der zweiten Gruppe'],
+    'friends-ibex':['MA.2.A.2.a','Wiederholungsmuster fortsetzen und ergänzen','AAB, ABB, ABC, ABAC, AABC mit Stein, Tanne und Blume; Lücke am Ende oder in der zweiten Gruppe','AAB, ABB, ABC, ABAC, AABC mit Berg- und Waldgegenständen; Lücke am Ende oder in der zweiten Gruppe'],
     count:['MA.1.A.2.a','Gezielt Mengen zählen','6–15 Marienkäfer zwischen Bienen und Schnecken'],
     add:['MA.1.A.3.a','Sichtbare Gruppen addieren','Zwei positive Summanden; Summe höchstens 10'],
-    pattern:['MA.2.A.2.a','Wiederholungsmuster fortsetzen','AAB, ABB, ABC, ABAC, AABC; zwei sichtbare Einheiten'],
-    nature:['D.2.B.1.b; NMG.2.4.a','Naturhinweise lesend verstehen','25 Rätsel mit je einem kurzen Satz'],
     rocket:['MA.1.A.4.b','Mengen ergänzen','Gesamtmenge 5–10; besetzte und freie Plätze'],
     picnic:['MA.1.A.4.a (Übung)','Eins zu eins gerecht verteilen','2–4 Freunde; 1–10 Beeren je Freund; insgesamt höchstens 20'],
     syllable:['D.1.A.1.b','Wörter in Silben zerlegen','1–5 Silben; vertraute Bildwörter'],
@@ -80,6 +78,11 @@
     const matrix=Array.from({length:9},(_,i)=>line[(i%3+Math.floor(i/3)*shift+phase)%3]);
     add('friends-beaver','matrix-'+n,'Waldreihe '+(n+1),{kind:'matrix',prompt:'Welcher Waldgegenstand fehlt?',matrix,gap:hole,answer:matrix[hole],choices:shapes});
   }
+  // Additional rows with all three kinds, keeping the original 25 tasks verbatim.
+  shapeOrders.forEach((order,n)=>[6,7,8].forEach(hole=>{
+    const matrix=Array.from({length:9},(_,i)=>shapes[order[(i%3+Math.floor(i/3))%3]]);
+    add('friends-beaver','matrix-three-'+n+'-'+hole,'Drei Gegenstände / Reihe '+(n+1)+' / Lücke '+(hole-5),{kind:'matrix',prompt:'Welcher Waldgegenstand fehlt?',matrix,gap:hole,answer:matrix[hole],choices:shapes});
+  }));
   const extra={
     deer:[['Wo sammelt der Schmetterling Nektar?','flower','water','egg'],['Was knabbert der Biber ab?','tree','fish','egg'],['Was pickt der Vogel aus der Erde?','vocab-worm','boat','moon'],['Was frisst die Schnecke?','leaf','fish','egg'],['Wo sucht der Igel kleine Tiere?','leaf','cloud','moon'],['Was stellt die Biene aus Nektar her?','honey','cheese','egg'],['Wo kann der Frosch schwimmen?','water','cloud','tree'],['Was knabbert der Hase auf der Wiese?','leaf','moon','nest'],['Was hängt an einer Weinrebe?','grapes','egg','fish']],
     badger:[['Was braucht eine Pflanze zum Wachsen?','sun','moon','cheese'],['Was wird aus einer Apfelblüte?','apple','egg','snowman'],['Was wächst aus einem Samen in der Erde?','plant','fish','moon'],['Was sammelt das Eichhörnchen im Herbst?','forest-nut','egg','snowman'],['Was sehen wir bei klarem Himmel in der Nacht?','moon','sun','sunflower'],['Was wächst auf der Erdbeerpflanze?','strawberry','carrot','egg'],['Womit giessen wir die Pflanzen?','watering-can','fork','hat'],['Was wächst aus einer Eichel?','tree','cloud','snowman'],['Was ernten wir vom Birnbaum?','pear','fish','egg']]
@@ -129,35 +132,135 @@
   for(let n=6;n<=15;n++)for(let b=2;b<=4;b++)add('count',n+'-'+b,n+' Käfer, '+b+' Bienen',{kind:'count',prompt:'Wie viele rote Marienkäfer sind hier?',count:n,answer:n,choices:numeric(n),bugs:[...Array(n).fill('ladybird'),...Array(b).fill('bee'),...Array(2).fill('snail')]});
   for(let a=1;a<=8;a++)for(let b=1;b<=9-a;b++)add('add',a+'-'+b,a+' + '+b,{kind:'add',prompt:'Wie viele Äpfel sind es zusammen?',a,b,answer:a+b,choices:numeric(a+b)});
   const tokens=['forest-leaf','forest-nut','forest-feather'],permutations=[[0,1,2],[0,2,1],[1,0,2],[1,2,0],[2,0,1],[2,1,0]],units=[[0,0,1],[0,1,1],[0,1,2],[0,1,0,2],[0,0,1,2]];
-  units.forEach((u,i)=>permutations.forEach((p,j)=>{const unit=u.map(x=>tokens[p[x]]),sequence=Array.from({length:unit.length*2+1},(_,k)=>unit[k%unit.length]),gap=sequence.length-1;add('pattern',i+'-'+j,'Muster '+['AAB','ABB','ABC','ABAC','AABC'][i]+' / '+(j+1),{kind:'pattern',prompt:'Welches Bild fehlt im Waldmuster?',sequence,gap,answer:sequence[gap],choices:tokens});}));
-  const natural=[
-    ['Ich trage Stacheln auf dem Rücken.','hedgehog','fish','frog'],
-    ['Mit meinen Flossen schwimme ich.','fish','dog','bee'],
-    ['Am Teich quake ich.','frog','cat','bird'],
-    ['Aus Nektar mache ich Honig.','bee','cow','snail'],
-    ['Ich belle.','dog','frog','butterfly'],
-    ['Ich miaue.','cat','fish','pig'],
-    ['Ich gebe Milch.','cow','bee','spider'],
-    ['Ich baue ein Netz.','spider','bird','fish'],
-    ['Mein Haus trage ich mit.','snail','dog','sheep'],
-    ['Mein Panzer schützt mich.','tortoise','rabbit','bee'],
-    ['Ich hüpfe mit langen Ohren über die Wiese.','rabbit','fish','snail'],
-    ['Aus einer Raupe werde ich zum Falter.','butterfly','pig','frog'],
-    ['Mein Nest ist im Baum.','bird','cow','spider'],
-    ['Mein roter Rücken hat schwarze Punkte.','ladybird','sheep','dog'],
-    ['Ich habe weiche Wolle.','sheep','fish','ant'],
-    ['Mit meinem buschigen Schwanz balanciere ich auf Ästen.','squirrel','spider','fish'],
-    ['Mit dem Rüssel trinke ich.','elephant','cat','fish'],
-    ['Mein Hals ist sehr lang.','giraffe','pig','frog'],
-    ['Ich habe eine Mähne.','lion','sheep','snail'],
-    ['Mein Fell ist schwarz-weiss gestreift.','zebra','dog','bee'],
-    ['Auf dem Rücken habe ich Höcker.','camel','cat','spider'],
-    ['Mein orangefarbenes Fell hat schwarze Streifen.','tiger','cow','snail'],
-    ['Ich bin ein Vogel, der schwimmt und taucht.','penguin','bird','butterfly'],
-    ['Mein Gesicht hat schwarze und weisse Streifen.','badger','pig','fish'],
-    ['Mit Ästen baue ich einen Damm.','beaver','cat','ant']
-  ];
-  natural.forEach(([text,answer,...wrong],i)=>add('nature','clue-'+i,text,{kind:'reading',prompt:'',text,answer,choices:[answer,...wrong]}));
+  units.forEach((u,i)=>permutations.forEach((p,j)=>{const unit=u.map(x=>tokens[p[x]]),sequence=Array.from({length:unit.length*2+1},(_,k)=>unit[k%unit.length]),gap=sequence.length-1;add('friends-ibex','woodland-'+i+'-'+j,'Muster '+['AAB','ABB','ABC','ABAC','AABC'][i]+' / '+(j+1),{kind:'pattern',prompt:'Welches Bild fehlt im Waldmuster?',sequence,gap,answer:sequence[gap],choices:tokens});}));
+  const animalQuestions=[
+  [
+    "Wer trägt Stacheln auf dem Rücken?",
+    "hedgehog",
+    "fish"
+  ],
+  [
+    "Wer schwimmt mit Flossen?",
+    "fish",
+    "dog"
+  ],
+  [
+    "Wer quakt am Teich?",
+    "frog",
+    "cat"
+  ],
+  [
+    "Wer macht Honig aus Nektar?",
+    "bee",
+    "cow"
+  ],
+  [
+    "Wer bellt?",
+    "dog",
+    "frog"
+  ],
+  [
+    "Wer miaut?",
+    "cat",
+    "fish"
+  ],
+  [
+    "Wer gibt uns Milch?",
+    "cow",
+    "bee"
+  ],
+  [
+    "Wer baut ein Netz?",
+    "spider",
+    "bird"
+  ],
+  [
+    "Wer trägt sein Haus mit?",
+    "snail",
+    "dog"
+  ],
+  [
+    "Wen schützt ein Panzer?",
+    "tortoise",
+    "rabbit"
+  ],
+  [
+    "Wer hüpft mit langen Ohren?",
+    "rabbit",
+    "fish"
+  ],
+  [
+    "Wer wird aus einer Raupe?",
+    "butterfly",
+    "pig"
+  ],
+  [
+    "Wer baut ein Nest im Baum?",
+    "bird",
+    "cow"
+  ],
+  [
+    "Wessen roter Rücken hat schwarze Punkte?",
+    "ladybird",
+    "sheep"
+  ],
+  [
+    "Wer hat weiche Wolle?",
+    "sheep",
+    "fish"
+  ],
+  [
+    "Wer balanciert mit buschigem Schwanz?",
+    "squirrel",
+    "spider"
+  ],
+  [
+    "Wer trinkt mit einem Rüssel?",
+    "elephant",
+    "cat"
+  ],
+  [
+    "Wer hat einen sehr langen Hals?",
+    "giraffe",
+    "pig"
+  ],
+  [
+    "Wer trägt eine Mähne?",
+    "lion",
+    "sheep"
+  ],
+  [
+    "Wessen Fell ist schwarz-weiss gestreift?",
+    "zebra",
+    "dog"
+  ],
+  [
+    "Wer hat Höcker auf dem Rücken?",
+    "camel",
+    "cat"
+  ],
+  [
+    "Wessen orangefarbenes Fell hat schwarze Streifen?",
+    "tiger",
+    "cow"
+  ],
+  [
+    "Welcher Vogel schwimmt und taucht?",
+    "penguin",
+    "bird"
+  ],
+  [
+    "Wessen Gesicht ist schwarz-weiss gestreift?",
+    "badger",
+    "pig"
+  ],
+  [
+    "Wer baut einen Damm aus Ästen?",
+    "beaver",
+    "cat"
+  ]
+];
+  animalQuestions.forEach(([text,answer,wrong],i)=>add('friends-hedgehog','nature-question-'+i,text,{kind:'reading',prompt:'Welches Tier passt?',text,answer,choices:[answer,wrong]}));
   for(let total=5;total<=10;total++)for(let filled=1;filled<total;filled++)add('rocket',total+'-'+filled,total+' insgesamt, '+filled+' leuchten',{kind:'fireflies',prompt:'Wie viele Glühwürmchen fehlen noch?',total,filled,answer:total-filled,choices:numeric(total-filled,10)});
   for(let friends=2;friends<=4;friends++)for(let each=1;each<=Math.floor(20/friends);each++){
     add('picnic',friends+'-'+each,friends+' Freunde, '+(friends*each)+' Beeren',{kind:'picnic',prompt:'Teile alle Beeren gerecht auf.',friends,each,total:friends*each,answer:each});

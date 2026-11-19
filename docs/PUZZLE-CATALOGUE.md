@@ -1,6 +1,6 @@
-# Puzzle catalogue and competence map
+# Rätselkatalog und Kompetenzübersicht
 
-The active library contains **24 puzzles and 776 individually reviewable iterations**. Each play is five randomly selected, distinct iterations. Children start puzzles only at the friend on their current letter; the full gallery is in adult Settings. [Parent letter limits](LETTER-SESSIONS.md) end the journey at the den after sleeping.
+Die aktive Sammlung enthält **22 Rätsel und 794 einzeln prüfbare Aufgaben**. Each play is five randomly selected, distinct iterations. Children start puzzles only at the friend on their current letter; the full gallery is in adult Settings. [Parent letter limits](LETTER-SESSIONS.md) end the journey at the den after sleeping.
 
 Generated from the runtime catalogue with `node tools/puzzle-catalogue.cjs`. Every linked puzzle page lists all iteration IDs, content and expected solutions. No generated item is automatically approved.
 
@@ -8,21 +8,19 @@ All rows implement the [shared blueprint](PUZZLE-BLUEPRINT.md): drawn subjects, 
 
 Competences below are bounded practice references to [Zürich Zyklus 1](CURRICULUM.md), not claims of mastery. Reading-based nature questions also require sentence understanding. Temporal picture sequencing and memory do not establish decoding.
 
-| Puzzle / all iterations | Host | Related competence | Difficulty boundary | Iterations |
+| Rätsel / alle Aufgaben | Host | Related competence | Schwierigkeit | Aufgaben |
 | --- | --- | --- | --- | ---: |
 | [Mengen zählen](puzzles/friends-squirrel.md) | Eichhörnchen | MA.1.A.2.a — Mengen zählen | 0–20 Nüsse; Vierer- und Fünferstruktur | 25 |
 | [Reime erkennen](puzzles/friends-bird.md) | Blaumeise | D.2.A.1.b; D.1.A.1.b — Reime erkennen | 25 verschiedene Reimpaare ohne vertauschte Doppelungen; eingeführte Buchstaben | 25 |
 | [Kurze Sätze verstehen](puzzles/friends-owl.md) | Waldkauz | D.2.A.1.b; D.2.B.1.b — Kurze Sätze verstehen | Ein kurzer Satz über ein Tier; immer zwei Bildantworten | 25 |
-| [Mengen von Waldgegenständen vergleichen](puzzles/friends-beaver.md) | Biber | MA.2.A.1.a — Mengen von Waldgegenständen vergleichen | Zwei gleiche und ein anderer Gegenstand je Reihe; das Muster der ersten zwei Reihen ergänzen | 25 |
+| [Mengen von Waldgegenständen vergleichen](puzzles/friends-beaver.md) | Biber | MA.2.A.1.a — Mengen von Waldgegenständen vergleichen | Zwei oder drei verschiedene Waldgegenstände je Reihe; die Mengen der ersten zwei Reihen ergänzen | 43 |
 | [Wörter mit Bildern verbinden](puzzles/friends-mouse.md) | Maus | D.2.A.1.b — Wörter mit Bildern verbinden | Vertraute Nomen und Tiernamen; eingeführte Buchstaben | 74 |
-| [Tiermerkmale erkennen und Fragen lesen](puzzles/friends-hedgehog.md) | Igel | NMG.2.4.a; D.2.B.1.b — Tiermerkmale erkennen und Fragen lesen | 25 kurze Fragen zu sichtbaren Tiermerkmalen; zwei Bildantworten | 25 |
+| [Tiermerkmale erkennen und Fragen lesen](puzzles/friends-hedgehog.md) | Igel | NMG.2.4.a; D.2.B.1.b — Tiermerkmale erkennen und Fragen lesen | 50 kurze Tierfragen; zwei Bildantworten | 50 |
 | [Lebensräume und Nahrung zuordnen](puzzles/friends-deer.md) | Reh | NMG.2.1.a; D.2.B.1.b — Lebensräume und Nahrung zuordnen | 25 kurze Naturfragen; drei Bildantworten | 25 |
 | [Wachstum und Naturveränderungen erkennen](puzzles/friends-badger.md) | Dachs | NMG.2.3.a; D.2.B.1.b — Wachstum und Naturveränderungen erkennen | 25 kurze Fragen zu Wetter, Pflanzen und Entwicklung | 25 |
-| [Wiederholungsmuster fortsetzen und ergänzen](puzzles/friends-ibex.md) | Steinbock | MA.2.A.2.a — Wiederholungsmuster fortsetzen und ergänzen | AAB, ABB, ABC, ABAC, AABC mit Stein, Tanne und Blume; Lücke am Ende oder in der zweiten Gruppe | 30 |
+| [Wiederholungsmuster fortsetzen und ergänzen](puzzles/friends-ibex.md) | Steinbock | MA.2.A.2.a — Wiederholungsmuster fortsetzen und ergänzen | AAB, ABB, ABC, ABAC, AABC mit Berg- und Waldgegenständen; Lücke am Ende oder in der zweiten Gruppe | 60 |
 | [Gezielt Mengen zählen](puzzles/count.md) | Eichhörnchen | MA.1.A.2.a — Gezielt Mengen zählen | 6–15 Marienkäfer zwischen Bienen und Schnecken | 30 |
 | [Sichtbare Gruppen addieren](puzzles/add.md) | Eichhörnchen | MA.1.A.3.a — Sichtbare Gruppen addieren | Zwei positive Summanden; Summe höchstens 10 | 36 |
-| [Wiederholungsmuster fortsetzen](puzzles/pattern.md) | Waldkauz | MA.2.A.2.a — Wiederholungsmuster fortsetzen | AAB, ABB, ABC, ABAC, AABC; zwei sichtbare Einheiten | 30 |
-| [Naturhinweise lesend verstehen](puzzles/nature.md) | Blaumeise | D.2.B.1.b; NMG.2.4.a — Naturhinweise lesend verstehen | 25 Rätsel mit je einem kurzen Satz | 25 |
 | [Mengen ergänzen](puzzles/rocket.md) | Eichhörnchen | MA.1.A.4.b — Mengen ergänzen | Gesamtmenge 5–10; besetzte und freie Plätze | 39 |
 | [Eins zu eins gerecht verteilen](puzzles/picnic.md) | Eichhörnchen | MA.1.A.4.a (Übung) — Eins zu eins gerecht verteilen | 2–4 Freunde; 1–10 Beeren je Freund; insgesamt höchstens 20 | 25 |
 | [Wörter in Silben zerlegen](puzzles/syllable.md) | Blaumeise | D.1.A.1.b — Wörter in Silben zerlegen | 1–5 Silben; vertraute Bildwörter | 39 |

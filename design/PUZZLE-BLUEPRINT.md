@@ -1,5 +1,7 @@
 # One puzzle, five iterations
 
+User-facing terminology is **Rätsel** for a game and **Aufgaben** for its individual tasks; internal IDs and historical records stay stable.
+
 This is the required contract for every active and future puzzle. It builds on the existing Waldbuch page and Silben-Puzzle interaction. Visual decisions are defined once in [Visual style](VISUAL-STYLE.md); the [runtime inventory](../docs/PUZZLE-CATALOGUE.md) maps every puzzle to this contract.
 
 All generated learning pictures follow the [canonical watercolour/pencil style](illustrations/STYLE.md), with its fixed reference images and style-complete prompts. Historical generation records do not define new artwork.
@@ -41,19 +43,19 @@ Give longer words and captions room to wrap. Keep the same touch area for equiva
 
 ## Content and competence
 
-Each iteration has an ID, readable label, complete question, correct answer/solution and an exact revision. All 31 current puzzles are mapped individually in the [catalogue](../docs/PUZZLE-CATALOGUE.md); each has a GitHub-readable page listing every iteration and its competence. These are practice mappings, not certification of curriculum attainment. Memory enrichment has no invented curriculum code.
+Each iteration has an ID, readable label, complete question, correct answer/solution and an exact revision. All 22 current riddles are mapped individually in the [catalogue](../docs/PUZZLE-CATALOGUE.md); each has a GitHub-readable page listing every iteration and its competence. These are practice mappings, not certification of curriculum attainment. Memory enrichment has no invented curriculum code.
 
 Numeric bounds and reading prerequisites are explicit. Expanding variety must not silently expand difficulty: use different operand combinations, missing positions, routes, reflections and pictured word targets within the stated boundary. Any intentional difficulty change is a new review revision.
 
 ## Adult review and release gate
 
-1. Unlock **Einstellungen** with its existing adult calculation, then open **Puzzle-Galerie öffnen** or **Puzzle-Prüfung öffnen** directly; moving between Settings, the gallery and the review (e.g. the gallery's **Zur Puzzle-Prüfung**) asks no second calculation. Direct review URLs retain one adult gate.
+1. Unlock **Einstellungen** with its existing adult calculation, then open **Rätsel-Galerie öffnen** or **Rätsel-Prüfung öffnen** directly; moving between Settings, the gallery and the review (e.g. the gallery's **Zur Rätsel-Prüfung**) asks no second calculation. Direct review URLs retain one adult gate.
 2. Select a puzzle to inspect its competence explanation, curriculum reference and difficulty. Test **Spielerklärung anhören** once in the details. Saving a general comment marks the puzzle **Offen** for improvement and keeps the individual iteration decisions. The comment field clears after saving. The header back arrow returns to all puzzles, then to Settings.
-3. Start **Offene Iterationen prüfen**. Review all unconfirmed iterations once in the normal puzzle viewport, with no footer. Explicitly selecting an iteration places it first. Correct completion saves its exact-revision approval, uses the same 900 ms feedback and advances automatically. Wrong answers do not approve it. Handwriting requires all strokes.
+3. Start **Offene Aufgaben prüfen**. Review all unconfirmed iterations once in the normal puzzle viewport, with no footer. Explicitly selecting an iteration places it first. Correct completion saves its exact-revision approval, uses the same 900 ms feedback and advances automatically. Wrong answers do not approve it. Handwriting requires all strokes.
 4. A small **×** in the rule-speech position opens **Ablehnen und weiter** and its optional comment. Cancelling keeps the existing decision. Rejected items return in the next queue. A completed queue plays the normal 2.2-second celebration automatically. **Alle bestätigen** lets the adult explicitly approve every current iteration and the puzzle after a confirmation. Review preserves child saves and letters.
 5. Every current iteration requires GitHub-confirmed approval for release. A flag on an iteration or a general comment blocks release immediately. Completing the open queue can clear an earlier puzzle flag. When all iterations are already approved, **Alle bestätigen** clears a general flag explicitly. A comment saved during an older review queue keeps the puzzle open.
 6. Additions and changes to questions, answers, difficulty, rules, interaction or pictures reopen the affected iterations. Typography corrections retain existing approvals when those aspects match. Full display revisions still identify the exact version for saved rounds and gameplay logs. Earlier GitHub decisions keep their original dates and comments, and later restrictions continue to apply.
-7. GitHub’s `puzzle-review-data` branch is the shared source of truth, keyed by stable ID and exact revision. Devices restore published decisions automatically and keep an offline cache/outbox. Only confirmed GitHub approvals release puzzles. Authenticate once per editing session on the Puzzle-Prüfung entry page; readers need no token. Conflicting edits require a choice. There is no file export/import or search in Puzzle-Prüfung; the page and each puzzle open at the top. A deployment does not approve anything. See [review storage](../docs/REVIEW-STORAGE.md).
+7. GitHub’s `puzzle-review-data` branch is the shared source of truth, keyed by stable ID and exact revision. Devices restore published decisions automatically and keep an offline cache/outbox. Only confirmed GitHub approvals release puzzles. Authenticate once per editing session on the Rätsel-Prüfung entry page; readers need no token. Conflicting edits require a choice. There is no file export/import or search in Rätsel-Prüfung; the page and each puzzle open at the top. A deployment does not approve anything. See [review storage](../docs/REVIEW-STORAGE.md).
 
 ## Maintaining the contract
 
@@ -86,4 +88,4 @@ Use `js/screens/puzzle.js` and `css/puzzle-rounds.css`. Writing uses the existin
 2. Supply at least 25 substantively different, inspectable iterations; include each expected answer/solution. Use complete natural sets where appropriate (alphabet, digits). Do not create a second page shell or duplicate a retired engine.
 3. Implement the interaction in the shared renderer, including saved partial work, editable retries, requested rule speech, mute, keyboard/touch input and the common finish sequence. Retain shared play-log hooks; log relevant actions for any new interaction and classify construction/tracing separately from choice questions in its summaries.
 4. Run `node tools/puzzle-catalogue.cjs`, `node tools/check-design.cjs`, model checks and the relevant browser suites. Review the real phone/tablet layout against [Visual style](VISUAL-STYLE.md).
-5. Open Settings → Puzzle-Prüfung and play through **every unconfirmed iteration**. Solve to approve or use × to request improvement. The final iteration ends the queue automatically. New assets, interaction or difficulty change the affected revisions and require review again.
+5. Open Settings → Rätsel-Prüfung and play through **every unconfirmed iteration**. Solve to approve or use × to request improvement. The final iteration ends the queue automatically. New assets, interaction or difficulty change the affected revisions and require review again.

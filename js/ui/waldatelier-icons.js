@@ -32,6 +32,7 @@
     zoom:'<circle cx="20" cy="20" r="13" fill="#deebeb"/><path d="m30 30 13 13M14 20h12m-6-6v12"/>',
     book:'<path d="M24 12C18 7 9 6 4 9v31c5-3 14-2 20 3 6-5 15-6 20-3V9c-5-3-14-2-20 3Z" fill="#fff7e5"/><path d="M24 12v31M10 18l8 2m-8 7 8 2m12-9 8-2m-8 11 8-2"/>',
     album:'<rect x="8" y="4" width="32" height="40" rx="4" fill="#dce3c6"/><path d="M15 4v40m13-31 3 6 7 1-5 5 1 8-6-4-6 4 1-8-5-5 7-1Z" fill="#e4c270"/>',
+    view:'<path d="M3 24S11 10 24 10s21 14 21 14-8 14-21 14S3 24 3 24Z" fill="#fffaf0"/><circle cx="24" cy="24" r="7" fill="#c3d1ab"/>',
     refresh:'<path d="M40 22a16 16 0 1 0-6 15m-3-15h10V10"/>',
     lock:'<path d="M15 22v-9a9 9 0 0 1 18 0v9"/><rect x="9" y="22" width="30" height="22" rx="4" fill="#e4d1a5"/><path d="M24 30v7"/>',
     gear:'<path d="m20 5-1 6-5 3-6-2-4 7 5 4v5l-4 4 4 7 6-2 5 3 1 5h8l1-6 5-3 6 2 4-7-5-4v-5l4-4-4-7-6 2-5-3-1-5Z" fill="#ece2ca"/><circle cx="24" cy="25" r="7" fill="#fff9eb"/>',

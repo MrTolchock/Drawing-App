@@ -1,12 +1,12 @@
 # Mengen ergänzen
 
-[All puzzles](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
+[Alle Rätsel](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 
-- Stable puzzle ID: `rocket`
+- Stabile Rätsel-ID: `rocket`
 - Host: squirrel
 - Related competence: **MA.1.A.4.b** — Mengen ergänzen
 - Difficulty: Gesamtmenge 5–10; besetzte und freie Plätze
-- Pool: 39 explicit iterations; a round selects five.
+- Pool: 39 Aufgaben; eine Runde enthält fünf.
 - Review: solve every unconfirmed iteration to approve it; × rejects with an optional note. The puzzle is released when all current iterations passed. Exact per-iteration revisions gate release; only affected iterations require review after changes.
 
 ## Mapping to the blueprint
@@ -22,9 +22,9 @@
 | Ending | 900 ms correct feedback, then 2.2 s celebration; reduced motion |
 | Review | Production-sized open-item queue; solve to approve, × to reject, final celebration; puzzle-level speech and revision gate |
 
-## Every iteration
+## Alle Aufgaben
 
-| Stable iteration ID | Content / configuration | Expected answer or solution |
+| Stabile Aufgaben-ID | Inhalt / Konfiguration | Expected answer or solution |
 | --- | --- | --- |
 | `rocket/5-1` | 5 insgesamt, 1 leuchten — Wie viele Glühwürmchen fehlen noch? | 4 |
 | `rocket/5-2` | 5 insgesamt, 2 leuchten — Wie viele Glühwürmchen fehlen noch? | 3 |

@@ -1,12 +1,12 @@
 # Benachbarte Schritte im Raum planen
 
-[All puzzles](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
+[Alle Rätsel](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 
-- Stable puzzle ID: `robot`
+- Stabile Rätsel-ID: `robot`
 - Host: beaver
 - Related competence: **MA.2.A.1.c (Unterstützung)** — Benachbarte Schritte im Raum planen
 - Difficulty: 4 × 4; sichtbares Ziel und gesperrte Hecken
-- Pool: 30 explicit iterations; a round selects five.
+- Pool: 30 Aufgaben; eine Runde enthält fünf.
 - Review: solve every unconfirmed iteration to approve it; × rejects with an optional note. The puzzle is released when all current iterations passed. Exact per-iteration revisions gate release; only affected iterations require review after changes.
 
 ## Mapping to the blueprint
@@ -22,9 +22,9 @@
 | Ending | 900 ms correct feedback, then 2.2 s celebration; reduced motion |
 | Review | Production-sized open-item queue; solve to approve, × to reject, final celebration; puzzle-level speech and revision gate |
 
-## Every iteration
+## Alle Aufgaben
 
-| Stable iteration ID | Content / configuration | Expected answer or solution |
+| Stabile Aufgaben-ID | Inhalt / Konfiguration | Expected answer or solution |
 | --- | --- | --- |
 | `robot/0-0` | Weg 1 / 1 — Führe den Hasen zum Briefkasten. | 0 → 15 (freie Nachbarschritte) |
 | `robot/0-1` | Weg 1 / 2 — Führe den Hasen zum Briefkasten. | 12 → 3 (freie Nachbarschritte) |

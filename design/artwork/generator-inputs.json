@@ -2744,6 +2744,34 @@
           "usage": "composition-only"
         }
       ]
+    },
+    "swiss-postbox": {
+      "role": "learning",
+      "promptFile": "design/illustrations/prompts/swiss-postbox.txt",
+      "brief": "design/illustrations/briefs/swiss-postbox.txt",
+      "requiresBriefCustomization": false,
+      "request": {
+        "prompt": "WALDPOST CANONICAL ILLUSTRATION STYLE — waldpost-watercolour-pencil-v1\n\nUse the supplied canonical animals.png and objects.png reference images as the authority for drawing technique. They show the predominant style of the current Waldpost gallery. Match their actual pixels, not an imagined style suggested by a filename.\n\nDraw warm children's picture-book watercolour finished with visible coloured-pencil strokes. Use light, gently uneven washes, organic sepia contours, delicate hatching, softly irregular edges and modest drawn shading. Surfaces look painted and pencilled, with paper grain within the illustration. Keep the warmth of cream, honey brown, restrained sage and blue, while preserving every exact colour required by a task. Subjects remain friendly, recognizable and anatomically believable.\n\nDo not turn the drawing into a 3D render, plush toy, clay or felt craft, photograph, glossy object, embossed surface or studio-lit miniature. Avoid deep ambient-occlusion shadows, inflated forms and realistic material microtexture. Do not mix in another illustration technique or use historical artwork as a style reference.\n\nThe role instructions below set the necessary detail and composition within this one style. Learning pictures retain fine drawn contours; small navigation symbols use the approved simpler, broader shapes and flat fills in the same palette. Keep the existing rendered game-character identities separate from image-generated learning subjects. Exact geometry and handwriting remain authored paths.\n\nPreserve subject identity, counted quantities, exact answer colours and action differences. Use real alpha for isolated pictures and stationery, and an opaque canvas only when the selected role requires a scene or branding image. No accidental background, halo, visible grid, labels or extra objects.\n\nROLE: learning\nMatch the canonical watercolour and coloured-pencil technique closely: fine organic contours, uneven washes and gentle drawn volume. Keep accurate species, action contrasts, one counted object per item and exact answer colours. Use transparent square cells, generous gutters and complete silhouettes.\n\nFRAMING AND EDGE QUALITY:\nCompare related pictures side by side at the size used in the game. For square cells, draw the complete silhouette with enough transparent space to pack it centred on both axes, with its longest visible side about 80% of the cell. Keep its proportions and use comparable visual weight for neighbouring answers. Reuse the same painting when a subject and pose recur. Leave genuine alpha around every isolated subject and retain the soft pencil edges. Inspect on light and dark backgrounds for pale matte, clipped outlines, stray pixels and neighbouring subjects. In a cell repair, preserve the pixels and positions of the other cells. Scenes and irregular layouts follow their role and brief.\n\nATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:\n1. design/illustrations/references/watercolour-pencil-v1/animals.png — canonical-style: canonical drawing technique for animals; fixed majority-style pixels\n2. design/illustrations/references/watercolour-pencil-v1/objects.png — canonical-style: canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels\n\nSUBJECT AND LAYOUT BRIEF:\nDraw ONE isolated Swiss public letter posting box, stable subject ID swiss-postbox. Recognizable bright postal yellow rectangular metal box, a broad dark horizontal letter slot on the front near the top, a small white collection-time panel below it, and a simple dark grey supporting post down to the ground. Slight three-quarter front view, friendly handmade proportions. This is the public yellow collection box used for posting letters in Switzerland, not a red British pillar box, not a blue American roadside mailbox, not a house mailbox. No readable text, numbers, logos, flags, scenery, envelope or characters. Keep the front yellow, the slot unmistakable, the entire box and supporting post visible, centred with generous alpha margins. Single square PNG with a genuinely transparent background. The full subject occupies about 80% of the canvas's longest dimension. It must be recognizable at 48 pixels beside the existing woodland learning pictures.\n\nSTYLE PRIORITY: The brief changes subjects and layout only. Keep waldpost-watercolour-pencil-v1 and the supplied canonical reference technique throughout; do not import the style of a composition-only reference.\n",
+        "referenced_image_paths": [
+          "design/illustrations/references/watercolour-pencil-v1/animals.png",
+          "design/illustrations/references/watercolour-pencil-v1/objects.png"
+        ],
+        "transparent_background": true
+      },
+      "references": [
+        {
+          "path": "design/illustrations/references/watercolour-pencil-v1/animals.png",
+          "sha256": "65867082294d157ab4ffbe33926857272625ef3c25cdb7cab81c2a4ea73d9316",
+          "purpose": "canonical drawing technique for animals; fixed majority-style pixels",
+          "usage": "canonical-style"
+        },
+        {
+          "path": "design/illustrations/references/watercolour-pencil-v1/objects.png",
+          "sha256": "0bb37d6fc82c75034eddf30da2cc57c546dd8bc70d246aeeda85b637bd87dd80",
+          "purpose": "canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels",
+          "usage": "canonical-style"
+        }
+      ]
     }
   },
   "assets": [
@@ -2835,7 +2863,7 @@
           ],
           "usedBy": [
             "friends-mouse",
-            "nature"
+            "friends-hedgehog"
           ]
         },
         {
@@ -2856,7 +2884,7 @@
           ],
           "usedBy": [
             "friends-mouse",
-            "nature"
+            "friends-hedgehog"
           ]
         },
         {
@@ -3011,7 +3039,6 @@
           "usedBy": [
             "friends-mouse",
             "friends-hedgehog",
-            "nature",
             "syllable",
             "vowels",
             "read-puzzle"
@@ -3035,8 +3062,8 @@
           ],
           "usedBy": [
             "friends-mouse",
-            "friends-badger",
-            "nature"
+            "friends-hedgehog",
+            "friends-badger"
           ]
         },
         {
@@ -3153,7 +3180,7 @@
           "usedBy": [
             "friends-bird",
             "friends-mouse",
-            "nature"
+            "friends-hedgehog"
           ]
         },
         {
@@ -3175,7 +3202,7 @@
           ],
           "usedBy": [
             "friends-mouse",
-            "nature"
+            "friends-hedgehog"
           ]
         },
         {
@@ -3232,7 +3259,6 @@
           "usedBy": [
             "friends-mouse",
             "friends-hedgehog",
-            "nature",
             "syllable",
             "sequence",
             "vowels",
@@ -3299,7 +3325,6 @@
             "friends-deer",
             "friends-badger",
             "count",
-            "nature",
             "syllable",
             "sequence",
             "vowels",
@@ -3328,7 +3353,6 @@
             "friends-hedgehog",
             "friends-deer",
             "count",
-            "nature",
             "syllable",
             "vowels",
             "read-puzzle"
@@ -3353,8 +3377,7 @@
           "usedBy": [
             "friends-mouse",
             "friends-hedgehog",
-            "friends-deer",
-            "nature"
+            "friends-deer"
           ]
         },
         {
@@ -3377,7 +3400,6 @@
             "friends-mouse",
             "friends-hedgehog",
             "friends-badger",
-            "nature",
             "syllable",
             "sequence",
             "vowels",
@@ -3429,8 +3451,7 @@
           "usedBy": [
             "friends-mouse",
             "friends-hedgehog",
-            "count",
-            "nature"
+            "count"
           ]
         },
         {
@@ -3453,8 +3474,8 @@
           "usedBy": [
             "friends-bird",
             "friends-mouse",
+            "friends-hedgehog",
             "friends-deer",
-            "nature",
             "sequence"
           ]
         },
@@ -3476,8 +3497,8 @@
           ],
           "usedBy": [
             "friends-mouse",
-            "friends-badger",
-            "nature"
+            "friends-hedgehog",
+            "friends-badger"
           ]
         },
         {
@@ -3498,9 +3519,9 @@
           ],
           "usedBy": [
             "friends-mouse",
+            "friends-hedgehog",
             "friends-deer",
-            "friends-badger",
-            "nature"
+            "friends-badger"
           ]
         }
       ],
@@ -3571,7 +3592,7 @@
           ],
           "usedBy": [
             "friends-mouse",
-            "nature"
+            "friends-hedgehog"
           ]
         },
         {
@@ -3592,7 +3613,7 @@
           ],
           "usedBy": [
             "friends-mouse",
-            "nature"
+            "friends-hedgehog"
           ]
         },
         {
@@ -3613,7 +3634,7 @@
           ],
           "usedBy": [
             "friends-mouse",
-            "nature"
+            "friends-hedgehog"
           ]
         },
         {
@@ -3635,7 +3656,7 @@
           ],
           "usedBy": [
             "friends-mouse",
-            "nature"
+            "friends-hedgehog"
           ]
         },
         {
@@ -3656,7 +3677,7 @@
           ],
           "usedBy": [
             "friends-mouse",
-            "nature"
+            "friends-hedgehog"
           ]
         },
         {
@@ -3678,7 +3699,6 @@
           "usedBy": [
             "friends-mouse",
             "friends-hedgehog",
-            "nature",
             "syllable",
             "vowels",
             "read-puzzle"
@@ -3702,7 +3722,7 @@
           ],
           "usedBy": [
             "friends-mouse",
-            "nature"
+            "friends-hedgehog"
           ]
         },
         {
@@ -3797,7 +3817,7 @@
           ],
           "usedBy": [
             "friends-mouse",
-            "nature"
+            "friends-hedgehog"
           ]
         },
         {
@@ -4138,7 +4158,6 @@
             "📮"
           ],
           "usedBy": [
-            "robot",
             "sequence"
           ]
         },
@@ -15597,7 +15616,6 @@
             "friends-hedgehog",
             "friends-deer",
             "friends-badger",
-            "nature",
             "syllable",
             "sequence",
             "vowels",
@@ -15624,7 +15642,6 @@
             "friends-hedgehog",
             "friends-deer",
             "friends-badger",
-            "nature",
             "syllable",
             "vowels"
           ]
@@ -15666,7 +15683,6 @@
             "friends-owl",
             "friends-mouse",
             "friends-hedgehog",
-            "nature",
             "syllable",
             "vowels",
             "read-puzzle"
@@ -15743,7 +15759,7 @@
           "usedBy": [
             "friends-owl",
             "friends-mouse",
-            "nature"
+            "friends-hedgehog"
           ]
         },
         {
@@ -15782,7 +15798,7 @@
             "friends-bird",
             "friends-owl",
             "friends-mouse",
-            "nature"
+            "friends-hedgehog"
           ]
         },
         {
@@ -15973,7 +15989,6 @@
             "friends-ibex",
             "count",
             "add",
-            "pattern",
             "rocket",
             "picnic",
             "syllable",
@@ -16064,8 +16079,6 @@
             "friends-ibex",
             "count",
             "add",
-            "pattern",
-            "nature",
             "rocket",
             "picnic",
             "syllable",
@@ -16097,8 +16110,7 @@
             "friends-bird",
             "friends-beaver",
             "friends-mouse",
-            "pattern",
-            "nature",
+            "friends-ibex",
             "syllable",
             "treasure",
             "vowels",
@@ -16179,8 +16191,6 @@
             "friends-ibex",
             "count",
             "add",
-            "pattern",
-            "nature",
             "rocket",
             "picnic",
             "syllable",
@@ -16292,7 +16302,6 @@
           "tokens": [],
           "usedBy": [
             "friends-owl",
-            "pattern",
             "sequence",
             "treasure"
           ]
@@ -16774,7 +16783,7 @@
           },
           "tokens": [],
           "usedBy": [
-            "nature"
+            "friends-hedgehog"
           ]
         },
         {
@@ -18655,6 +18664,90 @@
       "source": {
         "path": "assets/waldatelier/rhyme-vocabulary.webp",
         "commit": "b7c77ec0a318ac52e36ad5e1fcfdac9e249d4467"
+      }
+    },
+    {
+      "id": "swiss-postbox",
+      "style": "waldpost-watercolour-pencil-v1",
+      "forwardPrompt": "design/illustrations/prompts/swiss-postbox.txt",
+      "historicalRecord": "design/artwork/generation-records/swiss-postbox.json",
+      "recordKind": "generation-record",
+      "requestId": "swiss-postbox",
+      "file": "assets/waldatelier/swiss-postbox.webp",
+      "columns": 2,
+      "rows": 2,
+      "subjects": [
+        {
+          "id": "swiss-postbox",
+          "label": "Gelber Schweizer Briefkasten",
+          "sheet": "swiss-postbox",
+          "index": 0,
+          "column": 0,
+          "row": 0,
+          "sourceRect": {
+            "x": 0,
+            "y": 0,
+            "width": 320,
+            "height": 320
+          },
+          "tokens": [],
+          "usedBy": [
+            "robot"
+          ]
+        }
+      ],
+      "manifest": "design/illustrations/swiss-postbox.json",
+      "kind": "learning-sheet",
+      "files": [
+        {
+          "path": "assets/waldatelier/swiss-postbox.webp",
+          "sha256": "b3ae15b7a2a8ac38036d4a16af7b8c2cbcbaf1e6b1d3795559186102670204f5",
+          "width": 640,
+          "height": 640,
+          "hasAlpha": true
+        }
+      ],
+      "preparation": {
+        "manifest": "design/illustrations/swiss-postbox.json",
+        "pathsRelativeTo": "design/illustrations",
+        "settings": {
+          "format": "waldpost-illustration-atlas",
+          "version": 1,
+          "source": "sources/swiss-postbox.png",
+          "output": "../../assets/waldatelier/swiss-postbox.webp",
+          "columns": 2,
+          "rows": 2,
+          "cellPixels": 320,
+          "subjectPixels": 256,
+          "alphaThresholdPercent": 15,
+          "sourceRects": {
+            "swiss-postbox": {
+              "x": 0,
+              "y": 0,
+              "width": 1254,
+              "height": 1254
+            }
+          },
+          "provenance": {
+            "date": "2026-11-19",
+            "tool": "ChatGPT image_gen.imagegen",
+            "sourceSha256": "c3271c1d35a1cd5481629a21555f43645f8f5a8a5330bc3e01965e816aabf3b2",
+            "generationRecord": "../artwork/generation-records/swiss-postbox.json",
+            "styleContract": "style.json",
+            "forwardPrompt": "prompts/swiss-postbox.txt"
+          },
+          "subjects": [
+            {
+              "id": "swiss-postbox",
+              "label": "Gelber Schweizer Briefkasten"
+            }
+          ]
+        },
+        "command": "node tools/illustrations/pack-atlas.cjs design/illustrations/swiss-postbox.json"
+      },
+      "source": {
+        "path": "design/illustrations/sources/swiss-postbox.png",
+        "sha256": "c3271c1d35a1cd5481629a21555f43645f8f5a8a5330bc3e01965e816aabf3b2"
       }
     },
     {
@@ -20693,6 +20786,7 @@
     "assets/waldatelier/puzzle-vocabulary.webp",
     "assets/waldatelier/review-nature.webp",
     "assets/waldatelier/rhyme-vocabulary.webp",
+    "assets/waldatelier/swiss-postbox.webp",
     "assets/waldatelier/words-one.webp",
     "assets/waldatelier/words-three.webp",
     "assets/waldatelier/words-two.webp",

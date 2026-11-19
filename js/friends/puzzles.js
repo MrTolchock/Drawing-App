@@ -6,7 +6,7 @@
     rocket:'Glühwürmchen sammeln',picnic:'Waldpicknick',double:'Nüsse verdoppeln',shapes:'Waldwerkstatt',
     rhyme:'Waldreime',syllable:'Silben zählen',robot:'Waldpost',sequence:'Was kommt zuerst?',
     treasure:'Waldschatz',neighbours:'Zahlennachbarn',compare:'Beeren vergleichen',mirror:'Waldspiegel',vowels:'Waldwörter ergänzen',survey:'Waldumfrage',
-    'read-puzzle':'Silben-Puzzle','read-word':'Wort und Waldbild','read-leaves':'Silbenblätter','read-colours':'Farben lesen',trace:'Schreibspuren',dots:'Zahlenwege'};
+    'read-puzzle':"Silben-Rätsel",'read-word':'Wort und Waldbild','read-leaves':'Silbenblätter','read-colours':'Farben lesen',trace:'Schreibspuren',dots:'Zahlenwege'};
   const reading=[['read-puzzle','puzzle','words'],['read-word','wort','mouse'],['read-leaves','ballone','leaf'],['read-colours','genau','flower']]
     .map(([id,game,picture])=>({id,screen:'read',host:'mouse',title:names[id],picture,params:{game}}));
   const icons={pattern:'forest-leaf',rhyme:'bird-sit',syllable:'forest-branch',robot:'forest-post',rocket:'forest-lantern',double:'forest-nut',shapes:'forest-shapes',sequence:'sprout',treasure:'forest-basket',compare:'forest-berry'};

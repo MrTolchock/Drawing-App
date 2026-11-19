@@ -1,12 +1,12 @@
 # Gezielt Mengen zählen
 
-[All puzzles](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
+[Alle Rätsel](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 
-- Stable puzzle ID: `count`
+- Stabile Rätsel-ID: `count`
 - Host: squirrel
 - Related competence: **MA.1.A.2.a** — Gezielt Mengen zählen
 - Difficulty: 6–15 Marienkäfer zwischen Bienen und Schnecken
-- Pool: 30 explicit iterations; a round selects five.
+- Pool: 30 Aufgaben; eine Runde enthält fünf.
 - Review: solve every unconfirmed iteration to approve it; × rejects with an optional note. The puzzle is released when all current iterations passed. Exact per-iteration revisions gate release; only affected iterations require review after changes.
 
 ## Mapping to the blueprint
@@ -22,9 +22,9 @@
 | Ending | 900 ms correct feedback, then 2.2 s celebration; reduced motion |
 | Review | Production-sized open-item queue; solve to approve, × to reject, final celebration; puzzle-level speech and revision gate |
 
-## Every iteration
+## Alle Aufgaben
 
-| Stable iteration ID | Content / configuration | Expected answer or solution |
+| Stabile Aufgaben-ID | Inhalt / Konfiguration | Expected answer or solution |
 | --- | --- | --- |
 | `count/6-2` | 6 Käfer, 2 Bienen — Wie viele rote Marienkäfer sind hier? | 6 |
 | `count/6-3` | 6 Käfer, 3 Bienen — Wie viele rote Marienkäfer sind hier? | 6 |

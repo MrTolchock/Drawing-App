@@ -38,7 +38,7 @@ All fonts are bundled locally; no network font requests.
 | Brand wordmark only | Baloo 2 | 800 permitted |
 | Letter/digit tracing | Authored glyph paths | No font substitution; preserve stroke starts and direction |
 
-`css/base.css` declares the font files and `css/typography.css`, loaded last, defines the roles. Controls inherit Andika. Keep Swiss Standard German wording; children's text is always in upper and lower case (the former capitals option is retired). No synthetic font weights, extra font families, text strokes or decorative shadows on learning text.
+`css/base.css` declares the font files and `css/typography.css`, loaded last, defines the roles. Controls inherit Andika. Keep Swiss Standard German wording; children's text uses upper and lower case (the former global capitals option is retired). The owner's November 19 exception displays the offered and placed syllables in `read-puzzle` in uppercase; other reading tasks keep their authored spelling. No synthetic font weights, extra font families, text strokes or decorative shadows on learning text.
 
 ## Palette, surfaces and density
 

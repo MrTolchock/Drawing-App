@@ -17,7 +17,7 @@ window.FK.narrationClips = new Map([
   ["Sprich das Bildwort langsam. Zähle seine Silben und wähle die passende Zahl.","syllable"],
   ["Führe den Hasen zum Briefkasten. Tippe auf die Pfeile. Um die Hecken musst du herumgehen.","robot"],
   ["Was passiert zuerst? Ziehe die drei Bilder der Reihe nach von links nach rechts.","sequence"],
-  ["Merke dir die Dinge im Korb. Wenn du bereit bist, tippe auf «Ich habe sie mir gemerkt». Welches Ding fehlt danach?","treasure"],
+  ["Merke dir die vier Dinge. Tippe dann auf das Häkchen. Welches Ding fehlt? Mit dem Auge kannst du nochmals nachschauen.","treasure"],
   ["Ziehe die Zahl davor nach links und die Zahl danach nach rechts.","neighbours"],
   ["Vergleiche die beiden Beerengruppen. Tippe auf die mit mehr Beeren. Sind es gleich viele, wähle «Gleich viele».","compare"],
   ["Ergänze rechts das Spiegelbild. Felder in derselben Reihe liegen gleich weit von der Spiegellinie entfernt. Ein zweites Tippen leert ein Feld wieder.","mirror"],

@@ -1028,6 +1028,13 @@
           "usage": "composition-only"
         }
       ]
+    },
+    {
+      "id": "swiss-postbox",
+      "role": "learning",
+      "path": "design/illustrations/prompts/swiss-postbox.txt",
+      "brief": "design/illustrations/briefs/swiss-postbox.txt",
+      "transparent": true
     }
   ],
   "preparationManifests": [

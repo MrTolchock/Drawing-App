@@ -200,3 +200,8 @@
  .puzzle-picnic-friend>.forest-portrait{width:52px;height:52px}
 }
 .puzzle-paper>.puzzle-completion{height:calc(100% - 64px);min-height:0}
+
+/* Filled number spaces are ordinary cards; only empty spaces invite a drop. */
+.puzzle-number-card[data-neighbour-slot].filled{border-style:solid;background:#fffaf0}
+.puzzle-memory-button{flex-basis:auto;width:64px;max-width:64px;height:64px;min-height:64px;padding:12px}
+.puzzle-memory-button>.utility-icon{width:36px;height:36px}

@@ -58,14 +58,6 @@
       "title": "Sichtbare Gruppen addieren",
       "host": "squirrel"
     },
-    "pattern": {
-      "title": "Wiederholungsmuster fortsetzen",
-      "host": "owl"
-    },
-    "nature": {
-      "title": "Naturhinweise lesend verstehen",
-      "host": "bird"
-    },
     "rocket": {
       "title": "Mengen ergänzen",
       "host": "squirrel"
@@ -998,6 +990,25 @@
       }
     },
     {
+      "id": "swiss-postbox",
+      "file": "swiss-postbox.webp",
+      "width": 640,
+      "height": 640,
+      "columns": 2,
+      "rows": 2,
+      "sha256": "b3ae15b7a2a8ac38036d4a16af7b8c2cbcbaf1e6b1d3795559186102670204f5",
+      "provenance": {
+        "status": "historical-record",
+        "record": "design/artwork/generation-records/swiss-postbox.json",
+        "recordKind": "generation-record",
+        "manifest": "design/illustrations/swiss-postbox.json",
+        "styleContract": "design/illustrations/style.json",
+        "requestId": "swiss-postbox",
+        "forwardPrompt": "design/illustrations/prompts/swiss-postbox.txt",
+        "guide": "design/illustrations/STYLE.md"
+      }
+    },
+    {
       "id": "words-one",
       "file": "words-one.webp",
       "width": 1254,
@@ -1141,7 +1152,6 @@
       "usedBy": [
         "friends-mouse",
         "friends-hedgehog",
-        "nature",
         "syllable",
         "vowels",
         "read-puzzle"
@@ -1267,8 +1277,8 @@
       ],
       "usedBy": [
         "friends-mouse",
-        "friends-badger",
-        "nature"
+        "friends-hedgehog",
+        "friends-badger"
       ]
     },
     {
@@ -1589,7 +1599,6 @@
       "usedBy": [
         "friends-mouse",
         "friends-hedgehog",
-        "nature",
         "syllable",
         "vowels",
         "read-puzzle"
@@ -1686,7 +1695,6 @@
         "friends-deer",
         "friends-badger",
         "count",
-        "nature",
         "syllable",
         "sequence",
         "vowels",
@@ -1966,7 +1974,6 @@
         "friends-hedgehog",
         "friends-deer",
         "friends-badger",
-        "nature",
         "syllable",
         "sequence",
         "vowels",
@@ -2455,7 +2462,6 @@
         "friends-mouse",
         "friends-hedgehog",
         "friends-badger",
-        "nature",
         "syllable",
         "sequence",
         "vowels",
@@ -2552,7 +2558,7 @@
       ],
       "usedBy": [
         "friends-mouse",
-        "nature"
+        "friends-hedgehog"
       ]
     },
     {
@@ -2707,7 +2713,7 @@
       ],
       "usedBy": [
         "friends-mouse",
-        "nature"
+        "friends-hedgehog"
       ]
     },
     {
@@ -2727,7 +2733,7 @@
       "usedBy": [
         "friends-owl",
         "friends-mouse",
-        "nature"
+        "friends-hedgehog"
       ]
     },
     {
@@ -3409,8 +3415,8 @@
       "usedBy": [
         "friends-bird",
         "friends-mouse",
+        "friends-hedgehog",
         "friends-deer",
-        "nature",
         "sequence"
       ]
     },
@@ -3715,7 +3721,7 @@
       "usedBy": [
         "friends-bird",
         "friends-mouse",
-        "nature"
+        "friends-hedgehog"
       ]
     },
     {
@@ -3754,7 +3760,7 @@
         "friends-bird",
         "friends-owl",
         "friends-mouse",
-        "nature"
+        "friends-hedgehog"
       ]
     },
     {
@@ -4064,7 +4070,7 @@
       ],
       "usedBy": [
         "friends-mouse",
-        "nature"
+        "friends-hedgehog"
       ]
     },
     {
@@ -4312,7 +4318,6 @@
         "friends-hedgehog",
         "friends-deer",
         "friends-badger",
-        "nature",
         "syllable",
         "vowels"
       ]
@@ -4486,8 +4491,7 @@
         "friends-bird",
         "friends-beaver",
         "friends-mouse",
-        "pattern",
-        "nature",
+        "friends-ibex",
         "syllable",
         "treasure",
         "vowels",
@@ -4545,8 +4549,6 @@
         "friends-ibex",
         "count",
         "add",
-        "pattern",
-        "nature",
         "rocket",
         "picnic",
         "syllable",
@@ -4614,7 +4616,6 @@
       "tokens": [],
       "usedBy": [
         "friends-owl",
-        "pattern",
         "sequence",
         "treasure"
       ]
@@ -4645,8 +4646,6 @@
         "friends-ibex",
         "count",
         "add",
-        "pattern",
-        "nature",
         "rocket",
         "picnic",
         "syllable",
@@ -4745,7 +4744,6 @@
         "friends-ibex",
         "count",
         "add",
-        "pattern",
         "rocket",
         "picnic",
         "syllable",
@@ -5046,7 +5044,7 @@
       ],
       "usedBy": [
         "friends-mouse",
-        "nature"
+        "friends-hedgehog"
       ]
     },
     {
@@ -5184,7 +5182,7 @@
       ],
       "usedBy": [
         "friends-mouse",
-        "nature"
+        "friends-hedgehog"
       ]
     },
     {
@@ -5554,7 +5552,6 @@
         "friends-owl",
         "friends-mouse",
         "friends-hedgehog",
-        "nature",
         "syllable",
         "vowels",
         "read-puzzle"
@@ -5653,7 +5650,6 @@
       "usedBy": [
         "friends-mouse",
         "friends-hedgehog",
-        "nature",
         "syllable",
         "sequence",
         "vowels",
@@ -6289,8 +6285,7 @@
       "usedBy": [
         "friends-mouse",
         "friends-hedgehog",
-        "count",
-        "nature"
+        "count"
       ]
     },
     {
@@ -6455,7 +6450,7 @@
       ],
       "usedBy": [
         "friends-mouse",
-        "nature"
+        "friends-hedgehog"
       ]
     },
     {
@@ -8382,7 +8377,7 @@
       ],
       "usedBy": [
         "friends-mouse",
-        "nature"
+        "friends-hedgehog"
       ]
     },
     {
@@ -8441,9 +8436,9 @@
       ],
       "usedBy": [
         "friends-mouse",
+        "friends-hedgehog",
         "friends-deer",
-        "friends-badger",
-        "nature"
+        "friends-badger"
       ]
     },
     {
@@ -8662,7 +8657,6 @@
         "📮"
       ],
       "usedBy": [
-        "robot",
         "sequence"
       ]
     },
@@ -10055,8 +10049,8 @@
       ],
       "usedBy": [
         "friends-mouse",
-        "friends-badger",
-        "nature"
+        "friends-hedgehog",
+        "friends-badger"
       ]
     },
     {
@@ -10385,7 +10379,6 @@
         "friends-hedgehog",
         "friends-deer",
         "count",
-        "nature",
         "syllable",
         "vowels",
         "read-puzzle"
@@ -10551,8 +10544,7 @@
       "usedBy": [
         "friends-mouse",
         "friends-hedgehog",
-        "friends-deer",
-        "nature"
+        "friends-deer"
       ]
     },
     {
@@ -10624,7 +10616,7 @@
       },
       "tokens": [],
       "usedBy": [
-        "nature"
+        "friends-hedgehog"
       ]
     },
     {
@@ -11233,6 +11225,24 @@
       "usedBy": []
     },
     {
+      "id": "swiss-postbox",
+      "label": "Gelber Schweizer Briefkasten",
+      "sheet": "swiss-postbox",
+      "index": 0,
+      "column": 0,
+      "row": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "tokens": [],
+      "usedBy": [
+        "robot"
+      ]
+    },
+    {
       "id": "sycamore-seed",
       "label": "Ahornsamen",
       "sheet": "expansion-woodland-finds",
@@ -11414,7 +11424,7 @@
       ],
       "usedBy": [
         "friends-mouse",
-        "nature"
+        "friends-hedgehog"
       ]
     },
     {
@@ -11511,7 +11521,7 @@
       ],
       "usedBy": [
         "friends-mouse",
-        "nature"
+        "friends-hedgehog"
       ]
     },
     {
@@ -13083,7 +13093,7 @@
       ],
       "usedBy": [
         "friends-mouse",
-        "nature"
+        "friends-hedgehog"
       ]
     }
   ]

@@ -4005,5 +4005,2880 @@
       "before": "0353fc45ef2367e2df4e5ed39394b6c3b556723452d1060dfec468f72a1190cb",
       "after": "9b9e824d6982c3eb5441c3087b6f4a17cdcc50cb0b4281e2ec44cbc6f5210f05"
     }
-  }
+  },
+  "migrations": [
+    {
+      "reason": "2026-11-19: Rätsel/Aufgaben terminology and full-pool review counter only. New/changed tasks, uppercase syllables, memory icons, filled number cards, Swiss postbox and four-friend picnic are excluded.",
+      "baselineCommit": "c2e09f08fb1b198b65383b69e517911c15e40bea",
+      "puzzles": {
+        "friends-squirrel": {
+          "definition": "f016971a876226ca432bbcac6f15081276a8e9cd4e8c37d929eb934005837ce0",
+          "before": "f84e181c6a27de6d15434e1b8aa717681de1be92d9dde15cf8f1a0b93254a496",
+          "after": "701522e042141de63fc58292cc79dea8c5492642ce59df984cfaebf7cc3317e8"
+        },
+        "friends-bird": {
+          "definition": "d6c6c4d333bce318821c7f306496eed63d97adad0cf138615b5ed258a5faa724",
+          "before": "f462251c82ce64c839b2a84c84bfaa59503cf48dbf39a265511dca89bd47e91e",
+          "after": "54e7b7d8c2e465b2d9cdbc4668baccb7c6993e236f1011353ec755f7a38f5508"
+        },
+        "friends-owl": {
+          "definition": "61ad278b74b1556b3ad15ed49c8bdc200f808f146100b241a348e217d0bc9359",
+          "before": "5af1b9614a4d68068054fc34a8e853f0941f8f97650b7d8acc4c25d931d30f39",
+          "after": "f36bb217f76b954de00dfb48efb570f59690634a9440e599b42c2f7aba64e43e"
+        },
+        "friends-mouse": {
+          "definition": "6c98c311932b89238cda1f43cde0aefe8a57e14242862bb442a49eb25a7e96b4",
+          "before": "6a8d5de5c9c4675848c0c638c68b28d3a4e02a12b3a12197a7bbc7c9bba0410b",
+          "after": "32bacf948be99abb34a177ad1b5414859839c8dd75dad047fd85a6c72ac97fce"
+        },
+        "friends-deer": {
+          "definition": "5701f20014573fd860f6cec0277df5011da702fae261af4d2a22f927523d1f5a",
+          "before": "e51e424c6ec7bd11a2e4706e450fc322a1131e7a93922f2c175d64c6c8224759",
+          "after": "f2a8016de4001ee1345a20e2d0c157782a4e35282c3443ce12412e0ae826ce41"
+        },
+        "friends-badger": {
+          "definition": "3c50026c06aa0c6bdedb206bbc36d77947d7823664f7b956c36c6ff7cc729487",
+          "before": "896bab82f1674946079c4ac17c9c8b7de4f7611cae76ff0f0e4bcbe7eb3b3885",
+          "after": "a1a4c112e64520cef55a31e9331ef514fe7464318bd8c483a5af583b81003afc"
+        },
+        "count": {
+          "definition": "be5010d0de7b8cc4fcf4b5added9ae1afb41f6a22e01d700e1ed54c47236fbf7",
+          "before": "f47829cc4025ce4c38d613fa597a8741e0d1bb7d6eb8df91cea31b44a840fc08",
+          "after": "d5ad5fa4a7875cc85854597ddd566c19cae498089d8b1325e10864ded3b78bf1"
+        },
+        "add": {
+          "definition": "076c4662c7218ca6720d0e785275d50075a76e879db25e2b2c0a3a5e391a6f2c",
+          "before": "ece2c1a2ac397576c77f8862409e59e389c663559b88e0f6fb050154d9f56d15",
+          "after": "3684255ac060ae5bbdf8add41827aa399b8cb5490a265257844b9f896944533b"
+        },
+        "rocket": {
+          "definition": "af118ce7383da048b86f25ebfc195bce94bd46feec6a50b2d40a418aea9c8aba",
+          "before": "db31aba96901f2abbf762df6306499431a543f37d2eebe9aef946aac2d9b96c1",
+          "after": "092d68934cc7c03c138868d32be06a8dc9acfb47bf105a6853ae50e6a2503daf"
+        },
+        "syllable": {
+          "definition": "f985399dd2bef662b09dde0ac643e86003f70dfb42597ed763699c76e375375f",
+          "before": "d05a5b9a939057d06ec93cf0359018b83e7a97255857df0c307a9ee54eaea2ca",
+          "after": "d01765a7bf6b6c47eafc880460e04969cdca55bf3e570a6fd44da7863106e46c"
+        },
+        "sequence": {
+          "definition": "7c2aff9f50ecd0fcd78af6787b046a14f03f6a0e115ae0065122f24247548065",
+          "before": "10b8dbc0b8703d0c6bc698f8c0ccb311f661c8679327e5449088a159bfad3e53",
+          "after": "7c2233c131db216c059bb994ddc94aa9c2a000d55066fb34ed272860c0535b18"
+        },
+        "compare": {
+          "definition": "4a8998d7cbe0330adffa32bc865d775c96022e62b7f3e1964ab7f86fede96a4f",
+          "before": "62d8893a61b4227b01cabba30e4cc5a3c556c01623696a9ede4e4e9f6e92e4cb",
+          "after": "a18c9cc1829ef38c05c74e0490ca01f5ba6a3307ad1fd1c6ca65adb498849aff"
+        },
+        "mirror": {
+          "definition": "f499b5ac9cb5ded4bff5c3c76a8b45de9d3430a2b7d6a17a95cc565105081841",
+          "before": "3c4be53a11a3ba6af137afd5aadc137d2bfd77920283e06fe602967611afeb2d",
+          "after": "2d7f392ba43626d266f572a6d33ce9050aa5d6c6a1242e6137b5fad75411f6ba"
+        },
+        "vowels": {
+          "definition": "f905cc3a45ca0ecf12ca54ec647f67b4cc1ac39cfe601f1d7a48ab154bf53ba4",
+          "before": "cf546e456c6aa3197e41761ec80c85b0ac5bb28e60ab3cbb375d81af43f11645",
+          "after": "8e4b79cb1f0540fd4f3c628e313ddc2a9dbf99be4430ae16a6a8719693da3c91"
+        }
+      },
+      "iterations": {
+        "friends-squirrel/count-0": {
+          "definition": "88332a02a4500c2970d88bc50fb224370069a090eeed9b4cf163d34a4d8d66b3",
+          "before": "f84e181c6a27de6d15434e1b8aa717681de1be92d9dde15cf8f1a0b93254a496",
+          "after": "701522e042141de63fc58292cc79dea8c5492642ce59df984cfaebf7cc3317e8"
+        },
+        "friends-squirrel/count-1": {
+          "definition": "f5b378143b657b74489c23c40c79af12c4aef73dcf59708618d5dc53f577e364",
+          "before": "89dc3657168f3b536a413e3df865cc03463b1fd60dc7ccfcc025fa7006c96d73",
+          "after": "39cff627720bb6e92ef692ac280c2ab44263739b8e0487f7f68d2b9a51558935"
+        },
+        "friends-squirrel/count-2": {
+          "definition": "88693b98393f473515907c62fecdfac1e6bfbb01c4fd4bb3f92ce50eb595640c",
+          "before": "89dc3657168f3b536a413e3df865cc03463b1fd60dc7ccfcc025fa7006c96d73",
+          "after": "39cff627720bb6e92ef692ac280c2ab44263739b8e0487f7f68d2b9a51558935"
+        },
+        "friends-squirrel/count-3": {
+          "definition": "f39fd192e30990442387ec6ada6d94fcdd1c8f5e3d330e0828bf40a9afcab99e",
+          "before": "89dc3657168f3b536a413e3df865cc03463b1fd60dc7ccfcc025fa7006c96d73",
+          "after": "39cff627720bb6e92ef692ac280c2ab44263739b8e0487f7f68d2b9a51558935"
+        },
+        "friends-squirrel/count-4": {
+          "definition": "73a3815482eff52002328f7570b6974eeed4d71fe19f5982482d0bd5681b1e91",
+          "before": "89dc3657168f3b536a413e3df865cc03463b1fd60dc7ccfcc025fa7006c96d73",
+          "after": "39cff627720bb6e92ef692ac280c2ab44263739b8e0487f7f68d2b9a51558935"
+        },
+        "friends-squirrel/count-5": {
+          "definition": "967646f6b8b06704feb9b4307bafd62bb6298897392ee8849ff53f086396bb78",
+          "before": "89dc3657168f3b536a413e3df865cc03463b1fd60dc7ccfcc025fa7006c96d73",
+          "after": "39cff627720bb6e92ef692ac280c2ab44263739b8e0487f7f68d2b9a51558935"
+        },
+        "friends-squirrel/count-6": {
+          "definition": "f9f8784d8a750ee14e5c97c5583ab148d506bf248ac50acbd92b9a1ddf748152",
+          "before": "89dc3657168f3b536a413e3df865cc03463b1fd60dc7ccfcc025fa7006c96d73",
+          "after": "39cff627720bb6e92ef692ac280c2ab44263739b8e0487f7f68d2b9a51558935"
+        },
+        "friends-squirrel/count-7": {
+          "definition": "96a68b5b15a74f61cb91d3a5b31626ab143bb52e4b8400f02b05c9faedc92271",
+          "before": "89dc3657168f3b536a413e3df865cc03463b1fd60dc7ccfcc025fa7006c96d73",
+          "after": "39cff627720bb6e92ef692ac280c2ab44263739b8e0487f7f68d2b9a51558935"
+        },
+        "friends-squirrel/count-8": {
+          "definition": "f97380451012043f2fd6c01d3f48ff8a1d247e9ca4b3918ebe699082c23984bb",
+          "before": "89dc3657168f3b536a413e3df865cc03463b1fd60dc7ccfcc025fa7006c96d73",
+          "after": "39cff627720bb6e92ef692ac280c2ab44263739b8e0487f7f68d2b9a51558935"
+        },
+        "friends-squirrel/count-9": {
+          "definition": "5b47c4ea674eb38ab72dbb4a21847c92cb9c3773d97ae59a6b8cbbdea98fa2f7",
+          "before": "89dc3657168f3b536a413e3df865cc03463b1fd60dc7ccfcc025fa7006c96d73",
+          "after": "39cff627720bb6e92ef692ac280c2ab44263739b8e0487f7f68d2b9a51558935"
+        },
+        "friends-squirrel/count-10": {
+          "definition": "e64d39f4d2decf38bcf6163fb03289c6b7899ab4546402eb1c92bd400a305ca3",
+          "before": "89dc3657168f3b536a413e3df865cc03463b1fd60dc7ccfcc025fa7006c96d73",
+          "after": "39cff627720bb6e92ef692ac280c2ab44263739b8e0487f7f68d2b9a51558935"
+        },
+        "friends-squirrel/count-11": {
+          "definition": "a6f47b74ee1312af8d08a33e13ff6b7a39c83982a4412a6d57101f580ee6e78e",
+          "before": "89dc3657168f3b536a413e3df865cc03463b1fd60dc7ccfcc025fa7006c96d73",
+          "after": "39cff627720bb6e92ef692ac280c2ab44263739b8e0487f7f68d2b9a51558935"
+        },
+        "friends-squirrel/count-12": {
+          "definition": "ab00bab1ccfcd615051c653031fddb0ea50ac6b833ff825a58561a33eb4afbf5",
+          "before": "89dc3657168f3b536a413e3df865cc03463b1fd60dc7ccfcc025fa7006c96d73",
+          "after": "39cff627720bb6e92ef692ac280c2ab44263739b8e0487f7f68d2b9a51558935"
+        },
+        "friends-squirrel/count-13": {
+          "definition": "a70f46efe2a8833d158d4d20dec9e87ae3cfa1f42b60f135eaa709601f9e7a56",
+          "before": "89dc3657168f3b536a413e3df865cc03463b1fd60dc7ccfcc025fa7006c96d73",
+          "after": "39cff627720bb6e92ef692ac280c2ab44263739b8e0487f7f68d2b9a51558935"
+        },
+        "friends-squirrel/count-14": {
+          "definition": "dfc0b276545cc21de8ecc2930f2482d1d8e41ba7dcbb703c0d5e5e41d6a9c7bf",
+          "before": "89dc3657168f3b536a413e3df865cc03463b1fd60dc7ccfcc025fa7006c96d73",
+          "after": "39cff627720bb6e92ef692ac280c2ab44263739b8e0487f7f68d2b9a51558935"
+        },
+        "friends-squirrel/count-15": {
+          "definition": "2e5daa72b54600fb7ec8d4bec44ce9fa3bcd1e27899123d7ab3783e9248f70d4",
+          "before": "89dc3657168f3b536a413e3df865cc03463b1fd60dc7ccfcc025fa7006c96d73",
+          "after": "39cff627720bb6e92ef692ac280c2ab44263739b8e0487f7f68d2b9a51558935"
+        },
+        "friends-squirrel/count-16": {
+          "definition": "e8c0138d2f35448b87952a7abb588ba8b8d66162fa0764099f39d313c30adc2e",
+          "before": "89dc3657168f3b536a413e3df865cc03463b1fd60dc7ccfcc025fa7006c96d73",
+          "after": "39cff627720bb6e92ef692ac280c2ab44263739b8e0487f7f68d2b9a51558935"
+        },
+        "friends-squirrel/count-17": {
+          "definition": "05f7f7bae1d90d501e946321dd9c43f7f687c4d5a5b28ad35bda2988b33d493e",
+          "before": "89dc3657168f3b536a413e3df865cc03463b1fd60dc7ccfcc025fa7006c96d73",
+          "after": "39cff627720bb6e92ef692ac280c2ab44263739b8e0487f7f68d2b9a51558935"
+        },
+        "friends-squirrel/count-18": {
+          "definition": "78648b6a994485a4f04a1946fe2e43cf827fda78d0f3025d02d64515266451dd",
+          "before": "89dc3657168f3b536a413e3df865cc03463b1fd60dc7ccfcc025fa7006c96d73",
+          "after": "39cff627720bb6e92ef692ac280c2ab44263739b8e0487f7f68d2b9a51558935"
+        },
+        "friends-squirrel/count-19": {
+          "definition": "0dd1b2a68cf82ef73f5959c7e2f4cdbe24b2fb486daabc39f2753502ed304c18",
+          "before": "89dc3657168f3b536a413e3df865cc03463b1fd60dc7ccfcc025fa7006c96d73",
+          "after": "39cff627720bb6e92ef692ac280c2ab44263739b8e0487f7f68d2b9a51558935"
+        },
+        "friends-squirrel/count-20": {
+          "definition": "09db4513168ac92a4f2244bfbd0de1dbfb99941070e58845dec390dd8a8ab8ad",
+          "before": "89dc3657168f3b536a413e3df865cc03463b1fd60dc7ccfcc025fa7006c96d73",
+          "after": "39cff627720bb6e92ef692ac280c2ab44263739b8e0487f7f68d2b9a51558935"
+        },
+        "friends-squirrel/four-4": {
+          "definition": "f96ea19cb4420c71557176a7563ef89dea586a6ab9fcf89e910314c1d560ad12",
+          "before": "89dc3657168f3b536a413e3df865cc03463b1fd60dc7ccfcc025fa7006c96d73",
+          "after": "39cff627720bb6e92ef692ac280c2ab44263739b8e0487f7f68d2b9a51558935"
+        },
+        "friends-squirrel/four-8": {
+          "definition": "0c5e5f01d4da04cafc551f637fd2ee9acdb25ded158d40b72cab5de9151529d3",
+          "before": "89dc3657168f3b536a413e3df865cc03463b1fd60dc7ccfcc025fa7006c96d73",
+          "after": "39cff627720bb6e92ef692ac280c2ab44263739b8e0487f7f68d2b9a51558935"
+        },
+        "friends-squirrel/four-12": {
+          "definition": "95ed7568da05312b1f4cc8985e9b46b25e7ad6abc7a6dfcda4a4f93af1f350cf",
+          "before": "89dc3657168f3b536a413e3df865cc03463b1fd60dc7ccfcc025fa7006c96d73",
+          "after": "39cff627720bb6e92ef692ac280c2ab44263739b8e0487f7f68d2b9a51558935"
+        },
+        "friends-squirrel/four-16": {
+          "definition": "143bab4435fb23f08e9f892e7f3c32c572fdcf470ed7a49a0fc0951758fef17d",
+          "before": "89dc3657168f3b536a413e3df865cc03463b1fd60dc7ccfcc025fa7006c96d73",
+          "after": "39cff627720bb6e92ef692ac280c2ab44263739b8e0487f7f68d2b9a51558935"
+        },
+        "friends-bird/rhyme-0": {
+          "definition": "0afd2bb6bafcad43dbfc13602b950a1c7d830e5f0d244835001cca13131ffff9",
+          "before": "8d4e3eb11ef969d8780314c8f0744e6f41ca951b29a0a7a9f3331137a553ae67",
+          "after": "77473c49c7c0cd0a164dc8412311765333fb8417b640a93b3f566c2fd3c074fc"
+        },
+        "friends-bird/rhyme-1": {
+          "definition": "e565efcc917ead98b0e60b84d7fc2eb6669846dd0bbc257263b61e09972f1152",
+          "before": "689dc49bee0d7476ac1d47c4ed57f24b45b2f03f6e3a19e2b0cc8c508c8a714c",
+          "after": "22b2ecc1bb152c24e4a7d7d40237b96d9de1a8185f1ef8a8e5ce20dc2534ca1a"
+        },
+        "friends-bird/rhyme-2": {
+          "definition": "111da5b96413a0575c9c1e4ac8b13d6e20d235cc2825c7f00acef7d0a7fd4bca",
+          "before": "293d4ec8a9a44b508b8f8e47279cd8461a8d53806b4281fd8a1dd1818ec59684",
+          "after": "0511168f6969b2d7a1dbdd0276c76314d0c2bdb963783cf2b36e5bf2d10c1de3"
+        },
+        "friends-bird/rhyme-3": {
+          "definition": "c2e25c0aaffa434236efd4b3e2c1fea6735aa32b9bdf85aef5b8910da7b07b06",
+          "before": "bda616b543817c13942e01349b7561d0d182c1da0ca5ca6dc7551c7b5a5e2e75",
+          "after": "527c5aefe607b8b3f22db36a6414392b81b5a8630cafc6846fc7e48c68be1417"
+        },
+        "friends-bird/rhyme-4": {
+          "definition": "151f28b3b3943d9d3111be62ab9746ec6afbe96291a1675353bfea143cb9198d",
+          "before": "c3df508fdf5c0964b5736241c6014f92dc6d36fcbf0074efb518cbda354a84f7",
+          "after": "358becab8ed5e44755c94e3fc330eac09cbb8715b1daf49154ec7a4774cac823"
+        },
+        "friends-bird/rhyme-5": {
+          "definition": "5e99ba2c0d0d0aaf29e1ea6e41f5f2500b116af85b3a083672856316e9cf9a67",
+          "before": "0faef7496775f076d3bcdfb4a173f0d9e1612b27f74b9f97c17b2da7c905c53d",
+          "after": "4e8211aa02fa640188646242a4939ff2349b372705c3e4eac04a7393c735b1d4"
+        },
+        "friends-bird/rhyme-6": {
+          "definition": "5da22cc1aeb6c15dff4916930d40d7f8d7992bbc85568240998ec5c4a591e299",
+          "before": "c14b150850ce85c22ad94cc7e4b887ea9a316f3532d6aea9087c6146263e2537",
+          "after": "762905e5e87feac02c57797ea2b0effa5b2867333c6481f69d843117fec2772a"
+        },
+        "friends-bird/rhyme-7": {
+          "definition": "005217d28ba761e1d2d3cbadcea3f75e80303d1dff3c4463045ca659612cbe55",
+          "before": "75c2f1b143fb13435cde32c1d05c37bfe4cb68fe0186b8767a03485f757b6bd1",
+          "after": "ce23967b877e573eecaf1f8a6a43a913997bd962f90f58679c2d116f2de6d6e1"
+        },
+        "friends-bird/rhyme-8": {
+          "definition": "865d2c906b6b5e569a4fec75e09a2d5270a6ddf426e37f8cbf964580cd853037",
+          "before": "e1d1d5008dc6f934058ef939f41fd38dc63dce691e3561b070eae868fecf8879",
+          "after": "73e1959ee6552ca75ab3bd539b27c3316d4a52ab298e17c102c4bf5e4f7a3d10"
+        },
+        "friends-bird/rhyme-9": {
+          "definition": "e446f40107a75735813ece1c81bec98a74e3d74cc63785c48d676f4ce64a44bd",
+          "before": "e767ac18a765bb51db59c4743caf6278db039271d688d1b9c47181315ec6a5b3",
+          "after": "c6c5df1f9d44b19b8631e1f1127fe28e7a16b4672806b3e5cd5b93d6ddf36c80"
+        },
+        "friends-bird/rhyme-10": {
+          "definition": "17561828dfa61ef9c31bb1eed026dfbd83f1becac16e6779406e74b44511c1e7",
+          "before": "5f268eae1bc3c7e6c758a29502d8e9ee7cecea56d3d23e7ce7bf628a512c59b2",
+          "after": "9f8b7b1a6e62309d1df624aafa18974742331d3a253acd6fbe0d99b9091269fb"
+        },
+        "friends-bird/rhyme-11": {
+          "definition": "298ca8f503f220b53b63afe1033f31c1a890b68b84d3197a77fd1f3617abadea",
+          "before": "149dd73524b0c3ca3ade848b74c90d800a3d84e632b30f685524da31a5a2108d",
+          "after": "12f00d56e8c0d99321b4318216f8490415fcd814825e36d28c417d79cca77d8b"
+        },
+        "friends-bird/rhyme-12": {
+          "definition": "1a8344fc02f0a087b43fcbf06e9740b03f77d344aa554ac9626544434d5209b7",
+          "before": "2e46a0dfe961580b343a041342a0e35e6167ac1e086203f4fb0937a12651d27e",
+          "after": "d24f7aebd2e93e2886747b6f8dd50a683cad72ced2884673f0a5403fd6077c6c"
+        },
+        "friends-bird/rhyme-13": {
+          "definition": "1ca3ecae8a33368f746890758d694028c28ffabe56548a5ae1feee01157806e4",
+          "before": "80cafa1c5effe380dacd1efa84a4041a9dd91420ba095f73d6fe8d5cc713c8fb",
+          "after": "0124f3409dbfeadc17c335a5d57068b6191aed80d48eb54aca64076676b06847"
+        },
+        "friends-bird/rhyme-14": {
+          "definition": "d0103d6e7f9602bda4432c1df454584550fc4d3878f7114cc5fb4d33530be415",
+          "before": "5619ce0b1368b06a68cd91f1d9bc4a016981ddd4cbd10e6376c19a087f481220",
+          "after": "c179ad772542018ca02a58ec1043a8d859d32e0e4c75cbc8a9a122358d864e9f"
+        },
+        "friends-bird/rhyme-15": {
+          "definition": "937766ece88d614d9ec399ef4727233d758bf3a56d0e3ce1cb8df441c925ed12",
+          "before": "c41ca49647ac57c7553060b7f40ba56646ff722e58970079604ef91d08c9c59c",
+          "after": "66ec4e51478c1967ff2400b2120c05d426a7a9a4c0b0f295a34d1e962c5a21ed"
+        },
+        "friends-bird/rhyme-16": {
+          "definition": "ca5150c0d3391ff4d6b2fc1bbef1f6fd6056c929b02080a9b154e84d97c63a27",
+          "before": "17838ac1145113c8adbd5aea23738841140013d09230a8a3153c7b7655c2c0d2",
+          "after": "927d11dc50a514dda1d37a2316e6453ba4e77fa05decbcf44d96551f479dd05d"
+        },
+        "friends-bird/rhyme-17": {
+          "definition": "787fe05aaa3cc91f241e9c5988b1e621f50321d9b0e7f66d6785d2c7240b83f2",
+          "before": "e2bc70bad2f16c0efc4f62ef2409c69931f3fd8f277630c4dccee75ee88a07e0",
+          "after": "352b0ffa587e2afef465f4011e3816654e528eb110a89eef817862a91f1e80f0"
+        },
+        "friends-bird/rhyme-18": {
+          "definition": "fa78f814f8f82630c75a48c502235c211104f7365f6097dbadf29a9460268742",
+          "before": "a52362eb1f42d47b3ab18e2b854f4e81757093590d724cd90a615a3595b82cc0",
+          "after": "8666c21a7695c94895d3ace9c12d10a91e09705043ddbfcb45fd4e013e9d4a0b"
+        },
+        "friends-bird/rhyme-19": {
+          "definition": "484e43514749d644380e65670b400347a72599a55d1320d8842a4f9e752ead5a",
+          "before": "7bf554dbe780ba9d2d8f162c1c16ef27509e008aa5d8e1d8517292ae88112d74",
+          "after": "949c7a53fd66a2acf6e3e67143520c00887d0e9a12502eea24eb3863a2b9b015"
+        },
+        "friends-bird/rhyme-20": {
+          "definition": "01ba511132e009ac9c1ccc98e67d0b697e0e1aa3b9975927758b4fd192126514",
+          "before": "f52f34d4e6daf70e593028097e7005509648d986f84fd74370b7aa05c68fa4c5",
+          "after": "77f477995aa3cde2aa872490fe6ea36387fcf1cd971ccbb88ce02f12e47e29b0"
+        },
+        "friends-bird/rhyme-21": {
+          "definition": "cc43a3bdbab3329f0dbfccccccb31881b28a6665571129005c8a4312beed3d0b",
+          "before": "13bf612fc76aef8a59aa624f1df89ad6069f36ecfc791f89a1d7ebd0fd4308bb",
+          "after": "1a1535931988d6788c9a9ad40ec3ae1792c0484533eb44df2b64d6b484690b4d"
+        },
+        "friends-bird/rhyme-22": {
+          "definition": "32f2a5cc4591ff7497a4f05a356eae4ebaec3ddacf8bca1c3ac7b4836ceabbd6",
+          "before": "d5a28789a247cf89d310e9898195ba70d7d1f4d6bad8da78c81bf853ca39bf93",
+          "after": "0e15e0378b25bc6f5d22d2f1076c133f2dc29d11a92f88ebdad681ab848da214"
+        },
+        "friends-bird/rhyme-23": {
+          "definition": "85026687176ed4df9836bf165d8fefe6c3cc87ccaa7f8088c2e925995e23f786",
+          "before": "9761ebd2e026321e16481413452662acc06dbab2d49a8009e599b6f687612fa2",
+          "after": "16d0e8b7e144ce39dab3aa2866f8978fe81dbe0828e3fc3c72cdbdd8a097d137"
+        },
+        "friends-bird/rhyme-24": {
+          "definition": "5ca3d23846e795e94b209c51068adaf229d3d96d80cb5cafaaef012a2c754ba5",
+          "before": "ce9f859259dca732e0494a1eabe20c0d4063eaff1066ad1c8efdf9cef6e5125c",
+          "after": "5ef68aba35f91a9f899781898878c7e255cdfb904016ef4249becf1414c14219"
+        },
+        "friends-owl/sentence-0": {
+          "definition": "09035f024bd91e3707890d1efc0ca4904c9d6ef082d98858ae131562340270b5",
+          "before": "9a1888855d8db583acfdd0b990a54a2e92a81489b6bc2c0f28107dd82ebefb47",
+          "after": "8b314beb05b42a87cce2442aba76b5abc316da66b96eff66681d4d4b2df47a0d"
+        },
+        "friends-owl/sentence-1": {
+          "definition": "b1dc86544d109eb7c1e42f9f804ff365df8f627bbdb4828be60a3491229b7ef6",
+          "before": "9a1888855d8db583acfdd0b990a54a2e92a81489b6bc2c0f28107dd82ebefb47",
+          "after": "8b314beb05b42a87cce2442aba76b5abc316da66b96eff66681d4d4b2df47a0d"
+        },
+        "friends-owl/sentence-2": {
+          "definition": "d184b1038be98111af7e64de17ac1b477beebc0c65e67779d9c01f0e8dd73454",
+          "before": "cccf45550a1b08df9af7db3316f678bf406a36fbb1a5b772f7384ce638e87c76",
+          "after": "ef60bc47cba676a5610c8c8847e54f2a0e878f34ffb4cee634d96e88525dfacd"
+        },
+        "friends-owl/sentence-3": {
+          "definition": "5a4f8cfd4f19e5f8c43016e6615bfb81a33f2caba9bd4b5914a929bce9dd0f87",
+          "before": "cccf45550a1b08df9af7db3316f678bf406a36fbb1a5b772f7384ce638e87c76",
+          "after": "ef60bc47cba676a5610c8c8847e54f2a0e878f34ffb4cee634d96e88525dfacd"
+        },
+        "friends-owl/sentence-4": {
+          "definition": "9ac42f38bd137b3a98ddd14a63e50b5a9413adb0c288cf9966cab08d615ef6d6",
+          "before": "71e0fe26445b01a7b000e3b266e1c2b3e87c58fa5225d66fab5536291df410bb",
+          "after": "ec8248cc3be5d1e36a47bfb95ca658e6e0dbc8ce8936029e388e0fbf103e79fd"
+        },
+        "friends-owl/sentence-5": {
+          "definition": "d48592a178534a420d81cbd2055c10b862b398310554b09bf809080bded32fae",
+          "before": "5a67566175f52a7cbe410bcc01fb2166c619d33850dfd1da3a8f79906e45e15a",
+          "after": "1644bf73d21eca6004614720fee2d41dbdf53f374bcbc7ab53268c915e98a324"
+        },
+        "friends-owl/sentence-6": {
+          "definition": "45f4fc6891faf783b18efff2559ca394be8e8d33b345166f0f7549d4f978bbfe",
+          "before": "5a67566175f52a7cbe410bcc01fb2166c619d33850dfd1da3a8f79906e45e15a",
+          "after": "1644bf73d21eca6004614720fee2d41dbdf53f374bcbc7ab53268c915e98a324"
+        },
+        "friends-owl/sentence-7": {
+          "definition": "51ffaeceaeebd1284a5a7d91b757f21590c1f20d38a5d056cf2f5c4cf86029ac",
+          "before": "a4830447d06ca2c7434968cf2e302bc09b1af1905602ad3e5d9640dfacee2f1c",
+          "after": "111e5b485c6236fb5c623b223755da84eb591058c1fb777de087af6e66129695"
+        },
+        "friends-owl/sentence-8": {
+          "definition": "79be49f36c185addab27d82e4e6c0241a32989bad4adfb19f395a0e3ceff0935",
+          "before": "a4830447d06ca2c7434968cf2e302bc09b1af1905602ad3e5d9640dfacee2f1c",
+          "after": "111e5b485c6236fb5c623b223755da84eb591058c1fb777de087af6e66129695"
+        },
+        "friends-owl/sentence-9": {
+          "definition": "1faddb45d8e1117630226b821238f00ac4e69260279d7fc9e7a77bfbe85936a7",
+          "before": "62cdf94151d372dd4b0c4468ff522cbb6c4ddc000d9860873924a33ade2ef594",
+          "after": "638f205072c00b11e0b2557c790a4c2c32139133a437884ef3401e58c6ed196c"
+        },
+        "friends-owl/sentence-10": {
+          "definition": "45ad5bb16599d971222c8b3e97ef42a76047edcdf5ded414dbe88382f516214b",
+          "before": "62cdf94151d372dd4b0c4468ff522cbb6c4ddc000d9860873924a33ade2ef594",
+          "after": "638f205072c00b11e0b2557c790a4c2c32139133a437884ef3401e58c6ed196c"
+        },
+        "friends-owl/sentence-11": {
+          "definition": "2760d945c22d7450b852e37992dd82409d5b1f38840923b82116a2bd78f7d7fa",
+          "before": "5241ffe8e4d9024e74c1bd6b11beb128376130c393d5b6478ece6c52828970b9",
+          "after": "3704e5282882630a75a50efff307e5cc8a8dbca21f13419769a0611874e9bf00"
+        },
+        "friends-owl/sentence-12": {
+          "definition": "b439e4eccf9e144159aea179f8fd628e357b800fb3d002e7afee3dafc590499d",
+          "before": "5241ffe8e4d9024e74c1bd6b11beb128376130c393d5b6478ece6c52828970b9",
+          "after": "3704e5282882630a75a50efff307e5cc8a8dbca21f13419769a0611874e9bf00"
+        },
+        "friends-owl/sentence-13": {
+          "definition": "8a259ef3a63dabbad076f11ebb9a8a5dc83e2bd40faef64e2cce84118fa4c1ae",
+          "before": "f9d710696b2564e3e2e646a88e4e996b75aac1dd8645ee3c6857a354e93fb5b5",
+          "after": "985b12c627ff4de0a5066266311e663217b6ecdfe232446d10ff04dae3001269"
+        },
+        "friends-owl/sentence-14": {
+          "definition": "a8ea4dffff6e1963a3c9bb9c729722d2f7a832f7eabbd40d42b21e6698184794",
+          "before": "f9d710696b2564e3e2e646a88e4e996b75aac1dd8645ee3c6857a354e93fb5b5",
+          "after": "985b12c627ff4de0a5066266311e663217b6ecdfe232446d10ff04dae3001269"
+        },
+        "friends-owl/pair-0": {
+          "definition": "58a2d04f5b51d71ecf48273abab682b2e6b1ec66fbb20cab0ebe9e3f2f216173",
+          "before": "027a16a991df32057bf7247be59d94b6a6649ee0be2110a86aa2a33a96731ada",
+          "after": "6cdd08ba9b12c474d1aaa60dcbcecddf9e48aa242dec7adaf136f06039777450"
+        },
+        "friends-owl/pair-1": {
+          "definition": "7d6ee390af5f8e6352589a3c0b6e7a9c56c007331afe851acedbe044d158a5ac",
+          "before": "027a16a991df32057bf7247be59d94b6a6649ee0be2110a86aa2a33a96731ada",
+          "after": "6cdd08ba9b12c474d1aaa60dcbcecddf9e48aa242dec7adaf136f06039777450"
+        },
+        "friends-owl/pair-2": {
+          "definition": "1ca00aa5a24eece7f59256786a22f5299e2e9a9e8e6d1755eb806a68cff98db0",
+          "before": "0d141567f8aed3f981e32e7cb87719adfa80fc6a1bcd49c3e5df6111146d2ba9",
+          "after": "1808c74536ee784da5356928f167b1fe97ccfc10a0b79a6ac87f8934ced8c006"
+        },
+        "friends-owl/pair-3": {
+          "definition": "daf0860a3cab0e126d8e5cdeb68781ccd39fddaca3a57676cecfb60c12ac171c",
+          "before": "0d141567f8aed3f981e32e7cb87719adfa80fc6a1bcd49c3e5df6111146d2ba9",
+          "after": "1808c74536ee784da5356928f167b1fe97ccfc10a0b79a6ac87f8934ced8c006"
+        },
+        "friends-owl/pair-4": {
+          "definition": "a186213464ee3b8292c057b97022dd93e612f51a1aa2a08fb68837d6bfe09544",
+          "before": "06a09e0357efc626e7bfe46029803d545554e5eb053920dcf0e7f29cb6e5b779",
+          "after": "257d967439248b713026a9958e4072adfbc49e2e1c0f8ae3d9ad8e1c9f953668"
+        },
+        "friends-owl/pair-5": {
+          "definition": "d429ded6d8734956d5ee71b2786abc0f16189bda4c5f74df0857ee8d77c9cf27",
+          "before": "06a09e0357efc626e7bfe46029803d545554e5eb053920dcf0e7f29cb6e5b779",
+          "after": "257d967439248b713026a9958e4072adfbc49e2e1c0f8ae3d9ad8e1c9f953668"
+        },
+        "friends-owl/pair-6": {
+          "definition": "926881e066cd1b7e249db1afe24705b565641d9794f09c6e79ee6fccefe8e067",
+          "before": "84e0155f0283228d6e5323e1dbb60618caf2f10dcc3e50a1d13a1d9b9e08112a",
+          "after": "d3ea5df848fdd0b2eb7e5647c5bef366e35d4240ab9b6139e462128038195188"
+        },
+        "friends-owl/pair-7": {
+          "definition": "69c0d88531f30857d247c4b87ce90ef561233c1be7ff1c92ef45ec8711e7e8ca",
+          "before": "84e0155f0283228d6e5323e1dbb60618caf2f10dcc3e50a1d13a1d9b9e08112a",
+          "after": "d3ea5df848fdd0b2eb7e5647c5bef366e35d4240ab9b6139e462128038195188"
+        },
+        "friends-owl/pair-8": {
+          "definition": "a7f3cce52bc8c439a646b2d1420a57d2373f156bc3d37c36e5a216a274254da8",
+          "before": "c58952f57d5c8b77aaccb65aae6f5bcee75d509dd5dabc3026ac0e3702f4a110",
+          "after": "f80f4eb1343603e1933dc858c26b0b61c4e6a1e9b820e5a4fd2268b8ef9babc5"
+        },
+        "friends-owl/pair-9": {
+          "definition": "eb76a7911c6be61b4e6e846c17c27b362e2926b9c557734f0763f92084eb6365",
+          "before": "c58952f57d5c8b77aaccb65aae6f5bcee75d509dd5dabc3026ac0e3702f4a110",
+          "after": "f80f4eb1343603e1933dc858c26b0b61c4e6a1e9b820e5a4fd2268b8ef9babc5"
+        },
+        "friends-beaver/matrix-0": {
+          "definition": "6b2415c3b0259926b7cef4d2abf61b4765fa6e1f8fa8621b9802919c63bc50e6",
+          "before": "d12251ef971b1d4b15c4f857c2bb5e6b8c740d42541ae6acb64020de238b9d30",
+          "after": "9ababd03fe3ae162e4e4af5b9f23aa8997ef4ae208e8f40d4780942b9e397678"
+        },
+        "friends-beaver/matrix-1": {
+          "definition": "985735f55f2f9d462c6216cc257eca9ce1a65f015dc02411fcda69f2697a6df2",
+          "before": "d12251ef971b1d4b15c4f857c2bb5e6b8c740d42541ae6acb64020de238b9d30",
+          "after": "9ababd03fe3ae162e4e4af5b9f23aa8997ef4ae208e8f40d4780942b9e397678"
+        },
+        "friends-beaver/matrix-2": {
+          "definition": "82408a4f0d34a01c91f80178980ebf7226ab3b4054420fe0ab5f5aefc2988628",
+          "before": "d12251ef971b1d4b15c4f857c2bb5e6b8c740d42541ae6acb64020de238b9d30",
+          "after": "9ababd03fe3ae162e4e4af5b9f23aa8997ef4ae208e8f40d4780942b9e397678"
+        },
+        "friends-beaver/matrix-3": {
+          "definition": "d045be91632cc203e2d95afd415bb48f5f404eacd2d33a750bcd4f839b45b172",
+          "before": "d12251ef971b1d4b15c4f857c2bb5e6b8c740d42541ae6acb64020de238b9d30",
+          "after": "9ababd03fe3ae162e4e4af5b9f23aa8997ef4ae208e8f40d4780942b9e397678"
+        },
+        "friends-beaver/matrix-4": {
+          "definition": "445950d2e29b11521232414879f451d9339076fc03335e1e39b60b57d49ac460",
+          "before": "d12251ef971b1d4b15c4f857c2bb5e6b8c740d42541ae6acb64020de238b9d30",
+          "after": "9ababd03fe3ae162e4e4af5b9f23aa8997ef4ae208e8f40d4780942b9e397678"
+        },
+        "friends-beaver/matrix-5": {
+          "definition": "abc588f6098242d74bcfbcc5e934dee41d4c9e76c1dd4f47467c25c05554b3be",
+          "before": "d12251ef971b1d4b15c4f857c2bb5e6b8c740d42541ae6acb64020de238b9d30",
+          "after": "9ababd03fe3ae162e4e4af5b9f23aa8997ef4ae208e8f40d4780942b9e397678"
+        },
+        "friends-beaver/matrix-6": {
+          "definition": "402a45219e5a637b1a01af2c3f96cc517314993913a7fcc01bedd086abc69d81",
+          "before": "d12251ef971b1d4b15c4f857c2bb5e6b8c740d42541ae6acb64020de238b9d30",
+          "after": "9ababd03fe3ae162e4e4af5b9f23aa8997ef4ae208e8f40d4780942b9e397678"
+        },
+        "friends-beaver/matrix-7": {
+          "definition": "f79322f1a574af5b53a0d2c248c9e45ad87d8b78d30b188b6ce607e9192ebec2",
+          "before": "d12251ef971b1d4b15c4f857c2bb5e6b8c740d42541ae6acb64020de238b9d30",
+          "after": "9ababd03fe3ae162e4e4af5b9f23aa8997ef4ae208e8f40d4780942b9e397678"
+        },
+        "friends-beaver/matrix-8": {
+          "definition": "18272c1e55338d70dfdd4edaa1e7213605e9bf6fff4764153b1741ecc6fbd01d",
+          "before": "d12251ef971b1d4b15c4f857c2bb5e6b8c740d42541ae6acb64020de238b9d30",
+          "after": "9ababd03fe3ae162e4e4af5b9f23aa8997ef4ae208e8f40d4780942b9e397678"
+        },
+        "friends-beaver/matrix-9": {
+          "definition": "a67927dbff42aeafab36f44f15f18544b359a988521eaba64f215076d9495d9c",
+          "before": "d12251ef971b1d4b15c4f857c2bb5e6b8c740d42541ae6acb64020de238b9d30",
+          "after": "9ababd03fe3ae162e4e4af5b9f23aa8997ef4ae208e8f40d4780942b9e397678"
+        },
+        "friends-beaver/matrix-10": {
+          "definition": "be23d70e99fdbe2f310fc26d3eb588986b5bcae09c566c1065158fa03604d92a",
+          "before": "d12251ef971b1d4b15c4f857c2bb5e6b8c740d42541ae6acb64020de238b9d30",
+          "after": "9ababd03fe3ae162e4e4af5b9f23aa8997ef4ae208e8f40d4780942b9e397678"
+        },
+        "friends-beaver/matrix-11": {
+          "definition": "551364aa549387afe00fc7c64ca2313fddb6408f5d6616e2096de332bb024de0",
+          "before": "d12251ef971b1d4b15c4f857c2bb5e6b8c740d42541ae6acb64020de238b9d30",
+          "after": "9ababd03fe3ae162e4e4af5b9f23aa8997ef4ae208e8f40d4780942b9e397678"
+        },
+        "friends-beaver/matrix-12": {
+          "definition": "4e6d25e45df8a60bad226f182d006741f56e52c81bf2d15ddf5af40570f1d6d3",
+          "before": "d12251ef971b1d4b15c4f857c2bb5e6b8c740d42541ae6acb64020de238b9d30",
+          "after": "9ababd03fe3ae162e4e4af5b9f23aa8997ef4ae208e8f40d4780942b9e397678"
+        },
+        "friends-beaver/matrix-13": {
+          "definition": "af1e1e86321d89b335c266b862de16466d0b3a8a2504a1dc43a27ba5bd727e7d",
+          "before": "d12251ef971b1d4b15c4f857c2bb5e6b8c740d42541ae6acb64020de238b9d30",
+          "after": "9ababd03fe3ae162e4e4af5b9f23aa8997ef4ae208e8f40d4780942b9e397678"
+        },
+        "friends-beaver/matrix-14": {
+          "definition": "261234ec109d8e97a3398a225fd205eddf2a8dfb3cda5c04e20eec94765b4e26",
+          "before": "d12251ef971b1d4b15c4f857c2bb5e6b8c740d42541ae6acb64020de238b9d30",
+          "after": "9ababd03fe3ae162e4e4af5b9f23aa8997ef4ae208e8f40d4780942b9e397678"
+        },
+        "friends-beaver/matrix-15": {
+          "definition": "3ff8909daa9c0fbb60b7740ecb05d9d7bb83ea2cda5e29d90381ba37a469c246",
+          "before": "d12251ef971b1d4b15c4f857c2bb5e6b8c740d42541ae6acb64020de238b9d30",
+          "after": "9ababd03fe3ae162e4e4af5b9f23aa8997ef4ae208e8f40d4780942b9e397678"
+        },
+        "friends-beaver/matrix-16": {
+          "definition": "38170220ce031dac70196552203e1eaa1cc143d44fea52820b4e144ac8786c67",
+          "before": "d12251ef971b1d4b15c4f857c2bb5e6b8c740d42541ae6acb64020de238b9d30",
+          "after": "9ababd03fe3ae162e4e4af5b9f23aa8997ef4ae208e8f40d4780942b9e397678"
+        },
+        "friends-beaver/matrix-17": {
+          "definition": "ab5ace5ff3bbcb163a462dd8e28fb7d6c734d4d97cc07b3666c621584a270643",
+          "before": "d12251ef971b1d4b15c4f857c2bb5e6b8c740d42541ae6acb64020de238b9d30",
+          "after": "9ababd03fe3ae162e4e4af5b9f23aa8997ef4ae208e8f40d4780942b9e397678"
+        },
+        "friends-beaver/matrix-18": {
+          "definition": "a5f099dad58092f57cf6b7e163075a3805f0a5bb29751b9b35229149fd8484ad",
+          "before": "d12251ef971b1d4b15c4f857c2bb5e6b8c740d42541ae6acb64020de238b9d30",
+          "after": "9ababd03fe3ae162e4e4af5b9f23aa8997ef4ae208e8f40d4780942b9e397678"
+        },
+        "friends-beaver/matrix-19": {
+          "definition": "d7d884ad3021eae31506b16940d0a076d1711d50f38598cc32e0d5e893811f83",
+          "before": "d12251ef971b1d4b15c4f857c2bb5e6b8c740d42541ae6acb64020de238b9d30",
+          "after": "9ababd03fe3ae162e4e4af5b9f23aa8997ef4ae208e8f40d4780942b9e397678"
+        },
+        "friends-beaver/matrix-20": {
+          "definition": "ca437db28165b42e4359946f41fb8e589f766fc5ff58406f354782778be119ad",
+          "before": "d12251ef971b1d4b15c4f857c2bb5e6b8c740d42541ae6acb64020de238b9d30",
+          "after": "9ababd03fe3ae162e4e4af5b9f23aa8997ef4ae208e8f40d4780942b9e397678"
+        },
+        "friends-beaver/matrix-21": {
+          "definition": "dc1b0a8fef6dcf56d54e4145a52c4e3d9f0b57490a322dc32380a022f58d5e2f",
+          "before": "d12251ef971b1d4b15c4f857c2bb5e6b8c740d42541ae6acb64020de238b9d30",
+          "after": "9ababd03fe3ae162e4e4af5b9f23aa8997ef4ae208e8f40d4780942b9e397678"
+        },
+        "friends-beaver/matrix-22": {
+          "definition": "213dd05bdf0291efedc96c1b0bd3f1fba1f75d46685b19645bf5230a4bd44ad6",
+          "before": "d12251ef971b1d4b15c4f857c2bb5e6b8c740d42541ae6acb64020de238b9d30",
+          "after": "9ababd03fe3ae162e4e4af5b9f23aa8997ef4ae208e8f40d4780942b9e397678"
+        },
+        "friends-beaver/matrix-23": {
+          "definition": "568460894dac64a87548411f82180173dc5d8b18966066652d83f0288e7fb087",
+          "before": "d12251ef971b1d4b15c4f857c2bb5e6b8c740d42541ae6acb64020de238b9d30",
+          "after": "9ababd03fe3ae162e4e4af5b9f23aa8997ef4ae208e8f40d4780942b9e397678"
+        },
+        "friends-beaver/matrix-24": {
+          "definition": "8b8a061511ea280509e542332be5d793c8d867ea3526d6b1754fa00080d908b2",
+          "before": "d12251ef971b1d4b15c4f857c2bb5e6b8c740d42541ae6acb64020de238b9d30",
+          "after": "9ababd03fe3ae162e4e4af5b9f23aa8997ef4ae208e8f40d4780942b9e397678"
+        },
+        "friends-mouse/word-0": {
+          "definition": "de2b9c6ad29f4c8f94af53c6eb96ef4f62bd087b35dee50432e38bdeac04d775",
+          "before": "b4b9fb3ee37ddffc9f676ff9fcb4eb65afff9d631f983c908c94799e2aea81aa",
+          "after": "19fbb661a59f9edfa61d7dc3f8560c82a85b51727f4651cea2eaafac5f6d0356"
+        },
+        "friends-mouse/word-1": {
+          "definition": "f55d3f2b5ca2ea5293f7870d183b1fde92eea485919d57511a62e2133282b339",
+          "before": "369616cb660f9bca603ef27c0354fb0ce1ff12ff17f38bd5ecece350a206c00c",
+          "after": "fcb576646e7a91bcd5ba4ee7d63cac814be683b8be491d347225abb2ff669490"
+        },
+        "friends-mouse/word-2": {
+          "definition": "dab4465ce6ecc90e46cee47fdaa88c888743006d1fb0cd45b233e2064e8cc670",
+          "before": "833d8b6d2c2410f23e7c4715d38687cebe0eeea2903d7c1519770e8cabbb68b7",
+          "after": "f62cfc1278f2c73b901b7d98d310e7d611a90d4ea1afbfe91e8f7831882c90ac"
+        },
+        "friends-mouse/word-3": {
+          "definition": "dbd406df989388c6b1261cd730cc6117b47cb1f2b2fe92adee3516b52bb5eac3",
+          "before": "29b01305b9c0d0b922dee1806ab484bf2639de796527874563a3c57f4f19dccd",
+          "after": "9aa9df57ba1c3b5605332dd4220b83a9d5c625d3e258577b0ffb78415f26348b"
+        },
+        "friends-mouse/word-4": {
+          "definition": "a21e12af87742ab20600cff9cdb332e276410dad9a7a9653b0a4e25e0b05f985",
+          "before": "83d63f455e6614a375bdbc4c978fa4e9e9feed09fc874e9603f2c2f4a1b9bc84",
+          "after": "856d3ed91001476a8c2087d6585fba9cd04feb56d53a83b0dfc32e75054b3aea"
+        },
+        "friends-mouse/word-5": {
+          "definition": "73ee1a5224a6def34d8f518ecc798cc18e89c702577ddf49b86c1fad1fefcbe1",
+          "before": "e37d1eabcb72e28430afd6114e4513da1e549bdcd1c7e998a128428f551a31f9",
+          "after": "d62e6e0db3bc6fa2004e7caaffcb65d9c515a7380af268b69a44698ddc67033c"
+        },
+        "friends-mouse/word-6": {
+          "definition": "30fd8dc953c96b9ecfb62a86685602c7759745f15c38410c0f65c66dc6078da4",
+          "before": "0b98015446fae1d4e9ea23ce16d77199a3c2f977c5989843ca9ccf1049912aa1",
+          "after": "9a84c97d4f69d334e69ba34c878d8148bb188006c3beca81268c022ede8a0013"
+        },
+        "friends-mouse/word-7": {
+          "definition": "c4adfa78810186e0dd4df97717a8c51d89e8679473420bc88fc15e930f950682",
+          "before": "9a267710dbba32256c5585ac34699fa769e9b479444cde8bde43fab43818ee3e",
+          "after": "8e0cb61f866c397660b216a75521cc117981a7671e950ec4ed12c430fa470dd2"
+        },
+        "friends-mouse/word-8": {
+          "definition": "41ce6ec3388efb5bf6e0e196594b7455142f65b5d8327b0eb7138617f44a0805",
+          "before": "618ee280beea834edb1e380b396fbcacf1ecd946310ce398906ea611c8777da8",
+          "after": "31779b609aa56121eeb476aa60d4cb919bcb6a3f2e71f53f43154fbfdf7cca52"
+        },
+        "friends-mouse/word-9": {
+          "definition": "37163d8c93722f9fdb5c77f6ab00b6eb4493808570a7468456b627b8e5ccfcc0",
+          "before": "e4d38520899272c776e8c00d30d167d9be38d4fd14b315cb9fed693b6345e4c3",
+          "after": "525f0068abfa1ee5625272310b058971d2d4f39a818a338d63512a466d9b574a"
+        },
+        "friends-mouse/word-10": {
+          "definition": "9dd5474a0972d1abbf8c953ae56d426ebba7fbcb69070d03452bbe7cbc6b6fc5",
+          "before": "e61bd045840cf82abdb4118b34839d1a8d0d9bb6438a2053831d1f5c742213b1",
+          "after": "18d72fcbc940c1b0a9658893180a4e393bfe013269bde6d2cf56cb5084822d76"
+        },
+        "friends-mouse/word-11": {
+          "definition": "a5addf4eaee73abb5a7520153bc46e58ca14156a4b1bee560701f1b06e956956",
+          "before": "20b2a6260909f3c4d7eb7799650019c9b549ddeafb4286f4551c35868e706464",
+          "after": "a863841a6e85e77e0ea310f6f972c8522ca84e7a83d58cab5f4d965c2010102e"
+        },
+        "friends-mouse/word-12": {
+          "definition": "0c7b77cb30fa4ed07512f5c9ae54438835b42c584fdbf3a18418e279f6fef6bc",
+          "before": "276ddb3b4a4d7fc2cf2ba7866efac0e0cd3b71f3a4ee34b500f87082d96fe4c7",
+          "after": "8095f0c4348c3ccdb93213a3b2fbaef23d09016a9a4e6765327b73ba7d0a8257"
+        },
+        "friends-mouse/word-13": {
+          "definition": "c48319747f89b5870a1fea33de3489f9272c8c7d5de92b672b4ca9be3e1ea367",
+          "before": "650c9792487d9c90296dccaef347db0a5820fd5e79dae577771d58f5d0faa45b",
+          "after": "53c9da1335ca6866829899701bd1fbeacbc73d92b23097e0c328340654326086"
+        },
+        "friends-mouse/word-14": {
+          "definition": "e509220e948d053f6ec86357bf707c9dc82627a046f80928074f6fef77c0ed61",
+          "before": "2003172b44bb1544484c89c2bc004e9b769d7fbfca551c9e66cdf66e98ed608c",
+          "after": "ae256829c2af16626cb2846ba3bb4ce81af4825db989c4827ec32cacecb3ff24"
+        },
+        "friends-mouse/word-15": {
+          "definition": "14fb12af7a17535cca2e4255cdc6bae1cead2d7dc2fd97f5c7ef1d584d4eced9",
+          "before": "a4bd2baf3ee216dc63e6609f4b60b4e033f885624ab16939ddf137213489978e",
+          "after": "e4f2fc2ae32634f55e2ad3d33fa2f7e13894d9a4e7d7a2cdb84dc2a7c6be1ad7"
+        },
+        "friends-mouse/word-16": {
+          "definition": "ccbfdfcf26e977f8ff6f344530223ed81697612257702efcd3c96f5d2d6d2649",
+          "before": "bfadef708be733a5012c21b40d3ce11d38287dcd1597eba3bcd2892506e34ff8",
+          "after": "34861e0895d3436cc31a9e9a447186d772282ffd445c0823c7625cfcdc26b9e8"
+        },
+        "friends-mouse/word-17": {
+          "definition": "7deffe78c472132e0103a9616f2915f44cbf6e0ffb9e4cb463743e308a5469ec",
+          "before": "4ace75f501d5b674e922a0748d98253b98ba2316adacaa8df04414580a4b639b",
+          "after": "c6dcc84342491565f160f3f8fc08366260bdc63c85f649d02e31e8edb961a1e5"
+        },
+        "friends-mouse/word-18": {
+          "definition": "4ecc8ea38ca5501dc7d3b4f4d9ce5841cd3448d1040c8fd01a23e2b7e891f81a",
+          "before": "11998ea7a5446fa53ff2163e6afed1b6ef2e41fa75aacb0287ce7fc795bab436",
+          "after": "23bbd0974583c3f0284bc242a0e9a9ec732ba1d70202fac28280a24ea54f210d"
+        },
+        "friends-mouse/word-19": {
+          "definition": "af6ba9b0a9cc1d99aa2c5ffea73f01be60d99b3eea72a937b91c6c399df1e798",
+          "before": "debf10bcd45880fdd33e3e19dbcc374c5ca9cc65228806712de17b930f056b75",
+          "after": "adf68103fb612614cec17d13686e86d1cda30efa4b687406183da2a78c3bd4da"
+        },
+        "friends-mouse/word-20": {
+          "definition": "c2c257d505a7bf9cc166d8e9da9745ac4aae0ae32ae3d6d12a38dd3a66bb785b",
+          "before": "3fb7dbb4883511a6fba049b41c70ba12713919873cc94c4be0a70b818b688ce0",
+          "after": "b996fbd1650f82d90de0d1f011e7a7bd65e589a9c7b3917476390e407744889a"
+        },
+        "friends-mouse/word-21": {
+          "definition": "3d5d3eab6d4870891e8ff3c2de84fa1e148545c740c223da6ae0758260df09c4",
+          "before": "bb95b956236c8d6ee46eb6a6cd6403074fd524ff7423ed4ffa8a9a58827e608e",
+          "after": "ae379222404cf1c75a25b519cc76c3cf06cace7a811411d6ef85ab93f97a7c4b"
+        },
+        "friends-mouse/word-22": {
+          "definition": "2e08db467e682adaa359fa0b4a33f46184a9f433c3773d38b83cf42fa1e81ed5",
+          "before": "dbabcf1c3dbea1655cb191c51cab427189d08071900a4db0ed32cfef6ac3ae5d",
+          "after": "2ffc7e45cb9995fbbcf33e4144b91deed64c08050fb290d04db2a9ec03aaadbf"
+        },
+        "friends-mouse/word-23": {
+          "definition": "85cced6314dddb5e7d6632e80d0c173e3540e8787e091fd82c355ced5b06ec3e",
+          "before": "80ae3ee49933dce48f00b3c8a6a00f1b6f09bf411379b88fea440b0be30d7d57",
+          "after": "f1e93bc200989b21709679db742efd9ad6116bd005376d40973ff770419fe31d"
+        },
+        "friends-mouse/word-24": {
+          "definition": "93b915eee8e2782e2838123abd98f8d44e47ce7d5ac5c5d81d02c49728fb0219",
+          "before": "6c029f7a41f1fa403df331a7c846c84e826ca88d202e11ce586e8705c92ed192",
+          "after": "33864f6d1ef8b2c50832b6986092c1cdf53af64515432749ef34408459392c5b"
+        },
+        "friends-mouse/friends-frog-animal-0": {
+          "definition": "a15125ae6d93c79b705f0f00f0f97c33504425cd9b23a155e05f85e5a85f4007",
+          "before": "5af82d347ab74c631e3851e882066a399269546468cbda5d454c3e23369ac0a3",
+          "after": "e485ae03190c6ec12c260a2d15b7559357b3a78237da169e927b7eec336e6b30"
+        },
+        "friends-mouse/friends-frog-animal-1": {
+          "definition": "b78432b73485c6e8b84040f033f4045a09a5cdf45be3d1c51accbcf83417fe12",
+          "before": "b8f1d1d459082c473084c77e541143be568a67c0686edfe0709d23637b0499ac",
+          "after": "8481d272ebddd0190635378342d90ca5944dadaac045d5a32cff7a811b69ff7f"
+        },
+        "friends-mouse/friends-frog-animal-2": {
+          "definition": "4f2ca1968b3657f1c5b10c1bb2d30d5cf7ddd8c5161fa0ebc57536ce267e467c",
+          "before": "307536b0b2ac6d1f7bc11f425f957752c1bf6d22662238f64bd198ccc989317c",
+          "after": "e159682ad0cb38f6ec17cb4448d2e0554512505eb6ccdc25ca6f671e48210a24"
+        },
+        "friends-mouse/friends-frog-animal-3": {
+          "definition": "e71105c91064ee7f65bf10e5278a20a4b04f13a795d18f3879cfd6ba5c818bd7",
+          "before": "abb4026c08385c3002f3cb18a72ffa85990caeab0f7c73d4a8b50784470b3925",
+          "after": "2fe718e1e81348c7fe9fd5b003c731888f5c71ccb5e14cc7673e90aa06c3538d"
+        },
+        "friends-mouse/friends-frog-animal-4": {
+          "definition": "e596d7896c136c165ebde271d5e2f347b15ec5e6f10936fc643a0f60b4888fa4",
+          "before": "febeda8296d66d4e2616023001e1fe7f654598bb5770ffa28a86426b19513e36",
+          "after": "eb7558f7ad4f5f60a638d5ee4dd80c0ded9fbabf5fc96e6efad10f416d2cfc9c"
+        },
+        "friends-mouse/friends-frog-animal-5": {
+          "definition": "96155b042747d0eadb16abebf27b5fbe4a251d906a1ff26b7f84fc72b3224430",
+          "before": "d65c60602eb129ad66aebc632ae719ee581c5d0e04db2de3a9a0b35f5ec57a42",
+          "after": "0b5b8ebb40b48f667c0ce9c181c9be8c37d482d2bf21f8a068ac50cb73923207"
+        },
+        "friends-mouse/friends-frog-animal-6": {
+          "definition": "fd24a7a629c38aa81bb3114cbaaf2a78833f4ca426d562f329c4a792be9453bc",
+          "before": "ebf0a8f7b50bdb44518f69ce42e2f889a590cb4ad6eec2765888fff73b22824d",
+          "after": "666d758ceae06180fa39e34f5e567f0bb31e0bf9460381e0601b68d899adee9b"
+        },
+        "friends-mouse/friends-frog-animal-7": {
+          "definition": "1137285f643cde8013675408e864597d6ebcb02a9d49973b9db5063d6bdaac16",
+          "before": "ce83d2d10861089d327a4006313b6a8124f182ea702d6fc75d7238c0fd014001",
+          "after": "de5de94a74acef9c83724bbcfa12061e8293da99fcf0e9e20e41a4be2646b14d"
+        },
+        "friends-mouse/friends-frog-animal-8": {
+          "definition": "11e496703d4efa9425ab5f3b8c2d389a4fb07c85d61be9f0388495b487307175",
+          "before": "1577cea365842927d429c61493b19633b3cdfcd2e29e4fc71985f0a85770783d",
+          "after": "6b39be65ceacde22421e8530a4d4171a3cfa83f4738462bf9b94e9f706fc73f1"
+        },
+        "friends-mouse/friends-frog-animal-9": {
+          "definition": "da5db625a4e391a492a3df974dd99529913486fec87ad1ee2d1358ca7d2b9142",
+          "before": "a8671cea082a6af4d7307fc5d84648f651b2667bb8c1f051a249889037086691",
+          "after": "e8b5888be355bdd6aede22586298c2ac03156185cf3df493d17271fd45baff2c"
+        },
+        "friends-mouse/friends-frog-animal-10": {
+          "definition": "1f7e915fa92e56de61ab4b440e2551aa45022e9fe6ae467847d52e21e3183398",
+          "before": "000146f43065ce0db790070cac59a5f70b602054a633287f923893d745cc808e",
+          "after": "ece5a4b8e05195132a7e55d27772f4d5c80df739ead70d74a20021fa21183ad9"
+        },
+        "friends-mouse/friends-frog-animal-11": {
+          "definition": "98051a63fd57f68fba8436f003b2285739a6f1d857a476ac139dae0a89018d33",
+          "before": "9a15c488a4fb78f973d95cd50e33b73d6394cf8c1f7cc164d765b7860f5d2bec",
+          "after": "03e6e93ce3254a65e8cc1ee10aa5e3ada1b31ae595290277fe56f1f66391f9b0"
+        },
+        "friends-mouse/friends-frog-animal-12": {
+          "definition": "816887a993fdabc2d41e56b0b254b4914cc92a5b8f7930e1d827e330ddc5702e",
+          "before": "dfc14e2e6ff53c5b1105dcdc05f6612a99cb91eaaf31a08da69413a3941b9a9f",
+          "after": "bc536ae5db51ef5df257efe76a1c18743259d2662820dec5b20a932fc503ca3b"
+        },
+        "friends-mouse/friends-frog-animal-13": {
+          "definition": "0fce45a1f63ea885ad6481565cc5649f44d35be825fa0d75718ccff28e7c02de",
+          "before": "9ec5be59bbc0edd3ee4f36c471f50a3151c0ac659fee524b74c03a5eafcfc28b",
+          "after": "9bffde13f23dfe55859e15770517ae0f159876fd60ea4d441ffe7c04ed8d4532"
+        },
+        "friends-mouse/friends-frog-animal-14": {
+          "definition": "8740419a06aed7323e68195816590c9f4cd0c640f00846ad5e16c3989a1ee3bf",
+          "before": "7e13af088cd036910ad05b86d1b89dd8e7f8b4c7a95f4fd45d46fd3c64c9481a",
+          "after": "1509d95c4480ad98bbaac0af7f4c86cae22e6c4a2ff5b04870b4363749208d2d"
+        },
+        "friends-mouse/friends-frog-animal-15": {
+          "definition": "825fac67fcb4928c88b608a659e233921ca624242b5bae798998f0c595da2d16",
+          "before": "acc838f5f960f4e80519a3d83f297229ce2673a2f2df031ef7d28b28ab62fe4e",
+          "after": "d0c6ea290a07da042598cc744fa45f5e185161cb02d3eeee2849e76003bf420a"
+        },
+        "friends-mouse/friends-frog-animal-16": {
+          "definition": "75fc00c898ca40eeb7d4a656fd69730619beb0d738f26fccb78b2f5d57d962a0",
+          "before": "c84e91ff2fb03668942e4abdf4141c343d511e207ae2fc32d7ba37e36ee02655",
+          "after": "8af697e84c7e4e8ccbd0b45bd0927fd6e8bec567f7c52bb9785b384d030c2044"
+        },
+        "friends-mouse/friends-frog-animal-17": {
+          "definition": "4fdc966b94a1e5e7871d2a8ebaa2ae7d60f53c5d4e0762a02ace4fa5078cbcb0",
+          "before": "a8d3e9c9371fe9072fd6c6352492708e82c2fbc7e4621ef2b08bcd8a39981c42",
+          "after": "caa161c3538ebd7e8c7de68538c1688584988d8499b24c739a6826387a5c4d6c"
+        },
+        "friends-mouse/friends-frog-animal-18": {
+          "definition": "07669f03b428bdb6881d44ba274bd8fba9575f8eaed30b22305126c9538f1de4",
+          "before": "197353fdcf7181764b22dc2c20b8587f2a4295a23a2d7d22100688e219a93bce",
+          "after": "5cd567c002cc18ccdc178c9e62851e07aa8f298e51c1621eb58184357aae46c0"
+        },
+        "friends-mouse/friends-frog-animal-19": {
+          "definition": "7c594523006611babd727c052c5e6e93983553b4aeee459364de3becb8931bb0",
+          "before": "1f88445ac60ab96967a855988f4417a5dacb321ed142b4437c1657092880e933",
+          "after": "10725016a7e084da79fe323cf5058df20b277db5f4f3b3624758f25b68e66bda"
+        },
+        "friends-mouse/friends-frog-animal-20": {
+          "definition": "0233cf64d9c8b167135f511401e687ce365724b24d58462be28b50d801a290c6",
+          "before": "d6ea51d647f49752a932df297b97b037a4bcd75303fada43654dc205408a377e",
+          "after": "e88eb0c07ccdfd88539581031e60354bc23f9d33bc715341657a923f0953b904"
+        },
+        "friends-mouse/friends-frog-animal-21": {
+          "definition": "1f6a2022603802b1534f810ae68df6620423a58dfc3b7bbdd40f8eb8f3b7ce71",
+          "before": "1a55de69445a28d31ce816bff14ad1eaa333539319ef5e8c7958f99ee76524d8",
+          "after": "c47c070589635d3cc5ffaafd32a08cbc131656bdc30d3c9011dacac3587c8fe8"
+        },
+        "friends-mouse/friends-frog-animal-22": {
+          "definition": "69c0a4c6ae2b979695cd42c6bbe9c7401a9f909e6b6e287c70bcebd85b6c6332",
+          "before": "2ea3cfc38afdaecb933fc796acb0fb3ee4f6034c925e5e7fb15e0cf99c3de9f0",
+          "after": "fbfe84fa035287a85a333673565a1985012160c4be14c6cf6ca9eb8102721f97"
+        },
+        "friends-mouse/friends-frog-animal-23": {
+          "definition": "408f85382dd1e96541e25243311543d01bf63ef7eacc224fdd60d80432e266b3",
+          "before": "b0a56904cbf52a86e3489e8bf157f8b858d4d2ce5dd59c260584d24b3dd6f030",
+          "after": "36515297077cec97ad873983aca97c7f48bbcd5e86d4ee9b31bc6e150638f99a"
+        },
+        "friends-mouse/friends-frog-animal-24": {
+          "definition": "c4a4c9c92b830c5e71aa85aa8b77b6d4bd0759d8282990c5029ce00b3e33f0dd",
+          "before": "311252b310f6b79b5ceccc7e8915d22fbc47f56f8c566f191b59697e3619e147",
+          "after": "98ee7bba4a85deb96bffa5b08a2366914b2a051dd369a272e933c39cd6e18bc8"
+        },
+        "friends-mouse/read-word-word-1": {
+          "definition": "53cfb5345f5f8e12238d232720c37e143031153da4208eaa3c16f41969d102d0",
+          "before": "9528e7c87d459dffc0cb7c216b03ac101358d771be5f9815648ff4da4fb3378f",
+          "after": "052dd902e2a2970f2ec07861fba7d711c0e9cce8109595340d009d28cfbe171a"
+        },
+        "friends-mouse/read-word-word-3": {
+          "definition": "4fcea23ed8dd6b86900224e1933ddab23cfb39e9c85526f6d2a627dd223e843a",
+          "before": "da23b0a71794452b8161b0e5779bbd0b813733fe141714c97f2dc42faebc7df7",
+          "after": "221f833e984d43fcecabc839cc9e8d05fcb95f11d663e40478788cbe5590eb81"
+        },
+        "friends-mouse/read-word-word-5": {
+          "definition": "ce842cf9a1d2830ab9f61e970b6396dac9416633002ad038afb684920674ff10",
+          "before": "c0647a935d3d2681446602e81934c1f9e07c13e241cc80fe6ac3b039bff7c490",
+          "after": "b25fdc31b5f89c949903ec7ae6578eeb0b0e6a9b628012dd158cbf018e912092"
+        },
+        "friends-mouse/read-word-word-6": {
+          "definition": "e063878bbaaffe0ad1823902990133c48c67d180665bfd9b0f6279a5bca895d3",
+          "before": "b3c7547bc2ec9519a0b0900a531416de1e332fd7fdf71b959e0702bef2df2379",
+          "after": "c954166791596b440685478460a200d26d69a31555ac6a0c865f3b604dd50f66"
+        },
+        "friends-mouse/read-word-word-7": {
+          "definition": "6da8aa976dee146ada42f094a2c2cbeb98b5b2c8c7a8b74ea4729d4462bbf5cf",
+          "before": "3020905fdfb2fd0acbc8e231edf1f5d6c3dc41a0cadf30ea5365b2c75dacabe6",
+          "after": "b29ade43cf96771c575e67594a4ec143e55717bb8e423ff088a53f4322ea8927"
+        },
+        "friends-mouse/read-word-word-8": {
+          "definition": "0aea302d9732d9323f3fb0ce2369275f7e52b9c51641b6b1e7311dd7af648719",
+          "before": "b855e0006b609e93cb81725fc2fa47617b2979b29d4ad1ca946e497e1a12e168",
+          "after": "13c050c92742afa8ed80959d49def9592ed130aa44492d625131c4ac60097b18"
+        },
+        "friends-mouse/read-word-word-10": {
+          "definition": "b2eaaa6696db6b50a7be65364ed84dd6e27f334e360c440e6040560cb4444003",
+          "before": "56cfccbe5449918ec4bd9a7a049b832e3b22db153290ccb84331ae1395b16bed",
+          "after": "1c00e3ecf6b2c98cddd3eacd8d18bc27fb6b231e2eb2b8540c89988791ea9a92"
+        },
+        "friends-mouse/read-word-word-14": {
+          "definition": "b44a9bc502915407d1bb09ba98899fbd1b0451f6003cddb1ea4419a3225a3f48",
+          "before": "460c543e2d290bb1d2b04bff918b86d81b024a111bfc10e6ee52820f31ebd451",
+          "after": "4c6bfc2794fc2f099c40150ae0414df6147f7016085f5cb6e5af3ca9999590f5"
+        },
+        "friends-mouse/read-word-word-17": {
+          "definition": "4981c5e5c60a8e95fe552f10b845e581a000dc44fecb02441c45e6a8b72770fb",
+          "before": "03f29677c53b6facb692b566eae05d09b6556b089844aadc5aaff68b2f77ac72",
+          "after": "27d003a75cba2d093665e7b070d7ca0578322cb311d61d8d5ca071f88fb8044d"
+        },
+        "friends-mouse/read-word-word-18": {
+          "definition": "f2a6f2553f38706685bbb6493fc6040f2fe742fb65862c4f28552b74b0caa022",
+          "before": "03b94286d1e2d519ba161c4a699ae42bb8ee3daff22b905a0d7aaee6617a026b",
+          "after": "719f5066795f43feeac6b51f9ac62d52adbdd35ebe84efc4d5f3c6f4d1219bdb"
+        },
+        "friends-mouse/read-word-word-19": {
+          "definition": "8ab410a68d19fa0a9210d36d47d25ea0fcdcaf238eec659ee4ec9e8e6075da54",
+          "before": "e30bf77d7a31d16d77deb66fd6649f9666ccd2fdbf99fbdb5529e0ab37e76ab4",
+          "after": "0874b999b3f262947f14eb2ab70d015a19ef877b26aa1008975d3a0f2d46e59e"
+        },
+        "friends-mouse/read-word-word-20": {
+          "definition": "3153fb533d0f2a8fc84ea806eb19be2e037b5a0ad407c67d424231e3f9e00dc2",
+          "before": "a546545c0a6197dd3509e98ce868a57aaf19a9ca881a5e0f4f602234a91f4c93",
+          "after": "9fdaa4784f7da6f0dbe214cd68762245ed2bf2594fff06851711902f567464a3"
+        },
+        "friends-mouse/read-word-word-22": {
+          "definition": "dbc2c7395829ce9dd3592e29d586aa0b04ade1d55668ca217ad0065ae9e5c5c4",
+          "before": "98960a76d38b96ed87b82f9a988f26a83528498574562cc35351257101a68400",
+          "after": "91dc9a035eedf9d6ad8f046be73c72bd54f801465f5558d3db0a603e9acc996e"
+        },
+        "friends-mouse/read-word-word-23": {
+          "definition": "bbce4119c92f7159c383799f5807d26d648214aac9688cbc612f12f5f96e4c04",
+          "before": "e780c31bd309b6af0fe6188abe0ce8e881515766d7b235d2164652d91f2271ef",
+          "after": "a46327f94e19c7916dc06a7da52ed5f6e774b1c4316f7d23da1b187151ec782b"
+        },
+        "friends-mouse/read-word-word-24": {
+          "definition": "1a48f4ff5aebaad1f1b66ee87d42875064d347ab6b06d1efdcd897712bf295d5",
+          "before": "991fa70737cb6c916484431e30187201bce2b4ebc90001022906fb48674a65df",
+          "after": "074d74dbfa2c6e10897d775f469877af88dff1f15c1c9d35f43045b0282f7533"
+        },
+        "friends-mouse/read-word-word-25": {
+          "definition": "b51a6d1b80c1e0a89f3cec99b0e7f4e1be4d6e5138eff4c57c7f10a3ed37d001",
+          "before": "c7b6441dc341212384e2161d32a2906cda31b4ca4c611892a3ce7d1255912ad2",
+          "after": "713ce36fe1b220a3d74434f1820d71c568291739f8860df59eeb2824a0116ea3"
+        },
+        "friends-mouse/read-word-word-26": {
+          "definition": "d99a5dc897b96a7bef8bde74ea32933c7657cdd8fd0dff4e195e51fa055c74ca",
+          "before": "4ea9f454db90efe9d90b47168f4f08cf207138e17d85188c87ea79e055225ab1",
+          "after": "39e03fd6aaf0c2bb533b4eb6169e1d0d1c31981b649cedae48a6602a0eb40492"
+        },
+        "friends-mouse/read-word-word-27": {
+          "definition": "51856c365dcb2f47c32f065265279ecb14bb7532e8e6113fd758dc6fbbbfc800",
+          "before": "ff1f6c71446b048f323140cdd5ac86f962ba4b8971313b071ef3d57dcb595a95",
+          "after": "2c7c20abf7b765e823f2242ef74fef2bf3bb96a5e7baa5d86f4fe609922a8fab"
+        },
+        "friends-mouse/read-word-word-28": {
+          "definition": "ee8ceb396f51347db1ca05fac1389e3ccc05a61b1771bf0d64d43ae7a9d12bcb",
+          "before": "962aa3b534250fabef497a3317dcac2f9fe4d58791736982ab0cf41e841826fd",
+          "after": "cb4dae5e0b3f0db7bdcdf7fc4f2cf405439a8a498ff033d70f146d1cdb863d5c"
+        },
+        "friends-mouse/read-word-word-29": {
+          "definition": "48069bad2806008b5e6c0797596f47a8106cdd441d192e5891f2ab94b16e67de",
+          "before": "bf54cf512f93a3c5ca85a0c8d41867084e486b030601c2f4e3643c60c20a9e8f",
+          "after": "15a492ffa89b338aecab68fc1a4a6aadf43aff1ed8f528f113bb81b862b57aca"
+        },
+        "friends-mouse/read-word-word-30": {
+          "definition": "8c33042034cdfe80d78ab13a7e76152ee830b67190e849041f8db99b76a75f7d",
+          "before": "7927e6a60bdf354a3082bcda70a4728173d3b0e0c3e0d5eb97b46e98ddefa001",
+          "after": "6128839b332f50b007eee4b4dc8e2cae3f365bbd7e30d0a78b114a7976775019"
+        },
+        "friends-mouse/read-word-word-31": {
+          "definition": "16c4d3b539f3efc49e252719c5a34abff05ce374bec2a95cfefc6e0fb349850b",
+          "before": "f642a7e7ccedf18805931f0333c34e0b9ea6ba4800bb58fe7e999b363630fe67",
+          "after": "28b413cd75d478fea42b9c61cbe51f59d9666a69113f2121c2a7335debfd3be8"
+        },
+        "friends-mouse/read-word-word-32": {
+          "definition": "66832540fbdbe019e7890049b6006660e5e6f383ab0456ee7ec5085f87ab0ae4",
+          "before": "c7bde92b93e8c6a598f40265d0f78027ac70135f9c5e0a8b1912d03ebd3bed08",
+          "after": "6305edfa02947c827343ed4c1228da69c97e6ab2862cb73fc80ea4ecf1c67b1b"
+        },
+        "friends-mouse/read-word-word-33": {
+          "definition": "46a4c2539f28f3da953022e35a00349e512e5abfbe041b432ad9fc5aa02a39ad",
+          "before": "671b20e7d6c68f90154e5f2485f223a24e6e4e34d02af61e668c97c36635900a",
+          "after": "bf72a9a9649cee30a0ed967184bc985805ac42f6aafa498a56aa457c1d3f2344"
+        },
+        "friends-hedgehog/riddle-0": {
+          "definition": "6520b103df1293beb59792f887a7a86220be4fe48f2bc5bfb103ec6942bb4cf1",
+          "before": "992bd8240d9c663137f09c5599fd0f40e85cc2043f22702aedcfc93053f97887",
+          "after": "d15ccf70f5bf5538361bad5eaef9a09cf117f95af8cf2c361f66072efddf3489"
+        },
+        "friends-hedgehog/riddle-1": {
+          "definition": "47bbea7cb27ca37165f3ce0c5a18105cf0794b0942247f143ae9310b2809a093",
+          "before": "c92f551a7c7e7019cf2ec0901453067dc230f66c181449cdc133fb1092ca174d",
+          "after": "9a21daadd9684afceba4b0e5224278a5655a37f3cc8e44ab669b6db4d3725288"
+        },
+        "friends-hedgehog/riddle-2": {
+          "definition": "98e74a5bea6fd57eb93a5dd39820c20c7730c65f9d580163af63d9c817bf9371",
+          "before": "f299263040708a46950a82cecb24856f3b566f8efcc19b03511cbe6df17e05d6",
+          "after": "287781417ab51fde8cc69b18a18ba394a5aa0c86e4faa6814ce533b415a41ef5"
+        },
+        "friends-hedgehog/riddle-3": {
+          "definition": "0037708043645c516ebd9518991b58f502d00cf57e5cf17be16a77c5826dcb29",
+          "before": "15c68f9c24e75e52abd09724a694a604138a0aafca3aaa798f3ba168c3df864c",
+          "after": "c4f2c20e699a93d2ee02d4ac1d483f77917c0b388937801b3d693eb1ffa9bc57"
+        },
+        "friends-hedgehog/riddle-4": {
+          "definition": "2c966dec0cbf1acaf682ad7456f4a19286fa2e9d4239447e703f7a303a167132",
+          "before": "88fd655d8a6877414de2e71ab8c4203a275d5db22ae50d18ec2b0917ffcf5dc4",
+          "after": "776d86079486062975f7f9aff7753358cf3203b093df35fa1f2f23af1ae3d999"
+        },
+        "friends-hedgehog/riddle-5": {
+          "definition": "8388f5bdb240ba4d8f9b67fc020b70b8578ae779fa32c2bdf819b888b1a56f21",
+          "before": "f0d1f73ba75da65ac18c874f5df019ca05a93335636cec8a51a33411b446580c",
+          "after": "a80689eaac93f190f141069d38fb97b7672a7bbf95d184d708d6689ab55a1aeb"
+        },
+        "friends-hedgehog/riddle-6": {
+          "definition": "31baa9f661589f7d2ad6ddd377d54a72de3937aee1a57b4765617f91833266e8",
+          "before": "7c27c8ea31a843c71666346fdd33ae81fe4ee989099b9daec4560cc733f8ec1c",
+          "after": "9ff2dbcc1b1037fe443593a010113e6f7f9562d1ddd3b9c072a05460c4bb556d"
+        },
+        "friends-hedgehog/riddle-7": {
+          "definition": "48ac128ab9abdb9ef3e7ce924cc2e68c2daec66bd1e41e3de5c8ea966be26f23",
+          "before": "88fd655d8a6877414de2e71ab8c4203a275d5db22ae50d18ec2b0917ffcf5dc4",
+          "after": "776d86079486062975f7f9aff7753358cf3203b093df35fa1f2f23af1ae3d999"
+        },
+        "friends-hedgehog/riddle-8": {
+          "definition": "8bf92f16f65699a29c3322048d44186de26816ad834673fd4c927b7d63410ba4",
+          "before": "4ca8ab89814fefb0302a489cb901cba6c4fca9dcf17affbf3ac6139f8294d1cd",
+          "after": "87ca3a279e2a2f9a7d4cc0b37ce8c11405fd49465b56186efd9e4c06299beb0e"
+        },
+        "friends-hedgehog/riddle-9": {
+          "definition": "398c480e062243b93ea3ad8f92fb72dcc516f9f02b3a16ac72e79c9817d5b24e",
+          "before": "774637bf01b688263e03417cab1a5348b7308da787a2a30d8ddb617aa30d07d3",
+          "after": "a7dc39adad458328f17e83b80b58c81bad3507cf9b8d0b843a44ac37b3a05420"
+        },
+        "friends-hedgehog/riddle-10": {
+          "definition": "103b3bf1505d15c8834b5dda6b41f71bc040cce8367e35ca3e9364219bb88772",
+          "before": "bde7f110aa330c715c75f055559b9d6c749bc168bf2ac77afe74ac46ad17794e",
+          "after": "a069f9bdc3bab81e6041133a61792391a8d9369b5192bed436fe18be859d99c4"
+        },
+        "friends-hedgehog/riddle-11": {
+          "definition": "df378b8146124a524cd76150d7759d0488cbdac802974c89d8c318348707858e",
+          "before": "23884701b0308dc8e5fc77a2b4b29d5d886d80fa2c5d46477a6f5258f8ea245b",
+          "after": "ab801192e5d68edb752dd87ab0722627a9f718befb277a618ced617a4160b065"
+        },
+        "friends-hedgehog/riddle-12": {
+          "definition": "0404181be3d373d99dc9317af55011a4dce3dba2a4c0233b61284b7608c00181",
+          "before": "49bc23b6d0812ee8e92f4f536c8b6a12c48acd0d586c34431ee71ef2801a344f",
+          "after": "f3c0ed7b054384d7fb7b5e1075b6f9de01daa07c8dabf6292d5feb4871b52250"
+        },
+        "friends-hedgehog/riddle-13": {
+          "definition": "e6a4bcea6b71764b31002de3f57be995732d626dde21991e1623ba4e394aeba3",
+          "before": "9e65a5a871efa5c07503c50ae9239e9b244caf6658733ce22a7a883ea8c06d92",
+          "after": "25220971456665ca49dd722507350a510d97b47ec1379a43ec7b449166b4d6dd"
+        },
+        "friends-hedgehog/riddle-14": {
+          "definition": "0315d500b296029a9417461ae9b40351bda5cdc9445f2a11f0ff4abeb4ca99c5",
+          "before": "a4f5cddb000a955c645c2b1c273b6a179643539349d4089137d6d452e3ef3c55",
+          "after": "ad5f1971d15fbc8199f285d34bdd7f160915fac2872558d86c4bd67c0c9c8648"
+        },
+        "friends-hedgehog/riddle-15": {
+          "definition": "bd3c634a66d4c61115b26a4c6ac4ddd6a50754f19073a28ff375a6e7f1f9c5b6",
+          "before": "3af7e9a86e91f870c5ac7dc1ef2f6f192fdcf2ef5d7cd0ea9dc8701ce86f5313",
+          "after": "a374b3d71addb775d9e5643a7c9592180f6dd9ffe84eec0d3e94fac63505217b"
+        },
+        "friends-hedgehog/riddle-16": {
+          "definition": "030229c99ebe959ada1a9a37db04534858050a78435d13664e853534069fda39",
+          "before": "f6a77246ac72ce0d5ab6b561cf2a45ee6e0b11ec0bb76642573497a9f33eacca",
+          "after": "6b8613f911fe6305d70ce1313db1491db670bf201ece0da98cfb1a5ca5fd0042"
+        },
+        "friends-hedgehog/riddle-17": {
+          "definition": "3fc4437d039e0f5bd00993f241638f3435a3431a340758a35e0a538f95d307c7",
+          "before": "d6dd84c5571617bb1b947f821d262422b21edb1a909d9567d23e24ccaa9ef697",
+          "after": "e35105db7eeae7bba8a80edf2586c9e3a7c130e23d297eacf91724e622cccb6c"
+        },
+        "friends-hedgehog/riddle-18": {
+          "definition": "f254bafab45a211af7e0aebcf4439c1cf5ce74adc2ac9d3a92fcab9028dc5b8d",
+          "before": "f2dca429df05a72f52167534bf81c3e1b1982f23de633e13c8b0c8423e25946c",
+          "after": "20bdaa817160d2fb638bbaa04d46334f7ae3f73844d0483ebef012d6dc5fcf74"
+        },
+        "friends-hedgehog/riddle-19": {
+          "definition": "f918c71e12d39864880989bbef76bbfac70cdc812d02a3c076ad9edb196d1618",
+          "before": "bf775a7cfad298099a42d666c9cf7d002d82adce5ff75c5e7088278e4b3cc0bd",
+          "after": "cd8cc648d4bc97efc4bf912b722b602380cc9f0f56e0c65fbfd59f68f1c18817"
+        },
+        "friends-hedgehog/riddle-20": {
+          "definition": "460b2202551faa9b00006d7e1b24499f2c9a927bdd5349029d5e0d1a5e64f5e1",
+          "before": "a171d2af525dce7e6c8c0d3d2406ed5f45df9f635a9432bcb7e5cc569d52715d",
+          "after": "065e3a9d5b1543f218eeb9dfd82302d8741840eb5c4091c054428be21e5b8219"
+        },
+        "friends-hedgehog/riddle-21": {
+          "definition": "809cecddeb2ca2adce04dacb9bb53d06032f26ec36babb52ed37ca4b6371783c",
+          "before": "c92f551a7c7e7019cf2ec0901453067dc230f66c181449cdc133fb1092ca174d",
+          "after": "9a21daadd9684afceba4b0e5224278a5655a37f3cc8e44ab669b6db4d3725288"
+        },
+        "friends-hedgehog/riddle-22": {
+          "definition": "61f7f58cec8ed16aa03ff613afe8fed184bfd1c7621b15ebcdbdf2b5ddce1f3f",
+          "before": "9449d5ce2403b4c3b2c2c1258e203d503095d4a8f0a156abaf4c48625f2c6685",
+          "after": "824be868d6ffd98c6539cb448176107f3b075430d4baef995aedc2d67d12b7bd"
+        },
+        "friends-hedgehog/riddle-23": {
+          "definition": "47f658d297456c069e2b41fd482124e06e0c96131ae9dba5fa47c14327eedbe0",
+          "before": "44f19a9856326a2e569ba55be1ffff36751292ea72722aa0a77e1e2e5493525e",
+          "after": "1dc06faa1264fe8f8b9eda497e1cef8c28fc069e9666bf6714d65d1b7162d705"
+        },
+        "friends-hedgehog/riddle-24": {
+          "definition": "3bb80159232027d941caae708d26a337aac9fc7cc010ef9f685f2c64723eedb4",
+          "before": "9239a0fa92f94d80d624e5f373f146887e4b2a809b154d884035cad4190fee1b",
+          "after": "513bec1283317b46c05c6542db03b02269906236e0d3e905d599b138041e642b"
+        },
+        "friends-deer/riddle-0": {
+          "definition": "86a79c138d8111f06baf8159cf57815ecce7c80ce9f1558aa7a6f57147cad82b",
+          "before": "1bf9a343b926e3b0f143defcefc63b08a1c33e2c74d33a3db4398168f1b6a1d9",
+          "after": "011075e1e52fb71c87e905f498caa63be6a5ef77564bf9d8a3287a18c16299a0"
+        },
+        "friends-deer/riddle-1": {
+          "definition": "d9f38e9d6ed208d0445abd5727aa20d52b525c37b82ec8cf8dc377a94065d7d5",
+          "before": "82aec1809dc0266721f5fecd1d82b0edaed30db20e4778967e86ed7ea4331bb4",
+          "after": "15e8da3088c684241adb663e64a3862b3d4aef482a77c3dee6848d13d0621756"
+        },
+        "friends-deer/riddle-2": {
+          "definition": "a482c96222818c621794b180f86e2d709de7363b882a1106295beaf7a194ae09",
+          "before": "9097a06023b287bd8ee74be94bb19460d9805a5c1ec25dc0d98a33c89beb1813",
+          "after": "78872481dbd42c22dd45627e567a849926af7cced999fdc22a253c4191964819"
+        },
+        "friends-deer/riddle-3": {
+          "definition": "cf6d15ac061fa15b8843c9ecc0bfecf3348603d50fa123c8eff06c6c48bc9454",
+          "before": "60b03629426697a95ae3485ad6a8e765bdda6a14b497fdd2a23f83e58e9de303",
+          "after": "6a90977537e63b2217ec81d2a2d04789467babc2c40c236ca9866aa42d79d8fc"
+        },
+        "friends-deer/riddle-4": {
+          "definition": "63a867a9c47d7745a82d07bce1e9bf949a036ae9e827607a9aacbe3ade0fa2b0",
+          "before": "0e899a097ff840f7e0dd20abc02c9e6cee100b9775989b0fb35fbe84d4eb3d01",
+          "after": "d21b4c4c1914cca58870629070cae504dd7290d0cf2657d54eaf7b89cfcc0401"
+        },
+        "friends-deer/riddle-5": {
+          "definition": "6c865636570c6717f1af69630ef47d3e8c3f63db5b11871d19a86bbab31ca908",
+          "before": "d0344c549372f9c5783958a15ce3efcd723fac30c5452fd5cd1ba22bef053c08",
+          "after": "f5f3ff9f63d6ba3939bd5387f1382862bcdddd3e105d82cdab406b005cba68ca"
+        },
+        "friends-deer/riddle-6": {
+          "definition": "5db79c84f8d1c8a9c7b90193e82252c8c36a0f781ddddd9438c21e4bd8da05c1",
+          "before": "ff0a37a1cb851527143c22d67fb58d1302790fe819c53ffbe63ed6407ca9a163",
+          "after": "951072b1d5793d8b3f37b65f8c55696495e015852615df853040cd73c7e18ee2"
+        },
+        "friends-deer/riddle-7": {
+          "definition": "d32aaa142b49f88500c59113b17860a4fb29e26226e41e3b764bdfd978cf0928",
+          "before": "cbd91489e6c6a74fe9a523c5a9fd9a379318e8d314a2087f0e79e55ba55f5396",
+          "after": "574a0fd642da70f8fd042221830e07f4d080952f324ff1f1da3eeb56af85a822"
+        },
+        "friends-deer/riddle-8": {
+          "definition": "f97a0e9bfaea833632b8c8da86f550632820c2ae629c5ce3d16b9bee156f1ec2",
+          "before": "60da46c9b8b8d3caebf8270bba9cdd1b0d34472f259b07b273612e04ea608853",
+          "after": "95d973dc6df9667ef07cf63a7d33ed5f42ba52647029dbf0c200198031cd3bc7"
+        },
+        "friends-deer/riddle-9": {
+          "definition": "9e5e4cd8fde07fa381775c8f0d4be8591c14ff9490b9236a7001528f7b7694b8",
+          "before": "08fbd5995551a9fe32beb14d042b0cea97723f934171c3feb461e725da150c4c",
+          "after": "1fea54ffb74a84a775d1067f80f66bde9752cf658967576a0779be7aaa0d2f6f"
+        },
+        "friends-deer/riddle-10": {
+          "definition": "9639481fafee65be1da41a6f0ed14138e77d59e0ebff4e5358db825d25455ec2",
+          "before": "107a8af38ab21d67d3a5c1ffc9a0598fb77804cfd73c127d28f399a227b5c47c",
+          "after": "b5d6acee3c83645ba77b70e90a1402ad2a3d7c9852372e56bcdb48b0613e6ade"
+        },
+        "friends-deer/riddle-11": {
+          "definition": "c400da21adc4bc0ca69037b01e713fe45fbc6ebd25f8bfe93056ae2f44515aa1",
+          "before": "79bd0a7a8574d1722fdda7e469103c0a7a703b0b5e6c70fa7ccaec4eb3d1332e",
+          "after": "be257cfbf5a47c670c687e2aba874dcec02b703eeb99811fbeace715ed5a0cc3"
+        },
+        "friends-deer/riddle-12": {
+          "definition": "5bc9c51bc86b3dc4022c43513fc29667714f67939754b44786d0355f54c3e631",
+          "before": "f581ff89dc948939f67d2efd88effb46f94e945bce07a6393f7a957cc249598a",
+          "after": "5188fd46b24b20edd0d1f141e95c026c90ea6ebf0d1ff7fc0a0f76de498f63e3"
+        },
+        "friends-deer/riddle-13": {
+          "definition": "22e8f1d753192469df0da04b190e617ef9c3f67752a44ddc521e4be31296a193",
+          "before": "b7c3a780bd961904943a30312f31f24d164ac29d495d7df90f1cbdbcaef40fd9",
+          "after": "f083e9bebf750cedbaf7168b745d7387c149f4333f0917508c9ca68a9256da01"
+        },
+        "friends-deer/riddle-14": {
+          "definition": "833548a6a380327ebfdc7e91d0721318f435ca64b8e086632d73f65bdb085557",
+          "before": "cbf3aabab1f976f9e4b8232401ff8c80ea7f1d806ae308ba67e550aec89d2871",
+          "after": "1d3775dd80b931257dbcd8864be85d2d06beccae6a653e518235b9bc3c466cb6"
+        },
+        "friends-deer/riddle-15": {
+          "definition": "ac56737285029bc85cfd9cd0f11d0923c0d611e155b48ddce399856bbf1be9bf",
+          "before": "79bd0a7a8574d1722fdda7e469103c0a7a703b0b5e6c70fa7ccaec4eb3d1332e",
+          "after": "be257cfbf5a47c670c687e2aba874dcec02b703eeb99811fbeace715ed5a0cc3"
+        },
+        "friends-deer/riddle-16": {
+          "definition": "2e04dd4380a2048aef5172740038ace4ad235c2b88bc0f2b7cbd791ec252ab1d",
+          "before": "28e25e570c79bdbc45da1e021389947a251821c01e65a329cf2ee102eeab2b19",
+          "after": "25d0e5882c88258660c4dd3b71f7fcef6a2115f1f18b6b19cca878896fc322ba"
+        },
+        "friends-deer/riddle-17": {
+          "definition": "ac5ed9c13c4ab4840e5ba5751e7c43740d5241b2b556699624665223e5c73256",
+          "before": "47bf4156310cae7638c4e14d9924288d9f49be0c89db9834c2a0c66c27a3be82",
+          "after": "7c2b3319bd065f99766210807dce2e146ee05affd98498f9f69710b1f5fb0c00"
+        },
+        "friends-deer/riddle-18": {
+          "definition": "b238da110935b2aefc54efac8da67b494c61828095a5bab7a3ff6216f271a08d",
+          "before": "fa93f0e4a9290ceee327c4493a580cadcf9bb46e435ff9a11ef5fb16360d1d22",
+          "after": "0122d767bb41051a48f57f3e0ad641a6fb57ae1ecccf8fb37f7b4b684177ef8e"
+        },
+        "friends-deer/riddle-19": {
+          "definition": "319fb7bc1a5e133a480471f374c9be7db9dc25ac8c271a8ce2f606d47f07e542",
+          "before": "5c1cfca555709a0888e673d3ada17547a43ede94b3970b7cc622ca1e56f32dca",
+          "after": "ad6228c0de740c999284630bf57ff94bdf80801e335caf04421d3e4615f686c0"
+        },
+        "friends-deer/riddle-20": {
+          "definition": "5c10bae10c1fe3f0d67fb2f52c6ee49f9f0763261461c07fed680621000b55ea",
+          "before": "403820c9876da7e37c624ecba323d8f924e421da912922357df07ca9c77ad7e8",
+          "after": "e4562ba520e658f4e605caf20f82652b281ff2bf6ad908c66b89cf44df8f738d"
+        },
+        "friends-deer/riddle-21": {
+          "definition": "ee9e452559e2642111d1f47b6c360c7f240da2d680bdd69756d487933a857d8e",
+          "before": "48066cf91a95e17a96d96459c25bee4ea7a4745dafd94e3a2053e2aba2a03e96",
+          "after": "dd69345418a4bcccea752107d3c153253826c590d2c8f27a8cf83f6c4999f2b3"
+        },
+        "friends-deer/riddle-22": {
+          "definition": "ece04ae7c624b1407ce45ba98e957b185a6a7e7616f52ca16e3178aa7850916d",
+          "before": "d1eb3843ac6742e5d9220a832b935dbee96cbcf4539ad2af8f18852f36553b2d",
+          "after": "dc9dc7e1697819eca5dcfabdc236448051eddc174206083141a2bd250c18f02f"
+        },
+        "friends-deer/riddle-23": {
+          "definition": "5c3c30982752b138d349aaf39a2af9ed7c1b7b51104f8c5730405450dc593cdc",
+          "before": "3b6a05a6357a4ccb7edb12b2c7f25c1de0336f2c40ef9fd99b7a97ffc94c5e45",
+          "after": "26c2916b41c1b6ff3e0a637bbc2c4c8cabbce47a26f254ca88583663bdfa2378"
+        },
+        "friends-deer/riddle-24": {
+          "definition": "b49662c4b2ae6e00aea7695afabd2b06b2b5e54bb7d356fab3eb40cf575511ee",
+          "before": "55eab191b8eb2516e59d5560918c698c390c66835c91015c9ebf2e95003c1d9b",
+          "after": "f3a82dc464cb65f0197bc68f462d79a551819e57790f5c61af18efa277e71f8e"
+        },
+        "friends-badger/riddle-0": {
+          "definition": "ee4a8256bf668fd029821dcf390e4147a55d9ab3546cab5b420d9ec92d8c3195",
+          "before": "223a74f4950e0a74d44d038801b277106be073252fa0e19aabb98468e0c51b14",
+          "after": "d3511bce1eae5a1c5becec04e63c203ab8ad7bcc72cb51b74797562598eb8242"
+        },
+        "friends-badger/riddle-1": {
+          "definition": "79e1a09f2dc3da1fa29bef11a569d1a84218cc592d64dcf3fea7671baa080915",
+          "before": "f5e2916789ec885b942483e4c2d86056deaaa04964347d71e2d9b3c50df1e825",
+          "after": "c4cb1a20688b4c03b8153b63bcf2fe76d2e1a87a3ef18ffeccaae67d1339b0bb"
+        },
+        "friends-badger/riddle-2": {
+          "definition": "b7d03f0fd9d9a80e3bdc52f090dfa4d3de61c180e498c3d27d485459159c031f",
+          "before": "fe3978d90df2bd29b6e6fb00e0b1b09b311ad32723acddf6fb88a65a8fc78c57",
+          "after": "55960e109afc269563a6dc80b1bb950d56639bbcc3d537acdd20a7e8d7e104f9"
+        },
+        "friends-badger/riddle-3": {
+          "definition": "0573cb6d76948d65e9ea64b2b8f48949c710bb1e556be2c5aa6cadabb8beb8a7",
+          "before": "388f374f0fd79a6ab04776c80b1ba56f35f81c211c87930b0f3ce458efae37ff",
+          "after": "ab019c3cd70d54544300814a6b7a9bc05c5c81fe915e74f44682c18914d19a73"
+        },
+        "friends-badger/riddle-4": {
+          "definition": "10f49cf8d187958a3764da49e8ef825a06831b2e748bae80efd91b321bd1a0ce",
+          "before": "aa4a7f044065b1b7cda9d0e6f314b14475c69bf272894948a88b5b45994d8366",
+          "after": "93d731f00f3789171a3ab19e975a538c2bcf0cdf90d86cec3f8b60863e9fab88"
+        },
+        "friends-badger/riddle-5": {
+          "definition": "73497e3ac6f88c02a05e972b35777828773581351b524cbfb3e037ace7ff37d6",
+          "before": "75ebff8b1cf9f49d1af481f2c0405f97d5862d6a63663bc0cf1880630ca5de5c",
+          "after": "ce463fc53ab3bd21d9c2d9f58e141ab7457a3a8fb14640c346b81fb2a9a905d8"
+        },
+        "friends-badger/riddle-6": {
+          "definition": "9e922f779820276965b14c683fc00ead4f6be5bac93a461957306cc01990c532",
+          "before": "246bc34b94e2df75cb7b6503c2b28e34d4e83d70335b6e4387216dbfc4b7e23d",
+          "after": "55c71cfe9b0d327bff95352c5fd1e0a31310d36c3fb4ef89c59b3804b00f0c10"
+        },
+        "friends-badger/riddle-7": {
+          "definition": "1f3ad96d0f29b732eb8f356fe42d580a4f0fd990736e4b199ff367c81ce96924",
+          "before": "b0091ef4a0d66cd7079b23f76517c5ea77ca02d5f4bf03bfdbd17c5cab36a96a",
+          "after": "5d0f68c92466d22834faff9fc6b5e6dab70fed11237747dc8f1f87180b7789d4"
+        },
+        "friends-badger/riddle-8": {
+          "definition": "80cee69a21d4da90ed5e8d20b618ed0aa7625a4e009fc49649239948b9b679dd",
+          "before": "a29ba54f2d350e151de2a43666706b2630fbd1456531a78dc3ed023b9ac9bcf1",
+          "after": "f4586e09b25ca6338f62afb997ab62569e19348627d9881f12052804d1e58316"
+        },
+        "friends-badger/riddle-9": {
+          "definition": "f60ed4acb6e2e11f784ac639657a6e2f0033702fad371e1ab47d3ba42843b2ed",
+          "before": "5b5088dc1cf36e71f619bf7f081a6fe80a8c53a0993b6c83ca29c9be1535a8e5",
+          "after": "cf21def6cb3dafb13c54ff7307e3a73d8f7138f2453a17c86e412c0cdb25f719"
+        },
+        "friends-badger/riddle-10": {
+          "definition": "1427786264ced24a68dfbf4132dc78fa2f5a2bead8c33bb06809e50b809dfb70",
+          "before": "99ba99bd330b97436dba1fa9b306b560e823d097f2a020a4e791bb7489ce539e",
+          "after": "71684b4a998fbcf452e93ccd41209f53b42419459c08f9272169a17ba423e46a"
+        },
+        "friends-badger/riddle-11": {
+          "definition": "3bfd83177409a1744139687c1010e9b00b5a887968eb20be3c6f8cf69c58db0a",
+          "before": "e54cf5bcbe44b425bd8341e67c7302f9f6295a7e8e105bc7bcc5c4c8af6196b6",
+          "after": "49a0418b57e5f76eb85d041ba2a62099ad4251549bdeb237c2ca5210f9911741"
+        },
+        "friends-badger/riddle-12": {
+          "definition": "6676e26021dc8ad140b3eb7f64064053f131da84d26293fbd262c368c993b99d",
+          "before": "47aeba0a4fd9ced2f979cf8af73bce0b0cf959a9560bef450d971f6c31bece3d",
+          "after": "bcacf2e2ac59d227dfdf181c87bca3be42663557617d88578a9f52bb79345110"
+        },
+        "friends-badger/riddle-13": {
+          "definition": "360f6d376f3175ac40b13f3a579fea24909794267df59cd827962c4392baf23e",
+          "before": "7e97d81ebb5da3a80090636add83d9ada00edce4174aefa64fc2ca412e6281b0",
+          "after": "d3ae171ad1aac1c229356770a245b277a1a8089e9c2c1b674a96a2295a56e3f5"
+        },
+        "friends-badger/riddle-14": {
+          "definition": "32a29731aa839dbfc97964a2e2380b4a7b8da2fa64344908b19e22d4547c3e79",
+          "before": "c0b8f429c8106992f5761a284e962d5807f698268cd5e7060a1083265205281a",
+          "after": "2f681414e4ef3a2af9d97ab085281b65a710518641d9e83d560731e0b034e27e"
+        },
+        "friends-badger/riddle-15": {
+          "definition": "b3ebcdce173f2b0f5b1bb9c81902e9328151c733b3dbfb1528f4ce9f8e0d4339",
+          "before": "031e02210eb6c398cc5d0ee48a96dd7fc3ccd5544abec9363efff2bac6903c1e",
+          "after": "801c86efb17da518805bcd7333ef3d7f06c15bd24961320579f075808c29152b"
+        },
+        "friends-badger/riddle-16": {
+          "definition": "c7d8ba8bbd63bb1ff779e88488adc6acb0330dd7be12821203cf191112667b86",
+          "before": "af39b76376d7dfba6fc11be9239245c23c8cbdd2b1c64f710581ef6810b49b03",
+          "after": "f1178b5bf5aa8f6ffc0a1ad74ced6cca9ed9f36fc56d87d8a54fef3dc63ca2ad"
+        },
+        "friends-badger/riddle-17": {
+          "definition": "a988b66b9bdf8f5467ae9d6a902ce6a1d261448a893a8d8b826654b072fb2fd3",
+          "before": "86f14c80760c4906e67a27bd25d9357f6b813bda732553f8402be2b54e56dad1",
+          "after": "d8f425ac14288b2df95178f9531adcd81232d7d6b8f2db5f5336c3bb61845638"
+        },
+        "friends-badger/riddle-18": {
+          "definition": "bdb576f55d927d4496cd58c69069c8f4b5f597ecd5f49a1ca0381c79d84ded15",
+          "before": "9a712aa4f79dba0c637dc3425a660e128e5122fc17c12ae1da6fcc8a913b2351",
+          "after": "8269caa2b02aca91aa0088459f9bbc4f5a82403b62a8aeecafe8556552dae1c8"
+        },
+        "friends-badger/riddle-19": {
+          "definition": "736811bb3b9d81230650f6bf98ad8a7cc3b2144c7ed8f12058c9087ca01d0640",
+          "before": "d52760fab722f78bc811125dadec177321faa487891aa4f454aae63387845841",
+          "after": "7266b4daec26bf676311d78ad042dbb22eceea1a46aab28c79d77b06cd959cce"
+        },
+        "friends-badger/riddle-20": {
+          "definition": "a2cb5568e590353e3b9362b70d98f3dbfbee0e249b7474e39a0dcecc34be4391",
+          "before": "a590011c8208640448921ef833502c95007c68aa04bc01b8900da136037ec1ad",
+          "after": "1d28f6b143b53d7b694421c2807fc774ca33b5716bf81a6530a8e9a1fe410c29"
+        },
+        "friends-badger/riddle-21": {
+          "definition": "f03b7bfc700d47b844a68ee60168fea0391cc3571e5e09a0c3d2d7164d281b55",
+          "before": "c1468ac0d6bcd07b1c815bd80706bd008139f9b3b2cac959d4eeca3b807e7a33",
+          "after": "6108c81c3350888032f87fd212210d8edc95df98f9c9f848d982b18c381cf561"
+        },
+        "friends-badger/riddle-22": {
+          "definition": "39f54267f28702e3afeb89acb30f7f3f3b7607e585d69252384b589beebd6db6",
+          "before": "aebe3f6fbef4c22b5efee192e9bcff53f6c735235ff0055a8fbbe561beb11dca",
+          "after": "c2a7cffa03c9a2f080aa1a9e8bd02b0e73ea99f27893e5265070af6926282e25"
+        },
+        "friends-badger/riddle-23": {
+          "definition": "4dc5967ad2f7f1d881a01107a16771af3ec80e1ba9539e7d5a9ebcc6b2866a0a",
+          "before": "f23a80bf23e16d5474523d9e2197d5a9b0d64a492559abb405132fe4100de876",
+          "after": "de4d8fa6c8e67c305b5bc2ab5c03bd1802b8dabbce9cdfe1a9ceedcf626c103b"
+        },
+        "friends-badger/riddle-24": {
+          "definition": "379f24ed06f870aaaa17563f3d62c2f7290f4c1601d870e1b549b5d4f9ae1e35",
+          "before": "f87bf18966af0c3be0043abc983a60405d124395c0cba77275e12879b82bad11",
+          "after": "b8a2db4c48011103f7959ef0495aad9b488f6f1e8fdd7191313b6a2ce3f8ddbf"
+        },
+        "count/6-2": {
+          "definition": "f59f04711322b8010995e50a61f5e64b4397817c6a993741007e0192ae361ef7",
+          "before": "f47829cc4025ce4c38d613fa597a8741e0d1bb7d6eb8df91cea31b44a840fc08",
+          "after": "d5ad5fa4a7875cc85854597ddd566c19cae498089d8b1325e10864ded3b78bf1"
+        },
+        "count/6-3": {
+          "definition": "1d40be3737c9128bb0e1819d729733107c398d9f599a377fb219527a0fa06da6",
+          "before": "f47829cc4025ce4c38d613fa597a8741e0d1bb7d6eb8df91cea31b44a840fc08",
+          "after": "d5ad5fa4a7875cc85854597ddd566c19cae498089d8b1325e10864ded3b78bf1"
+        },
+        "count/6-4": {
+          "definition": "49829b1bb1421a7ee59ad81abe4c2dfb1c4398a7f2891697aed93cafee9e5634",
+          "before": "f47829cc4025ce4c38d613fa597a8741e0d1bb7d6eb8df91cea31b44a840fc08",
+          "after": "d5ad5fa4a7875cc85854597ddd566c19cae498089d8b1325e10864ded3b78bf1"
+        },
+        "count/7-2": {
+          "definition": "7ffa9f907594466f2f488205a3fd7b827e3d199517b182dbbd98705d96e66747",
+          "before": "f47829cc4025ce4c38d613fa597a8741e0d1bb7d6eb8df91cea31b44a840fc08",
+          "after": "d5ad5fa4a7875cc85854597ddd566c19cae498089d8b1325e10864ded3b78bf1"
+        },
+        "count/7-3": {
+          "definition": "862ab3463d90f760241d4f58eba3747ebbd70dd4080f5732f586509959c806aa",
+          "before": "f47829cc4025ce4c38d613fa597a8741e0d1bb7d6eb8df91cea31b44a840fc08",
+          "after": "d5ad5fa4a7875cc85854597ddd566c19cae498089d8b1325e10864ded3b78bf1"
+        },
+        "count/7-4": {
+          "definition": "f12d5ed249b2217048934c822dfa3e0245c71e9f3e3bf6f8c7cb86c8a89a5108",
+          "before": "f47829cc4025ce4c38d613fa597a8741e0d1bb7d6eb8df91cea31b44a840fc08",
+          "after": "d5ad5fa4a7875cc85854597ddd566c19cae498089d8b1325e10864ded3b78bf1"
+        },
+        "count/8-2": {
+          "definition": "017dd26f4d472874e30454f558801b8b7b59992860635ad79b0beb8e58b070b0",
+          "before": "f47829cc4025ce4c38d613fa597a8741e0d1bb7d6eb8df91cea31b44a840fc08",
+          "after": "d5ad5fa4a7875cc85854597ddd566c19cae498089d8b1325e10864ded3b78bf1"
+        },
+        "count/8-3": {
+          "definition": "5d5e759496b26344f445e5cfa178d6b106b170be750d621c2122d4f863a35fe4",
+          "before": "f47829cc4025ce4c38d613fa597a8741e0d1bb7d6eb8df91cea31b44a840fc08",
+          "after": "d5ad5fa4a7875cc85854597ddd566c19cae498089d8b1325e10864ded3b78bf1"
+        },
+        "count/8-4": {
+          "definition": "039830f2c1fbf18d15966e30041a5f71ec37d4577dc6e4d1254b64745d1b2d6d",
+          "before": "f47829cc4025ce4c38d613fa597a8741e0d1bb7d6eb8df91cea31b44a840fc08",
+          "after": "d5ad5fa4a7875cc85854597ddd566c19cae498089d8b1325e10864ded3b78bf1"
+        },
+        "count/9-2": {
+          "definition": "944df6e5a9ce2c8c4e0b28d70acf921b10ba49e1a4b805a0e3339aa02ff5f30a",
+          "before": "f47829cc4025ce4c38d613fa597a8741e0d1bb7d6eb8df91cea31b44a840fc08",
+          "after": "d5ad5fa4a7875cc85854597ddd566c19cae498089d8b1325e10864ded3b78bf1"
+        },
+        "count/9-3": {
+          "definition": "fbf69b0e991c69f5345aaddfb3371ccb4fda029e8ea468376688ef6ad3ac61dd",
+          "before": "f47829cc4025ce4c38d613fa597a8741e0d1bb7d6eb8df91cea31b44a840fc08",
+          "after": "d5ad5fa4a7875cc85854597ddd566c19cae498089d8b1325e10864ded3b78bf1"
+        },
+        "count/9-4": {
+          "definition": "581d9454e318b85085210d7d0f2641f9480d339bc0f4e37ac8ad2df29b58be65",
+          "before": "f47829cc4025ce4c38d613fa597a8741e0d1bb7d6eb8df91cea31b44a840fc08",
+          "after": "d5ad5fa4a7875cc85854597ddd566c19cae498089d8b1325e10864ded3b78bf1"
+        },
+        "count/10-2": {
+          "definition": "bf0b6e6db505609afab9edc4f8f3cbb9be2ebede0c1a929beb8fa39c55ec7899",
+          "before": "f47829cc4025ce4c38d613fa597a8741e0d1bb7d6eb8df91cea31b44a840fc08",
+          "after": "d5ad5fa4a7875cc85854597ddd566c19cae498089d8b1325e10864ded3b78bf1"
+        },
+        "count/10-3": {
+          "definition": "6a7faf2c22c3822b342964c3cc90037087a4bd4a0674f38095dfd0d4d39693aa",
+          "before": "f47829cc4025ce4c38d613fa597a8741e0d1bb7d6eb8df91cea31b44a840fc08",
+          "after": "d5ad5fa4a7875cc85854597ddd566c19cae498089d8b1325e10864ded3b78bf1"
+        },
+        "count/10-4": {
+          "definition": "b5968b5a2472fa81cc8898dc30cf1d1190825863d1e93dfc607d8bcf0595aecd",
+          "before": "f47829cc4025ce4c38d613fa597a8741e0d1bb7d6eb8df91cea31b44a840fc08",
+          "after": "d5ad5fa4a7875cc85854597ddd566c19cae498089d8b1325e10864ded3b78bf1"
+        },
+        "count/11-2": {
+          "definition": "5a75c9af68adc78ca1c35aaafcd01b60b7803a9ed702376e810ad3f9d88b2752",
+          "before": "f47829cc4025ce4c38d613fa597a8741e0d1bb7d6eb8df91cea31b44a840fc08",
+          "after": "d5ad5fa4a7875cc85854597ddd566c19cae498089d8b1325e10864ded3b78bf1"
+        },
+        "count/11-3": {
+          "definition": "5d280d563259053a0568699efef4ebc8de7209c8e2055655e216566c94c81bf9",
+          "before": "f47829cc4025ce4c38d613fa597a8741e0d1bb7d6eb8df91cea31b44a840fc08",
+          "after": "d5ad5fa4a7875cc85854597ddd566c19cae498089d8b1325e10864ded3b78bf1"
+        },
+        "count/11-4": {
+          "definition": "7aaac38acfe41c67a7857290eea14c597ebcc991ec41fa677aefda70816db57a",
+          "before": "f47829cc4025ce4c38d613fa597a8741e0d1bb7d6eb8df91cea31b44a840fc08",
+          "after": "d5ad5fa4a7875cc85854597ddd566c19cae498089d8b1325e10864ded3b78bf1"
+        },
+        "count/12-2": {
+          "definition": "33e9a576df99a8b7ffaf5a23524a5e19e08ca01e6d41a1892352e223f6a1d168",
+          "before": "f47829cc4025ce4c38d613fa597a8741e0d1bb7d6eb8df91cea31b44a840fc08",
+          "after": "d5ad5fa4a7875cc85854597ddd566c19cae498089d8b1325e10864ded3b78bf1"
+        },
+        "count/12-3": {
+          "definition": "cb491e10652f4f14f46e1abf4a05db7fbef9dd52c59577f12a5df60c55a19002",
+          "before": "f47829cc4025ce4c38d613fa597a8741e0d1bb7d6eb8df91cea31b44a840fc08",
+          "after": "d5ad5fa4a7875cc85854597ddd566c19cae498089d8b1325e10864ded3b78bf1"
+        },
+        "count/12-4": {
+          "definition": "1bd6448a89fecd8e59faeff721aad41713fa54afd3d49244e00cff3d4d831c45",
+          "before": "f47829cc4025ce4c38d613fa597a8741e0d1bb7d6eb8df91cea31b44a840fc08",
+          "after": "d5ad5fa4a7875cc85854597ddd566c19cae498089d8b1325e10864ded3b78bf1"
+        },
+        "count/13-2": {
+          "definition": "0f7cfe4e29c31f76fd3578cfa27964d2977faaf617554a157dc6a9961d09f22c",
+          "before": "f47829cc4025ce4c38d613fa597a8741e0d1bb7d6eb8df91cea31b44a840fc08",
+          "after": "d5ad5fa4a7875cc85854597ddd566c19cae498089d8b1325e10864ded3b78bf1"
+        },
+        "count/13-3": {
+          "definition": "6b99a7c133f41a8453505d38c135937f722c97f791957f51087f873931ba8ffa",
+          "before": "f47829cc4025ce4c38d613fa597a8741e0d1bb7d6eb8df91cea31b44a840fc08",
+          "after": "d5ad5fa4a7875cc85854597ddd566c19cae498089d8b1325e10864ded3b78bf1"
+        },
+        "count/13-4": {
+          "definition": "73b221098b0b062a7a92f1023f1aa6f089e08503f2e0cf0bdfe371b4c9328c8d",
+          "before": "f47829cc4025ce4c38d613fa597a8741e0d1bb7d6eb8df91cea31b44a840fc08",
+          "after": "d5ad5fa4a7875cc85854597ddd566c19cae498089d8b1325e10864ded3b78bf1"
+        },
+        "count/14-2": {
+          "definition": "48d3d1da5c5869219a31ca3324018b51354107ba32c32ef37c2ec112f9db9202",
+          "before": "f47829cc4025ce4c38d613fa597a8741e0d1bb7d6eb8df91cea31b44a840fc08",
+          "after": "d5ad5fa4a7875cc85854597ddd566c19cae498089d8b1325e10864ded3b78bf1"
+        },
+        "count/14-3": {
+          "definition": "bbfa87ac33821c3b3c9f254a9e98571e731fa76fe80e5c04a3d527d02b65bf0b",
+          "before": "f47829cc4025ce4c38d613fa597a8741e0d1bb7d6eb8df91cea31b44a840fc08",
+          "after": "d5ad5fa4a7875cc85854597ddd566c19cae498089d8b1325e10864ded3b78bf1"
+        },
+        "count/14-4": {
+          "definition": "e6ad8d214db254467eddef40cd6b5c6842d6f758abf09045ecb261a037f68116",
+          "before": "f47829cc4025ce4c38d613fa597a8741e0d1bb7d6eb8df91cea31b44a840fc08",
+          "after": "d5ad5fa4a7875cc85854597ddd566c19cae498089d8b1325e10864ded3b78bf1"
+        },
+        "count/15-2": {
+          "definition": "c9888336a90123a46cedf343864f5d995b75b81d10dc1142aaf021ab44cc8168",
+          "before": "f47829cc4025ce4c38d613fa597a8741e0d1bb7d6eb8df91cea31b44a840fc08",
+          "after": "d5ad5fa4a7875cc85854597ddd566c19cae498089d8b1325e10864ded3b78bf1"
+        },
+        "count/15-3": {
+          "definition": "06db1d1eacd7e20b6710dc3c51e9150a284804fe13e9396c8ff1caab3de431cd",
+          "before": "f47829cc4025ce4c38d613fa597a8741e0d1bb7d6eb8df91cea31b44a840fc08",
+          "after": "d5ad5fa4a7875cc85854597ddd566c19cae498089d8b1325e10864ded3b78bf1"
+        },
+        "count/15-4": {
+          "definition": "898809f3905a68c920858bb9bbf33c6d278b71f820ad6361f47a91f7a301b0a3",
+          "before": "f47829cc4025ce4c38d613fa597a8741e0d1bb7d6eb8df91cea31b44a840fc08",
+          "after": "d5ad5fa4a7875cc85854597ddd566c19cae498089d8b1325e10864ded3b78bf1"
+        },
+        "add/1-1": {
+          "definition": "701b3fc02ff50069026de0376ae9f6b27eb2fe6ea9f0df7f76cd751426d7cb95",
+          "before": "ece2c1a2ac397576c77f8862409e59e389c663559b88e0f6fb050154d9f56d15",
+          "after": "3684255ac060ae5bbdf8add41827aa399b8cb5490a265257844b9f896944533b"
+        },
+        "add/1-2": {
+          "definition": "2bf045ce4d044f9c9a972f3cbead89e2fcce06b98657a709af8c8f057e1ccd99",
+          "before": "ece2c1a2ac397576c77f8862409e59e389c663559b88e0f6fb050154d9f56d15",
+          "after": "3684255ac060ae5bbdf8add41827aa399b8cb5490a265257844b9f896944533b"
+        },
+        "add/1-3": {
+          "definition": "65106ac8f207c3a3dfb33b742c266cf6dc4c26ea4a756745d8d17b161221e705",
+          "before": "ece2c1a2ac397576c77f8862409e59e389c663559b88e0f6fb050154d9f56d15",
+          "after": "3684255ac060ae5bbdf8add41827aa399b8cb5490a265257844b9f896944533b"
+        },
+        "add/1-4": {
+          "definition": "53f7e63cc6ff35328732f8d2946b381d2fb08b2182cb99613b10d55b1e0eabae",
+          "before": "ece2c1a2ac397576c77f8862409e59e389c663559b88e0f6fb050154d9f56d15",
+          "after": "3684255ac060ae5bbdf8add41827aa399b8cb5490a265257844b9f896944533b"
+        },
+        "add/1-5": {
+          "definition": "ccbf409a9b63c6e361f9f623b0791c860c326bd69e041dc480c56684bb9c6d48",
+          "before": "ece2c1a2ac397576c77f8862409e59e389c663559b88e0f6fb050154d9f56d15",
+          "after": "3684255ac060ae5bbdf8add41827aa399b8cb5490a265257844b9f896944533b"
+        },
+        "add/1-6": {
+          "definition": "00bae155c887e4ee99a40908ab978448386c2e7eb99541ac4535fab4ed1ca9c2",
+          "before": "ece2c1a2ac397576c77f8862409e59e389c663559b88e0f6fb050154d9f56d15",
+          "after": "3684255ac060ae5bbdf8add41827aa399b8cb5490a265257844b9f896944533b"
+        },
+        "add/1-7": {
+          "definition": "b7b871a5ddca3d3d69a018852ea1e10f567269865d5a2957252fc77d7013843d",
+          "before": "ece2c1a2ac397576c77f8862409e59e389c663559b88e0f6fb050154d9f56d15",
+          "after": "3684255ac060ae5bbdf8add41827aa399b8cb5490a265257844b9f896944533b"
+        },
+        "add/1-8": {
+          "definition": "aa9437721fee38a946739a5cc9e88a8eed67afbd83f2dbf59d07cbbbe1ace865",
+          "before": "ece2c1a2ac397576c77f8862409e59e389c663559b88e0f6fb050154d9f56d15",
+          "after": "3684255ac060ae5bbdf8add41827aa399b8cb5490a265257844b9f896944533b"
+        },
+        "add/2-1": {
+          "definition": "87247cd69e7a16b9aef5ed04814df4a1cee4973b8436fec605b65f8b91dedb71",
+          "before": "ece2c1a2ac397576c77f8862409e59e389c663559b88e0f6fb050154d9f56d15",
+          "after": "3684255ac060ae5bbdf8add41827aa399b8cb5490a265257844b9f896944533b"
+        },
+        "add/2-2": {
+          "definition": "d5bb721c4a6ec3b70d789223bcf2d402c8ffe7466a6e8de62859cd3b4b45e9c6",
+          "before": "ece2c1a2ac397576c77f8862409e59e389c663559b88e0f6fb050154d9f56d15",
+          "after": "3684255ac060ae5bbdf8add41827aa399b8cb5490a265257844b9f896944533b"
+        },
+        "add/2-3": {
+          "definition": "7c0435300d3b165f6a5e18b99abc7a37d4fb3fd20f605fdf9594772f9694f1e2",
+          "before": "ece2c1a2ac397576c77f8862409e59e389c663559b88e0f6fb050154d9f56d15",
+          "after": "3684255ac060ae5bbdf8add41827aa399b8cb5490a265257844b9f896944533b"
+        },
+        "add/2-4": {
+          "definition": "3b1a7b6b3cffa595c508afe798c204bd0fa147bbf2498f6e080018ded4e394b4",
+          "before": "ece2c1a2ac397576c77f8862409e59e389c663559b88e0f6fb050154d9f56d15",
+          "after": "3684255ac060ae5bbdf8add41827aa399b8cb5490a265257844b9f896944533b"
+        },
+        "add/2-5": {
+          "definition": "d110664b596c04bed3a51c13b973937944d32ade0509676d4c0835d1438018d7",
+          "before": "ece2c1a2ac397576c77f8862409e59e389c663559b88e0f6fb050154d9f56d15",
+          "after": "3684255ac060ae5bbdf8add41827aa399b8cb5490a265257844b9f896944533b"
+        },
+        "add/2-6": {
+          "definition": "9c46b7c95a1740c33416b664e929b1716e3ab3832e6479b2c1042f2e3fbd9028",
+          "before": "ece2c1a2ac397576c77f8862409e59e389c663559b88e0f6fb050154d9f56d15",
+          "after": "3684255ac060ae5bbdf8add41827aa399b8cb5490a265257844b9f896944533b"
+        },
+        "add/2-7": {
+          "definition": "fe4d7a81f7aa5d4e27a4b516494aec952a6176bd2ec1c354a3f715c4436a9623",
+          "before": "ece2c1a2ac397576c77f8862409e59e389c663559b88e0f6fb050154d9f56d15",
+          "after": "3684255ac060ae5bbdf8add41827aa399b8cb5490a265257844b9f896944533b"
+        },
+        "add/3-1": {
+          "definition": "385c08fa432d794de6f72c3f27852472f6507538d225d6589e1c47bc9259e9ea",
+          "before": "ece2c1a2ac397576c77f8862409e59e389c663559b88e0f6fb050154d9f56d15",
+          "after": "3684255ac060ae5bbdf8add41827aa399b8cb5490a265257844b9f896944533b"
+        },
+        "add/3-2": {
+          "definition": "fb99fc875bfe50bdac8f63c16b2d69860410305f154ac0023defe14999b15f07",
+          "before": "ece2c1a2ac397576c77f8862409e59e389c663559b88e0f6fb050154d9f56d15",
+          "after": "3684255ac060ae5bbdf8add41827aa399b8cb5490a265257844b9f896944533b"
+        },
+        "add/3-3": {
+          "definition": "7b2313dc88104e7a7890202889ddbafe3ef23a6972afb2e277f52d82b82c4a3e",
+          "before": "ece2c1a2ac397576c77f8862409e59e389c663559b88e0f6fb050154d9f56d15",
+          "after": "3684255ac060ae5bbdf8add41827aa399b8cb5490a265257844b9f896944533b"
+        },
+        "add/3-4": {
+          "definition": "ab6c5d4930d4a418f0f8bab46ff67b5098c5ec9afb48ca259af1223071b06211",
+          "before": "ece2c1a2ac397576c77f8862409e59e389c663559b88e0f6fb050154d9f56d15",
+          "after": "3684255ac060ae5bbdf8add41827aa399b8cb5490a265257844b9f896944533b"
+        },
+        "add/3-5": {
+          "definition": "9f5376d142a518ff78f7c0ea0d6a9e6144ff91574d2c1a858bc73251d106c5e8",
+          "before": "ece2c1a2ac397576c77f8862409e59e389c663559b88e0f6fb050154d9f56d15",
+          "after": "3684255ac060ae5bbdf8add41827aa399b8cb5490a265257844b9f896944533b"
+        },
+        "add/3-6": {
+          "definition": "b83a4a0e813672fb9cd3cb21277abf8037b84332f2db9ef9813c9e581bb04341",
+          "before": "ece2c1a2ac397576c77f8862409e59e389c663559b88e0f6fb050154d9f56d15",
+          "after": "3684255ac060ae5bbdf8add41827aa399b8cb5490a265257844b9f896944533b"
+        },
+        "add/4-1": {
+          "definition": "0a2ccc9fead493f4d4a76142bbbe97a4f659c4d3c458ca1da90cb4912fca6a90",
+          "before": "ece2c1a2ac397576c77f8862409e59e389c663559b88e0f6fb050154d9f56d15",
+          "after": "3684255ac060ae5bbdf8add41827aa399b8cb5490a265257844b9f896944533b"
+        },
+        "add/4-2": {
+          "definition": "64a9df48c3a8c190d629f2a168ddf16b2abc0027fec0e2e87a3e73a4389aee3c",
+          "before": "ece2c1a2ac397576c77f8862409e59e389c663559b88e0f6fb050154d9f56d15",
+          "after": "3684255ac060ae5bbdf8add41827aa399b8cb5490a265257844b9f896944533b"
+        },
+        "add/4-3": {
+          "definition": "54bedad0e5aa0ac6a930edd0ce269de0ea401320f3929d57028d47a6e1ec3acc",
+          "before": "ece2c1a2ac397576c77f8862409e59e389c663559b88e0f6fb050154d9f56d15",
+          "after": "3684255ac060ae5bbdf8add41827aa399b8cb5490a265257844b9f896944533b"
+        },
+        "add/4-4": {
+          "definition": "39614303bc63a259c38cc68f8dc752b9ccc91bc1ce4f8efcd91bb8edeadcbdb7",
+          "before": "ece2c1a2ac397576c77f8862409e59e389c663559b88e0f6fb050154d9f56d15",
+          "after": "3684255ac060ae5bbdf8add41827aa399b8cb5490a265257844b9f896944533b"
+        },
+        "add/4-5": {
+          "definition": "94f869c96bbaabfb9bb13024337f2dc7a551bfabe29e18b937128bb63c8c9684",
+          "before": "ece2c1a2ac397576c77f8862409e59e389c663559b88e0f6fb050154d9f56d15",
+          "after": "3684255ac060ae5bbdf8add41827aa399b8cb5490a265257844b9f896944533b"
+        },
+        "add/5-1": {
+          "definition": "ebcac76ccc15bd4c2ef7425b79ca6d2e4285f609578608ce991b5876541e769d",
+          "before": "ece2c1a2ac397576c77f8862409e59e389c663559b88e0f6fb050154d9f56d15",
+          "after": "3684255ac060ae5bbdf8add41827aa399b8cb5490a265257844b9f896944533b"
+        },
+        "add/5-2": {
+          "definition": "fe448652c7a098ad542813366f2b3e9680169a2b4639fa981cc49acf336601d0",
+          "before": "ece2c1a2ac397576c77f8862409e59e389c663559b88e0f6fb050154d9f56d15",
+          "after": "3684255ac060ae5bbdf8add41827aa399b8cb5490a265257844b9f896944533b"
+        },
+        "add/5-3": {
+          "definition": "9400a6dd116614a05521f4d7ba0acce634c08bb957ea681d2419a95503479b26",
+          "before": "ece2c1a2ac397576c77f8862409e59e389c663559b88e0f6fb050154d9f56d15",
+          "after": "3684255ac060ae5bbdf8add41827aa399b8cb5490a265257844b9f896944533b"
+        },
+        "add/5-4": {
+          "definition": "d8f4094f15f3bff247de722a13f712d25afdbc3254dd0d0b072fecbe985ab9dc",
+          "before": "ece2c1a2ac397576c77f8862409e59e389c663559b88e0f6fb050154d9f56d15",
+          "after": "3684255ac060ae5bbdf8add41827aa399b8cb5490a265257844b9f896944533b"
+        },
+        "add/6-1": {
+          "definition": "43cb9d0a186a96b6b0a1dea224b162bee590491534cc2960496844df27432356",
+          "before": "ece2c1a2ac397576c77f8862409e59e389c663559b88e0f6fb050154d9f56d15",
+          "after": "3684255ac060ae5bbdf8add41827aa399b8cb5490a265257844b9f896944533b"
+        },
+        "add/6-2": {
+          "definition": "d169a502deb215405c361b3c8da121d105a38f49fb2bf0254b70c6577856836b",
+          "before": "ece2c1a2ac397576c77f8862409e59e389c663559b88e0f6fb050154d9f56d15",
+          "after": "3684255ac060ae5bbdf8add41827aa399b8cb5490a265257844b9f896944533b"
+        },
+        "add/6-3": {
+          "definition": "7a693b96bc064e6b8bcd40812c04c95063312664e48dde7194b6541c26b2e330",
+          "before": "ece2c1a2ac397576c77f8862409e59e389c663559b88e0f6fb050154d9f56d15",
+          "after": "3684255ac060ae5bbdf8add41827aa399b8cb5490a265257844b9f896944533b"
+        },
+        "add/7-1": {
+          "definition": "6dfebc79f785a587ea7f0753446b8d3389c11596f9e0518317b134f9d7a2584f",
+          "before": "ece2c1a2ac397576c77f8862409e59e389c663559b88e0f6fb050154d9f56d15",
+          "after": "3684255ac060ae5bbdf8add41827aa399b8cb5490a265257844b9f896944533b"
+        },
+        "add/7-2": {
+          "definition": "cf6b608d4e4530a2a823de6f26b26c2f73bc1ff3e54d4825e5a93720eda035c7",
+          "before": "ece2c1a2ac397576c77f8862409e59e389c663559b88e0f6fb050154d9f56d15",
+          "after": "3684255ac060ae5bbdf8add41827aa399b8cb5490a265257844b9f896944533b"
+        },
+        "add/8-1": {
+          "definition": "7b9392364b9df0bc408673e19f5d5f98f889665cd59320d2c766c938229ce70b",
+          "before": "ece2c1a2ac397576c77f8862409e59e389c663559b88e0f6fb050154d9f56d15",
+          "after": "3684255ac060ae5bbdf8add41827aa399b8cb5490a265257844b9f896944533b"
+        },
+        "rocket/5-1": {
+          "definition": "da9a9d8d1829baaee32ee29f61bec797831ece61d9c6d5602612bab630f20671",
+          "before": "db31aba96901f2abbf762df6306499431a543f37d2eebe9aef946aac2d9b96c1",
+          "after": "092d68934cc7c03c138868d32be06a8dc9acfb47bf105a6853ae50e6a2503daf"
+        },
+        "rocket/5-2": {
+          "definition": "9471eefb0f749645fc9106509339a19066e501234a71764394b6dfbdc2a4d92b",
+          "before": "db31aba96901f2abbf762df6306499431a543f37d2eebe9aef946aac2d9b96c1",
+          "after": "092d68934cc7c03c138868d32be06a8dc9acfb47bf105a6853ae50e6a2503daf"
+        },
+        "rocket/5-3": {
+          "definition": "2a36a7fc817267ac07417c55823917abbb0508c429b7bfc590bb4d278deea089",
+          "before": "db31aba96901f2abbf762df6306499431a543f37d2eebe9aef946aac2d9b96c1",
+          "after": "092d68934cc7c03c138868d32be06a8dc9acfb47bf105a6853ae50e6a2503daf"
+        },
+        "rocket/5-4": {
+          "definition": "c7472d89310be2279533b13c1953bbcd25b04aebdc70bd4ebffb90fa4f035ce7",
+          "before": "db31aba96901f2abbf762df6306499431a543f37d2eebe9aef946aac2d9b96c1",
+          "after": "092d68934cc7c03c138868d32be06a8dc9acfb47bf105a6853ae50e6a2503daf"
+        },
+        "rocket/6-1": {
+          "definition": "1a11342d2a7ed9b8fd6d6fa7b75c2751d216a81acbfba5eec9fc371f11d16360",
+          "before": "db31aba96901f2abbf762df6306499431a543f37d2eebe9aef946aac2d9b96c1",
+          "after": "092d68934cc7c03c138868d32be06a8dc9acfb47bf105a6853ae50e6a2503daf"
+        },
+        "rocket/6-2": {
+          "definition": "080b019398f8e0c5a21b46ae568ff1bb7767931d26eaa2895f9bbffb5c188f44",
+          "before": "db31aba96901f2abbf762df6306499431a543f37d2eebe9aef946aac2d9b96c1",
+          "after": "092d68934cc7c03c138868d32be06a8dc9acfb47bf105a6853ae50e6a2503daf"
+        },
+        "rocket/6-3": {
+          "definition": "292e3e03d716d4c507e084a8dea45f05686164dac5534a24bed663ff64695622",
+          "before": "db31aba96901f2abbf762df6306499431a543f37d2eebe9aef946aac2d9b96c1",
+          "after": "092d68934cc7c03c138868d32be06a8dc9acfb47bf105a6853ae50e6a2503daf"
+        },
+        "rocket/6-4": {
+          "definition": "9227d3542333118016619f7b63de6232d103525968a293344a2a5e4ee27b71f5",
+          "before": "db31aba96901f2abbf762df6306499431a543f37d2eebe9aef946aac2d9b96c1",
+          "after": "092d68934cc7c03c138868d32be06a8dc9acfb47bf105a6853ae50e6a2503daf"
+        },
+        "rocket/6-5": {
+          "definition": "d817c26e5dcd4de1a87a63a2c9e387eeddf0af10f653c06ed9384c55c5300485",
+          "before": "db31aba96901f2abbf762df6306499431a543f37d2eebe9aef946aac2d9b96c1",
+          "after": "092d68934cc7c03c138868d32be06a8dc9acfb47bf105a6853ae50e6a2503daf"
+        },
+        "rocket/7-1": {
+          "definition": "049e35c3e5207b470df6867cfd52ba11ed95357a7d11cf4b1fbae93d5d99583e",
+          "before": "db31aba96901f2abbf762df6306499431a543f37d2eebe9aef946aac2d9b96c1",
+          "after": "092d68934cc7c03c138868d32be06a8dc9acfb47bf105a6853ae50e6a2503daf"
+        },
+        "rocket/7-2": {
+          "definition": "3c5855c6ce10646497364d3641eb1fae8c3b6b2f9506079aec18db7d69da5c47",
+          "before": "db31aba96901f2abbf762df6306499431a543f37d2eebe9aef946aac2d9b96c1",
+          "after": "092d68934cc7c03c138868d32be06a8dc9acfb47bf105a6853ae50e6a2503daf"
+        },
+        "rocket/7-3": {
+          "definition": "2a070201cad43d756969d38a3fa14be73378659d924db2aff5119ebf4efd2f1d",
+          "before": "db31aba96901f2abbf762df6306499431a543f37d2eebe9aef946aac2d9b96c1",
+          "after": "092d68934cc7c03c138868d32be06a8dc9acfb47bf105a6853ae50e6a2503daf"
+        },
+        "rocket/7-4": {
+          "definition": "641d9a49076f9304f4a35a0accbacb2f2c5f0cd424e51e5211218b5162ab164a",
+          "before": "db31aba96901f2abbf762df6306499431a543f37d2eebe9aef946aac2d9b96c1",
+          "after": "092d68934cc7c03c138868d32be06a8dc9acfb47bf105a6853ae50e6a2503daf"
+        },
+        "rocket/7-5": {
+          "definition": "9a193bb149ba488aa71a7cf71070f8490fafb6b2272adbc8fab693ab51fbe8f4",
+          "before": "db31aba96901f2abbf762df6306499431a543f37d2eebe9aef946aac2d9b96c1",
+          "after": "092d68934cc7c03c138868d32be06a8dc9acfb47bf105a6853ae50e6a2503daf"
+        },
+        "rocket/7-6": {
+          "definition": "eaf3e9de4d7158a48612a9a228ee60ec8cc98e846ef4c4c22a4fe89733ad6ee4",
+          "before": "db31aba96901f2abbf762df6306499431a543f37d2eebe9aef946aac2d9b96c1",
+          "after": "092d68934cc7c03c138868d32be06a8dc9acfb47bf105a6853ae50e6a2503daf"
+        },
+        "rocket/8-1": {
+          "definition": "ad3c061a958e475ef045ab0f1343053293030665e10de45f450f783a3a7b1093",
+          "before": "db31aba96901f2abbf762df6306499431a543f37d2eebe9aef946aac2d9b96c1",
+          "after": "092d68934cc7c03c138868d32be06a8dc9acfb47bf105a6853ae50e6a2503daf"
+        },
+        "rocket/8-2": {
+          "definition": "dac363750a305af7e02027a129b89515ddd9b1f4fe6f0f5f89871be51b3a716d",
+          "before": "db31aba96901f2abbf762df6306499431a543f37d2eebe9aef946aac2d9b96c1",
+          "after": "092d68934cc7c03c138868d32be06a8dc9acfb47bf105a6853ae50e6a2503daf"
+        },
+        "rocket/8-3": {
+          "definition": "2ddfc4e30145b3ea079bd6a3dd1f2c0fb85328e10fa720c745b631d407290059",
+          "before": "db31aba96901f2abbf762df6306499431a543f37d2eebe9aef946aac2d9b96c1",
+          "after": "092d68934cc7c03c138868d32be06a8dc9acfb47bf105a6853ae50e6a2503daf"
+        },
+        "rocket/8-4": {
+          "definition": "482541b55dfe053cc529c9e1cd8be4de82ce02e8341229f23045dc3c552f3c7b",
+          "before": "db31aba96901f2abbf762df6306499431a543f37d2eebe9aef946aac2d9b96c1",
+          "after": "092d68934cc7c03c138868d32be06a8dc9acfb47bf105a6853ae50e6a2503daf"
+        },
+        "rocket/8-5": {
+          "definition": "849cce89f75d4df257c339eea6676d108976acfee386a09d562ebaaabb7455e7",
+          "before": "db31aba96901f2abbf762df6306499431a543f37d2eebe9aef946aac2d9b96c1",
+          "after": "092d68934cc7c03c138868d32be06a8dc9acfb47bf105a6853ae50e6a2503daf"
+        },
+        "rocket/8-6": {
+          "definition": "f2c4f00c6326de8f7889a5c74ff22aefbc9e5b34c3821c6be2358b678a481813",
+          "before": "db31aba96901f2abbf762df6306499431a543f37d2eebe9aef946aac2d9b96c1",
+          "after": "092d68934cc7c03c138868d32be06a8dc9acfb47bf105a6853ae50e6a2503daf"
+        },
+        "rocket/8-7": {
+          "definition": "e4ef9a3490fd0db279fae9da5461812705704e5239c0d4a5a81230bbc5e95a96",
+          "before": "db31aba96901f2abbf762df6306499431a543f37d2eebe9aef946aac2d9b96c1",
+          "after": "092d68934cc7c03c138868d32be06a8dc9acfb47bf105a6853ae50e6a2503daf"
+        },
+        "rocket/9-1": {
+          "definition": "9dee3dc5158aed1e319807962a7d14a67bb653ece3f0db7b2f02c816e6e316a6",
+          "before": "db31aba96901f2abbf762df6306499431a543f37d2eebe9aef946aac2d9b96c1",
+          "after": "092d68934cc7c03c138868d32be06a8dc9acfb47bf105a6853ae50e6a2503daf"
+        },
+        "rocket/9-2": {
+          "definition": "a6176379cd2bef50767d747cf3e14899189e8145979d02258562a4860aab52e2",
+          "before": "db31aba96901f2abbf762df6306499431a543f37d2eebe9aef946aac2d9b96c1",
+          "after": "092d68934cc7c03c138868d32be06a8dc9acfb47bf105a6853ae50e6a2503daf"
+        },
+        "rocket/9-3": {
+          "definition": "569653fbe9fb23b6219bb88086f1c722cb26c33f9888ae89bd0ae31cd303ec1c",
+          "before": "db31aba96901f2abbf762df6306499431a543f37d2eebe9aef946aac2d9b96c1",
+          "after": "092d68934cc7c03c138868d32be06a8dc9acfb47bf105a6853ae50e6a2503daf"
+        },
+        "rocket/9-4": {
+          "definition": "bb7658f765e29736665c50c81c3f104fffad93cfedf79db19f2765bb72413e09",
+          "before": "db31aba96901f2abbf762df6306499431a543f37d2eebe9aef946aac2d9b96c1",
+          "after": "092d68934cc7c03c138868d32be06a8dc9acfb47bf105a6853ae50e6a2503daf"
+        },
+        "rocket/9-5": {
+          "definition": "abdc6b8e097b43462646d7b0bf07d1eb40160fc1b19a46de9e191e57c605e7df",
+          "before": "db31aba96901f2abbf762df6306499431a543f37d2eebe9aef946aac2d9b96c1",
+          "after": "092d68934cc7c03c138868d32be06a8dc9acfb47bf105a6853ae50e6a2503daf"
+        },
+        "rocket/9-6": {
+          "definition": "50ebfc1fe06c47efa3d2a8b6d240c4f01e236c92a956961589346d4cf551c04e",
+          "before": "db31aba96901f2abbf762df6306499431a543f37d2eebe9aef946aac2d9b96c1",
+          "after": "092d68934cc7c03c138868d32be06a8dc9acfb47bf105a6853ae50e6a2503daf"
+        },
+        "rocket/9-7": {
+          "definition": "252b72fb39c13df788f9c2f79f08e13ab41f30c98e7e3a0b4838a4b6afaa3034",
+          "before": "db31aba96901f2abbf762df6306499431a543f37d2eebe9aef946aac2d9b96c1",
+          "after": "092d68934cc7c03c138868d32be06a8dc9acfb47bf105a6853ae50e6a2503daf"
+        },
+        "rocket/9-8": {
+          "definition": "f0645c1edb4c8bd8d4b84ea522150a88d723382e6c75515d8627045e6af8d774",
+          "before": "db31aba96901f2abbf762df6306499431a543f37d2eebe9aef946aac2d9b96c1",
+          "after": "092d68934cc7c03c138868d32be06a8dc9acfb47bf105a6853ae50e6a2503daf"
+        },
+        "rocket/10-1": {
+          "definition": "17602d9c27959ca61406aa0672d0091cec259dea340859a07737c3ab139bfedb",
+          "before": "db31aba96901f2abbf762df6306499431a543f37d2eebe9aef946aac2d9b96c1",
+          "after": "092d68934cc7c03c138868d32be06a8dc9acfb47bf105a6853ae50e6a2503daf"
+        },
+        "rocket/10-2": {
+          "definition": "af2bcdc130da8933a58280d92e355f25708c2f247e3bf6ab63703a3b233a5797",
+          "before": "db31aba96901f2abbf762df6306499431a543f37d2eebe9aef946aac2d9b96c1",
+          "after": "092d68934cc7c03c138868d32be06a8dc9acfb47bf105a6853ae50e6a2503daf"
+        },
+        "rocket/10-3": {
+          "definition": "2d5c4077645a83ca2dc85e614232474f1540b4d2d358ad371c7759c533a67541",
+          "before": "db31aba96901f2abbf762df6306499431a543f37d2eebe9aef946aac2d9b96c1",
+          "after": "092d68934cc7c03c138868d32be06a8dc9acfb47bf105a6853ae50e6a2503daf"
+        },
+        "rocket/10-4": {
+          "definition": "36a8005d1053ac859cfbe172f14e02713313100204e14ee9bf63ed066de401ea",
+          "before": "db31aba96901f2abbf762df6306499431a543f37d2eebe9aef946aac2d9b96c1",
+          "after": "092d68934cc7c03c138868d32be06a8dc9acfb47bf105a6853ae50e6a2503daf"
+        },
+        "rocket/10-5": {
+          "definition": "0634e88a175d1c4e0d818fa40671d68968590247932c6eca0e3efb029128e0a6",
+          "before": "db31aba96901f2abbf762df6306499431a543f37d2eebe9aef946aac2d9b96c1",
+          "after": "092d68934cc7c03c138868d32be06a8dc9acfb47bf105a6853ae50e6a2503daf"
+        },
+        "rocket/10-6": {
+          "definition": "c70a393244f01fdcbed8c800b2e2ff7ffde741678326950ac747784b4112a5c4",
+          "before": "db31aba96901f2abbf762df6306499431a543f37d2eebe9aef946aac2d9b96c1",
+          "after": "092d68934cc7c03c138868d32be06a8dc9acfb47bf105a6853ae50e6a2503daf"
+        },
+        "rocket/10-7": {
+          "definition": "05d3eef119fdcf66d60ad6709aa42dcac1096b42666e2905e96c7db3711e2c8b",
+          "before": "db31aba96901f2abbf762df6306499431a543f37d2eebe9aef946aac2d9b96c1",
+          "after": "092d68934cc7c03c138868d32be06a8dc9acfb47bf105a6853ae50e6a2503daf"
+        },
+        "rocket/10-8": {
+          "definition": "a0333fe5ec09f9fe3a9aea62040ebb145d5fc12259eafa830fc2e4033a01875d",
+          "before": "db31aba96901f2abbf762df6306499431a543f37d2eebe9aef946aac2d9b96c1",
+          "after": "092d68934cc7c03c138868d32be06a8dc9acfb47bf105a6853ae50e6a2503daf"
+        },
+        "rocket/10-9": {
+          "definition": "4e6be9d4e1a1f53805b7294aa21b76fe5c795aa2f0d8fabab3799f4ebde1aefe",
+          "before": "db31aba96901f2abbf762df6306499431a543f37d2eebe9aef946aac2d9b96c1",
+          "after": "092d68934cc7c03c138868d32be06a8dc9acfb47bf105a6853ae50e6a2503daf"
+        },
+        "picnic/2-1": {
+          "definition": "7cdf0e91a09f297ef4f8870e190bcbbd5de43926f92a5ce284870874e0ec5332",
+          "before": "285c7d7b9be01a12833044b6096f931db4d0a1b9693b4ea18bd1f5b2b9c401d9",
+          "after": "af1acefd1a7f81bfbf2db6b1f28a8d3266c8f07584d1adc325063e3e5de527a0"
+        },
+        "picnic/2-2": {
+          "definition": "81a9952338d8c9ec84bf6edd14043bae48a3d74505466ecd4f96a5e20ea86da9",
+          "before": "285c7d7b9be01a12833044b6096f931db4d0a1b9693b4ea18bd1f5b2b9c401d9",
+          "after": "af1acefd1a7f81bfbf2db6b1f28a8d3266c8f07584d1adc325063e3e5de527a0"
+        },
+        "picnic/2-3": {
+          "definition": "484b4d9f18f751a5a908c64d6ba8861b4ffa19de80ebdf810df6f656340aead4",
+          "before": "285c7d7b9be01a12833044b6096f931db4d0a1b9693b4ea18bd1f5b2b9c401d9",
+          "after": "af1acefd1a7f81bfbf2db6b1f28a8d3266c8f07584d1adc325063e3e5de527a0"
+        },
+        "picnic/2-4": {
+          "definition": "ed887c77dd483c17561ec1f36e47ac79bd279149df7ec8a891b239eb8f6f1ea8",
+          "before": "285c7d7b9be01a12833044b6096f931db4d0a1b9693b4ea18bd1f5b2b9c401d9",
+          "after": "af1acefd1a7f81bfbf2db6b1f28a8d3266c8f07584d1adc325063e3e5de527a0"
+        },
+        "picnic/2-5": {
+          "definition": "9841c9b34854f3738d84d4b4d6893e792d14fd4ea182cb7e6417bdb1950b92f4",
+          "before": "285c7d7b9be01a12833044b6096f931db4d0a1b9693b4ea18bd1f5b2b9c401d9",
+          "after": "af1acefd1a7f81bfbf2db6b1f28a8d3266c8f07584d1adc325063e3e5de527a0"
+        },
+        "picnic/2-6": {
+          "definition": "82fc0b78d14d391ce7011d5ab533fc989d0029f8b8041a12e22851cb676b82d4",
+          "before": "285c7d7b9be01a12833044b6096f931db4d0a1b9693b4ea18bd1f5b2b9c401d9",
+          "after": "af1acefd1a7f81bfbf2db6b1f28a8d3266c8f07584d1adc325063e3e5de527a0"
+        },
+        "picnic/2-7": {
+          "definition": "62946bf99bd9bd648200562a6d4559cd8bfe118f0eaf31a4fab926b5d325ed9e",
+          "before": "285c7d7b9be01a12833044b6096f931db4d0a1b9693b4ea18bd1f5b2b9c401d9",
+          "after": "af1acefd1a7f81bfbf2db6b1f28a8d3266c8f07584d1adc325063e3e5de527a0"
+        },
+        "picnic/2-8": {
+          "definition": "86f46d19e0a4c557728c67f24342eaf08aaaf71347d5bbe5fecd12534acb495b",
+          "before": "285c7d7b9be01a12833044b6096f931db4d0a1b9693b4ea18bd1f5b2b9c401d9",
+          "after": "af1acefd1a7f81bfbf2db6b1f28a8d3266c8f07584d1adc325063e3e5de527a0"
+        },
+        "picnic/2-9": {
+          "definition": "aa5ad2d9f1978c9a84f6d3d2e9ebfaf3c1d3f7df5246528d6d342c185172ffb8",
+          "before": "285c7d7b9be01a12833044b6096f931db4d0a1b9693b4ea18bd1f5b2b9c401d9",
+          "after": "af1acefd1a7f81bfbf2db6b1f28a8d3266c8f07584d1adc325063e3e5de527a0"
+        },
+        "picnic/2-10": {
+          "definition": "bfcd340f1267630b66904874dafa2c6d570203aee0dbef3dac9829a6a7ee5b5e",
+          "before": "285c7d7b9be01a12833044b6096f931db4d0a1b9693b4ea18bd1f5b2b9c401d9",
+          "after": "af1acefd1a7f81bfbf2db6b1f28a8d3266c8f07584d1adc325063e3e5de527a0"
+        },
+        "picnic/3-1": {
+          "definition": "9599ce1fe04e04275d4d12e5a0043c287f5655957f6d1b165ae6514bb2792ca4",
+          "before": "285c7d7b9be01a12833044b6096f931db4d0a1b9693b4ea18bd1f5b2b9c401d9",
+          "after": "af1acefd1a7f81bfbf2db6b1f28a8d3266c8f07584d1adc325063e3e5de527a0"
+        },
+        "picnic/3-2": {
+          "definition": "81c74a99d97f33583c224fe225ed5b96b5daf84edf625ce5d9e001dafc97a193",
+          "before": "285c7d7b9be01a12833044b6096f931db4d0a1b9693b4ea18bd1f5b2b9c401d9",
+          "after": "af1acefd1a7f81bfbf2db6b1f28a8d3266c8f07584d1adc325063e3e5de527a0"
+        },
+        "picnic/3-3": {
+          "definition": "42b930393313a3e9c4385213b8a20fc75cf035b50410a49f50ac297d937cb256",
+          "before": "285c7d7b9be01a12833044b6096f931db4d0a1b9693b4ea18bd1f5b2b9c401d9",
+          "after": "af1acefd1a7f81bfbf2db6b1f28a8d3266c8f07584d1adc325063e3e5de527a0"
+        },
+        "picnic/3-4": {
+          "definition": "13dfddda031c025458eed2f4c8ad7e917e798860e0776d336b4494fc23b5ccbd",
+          "before": "285c7d7b9be01a12833044b6096f931db4d0a1b9693b4ea18bd1f5b2b9c401d9",
+          "after": "af1acefd1a7f81bfbf2db6b1f28a8d3266c8f07584d1adc325063e3e5de527a0"
+        },
+        "picnic/3-5": {
+          "definition": "dc0ddf48b32698a0a5df0e120ee7beec5962aaeb0b5ba61da8f3aa341db55ddd",
+          "before": "285c7d7b9be01a12833044b6096f931db4d0a1b9693b4ea18bd1f5b2b9c401d9",
+          "after": "af1acefd1a7f81bfbf2db6b1f28a8d3266c8f07584d1adc325063e3e5de527a0"
+        },
+        "picnic/3-6": {
+          "definition": "0a80e00f8ae8846ca8d1b07de5dd6d8809b767f04fff5503678ae4e71b45856a",
+          "before": "285c7d7b9be01a12833044b6096f931db4d0a1b9693b4ea18bd1f5b2b9c401d9",
+          "after": "af1acefd1a7f81bfbf2db6b1f28a8d3266c8f07584d1adc325063e3e5de527a0"
+        },
+        "picnic/started-2-3": {
+          "definition": "8b9f88a1903e2e47099c0754bc0fab6e66e042e5f081de21cf9a6dee70e18dfd",
+          "before": "285c7d7b9be01a12833044b6096f931db4d0a1b9693b4ea18bd1f5b2b9c401d9",
+          "after": "af1acefd1a7f81bfbf2db6b1f28a8d3266c8f07584d1adc325063e3e5de527a0"
+        },
+        "picnic/started-2-4": {
+          "definition": "843ebb4ae97c8f398e5adb55855072af187966862c63973b500e1a811d008149",
+          "before": "285c7d7b9be01a12833044b6096f931db4d0a1b9693b4ea18bd1f5b2b9c401d9",
+          "after": "af1acefd1a7f81bfbf2db6b1f28a8d3266c8f07584d1adc325063e3e5de527a0"
+        },
+        "picnic/started-3-2": {
+          "definition": "8e60bbf68ce216abee9cf9bc1bb347ca408d072f399f5d7fc80c116f639da245",
+          "before": "285c7d7b9be01a12833044b6096f931db4d0a1b9693b4ea18bd1f5b2b9c401d9",
+          "after": "af1acefd1a7f81bfbf2db6b1f28a8d3266c8f07584d1adc325063e3e5de527a0"
+        },
+        "syllable/word-0": {
+          "definition": "8153a3a02a534b7e78481f36f54ec6617268d58b6bd762619a580dfcda742267",
+          "before": "d9363ff215a3d014770860fb8fd506557e0325199f3c73b9887cf204efd9cfd9",
+          "after": "4dafc200b1e47d523498f1d4891ad328da2e44bf9ba336e8461f74eebba843e0"
+        },
+        "syllable/word-1": {
+          "definition": "617694c37d307131fea932e3b64e0cca737c783eab8ff0df5e8277e24b70f6a0",
+          "before": "5208ea81b55224ccf37bd4a6468e15853765fbe913682adba077bbe58d5a8ae2",
+          "after": "b0011f72255730db8fb15d37bf5b58ab883575dd1f7af80ca7d42bebda0e0ca7"
+        },
+        "syllable/word-2": {
+          "definition": "91ea8363a014b3d0d9222276cdbdd08e49a5db511b69abe783552249751bb82a",
+          "before": "3fcd6db80e3d0e6fc82db24dc653e1289ad171e5695ecc99b4722ec83b311f22",
+          "after": "744e8316af7c494cf34f0e8f27f003ec64cacb32e8b7df6be068d3fe63385f98"
+        },
+        "syllable/word-3": {
+          "definition": "12e7127985672ccba56b9b2db21242f90c73ebe96ec173e4eaa6efe2d90f7748",
+          "before": "142f748d55b98a7dfcef6b79c6ed9379e6f6bbb23e6b8778de149069236cfc03",
+          "after": "83e770eb995fa53986d3f5e78e3a2af933eab27a1d4b1f4dd4453b750ac548cd"
+        },
+        "syllable/word-4": {
+          "definition": "78cd088822c593d3622252dccdb3f726fcbe74eb629054ecb8d3187e5015966d",
+          "before": "a433cbc891b0d86eda5ef3c202d59a70074662b4ffc3dc17a3b94856260ae231",
+          "after": "f5e2ff67d47e51cb4d9ca7704986ec13a135bff855afa4834b229f3b506f24cd"
+        },
+        "syllable/word-5": {
+          "definition": "ca1d8952645fdb7cb0548a65ff4a8f66e9696c6d06b20f78fe409bf827a2a2a2",
+          "before": "17d19eb88b618f9928877abf9811f76f7f51d15cb853860f3f5fb2684ab2ec0d",
+          "after": "17a0dd91321c698563d8f01f06e4d4f23799be7c217b79ad24425b988fd7c747"
+        },
+        "syllable/word-6": {
+          "definition": "b3c84c441bfe6badb750aa44a018eed5624ca41799e0772d0a96b252c78a701c",
+          "before": "d927203d72a11ea4b80c9f39bd78282f45e1af9b2829ecd01f658961853cff68",
+          "after": "41b84e1537d6b6e59d9ca57630b9ed43c4ce04b1f1d5524890227ea3d5b107c0"
+        },
+        "syllable/word-7": {
+          "definition": "d8d497e6c06cd15f460635174ad80a6b69050e79c48074c5145738bd8c02570d",
+          "before": "12b47789ac259430ff92901872c5cb50bc7fb481115f35ba906602919826636d",
+          "after": "730f0e756d5ca727013b9db3fd672745a204f011e27dbe44aaf58a20598513f6"
+        },
+        "syllable/word-8": {
+          "definition": "ad8da20dced311807b5102771d066f01c3db873560f1fa75ab3813f4b13dba9f",
+          "before": "eeb450e6a7756b2297bc11f42e3e5da2d4973156c12ffee276c50802c991b16b",
+          "after": "694889ec16c2aeca08b0376c7c03d44753643639d9a224603fddc3184173fb2a"
+        },
+        "syllable/word-9": {
+          "definition": "fb9919200f231be65256c6999080f8130baeaddb3d0e1314c891d67dd125973e",
+          "before": "72d83e651831723de0f03abb64e996eacbc494bfa105c7844e82bf39978ffc19",
+          "after": "9ddde364a2f5179a40bb2163bba6116bcfbb1b079ee6aadbb82d16ee71c79efa"
+        },
+        "syllable/word-10": {
+          "definition": "4f2dfdfe1cdecba114a31b64dbb64fc5c26a945e732d29978a38e04a0328d537",
+          "before": "5dc0003329bfb6b5ccc37110b0cfde6efc69154a7e5f88b6f5166b9467801e07",
+          "after": "f9bd02dff95958cbb05ab13c233581db43b828da1833d05314dd50a2a7ff332e"
+        },
+        "syllable/word-11": {
+          "definition": "5129ea99f8b4131d835e83378a2c669810d43e8910d53f4ceb9817bc0fd8d9f0",
+          "before": "a3e273344541f4a59c79cf2ffc80ce7862f44a89f68e0b70726397ec8a08165e",
+          "after": "d47271a26d42136ae956d38809bdb3a561146dea8ea9e97c295a33bc13d5cb18"
+        },
+        "syllable/word-12": {
+          "definition": "db93dd18616ce688d22f095bd0d5c6cda4b7d1a38772fd3c2ce41f91e23575a0",
+          "before": "4c55b61516151f07781e1a7484d743e6a60d9e4ac15810e697ded3a62dc68fa9",
+          "after": "8d8204e6e971bc3cb501dae07c4c702d1fa2bc631475414cecf93c3ec4b40aba"
+        },
+        "syllable/word-13": {
+          "definition": "836614877f7493412ff60b1777324d20b32636bad877f7ec918862fda81873c9",
+          "before": "27ab16b285f5c51b9c57e836f1429daf4f69b1197080397d42168fc18d73a0b1",
+          "after": "d01d6d00320b3e348aab2d1b6d90527c771f8a1d12023e2492c438a5ac886be2"
+        },
+        "syllable/word-14": {
+          "definition": "b08abca93e457bf3d28ce7ea5174eca79d9785a181373fcf3dc1273b734ad0ef",
+          "before": "6cf196dfbd97a471a38a06ee8bb71ba6a685b8265fc6f7fcf96a7cecef2cfa3e",
+          "after": "00aa95072b60a303484f466862552064dd874453739beebdc1440a2a994f17c6"
+        },
+        "syllable/word-15": {
+          "definition": "59c248e56c5c58e8a12364bfba98b0379827ae4f35c72990a09d2daf8d5678b8",
+          "before": "4b1ed9a0c3bfbefcd601f82d2e1bb94b9d5ae1d4f7e8cd710de1d458f882998e",
+          "after": "cc120946adc39f0ebae80f14ab9b4927d7f891b49220219713557932d129af66"
+        },
+        "syllable/word-16": {
+          "definition": "d77e931e94057cefadcd4061c2c0d331f28406bc9ade261d66b753b5019db4b1",
+          "before": "9de6747e69318f982f6ce814a15b243aaf9815f8f31bff710384621df496a16d",
+          "after": "59e8659454fe3a1ac62cd58011697b7b5191b05bb2f896fb6517733fc32cac79"
+        },
+        "syllable/word-17": {
+          "definition": "a05dee4493752514ab474235aff1b09af67b4d9f83a4d64bc32120ad26891715",
+          "before": "33fb356e840b637e5e8892b5deaee270404767798ffb9b802cc02663333208e2",
+          "after": "7f971aeab7489910d6298e555cd1c5aaab1c8bb88d47e872dfdf463fa404241c"
+        },
+        "syllable/word-18": {
+          "definition": "336c1716c6540635187473a09ee5ccd0af3af4680cecf4412738a84904391329",
+          "before": "d927203d72a11ea4b80c9f39bd78282f45e1af9b2829ecd01f658961853cff68",
+          "after": "41b84e1537d6b6e59d9ca57630b9ed43c4ce04b1f1d5524890227ea3d5b107c0"
+        },
+        "syllable/word-19": {
+          "definition": "ef761d5792c254a169145b3275612b1510403e1a86cdecd66f084f7617eb5b55",
+          "before": "2847e479de9f3650be3a5dfe3d1df6c2b7d24fe95c66b32c6a1e9952f782774d",
+          "after": "f679b96560cb08120b69e965ed948fc074ab027995f8f50bb8e2931a340d9f74"
+        },
+        "syllable/word-20": {
+          "definition": "4ffd0917ca0a30212510bf521ea108185510454e70bca17254c837b327aa7001",
+          "before": "502e8df9b499878e526f8492a3a6b2ec4b3adf41eb7db4e145d47de205866f3b",
+          "after": "28514a30cdeba57be585673c31c429c43319a51a612570b988ac4b7e577534b3"
+        },
+        "syllable/word-21": {
+          "definition": "2e59099a8945903d1341d3448f6e042a734e505fd767e1c92ea22967aefec35c",
+          "before": "dde64e37204917e887031d5c2a0efb49039f6f3138a3d029187f801dc72c5913",
+          "after": "118f6e5fb236052d8e6d2005a19e1cbb462427b35adc293c2cc7cb56c5cad50c"
+        },
+        "syllable/word-22": {
+          "definition": "d2cddefde37676346b18d9ecce441b0197612400ff6ddb0f918ae788a71235ff",
+          "before": "3c4fce2358f93644fb15a913910721a8a536a86960c41d64da611f3aaf7690c9",
+          "after": "78f988eadbe06a1a0aac6de509ad66a06b466f66e6193932baa5ed675c44935b"
+        },
+        "syllable/word-23": {
+          "definition": "730f2dbdc0b350a77e70b9a20585fc5aed108731f4cda0bbab458744ed0e1ec4",
+          "before": "8cc7d3db65adf9b99b08269430b09a495209879e70f3e53318ced338be5d4cb9",
+          "after": "f11e866ddad45f02ea9431db3c6021c4f4be86171d4acb39d8c602e12181f0fc"
+        },
+        "syllable/word-24": {
+          "definition": "243b7e6a4b26bc80be2f490670e51ff8c993cdc82614c6f58efb5a04c3ba4e48",
+          "before": "4e071bd15d20f223d3d5fcff5632339cb6227a288ca025a6532ea84234b137e3",
+          "after": "52af17351a93cf23e5484c6956fbe624c9e8daa3fc44d58c3d06d6120594d1ae"
+        },
+        "syllable/word-25": {
+          "definition": "2b9d4c40ed47f5f13578f1533a90333b7d1d6a169241ae7a101a19c3662fafb5",
+          "before": "235917966a8afb5f5500636df3c7009fd40ac66e78b15f70fbad9df43f852963",
+          "after": "a75a031a5bea56abc0b03c2c12fd25e5ce2a4ae589c64f849ac8e13098fc19d1"
+        },
+        "syllable/word-26": {
+          "definition": "eee9881396bb0c960f4041eb37f559d9ded68e3b14a89d79b823eeecd8d8a6de",
+          "before": "68ba1f81b746d2a16923f3763c5808ec93a0e4bcb83ca9199ee4fb7e257959f6",
+          "after": "6fdc9ead2baaf756787fc5d871f8dae699c87a37117e50dd27253d8c8bf0f45c"
+        },
+        "syllable/word-27": {
+          "definition": "ad668e2f698c7563cf413339cc6e462b2a050fb74a8fc8597a53e18b087f611a",
+          "before": "12c7048fcb584c4bf40fe8a6db7b778f17478fc3f75962b20fe1f6dc7fc8670e",
+          "after": "daa9da6798063f4b42e36692233d69bfbee6697d9b38974956a19b6ea047ee36"
+        },
+        "syllable/word-28": {
+          "definition": "7c2e5ecdbc1446cf02f549b81887cc2e7ed7627181d3b1bcdfbc52c8c723321a",
+          "before": "e538319f3cad6714093001364a1c34a74704b706d354866b4a94d8d324a871c6",
+          "after": "52530c9f6a5b22b0fc59f0d5d12ac7e9287de3f5846fdedddf277edfa5f05964"
+        },
+        "syllable/word-29": {
+          "definition": "a299e9350df04c5c6f17717787067c8663f2f0ac36715d3df8a8eb4d7f073637",
+          "before": "ddf72aee9c27ad205dc54980a8826eb70379b2c1446b94e01fff9f57171dadfe",
+          "after": "ba73bd9c57e56083041d824e97e556525237f6b112eecbc8d53ba1ec143a32a8"
+        },
+        "syllable/word-30": {
+          "definition": "a90a73a90da08133da65a61b64919d3d940e93ee1dc67466c3ea5e5f88abdd25",
+          "before": "8e55a8f5403c06a99eae7612f41ec6a4f7c9f16fad86ba164d105a3b94e99b5b",
+          "after": "af145ef77b1ca87d20d0c8a846900c60adc0da745b9eb1993ae5e2aaa517f7db"
+        },
+        "syllable/word-31": {
+          "definition": "9be532ab84e765ecef1606297bd2065416d288265cfbcd1c8fdf76998fc5b5af",
+          "before": "a64b6b879bdf551dadffcbe85c96b30c59e169c7669bbf77321c62e2a4550f7d",
+          "after": "3089441fb2b91ef8835ce2f334c1522635a8c97b2702973c290a5834d7130326"
+        },
+        "syllable/word-32": {
+          "definition": "dcd9b3780a9dd16b1679447647721dbaa586d3e5327f8710fe5f0f0400121d4b",
+          "before": "33924745d44199ab709120eba2285d49f49ee88e9216c8fe2b58e28a4f123267",
+          "after": "6cb0bf3b04f9ac5c702252c14581c80b7cea95688920465d640679a9f25f0fb2"
+        },
+        "syllable/word-33": {
+          "definition": "bc70340e5b90d3fbb359d24628f0b40114ea7534f02aed6613d50d0512b6282e",
+          "before": "bbbb28699a4ee8b3f0d67e553c85930c0958c55394136905b8b034a3e55b3102",
+          "after": "452e85b44c840b54deda64d29ccbd680661fbbb1ff8cbbcd9bd5b667d7304626"
+        },
+        "syllable/word-34": {
+          "definition": "b34d1ff8c821a64955636acd24dedd6cc2a991a270248457dbd4447485ee4a58",
+          "before": "ebb8b68c6d2fda78e90056217440b4f15049d9e8468d30a43fa2d28883769608",
+          "after": "0dbb3b404bc6ad6933297800781746cf0445cd1755c3fe4831a3574d5007d6e7"
+        },
+        "syllable/word-35": {
+          "definition": "476acd6302b47d298f38560f601a62878f6b2c2ae0b759d86685712e83e1d1f6",
+          "before": "6be0a8683a6fec06a82107759917c9b62fdf6c6137e76b902e289bc3de090e58",
+          "after": "59103fcbfeb20dc1b83a0a5935ee115e3260cec000526a23cb9116113f4ee063"
+        },
+        "syllable/word-36": {
+          "definition": "6ca61d0d8453aba8ac874fce549dc2c3d62ae5eff17dd3c1561a9bcca0eb4c98",
+          "before": "95ddbc76c2df6d1c6cfa419b6e661d6fc1d52e9fbd5a3cf126bbd5738b3e79a5",
+          "after": "1749889ede353ff930d6e5b29f35f441b3ef07168a2c3b01a176f460375dbcfe"
+        },
+        "syllable/word-37": {
+          "definition": "243539ebff036d658458d35189cbaa58dc413d0a2e74d221ff3aa06269eb17b4",
+          "before": "07104a9ebdcd8654b1dc567fab81b3da45c348ca33a51088f6e309fc7da1368f",
+          "after": "00dd98fc83aa61f352c3aa4341595290a47bb11d543e1c697ca0d0ad4e4c74a8"
+        },
+        "syllable/word-38": {
+          "definition": "50e6c9d08457c0ef9950f66f5f767a17e3ec7bbc0c65257d4148532e0a1c20d8",
+          "before": "721f11ff2a1965cde46a86b2a842b05c1ea1c31f088c8b27ea646618204fb070",
+          "after": "31c14729dd227bfca4edb5541c597862ef19c664bdcfebb0a3616a89d0163572"
+        },
+        "sequence/story-0": {
+          "definition": "65619b3255eb21fa276786edb3b6396732d5ca5ff54eee2d6b330ed9feab3d37",
+          "before": "586803f20dce546e900b25f3ed34000e07ac9f40d38dc13bed7c77fb37dd0cab",
+          "after": "595c6d0d53b6eb6c287566f1174ee2441523fdd7eb44ef1eb6b807413c080a1c"
+        },
+        "sequence/story-1": {
+          "definition": "c3aaa381ee76cb54e0cbb595539a44ff33ad391f25ba64192f7bf9085750a052",
+          "before": "09a783b9dadfdc0401df32ca45cdbb8f03efee12b74fee1e7b794ceab210839b",
+          "after": "b124bb9594024973ef2aeb6c26bce13dce87a29b6418d9369fdb7d4d106a0d49"
+        },
+        "sequence/story-2": {
+          "definition": "8b248417385de44465c94fb9e639e33abecb11e9904fd3ccc92b8993fa4233d3",
+          "before": "d349a8186f22c32cd2b7c83171fc113b7e0286b54ab38b31d8569d31faa8e5d4",
+          "after": "90ad2f73d41fe14ca7b524432f9ea17c1e7c895a55813dbc17fac751bc302d16"
+        },
+        "sequence/story-3": {
+          "definition": "0452fc6c81b9cb5dc7891fdf39b701cd4f69808fa46322f168a692e0d86378d1",
+          "before": "f892c8fc34363080a271ceadfd420517646a310152e4376178a470fc21c2bdde",
+          "after": "756e8cb098c91278dd2ceeee5afe9e2f9f075cc928e34809d4df967d62a2de23"
+        },
+        "sequence/story-4": {
+          "definition": "f2eb6abc351746e8026ca28fd75f25fbc74a7d79ab63cc31c0bd46d6995f12e7",
+          "before": "0648321ac1649db5fa63d7cb84c88dcd6b1d5b92e4eb575250d19fc5518db848",
+          "after": "37071848941a9ac2c528d3db6d70156a8757761d0fdf9ca900dc31775ed5c477"
+        },
+        "sequence/story-5": {
+          "definition": "79bb7ab11db86b36664e7e628d60719526c9dc6b4760122159ad2bab78b5d321",
+          "before": "918c395c183bccb9c062d48d063679a9bcc4cbb3cf90cbcf60e96845b92a353d",
+          "after": "e1a4c5794652f97f800577954cfb54a502a0899bf0c752956d369fe70f824af2"
+        },
+        "sequence/story-6": {
+          "definition": "a16d3f3ae3225d51abb54752e97c532719e15caabf0fa4858904ecf2e50fadc2",
+          "before": "3afb0388c43ef1fea47ff3035a3b76663588a4ca95a281d80488b82fc085a11c",
+          "after": "eee8fee72bf53410bfd2a11c765e5694942ac93fc2f19172afaba2ab4a9c8854"
+        },
+        "sequence/story-7": {
+          "definition": "6d877f55624fb845d1e9bb6752d1f44c7c0a922efb12fba7437d0f62d7a8c791",
+          "before": "9f114b0bf351dc354c639e9a8fdc6ec2a5fe894797770aed5134aa007c53a833",
+          "after": "e126eefaf8bb1f09cb40af6425a04e9c1df7342890d76054e6d270c061da50d4"
+        },
+        "sequence/story-8": {
+          "definition": "b404741a2750ae67c901f4172bba6480f8282e0e0b57d1c2d918df0da1b87e6d",
+          "before": "6052b140fb1ea60397929b666001c93c52af2a3c320b3aa485cac84b39afed61",
+          "after": "b54bdc05463eeeb7b70086b61b905e92051f9109e7d1c6674436c4fe80ea4e50"
+        },
+        "sequence/story-9": {
+          "definition": "21acf92d9e8b122e92e150c0d2d2b1e994ee945b65705d4f7f8aa4b0f62f8152",
+          "before": "a5294bb72b9d0da1e324da13a12d8796043f760bb0d80997ec48e637328619d0",
+          "after": "3b95cc6cbcd43585b2742305378f3f71edd13287a13873f3de0831fcb7c67bf0"
+        },
+        "sequence/story-10": {
+          "definition": "eac709e150067cd7e1408d30774dabbb68cedf5ace9a2f2c06d2c9c1ec1148ea",
+          "before": "90b42db69353b9997daf27ac920250d0b44901187ec39a9cc01f836f47c9c3c1",
+          "after": "ee3a82bbb2ac17a17a09ad611d8261d8ff4ca2c14c21fd3c2b91eac0ed48f26c"
+        },
+        "sequence/story-11": {
+          "definition": "1d80e2fcdc9281668b4a308fb38caa52a66331e289b0e6c74dcd5cc7120967bc",
+          "before": "d175c2959608e51dbef10a290c4147f1b220af75047e741f33fd17616793869a",
+          "after": "322db6ea286929ace56e8b44ddbe98c0cbc1dfc06728eb418fbc038c5e901068"
+        },
+        "sequence/story-12": {
+          "definition": "37f824d39230ea1c765b7b08f34ac2bc7f7ac3c84b80f2efbcceb87739bb2dc4",
+          "before": "41a40ce63e1c41802619d5c247761d79091f67f115133597a09eef1ec40d9b39",
+          "after": "ed3cab4cd97fb725cf86a851f99bbde1328399d2093d1084809dffef84e524fa"
+        },
+        "sequence/story-13": {
+          "definition": "c6a8457e68814282cbb3f856e15effcc9754f2029ffaf3bda4bc1420e8abc4a1",
+          "before": "61da19ce53f38a8d07fccb01f1102b545355a4883ec287d7650044604f62c75f",
+          "after": "fada165cad497baf58679a6aa6965bd3e766a5e3f281340ba2e331a1c83b65c3"
+        },
+        "sequence/story-14": {
+          "definition": "055e54a5bec6c17f027470e4aed4d761cdf3d3397f5e9436711633927f020bde",
+          "before": "4d3bc8cc74c41bfbfaa3ef4a78bdb91d9840e38ba44ee0deecde52d8fc02bbfa",
+          "after": "2bc309456d851871332036bc631819a7b3ed9cc18952e834a464ffc8e030c8c7"
+        },
+        "sequence/story-15": {
+          "definition": "a05b2957dd8a84595cc8af71cfc0e69c9775216f733054e2d41b626380c6b7b1",
+          "before": "ebed92549967690514fb476f530eced2e3da8b97081c0e94e1af0245dd102fee",
+          "after": "f733b8a536f14b3566d85d5afe0d64d86df36b118f77182314f17d5fcf1e7ce1"
+        },
+        "sequence/story-16": {
+          "definition": "b59bdc7c1eaa5b7969a459cf188dc5c16b1782f062ed1e5402f786887ee7e64a",
+          "before": "6bc5cc91c2a37d38709414f47f992d814a2e50bcc388d746c58826fad454b486",
+          "after": "512a3be0e7b9c98a244a2af520d7372fddb1eb8db95bdd859d4ea61e267b78e1"
+        },
+        "sequence/story-17": {
+          "definition": "c3cd4f9a059c57d40fa37e16e2c27062ef4224954ddbacbfae1a32af12c16741",
+          "before": "ba8c9e085b1193412f8762e6c41f17b93e11416c169a6c7c12dd314a6fa8a26f",
+          "after": "a1f326f05120bff6d04e5846904df76284f73df1ee91705db5938c51ae00040c"
+        },
+        "sequence/story-18": {
+          "definition": "98f7cfb7a7a7531186c0c04e841c7a6510b530e5efa4e7ceb806289abe85da2b",
+          "before": "52219eb3f1967d96f19d1f973ee2e83325dd46670d9e3aacaf337d91240aece7",
+          "after": "01e455f36eaf09f5788b14f56cada853b0aa21964e8d75556d0f9c9e7b331db3"
+        },
+        "sequence/story-19": {
+          "definition": "c5ba949f260a71993fd044e2868164316ee9f0210c603f94cb910d78b398ce77",
+          "before": "5df7918a6132c49c851d2c4bda400937a2ef3f0d748f99ea485ad73a26cc20c0",
+          "after": "1918d0c12de5b2244b92e97dd15555d5e0e17ea1bb583b78cbe3ed2192d1bc66"
+        },
+        "sequence/story-20": {
+          "definition": "2a77576b0e4daa929e752c5a2b6586853c41006af18cd44aeac2eb3fb48bbefd",
+          "before": "a0036262e87a9b944932d36ce7d18b8cb2bf528c252750c26771dc346d4d0167",
+          "after": "53015b45ab09e44c995e33a407c0edb6a1b9df508ec94b187a7412d16bf6172d"
+        },
+        "sequence/story-21": {
+          "definition": "eedb254bbaba45b0160859ab8fa6c169a4ef228014a34dd91ca734f3f97ba3c6",
+          "before": "921871828dca92b7dad68fdb6bb2a030c450e7e15c3948e4ed7c0c122a2dc198",
+          "after": "25ced059ed55a0b788a345817878201d2a252cabc4fe5f3a1b5f4dba969bf3ca"
+        },
+        "sequence/story-22": {
+          "definition": "4b08a75993609bea93e3c303635f94b14852e2a330ef70f82384889aea3317c6",
+          "before": "aecf4f3bb5e6648b78ff2ae8f826ecf6adfad7d20b6a7716ca5b0521ecbd90ea",
+          "after": "81ee4839ee117d4aef82da169bb97e03781f156823edd0e0991198fe911f943c"
+        },
+        "sequence/story-23": {
+          "definition": "3b19dadecac7ba0461cf5091d7fb55d6030f321aaeaf6b245a90c854671915c7",
+          "before": "1956bc60d2cf602a3c0baea10217a1b15182700649a3d09707bff55e8e1fa814",
+          "after": "aa40ddcfc91b46e5194518e194239408feb765ef44cdeb1410fc4fefe1fec53a"
+        },
+        "sequence/story-24": {
+          "definition": "d51cf7947dd1f25aaf1d066863067ac6fd65c294baa0a3dfabcec9b66e5d8630",
+          "before": "f5dac4df73cff8d65a869d946c8977c1b46cf3ff9776d7835f89e94313523317",
+          "after": "0bab164915c0b09ef7011f048eceb4cb557f1ecd37a6ff65d29c4df769eeaddc"
+        },
+        "compare/1-1": {
+          "definition": "9e924aca9032e589d32b3d57a81a96a5394572f90f0d7ef3e349ad491c232024",
+          "before": "62d8893a61b4227b01cabba30e4cc5a3c556c01623696a9ede4e4e9f6e92e4cb",
+          "after": "a18c9cc1829ef38c05c74e0490ca01f5ba6a3307ad1fd1c6ca65adb498849aff"
+        },
+        "compare/1-3": {
+          "definition": "a2b3e844ca5b7d775743ed868674b2d6df936af0d9e275aef88e5fb7cc06cae6",
+          "before": "62d8893a61b4227b01cabba30e4cc5a3c556c01623696a9ede4e4e9f6e92e4cb",
+          "after": "a18c9cc1829ef38c05c74e0490ca01f5ba6a3307ad1fd1c6ca65adb498849aff"
+        },
+        "compare/2-2": {
+          "definition": "e632afd61cd16fe7e2163d17644119e73f330533dae7ce679d3df0d4578859a6",
+          "before": "62d8893a61b4227b01cabba30e4cc5a3c556c01623696a9ede4e4e9f6e92e4cb",
+          "after": "a18c9cc1829ef38c05c74e0490ca01f5ba6a3307ad1fd1c6ca65adb498849aff"
+        },
+        "compare/2-1": {
+          "definition": "2584126dbd7c9519ecc230f3119ef1b12e2fc6dba40f64cd5798ccad2ca1bd2d",
+          "before": "62d8893a61b4227b01cabba30e4cc5a3c556c01623696a9ede4e4e9f6e92e4cb",
+          "after": "a18c9cc1829ef38c05c74e0490ca01f5ba6a3307ad1fd1c6ca65adb498849aff"
+        },
+        "compare/2-4": {
+          "definition": "35dbebd05b123edfc1938d91a9f7972f61138e669a7875fcedbf697efbe0958c",
+          "before": "62d8893a61b4227b01cabba30e4cc5a3c556c01623696a9ede4e4e9f6e92e4cb",
+          "after": "a18c9cc1829ef38c05c74e0490ca01f5ba6a3307ad1fd1c6ca65adb498849aff"
+        },
+        "compare/3-3": {
+          "definition": "4c57593cc4d7d3fcc27d009d8648940d3a5332bcd47d2760085fff2a72e87789",
+          "before": "62d8893a61b4227b01cabba30e4cc5a3c556c01623696a9ede4e4e9f6e92e4cb",
+          "after": "a18c9cc1829ef38c05c74e0490ca01f5ba6a3307ad1fd1c6ca65adb498849aff"
+        },
+        "compare/3-2": {
+          "definition": "f6259b572f103a06171a3e6983cf4a6bb4c8f4c2b73062db475d4eca0d4925ed",
+          "before": "62d8893a61b4227b01cabba30e4cc5a3c556c01623696a9ede4e4e9f6e92e4cb",
+          "after": "a18c9cc1829ef38c05c74e0490ca01f5ba6a3307ad1fd1c6ca65adb498849aff"
+        },
+        "compare/3-5": {
+          "definition": "62b02fc4bcc8148961b3ff73a0cec3c410dac6d89c8b8f725cbb03c190b1fc31",
+          "before": "62d8893a61b4227b01cabba30e4cc5a3c556c01623696a9ede4e4e9f6e92e4cb",
+          "after": "a18c9cc1829ef38c05c74e0490ca01f5ba6a3307ad1fd1c6ca65adb498849aff"
+        },
+        "compare/4-4": {
+          "definition": "2d3c4a8b9e9ebb0c7073d0d5aa92899ae86286d789c032d8e614a4492d5cc420",
+          "before": "62d8893a61b4227b01cabba30e4cc5a3c556c01623696a9ede4e4e9f6e92e4cb",
+          "after": "a18c9cc1829ef38c05c74e0490ca01f5ba6a3307ad1fd1c6ca65adb498849aff"
+        },
+        "compare/4-3": {
+          "definition": "603534f411bf80cb4bd91c516a15b29677398c3f0b8f82c05891e802fdc0f95e",
+          "before": "62d8893a61b4227b01cabba30e4cc5a3c556c01623696a9ede4e4e9f6e92e4cb",
+          "after": "a18c9cc1829ef38c05c74e0490ca01f5ba6a3307ad1fd1c6ca65adb498849aff"
+        },
+        "compare/4-6": {
+          "definition": "cc0d695bb8888432871c1f9567258fbc7c542024fe65f473e3521b7eff36ab24",
+          "before": "62d8893a61b4227b01cabba30e4cc5a3c556c01623696a9ede4e4e9f6e92e4cb",
+          "after": "a18c9cc1829ef38c05c74e0490ca01f5ba6a3307ad1fd1c6ca65adb498849aff"
+        },
+        "compare/5-5": {
+          "definition": "3969ff5cde76ec9802264b98b2d2a879dffd997c61d6799ed392df159b9cc02c",
+          "before": "62d8893a61b4227b01cabba30e4cc5a3c556c01623696a9ede4e4e9f6e92e4cb",
+          "after": "a18c9cc1829ef38c05c74e0490ca01f5ba6a3307ad1fd1c6ca65adb498849aff"
+        },
+        "compare/5-4": {
+          "definition": "8bd9c31075de9fd0d3ddd688fe9de065a3d102610dfe6dcac626770e8675da0c",
+          "before": "62d8893a61b4227b01cabba30e4cc5a3c556c01623696a9ede4e4e9f6e92e4cb",
+          "after": "a18c9cc1829ef38c05c74e0490ca01f5ba6a3307ad1fd1c6ca65adb498849aff"
+        },
+        "compare/5-7": {
+          "definition": "02e863e9b906bd4f519a4a813ae33c9fc44e78d36235f400dc42824e9f545545",
+          "before": "62d8893a61b4227b01cabba30e4cc5a3c556c01623696a9ede4e4e9f6e92e4cb",
+          "after": "a18c9cc1829ef38c05c74e0490ca01f5ba6a3307ad1fd1c6ca65adb498849aff"
+        },
+        "compare/6-6": {
+          "definition": "1d52266f3226e791ca42db3eeb0eb9258cf1a7e5724c652c6a7f0da5621a8a2b",
+          "before": "62d8893a61b4227b01cabba30e4cc5a3c556c01623696a9ede4e4e9f6e92e4cb",
+          "after": "a18c9cc1829ef38c05c74e0490ca01f5ba6a3307ad1fd1c6ca65adb498849aff"
+        },
+        "compare/6-5": {
+          "definition": "3c1a93c3528e13e5cf6d496f15649d462f01ee1e5d135f17d1ed6d85bfe4b791",
+          "before": "62d8893a61b4227b01cabba30e4cc5a3c556c01623696a9ede4e4e9f6e92e4cb",
+          "after": "a18c9cc1829ef38c05c74e0490ca01f5ba6a3307ad1fd1c6ca65adb498849aff"
+        },
+        "compare/6-8": {
+          "definition": "594d1c3becc19ff87c855596930e7d53f7d99d28e9c399329a0b3cb6187b62a4",
+          "before": "62d8893a61b4227b01cabba30e4cc5a3c556c01623696a9ede4e4e9f6e92e4cb",
+          "after": "a18c9cc1829ef38c05c74e0490ca01f5ba6a3307ad1fd1c6ca65adb498849aff"
+        },
+        "compare/7-7": {
+          "definition": "bb2a894d78d9c8eefe12ffe0628522306878f17dfd37e06b9885948d2d25962c",
+          "before": "62d8893a61b4227b01cabba30e4cc5a3c556c01623696a9ede4e4e9f6e92e4cb",
+          "after": "a18c9cc1829ef38c05c74e0490ca01f5ba6a3307ad1fd1c6ca65adb498849aff"
+        },
+        "compare/7-6": {
+          "definition": "9b0f8bebabe74d5727356c4087618a969e243d56aa220758820c4f02e199cde1",
+          "before": "62d8893a61b4227b01cabba30e4cc5a3c556c01623696a9ede4e4e9f6e92e4cb",
+          "after": "a18c9cc1829ef38c05c74e0490ca01f5ba6a3307ad1fd1c6ca65adb498849aff"
+        },
+        "compare/7-9": {
+          "definition": "d4191a70f649aadb460f1cc3988b81e3f9a21ad2aa7369751eb29b322b6072dc",
+          "before": "62d8893a61b4227b01cabba30e4cc5a3c556c01623696a9ede4e4e9f6e92e4cb",
+          "after": "a18c9cc1829ef38c05c74e0490ca01f5ba6a3307ad1fd1c6ca65adb498849aff"
+        },
+        "compare/8-8": {
+          "definition": "3fdffd3a2fcda385dce9de07e87f9883385372c661733a20621ac46592cc09e9",
+          "before": "62d8893a61b4227b01cabba30e4cc5a3c556c01623696a9ede4e4e9f6e92e4cb",
+          "after": "a18c9cc1829ef38c05c74e0490ca01f5ba6a3307ad1fd1c6ca65adb498849aff"
+        },
+        "compare/8-7": {
+          "definition": "c91daaad09ae11ea271b4eebd2128d452f6236948365034c23d6c86c64e731ac",
+          "before": "62d8893a61b4227b01cabba30e4cc5a3c556c01623696a9ede4e4e9f6e92e4cb",
+          "after": "a18c9cc1829ef38c05c74e0490ca01f5ba6a3307ad1fd1c6ca65adb498849aff"
+        },
+        "compare/8-10": {
+          "definition": "347a608b010093ef3ea363e852cd7a207407f3617eab47924c1c8bd113c8bc49",
+          "before": "62d8893a61b4227b01cabba30e4cc5a3c556c01623696a9ede4e4e9f6e92e4cb",
+          "after": "a18c9cc1829ef38c05c74e0490ca01f5ba6a3307ad1fd1c6ca65adb498849aff"
+        },
+        "compare/9-9": {
+          "definition": "180684cee5996b13cb96b87f6442323e7e34ea664cced60fcc6eef83cf548f95",
+          "before": "62d8893a61b4227b01cabba30e4cc5a3c556c01623696a9ede4e4e9f6e92e4cb",
+          "after": "a18c9cc1829ef38c05c74e0490ca01f5ba6a3307ad1fd1c6ca65adb498849aff"
+        },
+        "compare/9-8": {
+          "definition": "69cdd0f8df3eb6d8134ec2402d839af979324ca59c615f48619c29b16ead8546",
+          "before": "62d8893a61b4227b01cabba30e4cc5a3c556c01623696a9ede4e4e9f6e92e4cb",
+          "after": "a18c9cc1829ef38c05c74e0490ca01f5ba6a3307ad1fd1c6ca65adb498849aff"
+        },
+        "compare/9-10": {
+          "definition": "d63afefb2ba2cf7bb641694eaa4883bb536ef6dfe9fc2cd2423eb6c495d4315e",
+          "before": "62d8893a61b4227b01cabba30e4cc5a3c556c01623696a9ede4e4e9f6e92e4cb",
+          "after": "a18c9cc1829ef38c05c74e0490ca01f5ba6a3307ad1fd1c6ca65adb498849aff"
+        },
+        "compare/10-10": {
+          "definition": "05812e607e5ba35fc292eacc80785388c41a5194229b5ba006d9c2a82696f5a5",
+          "before": "62d8893a61b4227b01cabba30e4cc5a3c556c01623696a9ede4e4e9f6e92e4cb",
+          "after": "a18c9cc1829ef38c05c74e0490ca01f5ba6a3307ad1fd1c6ca65adb498849aff"
+        },
+        "compare/10-9": {
+          "definition": "e0006fe87c6f97b2f92265d240d73da714382b6a401b655a450498705a8c3eeb",
+          "before": "62d8893a61b4227b01cabba30e4cc5a3c556c01623696a9ede4e4e9f6e92e4cb",
+          "after": "a18c9cc1829ef38c05c74e0490ca01f5ba6a3307ad1fd1c6ca65adb498849aff"
+        },
+        "mirror/grid-7": {
+          "definition": "afbd48e396f22ecd727a5834d1f73870a234f06346ed1c9d986af71069f4081f",
+          "before": "3c4be53a11a3ba6af137afd5aadc137d2bfd77920283e06fe602967611afeb2d",
+          "after": "2d7f392ba43626d266f572a6d33ce9050aa5d6c6a1242e6137b5fad75411f6ba"
+        },
+        "mirror/grid-56": {
+          "definition": "dd38507ca9554fba8cbcca41c5b1d58b6558464a0cc5adf5569734b2628bb7f4",
+          "before": "3c4be53a11a3ba6af137afd5aadc137d2bfd77920283e06fe602967611afeb2d",
+          "after": "2d7f392ba43626d266f572a6d33ce9050aa5d6c6a1242e6137b5fad75411f6ba"
+        },
+        "mirror/grid-448": {
+          "definition": "d45607d86bba20735fee28b41027cbed403ff296e99917ea2e435570224730b7",
+          "before": "3c4be53a11a3ba6af137afd5aadc137d2bfd77920283e06fe602967611afeb2d",
+          "after": "2d7f392ba43626d266f572a6d33ce9050aa5d6c6a1242e6137b5fad75411f6ba"
+        },
+        "mirror/grid-73": {
+          "definition": "61ade2b6a3e4ae6c0c51008b9f5ae9228d58df9cf1e5b72aa3f31995316ae71d",
+          "before": "3c4be53a11a3ba6af137afd5aadc137d2bfd77920283e06fe602967611afeb2d",
+          "after": "2d7f392ba43626d266f572a6d33ce9050aa5d6c6a1242e6137b5fad75411f6ba"
+        },
+        "mirror/grid-146": {
+          "definition": "c3bf78275e38560ee58e8797b65e503968a2fac307529c7317a1b4d5c7248b91",
+          "before": "3c4be53a11a3ba6af137afd5aadc137d2bfd77920283e06fe602967611afeb2d",
+          "after": "2d7f392ba43626d266f572a6d33ce9050aa5d6c6a1242e6137b5fad75411f6ba"
+        },
+        "mirror/grid-292": {
+          "definition": "a9b1501d9047107e4145e986b77a964cd4aa89c2c17c2b9ef1c88f2360648506",
+          "before": "3c4be53a11a3ba6af137afd5aadc137d2bfd77920283e06fe602967611afeb2d",
+          "after": "2d7f392ba43626d266f572a6d33ce9050aa5d6c6a1242e6137b5fad75411f6ba"
+        },
+        "mirror/grid-273": {
+          "definition": "4eae71dab24f15ff0b374b1296355ee4633ecfc413395c3fb6e1cf9040a55f1f",
+          "before": "3c4be53a11a3ba6af137afd5aadc137d2bfd77920283e06fe602967611afeb2d",
+          "after": "2d7f392ba43626d266f572a6d33ce9050aa5d6c6a1242e6137b5fad75411f6ba"
+        },
+        "mirror/grid-84": {
+          "definition": "92da7250b3c1ba2af7ff1b745cfe4b4ac548585b169c5a510a09de125225b257",
+          "before": "3c4be53a11a3ba6af137afd5aadc137d2bfd77920283e06fe602967611afeb2d",
+          "after": "2d7f392ba43626d266f572a6d33ce9050aa5d6c6a1242e6137b5fad75411f6ba"
+        },
+        "mirror/grid-15": {
+          "definition": "b910a392b4974957a89bd7e0f9a8686c6e90a42f83d1867e4aa9b7fec8b7a4ff",
+          "before": "3c4be53a11a3ba6af137afd5aadc137d2bfd77920283e06fe602967611afeb2d",
+          "after": "2d7f392ba43626d266f572a6d33ce9050aa5d6c6a1242e6137b5fad75411f6ba"
+        },
+        "mirror/grid-30": {
+          "definition": "e3f3989db0936af5597fcd116e71033718b8380af9dd3a12e402ef935fc046ce",
+          "before": "3c4be53a11a3ba6af137afd5aadc137d2bfd77920283e06fe602967611afeb2d",
+          "after": "2d7f392ba43626d266f572a6d33ce9050aa5d6c6a1242e6137b5fad75411f6ba"
+        },
+        "mirror/grid-60": {
+          "definition": "43dd197359c83e4130583b242d54876db8836ba9f14580f5669dcee807663aa8",
+          "before": "3c4be53a11a3ba6af137afd5aadc137d2bfd77920283e06fe602967611afeb2d",
+          "after": "2d7f392ba43626d266f572a6d33ce9050aa5d6c6a1242e6137b5fad75411f6ba"
+        },
+        "mirror/grid-120": {
+          "definition": "08ee33f7b7a9abc158654762de78120154f16e110863cab50d99cd05839ddd72",
+          "before": "3c4be53a11a3ba6af137afd5aadc137d2bfd77920283e06fe602967611afeb2d",
+          "after": "2d7f392ba43626d266f572a6d33ce9050aa5d6c6a1242e6137b5fad75411f6ba"
+        },
+        "mirror/grid-240": {
+          "definition": "41e05e15e2ddc1e98bf060551cad5256357d862529d400bb304ae23e98be3878",
+          "before": "3c4be53a11a3ba6af137afd5aadc137d2bfd77920283e06fe602967611afeb2d",
+          "after": "2d7f392ba43626d266f572a6d33ce9050aa5d6c6a1242e6137b5fad75411f6ba"
+        },
+        "mirror/grid-480": {
+          "definition": "93c1608eafc0aaf6d3f762fb9cdd308c7d6e68af252f1b5364a5f131ac294c38",
+          "before": "3c4be53a11a3ba6af137afd5aadc137d2bfd77920283e06fe602967611afeb2d",
+          "after": "2d7f392ba43626d266f572a6d33ce9050aa5d6c6a1242e6137b5fad75411f6ba"
+        },
+        "mirror/grid-31": {
+          "definition": "03e256d0cd06bc7f7b15f2e91cc24963a596970568b11b2bc3ca814588942420",
+          "before": "3c4be53a11a3ba6af137afd5aadc137d2bfd77920283e06fe602967611afeb2d",
+          "after": "2d7f392ba43626d266f572a6d33ce9050aa5d6c6a1242e6137b5fad75411f6ba"
+        },
+        "mirror/grid-62": {
+          "definition": "3cf887fadd80f1887bbde451c9fb2ef4afd201908c98d2dfe10709edc94258d7",
+          "before": "3c4be53a11a3ba6af137afd5aadc137d2bfd77920283e06fe602967611afeb2d",
+          "after": "2d7f392ba43626d266f572a6d33ce9050aa5d6c6a1242e6137b5fad75411f6ba"
+        },
+        "mirror/grid-124": {
+          "definition": "dfce3c6f9a170cdbae9de40c387ec35253c0b2961fb38f84559c0b3636a65928",
+          "before": "3c4be53a11a3ba6af137afd5aadc137d2bfd77920283e06fe602967611afeb2d",
+          "after": "2d7f392ba43626d266f572a6d33ce9050aa5d6c6a1242e6137b5fad75411f6ba"
+        },
+        "mirror/grid-248": {
+          "definition": "95a2c2c649e5990215e77fc4e25962adcf4bb4b14115f3f3704ca03ccd4e990c",
+          "before": "3c4be53a11a3ba6af137afd5aadc137d2bfd77920283e06fe602967611afeb2d",
+          "after": "2d7f392ba43626d266f572a6d33ce9050aa5d6c6a1242e6137b5fad75411f6ba"
+        },
+        "mirror/grid-496": {
+          "definition": "3c5d792865320667e12edad4b5028911dcec87266ef8a7b39eb4b7b65094a269",
+          "before": "3c4be53a11a3ba6af137afd5aadc137d2bfd77920283e06fe602967611afeb2d",
+          "after": "2d7f392ba43626d266f572a6d33ce9050aa5d6c6a1242e6137b5fad75411f6ba"
+        },
+        "mirror/grid-91": {
+          "definition": "bdc9da3c0237c1ae71e2eb8e3212072be83f1c79ebce9c12c44b2c30b1251363",
+          "before": "3c4be53a11a3ba6af137afd5aadc137d2bfd77920283e06fe602967611afeb2d",
+          "after": "2d7f392ba43626d266f572a6d33ce9050aa5d6c6a1242e6137b5fad75411f6ba"
+        },
+        "mirror/grid-182": {
+          "definition": "bdc40cb753e163439eea7bbc1650155ad0d62bf6cea19531fc714fdf496b79c0",
+          "before": "3c4be53a11a3ba6af137afd5aadc137d2bfd77920283e06fe602967611afeb2d",
+          "after": "2d7f392ba43626d266f572a6d33ce9050aa5d6c6a1242e6137b5fad75411f6ba"
+        },
+        "mirror/grid-364": {
+          "definition": "dea6152d61dda0a5b4942d84acbd5cd4efee732492ad8448d30d0955636bbfe4",
+          "before": "3c4be53a11a3ba6af137afd5aadc137d2bfd77920283e06fe602967611afeb2d",
+          "after": "2d7f392ba43626d266f572a6d33ce9050aa5d6c6a1242e6137b5fad75411f6ba"
+        },
+        "mirror/grid-341": {
+          "definition": "74dfb818aac1de1c731b92f3dfd7b1b830d3488ae4b615052b1ad24208141c80",
+          "before": "3c4be53a11a3ba6af137afd5aadc137d2bfd77920283e06fe602967611afeb2d",
+          "after": "2d7f392ba43626d266f572a6d33ce9050aa5d6c6a1242e6137b5fad75411f6ba"
+        },
+        "mirror/grid-170": {
+          "definition": "4bf69fa36aa8ba09390f512a4b54b45b942d22d86b6245b1124a144d59b2ec1a",
+          "before": "3c4be53a11a3ba6af137afd5aadc137d2bfd77920283e06fe602967611afeb2d",
+          "after": "2d7f392ba43626d266f572a6d33ce9050aa5d6c6a1242e6137b5fad75411f6ba"
+        },
+        "mirror/grid-85": {
+          "definition": "c7538b0a474db3e978062d563803160737a294da74feb0656f3ac5a48c7effec",
+          "before": "3c4be53a11a3ba6af137afd5aadc137d2bfd77920283e06fe602967611afeb2d",
+          "after": "2d7f392ba43626d266f572a6d33ce9050aa5d6c6a1242e6137b5fad75411f6ba"
+        },
+        "mirror/grid-340": {
+          "definition": "f9ac974db6c8446eac04c5747ce5461971fbf06781155d6240469c8443f2287c",
+          "before": "3c4be53a11a3ba6af137afd5aadc137d2bfd77920283e06fe602967611afeb2d",
+          "after": "2d7f392ba43626d266f572a6d33ce9050aa5d6c6a1242e6137b5fad75411f6ba"
+        },
+        "mirror/grid-325": {
+          "definition": "f9a67a9caff85e57683be99acbe66bf578ddcdd80d870c9b6e0276cb71d777e9",
+          "before": "3c4be53a11a3ba6af137afd5aadc137d2bfd77920283e06fe602967611afeb2d",
+          "after": "2d7f392ba43626d266f572a6d33ce9050aa5d6c6a1242e6137b5fad75411f6ba"
+        },
+        "mirror/grid-387": {
+          "definition": "5ae9e486fa2a9060dbe7c6869fc8232e6df97f13b6a2fdabf259515a38abfaf2",
+          "before": "3c4be53a11a3ba6af137afd5aadc137d2bfd77920283e06fe602967611afeb2d",
+          "after": "2d7f392ba43626d266f572a6d33ce9050aa5d6c6a1242e6137b5fad75411f6ba"
+        },
+        "mirror/grid-457": {
+          "definition": "e5f3f63a1307aba2bd6dcfde8447187523ff312de0d718965187653885cc6dfc",
+          "before": "3c4be53a11a3ba6af137afd5aadc137d2bfd77920283e06fe602967611afeb2d",
+          "after": "2d7f392ba43626d266f572a6d33ce9050aa5d6c6a1242e6137b5fad75411f6ba"
+        },
+        "mirror/grid-199": {
+          "definition": "1f663dc308023ae07100b28beb3b0e67ac401b168fd3512c77e7903f631234ed",
+          "before": "3c4be53a11a3ba6af137afd5aadc137d2bfd77920283e06fe602967611afeb2d",
+          "after": "2d7f392ba43626d266f572a6d33ce9050aa5d6c6a1242e6137b5fad75411f6ba"
+        },
+        "vowels/word-0-1": {
+          "definition": "7cf1a5b20272d47cd55b0ea24a08f61879d7e12ff1a473d2dbd96d209ce1d71d",
+          "before": "c690cc14e259b142510bf6e638f08e0f291a92a658e2f5938abfd134d28fae0c",
+          "after": "e7827bcfc4ec94ef493a7f3510116393693ddc9c8fd3dc1f1d836ac6df5cee11"
+        },
+        "vowels/word-0-3": {
+          "definition": "395da85c60e40da8c6dc0e4e0aefb52b3c28b61b467693dfd32484db3851ef68",
+          "before": "c690cc14e259b142510bf6e638f08e0f291a92a658e2f5938abfd134d28fae0c",
+          "after": "e7827bcfc4ec94ef493a7f3510116393693ddc9c8fd3dc1f1d836ac6df5cee11"
+        },
+        "vowels/word-1-1": {
+          "definition": "ed5f2ff6e0fa8547c6b4c3b58be80c3d0f71c7b4dab1ef188439a85c3986d69f",
+          "before": "3cff7637707ac3a4bfe2c05bec5f26ca947e31fb9e154a0582abd7fef3a7b74a",
+          "after": "507b3aa6c22a720cde20b164eb743e9236562b3deb0ecdcd13acda05819f7e01"
+        },
+        "vowels/word-1-3": {
+          "definition": "c9fb741b9469c50b6ede46cf27f11d22ffee1f397da814a3323869e31b4f5911",
+          "before": "3cff7637707ac3a4bfe2c05bec5f26ca947e31fb9e154a0582abd7fef3a7b74a",
+          "after": "507b3aa6c22a720cde20b164eb743e9236562b3deb0ecdcd13acda05819f7e01"
+        },
+        "vowels/word-2-0": {
+          "definition": "4b24068fd3362c4364386c9907e2578baed1f138a887074eaf5fd1ef0a363c34",
+          "before": "42ea3f35c5cfe8baed7f910153b14b225c5903f65229c06bbecfb492d770c4f1",
+          "after": "090a51c9a23a9ff08566e3976e4257b41df61fabf77f8025c5fac268c46b1820"
+        },
+        "vowels/word-2-2": {
+          "definition": "6677b892c0e6f62a5a9896de38c7fa47bb3ef50bbfcb98f4f18909825d2aa96e",
+          "before": "42ea3f35c5cfe8baed7f910153b14b225c5903f65229c06bbecfb492d770c4f1",
+          "after": "090a51c9a23a9ff08566e3976e4257b41df61fabf77f8025c5fac268c46b1820"
+        },
+        "vowels/word-3-1": {
+          "definition": "7d8685bbd2ac46be4f6ffb8ef2f98b17d4db2c91bf5dc5191e8810882450053c",
+          "before": "1f51d31b0a7de72504c779e96890151daf814e5680b317c9329fed9590490af2",
+          "after": "a51415e1cfdcfc6db7bd88812c661f4e52c62c6db8fe5bcc7e77e70b5b3d06fc"
+        },
+        "vowels/word-3-3": {
+          "definition": "2de08eb6374cb5f206e029e818ebe562423a4126c74bf4c58aa1c0e2de3febe9",
+          "before": "1f51d31b0a7de72504c779e96890151daf814e5680b317c9329fed9590490af2",
+          "after": "a51415e1cfdcfc6db7bd88812c661f4e52c62c6db8fe5bcc7e77e70b5b3d06fc"
+        },
+        "vowels/word-4-1": {
+          "definition": "0b3aa6e516576c3da69225485070b4bdb3027ffbcf008b9cedbbbe3b18773219",
+          "before": "ace5230967d3013f4009bf34514856d0afd393e5b4c9ea8d87d0676b084617d3",
+          "after": "c8302e23261a837bcb0d5a96a978730d553bf74243194cc0738703737489f034"
+        },
+        "vowels/word-4-3": {
+          "definition": "3e9e9204fa436317d7da9e170043632f04afddc857e70bc36f032d311d7cdd7c",
+          "before": "ace5230967d3013f4009bf34514856d0afd393e5b4c9ea8d87d0676b084617d3",
+          "after": "c8302e23261a837bcb0d5a96a978730d553bf74243194cc0738703737489f034"
+        },
+        "vowels/word-5-1": {
+          "definition": "896e188ed37a6899d23294c70a5062a0df1a655412b7c69173139f6cd0560275",
+          "before": "0923d5c25eeecdac1fad7869ba7c802f3dd6614fc15d3a144232d9be87ecd5ca",
+          "after": "bce72d16766f3c137c1331fe4f3656e6f3c25c030a6d99f1f9c23c02148cd736"
+        },
+        "vowels/word-5-3": {
+          "definition": "a4ca6f5627bf84a6313dae2998d7ab04ca5bea7087bcd1aea9c463ab97a99213",
+          "before": "0923d5c25eeecdac1fad7869ba7c802f3dd6614fc15d3a144232d9be87ecd5ca",
+          "after": "bce72d16766f3c137c1331fe4f3656e6f3c25c030a6d99f1f9c23c02148cd736"
+        },
+        "vowels/word-6-2": {
+          "definition": "8412127dd2ab844a5f7a50e9d42788b82757359727384bb0ed3f6cb78b307ace",
+          "before": "e40125b0ae61626e9ec7724d3850b6744a243cf222e49da3f6725a6ff8222176",
+          "after": "e25570968fa64ad042d1724351c50b3c49ed45705c5b957189cd3ef2789bb809"
+        },
+        "vowels/word-6-4": {
+          "definition": "dcb4119ec2dfe24624d4a92ce199821a2cbc6670627be313d5b9dd3a533968df",
+          "before": "e40125b0ae61626e9ec7724d3850b6744a243cf222e49da3f6725a6ff8222176",
+          "after": "e25570968fa64ad042d1724351c50b3c49ed45705c5b957189cd3ef2789bb809"
+        },
+        "vowels/word-7-1": {
+          "definition": "4f67743732d1bdaa4cb0fa41767a75950661c9249b643f7ca7fd1a2851eeeeae",
+          "before": "ef423f27deda8cfedd29fe52c68bea0a773c5cb9358564057e7b1d0586dc2dfe",
+          "after": "2bfbad13ca97ad010f0be73c114fa1f923b373fbbe2101a28d96ad23977381c1"
+        },
+        "vowels/word-7-4": {
+          "definition": "805e5daade749a225689e496b38fd3b6ed0fed6bd986a109e3fc27e972654e8e",
+          "before": "ef423f27deda8cfedd29fe52c68bea0a773c5cb9358564057e7b1d0586dc2dfe",
+          "after": "2bfbad13ca97ad010f0be73c114fa1f923b373fbbe2101a28d96ad23977381c1"
+        },
+        "vowels/word-8-0": {
+          "definition": "12d77087d661ded467cec24dc511a5f86da24755da596639f8f4003843fe7c6e",
+          "before": "9fec25b698aba384bc49f5455c81be01b5fb1245c507a33950b31afa80c68b5c",
+          "after": "c463121f5d4027b1fac1fa01b48802e154a3d7ffc1889d19b291c4367382cc5a"
+        },
+        "vowels/word-8-3": {
+          "definition": "52b3c27336b6af0a9c7112c94cdfd5b3266b60c52ecf81bbf79cddb16ed0a84f",
+          "before": "9fec25b698aba384bc49f5455c81be01b5fb1245c507a33950b31afa80c68b5c",
+          "after": "c463121f5d4027b1fac1fa01b48802e154a3d7ffc1889d19b291c4367382cc5a"
+        },
+        "vowels/word-9-4": {
+          "definition": "bac9820d9f918a9603c4fde8a3792cc4807f8a2753ff648b481a98fa914fef65",
+          "before": "2b2458dd4238137df52c4aabc781579fa3b2cccfbb348e0de85f1c7e44cafcf7",
+          "after": "3c29c50eccbc2a33d6be5370a6613984c2bd421ec5d068822cfc72f9daf9d93a"
+        },
+        "vowels/word-10-1": {
+          "definition": "b37c4bf71af36b945a4942abcc7d21f401a461b75e63ce6b7f24c53d2e5224e4",
+          "before": "eb6c655bd3b472c19036178f72d2a2d01b95ff4cb0ab8806a878bab0718f861c",
+          "after": "65e488766cbd6e002fe811ceec5af03ad6700707a515694bb1b3ca7a287e72a0"
+        },
+        "vowels/word-10-2": {
+          "definition": "749fea582aea2bf2c420d3914bc6412643d066259b71a3c8c413164f1031fb09",
+          "before": "eb6c655bd3b472c19036178f72d2a2d01b95ff4cb0ab8806a878bab0718f861c",
+          "after": "65e488766cbd6e002fe811ceec5af03ad6700707a515694bb1b3ca7a287e72a0"
+        },
+        "vowels/word-10-4": {
+          "definition": "eaa8c32e4348be7be7c2d23942d3fd432f9002fdf6ba6cf1932185b8f9284558",
+          "before": "eb6c655bd3b472c19036178f72d2a2d01b95ff4cb0ab8806a878bab0718f861c",
+          "after": "65e488766cbd6e002fe811ceec5af03ad6700707a515694bb1b3ca7a287e72a0"
+        },
+        "vowels/word-11-4": {
+          "definition": "2c0e991164a045ec363a1dbe2aa951f165b3963909e5421eac8e8b89aecb2d1e",
+          "before": "7582e331b451cc99b51f1f8f5a3d1dc475fdfcbadd12870daa6f603285789020",
+          "after": "cd9fc0dcfcbf06b07f0aa9d7dbee7a53196b0297a8801b0ca23bb9d360c43157"
+        },
+        "vowels/word-14-1": {
+          "definition": "d985123a4f389991bfb5737ceaadb482e117d58554a54e03c10887f26e316766",
+          "before": "87936b8c1e4ae98006f908cc86324b15d21fe465a0ae3872e6bf1e82f3fcc465",
+          "after": "2fdfb195fc25eff12d9c5a6e745a57ab5b797869104c28cdee48f4dc7a269e3d"
+        },
+        "vowels/word-15-1": {
+          "definition": "4ed2ebd7524e6053e61af8170fafdd7cb8eba1d0a13f8e41b9ac6a1f868e4343",
+          "before": "ed36660153e06016b6103a666c6d2c82182557cb4da1c55c18568c6e36cc54c0",
+          "after": "05e1109ca5c52eb201229300ed32da57a8d3f043393d7cb83d89ac06b2f96059"
+        },
+        "vowels/word-16-1": {
+          "definition": "edf9f0bd70ee26bcc302f70f81dcb9c10b53c02a9906c63be6a65044c5fac059",
+          "before": "0241f90c1afc6e5b5c1cd4b951f935cb000ab5925d8619da655b13879f42b7f8",
+          "after": "1627e47fb4c06273e0b69df463d16f203669786a517ca073ef72f14a41fae874"
+        },
+        "vowels/word-17-1": {
+          "definition": "e27478fec5dcd73423f46a59af442e04a0ffba8bd381cfaea76559676c096e72",
+          "before": "db361d2588e14fe93a923010baaeb5063e2d335f729bf45d805ea48a27f415fa",
+          "after": "47e29ce54f9c2f544da97be37f73bfaf6a3f9bdf1c62f6863b01b3591f101593"
+        },
+        "vowels/word-18-2": {
+          "definition": "e910f0f02c2890dff70f5a00d3fd46678c01d501c385a560c37fa6ef075d5bc1",
+          "before": "e40125b0ae61626e9ec7724d3850b6744a243cf222e49da3f6725a6ff8222176",
+          "after": "e25570968fa64ad042d1724351c50b3c49ed45705c5b957189cd3ef2789bb809"
+        },
+        "vowels/word-19-1": {
+          "definition": "965c8d0b7dc7a0adff557695ab40d88376ca5dbd73a7f5dfaae347806c8b24ff",
+          "before": "df01debe9ca6648f72f407894b014cfe44e80908334db22eaf358adcb5e7c8e9",
+          "after": "b4d19b7a3b7091b915b7dd72e60bf59a8a9d90208c2f7dfed46d45e32b758d31"
+        },
+        "vowels/word-19-4": {
+          "definition": "f19b86ca1ee99150ed4494ac3f9001b637eb933161a5faf3c11c7c124ea69241",
+          "before": "df01debe9ca6648f72f407894b014cfe44e80908334db22eaf358adcb5e7c8e9",
+          "after": "b4d19b7a3b7091b915b7dd72e60bf59a8a9d90208c2f7dfed46d45e32b758d31"
+        },
+        "vowels/word-20-4": {
+          "definition": "eb211b593a1f2a309de43cc96a4e44f6914628ab3b6b581cd2fb1cde2446f05a",
+          "before": "0bfab6fb22603a6a0a09e024f0ea176d8f1797422c95d0a4c8452fa0bd843bb7",
+          "after": "6c9a05b91b893f7e88415ff4f42503a68a7cc2cf50d9f582c74ffa88c9964f0d"
+        },
+        "vowels/word-20-7": {
+          "definition": "07ea0e206ca2697920073298b923b5e2be186c218c23ce822adcc7b4c6f9ed6f",
+          "before": "0bfab6fb22603a6a0a09e024f0ea176d8f1797422c95d0a4c8452fa0bd843bb7",
+          "after": "6c9a05b91b893f7e88415ff4f42503a68a7cc2cf50d9f582c74ffa88c9964f0d"
+        },
+        "vowels/word-20-10": {
+          "definition": "b24230ffebb7feb1f442155a820dc70786a69813efa5bd7dddaabaf8c085c517",
+          "before": "0bfab6fb22603a6a0a09e024f0ea176d8f1797422c95d0a4c8452fa0bd843bb7",
+          "after": "6c9a05b91b893f7e88415ff4f42503a68a7cc2cf50d9f582c74ffa88c9964f0d"
+        },
+        "vowels/word-21-0": {
+          "definition": "219df4ad8888ab5da2e4993a9f30288b8d3ced862ccda90feac6fcda41cea0da",
+          "before": "0f9e7cd7ffaa964e5d0b16d94cc29c24b3452c5e2adf48d102cecf3fa6de15ea",
+          "after": "fde0404a51c387a0d029b62ba51e457e6b89864439d7f6b2a82ebec7ac87dada"
+        },
+        "vowels/word-21-5": {
+          "definition": "415c2280fdf88f74c25b58cbe06c8f4f2747dfde4293b8f2ad1c08ba198a57fa",
+          "before": "0f9e7cd7ffaa964e5d0b16d94cc29c24b3452c5e2adf48d102cecf3fa6de15ea",
+          "after": "fde0404a51c387a0d029b62ba51e457e6b89864439d7f6b2a82ebec7ac87dada"
+        },
+        "vowels/word-22-1": {
+          "definition": "5032698bdd7d2cb8e3e01cc9cccac605717bccecc5a94116530c966cad756c81",
+          "before": "97157b0d1f9145f576a04a34ef8d1a3982b7eb17ccb7f3b7dc12d0149f37df3a",
+          "after": "d76cf1b6d96416b8d797029936a0794afaffd6acc8a1992ff57848067b065bee"
+        },
+        "vowels/word-22-3": {
+          "definition": "d212d691999faa50d64f68222e08639da2e17d125571021cd5cd94fb4f312664",
+          "before": "97157b0d1f9145f576a04a34ef8d1a3982b7eb17ccb7f3b7dc12d0149f37df3a",
+          "after": "d76cf1b6d96416b8d797029936a0794afaffd6acc8a1992ff57848067b065bee"
+        },
+        "vowels/word-22-5": {
+          "definition": "c58378662b6f9bbd51891b29daddc6b2124f452b7c49dd5901107e0a170e9071",
+          "before": "97157b0d1f9145f576a04a34ef8d1a3982b7eb17ccb7f3b7dc12d0149f37df3a",
+          "after": "d76cf1b6d96416b8d797029936a0794afaffd6acc8a1992ff57848067b065bee"
+        },
+        "vowels/word-23-1": {
+          "definition": "a1777af08d0206d5ea0c29af239a3d122785940d3b32268c51aff8a5a5d3057b",
+          "before": "7b6bbb18be672c99bd589de15a9d700845dc9d922dbe087eb8706e95825228ab",
+          "after": "3071bb14b79589658de8879f17bec92bf42a3b78ebf60d3499447965bf5df3f4"
+        },
+        "vowels/word-23-3": {
+          "definition": "27d7bb5c2e0aef97f8a2b4a0539f9f1e979de104b78fb24f972dbbdec5d76ff2",
+          "before": "7b6bbb18be672c99bd589de15a9d700845dc9d922dbe087eb8706e95825228ab",
+          "after": "3071bb14b79589658de8879f17bec92bf42a3b78ebf60d3499447965bf5df3f4"
+        },
+        "vowels/word-23-5": {
+          "definition": "3a2d4a8bfaefce3c4b161c89e0ca59f32d0c18384827d7ed86d0d9115482e62f",
+          "before": "7b6bbb18be672c99bd589de15a9d700845dc9d922dbe087eb8706e95825228ab",
+          "after": "3071bb14b79589658de8879f17bec92bf42a3b78ebf60d3499447965bf5df3f4"
+        },
+        "vowels/word-24-1": {
+          "definition": "36a0159671f2c3b75bdbed365f38fa26391e023a17d8777c31478e3756456937",
+          "before": "4a41042e84d5b1092275171544d43d4a42c72f3fe34a1f666b00903eaab5b9fa",
+          "after": "e4044dcdc622d693d8ce26b5a6906aae4c9d9435a228e804450d97920b65f50f"
+        },
+        "vowels/word-24-3": {
+          "definition": "955ea046d97b9a3fc5336b5e5b80277dcb4fb831601bae55ae8c123d6edf371d",
+          "before": "4a41042e84d5b1092275171544d43d4a42c72f3fe34a1f666b00903eaab5b9fa",
+          "after": "e4044dcdc622d693d8ce26b5a6906aae4c9d9435a228e804450d97920b65f50f"
+        },
+        "vowels/word-24-5": {
+          "definition": "edf78addbe7b62b686f708616c8f2c77d880ca9aa5cb0e759933651fdc2d44dc",
+          "before": "4a41042e84d5b1092275171544d43d4a42c72f3fe34a1f666b00903eaab5b9fa",
+          "after": "e4044dcdc622d693d8ce26b5a6906aae4c9d9435a228e804450d97920b65f50f"
+        },
+        "vowels/word-25-1": {
+          "definition": "ff4e9c4bf128c27d90a53d5f6e46dc4ee9fa8857306c882d7a3aef9b3d3d9371",
+          "before": "bf6b221a91f7289e6355c63ebcd3f4137cf63a12b4e19c3f393b7a56e3d1d835",
+          "after": "2db723c9211ea0ce957dc194cb232e466b97ebadf2875034a7a02c21d4fd6993"
+        },
+        "vowels/word-25-3": {
+          "definition": "ab5f1ef74ab96c9308fd01bd63213bedc4718a4f8706498974eb92095057faec",
+          "before": "bf6b221a91f7289e6355c63ebcd3f4137cf63a12b4e19c3f393b7a56e3d1d835",
+          "after": "2db723c9211ea0ce957dc194cb232e466b97ebadf2875034a7a02c21d4fd6993"
+        },
+        "vowels/word-26-1": {
+          "definition": "39727bac4c61b1122b6603e7569dac7dd8dffb886d0bcb68b1422a57f65f0238",
+          "before": "7f53d395d5b98b0bd6a139e0ca9246e6b5f15bfbb4f7704a67fff36857ee824a",
+          "after": "dc1cdef73b8f5e5961366ec43869e9682202bd34c845d3f30109868907ea6891"
+        },
+        "vowels/word-26-3": {
+          "definition": "98f2a856d3bf1593f4fdbd78de638efe417a2d3ebb12a32637a090fe2ed3a275",
+          "before": "7f53d395d5b98b0bd6a139e0ca9246e6b5f15bfbb4f7704a67fff36857ee824a",
+          "after": "dc1cdef73b8f5e5961366ec43869e9682202bd34c845d3f30109868907ea6891"
+        },
+        "vowels/word-27-2": {
+          "definition": "b14bbcd8a3df3a53e305e64f3f6fd9659d9566fe8815f4ac9ed864fddaa867de",
+          "before": "05f442139cf49521de8f43f4d60152ed94d252cd9dec6b02c1366c680f4f37d2",
+          "after": "862b86cc964592077a6695bd98139862ebb353cafbbd12fe8ad674f861b4b65a"
+        },
+        "vowels/word-27-5": {
+          "definition": "aae227490b15b92348cc565f9bcbcc4a1ca54926f691ae27fe7884209adabc26",
+          "before": "05f442139cf49521de8f43f4d60152ed94d252cd9dec6b02c1366c680f4f37d2",
+          "after": "862b86cc964592077a6695bd98139862ebb353cafbbd12fe8ad674f861b4b65a"
+        },
+        "vowels/word-28-1": {
+          "definition": "9d3024149ca6a94bff725457298e417350bad26dddda5f50c3ffa120746df60b",
+          "before": "c3705fd800882ee63a69f6df8ae0e439551869444e985c05093e6e7fb94ea557",
+          "after": "8ee8ee0778aa5bada22c71fb2780ff73ee91e81394ff74a21acde64faec7fa01"
+        },
+        "vowels/word-28-3": {
+          "definition": "77f4511c68743279417e7cb88a4eeb8a543f64aff6b404ef89cf9284373911a6",
+          "before": "c3705fd800882ee63a69f6df8ae0e439551869444e985c05093e6e7fb94ea557",
+          "after": "8ee8ee0778aa5bada22c71fb2780ff73ee91e81394ff74a21acde64faec7fa01"
+        },
+        "vowels/word-28-6": {
+          "definition": "5ff0db2eb0fe4abf9bc28031878935cf9968446dd5cc71f3ac819566679102cb",
+          "before": "c3705fd800882ee63a69f6df8ae0e439551869444e985c05093e6e7fb94ea557",
+          "after": "8ee8ee0778aa5bada22c71fb2780ff73ee91e81394ff74a21acde64faec7fa01"
+        },
+        "vowels/word-29-1": {
+          "definition": "1fbc996aa0674de0b236d56f04a9a6ae755cfd1a98ff0bfd45d4d7d390ef6a8b",
+          "before": "01a35df50cab8f02aef05a6b8b1e4d5eab815311f79606000610390b6dfd2e58",
+          "after": "6308d287b4839ba8a914232b8f8debbc0b96bb4399d652080d8e4de894d51184"
+        },
+        "vowels/word-29-4": {
+          "definition": "d4748e93501f48bcf635b2aa27309c3a4df92da5f567cfe14939da0fd89ee824",
+          "before": "01a35df50cab8f02aef05a6b8b1e4d5eab815311f79606000610390b6dfd2e58",
+          "after": "6308d287b4839ba8a914232b8f8debbc0b96bb4399d652080d8e4de894d51184"
+        },
+        "vowels/word-30-6": {
+          "definition": "006b17d686576af213d664b2e1dfe74044626e1ee27491a91168d08c97db92c1",
+          "before": "5e8206a32bf89dc56b9193cbd6e5c46382ef40295a3ef337b019ee1f02da83ec",
+          "after": "c56cc4e4f7032afedc0f81dd1ca6275f96279032000b0cfa4a18fda8f9f50feb"
+        },
+        "vowels/word-31-1": {
+          "definition": "4b4231faf8a2de8cca66adcad3d6ef9e11ba14c6f2e8e2adae4b73784ed08b10",
+          "before": "e6826bdd5b40d7cfd55c52af07c849655809ea4cb6e3e6f560eda9ba1f1129d6",
+          "after": "9bd3f698ad87cf6403a4bae84c4d99340159a6252cde758ffabfefd8187aa4a7"
+        },
+        "vowels/word-31-4": {
+          "definition": "c2a695b2d6dc970ed2ccf80377b43950de0c37097f2ce6c59a75ca0e78ee25c5",
+          "before": "e6826bdd5b40d7cfd55c52af07c849655809ea4cb6e3e6f560eda9ba1f1129d6",
+          "after": "9bd3f698ad87cf6403a4bae84c4d99340159a6252cde758ffabfefd8187aa4a7"
+        },
+        "vowels/word-32-1": {
+          "definition": "5991bcbc86704b60de019c26bb8adcceac9cb61c9884cfcef0fabc88e78dc4eb",
+          "before": "99a9fecdeb7a5dc162131f2ca4d12eb39bc4e707782bbd6629aacfa29886c963",
+          "after": "59836eb276981a586f372fb3e267856dc8f4feac10f086bd5c65fd55c553db30"
+        },
+        "vowels/word-32-3": {
+          "definition": "15db004749c75bf806d7f0309afc8b88049610f5bcea8694a8b46b94a539f253",
+          "before": "99a9fecdeb7a5dc162131f2ca4d12eb39bc4e707782bbd6629aacfa29886c963",
+          "after": "59836eb276981a586f372fb3e267856dc8f4feac10f086bd5c65fd55c553db30"
+        },
+        "vowels/word-33-1": {
+          "definition": "0524ef9f1862cc13c0a8e5b722027ae211bccafc631a65eb04c6eca3e10fd2a7",
+          "before": "0d68f26c4acd6fce29f983e95833429ee9fedc0ca4d0a92f09a9d16dd71c17dc",
+          "after": "852af638040a0662ea34a615a88b1da17ed164f7402132408391b36b502303f0"
+        },
+        "vowels/word-33-3": {
+          "definition": "724932b0df38cc44a1828c9d16e4738f55505933854dd2cd6bc4c837505d427c",
+          "before": "0d68f26c4acd6fce29f983e95833429ee9fedc0ca4d0a92f09a9d16dd71c17dc",
+          "after": "852af638040a0662ea34a615a88b1da17ed164f7402132408391b36b502303f0"
+        },
+        "vowels/word-34-4": {
+          "definition": "0948684e1a4628c77cfad6dbae6f62cb76e4ecb4be084c94d9fb65237698cbce",
+          "before": "5cc308e81b81347eb7fb116892f2f7fe3300fb3eb2267e9c593790d5c0505abb",
+          "after": "e3ef31f7bc0d1371f6a76ccfaced4e30e55e47c933d90b3971edc4e5ab9219fe"
+        },
+        "vowels/word-34-7": {
+          "definition": "f34577e29d0a5cbed5637a2c6ac09e53c1f3ef65750c7de08b0f91aab8033bfe",
+          "before": "5cc308e81b81347eb7fb116892f2f7fe3300fb3eb2267e9c593790d5c0505abb",
+          "after": "e3ef31f7bc0d1371f6a76ccfaced4e30e55e47c933d90b3971edc4e5ab9219fe"
+        }
+      }
+    }
+  ]
 }
