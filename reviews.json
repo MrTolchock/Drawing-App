@@ -17580,6 +17580,15 @@
       "at": "2026-11-19T20:25:09.929Z",
       "seen": true,
       "operation": "03b34a5c-5f38-454e-909f-2b0214929ee9"
+    },
+    "picnic/2-1@98c25dfc3ecd73c2": {
+      "key": "picnic/2-1",
+      "revision": "98c25dfc3ecd73c2",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-19T20:27:13.764Z",
+      "seen": true,
+      "operation": "0809a0eb-79e5-495a-a205-950d432cce6f"
     }
   },
   "history": [
