@@ -17652,6 +17652,15 @@
       "at": "2026-11-19T20:28:01.526Z",
       "seen": true,
       "operation": "c1d16153-e6b4-472f-a3ad-cabc6bd38952"
+    },
+    "picnic/2-9@fbb376c515f64e31": {
+      "key": "picnic/2-9",
+      "revision": "fbb376c515f64e31",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-19T20:28:12.141Z",
+      "seen": true,
+      "operation": "99bbdabf-7c03-4343-8454-f1040ec12f76"
     }
   },
   "history": [
