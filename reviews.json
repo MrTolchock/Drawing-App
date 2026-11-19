@@ -17688,6 +17688,15 @@
       "at": "2026-11-19T20:28:34.189Z",
       "seen": true,
       "operation": "b2da7a93-8dfb-4114-b41f-ac5d57736fc1"
+    },
+    "picnic/3-3@3b6e1dcd8bab58eb": {
+      "key": "picnic/3-3",
+      "revision": "3b6e1dcd8bab58eb",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-19T20:28:40.703Z",
+      "seen": true,
+      "operation": "2c34e16f-a058-48cb-b9a3-cc3189371d06"
     }
   },
   "history": [
