@@ -3,7 +3,7 @@
    bridge, the fallen-log bridge, the friends' props, and the brook's flowing water. */
 import {THREE} from '../../scene/materials.js';
 import {TAU, lerp, sstep, fbm, rng} from './noise.js';
-import {canvasTex} from './textures.js';
+import {canvasTex, reach} from './textures.js';
 import {trunkGeometry, rootGeometries, crownCards, instanced} from './tiles.js';
 
 const C = h => new THREE.Color(h);
@@ -55,7 +55,7 @@ export function landmarkSteps(region, look, world, group, out) {
     });
     const dy = ground(hx, hz + 2.3) - .02, arch = new THREE.Shape(); arch.moveTo(-.62, 0); arch.lineTo(-.62, 1.32); arch.absarc(0, 1.32, .62, Math.PI, 0, true); arch.lineTo(.62, 0); arch.lineTo(-.62, 0);
     const sg = new THREE.ShapeGeometry(arch, 20), uv = sg.attributes.uv, sp = sg.attributes.position; for (let i = 0; i < uv.count; i++) uv.setXY(i, (sp.getX(i) + .62) / 1.24, sp.getY(i) / 1.94);
-    const doorMesh = new THREE.Mesh(sg, new THREE.MeshLambertMaterial({map: door})); doorMesh.name = 'den-door'; doorMesh.position.set(hx, dy, hz + 2.33); doorMesh.receiveShadow = M.shadows; group.add(doorMesh);
+    const doorMesh = new THREE.Mesh(sg, reach(new THREE.MeshLambertMaterial({map: door}))); doorMesh.name = 'den-door'; doorMesh.position.set(hx, dy, hz + 2.33); doorMesh.receiveShadow = M.shadows; group.add(doorMesh);
     const frame = new THREE.TubeGeometry(new THREE.CatmullRomCurve3([[-.74, -.05], [-.74, 1.3], [-.52, 1.86], [0, 2.06], [.52, 1.86], [.74, 1.3], [.74, -.05]].map(([x, y]) => new THREE.Vector3(x, y, 0))), 40, .12, 8);
     bark.push(tint(at(frame, hx, dy, hz + 2.35), '#8a5a34'));
     rocks.push(tint(at(new THREE.CylinderGeometry(.9, 1, .16, 20, 1).scale(1, 1, .55), hx, dy + .02, hz + 2.8), '#9a8a74'));

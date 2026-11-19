@@ -5,8 +5,9 @@
 import {THREE} from '../scene/materials.js';
 import {characters, TRICK_OF, plushDusk, plushSun} from './characters3d.js';
 import {createWorld} from './world/index.js';
-import {createLook, foxView, bendAt, windAt, canvasTex} from './world/textures.js';
+import {createLook, foxView, bendAt, windAt, canvasTex, shadowReach} from './world/textures.js';
 import {createStreamer, NEAR} from './world/streamer.js';
+import {createFades} from './world/fade.js';
 import {TAU, rng, lerp} from './world/noise.js';
 import {createLife} from './world/life.js';
 import {createRain} from './world/rain.js';
@@ -56,37 +57,55 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
   horizon.position.y = 4; horizon.renderOrder = -9; horizon.name = 'horizon'; scene.add(horizon);
   const hemi = new THREE.HemisphereLight('#e4f0ff', '#8a7444', 1.35); scene.add(hemi);
   const sun = new THREE.DirectionalLight('#ffe0ab', 2.6); scene.add(sun, sun.target);
-  const shadowAt = new THREE.Vector3(Infinity, 0, 0);
-  function aimSun(x, z) { sun.target.position.set(x, WORLD.ground(x, z), z); sun.position.copy(sunDir).multiplyScalar(40).add(sun.target.position); sun.target.updateMatrixWorld(); shadowAt.set(x, 0, z); renderer.shadowMap.needsUpdate = true; }
-  if (!software) { sun.castShadow = true; sun.shadow.mapSize.set(2048, 2048); Object.assign(sun.shadow.camera, {left: -30, right: 30, top: 30, bottom: -30, near: 5, far: 95}); sun.shadow.bias = -.0004; sun.shadow.normalBias = .04; }
-  aimSun(2, -2);
+  /* The sun's shadow map stands still and is drawn only when needed: its square is kept round the ground the camera
+     sees, out to the shadows' reach (they fade out before it, textures.js), with north up. It is drawn again when that
+     ground no longer fits, when the sun moves, and soon after trees, rocks or a landmark arrive in it or leave it. The
+     square keeps its size (the sharpness of the shadows) and moves by whole texels, so shadows already drawn stay put. */
+  const SHADOW_HALF = 30, SHADOW_TEXEL = 2 * SHADOW_HALF / 2048, SHADOW_EYE = 70, SHADOW_MARGIN = 2, SHADOW_SLACK = 6, REACH = [26, 58];
+  const shadow = {cx: Infinity, cy: 0, reach: 46, due: Infinity, last: -Infinity, force: true, draws: 0, refits: 0, x: new THREE.Vector3(), y: new THREE.Vector3(), basis: new THREE.Vector3(Infinity, 0, 0)};
+  if (!software) { sun.castShadow = true; sun.shadow.mapSize.set(2048, 2048); Object.assign(sun.shadow.camera, {left: -SHADOW_HALF, right: SHADOW_HALF, top: SHADOW_HALF, bottom: -SHADOW_HALF, near: 5, far: SHADOW_EYE + 75}); sun.shadow.camera.up.set(0, 0, -1); sun.shadow.bias = -.0004 * 90 / 140; sun.shadow.normalBias = .04; }
+  sun.target.position.set(forestPlaces.home.x, WORLD.ground(forestPlaces.home.x, forestPlaces.home.z), forestPlaces.home.z); sun.position.copy(sun.target.position).addScaledVector(sunDir, SHADOW_EYE); sun.target.updateMatrixWorld();
   const fill = new THREE.DirectionalLight('#fff4e0', .55); scene.add(fill, fill.target);   // camera-side fill so faces read against the low sun
 
   /* ---------- the world, streamed in tiles ---------- */
-  const look = createLook({software, big: true});
-  const streamer = createStreamer(WORLD, look, scene, {onSlice: ms => perf?.slice(ms)});
+  const look = createLook({software, big: true}), fades = createFades();
+  // A landmark's shaders (and those of its dissolve) are compiled before it is shown, without stalling a frame.
+  function prepare(group) {
+    if (!renderer.compileAsync) return null;
+    const undo = fades.rehearse(group); let dissolve;
+    try { dissolve = renderer.compileAsync(group, camera, scene); } finally { undo(); }
+    return Promise.all([dissolve, renderer.compileAsync(group, camera, scene)]);
+  }
+  const streamer = createStreamer(WORLD, look, scene, {onSlice: ms => perf?.slice(ms), fades, prepare, onChange: (group, ring) => shadowChange(group, ring)});
   streamer.focus(forestPlaces.home.x, forestPlaces.home.z);
   let compiled = false;
-  function compile() { if (compiled) return; compiled = true; try { (renderer.compileAsync || renderer.compile).call(renderer, scene, camera); } catch (e) { /* compiled on first draw instead */ } }
+  // Everything built so far, once as it is and once as it dissolves (the copies of each material share one program).
+  function compile() {
+    if (compiled) return; compiled = true; const run = () => { try { (renderer.compileAsync || renderer.compile).call(renderer, scene, camera); } catch (e) { /* compiled on first draw instead */ } };
+    const undo = fades.rehearse(streamer.root); try { run(); } finally { undo(); } run();
+  }
 
-  /* ---------- the big world: hazy hills far away, and each area's own light ---------- */
+  /* ---------- the big world: the land far away, and each area's own light ---------- */
   let backdrop = null; const mood = {near: WORLD.fog.near, far: WORLD.fog.far, bm: {}, colour: WORLD.fog.color.clone()};
   {
-    // One coarse mesh of the whole land (tree tops included) in the colour of the haze, drawn behind
-    // everything and only beyond the far ring: the Rock and the wooded hills stay on the horizon.
+    // One coarse mesh of the whole land (tree tops included), drawn behind everything: beyond the tiles it is the land
+    // on the horizon (woods, meadows, the Rock and its snowy peak, lit by the sun and fading into the same haze as the
+    // tiles), and it fills any gap the tiles leave. Nothing is drawn there closer than the near ring.
     const T = WORLD.terrain, E = WORLD.extent, G = 8, M = 40, nx = (E.x1 - E.x0 + 2 * M) / G, nz = (E.z1 - E.z0 + 2 * M) / G, pos = [], col = [], idx = [], bm = {};
+    const LAND = {beech: new THREE.Color('#5f8540'), spruce: new THREE.Color('#47693f'), meadow: new THREE.Color('#9db95c'), swamp: new THREE.Color('#7d8c5b'), rock: new THREE.Color('#a2a596'), snow: new THREE.Color('#f1f4f7')}, c = new THREE.Color();
     for (let j = 0; j <= nz; j++) for (let i = 0; i <= nx; i++) {
       const x = E.x0 - M + i * G, z = E.z0 - M + j * G, b = T.biome(x, z, bm), wood = (1 - b.meadow) * (1 - b.swamp) * (1 - b.rock) * (1 - b.glade), h = T.ground(x, z) + wood * (b.spruce > .5 ? 9 : 7);
-      const shade = .93 - wood * .07 + b.rock * .02 + Math.min(.05, h * .004) + ((i * 7 + j * 13) % 5) * .004; const sn = b.snow; pos.push(x, h, z); col.push(lerp(shade * .97, 1.16, sn), lerp(shade, 1.17, sn), lerp(shade * (1 + b.rock * .04 - wood * .03), 1.32, sn));
+      c.copy(LAND.beech).lerp(LAND.spruce, Math.min(1, b.spruce * 1.2)).lerp(LAND.meadow, Math.min(1, b.meadow + b.glade)).lerp(LAND.swamp, b.swamp).lerp(LAND.rock, Math.min(1, b.rock * 1.1)).lerp(LAND.snow, b.snow);
+      c.multiplyScalar(.94 + ((i * 7 + j * 13) % 5) * .03); pos.push(x, h, z); col.push(c.r, c.g, c.b);
     }
     for (let j = 0; j < nz; j++) for (let i = 0; i < nx; i++) { const a = j * (nx + 1) + i, b = a + 1, c = a + nx + 1, d = c + 1; idx.push(a, c, b, b, c, d); }   // north first: the camera looks north
-    const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setAttribute('color', new THREE.Float32BufferAttribute(col, 3)); g.setIndex(idx);
-    backdrop = new THREE.Mesh(g, new THREE.ShaderMaterial({depthWrite: false, uniforms: {uHaze: {value: WORLD.fog.color}, uFox: {value: new THREE.Vector3()}},
-      vertexShader: 'attribute vec3 color;varying vec3 vC;varying vec3 vW;void main(){vC=color;vW=position;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',
-      fragmentShader: 'uniform vec3 uHaze,uFox;varying vec3 vC;varying vec3 vW;void main(){float d=distance(vW.xz,uFox.xz);if(d<58.)discard;float far=smoothstep(58.,150.,d);gl_FragColor=vec4(uHaze*mix(vC,vec3(1.),far*.55),1.);\n#include <tonemapping_fragment>\n#include <colorspace_fragment>\n}'}));
+    const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setAttribute('color', new THREE.Float32BufferAttribute(col, 3)); g.setIndex(idx); g.computeVertexNormals();
+    backdrop = new THREE.Mesh(g, new THREE.ShaderMaterial({depthWrite: false, uniforms: {uHaze: {value: WORLD.fog.color}, uFox: {value: new THREE.Vector3()}, uSun: {value: sunDir}, uLight: {value: 1}, uFog: {value: new THREE.Vector2(WORLD.fog.near, WORLD.fog.far)}, uFrom: {value: NEAR}},
+      vertexShader: 'attribute vec3 color;varying vec3 vC,vW,vN;varying float vDepth;void main(){vC=color;vW=position;vN=normal;vec4 mv=modelViewMatrix*vec4(position,1.);vDepth=-mv.z;gl_Position=projectionMatrix*mv;}',
+      fragmentShader: 'uniform vec3 uHaze,uFox,uSun;uniform vec2 uFog;uniform float uLight,uFrom;varying vec3 vC,vW,vN;varying float vDepth;void main(){if(distance(vW.xz,uFox.xz)<uFrom)discard;vec3 c=vC*uLight*(.58+.55*max(dot(normalize(vN),uSun),0.));gl_FragColor=vec4(mix(c,uHaze,smoothstep(uFog.x,uFog.y,vDepth)),1.);\n#include <tonemapping_fragment>\n#include <colorspace_fragment>\n}'}));
     backdrop.name = 'backdrop hills'; backdrop.renderOrder = -8; backdrop.frustumCulled = false; scene.add(backdrop);
   }
-  const MOODS = {wood: ['#e8dcae', 24, 72], meadow: ['#f1e8bd', 30, 78], swamp: ['#c5d2ae', 11, 50], rock: ['#e0e6d6', 26, 78], spruce: ['#d3d8b2', 18, 62]}, moodC = new THREE.Color(), moodT = new THREE.Color();
+  const MOODS = {wood: ['#e6e1c2', 36, 112], meadow: ['#eeead0', 42, 124], swamp: ['#ccd6bd', 20, 82], rock: ['#e2e7dd', 40, 124], spruce: ['#d9ddc6', 32, 104]}, moodC = new THREE.Color(), moodT = new THREE.Color();
   /** Lean the haze toward the area Fuchs is in (the water and the backdrop share the colour object). */
   /* ---------- weather (js/friends/weather.js): a shower dims and greys the light, the ground darkens and dries again ---------- */
   const CAVE_DARK = new THREE.Color('#040405'), CAVE_FILL = new THREE.Color('#a9dcea'), FILL = new THREE.Color('#fff4e0'), RAINY = new THREE.Color('#9fa9a6'), GREY_TOP = new THREE.Color('#9aa6a8'), GREY_HORIZON = new THREE.Color('#c3c6bd'), HEMI_SKY = new THREE.Color('#e4f0ff'), HEMI_RAIN = new THREE.Color('#c9d0d6');
@@ -112,8 +131,8 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     const w = weather.state, f = w.fresh; let r = w.rain;
     tod += THREE.MathUtils.clamp(todTo - tod, -dt / 30, dt / 30); blendTod();
     // the sun moves with the day; the (static) shadow map is redrawn only now and then while it does
-    if (sunDir.distanceToSquared(todBase.dir) > 1e-6 && (time - sunAt > .5 || Math.abs(todTo - tod) < 1e-4)) { sunDir.copy(todBase.dir); sunAt = time; shadowAt.x = Infinity; }
-    sun.color.copy(todBase.sun); sun.intensity = todBase.si * (1 - .75 * r) + .25 * f; fill.intensity = todBase.fill * (1 - .25 * r); hemi.intensity = todBase.hi * (1 - .2 * r); hemi.color.copy(todBase.sky).lerp(HEMI_RAIN, r); hemi.groundColor.copy(todBase.ground);
+    if (sunDir.distanceToSquared(todBase.dir) > 1e-6 && (time - sunAt > .5 || Math.abs(todTo - tod) < 1e-4)) { sunDir.copy(todBase.dir); sunAt = time; shadow.force = true; }
+    sun.color.copy(todBase.sun); sun.intensity = todBase.si * (1 - .75 * r) + .25 * f; backdrop.material.uniforms.uLight.value = todBase.hi / 1.35 * (1 - .2 * r); fill.intensity = todBase.fill * (1 - .25 * r); hemi.intensity = todBase.hi * (1 - .2 * r); hemi.color.copy(todBase.sky).lerp(HEMI_RAIN, r); hemi.groundColor.copy(todBase.ground);
     skyU.top.value.copy(todBase.top).lerp(GREY_TOP, r * .85); skyU.horizon.value.copy(todBase.hor).lerp(GREY_HORIZON, r * .8); skyU.glow.value = todBase.glow * (1 - r * .9) + f * .3;
     if (look.M.ground) look.M.ground.color.setScalar(1 - .2 * w.wet);
     // under the rock: no sun and little sky on Fuchs, a cool light as from the crystals; the sky itself goes out
@@ -142,7 +161,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     const k = 1 - Math.exp(-dt * .9); mood.colour.lerp(moodT, k); mood.near += (near - mood.near) * k; mood.far += (far - mood.far) * k;
     // in the cave the rock is night: everything beyond its own light fades to black
     const ck = caveEase(); WORLD.fog.color.copy(mood.colour).lerp(CAVE_DARK, ck);
-    const lift = reveal * reveal * (3 - 2 * reveal); scene.fog.near = lerp(mood.near * lerp(.4, 1, lift), 8, ck); scene.fog.far = lerp(mood.far * lerp(.6, 1, lift), 32, ck);
+    const lift = reveal * reveal * (3 - 2 * reveal); scene.fog.near = lerp(mood.near * lerp(.75, 1, lift), 8, ck); scene.fog.far = lerp(mood.far * lerp(.85, 1, lift), 32, ck); backdrop.material.uniforms.uFog.value.set(scene.fog.near, scene.fog.far);
     if (look.M.water) { look.M.water.uniforms.fogNear.value = scene.fog.near; look.M.water.uniforms.fogFar.value = scene.fog.far; }
   }
 
@@ -373,6 +392,80 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     sound.brook = THREE.MathUtils.clamp(1 - (Math.sqrt(near) - 1.2) / 13, 0, 1);
     const fx = T.falls.base[0] - pos.x, fz = T.falls.base[1] - pos.z; sound.falls = THREE.MathUtils.clamp(1 - (Math.hypot(fx, fz) - 5) / 42, 0, 1); sound.fallsPan = THREE.MathUtils.clamp(fx / 22, -1, 1);
   }
+  /* ---------- what the far ring must cover ----------
+     Its edge must be (almost) lost in the haze wherever the camera sees it; how far that is depends on the area's haze,
+     the zoom and the shape of the screen. Worked out about once a second (not during a close shot or in the cave); the
+     tiles that come and go there dissolve anyway. */
+  let wedgeAt = -Infinity; const farProbe = new THREE.Vector3(), farSeen = new THREE.Vector3();
+  function viewWedge(time, force = false) {
+    if (!force && (time - wedgeAt < 1 || shot || caveK > .1)) return; wedgeAt = time; camera.updateMatrixWorld();
+    const gy = groundY(pos.x, pos.z), hazeAt = R => { let least = 1; for (let a = -1.6; a <= 1.6; a += .08) {
+      farProbe.set(pos.x + Math.sin(a) * R, gy, pos.z - Math.cos(a) * R); farSeen.copy(farProbe).project(camera); if (farSeen.z > 1 || Math.abs(farSeen.x) > 1.02 || Math.abs(farSeen.y) > 1.02) continue;
+      least = Math.min(least, THREE.MathUtils.smoothstep(-farProbe.applyMatrix4(camera.matrixWorldInverse).z, mood.near, mood.far)); } return least; };
+    let lo = 52, hi = 116; for (let k = 0; k < 7; k++) { const mid = (lo + hi) / 2; if (hazeAt(mid - 11) >= .9) hi = mid; else lo = mid; }   // 11 m: a tile's half diagonal
+    const wide = Math.tan(Math.min(1.45, Math.atan(Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.aspect) + .2));
+    streamer.setView({back: 24, tan: wide, far: Math.ceil(hi / 4) * 4});
+  }
+
+  /* ---------- the sun's shadow map (see above) ---------- */
+  const ray = new THREE.Vector3(), onRay = new THREE.Vector3(), corner = new THREE.Vector3(), RAYS = [];
+  for (const u of [-1, 0, 1]) for (const v of [-1, -.35, .35, 1]) RAYS.push([u, v]);
+  // the light's axes: x and y across its rays (y as near north as it can be), as three.js aims the shadow camera
+  function shadowBasis() {
+    if (shadow.basis.distanceToSquared(sunDir) < 1e-10) return false;
+    shadow.basis.copy(sunDir); shadow.x.crossVectors(sun.shadow.camera.up, sunDir).normalize(); shadow.y.crossVectors(sunDir, shadow.x); return true;
+  }
+  /** The square (in the light's axes) round the ground the camera sees with shadows: out to `reach` m from the camera,
+      from 8 m in front of it (the trunks between it and Fuchs) down to where each sight line meets the ground. */
+  function seenRect(reach) {
+    const c = camera.position, r = {x0: Infinity, x1: -Infinity, y0: Infinity, y1: -Infinity}, gy = groundY(pos.x, pos.z);
+    const add = p => { const a = p.dot(shadow.x), b = p.dot(shadow.y); if (a < r.x0) r.x0 = a; if (a > r.x1) r.x1 = a; if (b < r.y0) r.y0 = b; if (b > r.y1) r.y1 = b; };
+    for (const [u, v] of RAYS) {
+      ray.set(u, v, .5).unproject(camera).sub(c).normalize(); let t = reach;
+      if (ray.y < -1e-3) { let h = gy; for (let k = 0; k < 3; k++) { const hit = (c.y - h) / -ray.y; if (hit <= 0) break; t = Math.min(reach, hit); onRay.copy(c).addScaledVector(ray, t); h = groundY(onRay.x, onRay.z); } }
+      add(onRay.copy(c).addScaledVector(ray, Math.min(t, 8))); add(onRay.copy(c).addScaledVector(ray, t));
+    }
+    return r;
+  }
+  const fitsIn = (r, cx, cy, m = SHADOW_MARGIN) => r.x0 - m >= cx - SHADOW_HALF && r.x1 + m <= cx + SHADOW_HALF && r.y0 - m >= cy - SHADOW_HALF && r.y1 + m <= cy + SHADOW_HALF;
+  function drawShadow() { renderer.shadowMap.needsUpdate = true; shadow.last = clock; shadow.due = Infinity; shadow.draws++; }
+  function fitShadow() {
+    if (software) { sun.target.position.set(pos.x, groundY(pos.x, pos.z), pos.z); sun.position.copy(sun.target.position).addScaledVector(sunDir, SHADOW_EYE); sun.target.updateMatrixWorld(); return; }   // light only, no shadow map
+    if (shadowBasis()) shadow.force = true;
+    camera.updateMatrixWorld();
+    if (!shadow.force && fitsIn(seenRect(shadow.reach), shadow.cx, shadow.cy)) {
+      if (clock >= shadow.due && clock - shadow.last >= .45) drawShadow();   // trees arrived or left: redraw soon, within their dissolve, not every frame
+      return;
+    }
+    // the farthest reach (within REACH) that fits the square, then the room left over goes ahead of Fuchs' walk
+    // (it fits with SHADOW_SLACK to spare on every side, so a walk can go on a while before the next redraw)
+    const small = q => Math.max(q.x1 - q.x0, q.y1 - q.y0) + 2 * SHADOW_MARGIN + 2 * SHADOW_SLACK <= 2 * SHADOW_HALF;
+    let lo = REACH[0], hi = REACH[1], r = seenRect(hi);
+    if (!small(r)) { for (let k = 0; k < 6; k++) { const mid = (lo + hi) / 2; if (small(seenRect(mid))) lo = mid; else hi = mid; } r = seenRect(lo); shadow.reach = lo; }
+    else shadow.reach = hi;
+    const room = (a, b) => Math.max(0, SHADOW_HALF - SHADOW_MARGIN - (b - a) / 2), lead = (v, s) => THREE.MathUtils.clamp(v * 2.5, -s, s);
+    const vx = vel.x * shadow.x.x + vel.y * shadow.x.z, vy = vel.x * shadow.y.x + vel.y * shadow.y.z;
+    const cx = Math.round(((r.x0 + r.x1) / 2 + lead(vx, room(r.x0, r.x1))) / SHADOW_TEXEL) * SHADOW_TEXEL, cy = Math.round(((r.y0 + r.y1) / 2 + lead(vy, room(r.y0, r.y1))) / SHADOW_TEXEL) * SHADOW_TEXEL;
+    // the shadow camera's target: on the light's axis through the square's centre, level with Fuchs along the rays
+    const depth = onRay.set(pos.x, groundY(pos.x, pos.z), pos.z).dot(sunDir);
+    sun.target.position.copy(shadow.x).multiplyScalar(cx).addScaledVector(shadow.y, cy).addScaledVector(sunDir, depth); sun.target.updateMatrixWorld();
+    sun.position.copy(sun.target.position).addScaledVector(sunDir, SHADOW_EYE); sun.updateMatrixWorld();
+    shadow.cx = cx; shadow.cy = cy; shadow.force = false; shadow.refits++; shadowReach.value.set(shadow.reach - 12, shadow.reach); drawShadow();
+  }
+  /** A tile or landmark that casts shadows appeared or left: redraw the map soon if it reaches into the square. */
+  function shadowChange(group, ring) {
+    if (software || ring === 'far' || shadow.cx === Infinity) return;
+    let x0, x1, y0, y1, z0, z1; const tile = /^tile (-?\d+),(-?\d+) /.exec(group.name);
+    if (tile) { x0 = +tile[1] * 16; x1 = x0 + 16; z0 = +tile[2] * 16; z1 = z0 + 16; const g = groundY(x0 + 8, z0 + 8); y0 = g - 6; y1 = g + 22; }
+    else { const b = new THREE.Box3().setFromObject(group); if (b.isEmpty()) return; ({x: x0, y: y0, z: z0} = b.min); ({x: x1, y: y1, z: z1} = b.max); }
+    let a0 = Infinity, a1 = -Infinity, b0 = Infinity, b1 = -Infinity;
+    for (const x of [x0, x1]) for (const y of [y0, y1]) for (const z of [z0, z1]) { corner.set(x, y, z); const a = corner.dot(shadow.x), b = corner.dot(shadow.y); a0 = Math.min(a0, a); a1 = Math.max(a1, a); b0 = Math.min(b0, b); b1 = Math.max(b1, b); }
+    // only what can shade the ground seen with shadows matters now; the rest of the square is drawn at the next refit
+    const seen = seenRect(shadow.reach);
+    if (a1 < seen.x0 - SHADOW_MARGIN || a0 > seen.x1 + SHADOW_MARGIN || b1 < seen.y0 - SHADOW_MARGIN || b0 > seen.y1 + SHADOW_MARGIN) return;
+    shadow.due = Math.min(shadow.due, clock + .15);
+  }
+
   let clock = 0;
   function update(dt, time, {keys, stick}) {
     clock = time;
@@ -448,7 +541,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     // which shows more than a slower frame); move the static shadow with him
     // (when frames are already long, a tenth of the frame: the wait for new ground matters more than the slice)
     streamer.focus(pos.x, pos.z, pos.x + vel.x * 2, pos.z + vel.y * 2); { const g = streamer.pending() ? streamer.gaps() : null, behind = g && (g.holes || g.plain); streamer.work(behind ? 8 : Math.max(3, Math.min(6, dt * 100))); }
-    if (Math.hypot(pos.x - shadowAt.x, pos.z - shadowAt.z) > 8) aimSun(pos.x, pos.z);
+    fades.update(dt); fitShadow(); viewWedge(time);
   }
   let animatedCount = 0;
   return {scene, camera,
@@ -460,9 +553,9 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     get pending() { return streamer.pending() || WORLD.nav.pending; },
     enter(position) {
       const p = position && walkable(position.x, position.z) ? position : forestPlaces.home; pos.set(p.x, 0, p.z); vel.set(0, 0); fox.rotation.y = 0; destination = null; path = []; arrival = null; ring.visible = false; near = null;
-      streamer.focus(pos.x, pos.z); const finishing = streamer.complete(); if (perf) perf.stats.enterBuildMs = finishing; compile(); aimSun(pos.x, pos.z); snapCamera(); renderer.shadowMap.needsUpdate = true;
+      snapCamera(); viewWedge(clock, true); streamer.focus(pos.x, pos.z); const finishing = streamer.complete(); if (perf) perf.stats.enterBuildMs = finishing; compile(); shadow.force = true; fitShadow();
     },
-    resize(w, h) { width = w; height = h; narrow = w < 600; camera.aspect = w / Math.max(1, h); camera.fov = narrow ? 54 : 42; camera.updateProjectionMatrix(); const vh = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * 1.02; vignette.scale.set(vh * camera.aspect, vh, 1); snapCamera(); },
+    resize(w, h) { width = w; height = h; narrow = w < 600; camera.aspect = w / Math.max(1, h); camera.fov = narrow ? 54 : 42; camera.updateProjectionMatrix(); const vh = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * 1.02; vignette.scale.set(vh * camera.aspect, vh, 1); snapCamera(); viewWedge(clock, true); streamer.focus(pos.x, pos.z); },
     update, route(id) { const extra=WORLD.extras[id],p = forestPlaces[id]||(extra&&{x:extra.at[0],z:extra.at[1]}); if (id === 'mailman') { courierGoal = null; courierPath = []; courierWait = 20; } if (p) walkTo(new THREE.Vector3(p.x, 0, p.z), id); },
     walkTo(x, z) { walkTo(new THREE.Vector3(x, 0, z)); },
     /** A short close shot of Fuchs and the invited friend before the puzzle opens; returns its length (s), 0 with reduced motion. */
@@ -474,7 +567,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     /** Development: the weather now, or start (true) / stop (false) a shower at once. */
     weather(on) { return on === undefined ? weather.state : weather.force(on); },
     /** Development: put Fuchs somewhere at once. */
-    teleport(x, z) { const p = nearestWalkable(new THREE.Vector3(x, 0, z)); pos.set(p.x, 0, p.z); vel.set(0, 0); destination = null; path = []; ring.visible = false; streamer.focus(pos.x, pos.z); streamer.complete(); aimSun(pos.x, pos.z); snapCamera(); },
+    teleport(x, z) { const p = nearestWalkable(new THREE.Vector3(x, 0, z)); pos.set(p.x, 0, p.z); vel.set(0, 0); destination = null; path = []; ring.visible = false; snapCamera(); viewWedge(clock, true); streamer.focus(pos.x, pos.z); streamer.complete(); shadow.force = true; fitShadow(); },
     mailTarget(id) { const was = guideTarget; guideTarget = forestPlaces[id] ? id : null; guidePoints = []; guideNext = 0;
       // a new letter is ready: the mailman whistles once from where he is, then comes over
       if (id === 'mailman' && was !== 'mailman') { sound.cues.push({type: 'whistle', pan: THREE.MathUtils.clamp((mailPos.x - pos.x) / 10, -.9, .9)}); if (sound.cues.length > 4) sound.cues.shift(); }
@@ -500,7 +593,7 @@ export function createForest({renderer, software, onPosition, onAction, onMove, 
     get cave() { return {...bats.counts, inside: caveK}; },
     /** The time of day: 0 morning, .5 afternoon, 1 dusk; it eases there unless `snap`. */
     timeOfDay(v, snap = false) { todTo = THREE.MathUtils.clamp(v, 0, 1); if (snap || !todSet) { tod = todTo; todSet = true; } },
-    budget() { const c = streamer.counts, g = streamer.gaps(); return {liveTiles: c.near, farTiles: c.far, animated: animatedCount, holes: g.holes, plain: g.plain, jobs: c.jobs, slowestStep: streamer.slowest.kind, slowestStepMs: streamer.slowest.ms}; },
+    budget() { const c = streamer.counts, g = streamer.gaps(); return {liveTiles: c.near, farTiles: c.far, animated: animatedCount, holes: g.holes, plain: g.plain, jobs: c.jobs, slowestStep: streamer.slowest.kind, slowestStepMs: streamer.slowest.ms, dissolving: fades.count, shadowDraws: shadow.draws, shadowRefits: shadow.refits, shadowReach: shadow.reach, farReach: streamer.far}; },
     set speed(k) { speedScale = k; },
     pins() { return [...pins, {id: 'mailman', point: new THREE.Vector3(mailPos.x, groundY(mailPos.x, mailPos.z) + 2.2, mailPos.z)}].map(p => { const q = p.point.clone().project(camera); return {id: p.id, x: (q.x * .5 + .5) * width, y: (-q.y * .5 + .5) * height, visible: q.z < 1 && Math.abs(q.x) < 1.02 && q.y > -1.02 && q.y < 1.12 && p.point.distanceTo(pos) < NEAR}; }); },
     get mailman() { return {x: mailPos.x, z: mailPos.z}; }, get guideTarget() { return guideTarget; }, get position() { return {x: pos.x, z: pos.z}; }, get destination() { return destination; }, get near() { return near; },

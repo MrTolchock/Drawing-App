@@ -1,6 +1,12 @@
 # Current visual consistency audit
 
-Current game art is **Waldpost 9.4.0**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal and object reference pixels and **37** complete forward image-generation prompts.
+Current game art is **Waldpost 9.4.2**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal and object reference pixels and **37** complete forward image-generation prompts.
+
+## Lighter haze, distant land and no loading pops — 9.4.2
+
+The forest's haze is lighter and less yellow: it begins about 36 m from the camera in the wood (24 m before) and covers the ground only towards the top of the view, where the land beyond the tiles is now a sunlit mesh of woods, meadows, rock and snow fading into the same haze instead of a flat cream band. The haze that stands close for a moment when Fuchs walks into an open area lifts from much less. Tiles, detail changes and landmarks dissolve instead of popping, and tree shadows arrive with their trees and fade out with distance instead of ending at a moving edge. Character art, painted UI, map, learning pictures and all puzzle definitions and presentation revisions are unchanged; no puzzle needs new review.
+
+Measured on a fixed 188 s walk (headless, 60 fps steps): tiles that appeared or changed on screen at once went from 148 to 0, frames with trees on screen missing their shadow from 93 % to about 1.4 %, and late shadow pops from 118 to 5. Draw calls rise by up to about 20 (cheap far tiles reach further, but only where the camera looks); triangles by at most 2.5 %.
 
 ## Birdsong, audio credits and puzzle feedback — 9.4.0
 

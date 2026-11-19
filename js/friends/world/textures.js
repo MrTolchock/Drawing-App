@@ -24,6 +24,24 @@ function leafShape(g, len, wid, base, mid, light) {
 }
 
 /* ---------- shader patches ---------- */
+/* The sun's shadows fade out with the distance from the camera (between shadowReach.x and .y metres) instead of
+   ending at the edge of the shadow map, which moves now and then (forest3d.js keeps the map round what the camera
+   sees, out to this reach). Materials of the forest set the uniform; anything that does not (0, 0) keeps its shadows. */
+export const shadowReach = {value: new THREE.Vector2(0, 0)};
+{
+  const SC = THREE.ShaderChunk, call = 'getShadow( directionalShadowMap[ i ], directionalLightShadow.shadowMapSize, directionalLightShadow.shadowIntensity, directionalLightShadow.shadowBias, directionalLightShadow.shadowRadius, vDirectionalShadowCoord[ i ] )';
+  const uniforms = 'uniform DirectionalLightShadow directionalLightShadows[ NUM_DIR_LIGHT_SHADOWS ];';
+  if (SC.lights_fragment_begin.includes(call) && SC.shadowmap_pars_fragment.includes(uniforms) && !SC.shadowmap_pars_fragment.includes('ffShadowReach')) {
+    SC.shadowmap_pars_fragment = SC.shadowmap_pars_fragment.replace(uniforms, uniforms + '\n\t\tuniform vec2 ffShadowReach;\n\t\t#define ffShadowFar( s ) mix( s, 1.0, ffShadowReach.y > 0.0 ? smoothstep( ffShadowReach.x, ffShadowReach.y, length( vViewPosition ) ) : 0.0 )');
+    SC.lights_fragment_begin = SC.lights_fragment_begin.replace(call, 'ffShadowFar( ' + call + ' )');
+  }
+}
+/** Give a material of the forest the shadows' reach (patch() does this for its own materials). */
+export function reach(material) {
+  const before = material.onBeforeCompile;
+  material.onBeforeCompile = (sh, renderer) => { before.call(material, sh, renderer); sh.uniforms.ffShadowReach = shadowReach; };
+  return material;
+}
 // Foliage cards keep the upward normal on both faces (three.js would flip and darken back faces).
 const FOLIAGE = ['#include <normal_fragment_begin>', 'float faceDirection = 1.0;\nvec3 normal = normalize( vNormal );\nvec3 nonPerturbedNormal = normal;'];
 // Leaves and trunks that stand between the camera and Fuchs turn translucent so he is never hidden: a narrow
@@ -71,6 +89,7 @@ const ROCK_NORMAL = `#include <normal_fragment_maps>
   normal = normalize(abs(ffDet) * normal - sign(ffDet) * (dFdx(ffRh) * ffR1 + dFdy(ffRh) * ffR2) * 4. * ffRk); }`;
 export function patch(material, {foliage = false, near = false, rock = null}, key) {
   material.onBeforeCompile = sh => {
+    sh.uniforms.ffShadowReach = shadowReach;
     if (rock) { sh.uniforms.ffRock = {value: rock}; sh.vertexShader = sh.vertexShader.replace('#include <common>', '#include <common>\nattribute float rk;\nvarying float ffRk;\nvarying vec3 ffRw, ffRn;').replace('#include <begin_vertex>', ROCK_VERT);
       sh.fragmentShader = sh.fragmentShader.replace('#include <common>', '#include <common>\nuniform sampler2D ffRock;\nvarying float ffRk;\nvarying vec3 ffRw, ffRn;').replace('#include <color_fragment>', ROCK_COLOUR).replace('#include <normal_fragment_maps>', ROCK_NORMAL); }
     if (near) { sh.uniforms.ffFox = foxView; sh.fragmentShader = sh.fragmentShader.replace('#include <common>', NEAR_COMMON).replace('#include <clipping_planes_fragment>', NEAR_CLIP); }
@@ -159,12 +178,12 @@ export function createLook({software = false, big = false} = {}) {
       M.ground = patch(new THREE.MeshLambertMaterial({vertexColors: true, map: T.grain}), {rock: T.rock}, 'wb-ground');
       M.plants = patch(new THREE.MeshLambertMaterial({map: T.plants, alphaTest: .5, side: THREE.DoubleSide, vertexColors: true}), {foliage: true}, 'wb-plants');
       M.rock = patch(new THREE.MeshLambertMaterial({vertexColors: true, map: T.grain}), {rock: T.rock}, 'wb-rock');
-      if (T.decals) M.decals = new THREE.MeshLambertMaterial({map: T.decals, vertexColors: true, transparent: true, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -1, polygonOffsetUnits: -2});
+      if (T.decals) M.decals = reach(new THREE.MeshLambertMaterial({map: T.decals, vertexColors: true, transparent: true, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -1, polygonOffsetUnits: -2}));
       M.soft = patch(new THREE.MeshLambertMaterial({vertexColors: true, map: T.grain}), {near: true}, 'wb-soft');   // coloured things tall enough to hide Fuchs: they turn translucent like the trees
       M.bark = patch(new THREE.MeshLambertMaterial({map: T.bark, vertexColors: true}), {near: true}, 'wb-bark');
       M.leaves = patch(new THREE.MeshLambertMaterial({map: T.leaf, alphaTest: .5, side: THREE.DoubleSide}), {foliage: true, near: true}, 'wb-leaves');
-      M.wood = new THREE.MeshLambertMaterial({map: T.wood, vertexColors: true});
-      M.log = new THREE.MeshLambertMaterial({map: T.log, vertexColors: true});
+      M.wood = reach(new THREE.MeshLambertMaterial({map: T.wood, vertexColors: true}));
+      M.log = reach(new THREE.MeshLambertMaterial({map: T.log, vertexColors: true}));
       M.leafDepth = new THREE.MeshDepthMaterial({depthPacking: THREE.RGBADepthPacking, map: T.leaf, alphaTest: .5});
       M.plantDepth = new THREE.MeshDepthMaterial({depthPacking: THREE.RGBADepthPacking, map: T.plants, alphaTest: .5});
       M.shadows = shadows;
