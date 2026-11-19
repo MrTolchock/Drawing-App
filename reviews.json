@@ -18156,6 +18156,24 @@
       "at": "2026-11-19T20:33:59.727Z",
       "seen": true,
       "operation": "6cffed5b-93d4-4752-840d-e7f8672583ea"
+    },
+    "syllable/word-38@7a52fe2830be093a": {
+      "key": "syllable/word-38",
+      "revision": "7a52fe2830be093a",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-19T20:34:03.423Z",
+      "seen": true,
+      "operation": "42d6bc1c-a4c3-40c4-9ddc-a4f952de405c"
+    },
+    "puzzle:syllable@185a95d86c6d9722": {
+      "key": "puzzle:syllable",
+      "revision": "185a95d86c6d9722",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-19T20:34:06.583Z",
+      "seen": true,
+      "operation": "1ba3f81a-7eeb-4eb1-b16b-b6fa7ca49d82"
     }
   },
   "history": [
