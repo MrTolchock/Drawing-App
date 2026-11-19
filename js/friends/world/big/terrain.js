@@ -47,24 +47,42 @@ export function createTerrain() {
   /* Ramps (layout RAMPS): each straight leg between the trail's points carries the height of the way walked so far;
      where two legs come close (the hairpin) the nearer one decides, and the bank between them is smooth. */
   const ramps = L.RAMPS.map(r => {
-    const pts = L.TRAILS.find(t => t.id === r.trail).pts.slice(0, L.TRAILS.find(t => t.id === r.trail).ramp), legs = []; let run = 0;
-    for (let i = 0; i < pts.length - 1; i++) { const [ax, az] = pts[i], [bx, bz] = pts[i + 1], len = Math.hypot(bx - ax, bz - az); legs.push({ax, az, bx, bz, s0: run, len}); run += len; }
+    const trail = L.TRAILS.find(t => t.id === r.trail), pts = trail.pts.slice(0, trail.ramp), legs = [], at = [0]; let run = 0;
+    for (let i = 0; i < pts.length - 1; i++) { const [ax, az] = pts[i], [bx, bz] = pts[i + 1], len = Math.hypot(bx - ax, bz - az); legs.push({ax, az, bx, bz, i, len}); run += len; at.push(run); }
     const reach = r.w / 2 + Math.max(r.bank, r.cut ?? r.bank), xs = pts.map(p => p[0]), zs = pts.map(p => p[1]);
-    return {...r, pts, legs, total: run, reach, box: [Math.min(...xs) - reach, Math.max(...xs) + reach, Math.min(...zs) - reach, Math.max(...zs) + reach], h0: null, h1: null};
+    return {...r, pts, legs, at, reach, box: [Math.min(...xs) - reach, Math.max(...xs) + reach, Math.min(...zs) - reach, Math.max(...zs) + reach], heights: null};
   });
+  // the way's height at each point: as given, else the hillside's own (ends) or evenly between its neighbours
+  function rampHeights(r) {
+    const hs = r.pts.map((p, i) => p[2] ?? (i === 0 || i === r.pts.length - 1 ? rawHill(p[0], p[1]) : null));
+    for (let i = 1; i < hs.length - 1; i++) if (hs[i] === null) { let j = i + 1; while (hs[j] === null) j++; hs[i] = lerp(hs[i - 1], hs[j], (r.at[i] - r.at[i - 1]) / (r.at[j] - r.at[i - 1])); }
+    return hs;
+  }
   const rampSeg = {d: 0, t: 0};
   function ramp(x, z, h) {
     for (const r of ramps) {
       if (x < r.box[0] || x > r.box[1] || z < r.box[2] || z > r.box[3]) continue;
-      if (r.h0 === null) { r.h0 = Infinity; const a = rawHill(...r.pts[0]), b = rawHill(...r.pts[r.pts.length - 1]); r.h0 = a; r.h1 = b; }   // the hillside's own heights at the ends
-      if (r.h0 === Infinity) continue;   // (while those are being measured)
+      if (r.heights === null) { r.heights = false; r.heights = rampHeights(r); }
+      if (!r.heights) continue;   // (while the hillside's own heights are being measured)
       let most = 0, sum = 0, weights = 0;
+      const add = (at, d, edge, k0) => { const w = sstep(edge + (h > at ? r.cut ?? r.bank : r.bank), edge, d); if (w <= 0) return; const k = k0 * w * Math.exp(-4 * Math.max(0, d - .5) ** 2) + 1e-9; sum += k * at; weights += k; most = Math.max(most, w); };
+      // level across; the climb eases off towards each turn, and every turn is a level landing
       for (const g of r.legs) { segment(x, z, g.ax, g.az, g.bx, g.bz, rampSeg); if (rampSeg.d >= r.reach) continue;
-        const at = lerp(r.h0, r.h1, (g.s0 + rampSeg.t * g.len) / r.total), w = sstep(r.w / 2 + (h > at ? r.cut ?? r.bank : r.bank), r.w / 2, rampSeg.d); if (w <= 0) continue;
-        const k = w * Math.exp(-4 * rampSeg.d * rampSeg.d) + 1e-9; sum += k * at; weights += k; most = Math.max(most, w); }
+        const t = rampSeg.t; add(lerp(r.heights[g.i], r.heights[g.i + 1], (t + t * t * (3 - 2 * t)) / 2), rampSeg.d, r.w / 2, 1); }
+      for (let i = 1; i < r.pts.length - 1; i++) { const d = Math.hypot(x - r.pts[i][0], z - r.pts[i][1]); if (d < r.reach) add(r.heights[i], d, r.w / 2, 3); }
       if (most > 0) h = lerp(h, sum / weights, most);
     }
     return h;
+  }
+  /** On the graded way itself (not its banks): Fuchs can walk there whatever the slope a step beside it shows. */
+  function onRamp(x, z) {
+    for (const r of ramps) {
+      if (x < r.box[0] || x > r.box[1] || z < r.box[2] || z > r.box[3]) continue;
+      const inner = r.w / 2 - .05;
+      for (const g of r.legs) { segment(x, z, g.ax, g.az, g.bx, g.bz, rampSeg); if (rampSeg.d < inner) return true; }
+      for (const p of r.pts) if (Math.hypot(x - p[0], z - p[1]) < inner) return true;
+    }
+    return false;
   }
   const meadow = (x, z) => sstep(1.05, .72, Math.hypot((x + 72) / 41, (z + 4) / 37) + (fbm(x * .045 + 11, z * .045 + 3) - .5) * .45);
   /** How far out in the swamp a spot is: 1 at the bog's wobbly outer edge. */
@@ -322,6 +340,6 @@ export function createTerrain() {
   /** Water too deep to walk in (streams and pools), unless a crossing carries Fuchs over it. */
   function wet(x, z) { const s = site(x, z); return s.sd - s.sw / 2 < .42 || (s.still === s.still && s.still - s.h > .07); }
 
-  return {extent: E, edge, rock, peak, snow, cave, rawHill, biome, raw, site, ground, slope, colour, cliff, stillDepth, stillLevel, streamAt, pathAt, streams, pools, poolE, swamp: S, swampMask, trails, plaza,
+  return {extent: E, edge, rock, peak, snow, cave, rawHill, onRamp, biome, raw, site, ground, slope, colour, cliff, stillDepth, stillLevel, streamAt, pathAt, streams, pools, poolE, swamp: S, swampMask, trails, plaza,
     crossings, onCrossing, deck, groundY, wet, falls, dam, TAU};
 }

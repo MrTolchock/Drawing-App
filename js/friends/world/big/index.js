@@ -63,7 +63,7 @@ export function createBigWorld() {
   const dam = T.dam;
   function walkable(x, z, pad = .25) {
     if (T.edge(x, z) < 9 || blocked(x, z, pad)) return false;
-    if (T.onCrossing(x, z)) return true;
+    if (T.onCrossing(x, z) || T.onRamp(x, z)) return true;   // crossings and graded ways (layout RAMPS) are walked on whatever the ground beside them does
     // The bog is soft ground even where a hummock rises above the water: stay on the Steg.
     if (T.swampMask(x, z) > .3 || T.wet(x, z)) return false;
     { const c = T.cave(x, z); if (c.roof > 0 && c.sd > -.4) return false; }   // not into the cave's walls

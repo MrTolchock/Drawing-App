@@ -1,6 +1,10 @@
 # Current visual consistency audit
 
-Current game art is **Waldpost 9.4.8**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal and object reference pixels and **37** complete forward image-generation prompts.
+Current game art is **Waldpost 9.4.9**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal and object reference pixels and **37** complete forward image-generation prompts.
+
+## The way up to the Steinbock can be walked — 9.4.9
+
+On the iPad Fuchs could not go up the new way: a tap up there sent him nowhere or the long way round. The 1 m path grid saw the ledge as broken (too narrow at the hairpin and the top turn, with a step where two parts met), so routes went round by the summit trail (about 100 m). The way now runs along the foot of the face, round a rounded hairpin, back across the face and up onto the rim beside the crag; it is level across, eases into level landings at its turns, and its core counts as walkable like the crossings. The route from the cave's path to the Steinbock is now about 33 m, and taps on the ledge or the rim bring Fuchs up. One small boulder beside the crag moved 1.3 m so that the way along the rim passes it. The look of the zigzag is kept; the drawn map still does not show it.
 
 ## Detail where the camera looks, a still sun, a way up to the Steinbock — 9.4.8
 

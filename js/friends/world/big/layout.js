@@ -74,15 +74,18 @@ export const TRAILS = [
   {id: 'owl-falls', pts: [[84.5, -4.5], [80, -22], [71, -35], [62.5, -41], [58.6, -42.6]], w: .75},
   {id: 'cave', pts: [[80, -22], [83.5, -33], [87, -44], [88, -53.5]], w: .7},
   {id: 'ibex', pts: [[73.6, -61.65], [72.9, -59.4], [71.5, -57], [71.6, -54.8], [73, -53.9], [74.4, -53.8]], w: .7},   // from the bridging stone round the Steinbock's crag to the rim in front of it
-  // up from the cave's path, a few steps before its mouth: a ledge across the Rock's face with one hairpin, to the rim beside
-  // the Steinbock's crag (the first `ramp` points are graded into the slope, see RAMPS)
-  {id: 'ibex-cave', pts: [[86.7, -47.3], [71.6, -50.5], [79.6, -53.1], [77.4, -54.5], [74.4, -53.8]], w: .7, ramp: 4},
+  // up from the cave's path, a few steps before its mouth: along the foot of the Rock's face, one hairpin, then across the
+  // face to the rim and along it to the Steinbock's crag (the first `ramp` points are graded into the slope, see RAMPS;
+  // a third number is the way's height there)
+  {id: 'ibex-cave', pts: [[86.6, -46.2], [72.6, -47.4, 4.4], [70.9, -49.2, 5.2], [72.8, -50.8, 6], [80.6, -52.4, 10.4], [80.2, -55, 11.3], [77.2, -55.1], [75.6, -54.6], [74.4, -53.8]], w: .7, ramp: 7},
 ];
 /* Trails graded into steep ground so that Fuchs can climb it: along the first `ramp` points of the trail the ground
-   rises evenly (by the way walked) from its own height at the first point to its own height at the last, `w` metres
-   wide. Below the way it is built up and meets the hillside over `bank` metres; above it the way is cut into the rock,
-   which stands steeply over it (`cut` metres), so the rim above stays as it was. */
-export const RAMPS = [{trail: 'ibex-cave', w: 2, bank: 1.8, cut: .9}];
+   rises evenly (by the way walked) between the heights given at its points (the hillside's own height at the first and
+   last point unless given), `w` metres wide and level across. Below the way it is built up and meets the hillside over
+   `bank` metres; above it the way is cut into the rock, which stands steeply over it (`cut` metres), so the rim above
+   stays as it was. Where the way turns, the turn is a level landing `w` wide. Two parts of a way that pass each other
+   (a hairpin) must stay at least `w` + 1 m apart, or Fuchs cannot walk between their banks. */
+export const RAMPS = [{trail: 'ibex-cave', w: 2.8, bank: 1.8, cut: .9}];
 
 /* Ways across water. `at` is snapped to the named stream; boardwalk planks are given end to end. */
 export const CROSSINGS = [
@@ -150,7 +153,7 @@ export const TREES = [
   [-54.6, -60.4, 1.45, {kind: 'oak'}],   // the old oak above the badger's sett
 ];
 /* Big rocks [x, z, size, height] (colliders). */
-export const ROCKS = [[74.2, -56.3, 1.45, 1.05], [76, -55.5, .8, .9], [72.6, -55.6, .7, .8], [-5.2, -4.2, 1.05, 1.6], [-2, 9, .65, .9], [9.6, 1.2, .6, .8], [57.6, -54.4, 1.5, 1.7], [66.4, -47.6, 1.2, 1.3], [-70, 8, .9, 1], [50.5, 48.4, .8, .9]];
+export const ROCKS = [[74.2, -56.3, 1.45, 1.05], [76.7, -56.7, .8, .9], [72.6, -55.6, .7, .8], [-5.2, -4.2, 1.05, 1.6], [-2, 9, .65, .9], [9.6, 1.2, .6, .8], [57.6, -54.4, 1.5, 1.7], [66.4, -47.6, 1.2, 1.3], [-70, 8, .9, 1], [50.5, 48.4, .8, .9]];
 /* Further colliders [x, z, radius]: the den tree, the stump, the lodge, the beaver's stack of poles, the badger's sett. */
 export const SOLIDS = [[0, -8, 3.05], [-33.4, 11.2, .95], [37.5, -18.6, 2.3], [20.8, -16.9, .6], [-53.4, -58.3, 2.6], [50.75, 13.18, 0.82], [51.58, 12.73, 0.82], [52.42, 12.27, 0.82], [53.25, 11.82, 0.82], [-67.61, 22.74, 0.5], [-69.45, 24.44, 0.5], [-71.83, 23.7, 0.5], [-72.39, 21.26, 0.5], [-70.55, 19.56, 0.5], [-68.17, 20.3, 0.5], [-17, 10, 0.42], [-22, 31.5, 0.75], [-34, 36, 0.75], [38, 29, 0.75], [6.2, 9.5, 1], [5, -1.4, .15], [-5, 1.8, .15], [3.6, 6, .15], [27, 17.5, 1], [-8.6, 41.3, .95], [-7.4, 41.7, .95], [-4.6, 42.3, .85], [-2.9, 41.2, .45], [31.4, 12, .16], [-30.5, 12.3, .16], [-12.5, -33.5, .85], [2.5, 30.5, .42], [41, 22, .42], [80.6, -95.6, .3], [84.6, -91.6, .5]];
 
