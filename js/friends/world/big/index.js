@@ -14,7 +14,7 @@ const SEED = 20261110, CELL = 6;
 export function createBigWorld() {
   const T = createTerrain(), E = L.EXTENT;
   const sunDir = new THREE.Vector3(-.55, .62, -.56).normalize();
-  const fog = {color: new THREE.Color('#e8dcae'), near: 24, far: 72, sunDir};
+  const fog = {color: new THREE.Color('#e6e1c2'), near: 36, far: 112, sunDir};
 
   /* ---------- colliders that are placed by hand ---------- */
   const solids = [...L.SOLIDS.map(([x, z, r]) => ({x, z, r})), ...L.ROCKS.map(([x, z, s]) => ({x, z, r: s * .95})), ...L.TREES.map(([x, z, s]) => ({x, z, r: .55 + .25 * (s - 1)})),

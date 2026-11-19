@@ -1,6 +1,12 @@
 # Current visual consistency audit
 
-Current game art is **Waldpost 9.4.0**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal and object reference pixels and **37** complete forward image-generation prompts.
+Current game art is **Waldpost 9.4.3**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal and object reference pixels and **37** complete forward image-generation prompts.
+
+## Lighter haze, distant land and no loading pops — 9.4.3
+
+The forest's haze is lighter and less yellow: it begins about 36 m from the camera in the wood (24 m before) and covers the ground only towards the top of the view, where the land beyond the tiles is now a sunlit mesh of woods, meadows, rock and snow fading into the same haze instead of a flat cream band. The haze that stands close for a moment when Fuchs walks into an open area lifts from much less. Tiles, detail changes and landmarks dissolve instead of popping, and tree shadows arrive with their trees and fade out with distance instead of ending at a moving edge. The mailman now waits 10–13 m away, usually ahead where the camera sees him, so reaching him is a short walk. Character art, painted UI, map, learning pictures and all puzzle definitions and presentation revisions are unchanged; no puzzle needs new review.
+
+Measured on a fixed 188 s walk (headless, 60 fps steps): tiles that appeared or changed on screen at once went from 148 to 0, frames with trees on screen missing their shadow from 93 % to about 1.4 %, and late shadow pops from 118 to 5. Draw calls rise by up to about 20 (cheap far tiles reach further, but only where the camera looks); triangles by at most 2.5 %.
 
 ## Birdsong, audio credits and puzzle feedback — 9.4.0
 
@@ -154,7 +160,7 @@ The central library adds [150 canonical watercolour/pencil drawings](illustratio
 
 The original 240 picture files/cells and existing puzzle uses are unchanged, and regenerating the catalogue leaves all current implementation revisions identical. No puzzle content or editorial decisions are added. Validation covers 161 model tests, all 150 new browser PNG exports, cell framing and responsive library layouts, canonical references/prompts, generator handoff and design/offline inventory.
 
-## Second future-puzzle image expansion — 19 November 2026, 9.4.3
+## Second future-puzzle image expansion — 19 November 2026, 9.4.4
 
 A [second set of 150 drawings](illustrations/EXPANSION-TWO-2026-11-19.md) expands the central library from 390 to 540 pictures in 39 atlases. The ten new sets cover birds, woodland/alpine mammals, undergrowth and fungi, flowers, produce, crafts, music/play, kitchen tools, household objects and animal behaviours. Every generator call supplies the fixed canonical reference pair; actual requests, editable sources, source/reference hashes and follow-up repairs are retained. Each new picture has a stable ID, German search label and transparent PNG export.
 
