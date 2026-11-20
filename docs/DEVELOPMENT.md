@@ -17,7 +17,7 @@ node --test tests/*.test.cjs
 node tests/design-system-browser.cjs
 node tests/letter-sessions-browser.cjs
 node tests/review-feedback-2026-11-19-browser.cjs   # neue Reviews, Rätsel/Aufgaben, 74 Aufgaben, Gesten, Symbole und Schweizer Briefkasten
-node tests/ipad-puzzle-layout-browser.cjs   # every finite task/state fits iPad without scrolling; inline back and competence titles
+node tests/ipad-puzzle-layout-browser.cjs   # every finite task/state fits iPad without scrolling or distorted artwork; phone proportions, inline back and competence titles
 node tests/navigation-browser.cjs   # map dismissal; same back/frame in menus, review and puzzles; correct routes, phone and keyboard
 node tests/puzzle-gallery-browser.cjs   # gallery: only signed-off puzzles, friend filter, five-task round without saving
 node tests/review-seen-browser.cjs   # an answered review task is approved even if its seen mark was lost; dialog buttons fit

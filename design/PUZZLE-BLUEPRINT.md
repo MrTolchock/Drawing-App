@@ -80,6 +80,7 @@ Use `js/screens/puzzle.js` and `css/puzzle-rounds.css`. Writing uses the existin
 - Cream stitched paper and quiet woodland background; one main task per page. Cards use the shared wood/cream treatment, soft brown borders and sage selected states. Feedback adds a visible mark and accessible status, never colour alone.
 - Use the typography roles above in the shared puzzle and tracing layouts.
 - Touch controls are at least 48 × 48 CSS px. On a narrow screen wrap answers or scroll the task region; do not shrink letters or targets until they become hard to use. Keep the inline back button reachable. On iPad, all task variants and answers fit without scrolling; compact surrounding spacing and boards rather than scored text or touch targets. Honour safe areas, visible keyboard focus and reduced motion.
+- Keep illustration proportions intact at every size and in saved/filled task states. Scale square atlas cells uniformly inside compact rows and picture pairs; never force their width and height to follow different container dimensions.
 - Nouns/verbs use drawn artwork through `FK.visual`; companions and voters use the same painted identity API `FK.friendsArt.portrait`. An identity portrait must never substitute for a pictured vocabulary answer. Task utility controls use `FK.icons`; the inline back uses the shared `FK.ui.topbar` navigation arrow, matching menus and the map.
 
 ## Adding or revising a puzzle

@@ -1,6 +1,14 @@
 # Current visual consistency audit
 
-Current game art is **Waldpost 9.4.12**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal and object reference pixels and **87** complete forward image-generation prompts.
+Current game art is **Waldpost 9.4.13**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal and object reference pixels and **87** complete forward image-generation prompts.
+
+## Unverzerrte Rätselbilder auf dem iPad — 9.4.13
+
+Die verkürzten Biber-Reihen hatten Bildfelder von 56 × 48 px auf kleinen iPad-Ansichten und 56 × 40 px auf Telefonen. Die Bilder übernehmen jetzt die verfügbare Höhe und passen ihre Breite proportional an. Doppelbilder im Rätsel «Zeitliche Abfolgen ordnen» bleiben ebenfalls quadratisch und stehen vollständig nebeneinander, auch nach dem Platzieren einer Karte. Die Original-Bilddateien bleiben unverändert.
+
+Der erweiterte Browsertest prüft alle 794 Aufgaben mit gespeicherten/gefüllten Zuständen: **4.655 iPad-Ansichten** bei fünf Bildschirmgrössen passen ohne Scrollen, weitere **931 Telefonansichten** behalten ihre Bildproportionen. Er prüft jetzt die tatsächlichen Bildabmessungen und die Grenzen von Doppelbildern; vor der Korrektur schlug diese Prüfung fehl. Der gemeinsame Design-Test prüft zusätzlich alle 22 Rätsel auf Tablet und Telefon. Die [Vorher-/Nachher-Belege](evidence/2026-11-20-picture-proportions/README.md) stammen aus dem echten Renderer.
+
+Die reine CSS-Korrektur verändert keine Frage, Antwort, Regel, Schwierigkeit, Interaktion oder Bildpixel. Eine exakt an die vorherigen und neuen Darstellungs-Hashes gebundene Kompatibilitätskante erhält bestehende Aufgabenfreigaben; die Baseline ist gegen Git-Release `02b7c53` geprüft. Es werden keine Freigaben erzeugt und keine Review-Daten geschrieben.
 
 ## Rätsel alphabetisch von A bis Z — 9.4.12
 

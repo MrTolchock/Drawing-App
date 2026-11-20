@@ -56,6 +56,8 @@ All fonts are bundled locally; no network font requests.
 
 Use one clear task area, generous cream space and a small portrait/context row. A puzzle has exactly five progress leaves. Keep control positions stable, icons inside the complete button hit area and touch targets at least 48 px. Use visible focus and accessible names. All iPad puzzle tasks and answers fit without scrolling, with the back arrow directly left of the host portrait and no separate title bar. Adapt through wrapping and bounded scrolling on narrow phones, safe areas and browser zoom. Reduced motion keeps meaningful static progress and celebration.
 
+Scale learning pictures uniformly, preserving each original illustration's proportions. Square atlas cells must remain square even inside shortened rows or paired-picture groups; reduce both dimensions together instead of stretching artwork to fill its container.
+
 ## Asset ownership and changes
 
 - Register every new subject and use the canonical drawings. Pack transparent cells to the shared 80% visible extent and centre each silhouette with its proportions intact. Compare picture choices side by side and check their edges on light and dark backgrounds. Counted pictures show one object. [Framing and edge quality](illustrations/STYLE.md#framing-and-edge-quality)
