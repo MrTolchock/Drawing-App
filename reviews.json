@@ -21657,6 +21657,15 @@
       "at": "2026-11-20T20:22:25.721Z",
       "seen": true,
       "operation": "5335e5cf-7655-4259-b02d-aae4b3665156"
+    },
+    "sequence/story-4@baf11a770388f68d": {
+      "key": "sequence/story-4",
+      "revision": "baf11a770388f68d",
+      "status": "improve",
+      "note": "Mache brief schreiben nicht nur stift",
+      "at": "2026-11-20T20:22:44.251Z",
+      "seen": true,
+      "operation": "9f40040c-b690-4b86-9e6b-ebfd8be03cca"
     }
   },
   "history": [
