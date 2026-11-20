@@ -1,7 +1,7 @@
 /* Landmark sites of the big world: one-off objects built when Fuchs comes near (the streamer asks
    for a site's steps once). The den tree, the arched bridge and the log come from world/landmarks.js;
    stepping stones, the swamp's boardwalk, the waterfall and the friends' props are built here; the beaver's dam,
-   lodge and felled trees in beaver.js, the cave in cave.js. */
+   lodge and felled trees in beaver.js, the cave in cave.js, the badger's sett in sett.js. */
 import {THREE} from '../../../scene/materials.js';
 import {rng} from '../noise.js';
 import {TAU, lerp, sstep} from '../noise.js';
@@ -12,6 +12,7 @@ import {landmarkSteps} from '../landmarks.js';
 import {wonderSteps} from './wonders.js';
 import {caveSteps} from './cave.js';
 import {beaverSteps} from './beaver.js';
+import {settSteps} from './sett.js';
 
 /** Give a geometry one colour (the materials multiply their texture by it). */
 function tinted(g, r, gr, b) { const c = new Float32Array(g.attributes.position.count * 3); for (let k = 0; k < c.length; k += 3) { c[k] = r; c[k + 1] = gr; c[k + 2] = b; } g.setAttribute('color', new THREE.BufferAttribute(c, 3)); return g; }
@@ -103,49 +104,7 @@ export function siteSteps(site, look, world, group, out) {
   });
   if (site.id === 'pond') steps.push(...beaverSteps(site, look, world, group, out, R));   // Biber's dam, lodge and felled trees: world/big/beaver.js
   if (site.id === 'cave') steps.push(...caveSteps(site, look, world, group, out));   // the cave in the Rock: world/big/cave.js
-  if (site.id === 'sett') {
-    /* The badger's sett in the wooded slope: a mound of earth under the old oak, the main entrance a dark
-       hole between two roots, a smaller hole at the side, fresh sandy spoil fanned out in front of it,
-       a heap of dry grass that he airs as bedding, a few stones. Entrances face the path (and the camera). The mound itself
-       is shaped like the ground around it (see `hill`), not a dome. */
-    const earth = new Buffer(), roots = new Buffer(), straw = new Buffer(), [cx, cz, yaw] = L.SETT, fx = Math.sin(yaw), fz = Math.cos(yaw), sx = fz, sz = -fx, g0 = T.ground(cx, cz);
-    const Q = new THREE.Quaternion(), UP = new THREE.Vector3(0, 1, 0), V = new THREE.Vector3();
-    const at = (f, side) => [cx + fx * f + sx * side, cz + fz * f + sz * side];
-    const limb = (buf, x, y, z, dx, dy, dz, l, r0, r1, c) => { Q.setFromUnitVectors(UP, V.set(dx, dy, dz).normalize()); add(buf, new THREE.CylinderGeometry(r1, r0, l, 7, 1).translate(0, l / 2, 0).applyQuaternion(Q).translate(x, y, z), ...c); };
-    // The mound grows out of the woodland floor: a soft, uneven hillock whose rim takes the ground's own colour, grass
-    // and moss on its back, bare dug earth on the front where the badger comes and goes.
-    const hill = (() => { const RINGS = 16, SEG = 44, RAD = 3.3, H = 1.18, pos = [], col = [], idx = [], c = new THREE.Color(), moss = new THREE.Color('#5a7f30'), grass = new THREE.Color('#6f9238'), soil = new THREE.Color('#7b5636'), dark = new THREE.Color('#5a3d26');
-      const height = (rn, a) => { const bump = Math.pow(Math.cos(Math.min(1, rn) * Math.PI / 2), 1.5), wob = .1 * Math.sin(a * 3 + 1.3) + .07 * Math.sin(a * 5 + .4) + .05 * Math.sin(a * 9); return H * bump * (1 + wob * (1 - rn)); };
-      for (let i = 0; i <= RINGS; i++) for (let j = 0; j < SEG; j++) { const rn = i / RINGS, a = j / SEG * TAU, side = Math.cos(a), fwd = Math.sin(a), lx = side * RAD * 1.12 * rn, lf = fwd * RAD * rn,
-          x = cx + sx * lx + fx * lf, z = cz + sz * lx + fz * lf, y = T.ground(x, z) + height(rn, a) - (i === RINGS ? .04 : 0); pos.push(x, y, z);
-          T.colour(x, z, c); const top = 1 - THREE.MathUtils.smoothstep(rn, .55, .95), front = THREE.MathUtils.smoothstep(fwd, .15, .65) * THREE.MathUtils.smoothstep(rn, .25, .5) * (1 - THREE.MathUtils.smoothstep(rn, .88, 1));
-          c.lerp(grass, top * .7).lerp(moss, top * .45 * (.5 + .5 * Math.sin(a * 4 + rn * 9))).lerp(soil, front * .9).lerp(dark, front * .35 * (.5 + .5 * Math.sin(a * 7 + rn * 13))); col.push(c.r, c.g, c.b); }
-      for (let i = 0; i < RINGS; i++) for (let j = 0; j < SEG; j++) { const a = i * SEG + j, b = i * SEG + (j + 1) % SEG, d = a + SEG, e = b + SEG; idx.push(a, b, d, b, e, d); }
-      const top = pos.length / 3; pos.push(cx, T.ground(cx, cz) + height(0, 0), cz); T.colour(cx, cz, c); c.lerp(grass, .7); col.push(c.r, c.g, c.b); for (let j = 0; j < SEG; j++) idx.push(top, (j + 1) % SEG, j);
-      const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setAttribute('color', new THREE.Float32BufferAttribute(col, 3)); g.setIndex(idx); g.computeVertexNormals(); return g; })();
-    steps.push(() => { // the mound, then the two holes with their rims of trodden earth
-      { const m = new THREE.Mesh(hill, M.ground); m.name = 'sett mound'; m.receiveShadow = M.shadows; group.add(m); }
-      for (const [f, side, w, h] of [[1.78, 0, .62, .6], [1.05, -1.75, .4, .4]]) { const [x, z] = at(f, side), y = T.ground(x, z) + h * .62, turn = yaw + (side ? -1.0 : 0);
-        add(earth, new THREE.SphereGeometry(1, 14, 10).scale(w, h, .5).rotateY(turn).translate(x - Math.sin(turn) * .12, y, z - Math.cos(turn) * .12), .05, .038, .03);
-        add(earth, new THREE.TorusGeometry(1, .3, 8, 18, Math.PI * 1.15).rotateZ(-Math.PI * .075).scale(w * 1.12, h * 1.18, .55).rotateY(turn).translate(x, y - .02, z), .26, .19, .125); }
-    });
-    steps.push(() => { // roots of the oak that grip the mound and frame the main entrance
-      const brown = [.5, .4, .32];
-      for (const [side, lean] of [[-.78, .28], [.82, -.24], [-1.5, .5], [1.6, -.5]]) { const [x, z] = at(1.25 + Math.abs(side) * .12, side * .2), top = g0 + 1.25 - Math.abs(side) * .12;
-        limb(roots, cx + sx * side * .15 - fx * .2, top, cz + sz * side * .15 - fz * .2, fx * .9 + sx * side * .55, -.38, fz * .9 + sz * side * .55, 1.5, .17, .11, brown);
-        const [bx, bz] = at(1.75 + Math.abs(side) * .1, side * 1.0); limb(roots, bx - fx * .25 - sx * side * .2, top - .52, bz - fz * .25 - sz * side * .2, fx * .4 + sx * lean * -1, -1, fz * .4 + sz * lean * -1, .95, .11, .06, brown); void x; void z; }
-    });
-    steps.push(() => { // fresh spoil in front of the hole, clods and stones, the bedding heap with loose stalks
-      const [ax, az] = at(3.05, .15), ay = T.ground(ax, az);
-      add(earth, new THREE.SphereGeometry(1, 14, 6).scale(1.3, .15, .9).rotateY(yaw).translate(ax, ay + .01, az), .72, .5, .3);
-      for (let k = 0; k < 5; k++) { const [x, z] = at(2.5 + R() * 1.1, (R() - .5) * 1.6), v = .55 + R() * .12; add(earth, new THREE.SphereGeometry(1, 8, 5).scale(.3 + R() * .25, .1 + R() * .06, .25 + R() * .2).rotateY(R() * 3).translate(x, T.ground(x, z) + .04, z), v, v * .78, v * .52); }
-      for (let k = 0; k < 9; k++) { const [x, z] = at(2.3 + R() * 1.6, (R() - .5) * 2.6), r = .05 + R() * .08, v = .36 + R() * .16; add(earth, new THREE.SphereGeometry(r, 6, 4).scale(1, .7, 1).translate(x, T.ground(x, z) + r * .4, z), v, v * .82, v * .6); }
-      const t = templates(); for (const [f, side, sc] of [[2.2, 2.3, .42], [1.2, 2.75, .3], [2.6, -2.4, .34]]) { const [x, z] = at(f, side), v = .82 + R() * .15; earth.add(t.rock, {x, y: T.ground(x, z) - sc * .3, z, ry: R() * TAU, sx: sc, sy: sc * .7, sz: sc * .9, c: new THREE.Color(v, v, v * .97)}); }
-      const [hx, hz] = at(2.25, 1.55), hy = T.ground(hx, hz);
-      add(straw, new THREE.SphereGeometry(1, 12, 7).scale(.55, .26, .45).rotateY(yaw + .5).translate(hx, hy + .1, hz), 1.5, 1.6, 1.25);
-      for (let k = 0; k < 16; k++) { const a = R() * TAU, d = R() * .5; limb(straw, hx + Math.cos(a) * d, hy + .12 + R() * .12, hz + Math.sin(a) * d, Math.cos(a + R() - .5), .35 + R() * .5, Math.sin(a + R() - .5), .3 + R() * .35, .012, .006, [1.55, 1.7, 1.3]); }
-    }, () => mesh(earth, M.rock, 'sett earth'), () => mesh(roots, M.log, 'sett roots'), () => mesh(straw, M.wood, 'sett bedding', false));
-  }
+  if (site.id === 'sett') steps.push(...settSteps(site, look, world, group, R));   // Dachs' sett: world/big/sett.js (its bank is part of the ground)
   if (site.id === 'friends') steps.push(() => { // the friends' props: the mouse's stump, the squirrel's acorns
     const wood = new Buffer(), bits = new Buffer(), [mx, mz] = L.FRIENDS.mouse.at, my = T.ground(mx, mz);
     add(wood, new THREE.CylinderGeometry(.75, .9, .62, 18, 1).translate(mx, my + .31, mz), 1.25, 1, .78);

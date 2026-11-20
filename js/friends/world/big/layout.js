@@ -138,7 +138,7 @@ export const NEIGHBOURS = {
   hedgehog: {at: [53.6, 45.4], y: 0, yaw: -.7, h: .85},
   fish: {at: [57.6, -47.4], y: .02, yaw: .4, h: .8, onWater: true, swim: [1.3, 1]},   // the west side of the plunge pool, clear of the trees; swims a ring there
   kingfisher: {at: [12.9, 22.85], y: 1.6, yaw: -1.2, h: .6},
-  badger: {at: [-51.7, -54.7], y: 0, yaw: .7, h: 1.2},
+  badger: {at: [-51.2, -55.2], y: 0, yaw: .2, h: 1.2},   // on the dug earth in front of his sett, beside its main way in
   ibex: {at: [74.2, -56.3], y: .86, yaw: .25, h: 1.95},   // the Steinbock on his crag at the Rock's rim, above the waterfall (the drawn map's `ibex` landmark)
 };
 /* Characters without a letter box, should there be any (they show a trick and point the way when Fuchs stops beside them; none at present). */
@@ -168,8 +168,12 @@ export const FELLED = [[18.6, -19.92, .2, -2, 3], [16.98, -15.69, .16, -1.3, 2.4
 /* His stack of cut poles [x, z, yaw]. */
 export const POLES = [20.8, -16.9, .9];
 
-/* The badger's sett: the mound's centre and the way its main entrance faces [x, z, yaw]. */
+/* The badger's sett: the mound's centre and the way its main entrance faces [x, z, yaw]. Its bank is part of the ground
+   (terrain.js `sett`); its heaps lie on the dug earth in front, [forward, across] from the centre (sett.js). */
 export const SETT = [-53.4, -58.3, .35];
+export const SETT_HEAPS = {hay: [2.3, 2.35], spoil: [3.15, -1.6]};
+{ const at = ([f, s]) => [SETT[0] + Math.sin(SETT[2]) * f + Math.cos(SETT[2]) * s, SETT[1] + Math.cos(SETT[2]) * f - Math.sin(SETT[2]) * s];
+  SOLIDS.push([...at(SETT_HEAPS.hay), .45], [...at(SETT_HEAPS.spoil), .6]); }   // Fuchs walks round the heaps, not through them
 
 /* Small things to discover beside the paths (built by wonders.js): kind, place, turn, and how near Fuchs must be. */
 export const WONDERS = [

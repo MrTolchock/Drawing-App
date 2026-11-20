@@ -74,6 +74,26 @@ export function createTerrain() {
     }
     return h;
   }
+  /* ---------- the badger's sett (layout SETT) ----------
+     A bank of earth under the old oak, part of the ground so that moss, grass and flowers grow on it: it runs out
+     gently towards the oak behind and drops in a short, steep face in front, where the entrances are (sites.js).
+     In front of it lies the bare earth the badger has dug out and trodden (`dug`), also on the face itself. */
+  const SET = {x: L.SETT[0], z: L.SETT[1], fx: Math.sin(L.SETT[2]), fz: Math.cos(L.SETT[2]), H: 1.85, FOOT: 2.55}, setOut = {h: 0, rn: 9, f: 0, s: 0, dug: 0, top: 0};
+  function sett(x, z, out = setOut) {
+    const dx = x - SET.x, dz = z - SET.z; out.h = 0; out.dug = 0; out.top = 0; out.rn = 9; out.f = 0; out.s = 0;
+    if (dx * dx + dz * dz > 64) return out;
+    const f = dx * SET.fx + dz * SET.fz, s = dx * SET.fz - dz * SET.fx, a = Math.atan2(f, s); out.f = f; out.s = s;
+    // behind and at the sides a long, soft slope; in front a steep face whose foot curves back at the sides
+    const front = sstep(-.2, .9, f / Math.max(.01, Math.hypot(f, s))), reach = lerp(lerp(4.4, 3.7, sstep(-.6, .1, f / Math.max(.01, Math.hypot(f, s)))), SET.FOOT - .14 * s * s, front);
+    const rn = Math.hypot(f, s) / Math.max(.5, reach); out.rn = rn;
+    if (rn < 1) { const wob = .08 * Math.sin(a * 3 + 1.3) + .05 * Math.sin(a * 5 + .4) + .03 * Math.sin(a * 9), shape = Math.pow(Math.cos(rn * Math.PI / 2), lerp(1.5, .62, front));
+      out.h = SET.H * shape * (1 + wob * (1 - rn)); out.top = sstep(.7, .3, rn); }
+    // dug earth: the face round the entrances and a fan of thrown-out soil in front, a smaller one at the side hole
+    const n = fbm(x * .9 + 4, z * .9 - 2) - .5, fan = Math.abs(s) - (.8 + Math.max(0, f - 1.8) * .55) + n * .9, face = front * sstep(.45, .7, rn) * sstep(1.25, .95, rn) * sstep(1.9, 1.1, Math.abs(s));
+    const side = Math.hypot(f - 1.55, s + 1.95) - .7 + n * .5;
+    out.dug = Math.max(face * .9, sstep(.4, -.3, fan) * sstep(1.4, 2.1, f) * sstep(4.3 + n * 1.2, 3.3 + n, f), sstep(.35, -.25, side) * .85);
+    return out;
+  }
   /** On the graded way itself (not its banks): Fuchs can walk there whatever the slope a step beside it shows. */
   function onRamp(x, z) {
     for (const r of ramps) {
@@ -139,6 +159,7 @@ export function createTerrain() {
     const q = swampQ(x, z), sw = sstep(1, .6, q);
     if (q < 1.6) { const bank = sstep(.86, .97, q) * sstep(1.6, 1.15, q); if (bank > 0) h = Math.max(h, lerp(h, S.level + .2, bank)); }
     if (sw > 0) h = lerp(h, S.level + (fbm(x * .085 + 5, z * .085 + 9) - .49) * 1.9 + (fbm(x * .4, z * .4) - .5) * .14, sw);
+    h += sett(x, z).h;
     return ramp(x, z, h);
   }
 
@@ -265,6 +286,7 @@ export function createTerrain() {
   function slope(x, z) { const e = .45, hx = ground(x + e, z) - ground(x - e, z), hz = ground(x, z + e) - ground(x, z - e); return Math.hypot(hx, hz) / (2 * e); }
 
   /* ---------- ground colour ---------- */
+  const soilA = C('#a8733f'), soilB = C('#8a5a32'), soilC = C('#c39158'), setCol = {h: 0, rn: 9, f: 0, s: 0, dug: 0, top: 0};
   const grassA = C('#5f8f2f'), grassB = C('#86ad45'), sunny = C('#a9b856'), mossC = C('#4c7a2a'), edgeC = C('#9b8a4a'), dirt = C('#b77a49'), dirtL = C('#cf9a66'),
     wetC = C('#6a5237'), sand = C('#bba57f'), bed = C('#7c6c50'), meadowA = C('#8db546'), meadowB = C('#b9c95c'), needle = C('#77683c'), birchC = C('#9db84c'),
     bog = C('#4d6b33'), mud = C('#54452c'), stoneA = C('#8f8b7e'), stoneB = C('#a9a493'), stoneD = C('#6f6b60'), bm = {},
@@ -277,6 +299,8 @@ export function createTerrain() {
     if (b.birch > 0) out.lerp(birchC, b.birch * .45);
     if (b.spruce > 0) out.lerp(needle, b.spruce * (.45 + .4 * n2));
     out.lerp(mossC, sstep(7, 4, Math.hypot(x - L.DEN.x, z - L.DEN.z)) * .7);
+    // the badger's sett: a mossy back, warm dug earth on its face and in front of it
+    { const st = sett(x, z, setCol); if (st.top > 0) out.lerp(mossC, st.top * (.45 + .3 * n2)); if (st.dug > 0) out.lerp(scratchC.copy(soilA).lerp(soilB, sstep(.3, .75, n2)).lerp(soilC, sstep(.55, .85, fbm(x * 2.1 + 7, z * 2.1)) * .5), st.dug); }
     out.stone = 0; if (b.rock > 0) { const k = b.rock * sstep(.35, .6, n2 * .5 + b.rock * .45) * .85; out.lerp(stoneA, k); out.stone = k; }   // `stone`: how much bare rock shows (the rock shader draws its bedding and cracks there)
     if (b.swamp > 0) { const above = s.h - S.level; out.lerp(bog, b.swamp * .85); out.lerp(mud, b.swamp * sstep(.28, .02, above) * .9); }
     const pe = s.pd - s.pw / 2 + (n2 - .5) * .35;
@@ -295,6 +319,7 @@ export function createTerrain() {
   /** Rock shows through where the ground is steep; `up` is the normal's y. */
   function cliff(x, z, up, out) {
     let k = sstep(.9, .66, up + (fbm(x * .7, z * .7) - .5) * .12); if (k <= 0) return out;
+    if (sett(x, z, setCol).rn < 1.15) return out;   // the sett's face is dug earth, not rock
     const sn = snow(x, z); if (sn > 0) k *= 1 - sn * sstep(.34, .56, up);                // snow stays on all but the steepest rock
     const y = ground(x, z), band = fbm(x * .16 + y * .5, z * .16 - y * .3);   // patches of lighter stone, not level bands
     out.stone = Math.max(out.stone || 0, k); return out.lerp(scratchC.copy(stoneA).lerp(stoneB, sstep(.35, .7, band) * .6).lerp(stoneD, sstep(.6, .9, fbm(x * 1.3 + 2, z * 1.3)) * .5), k);
@@ -340,6 +365,6 @@ export function createTerrain() {
   /** Water too deep to walk in (streams and pools), unless a crossing carries Fuchs over it. */
   function wet(x, z) { const s = site(x, z); return s.sd - s.sw / 2 < .42 || (s.still === s.still && s.still - s.h > .07); }
 
-  return {extent: E, edge, rock, peak, snow, cave, rawHill, onRamp, biome, raw, site, ground, slope, colour, cliff, stillDepth, stillLevel, streamAt, pathAt, streams, pools, poolE, swamp: S, swampMask, trails, plaza,
+  return {extent: E, edge, rock, peak, snow, cave, rawHill, onRamp, sett, biome, raw, site, ground, slope, colour, cliff, stillDepth, stillLevel, streamAt, pathAt, streams, pools, poolE, swamp: S, swampMask, trails, plaza,
     crossings, onCrossing, deck, groundY, wet, falls, dam, TAU};
 }

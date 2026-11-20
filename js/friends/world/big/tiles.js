@@ -10,7 +10,7 @@ import {ATLAS} from './atlas.js';
 import {DECALS} from './decals.js';
 
 const GRID = 32, FAR_GRID = 8, SEED = 77123;
-const C = h => new THREE.Color(h), tone = new THREE.Color(), tone2 = new THREE.Color();
+const C = h => new THREE.Color(h), tone = new THREE.Color(), tone2 = new THREE.Color(), settAt = {};
 const WHITE_UV = [ATLAS.white[0] + ATLAS.white[2] / 2, ATLAS.white[1] + ATLAS.white[3] / 2];
 
 /* ---------- small builders ---------- */
@@ -147,7 +147,7 @@ export function* buildBigTile(world, look, i, j, ring) {
   const spot = () => [x0 + R() * TILE, z0 + R() * TILE];
   const treeGap = (x, z) => { let m = Infinity; for (const tr of trees) m = Math.min(m, Math.hypot(tr.x - x, tr.z - z) - tr.r); return m; };
   // a spot plants can grow on: not in water, not on a trail, not inside a collider or on a crossing
-  const dry = (s, pathPad = -.1) => s.sd - s.sw / 2 > .3 && !(s.still - s.h > -.03) && s.pd > s.pw / 2 + pathPad && T.cave(s.x, s.z).k < .05;   // nothing grows in the cave's cut
+  const dry = (s, pathPad = -.1) => s.sd - s.sw / 2 > .3 && !(s.still - s.h > -.03) && s.pd > s.pw / 2 + pathPad && T.cave(s.x, s.z).k < .05 && T.sett(s.x, s.z, settAt).dug < .3;   // nothing grows in the cave's cut or on the badger's dug earth
   yield 'grass';
   for (let k = 0, n = Math.round(area * 3.2); k < n; k++) {
     if (k % 40 === 39) yield 'grass';

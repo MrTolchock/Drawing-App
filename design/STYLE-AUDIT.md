@@ -1,6 +1,10 @@
 # Current visual consistency audit
 
-Current game art is **Waldpost 9.4.17**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal and object reference pixels and **87** complete forward image-generation prompts.
+Current game art is **Waldpost 9.4.18**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal and object reference pixels and **87** complete forward image-generation prompts.
+
+## A sett worth visiting — 9.4.18
+
+Dachs' sett was a smooth dome with stone-grey horseshoe arches for entrances, roots lying on it like painted stripes, a ribbed dome of bedding that read as a beehive and ferns poking through its sides. The bank is now part of the ground, so the wood's moss, grass and flowers grow on it, with a face of warm dug earth and a fan of trodden soil in front. Its two ways in are dark D-shaped tunnels that one really looks into, under a thick lip of soil; a root of the old oak arches over the main one, rootlets hang into it, and the oak's roots grip the bank. Lumpy heaps of thrown-out soil, a heap of drying hay with loose stalks, stones, a fallen branch, oak leaves, ferns, bluebells, wood anemones, primroses, campions, moss and mushrooms complete it; Dachs stands beside the entrance instead of in front of it. Character art, painted UI, map, learning pictures and all puzzle definitions and presentation revisions are unchanged; no puzzle needs new review.
 
 ## Balanced puzzle page on the 9th-generation iPad — 9.4.17
 
