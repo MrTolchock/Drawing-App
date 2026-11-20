@@ -21675,6 +21675,15 @@
       "at": "2026-11-20T20:23:24.654Z",
       "seen": true,
       "operation": "6ef50fb1-a2fa-4616-ba7e-2a89d3ede8d6"
+    },
+    "sequence/story-5@20ca3e592eb4103f": {
+      "key": "sequence/story-5",
+      "revision": "20ca3e592eb4103f",
+      "status": "improve",
+      "note": "Mache intutiver",
+      "at": "2026-11-20T20:23:46.328Z",
+      "seen": true,
+      "operation": "64c71a21-d6b8-4f04-853d-7b4a1fcc4280"
     }
   },
   "history": [
