@@ -19,13 +19,15 @@
     rocket:['MA.1.A.4.b','Mengen ergänzen','Gesamtmenge 5–10; besetzte und freie Plätze'],
     picnic:['MA.1.A.4.a (Übung)','Eins zu eins gerecht verteilen','2–4 Freunde; 1–10 Beeren je Freund; insgesamt höchstens 20'],
     syllable:['D.1.A.1.b','Wörter in Silben zerlegen','1–5 Silben; vertraute Bildwörter'],
-    robot:['MA.2.A.1.c (Unterstützung)','Benachbarte Schritte im Raum planen','4 × 4; sichtbares Ziel und gesperrte Hecken'],
+    robot:['MA.2.A.1.c (Unterstützung)','Benachbarte Schritte im Raum planen','4 × 4; sichtbares Waldziel und gesperrte Felsen'],
     sequence:['NMG.9.1.a (Übung)','Zeitliche Abfolgen ordnen','25 Bildgeschichten mit drei bebilderten Schritten'],
     treasure:['Optionale Gedächtnisübung','Gegenstände wiedererkennen','Vier Dinge, eines fehlt; kein Zeitlimit; erneut anschauen möglich'],
     neighbours:['MA.1.A.2.a/b','Zahlennachbarn bestimmen','Mitte 1–18; Mengenrahmen bis 20; ein Nachbar kann vorgegeben sein'],
-    compare:['MA.1.A.1.a (Übung)','Mengen vergleichen','1–10 Beeren; mehr oder gleich viele'],
+    compare:['MA.1.A.1.a (Übung)','Mengen vergleichen','1–10 Fische; mehr oder gleich viele'],
     mirror:['MA.2.A.2.c','Ein Muster spiegeln','3 × 3; drei bis fünf Blätter; senkrechte Spiegelachse'],
     vowels:['D.4.A.1.c (Unterstützung)','Einen Vokal ergänzen','Bildwörter; keine Lücke innerhalb von au/ei/ie/eu/äu'],
+    'colour-words':['D.2.A.1.b','Farbwörter verstehen','Sechs Farbwörter; drei verschiedenfarbige Blumen zur Auswahl'],
+    'shape-match':['MA.2.A.1.a','Ebene Formen unabhängig von ihrer Lage erkennen','Kreis, Dreieck, Quadrat und Rechteck; 25 unterschiedliche Ansichten'],
     'read-puzzle':['D.2.A.1.b','Silben zu Wörtern verbinden','28 Bildwörter; zwei bis drei Silben; ein Ablenker'],
   };
   const pools={},clone=v=>JSON.parse(JSON.stringify(v));
@@ -130,7 +132,7 @@
   const animals=C.pools.frog.map(t=>t.answer==='nest'?['Ente','duck-swim']:t.answer==='egg'?['Fuchs','forest-fox']:['mushroom','forest-mushroom'].includes(t.answer)?['Eichhörnchen','squirrel-sit']:[t.target,t.answer]).concat([['Zebra','zebra'],['Löwe','lion'],['Pinguin','penguin'],['Kamel','camel'],['Tiger','tiger'],['Elefant','elephant'],['Giraffe','giraffe'],['Dachs','badger']]);
   animals.forEach(([text,answer],i)=>addMouseWord('friends-frog-animal-'+i,text,answer,[answer,animals[(i+4)%animals.length][1],animals[(i+9)%animals.length][1]]));
   for(let n=6;n<=15;n++)for(let b=2;b<=4;b++)add('count',n+'-'+b,n+' Käfer, '+b+' Bienen',{kind:'count',prompt:'Wie viele rote Marienkäfer sind hier?',count:n,answer:n,choices:numeric(n),bugs:[...Array(n).fill('ladybird'),...Array(b).fill('bee'),...Array(2).fill('snail')]});
-  for(let a=1;a<=8;a++)for(let b=1;b<=9-a;b++)add('add',a+'-'+b,a+' + '+b,{kind:'add',prompt:'Wie viele Äpfel sind es zusammen?',a,b,answer:a+b,choices:numeric(a+b)});
+  for(let a=1;a<=8;a++)for(let b=1;b<=9-a;b++)add('add',a+'-'+b,a+' + '+b,{kind:'add',item:'fish-swim',prompt:'Wie viele Fische sind es zusammen?',a,b,answer:a+b,choices:numeric(a+b)});
   const tokens=['forest-leaf','forest-nut','forest-feather'],permutations=[[0,1,2],[0,2,1],[1,0,2],[1,2,0],[2,0,1],[2,1,0]],units=[[0,0,1],[0,1,1],[0,1,2],[0,1,0,2],[0,0,1,2]];
   units.forEach((u,i)=>permutations.forEach((p,j)=>{const unit=u.map(x=>tokens[p[x]]),sequence=Array.from({length:unit.length*2+1},(_,k)=>unit[k%unit.length]),gap=sequence.length-1;add('friends-ibex','woodland-'+i+'-'+j,'Muster '+['AAB','ABB','ABC','ABAC','AABC'][i]+' / '+(j+1),{kind:'pattern',prompt:'Welches Bild fehlt im Waldmuster?',sequence,gap,answer:sequence[gap],choices:tokens});}));
   const animalQuestions=[
@@ -282,7 +284,7 @@
   });
   // Fully authored routes: five obstacle sets, six distinct start/goal pairs, BFS checked in tests.
   const blocked=[[5,6],[5,9],[6,10],[9,10],[2,5,9]],ends=[[0,15],[12,3],[3,12],[15,0],[0,3],[12,15]];
-  blocked.forEach((obstacles,i)=>ends.forEach(([start,goal],j)=>add('robot',i+'-'+j,'Weg '+(i+1)+' / '+(j+1),{kind:'robot',mode:'route',prompt:'Führe den Hasen zum Briefkasten.',size:4,start,goal,obstacles})));
+  blocked.forEach((obstacles,i)=>ends.forEach(([start,goal],j)=>add('robot',i+'-'+j,'Weg '+(i+1)+' / '+(j+1),{kind:'robot',mode:'route',prompt:'Führe das Reh zum Wald.',size:4,start,goal,obstacles})));
   const stories=[
     [['bean','Bohne in die Erde'],['seedling','Die Bohne keimt'],['plant','Eine Pflanze wächst']],
     [['egg','Ein Ei liegt im Nest'],['chick','Ein Küken schlüpft'],['bird-sit','Der Vogel ist gross']],
@@ -320,11 +322,25 @@
     }
   }
   for(let n=1;n<=18;n++)for(const given of [null,'left'])add('neighbours',n+'-'+(given||'both'),'Mitte '+n+(given?' / Vorgänger gegeben':''),{kind:'neighbours',prompt:'Welche Zahlen kommen davor und danach?',n,given,answer:[n-1,n+1],choices:Array.from(new Set([Math.max(0,n-2),n-1,n+1,n+2]))});
-  for(let a=1;a<=10;a++)for(const b of [a,Math.max(1,a-1),Math.min(10,a+2)])if(!pools.compare?.some(t=>t.question.a===a&&t.question.b===b))add('compare',a+'-'+b,a+' und '+b,{kind:'compare',prompt:'Wo sind mehr Beeren?',a,b,answer:a===b?'equal':a>b?'left':'right',choices:['left','equal','right']});
+  for(let a=1;a<=10;a++)for(const b of [a,Math.max(1,a-1),Math.min(10,a+2)])if(!pools.compare?.some(t=>t.question.a===a&&t.question.b===b))add('compare',a+'-'+b,a+' und '+b,{kind:'compare',item:'fish-swim',prompt:'Wo sind mehr Fische?',a,b,answer:a===b?'equal':a>b?'left':'right',choices:['left','equal','right']});
   const mirrorMasks=[7,56,448,73,146,292,273,84,15,30,60,120,240,480,31,62,124,248,496,91,182,364,341,170,85,340,325,387,457,199];
   mirrorMasks.forEach((mask,n)=>{const left=Array.from({length:9},(_,i)=>i).filter(i=>mask&(1<<i));add('mirror','grid-'+mask,'Blattmuster '+(n+1),{kind:'mirror',prompt:'Ergänze rechts das Spiegelbild.',width:3,rows:3,left,answer:left.map(i=>Math.floor(i/3)*3+2-i%3).sort((a,b)=>a-b)});});
   // Strip legacy generator bookkeeping: question identity belongs to the editorial item.
   for(const pool of Object.values(pools))for(const item of pool){delete item.question.id;delete item.question.round;}
+  // The colour of the target stays the same within each set; the competing colours change.
+  const flowerColours=[['rot','#bf5143'],['gelb','#deb845'],['blau','#5d91b4'],['rosa','#ce8a9b'],['weiss','#f8f4df'],['lila','#9874b1']];
+  for(const colour of flowerColours){
+    const others=flowerColours.filter(other=>other[0]!==colour[0]);
+    for(let i=0;i<others.length;i++){
+      const choices=[colour,others[i],others[(i+1)%others.length]];
+      add('colour-words',choices.map(choice=>choice[0]).join('-'),'Farbe '+colour[0]+' zwischen '+choices.slice(1).map(choice=>choice[0]).join(' und '),{kind:'colours',prompt:'Welche Blume passt zum Satz?',text:'Die Blume ist '+colour[0]+'.',answer:colour[0],choices});
+    }
+  }
+  // Only visually distinct orientations count as tasks. A circle has one orientation.
+  const formAngles={circle:[0],square:[0,15,30,45,60,75],rectangle:[0,30,60,90,120,150],triangle:[0,30,60,90,120,150,180,210,240,270,300,330]};
+  for(const [form,angles]of Object.entries(formAngles))for(const rotation of angles){
+    add('shape-match',form+'-'+rotation,R.shapeNames[form]+' / '+rotation+' Grad',{kind:'shape-match',prompt:'Welche Form ist das?',form,rotation,answer:form,choices:R.shapes});
+  }
   const canonical=v=>Array.isArray(v)?'['+v.map(canonical).join(',')+']':v&&typeof v==='object'?'{'+Object.keys(v).sort().map(k=>JSON.stringify(k)+':'+canonical(v[k])).join(',')+'}':JSON.stringify(v);
   function hash(v){const s=canonical(v);let a=2166136261,b=5381;for(let i=0;i<s.length;i++){a=Math.imul(a^s.charCodeAt(i),16777619);b=Math.imul(b,33)^s.charCodeAt(i);}return (a>>>0).toString(16).padStart(8,'0')+(b>>>0).toString(16).padStart(8,'0');}
   function puzzle(id){const g=FK.friendsLibrary.catalogue().find(g=>g.id===id),m=meta[id];return g&&m?{...g,hostName:C.hosts[g.host].name,reference:m[0],competence:m[1],difficulty:m[2],displayDifficulty:m[3]||m[2],instruction:R.instructions[id]}:null;}

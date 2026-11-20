@@ -24,7 +24,7 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',out=process.en
   assert.deepEqual(await active().locator('.puzzle-read-text,.puzzle-answer').evaluateAll(nodes=>[...new Set(nodes.map(n=>getComputedStyle(n).fontSize))]),[width===390?'29px':'34px']);await page.screenshot({path:out+'/syllable-'+width+'.png'});
   await preview('robot','robot/0-3');assert.equal(await active().getByRole('button',{name:'Weg zurücksetzen',exact:true}).count(),0);const arrows=await active().locator('.puzzle-arrow').evaluateAll(nodes=>nodes.map(n=>({width:n.getBoundingClientRect().width,path:n.querySelector('path').getAttribute('d'),stroke:n.querySelector('path').getAttribute('stroke-width')})));assert.equal(arrows.length,4);assert.ok(arrows.every(n=>n.width>=64&&n.path===arrows[0].path&&n.stroke===arrows[0].stroke));
   const left=active().getByRole('button',{name:'Nach links',exact:true}),post=active().locator('.puzzle-route-cell.post');
-  assert.equal(await post.getAttribute('data-cell'),'15');assert.equal(await post.locator('[data-character="mailman"]').count(),1);
+  assert.equal(await post.getAttribute('data-cell'),'15');assert.equal(await post.locator('[data-character="deer"]').count(),1);
   await active().locator('[data-cell="14"]').click();assert.equal(await post.getAttribute('data-cell'),'15');
   if(mode==='touch')await left.tap();else await left.click();
   await left.dispatchEvent('click',{detail:1});assert.equal(await post.getAttribute('data-cell'),'14','a compatibility click must not move the postman twice');

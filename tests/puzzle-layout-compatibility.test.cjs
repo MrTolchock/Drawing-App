@@ -2,9 +2,10 @@
 const test=require('node:test'),assert=require('node:assert/strict');
 const proof=require('../tools/puzzle-layout-compatibility.json'),baselines=require('../tools/puzzle-review-baselines.json');
 const {sameReviewPresentation}=require('../tools/puzzle-layout-compatibility.cjs'),{setup}=require('../tools/puzzle-catalogue.cjs');
+const reassigned=new Set(['count','add','compare','robot','rocket','picnic','sequence','treasure','neighbours','read-puzzle']);
 test('terminology retains old decisions only for unchanged tasks',()=>{
  const baseline=baselines.releases.find(r=>r.commit===proof.migrations[0].baselineCommit),C=setup().FK.puzzleCatalogue;
- const affected=(id,it)=>['robot','treasure','neighbours','read-puzzle','friends-ibex'].includes(id)||id==='picnic'&&it.question.friends===4;
+ const affected=(id,it)=>reassigned.has(id)||['robot','treasure','neighbours','read-puzzle','friends-ibex'].includes(id)||id==='picnic'&&it.question.friends===4;
  for(const [id,p]of Object.entries(baseline.puzzles)){
   if(!C.puzzle(id))continue;
   for(const it of C.iterations(id)){
@@ -18,8 +19,8 @@ test('restoring picture proportions preserves reviews for every unchanged task',
  assert.ok(migration,'exact picture-proportion correction is recorded');
  const baseline=baselines.releases.find(r=>r.commit===migration.baselineCommit),C=setup().FK.puzzleCatalogue;
  for(const [id,p]of Object.entries(baseline.puzzles)){
-  assert.equal(C.acceptsRevision(id,null,p.revision),true,id);
-  for(const it of C.iterations(id))assert.equal(C.acceptsRevision(id,it.id,baseline.iterations[it.id].revision),true,it.id);
+  assert.equal(C.acceptsRevision(id,null,p.revision),!reassigned.has(id),id);
+  for(const it of C.iterations(id))assert.equal(C.acceptsRevision(id,it.id,baseline.iterations[it.id].revision),!reassigned.has(id),it.id);
  }
 });
 test('every layout bridge rejects subsequent changes and unrelated keys',()=>{

@@ -3,7 +3,7 @@
 [Alle Rätsel](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 
 - Stabile Rätsel-ID: `treasure`
-- Host: owl
+- Host: squirrel
 - Related competence: **Optionale Gedächtnisübung** — Gegenstände wiedererkennen
 - Difficulty: Vier Dinge, eines fehlt; kein Zeitlimit; erneut anschauen möglich
 - Pool: 32 Aufgaben; eine Runde enthält fünf.

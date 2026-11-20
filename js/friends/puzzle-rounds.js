@@ -15,17 +15,19 @@
     'friends-beaver':'In jeder Reihe liegen gleich viele Blätter, Nüsse und Federn wie in der ersten Reihe. Welches Bild fehlt?',
     'friends-mouse':'Lies das Wort. Wähle das passende Bild.',
     count:'Zähle nur die roten Marienkäfer zwischen den anderen Waldbewohnern. Wähle dann die Zahl.',
-    add:'Zähle die Äpfel in beiden Gruppen zusammen und wähle das Ergebnis.',
+    add:'Zähle die Fische in beiden Gruppen zusammen und wähle das Ergebnis.',
     rocket:'Jedes Glühwürmchen hat einen Platz. Zähle die freien Plätze.',
     picnic:'Ziehe die Beeren zu den Freunden, bis alle gleich viele haben. Du kannst Beeren zurück oder zu einem anderen Freund ziehen.',
     syllable:'Sprich das Bildwort langsam. Zähle seine Silben und wähle die passende Zahl.',
-    robot:'Führe den Hasen zum Briefkasten. Tippe auf die Pfeile. Um die Hecken musst du herumgehen.',
+    robot:'Führe das Reh zum Wald. Tippe auf die Pfeile. Um die Felsen musst du herumgehen.',
     sequence:'Was passiert zuerst? Ziehe die drei Bilder der Reihe nach von links nach rechts.',
     treasure:'Merke dir die vier Dinge. Tippe dann auf das Häkchen. Welches Ding fehlt? Mit dem Auge kannst du nochmals nachschauen.',
     neighbours:'Ziehe die Zahl davor nach links und die Zahl danach nach rechts.',
-    compare:'Vergleiche die beiden Beerengruppen. Tippe auf die mit mehr Beeren. Sind es gleich viele, wähle «Gleich viele».',
+    compare:'Vergleiche die beiden Fischgruppen. Tippe auf die mit mehr Fischen. Sind es gleich viele, wähle «Gleich viele».',
     mirror:'Ergänze rechts das Spiegelbild. Felder in derselben Reihe liegen gleich weit von der Spiegellinie entfernt. Ein zweites Tippen leert ein Feld wieder.',
     vowels:'Lies das Bildwort. Welcher Buchstabe fehlt in der Lücke?',
+    'colour-words':'Lies den Satz. Wähle die Blume in der beschriebenen Farbe.',
+    'shape-match':'Schau dir die Form an. Wähle unten dieselbe Form. Sie kann anders gedreht sein.',
     'read-puzzle':'Das Bild zeigt ein Wort. Tippe seine Silben in der richtigen Reihenfolge an.',
   };
   const title=id=>FK.friendsLibrary?.catalogue().find(g=>g.id===id)?.title||(id.startsWith('friends-')?base[id.slice(8)]:id==='trace-numbers'?'Zahlenspuren':FK.puzzles.names[id]);
@@ -40,6 +42,7 @@
   const int=(r,a,b)=>a+Math.floor(r()*(b-a+1));
   const numbers=(n,max,r)=>mix([n,...mix(Array.from({length:max+1},(_,i)=>i).filter(i=>i!==n&&Math.abs(i-n)<=2),r).slice(0,2)],r);
   function question(id,round,seed){
+    if(id==='colour-words'||id==='shape-match')return {...FK.puzzleCatalogue.select(id,seed)[round].question};
     const r=rng(seed),order=mix(Array.from({length:words.length},(_,i)=>i),r),entry=words[order[round]],word=entry[0].replaceAll('-','');
     // Round-local random stream; choosing another task never changes earlier questions.
     const random=rng((seed+Math.imul(round+1,2654435761))>>>0),q={id,round};
@@ -49,7 +52,7 @@
     }
     if(id==='add'){
       const [a,b]=mix([[2,3],[4,2],[3,4],[5,3],[6,4]],r)[round];
-      return {...q,kind:'add',prompt:'Wie viele Äpfel sind es zusammen?',a,b,answer:a+b,choices:numbers(a+b,12,random)};
+      return {...q,kind:'add',item:'fish-swim',prompt:'Wie viele Fische sind es zusammen?',a,b,answer:a+b,choices:numbers(a+b,12,random)};
     }
     if(id==='pattern'){
       const tokens=mix(['forest-leaf','forest-nut','forest-feather'],random),unit=[[0,0,1],[0,1,1],[0,1,2],[0,1,0,2],[0,0,1,2]][round].map(i=>tokens[i]);
@@ -92,7 +95,7 @@
     if(id==='syllable')return {...q,kind:'syllable',prompt:'Wie viele Silben hat das Wort?',word,picture:entry[1],parts:entry[0].split('-'),answer:entry[0].split('-').length,choices:[1,2,3]};
     if(id==='robot'){
       const size=4,start=[0,12,3,15,0][round],goal=[15,3,12,0,15][round],obstacles=[[5,6],[5,9],[6,10],[9,10],[2,5,9]][round];
-      return {...q,kind:'robot',mode:'route',prompt:'Bring den Brief zum Briefkasten.',size,start,goal,obstacles};
+      return {...q,kind:'robot',mode:'route',prompt:'Führe das Reh zum Wald.',size,start,goal,obstacles};
     }
     if(id==='sequence'){
       const stories=[
@@ -112,7 +115,7 @@
       const n=mix([3,5,7,9,12],r)[round];return {...q,kind:'neighbours',prompt:'Welche Zahlen kommen davor und danach?',n,answer:[n-1,n+1],choices:mix([n-2,n-1,n+1,n+2],random)};
     }
     if(id==='compare'){
-      const [a,b]=mix([[3,5],[7,4],[6,6],[8,9],[10,7]],r)[round];return {...q,kind:'compare',prompt:'Wo sind mehr Beeren?',a,b,answer:a===b?'equal':a>b?'left':'right',choices:['left','equal','right']};
+      const [a,b]=mix([[3,5],[7,4],[6,6],[8,9],[10,7]],r)[round];return {...q,kind:'compare',item:'fish-swim',prompt:'Wo sind mehr Fische?',a,b,answer:a===b?'equal':a>b?'left':'right',choices:['left','equal','right']};
     }
     if(id==='mirror'){
       const width=3,rows=3,left=mix(Array.from({length:9},(_,i)=>i),random).slice(0,3+round%3).sort((a,b)=>a-b),answer=left.map(i=>Math.floor(i/width)*width+width-1-i%width).sort((a,b)=>a-b);

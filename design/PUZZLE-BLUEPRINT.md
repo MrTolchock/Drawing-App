@@ -28,7 +28,7 @@ Give longer words and captions room to wrap. Keep the same touch area for equiva
 
 | Rule | Every active puzzle |
 | --- | --- |
-| Identity | One stable puzzle ID, competence title (no separate decorative title/subtitle), host, explicit difficulty and bounded competence. A puzzle is not a difficulty ladder. |
+| Identity | One stable puzzle ID, competence title (no separate decorative title/subtitle), host, explicit difficulty and bounded competence. Every letter friend has at least two thematically suitable Rätsel. See the [current assignments](../docs/RIDDLE-FRIENDS.md). A puzzle is not a difficulty ladder. |
 | Pictures | Drawn woodland illustrations for scored subjects; the common painted cast for character identity. Exact SVG geometry, arrows and handwriting strokes where those are the subject. See the visual-style asset table. No emoji, stock-photo or text substitute for a missing picture. |
 | Page | Cream stitched Waldbuch paper, woodland clearing, matching wooden answer cards, Andika for scored text, one host portrait and five progress leaves. |
 | Round | A random sample of five distinct iterations from the finite, inspectable pool. Prefer items not in the last completed round. Keep the selected questions and partial work stable on return/reload. |

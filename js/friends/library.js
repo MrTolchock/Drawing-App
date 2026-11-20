@@ -68,28 +68,28 @@ const games=[
   },
   {
     "id": "count",
-    "host": "squirrel",
+    "host": "hedgehog",
     "title": "Gezielt Mengen zählen",
     "picture": "ladybird",
     "screen": "puzzle"
   },
   {
     "id": "add",
-    "host": "squirrel",
+    "host": "fish",
     "title": "Mengen addieren",
-    "picture": "add",
+    "picture": "fish-swim",
     "screen": "puzzle"
   },
   {
     "id": "rocket",
-    "host": "squirrel",
+    "host": "frog",
     "title": "Mengen ergänzen",
     "picture": "forest-lantern",
     "screen": "puzzle"
   },
   {
     "id": "picnic",
-    "host": "squirrel",
+    "host": "frog",
     "title": "Mengen verteilen",
     "picture": "forest-basket",
     "screen": "puzzle"
@@ -103,37 +103,37 @@ const games=[
   },
   {
     "id": "robot",
-    "host": "beaver",
+    "host": "deer",
     "title": "Schritte im Raum planen",
-    "picture": "forest-post",
+    "picture": "roe-stand",
     "screen": "puzzle"
   },
   {
     "id": "sequence",
-    "host": "owl",
+    "host": "badger",
     "title": "Zeitliche Abfolgen ordnen",
     "picture": "sprout",
     "screen": "puzzle"
   },
   {
     "id": "treasure",
-    "host": "owl",
+    "host": "squirrel",
     "title": "Gegenstände merken",
     "picture": "forest-basket",
     "screen": "puzzle"
   },
   {
     "id": "neighbours",
-    "host": "squirrel",
+    "host": "kingfisher",
     "title": "Zahlennachbarn bestimmen",
     "picture": "neighbours",
     "screen": "puzzle"
   },
   {
     "id": "compare",
-    "host": "squirrel",
+    "host": "fish",
     "title": "Mengen vergleichen",
-    "picture": "forest-berry",
+    "picture": "fish-swim",
     "screen": "puzzle"
   },
   {
@@ -152,9 +152,23 @@ const games=[
   },
   {
     "id": "read-puzzle",
-    "host": "mouse",
+    "host": "owl",
     "title": "Silben zu Wörtern verbinden",
     "picture": "words",
+    "screen": "puzzle"
+  },
+  {
+    "id": "colour-words",
+    "host": "kingfisher",
+    "title": "Farbwörter verstehen",
+    "picture": "puzzle-flower-blau",
+    "screen": "puzzle"
+  },
+  {
+    "id": "shape-match",
+    "host": "ibex",
+    "title": "Formen wiedererkennen",
+    "picture": "forest-shapes",
     "screen": "puzzle"
   }
 ];

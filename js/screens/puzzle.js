@@ -76,9 +76,9 @@
   }
   function renderAdd(q) {
     scene.append(h('div',{class:'puzzle-addition'},
-      h('section',{},objects('forest-apple',q.a),h('b',{text:q.a})),
+      h('section',{},objects(q.item||'forest-apple',q.a),h('b',{text:q.a})),
       h('b',{class:'puzzle-sign',text:'+'}),
-      h('section',{},objects('forest-apple',q.b),h('b',{text:q.b}))),
+      h('section',{},objects(q.item||'forest-apple',q.b),h('b',{text:q.b}))),
       h('div',{class:'puzzle-equation',text:q.a+' + '+q.b+' = ?'}));numeric();
   }
   function renderPattern(q) {
@@ -180,8 +180,8 @@
     function move(dx,dy,node){if(locked)return;const next=FK.routes.move(model,route,dx,dy);if(!next){fail(node,'Hier ist kein freier Weg.');return;}route=next;work().route=route;persist();redraw();if(route.answered)solved(board);}
     function redraw(){board.replaceChildren();for(let i=0;i<q.size*q.size;i++){
       const blocked=q.obstacles.includes(i),current=route.position===i,goal=q.goal===i;
-      const label=blocked?'Hecke':current?'Hier ist der Hasenbriefträger':goal?'Briefkasten':'Freies Feld';
-      const cell=h('span',{class:'puzzle-route-cell'+(current?' post':'')+(goal?' goal':'')+(blocked?' hedge':''),role:'img','aria-label':label},blocked?picture('forest-fir'):current?FK.friendsLibrary.portrait('mailman'):goal?picture('swiss-postbox'):route.history.includes(i)?'·':'');
+      const label=blocked?'Felsen':current?'Hier ist das Reh':goal?'Wald':'Freies Feld';
+      const cell=h('span',{class:'puzzle-route-cell'+(current?' post':'')+(goal?' goal':'')+(blocked?' hedge':''),role:'img','aria-label':label},blocked?picture('forest-stone'):current?FK.friendsLibrary.portrait('deer'):goal?picture('forest-fir'):route.history.includes(i)?'·':'');
       cell.dataset.cell=i;board.append(cell);
     }}
     for(const [dx,dy,turn,label]of [[0,-1,-90,'Nach oben'],[-1,0,180,'Nach links'],[1,0,0,'Nach rechts'],[0,1,90,'Nach unten']])arrows.append(button(label,()=>move(dx,dy,board),'puzzle-arrow',h('span',{'aria-hidden':'true',style:{transform:'rotate('+turn+'deg)'},html:'<svg viewBox="0 0 48 48"><path d="M8 24h30M25 11l13 13-13 13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>'})));
@@ -248,7 +248,7 @@
   }
   function renderCompare(q) {
     const pair=h('div',{class:'puzzle-compare'});
-    for(const [id,n]of [['left',q.a],['right',q.b]]){let node;node=button(id==='left'?'Links sind mehr Beeren':'Rechts sind mehr Beeren',()=>choose(id,node),'puzzle-berry-plate',h('span',{},objects('forest-berry',n)));node.dataset.answer=id;pair.append(node);}
+    for(const [id,n]of [['left',q.a],['right',q.b]]){let node;node=button(id==='left'?'Links sind mehr Fische':'Rechts sind mehr Fische',()=>choose(id,node),'puzzle-berry-plate',h('span',{},objects(q.item||'forest-berry',n)));node.dataset.answer=id;pair.append(node);}
     scene.append(pair);option('equal','Gleich viele','Gleich viele');
   }
   function renderMirror(q) {
@@ -274,6 +274,14 @@
     scene.append(picture(q.picture),slots);answerArea.append(chips);redraw();
   }
   function renderColours(q) {scene.append(h('p',{class:'puzzle-read-text',text:FK.text.word(q.text)}));q.choices.forEach(([name])=>option(name,picture('puzzle-flower-'+name),(name==='rosa'?'rosa':name+'e')+' Blume'));}
+  function renderShapeMatch(q) {
+    const sample=shape(q.form,q.rotation);
+    sample.classList.add('puzzle-form-sample');
+    // Rotated corners need the same space as upright shapes.
+    sample.querySelector('svg').setAttribute('viewBox','-12 -12 124 124');
+    scene.append(sample);
+    q.choices.forEach(form=>option(form,shape(form),R.shapeNames[form]+' wählen'));
+  }
   function renderLeaves(q) {
     scene.append(h('p',{class:'puzzle-read-text',text:FK.text.syllable(q.text)}));q.choices.forEach(v=>option(v,h('span',{class:'puzzle-syllable-leaf'},picture('forest-leaf'),h('b',{text:FK.text.syllable(v)})),v));
   }
@@ -286,7 +294,7 @@
     if(!session.review)FK.playLog?.show(question);
     body.replaceChildren(context(host,session.round,R.instructions[game],{explain:!session.review,total:session.questions.length,back:backButton,...(session.review?{taskNumber:FK.puzzleCatalogue.iterations(game).findIndex(it=>it.id===session.iterationIds[session.round])+1,taskTotal:FK.puzzleCatalogue.iterations(game).length}:{})}),progress(session.round,session.questions.length),h('h2',{class:'puzzle-prompt',text:question.prompt}));
     scene=h('div',{class:'puzzle-scene'});answerArea=h('div',{class:'puzzle-answers'});status=h('p',{class:'puzzle-status sr-only',role:'status','aria-live':'polite'});body.append(scene,answerArea,status);
-    const renderers={nuts:renderCount,count:renderCount,reading:renderReading,rhyme:renderReading,add:renderAdd,pattern:renderPattern,fireflies:renderFireflies,picnic:renderPicnic,matrix:renderMatrix,syllable:renderSyllable,robot:renderRobot,order:renderOrder,treasure:renderTreasure,neighbours:renderNeighbours,compare:renderCompare,mirror:renderMirror,vowels:renderVowels,syllables:renderSyllables,colours:renderColours,leaves:renderLeaves};
+    const renderers={nuts:renderCount,count:renderCount,reading:renderReading,rhyme:renderReading,add:renderAdd,pattern:renderPattern,fireflies:renderFireflies,picnic:renderPicnic,matrix:renderMatrix,syllable:renderSyllable,robot:renderRobot,order:renderOrder,treasure:renderTreasure,neighbours:renderNeighbours,compare:renderCompare,mirror:renderMirror,vowels:renderVowels,syllables:renderSyllables,colours:renderColours,'shape-match':renderShapeMatch,leaves:renderLeaves};
     renderers[question.kind](question);body.scrollTop=0;
     if(session.review)FK.puzzleReview.attachPreview(root,session,advance);
     // Restore a pending correct transition without accepting the same answer twice.

@@ -52,19 +52,19 @@
     },
     "count": {
       "title": "Gezielt Mengen zählen",
-      "host": "squirrel"
+      "host": "hedgehog"
     },
     "add": {
       "title": "Mengen addieren",
-      "host": "squirrel"
+      "host": "fish"
     },
     "rocket": {
       "title": "Mengen ergänzen",
-      "host": "squirrel"
+      "host": "frog"
     },
     "picnic": {
       "title": "Mengen verteilen",
-      "host": "squirrel"
+      "host": "frog"
     },
     "syllable": {
       "title": "Wörter in Silben zerlegen",
@@ -72,23 +72,23 @@
     },
     "robot": {
       "title": "Schritte im Raum planen",
-      "host": "beaver"
+      "host": "deer"
     },
     "sequence": {
       "title": "Zeitliche Abfolgen ordnen",
-      "host": "owl"
+      "host": "badger"
     },
     "treasure": {
       "title": "Gegenstände merken",
-      "host": "owl"
+      "host": "squirrel"
     },
     "neighbours": {
       "title": "Zahlennachbarn bestimmen",
-      "host": "squirrel"
+      "host": "kingfisher"
     },
     "compare": {
       "title": "Mengen vergleichen",
-      "host": "squirrel"
+      "host": "fish"
     },
     "mirror": {
       "title": "Muster spiegeln",
@@ -100,7 +100,15 @@
     },
     "read-puzzle": {
       "title": "Silben zu Wörtern verbinden",
-      "host": "mouse"
+      "host": "owl"
+    },
+    "colour-words": {
+      "title": "Farbwörter verstehen",
+      "host": "kingfisher"
+    },
+    "shape-match": {
+      "title": "Formen wiedererkennen",
+      "host": "ibex"
     }
   },
   "sheets": [
@@ -4318,7 +4326,9 @@
         "friends-hedgehog",
         "friends-deer",
         "friends-badger",
+        "add",
         "syllable",
+        "compare",
         "vowels"
       ]
     },
@@ -4443,13 +4453,19 @@
         "friends-hedgehog",
         "friends-deer",
         "friends-badger",
+        "count",
+        "add",
+        "rocket",
         "picnic",
         "syllable",
+        "robot",
         "sequence",
         "treasure",
+        "neighbours",
         "compare",
         "vowels",
-        "read-puzzle"
+        "read-puzzle",
+        "colour-words"
       ]
     },
     {
@@ -4468,7 +4484,6 @@
       "tokens": [],
       "usedBy": [
         "friends-beaver",
-        "robot",
         "sequence",
         "mirror"
       ]
@@ -4559,7 +4574,9 @@
         "compare",
         "mirror",
         "vowels",
-        "read-puzzle"
+        "read-puzzle",
+        "colour-words",
+        "shape-match"
       ]
     },
     {
@@ -4616,8 +4633,7 @@
       "tokens": [],
       "usedBy": [
         "friends-owl",
-        "sequence",
-        "treasure"
+        "read-puzzle"
       ]
     },
     {
@@ -4656,7 +4672,9 @@
         "compare",
         "mirror",
         "vowels",
-        "read-puzzle"
+        "read-puzzle",
+        "colour-words",
+        "shape-match"
       ]
     },
     {
@@ -4742,16 +4760,11 @@
         "friends-deer",
         "friends-badger",
         "friends-ibex",
-        "count",
-        "add",
-        "rocket",
-        "picnic",
         "syllable",
         "sequence",
         "treasure",
-        "neighbours",
-        "compare",
-        "vowels"
+        "vowels",
+        "shape-match"
       ]
     },
     {
@@ -4863,6 +4876,7 @@
       "tokens": [],
       "usedBy": [
         "friends-ibex",
+        "robot",
         "treasure"
       ]
     },
@@ -8754,7 +8768,9 @@
         "height": 320
       },
       "tokens": [],
-      "usedBy": []
+      "usedBy": [
+        "colour-words"
+      ]
     },
     {
       "id": "puzzle-flower-gelb",
@@ -8770,7 +8786,9 @@
         "height": 320
       },
       "tokens": [],
-      "usedBy": []
+      "usedBy": [
+        "colour-words"
+      ]
     },
     {
       "id": "puzzle-flower-lila",
@@ -8786,7 +8804,9 @@
         "height": 320
       },
       "tokens": [],
-      "usedBy": []
+      "usedBy": [
+        "colour-words"
+      ]
     },
     {
       "id": "puzzle-flower-rosa",
@@ -8802,7 +8822,9 @@
         "height": 320
       },
       "tokens": [],
-      "usedBy": []
+      "usedBy": [
+        "colour-words"
+      ]
     },
     {
       "id": "puzzle-flower-rot",
@@ -8818,7 +8840,9 @@
         "height": 320
       },
       "tokens": [],
-      "usedBy": []
+      "usedBy": [
+        "colour-words"
+      ]
     },
     {
       "id": "puzzle-flower-weiss",
@@ -8834,7 +8858,9 @@
         "height": 320
       },
       "tokens": [],
-      "usedBy": []
+      "usedBy": [
+        "colour-words"
+      ]
     },
     {
       "id": "quince",
@@ -11238,9 +11264,7 @@
         "height": 320
       },
       "tokens": [],
-      "usedBy": [
-        "robot"
-      ]
+      "usedBy": []
     },
     {
       "id": "sycamore-seed",

@@ -29,7 +29,7 @@ test('every active puzzle has at least 25 unique finite definitions, competence 
    if(q.kind==='survey'&&q.task==='most'){const max=Math.max(...q.counts);assert.equal(q.counts.filter(n=>n===max).length,1);assert.equal(q.answer,q.fruit[q.counts.indexOf(max)]);}
   }
  }
- assert.equal(total,794);
+ assert.equal(total,849);
 });
 test('rhyme pairs are distinct even when their word order is ignored',()=>{
  const pool=setup().FK.puzzleCatalogue.iterations('friends-bird'),pairs=pool.map(it=>[it.question.text,it.question.answer].map(w=>w.toLocaleLowerCase('de-CH')).sort().join('/'));
@@ -190,7 +190,7 @@ test('rejection, a failed save, an unvisited queue or changed revision never gra
 });
 test('generated GitHub pages and revision reflect the exact runtime',()=>assert.deepEqual(check(),[]));
 test('verified unchanged historical reviews remain valid without rewriting decisions or inspection evidence',()=>{
- const id='add',{environment}=require('../tools/puzzle-environment.cjs'),{snapshotReader}=require('../tools/puzzle-review-build.cjs'),old=environment({read:snapshotReader('073657f32f87daa47739910df090e4250289cc55').read});old.execute('js/friends/puzzle-implementation.js');approve(old.FK,id);
+ const id='mirror',{environment}=require('../tools/puzzle-environment.cjs'),{snapshotReader}=require('../tools/puzzle-review-build.cjs'),old=environment({read:snapshotReader('073657f32f87daa47739910df090e4250289cc55').read});old.execute('js/friends/puzzle-implementation.js');approve(old.FK,id);
  const memory=old.memory,before=JSON.stringify([...memory]),{FK}=compatibleSetup(memory),C=FK.puzzleCatalogue,items=C.iterations(id);
  assert.equal(FK.puzzleReview.status(id,items[0].id).status,'approved');assert.equal(FK.puzzleReview.status(id,items[0].id).seen,true);assert.ok(FK.puzzleReview.ready(id));
  assert.equal(JSON.stringify([...memory]),before,'read-only recovery preserves timestamps, notes and history');
@@ -207,7 +207,7 @@ test('the expanded mouse reading pool keeps approval for all 25 original word ca
  for(const item of items)assert.ok(current.acceptsRevision(id,item.id,former.iterationRevision(id,item)),item.id);
 });
 test('verified unchanged partial rounds resume verbatim; changed questions remain archived',()=>{
- const {FK,memory}=compatibleSetup(),id='add',s=FK.puzzleRounds.start(id);s.round=2;s.work={};s.catalogueRevision=FK.puzzleCatalogue.formerPuzzleRevisions(id)[0];FK.puzzleRounds.save(s);
+ const {FK,memory}=compatibleSetup(),id='friends-squirrel',s=FK.puzzleRounds.start(id);s.round=2;s.work={};s.catalogueRevision=FK.puzzleCatalogue.formerPuzzleRevisions(id)[0];FK.puzzleRounds.save(s);
  assert.deepEqual(plain(compatibleSetup(memory).FK.puzzleRounds.start(id)),plain(s));
  s.questions[0].count=99;FK.puzzleRounds.save(s);const restored=compatibleSetup(memory),next=restored.FK.puzzleRounds.start(id);assert.equal(next.round,0);assert.equal(JSON.parse(restored.memory.get('farbtupf.puzzles.v1')).legacy[id].questions[0].count,99,'the earlier snapshot is archived');
 });

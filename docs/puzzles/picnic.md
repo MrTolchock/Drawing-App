@@ -3,7 +3,7 @@
 [Alle Rätsel](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 
 - Stabile Rätsel-ID: `picnic`
-- Host: squirrel
+- Host: frog
 - Related competence: **MA.1.A.4.a (Übung)** — Eins zu eins gerecht verteilen
 - Difficulty: 2–4 Freunde; 1–10 Beeren je Freund; insgesamt höchstens 20
 - Pool: 25 Aufgaben; eine Runde enthält fünf.

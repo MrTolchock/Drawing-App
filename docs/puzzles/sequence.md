@@ -3,7 +3,7 @@
 [Alle Rätsel](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 
 - Stabile Rätsel-ID: `sequence`
-- Host: owl
+- Host: badger
 - Related competence: **NMG.9.1.a (Übung)** — Zeitliche Abfolgen ordnen
 - Difficulty: 25 Bildgeschichten mit drei bebilderten Schritten
 - Pool: 25 Aufgaben; eine Runde enthält fünf.

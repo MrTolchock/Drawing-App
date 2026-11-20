@@ -3,7 +3,7 @@
 [Alle Rätsel](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 
 - Stabile Rätsel-ID: `rocket`
-- Host: squirrel
+- Host: frog
 - Related competence: **MA.1.A.4.b** — Mengen ergänzen
 - Difficulty: Gesamtmenge 5–10; besetzte und freie Plätze
 - Pool: 39 Aufgaben; eine Runde enthält fünf.

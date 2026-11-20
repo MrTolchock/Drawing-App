@@ -1,5 +1,5 @@
 /* Farbtupf – Service Worker: keeps the whole app on the device so it runs without internet. */
-const CACHE = 'farbtupf-v9.4.15-waldpost';
+const CACHE = 'farbtupf-v9.4.16-waldpost';
 const SCOPE=self.registration.scope;
 const INDEX=new URL('index.html',SCOPE).href;
 const ACTIVE_MARKER=new URL('.farbtupf-active-cache',SCOPE).href;
@@ -8,6 +8,8 @@ const ASSETS = [
   './assets/audio/narration/add.mp3',
   './assets/audio/narration/clips.js',
   './assets/audio/narration/compare.mp3',
+  './assets/audio/narration/colour-words.mp3',
+  './assets/audio/narration/shape-match.mp3',
   './assets/audio/narration/count.mp3',
   './assets/audio/narration/friends-badger.mp3',
   './assets/audio/narration/friends-beaver.mp3',

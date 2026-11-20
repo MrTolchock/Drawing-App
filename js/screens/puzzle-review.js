@@ -6,6 +6,8 @@
   const drafts=new Map();
   // Describe the bounded practice in this puzzle; these are explanations, not curriculum quotations.
   const competences={
+    'colour-words':'Das Kind liest ein Farbwort im Satz und ordnet es der passenden gezeichneten Blume zu.',
+    'shape-match':'Das Kind erkennt Kreis, Dreieck, Quadrat und Rechteck in unterschiedlichen Lagen wieder.',
     'friends-squirrel':'Das Kind zählt abgebildete Nüsse bis 20 und nutzt Vierer- oder Fünferreihen, um Mengen zu überblicken.',
     'friends-bird':'Das Kind liest vertraute Wörter und erkennt an ihrem Klang, welche Wörter sich reimen.',
     'friends-owl':'Das Kind liest einen kurzen Satz, versteht die beschriebene Handlung und wählt das passende Tierbild.',

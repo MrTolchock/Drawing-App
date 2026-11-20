@@ -3,7 +3,7 @@
 [Alle Rätsel](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 
 - Stabile Rätsel-ID: `read-puzzle`
-- Host: mouse
+- Host: owl
 - Related competence: **D.2.A.1.b** — Silben zu Wörtern verbinden
 - Difficulty: 28 Bildwörter; zwei bis drei Silben; ein Ablenker
 - Pool: 28 Aufgaben; eine Runde enthält fünf.

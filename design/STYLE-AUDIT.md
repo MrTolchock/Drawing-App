@@ -1,6 +1,16 @@
 # Current visual consistency audit
 
-Current game art is **Waldpost 9.4.15**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal and object reference pixels and **87** complete forward image-generation prompts.
+Current game art is **Waldpost 9.4.16**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal and object reference pixels and **87** complete forward image-generation prompts.
+
+## Zwei Rätsel bei jedem Brief-Freund — 9.4.16
+
+Alle zwölf Brief-Freunde erhalten je zwei thematisch passende Rätsel. Die [Zuordnung](../docs/RIDDLE-FRIENDS.md) verteilt die bestehende Sammlung und ergänzt Farbwörter beim Eisvogel sowie Formen in verschiedenen Lagen beim Steinbock. Damit umfasst die Sammlung 24 Rätsel und 849 Aufgaben. Die Blaumeise behält Reime und Silben, der Dachs ordnet Naturveränderungen und Bildgeschichten, das Eichhörnchen zählt und merkt sich Waldschätze. Fisch erhält wieder Briefe, sobald eines seiner aktuellen Rätsel freigegeben ist.
+
+Beim Reh führt das Weg-Rätsel zum Wald und um Felsen herum. Beim Fisch zeigen Addition und Mengenvergleich Fischgruppen. Die beiden neuen Aktivitäten verwenden vorhandene Blumenbilder und die gemeinsamen geometrischen Formen. Die Sprachaufnahmen für diese fünf Aktivitäten passen zum aktuellen Text und verwenden dieselbe mitgelieferte Sprecherin. Gedrehte Formen erhalten genügend Platz für ihre Ecken. Die Originalproportionen aller Bilder und die bestehenden iPad-Abmessungen bleiben geprüft.
+
+Zwölf unveränderte Rätsel mit 485 Aufgaben behalten ihre bisherigen Freigaben. Die zehn neu zugeordneten Rätsel mit anderem Gastgeber sowie die beiden neuen benötigen eine aktuelle Prüfung. Ihre früheren Entscheidungen und Aufgaben-IDs bleiben nachvollziehbar; die geprüfte Ausgangsversion ist Git-Commit `9bd41c8`. Der Code erzeugt keine redaktionellen Freigaben.
+
+Der Zuordnungstest prüft zwei vollständige Briefbeutel mit allen zwölf Freunden und beiden Rätseln je Freund. Der Browsertest öffnet die Galerie bei jedem Freund und prüft Gastgeber, neue Bilder, neue Aktivitäten sowie richtige und falsche Touch-Antworten auf Tablet und Telefon. Die Layout-Prüfung umfasst 5.916 Aufgabenansichten, davon 4.930 iPad-Ansichten ohne Scrollen. Die [Bildbelege](evidence/2026-11-20-friend-assignments/README.md) stammen aus dem echten gemeinsamen Renderer mit wegwerfbarem Speicher und abgefangenen Review-APIs.
 
 ## Steinbock-Aufstieg und Wasserübergänge auf der Karte — 9.4.15
 

@@ -3,7 +3,7 @@
 [Alle Rätsel](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 
 - Stabile Rätsel-ID: `neighbours`
-- Host: squirrel
+- Host: kingfisher
 - Related competence: **MA.1.A.2.a/b** — Zahlennachbarn bestimmen
 - Difficulty: Mitte 1–18; Mengenrahmen bis 20; ein Nachbar kann vorgegeben sein
 - Pool: 36 Aufgaben; eine Runde enthält fünf.

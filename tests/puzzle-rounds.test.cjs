@@ -5,8 +5,8 @@ function setup(saved){
  for(const path of ['js/learn/glyphs.js','js/learn/routes.js','js/friends/puzzles.js','js/friends/library.js','js/friends/puzzle-rounds.js','js/friends/puzzle-catalogue.js'])vm.runInContext(fs.readFileSync(path,'utf8'),ctx);
  return {FK,memory};
 }
-test('all 22 active riddles have one route, one instruction and five tasks; retired games are absent',()=>{
- const {FK}=setup(),entries=FK.friendsLibrary.catalogue();assert.equal(entries.length,22);assert.equal(new Set(entries.map(g=>g.id)).size,22);
+test('all 24 active riddles have one route, one instruction and five tasks; retired games are absent',()=>{
+ const {FK}=setup(),entries=FK.friendsLibrary.catalogue();assert.equal(entries.length,24);assert.equal(new Set(entries.map(g=>g.id)).size,24);
  for(const g of entries){assert.ok(FK.puzzleRounds.instructions[g.id],g.id);assert.ok(g.host);assert.ok(['puzzle','trace'].includes(g.screen));}
  assert.ok(!entries.some(g=>['rhyme','dots','double','shapes','survey'].includes(g.id)));assert.ok(!entries.some(g=>['trace', 'trace-numbers', 'friends-frog', 'friends-kingfisher', 'read-colours', 'read-leaves', 'read-word'].includes(g.id)));
 });
@@ -44,9 +44,9 @@ test('friends use saved shuffled game bags, avoid repeated kinds and resume unfi
   for(let i=0;i<pool.length;i++){const g=L.pick(host);assert.equal(L.pick(host).id,g.id,'selection stays stable until launched');seen.push(g.id);assert.ok(L.visit(g));L.complete(host,g.id);}
   assert.equal(new Set(seen).size,pool.length);if(pool.length>1)assert.notEqual(L.pick(host).id,seen.at(-1));
  }
- const session=R.start('robot');session.round=2;R.save(session);FK.settings.set('friends.active.beaver','robot');assert.equal(L.pick('beaver').id,'robot');
- FK.settings.set('friends.active.beaver',null);FK.settings.set('friends.lastPuzzle','friends-beaver');FK.settings.set('friends.queue.beaver',['friends-beaver','robot']);assert.equal(L.pick('beaver').id,'robot','prefer a different interaction kind');
- const other=setup().FK;other.settings=FK.settings;assert.equal(other.friendsLibrary.pick('beaver').id,'robot','bag survives a new runtime');
+ const session=R.start('robot');session.round=2;R.save(session);FK.settings.set('friends.active.deer','robot');assert.equal(L.pick('deer').id,'robot');
+ FK.settings.set('friends.active.deer',null);FK.settings.set('friends.lastPuzzle','friends-beaver');FK.settings.set('friends.queue.beaver',['friends-beaver','mirror']);assert.equal(L.pick('beaver').id,'mirror','prefer a different interaction kind');
+ const other=setup().FK;other.settings=FK.settings;assert.equal(other.friendsLibrary.pick('beaver').id,'mirror','bag survives a new runtime');
 });
 test('corrupt sessions are ignored without clearing historical saves',()=>{
  const key='farbtupf.puzzles.v1',old='{"doNotTouch":true}';

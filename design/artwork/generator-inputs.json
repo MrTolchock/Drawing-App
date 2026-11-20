@@ -15684,7 +15684,9 @@
             "friends-hedgehog",
             "friends-deer",
             "friends-badger",
+            "add",
             "syllable",
+            "compare",
             "vowels"
           ]
         },
@@ -16029,16 +16031,11 @@
             "friends-deer",
             "friends-badger",
             "friends-ibex",
-            "count",
-            "add",
-            "rocket",
-            "picnic",
             "syllable",
             "sequence",
             "treasure",
-            "neighbours",
-            "compare",
-            "vowels"
+            "vowels",
+            "shape-match"
           ]
         },
         {
@@ -16086,13 +16083,19 @@
             "friends-hedgehog",
             "friends-deer",
             "friends-badger",
+            "count",
+            "add",
+            "rocket",
             "picnic",
             "syllable",
+            "robot",
             "sequence",
             "treasure",
+            "neighbours",
             "compare",
             "vowels",
-            "read-puzzle"
+            "read-puzzle",
+            "colour-words"
           ]
         },
         {
@@ -16131,7 +16134,9 @@
             "compare",
             "mirror",
             "vowels",
-            "read-puzzle"
+            "read-puzzle",
+            "colour-words",
+            "shape-match"
           ]
         },
         {
@@ -16243,7 +16248,9 @@
             "compare",
             "mirror",
             "vowels",
-            "read-puzzle"
+            "read-puzzle",
+            "colour-words",
+            "shape-match"
           ]
         },
         {
@@ -16304,6 +16311,7 @@
           "tokens": [],
           "usedBy": [
             "friends-ibex",
+            "robot",
             "treasure"
           ]
         },
@@ -16323,7 +16331,6 @@
           "tokens": [],
           "usedBy": [
             "friends-beaver",
-            "robot",
             "sequence",
             "mirror"
           ]
@@ -16344,8 +16351,7 @@
           "tokens": [],
           "usedBy": [
             "friends-owl",
-            "sequence",
-            "treasure"
+            "read-puzzle"
           ]
         },
         {
@@ -17657,7 +17663,9 @@
             "height": 320
           },
           "tokens": [],
-          "usedBy": []
+          "usedBy": [
+            "colour-words"
+          ]
         },
         {
           "id": "puzzle-flower-gelb",
@@ -17673,7 +17681,9 @@
             "height": 320
           },
           "tokens": [],
-          "usedBy": []
+          "usedBy": [
+            "colour-words"
+          ]
         },
         {
           "id": "puzzle-flower-blau",
@@ -17689,7 +17699,9 @@
             "height": 320
           },
           "tokens": [],
-          "usedBy": []
+          "usedBy": [
+            "colour-words"
+          ]
         },
         {
           "id": "puzzle-flower-rosa",
@@ -17705,7 +17717,9 @@
             "height": 320
           },
           "tokens": [],
-          "usedBy": []
+          "usedBy": [
+            "colour-words"
+          ]
         },
         {
           "id": "puzzle-flower-weiss",
@@ -17721,7 +17735,9 @@
             "height": 320
           },
           "tokens": [],
-          "usedBy": []
+          "usedBy": [
+            "colour-words"
+          ]
         },
         {
           "id": "puzzle-flower-lila",
@@ -17737,7 +17753,9 @@
             "height": 320
           },
           "tokens": [],
-          "usedBy": []
+          "usedBy": [
+            "colour-words"
+          ]
         }
       ],
       "manifest": "design/illustrations/puzzle-flowers.json",
@@ -18733,9 +18751,7 @@
             "height": 320
           },
           "tokens": [],
-          "usedBy": [
-            "robot"
-          ]
+          "usedBy": []
         }
       ],
       "manifest": "design/illustrations/swiss-postbox.json",

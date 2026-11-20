@@ -3,7 +3,7 @@
 [Alle Rätsel](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 
 - Stabile Rätsel-ID: `add`
-- Host: squirrel
+- Host: fish
 - Related competence: **MA.1.A.3.a** — Sichtbare Gruppen addieren
 - Difficulty: Zwei positive Summanden; Summe höchstens 10
 - Pool: 36 Aufgaben; eine Runde enthält fünf.
@@ -26,42 +26,42 @@
 
 | Stabile Aufgaben-ID | Inhalt / Konfiguration | Expected answer or solution |
 | --- | --- | --- |
-| `add/1-1` | 1 + 1 — Wie viele Äpfel sind es zusammen? | 2 |
-| `add/1-2` | 1 + 2 — Wie viele Äpfel sind es zusammen? | 3 |
-| `add/1-3` | 1 + 3 — Wie viele Äpfel sind es zusammen? | 4 |
-| `add/1-4` | 1 + 4 — Wie viele Äpfel sind es zusammen? | 5 |
-| `add/1-5` | 1 + 5 — Wie viele Äpfel sind es zusammen? | 6 |
-| `add/1-6` | 1 + 6 — Wie viele Äpfel sind es zusammen? | 7 |
-| `add/1-7` | 1 + 7 — Wie viele Äpfel sind es zusammen? | 8 |
-| `add/1-8` | 1 + 8 — Wie viele Äpfel sind es zusammen? | 9 |
-| `add/2-1` | 2 + 1 — Wie viele Äpfel sind es zusammen? | 3 |
-| `add/2-2` | 2 + 2 — Wie viele Äpfel sind es zusammen? | 4 |
-| `add/2-3` | 2 + 3 — Wie viele Äpfel sind es zusammen? | 5 |
-| `add/2-4` | 2 + 4 — Wie viele Äpfel sind es zusammen? | 6 |
-| `add/2-5` | 2 + 5 — Wie viele Äpfel sind es zusammen? | 7 |
-| `add/2-6` | 2 + 6 — Wie viele Äpfel sind es zusammen? | 8 |
-| `add/2-7` | 2 + 7 — Wie viele Äpfel sind es zusammen? | 9 |
-| `add/3-1` | 3 + 1 — Wie viele Äpfel sind es zusammen? | 4 |
-| `add/3-2` | 3 + 2 — Wie viele Äpfel sind es zusammen? | 5 |
-| `add/3-3` | 3 + 3 — Wie viele Äpfel sind es zusammen? | 6 |
-| `add/3-4` | 3 + 4 — Wie viele Äpfel sind es zusammen? | 7 |
-| `add/3-5` | 3 + 5 — Wie viele Äpfel sind es zusammen? | 8 |
-| `add/3-6` | 3 + 6 — Wie viele Äpfel sind es zusammen? | 9 |
-| `add/4-1` | 4 + 1 — Wie viele Äpfel sind es zusammen? | 5 |
-| `add/4-2` | 4 + 2 — Wie viele Äpfel sind es zusammen? | 6 |
-| `add/4-3` | 4 + 3 — Wie viele Äpfel sind es zusammen? | 7 |
-| `add/4-4` | 4 + 4 — Wie viele Äpfel sind es zusammen? | 8 |
-| `add/4-5` | 4 + 5 — Wie viele Äpfel sind es zusammen? | 9 |
-| `add/5-1` | 5 + 1 — Wie viele Äpfel sind es zusammen? | 6 |
-| `add/5-2` | 5 + 2 — Wie viele Äpfel sind es zusammen? | 7 |
-| `add/5-3` | 5 + 3 — Wie viele Äpfel sind es zusammen? | 8 |
-| `add/5-4` | 5 + 4 — Wie viele Äpfel sind es zusammen? | 9 |
-| `add/6-1` | 6 + 1 — Wie viele Äpfel sind es zusammen? | 7 |
-| `add/6-2` | 6 + 2 — Wie viele Äpfel sind es zusammen? | 8 |
-| `add/6-3` | 6 + 3 — Wie viele Äpfel sind es zusammen? | 9 |
-| `add/7-1` | 7 + 1 — Wie viele Äpfel sind es zusammen? | 8 |
-| `add/7-2` | 7 + 2 — Wie viele Äpfel sind es zusammen? | 9 |
-| `add/8-1` | 8 + 1 — Wie viele Äpfel sind es zusammen? | 9 |
+| `add/1-1` | 1 + 1 — Wie viele Fische sind es zusammen? | 2 |
+| `add/1-2` | 1 + 2 — Wie viele Fische sind es zusammen? | 3 |
+| `add/1-3` | 1 + 3 — Wie viele Fische sind es zusammen? | 4 |
+| `add/1-4` | 1 + 4 — Wie viele Fische sind es zusammen? | 5 |
+| `add/1-5` | 1 + 5 — Wie viele Fische sind es zusammen? | 6 |
+| `add/1-6` | 1 + 6 — Wie viele Fische sind es zusammen? | 7 |
+| `add/1-7` | 1 + 7 — Wie viele Fische sind es zusammen? | 8 |
+| `add/1-8` | 1 + 8 — Wie viele Fische sind es zusammen? | 9 |
+| `add/2-1` | 2 + 1 — Wie viele Fische sind es zusammen? | 3 |
+| `add/2-2` | 2 + 2 — Wie viele Fische sind es zusammen? | 4 |
+| `add/2-3` | 2 + 3 — Wie viele Fische sind es zusammen? | 5 |
+| `add/2-4` | 2 + 4 — Wie viele Fische sind es zusammen? | 6 |
+| `add/2-5` | 2 + 5 — Wie viele Fische sind es zusammen? | 7 |
+| `add/2-6` | 2 + 6 — Wie viele Fische sind es zusammen? | 8 |
+| `add/2-7` | 2 + 7 — Wie viele Fische sind es zusammen? | 9 |
+| `add/3-1` | 3 + 1 — Wie viele Fische sind es zusammen? | 4 |
+| `add/3-2` | 3 + 2 — Wie viele Fische sind es zusammen? | 5 |
+| `add/3-3` | 3 + 3 — Wie viele Fische sind es zusammen? | 6 |
+| `add/3-4` | 3 + 4 — Wie viele Fische sind es zusammen? | 7 |
+| `add/3-5` | 3 + 5 — Wie viele Fische sind es zusammen? | 8 |
+| `add/3-6` | 3 + 6 — Wie viele Fische sind es zusammen? | 9 |
+| `add/4-1` | 4 + 1 — Wie viele Fische sind es zusammen? | 5 |
+| `add/4-2` | 4 + 2 — Wie viele Fische sind es zusammen? | 6 |
+| `add/4-3` | 4 + 3 — Wie viele Fische sind es zusammen? | 7 |
+| `add/4-4` | 4 + 4 — Wie viele Fische sind es zusammen? | 8 |
+| `add/4-5` | 4 + 5 — Wie viele Fische sind es zusammen? | 9 |
+| `add/5-1` | 5 + 1 — Wie viele Fische sind es zusammen? | 6 |
+| `add/5-2` | 5 + 2 — Wie viele Fische sind es zusammen? | 7 |
+| `add/5-3` | 5 + 3 — Wie viele Fische sind es zusammen? | 8 |
+| `add/5-4` | 5 + 4 — Wie viele Fische sind es zusammen? | 9 |
+| `add/6-1` | 6 + 1 — Wie viele Fische sind es zusammen? | 7 |
+| `add/6-2` | 6 + 2 — Wie viele Fische sind es zusammen? | 8 |
+| `add/6-3` | 6 + 3 — Wie viele Fische sind es zusammen? | 9 |
+| `add/7-1` | 7 + 1 — Wie viele Fische sind es zusammen? | 8 |
+| `add/7-2` | 7 + 2 — Wie viele Fische sind es zusammen? | 9 |
+| `add/8-1` | 8 + 1 — Wie viele Fische sind es zusammen? | 9 |
 
 ## Exact definitions
 
@@ -74,7 +74,8 @@ These definitions are the same finite data used by the game and review previews.
     "label": "1 + 1",
     "question": {
       "kind": "add",
-      "prompt": "Wie viele Äpfel sind es zusammen?",
+      "item": "fish-swim",
+      "prompt": "Wie viele Fische sind es zusammen?",
       "a": 1,
       "b": 1,
       "answer": 2,
@@ -90,7 +91,8 @@ These definitions are the same finite data used by the game and review previews.
     "label": "1 + 2",
     "question": {
       "kind": "add",
-      "prompt": "Wie viele Äpfel sind es zusammen?",
+      "item": "fish-swim",
+      "prompt": "Wie viele Fische sind es zusammen?",
       "a": 1,
       "b": 2,
       "answer": 3,
@@ -106,7 +108,8 @@ These definitions are the same finite data used by the game and review previews.
     "label": "1 + 3",
     "question": {
       "kind": "add",
-      "prompt": "Wie viele Äpfel sind es zusammen?",
+      "item": "fish-swim",
+      "prompt": "Wie viele Fische sind es zusammen?",
       "a": 1,
       "b": 3,
       "answer": 4,
@@ -122,7 +125,8 @@ These definitions are the same finite data used by the game and review previews.
     "label": "1 + 4",
     "question": {
       "kind": "add",
-      "prompt": "Wie viele Äpfel sind es zusammen?",
+      "item": "fish-swim",
+      "prompt": "Wie viele Fische sind es zusammen?",
       "a": 1,
       "b": 4,
       "answer": 5,
@@ -138,7 +142,8 @@ These definitions are the same finite data used by the game and review previews.
     "label": "1 + 5",
     "question": {
       "kind": "add",
-      "prompt": "Wie viele Äpfel sind es zusammen?",
+      "item": "fish-swim",
+      "prompt": "Wie viele Fische sind es zusammen?",
       "a": 1,
       "b": 5,
       "answer": 6,
@@ -154,7 +159,8 @@ These definitions are the same finite data used by the game and review previews.
     "label": "1 + 6",
     "question": {
       "kind": "add",
-      "prompt": "Wie viele Äpfel sind es zusammen?",
+      "item": "fish-swim",
+      "prompt": "Wie viele Fische sind es zusammen?",
       "a": 1,
       "b": 6,
       "answer": 7,
@@ -170,7 +176,8 @@ These definitions are the same finite data used by the game and review previews.
     "label": "1 + 7",
     "question": {
       "kind": "add",
-      "prompt": "Wie viele Äpfel sind es zusammen?",
+      "item": "fish-swim",
+      "prompt": "Wie viele Fische sind es zusammen?",
       "a": 1,
       "b": 7,
       "answer": 8,
@@ -186,7 +193,8 @@ These definitions are the same finite data used by the game and review previews.
     "label": "1 + 8",
     "question": {
       "kind": "add",
-      "prompt": "Wie viele Äpfel sind es zusammen?",
+      "item": "fish-swim",
+      "prompt": "Wie viele Fische sind es zusammen?",
       "a": 1,
       "b": 8,
       "answer": 9,
@@ -202,7 +210,8 @@ These definitions are the same finite data used by the game and review previews.
     "label": "2 + 1",
     "question": {
       "kind": "add",
-      "prompt": "Wie viele Äpfel sind es zusammen?",
+      "item": "fish-swim",
+      "prompt": "Wie viele Fische sind es zusammen?",
       "a": 2,
       "b": 1,
       "answer": 3,
@@ -218,7 +227,8 @@ These definitions are the same finite data used by the game and review previews.
     "label": "2 + 2",
     "question": {
       "kind": "add",
-      "prompt": "Wie viele Äpfel sind es zusammen?",
+      "item": "fish-swim",
+      "prompt": "Wie viele Fische sind es zusammen?",
       "a": 2,
       "b": 2,
       "answer": 4,
@@ -234,7 +244,8 @@ These definitions are the same finite data used by the game and review previews.
     "label": "2 + 3",
     "question": {
       "kind": "add",
-      "prompt": "Wie viele Äpfel sind es zusammen?",
+      "item": "fish-swim",
+      "prompt": "Wie viele Fische sind es zusammen?",
       "a": 2,
       "b": 3,
       "answer": 5,
@@ -250,7 +261,8 @@ These definitions are the same finite data used by the game and review previews.
     "label": "2 + 4",
     "question": {
       "kind": "add",
-      "prompt": "Wie viele Äpfel sind es zusammen?",
+      "item": "fish-swim",
+      "prompt": "Wie viele Fische sind es zusammen?",
       "a": 2,
       "b": 4,
       "answer": 6,
@@ -266,7 +278,8 @@ These definitions are the same finite data used by the game and review previews.
     "label": "2 + 5",
     "question": {
       "kind": "add",
-      "prompt": "Wie viele Äpfel sind es zusammen?",
+      "item": "fish-swim",
+      "prompt": "Wie viele Fische sind es zusammen?",
       "a": 2,
       "b": 5,
       "answer": 7,
@@ -282,7 +295,8 @@ These definitions are the same finite data used by the game and review previews.
     "label": "2 + 6",
     "question": {
       "kind": "add",
-      "prompt": "Wie viele Äpfel sind es zusammen?",
+      "item": "fish-swim",
+      "prompt": "Wie viele Fische sind es zusammen?",
       "a": 2,
       "b": 6,
       "answer": 8,
@@ -298,7 +312,8 @@ These definitions are the same finite data used by the game and review previews.
     "label": "2 + 7",
     "question": {
       "kind": "add",
-      "prompt": "Wie viele Äpfel sind es zusammen?",
+      "item": "fish-swim",
+      "prompt": "Wie viele Fische sind es zusammen?",
       "a": 2,
       "b": 7,
       "answer": 9,
@@ -314,7 +329,8 @@ These definitions are the same finite data used by the game and review previews.
     "label": "3 + 1",
     "question": {
       "kind": "add",
-      "prompt": "Wie viele Äpfel sind es zusammen?",
+      "item": "fish-swim",
+      "prompt": "Wie viele Fische sind es zusammen?",
       "a": 3,
       "b": 1,
       "answer": 4,
@@ -330,7 +346,8 @@ These definitions are the same finite data used by the game and review previews.
     "label": "3 + 2",
     "question": {
       "kind": "add",
-      "prompt": "Wie viele Äpfel sind es zusammen?",
+      "item": "fish-swim",
+      "prompt": "Wie viele Fische sind es zusammen?",
       "a": 3,
       "b": 2,
       "answer": 5,
@@ -346,7 +363,8 @@ These definitions are the same finite data used by the game and review previews.
     "label": "3 + 3",
     "question": {
       "kind": "add",
-      "prompt": "Wie viele Äpfel sind es zusammen?",
+      "item": "fish-swim",
+      "prompt": "Wie viele Fische sind es zusammen?",
       "a": 3,
       "b": 3,
       "answer": 6,
@@ -362,7 +380,8 @@ These definitions are the same finite data used by the game and review previews.
     "label": "3 + 4",
     "question": {
       "kind": "add",
-      "prompt": "Wie viele Äpfel sind es zusammen?",
+      "item": "fish-swim",
+      "prompt": "Wie viele Fische sind es zusammen?",
       "a": 3,
       "b": 4,
       "answer": 7,
@@ -378,7 +397,8 @@ These definitions are the same finite data used by the game and review previews.
     "label": "3 + 5",
     "question": {
       "kind": "add",
-      "prompt": "Wie viele Äpfel sind es zusammen?",
+      "item": "fish-swim",
+      "prompt": "Wie viele Fische sind es zusammen?",
       "a": 3,
       "b": 5,
       "answer": 8,
@@ -394,7 +414,8 @@ These definitions are the same finite data used by the game and review previews.
     "label": "3 + 6",
     "question": {
       "kind": "add",
-      "prompt": "Wie viele Äpfel sind es zusammen?",
+      "item": "fish-swim",
+      "prompt": "Wie viele Fische sind es zusammen?",
       "a": 3,
       "b": 6,
       "answer": 9,
@@ -410,7 +431,8 @@ These definitions are the same finite data used by the game and review previews.
     "label": "4 + 1",
     "question": {
       "kind": "add",
-      "prompt": "Wie viele Äpfel sind es zusammen?",
+      "item": "fish-swim",
+      "prompt": "Wie viele Fische sind es zusammen?",
       "a": 4,
       "b": 1,
       "answer": 5,
@@ -426,7 +448,8 @@ These definitions are the same finite data used by the game and review previews.
     "label": "4 + 2",
     "question": {
       "kind": "add",
-      "prompt": "Wie viele Äpfel sind es zusammen?",
+      "item": "fish-swim",
+      "prompt": "Wie viele Fische sind es zusammen?",
       "a": 4,
       "b": 2,
       "answer": 6,
@@ -442,7 +465,8 @@ These definitions are the same finite data used by the game and review previews.
     "label": "4 + 3",
     "question": {
       "kind": "add",
-      "prompt": "Wie viele Äpfel sind es zusammen?",
+      "item": "fish-swim",
+      "prompt": "Wie viele Fische sind es zusammen?",
       "a": 4,
       "b": 3,
       "answer": 7,
@@ -458,7 +482,8 @@ These definitions are the same finite data used by the game and review previews.
     "label": "4 + 4",
     "question": {
       "kind": "add",
-      "prompt": "Wie viele Äpfel sind es zusammen?",
+      "item": "fish-swim",
+      "prompt": "Wie viele Fische sind es zusammen?",
       "a": 4,
       "b": 4,
       "answer": 8,
@@ -474,7 +499,8 @@ These definitions are the same finite data used by the game and review previews.
     "label": "4 + 5",
     "question": {
       "kind": "add",
-      "prompt": "Wie viele Äpfel sind es zusammen?",
+      "item": "fish-swim",
+      "prompt": "Wie viele Fische sind es zusammen?",
       "a": 4,
       "b": 5,
       "answer": 9,
@@ -490,7 +516,8 @@ These definitions are the same finite data used by the game and review previews.
     "label": "5 + 1",
     "question": {
       "kind": "add",
-      "prompt": "Wie viele Äpfel sind es zusammen?",
+      "item": "fish-swim",
+      "prompt": "Wie viele Fische sind es zusammen?",
       "a": 5,
       "b": 1,
       "answer": 6,
@@ -506,7 +533,8 @@ These definitions are the same finite data used by the game and review previews.
     "label": "5 + 2",
     "question": {
       "kind": "add",
-      "prompt": "Wie viele Äpfel sind es zusammen?",
+      "item": "fish-swim",
+      "prompt": "Wie viele Fische sind es zusammen?",
       "a": 5,
       "b": 2,
       "answer": 7,
@@ -522,7 +550,8 @@ These definitions are the same finite data used by the game and review previews.
     "label": "5 + 3",
     "question": {
       "kind": "add",
-      "prompt": "Wie viele Äpfel sind es zusammen?",
+      "item": "fish-swim",
+      "prompt": "Wie viele Fische sind es zusammen?",
       "a": 5,
       "b": 3,
       "answer": 8,
@@ -538,7 +567,8 @@ These definitions are the same finite data used by the game and review previews.
     "label": "5 + 4",
     "question": {
       "kind": "add",
-      "prompt": "Wie viele Äpfel sind es zusammen?",
+      "item": "fish-swim",
+      "prompt": "Wie viele Fische sind es zusammen?",
       "a": 5,
       "b": 4,
       "answer": 9,
@@ -554,7 +584,8 @@ These definitions are the same finite data used by the game and review previews.
     "label": "6 + 1",
     "question": {
       "kind": "add",
-      "prompt": "Wie viele Äpfel sind es zusammen?",
+      "item": "fish-swim",
+      "prompt": "Wie viele Fische sind es zusammen?",
       "a": 6,
       "b": 1,
       "answer": 7,
@@ -570,7 +601,8 @@ These definitions are the same finite data used by the game and review previews.
     "label": "6 + 2",
     "question": {
       "kind": "add",
-      "prompt": "Wie viele Äpfel sind es zusammen?",
+      "item": "fish-swim",
+      "prompt": "Wie viele Fische sind es zusammen?",
       "a": 6,
       "b": 2,
       "answer": 8,
@@ -586,7 +618,8 @@ These definitions are the same finite data used by the game and review previews.
     "label": "6 + 3",
     "question": {
       "kind": "add",
-      "prompt": "Wie viele Äpfel sind es zusammen?",
+      "item": "fish-swim",
+      "prompt": "Wie viele Fische sind es zusammen?",
       "a": 6,
       "b": 3,
       "answer": 9,
@@ -602,7 +635,8 @@ These definitions are the same finite data used by the game and review previews.
     "label": "7 + 1",
     "question": {
       "kind": "add",
-      "prompt": "Wie viele Äpfel sind es zusammen?",
+      "item": "fish-swim",
+      "prompt": "Wie viele Fische sind es zusammen?",
       "a": 7,
       "b": 1,
       "answer": 8,
@@ -618,7 +652,8 @@ These definitions are the same finite data used by the game and review previews.
     "label": "7 + 2",
     "question": {
       "kind": "add",
-      "prompt": "Wie viele Äpfel sind es zusammen?",
+      "item": "fish-swim",
+      "prompt": "Wie viele Fische sind es zusammen?",
       "a": 7,
       "b": 2,
       "answer": 9,
@@ -634,7 +669,8 @@ These definitions are the same finite data used by the game and review previews.
     "label": "8 + 1",
     "question": {
       "kind": "add",
-      "prompt": "Wie viele Äpfel sind es zusammen?",
+      "item": "fish-swim",
+      "prompt": "Wie viele Fische sind es zusammen?",
       "a": 8,
       "b": 1,
       "answer": 9,

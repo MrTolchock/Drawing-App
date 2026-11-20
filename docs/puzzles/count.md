@@ -3,7 +3,7 @@
 [Alle Rätsel](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 
 - Stabile Rätsel-ID: `count`
-- Host: squirrel
+- Host: hedgehog
 - Related competence: **MA.1.A.2.a** — Gezielt Mengen zählen
 - Difficulty: 6–15 Marienkäfer zwischen Bienen und Schnecken
 - Pool: 30 Aufgaben; eine Runde enthält fünf.
