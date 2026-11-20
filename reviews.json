@@ -21090,6 +21090,15 @@
       "at": "2026-11-20T20:14:26.319Z",
       "seen": true,
       "operation": "0bac3b41-7fe3-4f4f-ba56-428931c794e6"
+    },
+    "puzzle:friends-hedgehog@0a31609f1e85c9c7": {
+      "key": "puzzle:friends-hedgehog",
+      "revision": "0a31609f1e85c9c7",
+      "status": "improve",
+      "note": "Mache drei auswahlmöglichkeiten pro aufgabe",
+      "at": "2026-11-20T20:14:57.554Z",
+      "seen": true,
+      "operation": "42239965-674e-46bb-a582-a7f26b4bc384"
     }
   },
   "history": [
