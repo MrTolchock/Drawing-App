@@ -21018,6 +21018,15 @@
       "at": "2026-11-20T20:11:51.019Z",
       "seen": true,
       "operation": "98349fd7-7166-4213-b2c6-64d7e5c6efc3"
+    },
+    "puzzle:read-puzzle@2fb59776e7f28f9e": {
+      "key": "puzzle:read-puzzle",
+      "revision": "2fb59776e7f28f9e",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T20:11:54.172Z",
+      "seen": true,
+      "operation": "c7b9d369-3286-4eed-967e-b5077465db54"
     }
   },
   "history": [
