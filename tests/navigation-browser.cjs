@@ -9,7 +9,7 @@ const BASE=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000';
  try{
   const context=await browser.newContext({viewport:{width:1024,height:768},hasTouch:true,reducedMotion:'reduce',serviceWorkers:'block'});await installRemote(context);const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));page.setDefaultTimeout(60000);
   await page.goto(BASE+'/?software=1&dev=1');await page.waitForFunction(()=>window.FK?.friendsView&&FK.current()==='friends',null,{timeout:120000});
-  const current=()=>page.evaluate(()=>FK.current());
+  const current=()=>page.evaluate(()=>FK.current()),gameCount=await page.evaluate(()=>FK.friendsLibrary.catalogue().length);
   const appearance=button=>button.evaluate(n=>{const s=getComputedStyle(n),icon=n.querySelector('[data-hud="back"]'),i=icon&&getComputedStyle(icon);return {width:s.width,height:s.height,background:s.background,border:s.border,borderRadius:s.borderRadius,boxShadow:s.boxShadow,icon:i&&{width:i.width,height:i.height,image:i.backgroundImage,position:i.backgroundPosition,filter:i.filter}};});
   await page.getByRole('button',{name:'Brief öffnen',exact:true}).click();await page.getByRole('button',{name:'Zum Freund gehen',exact:true}).click();
   await page.getByRole('button',{name:'Bildkarte',exact:true}).click();await page.locator('.ff-map-storybook').waitFor();assert.equal(await page.locator('.ff-map-card .ff-card-top').count(),0);assert.equal(await page.locator('.ff-map [data-place]').evaluateAll(nodes=>nodes.every(n=>!n.textContent.trim()&&!n.hasAttribute('title')&&n.getAttribute('aria-label'))),true,'map has picture-only pins with accessible names');await page.keyboard.press('Escape');await page.waitForFunction(()=>document.querySelector('.ff-overlay').hidden);let reference;
@@ -23,12 +23,12 @@ const BASE=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000';
    // into the review and back, twice, then into a puzzle preview from the review and back
    for(let k=0;k<2;k++){await page.getByRole('button',{name:"Rätsel-Prüfung öffnen",exact:true}).click();await page.waitForFunction(()=>FK.current()==='puzzle-review');await back();assert.equal(await current(),'settings','review back → settings');}
    await page.getByRole('button',{name:"Rätsel-Prüfung öffnen",exact:true}).click();await page.waitForFunction(()=>FK.current()==='puzzle-review');
-   assert.equal(await page.locator('.review-puzzle').count(),22);assert.equal(await page.getByRole('button',{name:"Alle Rätsel",exact:true}).count(),0);
+   assert.equal(await page.locator('.review-puzzle').count(),gameCount);assert.equal(await page.getByRole('button',{name:"Alle Rätsel",exact:true}).count(),0);
    const id=round===0?'friends-squirrel':'syllable',it=await page.evaluate(id=>FK.puzzleCatalogue.iterations(id)[0].id,id);
    await page.locator('[data-puzzle="'+id+'"]').click();assert.equal(await page.locator('.screen:not([hidden]) .review-connection').count(),0);assert.ok((await page.locator('.review-competence').innerText()).includes('Das Kind'));
    assert.ok(await page.evaluate(([id,it])=>FK.puzzleReview.preview(id,it),[id,it]),'preview opens');await page.waitForTimeout(400);assert.notEqual(await current(),'puzzle-review');
    await back();assert.equal(await current(),'puzzle-review','puzzle back → review');
-   await back();assert.equal(await current(),'puzzle-review','selected puzzle back → all puzzles');assert.equal(await page.locator('.review-puzzle').count(),22);
+   await back();assert.equal(await current(),'puzzle-review','selected puzzle back → all puzzles');assert.equal(await page.locator('.review-puzzle').count(),gameCount);
    await back();assert.equal(await current(),'settings','review back → settings');
    await back();assert.equal(await current(),'friends','settings back → the game');
   }

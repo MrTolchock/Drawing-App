@@ -23,6 +23,15 @@ test('restoring picture proportions preserves reviews for every unchanged task',
   for(const it of C.iterations(id))assert.equal(C.acceptsRevision(id,it.id,baseline.iterations[it.id].revision),!reassigned.has(id),it.id);
  }
 });
+test('balanced iPad layout preserves all existing task decisions',()=>{
+ const migration=proof.migrations.find(m=>m.baselineCommit==='301e506b5061af35eeba8825992795827d5802ed');
+ assert.ok(migration,'exact iPad balance correction is recorded');
+ const baseline=baselines.releases.find(r=>r.commit===migration.baselineCommit),C=setup().FK.puzzleCatalogue;
+ for(const [id,p]of Object.entries(baseline.puzzles)){
+  assert.equal(C.acceptsRevision(id,null,p.revision),true,id);
+  for(const it of C.iterations(id))assert.equal(C.acceptsRevision(id,it.id,baseline.iterations[it.id].revision),true,it.id);
+ }
+});
 test('every layout bridge rejects subsequent changes and unrelated keys',()=>{
  for(const migration of [proof,...proof.migrations])for(const kind of ['puzzles','iterations'])for(const [key,p]of Object.entries(migration[kind])){
   const before={definition:p.definition,reviewPresentation:p.before},after={definition:p.definition,reviewPresentation:p.after};

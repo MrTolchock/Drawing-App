@@ -1,6 +1,18 @@
 # Current visual consistency audit
 
-Current game art is **Waldpost 9.4.16**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal and object reference pixels and **87** complete forward image-generation prompts.
+Current game art is **Waldpost 9.4.17**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal and object reference pixels and **87** complete forward image-generation prompts.
+
+## Balanced puzzle page on the 9th-generation iPad — 9.4.17
+
+The task panel now grows into the available tablet height and centres its contents, with answers below it and comfortable bottom padding. Single-picture tasks use a larger, uniformly scaled illustration. Grid and group layouts retain their complete widths and original artwork proportions. Phone layouts retain vertical scrolling when necessary. Child and gallery rounds show only the five progress leaves; adult review keeps its exact position in the complete task pool.
+
+The shared back button has a 48 px cream circle, a thin parchment border, no shadow and a smaller 28 px illustrated arrow. The rule-speaker button matches that frame and icon size. Puzzle text uses bundled Andika with three primary roles: context/captions 14/16 px, instructions/text controls 22/26 px and scored words/numerals/answers 29/34 px on phone/tablet. Dragged cards retain their source typography.
+
+All 849 task definitions and their original picture pixels remain unchanged. An exact presentation migration from `301e506` preserves existing decisions for these 24 puzzles, including decisions for the two recently introduced activities. Earlier restrictions on reassigned or changed tasks still apply. The catalogue is regenerated without creating approvals or writing the review-data branch. Runtime and offline cache versions advance together.
+
+The expanded layout suite checks every task and saved interaction state at eight tablet viewports and one phone viewport. It additionally checks that artwork remains visible, controls stay within the page, simple tasks occupy the middle and lower screen, back/speaker frames match, and scored word/answer sizes agree. [Real-renderer evidence](evidence/2026-11-20-puzzle-balance/README.md) includes the reported Nest task, portrait layout and the dense four-friend distribution task. Browser emulation does not replace a physical Safari check.
+
+Validation passed for 8,874 task/state layouts (7,888 tablet and 986 phone), all 24 puzzles in child/review visual checks, native mouse/touch/keyboard input and saved partial work, shared back navigation, adult review numbering, model and exact-revision compatibility checks, and the canonical-style/map/library/handoff/design/offline checks.
 
 ## Zwei Rätsel bei jedem Brief-Freund — 9.4.16
 

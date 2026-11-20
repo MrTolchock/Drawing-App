@@ -14,15 +14,16 @@ Use bundled Andika for puzzle text in child play, gallery rounds and review prev
 
 | Role | Font and size |
 | --- | --- |
-| Puzzle title | Andika 700, responsive 20–30 px |
-| Task prompt | Andika 700, responsive 21–29 px |
+| Task prompt and celebration heading | Andika 700, 22 px at widths up to 600 px and 26 px above |
 | Scored words, sentences, syllables and numerals | Andika 700, 29 px at widths up to 600 px and 34 px above |
-| Text controls, including both memory actions | Andika 700, 21 px |
-| Picture captions and group success text | Andika 700, 16 px |
-| Host context and iteration counter | Andika 400 at 12/15 px and 700 at 14/16 px, respectively, on narrow/wide screens |
+| Text controls | Same size and weight as the task prompt; memory actions use the shared icons |
+| Picture captions and group success text | Andika 700, 14/16 px on phone/tablet |
+| Host context | Andika 400, 14/16 px on phone/tablet; numeric pool position appears only in adult review |
 | Tracing quantities and labels | Andika 400, 16 px |
 
 Give longer words and captions room to wrap. Keep the same touch area for equivalent controls.
+
+On tablets, the task panel grows into the available page height and centres its content. Answers occupy the lower part of that same page, with a 14–20 px gap from the task and at least 16 px bottom padding. Keep every task/state visible without scrolling on a 9th-generation iPad, including Safari's shorter viewport; phones retain vertical scrolling when needed. The back and rule-speaker controls share a quiet 48 px circular frame and 28 px icon. Child/gallery rounds use only the five leaves for progress.
 
 ## The shared contract
 

@@ -117,5 +117,6 @@ test('unchanged riddles retain approvals while reassigned and new riddles requir
   assert.equal(catalogue.acceptsRevision(id,null,puzzle.revision),!reassigned.has(id),id);
   for(const item of catalogue.iterations(id))assert.equal(catalogue.acceptsRevision(id,item.id,baseline.iterations[item.id].revision),!reassigned.has(id),item.id);
  }
- for(const id of ['colour-words','shape-match'])assert.equal(catalogue.formerPuzzleRevisions(id).length,0,id+' has no inherited approval');
+ const introduction=require('../tools/puzzle-review-baselines.json').releases.find(release=>release.commit==='301e506b5061af35eeba8825992795827d5802ed');
+ for(const id of ['colour-words','shape-match'])assert.deepEqual(Array.from(catalogue.formerPuzzleRevisions(id)),[introduction.puzzles[id].revision],id+' inherits only its own review before the layout correction');
 });

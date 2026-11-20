@@ -9,7 +9,7 @@ const {installRemote}=require('./review-repository-support.cjs');
  await page.goto((process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000')+'/?screen=puzzle-review');await page.locator('.gate-task').waitFor();const [a,b]=(await page.locator('.gate-task').textContent()).match(/\d+/g).map(Number);await page.getByLabel('Deine Antwort',{exact:true}).fill(String(a*b));await page.locator('.gate-submit').click();await page.waitForFunction(()=>FK.current()==='puzzle-review');await page.evaluate(()=>document.fonts.ready);
  await page.evaluate(()=>{FK.friendsLibrary.canPlay=()=>true;FK.puzzleReview.ready=()=>true;});
  let total=0;
- for(const [width,height]of [[1024,650],[1024,700],[1080,810],[1280,820],[768,980],[390,844]]){
+ for(const [width,height]of [[1024,650],[1024,700],[1080,695],[1080,790],[1080,810],[1280,820],[768,980],[810,1060],[390,844]]){
   await page.setViewportSize({width,height});
   const result=await page.evaluate(()=>{
    let count=0;const failures=[],distorted=[];
@@ -19,11 +19,18 @@ const {installRemote}=require('./review-repository-support.cjs');
      FK.puzzleRounds.start=()=>({id:g.id,seed:1,round:0,solved:false,work,questions:Array(5).fill(it.question),iterationIds:Array(5).fill(it.id),gallery:true});FK.go('puzzle',{game:g.id});
      const root=document.querySelector('.screen-puzzle'),paper=root.querySelector('.puzzle-paper'),back=root.querySelector('.puzzle-context>.btn-back'),portrait=root.querySelector('.puzzle-context>.forest-portrait');
      const over=paper.scrollHeight-paper.clientHeight;
-     if((innerWidth>600&&over>1)||root.scrollWidth>root.clientWidth+1||!back||back.nextElementSibling!==portrait||root.querySelector('.topbar'))failures.push({id:it.id,work,over});
+     if((innerWidth>600&&over>1)||root.scrollWidth>root.clientWidth+1||!back||back.nextElementSibling!==portrait||root.querySelector('.topbar')||root.querySelector('.puzzle-round'))failures.push({id:it.id,work,over});
+     if(innerWidth>600){
+      const bounds=paper.getBoundingClientRect();
+      for(const control of paper.querySelectorAll('button,[data-neighbour-slot]')){
+       const r=control.getBoundingClientRect();
+       if(r.width&&r.height&&(r.left<bounds.left-1||r.right>bounds.right+1||r.top<bounds.top-1||r.bottom>bounds.bottom+1))failures.push({id:it.id,work,clippedControl:control.getAttribute('aria-label')});
+      }
+     }
      // Atlas cells and painted portraits are square; a non-square CSS box stretches their original pixels.
      for(const art of root.querySelectorAll('.wa-illustration,.forest-portrait')){
       const style=getComputedStyle(art),w=parseFloat(style.width),h=parseFloat(style.height);
-      if(w>0&&h>0&&Math.abs(w-h)>.1)distorted.push({id:it.id,subject:art.dataset.subject||art.className,w,h});
+      if(w<=0||h<=0||Math.abs(w-h)>.1)distorted.push({id:it.id,subject:art.dataset.subject||art.className,w,h});
      }
      for(const pair of root.querySelectorAll('.puzzle-picture-composite')){
       const bounds=pair.getBoundingClientRect();
@@ -40,6 +47,26 @@ const {installRemote}=require('./review-repository-support.cjs');
   });
   assert.deepEqual(result.failures,[],width+' × '+height+' task overflow/navigation');
   assert.deepEqual(result.distorted,[],width+' × '+height+' original artwork proportions');total+=result.count;
+  // A short task must use the page's height as well as fitting inside it.
+  if(width>600){
+   const balance=await page.evaluate(()=>{
+    const it=FK.puzzleCatalogue.iterations('vowels').find(it=>it.question.word==='Nest');
+    FK.puzzleRounds.start=()=>({id:'vowels',seed:1,round:0,solved:false,work:{},questions:Array(5).fill(it.question),iterationIds:Array(5).fill(it.id),gallery:true});FK.go('puzzle',{game:'vowels'});
+    const paper=document.querySelector('.screen-puzzle .puzzle-paper'),bounds=paper.getBoundingClientRect(),scene=paper.querySelector('.puzzle-scene').getBoundingClientRect(),answers=paper.querySelector('.puzzle-answers').getBoundingClientRect();
+    const style=selector=>{const s=getComputedStyle(paper.querySelector(selector));return {width:s.width,height:s.height,border:s.border,borderRadius:s.borderRadius,backgroundColor:s.backgroundColor,boxShadow:s.boxShadow};};
+    const text=[...paper.querySelectorAll('.puzzle-context>span:not(.forest-portrait),.puzzle-prompt,.puzzle-read-text,.puzzle-answer')].map(el=>{const s=getComputedStyle(el);return {font:s.fontFamily,size:s.fontSize};});
+    return {height:bounds.height,scene:scene.height,answerBottom:answers.bottom-bounds.top,answerGap:answers.top-scene.bottom,back:style('.btn-back'),speaker:style('.puzzle-listen'),text,wordSize:getComputedStyle(paper.querySelector('.puzzle-read-text')).fontSize,answerSize:getComputedStyle(paper.querySelector('.puzzle-answer')).fontSize};
+   });
+   assert.ok(balance.scene>=balance.height*.4,'task uses the middle of the page '+width+' × '+height);
+   assert.ok(balance.answerBottom>=balance.height*.85&&balance.answerBottom<=balance.height-12,'answers use the lower page with breathing room');
+   assert.ok(balance.answerGap>=12&&balance.answerGap<=24,'task and answers stay together');
+   assert.deepEqual(balance.back,balance.speaker,'quiet matching back and speaker controls');
+   assert.ok(parseFloat(balance.back.width)>=48,'complete touch targets');
+   assert.ok(balance.text.every(t=>t.font.includes('Andika')),'one puzzle font');
+   assert.equal(new Set(balance.text.map(t=>t.size)).size,3,'three consistent text roles');
+   assert.equal(balance.wordSize,balance.answerSize,'word and offered letters use the same size');
+   if(process.env.FARBTUPF_SHOTS){fs.mkdirSync(process.env.FARBTUPF_SHOTS,{recursive:true});await page.screenshot({path:process.env.FARBTUPF_SHOTS+'/vowels-'+width+'x'+height+'.png'});}
+  }
  }
  // The shortened header also fits a narrow phone, with ordinary vertical scroll available.
  await page.setViewportSize({width:390,height:844});await page.evaluate(()=>FK.puzzleReview.preview('friends-bird','friends-bird/rhyme-2'));

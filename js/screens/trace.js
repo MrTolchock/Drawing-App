@@ -273,7 +273,7 @@
       },{total:woodlandSession.questions.length,review:!!woodlandSession.review});return;
     }
     woodlandEnd.hidden=true;woodlandContext.hidden=false;
-    woodlandContext.replaceChildren(FK.puzzleUI.context('mouse',woodlandSession.round,FK.puzzleRounds.instructions[woodlandGame],{explain:!woodlandSession.review,total:woodlandSession.questions.length}),FK.puzzleUI.progress(woodlandSession.round,woodlandSession.questions.length));
+    woodlandContext.replaceChildren(FK.puzzleUI.context('mouse',woodlandSession.round,FK.puzzleRounds.instructions[woodlandGame],{explain:!woodlandSession.review,total:woodlandSession.questions.length,showTaskNumber:!!woodlandSession.review}),FK.puzzleUI.progress(woodlandSession.round,woodlandSession.questions.length));
     const question=FK.puzzleRounds.current(woodlandSession),glyph=question.glyph;
     if(!woodlandSession.review)FK.playLog?.show(question);
     if(question.quantity){
