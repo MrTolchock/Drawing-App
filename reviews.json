@@ -20343,6 +20343,15 @@
       "at": "2026-11-20T19:59:22.099Z",
       "seen": true,
       "operation": "ed079278-1c79-4114-94de-56f26f370de3"
+    },
+    "picnic/3-6@0cf0abf395aff1b3": {
+      "key": "picnic/3-6",
+      "revision": "0cf0abf395aff1b3",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T19:59:35.943Z",
+      "seen": true,
+      "operation": "745102f9-82f2-4322-9c43-59a9d7c6e6c4"
     }
   },
   "history": [
