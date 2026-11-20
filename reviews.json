@@ -21614,6 +21614,11 @@
       "at": "2026-11-18T20:38:25.681Z"
     },
     {
+      "key": "puzzle:friends-mouse",
+      "note": "Nummierung von iterationen falsch, es steht 1/50 bei erster iteration, obwohl es 74 iterationen sind",
+      "at": "2026-11-20T20:15:18.563Z"
+    },
+    {
       "key": "puzzle:friends-squirrel",
       "note": "Im ganzen rätsel, entferne die markierung beim nüsse zählen. Dies ist das einzige spiel wo das geht, darum aus harmonisierung feature entfernen",
       "at": "2026-11-18T19:45:22.993Z"
