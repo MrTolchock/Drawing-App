@@ -21671,10 +21671,10 @@
       "key": "puzzle:sequence",
       "revision": "bbc90d4a131c3a96",
       "status": "improve",
-      "note": "Wenn kachel falsch mache wackel animation und werfe kachel zurück",
-      "at": "2026-11-20T20:23:24.654Z",
+      "note": "Mache puzzle viel intuitiver, reihenfolgen geben häufig keinen sinn",
+      "at": "2026-11-20T20:25:02.908Z",
       "seen": true,
-      "operation": "6ef50fb1-a2fa-4616-ba7e-2a89d3ede8d6"
+      "operation": "9ec67157-a8ad-44cf-a86f-13aad9dd3b08"
     },
     "sequence/story-5@20ca3e592eb4103f": {
       "key": "sequence/story-5",
@@ -21983,6 +21983,15 @@
       "at": "2026-11-20T20:16:20.007Z",
       "seen": true,
       "operation": "7e463ee8-2949-430f-866a-f61ed1e30d96"
+    },
+    {
+      "key": "puzzle:sequence",
+      "revision": "bbc90d4a131c3a96",
+      "status": "improve",
+      "note": "Wenn kachel falsch mache wackel animation und werfe kachel zurück",
+      "at": "2026-11-20T20:23:24.654Z",
+      "seen": true,
+      "operation": "6ef50fb1-a2fa-4616-ba7e-2a89d3ede8d6"
     }
   ],
   "deletedNotes": [
