@@ -20568,6 +20568,33 @@
       "at": "2026-11-20T20:03:23.293Z",
       "seen": true,
       "operation": "01bbcb6b-1bcc-4c96-8ff4-2fb0a7e29f4f"
+    },
+    "friends-ibex/pattern-ABC-3@8323334e6c6a11d8": {
+      "key": "friends-ibex/pattern-ABC-3",
+      "revision": "8323334e6c6a11d8",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T20:03:26.334Z",
+      "seen": true,
+      "operation": "97130445-ac44-4811-87f2-1e7a6d8572e1"
+    },
+    "friends-ibex/pattern-ABC-4@aefcedbc2fcf1782": {
+      "key": "friends-ibex/pattern-ABC-4",
+      "revision": "aefcedbc2fcf1782",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T20:03:29.186Z",
+      "seen": true,
+      "operation": "ba10390f-4c4a-4985-9ab7-496c49570dc7"
+    },
+    "friends-ibex/pattern-ABC-5@5f59bc34e2df5fde": {
+      "key": "friends-ibex/pattern-ABC-5",
+      "revision": "5f59bc34e2df5fde",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T20:03:31.558Z",
+      "seen": true,
+      "operation": "02723474-6e7d-4d67-bb8f-fc432e897c27"
     }
   },
   "history": [
