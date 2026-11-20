@@ -21306,6 +21306,42 @@
       "at": "2026-11-20T20:17:13.067Z",
       "seen": true,
       "operation": "01a549bb-5e42-4881-ba96-f7982bc2a7d4"
+    },
+    "friends-mouse/friends-frog-animal-22@575c65f292951594": {
+      "key": "friends-mouse/friends-frog-animal-22",
+      "revision": "575c65f292951594",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T20:17:14.984Z",
+      "seen": true,
+      "operation": "7c2781ff-1813-462f-834b-f87d881420df"
+    },
+    "friends-mouse/friends-frog-animal-23@d4fa17b9348e0655": {
+      "key": "friends-mouse/friends-frog-animal-23",
+      "revision": "d4fa17b9348e0655",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T20:17:16.844Z",
+      "seen": true,
+      "operation": "5c17e665-b86b-4066-a840-ddfccc960dc1"
+    },
+    "friends-mouse/friends-frog-animal-24@8d36ab09d1db4f07": {
+      "key": "friends-mouse/friends-frog-animal-24",
+      "revision": "8d36ab09d1db4f07",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T20:17:18.587Z",
+      "seen": true,
+      "operation": "2ed644f1-10a3-41b6-8364-3437d30a43ec"
+    },
+    "friends-mouse/read-word-word-1@f264cfc848bc355c": {
+      "key": "friends-mouse/read-word-word-1",
+      "revision": "f264cfc848bc355c",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T20:17:20.435Z",
+      "seen": true,
+      "operation": "d8347475-288f-4907-a8ee-9c179f3f6736"
     }
   },
   "history": [
