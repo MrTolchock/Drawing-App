@@ -18804,6 +18804,15 @@
       "at": "2026-11-20T19:33:06.198Z",
       "seen": true,
       "operation": "80ad258e-313b-4400-97a4-80a6974fbaaa"
+    },
+    "treasure/0-0@825071a6fe00fa18": {
+      "key": "treasure/0-0",
+      "revision": "825071a6fe00fa18",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T19:33:44.049Z",
+      "seen": true,
+      "operation": "89b8ac3e-6195-4330-96ca-3d991db77c18"
     }
   },
   "history": [
