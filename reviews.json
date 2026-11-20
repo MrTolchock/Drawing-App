@@ -19789,11 +19789,11 @@
     "puzzle:rocket@8bad2b0d24fa88b5": {
       "key": "puzzle:rocket",
       "revision": "8bad2b0d24fa88b5",
-      "status": "approved",
-      "note": "",
-      "at": "2026-11-20T19:47:18.537Z",
+      "status": "improve",
+      "note": "Ersetze glühwürmchen durch fliegen weil frösche fressen fliegen",
+      "at": "2026-11-20T19:48:21.811Z",
       "seen": true,
-      "operation": "33eb4880-87a0-471a-88fb-6f75f909e952"
+      "operation": "48885a85-1a5b-4178-953d-20def6b5895f"
     }
   },
   "history": [
@@ -20057,6 +20057,15 @@
       "at": "2026-11-18T20:29:20.025Z",
       "seen": true,
       "operation": "c475b6e0-8d10-4689-880d-4316902ecc20"
+    },
+    {
+      "key": "puzzle:rocket",
+      "revision": "8bad2b0d24fa88b5",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T19:47:18.537Z",
+      "seen": true,
+      "operation": "33eb4880-87a0-471a-88fb-6f75f909e952"
     }
   ],
   "deletedNotes": [
