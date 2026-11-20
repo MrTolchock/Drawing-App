@@ -21036,6 +21036,60 @@
       "at": "2026-11-20T20:14:12.701Z",
       "seen": true,
       "operation": "c38106b7-e87a-4ba4-949b-4de92c53fa7b"
+    },
+    "friends-hedgehog/nature-question-1@63193536c837d3ba": {
+      "key": "friends-hedgehog/nature-question-1",
+      "revision": "63193536c837d3ba",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T20:14:16.314Z",
+      "seen": true,
+      "operation": "fd88d2e6-871b-46a8-b390-c7797434f306"
+    },
+    "friends-hedgehog/nature-question-2@112e57965aa18944": {
+      "key": "friends-hedgehog/nature-question-2",
+      "revision": "112e57965aa18944",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T20:14:18.304Z",
+      "seen": true,
+      "operation": "65874637-b124-4a2b-8f93-2ad13241845b"
+    },
+    "friends-hedgehog/nature-question-3@a6972f164d5fe9d2": {
+      "key": "friends-hedgehog/nature-question-3",
+      "revision": "a6972f164d5fe9d2",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T20:14:20.233Z",
+      "seen": true,
+      "operation": "f9ada1be-76cc-434d-b566-a884857f37b3"
+    },
+    "friends-hedgehog/nature-question-4@ec91111783d4e3c1": {
+      "key": "friends-hedgehog/nature-question-4",
+      "revision": "ec91111783d4e3c1",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T20:14:22.304Z",
+      "seen": true,
+      "operation": "fbd652ff-7f20-47d8-ae93-8fee1aadc7a7"
+    },
+    "friends-hedgehog/nature-question-5@a4c19248e2afaa7a": {
+      "key": "friends-hedgehog/nature-question-5",
+      "revision": "a4c19248e2afaa7a",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T20:14:24.352Z",
+      "seen": true,
+      "operation": "a94fa42e-d83d-4e1b-8a36-1615724dab1c"
+    },
+    "friends-hedgehog/nature-question-6@cd0bb15974d71249": {
+      "key": "friends-hedgehog/nature-question-6",
+      "revision": "cd0bb15974d71249",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T20:14:26.319Z",
+      "seen": true,
+      "operation": "0bac3b41-7fe3-4f4f-ba56-428931c794e6"
     }
   },
   "history": [
