@@ -20037,6 +20037,69 @@
       "at": "2026-11-20T19:55:16.838Z",
       "seen": true,
       "operation": "22234b71-9b47-4f89-b4e3-d0f8d1c65a42"
+    },
+    "compare/4-6@0192000e4a462a44": {
+      "key": "compare/4-6",
+      "revision": "0192000e4a462a44",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T19:55:19.687Z",
+      "seen": true,
+      "operation": "2d5bad46-39cf-487d-abb3-55cafd326b39"
+    },
+    "compare/5-5@e60c831e1cf1e048": {
+      "key": "compare/5-5",
+      "revision": "e60c831e1cf1e048",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T19:55:22.521Z",
+      "seen": true,
+      "operation": "49e71366-ab82-4db7-a77f-edb557486879"
+    },
+    "compare/5-4@53b0c3bd55f2875f": {
+      "key": "compare/5-4",
+      "revision": "53b0c3bd55f2875f",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T19:55:24.586Z",
+      "seen": true,
+      "operation": "55ce94e3-1941-452f-825b-b445bab8705d"
+    },
+    "compare/5-7@3ed751707f97aa64": {
+      "key": "compare/5-7",
+      "revision": "3ed751707f97aa64",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T19:55:26.269Z",
+      "seen": true,
+      "operation": "f59b757d-3d3b-4106-81b6-8fe62c4f9476"
+    },
+    "compare/6-6@c6b9b6dca0a70628": {
+      "key": "compare/6-6",
+      "revision": "c6b9b6dca0a70628",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T19:55:28.319Z",
+      "seen": true,
+      "operation": "a49a1b74-d5a1-4c29-b207-d4aa369fa1d1"
+    },
+    "compare/6-5@61f5ca7977d2635f": {
+      "key": "compare/6-5",
+      "revision": "61f5ca7977d2635f",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T19:55:30.087Z",
+      "seen": true,
+      "operation": "5552c310-766a-4944-9417-fcffedc52371"
+    },
+    "compare/6-8@f17a58e26bfc2884": {
+      "key": "compare/6-8",
+      "revision": "f17a58e26bfc2884",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T19:55:31.649Z",
+      "seen": true,
+      "operation": "f91d1d32-b914-4552-a421-976623d20659"
     }
   },
   "history": [
