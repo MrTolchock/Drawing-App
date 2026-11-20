@@ -20703,6 +20703,15 @@
       "at": "2026-11-20T20:06:28.921Z",
       "seen": true,
       "operation": "3e339fc9-6e56-4c3a-be2b-fdb24a28031e"
+    },
+    "friends-ibex/pattern-AABC-6@ff3a57e9b10c837f": {
+      "key": "friends-ibex/pattern-AABC-6",
+      "revision": "ff3a57e9b10c837f",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T20:06:33.506Z",
+      "seen": true,
+      "operation": "69b52667-1cd2-4852-9480-40b9ddab1562"
     }
   },
   "history": [
