@@ -18489,6 +18489,33 @@
       "at": "2026-11-19T20:38:50.281Z",
       "seen": true,
       "operation": "4d9b7678-a814-4f48-920c-b17548ab2179"
+    },
+    "friends-beaver/matrix-0@c71003293b125637": {
+      "key": "friends-beaver/matrix-0",
+      "revision": "c71003293b125637",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T10:15:39.772Z",
+      "seen": true,
+      "operation": "a5c69617-9aa3-4f7b-8662-80124ec4ab71"
+    },
+    "friends-beaver/matrix-three-0-6@70fe45704566c22e": {
+      "key": "friends-beaver/matrix-three-0-6",
+      "revision": "70fe45704566c22e",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T10:15:44.218Z",
+      "seen": true,
+      "operation": "c6b4f021-77fa-4f40-817a-bef3830cc9e6"
+    },
+    "friends-beaver/matrix-three-0-7@d0a666539d419929": {
+      "key": "friends-beaver/matrix-three-0-7",
+      "revision": "d0a666539d419929",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T10:15:47.782Z",
+      "seen": true,
+      "operation": "fee17d86-7d92-433c-9b17-cf3108eacdb2"
     }
   },
   "history": [
@@ -18964,6 +18991,11 @@
       "key": "puzzle:count",
       "note": "Auch hier markierungen für käfer entfernen, wenn man draufklickt",
       "at": "2026-11-19T20:21:45.552Z"
+    },
+    {
+      "key": "puzzle:friends-beaver",
+      "note": "Passt nicht zu rest mit den formen, nehme waldgegenstände wie in anderen spielem",
+      "at": "2026-11-20T07:51:47.991Z"
     },
     {
       "key": "puzzle:friends-beaver",
