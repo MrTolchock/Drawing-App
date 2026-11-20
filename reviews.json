@@ -20758,6 +20758,11 @@
       "at": "2026-11-19T20:26:06.049Z"
     },
     {
+      "key": "puzzle:picnic",
+      "note": "Wenn es vier freunde sind welchen die beeren verteilt werden müssen, nehme nicht eichhörnchen, weil eichhörnchen der puzzle host ist",
+      "at": "2026-11-20T19:56:51.059Z"
+    },
+    {
       "key": "puzzle:robot",
       "note": "Erlaube nur bewegung über pfeiltasten, nicht in feld klicken",
       "at": "2026-11-19T20:34:38.387Z"
