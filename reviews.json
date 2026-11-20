@@ -20766,6 +20766,15 @@
       "at": "2026-11-20T20:10:12.477Z",
       "seen": true,
       "operation": "ec733eb5-7c05-4e1c-be72-4fc89ffb10f1"
+    },
+    "read-puzzle/word-0@2d4020d5b8e26797": {
+      "key": "read-puzzle/word-0",
+      "revision": "2d4020d5b8e26797",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T20:10:31.189Z",
+      "seen": true,
+      "operation": "96835472-db4e-466f-835d-efe2775055e1"
     }
   },
   "history": [
