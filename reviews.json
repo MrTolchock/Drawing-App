@@ -20289,6 +20289,15 @@
       "at": "2026-11-20T19:58:29.122Z",
       "seen": true,
       "operation": "b66354eb-4f07-42d3-a141-8d583e56dbf1"
+    },
+    "picnic/2-10@ac088bd1622242af": {
+      "key": "picnic/2-10",
+      "revision": "ac088bd1622242af",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T19:58:44.732Z",
+      "seen": true,
+      "operation": "31a5b064-7e77-45ea-827f-9672561f3f48"
     }
   },
   "history": [
