@@ -21099,6 +21099,15 @@
       "at": "2026-11-20T20:14:57.554Z",
       "seen": true,
       "operation": "42239965-674e-46bb-a582-a7f26b4bc384"
+    },
+    "puzzle:friends-mouse@2723fbcc0e2db214": {
+      "key": "puzzle:friends-mouse",
+      "revision": "2723fbcc0e2db214",
+      "status": "improve",
+      "note": "Rätsel wirkt optisch unbalanciert, box für text ist zu gross",
+      "at": "2026-11-20T20:16:20.007Z",
+      "seen": true,
+      "operation": "7e463ee8-2949-430f-866a-f61ed1e30d96"
     }
   },
   "history": [
