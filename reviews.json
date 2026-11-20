@@ -20199,6 +20199,15 @@
       "at": "2026-11-20T19:55:55.067Z",
       "seen": true,
       "operation": "83f7e571-fbf3-4d57-925d-3ff2c93394f0"
+    },
+    "puzzle:compare@3b286cf5c9c601a9": {
+      "key": "puzzle:compare",
+      "revision": "3b286cf5c9c601a9",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T19:55:58.224Z",
+      "seen": true,
+      "operation": "b4ccf05a-49fd-48ce-a907-ad77615c2ca8"
     }
   },
   "history": [
