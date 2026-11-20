@@ -19677,6 +19677,42 @@
       "at": "2026-11-20T19:46:23.154Z",
       "seen": true,
       "operation": "96bdda56-35d2-4c7f-85ec-d118a00f5b80"
+    },
+    "rocket/9-6@f10e1c82318aa8ac": {
+      "key": "rocket/9-6",
+      "revision": "f10e1c82318aa8ac",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T19:46:25.157Z",
+      "seen": true,
+      "operation": "7f3b4eed-5ba9-47ad-834a-3be8cdedc847"
+    },
+    "rocket/9-7@6df98ce6adac5f68": {
+      "key": "rocket/9-7",
+      "revision": "6df98ce6adac5f68",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T19:46:27.172Z",
+      "seen": true,
+      "operation": "b502a5ad-5405-48f1-99ea-b59ff3c729a3"
+    },
+    "rocket/9-8@ad5b279e15f62728": {
+      "key": "rocket/9-8",
+      "revision": "ad5b279e15f62728",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T19:46:29.253Z",
+      "seen": true,
+      "operation": "95340c67-fe17-47a9-bd2a-9098cac65460"
+    },
+    "rocket/10-1@1ef44697c343bb13": {
+      "key": "rocket/10-1",
+      "revision": "1ef44697c343bb13",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T19:46:34.801Z",
+      "seen": true,
+      "operation": "3f0a9f38-d3ce-474b-8d6b-7855cc5f76b3"
     }
   },
   "history": [
