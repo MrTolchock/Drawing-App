@@ -4,7 +4,7 @@
   const FK = (window.FK = window.FK || {});
 
   FK.APP_NAME = 'Waldpost';
-  FK.VERSION = '9.4.11';
+  FK.VERSION = '9.4.12';
   FK.TAU = Math.PI * 2;
   FK.$ = (sel, root) => (root || document).querySelector(sel);
   FK.$$ = (sel, root) => Array.prototype.slice.call((root || document).querySelectorAll(sel));

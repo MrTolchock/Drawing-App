@@ -8,7 +8,7 @@
   let body,friend='all';
   function draw(){
     FK.forestVoice.cancel();
-    const games=FK.friendsLibrary.catalogue(),open=games.filter(g=>V.ready(g.id)),hosts=Object.keys(window.FriendsContent.hosts);
+    const games=FK.friendsLibrary.catalogue().sort((a,b)=>a.title.localeCompare(b.title,'de-CH')),open=games.filter(g=>V.ready(g.id)),hosts=Object.keys(window.FriendsContent.hosts);
     const tabs=h('nav',{class:'gallery-friends','aria-label':'Nach Freund filtern'});
     const tab=(id,label,pic,count)=>{const b=h('button',{type:'button',class:'gallery-friend','aria-pressed':String(friend===id),'aria-label':label+' ('+count+')',onclick:()=>{friend=id;draw();}},pic,h('small',{text:label}),h('span',{class:'gallery-count',text:String(count)}));if(!count&&id!=='all')b.disabled=true;return b;};
     tabs.append(tab('all','Alle',FK.visual?.art?.('book')||'',open.length));

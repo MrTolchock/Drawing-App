@@ -1,6 +1,10 @@
 # Current visual consistency audit
 
-Current game art is **Waldpost 9.4.11**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal and object reference pixels and **87** complete forward image-generation prompts.
+Current game art is **Waldpost 9.4.12**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal and object reference pixels and **87** complete forward image-generation prompts.
+
+## Rätsel alphabetisch von A bis Z — 9.4.12
+
+Galerie und Rätsel-Prüfung sortieren ihre Rätselkarten aufsteigend nach dem sichtbaren Namen mit Schweizer deutscher Sortierung (`de-CH`). Die Reihenfolge bleibt auch nach dem Filtern nach Freund alphabetisch. Die Sortierung betrifft nur die beiden Erwachsenenansichten; Aufgaben, Freigaben, interne Kennungen und die Auswahl der Rätsel in der Briefreise bleiben unverändert.
 
 ## Schliessen-Symbol, Briefstatus und kurze Rätselnamen — 9.4.11
 

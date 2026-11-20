@@ -52,7 +52,7 @@
   const releasedPuzzles=()=>FK.friendsLibrary.catalogue().filter(g=>V.ready(g.id)).map(g=>g.id);
   function draw(){
     FK.forestVoice.cancel();
-    const games=FK.friendsLibrary.catalogue();
+    const games=FK.friendsLibrary.catalogue().sort((a,b)=>a.title.localeCompare(b.title,'de-CH'));
     const total=games.reduce((a,g)=>a+C.iterations(g.id).length,0),ready=new Set(releasedPuzzles());
     displayedRelease=[...ready].join();
     backButton.setAttribute('aria-label',selected?"Zur Rätsel-Übersicht":'Zurück zu Einstellungen');
