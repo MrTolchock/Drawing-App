@@ -22103,6 +22103,11 @@
       "at": "2026-11-19T20:37:37.811Z"
     },
     {
+      "key": "puzzle:neighbours",
+      "note": "Wenn zahl draufgezogen wird, zeige nicht mehr gestrichelten rand an um zahl herum",
+      "at": "2026-11-20T20:20:15.075Z"
+    },
+    {
       "key": "puzzle:picnic",
       "note": "Ist cooles rätsel. Passe aber green check mark an bei erfolg, passt dort wo es ist irgendwie nicht richtig hin, weil es auf das rechte bild referenziert",
       "at": "2026-11-18T20:12:49.624Z"
