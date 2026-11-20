@@ -20937,6 +20937,24 @@
       "at": "2026-11-20T20:11:26.670Z",
       "seen": true,
       "operation": "8b860b83-a372-4108-977d-5cdb89c313d3"
+    },
+    "read-puzzle/word-26@e2520be53819a419": {
+      "key": "read-puzzle/word-26",
+      "revision": "e2520be53819a419",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T20:11:29.421Z",
+      "seen": true,
+      "operation": "fc5b9646-5f4f-463a-bb39-f436ff1ec91b"
+    },
+    "read-puzzle/word-27@68d695d62c2e703a": {
+      "key": "read-puzzle/word-27",
+      "revision": "68d695d62c2e703a",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T20:11:31.686Z",
+      "seen": true,
+      "operation": "7cf744d3-2c9b-4084-8d40-b2af65873adf"
     }
   },
   "history": [
