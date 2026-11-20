@@ -21612,6 +21612,15 @@
       "at": "2026-11-20T20:20:47.371Z",
       "seen": true,
       "operation": "eeb3eeae-054b-4d66-bb6b-c8322e51cb56"
+    },
+    "puzzle:neighbours@3193f66d360a8787": {
+      "key": "puzzle:neighbours",
+      "revision": "3193f66d360a8787",
+      "status": "improve",
+      "note": "Wenn zahl falsch ist, mache diese wackel ist falsch animation und werfe karte zurück",
+      "at": "2026-11-20T20:21:29.234Z",
+      "seen": true,
+      "operation": "90ec5d2a-218e-463c-8ad9-efad248f6e93"
     }
   },
   "history": [
