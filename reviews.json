@@ -21648,6 +21648,15 @@
       "at": "2026-11-20T20:22:10.750Z",
       "seen": true,
       "operation": "851ba280-052e-47bc-aed8-3a9a7dba86fb"
+    },
+    "sequence/story-3@7cd30cb385f0c71b": {
+      "key": "sequence/story-3",
+      "revision": "7cd30cb385f0c71b",
+      "status": "improve",
+      "note": "Intuitiver machen",
+      "at": "2026-11-20T20:22:25.721Z",
+      "seen": true,
+      "operation": "5335e5cf-7655-4259-b02d-aae4b3665156"
     }
   },
   "history": [
