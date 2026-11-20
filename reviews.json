@@ -20163,6 +20163,42 @@
       "at": "2026-11-20T19:55:46.551Z",
       "seen": true,
       "operation": "b92db4e0-ee93-4519-8469-dbc380908e50"
+    },
+    "compare/9-8@f0494125dac52b5f": {
+      "key": "compare/9-8",
+      "revision": "f0494125dac52b5f",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T19:55:48.653Z",
+      "seen": true,
+      "operation": "59ed060c-6170-4101-bceb-d8aee080b57f"
+    },
+    "compare/9-10@cad70cc0f1bfc264": {
+      "key": "compare/9-10",
+      "revision": "cad70cc0f1bfc264",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T19:55:50.519Z",
+      "seen": true,
+      "operation": "677a4b01-6115-48ab-ad91-22b94a3d0d25"
+    },
+    "compare/10-10@8b253cd87becea28": {
+      "key": "compare/10-10",
+      "revision": "8b253cd87becea28",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T19:55:52.834Z",
+      "seen": true,
+      "operation": "aef5acae-623a-4824-a042-84888b7c7861"
+    },
+    "compare/10-9@0e045bb12abdc85f": {
+      "key": "compare/10-9",
+      "revision": "0e045bb12abdc85f",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T19:55:55.067Z",
+      "seen": true,
+      "operation": "83f7e571-fbf3-4d57-925d-3ff2c93394f0"
     }
   },
   "history": [
