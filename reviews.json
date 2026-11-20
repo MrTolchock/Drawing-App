@@ -20253,6 +20253,15 @@
       "at": "2026-11-20T19:57:41.518Z",
       "seen": true,
       "operation": "1260f1c2-1a1c-4911-8428-f9415aab214e"
+    },
+    "picnic/2-6@751ec657330ce459": {
+      "key": "picnic/2-6",
+      "revision": "751ec657330ce459",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T19:57:54.689Z",
+      "seen": true,
+      "operation": "2d0de3a5-31e5-43cb-a9be-48c81106c725"
     }
   },
   "history": [
