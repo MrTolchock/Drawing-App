@@ -1,5 +1,5 @@
 /* Farbtupf – Service Worker: keeps the whole app on the device so it runs without internet. */
-const CACHE = 'farbtupf-v9.4.13-waldpost';
+const CACHE = 'farbtupf-v9.4.14-waldpost';
 const SCOPE=self.registration.scope;
 const INDEX=new URL('index.html',SCOPE).href;
 const ACTIVE_MARKER=new URL('.farbtupf-active-cache',SCOPE).href;
@@ -49,6 +49,7 @@ const ASSETS = [
   './assets/audio/coalTit.mp3',
   './assets/audio/greatTit.mp3',
   './assets/audio/leaves.mp3',
+  './assets/audio/rain.mp3',
   './assets/audio/robin.mp3',
   './assets/audio/thrush.mp3',
   './assets/audio/wren.mp3',

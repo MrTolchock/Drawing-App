@@ -258,13 +258,13 @@ export function createAudio(settings, environment = () => null) {
     brook.synthetic.connect(brook.out);
     if (brook.pan) chain(brook.out, brook.pan, room); else brook.out.connect(room);
     const falls = {out: level(), pan: ctx.createStereoPanner?.()}; chain(loop(white, .71), filter('lowpass', 2600, .3), falls.out); chain(loop(brown, 1.31), filter('lowpass', 520, .3), level(1.6), falls.out); if (falls.pan) chain(falls.out, falls.pan, room); else falls.out.connect(room);
-    // rain: a very soft, warm hush underneath (no bright noise), the patter itself is single drops (rainDrops)
-    const rain = {out: level(), pans: [-.7, 0, .7].map(v => { const p = ctx.createStereoPanner?.(), g = level(1); if (p) { p.pan.value = v; chain(g, p, room); } else g.connect(room); return g; })};
-    chain(loop(white, .63), filter('lowpass', 1100, .3), filter('highpass', 280, .3), rain.out, room);
+    // A soft wash covers the time before the rain-on-leaves recording has decoded.
+    const rain = {synthetic: level(1), out: level()};
+    chain(loop(white, .83), filter('highpass', 320), filter('lowpass', 3500), rain.synthetic, rain.out, room);
     // Gradually bring in the recorded texture while keeping a little of the
     // procedural motion. The place and weather still control both together.
     const owner = ctx;
-    for (const [name, bed, volume] of [['leaves', leaves, 1.05], ['brook', brook, .8]]) {
+    for (const [name, bed, volume] of [['leaves', leaves, 1.05], ['brook', brook, .8], ['rain', rain, 1.1]]) {
       readRecording(ctx, name).then(buffer => {
         if (ctx !== owner || owner.state === 'closed') return;
         if (name === 'leaves') foliage = buffer;
@@ -276,7 +276,7 @@ export function createAudio(settings, environment = () => null) {
     }
     return {leaves, brook, falls, rain, wind, grass, reeds};
   }
-  function setBeds(b) { const t = ctx.currentTime, to = (param, value, tc = .5) => param.setTargetAtTime(value, t, tc); to(beds.rain.out.gain, .125 * rainNow ** 1.35 * (.78 + .4 * b.gust), 1.5);
+  function setBeds(b, rainfall) { const t = ctx.currentTime, to = (param, value, tc = .5) => param.setTargetAtTime(value, t, tc); to(beds.rain.out.gain, .32 * rainfall ** 1.1 * (.78 + .4 * b.gust), 1.5);
     to(beds.wind.gain, .85 * b.wind, .8);
     to(beds.grass.gain, .045 * b.grass, .45);
     to(beds.reeds.gain, .36 * b.reeds, .6);
@@ -302,16 +302,6 @@ export function createAudio(settings, environment = () => null) {
   // A single sound right now (the letter flap, the door, what Fuchs does): clear in the den, placed outside in the forest.
   function cue(c) { if (!ctx || ctx.state !== 'running' || document.hidden || !settings().ambience || !details[c.type]) return false;
     details[c.type](ctx, place(c.pan || 0, c.far ?? 0, c.lasts || 3.5, inside() ? near : room), noise, ctx.currentTime + .02, c.level ?? 1); cues++; return true; }
-  /* The patter: single drops on leaves (short, bright, each a little different), now and then a heavier drip
-     from a branch. Up to about thirty a second in a full shower, scattered left, centre and right. */
-  let rainNow = 0;
-  function rainDrops(rain, span, here) {
-    if (rain < .02) return; const t0 = ctx.currentTime + .02;
-    for (let n = Math.floor(rain * 30 * span + Math.random()); n > 0; n--) { const t = t0 + Math.random() * span, bus = beds.rain.pans[Math.floor(Math.random() * 3)], v = (.25 + .75 * Math.random()) * rain;
-      const water = here.swamp || 0, open = here.meadow || 0;
-      if (Math.random() < .06 + .36 * water) { const f = r(490, 1050); tone(ctx, bus, {t, dur: .06, f, f1: f * r(1.5, 2.2), gain: .03 * v, attack: .004}); }
-      else hiss(ctx, bus, noise, {t, dur: r(.014, .044), gain: .08 * v, f: r(1650, 4700) * (1 - .35 * open), f1: r(700, 1500), q: r(.65, 1.65), attack: .001}); }
-  }
   // Speech ducks the wood. Some browsers (iOS) never report the end of an utterance, or keep one pending for ever;
   // then the wood comes back by itself once the voice is quiet, and after a minute at most.
   function checkSpeech(now) { if (!speaking || window.FK.forestVoice?.playingClip) return; const synth = window.speechSynthesis, quiet = !synth || !(synth.speaking || synth.pending);
@@ -324,8 +314,9 @@ export function createAudio(settings, environment = () => null) {
     if (ctx.state !== 'running') { clockMoved = now; if (ctx.state !== 'closed') ctx.resume().catch(() => {}); return; }
     watchClock(now); const s = settings();
     const here = environment() || {}, {beds: b, events} = director.step(ctx.currentTime, {...here, indoors: inside()});
-    rainNow = (here.rain || 0) * (1 - (here.snow || 0)); if (!s.ambience) { here.cues?.splice(0); return; }
-    setBeds(b); for (const e of events) play(e); rainDrops(rainNow, .1, here);
+    if (!s.ambience) { here.cues?.splice(0); return; }
+    setBeds(b, (here.rain || 0) * (1 - (here.snow || 0)));
+    for (const e of events) play(e);
     if (here.cues?.length) for (const c of here.cues.splice(0)) cue(c);
   }
   function teardown() { clearInterval(timer); timer = null; sources.forEach(s => { try { s.stop(); } catch { /* already stopped */ } }); sources = []; const old = ctx; ctx = null; beds = null; birds = null; foliage = null; if (old && old.state !== 'closed') old.close().catch(() => {}); if (old) old.onstatechange = null; }

@@ -1,5 +1,4 @@
-/* On-demand German narration. Prefer a Swiss device voice for Swiss Standard
-   German. Fixed instructions also have an offline recording of their exact text. */
+/* Recorded German instructions with device speech as a fallback. */
 (function () {
   'use strict';
   const FK = window.FK;
@@ -76,20 +75,17 @@
     const request = {text: words, onState};
     active = request;
     const clip = typeof window.Audio === 'function' && FK.narrationClips?.get(words);
-    const selected = voice();
     const native = !!(synth && window.SpeechSynthesisUtterance);
-    let triedClip = false, triedNative = false;
+    let triedNative = false;
     notify(request, 'loading');
 
     function failed() {
       if (active !== request) return;
       release(request);
-      if (clip && !triedClip) playClip();
-      else if (native && !triedNative) read();
+      if (native && !triedNative) read();
       else finish(request, 'error');
     }
     function playClip() {
-      triedClip = true;
       const audio = request.audio = new Audio('assets/audio/narration/' + clip + '.mp3');
       audio.onplaying = () => { if (request.audio === audio) notify(request, 'playing'); };
       audio.onended = () => { if (request.audio === audio) finish(request, 'ended'); };
@@ -99,6 +95,7 @@
     }
     function read() {
       triedNative = true;
+      const selected = voice();
       const parts = chunks(words);
       function next() {
         if (active !== request) return;
@@ -127,8 +124,7 @@
       }
       next();
     }
-    if (clip && (!native || !female(selected) ||
-        /espeak|mbrola|festival|pico/i.test(selected.name))) playClip();
+    if (clip) playClip();
     else if (native) read();
     else finish(request, 'error');
     return active === request;

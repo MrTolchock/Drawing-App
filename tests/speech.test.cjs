@@ -23,20 +23,25 @@ function fixture(voices, online = true) {
   return {voice: window.FK.forestVoice, rule: window.FK.narrationClips.keys().next().value, spoken, events, clips};
 }
 
-test('a Swiss voice can fail into the offline recording once, even if cancelled native callbacks arrive late', () => {
-  const {voice, rule, spoken, clips, events} = fixture([{lang:'de-CH',name:'Anna',localService:true}]);
+test('a recorded rule takes priority on iPad and a failed recording falls back only once', () => {
+  const anna = {lang:'de-CH',name:'Anna',localService:true};
+  const {voice, rule, spoken, clips, events} = fixture([anna]);
   assert.ok(voice.explain(rule));
+  assert.equal(spoken.length, 0);
+  const [clip] = clips;
+  assert.match(clip.src, /narration\/friends-squirrel\.mp3$/);
+  const late = clip.onended;
+  clip.onerror();
+  assert.ok(clip.paused);
   assert.equal(spoken[0].text, rule);
-  const late = spoken[0].onend;
-  spoken[0].onerror();
-  const clip = clips[0];
-  clip.onplaying();
+  assert.equal(spoken[0].voice, anna);
+  spoken[0].onstart();
   late();
   assert.equal(events.at(-1).state, 'playing');
-  voice.explain(rule);
-  assert.ok(clip.paused);
-  assert.equal(events.at(-1).state, 'stopped');
+  spoken[0].onerror();
+  assert.equal(events.at(-1).state, 'error');
   assert.equal(clips.length, 1);
+  assert.equal(spoken.length, 1);
 });
 
 test('offline rule playback bypasses a network-only voice, and repeat still works with game effects muted', () => {
@@ -86,7 +91,7 @@ test('a female German reader wins over a male Swiss default, with a recorded fal
   const male = {lang:'de-CH',name:'Martin',default:true,localService:true};
   const female = {lang:'de-DE',name:'Microsoft Katja',localService:true};
   const native = fixture([male, female]);
-  native.voice.explain(native.rule);
+  native.voice.explain('Ein Text ohne Aufnahme.');
   assert.equal(native.spoken[0].voice, female);
   native.voice.cancel();
   const offline = fixture([male], false);
