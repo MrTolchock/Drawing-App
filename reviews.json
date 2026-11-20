@@ -20775,6 +20775,33 @@
       "at": "2026-11-20T20:10:31.189Z",
       "seen": true,
       "operation": "96835472-db4e-466f-835d-efe2775055e1"
+    },
+    "read-puzzle/word-1@909f21bc4d6a53ee": {
+      "key": "read-puzzle/word-1",
+      "revision": "909f21bc4d6a53ee",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T20:10:35.298Z",
+      "seen": true,
+      "operation": "d197ee70-8fa6-4219-8035-527f0ca5ade8"
+    },
+    "read-puzzle/word-2@656d9c2465a8b6fa": {
+      "key": "read-puzzle/word-2",
+      "revision": "656d9c2465a8b6fa",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T20:10:37.909Z",
+      "seen": true,
+      "operation": "952ebf8f-d058-405f-82de-ffa6f1a7bc7b"
+    },
+    "read-puzzle/word-3@b44a71ee4dd1fb78": {
+      "key": "read-puzzle/word-3",
+      "revision": "b44a71ee4dd1fb78",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T20:10:40.274Z",
+      "seen": true,
+      "operation": "129ef2d5-362e-40cf-b404-55f65f313cf2"
     }
   },
   "history": [
