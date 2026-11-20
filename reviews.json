@@ -20298,6 +20298,24 @@
       "at": "2026-11-20T19:58:44.732Z",
       "seen": true,
       "operation": "31a5b064-7e77-45ea-827f-9672561f3f48"
+    },
+    "picnic/3-1@27f02a36d9c54fee": {
+      "key": "picnic/3-1",
+      "revision": "27f02a36d9c54fee",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T19:58:48.699Z",
+      "seen": true,
+      "operation": "82297182-627a-4f06-b1e3-fe319eac7689"
+    },
+    "picnic/3-2@f65afc20de2e23e8": {
+      "key": "picnic/3-2",
+      "revision": "f65afc20de2e23e8",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T19:58:53.220Z",
+      "seen": true,
+      "operation": "7f85022e-a110-4d12-8a12-c8b458a25531"
     }
   },
   "history": [
