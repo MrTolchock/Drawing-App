@@ -20721,6 +20721,15 @@
       "at": "2026-11-20T20:06:38.157Z",
       "seen": true,
       "operation": "60e41522-61b2-4559-8871-7c25cb2c1183"
+    },
+    "puzzle:friends-ibex@a1850b9fee6e1873": {
+      "key": "puzzle:friends-ibex",
+      "revision": "a1850b9fee6e1873",
+      "status": "improve",
+      "note": "Just keep first part with blume tanne and stein and get rid of the ones with nuts and leaves, delete those aufgaben",
+      "at": "2026-11-20T20:08:30.567Z",
+      "seen": true,
+      "operation": "b4a28d27-a865-4dfa-b725-b69d5ad56b09"
     }
   },
   "history": [
