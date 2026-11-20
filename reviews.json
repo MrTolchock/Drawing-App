@@ -19947,6 +19947,15 @@
       "at": "2026-11-20T19:53:24.613Z",
       "seen": true,
       "operation": "bdff1689-8b26-47f7-9d0a-a9dfacc95155"
+    },
+    "compare/1-1@b415905e183f6dc8": {
+      "key": "compare/1-1",
+      "revision": "b415905e183f6dc8",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T19:54:54.507Z",
+      "seen": true,
+      "operation": "04818a59-e447-4eb7-a565-44e2bba133cb"
     }
   },
   "history": [
