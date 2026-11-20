@@ -21621,6 +21621,15 @@
       "at": "2026-11-20T20:21:29.234Z",
       "seen": true,
       "operation": "90ec5d2a-218e-463c-8ad9-efad248f6e93"
+    },
+    "sequence/story-0@0ee1271b843eb86f": {
+      "key": "sequence/story-0",
+      "revision": "0ee1271b843eb86f",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T20:21:52.118Z",
+      "seen": true,
+      "operation": "853286c2-60b8-403e-a5f2-898e0c6248dc"
     }
   },
   "history": [
