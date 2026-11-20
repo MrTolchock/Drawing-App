@@ -18795,6 +18795,15 @@
       "at": "2026-11-20T19:31:42.044Z",
       "seen": true,
       "operation": "c9d363e9-8e37-4ba4-918f-584315421ee6"
+    },
+    "puzzle:shape-match@5d6ad07953cdb9e9": {
+      "key": "puzzle:shape-match",
+      "revision": "5d6ad07953cdb9e9",
+      "status": "improve",
+      "note": "Rätsel löschen",
+      "at": "2026-11-20T19:33:06.198Z",
+      "seen": true,
+      "operation": "80ad258e-313b-4400-97a4-80a6974fbaaa"
     }
   },
   "history": [
