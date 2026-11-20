@@ -21321,6 +21321,11 @@
       "at": "2026-11-20T19:56:51.059Z"
     },
     {
+      "key": "puzzle:read-puzzle",
+      "note": "Schreibe alle buchstaben gross in diesem rätsel anstatt alle klein",
+      "at": "2026-11-20T20:10:27.960Z"
+    },
+    {
       "key": "puzzle:robot",
       "note": "Erlaube nur bewegung über pfeiltasten, nicht in feld klicken",
       "at": "2026-11-19T20:34:38.387Z"
