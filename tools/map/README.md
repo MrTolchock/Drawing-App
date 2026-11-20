@@ -2,9 +2,9 @@
 
 The runtime map is the owner's approved flat, simplified, top-down version 2 painting. Its current source is [world-map.png](../../design/artwork/sources/world-map.png); [world-map.json](../../design/artwork/world-map.json) prepares `assets/forest-friends/world-map.webp`. Generate future edits with the canonical `world-map` request; preserve projection, geography and sparse detail.
 
-The actual destination buttons, animal portraits, names, invitation marker and current-position marker remain UI layers. Each destination has a 64 px button and a visible name. The map stays at least 880 px wide and pans horizontally on phones. The position marker and leader lines cannot intercept pointer events; destination pins sit above them.
+The actual destination buttons, animal portraits, names, invitation marker and current-position marker remain UI layers. Each destination has a 64 px picture button and an accessible name. The map stays at least 880 px wide and pans horizontally on phones. The position marker and leader lines cannot intercept pointer events; destination pins sit above them.
 
-[world-map-layout.json](../../design/artwork/world-map-layout.json) calibrates 24 world landmarks to painting pixels. Its 42 precomputed world-space triangles interpolate the current Fuchs position continuously across the full extent. Named destination buttons have separated display centres; leader lines indicate the actual projected location. Routes still use original world coordinates, including Steinbock's existing crag. The calibration does not move terrain or characters.
+[world-map-layout.json](../../design/artwork/world-map-layout.json) calibrates 30 world landmarks to painting pixels. Its 54 precomputed world-space triangles interpolate the current Fuchs position continuously across the full extent. Named destination buttons have separated display centres; leader lines indicate the actual projected location. Routes still use original world coordinates, including Steinbock's crag and the new ascent from the cave approach. The painting distinguishes the plank bridge beside the den from the branch dam at the pond outlet. The calibration does not move terrain or characters.
 
 ```sh
 node tools/illustrations/prepare-image.cjs design/artwork/world-map.json

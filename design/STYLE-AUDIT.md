@@ -1,6 +1,12 @@
 # Current visual consistency audit
 
-Current game art is **Waldpost 9.4.13**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal and object reference pixels and **87** complete forward image-generation prompts.
+Current game art is **Waldpost 9.4.15**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal and object reference pixels and **87** complete forward image-generation prompts.
+
+## Steinbock-Aufstieg und Wasserübergänge auf der Karte — 9.4.15
+
+Die Bildkarte zeigt den neuen Aufstieg vom Höhlenweg mit einer Kehre bis zum Steinbock-Felsen. Am Bach neben dem Fuchsbau liegt jetzt eine erkennbare Holzbrücke. Am Auslauf des Biberteichs ersetzt ein unregelmässiger Damm aus Ästen das bisherige rechteckige Brückensymbol. Der Bach bleibt zwischen Teich, Damm und Brücke durchgehend erkennbar.
+
+Die Kartenkalibrierung enthält nun 30 Bezugspunkte mit 54 Dreiecken. Neue Bezugspunkte binden Einstieg, Kehre, oberen Wegabschnitt, Wegende und beide Dammenden an die tatsächlichen Weltkoordinaten. Brücke und Steinbock-Markierung sind auf die neue Zeichnung abgestimmt. Die ursprüngliche Malerei sowie beide Generierungsanfragen mit kanonischen Referenzen sind dokumentiert. Die [Kartenbelege](evidence/2026-11-20-map/README.md) stammen aus dem echten Dialog auf Tablet und Telefon.
 
 ## Unverzerrte Rätselbilder auf dem iPad — 9.4.13
 

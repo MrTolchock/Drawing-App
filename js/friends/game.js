@@ -64,7 +64,10 @@ function close({restoreFocus=true}={}){
   FK.forestVoice.cancel();
   tick();if(panel==='puzzle'&&host){state.record('task_leave',{host,activeMilliseconds:activeMs});if(activeMs)state.duration(host,activeMs);activeMs=0;}
   clearTimeout(feedbackTimer);feedbackTimer=null;panel=null;example=false;overlay.hidden=true;overlay.replaceChildren();world.pause(false);nav.hidden=false;renderHotspots();caption.hidden=true;syncMail();
-  if(returnLabel)requestAnimationFrame(()=>{if(!panel&&!nav.hidden&&FK.current()==='friends')nav.querySelector('[aria-label="'+returnLabel+'"]')?.focus({preventScroll:true});});
+  // Let the touch-generated click finish before restoring focus to the launcher.
+  if(returnLabel)requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    if(!panel&&!nav.hidden&&FK.current()==='friends')nav.querySelector('[aria-label="'+returnLabel+'"]')?.focus({preventScroll:true});
+  }));
 }
 function open(kind){clearTimeout(feedbackTimer);backdropTap=null;panel=kind;world.pause(true);nav.hidden=true;hotspots.replaceChildren();nearButton.hidden=true;overlay.hidden=false;overlay.setAttribute('aria-label',kind==='map'?'Bildkarte des Waldes':'Waldaktivität');overlay.replaceChildren();}
 function go(next,restore=false){

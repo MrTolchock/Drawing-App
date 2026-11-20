@@ -291,7 +291,7 @@
       "references": [
         {
           "path": "design/artwork/sources/world-map.png",
-          "sha256": "99f0e8db39bde8071bc458979e60189a79d2ac29e3e948ec0b95ce9de39460b2",
+          "sha256": "325b03479a68bbc16a0665812fc40d571da0129293c35f87fe1f0b049639e1ef",
           "purpose": "approved flat top-down map: preserve its geography, projection and sparse detail",
           "usage": "composition-only"
         }

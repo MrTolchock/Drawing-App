@@ -9,10 +9,10 @@
   "transparent": false,
   "quality": 92,
   "provenance": {
-    "date": "2026-11-16",
-    "tool": "ChatGPT hosted image-generation tool; adopted approved map v2",
-    "sourceSha256": "99f0e8db39bde8071bc458979e60189a79d2ac29e3e948ec0b95ce9de39460b2",
-    "generationRecord": "generation-records/world-map.json",
+    "date": "2026-11-20",
+    "tool": "image_gen.imagegen; owner-requested Steinbock path and crossing corrections",
+    "sourceSha256": "325b03479a68bbc16a0665812fc40d571da0129293c35f87fe1f0b049639e1ef",
+    "generationRecord": "generation-records/world-map-crossings.json",
     "styleContract": "../illustrations/style.json",
     "forwardPrompt": "prompts/world-map.txt"
   }

@@ -1,6 +1,25 @@
 const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),{pathToFileURL}=require('node:url');
 const {compile}=require('../tools/map/layout.cjs'),spec=JSON.parse(fs.readFileSync('design/artwork/world-map-layout.json'));
 const api=()=>import(pathToFileURL(path.resolve('js/friends/map-layout.js')).href);
+test('the new ascent, home bridge and dam calibration uses the current world geometry',async()=>{
+ const {TRAILS,CROSSINGS,DAM}=await import('../js/friends/world/big/layout.js');
+ const ascent=TRAILS.find(trail=>trail.id==='ibex-cave');
+ const expected={
+  'ibex-cave-start':ascent.pts[0],
+  'ibex-cave-hairpin':ascent.pts[2],
+  'ibex-cave-rim':ascent.pts[4],
+  'ibex-cave-end':ascent.pts.at(-1),
+  bridge:CROSSINGS.find(crossing=>crossing.kind==='bridge').at,
+  'dam-west':DAM.a,
+  'dam-east':DAM.b
+ };
+ for(const [name,point]of Object.entries(expected)){
+  const anchor=spec.anchors.find(anchor=>anchor[0]===name);
+  assert.ok(anchor,name+' is calibrated on the painting');
+  assert.deepEqual(anchor.slice(1,3),point.slice(0,2),name+' follows the actual world');
+ }
+ assert.ok(fs.existsSync(spec.source),'the calibration names the current painting source');
+});
 test('the painted map matches its approved landmark calibration without folds or stale generated code',async()=>{
  assert.equal(compile(),fs.readFileSync('js/friends/map-layout.js','utf8'));const {mapPoint}=await api();
  for(const [name,x,z,u,v]of spec.anchors){const p=mapPoint(x,z);assert.ok(Math.abs(p[0]*1536-u)<1e-6&&Math.abs(p[1]*1024-v)<1e-6,name+' is on the painted landmark');}
