@@ -20379,6 +20379,15 @@
       "at": "2026-11-20T19:59:58.106Z",
       "seen": true,
       "operation": "66849364-a7a3-4668-a7de-8324fa95a821"
+    },
+    "picnic/4-4@37e7d0fdd11079df": {
+      "key": "picnic/4-4",
+      "revision": "37e7d0fdd11079df",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T20:00:10.200Z",
+      "seen": true,
+      "operation": "5ebde751-69bc-4b22-98e1-7e2ee99109cb"
     }
   },
   "history": [
