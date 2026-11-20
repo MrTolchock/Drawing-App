@@ -21630,6 +21630,15 @@
       "at": "2026-11-20T20:21:52.118Z",
       "seen": true,
       "operation": "853286c2-60b8-403e-a5f2-898e0c6248dc"
+    },
+    "sequence/story-1@2f8e6d6b45cb15b7": {
+      "key": "sequence/story-1",
+      "revision": "2f8e6d6b45cb15b7",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T20:22:00.316Z",
+      "seen": true,
+      "operation": "1c01a1ad-0d63-4d6f-bf2f-9994aa3f23de"
     }
   },
   "history": [
