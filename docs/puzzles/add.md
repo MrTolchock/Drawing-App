@@ -1,4 +1,4 @@
-# Sichtbare Gruppen addieren
+# Mengen addieren
 
 [Alle Rätsel](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 

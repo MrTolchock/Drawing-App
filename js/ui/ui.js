@@ -254,6 +254,7 @@
       card.append(row);
     }
     const close = btn({ icon: 'close', cls: 'btn-round modal-x', title: 'Schliessen', onClick: closeModal });
+    FK.hudArt?.decorateClose?.(close);
     card.append(close);
     const wrap = h('div', { class: 'modal' }, card);
     wrap.addEventListener('pointerdown', (e) => {

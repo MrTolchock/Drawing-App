@@ -503,6 +503,14 @@
       "manifest": "design/artwork/exit-symbol.json",
       "forwardPrompt": "design/artwork/prompts/exit-symbol.txt",
       "requestId": "exit-symbol"
+    },
+    {
+      "id": "navigation-close",
+      "file": "assets/interface/navigation-close.webp",
+      "role": "navigation",
+      "manifest": "design/artwork/navigation-close.json",
+      "forwardPrompt": "design/artwork/prompts/navigation-close.txt",
+      "requestId": "navigation-close"
     }
   ],
   "codePipelines": [

@@ -1,0 +1,25 @@
+{
+  "format": "waldpost-illustration-atlas",
+  "version": 1,
+  "source": "sources/navigation-close.png",
+  "output": "../../assets/interface/navigation-close.webp",
+  "columns": 1,
+  "rows": 1,
+  "cellPixels": 320,
+  "subjectPixels": 272,
+  "alphaThresholdPercent": 15,
+  "provenance": {
+    "date": "2026-11-20",
+    "tool": "ChatGPT image_gen.imagegen",
+    "sourceSha256": "40bc4dcdbe18a3ae2d71554df420cf4a0c9d690d3b091b5ccca585d27bf7beae",
+    "generationRecord": "generation-records/navigation-close.json",
+    "styleContract": "../illustrations/style.json",
+    "forwardPrompt": "prompts/navigation-close.txt"
+  },
+  "subjects": [
+    {
+      "id": "close",
+      "label": "Schliessen"
+    }
+  ]
+}

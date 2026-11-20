@@ -1,4 +1,4 @@
-# Benachbarte Schritte im Raum planen
+# Schritte im Raum planen
 
 [Alle Rätsel](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 

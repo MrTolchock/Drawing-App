@@ -7,7 +7,7 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',out=process.en
  await page.goto(base+'/?software=1');await page.waitForFunction(()=>!!window.FK?.friendsView&&FK.current()==='friends',{},{timeout:120000});
  const exit=page.getByRole('button',{name:'Nach draussen',exact:true}),den=[];
  for(const [width,height]of [[1080,810],[390,844],[844,390]]){
-  await page.setViewportSize({width,height});
+  await page.setViewportSize({width,height});await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
   assert.match(await exit.locator('[data-hud="door"]').evaluate(n=>getComputedStyle(n).backgroundImage),/exit-symbol.webp/);
   assert.ok(await exit.evaluate(n=>{const r=n.getBoundingClientRect();return r.width>=48&&r.height>=48&&r.x>=0&&r.y>=0&&r.right<=innerWidth&&r.bottom<=innerHeight;}),'illustrated exit remains a visible touch target');
   await exit.locator('[data-hud="door"]').evaluate(async n=>{const pic=new Image();pic.src=getComputedStyle(n).backgroundImage.slice(5,-2);await pic.decode();if(pic.naturalWidth!==320||pic.naturalHeight!==320)throw Error('Exit artwork did not load');});
@@ -18,10 +18,15 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',out=process.en
  const active=()=>page.locator('.screen:not([hidden])'),gate=async()=>{const [a,b]=(await page.locator('.gate-task').textContent()).match(/\d+/g).map(Number);await page.getByLabel('Deine Antwort',{exact:true}).fill(String(a*b));await page.locator('.gate-submit').click();};
  const states=[];
  for(const [width,height]of [[1080,810],[390,844],[844,390]]){
-  await page.setViewportSize({width,height});
+  await page.setViewportSize({width,height});await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
   const nav=active().locator('.ff-nav');for(const label of ['Bildkarte','Einstellungen für Erwachsene']){
    const button=nav.getByRole('button',{name:label,exact:true});assert.ok(await button.evaluate(n=>{const r=n.getBoundingClientRect();return r.width>=48&&r.height>=48;}));const icon=button.locator('.ff-hud-art');assert.match(await icon.evaluate(n=>getComputedStyle(n).backgroundImage),/assets\/interface\/navigation-symbols.webp/);assert.ok(await icon.evaluate(n=>{const r=n.getBoundingClientRect();return r.width>=34&&r.height>=34&&Math.abs(r.width-r.height)<1;}),label+' has visible square artwork');
   }
+  const status=nav.locator('.ff-letter-status'),mapButton=nav.getByRole('button',{name:'Bildkarte',exact:true});
+  const frame=n=>n.evaluate(e=>{const s=getComputedStyle(e);return [s.width,s.height,s.borderRadius,s.backgroundImage,s.borderWidth,s.borderStyle,s.boxShadow];});
+  assert.deepEqual(await frame(status),await frame(mapButton),'status matches the map button frame');
+  assert.equal(await status.evaluate(e=>e.nextElementSibling?.getAttribute('aria-label')),'Bildkarte','status is directly left of the map');
+  assert.equal(await status.evaluate(e=>e.tagName==='SPAN'&&e.getAttribute('role')==='status'&&!e.hasAttribute('tabindex')),true,'progress is informational');
   await page.screenshot({path:out+'/navigation-'+width+'.png'});await page.evaluate(()=>{FK.friendsStartSession(3);document.querySelector('.ff-den-envelope').click();});
   const letter=active().getByRole('button',{name:'Zum Freund gehen',exact:true});assert.match(await letter.evaluate(n=>getComputedStyle(n).backgroundImage),/letter-paper.webp/);
   const host=await page.evaluate(()=>FK.friends.mail().host),portrait=letter.locator('.ff-letter-friend');assert.equal(await portrait.getAttribute('data-friend'),host);assert.match(await portrait.evaluate(n=>getComputedStyle(n).backgroundImage),/character-portraits.webp/);
@@ -29,6 +34,12 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',out=process.en
   const rect=await letter.boundingBox();assert.ok(rect.x>=0&&rect.y>=0&&rect.x+rect.width<=width&&rect.y+rect.height<=height,JSON.stringify({width,height,rect}));assert.ok(await portrait.evaluate(n=>{const r=n.getBoundingClientRect();return r.width>=140&&r.height>=140;}));
   await page.screenshot({path:out+'/letter-'+width+'.png'});states.push({width,height,host,letterFits:true});await letter.click();
   await nav.getByRole('button',{name:'Bildkarte',exact:true}).click();await active().locator('.ff-map-storybook').waitFor();assert.equal(await active().locator('.ff-map-home [data-hud="den"]').count(),1);assert.match(await active().locator('.ff-map-home [data-hud="den"]').evaluate(n=>getComputedStyle(n).backgroundImage),/den-marker.webp/);assert.equal(await active().locator('.ff-map-invitation [data-hud="letter"]').count(),1);assert.equal(await active().locator('.ff-map-card .ff-card-top').count(),0);await page.screenshot({path:out+'/map-'+width+'.png'});const mapRect=await active().locator('.ff-map-card').boundingBox();await page.touchscreen.tap(width/2,mapRect.y/2);await page.waitForFunction(()=>document.querySelector('.ff-overlay').hidden);
+  await nav.getByRole('button',{name:'Einstellungen für Erwachsene',exact:true}).click();
+  const close=page.getByRole('button',{name:'Schliessen',exact:true});
+  await page.locator('.modal-card').evaluate(n=>Promise.all(n.getAnimations({subtree:true}).map(a=>a.finished.catch(()=>{}))));
+  assert.equal(await close.locator('[data-hud="close"]').count(),1,'window close uses the drawn navigation family');
+  assert.ok(await close.evaluate(n=>{const r=n.getBoundingClientRect();return r.width>=48&&r.height>=48&&r.left>=0&&r.top>=0&&r.right<=innerWidth&&r.bottom<=innerHeight;}));
+  await page.screenshot({path:out+'/close-window-'+width+'.png'});await close.tap();assert.equal(await page.locator('.modal').count(),0);
   await nav.getByRole('button',{name:'Einstellungen für Erwachsene',exact:true}).click();await gate();await page.waitForFunction(()=>FK.current()==='settings');assert.equal(await active().evaluate(n=>n.scrollWidth>n.clientWidth+2),false);await page.screenshot({path:out+'/settings-'+width+'.png'});await active().locator('.btn-back').click();await page.waitForFunction(()=>FK.current()==='friends');
  }
  const painted=await page.evaluate(()=>['fox','squirrel','bird','owl','beaver','mouse','mailman','hedgehog','fish','deer','kingfisher','frog','badger','ibex','fox-sleep'].map(id=>{

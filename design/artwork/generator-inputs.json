@@ -2772,6 +2772,48 @@
           "usage": "canonical-style"
         }
       ]
+    },
+    "navigation-close": {
+      "role": "navigation",
+      "promptFile": "design/artwork/prompts/navigation-close.txt",
+      "brief": "design/artwork/briefs/navigation-close.txt",
+      "requiresBriefCustomization": false,
+      "request": {
+        "prompt": "WALDPOST CANONICAL ILLUSTRATION STYLE — waldpost-watercolour-pencil-v1\n\nUse the supplied canonical animals.png and objects.png reference images as the authority for drawing technique. They show the predominant style of the current Waldpost gallery. Match their actual pixels, not an imagined style suggested by a filename.\n\nDraw warm children's picture-book watercolour finished with visible coloured-pencil strokes. Use light, gently uneven washes, organic sepia contours, delicate hatching, softly irregular edges and modest drawn shading. Surfaces look painted and pencilled, with paper grain within the illustration. Keep the warmth of cream, honey brown, restrained sage and blue, while preserving every exact colour required by a task. Subjects remain friendly, recognizable and anatomically believable.\n\nDo not turn the drawing into a 3D render, plush toy, clay or felt craft, photograph, glossy object, embossed surface or studio-lit miniature. Avoid deep ambient-occlusion shadows, inflated forms and realistic material microtexture. Do not mix in another illustration technique or use historical artwork as a style reference.\n\nThe role instructions below set the necessary detail and composition within this one style. Learning pictures retain fine drawn contours; small navigation symbols use the approved simpler, broader shapes and flat fills in the same palette. Keep the existing rendered game-character identities separate from image-generated learning subjects. Exact geometry and handwriting remain authored paths.\n\nPreserve subject identity, counted quantities, exact answer colours and action differences. Use real alpha for isolated pictures and stationery, and an opaque canvas only when the selected role requires a scene or branding image. No accidental background, halo, visible grid, labels or extra objects.\n\nROLE: navigation\nUse the same warm hand-drawn palette as a SIMPLE small pictogram. Follow the approved navigation-symbol reference for broad, softly irregular sepia outlines, rounded bold silhouettes and nearly flat fills. Match its illustrated edge softness and outline-to-fill proportions. Omit tiny scenery, stamps, material grain, fine hatching, glossy hubs and extra decoration. It must read at 32 pixels. This is a prescribed low-detail application of the canonical style. The den exit and navigation back belong to this same illustrated family as settings, map and letter. The map home marker uses its separate painted map-landmark role. Reuse current assets rather than rigid geometric substitutes or the retired detailed wooden pins.\n\nFRAMING AND EDGE QUALITY:\nCompare related pictures side by side at the size used in the game. For square cells, draw the complete silhouette with enough transparent space to pack it centred on both axes, with its longest visible side about 80% of the cell. Keep its proportions and use comparable visual weight for neighbouring answers. Reuse the same painting when a subject and pose recur. Leave genuine alpha around every isolated subject and retain the soft pencil edges. Inspect on light and dark backgrounds for pale matte, clipped outlines, stray pixels and neighbouring subjects. In a cell repair, preserve the pixels and positions of the other cells. Scenes and irregular layouts follow their role and brief.\n\nATTACH THESE ACTUAL IMAGE FILES IN THIS ORDER:\n1. design/illustrations/references/watercolour-pencil-v1/animals.png — canonical-style: canonical drawing technique for animals; fixed majority-style pixels\n2. design/illustrations/references/watercolour-pencil-v1/objects.png — canonical-style: canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels\n3. assets/interface/navigation-symbols.webp — navigation-simplicity: approved simplicity and silhouette reference for navigation; not a material-realism reference\n4. assets/interface/navigation-back.webp — composition-only: match the existing arrow outline weight, ochre fill and softly drawn corners; canonical references define technique\n\nSUBJECT AND LAYOUT BRIEF:\nDraw ONE simple close-window X pictogram, isolated and centred on a genuinely transparent square. Match the supplied existing settings, map, envelope and return-arrow symbols in outline weight and simplicity. A symmetrical chunky diagonal X made from two broad short bars with softly rounded ends and corners, one nearly flat warm ochre fill and a bold slightly irregular dark sepia outline. It must be immediately readable as a close-window cross at 28–32 pixels. Use the same ochre and outline colour as the supplied return arrow. No circle, frame, backing tile, wood, carving, grain, bevel, extra decoration, text, realistic shading, floating shadow or shiny highlight. Generous alpha padding. The real circular button is supplied by code; paint only the complete X silhouette.\n\nSTYLE PRIORITY: The brief changes subjects and layout only. Keep waldpost-watercolour-pencil-v1 and the supplied canonical reference technique throughout; do not import the style of a composition-only reference.\n",
+        "referenced_image_paths": [
+          "design/illustrations/references/watercolour-pencil-v1/animals.png",
+          "design/illustrations/references/watercolour-pencil-v1/objects.png",
+          "assets/interface/navigation-symbols.webp",
+          "assets/interface/navigation-back.webp"
+        ],
+        "transparent_background": true
+      },
+      "references": [
+        {
+          "path": "design/illustrations/references/watercolour-pencil-v1/animals.png",
+          "sha256": "65867082294d157ab4ffbe33926857272625ef3c25cdb7cab81c2a4ea73d9316",
+          "purpose": "canonical drawing technique for animals; fixed majority-style pixels",
+          "usage": "canonical-style"
+        },
+        {
+          "path": "design/illustrations/references/watercolour-pencil-v1/objects.png",
+          "sha256": "0bb37d6fc82c75034eddf30da2cc57c546dd8bc70d246aeeda85b637bd87dd80",
+          "purpose": "canonical drawing technique for objects, leaves and flowers; fixed majority-style pixels",
+          "usage": "canonical-style"
+        },
+        {
+          "path": "assets/interface/navigation-symbols.webp",
+          "sha256": "f9c7c6974bd023d60a6510ea60ef5e4f4fa2537c0da853f077fc8b5c050bd0f4",
+          "purpose": "approved simplicity and silhouette reference for navigation; not a material-realism reference",
+          "usage": "navigation-simplicity"
+        },
+        {
+          "path": "assets/interface/navigation-back.webp",
+          "sha256": "0c877d86e21b96982838de866354e831e033c78d5ec62e5eedb982cd75019326",
+          "purpose": "match the existing arrow outline weight, ochre fill and softly drawn corners; canonical references define technique",
+          "usage": "composition-only"
+        }
+      ]
     }
   },
   "assets": [
@@ -20422,6 +20464,58 @@
       }
     },
     {
+      "id": "navigation-close",
+      "file": "assets/interface/navigation-close.webp",
+      "role": "navigation",
+      "manifest": "design/artwork/navigation-close.json",
+      "forwardPrompt": "design/artwork/prompts/navigation-close.txt",
+      "requestId": "navigation-close",
+      "kind": "current-artwork",
+      "files": [
+        {
+          "path": "assets/interface/navigation-close.webp",
+          "sha256": "307433ebddab0f5caf79877e4ac53313d9ba29ad280cb4bd54a7696668fe9900",
+          "width": 320,
+          "height": 320,
+          "hasAlpha": true
+        }
+      ],
+      "preparation": {
+        "manifest": "design/artwork/navigation-close.json",
+        "pathsRelativeTo": "design/artwork",
+        "settings": {
+          "format": "waldpost-illustration-atlas",
+          "version": 1,
+          "source": "sources/navigation-close.png",
+          "output": "../../assets/interface/navigation-close.webp",
+          "columns": 1,
+          "rows": 1,
+          "cellPixels": 320,
+          "subjectPixels": 272,
+          "alphaThresholdPercent": 15,
+          "provenance": {
+            "date": "2026-11-20",
+            "tool": "ChatGPT image_gen.imagegen",
+            "sourceSha256": "40bc4dcdbe18a3ae2d71554df420cf4a0c9d690d3b091b5ccca585d27bf7beae",
+            "generationRecord": "generation-records/navigation-close.json",
+            "styleContract": "../illustrations/style.json",
+            "forwardPrompt": "prompts/navigation-close.txt"
+          },
+          "subjects": [
+            {
+              "id": "close",
+              "label": "Schliessen"
+            }
+          ]
+        },
+        "command": "node tools/illustrations/pack-atlas.cjs design/artwork/navigation-close.json"
+      },
+      "source": {
+        "path": "design/artwork/sources/navigation-close.png",
+        "sha256": "40bc4dcdbe18a3ae2d71554df420cf4a0c9d690d3b091b5ccca585d27bf7beae"
+      }
+    },
+    {
       "id": "lake-hero",
       "file": "legacy/retired-runtime/assets/waldatelier/hero.webp",
       "status": "retained-legacy",
@@ -20739,6 +20833,7 @@
     "assets/interface/exit-symbol.webp",
     "assets/interface/letter-paper.webp",
     "assets/interface/navigation-back.webp",
+    "assets/interface/navigation-close.webp",
     "assets/interface/navigation-symbols.webp",
     "assets/waldatelier/alphabet.webp",
     "assets/waldatelier/animals.webp",

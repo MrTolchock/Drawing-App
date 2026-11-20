@@ -10,7 +10,7 @@ const doorSVG=`<svg viewBox="0 0 1448 1086" preserveAspectRatio="none"><defs><li
 function syncMail(){
   if(!world||!state||!doorScene)return;
   const m=state.mail();root.dataset.mail=m.phase;
-  if(letterStatus){const {completed,limit}=m.session;letterStatus.textContent=completed+'/'+limit;letterStatus.setAttribute('aria-label',completed+' von '+limit+' Briefen geschafft');}
+  if(letterStatus){const {completed,limit}=m.session;letterStatus.textContent=completed+'/'+limit;letterStatus.dataset.compact=String(letterStatus.textContent.length>4);letterStatus.setAttribute('aria-label',completed+' von '+limit+' Briefen geschafft');}
   const arriving=denEnvelope.hidden;doorScene.hidden=area!=='den';denEnvelope.hidden=area!=='den'||m.phase!=='den-letter'||!!panel;
   if(arriving&&!denEnvelope.hidden)audio?.cue({type:'letterbox',pan:.55});   // the letter comes through the flap (timed to its animation)
   world.mailTarget(area==='forest'?(m.phase==='to-friend'?m.host:m.phase==='to-mailman'?'mailman':['return-home','den-letter'].includes(m.phase)?'home':null):null);
@@ -79,9 +79,8 @@ function go(next,restore=false){
 }
 function renderNav(){nav.replaceChildren();if(state.development||FK.playLog.development())nav.append(h('strong',{class:'ff-dev',text:'ENTWICKLUNG'}));
   if(!['sleeping','finished'].includes(state.mail().phase)){
-    nav.append(button('Bildkarte','map',map));
     const {completed,limit}=state.mail().session;
-    letterStatus=h('span',{class:'ff-letter-status',role:'status','aria-live':'polite',text:completed+'/'+limit,'aria-label':completed+' von '+limit+' Briefen geschafft'});nav.append(letterStatus);
+    letterStatus=h('span',{class:'ff-letter-status',role:'status','aria-live':'polite',text:completed+'/'+limit,'data-compact':String((completed+'/'+limit).length>4),'aria-label':completed+' von '+limit+' Briefen geschafft'});nav.append(letterStatus,button('Bildkarte','map',map));
   }
   nav.append(button('Einstellungen für Erwachsene','gear',()=>FK.ui.parentGate(settings)));
 }

@@ -1,4 +1,4 @@
-# Eins zu eins gerecht verteilen
+# Mengen verteilen
 
 [Alle Rätsel](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 

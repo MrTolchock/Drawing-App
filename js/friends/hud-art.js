@@ -1,7 +1,7 @@
 /* One drawn family for world navigation. Source artwork, exact prompts and packing: design/artwork/. */
 (function(){
   'use strict';
-  const FK=window.FK,ids=['gear','map','letter','den','door','back'],symbols=ids.slice(0,3),single={den:'den-marker.webp',door:'exit-symbol.webp',back:'navigation-back.webp'};
+  const FK=window.FK,ids=['gear','map','letter','den','door','back','close'],symbols=ids.slice(0,3),single={den:'den-marker.webp',door:'exit-symbol.webp',back:'navigation-back.webp',close:'navigation-close.webp'};
   function element(name){
     const index=ids.indexOf(name);if(index<0)throw Error('Unknown world picture: '+name);
     const file=single[name],cell=symbols.indexOf(name);
@@ -13,5 +13,6 @@
     if(!button.querySelector('[data-hud="back"]'))button.append(element('back'));
     return button;
   }
-  FK.hudArt={has:name=>ids.includes(name),element,decorateBack};
+  function decorateClose(button){button.classList.add('ff-navigation-close');if(!button.querySelector('[data-hud="close"]'))button.append(element('close'));return button;}
+  FK.hudArt={has:name=>ids.includes(name),element,decorateBack,decorateClose};
 })();

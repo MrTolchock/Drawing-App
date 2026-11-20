@@ -1,4 +1,4 @@
-# Ein Muster spiegeln
+# Muster spiegeln
 
 [Alle Rätsel](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 

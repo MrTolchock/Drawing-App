@@ -27,7 +27,7 @@
       "host": "owl"
     },
     "friends-beaver": {
-      "title": "Mengen von Waldgegenständen vergleichen",
+      "title": "Mengen vergleichen",
       "host": "beaver"
     },
     "friends-mouse": {
@@ -47,7 +47,7 @@
       "host": "badger"
     },
     "friends-ibex": {
-      "title": "Wiederholungsmuster fortsetzen und ergänzen",
+      "title": "Muster fortsetzen",
       "host": "ibex"
     },
     "count": {
@@ -55,7 +55,7 @@
       "host": "squirrel"
     },
     "add": {
-      "title": "Sichtbare Gruppen addieren",
+      "title": "Mengen addieren",
       "host": "squirrel"
     },
     "rocket": {
@@ -63,7 +63,7 @@
       "host": "squirrel"
     },
     "picnic": {
-      "title": "Eins zu eins gerecht verteilen",
+      "title": "Mengen verteilen",
       "host": "squirrel"
     },
     "syllable": {
@@ -71,7 +71,7 @@
       "host": "bird"
     },
     "robot": {
-      "title": "Benachbarte Schritte im Raum planen",
+      "title": "Schritte im Raum planen",
       "host": "beaver"
     },
     "sequence": {
@@ -79,7 +79,7 @@
       "host": "owl"
     },
     "treasure": {
-      "title": "Gegenstände wiedererkennen",
+      "title": "Gegenstände merken",
       "host": "owl"
     },
     "neighbours": {
@@ -91,7 +91,7 @@
       "host": "squirrel"
     },
     "mirror": {
-      "title": "Ein Muster spiegeln",
+      "title": "Muster spiegeln",
       "host": "beaver"
     },
     "vowels": {

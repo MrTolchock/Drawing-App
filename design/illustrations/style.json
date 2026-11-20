@@ -1035,6 +1035,21 @@
       "path": "design/illustrations/prompts/swiss-postbox.txt",
       "brief": "design/illustrations/briefs/swiss-postbox.txt",
       "transparent": true
+    },
+    {
+      "id": "navigation-close",
+      "role": "navigation",
+      "path": "design/artwork/prompts/navigation-close.txt",
+      "brief": "design/artwork/briefs/navigation-close.txt",
+      "transparent": true,
+      "references": [
+        {
+          "path": "assets/interface/navigation-back.webp",
+          "sha256": "0c877d86e21b96982838de866354e831e033c78d5ec62e5eedb982cd75019326",
+          "purpose": "match the existing arrow outline weight, ochre fill and softly drawn corners; canonical references define technique",
+          "usage": "composition-only"
+        }
+      ]
     }
   ],
   "preparationManifests": [
@@ -1085,7 +1100,8 @@
     "design/illustrations/expansion-animal-signs.json",
     "design/illustrations/expansion-nature-parts.json",
     "design/illustrations/expansion-counting-groups.json",
-    "design/illustrations/expansion-patterns-seasons.json"
+    "design/illustrations/expansion-patterns-seasons.json",
+    "design/artwork/navigation-close.json"
   ],
   "history": "legacy/design-history/2026-11-16-before-style-contract",
   "preview": {

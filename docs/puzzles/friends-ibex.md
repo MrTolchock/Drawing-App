@@ -1,4 +1,4 @@
-# Wiederholungsmuster fortsetzen und ergänzen
+# Muster fortsetzen
 
 [Alle Rätsel](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 

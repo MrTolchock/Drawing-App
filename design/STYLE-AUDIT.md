@@ -1,6 +1,14 @@
 # Current visual consistency audit
 
-Current game art is **Waldpost 9.4.10**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal and object reference pixels and **86** complete forward image-generation prompts.
+Current game art is **Waldpost 9.4.11**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal and object reference pixels and **87** complete forward image-generation prompts.
+
+## Schliessen-Symbol, Briefstatus und kurze Rätselnamen — 9.4.11
+
+Fenster verwenden ein neues gezeichnetes X in der Symbolfamilie von Karte, Einstellungen und Zurück-Pfeil. Der gemeinsame Schliessen-Knopf behält seine zugängliche Beschriftung, mindestens 48 px und die bestehende Bedienung. Der Briefstatus ist nun rund und nutzt denselben Rahmen, dieselbe Grösse und denselben Schatten wie Karte/Einstellungen; er steht unmittelbar links von der Karte und bleibt eine reine Statusanzeige.
+
+Die sieben Namen lauten Mengen vergleichen (Biber), Muster fortsetzen, Mengen addieren, Mengen verteilen, Schritte im Raum planen, Gegenstände merken und Muster spiegeln. Die Aufgaben, Regeln und Bilder der Rätsel bleiben unverändert. Alle 794 Aufgabenrevisionen und alle 22 Rätselrevisionen sind vor/nach dieser Änderung identisch; Freigaben werden weder zurückgesetzt noch erzeugt.
+
+Die [Bildbelege](evidence/2026-11-20-navigation/README.md) zeigen den echten Renderer. Die bestehende Bild-/Navigation-Prüfung vergleicht Rahmen und Reihenfolge auf Tablet, Telefon und im Querformat sowie die echte Schliessen-Aktion. Modell-, Stil-, Katalog- und Bildquellenprüfungen verwenden keine echten Review-Schreibvorgänge.
 
 ## The way up to the Steinbock can be walked — 9.4.10
 

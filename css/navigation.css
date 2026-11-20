@@ -13,3 +13,13 @@
 .ff-navigation-back .ff-hud-art{width:40px;height:40px;filter:none}
 .btn-parents>.ff-hud-art{width:42px;height:42px}
 @media(prefers-reduced-motion:reduce){.friends-interface .screen :is(.topbar,.ff-card-top,.puzzle-context,.puzzle-paper) button.ff-navigation-back:is(.btn-back,.ff-button){transition:none}}
+
+/* Window dismissal uses the same illustrated family as the return arrow. */
+.friends-interface .modal button.ff-navigation-close{
+ --btn:48px;--btn-w:48px;display:grid;place-items:center;width:48px;height:48px;min-width:48px;min-height:48px;padding:0;border-radius:50%;
+ background:var(--wb-paper,#fffaf0);border:2px solid #8a623d;box-shadow:0 2px 5px #3a2a1420;transform:none;translate:none;
+}
+.friends-interface .modal button.ff-navigation-close>.ic{display:none}
+.friends-interface .modal button.ff-navigation-close>.ff-hud-art{width:32px;height:32px;filter:none}
+.friends-interface .modal button.ff-navigation-close:focus-visible{outline:4px solid var(--wb-focus,#456b81);outline-offset:4px}
+.friends-interface .modal button.ff-navigation-close:not(:disabled):active{transform:translateY(1px);box-shadow:0 1px 2px #3a2a1420}

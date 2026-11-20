@@ -1,4 +1,4 @@
-# Mengen von Waldgegenständen vergleichen
+# Mengen vergleichen
 
 [Alle Rätsel](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 

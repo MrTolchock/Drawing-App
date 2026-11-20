@@ -27,7 +27,7 @@ const games=[
   {
     "id": "friends-beaver",
     "host": "beaver",
-    "title": "Mengen von Waldgegenständen vergleichen",
+    "title": "Mengen vergleichen",
     "picture": "forest-leaf",
     "screen": "puzzle"
   },
@@ -62,7 +62,7 @@ const games=[
   {
     "id": "friends-ibex",
     "host": "ibex",
-    "title": "Wiederholungsmuster fortsetzen und ergänzen",
+    "title": "Muster fortsetzen",
     "picture": "forest-fir",
     "screen": "puzzle"
   },
@@ -76,7 +76,7 @@ const games=[
   {
     "id": "add",
     "host": "squirrel",
-    "title": "Sichtbare Gruppen addieren",
+    "title": "Mengen addieren",
     "picture": "add",
     "screen": "puzzle"
   },
@@ -90,7 +90,7 @@ const games=[
   {
     "id": "picnic",
     "host": "squirrel",
-    "title": "Eins zu eins gerecht verteilen",
+    "title": "Mengen verteilen",
     "picture": "forest-basket",
     "screen": "puzzle"
   },
@@ -104,7 +104,7 @@ const games=[
   {
     "id": "robot",
     "host": "beaver",
-    "title": "Benachbarte Schritte im Raum planen",
+    "title": "Schritte im Raum planen",
     "picture": "forest-post",
     "screen": "puzzle"
   },
@@ -118,7 +118,7 @@ const games=[
   {
     "id": "treasure",
     "host": "owl",
-    "title": "Gegenstände wiedererkennen",
+    "title": "Gegenstände merken",
     "picture": "forest-basket",
     "screen": "puzzle"
   },
@@ -139,7 +139,7 @@ const games=[
   {
     "id": "mirror",
     "host": "beaver",
-    "title": "Ein Muster spiegeln",
+    "title": "Muster spiegeln",
     "picture": "mirror",
     "screen": "puzzle"
   },

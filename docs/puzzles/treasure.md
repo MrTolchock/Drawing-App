@@ -1,4 +1,4 @@
-# Gegenstände wiedererkennen
+# Gegenstände merken
 
 [Alle Rätsel](../PUZZLE-CATALOGUE.md) · [Shared blueprint](../PUZZLE-BLUEPRINT.md)
 
