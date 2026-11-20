@@ -21103,11 +21103,11 @@
     "puzzle:friends-mouse@2723fbcc0e2db214": {
       "key": "puzzle:friends-mouse",
       "revision": "2723fbcc0e2db214",
-      "status": "improve",
+      "status": "approved",
       "note": "Rätsel wirkt optisch unbalanciert, box für text ist zu gross",
-      "at": "2026-11-20T20:16:20.007Z",
+      "at": "2026-11-20T20:18:36.708Z",
       "seen": true,
-      "operation": "7e463ee8-2949-430f-866a-f61ed1e30d96"
+      "operation": "dedcc52b-eb9a-414f-8249-cf9aa096c91b"
     },
     "friends-mouse/friends-frog-animal-0@9f7ddc0291b7cbbe": {
       "key": "friends-mouse/friends-frog-animal-0",
@@ -21540,6 +21540,15 @@
       "at": "2026-11-20T20:18:31.598Z",
       "seen": true,
       "operation": "a1e31b0c-a70b-4131-a927-fd9e4368caf9"
+    },
+    "friends-mouse/read-word-word-33@b82241e64bcef2ca": {
+      "key": "friends-mouse/read-word-word-33",
+      "revision": "b82241e64bcef2ca",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T20:18:33.529Z",
+      "seen": true,
+      "operation": "bd94d7f4-3884-43db-878d-4c6be2e406b6"
     }
   },
   "history": [
@@ -21821,6 +21830,15 @@
       "at": "2026-11-20T19:55:58.224Z",
       "seen": true,
       "operation": "b4ccf05a-49fd-48ce-a907-ad77615c2ca8"
+    },
+    {
+      "key": "puzzle:friends-mouse",
+      "revision": "2723fbcc0e2db214",
+      "status": "improve",
+      "note": "Rätsel wirkt optisch unbalanciert, box für text ist zu gross",
+      "at": "2026-11-20T20:16:20.007Z",
+      "seen": true,
+      "operation": "7e463ee8-2949-430f-866a-f61ed1e30d96"
     }
   ],
   "deletedNotes": [
