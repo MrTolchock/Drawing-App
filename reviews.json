@@ -21477,6 +21477,33 @@
       "at": "2026-11-20T20:18:13.082Z",
       "seen": true,
       "operation": "e52462dd-b3cd-47a7-939e-647cf6311a25"
+    },
+    "friends-mouse/read-word-word-26@db28bd6c3c079c1e": {
+      "key": "friends-mouse/read-word-word-26",
+      "revision": "db28bd6c3c079c1e",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T20:18:15.199Z",
+      "seen": true,
+      "operation": "94697dc2-fc68-49a9-a923-16f32514b777"
+    },
+    "friends-mouse/read-word-word-27@5d2f08d70bc3b475": {
+      "key": "friends-mouse/read-word-word-27",
+      "revision": "5d2f08d70bc3b475",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T20:18:17.100Z",
+      "seen": true,
+      "operation": "35a406c9-aa8c-4e88-9744-f4d4fae2886a"
+    },
+    "friends-mouse/read-word-word-28@7acf61ac2db742cc": {
+      "key": "friends-mouse/read-word-word-28",
+      "revision": "7acf61ac2db742cc",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T20:18:21.448Z",
+      "seen": true,
+      "operation": "1fbe1440-cc81-4766-9e12-ab4986a869ec"
     }
   },
   "history": [
