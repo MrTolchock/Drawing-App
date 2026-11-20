@@ -20286,6 +20286,11 @@
     },
     {
       "key": "puzzle:friends-beaver",
+      "note": "Pro zeile werden immer nur zwei verschiedene gegenstände verwendet. Füge variation bei den iterationen ein, das es auch solche gibt mit drei gegenständen pro zeile",
+      "at": "2026-11-20T19:52:28.969Z"
+    },
+    {
+      "key": "puzzle:friends-beaver",
       "note": "Reihen sind immer kreis, dreieck und quadrat. Beim fehlenden zeichen muss man gar nicht wissen, was erste zwei reihen zeigen. Besser wäre ein muster in ersten zwei reihen das in dritter weitergeführt wird, bsw. Immer zwei dreiecke und ein kreis, in unterschiedlichen reihenfolgen, und in letzter zeile muss ergänzt werden",
       "at": "2026-11-18T07:47:44.321Z"
     },
