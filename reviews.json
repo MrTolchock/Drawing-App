@@ -20203,11 +20203,11 @@
     "puzzle:compare@3b286cf5c9c601a9": {
       "key": "puzzle:compare",
       "revision": "3b286cf5c9c601a9",
-      "status": "approved",
-      "note": "",
-      "at": "2026-11-20T19:55:58.224Z",
+      "status": "improve",
+      "note": "Ersetze gleich viele mit zeichen = auf button",
+      "at": "2026-11-20T19:56:17.630Z",
       "seen": true,
-      "operation": "b4ccf05a-49fd-48ce-a907-ad77615c2ca8"
+      "operation": "7e7d3ef4-1ac5-4f19-be53-8e3b78d505ec"
     }
   },
   "history": [
@@ -20480,6 +20480,15 @@
       "at": "2026-11-20T19:47:18.537Z",
       "seen": true,
       "operation": "33eb4880-87a0-471a-88fb-6f75f909e952"
+    },
+    {
+      "key": "puzzle:compare",
+      "revision": "3b286cf5c9c601a9",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T19:55:58.224Z",
+      "seen": true,
+      "operation": "b4ccf05a-49fd-48ce-a907-ad77615c2ca8"
     }
   ],
   "deletedNotes": [
