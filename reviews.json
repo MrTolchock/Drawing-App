@@ -20100,6 +20100,24 @@
       "at": "2026-11-20T19:55:31.649Z",
       "seen": true,
       "operation": "f91d1d32-b914-4552-a421-976623d20659"
+    },
+    "compare/7-7@9cce11228c697a08": {
+      "key": "compare/7-7",
+      "revision": "9cce11228c697a08",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T19:55:33.615Z",
+      "seen": true,
+      "operation": "4e94aa41-1248-4a39-97dc-38b199ef4260"
+    },
+    "compare/7-6@53f282f9f94c96df": {
+      "key": "compare/7-6",
+      "revision": "53f282f9f94c96df",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T19:55:35.426Z",
+      "seen": true,
+      "operation": "2b13fd56-68e5-4f3d-a402-460d8685f4d6"
     }
   },
   "history": [
