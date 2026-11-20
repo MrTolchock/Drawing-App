@@ -21296,6 +21296,11 @@
     },
     {
       "key": "puzzle:robot",
+      "note": "Verwende und zeichne neues bild für briefkasten. Gelber briefkasten wie in der schweiz üblich",
+      "at": "2026-11-20T20:08:53.164Z"
+    },
+    {
+      "key": "puzzle:robot",
       "note": "Zum teil spring brief bei einem klick gleich zwei felder, anpassen. Anstatt brief nehme bild vom hasenbriefträger",
       "at": "2026-11-18T20:14:33.098Z"
     },
