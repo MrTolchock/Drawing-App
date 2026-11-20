@@ -21549,6 +21549,42 @@
       "at": "2026-11-20T20:18:33.529Z",
       "seen": true,
       "operation": "bd94d7f4-3884-43db-878d-4c6be2e406b6"
+    },
+    "neighbours/1-both@15ca00daef71b156": {
+      "key": "neighbours/1-both",
+      "revision": "15ca00daef71b156",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T20:20:19.237Z",
+      "seen": true,
+      "operation": "fb5fc3ff-15b3-424a-a5c0-24164b9c5e12"
+    },
+    "neighbours/1-left@6da46c069657337c": {
+      "key": "neighbours/1-left",
+      "revision": "6da46c069657337c",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T20:20:21.592Z",
+      "seen": true,
+      "operation": "880bb4a5-c7e3-46e0-8d9b-0dcc8063c30e"
+    },
+    "neighbours/2-both@b952fb43bd47fccd": {
+      "key": "neighbours/2-both",
+      "revision": "b952fb43bd47fccd",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T20:20:26.236Z",
+      "seen": true,
+      "operation": "6fec549e-66f7-44b9-81f9-13b5f19fec22"
+    },
+    "neighbours/2-left@c9876df32d5d6be7": {
+      "key": "neighbours/2-left",
+      "revision": "c9876df32d5d6be7",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T20:20:28.756Z",
+      "seen": true,
+      "operation": "348c01f2-33fc-479f-acfe-c1e34e63759d"
     }
   },
   "history": [
