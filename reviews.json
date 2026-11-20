@@ -20757,6 +20757,15 @@
       "at": "2026-11-20T20:09:08.999Z",
       "seen": true,
       "operation": "b589dacc-ef78-4f6f-aa87-d7d41ddd435b"
+    },
+    "puzzle:robot@76c2885565c76bdb": {
+      "key": "puzzle:robot",
+      "revision": "76c2885565c76bdb",
+      "status": "improve",
+      "note": "Das bild zeigt einen baum. Ersetze bild durch waldbild, mit mehreren bäumen",
+      "at": "2026-11-20T20:10:12.477Z",
+      "seen": true,
+      "operation": "ec733eb5-7c05-4e1c-be72-4fc89ffb10f1"
     }
   },
   "history": [
