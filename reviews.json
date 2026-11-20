@@ -20370,6 +20370,15 @@
       "at": "2026-11-20T19:59:47.865Z",
       "seen": true,
       "operation": "c3f16321-44e5-4cc2-a76d-335e98ed85e5"
+    },
+    "picnic/4-3@9537076ee7d09d3c": {
+      "key": "picnic/4-3",
+      "revision": "9537076ee7d09d3c",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T19:59:58.106Z",
+      "seen": true,
+      "operation": "66849364-a7a3-4668-a7de-8324fa95a821"
     }
   },
   "history": [
