@@ -20433,6 +20433,15 @@
       "at": "2026-11-20T20:00:47.427Z",
       "seen": true,
       "operation": "0575ed17-7366-4486-b763-ca6f61df90b3"
+    },
+    "puzzle:picnic@6ced85be22497d90": {
+      "key": "puzzle:picnic",
+      "revision": "6ced85be22497d90",
+      "status": "approved",
+      "note": "",
+      "at": "2026-11-20T20:00:50.568Z",
+      "seen": true,
+      "operation": "254e8469-c027-485e-9af7-95d8f6f06307"
     }
   },
   "history": [
