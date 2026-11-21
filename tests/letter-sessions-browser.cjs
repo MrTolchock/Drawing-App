@@ -20,7 +20,8 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
    for(let n=0;n<5;n++){
      const q=await page.evaluate(id=>FK.puzzleRounds.current(FK.puzzleRounds.start(id)),id);
      await active().locator('[data-answer]').evaluateAll((nodes,answer)=>{const b=nodes.find(n=>n.dataset.answer===String(answer));if(!b)throw Error('Answer missing');b.click();},q.answer);
-    if(n<4)await page.waitForFunction(n=>document.querySelector('.screen:not([hidden]) .puzzle-round')?.textContent===n+' / 5',n+2);
+    // child play shows progress as five leaves, not a task number
+    if(n<4)await page.waitForFunction(n=>document.querySelector('.screen:not([hidden]) .puzzle-progress')?.getAttribute('aria-label')===n+' von 5 Aufgaben geschafft',n+1);
    }
    await active().locator('.puzzle-completion').waitFor();assert.equal(await active().locator('.puzzle-completion .done').count(),5);
    await page.waitForFunction(()=>FK.current()==='friends');

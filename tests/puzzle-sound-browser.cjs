@@ -15,7 +15,7 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000';
    FK.settings.set('sound',true);FK.friends={record(){},mail:()=>({host:'owl'}),flushLog(){}};
    FK.friendsLibrary.canPlay=()=>true;FK.puzzleReview.ready=()=>true;FK.puzzleRounds.clear('add');FK.go('puzzle',{game:'add'});
   });
-  const active=page.locator('.screen:not([hidden])'),round=()=>active.locator('.puzzle-round').textContent();
+  const active=page.locator('.screen:not([hidden])'),round=()=>active.locator('.puzzle-progress').getAttribute('aria-label');   // child play: five leaves, no task number
   const latest=()=>page.evaluate(()=>({count:soundContexts.length,state:soundContexts.at(-1)?.state}));
   await active.locator('.puzzle-answer').first().waitFor();
   await active.locator('.puzzle-prompt').tap();await page.evaluate(()=>FK.sound.tick());
@@ -23,7 +23,7 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000';
   async function answer(){
    const before=await round(),value=await page.evaluate(()=>String(FK.puzzleRounds.current(FK.puzzleRounds.start('add')).answer));
    await active.locator('.puzzle-answer[data-answer="'+value+'"]').tap();
-   await page.waitForFunction(text=>document.querySelector('.screen:not([hidden]) .puzzle-round')?.textContent!==text,before);
+   await page.waitForFunction(text=>document.querySelector('.screen:not([hidden]) .puzzle-progress')?.getAttribute('aria-label')!==text,before);
   }
   // Closed: the tap on the right answer submits it and builds a new context that plays.
   await page.evaluate(()=>soundContexts[0].close());await page.waitForFunction(()=>soundContexts[0].state==='closed');
