@@ -18,11 +18,11 @@ const base=process.env.FARBTUPF_BASE_URL||'http://127.0.0.1:8000',shots=process.
   const panel=await page.locator('.ff-developer-panel').evaluate(el=>{const s=getComputedStyle(el);return {border:s.borderTopWidth,background:s.backgroundColor};});assert.ok(parseFloat(panel.border)>=1);assert.notEqual(panel.background,settings.backgroundColor);
   await page.screenshot({path:shots+'/settings-'+width+'.png'});
   await page.locator('.ff-developer-panel').scrollIntoViewIfNeeded();await page.screenshot({path:shots+'/settings-protocol-'+width+'.png'});
-  await page.getByRole('button',{name:"Rätsel-Galerie öffnen",exact:true}).click();assert.deepEqual(await frame(),settings);
+  await page.getByRole('button',{name:"Rätsel-Galerie",exact:true}).click();assert.deepEqual(await frame(),settings);
   assert.equal(await page.locator('.gallery-puzzle').count(),2);for(const card of await page.locator('.gallery-puzzle').all())assert.equal((await card.innerText()).trim(),await card.locator('b').innerText(),'only the puzzle name remains on each card');
-  const fish=page.getByRole('button',{name:'Fisch (0)',exact:true});assert.equal(await fish.count(),1);assert.equal(await fish.isDisabled(),true);assert.equal(await fish.locator('.forest-portrait').count(),1);assert.deepEqual(await font(page.locator('.gallery-puzzle>b').first()),heading);
+  const fish=page.getByRole('button',{name:'Fisch (1)',exact:true});assert.equal(await fish.count(),1);assert.equal(await fish.isDisabled(),false);assert.equal(await fish.locator('.forest-portrait').count(),1);assert.deepEqual(await font(page.locator('.gallery-puzzle>b').first()),heading);
   await page.screenshot({path:shots+'/gallery-'+width+'.png'});
-  await page.locator('.screen:not([hidden]) .btn-back').click();await page.getByRole('button',{name:"Rätsel-Prüfung öffnen",exact:true}).click();assert.deepEqual(await frame(),settings);
+  await page.locator('.screen:not([hidden]) .btn-back').click();await page.getByRole('button',{name:"Rätsel-Prüfung",exact:true}).click();assert.deepEqual(await frame(),settings);
   assert.doesNotMatch(await page.locator('.screen:not([hidden]) .review-grid').innerText(),/MA\.\d|D\.\d|NMG\.|[Ff]ür Kinder freigegeben/);
   assert.equal(await page.locator('.screen:not([hidden]) .review-body').evaluate(el=>el.scrollWidth>el.clientWidth+1),false);
   await page.screenshot({path:shots+'/review-'+width+'.png'});

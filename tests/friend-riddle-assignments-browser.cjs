@@ -32,9 +32,28 @@ const output=process.env.FARBTUPF_SHOTS||'/tmp/waldpost-friend-assignments';
   const snapshot=()=>page.evaluate(()=>Object.fromEntries(Object.entries(localStorage).filter(([key])=>!key.startsWith('farbtupf.puzzle-review.'))));
   const before=await snapshot();
   const active=()=>page.locator('.screen:not([hidden])');
+  const cardSize=async()=>{
+   const sizes=await active().locator('.review-puzzle').evaluateAll(nodes=>nodes.map(node=>{
+    const {width,height}=node.getBoundingClientRect();
+    return {width:Math.round(width*100)/100,height:Math.round(height*100)/100,overflow:node.scrollWidth>node.clientWidth+1||node.scrollHeight>node.clientHeight+1};
+   }));
+   assert.equal(sizes.length,24,'all puzzle tiles are measured');
+   assert.ok(sizes.every(size=>Math.abs(size.width-sizes[0].width)<1&&Math.abs(size.height-sizes[0].height)<1&&!size.overflow),'all tiles have the same size with no clipped content: '+JSON.stringify(sizes));
+   return sizes[0];
+  };
   // Use the actual gallery filter and open a normal gallery round at every friend.
   for(const [width,height]of [[1024,700],[390,844]]){
    await page.setViewportSize({width,height});
+   await page.evaluate(()=>FK.go('puzzle-gallery'));
+   await active().getByRole('button',{name:'Alle (24)',exact:true}).click();
+   await page.evaluate(()=>document.fonts.ready);
+   const gallerySize=await cardSize();
+   await active().locator('.review-grid').evaluate(grid=>grid.scrollIntoView({block:'start'}));
+   await page.screenshot({path:output+'/gallery-tiles-'+width+'.png',fullPage:true});
+   await page.evaluate(()=>FK.go('puzzle-review'));
+   assert.deepEqual(await cardSize(),gallerySize,'gallery and review use the same tile dimensions');
+   await active().locator('.review-grid').evaluate(grid=>grid.scrollIntoView({block:'start'}));
+   await page.screenshot({path:output+'/review-tiles-'+width+'.png',fullPage:true});
    await page.evaluate(()=>FK.go('puzzle-gallery'));
    for(const [host,name]of Object.entries(hosts)){
     const expected=games.filter(game=>game.host===host).map(game=>game.id).sort();

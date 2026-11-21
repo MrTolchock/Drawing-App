@@ -50,7 +50,7 @@
       updateButton=FK.ui.btn({label:'Nach Updates suchen',onClick:()=>FK.updates.check()});
       updateStatus=h('p',{class:'ff-update-status',role:'status','aria-live':'polite'});
       const updates=h('section',{class:'setting-card ff-update-settings'},heading('App-Version'),h('p',{class:'ff-settings-version',text:FK.APP_NAME+' '+FK.VERSION}),updateButton,updateStatus);
-      const review=h('section',{class:'setting-card ff-puzzle-review-settings'},heading("Rätsel-Galerie und Rätsel-Prüfung"),h('p',{text:"Galerie: freigegebene Rätsel nach Freund ansehen und eine Runde mit fünf Aufgaben spielen. Prüfung: jede Aufgabe vor dem Spielen prüfen und freigeben. Kinder rätseln nur beim Freund auf ihrem Brief."}),h('div',{class:'setting-buttons'},FK.ui.btn({label:"Rätsel-Galerie öffnen",onClick:()=>FK.puzzleReview.openGallery()}),FK.ui.btn({label:"Rätsel-Prüfung öffnen",onClick:()=>FK.puzzleReview.open()})));
+      const review=h('section',{class:'setting-card ff-puzzle-review-settings'},heading("Rätsel-Galerie und Rätsel-Prüfung"),h('p',{text:"Galerie: freigegebene Rätsel nach Freund ansehen und eine Runde mit fünf Aufgaben spielen. Prüfung: jede Aufgabe vor dem Spielen prüfen und freigeben. Kinder rätseln nur beim Freund auf ihrem Brief."}),h('div',{class:'setting-buttons'},FK.ui.btn({label:"Rätsel-Galerie",onClick:()=>FK.puzzleReview.openGallery()}),FK.ui.btn({label:"Rätsel-Prüfung",onClick:()=>FK.puzzleReview.open()})));
       body.append(letters,sounds,review,records,updates);showUpdate();
     },
     leave(){}

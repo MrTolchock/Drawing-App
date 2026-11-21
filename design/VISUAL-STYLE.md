@@ -50,7 +50,7 @@ All fonts are bundled locally; no network font requests.
 | Paper / page | Cream `#fffaf0`, warm parchment `#f3edda` |
 | Utility outlines | Sepia `#75593c`, shared 2.2-unit rounded strokes |
 | Navigation / selection | Sage and moss; warm wood/ochre for card edges |
-| Success / retry | Shared green confirmation / warm brown retry, with visible marks and accessible status |
+| Success / retry | Shared soft green highlight without a check mark / warm brown retry, with accessible status |
 
 `css/waldbuch.css` supplies the shared paper/wood tokens; `css/puzzle-rounds.css` owns the current puzzle layout. Task colours remain exact when they are the subject (colour reading, shapes, matching); never recolour an answer merely to match decoration. Avoid mixing neon toy gradients, hard black sticker shadows and glossy icon tiles into this page system.
 

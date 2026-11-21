@@ -2,7 +2,7 @@
 .review-body{min-height:0}
 .review-intro{max-width:900px}.review-controls,.review-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:12px 0}.review-controls label{max-width:100%}
 .review-body input:not([type=checkbox]),.review-body textarea,.review-rejection textarea{display:block;max-width:100%;width:100%;padding:10px;border:1px solid #a18b68;border-radius:10px;background:#fffdf7;color:#4b3b2d;font:18px/1.5 var(--read);box-sizing:border-box;touch-action:manipulation;user-select:text;-webkit-user-select:text}
-.review-body input[type=file]{width:280px}.review-controls>input{width:300px!important}.review-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.review-body input[type=file]{width:280px}.review-controls>input{width:300px!important}.review-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));grid-auto-rows:1fr;gap:16px}
 .review-puzzle{display:flex!important;flex-direction:column;align-items:flex-start!important;text-align:left!important;white-space:normal!important;padding:18px!important;height:auto!important;gap:8px!important;min-width:0}.review-puzzle .forest-portrait{width:64px;height:64px}.review-puzzle small{font:14px/1.5 var(--type-body)}
 .review-status{display:inline-block;font:700 16px/1.4 var(--read);padding:4px 9px;border-radius:8px;background:#eee3c8}.review-status.approved{background:#deebc3;color:#344a24}.review-status.improve{background:#f2d6b8;color:#663916}
 .review-iterations{list-style:none;padding:0;display:flex;flex-direction:column;gap:9px}.review-iterations li{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px;border:1px solid #d8c5a1;border-radius:14px;background:#fffdf7}.review-iterations li>div{display:flex;align-items:flex-start;flex-direction:column;gap:6px;min-width:0}.review-iterations code{font-size:13px;overflow-wrap:anywhere}.review-iterations .btn{flex-shrink:0}
@@ -12,11 +12,10 @@
 @media(max-width:600px){.review-iterations li{align-items:stretch;flex-direction:column}.review-grid{grid-template-columns:1fr}.review-controls>*{max-width:100%}.review-actions .btn{white-space:normal}}
 .review-body .btn,.ff-puzzle-review-settings .btn{width:auto;height:auto;min-width:52px;min-height:52px;max-width:100%;padding:12px 16px;display:inline-flex;flex-direction:row;gap:8px;border:1px solid #bda482;border-radius:14px;background:#fffaf0;color:#4b3b2d;box-shadow:0 4px 0 #c7a878;font:700 17px/1.4 var(--read);white-space:normal}
 .review-body .btn .lbl,.ff-puzzle-review-settings .btn .lbl{font:inherit;line-height:1.4;white-space:normal;margin:0;overflow-wrap:anywhere}
-.review-grid>.review-puzzle{width:100%;justify-content:flex-start;min-height:270px;background:#fffcf5}
-.gallery-grid>.gallery-puzzle{min-height:150px}
+.review-grid>.review-puzzle{justify-content:flex-start;background:#fffcf5}
 .review-actions [aria-pressed=true]{background:#e3ebcf;border-color:#7c9155}
 .review-grid>.review-puzzle{flex-direction:column;align-items:flex-start;overflow-wrap:anywhere}
-.friends-interface .ff-settings-body.review-body .review-grid>.review-puzzle{flex-direction:column;align-items:flex-start}
+.friends-interface .ff-settings-body.review-body .review-grid>.review-puzzle{width:100%;min-height:300px;align-self:stretch;flex-direction:column;align-items:flex-start}
 /* Replace the normal speech control without changing the production page geometry. */
 .review-reject:disabled{opacity:.4;cursor:default}
 .review-rejection label{display:block;font:18px/1.5 var(--read)}.review-rejection textarea{margin-top:8px;min-height:120px}

@@ -124,7 +124,7 @@
     return node;
   }
   function groupResult(){
-    return h('p',{class:'puzzle-group-result','aria-hidden':'true'},FK.icons.element('check'),'Das passt!');
+    return h('p',{class:'puzzle-group-result','aria-hidden':'true',text:'Das passt!'});
   }
   function renderPicnic(q) {
     let counts=Array.isArray(work().plates)&&work().plates.length===q.friends?work().plates.slice():(q.plates||Array(q.friends).fill(0)).slice();

@@ -41,3 +41,12 @@ test('every layout bridge rejects subsequent changes and unrelated keys',()=>{
   assert.equal(sameReviewPresentation(kind,key,{...before,reviewPresentation:'unrelated old version'},after),false);
  }
 });
+test('removing success check marks preserves existing task decisions',()=>{
+ const migration=proof.migrations.find(m=>m.baselineCommit==='1e48d04bdc65836e95ce9d9b7c3cc28b9b177a3a');
+ assert.ok(migration,'exact feedback-only correction is recorded');
+ const baseline=baselines.releases.find(r=>r.commit===migration.baselineCommit),C=setup().FK.puzzleCatalogue;
+ for(const [id,p]of Object.entries(baseline.puzzles)){
+  assert.equal(C.acceptsRevision(id,null,p.revision),true,id);
+  for(const it of C.iterations(id))assert.equal(C.acceptsRevision(id,it.id,baseline.iterations[it.id].revision),true,it.id);
+ }
+});

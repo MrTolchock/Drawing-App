@@ -39,7 +39,6 @@
 .puzzle-small{font-size:16px;margin:0 0 12px;color:#78664f}
 .puzzle-button.is-retry{border:2px dashed #b38058;background:#fff1df}.puzzle-scene .is-retry{outline:2px dashed #b38058;outline-offset:2px}
 .puzzle-button.is-correct,.puzzle-scene.is-correct,.puzzle-scene .is-correct{background-color:#e8efd6;border-color:#7f9a48;box-shadow:0 0 0 2px #8fa76055}
-.is-correct::after{content:'✓';position:absolute;right:7px;top:7px;display:grid;place-items:center;border-radius:50%;width:30px;height:30px;font:700 22px/1 var(--read);background:#637e3e;color:#fff8e8;z-index:2}
 .puzzle-scene .is-correct{position:relative}
 .puzzle-nuts{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;max-width:360px;margin:auto}
 .puzzle-empty{display:flex;justify-content:center}.puzzle-empty-basket{display:block;width:160px;height:160px}.puzzle-empty-basket>.puzzle-picture{width:100%;height:100%}
@@ -156,8 +155,6 @@
 }
 .puzzle-route-cell>.forest-portrait{width:100%;height:100%;pointer-events:none}
 .puzzle-group-result{display:none;align-items:center;justify-content:center;gap:6px;width:max-content;margin:10px auto 0;padding:5px 12px;border:1px solid #9aa96e;border-radius:16px;background:#e8efd6;color:#42532d;font:700 16px/1.35 var(--read)}
-.puzzle-group-result>.utility-icon{width:20px;height:20px;color:inherit}
-:is(.puzzle-picnic-friends,.puzzle-neighbours).is-correct::after{content:none}
 :is(.puzzle-picnic-friends,.puzzle-neighbours).is-correct+.puzzle-group-result{display:flex}
 
 /* Atlas cells stay square when compact rows reduce the available height. */

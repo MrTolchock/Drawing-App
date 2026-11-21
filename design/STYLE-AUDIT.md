@@ -1,6 +1,14 @@
 # Current visual consistency audit
 
-Current game art is **Waldpost 9.4.18**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal and object reference pixels and **87** complete forward image-generation prompts.
+Current game art is **Waldpost 9.4.19**. The canonical medium remains **`waldpost-watercolour-pencil-v1`**, with frozen animal and object reference pixels and **87** complete forward image-generation prompts.
+
+## Quiet answer feedback and uniform puzzle tiles — 9.4.19
+
+Correct answers no longer display a green check badge. The shared soft highlight, accessible «Das passt!» announcement, sound, 900 ms advance and celebration remain. Distribution and neighbouring-number tasks retain their text confirmation without the small check icon. The memory task's deliberate «Ich habe sie mir gemerkt» control keeps its existing utility icon.
+
+The Settings buttons read «Rätsel-Galerie» and «Rätsel-Prüfung». Both overviews use the same full-width grid tiles, a shared 300 px minimum height and equal-height rows. Explicit stretch overrides the general menu-button alignment; empty grid columns remain reserved when filtering, so a single result keeps the same width. Long titles and review details wrap inside the tiles.
+
+All 849 task definitions and picture pixels are unchanged. An exact presentation migration from `1e48d04` preserves existing review decisions across the feedback-only change, retaining previous restrictions on changed or reassigned tasks. No editorial approvals or review-data writes are included. Runtime and offline cache versions advance together. [Real-renderer evidence](evidence/2026-11-21-puzzle-feedback/README.md) covers phone/tablet overviews and solved tasks.
 
 ## A sett worth visiting — 9.4.18
 
